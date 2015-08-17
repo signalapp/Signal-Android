@@ -57,10 +57,14 @@ import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.groups.Conversations;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Set;
 
@@ -68,6 +72,7 @@ import java.util.Set;
 public class ConversationListFragment extends Fragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback, ItemClickListener
 {
+
   private MasterSecret         masterSecret;
   private ActionMode           actionMode;
   private RecyclerView         list;
@@ -178,7 +183,7 @@ public class ConversationListFragment extends Fragment
     alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        final Set<Long> selectedConversations = (getListAdapter())
+        final Conversations selectedConversations = (getListAdapter())
             .getBatchSelections();
 
         if (!selectedConversations.isEmpty()) {
@@ -195,7 +200,7 @@ public class ConversationListFragment extends Fragment
 
             @Override
             protected Void doInBackground(Void... params) {
-              DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
+              DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations.asSet());
               MessageNotifier.updateNotification(getActivity(), masterSecret);
               return null;
             }
@@ -288,6 +293,18 @@ public class ConversationListFragment extends Fragment
         .setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
     }
 
+    fab.setImageResource(R.drawable.ic_group_white_24dp);
+    fab.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        final Conversations selectedConversations = (getListAdapter()).getBatchSelections();
+
+        Intent createGroupIntent = new Intent(getActivity(), GroupCreateActivity.class);
+        createGroupIntent.putExtra(GroupCreateActivity.SELECTED_THREADS_EXTRA, selectedConversations.asArray());
+        startActivity(createGroupIntent);
+      }
+    });
+
     return true;
   }
 
@@ -316,6 +333,14 @@ public class ConversationListFragment extends Fragment
       getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
       color.recycle();
     }
+
+    fab.setImageResource(R.drawable.ic_create_white_24dp);
+    fab.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(getActivity(), NewConversationActivity.class));
+      }
+    });
 
     actionMode = null;
   }

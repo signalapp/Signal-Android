@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -91,6 +92,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   private final static String TAG = GroupCreateActivity.class.getSimpleName();
 
   public static final String GROUP_RECIPIENT_EXTRA = "group_recipient";
+  public static final String SELECTED_THREADS_EXTRA = "selected_threads";
   public static final String GROUP_THREAD_EXTRA    = "group_thread";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -112,6 +114,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   private Set<Recipient> existingContacts  = null;
   private String         existingTitle     = null;
   private Bitmap         existingAvatarBmp = null;
+  private long[] batchSelectedThreadIds = null;
 
   private MasterSecret   masterSecret;
   private Bitmap         avatarBmp;
@@ -232,6 +235,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
           new FillExistingGroupInfoAsyncTask().execute();
         }
       }
+    }
+    batchSelectedThreadIds = getIntent().getLongArrayExtra(SELECTED_THREADS_EXTRA);
+    if ( batchSelectedThreadIds != null) {
+      new FillBatchSelectedRecipientsGroupInfoAsyncTask().execute();
     }
 
     lv              = (ListView)            findViewById(R.id.selected_contacts_list);
@@ -683,6 +690,41 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
       if (existingTitle != null) groupName.setText(existingTitle);
       if (existingAvatarBmp != null) avatar.setImageBitmap(existingAvatarBmp);
+      if (existingContacts != null) syncAdapterWithSelectedContacts();
+    }
+  }
+
+  private class FillBatchSelectedRecipientsGroupInfoAsyncTask extends ProgressDialogAsyncTask<Void,Void,Void> {
+
+    public FillBatchSelectedRecipientsGroupInfoAsyncTask() {
+      super(GroupCreateActivity.this,
+              R.string.GroupCreateActivity_loading_group_details,
+              R.string.please_wait);
+    }
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+      final List<Recipient> listOfSelectedRecipients = new LinkedList<>();
+
+      for(Long threadId : batchSelectedThreadIds) {
+        Recipients threadMembers = DatabaseFactory.getThreadDatabase(GroupCreateActivity.this).getRecipientsForThreadIdIncludingGroupMembers(threadId);
+        listOfSelectedRecipients.addAll(threadMembers.getRecipientsList());
+      }
+
+      Recipients selectedRecipients = RecipientFactory.getRecipientsFor(getContext(), listOfSelectedRecipients, false);
+      long[] selectedRecipientsIds = selectedRecipients.getIds();
+      existingContacts = new HashSet<>(selectedRecipientsIds.length);
+      for (long recipientId : selectedRecipientsIds) {
+        Recipient recipient = RecipientFactory.getRecipientForId(getContext(), recipientId, false);
+        existingContacts.add(recipient);
+      }
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+      super.onPostExecute(aVoid);
+
       if (existingContacts != null) syncAdapterWithSelectedContacts();
     }
   }

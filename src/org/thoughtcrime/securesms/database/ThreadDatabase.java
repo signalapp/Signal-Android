@@ -34,9 +34,11 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -44,6 +46,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ThreadDatabase extends Database {
+
+  private final static String TAG = ThreadDatabase.class.getSimpleName();
 
           static final String TABLE_NAME      = "thread";
   public  static final String ID              = "_id";
@@ -389,6 +393,22 @@ public class ThreadDatabase extends Database {
     }
 
     return null;
+  }
+
+  public @Nullable Recipients getRecipientsForThreadIdIncludingGroupMembers(long threadId) {
+    Recipients threadMembers = getRecipientsForThreadId(threadId);
+
+    if(threadMembers != null && threadMembers.isGroupRecipient()) {
+      try {
+        byte[] groupId = GroupUtil.getDecodedId(String.valueOf(threadMembers.getPrimaryRecipient().getNumber()));
+        Recipients groupMembers = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+        return groupMembers;
+      } catch (IOException ioe) {
+        Log.w(TAG, "Couldn't decode the encoded groupId of the passed in threadId", ioe);
+      }
+    }
+
+    return threadMembers;
   }
 
   public boolean update(long threadId) {
