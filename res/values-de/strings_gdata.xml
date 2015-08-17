@@ -66,4 +66,5 @@
     <string name="msg_failed">Hinweis: Vermutlich hat sich der Schlüssel eines Empfängers durch eine Neuinstallation oder den versuchten Angriff eines Dritten geändert. Innerhalb einer Gruppe kann dieses Problem gelöst werden indem ein gewöhnlicher Schlüsselaustausch über eine neue Unterhaltung mit dem Kontakt stattfindet und anschließend die Gruppe aktualisiert wird.</string>
     <string name="profile_history_label">Media</string>
     <string name="profile_history_content">Keine Bilder verschickt</string>
+    <string name="menu_invite_to_sc">Einladen</string>
 </resources>
