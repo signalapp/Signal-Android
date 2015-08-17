@@ -58,7 +58,7 @@ public class AudioSlide extends Slide {
   }
   @Override
   public @DrawableRes int getPlaceholderRes(Theme theme) {
-    return R.drawable.ic_menu_add_sound;
+    return R.drawable.ic_sound;
   }
 
   @Override
