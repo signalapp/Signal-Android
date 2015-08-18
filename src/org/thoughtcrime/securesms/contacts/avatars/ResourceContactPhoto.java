@@ -2,12 +2,10 @@ package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.DrawableRes;
-import android.support.v4.graphics.ColorUtils;
 import android.widget.ImageView;
 
 import com.amulyakhare.textdrawable.TextDrawable;

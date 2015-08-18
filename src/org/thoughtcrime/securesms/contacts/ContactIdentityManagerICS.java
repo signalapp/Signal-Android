@@ -48,32 +48,4 @@ class ContactIdentityManagerICS extends ContactIdentityManager {
     return true;
   }
 
-  @SuppressLint("NewApi")
-  @Override
-  public List<Long> getSelfIdentityRawContactIds() {
-    List<Long> results = new LinkedList<Long>();
-
-    String[] PROJECTION = new String[] {
-        ContactsContract.Profile._ID
-    };
-
-    Cursor cursor = null;
-
-    try {
-      cursor = context.getContentResolver().query(ContactsContract.Profile.CONTENT_RAW_CONTACTS_URI,
-                                                  PROJECTION, null, null, null);
-
-      if (cursor == null || cursor.getCount() == 0)
-        return null;
-
-      while (cursor.moveToNext()) {
-        results.add(cursor.getLong(0));
-      }
-
-      return results;
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-  }
 }

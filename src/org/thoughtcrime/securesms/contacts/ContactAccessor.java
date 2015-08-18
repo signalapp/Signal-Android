@@ -53,8 +53,6 @@ import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 public class ContactAccessor {
 
-  public static final String PUSH_COLUMN = "push";
-
   private static final ContactAccessor instance = new ContactAccessor();
 
   public static synchronized ContactAccessor getInstance() {

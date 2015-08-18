@@ -112,10 +112,6 @@ public class ArrayListCursor extends AbstractCursor {
         return mRows.length;
     }
 
-    public boolean deleteRow() {
-        return false;
-    }
-
     @Override
     public String[] getColumnNames() {
         return mColumnNames;

@@ -21,7 +21,6 @@ import android.database.Cursor;
 import android.database.MergeCursor;
 import android.support.v4.content.CursorLoader;
 import android.text.TextUtils;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.NumberUtil;
@@ -34,8 +33,6 @@ import java.util.ArrayList;
  * @author Jake McGinty
  */
 public class ContactsCursorLoader extends CursorLoader {
-
-  private static final String TAG = ContactsCursorLoader.class.getSimpleName();
 
   private final String  filter;
   private       boolean includeSmsContacts;

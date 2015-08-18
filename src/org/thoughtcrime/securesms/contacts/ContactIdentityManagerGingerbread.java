@@ -38,38 +38,6 @@ class ContactIdentityManagerGingerbread extends ContactIdentityManager {
     return hasLocalNumber() && getContactUriForNumber(getLocalNumber()) != null;
   }
 
-  @Override
-  public List<Long> getSelfIdentityRawContactIds() {
-    long selfIdentityContactId = getSelfIdentityContactId();
-
-    if (selfIdentityContactId == -1)
-      return null;
-
-    Cursor cursor                 = null;
-    ArrayList<Long> rawContactIds = new ArrayList<Long>();
-
-    try {
-      cursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
-                                                  new String[] {RawContacts._ID},
-                                                  RawContacts.CONTACT_ID + " = ?",
-                                                  new String[] {selfIdentityContactId+""},
-                                                  null);
-
-      if (cursor == null || cursor.getCount() == 0)
-        return null;
-
-      while (cursor.moveToNext()) {
-        rawContactIds.add(Long.valueOf(cursor.getLong(0)));
-      }
-
-      return rawContactIds;
-
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-  }
-
   private Uri getContactUriForNumber(String number) {
     String[] PROJECTION = new String[] {
       PhoneLookup.DISPLAY_NAME,
