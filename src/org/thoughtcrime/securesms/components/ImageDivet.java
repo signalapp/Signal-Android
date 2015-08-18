@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
 
 public class ImageDivet extends ImageView {
-  private static final float CORNER_OFFSET = 12F;
   private static final String[] POSITIONS  = new String[] {"bottom_right"};
 
   private Drawable drawable;
@@ -18,7 +18,6 @@ public class ImageDivet extends ImageView {
   private int drawableIntrinsicWidth;
   private int drawableIntrinsicHeight;
   private int position;
-  private float density;
 
   public ImageDivet(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
@@ -40,7 +39,6 @@ public class ImageDivet extends ImageView {
       position = attrs.getAttributeListValue(null, "position", POSITIONS, -1);
     }
 
-    density = getContext().getResources().getDisplayMetrics().density;
     setDrawable();
   }
 
@@ -62,10 +60,10 @@ public class ImageDivet extends ImageView {
   }
 
   @Override
-  public void onDraw(Canvas c) {
+  public void onDraw(@NonNull Canvas c) {
     super.onDraw(c);
     c.save();
-    computeBounds(c);
+    computeBounds();
     drawable.draw(c);
     c.restore();
   }
@@ -80,19 +78,7 @@ public class ImageDivet extends ImageView {
     return position;
   }
 
-  public float getCloseOffset() {
-    return CORNER_OFFSET * density;
-  }
-
-  public ImageView asImageView() {
-    return this;
-  }
-
-  public float getFarOffset() {
-    return getCloseOffset() + drawableIntrinsicHeight;
-  }
-
-  private void computeBounds(Canvas c) {
+  private void computeBounds() {
     final int right = getWidth();
     final int bottom = getHeight();
 

@@ -72,10 +72,7 @@ class TexturePreviewStrategy implements PreviewStrategy,
 
   @Override
   public void attach(MediaRecorder recorder) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      // no-op
-    }
-    else {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
       throw new IllegalStateException(
           "Cannot use TextureView with MediaRecorder");
     }

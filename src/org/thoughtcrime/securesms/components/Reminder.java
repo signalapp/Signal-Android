@@ -1,10 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
-import android.content.Context;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-
-import org.thoughtcrime.securesms.R;
 
 public abstract class Reminder {
   private int             iconResId;

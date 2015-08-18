@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 
 
 public class EmojiEditText extends AppCompatEditText {
-  private static final String TAG = EmojiEditText.class.getSimpleName();
 
   public EmojiEditText(Context context) {
     this(context, null);

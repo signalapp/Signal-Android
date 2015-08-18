@@ -19,17 +19,12 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.RecipientsAdapter;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -37,11 +32,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Panel component combining both an editable field with a button for
@@ -50,13 +41,10 @@ import java.util.Set;
  * @author Moxie Marlinspike
  */
 public class PushRecipientsPanel extends RelativeLayout {
-  private final String                         TAG = PushRecipientsPanel.class.getSimpleName();
+
   private       RecipientsPanelChangedListener panelChangeListener;
 
   private RecipientsEditor recipientsText;
-  private View             panel;
-
-  private static final int RECIPIENTS_MAX_LENGTH = 312;
 
   public PushRecipientsPanel(Context context) {
     super(context);
@@ -73,21 +61,6 @@ public class PushRecipientsPanel extends RelativeLayout {
     initialize();
   }
 
-  public void addRecipient(String name, String number) {
-    if (name != null) recipientsText.append(name + "< " + number + ">, ");
-    else recipientsText.append(number + ", ");
-  }
-
-  public void addRecipients(Recipients recipients) {
-    List<Recipient> recipientList = recipients.getRecipientsList();
-    Iterator<Recipient> iterator = recipientList.iterator();
-
-    while (iterator.hasNext()) {
-      Recipient recipient = iterator.next();
-      addRecipient(recipient.getName(), recipient.getNumber());
-    }
-  }
-
   public Recipients getRecipients() throws RecipientFormattingException {
     String rawText = recipientsText.getText().toString();
     Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(), rawText, false);
@@ -96,11 +69,6 @@ public class PushRecipientsPanel extends RelativeLayout {
       throw new RecipientFormattingException("Recipient List Is Empty!");
 
     return recipients;
-  }
-
-  public void disable() {
-    recipientsText.setText("");
-    panel.setVisibility(View.GONE);
   }
 
   public void setPanelChangeListener(RecipientsPanelChangedListener panelChangeListener) {
@@ -116,7 +84,6 @@ public class PushRecipientsPanel extends RelativeLayout {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
       ((MarginLayoutParams) imageButton.getLayoutParams()).topMargin = 0;
 
-    panel = findViewById(R.id.recipients_panel);
     initRecipientsEditor();
   }
 
