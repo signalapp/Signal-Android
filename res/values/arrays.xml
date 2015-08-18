@@ -176,7 +176,7 @@
   <string-array name="pref_notification_privacy_entries">
       <item>@string/arrays__name_and_message</item>
       <item>@string/arrays__name_only</item>
-      <item>@string/arrays__neither</item>
+      <item>@string/arrays__no_name_or_message</item>
   </string-array>
 
   <string-array name="pref_notification_privacy_values">
