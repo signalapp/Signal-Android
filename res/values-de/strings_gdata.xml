@@ -3,7 +3,7 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 Sekunden</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 Sekunden</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 Sekunden</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Deaktivieren</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Keine Selbstzerstörung</string>
     <string name="gdata_contact_selection_page_title">Kontakte</string>
     <string name="gdata_conversation_list_page_title">Unterhaltungen</string>
     <string name="gd_dialog_fragment_phishing_title">Web-Schutz</string>
