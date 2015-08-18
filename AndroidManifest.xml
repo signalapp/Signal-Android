@@ -356,6 +356,12 @@
 
         <uses-library android:name="android.test.runner" />
 
+        <receiver android:name=".receiver.AppUpdateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
