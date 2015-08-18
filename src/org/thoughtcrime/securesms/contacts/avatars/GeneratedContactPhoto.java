@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 
 import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import org.thoughtcrime.securesms.R;
 

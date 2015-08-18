@@ -4,8 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 
-import java.util.List;
-
 public abstract class ContactIdentityManager {
 
   public static ContactIdentityManager getInstance(Context context) {
@@ -23,6 +21,5 @@ public abstract class ContactIdentityManager {
 
   public abstract Uri        getSelfIdentityUri();
   public abstract boolean    isSelfIdentityAutoDetected();
-  public abstract List<Long> getSelfIdentityRawContactIds();
 
 }

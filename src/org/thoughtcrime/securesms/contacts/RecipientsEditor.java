@@ -19,10 +19,8 @@ package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatMultiAutoCompleteTextView;
-import android.telephony.PhoneNumberUtils;
 import android.text.Annotation;
 import android.text.Editable;
-import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -30,15 +28,10 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.MotionEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.MultiAutoCompleteTextView;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
 
@@ -49,14 +42,11 @@ import java.util.List;
  * Provide UI for editing the recipients of multi-media messages.
  */
 public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
-    private int mLongPressedPosition = -1;
     private final RecipientsEditorTokenizer mTokenizer;
     private char mLastSeparator = ',';
-    private Context mContext;
 
     public RecipientsEditor(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mContext = context;
         mTokenizer = new RecipientsEditorTokenizer(context, this);
         setTokenizer(mTokenizer);
         // For the focus to move to the message body when soft Next is pressed
@@ -120,35 +110,8 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
         return end == len;
     }
 
-    public int getRecipientCount() {
-        return mTokenizer.getNumbers().size();
-    }
-
     public List<String> getNumbers() {
         return mTokenizer.getNumbers();
-    }
-
-    public Recipients constructContactsFromInput() {
-      return RecipientFactory.getRecipientsFromString(mContext, mTokenizer.getRawString(), false);
-    }
-
-    private boolean isValidAddress(String number, boolean isMms) {
-        /*if (isMms) {
-            return MessageUtils.isValidMmsAddress(number);
-        } else {*/
-            // TODO: PhoneNumberUtils.isWellFormedSmsAddress() only check if the number is a valid
-            // GSM SMS address. If the address contains a dialable char, it considers it a well
-            // formed SMS addr. CDMA doesn't work that way and has a different parser for SMS
-            // address (see CdmaSmsAddress.parse(String address)). We should definitely fix this!!!
-        return PhoneNumberUtils.isWellFormedSmsAddress(number);
-    }
-
-    public boolean hasValidRecipient(boolean isMms) {
-        for (String number : mTokenizer.getNumbers()) {
-            if (isValidAddress(number, isMms))
-                return true;
-        }
-        return false;
     }
 
     /*public boolean hasInvalidRecipient(boolean isMms) {
@@ -163,19 +126,6 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
         }
         return false;
     }*/
-
-    public String formatInvalidNumbers(boolean isMms) {
-        StringBuilder sb = new StringBuilder();
-        for (String number : mTokenizer.getNumbers()) {
-            if (!isValidAddress(number, isMms)) {
-                if (sb.length() != 0) {
-                    sb.append(", ");
-                }
-                sb.append(number);
-            }
-        }
-        return sb.toString();
-    }
 
     /*public boolean containsEmail() {
         if (TextUtils.indexOf(getText(), '@') == -1)
@@ -200,7 +150,7 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
       }
 
       s.setSpan(new Annotation("number", c.getNumber()), 0, len,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
       return s;
     }
@@ -217,37 +167,6 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
         }
 
         setText(sb);
-    }
-
-    private int pointToPosition(int x, int y) {
-        x -= getCompoundPaddingLeft();
-        y -= getExtendedPaddingTop();
-
-        x += getScrollX();
-        y += getScrollY();
-
-        Layout layout = getLayout();
-        if (layout == null) {
-            return -1;
-        }
-
-        int line = layout.getLineForVertical(y);
-        int off = layout.getOffsetForHorizontal(line, x);
-
-        return off;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        final int action = ev.getAction();
-        final int x = (int) ev.getX();
-        final int y = (int) ev.getY();
-
-        if (action == MotionEvent.ACTION_DOWN) {
-            mLongPressedPosition = pointToPosition(x, y);
-        }
-
-        return super.onTouchEvent(ev);
     }
 
     private static String getNumberAt(Spanned sp, int start, int end, Context context) {
@@ -368,9 +287,6 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
                 }
             }
         }
-        public String getRawString() {
-        	return mList.getText().toString();
-        }
         public List<String> getNumbers() {
             Spanned sp = mList.getText();
             int len = sp.length();
@@ -407,14 +323,6 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
             }
 
             return list;
-        }
-    }
-
-    static class RecipientContextMenuInfo implements ContextMenuInfo {
-        final Recipient recipient;
-
-        RecipientContextMenuInfo(Recipient r) {
-            recipient = r;
         }
     }
 }
