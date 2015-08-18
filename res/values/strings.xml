@@ -760,7 +760,7 @@
 
     <string name="arrays__name_and_message">Name and message</string>
     <string name="arrays__name_only">Name only</string>
-    <string name="arrays__neither">Neither</string>
+    <string name="arrays__no_name_or_message">No name or message</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
