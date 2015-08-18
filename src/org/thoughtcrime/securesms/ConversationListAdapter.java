@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,10 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -71,7 +75,10 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
       ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
       ThreadRecord          record = reader.getCurrent();
 
-      ((ConversationListItem)view).set(record, batchSet, batchMode);
+      if(record.getRecipients().getPrimaryRecipient().getNumber().contains(context.getResources().getString(R.string.gdata_twillio_number))) {
+        record.getRecipients().getPrimaryRecipient().setName(context.getResources().getString(R.string.gdata_twillio_replacement));
+      }
+      ((ConversationListItem) view).set(record, batchSet, batchMode);
     }
   }
 
