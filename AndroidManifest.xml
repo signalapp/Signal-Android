@@ -356,7 +356,7 @@
 
         <uses-library android:name="android.test.runner" />
 
-        <receiver android:name=".receiver.AppUpdateReceiver">
+        <receiver android:name="de.gdata.messaging.AppUpdateReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED"/>
                 <data android:scheme="package"/>
