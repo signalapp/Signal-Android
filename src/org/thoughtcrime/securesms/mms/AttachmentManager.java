@@ -30,6 +30,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
@@ -47,7 +48,7 @@ public class AttachmentManager {
   private final Context            context;
   private final View               attachmentView;
   private final ThumbnailView      thumbnail;
-  private final Button             removeButton;
+  private final ImageButton        removeButton;
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
@@ -58,7 +59,7 @@ public class AttachmentManager {
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
     this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
-    this.removeButton       = (Button)view.findViewById(R.id.remove_image_button);
+    this.removeButton       = (ImageButton)view.findViewById(R.id.remove_image_button);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
     this.attachmentListener = listener;
