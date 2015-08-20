@@ -57,6 +57,7 @@ public class TextSecureAccountManager {
 
   private final PushServiceSocket pushServiceSocket;
   private final String            user;
+  private final String            userAgent;
 
   /**
    * Construct a TextSecureAccountManager.
@@ -65,12 +66,15 @@ public class TextSecureAccountManager {
    * @param trustStore The {@link org.whispersystems.textsecure.api.push.TrustStore} for the TextSecure server's TLS certificate.
    * @param user A TextSecure phone number.
    * @param password A TextSecure password.
+   * @param userAgent A string which identifies the client software.
    */
   public TextSecureAccountManager(String url, TrustStore trustStore,
-                                  String user, String password)
+                                  String user, String password,
+                                  String userAgent)
   {
-    this.pushServiceSocket = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null));
+    this.pushServiceSocket = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null), userAgent);
     this.user              = user;
+    this.userAgent         = userAgent;
   }
 
   /**
@@ -108,14 +112,13 @@ public class TextSecureAccountManager {
   }
 
   /**
-   * Verify a TextSecure account.
+   * Verify a TextSecure account with a received SMS or voice verification code.
    *
    * @param verificationCode The verification code received via SMS or Voice
    *                         (see {@link #requestSmsVerificationCode} and
    *                         {@link #requestVoiceVerificationCode}).
    * @param signalingKey 52 random bytes.  A 32 byte AES key and a 20 byte Hmac256 key,
    *                     concatenated.
-   * @param supportsSms Indicate whether this client is capable of supporting encrypted SMS.
    * @param axolotlRegistrationId A random 14-bit number that identifies this TextSecure install.
    *                              This value should remain consistent across registrations for the
    *                              same install, but probabilistically differ across registrations
@@ -123,12 +126,31 @@ public class TextSecureAccountManager {
    *
    * @throws IOException
    */
-  public void verifyAccount(String verificationCode, String signalingKey,
-                            boolean supportsSms, int axolotlRegistrationId)
+  public void verifyAccountWithCode(String verificationCode, String signalingKey, int axolotlRegistrationId)
       throws IOException
   {
-    this.pushServiceSocket.verifyAccount(verificationCode, signalingKey,
-                                         supportsSms, axolotlRegistrationId);
+    this.pushServiceSocket.verifyAccountCode(verificationCode, signalingKey,
+                                             axolotlRegistrationId);
+  }
+
+  /**
+   * Verify a TextSecure account with a signed token from a trusted source.
+   *
+   * @param verificationToken The signed token provided by a trusted server.
+
+   * @param signalingKey 52 random bytes.  A 32 byte AES key and a 20 byte Hmac256 key,
+   *                     concatenated.
+   * @param axolotlRegistrationId A random 14-bit number that identifies this TextSecure install.
+   *                              This value should remain consistent across registrations for the
+   *                              same install, but probabilistically differ across registrations
+   *                              for separate installs.
+   *
+   * @throws IOException
+   */
+  public void verifyAccountWithToken(String verificationToken, String signalingKey, int axolotlRegistrationId)
+      throws IOException
+  {
+    this.pushServiceSocket.verifyAccountToken(verificationToken, signalingKey, axolotlRegistrationId);
   }
 
   /**

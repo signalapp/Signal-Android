@@ -31,6 +31,7 @@ public class OkHttpClientWrapper implements WebSocketListener {
   private final TrustStore             trustStore;
   private final CredentialsProvider    credentialsProvider;
   private final WebSocketEventListener listener;
+  private final String                 userAgent;
 
   private WebSocket webSocket;
   private boolean   closed;
@@ -38,6 +39,7 @@ public class OkHttpClientWrapper implements WebSocketListener {
 
   public OkHttpClientWrapper(String uri, TrustStore trustStore,
                              CredentialsProvider credentialsProvider,
+                             String userAgent,
                              WebSocketEventListener listener)
   {
     Log.w(TAG, "Connecting to: " + uri);
@@ -45,6 +47,7 @@ public class OkHttpClientWrapper implements WebSocketListener {
     this.uri                 = uri;
     this.trustStore          = trustStore;
     this.credentialsProvider = credentialsProvider;
+    this.userAgent           = userAgent;
     this.listener            = listener;
   }
 
@@ -127,7 +130,13 @@ public class OkHttpClientWrapper implements WebSocketListener {
     okHttpClient.setReadTimeout(timeout, unit);
     okHttpClient.setConnectTimeout(timeout, unit);
 
-    return WebSocket.newWebSocket(okHttpClient, new Request.Builder().url(filledUri).build());
+    Request.Builder requestBuilder = new Request.Builder().url(filledUri);
+
+    if (userAgent != null) {
+      requestBuilder.addHeader("X-Signal-Agent", userAgent);
+    }
+
+    return WebSocket.newWebSocket(okHttpClient, requestBuilder.build());
   }
 
   private SSLSocketFactory createTlsSocketFactory(TrustStore trustStore) {

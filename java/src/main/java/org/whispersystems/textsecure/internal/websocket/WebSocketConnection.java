@@ -27,13 +27,15 @@ public class WebSocketConnection implements WebSocketEventListener {
   private final String              wsUri;
   private final TrustStore          trustStore;
   private final CredentialsProvider credentialsProvider;
+  private final String              userAgent;
 
   private OkHttpClientWrapper client;
   private KeepAliveSender     keepAliveSender;
 
-  public WebSocketConnection(String httpUri, TrustStore trustStore, CredentialsProvider credentialsProvider) {
+  public WebSocketConnection(String httpUri, TrustStore trustStore, CredentialsProvider credentialsProvider, String userAgent) {
     this.trustStore          = trustStore;
     this.credentialsProvider = credentialsProvider;
+    this.userAgent           = userAgent;
     this.wsUri               = httpUri.replace("https://", "wss://")
                                       .replace("http://", "ws://") + "/v1/websocket/?login=%s&password=%s";
   }
@@ -42,7 +44,7 @@ public class WebSocketConnection implements WebSocketEventListener {
     Log.w(TAG, "WSC connect()...");
 
     if (client == null) {
-      client = new OkHttpClientWrapper(wsUri, trustStore, credentialsProvider, this);
+      client = new OkHttpClientWrapper(wsUri, trustStore, credentialsProvider, userAgent, this);
       client.connect(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS);
     }
   }

@@ -88,9 +88,10 @@ public class TextSecureMessageSender {
   public TextSecureMessageSender(String url, TrustStore trustStore,
                                  String user, String password,
                                  AxolotlStore store,
+                                 String userAgent,
                                  Optional<EventListener> eventListener)
   {
-    this.socket        = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null));
+    this.socket        = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null), userAgent);
     this.store         = store;
     this.localAddress  = new TextSecureAddress(user);
     this.eventListener = eventListener;
