@@ -48,6 +48,7 @@ import android.view.View.OnKeyListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -194,6 +195,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private SendButtonListener sendButtonListener = new SendButtonListener();
     private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
     private int currentMediaSize;
+    private ImageButton inviteButton;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -329,7 +331,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             inflater.inflate(R.menu.conversation_secure_identity, menu);
             //inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
         } else if (isSingleConversation()) {
-            if (!pushRegistered) inflater.inflate(R.menu.conversation_insecure_no_push, menu);
+            if (!pushRegistered) {
+                inflater.inflate(R.menu.conversation_insecure_no_push, menu);
+            }
             inflater.inflate(R.menu.conversation_insecure, menu);
         }
 
@@ -906,6 +910,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         charactersLeft = (TextView) findViewById(R.id.space_left);
         emojiDrawer = (EmojiDrawer) findViewById(R.id.emoji_drawer);
         emojiToggle = (EmojiToggle) findViewById(R.id.emoji_toggle);
+        inviteButton = (ImageButton) findViewById(R.id.invite_button);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             emojiToggle.setVisibility(View.GONE);
@@ -998,6 +1003,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             sendButton.setEnabled(true);
             sendButton.setComposeTextView(composeText);
             sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_attachment_gdata));
+        }
+        if (isSingleConversation()) {
+            if (!isEncryptedConversation) {
+                inviteButton.setVisibility(View.VISIBLE);
+                transportButton.setVisibility(View.GONE);
+                inviteButton.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        handleInviteLink();
+                    }
+                });
+            }
         }
     }
 

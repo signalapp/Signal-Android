@@ -100,6 +100,17 @@
                     android:background="?conversation_editor_background"
                     android:orientation="horizontal">
 
+                    <ImageButton
+                        android:id="@+id/invite_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/touch_highlight_background"
+                        android:paddingBottom="0dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="3dp"
+                        android:src="@drawable/invite_person_icon"
+                        android:visibility="gone"/>
+
                     <de.gdata.messaging.components.SelectTransportButton
                         android:id="@+id/select_transport_button"
                         android:layout_width="wrap_content"
