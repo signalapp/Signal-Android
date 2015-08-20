@@ -878,6 +878,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
         calculateCharactersRemaining();
         getCurrentMediaSize();
+        if (isSingleConversation()) {
+            if (!isEncryptedConversation) {
+                inviteButton.setVisibility(View.VISIBLE);
+                transportButton.setVisibility(View.GONE);
+                inviteButton.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        handleInviteLink();
+                    }
+                });
+            }
+        }
     }
 
     private void initializeMmsEnabledCheck() {
@@ -1004,19 +1017,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             sendButton.setComposeTextView(composeText);
             sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_attachment_gdata));
         }
-        if (isSingleConversation()) {
-            if (!isEncryptedConversation) {
-                inviteButton.setVisibility(View.VISIBLE);
-                transportButton.setVisibility(View.GONE);
-                inviteButton.setOnClickListener(new OnClickListener() {
 
-                    @Override
-                    public void onClick(View view) {
-                        handleInviteLink();
-                    }
-                });
-            }
-        }
     }
 
     //////// Helper Methods
