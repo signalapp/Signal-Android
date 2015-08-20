@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -238,6 +239,13 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
     if (streamExtra != null) {
       type = getMimeType(streamExtra);
+    }
+    if (type != null && type.startsWith("image/")) {
+      draftImage = streamExtra;
+    } else if (type != null && type.startsWith("audio/")) {
+      draftAudio = streamExtra;
+    } else if (type != null && type.startsWith("video/")) {
+      draftVideo = streamExtra;
     }
     return new ConversationParameters(-1, null, draftText, draftImage, draftVideo, draftAudio, type);
   }
