@@ -186,7 +186,6 @@ public class ProfileFragment extends Fragment {
                             ProfileAccessor.getProfileUpdateTimeForRecepient(getActivity(), profileId),
                             "dd.MM.yyyy hh:mm:ss"));
                     imageText.setText(recipient.getName());
-                    setMediaHistoryImages();
                 }
                 profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
             } else if (ProfileAccessor.getMyProfilePicture(getActivity()).hasImage() && isMyProfile) {
@@ -204,6 +203,10 @@ public class ProfileFragment extends Fragment {
                 profilePicture.setImageBitmap(recipient.getContactPhoto());
             }
             layout_group.setVisibility(View.GONE);
+
+            if(!isMyProfile) {
+                setMediaHistoryImages();
+            }
         } else {
             final String groupName = recipient.getName();
             final Bitmap avatar = recipient.getContactPhoto();
@@ -365,6 +368,7 @@ public class ProfileFragment extends Fragment {
             historyLayout.removeView(historyLayout.getChildAt(0));
         }
         String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(GUtil.numberToLong(recipient.getNumber()));
+            Log.w("GDATA", "size number " + GUtil.numberToLong(recipient.getNumber()));
         for (int i = 0; i < mediaHistoryUris.length; i++) {
             Slide mediaHistorySlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i]);
             if (mediaHistorySlide != null && masterSecret != null && !(mediaHistorySlide.getUri() + "").equals("")) {
@@ -381,6 +385,7 @@ public class ProfileFragment extends Fragment {
                 historyMedia.setSlide(mediaHistorySlide);
             }
         }
+            Log.w("GDATA", "size " + mediaHistoryUris.length);
         LinearLayout ll = ((LinearLayout) historyScrollView.getChildAt(0));
         if(ll.getChildCount()>0 && historyContentTextView != null) {
             historyContentTextView.setVisibility(View.GONE);
@@ -424,7 +429,7 @@ public class ProfileFragment extends Fragment {
         try {
             getActivity().startActivity(intent);
         } catch (ActivityNotFoundException anfe) {
-            Log.w("GDATA", "MYLOG " + anfe.getMessage() + " - " + slide.getContentType());
+            Log.w("GDATA", anfe.getMessage() + " - " + slide.getContentType());
         }
     }
     private void finishAndSave() {
