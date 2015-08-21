@@ -147,7 +147,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Uri    draftVideo  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA);
     final Uri    draftAudio  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
     final String mediaType   = originalIntent.getStringExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA);
-    Log.d("MYLOG", "MYLOG getBaseShareIntent " + draftImage);
+    
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, draftText);
     intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, GUtil.getUsableGoogleImageUri(draftImage));
     intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, GUtil.getUsableGoogleImageUri(draftVideo));
