@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -352,5 +353,24 @@ public class GUtil {
       array[arrayUri.length-1 - i] = temp;
     }
     return array;
+  }
+  /*
+   * Some Google Apps dont return a proper uri for picked images for sharing (workaround)
+   */
+  public static Uri getUsableGoogleImageUri(Uri contentUri) {
+    if(contentUri != null) {
+      String unusablePath = contentUri.getPath();
+      if (unusablePath.contains("external") && unusablePath.contains("ACTUAL")) {
+        int startIndex = unusablePath.indexOf("external/");
+        int endIndex = unusablePath.indexOf("/ACTUAL");
+        String embeddedPath = unusablePath.substring(startIndex, endIndex);
+
+        Uri.Builder builder = contentUri.buildUpon();
+        builder.path(embeddedPath);
+        builder.authority("media");
+        return builder.build();
+      }
+    }
+    return contentUri;
   }
 }

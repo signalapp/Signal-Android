@@ -31,6 +31,8 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
+import de.gdata.messaging.util.GUtil;
+
 /**
  * An activity to quickly share content with contacts
  *
@@ -147,9 +149,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final String mediaType   = originalIntent.getStringExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA);
     Log.d("MYLOG", "MYLOG getBaseShareIntent " + draftImage);
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, draftText);
-    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, draftImage);
-    intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, draftVideo);
-    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, draftAudio);
+    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, GUtil.getUsableGoogleImageUri(draftImage));
+    intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, GUtil.getUsableGoogleImageUri(draftVideo));
+    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, GUtil.getUsableGoogleImageUri(draftAudio));
     intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, mediaType);
     intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
 
