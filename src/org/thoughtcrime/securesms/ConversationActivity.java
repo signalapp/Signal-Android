@@ -341,15 +341,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             inflater.inflate(R.menu.conversation_callable, menu);
         } else if (isGroupConversation()) {
             inflater.inflate(R.menu.conversation_group_options, menu);
-
-            if (!isPushGroupConversation()) {
-                inflater.inflate(R.menu.conversation_mms_group_options, menu);
-                if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
-                    menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
-                } else {
-                    menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
-                }
-            } else if (isActiveGroup()) {
+            if (isActiveGroup()) {
                 inflater.inflate(R.menu.conversation_push_group_options, menu);
             }
         }
