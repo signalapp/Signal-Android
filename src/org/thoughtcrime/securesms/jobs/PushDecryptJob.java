@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -202,6 +203,9 @@ public class PushDecryptJob extends MasterSecretJob {
       }
       if (!GService.shallBeBlockedByPrivacy(envelope.getSource()) || !new GDataPreferences(getContext()).isPrivacyActivated()) {
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      } else {
+        long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageAndThreadId.first);
+        DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       }
     }
   }
@@ -237,6 +241,9 @@ public class PushDecryptJob extends MasterSecretJob {
       }
       if (!GService.shallBeBlockedByPrivacy(envelope.getSource()) || !new GDataPreferences(getContext()).isPrivacyActivated()) {
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      } else {
+        long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageAndThreadId.first);
+        DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       }
     }
   }
