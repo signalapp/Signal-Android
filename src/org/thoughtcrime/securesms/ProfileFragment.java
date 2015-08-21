@@ -203,10 +203,6 @@ public class ProfileFragment extends Fragment {
                 profilePicture.setImageBitmap(recipient.getContactPhoto());
             }
             layout_group.setVisibility(View.GONE);
-
-            if(!isMyProfile) {
-                setMediaHistoryImages();
-            }
         } else {
             final String groupName = recipient.getName();
             final Bitmap avatar = recipient.getContactPhoto();
@@ -250,9 +246,15 @@ public class ProfileFragment extends Fragment {
                 profilePicture.setImageBitmap(avatar);
             }
             imageText.setText(groupName);
+
+            if(!isMyProfile) {
+                setMediaHistoryImages();
+            }
+
             layout_status.setVisibility(View.GONE);
             layout_phone.setVisibility(View.GONE);
             GUtil.setListViewHeightBasedOnChildren(groupMember);
+
         }
 
         ImageView profileImageEdit = (ImageView) getView().findViewById(R.id.profile_picture_edit);
@@ -368,7 +370,6 @@ public class ProfileFragment extends Fragment {
             historyLayout.removeView(historyLayout.getChildAt(0));
         }
         String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(GUtil.numberToLong(recipient.getNumber()));
-            Log.w("GDATA", "size number " + GUtil.numberToLong(recipient.getNumber()));
         for (int i = 0; i < mediaHistoryUris.length; i++) {
             Slide mediaHistorySlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i]);
             if (mediaHistorySlide != null && masterSecret != null && !(mediaHistorySlide.getUri() + "").equals("")) {

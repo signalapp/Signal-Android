@@ -345,7 +345,6 @@ public class GUtil {
   public static String[] reverseOrder(String[] arrayUri) {
     String array[] = arrayUri;
     String temp;
-
     for (int i = 0; i < arrayUri.length/2; i++)
     {
       temp = array[i];
