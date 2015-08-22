@@ -161,12 +161,25 @@
         <item quantity="other">This will permanently delete all %1$d selected messages.</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
-    <string name="ConversationFragment_saving_this_media_to_storage_warning">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</string>
-    <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to storage!</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
+        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Error while saving attachment to storage!</item>
+        <item quantity="other">Error while saving attachments to storage!</item>
+    </plurals>
     <string name="ConversationFragment_success_exclamation">Success!</string>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
-    <string name="ConversationFragment_saving_attachment">Saving attachment</string>
-    <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to storage...</string>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Saving attachment</item>
+        <item quantity="other">Saving %1$d attachments</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Saving attachment to storage...</item>
+        <item quantity="other">Saving %1$d attachments to storage...</item>
+    </plurals>
+    <string name="ConversationFragment_collecting_attahments">Collecting attachments...</string>
     <string name="ConversationFragment_pending">Pending...</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
@@ -1164,6 +1177,9 @@
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
+
+    <!-- media_overview -->
+    <string name="media_overview__save_all">Save all</string>
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__image_content_description">Image preview</string>
