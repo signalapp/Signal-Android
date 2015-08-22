@@ -343,7 +343,9 @@ public class ConversationFragment extends Fragment
         }
 
         Log.w(TAG, "No slide with attachable media found, failing nicely.");
-        Toast.makeText(getActivity(), R.string.ConversationFragment_error_while_saving_attachment_to_sd_card, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),
+                       getResources().getQuantityString(R.plurals.ConversationFragment_error_while_saving_attachments_to_sd_card, 1),
+                       Toast.LENGTH_LONG).show();
       }
     });
   }

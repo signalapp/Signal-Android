@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Build.VERSION;
@@ -29,6 +30,8 @@ import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -37,11 +40,17 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.SaveAttachmentTask;
+import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Activity for displaying media attachments in-app
@@ -137,12 +146,63 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     }
   }
 
+  private void saveToDisk() {
+    final Context c = this;
+
+    SaveAttachmentTask.showWarningDialog(this, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialogInterface, int i) {
+        new ProgressDialogAsyncTask<Void, Void, List<SaveAttachmentTask.Attachment>>(c,
+                                                                                     R.string.ConversationFragment_collecting_attahments,
+                                                                                     R.string.please_wait) {
+          @Override
+          protected List<SaveAttachmentTask.Attachment> doInBackground(Void... params) {
+            Cursor cursor                                   = DatabaseFactory.getImageDatabase(c).getImagesForThread(threadId);
+            List<SaveAttachmentTask.Attachment> attachments = new ArrayList<>(cursor.getCount());
+
+            cursor.moveToFirst();
+            do {
+              ImageRecord record = ImageRecord.from(cursor);
+              attachments.add(new SaveAttachmentTask.Attachment(record.getAttachment().getDataUri(),
+                                                                record.getContentType(),
+                                                                record.getDate()));
+            } while (cursor.moveToNext());
+
+            return attachments;
+          }
+
+          @Override
+          protected void onPostExecute(List<SaveAttachmentTask.Attachment> attachments) {
+            super.onPostExecute(attachments);
+
+            SaveAttachmentTask saveTask = new SaveAttachmentTask(c, masterSecret, attachments.size());
+            saveTask.execute(attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
+          }
+        }.execute();
+      }
+    }, gridView.getAdapter().getItemCount());
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+
+    menu.clear();
+    if (gridView.getAdapter() != null && gridView.getAdapter().getItemCount() > 0) {
+      MenuInflater inflater = this.getMenuInflater();
+      inflater.inflate(R.menu.media_overview, menu);
+    }
+
+    return true;
+  }
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case android.R.id.home: finish(); return true;
+    case R.id.save:         saveToDisk(); return true;
+    case android.R.id.home: finish();     return true;
     }
 
     return false;
@@ -158,6 +218,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     Log.w(TAG, "onLoadFinished()");
     gridView.setAdapter(new ImageMediaAdapter(this, masterSecret, cursor));
     noImages.setVisibility(gridView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
+    invalidateOptionsMenu();
   }
 
   @Override
