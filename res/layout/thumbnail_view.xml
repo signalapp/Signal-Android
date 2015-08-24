@@ -20,4 +20,12 @@
               android:layout_height="wrap_content"
               android:layout_gravity="top|right"
               android:layout="@layout/thumbnail_view_remove_button" />
+
+    <ImageButton android:id="@+id/download_button"
+                 android:layout_width="70dp"
+                 android:layout_height="70dp"
+                 android:layout_gravity="center"
+                 android:background="@drawable/progress_background"
+                 android:src="@drawable/ic_file_download_white_36dp"
+                 android:visibility="gone" />
 </merge>

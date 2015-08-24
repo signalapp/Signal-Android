@@ -135,7 +135,7 @@ public class PduPart {
      private long    rowId = -1;
      private long    uniqueId = -1;
      private boolean isEncrypted;
-     private boolean isInProgress;
+     private int     transferProgress;
      private long    dataSize;
      private Bitmap  thumbnail;
 
@@ -163,13 +163,17 @@ public class PduPart {
        return this.dataSize;
      }
 
-
-     public void setInProgress(boolean isInProgress) {
-       this.isInProgress = isInProgress;
+     public boolean isInProgress() {
+       return transferProgress != PartDatabase.TRANSFER_PROGRESS_DONE &&
+              transferProgress != PartDatabase.TRANSFER_PROGRESS_FAILED;
      }
 
-     public boolean isInProgress() {
-       return isInProgress;
+     public void setTransferProgress(int transferProgress) {
+       this.transferProgress = transferProgress;
+     }
+
+     public int getTransferProgress() {
+       return transferProgress;
      }
 
      /**

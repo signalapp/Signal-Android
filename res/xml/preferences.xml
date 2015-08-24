@@ -17,9 +17,9 @@
                 android:title="@string/preferences__appearance"
                 android:icon="?pref_ic_appearance"/>
 
-    <Preference android:key="preference_category_storage"
-                android:title="@string/preferences__delete_old_messages"
-                android:icon="?pref_ic_storage"/>
+    <Preference android:key="preference_category_chats"
+                android:title="@string/preferences__chats"
+                android:icon="?pref_ic_chats"/>
 
     <!--<Preference android:key="preference_category_devices"-->
                 <!--android:title="Devices"-->
