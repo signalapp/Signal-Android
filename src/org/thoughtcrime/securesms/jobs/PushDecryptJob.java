@@ -58,9 +58,11 @@ import org.whispersystems.textsecure.api.messages.multidevice.SentTranscriptMess
 import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class PushDecryptJob extends ContextJob {
 
@@ -252,11 +254,14 @@ public class PushDecryptJob extends ContextJob {
                                                                  message.getGroupInfo(),
                                                                  message.getAttachments());
 
-    Pair<Long, Long> messageAndThreadId =  database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
+    Pair<Long, Long> messageAndThreadId = database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new AttachmentDownloadJob(context, messageAndThreadId.first));
+    List<PduPart> parts = DatabaseFactory.getPartDatabase(context).getParts(messageAndThreadId.first);
+    for (PduPart part : parts) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new AttachmentDownloadJob(context, messageAndThreadId.first, part.getPartId()));
+    }
 
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
@@ -284,9 +289,11 @@ public class PushDecryptJob extends ContextJob {
     database.markAsSent(messageId, "push".getBytes(), 0);
     database.markAsPush(messageId);
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new AttachmentDownloadJob(context, messageId));
+    for (PduPart part : DatabaseFactory.getPartDatabase(context).getParts(messageId)) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new AttachmentDownloadJob(context, messageId, part.getPartId()));
+    }
 
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());

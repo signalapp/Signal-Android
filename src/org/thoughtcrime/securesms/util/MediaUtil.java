@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
@@ -106,6 +108,11 @@ public class MediaUtil {
 
   public static boolean isVideo(PduPart part) {
     return ContentType.isVideoType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static @Nullable String getDiscreteMimeType(@NonNull PduPart part) {
+    final String[] sections = (Util.toIsoString(part.getContentType()).split("/", 2));
+    return sections.length > 1 ? sections[0] : null;
   }
 
   public static class ThumbnailData {

@@ -31,6 +31,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.jobs.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
@@ -47,16 +48,18 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class ThumbnailView extends FrameLayout {
   private static final String TAG = ThumbnailView.class.getSimpleName();
 
-  private boolean       showProgress = true;
+  private boolean       hideControls;
   private ImageView     image;
   private ProgressWheel progress;
   private ImageView     removeButton;
+  private ImageButton   downloadButton;
   private int           backgroundColorHint;
   private int           radius;
 
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
   private ThumbnailClickListener          thumbnailClickListener = null;
+  private ThumbnailClickListener          downloadClickListener  = null;
   private String                          slideId                = null;
   private Slide                           slide                  = null;
 
@@ -68,11 +71,13 @@ public class ThumbnailView extends FrameLayout {
     this(context, attrs, 0);
   }
 
-  public ThumbnailView(Context context, AttributeSet attrs, int defStyle) {
+  public ThumbnailView(final Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     inflate(context, R.layout.thumbnail_view, this);
-    radius   = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
-    image    = (ImageView) findViewById(R.id.thumbnail_image);
+    radius         = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
+    image          = (ImageView)     findViewById(R.id.thumbnail_image);
+    progress       = (ProgressWheel) findViewById(R.id.progress_wheel);
+    downloadButton = (ImageButton)   findViewById(R.id.download_button);
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0);
@@ -162,15 +167,24 @@ public class ThumbnailView extends FrameLayout {
       return;
     }
 
-    this.slide = slide;
-    if (slide.isInProgress() && showProgress) {
+    if (!hideControls && slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_STARTED) {
       getProgressWheel().spin();
       getProgressWheel().setVisibility(VISIBLE);
+      downloadButton.setVisibility(GONE);
+    } else if (!hideControls && slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING ||
+                                slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_FAILED)
+    {
+      hideProgressWheel();
+      downloadButton.setVisibility(VISIBLE);
     } else {
       hideProgressWheel();
+      downloadButton.setVisibility(GONE);
     }
+
+    this.slide = slide;
     buildGlideRequest(slide, masterSecret).into(image);
     setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
+    downloadButton.setOnClickListener(new ThumbnailClickDispatcher(downloadClickListener, slide));
   }
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
@@ -181,15 +195,17 @@ public class ThumbnailView extends FrameLayout {
     getRemoveButton().setOnClickListener(listener);
   }
 
+  public void setDownloadClickListener(ThumbnailClickListener listener) {
+    this.downloadClickListener = listener;
+  }
+
   public void clear() {
     if (isContextValid()) Glide.clear(this);
   }
 
-  public void setShowProgress(boolean showProgress) {
-    this.showProgress = showProgress;
-    if (progress != null && progress.getVisibility() == View.VISIBLE && !showProgress) {
-      animateOutProgress();
-    }
+  public void hideControls(boolean hideControls) {
+    this.hideControls = hideControls;
+    if (hideControls) hideProgressWheel();
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
@@ -202,7 +218,6 @@ public class ThumbnailView extends FrameLayout {
   private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
                                                   @Nullable MasterSecret masterSecret)
   {
-    Log.w(TAG, "slide type " + slide.getContentType());
     final GenericRequestBuilder builder;
     if (slide.getThumbnailUri() != null) {
       builder = buildThumbnailGlideRequest(slide, masterSecret);
@@ -210,7 +225,7 @@ public class ThumbnailView extends FrameLayout {
       builder = buildPlaceholderGlideRequest(slide);
     }
 
-    if (slide.isInProgress() && showProgress) {
+    if (slide.isInProgress() && !hideControls) {
       return builder;
     } else {
       return builder.error(R.drawable.ic_missing_thumbnail_picture);

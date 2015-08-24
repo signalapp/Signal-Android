@@ -193,4 +193,29 @@
       <item>contact</item>
       <item>none</item>
   </string-array>
+
+  <!-- discrete MIME type (the part before the "/") -->
+  <string-array name="pref_media_download_entries">
+      <item>image</item>
+      <item>audio</item>
+      <item>video</item>
+  </string-array>
+
+  <string-array name="pref_media_download_values">
+      <item>@string/arrays__images</item>
+      <item>@string/arrays__audio</item>
+      <item>@string/arrays__video</item>
+  </string-array>
+
+  <string-array name="pref_media_download_mobile_data_default">
+      <item>image</item>
+  </string-array>
+
+  <string-array name="pref_media_download_wifi_default">
+      <item>image</item>
+      <item>audio</item>
+      <item>video</item>
+  </string-array>
+
+  <string-array name="pref_media_download_roaming_default" />
 </resources>

@@ -752,7 +752,7 @@ public class MmsDatabase extends MessagingDatabase {
 
     if (sendRequest.getBody() != null) {
       for (int i = 0; i < sendRequest.getBody().getPartsNum(); i++) {
-        sendRequest.getBody().getPart(i).setInProgress(true);
+        sendRequest.getBody().getPart(i).setTransferProgress(PartDatabase.TRANSFER_PROGRESS_STARTED);
       }
     }
 

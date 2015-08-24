@@ -32,7 +32,11 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
@@ -41,10 +45,14 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.io.File;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import ws.com.google.android.mms.pdu.PduPart;
+
 public class DatabaseUpgradeActivity extends BaseActivity {
+  private static final String TAG = DatabaseUpgradeActivity.class.getSimpleName();
 
   public static final int NO_MORE_KEY_EXCHANGE_PREFIX_VERSION  = 46;
   public static final int MMS_BODY_VERSION                     = 46;
@@ -57,6 +65,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int PUSH_DECRYPT_SERIAL_ID_VERSION       = 131;
   public static final int MIGRATE_SESSION_PLAINTEXT            = 136;
   public static final int CONTACTS_ACCOUNT_VERSION             = 136;
+  public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 146;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -68,6 +77,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(NO_DECRYPT_QUEUE_VERSION);
     add(PUSH_DECRYPT_SERIAL_ID_VERSION);
     add(MIGRATE_SESSION_PLAINTEXT);
+    add(MEDIA_DOWNLOAD_CONTROLS_VERSION);
   }};
 
   private MasterSecret masterSecret;
@@ -205,7 +215,30 @@ public class DatabaseUpgradeActivity extends BaseActivity {
                           .add(new DirectoryRefreshJob(getApplicationContext()));
       }
 
+      if (params[0] < MEDIA_DOWNLOAD_CONTROLS_VERSION) {
+        schedulePendingIncomingParts(context);
+      }
+
       return null;
+    }
+
+    private void schedulePendingIncomingParts(Context context) {
+      MmsDatabase   db           = DatabaseFactory.getMmsDatabase(context);
+      List<PduPart> pendingParts = DatabaseFactory.getPartDatabase(context).getPendingParts();
+
+      Log.w(TAG, pendingParts.size() + " pending parts.");
+      for (PduPart part : pendingParts) {
+        final Reader        reader = db.readerFor(masterSecret, db.getMessage(part.getMmsId()));
+        final MessageRecord record = reader.getNext();
+
+        if (record != null && !record.isOutgoing() && record.isPush()) {
+          Log.w(TAG, "queuing new attachment download job for incoming push part.");
+          ApplicationContext.getInstance(context)
+                            .getJobManager()
+                            .add(new AttachmentDownloadJob(context, part.getMmsId(), part.getPartId()));
+        }
+        reader.close();
+      }
     }
 
     private void scheduleMessagesInPushDatabase(Context context) {

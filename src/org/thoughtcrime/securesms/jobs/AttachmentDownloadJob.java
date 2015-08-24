@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase.PartId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
@@ -26,7 +27,6 @@ import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -35,50 +35,49 @@ import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
-
-  private static final String TAG = AttachmentDownloadJob.class.getSimpleName();
+  private static final long   serialVersionUID = 1L;
+  private static final String TAG              = AttachmentDownloadJob.class.getSimpleName();
 
   @Inject transient TextSecureMessageReceiver messageReceiver;
 
   private final long messageId;
+  private final long partRowId;
+  private final long partUniqueId;
 
-  public AttachmentDownloadJob(Context context, long messageId) {
+  public AttachmentDownloadJob(Context context, long messageId, PartId partId) {
     super(context, JobParameters.newBuilder()
+                                .withGroupId(AttachmentDownloadJob.class.getCanonicalName())
                                 .withRequirement(new MasterSecretRequirement(context))
                                 .withRequirement(new NetworkRequirement(context))
+                                .withRequirement(new MediaNetworkRequirement(context, messageId, partId))
                                 .withPersistence()
                                 .create());
 
-    this.messageId = messageId;
+    this.messageId    = messageId;
+    this.partRowId    = partId.getRowId();
+    this.partUniqueId = partId.getUniqueId();
   }
 
   @Override
-  public void onAdded() {}
+  public void onAdded() {
+  }
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
-    PartDatabase database = DatabaseFactory.getPartDatabase(context);
+    final PartId  partId = new PartId(partRowId, partUniqueId);
+    final PduPart part   = DatabaseFactory.getPartDatabase(context).getPart(partId);
 
-    Log.w(TAG, "Downloading push parts for: " + messageId);
+    Log.w(TAG, "Downloading push part " + partId);
 
-    List<PduPart> parts = database.getParts(messageId);
-
-    for (PduPart part : parts) {
-      retrievePart(masterSecret, part, messageId);
-      Log.w(TAG, "Got part: " + part.getPartId());
-    }
-
+    retrievePart(masterSecret, part, messageId);
     MessageNotifier.updateNotification(context, masterSecret);
   }
 
   @Override
   public void onCanceled() {
-    PartDatabase  database = DatabaseFactory.getPartDatabase(context);
-    List<PduPart> parts    = database.getParts(messageId);
-
-    for (PduPart part : parts) {
-      markFailed(messageId, part, part.getPartId());
-    }
+    final PartId  partId = new PartId(partRowId, partUniqueId);
+    final PduPart part   = DatabaseFactory.getPartDatabase(context).getPart(partId);
+    markFailed(messageId, part, part.getPartId());
   }
 
   @Override
