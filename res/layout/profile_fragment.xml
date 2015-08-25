@@ -43,7 +43,14 @@
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
                         android:visibility="visible" />
-
+                    <ImageView
+                        android:id="@+id/profile_picture_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"
+                        android:visibility="gone" />
                     <TextView
                         android:id="@+id/image_text"
                         android:layout_width="match_parent"
@@ -405,6 +412,12 @@
                             android:layout_marginBottom="1dp"
                             android:layout_marginTop="1dp"
                             android:background="?android:attr/listDivider" />
+
+                        <org.thoughtcrime.securesms.components.PushRecipientsPanel android:id="@+id/recipients"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp" />
 
                         <ListView
                             android:id="@+id/selected_contacts_list"

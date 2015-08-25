@@ -108,7 +108,7 @@
                         android:paddingBottom="0dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="3dp"
-                        android:src="@drawable/invite_person_icon"
+                        android:src="@drawable/ic_action_invite"
                         android:visibility="gone"/>
 
                     <de.gdata.messaging.components.SelectTransportButton

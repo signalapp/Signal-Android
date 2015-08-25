@@ -196,6 +196,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
     private int currentMediaSize;
     private ImageButton inviteButton;
+    private String profileId = "0";
 
     @Override
     protected void onCreate(Bundle state) {
@@ -364,7 +365,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         return true;
     }
 
-    private void handleOpenProfile(String profileId) {
+    private void handleOpenProfile() {
         final Intent intent = new Intent(this, ProfileActivity.class);
         intent.putExtra("master_secret", masterSecret);
         intent.putExtra("profile_id", profileId);
@@ -414,7 +415,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 handleDistributionConversationEnabled(item);
                 return true;
             case R.id.menu_edit_group:
-                handleEditPushGroup();
+                handleOpenProfile();
                 return true;
             case R.id.menu_leave:
                 handleLeavePushGroup();
@@ -709,7 +710,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
         CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
 
-        final Long profileId = GUtil.numberToLong(recipient.getNumber());
+        profileId = GUtil.numberToLong(recipient.getNumber()) + "" ;
 
         if (isSingleConversation()) {
             if (TextUtils.isEmpty(recipient.getName())) {
@@ -760,7 +761,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         mCustomView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                handleOpenProfile(profileId + "");
+                handleOpenProfile();
             }
         });
 

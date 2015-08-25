@@ -296,7 +296,9 @@ public class GUtil {
       for (int i = 0; i < number.length(); i++) {
         char a = number.charAt(i);
         if (('0' <= a && a <= '9')) {
-          longNumber += a;
+          if(Character.isDigit(a)) {
+            longNumber += a;
+          }
         }
       }
       if (longNumber.trim().length() <= 0) {
@@ -304,10 +306,13 @@ public class GUtil {
       }
     }
     Long longId = 0L;
+    if(longNumber.length()>11) {
+      longNumber = longNumber.toString().substring(0, 11);
+    }
     try {
-      longId = Long.parseLong(longNumber);
+      longId = Long.valueOf(longNumber.trim());
     } catch (NumberFormatException e) {
-      Log.w("MYLOG ", "If not parseable, no profile id - so no problem");
+      Log.w("MYLOG ", "If not parseable, no profile id - so no problem - " + e.getMessage());
     }
     return longId;
   }
