@@ -148,7 +148,10 @@
     <item>@string/ConversationActivity_transport_secure_sms</item>
     <item>@string/ConversationActivity_transport_textsecure</item>
   </string-array>
-
+    <string-array name="transport_selection_entries_text_invite">
+        <item>@string/ConversationActivity_transport_insecure_sms</item>
+        <item>@string/menu_invite_to_sc</item>
+    </string-array>
   <string-array name="transport_selection_entries_media">
     <item>@string/ConversationActivity_transport_insecure_mms</item>
     <item>@string/ConversationActivity_transport_secure_mms</item>
@@ -159,7 +162,10 @@
     <item>@string/conversation_activity__type_message_sms_secure</item>
     <item>@string/conversation_activity__type_message_push</item>
   </string-array>
-
+    <string-array name="transport_selection_entries_compose_text_invite">
+        <item>@string/conversation_activity__type_message_sms_insecure</item>
+        <item>@string/conversation_activity_invite_link</item>
+    </string-array>
   <string-array name="transport_selection_entries_compose_media">
     <item>@string/conversation_activity__type_message_mms_insecure</item>
     <item>@string/conversation_activity__type_message_mms_secure</item>
@@ -171,7 +177,10 @@
     <item>secure_sms</item>
     <item>textsecure</item>
   </string-array>
-
+    <string-array name="transport_selection_values_invite">
+        <item>insecure_sms</item>
+        <item>invite</item>
+    </string-array>
   <string-array name="transport_selection_icons_light">
     <item>@drawable/ic_send_sms_insecure</item>
     <item>@drawable/ic_send_sms_secure</item>
@@ -181,6 +190,10 @@
         <item>@drawable/ic_action_sms_gdata</item>
         <item>@drawable/ic_action_securesms_gdata</item>
         <item>@drawable/ic_send_im_gdata</item>
+    </string-array>
+    <string-array name="transport_selection_icons_invite_gdata">
+        <item>@drawable/ic_action_sms_gdata</item>
+        <item>@drawable/ic_action_invite</item>
     </string-array>
   <string-array name="transport_selection_icons_dark">
     <item>@drawable/ic_send_sms_insecure_dark</item>

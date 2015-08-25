@@ -195,7 +195,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private SendButtonListener sendButtonListener = new SendButtonListener();
     private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
     private int currentMediaSize;
-    private ImageButton inviteButton;
     private String profileId = "0";
 
     @Override
@@ -848,7 +847,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             this.isEncryptedConversation = false;
             this.characterCalculator = new SmsCharacterCalculator();
         }
-        transportButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
+        transportButton.initializeAvailableTransports(!recipients.isSingleRecipient()
+                || attachmentManager.isAttachmentPresent(), isEncryptedConversation || !recipients.isSingleRecipient());
         bombTransportButton.initializeAvailableSelfDests();
         if (!isPushDestination) transportButton.disableTransport("textsecure");
         if (!isSecureDestination) transportButton.disableTransport("secure_sms");
@@ -871,19 +871,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
         calculateCharactersRemaining();
         getCurrentMediaSize();
-        if (isSingleConversation()) {
-            if (!isEncryptedConversation) {
-                inviteButton.setVisibility(View.VISIBLE);
-                transportButton.setVisibility(View.GONE);
-                inviteButton.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-                        handleInviteLink();
-                    }
-                });
-            }
-        }
     }
 
     private void initializeMmsEnabledCheck() {
@@ -916,7 +903,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         charactersLeft = (TextView) findViewById(R.id.space_left);
         emojiDrawer = (EmojiDrawer) findViewById(R.id.emoji_drawer);
         emojiToggle = (EmojiToggle) findViewById(R.id.emoji_toggle);
-        inviteButton = (ImageButton) findViewById(R.id.invite_button);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             emojiToggle.setVisibility(View.GONE);

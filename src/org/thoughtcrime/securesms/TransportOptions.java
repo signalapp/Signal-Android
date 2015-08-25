@@ -70,7 +70,7 @@ public class TransportOptions {
     }
   }
 
-  public void initializeAvailableTransports(boolean isMediaMessage) {
+  public void initializeAvailableTransports(boolean isMediaMessage, boolean isSingleEncryptedConversation) {
     String[] entryArray = (isMediaMessage)
                           ? context.getResources().getStringArray(R.array.transport_selection_entries_media)
                           : context.getResources().getStringArray(R.array.transport_selection_entries_text);
@@ -79,12 +79,27 @@ public class TransportOptions {
                                 ? context.getResources().getStringArray(R.array.transport_selection_entries_compose_media)
                                 : context.getResources().getStringArray(R.array.transport_selection_entries_compose_text);
 
-    final String[] valuesArray = context.getResources().getStringArray(R.array.transport_selection_values);
+    composeHintArray = isSingleEncryptedConversation
+            ? composeHintArray
+            : context.getResources().getStringArray(R.array.transport_selection_entries_compose_text_invite);
 
-    final int[]        attrs             = new int[]{R.attr.conversation_transport_indicators};
+    entryArray = (isSingleEncryptedConversation)
+            ? entryArray
+            : context.getResources().getStringArray(R.array.transport_selection_entries_text_invite);
+
+    final String[] valuesArray = isSingleEncryptedConversation ?
+             context.getResources().getStringArray(R.array.transport_selection_values)
+            : context.getResources().getStringArray(R.array.transport_selection_values_invite);
+
+
+    final int[]        attrs             = isSingleEncryptedConversation
+            ? new int[]{R.attr.conversation_transport_indicators}
+            : new int[]{R.attr.conversation_transport_indicators_invite};
+
     final TypedArray   iconArray         = context.obtainStyledAttributes(attrs);
     final int          iconArrayResource = iconArray.getResourceId(0, -1);
     final TypedArray   icons             = context.getResources().obtainTypedArray(iconArrayResource);
+
 
     enabledTransports.clear();
     for (int i=0; i<valuesArray.length; i++) {
