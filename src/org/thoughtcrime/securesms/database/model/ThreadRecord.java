@@ -75,6 +75,9 @@ public class ThreadRecord extends DisplayRecord {
     } else if (MmsSmsColumns.Types.isDraftMessageType(type)) {
       String draftText = context.getString(R.string.ThreadRecord_draft);
       return emphasisAdded(draftText + " " + getBody().getBody(), 0, draftText.length());
+    } else if (MmsSmsColumns.Types.isOutgoingMessageType(type)) {
+      SpannableString outgoingIndicator = emphasisAdded(context.getString(R.string.ThreadRecord_outgoing));
+      return new SpannableString(outgoingIndicator + " " + getBody().getBody());
     } else {
       if (TextUtils.isEmpty(getBody().getBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));
