@@ -337,7 +337,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Napustio grupu...</string>
-  <string name="TheadRecord_secure_session_ended">Sigurna sesija je završila.</string>
+  <string name="ThreadRecord_secure_session_ended">Sigurna sesija je završila.</string>
   <string name="ThreadRecord_draft">Skica:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemate ključ identiteta.</string>

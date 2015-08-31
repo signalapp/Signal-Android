@@ -319,7 +319,7 @@
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">离开此群组...</string>
-  <string name="TheadRecord_secure_session_ended">安全会话已结束。</string>
+  <string name="ThreadRecord_secure_session_ended">安全会话已结束。</string>
   <string name="ThreadRecord_draft">草稿：</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>

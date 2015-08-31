@@ -313,7 +313,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Έφυγε από την ομάδα...</string>
-  <string name="TheadRecord_secure_session_ended">Η ασφαλής συνεδρία τερματίστηκε.</string>
+  <string name="ThreadRecord_secure_session_ended">Η ασφαλής συνεδρία τερματίστηκε.</string>
   <string name="ThreadRecord_draft">Πρόχειρο:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Δεν έχετε κλειδί ταυτότητας.</string>

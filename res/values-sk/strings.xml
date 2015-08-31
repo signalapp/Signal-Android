@@ -309,7 +309,7 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="SmsMessageRecord_duplicate_message">Zduplikuj správu.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opustil skupinu...</string>
-  <string name="TheadRecord_secure_session_ended">Bezpečné spojenie ukončené.</string>
+  <string name="ThreadRecord_secure_session_ended">Bezpečné spojenie ukončené.</string>
   <string name="ThreadRecord_draft">Rozpísaná správa:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte kľúč totožnosti.</string>

@@ -323,7 +323,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Zapustili ste skupino...</string>
-  <string name="TheadRecord_secure_session_ended">Varna seja je zaključena.</string>
+  <string name="ThreadRecord_secure_session_ended">Varna seja je zaključena.</string>
   <string name="ThreadRecord_draft">Osnutek:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nimate identifikacijskega ključa.</string>

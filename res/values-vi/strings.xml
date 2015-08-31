@@ -190,7 +190,7 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Rời nhóm...</string>
-  <string name="TheadRecord_secure_session_ended">Phiên an toàn chấm dứt.</string>
+  <string name="ThreadRecord_secure_session_ended">Phiên an toàn chấm dứt.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Bạn không có chìa khóa nhận diện.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Người nhận không có chìa khóa nhận diện.</string>

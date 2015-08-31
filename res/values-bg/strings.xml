@@ -337,7 +337,7 @@ SMS съобщенията от системната базата данни в 
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусна групата...</string>
-  <string name="TheadRecord_secure_session_ended">Сигурната сесия приключи.</string>
+  <string name="ThreadRecord_secure_session_ended">Сигурната сесия приключи.</string>
   <string name="ThreadRecord_draft">Чернова:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност.</string>

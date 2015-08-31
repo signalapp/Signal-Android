@@ -332,7 +332,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Lämnat gruppen...</string>
-  <string name="TheadRecord_secure_session_ended">Säker session avslutad.</string>
+  <string name="ThreadRecord_secure_session_ended">Säker session avslutad.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnyckel.</string>

@@ -331,7 +331,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opuścił grupę...</string>
-  <string name="TheadRecord_secure_session_ended">Bezpieczna sesja zakończona.</string>
+  <string name="ThreadRecord_secure_session_ended">Bezpieczna sesja zakończona.</string>
   <string name="ThreadRecord_draft">Szkic:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>

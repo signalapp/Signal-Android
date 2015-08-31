@@ -341,7 +341,7 @@
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусти групу...</string>
-  <string name="TheadRecord_secure_session_ended">Безбедна сесија је окончана.</string>
+  <string name="ThreadRecord_secure_session_ended">Безбедна сесија је окончана.</string>
   <string name="ThreadRecord_draft">Нацрт:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немате кључ идентитета.</string>

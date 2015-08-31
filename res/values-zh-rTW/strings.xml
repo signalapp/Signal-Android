@@ -233,7 +233,7 @@
   <string name="SmsMessageRecord_duplicate_message">複製訊息。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">離開這個群組...</string>
-  <string name="TheadRecord_secure_session_ended">安全連線已結束。</string>
+  <string name="ThreadRecord_secure_session_ended">安全連線已結束。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您不具備身分認證金鑰。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">收件者不具備身分認證金鑰。</string>

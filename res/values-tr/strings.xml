@@ -302,7 +302,7 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="SmsMessageRecord_duplicate_message">Çift mesaj.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Gruptan ayrıldı...</string>
-  <string name="TheadRecord_secure_session_ended">Güvenli oturum sona erdi.</string>
+  <string name="ThreadRecord_secure_session_ended">Güvenli oturum sona erdi.</string>
   <string name="ThreadRecord_draft">Taslak:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Kimlik anahtarınız yok.</string>
