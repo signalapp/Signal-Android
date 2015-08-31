@@ -20,13 +20,11 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-public class CreateSignedPreKeyJob extends MasterSecretJob implements InjectableType {
+public class CreateSignedPreKeyJob extends TextSecureJob {
 
   private static final long serialVersionUID = 1L;
 
   private static final String TAG = CreateSignedPreKeyJob.class.getSimpleName();
-
-  @Inject transient TextSecureAccountManager accountManager;
 
   public CreateSignedPreKeyJob(Context context) {
     super(context, JobParameters.newBuilder()

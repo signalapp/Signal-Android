@@ -7,6 +7,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.dependencies.GraphComponent;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeoutException;
 
 import javax.inject.Inject;
 
-public class MessageRetrievalService extends Service implements Runnable, InjectableType, RequirementListener {
+public class MessageRetrievalService extends Service implements Runnable, RequirementListener {
 
   private static final String TAG = MessageRetrievalService.class.getSimpleName();
 
@@ -38,8 +39,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   private NetworkRequirement         networkRequirement;
   private NetworkRequirementProvider networkRequirementProvider;
 
-  @Inject
-  public TextSecureMessageReceiver receiver;
+  @Inject TextSecureMessageReceiver receiver;
 
   private int          activeActivities = 0;
   private List<Intent> pushPending      = new LinkedList<>();
@@ -47,7 +47,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   @Override
   public void onCreate() {
     super.onCreate();
-    ApplicationContext.getInstance(this).injectDependencies(this);
+    ApplicationContext.getInstance(this).getComponent().inject(this);
 
     networkRequirement         = new NetworkRequirement(this);
     networkRequirementProvider = new NetworkRequirementProvider(this);

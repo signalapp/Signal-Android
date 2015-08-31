@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 
+import org.thoughtcrime.securesms.dependencies.GraphComponent;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -65,5 +66,9 @@ public class DeliveryReceiptJob extends ContextJob implements InjectableType {
     if (exception instanceof PushNetworkException)               return true;
 
     return false;
+  }
+
+  @Override public void inject(GraphComponent component) {
+    component.inject(this);
   }
 }

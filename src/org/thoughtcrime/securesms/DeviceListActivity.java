@@ -22,7 +22,6 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
@@ -70,7 +69,7 @@ public class DeviceListActivity extends PassphraseRequiredActionBarActivity {
   }
 
   public static class DeviceListFragment extends ListFragment
-      implements LoaderManager.LoaderCallbacks<List<DeviceInfo>>, ListView.OnItemClickListener, InjectableType
+      implements LoaderManager.LoaderCallbacks<List<DeviceInfo>>, ListView.OnItemClickListener
   {
 
     private static final String TAG = DeviceListFragment.class.getSimpleName();
@@ -83,7 +82,7 @@ public class DeviceListActivity extends PassphraseRequiredActionBarActivity {
     @Override
     public void onAttach(Activity activity) {
       super.onAttach(activity);
-      ApplicationContext.getInstance(activity).injectDependencies(this);
+      ApplicationContext.getInstance(activity).getComponent().inject(this);
     }
 
     @Override

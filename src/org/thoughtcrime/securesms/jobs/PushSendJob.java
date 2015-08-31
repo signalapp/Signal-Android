@@ -6,6 +6,9 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.dependencies.GraphComponent;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -25,14 +28,18 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendReq;
 
-public abstract class PushSendJob extends SendJob {
+public abstract class PushSendJob extends SendJob implements InjectableType {
 
   private static final String TAG = PushSendJob.class.getSimpleName();
+
+  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   protected PushSendJob(Context context, JobParameters parameters) {
     super(context, parameters);
@@ -93,5 +100,9 @@ public abstract class PushSendJob extends SendJob {
     if (threadId != -1 && recipients != null) {
       MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
     }
+  }
+
+  @Override public void inject(GraphComponent component) {
+    component.inject(this);
   }
 }

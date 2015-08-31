@@ -38,13 +38,11 @@ import java.util.Collection;
 
 import javax.inject.Inject;
 
-public class MultiDeviceContactUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceContactUpdateJob extends TextSecureJob {
 
   private static final long serialVersionUID = 1L;
 
   private static final String TAG = MultiDeviceContactUpdateJob.class.getSimpleName();
-
-  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   public MultiDeviceContactUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()

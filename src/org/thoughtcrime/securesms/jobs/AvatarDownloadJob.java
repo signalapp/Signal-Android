@@ -25,7 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AvatarDownloadJob extends MasterSecretJob {
+public class AvatarDownloadJob extends TextSecureJob {
 
   private static final String TAG = AvatarDownloadJob.class.getSimpleName();
 

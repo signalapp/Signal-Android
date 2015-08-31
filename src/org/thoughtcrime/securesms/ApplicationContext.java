@@ -24,6 +24,8 @@ import android.os.StrictMode.VmPolicy;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
+import org.thoughtcrime.securesms.dependencies.DaggerGraphComponent;
+import org.thoughtcrime.securesms.dependencies.GraphComponent;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
@@ -37,8 +39,6 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.libaxolotl.logging.AxolotlLoggerProvider;
 import org.whispersystems.libaxolotl.util.AndroidAxolotlLogger;
 
-import dagger.ObjectGraph;
-
 /**
  * Will be called once when the TextSecure process is created.
  *
@@ -49,8 +49,8 @@ import dagger.ObjectGraph;
  */
 public class ApplicationContext extends Application implements DependencyInjector {
 
-  private JobManager jobManager;
-  private ObjectGraph objectGraph;
+  private GraphComponent component;
+  private JobManager     jobManager;
 
   public static ApplicationContext getInstance(Context context) {
     return (ApplicationContext)context.getApplicationContext();
@@ -70,12 +70,16 @@ public class ApplicationContext extends Application implements DependencyInjecto
   @Override
   public void injectDependencies(Object object) {
     if (object instanceof InjectableType) {
-      objectGraph.inject(object);
+      ((InjectableType)object).inject(component);
     }
   }
 
   public JobManager getJobManager() {
     return jobManager;
+  }
+
+  public GraphComponent getComponent() {
+    return component;
   }
 
   private void initializeDeveloperBuild() {
@@ -109,8 +113,10 @@ public class ApplicationContext extends Application implements DependencyInjecto
   }
 
   private void initializeDependencyInjection() {
-    this.objectGraph = ObjectGraph.create(new TextSecureCommunicationModule(this),
-                                          new AxolotlStorageModule(this));
+    this.component = DaggerGraphComponent.builder()
+                                         .textSecureCommunicationModule(new TextSecureCommunicationModule(this))
+                                         .axolotlStorageModule(new AxolotlStorageModule(this))
+                                         .build();
   }
 
   private void initializeGcmCheck() {

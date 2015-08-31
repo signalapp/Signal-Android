@@ -19,7 +19,6 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
 
   private static final String TAG = PushNotificationReceiveJob.class.getSimpleName();
 
-  @Inject transient TextSecureMessageReceiver receiver;
 
   public PushNotificationReceiveJob(Context context) {
     super(context, JobParameters.newBuilder()
