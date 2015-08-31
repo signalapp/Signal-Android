@@ -329,7 +329,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opustil skupinu...</string>
-  <string name="TheadRecord_secure_session_ended">Konec zabezpečeného sezení.</string>
+  <string name="ThreadRecord_secure_session_ended">Konec zabezpečeného sezení.</string>
   <string name="ThreadRecord_draft">Koncept:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>

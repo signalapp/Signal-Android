@@ -144,7 +144,7 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">Отримано повідомлення з невідомим особистим ключем. Натисніть для його відображення.</string>
   <string name="SmsMessageRecord_secure_session_ended">Захищений сеанс завершено.</string>
   <!--ThreadRecord-->
-  <string name="TheadRecord_secure_session_ended">Захищений сеанс завершено.</string>
+  <string name="ThreadRecord_secure_session_ended">Захищений сеанс завершено.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас немає особистого ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У одержувача немає особистого ключа.</string>

@@ -285,7 +285,7 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="SmsMessageRecord_duplicate_message">நகல் செய்தி.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">குழுவை விட்டு விலகினார்...</string>
-  <string name="TheadRecord_secure_session_ended">பாதுகாப்பான அமர்வு முடிந்தது.</string>
+  <string name="ThreadRecord_secure_session_ended">பாதுகாப்பான அமர்வு முடிந்தது.</string>
   <string name="ThreadRecord_draft">வரைவு:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">உங்களிடம் ஒரு அடையாளச்சாவி இல்லை.</string>

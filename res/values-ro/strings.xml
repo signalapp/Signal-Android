@@ -297,7 +297,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">A ieșit din grup...</string>
-  <string name="TheadRecord_secure_session_ended">Sesiune securizată terminată.</string>
+  <string name="ThreadRecord_secure_session_ended">Sesiune securizată terminată.</string>
   <string name="ThreadRecord_draft">Ciornă:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nu ai o cheie de identitate.</string>

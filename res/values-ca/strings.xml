@@ -152,7 +152,7 @@
   <string name="SmsMessageRecord_secure_session_ended">La sessió segura s\'ha acabat.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ha deixat el grup...</string>
-  <string name="TheadRecord_secure_session_ended">La sessió segura s\'ha acabat.</string>
+  <string name="ThreadRecord_secure_session_ended">La sessió segura s\'ha acabat.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Tu no tens una clau d\'identitat.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">El destinatari no té clau d\'identitat.</string>

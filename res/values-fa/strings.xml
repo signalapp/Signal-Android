@@ -262,7 +262,7 @@
   <string name="SmsMessageRecord_duplicate_message">تکثیر پیام.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترک گروه ...</string>
-  <string name="TheadRecord_secure_session_ended">جلسه امن به پایان رسید.</string>
+  <string name="ThreadRecord_secure_session_ended">جلسه امن به پایان رسید.</string>
   <string name="ThreadRecord_draft">پیش نویس:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">شما یک کلید هویت ندارد.</string>

@@ -312,7 +312,7 @@
   <string name="SmsMessageRecord_duplicate_message">Дубликат сообщения.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Вы покинули группу...</string>
-  <string name="TheadRecord_secure_session_ended">Защищённый сеанс завершён.</string>
+  <string name="ThreadRecord_secure_session_ended">Защищённый сеанс завершён.</string>
   <string name="ThreadRecord_draft">Черновик:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>

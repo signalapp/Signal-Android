@@ -293,7 +293,7 @@
   <string name="SmsMessageRecord_duplicate_message">ನಕಲಿ ಸಂದೇಶ.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ ...</string>
-  <string name="TheadRecord_secure_session_ended">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಕೊನೆಗೋಂಡಿದೆ.</string>
+  <string name="ThreadRecord_secure_session_ended">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಕೊನೆಗೋಂಡಿದೆ.</string>
   <string name="ThreadRecord_draft">ಕರಡು</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">ನೀವು ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>

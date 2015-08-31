@@ -329,7 +329,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="SmsMessageRecord_duplicate_message">Dupliceer bericht.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Je hebt deze groep verlaten...</string>
-  <string name="TheadRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
+  <string name="ThreadRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
   <string name="ThreadRecord_draft">Concept:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Je hebt geen identiteitssleutel.</string>

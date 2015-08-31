@@ -340,7 +340,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Gruppo abbandonato...</string>
-  <string name="TheadRecord_secure_session_ended">Sessione sicura terminata.</string>
+  <string name="ThreadRecord_secure_session_ended">Sessione sicura terminata.</string>
   <string name="ThreadRecord_draft">Bozza:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>

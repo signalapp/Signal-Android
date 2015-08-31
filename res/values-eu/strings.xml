@@ -261,7 +261,7 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="SmsMessageRecord_duplicate_message">Mezu bikoiztua.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Taldea utzita...</string>
-  <string name="TheadRecord_secure_session_ended">Saio segurua bukatu da</string>
+  <string name="ThreadRecord_secure_session_ended">Saio segurua bukatu da</string>
   <string name="ThreadRecord_draft">Zirriborroa:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Ez daukazu nortasun gakorik.</string>

@@ -324,7 +324,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen …</string>
-  <string name="TheadRecord_secure_session_ended">Sichere Unterhaltung beendet.</string>
+  <string name="ThreadRecord_secure_session_ended">Sichere Unterhaltung beendet.</string>
   <string name="ThreadRecord_draft">Entwurf:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>

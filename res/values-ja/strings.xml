@@ -329,7 +329,7 @@
   <string name="SmsMessageRecord_duplicate_message">多重送信メッセージ。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">グループを出ました…</string>
-  <string name="TheadRecord_secure_session_ended">セキュア・セッション終了</string>
+  <string name="ThreadRecord_secure_session_ended">セキュア・セッション終了</string>
   <string name="ThreadRecord_draft">草稿:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>

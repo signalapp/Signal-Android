@@ -321,7 +321,7 @@
   <string name="SmsMessageRecord_duplicate_message">Дупла порака.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ја напушти групата...</string>
-  <string name="TheadRecord_secure_session_ended">Шифрираната сесија заврши.</string>
+  <string name="ThreadRecord_secure_session_ended">Шифрираната сесија заврши.</string>
   <string name="ThreadRecord_draft">Скица:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немат клуч за идентификација.</string>

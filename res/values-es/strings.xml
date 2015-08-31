@@ -360,7 +360,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ha dejado el grupo...</string>
-  <string name="TheadRecord_secure_session_ended">La sesión segura finalizó.</string>
+  <string name="ThreadRecord_secure_session_ended">La sesión segura finalizó.</string>
   <string name="ThreadRecord_draft">Borrador:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">No tiene ninguna clave de identidad.</string>

@@ -314,7 +314,7 @@
   <string name="SmsMessageRecord_duplicate_message">중복된 메시지</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">그룹에서 나갔습니다.</string>
-  <string name="TheadRecord_secure_session_ended">암호화된 세션이 종료되었습니다.</string>
+  <string name="ThreadRecord_secure_session_ended">암호화된 세션이 종료되었습니다.</string>
   <string name="ThreadRecord_draft">임시보관:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">내 인증 키가 없습니다.</string>

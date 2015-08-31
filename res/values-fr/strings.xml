@@ -344,7 +344,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="SmsMessageRecord_duplicate_message">Message doublon.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Groupe quitté…</string>
-  <string name="TheadRecord_secure_session_ended">La session sécurisée s’est terminée.</string>
+  <string name="ThreadRecord_secure_session_ended">La session sécurisée s’est terminée.</string>
   <string name="ThreadRecord_draft">Brouillon:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Vous n’avez pas de clé d’identité.</string>

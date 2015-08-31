@@ -358,7 +358,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Saiu do grupo...</string>
-  <string name="TheadRecord_secure_session_ended">Sessão segura terminada.</string>
+  <string name="ThreadRecord_secure_session_ended">Sessão segura terminada.</string>
   <string name="ThreadRecord_draft">Rascunho:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>

@@ -344,7 +344,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä...</string>
-  <string name="TheadRecord_secure_session_ended">Salattu istunto päättyi</string>
+  <string name="ThreadRecord_secure_session_ended">Salattu istunto päättyi</string>
   <string name="ThreadRecord_draft">Luonnos:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">(Sinulla ei ole identiteettiavainta.)</string>

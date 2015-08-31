@@ -322,7 +322,7 @@
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترك المجموعة...</string>
-  <string name="TheadRecord_secure_session_ended">انتهى التشفير.</string>
+  <string name="ThreadRecord_secure_session_ended">انتهى التشفير.</string>
   <string name="ThreadRecord_draft">مسودة:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">لا يوجد لديك مفتاح تعريفي.</string>
