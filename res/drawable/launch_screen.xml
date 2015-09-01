@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="@color/black"/>
+    </item>
+    <item>
+        <bitmap
+            android:src="@drawable/lockscreen_watermark_dark"
+            android:tileMode="disabled"
+            android:gravity="center"/>
+    </item>
+</layer-list>
