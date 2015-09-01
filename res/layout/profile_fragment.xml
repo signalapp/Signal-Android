@@ -424,6 +424,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/group_info"
+                        android:text="@string/conversation__menu_leave_group"
+                        android:id="@+id/buttonLeaveGroup" />
                 </RelativeLayout>
             </LinearLayout>
 

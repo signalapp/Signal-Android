@@ -43,6 +43,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -142,6 +143,8 @@ public class ProfileFragment extends Fragment {
     private PushRecipientsPanel recipientsPanel;
     private boolean keyboardIsVisible = false;
     private boolean contactsHaveChanged = false;
+    private Button leaveGroup;
+    private long threadId = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -176,6 +179,7 @@ public class ProfileFragment extends Fragment {
         layout_group = (RelativeLayout) getView().findViewById(R.id.layout_member);
 
         statusDate = (TextView) getView().findViewById(R.id.profile__date);
+        leaveGroup = (Button) getView().findViewById(R.id.buttonLeaveGroup);
         profileHeader = (TextView) getView().findViewById(R.id.profile_header);
         profileStatus = (EditText) getView().findViewById(R.id.profile_status);
         xCloseButton = (ImageView) getView().findViewById(R.id.profile_close);
@@ -283,6 +287,8 @@ public class ProfileFragment extends Fragment {
                         adapter.add(new SelectedRecipientsAdapter.RecipientWrapper(contact, false));
                     }
                 }
+                adapter.setMasterSecret(masterSecret);
+                adapter.setThreadId(threadId);
                 groupMember.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
@@ -294,6 +300,14 @@ public class ProfileFragment extends Fragment {
             imageText.setText(groupName);
             profileStatus.setText(groupName);
             layout_phone.setVisibility(View.GONE);
+
+            leaveGroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                handleLeavePushGroup();
+                }
+            });
+
             GUtil.setListViewHeightBasedOnChildren(groupMember);
         }
         ImageView profileImageEdit = (ImageView) getView().findViewById(R.id.profile_picture_edit);
@@ -409,6 +423,45 @@ public class ProfileFragment extends Fragment {
                 // getActivity().finish();
             }
         });
+    }
+    private void handleLeavePushGroup() {
+        if (recipients == null) {
+            Toast.makeText(getActivity(), getString(R.string.ConversationActivity_invalid_recipient),
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(getString(R.string.ConversationActivity_leave_group));
+        builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
+        builder.setCancelable(true);
+        builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Context self = getActivity();
+                try {
+                    byte[] groupId = GroupUtil.getDecodedId(recipients.getPrimaryRecipient().getNumber());
+                    DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
+
+                    PushMessageProtos.PushMessageContent.GroupContext context = PushMessageProtos.PushMessageContent.GroupContext.newBuilder()
+                            .setId(ByteString.copyFrom(groupId))
+                            .setType(PushMessageProtos.PushMessageContent.GroupContext.Type.QUIT)
+                            .build();
+
+                    OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, recipients,
+                            context, null);
+                    MessageSender.send(self, masterSecret, outgoingMessage, threadId, false);
+                    DatabaseFactory.getGroupDatabase(self).remove(groupId, TextSecurePreferences.getLocalNumber(self));
+                } catch (IOException e) {
+                    Toast.makeText(self, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
+                }
+                getActivity().finish();
+            }
+        });
+
+        builder.setNegativeButton(R.string.no, null);
+        builder.show();
     }
     private class AddRecipientButtonListener implements View.OnClickListener {
         @Override
@@ -642,6 +695,7 @@ public class ProfileFragment extends Fragment {
         this.masterSecret = getActivity().getIntent().getParcelableExtra("master_secret");
         this.profileId = getActivity().getIntent().getStringExtra("profile_id");
         this.isGroup = getActivity().getIntent().getBooleanExtra("is_group", false);
+        threadId = getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
         this.recipients = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent()
                 .getLongArrayExtra(RECIPIENTS_EXTRA), true);
         selectedContacts = new HashSet<Recipient>();

@@ -368,6 +368,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         final Intent intent = new Intent(this, ProfileActivity.class);
         intent.putExtra("master_secret", masterSecret);
         intent.putExtra("profile_id", profileId);
+        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
         intent.putExtra("is_group", getRecipients().isGroupRecipient());
         intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, getRecipients().getIds());
         startActivity(intent);

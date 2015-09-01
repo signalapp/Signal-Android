@@ -257,6 +257,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     });
 
     SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<SelectedRecipientsAdapter.RecipientWrapper>());
+    adapter.setMasterSecret(masterSecret);
+    adapter.setThreadId(-1);
     adapter.setOnRecipientDeletedListener(new SelectedRecipientsAdapter.OnRecipientDeletedListener() {
       @Override
       public void onRecipientDeleted(Recipient recipient) {
