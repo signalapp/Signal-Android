@@ -752,10 +752,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
                         : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
                 thumbnail.setVisibility(View.GONE);
+                mCustomView.setOnClickListener(null);
             }
             getSupportActionBar().setCustomView(mCustomView);
             getSupportActionBar().setDisplayShowCustomEnabled(true);
-            mCustomView.setOnClickListener(null);
+
         } else {
             title = getString(R.string.ConversationActivity_compose_message);
             subtitle = "";
