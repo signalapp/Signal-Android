@@ -731,10 +731,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 getSupportActionBar().setDisplayShowCustomEnabled(true);
             }
         } else if (isGroupConversation()) {
-            if (isPushGroupConversation() || true) {
+            if (isPushGroupConversation()) {
                 final String groupName = recipient.getName();
                 final Bitmap avatar = recipient.getContactPhoto();
-
                 if (avatar != null) {
                     thumbnail.setImageBitmap(BitmapUtil.getCircleBitmap(avatar));
                 }
@@ -747,6 +746,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 title = getString(R.string.ConversationActivity_group_conversation);
                 subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
                         : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
+                thumbnail.setVisibility(View.GONE);
             }
             getSupportActionBar().setCustomView(mCustomView);
             getSupportActionBar().setDisplayShowCustomEnabled(true);
