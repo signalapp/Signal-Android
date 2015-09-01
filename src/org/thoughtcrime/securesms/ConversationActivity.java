@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.Manifest.permission;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -61,7 +62,6 @@ import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
@@ -86,7 +86,6 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -113,6 +112,9 @@ import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.permissions.PermissionHandler;
+import org.thoughtcrime.securesms.permissions.PermissionHandler.PermissionRequest;
+import org.thoughtcrime.securesms.permissions.SimplePermissionRequest;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -123,6 +125,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.Map;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -180,6 +183,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   EmojiToggle                   emojiToggle;
   protected HidingImageButton             quickAttachmentToggle;
   private   QuickAttachmentDrawer         quickAttachmentDrawer;
+  private   PermissionHandler             permissions;
 
   private Recipients recipients;
   private long       threadId;
@@ -200,10 +204,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
+    this.permissions  = new PermissionHandler(this);
 
     supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
     setContentView(R.layout.conversation_activity);
-
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(),
                             masterSecret, dynamicLanguage.getCurrentLocale());
 
@@ -212,6 +216,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeViews();
     initializeResources();
     initializeDraft();
+    permissions.request(new PermissionRequest(permission.READ_CONTACTS) {
+      @Override public void onResult(Map<String, PermissionResult> results) {
+        if (getSingleResult(results) == PermissionResult.GRANTED) {
+          RecipientFactory.clearCache();
+        }
+      }
+    });
   }
 
   @Override
@@ -252,6 +263,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     MessageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
+  }
+
+  @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                                   @NonNull int[] grantResults)
+  {
+    this.permissions.onRequestPermissionsResult(requestCode, permissions, grantResults);
   }
 
   @Override
@@ -844,6 +861,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeResources() {
+    if (recipients != null) recipients.removeListener(this);
     recipients       = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -1159,6 +1177,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachmentManager.cleanup();
   }
 
+  private void sendMessageWithPermissions() {
+    permissions.request(new SimplePermissionRequest(this,
+                                                    R.string.ConversationActivity_missing_send_permissions,
+                                                    sendButton.getSelectedTransport().getRequiredPermissions())
+    {
+      @Override public void onGranted() {
+        sendMessage();
+      }
+    });
+  }
+
   private void sendMessage() {
     try {
       Recipients recipients = getRecipients();
@@ -1303,15 +1332,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private class QuickAttachmentToggleListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      composeText.clearFocus();
-      container.show(composeText, quickAttachmentDrawer);
+      permissions.request(new SimplePermissionRequest(ConversationActivity.this,
+                                                      R.string.ConversationActivity_missing_camera_permissions,
+                                                      permission.CAMERA)
+      {
+        @Override public void onGranted() {
+          composeText.clearFocus();
+          container.show(composeText, quickAttachmentDrawer);
+        }
+      });
     }
   }
 
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
-      sendMessage();
+      sendMessageWithPermissions();
     }
 
     @Override

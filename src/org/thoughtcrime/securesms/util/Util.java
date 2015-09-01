@@ -29,6 +29,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.Telephony;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -351,5 +352,9 @@ public class Util {
 
   public static float clamp(float value, float min, float max) {
     return Math.min(Math.max(value, min), max);
+  }
+
+  public static boolean hasPermission(Context context, String permission) {
+    return PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(context, permission);
   }
 }

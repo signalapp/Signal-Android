@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.Manifest.permission;
 import android.content.Intent;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
@@ -29,6 +30,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -40,7 +42,13 @@ import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.permissions.PermissionHandler;
+import org.thoughtcrime.securesms.permissions.DialogRationalePermissionRequest;
+import org.thoughtcrime.securesms.permissions.PermissionHandler.PermissionRequest;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.util.Map;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity
     implements ConversationListFragment.ConversationSelectedListener
@@ -51,8 +59,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ConversationListFragment fragment;
-  private ContentObserver observer;
-  private MasterSecret masterSecret;
+  private ContentObserver          observer;
+  private MasterSecret             masterSecret;
+  private PermissionHandler        permissions;
 
   @Override
   protected void onPreCreate() {
@@ -63,6 +72,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
+    this.permissions  = new PermissionHandler(this);
 
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
     getSupportActionBar().setTitle(R.string.app_name);
@@ -72,6 +82,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     DirectoryRefreshListener.schedule(this);
     RatingManager.showRatingDialogIfNecessary(this);
+    checkPermissions();
   }
 
   @Override
@@ -79,6 +90,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+  }
+
+  @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                                   @NonNull int[] grantResults)
+  {
+    this.permissions.onRequestPermissionsResult(requestCode, permissions, grantResults);
   }
 
   @Override
@@ -102,6 +119,30 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     super.onPrepareOptionsMenu(menu);
     return true;
+  }
+
+  private void checkPermissions() {
+    permissions.request(new PermissionRequest(permission.READ_CONTACTS) {
+      @Override public void onResult(Map<String, PermissionResult> results) {
+        if (getSingleResult(results) == PermissionResult.GRANTED) {
+          RecipientFactory.clearCache();
+        }
+      }
+    });
+    if (Util.isDefaultSmsProvider(this)) {
+      permissions.request(new DialogRationalePermissionRequest(this,
+                                                               R.string.ConversationListActivity_default_sms_permission_warning_title,
+                                                               R.string.ConversationListActivity_default_sms_permission_warning_message,
+                                                               permission.READ_SMS, permission.SEND_SMS, permission.RECEIVE_MMS)
+      {
+        @Override public void onResult(Map<String, PermissionResult> results) {
+          if (!isFullyGranted(results)) {
+            Toast.makeText(ConversationListActivity.this, R.string.ConversationListActivity_default_sms_permission_error,
+                           Toast.LENGTH_LONG).show();
+          }
+        }
+      });
+    }
   }
 
   private void initializeSearch(MenuItem searchViewItem) {

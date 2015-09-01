@@ -12,13 +12,15 @@ import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.permissions.PermissionHandler;
 
 
 public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
 
-  private MasterSecret    masterSecret;
-  private TabPagerAdapter tabPagerAdapter;
-  private ViewPager       viewPager;
+  private MasterSecret      masterSecret;
+  private TabPagerAdapter   tabPagerAdapter;
+  private ViewPager         viewPager;
+  private PermissionHandler permissions;
 
   private DynamicTheme dynamicTheme = new DynamicTheme();
 
@@ -30,6 +32,7 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
+    this.permissions  = new PermissionHandler(this);
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -42,6 +45,12 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   public void onResume() {
       dynamicTheme.onResume(this);
       super.onResume();
+  }
+
+  @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                                   @NonNull int[] grantResults)
+  {
+    this.permissions.onRequestPermissionsResult(requestCode, permissions, grantResults);
   }
 
   @Override
@@ -100,6 +109,8 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
       this.exportFragment = new ExportFragment();
       this.importFragment.setMasterSecret(masterSecret);
       this.exportFragment.setMasterSecret(masterSecret);
+      this.importFragment.setPermissionHandler(permissions);
+      this.exportFragment.setPermissionHandler(permissions);
     }
 
     @Override

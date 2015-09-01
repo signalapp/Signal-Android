@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.Manifest.permission;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,11 +36,13 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.permissions.SimplePermissionRequest;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.permissions.PermissionHandler;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
@@ -54,7 +57,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private MasterSecret masterSecret;
+  private MasterSecret      masterSecret;
+  private PermissionHandler permissions;
 
   private Bitmap            bitmap;
   private ZoomingImageView  image;
@@ -66,6 +70,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
+    this.permissions  = new PermissionHandler(this);
     this.setTheme(R.style.TextSecure_DarkTheme);
     dynamicLanguage.onCreate(this);
 
@@ -113,6 +118,12 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
     initializeMedia();
+  }
+
+  @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                                   @NonNull int[] grantResults)
+  {
+    this.permissions.onRequestPermissionsResult(requestCode, permissions, grantResults);
   }
 
   @Override
@@ -176,8 +187,15 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     SaveAttachmentTask.showWarningDialog(this, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
-        SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
-        saveTask.execute(new Attachment(mediaUri, mediaType, date));
+        permissions.request(new SimplePermissionRequest(MediaPreviewActivity.this,
+                                                        R.string.MediaPreviewActivity_missing_storage_permission,
+                                                        permission.WRITE_EXTERNAL_STORAGE)
+        {
+          @Override public void onGranted() {
+            SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
+            saveTask.execute(new Attachment(mediaUri, mediaType, date));
+          }
+        });
       }
     });
   }

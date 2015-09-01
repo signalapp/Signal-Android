@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.Manifest.permission;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
@@ -8,10 +9,8 @@ import android.content.OperationApplicationException;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
@@ -43,6 +42,11 @@ public class DirectoryHelper {
   public static void refreshDirectory(final Context context, final TextSecureAccountManager accountManager, final String localNumber)
       throws IOException
   {
+    if (!Util.hasPermission(context, permission.READ_CONTACTS)) {
+      Log.w(TAG, "READ_CONTACTS permission missing. Skipping directory refresh.");
+      return;
+    }
+
     TextSecureDirectory       directory              = TextSecureDirectory.getInstance(context);
     Optional<Account>         account                = getOrCreateAccount(context);
     Set<String>               eligibleContactNumbers = directory.getPushEligibleContactNumbers(localNumber);

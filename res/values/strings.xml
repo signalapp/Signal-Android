@@ -126,6 +126,8 @@
     <string name="ConversationActivity_unblock_question">Unblock?</string>
     <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Are you sure you want to unblock this contact?</string>
     <string name="ConversationActivity_unblock">Unblock</string>
+    <string name="ConversationActivity_missing_send_permissions">TextSecure is missing the permissions necessary to send.</string>
+    <string name="ConversationActivity_missing_camera_permissions">TextSecure needs the camera permission to capture photos.</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -149,6 +151,11 @@
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_search">Search...</string>
+    <string name="ConversationListActivity_default_sms_permission_warning_title">SMS permissions</string>
+    <string name="ConversationListActivity_default_sms_permission_warning_message">
+        TextSecure is your default SMS provider, but doesn\'t have SMS permissions.\n\nBad things will happen, messages may get lost, and the TextSecure developers will be very disappointed in your life choices.
+    </string>
+    <string name="ConversationListActivity_default_sms_permission_error">I see how it is.</string>
 
     <!-- ConversationListFragment -->
     <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
@@ -197,6 +204,7 @@
     <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, unable to write to SD card!</string>
     <string name="ExportFragment_error_while_writing_to_sd_card">Error while writing to SD card.</string>
     <string name="ExportFragment_success">Success!</string>
+    <string name="ExportFragment_missing_storage_permission">TextSecure doesn\'t have permission to write to storage.</string>
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Permanent TextSecure communication failure!</string>
@@ -255,6 +263,7 @@
     <string name="ImportFragment_restoring_encrypted_backup">Restoring encrypted backup...</string>
     <string name="ImportFragment_no_encrypted_backup_found">No encrypted backup found!</string>
     <string name="ImportFragment_restore_complete">Restore complete!</string>
+    <string name="ImportFragment_missing_storage_permission">TextSecure doesn\'t have permission to read from storage.</string>
 
     <!-- KeyScanningActivity -->
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
@@ -306,6 +315,10 @@
     <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icon</string>
     <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
+
+
+    <!-- PermissionHandler -->
+    <string name="PermissionHandler_dialog_accept_button">I understand</string>
 
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">The version of Google Play Services you have installed is not functioning correctly.  Please reinstall Google Play Services and try again.</string>
@@ -976,6 +989,7 @@
     <string name="MediaPreviewActivity_you">You</string>
     <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
+    <string name="MediaPreviewActivity_missing_storage_permission">TextSecure doesn\'t have permission to access storage.</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>

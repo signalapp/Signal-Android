@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.Manifest.permission;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -21,10 +22,14 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
+import org.thoughtcrime.securesms.permissions.SimplePermissionRequest;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.permissions.PermissionHandler;
+import org.thoughtcrime.securesms.permissions.PermissionHandler.PermissionRequest;
 
 import java.io.IOException;
+import java.util.Map;
 
 
 public class ImportFragment extends Fragment {
@@ -33,11 +38,16 @@ public class ImportFragment extends Fragment {
   private static final int NO_SD_CARD = 1;
   private static final int ERROR_IO   = 2;
 
-  private MasterSecret masterSecret;
-  private ProgressDialog progressDialog;
+  private MasterSecret      masterSecret;
+  private ProgressDialog    progressDialog;
+  private PermissionHandler permissions;
 
   public void setMasterSecret(MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
+  }
+
+  public void setPermissionHandler(PermissionHandler permissions) {
+    this.permissions = permissions;
   }
 
   @Override
@@ -128,7 +138,14 @@ public class ImportFragment extends Fragment {
     builder.setPositiveButton(getActivity().getString(R.string.ImportFragment_import), new AlertDialog.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        new ImportPlaintextBackupTask().execute();
+        permissions.request(new SimplePermissionRequest(getActivity(),
+                                                        R.string.ImportFragment_missing_storage_permission,
+                                                        permission.READ_EXTERNAL_STORAGE)
+        {
+          @Override public void onGranted() {
+            new ImportPlaintextBackupTask().execute();
+          }
+        });
       }
     });
     builder.setNegativeButton(getActivity().getString(R.string.ImportFragment_cancel), null);

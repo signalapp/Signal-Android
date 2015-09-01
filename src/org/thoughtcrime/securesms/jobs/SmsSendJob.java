@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.Manifest.permission;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 
 import java.util.ArrayList;
@@ -84,6 +86,10 @@ public class SmsSendJob extends SendJob {
 
     if (message.isSecure() || message.isKeyExchange() || message.isEndSession()) {
       throw new UndeliverableMessageException("Trying to send a secure SMS?");
+    }
+
+    if (!Util.hasPermission(context, permission.SEND_SMS)) {
+      throw new UndeliverableMessageException("Trying to send SMS without permissions.");
     }
 
     ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody().getBody());
