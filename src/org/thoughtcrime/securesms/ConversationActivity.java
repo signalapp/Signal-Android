@@ -710,7 +710,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
 
         profileId = GUtil.numberToLong(recipient.getNumber()) + "" ;
-
+        mCustomView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handleOpenProfile();
+            }
+        });
         if (isSingleConversation()) {
             if (TextUtils.isEmpty(recipient.getName())) {
                 title = recipient.getNumber();
@@ -750,19 +755,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             }
             getSupportActionBar().setCustomView(mCustomView);
             getSupportActionBar().setDisplayShowCustomEnabled(true);
+            mCustomView.setOnClickListener(null);
         } else {
             title = getString(R.string.ConversationActivity_compose_message);
             subtitle = "";
         }
         mTitleTextView.setText(title);
         mTitleTextViewSubtitle.setText(subtitle);
-
-        mCustomView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleOpenProfile();
-            }
-        });
 
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setSubtitle(subtitle);
