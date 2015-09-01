@@ -335,11 +335,11 @@ public class ConversationItem extends LinearLayout {
       handleKeyExchangeClicked();
     } else if (messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey() && messageRecord.getRecipients().isGroupRecipient()) {
         deleteMessage(messageRecord);
-    } else if(messageRecord.isGroupAction() && messageRecord.getIndividualRecipient().getName().equals("Unknown")) {
+    } else if(messageRecord != null && messageRecord.isGroupAction() && messageRecord.getIndividualRecipient() != null && "Unknown".equals(messageRecord.getIndividualRecipient().getName())) {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
               TextView.BufferType.SPANNABLE);
-    } else if(messageRecord.isFailed() && messageRecord.getIndividualRecipient().getName().equals("Unknown") && messageRecord.isOutgoing()) {
+    } else if(messageRecord.isFailed() && messageRecord.getIndividualRecipient() != null && "Unknown".equals(messageRecord.getIndividualRecipient().getName()) && messageRecord.isOutgoing()) {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.msg_failed),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
               TextView.BufferType.SPANNABLE);

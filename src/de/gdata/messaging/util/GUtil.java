@@ -316,11 +316,11 @@ public class GUtil {
     }
     return longId;
   }
-  public static void setListViewHeightBasedOnChildren(ListView listView) {
+  public static int setListViewHeightBasedOnChildren(ListView listView) {
     ListAdapter listAdapter = listView.getAdapter();
     if (listAdapter == null) {
       // pre-condition
-      return;
+      return 0;
     }
 
     int totalHeight = 0;
@@ -337,7 +337,7 @@ public class GUtil {
     params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
     listView.setLayoutParams(params);
     listView.requestLayout();
-
+    return totalHeight;
   }
 
   public static void saveInMediaHistory(Context context, PduPart part, String recId) {

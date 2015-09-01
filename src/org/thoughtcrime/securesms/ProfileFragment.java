@@ -145,6 +145,7 @@ public class ProfileFragment extends Fragment {
     private boolean contactsHaveChanged = false;
     private Button leaveGroup;
     private long threadId = -1;
+    private int heightMemberList = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -308,7 +309,7 @@ public class ProfileFragment extends Fragment {
                 }
             });
 
-            GUtil.setListViewHeightBasedOnChildren(groupMember);
+            heightMemberList = GUtil.setListViewHeightBasedOnChildren(groupMember);
         }
         ImageView profileImageEdit = (ImageView) getView().findViewById(R.id.profile_picture_edit);
         ImageView profileImageDelete = (ImageView) getView().findViewById(R.id.profile_picture_delete);
@@ -393,35 +394,45 @@ public class ProfileFragment extends Fragment {
                 scrollView.scrollTo(0, mainLayout.getTop() - PADDING_TOP);
             }
         });
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-
-            @Override
-            public void onScrollChanged() {
-                if (BuildConfig.VERSION_CODE >= 11) {
-                    scrollContainer.setBackgroundColor(Color.WHITE);
-                    scrollContainer.setAlpha((float) ((1000.0 / scrollContainer.getHeight()) * scrollView.getHeight()));
-                }
-                int heightDiff = scrollView.getRootView().getHeight() - scrollView.getHeight();
-                if (heightDiff > 150) {
-                    keyboardIsVisible = true;
-                } else {
-                    keyboardIsVisible = false;
-                }
-                if (!keyboardIsVisible) {
-                    if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
-                        finishAndSave();
-                    }
-                    if (mainLayout.getTop() + scrollView.getHeight() < scrollView.getScrollY()) {
-                        finishAndSave();
-                    }
-                }
-            }
-        });
         scrollContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // getActivity().finish();
             }
+        });
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                ViewTreeObserver observer = scrollView.getViewTreeObserver();
+                observer.addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+
+                    @Override
+                    public void onScrollChanged() {
+                        if (BuildConfig.VERSION_CODE >= 11) {
+                            scrollContainer.setBackgroundColor(Color.WHITE);
+                            scrollContainer.setAlpha((float) ((1000.0 / scrollContainer.getHeight()) * scrollView.getHeight()));
+                        }
+                        int heightDiff = scrollView.getRootView().getHeight() - scrollView.getHeight();
+                        if (heightDiff > 150) {
+                            keyboardIsVisible = true;
+                        } else {
+                            keyboardIsVisible = false;
+                        }
+                        if (!keyboardIsVisible) {
+                            if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
+                                finishAndSave();
+                            }
+                            if (scrollView.getHeight() + (scrollView.getHeight()/3.0 + heightMemberList) < (scrollView.getScrollY() - mainLayout.getTop())) {
+                                finishAndSave();
+                            }
+                        }
+                    }
+                });
+                return false;
+            }
+
         });
     }
     private void handleLeavePushGroup() {
@@ -587,7 +598,7 @@ public class ProfileFragment extends Fragment {
             }
         }
         adapter.notifyDataSetChanged();
-        GUtil.setListViewHeightBasedOnChildren(groupMember);
+        heightMemberList = GUtil.setListViewHeightBasedOnChildren(groupMember);
     }
     private void addSelectedContact(Recipient contact) {
         final boolean isPushUser = isActiveInDirectory(getActivity(), contact);
