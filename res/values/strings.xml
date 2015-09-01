@@ -486,7 +486,7 @@
 
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_new_textsecure_message">New TextSecure message</string>
-    <string name="SingleRecipientNotificationBuilder_contents_hidden">Contents hidden</string>
+    <string name="SingleRecipientNotificationBuilder_contents_hidden">New message!</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
