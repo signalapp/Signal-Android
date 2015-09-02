@@ -134,6 +134,7 @@ public class PduPart {
 
      private long    rowId = -1;
      private long    uniqueId = -1;
+     private long    mmsId = -1;
      private boolean isEncrypted;
      private int     transferProgress;
      private long    dataSize;
@@ -478,6 +479,14 @@ public class PduPart {
 
     public void setUniqueId(long uniqueId) {
       this.uniqueId = uniqueId;
+    }
+
+    public long getMmsId() {
+      return mmsId;
+    }
+
+    public void setMmsId(long mmsId) {
+      this.mmsId = mmsId;
     }
 }
 

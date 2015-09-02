@@ -245,6 +245,7 @@ public class PartDatabase extends Database {
 
     part.setRowId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)));
     part.setUniqueId(cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID)));
+    part.setMmsId(cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)));
 
     int charsetColumn = cursor.getColumnIndexOrThrow(CHARSET);
 
@@ -433,13 +434,30 @@ public class PartDatabase extends Database {
   }
 
   private PduPart getPart(Cursor cursor) {
-    PduPart part   = new PduPart();
+    PduPart part = new PduPart();
 
     getPartValues(part, cursor);
 
     part.setDataUri(PartAuthority.getPartUri(part.getPartId()));
 
     return part;
+  }
+
+  public List<PduPart> getPendingParts() {
+    final SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    final List<PduPart>  parts    = new LinkedList<>();
+
+    Cursor cursor = null;
+    try {
+      cursor = database.query(TABLE_NAME, null, TRANSFER_STATE + " = ?", new String[] {String.valueOf(TRANSFER_PROGRESS_STARTED)}, null, null, null);
+      while (cursor != null && cursor.moveToNext()) {
+        parts.add(getPart(cursor));
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
+    return parts;
   }
 
   private PartId insertPart(MasterSecretUnion masterSecret, PduPart part, long mmsId, Bitmap thumbnail) throws MmsException {

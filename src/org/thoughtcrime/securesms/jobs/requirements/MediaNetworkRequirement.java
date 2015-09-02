@@ -21,7 +21,8 @@ import java.util.Set;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class MediaNetworkRequirement implements Requirement, ContextDependent {
-  private static final String TAG = MediaNetworkRequirement.class.getSimpleName();
+  private static final long   serialVersionUID = 0L;
+  private static final String TAG              = MediaNetworkRequirement.class.getSimpleName();
 
   private transient Context context;
 

@@ -35,8 +35,8 @@ import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
-
-  private static final String TAG = AttachmentDownloadJob.class.getSimpleName();
+  private static final long   serialVersionUID = 1L;
+  private static final String TAG              = AttachmentDownloadJob.class.getSimpleName();
 
   @Inject transient TextSecureMessageReceiver messageReceiver;
 
