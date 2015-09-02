@@ -146,6 +146,7 @@ public class ProfileFragment extends Fragment {
     private Button leaveGroup;
     private long threadId = -1;
     private int heightMemberList = 0;
+    private ViewTreeObserver.OnScrollChangedListener onScrollChangeListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -316,6 +317,7 @@ public class ProfileFragment extends Fragment {
         if (!isMyProfile && !isGroup) {
             profileStatusEdit.setVisibility(View.GONE);
             profileImageDelete.setVisibility(View.GONE);
+            profileImageEdit.setVisibility(View.GONE);
         } else {
             if (isGroup) {
                 profileImageDelete.setVisibility(View.GONE);
@@ -323,8 +325,6 @@ public class ProfileFragment extends Fragment {
             } else {
                 profileImageDelete.setVisibility(View.VISIBLE);
             }
-            profileStatusEdit.setVisibility(View.VISIBLE);
-            profileImageEdit.setVisibility(View.VISIBLE);
             profileStatusEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -337,7 +337,7 @@ public class ProfileFragment extends Fragment {
                         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
                                 Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(profileStatus.getWindowToken(), 0);
-                        if(isGroup) {
+                        if (isGroup) {
                             new UpdateWhisperGroupAsyncTask().execute();
                         } else {
                             ProfileAccessor.setProfileStatus(getActivity(), profileStatus.getText() + "");
@@ -400,38 +400,40 @@ public class ProfileFragment extends Fragment {
                 // getActivity().finish();
             }
         });
+        onScrollChangeListener = new ViewTreeObserver.OnScrollChangedListener() {
+
+            @Override
+            public void onScrollChanged() {
+                if (BuildConfig.VERSION_CODE >= 11) {
+                    scrollContainer.setBackgroundColor(Color.WHITE);
+                    scrollContainer.setAlpha((float) ((1000.0 / scrollContainer.getHeight()) * scrollView.getHeight()));
+                }
+                int heightDiff = scrollView.getRootView().getHeight() - scrollView.getHeight();
+                if (pxToDp(heightDiff) > 150) {
+                    keyboardIsVisible = true;
+                } else {
+                    keyboardIsVisible = false;
+                }
+                if (!keyboardIsVisible) {
+                    if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
+                        finishAndSave();
+                    }
+                    if ((scrollView.getHeight() + (scrollView.getHeight()/3.0 + heightMemberList)) < (scrollView.getScrollY() - mainLayout.getTop())) {
+                        finishAndSave();
+                    }
+                }
+            }
+        };
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(onScrollChangeListener);
         scrollView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
                 ViewTreeObserver observer = scrollView.getViewTreeObserver();
-                observer.addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-
-                    @Override
-                    public void onScrollChanged() {
-                        if (BuildConfig.VERSION_CODE >= 11) {
-                            scrollContainer.setBackgroundColor(Color.WHITE);
-                            scrollContainer.setAlpha((float) ((1000.0 / scrollContainer.getHeight()) * scrollView.getHeight()));
-                        }
-                        int heightDiff = scrollView.getRootView().getHeight() - scrollView.getHeight();
-                        if (heightDiff > 150) {
-                            keyboardIsVisible = true;
-                        } else {
-                            keyboardIsVisible = false;
-                        }
-                        if (!keyboardIsVisible) {
-                            if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
-                                finishAndSave();
-                            }
-                            if (scrollView.getHeight() + (scrollView.getHeight()/3.0 + heightMemberList) < (scrollView.getScrollY() - mainLayout.getTop())) {
-                                finishAndSave();
-                            }
-                        }
+                observer.addOnScrollChangedListener(onScrollChangeListener);
+                        return false;
                     }
-                });
-                return false;
-            }
 
         });
     }
@@ -625,6 +627,7 @@ public class ProfileFragment extends Fragment {
         return true;
     }
     private void finishAndSave() {
+        Log.w("MYLOG", "FINISH");
         hasLeft = true;
         if (hasChanged || contactsHaveChanged) {
             if(isGroup) {
@@ -642,7 +645,10 @@ public class ProfileFragment extends Fragment {
         float density = getActivity().getResources().getDisplayMetrics().density;
         return Math.round((float) dp * density);
     }
-
+    private int pxToDp(int px) {
+        float density = getActivity().getResources().getDisplayMetrics().density;
+        return Math.round((float) px / density);
+    }
     private class AttachmentTypeListener implements DialogInterface.OnClickListener {
         @Override
         public void onClick(DialogInterface dialog, int which) {
