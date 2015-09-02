@@ -67,4 +67,6 @@
     <string name="profile_history_label">Media</string>
     <string name="profile_history_content">Keine Bilder verschickt</string>
     <string name="menu_invite_to_sc">Einladen</string>
+    <string name="group_title">Title</string>
+    <string name="status_hint">Wählen Sie Ihren Status:</string>
 </resources>

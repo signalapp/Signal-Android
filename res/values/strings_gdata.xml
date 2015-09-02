@@ -71,4 +71,5 @@
     <string name="profile_history_content">No images have been exchanged yet</string>
     <string name="menu_invite_to_sc">Invite</string>
     <string name="group_title">Title</string>
+    <string name="status_hint">Choose your status:</string>
 </resources>

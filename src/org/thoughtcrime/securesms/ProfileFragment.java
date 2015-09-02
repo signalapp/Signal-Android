@@ -43,6 +43,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
@@ -112,7 +114,7 @@ public class ProfileFragment extends Fragment {
     private static final int PICK_IMAGE = 1;
     private static final int TAKE_PHOTO = 2;
     private String profileStatusString = "";
-    private EditText profileStatus;
+    private AutoCompleteTextView profileStatus;
     private ImageView xCloseButton;
     private ImageView phoneCall;
     private TextView imageText;
@@ -146,6 +148,7 @@ public class ProfileFragment extends Fragment {
     private Button leaveGroup;
     private long threadId = -1;
     private int heightMemberList = 0;
+
     private ViewTreeObserver.OnScrollChangedListener onScrollChangeListener;
 
     @Override
@@ -183,7 +186,7 @@ public class ProfileFragment extends Fragment {
         statusDate = (TextView) getView().findViewById(R.id.profile__date);
         leaveGroup = (Button) getView().findViewById(R.id.buttonLeaveGroup);
         profileHeader = (TextView) getView().findViewById(R.id.profile_header);
-        profileStatus = (EditText) getView().findViewById(R.id.profile_status);
+        profileStatus = (AutoCompleteTextView) getView().findViewById(R.id.profile_status);
         xCloseButton = (ImageView) getView().findViewById(R.id.profile_close);
         imageText = (TextView) getView().findViewById(R.id.image_text);
         profilePhone = (TextView) getView().findViewById(R.id.profile_phone);
@@ -344,11 +347,8 @@ public class ProfileFragment extends Fragment {
                         }
                     } else {
                         profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
-
+                        profileStatus.showDropDown();
                         profileStatus.requestFocus();
-                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
-                                Context.INPUT_METHOD_SERVICE);
-                        imm.showSoftInput(profileStatus, InputMethodManager.SHOW_IMPLICIT);
                     }
                 }
             });
@@ -370,6 +370,16 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.status_suggestions));
+        profileStatus.setAdapter(adapter);
+        profileStatus.setCompletionHint(getString(R.string.status_hint));
+        profileStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profileStatus.dismissDropDown();
+            }
+        });
         if(!isMyProfile) {
             setMediaHistoryImages();
         }
@@ -418,7 +428,7 @@ public class ProfileFragment extends Fragment {
                     if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
                         finishAndSave();
                     }
-                    if ((scrollView.getHeight() + (scrollView.getHeight()/3.0 + heightMemberList)) < (scrollView.getScrollY() - mainLayout.getTop())) {
+                    if ((scrollView.getHeight() + (scrollView.getHeight()/4.0 + heightMemberList)) < (scrollView.getScrollY() - mainLayout.getTop())) {
                         finishAndSave();
                     }
                 }
@@ -627,7 +637,6 @@ public class ProfileFragment extends Fragment {
         return true;
     }
     private void finishAndSave() {
-        Log.w("MYLOG", "FINISH");
         hasLeft = true;
         if (hasChanged || contactsHaveChanged) {
             if(isGroup) {
