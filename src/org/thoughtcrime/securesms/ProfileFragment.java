@@ -425,10 +425,10 @@ public class ProfileFragment extends Fragment {
                     keyboardIsVisible = false;
                 }
                 if (!keyboardIsVisible) {
-                    if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
+                    if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY() - pxToDp(250)) {
                         finishAndSave();
                     }
-                    if ((scrollView.getHeight() + (scrollView.getHeight()/4.0 + heightMemberList)) < (scrollView.getScrollY() - mainLayout.getTop())) {
+                    if ((scrollView.getHeight() + (heightMemberList)) < (scrollView.getScrollY() - mainLayout.getTop())) {
                         finishAndSave();
                     }
                 }
@@ -442,8 +442,8 @@ public class ProfileFragment extends Fragment {
 
                 ViewTreeObserver observer = scrollView.getViewTreeObserver();
                 observer.addOnScrollChangedListener(onScrollChangeListener);
-                        return false;
-                    }
+                return false;
+            }
 
         });
     }
