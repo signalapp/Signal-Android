@@ -30,13 +30,10 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceGroupUpdateJob extends TextSecureJob {
 
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
-
-  @Inject
-  transient TextSecureCommunicationModule.TextSecureMessageSenderFactory messageSenderFactory;
 
   public MultiDeviceGroupUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()

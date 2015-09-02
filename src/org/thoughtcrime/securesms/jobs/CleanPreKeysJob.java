@@ -26,14 +26,11 @@ import javax.inject.Inject;
 
 import static org.thoughtcrime.securesms.dependencies.AxolotlStorageModule.SignedPreKeyStoreFactory;
 
-public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
+public class CleanPreKeysJob extends TextSecureJob {
 
   private static final String TAG = CleanPreKeysJob.class.getSimpleName();
 
   private static final int ARCHIVE_AGE_DAYS = 15;
-
-  @Inject transient TextSecureAccountManager accountManager;
-  @Inject transient SignedPreKeyStoreFactory signedPreKeyStoreFactory;
 
   public CleanPreKeysJob(Context context) {
     super(context, JobParameters.newBuilder()

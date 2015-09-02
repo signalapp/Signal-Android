@@ -24,13 +24,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType {
+public class RefreshPreKeysJob extends TextSecureJob {
 
   private static final String TAG = RefreshPreKeysJob.class.getSimpleName();
 
   private static final int PREKEY_MINIMUM = 10;
-
-  @Inject transient TextSecureAccountManager accountManager;
 
   public RefreshPreKeysJob(Context context) {
     super(context, JobParameters.newBuilder()

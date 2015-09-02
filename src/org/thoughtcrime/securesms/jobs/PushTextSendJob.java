@@ -35,7 +35,6 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   private static final String TAG = PushTextSendJob.class.getSimpleName();
 
-  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   private final long messageId;
 

@@ -10,7 +10,7 @@ import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import dagger.Module;
 import dagger.Provides;
 
-@Module (complete = false, injects = {CleanPreKeysJob.class})
+@Module
 public class AxolotlStorageModule {
 
   private final Context context;
@@ -28,7 +28,7 @@ public class AxolotlStorageModule {
     };
   }
 
-  public static interface SignedPreKeyStoreFactory {
-    public SignedPreKeyStore create();
+  public interface SignedPreKeyStoreFactory {
+    SignedPreKeyStore create();
   }
 }

@@ -34,11 +34,9 @@ import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
 
-public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
+public class AttachmentDownloadJob extends TextSecureJob {
 
   private static final String TAG = AttachmentDownloadJob.class.getSimpleName();
-
-  @Inject transient TextSecureMessageReceiver messageReceiver;
 
   private final long messageId;
 

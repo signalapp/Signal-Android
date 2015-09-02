@@ -3,22 +3,9 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.DeviceListActivity;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
-import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
-import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.DeliveryReceiptJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
-import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
-import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.jobs.PushTextSendJob;
-import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
-import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
@@ -29,19 +16,7 @@ import org.whispersystems.textsecure.api.util.CredentialsProvider;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(complete = false, injects = {CleanPreKeysJob.class,
-                                     CreateSignedPreKeyJob.class,
-                                     DeliveryReceiptJob.class,
-                                     PushGroupSendJob.class,
-                                     PushTextSendJob.class,
-                                     PushMediaSendJob.class,
-                                     AttachmentDownloadJob.class,
-                                     RefreshPreKeysJob.class,
-                                     MessageRetrievalService.class,
-                                     PushNotificationReceiveJob.class,
-                                     MultiDeviceContactUpdateJob.class,
-                                     MultiDeviceGroupUpdateJob.class,
-                                     DeviceListActivity.DeviceListFragment.class})
+@Module
 public class TextSecureCommunicationModule {
 
   private final Context context;
@@ -78,8 +53,8 @@ public class TextSecureCommunicationModule {
                                          new DynamicCredentialsProvider(context));
   }
 
-  public static interface TextSecureMessageSenderFactory {
-    public TextSecureMessageSender create();
+  public interface TextSecureMessageSenderFactory {
+    TextSecureMessageSender create();
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

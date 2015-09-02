@@ -7,16 +7,23 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.dependencies.GraphComponent;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 
-public abstract class PushReceivedJob extends ContextJob {
+import javax.inject.Inject;
+
+public abstract class PushReceivedJob extends ContextJob implements InjectableType {
 
   private static final String TAG = PushReceivedJob.class.getSimpleName();
+
+  @Inject transient TextSecureMessageReceiver receiver;
 
   protected PushReceivedJob(Context context, JobParameters parameters) {
     super(context, parameters);
@@ -72,4 +79,7 @@ public abstract class PushReceivedJob extends ContextJob {
   }
 
 
+  @Override public void inject(GraphComponent component) {
+    component.inject(this);
+  }
 }
