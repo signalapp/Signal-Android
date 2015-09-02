@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.mms.OutgoingLollipopMmsConnection;
 import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
@@ -78,10 +77,6 @@ public class MmsSendJob extends SendJob {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
-    } catch (InsecureFallbackApprovalException e) {
-      Log.w(TAG, e);
-      database.markAsPendingInsecureSmsFallback(messageId);
-      notifyMediaMessageDeliveryFailed(context, messageId);
     }
   }
 
@@ -97,7 +92,7 @@ public class MmsSendJob extends SendJob {
   }
 
   private byte[] getPduBytes(MasterSecret masterSecret, SendReq message)
-      throws IOException, UndeliverableMessageException, InsecureFallbackApprovalException
+      throws IOException, UndeliverableMessageException
   {
     String number = TelephonyUtil.getManager(context).getLine1Number();
 
