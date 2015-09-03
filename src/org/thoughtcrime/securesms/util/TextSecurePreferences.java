@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
 import android.util.Log;
+
+import com.h6ah4i.android.compat.content.SharedPreferenceCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
@@ -15,7 +18,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class TextSecurePreferences {
@@ -501,6 +503,13 @@ public class TextSecurePreferences {
   }
 
   private static Set<String> getStringSetPreference(Context context, String key, Set<String> defaultValues) {
-    return PreferenceManager.getDefaultSharedPreferences(context).getStringSet(key, defaultValues);
+    final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    if (prefs.contains(key)) {
+      return SharedPreferenceCompat.getStringSet(PreferenceManager.getDefaultSharedPreferences(context),
+                                                 key,
+                                                 Collections.<String>emptySet());
+    } else {
+      return defaultValues;
+    }
   }
 }
