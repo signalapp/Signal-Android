@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.PartDatabase.PartId;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.concurrent.ExecutionException;
 
 import ws.com.google.android.mms.pdu.PduPart;
 
@@ -53,7 +54,10 @@ public class PartDatabaseTest extends TextSecureTestCase {
     try {
       database.new ThumbnailFetchCallable(mock(MasterSecret.class), partId).call();
       throw new AssertionError("didn't try to generate thumbnail");
-    } catch (FileNotFoundException fnfe) {
+    } catch (ExecutionException e){
+      if (!(e.getCause() instanceof FileNotFoundException)) {
+        throw new AssertionError("wrong error type");
+      }
       // success
     }
   }
