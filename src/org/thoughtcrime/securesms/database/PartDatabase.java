@@ -28,6 +28,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -534,7 +535,7 @@ public class PartDatabase extends Database {
     values.put(TRANSFER_STATE, transferState);
     database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
-    EventBus.getDefault().post(new MediaNetworkRequirementProvider.MediaDownloadControlEvent());
+    ApplicationContext.getInstance(context).notifyMediaControlEvent();
   }
 
   public void updatePartData(MasterSecret masterSecret, PduPart part, InputStream data)

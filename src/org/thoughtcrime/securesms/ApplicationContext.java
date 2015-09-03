@@ -50,8 +50,10 @@ import dagger.ObjectGraph;
  */
 public class ApplicationContext extends Application implements DependencyInjector {
 
-  private JobManager jobManager;
+  private JobManager  jobManager;
   private ObjectGraph objectGraph;
+
+  private MediaNetworkRequirementProvider mediaNetworkRequirementProvider = new MediaNetworkRequirementProvider();
 
   public static ApplicationContext getInstance(Context context) {
     return (ApplicationContext)context.getApplicationContext();
@@ -105,9 +107,13 @@ public class ApplicationContext extends Application implements DependencyInjecto
                                 .withRequirementProviders(new MasterSecretRequirementProvider(this),
                                                           new ServiceRequirementProvider(this),
                                                           new NetworkRequirementProvider(this),
-                                                          new MediaNetworkRequirementProvider(this))
+                                                          mediaNetworkRequirementProvider)
                                 .withConsumerThreads(5)
                                 .build();
+  }
+
+  public void notifyMediaControlEvent() {
+    mediaNetworkRequirementProvider.notifyMediaControlEvent();
   }
 
   private void initializeDependencyInjection() {
