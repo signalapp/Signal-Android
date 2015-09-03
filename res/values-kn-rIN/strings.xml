@@ -12,7 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ಈಗ ಎಲ್ಲಾ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ನೀವು ಈ  ಕ್ಷಣ ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯ ಇತ್ತೀಚಿನ %s ಸಂದೇಶಗಳಿಗೆ ಮಿತಗೊಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <string name="ApplicationPreferencesActivity_delete">ಅಳಿಸಿಹಾಕು</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">ಗುಪ್ತಪದವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="ApplicationPreferencesActivity_unregistering">ನೋಂದಣಿಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಸಂದೇಶಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">ಸರ್ವರ್ಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">ಎಸ್.ಎಮ್.ಎಸನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನು ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
@@ -32,6 +35,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">ಕ್ಯಾಮೆರಾ</string>
   <string name="AttachmentTypeSelectorAdapter_picture">ಚಿತ್ರ</string>
   <string name="AttachmentTypeSelectorAdapter_video">ದೃಶ್ಯ</string>
   <string name="AttachmentTypeSelectorAdapter_audio">ಶ್ರಾವ್ಯ</string>
@@ -41,7 +45,9 @@
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different"> %1$sನ ಗುರುತಿಸುವ ಕೀಲಿಗಳು ಬದಲಾಗಿವೆ. ಇದರ ಆರ್ಥ ನಿಮ್ಮ ಸಂಭಾಷಣೆಯನ್ನು ಯಾರೊ ಕದ್ದು ಕೇಳಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದಾರೆ ಅಥವ %2$s ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರನ್ನು ಮರು ಸ್ಥಾಪಿಸಿದ ಕಾರಣ ಹೋಗುರುತಿಸುವ ಕೀಲಿಗಳನ್ನು ಹೊಂದಿದ್ದಾರೆ.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ನೀವು ಪರಿಶೀಲಿಸಲು ಇಚ್ಛಿಸಬಹುದಾದ ⏎ 
 ಸಂಪರ್ಕ. ⏎</string>
+  <string name="ConfirmIdentityDialog_accept">ಒಪ್ಪಿಕೊಌ</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">ಸಂದೇಶ %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">ಸಂದೇಶದ ಗಾತ್ರ: %d ಕೆ.ಬಿ</string>
   <string name="ConversationItem_expires_s">ಮುಕ್ತಾಯದ ಅವಧಿ: %s</string>
@@ -126,6 +132,7 @@
   <string name="CustomDefaultPreference_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <!--DateUtils-->
   <string name="DateUtils_now">ಈಗ</string>
+  <string name="DateUtils_minutes_ago">%d ನಿಮಿಷ</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
   <!--DeviceListItem-->
@@ -235,6 +242,8 @@
   <string name="RatingManager_no_thanks">ಧನ್ಯವಾದಗಳು. ಸಧ್ಯಕ್ಕೆ ಇಲ್ಲ.</string>
   <string name="RatingManager_later">ನಂತರ</string>
   <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
+  <string name="RecipientPreferenceActivity_disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಜೋತೆಗೆ ಸಂಪರ್ಕ</string>
   <string name="RegistrationActivity_select_your_country">ನಿಮ್ಮ ರಾಷ್ಟ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
@@ -355,6 +364,7 @@
   <string name="MessageNotifier_failed_to_deliver_message">ಸಂದೇಶ ತಲುಪಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
   <string name="MessageNotifier_error_delivering_message">ಸಂದೇಶವನ್ನು ತಲುಪಿಸುವುದರಲ್ಲಿದೋಷ ಸಂಭವಿಸಿದೆ</string>
   <string name="MessageNotifier_mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
+  <string name="MessageNotifier_mark_read">ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_media_message">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
@@ -541,6 +551,8 @@
   <!--arrays.xml-->
   <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
   <string name="arrays__my_identity_key">ನನ್ನ ಗುರುತಿನ ಕೀಲಿ</string>
+  <string name="arrays__enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
+  <string name="arrays__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ಗಂಟೆಗಳು</item>

@@ -41,6 +41,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">无法找到用于选择媒体的应用。</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">相机</string>
   <string name="AttachmentTypeSelectorAdapter_picture">图片</string>
   <string name="AttachmentTypeSelectorAdapter_video">视频</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音频</string>
@@ -80,6 +81,7 @@
   <string name="ConversationActivity_select_contact_info">选择联系信息</string>
   <string name="ConversationActivity_compose_message">编写信息</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，设置附件时出现错误。</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">您选择的GIF太大了！</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">抱歉，选择的视频超过了消息限制（%1$skB）</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，选择的音频超过了信息大小限制（%1$skB）</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人不是有效的短信或电子邮件地址！</string>
@@ -143,11 +145,16 @@
   <string name="DateUtils_now">现在</string>
   <string name="DateUtils_minutes_ago">%d 分钟</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">断开 \'%s\' ？</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">如果断开此设备的连接，它将不能再接受或发送信息。</string>
   <string name="DeviceListActivity_network_connection_failed">网络连接失败...</string>
   <string name="DeviceListActivity_try_again">再试一次</string>
+  <string name="DeviceListActivity_unlinking_device">正在断开设备…</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">正在断开设备</string>
   <string name="DeviceListActivity_network_failed">网络失败！</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">未命名的设备</string>
+  <string name="DeviceListItem_linked_s">已连接 %s</string>
   <string name="DeviceListItem_last_active_s">最后活动  %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共享给</string>
@@ -236,9 +243,13 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 - 读取你所有的信息
 \n - 以你的名义发送信息</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">正在连接设备</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">正在连接新设备</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">设备已连接！</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">没有找到设备。</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">网络错误。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">无效的二维码。</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">抱歉，您已经连接了太多的设备，请先移除一些…</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密钥</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 图标</string>
@@ -375,6 +386,7 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure 已解锁</string>
   <string name="KeyCachingService_lock">使用密码锁定</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 新信息是在 %2$d 中的会话</string>
   <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
   <string name="MessageNotifier_locked_message">锁定的信息…</string>
   <string name="MessageNotifier_media_message_with_text">媒体信息：%s</string>
@@ -390,6 +402,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">当 TextSecure 处于锁定状态时，快速回复不可用！</string>
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">新 TextSecure 信息</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">内容隐藏</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">旧密码：</string>
   <string name="change_passphrase_activity__new_passphrase">新密码：</string>
@@ -441,6 +455,7 @@
   <string name="country_selection_fragment__loading_countries">正在读取国家列表...</string>
   <string name="country_selection_fragment__search">搜索</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">没有连接的设备...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">无法获取您设备上的日志，不过您仍然可以以ADB方式来获得您的调试日志。</string>
   <string name="log_submit_activity__thanks">感谢！</string>
@@ -588,6 +603,7 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="AndroidManifest__media_overview">所有图片</string>
   <string name="AndroidManifest__media_overview_named">所有图片和%1$s</string>
   <string name="AndroidManifest__message_details">消息详情</string>
+  <string name="AndroidManifest_manage_linked_devices">管理已连接的设备</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
   <string name="arrays__my_identity_key">我的身份密钥</string>
@@ -600,6 +616,9 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="arrays__settings_default">设为默认</string>
   <string name="arrays__enabled">启用</string>
   <string name="arrays__disabled">禁用</string>
+  <string name="arrays__name_and_message">名字和信息</string>
+  <string name="arrays__name_only">仅名字</string>
+  <string name="arrays__neither">都不</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d 小时</item>
@@ -633,6 +652,7 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__pref_timeout_interval_title">超时间隔</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">忘记缓存密码的等待时间</string>
   <string name="preferences__notifications">通知</string>
+  <string name="preferences__enable_message_notifications">启用消息通知</string>
   <string name="preferences__led_color">LED颜色</string>
   <string name="preferences__led_color_unknown">未知</string>
   <string name="preferences__pref_led_blink_title">LED闪烁规律</string>
@@ -700,6 +720,7 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__support_wifi_calling">“Wifi呼叫”兼容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的设备使用WiFi发送彩信或短信，请启用此选项(仅当\"WiFi 语音呼叫\"在您的设备上启用时才可用)</string>
   <string name="preferences_app_protection__blocked_contacts">已屏蔽的联系人</string>
+  <string name="preferences_notifications__display_in_notifications">在通知中显示</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

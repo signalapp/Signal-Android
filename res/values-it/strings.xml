@@ -396,6 +396,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="KeyCachingService_passphrase_cached">TextSecure è sbloccato</string>
   <string name="KeyCachingService_lock">Chiudi con password</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuovi messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
   <string name="MessageNotifier_locked_message">Messaggio bloccato...</string>
   <string name="MessageNotifier_media_message_with_text">Messaggio multimediale: %s</string>
@@ -411,6 +412,8 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Risposta veloce non disponibile quando TextSecure è bloccato!</string>
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nuovo messaggio di TextSecure</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenuto nascosto</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vecchia password:</string>
   <string name="change_passphrase_activity__new_passphrase">Nuova password:</string>
@@ -635,6 +638,9 @@ non riuscita.
   <string name="arrays__settings_default">Impostazioni di default</string>
   <string name="arrays__enabled">Attivato</string>
   <string name="arrays__disabled">Disattivato</string>
+  <string name="arrays__name_and_message">Nome e messaggio</string>
+  <string name="arrays__name_only">Solo nome</string>
+  <string name="arrays__neither">Nessuno dei due</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ora</item>
@@ -669,6 +675,7 @@ non riuscita.
   <string name="preferences__pref_timeout_interval_title">Intervallo di tempo</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">La quantità di tempo prima di dimenticare la password</string>
   <string name="preferences__notifications">Notifiche</string>
+  <string name="preferences__enable_message_notifications">Attiva notifiche messaggi</string>
   <string name="preferences__led_color">Colore del LED</string>
   <string name="preferences__led_color_unknown">Sconosciuto</string>
   <string name="preferences__pref_led_blink_title">Impostazioni LED</string>
@@ -736,6 +743,7 @@ Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS  via WiFi ( abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo )</string>
   <string name="preferences_app_protection__blocked_contacts">Contatti bloccati</string>
+  <string name="preferences_notifications__display_in_notifications">Visualizza nelle notifiche</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

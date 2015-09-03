@@ -150,11 +150,16 @@ que %2$s reinstalou TextSecure e tem agora uma nova chave de identidade.
   <string name="DateUtils_now">Agora</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Desinterligar \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desinterligar este dispositivo, vai deixar de enviar ou receber mensagens.</string>
   <string name="DeviceListActivity_network_connection_failed">A ligação à rede falhou!</string>
   <string name="DeviceListActivity_try_again">Tente novamente</string>
+  <string name="DeviceListActivity_unlinking_device">A desinterligar dispositivo...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">A desinterligar dispositivo</string>
   <string name="DeviceListActivity_network_failed">A rede falhou!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositivo sem nome</string>
+  <string name="DeviceListItem_linked_s">Interligado %s</string>
   <string name="DeviceListItem_last_active_s">Activo pela última vez %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partilhar com</string>
@@ -252,9 +257,13 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
 - Ler todas as suas mensagens
 \n- Enviar mensagens em seu nome
 </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">A interligar dispositivo</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">A interligar um novo dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo interligado!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lamentamos mas tem demasiados dispositivos interligados, tente remover alguns...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduza palavra-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon TextSecure</string>
@@ -394,6 +403,7 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="KeyCachingService_passphrase_cached">O TextSecure está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear com frase-chave</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
   <string name="MessageNotifier_locked_message">Mensagem bloqueada...</string>
   <string name="MessageNotifier_media_message_with_text">Mensagem media: %s</string>
@@ -409,6 +419,8 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">A resposta rápida encontra-se indisponível quando o TextSecure está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nova mensagem TextSecure</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdos escondidos</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
@@ -460,6 +472,7 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="country_selection_fragment__loading_countries">A carregar lista de países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Nenhum dispositivo interligado...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possível obter os registos do seu dispositivo. Alternativamente, pode utilizar o ADB para os obter.</string>
   <string name="log_submit_activity__thanks">Obrigado pela sua ajuda!</string>
@@ -612,6 +625,7 @@ falhou.
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
+  <string name="AndroidManifest_manage_linked_devices">Gerir dispositivos interligados</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__my_identity_key">A minha chave de identidade</string>
@@ -624,6 +638,9 @@ falhou.
   <string name="arrays__settings_default">Configurações por omissão</string>
   <string name="arrays__enabled">Activo</string>
   <string name="arrays__disabled">Desactivado</string>
+  <string name="arrays__name_and_message">Nome e mensagem</string>
+  <string name="arrays__name_only">Apenas o nome</string>
+  <string name="arrays__neither">Nenhum</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -658,6 +675,7 @@ falhou.
   <string name="preferences__pref_timeout_interval_title">Intervalo de expiração</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Tempo a esperar antes de remover a frase-chave da memória</string>
   <string name="preferences__notifications">Notificações</string>
+  <string name="preferences__enable_message_notifications">Activar notificações de mensagens</string>
   <string name="preferences__led_color">Cor do LED</string>
   <string name="preferences__led_color_unknown">Desconhecido</string>
   <string name="preferences__pref_led_blink_title">Padrão de piscar do LED</string>
@@ -726,6 +744,7 @@ Mensagens privadas gratuítas para utilizadores TextSecure e Signal
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \"Chamada WiFi\"</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Active se o seu dispositivo utiliza entrega de SMS/MMS sobre WiFi (apenas active se \'WiFi Calling\' está activo neste dispositivo)</string>
   <string name="preferences_app_protection__blocked_contacts">Contactos bloqueados</string>
+  <string name="preferences_notifications__display_in_notifications">Apresentar nas notificações</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

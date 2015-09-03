@@ -86,11 +86,11 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationActivity_add_attachment">Melléklet hozzáadása</string>
   <string name="ConversationActivity_select_contact_info">Válassz névjegy infót!</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos nem sikerült a melléklet beállítása.</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnáljuk, egy hiba történt a mellékleted beállításában.</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">Az általad választott gif túl nagy volt!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sajnos a kiválasztott mozgókép mérete meghaladja a maximális üzenetméret határt (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sajnos a kiválasztott hangállomány mérete meghaladja a maximális üzenetméret határt (%1$skB).</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A fogadó címe nem érvényes SMS vagy email cím!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A fogadó nem egy érvényes SMS vagy email cím!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Üres az üzenet!</string>
   <string name="ConversationActivity_group_members">Csoport tagok</string>
   <string name="ConversationActivity_group_conversation">Csoportos beszélgetés</string>
@@ -110,20 +110,20 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Használd ezt a csevegéshez: %s</string>
   <string name="ConversationActivity_error_leaving_group">Hiba a csoport elhagyásakor...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nem támogatott</string>
-  <string name="ConversationActivity_mms_not_supported_message">Ezt az üzenetet nem lehet elküldeni, mivel a szolgáltató nem támogatja az MMS-t.</string>
+  <string name="ConversationActivity_mms_not_supported_message">Ezt az üzenetet nem lehet elküldeni, mivel a szolgáltatód nem támogatja az MMS-t.</string>
   <string name="ConversationActivity_specify_recipient">Válassz egy névjegyet!</string>
   <string name="ConversationActivity_unblock_question">Tiltás feloldása?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan feloldod ennek a névjegynek a tiltását?</string>
   <string name="ConversationActivity_unblock">Tiltás feloldása</string>
   <!--ConversationFragment-->
-  <string name="ConversationFragment_message_details">Üzenet részletei</string>
+  <string name="ConversationFragment_message_details">Üzenet részletek</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Átviteli mód: %1$s\nKüldött/Fogadott: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Küldő: %1$s\nÁtvitel: %2$s\nKüldött: %3$s\nFogadott: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Üzenettörlés megerősítése</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Biztosan véglegesen törölni szeretnéd a kiválasztott üzeneteket?</string>
   <string name="ConversationFragment_save_to_sd_card">Mentsük a tárolóra?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Ennek a médiának az elmentése más alkalmazások számára lehetővé teszi azok hozzáférését.\n\n Folytassuk?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Hiba történt a csatolmány mentése közben!</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Hiba történt a melléklet mentése közben!</string>
   <string name="ConversationFragment_success_exclamation">Sikerült!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet a tárolóra írni!</string>
   <string name="ConversationFragment_saving_attachment">Melléklet mentése</string>
@@ -145,7 +145,7 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet...</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Egyéni: %s</string>
-  <string name="CustomDefaultPreference_using_default">Alapértelemezett: %s</string>
+  <string name="CustomDefaultPreference_using_default">Alapértelmezett: %s</string>
   <string name="CustomDefaultPreference_none">Egyik sem</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Most</string>
@@ -283,9 +283,9 @@ Kérlek telepíts újra a Google Play Szolgáltatásokat és próbálkozz újra!
   <string name="RecipientPreferenceActivity_block_this_contact_question">Letiltod ezt a névjegyet?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Többé nem látod az ettől a felhasználótól érkező üzeneteket.</string>
   <string name="RecipientPreferenceActivity_block">Letiltás</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Feloldod ennek a névjegynek a tiltát?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan feloldod ennek a névjegynek a tiltását?</string>
-  <string name="RecipientPreferenceActivity_unblock">Tiltás feloldása</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Feloldod ezt a névjegyet?</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan fel akarod oldani ezt a névjegyet?</string>
+  <string name="RecipientPreferenceActivity_unblock">Feloldás</string>
   <string name="RecipientPreferenceActivity_enabled">Engedélyezett</string>
   <string name="RecipientPreferenceActivity_disabled">Letiltott</string>
   <!--RegistrationActivity-->
@@ -410,6 +410,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="KeyCachingService_passphrase_cached">A TextSecure feloldásra került.</string>
   <string name="KeyCachingService_lock">Lezárás jelszóval</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d új üzenet %2$d beszélgetésben</string>
   <string name="MessageNotifier_most_recent_from_s">Legutóbbi tőle: %1$s</string>
   <string name="MessageNotifier_locked_message">Zárolt üzenet...</string>
   <string name="MessageNotifier_media_message_with_text">Média üzenet: %s</string>
@@ -425,12 +426,14 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Gyors válasz nem elérhető, amikor a TextSecure zárolva van!</string>
   <string name="QuickResponseService_problem_sending_message">Probléma az üzenetküldésben!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Új TextSecure üzenet</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Tartalmak rejtve</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">RÉGI JELSZÓ:</string>
   <string name="change_passphrase_activity__new_passphrase">ÚJ JELSZÓ:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ISMÉTELD MEG AZ ÚJ JELSZÓT:</string>
   <!--contact_selection_activity-->
-  <string name="contact_selection_activity__enter_name_or_number">Írj be egy nevet vagy egy számot!</string>
+  <string name="contact_selection_activity__enter_name_or_number">Írj be egy nevet vagy egy számot</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nincsenek névjegyek.</string>
   <string name="contact_selection_group_activity__finding_contacts">Névjegyek betöltése...</string>
@@ -454,7 +457,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="conversation_activity__compose_description">Üzenet létrehozása</string>
   <string name="conversation_activity__emoji_toggle_description">Váltás a hangulatjelek beviteléhez</string>
   <string name="conversation_activity__attachment_thumbnail">Melléklet előnézet</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Közvetlen csatolmányfelvétel</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Közvetlen mellékletfelvétel</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Média üzenet letöltése</string>
   <string name="conversation_item__mms_image_description">Média üzenet</string>
@@ -640,8 +643,8 @@ sikertelen.
   <string name="AndroidManifest__verify_identity">Azonosító ellenőrzése</string>
   <string name="AndroidManifest__log_submit">Hibakeresési napló küldése</string>
   <string name="AndroidManifest__media_preview">Média előnézet</string>
-  <string name="AndroidManifest__media_overview">Minden fénykép</string>
-  <string name="AndroidManifest__media_overview_named">Minden fénykép vele: %1$s</string>
+  <string name="AndroidManifest__media_overview">Összes fénykép</string>
+  <string name="AndroidManifest__media_overview_named">Összes fénykép vele: %1$s</string>
   <string name="AndroidManifest__message_details">Üzenet részletei</string>
   <string name="AndroidManifest_manage_linked_devices">Társított eszközök kezelése</string>
   <!--arrays.xml-->
@@ -656,6 +659,9 @@ sikertelen.
   <string name="arrays__settings_default">Alapértelmezett beállítások</string>
   <string name="arrays__enabled">Engedélyezett</string>
   <string name="arrays__disabled">Letiltott</string>
+  <string name="arrays__name_and_message">Név és üzenet</string>
+  <string name="arrays__name_only">Csak név</string>
+  <string name="arrays__neither">Egyik sem</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d óra</item>
@@ -664,8 +670,8 @@ sikertelen.
   <!--preferences.xml-->
   <string name="preferences__general">Általános</string>
   <string name="preferences__sms_mms">SMS és MMS</string>
-  <string name="preferences__pref_all_sms_title">Minden SMS fogadása</string>
-  <string name="preferences__pref_all_mms_title">Minden MMS fogadása</string>
+  <string name="preferences__pref_all_sms_title">Összes SMS fogadása</string>
+  <string name="preferences__pref_all_mms_title">Összes MMS fogadása</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure használata minden bejövő SMS üzenet kezelésére</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure használata minden bejövő MMS üzenet kezelésére</string>
   <string name="preferences__input_settings">Beviteli beállítások</string>
@@ -690,6 +696,7 @@ sikertelen.
   <string name="preferences__pref_timeout_interval_title">Érvényességi idő tartama</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">A jelszó memóriából való törlése előtti várakozási idő tartama</string>
   <string name="preferences__notifications">Értesítések</string>
+  <string name="preferences__enable_message_notifications">Üzenet értesítések engedélyezése</string>
   <string name="preferences__led_color">LED színe</string>
   <string name="preferences__led_color_unknown">Ismeretlen</string>
   <string name="preferences__pref_led_blink_title">LED villogás mintázata</string>
@@ -699,7 +706,7 @@ sikertelen.
   <string name="preferences__pref_led_blink_custom_pattern_set">LED villogási mintázat beállításra került!</string>
   <string name="preferences__sound">Hang</string>
   <string name="preferences__change_notification_sound">Értesítési hang megváltoztatása</string>
-  <string name="preferences__inthread_notifications">Értesítések a beszélgetések során.</string>
+  <string name="preferences__inthread_notifications">Értesítések a beszélgetések során</string>
   <string name="preferences__play_inthread_notifications">Értesítési hang lejátszása, amikor aktív beszélgetést nézel</string>
   <string name="preferences__repeat_alerts">Figyelmeztetések megismétlése</string>
   <string name="preferences__never">Soha</string>
@@ -757,14 +764,15 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="preferences__support_wifi_calling">\'WiFi hívás\' kompatibilitási mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Engedélyezd, ha az eszközöd az SMS/MMS-t WiFi-n keresztül kézbesíti (csak akkor engedélyezd, ha a \'WiFi hívás\' engedélyezve van az eszközödön)</string>
   <string name="preferences_app_protection__blocked_contacts">Letiltott névjegyek</string>
+  <string name="preferences_notifications__display_in_notifications">Megjelenítés értesítésekben</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">Minden kijelölése</string>
+  <string name="contact_selection_list__menu_select_all">Összes kijelölése</string>
   <string name="contact_selection_list__menu_unselect_all">Az összes elem kijelölésének megszüntetése</string>
   <string name="contact_selection_list__header_textsecure_users">TEXTSECURE FELHASZNÁLÓK</string>
-  <string name="contact_selection_list__header_other">MINDEN NÉVJEGY</string>
+  <string name="contact_selection_list__header_other">ÖSSZES NÉVJEGY</string>
   <string name="contact_selection_list__unknown_contact">Új üzenet...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Befejezve</string>
@@ -787,7 +795,7 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="conversation_insecure__security">Biztonság</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">A kijelölt elemek törlése</string>
-  <string name="conversation_list_batch__menu_select_all">Minden kijelölése</string>
+  <string name="conversation_list_batch__menu_select_all">Összes kijelölése</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Keresés</string>
   <!--conversation_list_item_view-->
@@ -808,7 +816,7 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="conversation__menu_update_group">Csoport frissítése</string>
   <string name="conversation__menu_leave_group">Csoport elhagyása</string>
   <string name="conversation__menu_delete_thread">Beszélgetésfolyam törlése</string>
-  <string name="conversation__menu_view_media">Minden fénykép</string>
+  <string name="conversation__menu_view_media">Összes fénykép</string>
   <string name="conversation__menu_conversation_settings">Beszélgetés beállítások</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Felugró kiterjesztése</string>
@@ -828,7 +836,7 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="text_secure_normal__menu_new_group">Új csoport</string>
   <string name="text_secure_normal__menu_settings">Beállítások</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lezárás</string>
-  <string name="text_secure_normal__mark_all_as_read">Mindegyik megjelölése olvasottként</string>
+  <string name="text_secure_normal__mark_all_as_read">Összes megjelölése olvasottként</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">A TextSecure fordításod érvényességi ideje lejárt!</string>
   <string name="reminder_header_expired_build_details">Az üzenetek küldése nem lesz sikeres, kérlek frissíts a legújabb verzióra!</string>

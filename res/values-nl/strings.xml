@@ -385,6 +385,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="KeyCachingService_passphrase_cached">TextSecure is ontgrendeld</string>
   <string name="KeyCachingService_lock">Vergrendelen met wachtwoord</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
   <string name="MessageNotifier_locked_message">Vergrendeld bericht...</string>
   <string name="MessageNotifier_media_message_with_text">Mediabericht: %s</string>
@@ -400,6 +401,8 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Snel reageren niet beschikbaar als TextSecure vergrendeld is!</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij het bericht versturen!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nieuw TextSecuer bericht</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Inhoud verborgen</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord:</string>
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord:</string>
@@ -608,6 +611,9 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="arrays__settings_default">Standaardinstellingen</string>
   <string name="arrays__enabled">Ingeschakeld</string>
   <string name="arrays__disabled">Uitgeschakeld</string>
+  <string name="arrays__name_and_message">Naam en bericht</string>
+  <string name="arrays__name_only">Alleen naam</string>
+  <string name="arrays__neither">Geen van alle</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d uur</item>
@@ -642,6 +648,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__pref_timeout_interval_title">Time-out interval</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hoe lang te wachten voor het vergeten van het wachtwoord uit het geheugen</string>
   <string name="preferences__notifications">Notificaties</string>
+  <string name="preferences__enable_message_notifications">Toon bericht notificaties</string>
   <string name="preferences__led_color">LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">LED-knipperpatroon</string>
@@ -710,6 +717,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Inschakelen als je toestel SMS/MMS over WiFi gebruikt (alleen inschakelen als \'WiFi Bellen\' is ingeschakeld op je toestel)</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contacten</string>
+  <string name="preferences_notifications__display_in_notifications">Toon in notificaties</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

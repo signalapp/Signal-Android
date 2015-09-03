@@ -387,6 +387,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="KeyCachingService_passphrase_cached">TextSecure jest odblokowany</string>
   <string name="KeyCachingService_lock">Zablokuj hasłem</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nowych wiadomości w %2$d rozmowach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
   <string name="MessageNotifier_locked_message">Wiadomość zablokowana...</string>
   <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
@@ -402,6 +403,8 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Szybka odpowiedź jest niedostępna kiedy TextSecure jest zablokowany!</string>
   <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nowa wiadomość TextSecure</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Zawartość ukryta</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARE HASŁO:</string>
   <string name="change_passphrase_activity__new_passphrase">NOWE HASŁO:</string>
@@ -601,6 +604,9 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="arrays__settings_default">Ustawienia domyślne</string>
   <string name="arrays__enabled">Włączone</string>
   <string name="arrays__disabled">Wyłączone</string>
+  <string name="arrays__name_and_message">Nazwa i wiadomość</string>
+  <string name="arrays__name_only">Tylko imie</string>
+  <string name="arrays__neither">Żadne</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d godzina</item>
@@ -636,6 +642,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__pref_timeout_interval_title">Wybierz czas wygaśnięcia hasła</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Ilość czasu zanim hasło zostanie wymazane z pamięci urządzenia</string>
   <string name="preferences__notifications">Powiadomienia</string>
+  <string name="preferences__enable_message_notifications">Włącz powiadomienia wiadomości</string>
   <string name="preferences__led_color">Kolor LED</string>
   <string name="preferences__led_color_unknown">Nieznane</string>
   <string name="preferences__pref_led_blink_title">Wzór powiadomień LED</string>
@@ -703,6 +710,7 @@ Darmowe i prywatne wiadomości do użytkowników TextSecure i Signal</string>
   <string name="preferences__support_wifi_calling">Tryb zgodności \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \'Połączenia WiFi\' jest włączone na Twoim urządzeniu)</string>
   <string name="preferences_app_protection__blocked_contacts">Zablokowane kontakty</string>
+  <string name="preferences_notifications__display_in_notifications">Pokaż w powiadomieniach</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

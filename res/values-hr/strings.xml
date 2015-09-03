@@ -393,6 +393,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="KeyCachingService_passphrase_cached">TextSecure je otključan</string>
   <string name="KeyCachingService_lock">Zaključajte sa lozinkom</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novih poruka u %2$d razgovora</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovije od: %1$s</string>
   <string name="MessageNotifier_locked_message">Zaključana poruka...</string>
   <string name="MessageNotifier_media_message_with_text">Media poruka: %s</string>
@@ -408,6 +409,8 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Brzi odgovor nije dostupan kada je TextSecure zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nova TextSecure poruka</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Sadržaj je skriven</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARA LOZINKA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA LOZINKA:</string>
@@ -619,6 +622,9 @@ neuspješno.</string>
   <string name="arrays__settings_default">Zadane postavke</string>
   <string name="arrays__enabled">Omogućeno</string>
   <string name="arrays__disabled">Onemogućeno</string>
+  <string name="arrays__name_and_message">Ime i poruka</string>
+  <string name="arrays__name_only">Samo ime</string>
+  <string name="arrays__neither">Niti jedno</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d sat</item>
@@ -654,6 +660,7 @@ neuspješno.</string>
   <string name="preferences__pref_timeout_interval_title">Interval vremenskog ograničenja</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Vrijeme nakon kojeg će se obrisati lozinka iz memorije</string>
   <string name="preferences__notifications">Obavijesti</string>
+  <string name="preferences__enable_message_notifications">Omogući obavijesti o poruci</string>
   <string name="preferences__led_color">LED boja</string>
   <string name="preferences__led_color_unknown">Nepoznato</string>
   <string name="preferences__pref_led_blink_title">LED uzorak treptanja</string>
@@ -721,6 +728,7 @@ Besplatno privatno dopisivanje sa TextSecure i Signal korisnicima</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' način kompatibilnosti</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ukoliko vaš uređaj koristi SMS/MMS isporuku preko WiFi (omogućite jedino kada je \'WiFi pozivanje\' omogućeno na vašem uređaju)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokirani kontakti</string>
+  <string name="preferences_notifications__display_in_notifications">Prikaži u obavijestima</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

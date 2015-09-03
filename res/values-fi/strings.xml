@@ -400,6 +400,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="KeyCachingService_passphrase_cached">TextSecuren lukitus on auki</string>
   <string name="KeyCachingService_lock">Lukitse salalauseella</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uutta viestiä %2$d keskustelussa</string>
   <string name="MessageNotifier_most_recent_from_s">Uusin lähettäjältä: %1$s</string>
   <string name="MessageNotifier_locked_message">Lukittu viesti...</string>
   <string name="MessageNotifier_media_message_with_text">Mediaviesti: %s</string>
@@ -415,6 +416,8 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Pikavastaus ei toimi, kun TextSecure on lukittu!</string>
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Uusi TextSecure-viesti</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Sisältö piilotettu</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">VANHA SALALAUSE:</string>
   <string name="change_passphrase_activity__new_passphrase">UUSI SALALAUSE:</string>
@@ -615,13 +618,16 @@ epäonnistui.</string>
   <string name="arrays__my_identity_key">Oma identiteettiavaimeni</string>
   <string name="arrays__use_default">Käytä oletusta</string>
   <string name="arrays__use_custom">Käytä mukautettua</string>
-  <string name="arrays__mute_for_one_hour">Mykistä 1 tunniksi</string>
-  <string name="arrays__mute_for_two_hours">Mykistä 2 tunniksi</string>
-  <string name="arrays__mute_for_one_day">Mykistä 1 päiväksi</string>
-  <string name="arrays__mute_for_seven_days">Mykistä 7 päiväksi</string>
+  <string name="arrays__mute_for_one_hour">1 tunniksi</string>
+  <string name="arrays__mute_for_two_hours">2 tunniksi</string>
+  <string name="arrays__mute_for_one_day">1 päiväksi</string>
+  <string name="arrays__mute_for_seven_days">7 päiväksi</string>
   <string name="arrays__settings_default">Oletus</string>
   <string name="arrays__enabled">Päällä</string>
   <string name="arrays__disabled">Poissa</string>
+  <string name="arrays__name_and_message">Nimi ja viesti</string>
+  <string name="arrays__name_only">Vain nimi</string>
+  <string name="arrays__neither">Ei kumpaakaan</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tunti</item>
@@ -656,6 +662,7 @@ epäonnistui.</string>
   <string name="preferences__pref_timeout_interval_title">Salalauseen ajastimen kesto</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Odotusaika, ennen kuin salalause unohdetaan muistista</string>
   <string name="preferences__notifications">Ilmoitukset</string>
+  <string name="preferences__enable_message_notifications">Näytä ilmoitukset viesteistä</string>
   <string name="preferences__led_color">LED:in väri</string>
   <string name="preferences__led_color_unknown">Tuntematon</string>
   <string name="preferences__pref_led_blink_title">LED:in vilkkumistahti</string>
@@ -723,6 +730,7 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="preferences__support_wifi_calling">\"WiFi Calling\" -yhteensopiva tila</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ota käyttöön, jos laitteesi lähettää SMS- ja MMS-viestit WiFi-yhteyden kautta. (Ota käyttöön vain, kun \"WiFi Calling\" on käytössä laitteessasi.)</string>
   <string name="preferences_app_protection__blocked_contacts">Estetyt yhteystiedot</string>
+  <string name="preferences_notifications__display_in_notifications">Ilmoituksissa näytetään</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

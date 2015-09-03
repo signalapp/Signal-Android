@@ -384,6 +384,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure er ulåst</string>
   <string name="KeyCachingService_lock">Lås med passord</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
   <string name="MessageNotifier_locked_message">Låst melding...</string>
   <string name="MessageNotifier_media_message_with_text">Media melding: %s</string>
@@ -399,6 +400,8 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Rask tilbakemelding ikke tilgjengelig når TextSecure er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Kunne ikke sende melding!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Ny TextSecure melding</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Innhold skjult</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammelt passord:</string>
   <string name="change_passphrase_activity__new_passphrase">Nytt passord:</string>
@@ -602,6 +605,9 @@ feilet.</string>
   <string name="arrays__settings_default">Standardinstillinger</string>
   <string name="arrays__enabled">Aktivert</string>
   <string name="arrays__disabled">Deaktivert</string>
+  <string name="arrays__name_and_message">Navn og melding</string>
+  <string name="arrays__name_only">Kun navn</string>
+  <string name="arrays__neither">Ingen</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
@@ -636,6 +642,7 @@ feilet.</string>
   <string name="preferences__pref_timeout_interval_title">Timeoutintervall</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Tiden det skal gå før passordet slettes fra minnet på enheten</string>
   <string name="preferences__notifications">Varsling</string>
+  <string name="preferences__enable_message_notifications">Aktiver meldingsvarling</string>
   <string name="preferences__led_color">LED farge</string>
   <string name="preferences__led_color_unknown">Ukjent</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
@@ -704,6 +711,7 @@ Gratis og private meldinger til TextSecure- og Signal-brukere
   <string name="preferences__support_wifi_calling">\'WiFi anrop\' kompatibilititetsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver dersom enheten din bruker WiFi for å sende SMS/MMS (brukes bare hvis \'WiFi anrop\' er aktivert på enheten din)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokkerte kontakter</string>
+  <string name="preferences_notifications__display_in_notifications">Vis i varslingslisten</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
