@@ -43,6 +43,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -380,6 +381,26 @@ public class ProfileFragment extends Fragment {
                 profileStatus.dismissDropDown();
             }
         });
+        profileStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                profileStatus.setEnabled(!profileStatus.isEnabled());
+                if (!profileStatus.isEnabled()) {
+                    hasChanged = true;
+                    hasLeft = false;
+                    profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_content_edit));
+
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(profileStatus.getWindowToken(), 0);
+                    if (isGroup) {
+                        new UpdateWhisperGroupAsyncTask().execute();
+                    } else {
+                        ProfileAccessor.setProfileStatus(getActivity(), profileStatus.getText() + "");
+                    }
+                }
+            }
+            });
         if(!isMyProfile) {
             setMediaHistoryImages();
         }
@@ -708,6 +729,24 @@ public class ProfileFragment extends Fragment {
             refreshLayout();
         }
         super.onResume();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        if(profilePicture!= null) {
+            if(profilePicture.getForeground() != null) {
+                if (profilePicture.getForeground() instanceof BitmapDrawable) {
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable) profilePicture.getForeground();
+                    Bitmap bitmap = bitmapDrawable.getBitmap();
+                    bitmap.recycle();
+                }
+            }
+            profilePicture.setImageBitmap(null);
+            profilePicture.setForeground(null);
+            profilePicture.setBackground(null);
+            System.gc();
+        }
     }
 
     public static final String RECIPIENTS_EXTRA = "recipients";
