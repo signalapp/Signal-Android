@@ -17,17 +17,18 @@
 
 package org.thoughtcrime.securesms.util;
 
-import android.util.Log;
+import junit.framework.AssertionFailedError;
 
-import org.thoughtcrime.securesms.TextSecureTestCase;
+import org.junit.Test;
+import org.thoughtcrime.securesms.BaseUnitTest;
 
 import java.net.URISyntaxException;
 
-public class Rfc5724UriTest extends TextSecureTestCase {
+import static org.junit.Assert.assertTrue;
 
-  private static final String TAG = Rfc5724UriTest.class.getSimpleName();
+public class Rfc5724UriTest extends BaseUnitTest {
 
-  public void testInvalidPath() throws Exception {
+  @Test public void testInvalidPath() throws Exception {
     final String[] invalidSchemaUris = {
         "",
         ":",
@@ -40,13 +41,14 @@ public class Rfc5724UriTest extends TextSecureTestCase {
     for (String uri : invalidSchemaUris) {
       try {
         new Rfc5724Uri(uri);
-        Log.e(TAG, "uri " + uri + " should have failed path check");
-        assertTrue(false);
-      } catch (URISyntaxException e) { }
+        throw new AssertionFailedError("URISyntaxException should be thrown");
+      } catch (URISyntaxException e) {
+        // success
+      }
     }
   }
 
-  public void testGetSchema() throws Exception {
+  @Test public void testGetSchema() throws Exception {
     final String[][] uriTestPairs = {
         {"sms:+15555555555",           "sms"},
         {"sMs:+15555555555",           "sMs"},
@@ -57,15 +59,14 @@ public class Rfc5724UriTest extends TextSecureTestCase {
 
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri = new Rfc5724Uri(uriTestPair[0]);
-      Log.d(TAG, testUri.getSchema() + " ?= " + uriTestPair[1]);
       assertTrue(testUri.getSchema().equals(uriTestPair[1]));
     }
   }
 
-  public void testGetPath() throws Exception {
+  @Test public void testGetPath() throws Exception {
     final String[][] uriTestPairs = {
         {"sms:+15555555555",                      "+15555555555"},
-        {"sms:%2B49555555555",                    "%2B555555555"},
+        {"sms:%2B555555555",                    "%2B555555555"},
         {"smsto:+15555555555?",                   "+15555555555"},
         {"mms:+15555555555?a=b",                  "+15555555555"},
         {"mmsto:+15555555555?a=b&c=d",            "+15555555555"},
@@ -77,12 +78,11 @@ public class Rfc5724UriTest extends TextSecureTestCase {
 
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri = new Rfc5724Uri(uriTestPair[0]);
-      Log.d(TAG, testUri.getPath() + " ?= " + uriTestPair[1]);
       assertTrue(testUri.getPath().equals(uriTestPair[1]));
     }
   }
 
-  public void testGetQueryParams() throws Exception {
+  @Test public void testGetQueryParams() throws Exception {
     final String[][] uriTestPairs = {
         {"sms:+15555555555",         "a", null},
         {"mms:+15555555555?b=",      "a", null},
@@ -98,10 +98,8 @@ public class Rfc5724UriTest extends TextSecureTestCase {
       final Rfc5724Uri testUri     = new Rfc5724Uri(uriTestPair[0]);
       final String     paramResult = testUri.getQueryParams().get(uriTestPair[1]);
 
-      Log.d(TAG, paramResult + " ?= " + uriTestPair[2]);
       if (paramResult == null) assertTrue(uriTestPair[2] == null);
       else                     assertTrue(paramResult.equals(uriTestPair[2]));
     }
   }
-
 }
