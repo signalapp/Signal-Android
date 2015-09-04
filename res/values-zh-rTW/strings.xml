@@ -390,7 +390,7 @@
   <string name="database_upgrade_activity__updating_database">更新資料庫...</string>
   <string name="export_fragment__export_plaintext_backup">匯出未加密的備份資料</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-匯出一個未加密、但相容於 \"SMSBackup And Restore\" 格式的備份資料到 SD 卡。</string>
+匯出一個未加密、但相容於 \"SMS Backup And Restore\" 格式的備份資料到 SD 卡。</string>
   <string name="import_fragment__import_system_sms_database">匯入裝置上的手機簡訊</string>
   <string name="import_fragment__import_the_database_from_the_default_system">從裝置上預設的手機簡訊管理程式
 匯入簡訊資料。</string>
@@ -399,7 +399,7 @@
 還原前一個匯出的 SecureChat 加密備份資料庫。</string>
   <string name="import_fragment__import_plaintext_backup">匯入未加密的資料備份</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-匯入一個未加密的備份資料。 相容於 \"SMSBackup And Restore\"。</string>
+匯入一個未加密的備份資料。 相容於 \"SMS Backup And Restore\"。</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手機需要手動設定 MMS多媒體簡訊。</string>
   <!--prompt_passphrase_activity-->

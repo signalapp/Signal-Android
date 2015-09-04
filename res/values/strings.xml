@@ -493,7 +493,7 @@
 
     <string name="export_fragment__export_plaintext_backup">Export plaintext backup</string>
     <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Export a plaintext backup compatible with \'SMSBackup And Restore\' to the SD card.</string>
+        Export a plaintext backup compatible with \'SMS Backup And Restore\' to the SD card.</string>
     <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
     <string name="import_fragment__import_the_database_from_the_default_system">Import the database
         from the default system messenger app.
@@ -504,7 +504,7 @@
     </string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
     <string name="import_fragment__import_a_plaintext_backup_file">
-        Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
+        Import a plaintext backup file. Compatible with \'SMS Backup And Restore.\'</string>
 
     <!-- MmsPreferencesFragment -->
     <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>

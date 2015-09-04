@@ -421,7 +421,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="database_upgrade_activity__updating_database">Aggiornando il database...</string>
   <string name="export_fragment__export_plaintext_backup">Esportare copia in chiaro</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Esporto una copia in chiaro compatibile con \"SMSBackup And Restore\" sulla SD card.</string>
+Esporto una copia in chiaro compatibile con \"SMS Backup And Restore\" sulla SD card.</string>
   <string name="import_fragment__import_system_sms_database">Importa gli SMS dal database criptato</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importa il database
 dall\'app SMS di default.</string>
@@ -430,7 +430,7 @@ dall\'app SMS di default.</string>
 Ripristina una copia cifrata di SecureChat precedentemente esportata.</string>
   <string name="import_fragment__import_plaintext_backup">Importare copia in chiaro</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
+Importo una copia in chiaro. Compatibile con \"SMS Backup And Restore\"</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Impostazioni manuali degli MMS sono necessarie per il tuo telefono.</string>
   <string name="MmsPreferencesFragment__enabled">Attivato</string>

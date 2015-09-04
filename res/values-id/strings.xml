@@ -285,7 +285,7 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="database_migration_activity__importing">MENGIMPORT</string>
   <!--database_upgrade_activity-->
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Export cadangan ke teks polos yang kompatibel dengan \'SMSBackup And Restore\'  ke kartu SD.</string>
+Export cadangan ke teks polos yang kompatibel dengan \'SMS Backup And Restore\'  ke kartu SD.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Import database
 dari aplikasi perpesan bawaan
 </string>
@@ -293,7 +293,7 @@ dari aplikasi perpesan bawaan
 Pulihkan dari cadangan teracak SecureChat.
 </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Restore\'.</string>
+Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMS Backup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
   <!--prompt_passphrase_activity-->

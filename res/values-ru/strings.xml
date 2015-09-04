@@ -401,7 +401,7 @@
   <string name="database_upgrade_activity__updating_database">Обновляем базу данных...</string>
   <string name="export_fragment__export_plaintext_backup">Экспорт простой резервной копии.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Экспортировать на SD-карту простую резервную копию, совместимую с приложением «SMSBackup And Restore».</string>
+Экспортировать на SD-карту простую резервную копию, совместимую с приложением «SMS Backup And Restore».</string>
   <string name="import_fragment__import_system_sms_database">Импорт системной базы SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Импортировать сообщения из базы данных SMS-приложения, которое используется сейчас по умолчанию.</string>
   <string name="import_fragment__import_encrypted_backup">Импорт зашифрованной резервной копии</string>
@@ -409,7 +409,7 @@
 Восстановить из ранее экспортированной зашифрованной резервной копии SecureChat.</string>
   <string name="import_fragment__import_plaintext_backup">Импорт простой резервной копии</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Импортировать из простой резервной копии. Совместимо с приложением «SMSBackup And Restore».</string>
+Импортировать из простой резервной копии. Совместимо с приложением «SMS Backup And Restore».</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
   <string name="MmsPreferencesFragment__enabled">Включено</string>
