@@ -444,7 +444,7 @@ public class PartDatabase extends Database {
     return part;
   }
 
-  public List<PduPart> getPendingParts() {
+  public @NonNull List<PduPart> getPendingParts() {
     final SQLiteDatabase database = databaseHelper.getReadableDatabase();
     final List<PduPart>  parts    = new LinkedList<>();
 

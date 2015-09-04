@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -223,16 +224,20 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     }
 
     private void schedulePendingIncomingParts(Context context) {
-      MmsDatabase   db           = DatabaseFactory.getMmsDatabase(context);
-      List<PduPart> pendingParts = DatabaseFactory.getPartDatabase(context).getPendingParts();
+      final PartDatabase  partDb       = DatabaseFactory.getPartDatabase(context);
+      final MmsDatabase   mmsDb        = DatabaseFactory.getMmsDatabase(context);
+      final List<PduPart> pendingParts = DatabaseFactory.getPartDatabase(context).getPendingParts();
 
       Log.w(TAG, pendingParts.size() + " pending parts.");
       for (PduPart part : pendingParts) {
-        final Reader        reader = db.readerFor(masterSecret, db.getMessage(part.getMmsId()));
+        final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(part.getMmsId()));
         final MessageRecord record = reader.getNext();
 
-        if (record != null && !record.isOutgoing() && record.isPush()) {
-          Log.w(TAG, "queuing new attachment download job for incoming push part.");
+        if (part.getContentLocation() == null) {
+          Log.w(TAG, "corrected a pending self-sent media part " + part.getPartId() + ".");
+          partDb.setTransferState(part.getMmsId(), part.getPartId(), PartDatabase.TRANSFER_PROGRESS_DONE);
+        } else if (record != null && !record.isOutgoing() && record.isPush()) {
+          Log.w(TAG, "queuing new attachment download job for incoming push part " + part.getPartId() + ".");
           ApplicationContext.getInstance(context)
                             .getJobManager()
                             .add(new AttachmentDownloadJob(context, part.getMmsId(), part.getPartId()));
