@@ -599,6 +599,9 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="arrays__name_and_message">Name und Nachricht</string>
   <string name="arrays__name_only">Nur Name</string>
   <string name="arrays__neither">Weder Name noch Nachricht</string>
+  <string name="arrays__images">Bilder</string>
+  <string name="arrays__audio">Audio</string>
+  <string name="arrays__video">Video</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d Stunde</item>
@@ -683,6 +686,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Alte Nachrichten automatisch löschen, sobald die Unterhaltung eine bestimmte Länge überschreitet</string>
   <string name="preferences__delete_old_messages">Alte Nachrichten löschen</string>
+  <string name="preferences__chats">Unterhaltungen und Medien</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
   <string name="preferences__trim_all_threads_now">Alle Unterhaltungen jetzt kürzen</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Alle Unterhaltungen prüfen und deren Längenbegrenzung sicherstellen</string>
@@ -702,6 +706,11 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
   <string name="preferences_app_protection__blocked_contacts">Blockierte Kontakte</string>
   <string name="preferences_notifications__display_in_notifications">In Benachrichtigungen anzeigen</string>
+  <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
+  <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
+  <string name="preferences_chats__when_roaming">Bei Roaming</string>
+  <string name="preferences_chats__media_auto_download">Automatisches Herunterladen von Medien</string>
+  <string name="preferences_chats__message_trimming">Kürzen von Unterhaltungen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

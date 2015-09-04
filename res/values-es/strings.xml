@@ -674,6 +674,9 @@ por SMS.
   <string name="arrays__name_and_message">Nombre y mensaje</string>
   <string name="arrays__name_only">Sólo nombre</string>
   <string name="arrays__neither">Ninguno de los dos</string>
+  <string name="arrays__images">Imágenes</string>
+  <string name="arrays__audio">Audio</string>
+  <string name="arrays__video">Vídeo</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>

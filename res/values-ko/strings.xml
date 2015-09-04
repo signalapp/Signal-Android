@@ -576,6 +576,9 @@
   <string name="arrays__name_and_message">이름과 메시지</string>
   <string name="arrays__name_only">이름</string>
   <string name="arrays__neither">이름이나 메시지 표시하지 않음</string>
+  <string name="arrays__images">이미지</string>
+  <string name="arrays__audio">오디오</string>
+  <string name="arrays__video">동영상</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d시간 전</item>
@@ -659,6 +662,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지 보낼 때마다 전송 확인 요청</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">대화 메시지 저장한도가 초과되면 이전 메시지 자동 삭제</string>
   <string name="preferences__delete_old_messages">이전 메시지 삭제</string>
+  <string name="preferences__chats">대화 및 미디어</string>
   <string name="preferences__conversation_length_limit">대화 메시지 저장한도</string>
   <string name="preferences__trim_all_threads_now">모든 대화 줄이기</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">모든 대화에 메시지 저장한도 적용</string>

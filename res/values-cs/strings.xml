@@ -132,7 +132,7 @@ kontakt</string>
   <string name="ConversationFragment_deleting">Mažu</string>
   <string name="ConversationFragment_deleting_messages">Mažu zprávy...</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_search">Vyhhledávám...</string>
+  <string name="ConversationListActivity_search">Vyhledávám...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Smazat konverzace?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Opravdu chcete smazat VŠECHNY označené konverzace?</string>
@@ -623,6 +623,9 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="arrays__name_and_message">Jméno a zpráva</string>
   <string name="arrays__name_only">Pouze jméno</string>
   <string name="arrays__neither">Ani</string>
+  <string name="arrays__images">Obrázky</string>
+  <string name="arrays__audio">Audio</string>
+  <string name="arrays__video">Video</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hodina</item>
@@ -708,6 +711,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">U každé odeslané zprávy požadovat potvrzení o doručení</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automaticky mazat starší zprávy jakmile konverzace přesáhne určitou délku</string>
   <string name="preferences__delete_old_messages">Smazat staré zprávy</string>
+  <string name="preferences__chats">Konverzace a media</string>
   <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
   <string name="preferences__trim_all_threads_now">Zkrátit konverzace</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Pohledat všechny konverzace a uplatnit limit délky.</string>

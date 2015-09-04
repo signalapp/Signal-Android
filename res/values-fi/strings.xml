@@ -71,7 +71,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Napsauta, jos haluat lähettää viestin salaamattomana</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Käytä salaamattomia tekstiviestejä?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Käytä salaamattomia MMS-viestejä?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tätä viestiä <b>ei</b> tulla salaamaan, koska vastaanottaja ei enää käytä TextSecurea.\n\nLähetä salaamaton viesti?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tätä viestiä <b>ei</b> voida salata, koska vastaanottaja ei enää käytä TextSecurea.\n\nLähetetäänkö salaamattomana?</string>
   <string name="ConversationItem_unable_to_open_media">Median avaamiseen ei löytynyt sovellusta.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Aloita salattu istunto?</string>
@@ -628,6 +628,9 @@ epäonnistui.</string>
   <string name="arrays__name_and_message">Nimi ja viesti</string>
   <string name="arrays__name_only">Vain nimi</string>
   <string name="arrays__neither">Ei kumpaakaan</string>
+  <string name="arrays__images">Kuvat</string>
+  <string name="arrays__audio">Äänitallenteet</string>
+  <string name="arrays__video">Videot</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tunti</item>
@@ -712,6 +715,7 @@ epäonnistui.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Poista vanhimpia viestejä automaattisesti, kun keskustelu ylittää määritetyn pituusrajan</string>
   <string name="preferences__delete_old_messages">Vanhojen viestien poisto</string>
+  <string name="preferences__chats">Keskustelut ja media</string>
   <string name="preferences__conversation_length_limit">Keskustelun pituusraja</string>
   <string name="preferences__trim_all_threads_now">Karsi kaikki keskustelut nyt</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Käy läpi kaikki keskustelut ja pakota niihin pituusrajat</string>
@@ -731,6 +735,11 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ota käyttöön, jos laitteesi lähettää SMS- ja MMS-viestit WiFi-yhteyden kautta. (Ota käyttöön vain, kun \"WiFi Calling\" on käytössä laitteessasi.)</string>
   <string name="preferences_app_protection__blocked_contacts">Estetyt yhteystiedot</string>
   <string name="preferences_notifications__display_in_notifications">Ilmoituksissa näytetään</string>
+  <string name="preferences_chats__when_using_mobile_data">Mobiilitiedonsiirtoverkossa</string>
+  <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
+  <string name="preferences_chats__when_roaming">Roaming-verkossa</string>
+  <string name="preferences_chats__media_auto_download">Liitetiedostojen automaattinen lataus</string>
+  <string name="preferences_chats__message_trimming">Viestien karsiminen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
