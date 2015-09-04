@@ -22,8 +22,8 @@
     <string name="menu_privacy_single_hide">Nascondi intrattenimento</string>
     <string name="menu_filter_block_contact">Blocca contatto</string>
     <string name="privacy_pw_dialog_header">Inserire la password: </string>
-    <string name="privacy_pw_dialog_toast_wrong">La password immessa non corrisponde a quella di Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Nota: si tratta della password scelta da te in Internet Security per Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">La password immessa non corrisponde a quella di G DATA Internet Security.</string>
+    <string name="privacy_pw_dialog_hint">Nota: si tratta della password scelta da te in G DATA Internet Security per Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Gli intrattenimenti vengono ripristinati...</string>
     <string name="privacy_pw_dialog_toast_hide">Gli intrattenimenti vengono preparati per essere nascosti...</string>
     <string name="privacy_pw_dialog_toast_hide_single">L\'intrattenimento viene nascosto...</string>

@@ -21,8 +21,8 @@
     <string name="self_destruction_body">Der Inhalt dieser Nachricht wird sich nach dem Öffnen in #1# Sekunden selbst löschen.</string>
     <string name="self_destruction_compose_hint">Selbstzerstörende Nachricht</string>
     <string name="privacy_pw_dialog_header">Passwort eingeben: </string>
-    <string name="privacy_pw_dialog_hint">Hinweis: Es handelt sich um das von Ihnen gewählte Passwort in der Internet Security für Android.</string>
-    <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der Internet Security überein.</string>
+    <string name="privacy_pw_dialog_hint">Hinweis: Es handelt sich um das von Ihnen gewählte Passwort in der G DATA Internet Security für Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der G DATA Internet Security überein.</string>
     <string name="privacy_pw_dialog_toast_reload">Unterhaltungen werden wiederhergestellt...</string>
     <string name="privacy_pw_dialog_toast_hide">Unterhaltungen werden zum Verstecken vorbereitet...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Unterhaltung wird versteckt...</string>

@@ -22,8 +22,8 @@
     <string name="menu_privacy_single_hide">Ukryj konwersację</string>
     <string name="menu_filter_block_contact">Zablokuj kontakt</string>
     <string name="privacy_pw_dialog_header">Podaj hasło: </string>
-    <string name="privacy_pw_dialog_toast_wrong">To nie jest hasło do aplikacji Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Wskazówka: Chodzi o Twoje hasło w programie Internet Security for Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">To nie jest hasło do aplikacji G DATA Internet Security.</string>
+    <string name="privacy_pw_dialog_hint">Wskazówka: Chodzi o Twoje hasło w programie G DATA Internet Security for Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Przywracanie konwersacji...</string>
     <string name="privacy_pw_dialog_toast_hide">Przygotowuję konwersacje do ukrycia...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Ukrywanie konwersacji...</string>

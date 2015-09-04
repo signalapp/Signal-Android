@@ -22,8 +22,8 @@
     <string name="menu_privacy_single_hide">Chat verbergen</string>
     <string name="menu_filter_block_contact">Contactpersoon blokkeren</string>
     <string name="privacy_pw_dialog_header">Wachtwoord invoeren: </string>
-    <string name="privacy_pw_dialog_toast_wrong">Het ingevoerde wachtwoord komt niet overeen met het wachtwoord van Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Opmerking: het gaat om het wachtwoord dat u hebt gekozen in Internet Security voor Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Het ingevoerde wachtwoord komt niet overeen met het wachtwoord van G DATA Internet Security.</string>
+    <string name="privacy_pw_dialog_hint">Opmerking: het gaat om het wachtwoord dat u hebt gekozen in G DATA Internet Security voor Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Chat wordt hersteld...</string>
     <string name="privacy_pw_dialog_toast_hide">Het verbergen van de chats wordt voorbereid...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Chat wordt verborgen...</string>

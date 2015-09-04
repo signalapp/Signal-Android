@@ -20,11 +20,11 @@
     <string name="menu_privacy_single_hide">Скрыть беседу</string>
     <string name="menu_filter_block_contact">Заблокировать контакт</string>
     <string name="privacy_pw_dialog_header">Ввести пароль: </string>
-    <string name="privacy_pw_dialog_toast_wrong">Введен неверный пароль для Internet Security.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Введен неверный пароль для G DATA Internet Security.</string>
     <string name="privacy_pw_dialog_toast_reload">Беседы восстанавливаются...</string>
     <string name="privacy_pw_dialog_toast_hide">Идет подготовка к скрытию бесед...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Скрытие беседы...</string>
-    <string name="privacy_pw_dialog_hint">Примечание: Речь идет о пароле, выбранном вами в приложении Internet Security для Android.</string>
+    <string name="privacy_pw_dialog_hint">Примечание: Речь идет о пароле, выбранном вами в приложении G DATA Internet Security для Android.</string>
     <string name="privacy_toast_install_premium">Для использования данной функции необходима версия G DATA Internet Security для ОС Android</string>
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
     <string name="preferences_notification_never">Никогда</string>

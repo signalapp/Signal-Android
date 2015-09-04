@@ -22,8 +22,8 @@
     <string name="menu_privacy_single_hide">Eðlenceyi gizle</string>
     <string name="menu_filter_block_contact">Rehber girişini engelle</string>
     <string name="privacy_pw_dialog_header">Parola girin: </string>
-    <string name="privacy_pw_dialog_toast_wrong">Girdiğiniz parola, Internet Security parolasıyla aynı değil.</string>
-    <string name="privacy_pw_dialog_hint">Not: Android için Internet Security uygulamasýnda seçtiðiniz parola söz konusudur.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Girdiğiniz parola, G DATA Internet Security parolasıyla aynı değil.</string>
+    <string name="privacy_pw_dialog_hint">Not: Android için G DATA Internet Security uygulamasýnda seçtiðiniz parola söz konusudur.</string>
     <string name="privacy_pw_dialog_toast_reload">Eðlenceler geri yükleniyor...</string>
     <string name="privacy_pw_dialog_toast_hide">Eðlenceler gizlenmek üzere hazýrlanýyor...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Eðlence gizleniyor...</string>

@@ -22,8 +22,8 @@
     <string name="menu_privacy_single_hide">Ocultar conversación</string>
     <string name="menu_filter_block_contact">Bloquear contacto</string>
     <string name="privacy_pw_dialog_header">Introducir contraseña: </string>
-    <string name="privacy_pw_dialog_toast_wrong">La contraseña introducida no coincide con la de Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Nota: se trata de la contraseña que ha elegido en Internet Security para Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">La contraseña introducida no coincide con la de G DATA Internet Security.</string>
+    <string name="privacy_pw_dialog_hint">Nota: se trata de la contraseña que ha elegido en G DATA Internet Security para Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Restaurando las conversaciones...</string>
     <string name="privacy_pw_dialog_toast_hide">Preparando las conversaciones para ocultarlas...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Ocultando la conversación...</string>

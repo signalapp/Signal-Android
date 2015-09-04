@@ -20,8 +20,8 @@
     <string name="self_destruction_title">#1# seconds to self-destruct...</string>
     <string name="self_destruction_body">The contents of this message will self-destruct in #1# seconds after opening.</string>
     <string name="privacy_pw_dialog_header">Enter password: </string>
-    <string name="privacy_pw_dialog_hint">Note: this is the password you selected in the Internet Security for Android.</string>
-    <string name="privacy_pw_dialog_toast_wrong">The password you entered does not match that of the Internet Security.</string>
+    <string name="privacy_pw_dialog_hint">Note: this is the password you selected in the G DATA Internet Security for Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">The password you entered does not match that of the G DATA Internet Security.</string>
     <string name="privacy_pw_dialog_toast_reload">Restoring conversations...</string>
     <string name="privacy_pw_dialog_toast_hide">Hiding conversations...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Hiding conversation...</string>

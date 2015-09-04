@@ -22,8 +22,8 @@
     <string name="menu_privacy_single_hide">チャットの非表示</string>
     <string name="menu_filter_block_contact">連絡先をブロック</string>
     <string name="privacy_pw_dialog_header">パスワードの入力: </string>
-    <string name="privacy_pw_dialog_toast_wrong">入力されたパスワードが Internet Security のものと一致していません。</string>
-    <string name="privacy_pw_dialog_hint">ヒント: Internet Security for Android で設定したパスワードです。</string>
+    <string name="privacy_pw_dialog_toast_wrong">入力されたパスワードが G DATA Internet Security のものと一致していません。</string>
+    <string name="privacy_pw_dialog_hint">ヒント: G DATA Internet Security for Android で設定したパスワードです。</string>
     <string name="privacy_pw_dialog_toast_reload">チャットを復元しています...</string>
     <string name="privacy_pw_dialog_toast_hide">チャットを非表示化する準備をしています...</string>
     <string name="privacy_pw_dialog_toast_hide_single">チャットを非表示化しています...</string>

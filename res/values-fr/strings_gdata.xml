@@ -22,12 +22,12 @@
     <string name="menu_privacy_single_hide">Masquer la conversation</string>
     <string name="menu_filter_block_contact">Bloquer le contact</string>
     <string name="privacy_pw_dialog_header">Saisir le mot de passe : </string>
-    <string name="privacy_pw_dialog_toast_wrong">Le mot de passe que vous avez saisi ne correspond pas au mot de passe de l’application Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Remarque : il s’agit du mot de passe que vous avez sélectionné dans l’application Internet Security pour Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Le mot de passe que vous avez saisi ne correspond pas au mot de passe de l’application G DATA Internet Security.</string>
+    <string name="privacy_pw_dialog_hint">Remarque : il s’agit du mot de passe que vous avez sélectionné dans l’application G DATA Internet Security pour Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Les conversations sont rétablies...</string>
     <string name="privacy_pw_dialog_toast_hide">Les conversations sont préparées pour le masquage...</string>
     <string name="privacy_pw_dialog_toast_hide_single">La conversation est masquée...</string>
-    <string name="privacy_toast_install_premium">Cette fonction nécessite l’application G DATA Internet Security pour Android.</string>
+    <string name="privacy_toast_install_premium">Cette fonction nécessite l’application G DATA Internet Security pour Android.</string>
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
     <string name="preferences_notification_never">Jamais</string>
     <string name="preferences_notification_one_time">1 fois</string>
