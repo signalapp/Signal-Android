@@ -24,7 +24,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Point;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -36,6 +40,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.Pair;
 import android.view.ContextThemeWrapper;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -301,7 +306,7 @@ public class ProfileFragment extends Fragment {
             if (avatar != null) {
                 profilePicture.setVisibility(View.GONE);
                 getView().findViewById(R.id.profile_picture_group).setVisibility(View.VISIBLE);
-                getView().findViewById(R.id.profile_picture_group).setBackgroundDrawable(new BitmapDrawable(avatar));
+                scaleImage((ImageView) getView().findViewById(R.id.profile_picture_group), avatar);
             }
             imageText.setText(groupName);
             profileStatus.setText(groupName);
@@ -970,9 +975,47 @@ public class ProfileFragment extends Fragment {
             if (existingAvatarBmp != null) {
                 ProfileActivity.setAvatarTemp(existingAvatarBmp);
                 profilePicture.setVisibility(View.GONE);
-                getView().findViewById(R.id.profile_picture_group).setBackgroundDrawable(new BitmapDrawable(existingAvatarBmp));
+                scaleImage((ImageView) getView().findViewById(R.id.profile_picture_group), existingAvatarBmp);
             }
 
         }
+    }
+    private void scaleImage(ImageView view, Bitmap bitmap)
+    {
+        Bitmap scaledBitmap = scaleCenterCrop(bitmap, dpToPx(350), getActivity().getWindowManager().getDefaultDisplay().getWidth());
+
+        int width = scaledBitmap.getWidth();
+        int height = scaledBitmap.getHeight();
+
+        view.setImageDrawable(new BitmapDrawable(scaledBitmap));
+
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
+        params.width = width;
+        params.height = height;
+
+        view.setLayoutParams(params);
+        bitmap = null;
+    }
+
+    public Bitmap scaleCenterCrop(Bitmap source, int newHeight, int newWidth) {
+        int sourceWidth = source.getWidth();
+        int sourceHeight = source.getHeight();
+
+        float xScale = (float) newWidth / sourceWidth;
+        float yScale = (float) newHeight / sourceHeight;
+        float scale = Math.max(xScale, yScale);
+
+        float scaledWidth = scale * sourceWidth;
+        float scaledHeight = scale * sourceHeight;
+
+        float left = (newWidth - scaledWidth) / 2;
+        float top = (newHeight - scaledHeight) / 2;
+
+        RectF targetRect = new RectF(left, top, left + scaledWidth, top + scaledHeight);
+
+        Bitmap dest = Bitmap.createBitmap(newWidth, newHeight, source.getConfig());
+        Canvas canvas = new Canvas(dest);
+        canvas.drawBitmap(source, null, targetRect, null);
+        return dest;
     }
 }

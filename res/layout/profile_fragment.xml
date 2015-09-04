@@ -47,7 +47,8 @@
                         android:id="@+id/profile_picture_group"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
-                        android:background="@android:color/transparent"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true"
                         android:visibility="gone" />
