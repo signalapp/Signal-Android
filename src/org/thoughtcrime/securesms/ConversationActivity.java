@@ -1108,11 +1108,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         ContactAccessor contactDataList = ContactAccessor.getInstance();
         ContactData contactData = contactDataList.getContactData(this, contactUri);
 
-        if (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
-        else if (contactData.numbers.size() > 1) selectContactInfo(contactData);
+        if (contactData.numbers.size() >= 1) selectContactInfo(contactData);
     }
 
-    private void selectContactInfo(ContactData contactData) {
+    private void selectContactInfo(final ContactData contactData) {
         final CharSequence[] numbers = new CharSequence[contactData.numbers.size()];
         final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
 
@@ -1128,7 +1127,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         builder.setItems(numberItems, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                composeText.append(numbers[which]);
+                composeText.append(contactData.name + ", " +numbers[which]);
             }
         });
         builder.show();
