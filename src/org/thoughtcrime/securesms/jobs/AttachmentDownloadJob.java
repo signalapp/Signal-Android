@@ -88,6 +88,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId)
       throws IOException
   {
+
     PartDatabase database       = DatabaseFactory.getPartDatabase(context);
     File         attachmentFile = null;
 
@@ -115,6 +116,8 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   private TextSecureAttachmentPointer createAttachmentPointer(MasterSecret masterSecret, PduPart part)
       throws InvalidPartException
   {
+    if (part.getContentLocation() == null) throw new InvalidPartException("null content location");
+
     try {
       AsymmetricMasterSecret asymmetricMasterSecret = MasterSecretUtil.getAsymmetricMasterSecret(context, masterSecret);
       long                   id                     = Long.parseLong(Util.toIsoString(part.getContentLocation()));
@@ -153,6 +156,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   }
 
   private static class InvalidPartException extends Exception {
+    public InvalidPartException(String s) {super(s);}
     public InvalidPartException(Exception e) {super(e);}
   }
 

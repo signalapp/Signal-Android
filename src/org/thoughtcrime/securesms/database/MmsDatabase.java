@@ -577,6 +577,10 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(READ, 1);
       contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
 
+      for (int i = 0; i < request.getBody().getPartsNum(); i++) {
+        request.getBody().getPart(i).setTransferProgress(PartDatabase.TRANSFER_PROGRESS_DONE);
+      }
+
       return insertMediaMessage(new MasterSecretUnion(masterSecret), request.getPduHeaders(),
                                 request.getBody(), contentValues);
     } catch (NoSuchMessageException e) {
