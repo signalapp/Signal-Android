@@ -93,6 +93,7 @@ public class BitmapUtil {
       return Glide.with(context)
                   .load(model)
                   .asBitmap()
+                  .fitCenter()
                   .skipMemoryCache(true)
                   .into(width, height)
                   .get();
