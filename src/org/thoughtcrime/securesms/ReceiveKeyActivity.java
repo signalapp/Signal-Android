@@ -127,7 +127,9 @@ public class ReceiveKeyActivity extends Activity {
         Intent intent = new Intent(ReceiveKeyActivity.this, VerifyIdentityActivity.class);
         intent.putExtra("recipient", recipient.getRecipientId());
         intent.putExtra("master_secret", masterSecret);
-        intent.putExtra("remote_identity", new IdentityKeyParcelable(identityKey));
+        if(identityKey != null && identityKey.serialize() != null) {
+          intent.putExtra("remote_identity", new IdentityKeyParcelable(identityKey));
+        }
         startActivity(intent);
       }
     }, getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different).length() +1,
