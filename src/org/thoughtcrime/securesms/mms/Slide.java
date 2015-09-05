@@ -21,8 +21,10 @@ import android.content.res.Resources.Theme;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -100,11 +102,29 @@ public abstract class Slide {
 
     while ((read = in.read(buffer)) != -1) {
       size += read;
-//      if (size >= limit) break;
     }
     in.close();
 
     return size;
+  }
+
+  protected static PduPart constructPartFromUri(@NonNull  Context      context,
+                                                @Nullable MasterSecret masterSecret,
+                                                @NonNull  Uri          uri,
+                                                @NonNull  String       defaultMime)
+      throws IOException
+  {
+    final PduPart part            = new PduPart();
+    final String  mimeType        = MediaUtil.getMimeType(context, uri);
+    final String  derivedMimeType = mimeType != null ? mimeType : defaultMime;
+
+    part.setDataSize(getMediaSize(context, masterSecret, uri));
+    part.setDataUri(uri);
+    part.setContentType(derivedMimeType.getBytes());
+    part.setContentId((System.currentTimeMillis()+"").getBytes());
+    part.setName((MediaUtil.getDiscreteMimeType(derivedMimeType) + System.currentTimeMillis()).getBytes());
+
+    return part;
   }
 
   @Override
@@ -128,7 +148,4 @@ public abstract class Slide {
     return Util.hashCode(getContentType(), hasAudio(), hasImage(),
                          hasVideo(), isDraft(), getUri(), getThumbnailUri(), getTransferProgress());
   }
-
-
-
 }

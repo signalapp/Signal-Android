@@ -70,6 +70,7 @@ public class AttachmentManager {
       @Override public void onAnimationRepeat(Animation animation) {}
       @Override public void onAnimationEnd(Animation animation) {
         slideDeck.clear();
+        thumbnail.clear();
         attachmentView.setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
       }
@@ -109,16 +110,16 @@ public class AttachmentManager {
       }
 
       @Override protected void onPostExecute(@Nullable final Slide slide) {
-        if (slide != null && attachmentListener.verifyAttachmentAllowed(slide)) {
-          slideDeck.addSlide(slide);
-          attachmentView.setVisibility(View.VISIBLE);
-          thumbnail.setImageResource(slide, masterSecret);
-          attachmentListener.onAttachmentChanged();
-        } else {
+        if (slide == null) {
           attachmentView.setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
+        } else if (attachmentListener.verifyAttachmentAllowed(slide)) {
+          slideDeck.addSlide(slide);
+          attachmentView.setVisibility(View.VISIBLE);
+          thumbnail.setImageResource(slide, masterSecret);
+          attachmentListener.onAttachmentChanged();
         }
       }
     }.execute();

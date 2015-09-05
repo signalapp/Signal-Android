@@ -111,7 +111,11 @@ public class MediaUtil {
   }
 
   public static @Nullable String getDiscreteMimeType(@NonNull PduPart part) {
-    final String[] sections = (Util.toIsoString(part.getContentType()).split("/", 2));
+    return getDiscreteMimeType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {
+    final String[] sections = mimeType.split("/", 2);
     return sections.length > 1 ? sections[0] : null;
   }
 

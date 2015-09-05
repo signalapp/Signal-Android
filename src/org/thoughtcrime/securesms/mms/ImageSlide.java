@@ -39,7 +39,7 @@ public class ImageSlide extends Slide {
   }
 
   public ImageSlide(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
-    super(context, masterSecret, constructPartFromUri(context, masterSecret, uri));
+    super(context, masterSecret, constructPartFromUri(context, masterSecret, uri, ContentType.IMAGE_JPEG));
   }
 
   @Override
@@ -62,19 +62,4 @@ public class ImageSlide extends Slide {
   public boolean hasImage() {
     return true;
   }
-
-  private static PduPart constructPartFromUri(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
-    PduPart part = new PduPart();
-
-    final String mimeType = MediaUtil.getMimeType(context, uri);
-
-    part.setDataSize(getMediaSize(context, masterSecret, uri));
-    part.setDataUri(uri);
-    part.setContentType((mimeType != null ? mimeType : ContentType.IMAGE_JPEG).getBytes());
-    part.setContentId((System.currentTimeMillis()+"").getBytes());
-    part.setName(("Image" + System.currentTimeMillis()).getBytes());
-
-    return part;
-  }
-
 }

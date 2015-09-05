@@ -31,12 +31,13 @@ import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.io.IOException;
 
+import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class VideoSlide extends Slide {
 
   public VideoSlide(Context context, Uri uri) throws IOException {
-    super(context, constructPartFromUri(context, uri));
+    super(context, constructPartFromUri(context, null, uri, ContentType.VIDEO_UNSPECIFIED));
   }
 
   public VideoSlide(Context context, MasterSecret masterSecret, PduPart part) {
@@ -56,29 +57,5 @@ public class VideoSlide extends Slide {
   @Override
   public boolean hasVideo() {
     return true;
-  }
-
-  private static PduPart constructPartFromUri(Context context, Uri uri) throws IOException {
-    PduPart         part     = new PduPart();
-    ContentResolver resolver = context.getContentResolver();
-    Cursor          cursor   = null;
-
-    try {
-      cursor = resolver.query(uri, new String[] {MediaStore.Video.Media.MIME_TYPE}, null, null, null);
-      if (cursor != null && cursor.moveToFirst()) {
-        Log.w("VideoSlide", "Setting mime type: " + cursor.getString(0));
-        part.setContentType(cursor.getString(0).getBytes());
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-
-    part.setDataSize(getMediaSize(context, null, uri));
-    part.setDataUri(uri);
-    part.setContentId((System.currentTimeMillis()+"").getBytes());
-    part.setName(("Video" + System.currentTimeMillis()).getBytes());
-
-    return part;
   }
 }
