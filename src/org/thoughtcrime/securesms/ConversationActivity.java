@@ -923,7 +923,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void addAttachment(Uri uri, MediaType mediaType) {
-    attachmentManager.setMedia(masterSecret, uri, mediaType);
+    attachmentManager.setMedia(masterSecret, uri, mediaType, getCurrentConstraints());
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
@@ -1090,6 +1090,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return rawText;
   }
 
+  private MediaConstraints getCurrentConstraints() {
+    return sendButton.getSelectedTransport().getType() == Type.TEXTSECURE
+           ? MediaConstraints.PUSH_CONSTRAINTS
+           : MediaConstraints.MMS_CONSTRAINTS;
+  }
+
   private void markThreadAsRead() {
     new AsyncTask<Long, Void, Void>() {
       @Override
@@ -1157,7 +1163,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SlideDeck slideDeck;
 
     if (attachmentManager.isAttachmentPresent()) {
-      if (!isAttachmentAllowed(attachmentManager.getSlideDeck().getThumbnailSlide())) {
+      if (!attachmentManager.areConstraintsSatisfied(this, masterSecret, getCurrentConstraints())) {
         Toast.makeText(context,
                        R.string.ConversationActivity_attachment_exceeds_size_limits,
                        Toast.LENGTH_SHORT).show();
@@ -1365,12 +1371,4 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateToggleButtonState();
   }
 
-  @Override
-  public boolean isAttachmentAllowed(final Slide slide) {
-    MediaConstraints constraints = sendButton.getSelectedTransport().getType() == Type.TEXTSECURE
-                                   ? MediaConstraints.PUSH_CONSTRAINTS
-                                   : MediaConstraints.MMS_CONSTRAINTS;
-
-    return constraints.isSatisfied(this, masterSecret, slide.getPart()) || constraints.canResize(slide.getPart());
-  }
 }

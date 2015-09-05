@@ -53,10 +53,10 @@ public class AttachmentManager {
   private Uri captureUri;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
-    this.attachmentView     = view.findViewById(R.id.attachment_editor);
-    this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
-    this.slideDeck          = new SlideDeck();
-    this.context            = view;
+    this.attachmentView = view.findViewById(R.id.attachment_editor);
+    this.thumbnail = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
+    this.slideDeck = new SlideDeck();
+    this.context = view;
     this.attachmentListener = listener;
 
     thumbnail.setRemoveClickListener(new RemoveButtonListener());
@@ -67,7 +67,9 @@ public class AttachmentManager {
     animation.setDuration(200);
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override public void onAnimationStart(Animation animation) {}
+
       @Override public void onAnimationRepeat(Animation animation) {}
+
       @Override public void onAnimationEnd(Animation animation) {
         slideDeck.clear();
         thumbnail.clear();
@@ -85,8 +87,9 @@ public class AttachmentManager {
   }
 
   public void setMedia(@NonNull final MasterSecret masterSecret,
-                       @NonNull final Uri          uri,
-                       @NonNull final MediaType    mediaType)
+                       @NonNull final Uri uri,
+                       @NonNull final MediaType mediaType,
+                       @NonNull final MediaConstraints constraints)
   {
     new AsyncTask<Void, Void, Slide>() {
       @Override protected void onPreExecute() {
@@ -115,16 +118,16 @@ public class AttachmentManager {
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
-        } else if (attachmentListener.isAttachmentAllowed(slide)) {
-          slideDeck.addSlide(slide);
-          attachmentView.setVisibility(View.VISIBLE);
-          thumbnail.setImageResource(slide, masterSecret);
-          attachmentListener.onAttachmentChanged();
-        } else {
+        } else if (!areConstraintsSatisfied(context, masterSecret, slide, constraints)) {
           attachmentView.setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
                          Toast.LENGTH_SHORT).show();
+        } else {
+          slideDeck.addSlide(slide);
+          attachmentView.setVisibility(View.VISIBLE);
+          thumbnail.setImageResource(slide, masterSecret);
+          attachmentListener.onAttachmentChanged();
         }
       }
     }.execute();
@@ -200,6 +203,23 @@ public class AttachmentManager {
     }
   }
 
+  public boolean areConstraintsSatisfied(final @NonNull Context context,
+                                         final @NonNull MasterSecret masterSecret,
+                                         final @NonNull MediaConstraints constraints)
+  {
+    return areConstraintsSatisfied(context, masterSecret, slideDeck.getThumbnailSlide(), constraints);
+  }
+
+  private boolean areConstraintsSatisfied(final @NonNull  Context context,
+                                          final @NonNull  MasterSecret masterSecret,
+                                          final @Nullable Slide slide,
+                                          final @NonNull  MediaConstraints constraints)
+  {
+   return slide == null                                                   ||
+          constraints.isSatisfied(context, masterSecret, slide.getPart()) ||
+          constraints.canResize(slide.getPart());
+  }
+
   private class RemoveButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
@@ -209,8 +229,7 @@ public class AttachmentManager {
   }
 
   public interface AttachmentListener {
-    void    onAttachmentChanged();
-    boolean isAttachmentAllowed(Slide slide);
+    void onAttachmentChanged();
   }
 
   public enum MediaType {
