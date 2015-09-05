@@ -84,9 +84,9 @@ public class AttachmentManager {
     captureUri = null;
   }
 
-  public void setMedia(@NonNull final Uri          uri,
-                       @NonNull final MediaType    mediaType,
-                       @NonNull final MasterSecret masterSecret)
+  public void setMedia(@NonNull final MasterSecret masterSecret,
+                       @NonNull final Uri          uri,
+                       @NonNull final MediaType    mediaType)
   {
     new AsyncTask<Void, Void, Slide>() {
       @Override protected void onPreExecute() {
@@ -115,11 +115,16 @@ public class AttachmentManager {
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
-        } else if (attachmentListener.verifyAttachmentAllowed(slide)) {
+        } else if (attachmentListener.isAttachmentAllowed(slide)) {
           slideDeck.addSlide(slide);
           attachmentView.setVisibility(View.VISIBLE);
           thumbnail.setImageResource(slide, masterSecret);
           attachmentListener.onAttachmentChanged();
+        } else {
+          attachmentView.setVisibility(View.GONE);
+          Toast.makeText(context,
+                         R.string.ConversationActivity_attachment_exceeds_size_limits,
+                         Toast.LENGTH_SHORT).show();
         }
       }
     }.execute();
@@ -204,8 +209,8 @@ public class AttachmentManager {
   }
 
   public interface AttachmentListener {
-    void onAttachmentChanged();
-    boolean verifyAttachmentAllowed(Slide slide);
+    void    onAttachmentChanged();
+    boolean isAttachmentAllowed(Slide slide);
   }
 
   public enum MediaType {

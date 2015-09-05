@@ -923,7 +923,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void addAttachment(Uri uri, MediaType mediaType) {
-    attachmentManager.setMedia(uri, mediaType, masterSecret);
+    attachmentManager.setMedia(masterSecret, uri, mediaType);
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
@@ -1157,7 +1157,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SlideDeck slideDeck;
 
     if (attachmentManager.isAttachmentPresent()) {
-      if (!verifyAttachmentAllowed(attachmentManager.getSlideDeck().getThumbnailSlide())) {
+      if (!isAttachmentAllowed(attachmentManager.getSlideDeck().getThumbnailSlide())) {
+        Toast.makeText(context,
+                       R.string.ConversationActivity_attachment_exceeds_size_limits,
+                       Toast.LENGTH_SHORT).show();
         return;
       }
       slideDeck = new SlideDeck(attachmentManager.getSlideDeck());
@@ -1363,16 +1366,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public boolean verifyAttachmentAllowed(final Slide slide) {
+  public boolean isAttachmentAllowed(final Slide slide) {
     MediaConstraints constraints = sendButton.getSelectedTransport().getType() == Type.TEXTSECURE
                                    ? MediaConstraints.PUSH_CONSTRAINTS
                                    : MediaConstraints.MMS_CONSTRAINTS;
 
-    if (!constraints.isSatisfied(this, masterSecret, slide.getPart()) && !constraints.canResize(slide.getPart())) {
-      Toast.makeText(this, R.string.ConversationActivity_attachment_exceeds_size_limits, Toast.LENGTH_LONG).show();
-      return false;
-    } else {
-      return true;
-    }
+    return constraints.isSatisfied(this, masterSecret, slide.getPart()) || constraints.canResize(slide.getPart());
   }
 }
