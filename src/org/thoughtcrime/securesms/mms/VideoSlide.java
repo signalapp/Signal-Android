@@ -35,7 +35,7 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public class VideoSlide extends Slide {
 
-  public VideoSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
+  public VideoSlide(Context context, Uri uri) throws IOException {
     super(context, constructPartFromUri(context, uri));
   }
 
@@ -58,9 +58,7 @@ public class VideoSlide extends Slide {
     return true;
   }
 
-  private static PduPart constructPartFromUri(Context context, Uri uri)
-      throws IOException, MediaTooLargeException
-  {
+  private static PduPart constructPartFromUri(Context context, Uri uri) throws IOException {
     PduPart         part     = new PduPart();
     ContentResolver resolver = context.getContentResolver();
     Cursor          cursor   = null;
@@ -76,7 +74,7 @@ public class VideoSlide extends Slide {
         cursor.close();
     }
 
-    assertMediaSize(context, uri, MmsMediaConstraints.MAX_MESSAGE_SIZE);
+    part.setDataSize(getMediaSize(context, null, uri));
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Video" + System.currentTimeMillis()).getBytes());

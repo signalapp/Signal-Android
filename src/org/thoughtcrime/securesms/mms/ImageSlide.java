@@ -38,8 +38,8 @@ public class ImageSlide extends Slide {
     super(context, masterSecret, part);
   }
 
-  public ImageSlide(Context context, MasterSecret masterSecret, Uri uri) throws IOException, BitmapDecodingException {
-    super(context, masterSecret, constructPartFromUri(context, uri));
+  public ImageSlide(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
+    super(context, masterSecret, constructPartFromUri(context, masterSecret, uri));
   }
 
   @Override
@@ -63,13 +63,12 @@ public class ImageSlide extends Slide {
     return true;
   }
 
-  private static PduPart constructPartFromUri(Context context, Uri uri)
-      throws IOException, BitmapDecodingException
-  {
+  private static PduPart constructPartFromUri(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
     PduPart part = new PduPart();
 
     final String mimeType = MediaUtil.getMimeType(context, uri);
 
+    part.setDataSize(getMediaSize(context, masterSecret, uri));
     part.setDataUri(uri);
     part.setContentType((mimeType != null ? mimeType : ContentType.IMAGE_JPEG).getBytes());
     part.setContentId((System.currentTimeMillis()+"").getBytes());

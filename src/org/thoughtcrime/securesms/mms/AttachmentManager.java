@@ -21,9 +21,11 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -36,8 +38,6 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.CaptureProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
 
@@ -83,34 +83,45 @@ public class AttachmentManager {
     captureUri = null;
   }
 
-  public void setImage(MasterSecret masterSecret, Uri image)
-      throws IOException, BitmapDecodingException, MediaTooLargeException
+  public void setMedia(@NonNull final Uri          uri,
+                       @NonNull final MediaType    mediaType,
+                       @NonNull final MasterSecret masterSecret)
   {
-    if (MediaUtil.isGif(MediaUtil.getMimeType(context, image))) {
-      setMedia(new GifSlide(context, masterSecret, image), masterSecret);
-    } else {
-      setMedia(new ImageSlide(context, masterSecret, image), masterSecret);
-    }
-  }
+    new AsyncTask<Void, Void, Slide>() {
+      @Override protected void onPreExecute() {
+        slideDeck.clear();
+        thumbnail.clear();
+        cleanup();
+        thumbnail.showProgressSpinner();
+        attachmentView.setVisibility(View.VISIBLE);
+      }
 
-  public void setVideo(Uri video) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video));
-  }
+      @Override protected @Nullable Slide doInBackground(Void... params) {
+        long start = System.currentTimeMillis();
+        try {
+          final Slide slide = mediaType.createSlide(context, masterSecret, uri);
+          Log.w(TAG, "slide with size " + slide.getPart().getDataSize() + " took " + (System.currentTimeMillis() - start) + "ms");
+          return slide;
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
+          return null;
+        }
+      }
 
-  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
-    setMedia(new AudioSlide(context, audio));
-  }
-
-  public void setMedia(final Slide slide) {
-    setMedia(slide, null);
-  }
-
-  public void setMedia(final Slide slide, @Nullable MasterSecret masterSecret) {
-    slideDeck.clear();
-    slideDeck.addSlide(slide);
-    attachmentView.setVisibility(View.VISIBLE);
-    thumbnail.setImageResource(slide, masterSecret);
-    attachmentListener.onAttachmentChanged();
+      @Override protected void onPostExecute(@Nullable final Slide slide) {
+        if (slide != null && attachmentListener.verifyAttachmentAllowed(slide)) {
+          slideDeck.addSlide(slide);
+          attachmentView.setVisibility(View.VISIBLE);
+          thumbnail.setImageResource(slide, masterSecret);
+          attachmentListener.onAttachmentChanged();
+        } else {
+          attachmentView.setVisibility(View.GONE);
+          Toast.makeText(context,
+                         R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+                         Toast.LENGTH_SHORT).show();
+        }
+      }
+    }.execute();
   }
 
   public boolean isAttachmentPresent() {
@@ -193,5 +204,24 @@ public class AttachmentManager {
 
   public interface AttachmentListener {
     void onAttachmentChanged();
+    boolean verifyAttachmentAllowed(Slide slide);
+  }
+
+  public enum MediaType {
+    IMAGE, GIF, AUDIO, VIDEO;
+
+    public @NonNull Slide createSlide(@NonNull Context      context,
+                                      @NonNull MasterSecret masterSecret,
+                                      @NonNull Uri          uri)
+        throws IOException
+    {
+      switch (this) {
+      case IMAGE: return new ImageSlide(context, masterSecret, uri);
+      case GIF:   return new GifSlide(context, masterSecret, uri);
+      case AUDIO: return new AudioSlide(context, uri);
+      case VIDEO: return new VideoSlide(context, uri);
+      default:    throw  new AssertionError("unrecognized enum");
+      }
+    }
   }
 }

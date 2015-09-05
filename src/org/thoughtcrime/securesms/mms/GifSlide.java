@@ -16,19 +16,8 @@ public class GifSlide extends ImageSlide {
     super(context, masterSecret, part);
   }
 
-  public GifSlide(Context context, MasterSecret masterSecret, Uri uri)
-      throws IOException, BitmapDecodingException, MediaTooLargeException
-  {
+  public GifSlide(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
     super(context, masterSecret, uri);
-    assertMediaSize();
-  }
-
-  private void assertMediaSize() throws MediaTooLargeException, IOException {
-    // TODO move assertion outside of slides and take available transport options into account
-    assertMediaSize(context, getPart().getDataUri(), MediaConstraints.PUSH_CONSTRAINTS.getGifMaxSize());
-    if (!MediaConstraints.PUSH_CONSTRAINTS.isSatisfied(context, masterSecret, part)) {
-      throw new MediaTooLargeException("Media exceeds maximum message size.");
-    }
   }
 
   @Override public Uri getThumbnailUri() {

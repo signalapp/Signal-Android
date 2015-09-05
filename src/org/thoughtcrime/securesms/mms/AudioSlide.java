@@ -33,7 +33,7 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public class AudioSlide extends Slide {
 
-  public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
+  public AudioSlide(Context context, Uri uri) throws IOException {
     super(context, constructPartFromUri(context, uri));
   }
 
@@ -56,10 +56,8 @@ public class AudioSlide extends Slide {
     return ResUtil.getDrawableRes(theme, R.attr.conversation_icon_attach_audio);
   }
 
-  public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
+  public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException {
     PduPart part = new PduPart();
-
-    assertMediaSize(context, uri, MmsMediaConstraints.MAX_MESSAGE_SIZE);
 
     Cursor cursor = null;
 
@@ -73,8 +71,9 @@ public class AudioSlide extends Slide {
     } finally {
       if (cursor != null)
         cursor.close();
-    } 
+    }
 
+    part.setDataSize(getMediaSize(context, null, uri));
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Audio" + System.currentTimeMillis()).getBytes());

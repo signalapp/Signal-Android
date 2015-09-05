@@ -90,18 +90,21 @@ public abstract class Slide {
     return !getPart().getPartId().isValid();
   }
 
-  protected static void assertMediaSize(Context context, Uri uri, long max)
-      throws MediaTooLargeException, IOException
-  {
-    InputStream in = context.getContentResolver().openInputStream(uri);
-    long   size    = 0;
-    byte[] buffer  = new byte[512];
-    int read;
+  protected static long getMediaSize(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
+    InputStream in = PartAuthority.getPartStream(context, masterSecret, uri);
+    if (in == null) throw new IOException("Couldn't obtain input stream.");
+
+    long   size   = 0;
+    byte[] buffer = new byte[512];
+    int    read;
 
     while ((read = in.read(buffer)) != -1) {
       size += read;
-      if (size > max) throw new MediaTooLargeException("Media exceeds maximum message size.");
+//      if (size >= limit) break;
     }
+    in.close();
+
+    return size;
   }
 
   @Override

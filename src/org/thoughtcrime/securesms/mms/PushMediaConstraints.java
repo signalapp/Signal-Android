@@ -27,16 +27,16 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getGifMaxSize() {
-    return 1 * MB;
+    return 3 * MB;
   }
 
   @Override
   public int getVideoMaxSize() {
-    return MmsMediaConstraints.MAX_MESSAGE_SIZE;
+    return 50 * MB;
   }
 
   @Override
   public int getAudioMaxSize() {
-    return MmsMediaConstraints.MAX_MESSAGE_SIZE;
+    return 100 * MB;
   }
 }
