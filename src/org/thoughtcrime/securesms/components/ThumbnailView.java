@@ -201,12 +201,22 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public void clear() {
-    if (isContextValid()) Glide.clear(this);
+    if (isContextValid()) Glide.clear(image);
+    if (slideDeckFuture != null) slideDeckFuture.removeListener(slideDeckListener);
+    slide             = null;
+    slideId           = null;
+    slideDeckFuture   = null;
+    slideDeckListener = null;
   }
 
   public void hideControls(boolean hideControls) {
     this.hideControls = hideControls;
     if (hideControls) hideProgressWheel();
+  }
+
+  public void showProgressSpinner() {
+    getProgressWheel().spin();
+    getProgressWheel().setVisibility(VISIBLE);
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
