@@ -159,14 +159,15 @@ public class ThumbnailView extends FrameLayout {
 
   public void setImageResource(@NonNull Slide slide, @Nullable MasterSecret masterSecret) {
     if (Util.equals(slide, this.slide)) {
-      Log.w(TAG, "Not loading resource, slide was identical");
+      Log.w(TAG, "Not re-loading slide " + slide.getPart().getPartId());
       return;
     }
     if (!isContextValid()) {
-      Log.w(TAG, "Not loading resource, context is invalid");
+      Log.w(TAG, "Not loading slide, context is invalid");
       return;
     }
 
+    Log.w(TAG, "loading part with id " + slide.getPart().getPartId() + ", progress " + slide.getTransferProgress());
     if (!hideControls && slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_STARTED) {
       getProgressWheel().spin();
       getProgressWheel().setVisibility(VISIBLE);

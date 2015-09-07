@@ -24,6 +24,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
@@ -640,17 +641,22 @@ public class PartDatabase extends Database {
     }
 
     @Override
-    public InputStream call() throws Exception {
+    public @Nullable InputStream call() throws Exception {
       final InputStream stream = getDataStream(masterSecret, partId, THUMBNAIL);
       if (stream != null) {
         return stream;
       }
 
       PduPart part = getPart(partId);
+      if (part.isInProgress()) {
+        return null;
+      }
+
       ThumbnailData data = MediaUtil.generateThumbnail(context, masterSecret, part.getDataUri(), Util.toIsoString(part.getContentType()));
       if (data == null) {
         return null;
       }
+
       updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
 
       return getDataStream(masterSecret, partId, THUMBNAIL);
