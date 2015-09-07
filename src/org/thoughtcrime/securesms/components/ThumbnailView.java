@@ -338,10 +338,11 @@ public class ThumbnailView extends FrameLayout {
 
     @Override
     public void onClick(View view) {
-      if (listener != null) {
+      if (listener != null &&
+          slide    != null &&
+          slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_DONE)
+      {
         listener.onClick(view, slide);
-      } else {
-        Log.w(TAG, "onClick, but no thumbnail click listener attached.");
       }
     }
   }
