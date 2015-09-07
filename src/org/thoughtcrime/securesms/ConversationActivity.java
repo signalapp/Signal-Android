@@ -300,7 +300,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       addAttachmentContactInfo(data.getData());
       break;
     case GROUP_EDIT:
-      this.recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
+      recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
+      recipients.addListener(this);
       titleView.setTitle(recipients);
       setBlockedUserState(recipients);
       supportInvalidateOptionsMenu();
@@ -883,7 +884,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (recipients != null) {
           long[] ids = recipients.getIds();
           Log.w("ConversationActivity", "Looking up new recipients...");
-          recipients = RecipientFactory.getRecipientsForIds(context, ids, false);
+          recipients = RecipientFactory.getRecipientsForIds(context, ids, true);
+          recipients.addListener(ConversationActivity.this);
           titleView.setTitle(recipients);
         }
       }
