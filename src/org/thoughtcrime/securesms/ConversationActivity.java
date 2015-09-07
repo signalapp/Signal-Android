@@ -788,17 +788,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
-    emojiToggle.attach(emojiDrawer);
-    emojiToggle.setOnClickListener(new EmojiToggleListener());
-    emojiDrawer.setEmojiEventListener(new EmojiEventListener() {
-      @Override public void onKeyEvent(KeyEvent keyEvent) {
-        composeText.dispatchKeyEvent(keyEvent);
-      }
+    if (TextSecurePreferences.isSystemEmojiPreferred(this)) {
+      emojiToggle.setVisibility(View.GONE);
+    } else {
+      emojiToggle.attach(emojiDrawer);
+      emojiToggle.setOnClickListener(new EmojiToggleListener());
+      emojiDrawer.setEmojiEventListener(new EmojiEventListener() {
+        @Override public void onKeyEvent(KeyEvent keyEvent) {
+          composeText.dispatchKeyEvent(keyEvent);
+        }
 
-      @Override public void onEmojiSelected(String emoji) {
-        composeText.insertEmoji(emoji);
-      }
-    });
+        @Override public void onEmojiSelected(String emoji) {
+          composeText.insertEmoji(emoji);
+        }
+      });
+    }
 
     composeText.setOnEditorActionListener(sendButtonListener);
     attachButton.setOnClickListener(new AttachButtonListener());

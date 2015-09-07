@@ -878,6 +878,8 @@
     <string name="preferences_chats__when_roaming">When roaming</string>
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_trimming">Message trimming</string>
+    <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
+    <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Disable TextSecure\'s built-in emoji support</string>
 
     <!-- **************************************** -->
     <!-- menus -->
