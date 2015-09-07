@@ -437,7 +437,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     }
   }
 
-  private class RegistrationReceiver extends BroadcastReceiver {
+  private static class RegistrationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
       abortBroadcast();

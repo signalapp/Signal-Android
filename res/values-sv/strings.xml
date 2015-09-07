@@ -611,6 +611,9 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__name_and_message">Namn och meddelande</string>
   <string name="arrays__name_only">Endast namn</string>
   <string name="arrays__neither">Varken eller</string>
+  <string name="arrays__images">Bilder</string>
+  <string name="arrays__audio">Ljud</string>
+  <string name="arrays__video">Video</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d timme</item>
@@ -695,6 +698,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Begär en leveransrapport för varje SMS-meddelande du skickar</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Radera automatiskt gamla meddelanden när en konversationstråd överstiger en specificerad längd</string>
   <string name="preferences__delete_old_messages">Radera gamla meddelanden</string>
+  <string name="preferences__chats">Konversationer och media</string>
   <string name="preferences__conversation_length_limit">Konversationstrådslängd</string>
   <string name="preferences__trim_all_threads_now">Trimma alla trådar nu</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skanna igenom alla konversationstrådar och framtvinga konversationstrådslängder.</string>

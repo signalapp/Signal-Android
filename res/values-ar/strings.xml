@@ -378,6 +378,7 @@
   <string name="KeyCachingService_passphrase_cached">تيكست سيكيور غير مقفل</string>
   <string name="KeyCachingService_lock">أقفل بالعبارة السرية</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
   <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string>
   <string name="MessageNotifier_no_subject">(بلا عنوان)</string>
@@ -392,6 +393,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">الردود السريعة غير متاحة عند قفل تيكست سيكيور</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">رسالة تيكست سيكيور جديدة</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">المحتويات مخفية</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة:</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة:</string>
@@ -579,7 +582,7 @@
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
   <string name="AndroidManifest_manage_linked_devices">إدارة الأجهزة المتصلة</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">استيراد \ تصدير</string>
+  <string name="arrays__import_export">استيراد / تصدير</string>
   <string name="arrays__my_identity_key">مفتاح هويتي</string>
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
@@ -590,6 +593,8 @@
   <string name="arrays__settings_default">الإعدادات الافتراضية</string>
   <string name="arrays__enabled">مفعل</string>
   <string name="arrays__disabled">معطل</string>
+  <string name="arrays__name_and_message">الاسم والرسالة</string>
+  <string name="arrays__name_only">الاسم فقط</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="zero">%d صفر</item>
@@ -627,7 +632,8 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">تحديد مهلة العبارة السرية</string>
   <string name="preferences__pref_timeout_interval_title">مدة الصلاحية</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">الوقت اللازم ليتم مسح العبارة السرية من الذاكرة</string>
-  <string name="preferences__notifications">التنبيهات</string>
+  <string name="preferences__notifications">الإشعارات</string>
+  <string name="preferences__enable_message_notifications">تفعيل إشعارات الرسالة</string>
   <string name="preferences__led_color">لون ضوء التنبيه LED</string>
   <string name="preferences__led_color_unknown">مجهول</string>
   <string name="preferences__pref_led_blink_title">نمط وميض LED</string>
@@ -637,7 +643,7 @@
   <string name="preferences__pref_led_blink_custom_pattern_set">تم إعداد أسولب وميض LED!</string>
   <string name="preferences__sound">صوت</string>
   <string name="preferences__change_notification_sound">تغيير صوت التنبيه</string>
-  <string name="preferences__inthread_notifications">تنبيهات داخل المحادثة</string>
+  <string name="preferences__inthread_notifications">إشعارات داخل المحادثة</string>
   <string name="preferences__play_inthread_notifications">تفعيل تنبيه صوتي أثناء مطالعة محادثة نشطة</string>
   <string name="preferences__repeat_alerts">تكرار التنبيهات</string>
   <string name="preferences__never">أبدا</string>
@@ -695,6 +701,7 @@
   <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يستخدم الواي فاي لتسليم الرسائل النصية والوسائط المتعددة ( قم بالتفعيل فقط في حال تفعيل الاتصال عبر الواي فاي بهاتفك)</string>
   <string name="preferences_app_protection__blocked_contacts">جهات الاتصال المحظورة</string>
+  <string name="preferences_notifications__display_in_notifications">أظهر في الإشعارات </string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

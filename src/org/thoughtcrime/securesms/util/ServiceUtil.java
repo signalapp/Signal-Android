@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
@@ -12,5 +13,9 @@ public class ServiceUtil {
 
   public static WindowManager getWindowManager(Context context) {
     return (WindowManager) context.getSystemService(Activity.WINDOW_SERVICE);
+  }
+
+  public static ConnectivityManager getConnectivityManager(Context context) {
+    return (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
   }
 }

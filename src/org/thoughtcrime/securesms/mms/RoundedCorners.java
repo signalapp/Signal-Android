@@ -10,11 +10,12 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils;
+
+import org.thoughtcrime.securesms.util.ResUtil;
 
 public class RoundedCorners extends BitmapTransformation {
   private final boolean crop;
@@ -26,6 +27,10 @@ public class RoundedCorners extends BitmapTransformation {
     this.crop      = crop;
     this.radius    = radius;
     this.colorHint = colorHint;
+  }
+
+  public RoundedCorners(@NonNull Context context, int radius) {
+    this(context, true, radius, ResUtil.getColor(context, android.R.attr.windowBackground));
   }
 
   @Override protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth,

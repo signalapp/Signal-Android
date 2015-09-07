@@ -1,13 +1,11 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.text.TextUtils;
+import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.MediaKey;
-import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -83,7 +81,7 @@ public class IncomingMediaMessage {
             media.setName(Util.toIsoBytes(relay.get()));
           }
 
-          media.setInProgress(true);
+          media.setTransferProgress(PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING);
 
           this.body.addPart(media);
         }

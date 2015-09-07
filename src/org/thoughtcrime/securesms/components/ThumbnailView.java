@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableTypeRequest;
@@ -29,6 +31,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.jobs.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
@@ -37,6 +40,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.pdu.PduPart;
@@ -44,15 +48,18 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class ThumbnailView extends FrameLayout {
   private static final String TAG = ThumbnailView.class.getSimpleName();
 
-  private boolean       showProgress = true;
+  private boolean       hideControls;
   private ImageView     image;
   private ProgressWheel progress;
+  private ImageView     removeButton;
+  private ImageButton   downloadButton;
   private int           backgroundColorHint;
   private int           radius;
 
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
   private ThumbnailClickListener          thumbnailClickListener = null;
+  private ThumbnailClickListener          downloadClickListener  = null;
   private String                          slideId                = null;
   private Slide                           slide                  = null;
 
@@ -64,17 +71,27 @@ public class ThumbnailView extends FrameLayout {
     this(context, attrs, 0);
   }
 
-  public ThumbnailView(Context context, AttributeSet attrs, int defStyle) {
+  public ThumbnailView(final Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     inflate(context, R.layout.thumbnail_view, this);
-    radius   = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
-    image    = (ImageView)     findViewById(R.id.thumbnail_image);
-    progress = (ProgressWheel) findViewById(R.id.progress_wheel);
+    radius         = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
+    image          = (ImageView)     findViewById(R.id.thumbnail_image);
+    progress       = (ProgressWheel) findViewById(R.id.progress_wheel);
+    downloadButton = (ImageButton)   findViewById(R.id.download_button);
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0);
       backgroundColorHint = typedArray.getColor(0, Color.BLACK);
       typedArray.recycle();
+    }
+  }
+
+  @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    super.onLayout(changed, left, top, right, bottom);
+    if (removeButton != null) {
+      final int paddingHorizontal = removeButton.getWidth()  / 2;
+      final int paddingVertical   = removeButton.getHeight() / 2;
+      image.setPadding(paddingHorizontal, paddingVertical, paddingHorizontal, 0);
     }
   }
 
@@ -88,12 +105,26 @@ public class ThumbnailView extends FrameLayout {
     EventBus.getDefault().unregister(this);
   }
 
+  private ProgressWheel getProgressWheel() {
+    if (progress == null) progress = ViewUtil.inflateStub(this, R.id.progress_wheel_stub);
+    return progress;
+  }
+
+  private void hideProgressWheel() {
+    if (progress != null) progress.setVisibility(GONE);
+  }
+
+  private ImageView getRemoveButton() {
+    if (removeButton == null) removeButton = ViewUtil.inflateStub(this, R.id.remove_button_stub);
+    return removeButton;
+  }
+
   @SuppressWarnings("unused")
   public void onEventAsync(final PartProgressEvent event) {
     if (this.slide != null && event.partId.equals(this.slide.getPart().getPartId())) {
       Util.runOnMain(new Runnable() {
         @Override public void run() {
-          progress.setInstantProgress(((float)event.progress) / event.total);
+          getProgressWheel().setInstantProgress(((float)event.progress) / event.total);
           if (event.progress >= event.total) animateOutProgress();
         }
       });
@@ -115,7 +146,7 @@ public class ThumbnailView extends FrameLayout {
     String slideId = id + "::" + timestamp;
 
     if (!slideId.equals(this.slideId)) {
-      progress.setVisibility(GONE);
+      hideProgressWheel();
       image.setImageDrawable(null);
       this.slide   = null;
       this.slideId = slideId;
@@ -136,30 +167,45 @@ public class ThumbnailView extends FrameLayout {
       return;
     }
 
-    this.slide = slide;
-    if (slide.isInProgress() && showProgress) {
-      progress.spin();
-      progress.setVisibility(VISIBLE);
+    if (!hideControls && slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_STARTED) {
+      getProgressWheel().spin();
+      getProgressWheel().setVisibility(VISIBLE);
+      downloadButton.setVisibility(GONE);
+    } else if (!hideControls && slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING ||
+                                slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_FAILED)
+    {
+      hideProgressWheel();
+      downloadButton.setVisibility(VISIBLE);
     } else {
-      progress.setVisibility(GONE);
+      hideProgressWheel();
+      downloadButton.setVisibility(GONE);
     }
+
+    this.slide = slide;
     buildGlideRequest(slide, masterSecret).into(image);
     setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
+    downloadButton.setOnClickListener(new ThumbnailClickDispatcher(downloadClickListener, slide));
   }
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
     this.thumbnailClickListener = listener;
   }
 
+  public void setRemoveClickListener(OnClickListener listener) {
+    getRemoveButton().setOnClickListener(listener);
+  }
+
+  public void setDownloadClickListener(ThumbnailClickListener listener) {
+    this.downloadClickListener = listener;
+  }
+
   public void clear() {
     if (isContextValid()) Glide.clear(this);
   }
 
-  public void setShowProgress(boolean showProgress) {
-    this.showProgress = showProgress;
-    if (progress.getVisibility() == View.VISIBLE && !showProgress) {
-      animateOutProgress();
-    }
+  public void hideControls(boolean hideControls) {
+    this.hideControls = hideControls;
+    if (hideControls) hideProgressWheel();
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
@@ -172,7 +218,6 @@ public class ThumbnailView extends FrameLayout {
   private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
                                                   @Nullable MasterSecret masterSecret)
   {
-    Log.w(TAG, "slide type " + slide.getContentType());
     final GenericRequestBuilder builder;
     if (slide.getThumbnailUri() != null) {
       builder = buildThumbnailGlideRequest(slide, masterSecret);
@@ -180,7 +225,7 @@ public class ThumbnailView extends FrameLayout {
       builder = buildPlaceholderGlideRequest(slide);
     }
 
-    if (slide.isInProgress() && showProgress) {
+    if (slide.isInProgress() && !hideControls) {
       return builder;
     } else {
       return builder.error(R.drawable.ic_missing_thumbnail_picture);
@@ -221,16 +266,17 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private void animateOutProgress() {
+    if (progress == null) return;
     AlphaAnimation animation = new AlphaAnimation(1f, 0f);
     animation.setDuration(200);
     animation.setAnimationListener(new AnimationListener() {
       @Override public void onAnimationStart(Animation animation) { }
       @Override public void onAnimationRepeat(Animation animation) { }
       @Override public void onAnimationEnd(Animation animation) {
-        progress.setVisibility(View.GONE);
+        getProgressWheel().setVisibility(View.GONE);
       }
     });
-    progress.startAnimation(animation);
+    getProgressWheel().startAnimation(animation);
   }
 
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
@@ -281,7 +327,7 @@ public class ThumbnailView extends FrameLayout {
     void onClick(View v, Slide slide);
   }
 
-  private class ThumbnailClickDispatcher implements View.OnClickListener {
+  private static class ThumbnailClickDispatcher implements View.OnClickListener {
     private ThumbnailClickListener listener;
     private Slide                  slide;
 
@@ -300,7 +346,7 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
-  private static class PduThumbnailSetListener implements RequestListener<Object, GlideDrawable> {
+  private class PduThumbnailSetListener implements RequestListener<Object, GlideDrawable> {
     private PduPart part;
 
     public PduThumbnailSetListener(@NonNull PduPart part) {
@@ -317,6 +363,11 @@ public class ThumbnailView extends FrameLayout {
       if (resource instanceof GlideBitmapDrawable) {
         Log.w(TAG, "onResourceReady() for a Bitmap. Saving.");
         part.setThumbnail(((GlideBitmapDrawable)resource).getBitmap());
+      }
+      if (resource.getIntrinsicWidth() < resource.getIntrinsicHeight()) {
+        getRemoveButton().setPadding(0, 0, (getWidth() - resource.getIntrinsicWidth()) / 2, 0);
+      } else {
+        getRemoveButton().setPadding(0, (getHeight() - resource.getIntrinsicHeight()) / 2, 0, 0);
       }
       return false;
     }

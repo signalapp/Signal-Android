@@ -414,6 +414,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure está destrancado</string>
   <string name="KeyCachingService_lock">Trancar com frase-chave</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensagens novas em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
   <string name="MessageNotifier_locked_message">Mensagem trancada...</string>
   <string name="MessageNotifier_media_message_with_text">Mensagem multimídia: %s</string>
@@ -429,6 +430,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Responder rápido não está disponível quando o TextSecure está travado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nova mensagem TextSecure</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdo escondido</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
@@ -655,6 +658,9 @@ falhou.</string>
   <string name="arrays__settings_default">Padrão de configurações</string>
   <string name="arrays__enabled">Habilitado</string>
   <string name="arrays__disabled">Desabilitado</string>
+  <string name="arrays__name_and_message">Nome e mensagem</string>
+  <string name="arrays__name_only">Apenas nome</string>
+  <string name="arrays__neither">Nenhum</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
@@ -689,6 +695,7 @@ falhou.</string>
   <string name="preferences__pref_timeout_interval_title">Intervalo de expiração</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Tempo a esperar antes de remover a frase-chave da memória</string>
   <string name="preferences__notifications">Notificações</string>
+  <string name="preferences__enable_message_notifications">Habilitar notificações de mensagem</string>
   <string name="preferences__led_color">Cor do LED</string>
   <string name="preferences__led_color_unknown">Desconhecida</string>
   <string name="preferences__pref_led_blink_title">Padrão de piscagem do LED</string>
@@ -757,6 +764,7 @@ falhou.</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>
   <string name="preferences_app_protection__blocked_contacts">Contatos bloqueados</string>
+  <string name="preferences_notifications__display_in_notifications">Exibir em notificações</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

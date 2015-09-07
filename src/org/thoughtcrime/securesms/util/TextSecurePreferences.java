@@ -1,14 +1,24 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.annotation.ArrayRes;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.h6ah4i.android.compat.content.SharedPreferenceCompat;
+
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TextSecurePreferences {
 
@@ -74,6 +84,10 @@ public class TextSecurePreferences {
 
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
   public  static final String NOTIFICATION_PRIVACY_PREF        = "pref_notification_privacy";
+
+  public  static final String MEDIA_DOWNLOAD_MOBILE_PREF       = "pref_media_download_mobile";
+  public  static final String MEDIA_DOWNLOAD_WIFI_PREF         = "pref_media_download_wifi";
+  public  static final String MEDIA_DOWNLOAD_ROAMING_PREF      = "pref_media_download_roaming";
 
   public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {
     return new NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"));
@@ -443,6 +457,25 @@ public class TextSecurePreferences {
     return Integer.parseInt(getStringPreference(context, THREAD_TRIM_LENGTH, "500"));
   }
 
+  public static @NonNull Set<String> getMobileMediaDownloadAllowed(Context context) {
+    return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_MOBILE_PREF, R.array.pref_media_download_mobile_data_default);
+  }
+
+  public static @NonNull Set<String> getWifiMediaDownloadAllowed(Context context) {
+    return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_WIFI_PREF, R.array.pref_media_download_wifi_default);
+  }
+
+  public static @NonNull Set<String> getRoamingMediaDownloadAllowed(Context context) {
+    return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_ROAMING_PREF, R.array.pref_media_download_roaming_default);
+  }
+
+  private static @NonNull Set<String> getMediaDownloadAllowed(Context context, String key, @ArrayRes int defaultValuesRes) {
+    return getStringSetPreference(context,
+                                  key,
+                                  new HashSet<>(Arrays.asList(context.getResources().getStringArray(defaultValuesRes))));
+  }
+
+
   public static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
@@ -477,5 +510,16 @@ public class TextSecurePreferences {
 
   private static void setLongPreference(Context context, String key, long value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
+  }
+
+  private static Set<String> getStringSetPreference(Context context, String key, Set<String> defaultValues) {
+    final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    if (prefs.contains(key)) {
+      return SharedPreferenceCompat.getStringSet(PreferenceManager.getDefaultSharedPreferences(context),
+                                                 key,
+                                                 Collections.<String>emptySet());
+    } else {
+      return defaultValues;
+    }
   }
 }

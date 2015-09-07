@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -24,6 +25,7 @@ import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.ExecutionException;
 
 public class AvatarDownloadJob extends MasterSecretJob {
 
@@ -61,14 +63,11 @@ public class AvatarDownloadJob extends MasterSecretJob {
         }
 
         attachment = downloadAttachment(relay, avatarId);
-
-        InputStream scaleInputStream   = new AttachmentCipherInputStream(attachment, key);
-        InputStream measureInputStream = new AttachmentCipherInputStream(attachment, key);
-        Bitmap      avatar             = BitmapUtil.createScaledBitmap(measureInputStream, scaleInputStream, 500, 500);
+        Bitmap avatar = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key), 500, 500);
 
         database.updateAvatar(groupId, avatar);
       }
-    } catch (InvalidMessageException | BitmapDecodingException | NonSuccessfulResponseCodeException e) {
+    } catch (ExecutionException | NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);
     } finally {
       if (attachment != null)

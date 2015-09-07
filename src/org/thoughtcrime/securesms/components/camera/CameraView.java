@@ -441,7 +441,7 @@ public class CameraView extends FrameLayout {
     ApplicationContext.getInstance(getContext()).getJobManager().add(job);
   }
 
-  private abstract class SerializedAsyncTask<Result> extends Job {
+  private static abstract class SerializedAsyncTask<Result> extends Job {
 
     public SerializedAsyncTask() {
       super(JobParameters.newBuilder().withGroupId(CameraView.class.getSimpleName()).create());
