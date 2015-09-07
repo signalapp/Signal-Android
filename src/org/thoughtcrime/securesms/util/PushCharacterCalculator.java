@@ -17,10 +17,14 @@
 package org.thoughtcrime.securesms.util;
 
 public class PushCharacterCalculator extends CharacterCalculator {
-  private static final int MAX_SIZE = 2000;
+  private static final int MAX_SIZE     = 2000;
+  private static final int MAX_MESSAGES = 1;
   @Override
   public CharacterState calculateCharacters(int charactersSpent) {
-    return new CharacterState(1, MAX_SIZE - charactersSpent, MAX_SIZE);
+    int mod      = charactersSpent % MAX_SIZE;
+    int diff     = charactersSpent - mod;
+    int messages = Math.min((diff / MAX_SIZE) + 1, MAX_MESSAGES);
+    return new CharacterState(messages, MAX_SIZE - charactersSpent, MAX_SIZE, MAX_MESSAGES);
   }
 }
 

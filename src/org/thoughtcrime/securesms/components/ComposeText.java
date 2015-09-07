@@ -65,7 +65,6 @@ public class ComposeText extends EmojiEditText {
 
   public void setTransport(TransportOption transport) {
     final boolean enterSends = TextSecurePreferences.isEnterSendsEnabled(getContext());
-
     int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
     int inputType  = getInputType();
 

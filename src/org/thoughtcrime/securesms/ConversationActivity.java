@@ -163,6 +163,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected ComposeText           composeText;
   private   AnimatingToggle       buttonToggle;
   private   SendButton            sendButton;
+  private   ImageButton           noSendButton;
+  private   CharacterState        characterState;
   private   ImageButton           attachButton;
   protected ConversationTitleView titleView;
   private   TextView              charactersLeft;
@@ -248,7 +250,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView.setTitle(recipients);
     setActionBarColor(recipients.getColor());
     setBlockedUserState(recipients);
-    calculateCharactersRemaining();
+    updateToggleButtonState();
 
     MessageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
@@ -731,7 +733,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isEncryptedConversation) sendButton.setDefaultTransport(Type.TEXTSECURE);
     else                         sendButton.setDefaultTransport(Type.SMS);
 
-    calculateCharactersRemaining();
+    updateToggleButtonState();
     supportInvalidateOptionsMenu();
   }
 
@@ -753,6 +755,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView      = (ConversationTitleView) getSupportActionBar().getCustomView();
     buttonToggle   = (AnimatingToggle)       findViewById(R.id.button_toggle);
     sendButton     = (SendButton)            findViewById(R.id.send_button);
+    noSendButton   = (ImageButton)           findViewById(R.id.no_send_button);
     attachButton   = (ImageButton)           findViewById(R.id.attach_button);
     composeText    = (ComposeText)           findViewById(R.id.embedded_text_editor);
     charactersLeft = (TextView)              findViewById(R.id.space_left);
@@ -799,8 +802,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendButton.addOnTransportChangedListener(new OnTransportChangedListener() {
       @Override
       public void onChange(TransportOption newTransport) {
-        calculateCharactersRemaining();
         composeText.setTransport(newTransport);
+        updateToggleButtonState();
         buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
       }
     });
@@ -871,7 +874,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         if (eventThreadId == threadId || eventThreadId == -2) {
           initializeSecurity();
-          calculateCharactersRemaining();
+          updateToggleButtonState();
         }
       }
     };
@@ -1075,7 +1078,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void calculateCharactersRemaining() {
     int             charactersSpent = composeText.getText().toString().length();
     TransportOption transportOption = sendButton.getSelectedTransport();
-    CharacterState  characterState  = transportOption.calculateCharacters(charactersSpent);
+    characterState  = transportOption.calculateCharacters(charactersSpent);
 
     if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
       charactersLeft.setText(characterState.charactersRemaining + "/" + characterState.maxMessageSize
@@ -1250,12 +1253,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
-    if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
-      buttonToggle.display(attachButton);
-      quickAttachmentToggle.show();
+    calculateCharactersRemaining();
+
+    if (composeText.getText().length() == 0) {
+      if (!attachmentManager.isAttachmentPresent()) {
+        buttonToggle.display(attachButton);
+        quickAttachmentToggle.show();
+      } else {
+        buttonToggle.display(sendButton);
+        quickAttachmentToggle.hide();
+      }
     } else {
-      buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
+
+      if (characterState.charactersRemaining <= 0 &&
+              characterState.messagesSpent >= characterState.maxNumberOfMessages) {
+        buttonToggle.display(noSendButton);
+      } else {
+        buttonToggle.display(sendButton);
+      }
     }
   }
 
@@ -1316,7 +1332,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-      if (actionId == EditorInfo.IME_ACTION_SEND) {
+      updateToggleButtonState();
+      if (actionId == EditorInfo.IME_ACTION_SEND && buttonToggle.isView(sendButton)) {
         sendButton.performClick();
         return true;
       }
@@ -1337,9 +1354,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
+      updateToggleButtonState();
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (TextSecurePreferences.isEnterSendsEnabled(ConversationActivity.this)) {
+          if (TextSecurePreferences.isEnterSendsEnabled(ConversationActivity.this) &&
+              buttonToggle.isView(sendButton)) {
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
             return true;
@@ -1361,8 +1380,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void afterTextChanged(Editable s) {
-      calculateCharactersRemaining();
-
       if (composeText.getText().length() == 0 || beforeLength == 0) {
         composeText.postDelayed(new Runnable() {
           @Override
@@ -1374,7 +1391,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    public void onTextChanged(CharSequence s, int start, int before,int count) {}
+    public void onTextChanged(CharSequence s, int start, int before,int count) {
+      updateToggleButtonState();
+    }
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {}
@@ -1383,6 +1402,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void setComposeText(String text) {
     this.composeText.setText(text);
+    updateToggleButtonState();
   }
 
   @Override
