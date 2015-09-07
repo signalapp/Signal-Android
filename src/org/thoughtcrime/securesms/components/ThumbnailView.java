@@ -183,7 +183,11 @@ public class ThumbnailView extends FrameLayout {
 
     this.slide = slide;
     buildGlideRequest(slide, masterSecret).into(image);
-    setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
+    if (this.slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_DONE) {
+      setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
+    } else {
+      setOnClickListener(null);
+    }
     downloadButton.setOnClickListener(new ThumbnailClickDispatcher(downloadClickListener, slide));
   }
 
@@ -338,10 +342,9 @@ public class ThumbnailView extends FrameLayout {
 
     @Override
     public void onClick(View view) {
-      if (listener != null) {
+      if (listener != null)
+      {
         listener.onClick(view, slide);
-      } else {
-        Log.w(TAG, "onClick, but no thumbnail click listener attached.");
       }
     }
   }
