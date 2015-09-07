@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.CaptureProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
 
@@ -103,8 +104,9 @@ public class AttachmentManager {
       @Override protected @Nullable Slide doInBackground(Void... params) {
         long start = System.currentTimeMillis();
         try {
-          final Slide slide = mediaType.createSlide(context, masterSecret, uri);
-          Log.w(TAG, "slide with size " + slide.getPart().getDataSize() + " took " + (System.currentTimeMillis() - start) + "ms");
+          final long  mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+          final Slide slide     = mediaType.createSlide(context, uri, mediaSize);
+          Log.w(TAG, "slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
           return slide;
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
@@ -235,16 +237,16 @@ public class AttachmentManager {
   public enum MediaType {
     IMAGE, GIF, AUDIO, VIDEO;
 
-    public @NonNull Slide createSlide(@NonNull Context      context,
-                                      @NonNull MasterSecret masterSecret,
-                                      @NonNull Uri          uri)
+    public @NonNull Slide createSlide(@NonNull Context context,
+                                      @NonNull Uri     uri,
+                                               long    dataSize)
         throws IOException
     {
       switch (this) {
-      case IMAGE: return new ImageSlide(context, masterSecret, uri);
-      case GIF:   return new GifSlide(context, masterSecret, uri);
-      case AUDIO: return new AudioSlide(context, uri);
-      case VIDEO: return new VideoSlide(context, uri);
+      case IMAGE: return new ImageSlide(context, uri, dataSize);
+      case GIF:   return new GifSlide(context, uri, dataSize);
+      case AUDIO: return new AudioSlide(context, uri, dataSize);
+      case VIDEO: return new VideoSlide(context, uri, dataSize);
       default:    throw  new AssertionError("unrecognized enum");
       }
     }

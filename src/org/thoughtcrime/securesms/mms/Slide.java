@@ -34,18 +34,12 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public abstract class Slide {
 
-  protected final PduPart      part;
-  protected final Context      context;
-  protected       MasterSecret masterSecret;
+  protected final PduPart part;
+  protected final Context context;
 
   public Slide(Context context, @NonNull PduPart part) {
     this.part    = part;
     this.context = context;
-  }
-
-  public Slide(Context context, @NonNull MasterSecret masterSecret, @NonNull PduPart part) {
-    this(context, part);
-    this.masterSecret = masterSecret;
   }
 
   public String getContentType() {
@@ -92,33 +86,18 @@ public abstract class Slide {
     return !getPart().getPartId().isValid();
   }
 
-  protected static long getMediaSize(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
-    InputStream in = PartAuthority.getPartStream(context, masterSecret, uri);
-    if (in == null) throw new IOException("Couldn't obtain input stream.");
-
-    long   size   = 0;
-    byte[] buffer = new byte[512];
-    int    read;
-
-    while ((read = in.read(buffer)) != -1) {
-      size += read;
-    }
-    in.close();
-
-    return size;
-  }
 
   protected static PduPart constructPartFromUri(@NonNull  Context      context,
-                                                @Nullable MasterSecret masterSecret,
                                                 @NonNull  Uri          uri,
-                                                @NonNull  String       defaultMime)
+                                                @NonNull  String       defaultMime,
+                                                          long         dataSize)
       throws IOException
   {
     final PduPart part            = new PduPart();
     final String  mimeType        = MediaUtil.getMimeType(context, uri);
     final String  derivedMimeType = mimeType != null ? mimeType : defaultMime;
 
-    part.setDataSize(getMediaSize(context, masterSecret, uri));
+    part.setDataSize(dataSize);
     part.setDataUri(uri);
     part.setContentType(derivedMimeType.getBytes());
     part.setContentId((System.currentTimeMillis()+"").getBytes());

@@ -16,17 +16,12 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources.Theme;
-import android.database.Cursor;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.DrawableRes;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.io.IOException;
@@ -36,12 +31,12 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public class VideoSlide extends Slide {
 
-  public VideoSlide(Context context, Uri uri) throws IOException {
-    super(context, constructPartFromUri(context, null, uri, ContentType.VIDEO_UNSPECIFIED));
+  public VideoSlide(Context context, Uri uri, long dataSize) throws IOException {
+    super(context, constructPartFromUri(context, uri, ContentType.VIDEO_UNSPECIFIED, dataSize));
   }
 
-  public VideoSlide(Context context, MasterSecret masterSecret, PduPart part) {
-    super(context, masterSecret, part);
+  public VideoSlide(Context context, PduPart part) {
+    super(context, part);
   }
 
   @Override

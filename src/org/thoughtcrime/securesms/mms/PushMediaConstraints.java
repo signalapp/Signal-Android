@@ -32,7 +32,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getVideoMaxSize() {
-    return 50 * MB;
+    return 100 * MB;
   }
 
   @Override
