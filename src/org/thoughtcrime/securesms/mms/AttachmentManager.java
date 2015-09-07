@@ -87,18 +87,21 @@ public class AttachmentManager {
     captureUri = null;
   }
 
-  public void setMedia(@NonNull final MasterSecret masterSecret,
-                       @NonNull final Uri uri,
-                       @NonNull final MediaType mediaType,
-                       @NonNull final MediaConstraints constraints)
+  public void setMedia(@NonNull final MasterSecret     masterSecret,
+                       @NonNull final Uri              uri,
+                       @NonNull final MediaType        mediaType,
+                       @NonNull final MediaConstraints constraints,
+                                final boolean          isCapture)
   {
     new AsyncTask<Void, Void, Slide>() {
       @Override protected void onPreExecute() {
         slideDeck.clear();
         thumbnail.clear();
-        cleanup();
         thumbnail.showProgressSpinner();
         attachmentView.setVisibility(View.VISIBLE);
+
+        if (isCapture)               captureUri = uri;
+        if (!uri.equals(captureUri)) cleanup();
       }
 
       @Override protected @Nullable Slide doInBackground(Void... params) {
@@ -163,10 +166,6 @@ public class AttachmentManager {
 
   public Uri getCaptureUri() {
     return captureUri;
-  }
-
-  public void setCaptureUri(Uri captureUri) {
-    this.captureUri = captureUri;
   }
 
   public void capturePhoto(Activity activity, Recipients recipients, int requestCode) {

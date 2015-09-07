@@ -290,15 +290,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     switch (reqCode) {
     case PICK_IMAGE:
-      addAttachment(data.getData(), MediaUtil.isGif(MediaUtil.getMimeType(this, data.getData()))
+      setAttachment(data.getData(), MediaUtil.isGif(MediaUtil.getMimeType(this, data.getData()))
                                     ? MediaType.GIF
                                     : MediaType.IMAGE);
       break;
     case PICK_VIDEO:
-      addAttachment(data.getData(), MediaType.VIDEO);
+      setAttachment(data.getData(), MediaType.VIDEO);
       break;
     case PICK_AUDIO:
-      addAttachment(data.getData(), MediaType.AUDIO);
+      setAttachment(data.getData(), MediaType.AUDIO);
       break;
     case PICK_CONTACT_INFO:
       addAttachmentContactInfo(data.getData());
@@ -312,7 +312,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case TAKE_PHOTO:
       if (attachmentManager.getCaptureUri() != null) {
-        addAttachment(attachmentManager.getCaptureUri(), MediaType.IMAGE);
+        setCapturedAttachment(attachmentManager.getCaptureUri(), MediaType.IMAGE);
       }
       break;
     }
@@ -676,9 +676,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (draftText != null)  composeText.setText(draftText);
 
-    if      (draftImage != null) addAttachment(draftImage, MediaType.IMAGE);
-    else if (draftAudio != null) addAttachment(draftAudio, MediaType.AUDIO);
-    else if (draftVideo != null) addAttachment(draftVideo, MediaType.VIDEO);
+    if      (draftImage != null) setAttachment(draftImage, MediaType.IMAGE);
+    else if (draftAudio != null) setAttachment(draftAudio, MediaType.AUDIO);
+    else if (draftVideo != null) setAttachment(draftVideo, MediaType.VIDEO);
 
     if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
       initializeDraftFromDatabase();
@@ -712,11 +712,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           if (draft.getType().equals(Draft.TEXT)) {
             composeText.setText(draft.getValue());
           } else if (draft.getType().equals(Draft.IMAGE)) {
-            addAttachment(Uri.parse(draft.getValue()), MediaType.IMAGE);
+            setAttachment(Uri.parse(draft.getValue()), MediaType.IMAGE);
           } else if (draft.getType().equals(Draft.AUDIO)) {
-            addAttachment(Uri.parse(draft.getValue()), MediaType.AUDIO);
+            setAttachment(Uri.parse(draft.getValue()), MediaType.AUDIO);
           } else if (draft.getType().equals(Draft.VIDEO)) {
-            addAttachment(Uri.parse(draft.getValue()), MediaType.VIDEO);
+            setAttachment(Uri.parse(draft.getValue()), MediaType.VIDEO);
           }
         }
 
@@ -922,8 +922,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void addAttachment(Uri uri, MediaType mediaType) {
-    attachmentManager.setMedia(masterSecret, uri, mediaType, getCurrentConstraints());
+  private void setCapturedAttachment(Uri uri, MediaType mediaType) {
+    setMedia(uri, mediaType, true);
+  }
+
+  private void setAttachment(Uri uri, MediaType mediaType) {
+    setMedia(uri, mediaType, false);
+  }
+
+  private void setMedia(Uri uri, MediaType mediaType, boolean isCapture) {
+    attachmentManager.setMedia(masterSecret, uri, mediaType, getCurrentConstraints(), isCapture);
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
@@ -1245,8 +1253,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onImageCapture(@NonNull final byte[] imageBytes) {
-    attachmentManager.setCaptureUri(CaptureProvider.getInstance(this).create(masterSecret, recipients, imageBytes));
-    addAttachment(attachmentManager.getCaptureUri(), MediaType.IMAGE);
+    setCapturedAttachment(CaptureProvider.getInstance(this).create(masterSecret, recipients, imageBytes),
+                          MediaType.IMAGE);
     quickAttachmentDrawer.hide(false);
   }
 
