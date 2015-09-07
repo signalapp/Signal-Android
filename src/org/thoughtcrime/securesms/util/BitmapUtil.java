@@ -265,7 +265,7 @@ public class BitmapUtil {
     }
     final Bitmap output = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
     final Canvas canvas = new Canvas(output);
-    bitmap = bitmap.createScaledBitmap(bitmap, bitmap.getHeight(), bitmap.getHeight(), true);
+    bitmap = bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
     final int   color = Color.RED;
     final Paint paint = new Paint();
     final Rect  rect  = new Rect(0, 0, size, size);
@@ -280,6 +280,33 @@ public class BitmapUtil {
     canvas.drawBitmap(bitmap, rect, rect, paint);
 
     return output;
+  }
+  public static Bitmap scaleCircleCenterCrop(Context context, Bitmap source, int size) {
+    int sourceWidth = source.getWidth();
+    int sourceHeight = source.getHeight();
+
+    float xScale = (float) size / sourceWidth;
+    float yScale = (float) size / sourceHeight;
+    float scale = Math.max(xScale, yScale);
+
+    float scaledWidth = scale * sourceWidth;
+    float scaledHeight = scale * sourceHeight;
+
+    float left = (size - scaledWidth) / 2;
+    float top = (size - scaledHeight) / 2;
+
+    RectF targetRect = new RectF(left, top, left + scaledWidth, top + scaledHeight);
+
+    Bitmap dest = Bitmap.createBitmap(size, size, source.getConfig());
+    Canvas canvas = new Canvas(dest);
+    final Paint paint = new Paint();
+    final Rect  rect  = new Rect(0, 0, size, size);
+    final RectF rectF = new RectF(rect);
+    canvas.drawOval(rectF, paint);
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    canvas.drawBitmap(source, null, targetRect, paint);
+
+    return dest;
   }
   public static Bitmap createFromDrawable(final Drawable drawable, final int width, final int height) {
     final AtomicBoolean created = new AtomicBoolean(false);

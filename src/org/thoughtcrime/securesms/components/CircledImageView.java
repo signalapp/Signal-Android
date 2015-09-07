@@ -11,7 +11,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -47,8 +46,8 @@ public class CircledImageView extends ImageView {
     int w = getWidth(), low = getHeight();
     low = w < low ? w : low;
     int padding = 0;
-    if(getParent() != null && getParent() instanceof  LinearLayout) {
-      padding = (((LinearLayout)getParent()).getHeight() - low)/2;
+    if(getParent() != null && getParent() instanceof  LinearLayout && low != getHeight()) {
+      padding = (((LinearLayout)getParent()).getHeight() - getHeight())/2;
     }
     if(low > 200) {
       padding = 0;
@@ -63,12 +62,12 @@ public class CircledImageView extends ImageView {
     } else if(!(drawable instanceof SquaringDrawable)){
       b = ((GlideBitmapDrawable) drawable).getBitmap();
       bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-      roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap, low);
+      roundBitmap = BitmapUtil.scaleCircleCenterCrop(context, bitmap, low);
     } else {
       SquaringDrawable squaringDrawable = (SquaringDrawable) drawable;
       b = ((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap();
       bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-      roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap, low);
+      roundBitmap = BitmapUtil.scaleCircleCenterCrop(context, bitmap, low);
     }
     canvas.drawBitmap(roundBitmap, 0, padding, null);
     bitmap.recycle();
