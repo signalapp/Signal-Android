@@ -12,10 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Supprimer tous les anciens messages maintenant ?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Êtes-vous sûr de vouloir réduire toutes les conversations aux %s messages les plus récents ?</string>
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Désactiver la phrase de passe ?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Désactiver la phrase de passe ?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
-        Désactiver le blocage de l\'écran pour les messages ?
-    </string>
+Désactiver l\'écran de protection des messages ?
+</string>
   <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Annulation de l\'enregistrement</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Annulation de l\'enregistrement aux messages TextSecure</string>
@@ -86,7 +86,7 @@ vérifier ce contact.</string>
   <string name="ConversationActivity_select_contact_info">Sélectionner les informations du contact</string>
   <string name="ConversationActivity_compose_message">Rédiger un message</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Désolé, il y a eu une erreur lors de l\'ajout de votre pièce jointe.</string>
-  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Le gif que vous avez sélectionné est trop gros!</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Le gif sélectionné est trop gros !</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Désolé, la vidéo sélectionnée dépasse les restrictions de taille de message (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Désolé, le fichier audio sélectionné dépasse les restrictions de taille de message (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse SMS ou e-mail valide !</string>
@@ -150,16 +150,16 @@ vérifier ce contact.</string>
   <string name="DateUtils_now">À l\'instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_unlink_s">Délier \'%s\'?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si vous dissociez cet appareil, il ne sera plus capable d\'envoyer ou recevoir des messages.</string>
+  <string name="DeviceListActivity_unlink_s">Dissocier \'%s\' ?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si vous dissociez cet appareil, il ne pourra plus envoyer ou recevoir des messages.</string>
   <string name="DeviceListActivity_network_connection_failed">Erreur de connexion réseau...</string>
-  <string name="DeviceListActivity_try_again">Essayer à nouveau</string>
+  <string name="DeviceListActivity_try_again">Réessayer</string>
   <string name="DeviceListActivity_unlinking_device">Dissociation de l\'appareil...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Dissociation de l\'appareil</string>
   <string name="DeviceListActivity_network_failed">Erreur réseau !</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Appareil sans nom</string>
-  <string name="DeviceListItem_linked_s">Associé %s</string>
+  <string name="DeviceListItem_linked_s">%s associé</string>
   <string name="DeviceListItem_last_active_s">Vu pour la dernière fois %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
@@ -256,12 +256,12 @@ Merci de demander à l’expéditeur de mettre à jour TextSecure dans sa versio
         \n- Envoyer des messages en votre nom
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Association de l\'appareil</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Association de l\'appareil...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Association du nouvel appareil...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Appareil associé!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Pas d\'appareil trouvé.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erreur réseau.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR code invalide.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Désolé, vous avez trop d\'appareils déjà associés, essayez d\'en enlever quelques-uns...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Désolé, vous avez associé trop d\'appareils, essayez d\'en enlever quelques-uns...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Entrez la phrase de passe</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icône TextSecure</string>
@@ -400,8 +400,9 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="KeyCachingService_passphrase_cached">TextSecure est déverrouillé</string>
   <string name="KeyCachingService_lock">Verrouiller avec la phrase de passe</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nouveaux messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Plus récent de : %1$s</string>
-  <string name="MessageNotifier_locked_message">Message bloqué...</string>
+  <string name="MessageNotifier_locked_message">Message verrouillé...</string>
   <string name="MessageNotifier_media_message_with_text">Message média : %s</string>
   <string name="MessageNotifier_no_subject">(Aucun sujet)</string>
   <string name="MessageNotifier_message_delivery_failed">La distribution du message a échoué.</string>
@@ -412,9 +413,11 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="MessageNotifier_media_message">Message média</string>
   <string name="MessageNotifier_reply">Répondre</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Les réponses rapides ne sont pas disponibles quand TextSecure est verrouillé !</string>
-  <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Réponse rapide indisponible lorsque TextSecure est verrouillé !</string>
+  <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nouveau message TextSecure</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenus cachés</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe :</string>
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe :</string>
@@ -444,7 +447,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="conversation_activity__compose_description">Composition du message</string>
   <string name="conversation_activity__emoji_toggle_description">Activer le clavier emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Vignette de pièce jointe</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Capture instantanée</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Afficher/cacher la grille des pièces jointes</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Téléchargement du message média</string>
   <string name="conversation_item__mms_image_description">Message média</string>
@@ -626,6 +629,9 @@ par SMS.</string>
   <string name="arrays__settings_default">Paramètres par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
+  <string name="arrays__name_and_message">Nom et message</string>
+  <string name="arrays__name_only">Nom seulement</string>
+  <string name="arrays__neither">Aucun</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d heure</item>
@@ -650,7 +656,7 @@ par SMS.</string>
   <string name="preferences__change_my_passphrase">Modifier ma phrase de passe</string>
   <string name="preferences__enable_passphrase">Activer la phrase de passe</string>
   <string name="preferences__passphrase_summary">Phrase de passe %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Activer l\'écran de blocage pour les messages</string>
+  <string name="preferences__enable_lock_screen_for_messages">Activer l\'écran de protection pour les messages</string>
   <string name="preferences__screen_security">Sécurité d’écran</string>
   <string name="preferences__screen_security_summary">Sécurité d\'écran %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Désactiver les prises d\'écrans dans la liste des applications récentes et à l\'intérieur de l\'application</string>
@@ -660,6 +666,7 @@ par SMS.</string>
   <string name="preferences__pref_timeout_interval_title">Délai d\'expiration</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Délai avant l\'oubli de la phrase de passe en mémoire</string>
   <string name="preferences__notifications">Notifications</string>
+  <string name="preferences__enable_message_notifications">Activer les notifications de messages</string>
   <string name="preferences__led_color">Couleur de la LED</string>
   <string name="preferences__led_color_unknown">Inconnu</string>
   <string name="preferences__pref_led_blink_title">Rythme de clignotement de la LED</string>
@@ -726,8 +733,9 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
 </string>
   <string name="preferences__submit_debug_log">Envoyer un rapport de débogage</string>
   <string name="preferences__support_wifi_calling">Compatibilité \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFi (n\'activer que lorsque \"WiFi Calling\" est activé sur votre appareil).</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFi (n\'activer que si \"WiFi Calling\" est activé sur votre appareil).</string>
   <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string>
+  <string name="preferences_notifications__display_in_notifications">Afficher dans les notifications</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -782,7 +790,7 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="conversation__menu_view_media">Toutes les images</string>
   <string name="conversation__menu_conversation_settings">Préférences de conversation</string>
   <!--conversation_popup-->
-  <string name="conversation_popup__menu_expand_popup">Étendre la popup</string>
+  <string name="conversation_popup__menu_expand_popup">Agrandir la popup</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Ajouter aux contacts</string>
   <!--conversation_group_options-->
@@ -824,6 +832,6 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <!--quick_attachment_drawer-->
-  <string name="quick_camera_unavailable">Caméra indisponible</string>
+  <string name="quick_camera_unavailable">Appareil photo indisponible</string>
   <!--EOF-->
 </resources>

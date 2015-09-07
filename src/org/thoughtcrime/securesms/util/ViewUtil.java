@@ -18,12 +18,14 @@ package org.thoughtcrime.securesms.util;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.TextView;
 
 public class ViewUtil {
@@ -60,5 +62,10 @@ public class ViewUtil {
                                  view.getWidth() - view.getPaddingRight() - view.getPaddingLeft(),
                                  TruncateAt.END);
     }
+  }
+
+  @SuppressWarnings("unchecked")
+  public static <T extends View> T inflateStub(@NonNull View parent, @IdRes int stubId) {
+    return (T)((ViewStub)parent.findViewById(stubId)).inflate();
   }
 }

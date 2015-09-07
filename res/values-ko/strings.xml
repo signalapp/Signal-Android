@@ -370,6 +370,7 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure 잠금 해제 됨</string>
   <string name="KeyCachingService_lock">암호로 잠금</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">대화 %2$d개에 새 메시지 %1$d개</string>
   <string name="MessageNotifier_most_recent_from_s">%1$s님에게서 최근 메시지</string>
   <string name="MessageNotifier_locked_message">잠겨 있는 메시지</string>
   <string name="MessageNotifier_media_message_with_text">미디어 메시지: %s</string>
@@ -385,6 +386,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">TextSecure 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">새 TextSecure 메시지</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">콘텐츠 숨겨짐</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">기존 암호:</string>
   <string name="change_passphrase_activity__new_passphrase">새 암호:</string>
@@ -570,6 +573,12 @@
   <string name="arrays__settings_default">기본설정</string>
   <string name="arrays__enabled">사용</string>
   <string name="arrays__disabled">사용 안함</string>
+  <string name="arrays__name_and_message">이름과 메시지</string>
+  <string name="arrays__name_only">이름</string>
+  <string name="arrays__neither">이름이나 메시지 표시하지 않음</string>
+  <string name="arrays__images">이미지</string>
+  <string name="arrays__audio">오디오</string>
+  <string name="arrays__video">동영상</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d시간 전</item>
@@ -603,6 +612,7 @@
   <string name="preferences__pref_timeout_interval_title">시간 초과 간격</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">메모리에서 암호 삭제되지 않는 기간</string>
   <string name="preferences__notifications">알림</string>
+  <string name="preferences__enable_message_notifications">메시지 알림 사용</string>
   <string name="preferences__led_color">알림등 색상</string>
   <string name="preferences__led_color_unknown">알 수 없음</string>
   <string name="preferences__pref_led_blink_title">알림등 반복 패턴</string>
@@ -652,6 +662,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지 보낼 때마다 전송 확인 요청</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">대화 메시지 저장한도가 초과되면 이전 메시지 자동 삭제</string>
   <string name="preferences__delete_old_messages">이전 메시지 삭제</string>
+  <string name="preferences__chats">대화 및 미디어</string>
   <string name="preferences__conversation_length_limit">대화 메시지 저장한도</string>
   <string name="preferences__trim_all_threads_now">모든 대화 줄이기</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">모든 대화에 메시지 저장한도 적용</string>
@@ -669,6 +680,7 @@
   <string name="preferences__support_wifi_calling">\'Wi-Fi 통화\' 호환 모드</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">\'Wi-Fi 통화\' 사용 과 SMS/MMS Wi-Fi로 전송 설정되면 사용</string>
   <string name="preferences_app_protection__blocked_contacts">차단된 사용자</string>
+  <string name="preferences_notifications__display_in_notifications">알림에 표시</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

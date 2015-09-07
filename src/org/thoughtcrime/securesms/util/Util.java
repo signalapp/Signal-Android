@@ -28,6 +28,7 @@ import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Telephony;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
@@ -119,7 +120,7 @@ public class Util {
     return spanned;
   }
 
-  public static String toIsoString(byte[] bytes) {
+  public static @NonNull String toIsoString(byte[] bytes) {
     try {
       return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
     } catch (UnsupportedEncodingException e) {

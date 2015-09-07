@@ -169,11 +169,11 @@
 
         <item name="reminder_header_background">#ff1d85d7</item>
 
-        <item name="pref_ic_sms_mms">@drawable/ic_message_black</item>
+        <item name="pref_ic_sms_mms">@drawable/ic_textsms_black_32dp</item>
         <item name="pref_ic_notifications">@drawable/ic_notifications_black</item>
         <item name="pref_ic_app_protection">@drawable/ic_app_protection_black</item>
         <item name="pref_ic_appearance">@drawable/ic_brightness_6_black</item>
-        <item name="pref_ic_storage">@drawable/ic_delete_black</item>
+        <item name="pref_ic_chats">@drawable/ic_forum_black_32dp</item>
         <item name="pref_ic_devices">@drawable/ic_devices_black_48dp</item>
         <item name="pref_ic_advanced">@drawable/ic_advanced_black</item>
 
@@ -281,11 +281,11 @@
 
         <item name="reminder_header_background">@color/textsecure_primary_dark</item>
 
-        <item name="pref_ic_sms_mms">@drawable/ic_message_gray</item>
+        <item name="pref_ic_sms_mms">@drawable/ic_textsms_grey_32dp</item>
         <item name="pref_ic_notifications">@drawable/ic_notifications_gray</item>
         <item name="pref_ic_app_protection">@drawable/ic_app_protection_gray</item>
         <item name="pref_ic_appearance">@drawable/ic_brightness_6_gray</item>
-        <item name="pref_ic_storage">@drawable/ic_delete_gray</item>
+        <item name="pref_ic_chats">@drawable/ic_forum_grey_32dp</item>
         <item name="pref_ic_devices">@drawable/ic_devices_grey600_48dp</item>
         <item name="pref_ic_advanced">@drawable/ic_advanced_gray</item>
 

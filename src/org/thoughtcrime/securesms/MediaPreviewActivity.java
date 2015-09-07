@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -56,7 +55,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private MasterSecret masterSecret;
 
-  private Bitmap            bitmap;
   private ZoomingImageView  image;
   private Uri               mediaUri;
   private String            mediaType;
@@ -166,10 +164,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private void cleanupMedia() {
     image.setImageDrawable(null);
-    if (bitmap != null) {
-      bitmap.recycle();
-      bitmap = null;
-    }
   }
 
   private void saveToDisk() {

@@ -397,6 +397,7 @@
   <string name="KeyCachingService_passphrase_cached">Сигурне поруке су откључане</string>
   <string name="KeyCachingService_lock">Закључај лозинком</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нових порука у %2$d преписки</string>
   <string name="MessageNotifier_most_recent_from_s">Најскорија од: %1$s</string>
   <string name="MessageNotifier_locked_message">Закључана порука...</string>
   <string name="MessageNotifier_media_message_with_text">Мултимедијална порука: %s</string>
@@ -412,6 +413,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Брзи одговор није доступан ако су Сигурне поруке закључане!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Нова сигурна порука</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Садржај сакривен</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ЛОЗИНКА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>
@@ -624,6 +627,9 @@
   <string name="arrays__settings_default">Подразумевана поставка</string>
   <string name="arrays__enabled">Омогућена</string>
   <string name="arrays__disabled">Онемогућена</string>
+  <string name="arrays__name_and_message">Име и порука</string>
+  <string name="arrays__name_only">Само име</string>
+  <string name="arrays__neither">Ниједно</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d сат</item>
@@ -659,6 +665,7 @@
   <string name="preferences__pref_timeout_interval_title">Интервал истека</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Време чекања пре уклањања лозинке из меморије</string>
   <string name="preferences__notifications">Обавештења</string>
+  <string name="preferences__enable_message_notifications">Обавештења о порукама</string>
   <string name="preferences__led_color">Боја ЛЕД светла</string>
   <string name="preferences__led_color_unknown">Непозната</string>
   <string name="preferences__pref_led_blink_title">Трептање ЛЕД светла</string>
@@ -726,6 +733,7 @@
   <string name="preferences__support_wifi_calling">Компатибилност са „бежичним позивањем“</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Омогућите ако ваш уређај доставља СМС/ММС преко бежичне мреже (омогућите само ако је „WiFi Calling“ омогућено на вашем уређају)</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
+  <string name="preferences_notifications__display_in_notifications">Прикажи у обавештењу</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

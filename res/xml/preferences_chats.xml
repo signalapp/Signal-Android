@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:key="media_download" android:title="@string/preferences_chats__media_auto_download">
+        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+                android:title="@string/preferences_chats__when_using_mobile_data"
+                android:key="pref_media_download_mobile"
+                android:defaultValue="@array/pref_media_download_mobile_data_default"
+                android:persistent="true"
+                android:entries="@array/pref_media_download_values"
+                android:entryValues="@array/pref_media_download_entries" />
+
+        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+                android:title="@string/preferences_chats__when_using_wifi"
+                android:key="pref_media_download_wifi"
+                android:defaultValue="@array/pref_media_download_wifi_default"
+                android:persistent="true"
+                android:entries="@array/pref_media_download_values"
+                android:entryValues="@array/pref_media_download_entries" />
+
+        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+                android:title="@string/preferences_chats__when_roaming"
+                android:key="pref_media_download_roaming"
+                android:defaultValue="@array/pref_media_download_roaming_default"
+                android:persistent="true"
+                android:entries="@array/pref_media_download_values"
+                android:entryValues="@array/pref_media_download_entries" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="message_trimming" android:title="@string/preferences_chats__message_trimming">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_trim_threads"
+            android:summary="@string/preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length"
+            android:title="@string/preferences__delete_old_messages" />
+
+        <EditTextPreference android:defaultValue="500"
+                            android:key="pref_trim_length"
+                            android:title="@string/preferences__conversation_length_limit"
+                            android:inputType="number"
+                            android:dependency="pref_trim_threads" />
+
+        <Preference android:key="pref_trim_now"
+                    android:title="@string/preferences__trim_all_threads_now"
+                    android:summary="@string/preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits"
+                    android:dependency="pref_trim_threads" />
+    </PreferenceCategory>
+</PreferenceScreen>
