@@ -40,6 +40,7 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
 
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
+  private static final String SYSTEM_EMOJI_PREF     = TextSecurePreferences.SYSTEM_EMOJI_PREF;
 
   private static final int PICK_IDENTITY_CONTACT = 1;
 
