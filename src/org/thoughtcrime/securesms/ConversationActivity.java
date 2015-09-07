@@ -252,7 +252,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         MessageNotifier.setVisibleThread(threadId);
         markThreadAsRead();
         initializeEnabledCheck();
-        if(DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId) == null) {
+        if(DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId) == null && threadId != -1) {
             finish();
         };
     }
