@@ -78,8 +78,8 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
     final PartDatabase db     = DatabaseFactory.getPartDatabase(context);
     final PduPart      part   = db.getPart(partId);
     if (part == null) {
-      Log.w(TAG, "part was null");
-      return false;
+      Log.w(TAG, "part was null, returning vacuous true");
+      return true;
     }
 
     Log.w(TAG, "part transfer progress is " + part.getTransferProgress());
