@@ -315,9 +315,16 @@ public class ProfileFragment extends Fragment {
             leaveGroup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                handleLeavePushGroup();
+                    if(isActiveGroup()) {
+                        handleLeavePushGroup();
+                    } else {
+                        handleDeleteThread();
+                    }
                 }
             });
+            if(!isActiveGroup()) {
+                leaveGroup.setText(getString(R.string.conversation__menu_delete_thread));
+            }
 
             heightMemberList = GUtil.setListViewHeightBasedOnChildren(groupMember);
         }
@@ -506,6 +513,36 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(self, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
                 }
                 getActivity().finish();
+            }
+        });
+
+        builder.setNegativeButton(R.string.no, null);
+        builder.show();
+    }
+    private boolean isActiveGroup() {
+        try {
+            byte[] groupId = GroupUtil.getDecodedId(recipients.getPrimaryRecipient().getNumber());
+            GroupDatabase.GroupRecord record = DatabaseFactory.getGroupDatabase(getActivity()).getGroup(groupId);
+
+            return record != null && record.isActive();
+        } catch (IOException e) {
+            Log.w("ConversationActivity", e);
+            return false;
+        }
+    }
+    private void handleDeleteThread() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.ConversationActivity_delete_thread_confirmation);
+        builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
+        builder.setCancelable(true);
+        builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (threadId > 0) {
+                    DatabaseFactory.getThreadDatabase(getActivity()).deleteConversation(threadId);
+                    getActivity().finish();
+                }
             }
         });
 
