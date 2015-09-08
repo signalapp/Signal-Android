@@ -68,4 +68,9 @@ public class ViewUtil {
   public static <T extends View> T inflateStub(@NonNull View parent, @IdRes int stubId) {
     return (T)((ViewStub)parent.findViewById(stubId)).inflate();
   }
+
+  @SuppressWarnings("unchecked")
+  public static <T extends View> T findById(@NonNull View parent, @IdRes int resId) {
+    return (T) parent.findViewById(resId);
+  }
 }

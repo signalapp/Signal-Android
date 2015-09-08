@@ -25,6 +25,7 @@ import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -72,6 +73,11 @@ public abstract class Slide {
 
   public boolean isInProgress() {
     return part.isInProgress();
+  }
+
+  public boolean isPendingDownload() {
+    return getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_FAILED ||
+           getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING;
   }
 
   public long getTransferProgress() {
