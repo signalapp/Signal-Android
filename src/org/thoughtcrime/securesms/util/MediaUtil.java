@@ -95,7 +95,7 @@ public class MediaUtil {
     if (in == null) throw new IOException("Couldn't obtain input stream.");
 
     long   size   = 0;
-    byte[] buffer = new byte[512];
+    byte[] buffer = new byte[4096];
     int    read;
 
     while ((read = in.read(buffer)) != -1) {
