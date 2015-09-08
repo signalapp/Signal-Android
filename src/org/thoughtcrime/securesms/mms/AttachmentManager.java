@@ -54,10 +54,10 @@ public class AttachmentManager {
   private Uri captureUri;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
-    this.attachmentView = view.findViewById(R.id.attachment_editor);
-    this.thumbnail = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
-    this.slideDeck = new SlideDeck();
-    this.context = view;
+    this.attachmentView     = view.findViewById(R.id.attachment_editor);
+    this.thumbnail          = (ThumbnailView) view.findViewById(R.id.attachment_thumbnail);
+    this.slideDeck          = new SlideDeck();
+    this.context            = view;
     this.attachmentListener = listener;
 
     thumbnail.setRemoveClickListener(new RemoveButtonListener());
@@ -68,9 +68,7 @@ public class AttachmentManager {
     animation.setDuration(200);
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override public void onAnimationStart(Animation animation) {}
-
       @Override public void onAnimationRepeat(Animation animation) {}
-
       @Override public void onAnimationEnd(Animation animation) {
         slideDeck.clear();
         thumbnail.clear();
@@ -143,7 +141,7 @@ public class AttachmentManager {
   }
 
 
-  public SlideDeck getSlideDeck() {
+  public @NonNull SlideDeck getSlideDeck() {
     return slideDeck;
   }
 
@@ -202,13 +200,6 @@ public class AttachmentManager {
       Log.w(TAG, "couldn't complete ACTION_GET_CONTENT intent, no activity found. falling back.");
       Toast.makeText(activity, R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG).show();
     }
-  }
-
-  public boolean areConstraintsSatisfied(final @NonNull Context context,
-                                         final @NonNull MasterSecret masterSecret,
-                                         final @NonNull MediaConstraints constraints)
-  {
-    return areConstraintsSatisfied(context, masterSecret, slideDeck.getThumbnailSlide(), constraints);
   }
 
   private boolean areConstraintsSatisfied(final @NonNull  Context context,
