@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
@@ -13,11 +12,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableTypeRequest;
@@ -27,12 +22,10 @@ import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.PartDatabase;
-import org.thoughtcrime.securesms.jobs.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -42,19 +35,17 @@ import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class ThumbnailView extends FrameLayout {
   private static final String TAG = ThumbnailView.class.getSimpleName();
 
-  private boolean       hideControls;
-  private ImageView     image;
-  private ProgressWheel progress;
-  private ImageView     removeButton;
-  private ImageButton   downloadButton;
-  private int           backgroundColorHint;
-  private int           radius;
+  private boolean             hideControls;
+  private ImageView           image;
+  private ImageView           removeButton;
+  private TransferControlView transferControls;
+  private int                 backgroundColorHint;
+  private int                 radius;
 
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
@@ -74,10 +65,8 @@ public class ThumbnailView extends FrameLayout {
   public ThumbnailView(final Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     inflate(context, R.layout.thumbnail_view, this);
-    radius         = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
-    image          = (ImageView)     findViewById(R.id.thumbnail_image);
-    progress       = (ProgressWheel) findViewById(R.id.progress_wheel);
-    downloadButton = (ImageButton)   findViewById(R.id.download_button);
+    radius = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
+    image  = (ImageView) findViewById(R.id.thumbnail_image);
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0);
@@ -95,40 +84,15 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
-  @Override protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().registerSticky(this);
-  }
-
-  @Override protected void onDetachedFromWindow() {
-    super.onDetachedFromWindow();
-    EventBus.getDefault().unregister(this);
-  }
-
-  private ProgressWheel getProgressWheel() {
-    if (progress == null) progress = ViewUtil.inflateStub(this, R.id.progress_wheel_stub);
-    return progress;
-  }
-
-  private void hideProgressWheel() {
-    if (progress != null) progress.setVisibility(GONE);
-  }
-
   private ImageView getRemoveButton() {
     if (removeButton == null) removeButton = ViewUtil.inflateStub(this, R.id.remove_button_stub);
     return removeButton;
   }
 
-  @SuppressWarnings("unused")
-  public void onEventAsync(final PartProgressEvent event) {
-    if (this.slide != null && event.partId.equals(this.slide.getPart().getPartId())) {
-      Util.runOnMain(new Runnable() {
-        @Override public void run() {
-          getProgressWheel().setInstantProgress(((float)event.progress) / event.total);
-          if (event.progress >= event.total) animateOutProgress();
-        }
-      });
-    }
+  private TransferControlView getTransferControls() {
+    if (transferControls == null) transferControls = ViewUtil.inflateStub(this, R.id.transfer_controls_stub);
+
+    return transferControls;
   }
 
   public void setBackgroundColorHint(int color) {
@@ -146,7 +110,7 @@ public class ThumbnailView extends FrameLayout {
     String slideId = id + "::" + timestamp;
 
     if (!slideId.equals(this.slideId)) {
-      hideProgressWheel();
+      if (transferControls != null) transferControls.clear();
       image.setImageDrawable(null);
       this.slide   = null;
       this.slideId = slideId;
@@ -168,28 +132,21 @@ public class ThumbnailView extends FrameLayout {
     }
 
     Log.w(TAG, "loading part with id " + slide.getPart().getPartId() + ", progress " + slide.getTransferProgress());
-    if (!hideControls && slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_STARTED) {
-      getProgressWheel().spin();
-      getProgressWheel().setVisibility(VISIBLE);
-      downloadButton.setVisibility(GONE);
-    } else if (!hideControls && slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING ||
-                                slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_FAILED)
-    {
-      hideProgressWheel();
-      downloadButton.setVisibility(VISIBLE);
-    } else {
-      hideProgressWheel();
-      downloadButton.setVisibility(GONE);
-    }
 
     this.slide = slide;
     buildGlideRequest(slide, masterSecret).into(image);
+
     if (this.slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_DONE) {
       setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
     } else {
       setOnClickListener(null);
     }
-    downloadButton.setOnClickListener(new ThumbnailClickDispatcher(downloadClickListener, slide));
+
+    if (!hideControls) {
+      getTransferControls().setSlide(slide);
+      getTransferControls().setDownloadClickListener(new ThumbnailClickDispatcher(downloadClickListener, slide));
+      getTransferControls().setVisibility(View.VISIBLE);
+    }
   }
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
@@ -205,8 +162,9 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public void clear() {
-    if (isContextValid()) Glide.clear(image);
-    if (slideDeckFuture != null) slideDeckFuture.removeListener(slideDeckListener);
+    if (isContextValid())         Glide.clear(image);
+    if (slideDeckFuture != null)  slideDeckFuture.removeListener(slideDeckListener);
+    if (transferControls != null) transferControls.clear();
     slide             = null;
     slideId           = null;
     slideDeckFuture   = null;
@@ -215,7 +173,7 @@ public class ThumbnailView extends FrameLayout {
 
   public void hideControls(boolean hideControls) {
     this.hideControls = hideControls;
-    if (hideControls) hideProgressWheel();
+    if (hideControls && transferControls != null) transferControls.setVisibility(View.GONE);
   }
 
   public void showProgressSpinner() {
@@ -278,20 +236,6 @@ public class ThumbnailView extends FrameLayout {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
                                    .asBitmap()
                                    .fitCenter();
-  }
-
-  private void animateOutProgress() {
-    if (progress == null) return;
-    AlphaAnimation animation = new AlphaAnimation(1f, 0f);
-    animation.setDuration(200);
-    animation.setAnimationListener(new AnimationListener() {
-      @Override public void onAnimationStart(Animation animation) { }
-      @Override public void onAnimationRepeat(Animation animation) { }
-      @Override public void onAnimationEnd(Animation animation) {
-        getProgressWheel().setVisibility(View.GONE);
-      }
-    });
-    getProgressWheel().startAnimation(animation);
   }
 
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
