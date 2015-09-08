@@ -32,6 +32,7 @@ import org.w3c.dom.smil.SMILRegionElement;
 import java.io.IOException;
 import java.io.InputStream;
 
+import de.gdata.messaging.util.VideoResolutionChanger;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public abstract class Slide {
@@ -126,11 +127,11 @@ public abstract class Slide {
 
     try {
         cursor = context.getContentResolver().query(uri, new String[]{mimeType}, null, null, null);
-        if (cursor != null && cursor.moveToFirst() && cursor.getString(0) != null)
+        if (cursor != null && cursor.moveToFirst() && cursor.getString(0) != null) {
           return cursor.getString(0);
-        else
-          throw new IOException("Unable to query content type.");
-
+        } else {
+          return new String(VideoResolutionChanger.OUTPUT_VIDEO_MIME_TYPE.getBytes());
+        }
     } finally {
       if (cursor != null)
         cursor.close();

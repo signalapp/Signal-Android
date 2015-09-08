@@ -17,12 +17,15 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -48,7 +51,6 @@ import android.view.View.OnKeyListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -127,6 +129,7 @@ import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.PrivacyBridge;
 import de.gdata.messaging.util.ProfileAccessor;
+import de.gdata.messaging.util.VideoResolutionChanger;
 import ws.com.google.android.mms.ContentType;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -196,6 +199,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
     private int currentMediaSize;
     private String profileId = "0";
+    private ProgressDialog compressingDialog;
+    private boolean compressingIsrunning = false;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -255,6 +260,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if(DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId) == null && threadId != -1) {
             finish();
         };
+        if(compressingIsrunning) {
+            compressingDialog = ProgressDialog.show(this, getString(R.string.dialog_compressing_header), getString(R.string.dialog_compressing));
+        }
     }
 
     @Override
@@ -274,7 +282,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+    public void onActivityResult(int reqCode, int resultCode, final Intent data) {
         Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
         super.onActivityResult(reqCode, resultCode, data);
 
@@ -288,7 +296,34 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 addAttachmentImage(data.getData());
                 break;
             case PICK_VIDEO:
-                addAttachmentVideo(data.getData());
+                if(Build.VERSION.SDK_INT >=18) {
+                    class CompressVideoTask extends AsyncTask<Void, Integer, String> {
+                        String pathToOutputFile = "";
+
+                        protected void onPreExecute() {
+                            compressingIsrunning = true;
+                        }
+                        protected String doInBackground(Void... arg0) {
+                            try {
+                                pathToOutputFile =
+                                        new VideoResolutionChanger().changeResolution(getApplicationContext(), data.getData());
+                            } catch (Throwable t) {
+                                t.fillInStackTrace();
+                            }
+                            return "";
+                        }
+                        protected void onPostExecute(String result) {
+                            addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
+                            compressingIsrunning = false;
+                            if(compressingDialog.isShowing()) {
+                                compressingDialog.dismiss();
+                            }
+                        }
+                    }
+                    new CompressVideoTask().execute();
+                } else {
+                    addAttachmentVideo(data.getData());
+                }
                 break;
             case PICK_AUDIO:
                 addAttachmentAudio(data.getData());

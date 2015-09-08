@@ -25,6 +25,7 @@ import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
 
+import de.gdata.messaging.util.VideoResolutionChanger;
 import ws.com.google.android.mms.pdu.PduPart;
 
 import android.content.ContentResolver;
@@ -116,9 +117,11 @@ public class VideoSlide extends Slide {
     try {
       cursor = resolver.query(uri, new String[] {MediaStore.Video.Media.MIME_TYPE}, null, null, null);
       if (cursor != null && cursor.moveToFirst()) {
-        Log.w("VideoSlide", "Setting mime type: " + cursor.getString(0));
         part.setContentType(cursor.getString(0).getBytes());
+      } else {
+        part.setContentType(VideoResolutionChanger.OUTPUT_VIDEO_MIME_TYPE.getBytes());
       }
+      Log.w("VideoSlide", "Setting mime type: " +part.getContentType());
     } finally {
       if (cursor != null)
         cursor.close();

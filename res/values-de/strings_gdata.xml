@@ -69,4 +69,6 @@
     <string name="menu_invite_to_sc">Einladen</string>
     <string name="group_title">Title</string>
     <string name="status_hint">Wählen Sie Ihren Status:</string>
+    <string name="dialog_compressing">Das Video wird komprimiert...</string>
+    <string name="dialog_compressing_header">Bitte warten...</string>
 </resources>
