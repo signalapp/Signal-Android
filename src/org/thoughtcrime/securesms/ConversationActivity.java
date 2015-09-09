@@ -781,8 +781,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 if (avatar != null) {
                     thumbnail.setImageBitmap(BitmapUtil.getCircleBitmap(avatar));
                 }
-
-                title = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
+                title = !TextUtils.isEmpty(groupName)
+                        ? groupName : !TextUtils.isEmpty(getSupportActionBar().getTitle().toString())
+                        ? getSupportActionBar().getTitle().toString() : getString(R.string.ConversationActivity_unnamed_group);
+                Log.d("MYLOG ", "PROFILE "+title);
                 subtitle = null;
             } else {
                 final int size = getRecipients().getRecipientsList().size();
