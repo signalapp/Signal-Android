@@ -828,9 +828,13 @@ public class ProfileFragment extends Fragment {
         protected Pair<Long, Recipients> doInBackground(Void... params) {
             byte[] avatarBytes = null;
             final Bitmap bitmap;
-            if (ProfileActivity.getAvatarTemp() == null) bitmap = null;
-            else                   bitmap = ProfileActivity.getAvatarTemp();
-
+            if (ProfileActivity.getAvatarTemp() == null) {
+                final GroupDatabase db = DatabaseFactory.getGroupDatabase(getActivity());
+                GroupDatabase.GroupRecord group = db.getGroup(groupId);
+                bitmap = getExistingBitmapForGroup(group);
+            } else {
+                bitmap = ProfileActivity.getAvatarTemp();
+            }
             if (bitmap != null) {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -967,6 +971,15 @@ public class ProfileFragment extends Fragment {
             }
         }
     }
+    public Bitmap getExistingBitmapForGroup(GroupDatabase.GroupRecord group) {
+        if (group != null) {
+            final byte[] existingAvatar = group.getAvatar();
+            if (existingAvatar != null) {
+                return BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length);
+            }
+        }
+            return null;
+    }
     private class FillExistingGroupInfoAsyncTask extends ProgressDialogAsyncTask<Void,Void,Void> {
 
         private String existingTitle;
@@ -981,6 +994,7 @@ public class ProfileFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             final GroupDatabase db = DatabaseFactory.getGroupDatabase(getActivity());
+            GroupDatabase.GroupRecord group = db.getGroup(groupId);
             final Recipients recipients = db.getGroupMembers(groupId, false);
             if (recipients != null) {
                 final List<Recipient> recipientList = recipients.getRecipientsList();
@@ -990,14 +1004,8 @@ public class ProfileFragment extends Fragment {
                     existingContacts.addAll(recipientList);
                 }
             }
-            GroupDatabase.GroupRecord group = db.getGroup(groupId);
-            if (group != null) {
-                existingTitle = group.getTitle();
-                final byte[] existingAvatar = group.getAvatar();
-                if (existingAvatar != null) {
-                    existingAvatarBmp = BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length);
-                }
-            }
+            existingTitle = group.getTitle();
+            existingAvatarBmp = getExistingBitmapForGroup(group);
             return null;
         }
 
@@ -1031,9 +1039,7 @@ public class ProfileFragment extends Fragment {
         params.height = height;
 
         view.setLayoutParams(params);
-        bitmap = null;
     }
-
     public Bitmap scaleCenterCrop(Bitmap source, int newHeight, int newWidth) {
         int sourceWidth = source.getWidth();
         int sourceHeight = source.getHeight();
