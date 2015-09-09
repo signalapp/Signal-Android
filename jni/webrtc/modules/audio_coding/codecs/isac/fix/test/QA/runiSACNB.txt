@@ -1,0 +1,45 @@
+#!/bin/bash
+(set -o igncr) 2>/dev/null && set -o igncr; # force bash to ignore \r character
+
+LOGFILE=logNB.txt
+echo "START NARROWBAND TEST" > $LOGFILE
+echo >> $LOGFILE
+
+ISAC=../Release/kenny.exe
+ISACFIXFLOAT=../Release/testFixFloat.exe
+
+INFILES=$(cat InputFiles.txt)
+SUBSET=$(cat InputFilesFew.txt)
+CHANNELFILES=$(cat ChannelFiles.txt)
+CHANNELLIST=($(cat ChannelFiles.txt))
+INDIR=../data/orig
+OUTDIR=../dataqaNB
+mkdir -p $OUTDIR
+
+TARGETRATE=(10000 15000 20000 25000 30000 32000)
+#echo ${CHANNELFILES[1]}
+
+index1=0
+index2=0
+
+# Narrowband Interfaces
+
+for file in $SUBSET # loop over all input files
+  do
+  for rate in ${TARGETRATE[*]}
+	do
+	let "index1=index1+1"
+ 	$ISAC $rate -FL 30 -NB 1 $INDIR/"$file" $OUTDIR/nb130_$index1"$file" >> $LOGFILE
+	$ISAC $rate -FL 60 -NB 1 $INDIR/"$file" $OUTDIR/nb160_$index1"$file" >> $LOGFILE
+	$ISAC $rate -FL 30 -NB 2 $INDIR/"$file" $OUTDIR/nb230_$index1"$file" >> $LOGFILE
+	$ISAC $rate -FL 60 -NB 2 $INDIR/"$file" $OUTDIR/nb260_$index1"$file" >> $LOGFILE
+	$ISAC $rate -FL 30 -NB 2 -PL 10 $INDIR/"$file" $OUTDIR/nb2plc30_$index1"$file" >> $LOGFILE
+	$ISAC $rate -FL 60 -NB 2 -PL 10 $INDIR/"$file" $OUTDIR/nb2plc60_$index1"$file" >> $LOGFILE
+  done
+
+done
+
+echo DONE!
+
+
+

@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -30,12 +29,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -50,6 +47,8 @@ import java.io.IOException;
 import static org.thoughtcrime.securesms.service.RegistrationService.RegistrationState;
 
 public class RegistrationProgressActivity extends BaseActionBarActivity {
+
+  private static final String TAG = RegistrationProgressActivity.class.getSimpleName();
 
   private static final int FOCUSED_COLOR   = Color.parseColor("#ff333333");
   private static final int UNFOCUSED_COLOR = Color.parseColor("#ff808080");
@@ -523,17 +522,17 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
             TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
             int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
 
-            accountManager.verifyAccount(code, signalingKey, true, registrationId);
+            accountManager.verifyAccountWithCode(code, signalingKey, registrationId);
 
             return SUCCESS;
           } catch (ExpectationFailedException e) {
-            Log.w("RegistrationProgressActivity", e);
+            Log.w(TAG, e);
             return MULTI_REGISTRATION_ERROR;
           } catch (RateLimitException e) {
-            Log.w("RegistrationProgressActivity", e);
+            Log.w(TAG, e);
             return RATE_LIMIT_ERROR;
           } catch (IOException e) {
-            Log.w("RegistrationProgressActivity", e);
+            Log.w(TAG, e);
             return NETWORK_ERROR;
           }
         }

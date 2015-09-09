@@ -191,4 +191,25 @@
         <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
     </style>
 
+    <!-- RedPhone -->
+
+    <!-- Buttons in the main "button row" of the in-call onscreen touch UI. -->
+    <style name="InCallButton">
+        <item name="android:layout_width">0px</item>
+        <item name="android:layout_height">@dimen/in_call_button_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <!-- "Compound button" variation of InCallButton.
+           These buttons have the concept of two states: checked and unchecked.
+           (This style is just like "InCallButton" except that we also
+           clear out android:textOn and android:textOff, to avoid the default
+           text label behavior of the ToggleButton class.) -->
+    <style name="InCallCompoundButton" parent="InCallButton">
+        <item name="android:textOn">@null</item>
+        <item name="android:textOff">@null</item>
+    </style>
+
+
 </resources>

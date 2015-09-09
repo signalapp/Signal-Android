@@ -1,5 +1,7 @@
 -keep class org.spongycastle.crypto.* {*;}
+-keep class org.spongycastle.crypto.agreement.** {*;}
 -keep class org.spongycastle.crypto.digests.* {*;}
+-keep class org.spongycastle.crypto.ec.* {*;}
 -keep class org.spongycastle.crypto.encodings.* {*;}
 -keep class org.spongycastle.crypto.engines.* {*;}
 -keep class org.spongycastle.crypto.macs.* {*;}
@@ -9,6 +11,7 @@
 -keep class org.spongycastle.crypto.prng.* {*;}
 -keep class org.spongycastle.crypto.signers.* {*;}
 
+-keep class org.spongycastle.jcajce.provider.asymmetric.** {*;}
 -keep class org.spongycastle.jcajce.provider.digest.** {*;}
 -keep class org.spongycastle.jcajce.provider.keystore.** {*;}
 -keep class org.spongycastle.jcajce.provider.symmetric.** {*;}

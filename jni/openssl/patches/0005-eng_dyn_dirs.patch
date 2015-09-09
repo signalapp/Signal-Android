@@ -1,0 +1,72 @@
+From b53cd994adaff887ec126de259e37d769ad585cb Mon Sep 17 00:00:00 2001
+From: Kenny Root <kroot@google.com>
+Date: Fri, 8 Feb 2013 11:22:25 -0800
+Subject: [PATCH] Fix failures when eng_dyn scans multiple directories
+
+If DIR_ADD is called with multiple directories, and the target file
+does not exist in the first directory scanned, the DSO object will still
+be considered "loaded" for the next call of DSO_load(...) and cause
+subsequent calls to DSO_load(...) fail with the reason code of "already
+loaded" even though the load failed.
+
+Additionally, with multiple directories used in eng_dyn, another problem
+manifests because the errors pushed onto the error stack will linger even
+if another library is loaded successfully on subsequent calls to
+DSO_load(...) in the directory scanning loop.
+
+Change-Id: I4ddd24f7b39bd88663e1783f30914870a907acfa
+---
+ crypto/dso/dso_lib.c    | 8 ++++++++
+ crypto/engine/eng_dyn.c | 5 ++++-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/crypto/dso/dso_lib.c b/crypto/dso/dso_lib.c
+index 8a15b79..7801529 100644
+--- a/crypto/dso/dso_lib.c
++++ b/crypto/dso/dso_lib.c
+@@ -237,11 +237,19 @@ DSO *DSO_load(DSO *dso, const char *filename, DSO_METHOD *meth, int flags)
+ 	if(ret->meth->dso_load == NULL)
+ 		{
+ 		DSOerr(DSO_F_DSO_LOAD,DSO_R_UNSUPPORTED);
++		/* Make sure we unset the filename on failure, because we use
++		 * this to determine when the DSO has been loaded above. */
++		OPENSSL_free(ret->filename);
++		ret->filename = NULL;
+ 		goto err;
+ 		}
+ 	if(!ret->meth->dso_load(ret))
+ 		{
+ 		DSOerr(DSO_F_DSO_LOAD,DSO_R_LOAD_FAILED);
++		/* Make sure we unset the filename on failure, because we use
++		 * this to determine when the DSO has been loaded above. */
++		OPENSSL_free(ret->filename);
++		ret->filename = NULL;
+ 		goto err;
+ 		}
+ 	/* Load succeeded */
+diff --git a/crypto/engine/eng_dyn.c b/crypto/engine/eng_dyn.c
+index 807da7a..8fb8634 100644
+--- a/crypto/engine/eng_dyn.c
++++ b/crypto/engine/eng_dyn.c
+@@ -408,7 +408,7 @@ static int int_load(dynamic_data_ctx *ctx)
+ 	int num, loop;
+ 	/* Unless told not to, try a direct load */
+ 	if((ctx->dir_load != 2) && (DSO_load(ctx->dynamic_dso,
+-				ctx->DYNAMIC_LIBNAME, NULL, 0)) != NULL)
++				ctx->DYNAMIC_LIBNAME, NULL, 0) != NULL))
+ 		return 1;
+ 	/* If we're not allowed to use 'dirs' or we have none, fail */
+ 	if(!ctx->dir_load || (num = sk_OPENSSL_STRING_num(ctx->dirs)) < 1)
+@@ -423,6 +423,9 @@ static int int_load(dynamic_data_ctx *ctx)
+ 			{
+ 			/* Found what we're looking for */
+ 			OPENSSL_free(merge);
++			/* Previous failed loop iterations, if any, will have resulted in
++			 * errors. Clear them out before returning success. */
++			ERR_clear_error();
+ 			return 1;
+ 			}
+ 		OPENSSL_free(merge);
+-- 
+1.7.12.3-x20-1
+

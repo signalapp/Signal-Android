@@ -51,30 +51,33 @@ public class TextSecureCommunicationModule {
   }
 
   @Provides TextSecureAccountManager provideTextSecureAccountManager() {
-    return new TextSecureAccountManager(BuildConfig.PUSH_URL,
+    return new TextSecureAccountManager(BuildConfig.TEXTSECURE_URL,
                                         new TextSecurePushTrustStore(context),
                                         TextSecurePreferences.getLocalNumber(context),
-                                        TextSecurePreferences.getPushServerPassword(context));
+                                        TextSecurePreferences.getPushServerPassword(context),
+                                        BuildConfig.USER_AGENT);
   }
 
   @Provides TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
     return new TextSecureMessageSenderFactory() {
       @Override
       public TextSecureMessageSender create() {
-        return new TextSecureMessageSender(BuildConfig.PUSH_URL,
+        return new TextSecureMessageSender(BuildConfig.TEXTSECURE_URL,
                                            new TextSecurePushTrustStore(context),
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
                                            new TextSecureAxolotlStore(context),
+                                           BuildConfig.USER_AGENT,
                                            Optional.<TextSecureMessageSender.EventListener>of(new SecurityEventListener(context)));
       }
     };
   }
 
   @Provides TextSecureMessageReceiver provideTextSecureMessageReceiver() {
-    return new TextSecureMessageReceiver(BuildConfig.PUSH_URL,
+    return new TextSecureMessageReceiver(BuildConfig.TEXTSECURE_URL,
                                          new TextSecurePushTrustStore(context),
-                                         new DynamicCredentialsProvider(context));
+                                         new DynamicCredentialsProvider(context),
+                                         BuildConfig.USER_AGENT);
   }
 
   public static interface TextSecureMessageSenderFactory {

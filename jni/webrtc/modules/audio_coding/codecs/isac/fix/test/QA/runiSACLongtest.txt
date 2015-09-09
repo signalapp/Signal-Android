@@ -1,0 +1,61 @@
+#!/bin/bash
+(set -o igncr) 2>/dev/null && set -o igncr; # force bash to ignore \r character
+
+LOGFILE=logNormal.txt
+echo "START ISAC TEST" > $LOGFILE
+echo >> $LOGFILE
+
+ISAC=../Release/kenny.exe
+ISACFIXFLOAT=../Release/testFixFloat.exe
+
+INFILES=$(cat InputFiles.txt)
+SUBSET=$(cat InputFilesFew.txt)
+CHANNELFILES=$(cat ChannelFiles.txt)
+CHANNELLIST=($(cat ChannelFiles.txt))
+INDIR=../data/orig
+OUTDIR=../dataqa
+mkdir -p $OUTDIR
+
+TARGETRATE=(10000 15000 20000 25000 30000 32000)
+#echo ${CHANNELFILES[1]}
+
+index1=0
+index2=0
+
+for file in $INFILES # loop over all input files
+  do
+  
+  for rate in ${TARGETRATE[*]}
+	do
+	let "index1=index1+1"
+	$ISAC -I $rate -FL 30 $INDIR/"$file" $OUTDIR/i30_$index1"$file" >> $LOGFILE
+	$ISAC -I $rate -FL 60 $INDIR/"$file" $OUTDIR/i60_$index1"$file" >> $LOGFILE
+  done
+  for channel in $CHANNELFILES
+	do
+	let "index2=index2+1"
+	$ISAC $INDIR/$channel $INDIR/"$file" $OUTDIR/a$index2"$file" >> $LOGFILE
+  done
+
+done
+
+index1=0
+
+for file in $SUBSET # loop over the subset of input files
+  do
+	let "index1=index1+1"
+	$ISAC $INDIR/${CHANNELLIST[0]} -FL 30 -FIXED_FL $INDIR/"$file" $OUTDIR/a30_$index1"$file" >> $LOGFILE
+	$ISAC $INDIR/${CHANNELLIST[0]} -FL 60 -FIXED_FL $INDIR/"$file" $OUTDIR/a60_$index1"$file" >> $LOGFILE
+done
+
+let "index1=index1+1"	
+ $ISAC $INDIR/${CHANNELLIST[0]} -INITRATE 25000 -FL 30 $INDIR/"$file" $OUTDIR/a60_$index1"$file" >> $LOGFILE
+
+# Run fault test
+
+#./runiSACfault.txt
+
+echo DONE!
+
+
+

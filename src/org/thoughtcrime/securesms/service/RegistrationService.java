@@ -12,6 +12,10 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.thoughtcrime.redphone.signaling.RedPhoneAccountAttributes;
+import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
+import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
@@ -159,7 +163,7 @@ public class RegistrationService extends Service {
     try {
       TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
 
-      handleCommonRegistration(accountManager, number);
+      handleCommonRegistration(accountManager, number, password, signalingKey);
 
       markAsVerified(number, password, signalingKey);
 
@@ -199,9 +203,9 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccount(challenge, signalingKey, true, registrationId);
+      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId);
 
-      handleCommonRegistration(accountManager, number);
+      handleCommonRegistration(accountManager, number, password, signalingKey);
       markAsVerified(number, password, signalingKey);
 
       setState(new RegistrationState(RegistrationState.STATE_COMPLETE, number));
@@ -227,7 +231,7 @@ public class RegistrationService extends Service {
     }
   }
 
-  private void handleCommonRegistration(TextSecureAccountManager accountManager, String number)
+  private void handleCommonRegistration(TextSecureAccountManager accountManager, String number, String password, String signalingKey)
       throws IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
@@ -248,6 +252,13 @@ public class RegistrationService extends Service {
 
     DatabaseFactory.getIdentityDatabase(this).saveIdentity(self.getRecipientId(), identityKey.getPublicKey());
     DirectoryHelper.refreshDirectory(this, accountManager, number);
+
+    RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
+                                                                               new RedPhoneTrustStore(this),
+                                                                               number, password);
+
+    String verificationToken = accountManager.getAccountVerificationToken();
+    redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
 
     DirectoryRefreshListener.schedule(this);
   }

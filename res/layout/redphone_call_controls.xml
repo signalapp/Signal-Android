@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- In-call onscreen touch UI elements, used on some platforms.
+
+     This layout is a fullscreen overlay, drawn on top of the
+     non-touch-sensitive parts of the in-call UI (i.e. the call card).
+
+     The top-level View here is a FrameLayout with 2 children:
+       (1) incomingCallWidget: the UI displayed while an incoming call is ringing
+       (2) inCallControls: the widgets visible while a regular call (or calls) is in progress
+     Exactly one of these is visible at any given moment.
+     -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:prvandroid="http://schemas.android.com/apk/prv/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!--
+        (1) incomingCallWidget: the UI displayed while an incoming call is ringing.
+            See InCallTouchUi.showIncomingCallWidget().
+
+            Layout notes:
+            - Use an opaque black background since we need to cover up
+              a bit of the bottom of the contact photo
+            - The verticalOffset value gets us a little extra space above
+              the topmost "Respond by SMS" icon
+            - The negative layout_marginBottom shifts us slightly downward;
+              we're already aligned with the bottom of the screen, but we
+              don't have an icon in the downward direction so the whole
+              bottom area of this widget is just wasted space.
+    -->
+    <org.thoughtcrime.redphone.util.multiwaveview.MultiWaveView
+        android:id="@+id/incomingCallWidget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-46dp"
+        android:background="@android:color/black"
+        android:visibility="gone"
+        />
+
+    <TextView android:id="@+id/redphone_banner"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignTop="@id/incomingCallWidget"
+              android:gravity="center"
+              android:paddingTop="8dp"
+              android:paddingBottom="8dp"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:textColor="#A0000000"
+              android:textAllCaps="true"
+              android:background="#ccf0a621"
+              android:text="Signal Call"/>
+
+
+    <!--
+        (2) inCallControls: the widgets visible while a regular call
+        (or calls) is in progress
+    -->
+    <RelativeLayout android:id="@+id/inCallControls"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:visibility="gone"
+                    >
+
+        <!-- Main cluster of onscreen buttons on the lower part of the screen. -->
+        <LinearLayout android:id="@+id/bottomButtons"
+                      android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentBottom="true">
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                <TextView android:id="@+id/sas"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceLarge"
+                          android:textColor="#FFFFFF"
+                          android:background="#a0000000"
+                          android:gravity="center"
+                          android:padding="20dip"
+                          android:singleLine="true"
+                          android:visibility="gone"/>
+
+                <!--<LinearLayout android:id="@+id/confirm_wrapper"-->
+                              <!--android:layout_width="wrap_content"-->
+                              <!--android:layout_height="wrap_content"-->
+                              <!--android:layout_alignParentRight="true"-->
+                              <!--android:layout_alignTop="@id/sas"-->
+                              <!--android:layout_alignBottom="@id/sas"-->
+                              <!--android:background="@drawable/redphone_dialpad_dark_background">-->
+
+                    <!--<ImageButton android:id="@+id/confirm_sas"-->
+                                 <!--android:layout_width="wrap_content"-->
+                                 <!--android:layout_height="fill_parent"-->
+                                 <!--android:gravity="center"-->
+                                 <!--android:layout_gravity="center"-->
+                                 <!--android:paddingRight="10dip"-->
+                                 <!--android:paddingLeft="10dip"-->
+                                 <!--android:contentDescription="verify sas"-->
+                                 <!--android:src="@drawable/ic_check_light"-->
+                                 <!--android:background="@drawable/selectable_item_background"/>-->
+                <!--</LinearLayout>-->
+            </RelativeLayout>
+
+
+            <!-- Row 2: The "End call" button. -->
+            <!-- This is in its own LinearLayout purely so that the whole row
+                 can have a background drawable distinct from the image itself. -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/redphone_end_call_background">
+
+                <ImageButton android:id="@+id/endButton"
+                             android:layout_width="match_parent"
+                             android:layout_height="76dp"
+                             android:layout_weight="1"
+                             android:src="@drawable/redphone_ic_end_call"
+                             android:background="@drawable/selectable_item_background"
+                             android:contentDescription="end call"/>
+            </LinearLayout>
+
+            <!--                              android:background="?android:attr/selectableItemBackground" -->
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/redphone_dialpad_dark_background"
+                android:paddingLeft="@dimen/button_cluster_side_padding"
+                android:paddingRight="@dimen/button_cluster_side_padding"
+                >
+
+                <!-- This row has either 4 or 5 buttons, depending on
+                     whether the device supports "Hold" (i.e. 4 buttons on
+                     CDMA devices, 5 buttons on GSM devices.)  The buttons
+                     are interspersed with 'layout_weight="1"' placeholder
+                     views so that they'll be spaced evenly in both cases.
+
+                     But note there are a couple of *pairs* of buttons that share a
+                     single "slot", namely Hold/Swap and Add/Merge.  For these, the
+                     code in InCallTouchUi is responsible for making sure that at any
+                     point exactly one of the pair is VISIBLE and the other is
+                     GONE. -->
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <!-- "Dialpad" -->
+                <!-- This is a "compound button": it has checked and unchecked states. -->
+                <!--                 <ToggleButton android:id="@+id/dialpadButton" -->
+                <!--                     style="@style/InCallCompoundButton" -->
+                <!--                     android:background="@drawable/btn_compound_dialpad" -->
+                <!--                     android:contentDescription="@string/onscreenShowDialpadText" -->
+                <!--                     /> -->
+
+                <!--                 <View -->
+                <!--                     android:layout_width="0dp" -->
+                <!--                     android:layout_weight="1" -->
+                <!--                     android:layout_height="match_parent" /> -->
+
+
+                <!-- "Audio mode" -->
+                <!-- This is a multi-mode button that can behave either like a
+                     simple "compound button" with two states *or* like an
+                     action button that brings up a popup menu; see
+                     redphone_btn_compound_audio.xmlaudio.xml and InCallTouchUi.updateAudioButton()
+                     for the full details. -->
+                <!--<org.thoughtcrime.redphone.ui.StateListenerView-->
+                    <!--android:id="@+id/menuAttachment"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="0dp"/>-->
+                <View android:id="@+id/menuAttachment"
+                      android:layout_width="0dp"
+                      android:layout_height="0dp"/>
+
+                <ToggleButton android:id="@+id/audioButton"
+                              style="@style/InCallCompoundButton"
+                              android:background="@drawable/redphone_btn_compound_audio"
+                              android:contentDescription="Audio"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <!-- "Mute" -->
+                <!-- This is a "compound button": it has checked and unchecked states. -->
+                <ToggleButton android:id="@+id/muteButton"
+                              style="@style/InCallCompoundButton"
+                              android:background="@drawable/redphone_btn_compound_mute"
+                              android:contentDescription="Mute"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <!-- This slot is either "Hold" or "Swap", depending on
+                     the state of the call.   One or the other of these
+                     must always be set to GONE. -->
+                <!-- "Hold" -->
+                <!-- This is a "compound button": it has checked and unchecked states. -->
+                <!--                 <ToggleButton android:id="@+id/holdButton" -->
+                <!--                     style="@style/InCallCompoundButton" -->
+                <!--                     android:background="@drawable/btn_compound_hold" -->
+                <!--                     android:contentDescription="@string/onscreenHoldText" -->
+                <!--                     /> -->
+                <!-- "Swap" (or "Manage calls" in some CDMA states) -->
+                <!--                 <ImageButton android:id="@+id/swapButton" -->
+                <!--                     style="@style/InCallButton" -->
+                <!--                     android:src="@drawable/ic_incall_switch_holo_dark" -->
+                <!--                     android:contentDescription="@string/onscreenSwapCallsText" -->
+                <!--                     /> -->
+
+                <!--                 <View android:id="@+id/holdSwapSpacer" -->
+                <!--                     android:layout_width="0dp" -->
+                <!--                     android:layout_weight="1" -->
+                <!--                     android:layout_height="match_parent" /> -->
+
+                <!-- This slot is either "Add" or "Merge", depending on
+                     the state of the call.  One or the other of these
+                     must always be set to GONE. -->
+                <!-- "Add Call" -->
+                <!--                 <ImageButton android:id="@+id/addButton" -->
+                <!--                     style="@style/InCallButton" -->
+                <!--                     android:src="@drawable/ic_add_contact_holo_dark" -->
+                <!--                     android:contentDescription="@string/onscreenAddCallText" -->
+                <!--                     /> -->
+                <!-- "Merge calls" -->
+                <!-- This button is used only on GSM devices, where we know
+                     that "Add" and "Merge" are never available at the same time.
+                     The "Merge" button for CDMA devices is "cdmaMergeButton" above. -->
+                <!--                 <ImageButton android:id="@+id/mergeButton" -->
+                <!--                     style="@style/InCallButton" -->
+                <!--                     android:src="@drawable/ic_merge_holo_dark" -->
+                <!--                     android:contentDescription="@string/onscreenMergeCallsText" -->
+                <!--                     /> -->
+
+                <!--                 <View -->
+                <!--                     android:layout_width="0dp" -->
+                <!--                     android:layout_weight="1" -->
+                <!--                     android:layout_height="match_parent" /> -->
+
+            </LinearLayout>
+
+
+            <!-- Row 3: The main batch of in-call buttons:
+                    Dialpad / Audio mode / Mute / Hold / Add call
+                 Visible in all states except while an incoming call is
+                 ringing. -->
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

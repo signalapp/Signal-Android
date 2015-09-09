@@ -98,6 +98,12 @@
     <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
                android:value="GlideModule" />
 
+    <activity android:name="org.thoughtcrime.redphone.RedPhone"
+              android:screenOrientation="portrait"
+              android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
+              android:launchMode="singleTask">
+    </activity>
+
     <activity android:name=".CountrySelectionActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -301,6 +307,8 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+
+    <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>

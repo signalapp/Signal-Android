@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
@@ -25,5 +26,10 @@ public class BitmapContactPhoto implements ContactPhoto {
     return RoundedDrawable.fromBitmap(bitmap)
                           .setScaleType(ImageView.ScaleType.CENTER_CROP)
                           .setOval(true);
+  }
+
+  @Override
+  public Drawable asCallCard(Context context) {
+    return new BitmapDrawable(context.getResources(), bitmap);
   }
 }
