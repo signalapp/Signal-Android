@@ -52,25 +52,20 @@ public class CircledImageView extends ImageView {
     if(low > 200) {
       padding = 0;
     }
-    Bitmap b;
-    Bitmap bitmap;
+    try {
     Bitmap roundBitmap;
     if (!(drawable instanceof GlideBitmapDrawable) && !(drawable instanceof SquaringDrawable)) {
-      b = ((BitmapDrawable) drawable).getBitmap();
-      bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-      roundBitmap = BitmapUtil.scaleCircleCenterCrop(context, bitmap, low);
+      roundBitmap = BitmapUtil.scaleCircleCenterCrop(context, ((BitmapDrawable) drawable).getBitmap(), low);
     } else if(!(drawable instanceof SquaringDrawable)){
-      b = ((GlideBitmapDrawable) drawable).getBitmap();
-      bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-      roundBitmap = BitmapUtil.scaleCircleCenterCrop(context, bitmap, low);
+      roundBitmap = BitmapUtil.scaleCircleCenterCrop(context, ((GlideBitmapDrawable) drawable).getBitmap(), low);
     } else {
-      SquaringDrawable squaringDrawable = (SquaringDrawable) drawable;
-      b = ((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap();
-      bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-      roundBitmap = BitmapUtil.scaleCircleCenterCrop(context, bitmap, low);
+      SquaringDrawable squaringDrawable = ((SquaringDrawable) drawable);
+      roundBitmap = BitmapUtil.getCircleBitmap(((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap());
     }
     canvas.drawBitmap(roundBitmap, 0, padding, null);
-    bitmap.recycle();
     roundBitmap.recycle();
+    } catch (OutOfMemoryError E) {
+       return;
+    }
   }
 }
