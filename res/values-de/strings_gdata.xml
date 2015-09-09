@@ -50,7 +50,7 @@
     <string name="verify_identity_activity_your_identity" >Eigene Identität - Dieser Schlüssel ist Ihre Identifikation. Lassen Sie den Schlüssel von Ihren Gesprächspartnern einscannen, um Ihre Nachrichten zu authentifizieren.</string>
     <string name="identification_verified_unsuccessfully">Die Schlüssel stimmen nicht überein!</string>
     <string name="identification_verified_successfully">Identifikation erfolgreich.</string>
-    <string name="accept_eula_and_continue">Zustimmen und Fortfahren</string>
+    <string name="accept_eula_and_continue">ZUSTIMMEN UND FORTFAHREN</string>
     <string name="claim_textsecure">EINFACH. SICHER. MOMENTE MIT FREUNDEN TEILEN.</string>
     <string name="eula_gdata"><u>Endnutzervereinbarung</u></string>
     <string name="take_picture">Foto aufnehmen</string>
