@@ -35,4 +35,9 @@ public class GeneratedContactPhoto implements ContactPhoto {
                        .endConfig()
                        .buildRound(String.valueOf(name.charAt(0)), inverted ? Color.WHITE : color);
   }
+
+  @Override
+  public Drawable asCallCard(Context context) {
+    return context.getDrawable(R.drawable.ic_contact_picture);
+  }
 }

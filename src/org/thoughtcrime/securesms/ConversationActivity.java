@@ -58,6 +58,8 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.google.protobuf.ByteString;
 
+import org.thoughtcrime.redphone.RedPhone;
+import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
@@ -605,18 +607,27 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleDial(Recipient recipient) {
-    try {
-      if (recipient == null) return;
+    Intent intent = new Intent(this, RedPhoneService.class);
+    intent.setAction(RedPhoneService.ACTION_OUTGOING_CALL);
+    intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
+    startService(intent);
 
-      Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                              Uri.parse("tel:" + recipient.getNumber()));
-      startActivity(dialIntent);
-    } catch (ActivityNotFoundException anfe) {
-      Log.w(TAG, anfe);
-      Dialogs.showAlertDialog(this,
-                           getString(R.string.ConversationActivity_calls_not_supported),
-                           getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
-    }
+    Intent activityIntent = new Intent(this, RedPhone.class);
+    activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(activityIntent);
+
+//    try {
+//      if (recipient == null) return;
+//
+//      Intent dialIntent = new Intent(Intent.ACTION_DIAL,
+//                              Uri.parse("tel:" + recipient.getNumber()));
+//      startActivity(dialIntent);
+//    } catch (ActivityNotFoundException anfe) {
+//      Log.w(TAG, anfe);
+//      Dialogs.showAlertDialog(this,
+//                           getString(R.string.ConversationActivity_calls_not_supported),
+//                           getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+//    }
   }
 
   private void handleDisplayGroupRecipients() {

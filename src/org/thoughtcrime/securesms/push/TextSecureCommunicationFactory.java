@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.push;
 
 import android.content.Context;
 
+import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -20,15 +21,16 @@ import static org.whispersystems.textsecure.api.TextSecureMessageSender.EventLis
 public class TextSecureCommunicationFactory {
 
   public static TextSecureAccountManager createManager(Context context) {
-    return new TextSecureAccountManager(BuildConfig.PUSH_URL,
+    return new TextSecureAccountManager(BuildConfig.TEXTSECURE_URL,
                                         new TextSecurePushTrustStore(context),
                                         TextSecurePreferences.getLocalNumber(context),
-                                        TextSecurePreferences.getPushServerPassword(context));
+                                        TextSecurePreferences.getPushServerPassword(context),
+                                        BuildConfig.USER_AGENT);
   }
 
   public static TextSecureAccountManager createManager(Context context, String number, String password) {
-    return new TextSecureAccountManager(BuildConfig.PUSH_URL, new TextSecurePushTrustStore(context),
-                                        number, password);
+    return new TextSecureAccountManager(BuildConfig.TEXTSECURE_URL, new TextSecurePushTrustStore(context),
+                                        number, password, BuildConfig.USER_AGENT);
   }
 
 }

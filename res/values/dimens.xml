@@ -37,4 +37,22 @@
 
     <dimen name="transfer_controls_expanded_width">150dp</dimen>
     <dimen name="transfer_controls_contracted_width">70dp</dimen>
+
+    <!-- RedPhone -->
+    <dimen name="incoming_widget_outer_radius">135dip</dimen>
+    <dimen name="incoming_widget_horizontal_offset">0dip</dimen>
+    <dimen name="incoming_widget_vertical_offset">20dip</dimen>
+    <dimen name="incoming_widget_hit_radius">60dip</dimen>
+    <dimen name="incoming_widget_snap_margin">20dip</dimen>
+
+    <!-- Height of the main row of in-call buttons. -->
+    <dimen name="in_call_button_height">76dp</dimen>
+
+    <!-- Padding at the left and right edges of the incall_touch_ui button
+         cluster.  This padding is necessary because we can't allow the
+         buttons to be very close to the edges of the screen, due to the
+         risk of false touches (from your finger wrapping around while
+         holding the phone, *before* moving it up to your face and having
+         the prox sensor kick in.) -->
+    <dimen name="button_cluster_side_padding">20dp</dimen>
 </resources>
