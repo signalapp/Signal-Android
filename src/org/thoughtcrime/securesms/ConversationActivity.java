@@ -784,7 +784,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 title = !TextUtils.isEmpty(groupName)
                         ? groupName : !TextUtils.isEmpty(getSupportActionBar().getTitle().toString())
                         ? getSupportActionBar().getTitle().toString() : getString(R.string.ConversationActivity_unnamed_group);
-                Log.d("MYLOG ", "PROFILE "+title);
                 subtitle = null;
             } else {
                 final int size = getRecipients().getRecipientsList().size();
