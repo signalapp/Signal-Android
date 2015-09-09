@@ -66,16 +66,16 @@ public class MediaUtil {
     return BitmapUtil.createScaledBitmap(context, new DecryptableUri(masterSecret, uri), maxSize, maxSize);
   }
 
-  public static Slide getSlideForPart(Context context, MasterSecret masterSecret, PduPart part, String contentType) {
+  public static Slide getSlideForPart(Context context, PduPart part, String contentType) {
     Slide slide = null;
     if (isGif(contentType)) {
-      slide = new GifSlide(context, masterSecret, part);
+      slide = new GifSlide(context, part);
     } else if (ContentType.isImageType(contentType)) {
-      slide = new ImageSlide(context, masterSecret, part);
+      slide = new ImageSlide(context, part);
     } else if (ContentType.isVideoType(contentType)) {
-      slide = new VideoSlide(context, masterSecret, part);
+      slide = new VideoSlide(context, part);
     } else if (ContentType.isAudioType(contentType)) {
-      slide = new AudioSlide(context, masterSecret, part);
+      slide = new AudioSlide(context, part);
     }
 
     return slide;
@@ -88,6 +88,22 @@ public class MediaUtil {
       type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
     return type;
+  }
+
+  public static long getMediaSize(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
+    InputStream in = PartAuthority.getPartStream(context, masterSecret, uri);
+    if (in == null) throw new IOException("Couldn't obtain input stream.");
+
+    long   size   = 0;
+    byte[] buffer = new byte[4096];
+    int    read;
+
+    while ((read = in.read(buffer)) != -1) {
+      size += read;
+    }
+    in.close();
+
+    return size;
   }
 
   public static boolean isGif(String contentType) {
@@ -111,7 +127,11 @@ public class MediaUtil {
   }
 
   public static @Nullable String getDiscreteMimeType(@NonNull PduPart part) {
-    final String[] sections = (Util.toIsoString(part.getContentType()).split("/", 2));
+    return getDiscreteMimeType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {
+    final String[] sections = mimeType.split("/", 2);
     return sections.length > 1 ? sections[0] : null;
   }
 

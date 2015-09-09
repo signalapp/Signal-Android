@@ -2,21 +2,18 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
 
 public class AnimatingToggle extends FrameLayout {
-
-  private static final int SPEED_MILLIS = 200;
 
   private View current;
 
@@ -45,11 +42,20 @@ public class AnimatingToggle extends FrameLayout {
     child.setClickable(false);
   }
 
-  public void display(View view) {
+  public void display(@Nullable View view) {
+    display(view, true);
+  }
+
+  protected void display(@Nullable View view, boolean animated) {
     if (view == current) return;
 
-    animateOut(current, AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_out));
-    animateIn(view, AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_in));
+    if (animated) {
+      if (current != null) animateOut(current, AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_out));
+      if (view    != null) animateIn(view, AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_in));
+    } else {
+      if (current != null) current.setVisibility(GONE);
+      if (view    != null) view.setVisibility(VISIBLE);
+    }
 
     current = view;
   }
@@ -77,13 +83,5 @@ public class AnimatingToggle extends FrameLayout {
     animation.setInterpolator(new FastOutSlowInInterpolator());
     view.setVisibility(View.VISIBLE);
     view.startAnimation(animation);
-  }
-
-  private int getViewIndex(View view) {
-    for (int i=0;i<getChildCount();i++) {
-      if (getChildAt(i) == view) return i;
-    }
-
-    throw new IllegalArgumentException("Not a parent of this view.");
   }
 }

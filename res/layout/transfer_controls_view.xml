@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/progress_wheel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/progress_background"
+            android:visibility="gone"
+            app:matProg_barColor="@color/white"
+            app:matProg_linearProgress="true"
+            app:matProg_spinSpeed="0.333" />
+
+    <ImageButton android:id="@+id/download_button"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_gravity="center"
+                 android:background="@drawable/progress_background"
+                 android:src="@drawable/ic_file_download_white_36dp"
+                 android:visibility="gone" />
+</merge>
