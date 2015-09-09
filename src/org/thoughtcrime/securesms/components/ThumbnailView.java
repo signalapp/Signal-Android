@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
@@ -78,6 +77,9 @@ public class ThumbnailView extends FrameLayout {
     image          = (ImageView)     findViewById(R.id.thumbnail_image);
     progress       = (ProgressWheel) findViewById(R.id.progress_wheel);
     downloadButton = (ImageButton)   findViewById(R.id.download_button);
+
+    setOnClickListener(new ThumbnailClickDispatcher());
+    downloadButton.setOnClickListener(new DownloadClickDispatcher());
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0);
@@ -184,12 +186,6 @@ public class ThumbnailView extends FrameLayout {
 
     this.slide = slide;
     buildGlideRequest(slide, masterSecret).into(image);
-    if (this.slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_DONE) {
-      setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
-    } else {
-      setOnClickListener(null);
-    }
-    downloadButton.setOnClickListener(new ThumbnailClickDispatcher(downloadClickListener, slide));
   }
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
@@ -332,20 +328,23 @@ public class ThumbnailView extends FrameLayout {
     void onClick(View v, Slide slide);
   }
 
-  private static class ThumbnailClickDispatcher implements View.OnClickListener {
-    private ThumbnailClickListener listener;
-    private Slide                  slide;
-
-    public ThumbnailClickDispatcher(ThumbnailClickListener listener, Slide slide) {
-      this.listener = listener;
-      this.slide    = slide;
-    }
-
+  private class ThumbnailClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-      if (listener != null)
+      if (thumbnailClickListener != null &&
+          slide                  != null &&
+          slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_DONE)
       {
-        listener.onClick(view, slide);
+        thumbnailClickListener.onClick(view, slide);
+      }
+    }
+  }
+
+  private class DownloadClickDispatcher implements View.OnClickListener {
+    @Override
+    public void onClick(View view) {
+      if (downloadClickListener != null && slide != null) {
+        downloadClickListener.onClick(view, slide);
       }
     }
   }
