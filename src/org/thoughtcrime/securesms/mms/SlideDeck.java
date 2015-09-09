@@ -47,10 +47,10 @@ public class SlideDeck {
     this.slides.addAll(copy.getSlides());
   }
 
-  public SlideDeck(Context context, MasterSecret masterSecret, PduBody body) {
+  public SlideDeck(Context context, PduBody body) {
     for (int i=0;i<body.getPartsNum();i++) {
       String contentType = Util.toIsoString(body.getPart(i).getContentType());
-      Slide  slide       = MediaUtil.getSlideForPart(context, masterSecret, body.getPart(i), contentType);
+      Slide  slide       = MediaUtil.getSlideForPart(context, body.getPart(i), contentType);
       if (slide != null) slides.add(slide);
     }
   }

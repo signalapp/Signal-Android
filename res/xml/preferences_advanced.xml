@@ -13,6 +13,11 @@
                         android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
                         android:title="@string/preferences__pref_enter_sends_title"/>
 
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_system_emoji"
+                        android:title="@string/preferences_advanced__use_system_emoji"
+                        android:summary="@string/preferences_advanced__disable_textsecures_built_in_emoji_support" />
+
     <Preference android:key="pref_choose_identity"
                 android:title="@string/preferences__choose_identity"
                 android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
