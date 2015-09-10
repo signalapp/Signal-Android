@@ -63,6 +63,8 @@ public abstract class Slide {
     return false;
   }
 
+  public @NonNull String getContentDescription() { return ""; }
+
   public PduPart getPart() {
     return part;
   }

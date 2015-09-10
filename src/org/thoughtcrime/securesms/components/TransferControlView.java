@@ -3,9 +3,18 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.ValueAnimator;
+import com.nineoldandroids.animation.ValueAnimator.AnimatorUpdateListener;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.R;
@@ -17,10 +26,18 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import de.greenrobot.event.EventBus;
 
-public class TransferControlView extends AnimatingToggle {
-  private Slide         slide;
-  private ProgressWheel progressWheel;
-  private ImageButton   downloadButton;
+public class TransferControlView extends FrameLayout {
+  private static final int TRANSITION_MS = 300;
+
+  @Nullable private Slide slide;
+  @Nullable private View  current;
+
+  private final ProgressWheel progressWheel;
+  private final TextView      downloadDetails;
+  private final Animation     inAnimation;
+  private final Animation     outAnimation;
+  private final int           contractedWidth;
+  private final int           expandedWidth;
 
   public TransferControlView(Context context) {
     this(context, null);
@@ -33,8 +50,18 @@ public class TransferControlView extends AnimatingToggle {
   public TransferControlView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.transfer_controls_view, this);
-    this.progressWheel  = ViewUtil.findById(this, R.id.progress_wheel);
-    this.downloadButton = ViewUtil.findById(this, R.id.download_button);
+    setBackgroundResource(R.drawable.transfer_controls_background);
+    setVisibility(GONE);
+    this.progressWheel   = ViewUtil.findById(this, R.id.progress_wheel);
+    this.downloadDetails = ViewUtil.findById(this, R.id.download_details);
+    this.contractedWidth = getResources().getDimensionPixelSize(R.dimen.transfer_controls_contracted_width);
+    this.expandedWidth   = getResources().getDimensionPixelSize(R.dimen.transfer_controls_expanded_width);
+    this.outAnimation    = new AlphaAnimation(1f, 0f);
+    this.inAnimation     = new AlphaAnimation(0f, 1f);
+    this.outAnimation.setInterpolator(new FastOutSlowInInterpolator());
+    this.inAnimation.setInterpolator(new FastOutSlowInInterpolator());
+    this.outAnimation.setDuration(TRANSITION_MS);
+    this.inAnimation.setDuration(TRANSITION_MS);
   }
 
   @Override protected void onAttachedToWindow() {
@@ -49,13 +76,13 @@ public class TransferControlView extends AnimatingToggle {
 
   public void setSlide(final @NonNull Slide slide) {
     this.slide = slide;
-
     if (slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_STARTED) {
       showProgressSpinner();
     } else if (slide.isPendingDownload()) {
-      display(downloadButton);
+      downloadDetails.setText(slide.getContentDescription());
+      display(downloadDetails);
     } else {
-      display(null, false);
+      display(null);
     }
   }
 
@@ -65,12 +92,57 @@ public class TransferControlView extends AnimatingToggle {
   }
 
   public void setDownloadClickListener(final @Nullable OnClickListener listener) {
-    downloadButton.setOnClickListener(listener);
+    downloadDetails.setOnClickListener(listener);
   }
 
   public void clear() {
-    display(null, false);
-    slide = null;
+    clearAnimation();
+    setVisibility(GONE);
+    if (current != null) {
+      current.clearAnimation();
+      current.setVisibility(GONE);
+    }
+    current = null;
+    slide   = null;
+  }
+
+  private void display(@Nullable final View view) {
+    final int sourceWidth = current == downloadDetails ? expandedWidth : contractedWidth;
+    final int targetWidth = view    == downloadDetails ? expandedWidth : contractedWidth;
+
+    if (current == view || current == null) {
+      ViewGroup.LayoutParams layoutParams = getLayoutParams();
+      layoutParams.width = targetWidth;
+      setLayoutParams(layoutParams);
+    } else {
+      ViewUtil.animateOut(current, outAnimation);
+      Animator anim = getWidthAnimator(sourceWidth, targetWidth);
+      anim.start();
+    }
+
+    if (view == null) {
+      ViewUtil.animateOut(this, outAnimation);
+    } else {
+      ViewUtil.animateIn(this, inAnimation);
+      ViewUtil.animateIn(view, inAnimation);
+    }
+
+    current = view;
+  }
+
+  private Animator getWidthAnimator(final int from, final int to) {
+    final ValueAnimator anim = ValueAnimator.ofInt(from, to);
+    anim.addUpdateListener(new AnimatorUpdateListener() {
+      @Override public void onAnimationUpdate(ValueAnimator animation) {
+        final int val = (Integer)animation.getAnimatedValue();
+        final ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        layoutParams.width = val;
+        setLayoutParams(layoutParams);
+      }
+    });
+    anim.setInterpolator(new FastOutSlowInInterpolator());
+    anim.setDuration(TRANSITION_MS);
+    return anim;
   }
 
   @SuppressWarnings("unused")
@@ -79,7 +151,6 @@ public class TransferControlView extends AnimatingToggle {
       Util.runOnMain(new Runnable() {
         @Override public void run() {
           progressWheel.setInstantProgress(((float)event.progress) / event.total);
-          if (event.progress >= event.total) display(null);
         }
       });
     }

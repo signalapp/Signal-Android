@@ -91,7 +91,6 @@ public class ThumbnailView extends FrameLayout {
 
   private TransferControlView getTransferControls() {
     if (transferControls == null) transferControls = ViewUtil.inflateStub(this, R.id.transfer_controls_stub);
-
     return transferControls;
   }
 
@@ -99,9 +98,10 @@ public class ThumbnailView extends FrameLayout {
     this.backgroundColorHint = color;
   }
 
-  public void setImageResource(@Nullable MasterSecret masterSecret,
-                               long id, long timestamp,
-                               @NonNull ListenableFutureTask<SlideDeck> slideDeckFuture)
+  public void setImageResource(@Nullable MasterSecret                    masterSecret,
+                                         long                            id,
+                                         long                            timestamp,
+                               @NonNull  ListenableFutureTask<SlideDeck> slideDeckFuture)
   {
     if (this.slideDeckFuture != null && this.slideDeckListener != null) {
       this.slideDeckFuture.removeListener(this.slideDeckListener);
@@ -126,15 +126,17 @@ public class ThumbnailView extends FrameLayout {
       Log.w(TAG, "Not re-loading slide " + slide.getPart().getPartId());
       return;
     }
+
     if (!isContextValid()) {
       Log.w(TAG, "Not loading slide, context is invalid");
       return;
     }
 
-    Log.w(TAG, "loading part with id " + slide.getPart().getPartId() + ", progress " + slide.getTransferProgress());
+    Log.w(TAG, "loading part with id " + slide.getPart().getPartId()
+               + ", progress " + slide.getTransferProgress());
 
     this.slide = slide;
-    buildGlideRequest(slide, masterSecret).into(image);
+    loadInto(slide, masterSecret, image);
 
     if (this.slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_DONE) {
       setOnClickListener(new ThumbnailClickDispatcher());
@@ -145,7 +147,6 @@ public class ThumbnailView extends FrameLayout {
     if (!hideControls) {
       getTransferControls().setSlide(slide);
       getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
-      getTransferControls().setVisibility(View.VISIBLE);
     }
   }
 
@@ -189,29 +190,27 @@ public class ThumbnailView extends FrameLayout {
            !((Activity)getContext()).isDestroyed();
   }
 
-  private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
-                                                  @Nullable MasterSecret masterSecret)
+  private void loadInto(@NonNull  Slide        slide,
+                        @Nullable MasterSecret masterSecret,
+                        @NonNull  ImageView    view)
   {
-    final GenericRequestBuilder builder;
     if (slide.getThumbnailUri() != null) {
-      builder = buildThumbnailGlideRequest(slide, masterSecret);
+      buildThumbnailGlideRequest(slide, masterSecret).into(view);
+    } else if (!slide.isInProgress()) {
+      buildPlaceholderGlideRequest(slide).into(view);
     } else {
-      builder = buildPlaceholderGlideRequest(slide);
-    }
-
-    if (slide.getTransferProgress() != PartDatabase.TRANSFER_PROGRESS_DONE && !hideControls) {
-      return builder;
-    } else {
-      return builder.error(R.drawable.ic_missing_thumbnail_picture);
+      Glide.clear(view);
     }
   }
 
   private GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
-
     final GenericRequestBuilder builder;
+
     if   (slide.isDraft()) builder = buildDraftGlideRequest(slide, masterSecret);
     else                   builder = buildPartGlideRequest(slide, masterSecret);
-    return builder;
+
+    if (slide.isInProgress()) return builder;
+    else                      return builder.error(R.drawable.ic_missing_thumbnail_picture);
   }
 
   private GenericRequestBuilder buildDraftGlideRequest(Slide slide, MasterSecret masterSecret) {
