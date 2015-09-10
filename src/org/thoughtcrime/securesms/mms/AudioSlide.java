@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ResUtil;
@@ -47,6 +48,10 @@ public class AudioSlide extends Slide {
   @Override
   public boolean hasAudio() {
     return true;
+  }
+
+  @NonNull @Override public String getContentDescription() {
+    return context.getString(R.string.Slide_audio);
   }
 
   @Override

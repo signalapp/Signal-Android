@@ -60,6 +60,10 @@ public class AnimatingToggle extends FrameLayout {
     current = view;
   }
 
+  protected @Nullable View getCurrent() {
+    return current;
+  }
+
   private void animateOut(final View view, Animation animation) {
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override
