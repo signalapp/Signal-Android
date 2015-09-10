@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
@@ -90,6 +91,7 @@ public abstract class Slide {
   protected static void assertMediaSize(Context context, Uri uri, boolean sendOrReceive)
       throws MediaTooLargeException, IOException
   {
+
     InputStream in = context.getContentResolver().openInputStream(uri);
     long   size    = 0;
     byte[] buffer  = new byte[512];

@@ -34,6 +34,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.google.android.apps.photos.permission.GOOGLE_PHOTOS"/>
 
     <permission
         android:name="de.gdata.securechat.permission.C2D_MESSAGE"
@@ -117,7 +118,6 @@
             android:name=".ShareActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:excludeFromRecents="true"
-            android:launchMode="singleTask"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden" />
         <activity
