@@ -66,7 +66,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int PUSH_DECRYPT_SERIAL_ID_VERSION       = 131;
   public static final int MIGRATE_SESSION_PLAINTEXT            = 136;
   public static final int CONTACTS_ACCOUNT_VERSION             = 136;
-  public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 146;
+  public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 149;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
