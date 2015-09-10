@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +32,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipients.RecipientsModifiedListener;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -44,7 +44,7 @@ import java.util.List;
  *
  * @author Moxie Marlinspike
  */
-public class SingleRecipientPanel extends RelativeLayout {
+public class SingleRecipientPanel extends RelativeLayout implements RecipientsModifiedListener {
   private final String                         TAG = SingleRecipientPanel.class.getSimpleName();
   private       RecipientsPanelChangedListener panelChangeListener;
 
@@ -94,7 +94,7 @@ public class SingleRecipientPanel extends RelativeLayout {
 
   public Recipients getRecipients() throws RecipientFormattingException {
     String rawText = recipientsText.getText().toString();
-    Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(), rawText, false);
+    Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(), rawText, true);
 
     if (recipients.isEmpty())
       throw new RecipientFormattingException("Recipient List Is Empty!");
@@ -132,6 +132,7 @@ public class SingleRecipientPanel extends RelativeLayout {
     } catch (RecipientFormattingException e) {
       recipients = RecipientFactory.getRecipientsFor(getContext(), new LinkedList<Recipient>(), true);
     }
+    recipients.addListener(this);
 
     recipientsText.setAdapter(new RecipientsAdapter(this.getContext()));
     recipientsText.populate(recipients);
@@ -150,6 +151,10 @@ public class SingleRecipientPanel extends RelativeLayout {
         recipientsText.setText("");
       }
     });
+  }
+
+  @Override public void onModified(Recipients recipients) {
+    recipientsText.populate(recipients);
   }
 
   private class FocusChangedListener implements OnFocusChangeListener {
