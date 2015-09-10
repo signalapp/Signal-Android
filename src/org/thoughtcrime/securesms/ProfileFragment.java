@@ -22,6 +22,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -451,17 +452,24 @@ public class ProfileFragment extends Fragment {
                     scrollContainer.setBackgroundColor(Color.WHITE);
                     scrollContainer.setAlpha((float) ((1000.0 / scrollContainer.getHeight()) * scrollView.getHeight()));
                 }
+                int keyboardHeight = 150;
+                int paddingBottom = 250;
+                int scrollViewHeight = scrollView.getHeight();
+                if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    scrollViewHeight = 2*scrollViewHeight;
+                }
                 int heightDiff = scrollView.getRootView().getHeight() - scrollView.getHeight();
-                if (pxToDp(heightDiff) > 150) {
+                if (pxToDp(heightDiff) > keyboardHeight) {
                     keyboardIsVisible = true;
                 } else {
                     keyboardIsVisible = false;
                 }
+                Log.w("GDATA", "KOORDS " + (scrollViewHeight+ " + " +(heightMemberList) +" < "+  (scrollView.getScrollY() + " - " +mainLayout.getTop())));
                 if (!keyboardIsVisible) {
-                    if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY() - pxToDp(250)) {
+                    if ((mainLayout.getTop() - scrollViewHeight) > scrollView.getScrollY() - pxToDp(paddingBottom)) {
                         finishAndSave();
                     }
-                    if ((scrollView.getHeight() + (heightMemberList)) < (scrollView.getScrollY() - mainLayout.getTop())) {
+                    if ((scrollViewHeight + (heightMemberList)) < (scrollView.getScrollY() - mainLayout.getTop())) {
                         finishAndSave();
                     }
                 }
