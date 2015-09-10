@@ -74,4 +74,5 @@
     <string name="status_hint">Choose your status:</string>
     <string name="dialog_compressing"> The video is compressing...</string>
     <string name="dialog_compressing_header">Please wait...</string>
+    <string name="preferences__versnr">Version</string>
 </resources>
