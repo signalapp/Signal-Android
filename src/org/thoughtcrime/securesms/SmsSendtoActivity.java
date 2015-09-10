@@ -38,7 +38,7 @@ public class SmsSendtoActivity extends Activity {
       destination = getDestinationForView(original);
     }
 
-    Recipients recipients = RecipientFactory.getRecipientsFromString(this, destination.getDestination(), false);
+    Recipients recipients = RecipientFactory.getRecipientsFromString(this, destination.getDestination(), true);
     long       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
 
     final Intent nextIntent;
