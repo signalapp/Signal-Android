@@ -464,7 +464,6 @@ public class ProfileFragment extends Fragment {
                 } else {
                     keyboardIsVisible = false;
                 }
-                Log.w("GDATA", "KOORDS " + (scrollViewHeight+ " + " +(heightMemberList) +" < "+  (scrollView.getScrollY() + " - " +mainLayout.getTop())));
                 if (!keyboardIsVisible) {
                     if ((mainLayout.getTop() - scrollViewHeight) > scrollView.getScrollY() - pxToDp(paddingBottom)) {
                         finishAndSave();
