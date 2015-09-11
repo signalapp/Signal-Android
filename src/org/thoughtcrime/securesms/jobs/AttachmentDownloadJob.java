@@ -71,6 +71,10 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       Log.w(TAG, "part no longer exists.");
       return;
     }
+    if (part.getDataUri() != null) {
+      Log.w(TAG, "part was already downloaded.");
+      return;
+    }
 
     Log.w(TAG, "Downloading push part " + partId);
 
