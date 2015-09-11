@@ -226,7 +226,7 @@ public class ThumbnailView extends FrameLayout {
       builder = buildPlaceholderGlideRequest(slide);
     }
 
-    if (slide.isInProgress() && !hideControls) {
+    if (slide.getTransferProgress() != PartDatabase.TRANSFER_PROGRESS_DONE && !hideControls) {
       return builder;
     } else {
       return builder.error(R.drawable.ic_missing_thumbnail_picture);
@@ -331,9 +331,9 @@ public class ThumbnailView extends FrameLayout {
   private class ThumbnailClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-      if (thumbnailClickListener != null &&
-          slide                  != null &&
-          slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_DONE)
+      if (thumbnailClickListener       != null &&
+          slide                        != null &&
+          slide.getPart().getDataUri() != null)
       {
         thumbnailClickListener.onClick(view, slide);
       }
