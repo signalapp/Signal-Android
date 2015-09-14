@@ -169,10 +169,21 @@ public class ContactsDatabase {
   public @NonNull Cursor querySystemContacts(String filter) {
     Uri uri;
 
+
     if (!TextUtils.isEmpty(filter)) {
-      uri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI, Uri.encode(filter));
+      if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        uri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI, Uri.encode(filter)).buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
+      }
+      else {
+        uri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI, Uri.encode(filter));
+      }
     } else {
-      uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+      if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+          uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI.buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
+      }
+      else {
+          uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+      }
     }
 
     String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone._ID,
