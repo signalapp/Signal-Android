@@ -173,16 +173,14 @@ public class ContactsDatabase {
     if (!TextUtils.isEmpty(filter)) {
       if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         uri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI, Uri.encode(filter)).buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
-      }
-      else {
+      } else {
         uri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI, Uri.encode(filter));
       }
     } else {
       if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI.buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
-      }
-      else {
-          uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI.buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
+      } else {
+        uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
       }
     }
 
