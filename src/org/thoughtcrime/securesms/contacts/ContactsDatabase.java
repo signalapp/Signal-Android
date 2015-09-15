@@ -169,7 +169,6 @@ public class ContactsDatabase {
   public @NonNull Cursor querySystemContacts(String filter) {
     Uri uri;
 
-
     if (!TextUtils.isEmpty(filter)) {
       if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         uri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI, Uri.encode(filter)).buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
