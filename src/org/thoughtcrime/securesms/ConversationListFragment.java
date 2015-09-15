@@ -159,12 +159,6 @@ public class ConversationListFragment extends Fragment
 
   private void initializeListAdapter() {
     list.setAdapter(new ConversationListAdapter(getActivity(), masterSecret, locale, null, this));
-    list.setRecyclerListener(new RecyclerListener() {
-      @Override
-      public void onViewRecycled(ViewHolder holder) {
-        ((ConversationListItem)holder.itemView).unbind();
-      }
-    });
     getLoaderManager().restartLoader(0, null, this);
   }
 

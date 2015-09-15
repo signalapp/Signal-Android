@@ -100,8 +100,12 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
                                                                  parent, false), clickListener);
   }
 
+  @Override public void onViewRecycled(ViewHolder holder) {
+    holder.getItem().unbind();
+  }
+
   @Override
-  public void onBindViewHolder(ViewHolder viewHolder, Cursor cursor) {
+  public void onBindViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
     ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
     ThreadRecord          record = reader.getCurrent();
 
