@@ -18,13 +18,18 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.support.v4.widget.CursorAdapter;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -39,7 +44,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
@@ -49,7 +54,9 @@ import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
  * @author Moxie Marlinspike
  *
  */
-public class ConversationAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
+public class ConversationAdapter <V extends View & BindableConversationItem>
+    extends CursorRecyclerViewAdapter<ConversationAdapter.ViewHolder>
+{
 
   private static final int MAX_CACHE_SIZE = 40;
   private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
@@ -61,46 +68,46 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
-  private final SelectionClickListener selectionClickListener;
-  private final Context                context;
+  private final ItemClickListener      clickListener;
   private final MasterSecret           masterSecret;
   private final Locale                 locale;
   private final boolean                groupThread;
   private final boolean                pushDestination;
+  private final MmsSmsDatabase         db;
   private final LayoutInflater         inflater;
 
-  public ConversationAdapter(Context context, MasterSecret masterSecret, Locale locale,
-                             SelectionClickListener selectionClickListener, boolean groupThread,
-                             boolean pushDestination)
-  {
-    super(context, null, 0);
-    this.context                = context;
-    this.masterSecret           = masterSecret;
-    this.locale                 = locale;
-    this.selectionClickListener = selectionClickListener;
-    this.groupThread            = groupThread;
-    this.pushDestination        = pushDestination;
-    this.inflater               = LayoutInflater.from(context);
+  protected static class ViewHolder extends RecyclerView.ViewHolder {
+    public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
+      super(itemView);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <V extends View & BindableConversationItem> V getView() {
+      return (V)itemView;
+    }
   }
 
-  @Override
-  public void bindView(View view, Context context, Cursor cursor) {
-    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-    String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
+  public interface ItemClickListener {
+    void onItemClick(ConversationItem item);
+    void onItemLongClick(ConversationItem item);
+  }
 
-    switch (getItemViewType(cursor)) {
-      case MESSAGE_TYPE_INCOMING:
-      case MESSAGE_TYPE_OUTGOING:
-        ((ConversationItem) view).set(masterSecret, messageRecord, locale, batchSelected,
-                                      selectionClickListener, groupThread, pushDestination);
-        break;
-      case MESSAGE_TYPE_UPDATE:
-        ((ConversationUpdateItem)view).set(messageRecord);
-        break;
-      default:
-        throw new AssertionError("Unknown type!");
-    }
+  public ConversationAdapter(@NonNull Context context,
+                             @NonNull MasterSecret masterSecret,
+                             @NonNull Locale locale,
+                             @Nullable ItemClickListener clickListener,
+                             @Nullable Cursor cursor,
+                             boolean groupThread,
+                             boolean pushDestination)
+  {
+    super(context, cursor);
+    this.masterSecret    = masterSecret;
+    this.locale          = locale;
+    this.clickListener   = clickListener;
+    this.groupThread     = groupThread;
+    this.pushDestination = pushDestination;
+    this.inflater        = LayoutInflater.from(context);
+    this.db              = DatabaseFactory.getMmsSmsDatabase(context);
   }
 
   @Override
@@ -109,40 +116,50 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     super.changeCursor(cursor);
   }
 
-  @Override
-  public View newView(Context context, Cursor cursor, ViewGroup parent) {
-    View view;
+  @Override public void onBindViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
+    long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
+    String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    int type = getItemViewType(cursor);
+    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, groupThread, pushDestination);
+  }
 
-    switch (type) {
-      case ConversationAdapter.MESSAGE_TYPE_OUTGOING:
-        view = inflater.inflate(R.layout.conversation_item_sent, parent, false);
-        break;
-      case ConversationAdapter.MESSAGE_TYPE_INCOMING:
-        view = inflater.inflate(R.layout.conversation_item_received, parent, false);
-        break;
-      case ConversationAdapter.MESSAGE_TYPE_UPDATE:
-        view = inflater.inflate(R.layout.conversation_item_update, parent, false);
-        break;
-      default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
+  @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    final V itemView = ViewUtil.inflate(inflater, parent, getLayoutForViewType(viewType));
+    if (viewType == MESSAGE_TYPE_INCOMING || viewType == MESSAGE_TYPE_OUTGOING) {
+      itemView.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          if (clickListener != null) clickListener.onItemClick((ConversationItem)itemView);
+        }
+      });
+      itemView.setOnLongClickListener(new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View view) {
+          if (clickListener != null) clickListener.onItemLongClick((ConversationItem)itemView);
+          return true;
+        }
+      });
     }
 
-    return view;
+    return new ViewHolder(itemView);
+  }
+
+  @Override public void onViewRecycled(ViewHolder holder) {
+    holder.getView().unbind();
+  }
+
+  private @LayoutRes int getLayoutForViewType(int viewType) {
+    switch (viewType) {
+    case ConversationAdapter.MESSAGE_TYPE_OUTGOING: return R.layout.conversation_item_sent;
+    case ConversationAdapter.MESSAGE_TYPE_INCOMING: return R.layout.conversation_item_received;
+    case ConversationAdapter.MESSAGE_TYPE_UPDATE:   return R.layout.conversation_item_update;
+    default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
+    }
   }
 
   @Override
-  public int getViewTypeCount() {
-    return 3;
-  }
-
-  @Override
-  public int getItemViewType(int position) {
-    Cursor cursor = (Cursor)getItem(position);
-    return getItemViewType(cursor);
-  }
-
-  private int getItemViewType(Cursor cursor) {
+  public int getItemViewType(@NonNull Cursor cursor) {
     long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
@@ -153,43 +170,33 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
-    SoftReference<MessageRecord> reference = messageRecordCache.get(type + messageId);
-
+    final SoftReference<MessageRecord> reference = messageRecordCache.get(type + messageId);
     if (reference != null) {
-      MessageRecord record = reference.get();
-
-      if (record != null)
-        return record;
+      final MessageRecord record = reference.get();
+      if (record != null) return record;
     }
 
-    MmsSmsDatabase.Reader reader = DatabaseFactory.getMmsSmsDatabase(context)
-                                                  .readerFor(cursor, masterSecret);
-
-    MessageRecord messageRecord = reader.getCurrent();
-
+    final MessageRecord messageRecord = db.readerFor(cursor, masterSecret).getCurrent();
     messageRecordCache.put(type + messageId, new SoftReference<>(messageRecord));
 
     return messageRecord;
   }
 
   public void close() {
-    this.getCursor().close();
+    getCursor().close();
   }
 
-  public void toggleBatchSelected(MessageRecord messageRecord) {
-    if (batchSelected.contains(messageRecord)) {
-      batchSelected.remove(messageRecord);
-    } else {
+  public void toggleSelection(MessageRecord messageRecord) {
+    if (!batchSelected.remove(messageRecord)) {
       batchSelected.add(messageRecord);
     }
   }
 
-  public Set<MessageRecord> getBatchSelected() {
-    return batchSelected;
+  public void clearSelection() {
+    batchSelected.clear();
   }
 
-  @Override
-  public void onMovedToScrapHeap(View view) {
-    ((Unbindable) view).unbind();
+  public Set<MessageRecord> getSelectedItems() {
+    return Collections.unmodifiableSet(new HashSet<>(batchSelected));
   }
 }

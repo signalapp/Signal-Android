@@ -16,15 +16,18 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
@@ -109,5 +112,13 @@ public class ViewUtil {
     animation.setStartTime(0);
     view.setVisibility(View.VISIBLE);
     view.startAnimation(animation);
+  }
+
+  @SuppressWarnings("unchecked")
+  public static <T extends View> T inflate(@NonNull   LayoutInflater inflater,
+                                           @NonNull   ViewGroup      parent,
+                                           @LayoutRes int            layoutResId)
+  {
+    return (T)(inflater.inflate(layoutResId, parent, false));
   }
 }

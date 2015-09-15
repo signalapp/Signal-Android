@@ -56,7 +56,7 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.MISMATCHED_IDENTITIES,
                               MmsDatabase.NETWORK_FAILURE, TRANSPORT};
 
-    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
+    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
 
     String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
