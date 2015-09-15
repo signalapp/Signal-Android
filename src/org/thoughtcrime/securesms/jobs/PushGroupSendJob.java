@@ -87,6 +87,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       database.markAsPush(messageId);
       database.markAsSecure(messageId);
       database.markAsSent(messageId, "push".getBytes(), 0);
+      markPartsUploaded(messageId, message.getBody());
     } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);

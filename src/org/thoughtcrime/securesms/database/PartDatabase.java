@@ -298,6 +298,11 @@ public class PartDatabase extends Database {
 
     if (!cursor.isNull(sizeColumn))
       part.setDataSize(cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)));
+
+    int dataColumn = cursor.getColumnIndexOrThrow(DATA);
+
+    if (!cursor.isNull(dataColumn))
+      part.setDataUri(PartAuthority.getPartUri(part.getPartId()));
   }
 
   private ContentValues getContentValuesForPart(PduPart part) throws MmsException {
@@ -439,8 +444,6 @@ public class PartDatabase extends Database {
     PduPart part = new PduPart();
 
     getPartValues(part, cursor);
-
-    part.setDataUri(PartAuthority.getPartUri(part.getPartId()));
 
     return part;
   }
