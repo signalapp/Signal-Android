@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms;
 
+import android.Manifest.permission;
 import android.content.Context;
-import android.content.res.TypedArray;
 
 import org.thoughtcrime.securesms.util.MmsCharacterCalculator;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
@@ -89,24 +89,26 @@ public class TransportOptions {
                                       context.getResources().getColor(R.color.grey_600),
                                       context.getString(R.string.ConversationActivity_transport_insecure_mms),
                                       context.getString(R.string.conversation_activity__type_message_mms_insecure),
-                                      new MmsCharacterCalculator()));
+                                      new MmsCharacterCalculator(),
+                                      new String[]{permission.SEND_SMS}));
     } else {
       results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
                                       context.getResources().getColor(R.color.grey_600),
                                       context.getString(R.string.ConversationActivity_transport_insecure_sms),
                                       context.getString(R.string.conversation_activity__type_message_sms_insecure),
-                                      new SmsCharacterCalculator()));
+                                      new SmsCharacterCalculator(),
+                                      new String[]{permission.SEND_SMS}));
     }
 
     results.add(new TransportOption(Type.TEXTSECURE, R.drawable.ic_send_push_white_24dp,
                                     context.getResources().getColor(R.color.textsecure_primary),
                                     context.getString(R.string.ConversationActivity_transport_textsecure),
                                     context.getString(R.string.conversation_activity__type_message_push),
-                                    new PushCharacterCalculator()));
+                                    new PushCharacterCalculator(),
+                                    new String[]{}));
 
     return results;
   }
-
 
   private void setTransport(Type type) {
     this.selectedType = type;
@@ -131,6 +133,6 @@ public class TransportOptions {
   }
 
   public interface OnTransportChangedListener {
-    public void onChange(TransportOption newTransport);
+    void onChange(TransportOption newTransport);
   }
 }

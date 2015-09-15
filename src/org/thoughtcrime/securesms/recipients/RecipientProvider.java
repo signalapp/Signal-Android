@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
+import android.Manifest.permission;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -133,22 +134,23 @@ public class RecipientProvider {
     Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(new long[]{recipientId});
     MaterialColor                   color       = preferences.isPresent() ? preferences.get().getColor() : null;
     Uri                             uri         = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
-    Cursor                          cursor      = context.getContentResolver().query(uri, CALLER_ID_PROJECTION,
-                                                                                     null, null, null);
 
-    try {
-      if (cursor != null && cursor.moveToFirst()) {
-        Uri          contactUri   = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
-        String       name         = cursor.getString(3).equals(cursor.getString(0)) ? null : cursor.getString(0);
-        ContactPhoto contactPhoto = ContactPhotoFactory.getContactPhoto(context,
-                                                                        Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
-                                                                        name);
+    if (Util.hasPermission(context, permission.READ_CONTACTS)) {
+      Cursor cursor = context.getContentResolver().query(uri, CALLER_ID_PROJECTION, null, null, null);
+      try {
+        if (cursor != null && cursor.moveToFirst()) {
+          Uri          contactUri   = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
+          String       name         = cursor.getString(3).equals(cursor.getString(0)) ? null : cursor.getString(0);
+          ContactPhoto contactPhoto = ContactPhotoFactory.getContactPhoto(context,
+                                                                          Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
+                                                                          name);
 
-        return new RecipientDetails(cursor.getString(0), cursor.getString(3), contactUri, contactPhoto, color);
+          return new RecipientDetails(cursor.getString(0), cursor.getString(3), contactUri, contactPhoto, color);
+        }
+      } finally {
+        if (cursor != null)
+          cursor.close();
       }
-    } finally {
-      if (cursor != null)
-        cursor.close();
     }
 
     if (STATIC_DETAILS.containsKey(number)) return STATIC_DETAILS.get(number);

@@ -30,6 +30,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -267,13 +268,12 @@ public class KeyCachingService extends Service {
   }
 
   private void foregroundServiceLegacy() {
-    Notification notification  = new Notification(R.drawable.icon_cached,
-                                                  getString(R.string.KeyCachingService_textsecure_passphrase_cached),
-                                                  System.currentTimeMillis());
-    notification.setLatestEventInfo(getApplicationContext(),
-                                    getString(R.string.KeyCachingService_passphrase_cached),
-                                    getString(R.string.KeyCachingService_textsecure_passphrase_cached),
-                                    buildLaunchIntent());
+    Notification notification = new Builder(this).setWhen(System.currentTimeMillis())
+        .setTicker(getString(R.string.KeyCachingService_textsecure_passphrase_cached))
+        .setContentIntent(buildLaunchIntent())
+        .setContentTitle(getString(R.string.KeyCachingService_passphrase_cached))
+        .setContentText(getString(R.string.KeyCachingService_textsecure_passphrase_cached))
+        .build();
     notification.tickerText = null;
 
     stopForeground(true);

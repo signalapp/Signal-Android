@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
@@ -18,13 +19,15 @@ public class TransportOption {
   private Type                type;
   private String              composeHint;
   private CharacterCalculator characterCalculator;
+  private String[]            requiredPermissions;
 
   public TransportOption(Type type,
                          @DrawableRes int drawable,
                          int backgroundColor,
-                         String text,
-                         String composeHint,
-                         CharacterCalculator characterCalculator)
+                         @NonNull String text,
+                         @NonNull String composeHint,
+                         @NonNull CharacterCalculator characterCalculator,
+                         @NonNull String[] requiredPermissions)
   {
     this.type                = type;
     this.drawable            = drawable;
@@ -32,6 +35,7 @@ public class TransportOption {
     this.text                = text;
     this.composeHint         = composeHint;
     this.characterCalculator = characterCalculator;
+    this.requiredPermissions = requiredPermissions;
   }
 
   public Type getType() {
@@ -64,5 +68,9 @@ public class TransportOption {
 
   public String getDescription() {
     return text;
+  }
+
+  public @NonNull String[] getRequiredPermissions() {
+    return requiredPermissions;
   }
 }

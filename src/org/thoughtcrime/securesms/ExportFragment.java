@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.Manifest.permission;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,8 +19,12 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
+import org.thoughtcrime.securesms.permissions.PermissionHandler;
+import org.thoughtcrime.securesms.permissions.PermissionHandler.PermissionRequest;
+import org.thoughtcrime.securesms.permissions.SimplePermissionRequest;
 
 import java.io.IOException;
+import java.util.Map;
 
 
 public class ExportFragment extends Fragment {
@@ -28,10 +33,15 @@ public class ExportFragment extends Fragment {
   private static final int NO_SD_CARD = 1;
   private static final int IO_ERROR   = 2;
 
-  private MasterSecret masterSecret;
+  private MasterSecret      masterSecret;
+  private PermissionHandler permissions;
 
   public void setMasterSecret(MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
+  }
+
+  public void setPermissionHandler(PermissionHandler permissions) {
+    this.permissions = permissions;
   }
 
   @Override
@@ -80,7 +90,14 @@ public class ExportFragment extends Fragment {
     builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        new ExportPlaintextTask().execute();
+        permissions.request(new SimplePermissionRequest(getActivity(),
+                                                        R.string.ExportFragment_missing_storage_permission,
+                                                        permission.WRITE_EXTERNAL_STORAGE)
+        {
+          @Override public void onGranted() {
+            new ExportPlaintextTask().execute();
+          }
+        });
       }
     });
     builder.setNegativeButton(getActivity().getString(R.string.ExportFragment_cancel), null);

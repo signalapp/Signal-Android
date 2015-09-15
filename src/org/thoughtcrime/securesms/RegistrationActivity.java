@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms;
 
+import android.Manifest.permission;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -28,9 +30,13 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.permissions.PermissionHandler;
+import org.thoughtcrime.securesms.permissions.PermissionHandler.PermissionRequest;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+
+import java.util.Map;
 
 /**
  * The register account activity.  Prompts ths user for their registration information
@@ -40,6 +46,7 @@ import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
  *
  */
 public class RegistrationActivity extends BaseActionBarActivity {
+  private static final String TAG = RegistrationActivity.class.getSimpleName();
 
   private static final int PICK_COUNTRY = 1;
 
@@ -51,10 +58,12 @@ public class RegistrationActivity extends BaseActionBarActivity {
   private Button               createButton;
   private Button               skipButton;
 
-  private MasterSecret masterSecret;
+  private MasterSecret      masterSecret;
+  private PermissionHandler permissions;
 
   @Override
   public void onCreate(Bundle icicle) {
+    this.permissions = new PermissionHandler(this);
     super.onCreate(icicle);
     setContentView(R.layout.registration_activity);
 
@@ -63,6 +72,13 @@ public class RegistrationActivity extends BaseActionBarActivity {
     initializeResources();
     initializeSpinner();
     initializeNumber();
+  }
+
+  @Override public void onRequestPermissionsResult(int requestCode,
+                                                   @NonNull String[] permissions,
+                                                   @NonNull int[] grantResults)
+  {
+    this.permissions.onRequestPermissionsResult(requestCode, permissions, grantResults);
   }
 
   @Override
@@ -166,6 +182,18 @@ public class RegistrationActivity extends BaseActionBarActivity {
                                            number.getText().toString());
   }
 
+  private void handleRegistration(final String e164number) {
+    final Intent intent = new Intent(this, RegistrationProgressActivity.class);
+    intent.putExtra("e164number", e164number);
+    intent.putExtra("master_secret", masterSecret);
+    permissions.request(new PermissionRequest(permission.READ_CONTACTS, permission.READ_SMS, permission.RECEIVE_SMS) {
+      @Override public void onResult(Map<String, PermissionResult> results) {
+        startActivity(intent);
+        finish();
+      }
+    });
+  }
+
   private class CreateButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
@@ -214,11 +242,7 @@ public class RegistrationActivity extends BaseActionBarActivity {
                                new DialogInterface.OnClickListener() {
                                  @Override
                                  public void onClick(DialogInterface dialog, int which) {
-                                   Intent intent = new Intent(self, RegistrationProgressActivity.class);
-                                   intent.putExtra("e164number", e164number);
-                                   intent.putExtra("master_secret", masterSecret);
-                                   startActivity(intent);
-                                   finish();
+                                   handleRegistration(e164number);
                                  }
                                });
       dialog.setNegativeButton(getString(R.string.RegistrationActivity_edit), null);
