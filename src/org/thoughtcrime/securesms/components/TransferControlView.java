@@ -5,11 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.nineoldandroids.animation.Animator;
@@ -27,15 +28,19 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import de.greenrobot.event.EventBus;
 
-public class TransferControlView extends AnimatingToggle {
-  private static final String TAG = TransferControlView.class.getSimpleName();
+public class TransferControlView extends FrameLayout {
+  private static final String TAG           = TransferControlView.class.getSimpleName();
+  private static final int    TRANSITION_MS = 300;
 
-  private Slide         slide;
-  private ProgressWheel progressWheel;
-  private TextView      downloadDetails;
+            private Slide         slide;
+            private ProgressWheel progressWheel;
+            private TextView      downloadDetails;
+  @Nullable private View          current;
 
-  private final int contractedWidth;
-  private final int expandedWidth;
+  private final Animation inAnimation;
+  private final Animation outAnimation;
+  private final int       contractedWidth;
+  private final int       expandedWidth;
 
   public TransferControlView(Context context) {
     this(context, null);
@@ -53,6 +58,10 @@ public class TransferControlView extends AnimatingToggle {
     this.downloadDetails = ViewUtil.findById(this, R.id.download_details);
     this.contractedWidth = getResources().getDimensionPixelSize(R.dimen.transfer_controls_contracted_width);
     this.expandedWidth   = getResources().getDimensionPixelSize(R.dimen.transfer_controls_expanded_width);
+    this.outAnimation    = new AlphaAnimation(1f, 0f);
+    this.inAnimation     = new AlphaAnimation(0f, 1f);
+    this.outAnimation.setDuration(TRANSITION_MS);
+    this.inAnimation.setDuration(TRANSITION_MS);
   }
 
   @Override protected void onAttachedToWindow() {
@@ -67,76 +76,14 @@ public class TransferControlView extends AnimatingToggle {
 
   public void setSlide(final @NonNull Slide slide) {
     this.slide = slide;
-
     if (slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_STARTED) {
-      progressWheel.spin();
-      animateIn(progressWheel);
+      showProgressSpinner();
     } else if (slide.isPendingDownload()) {
       downloadDetails.setText(slide.getContentDescription());
-      animateIn(downloadDetails);
-    } else {
-      setVisibility(GONE);
-      display(null, false);
-    }
-  }
-
-  private void animateIn(@NonNull final View view) {
-    showSmooth();
-    final int sourceWidth = getCurrent() == downloadDetails ? expandedWidth : contractedWidth;
-    final int targetWidth = view         == downloadDetails ? expandedWidth : contractedWidth;
-    if (getCurrent() == view) {
-      ViewGroup.LayoutParams layoutParams = getLayoutParams();
-      layoutParams.width = targetWidth;
-      setLayoutParams(layoutParams);
-      display(view);
+      display(downloadDetails);
     } else {
       display(null);
-      ValueAnimator anim = ValueAnimator.ofInt(sourceWidth, targetWidth);
-      anim.addUpdateListener(new AnimatorUpdateListener() {
-        @Override public void onAnimationUpdate(ValueAnimator animation) {
-          final int                    val          = (Integer) animation.getAnimatedValue();
-          final ViewGroup.LayoutParams layoutParams = getLayoutParams();
-          layoutParams.width = val;
-          setLayoutParams(layoutParams);
-        }
-      });
-      anim.setInterpolator(new FastOutSlowInInterpolator());
-      anim.addListener(new AnimatorListener() {
-        @Override public void onAnimationStart(Animator animation) {}
-        @Override public void onAnimationCancel(Animator animation) {}
-        @Override public void onAnimationRepeat(Animator animation) {}
-        @Override public void onAnimationEnd(Animator animation) {
-          display(view);
-        }
-      });
-      anim.setDuration(300);
-      anim.start();
     }
-  }
-
-  private void showSmooth() {
-    if (getVisibility() == VISIBLE) return;
-
-    AlphaAnimation anim = new AlphaAnimation(0f, 1f);
-    anim.setDuration(300);
-    startAnimation(anim);
-    setVisibility(VISIBLE);
-  }
-
-  private void hideSmooth() {
-    if (getVisibility() == GONE) return;
-
-    AlphaAnimation anim = new AlphaAnimation(1f, 0f);
-    anim.setAnimationListener(new AnimationListener() {
-      @Override public void onAnimationStart(Animation animation) {}
-      @Override public void onAnimationRepeat(Animation animation) {}
-      @Override public void onAnimationEnd(Animation animation) {
-        setVisibility(GONE);
-      }
-
-    });
-    anim.setDuration(300);
-    startAnimation(anim);
   }
 
   public void showProgressSpinner() {
@@ -149,9 +96,63 @@ public class TransferControlView extends AnimatingToggle {
   }
 
   public void clear() {
-    display(null, false);
+    clearAnimation();
     setVisibility(GONE);
-    slide = null;
+    if (current != null) {
+      current.clearAnimation();
+      current.setVisibility(GONE);
+    }
+    current = null;
+    slide   = null;
+  }
+
+  private void display(@Nullable final View view) {
+    if (view == null) {
+      ViewUtil.animateOut(this, outAnimation);
+      if (current != null) ViewUtil.animateOut(current, outAnimation);
+      current = null;
+      return;
+    } else {
+      ViewUtil.animateIn(this, inAnimation);
+    }
+
+    final int sourceWidth = current == downloadDetails ? expandedWidth : contractedWidth;
+    final int targetWidth = view    == downloadDetails ? expandedWidth : contractedWidth;
+    if (current == view || current == null) {
+      ViewGroup.LayoutParams layoutParams = getLayoutParams();
+      layoutParams.width = targetWidth;
+      setLayoutParams(layoutParams);
+      if (current == null) ViewUtil.animateIn(view, inAnimation);
+    } else {
+      ViewUtil.animateOut(current, outAnimation);
+      Animator anim = getWidthAnimator(sourceWidth, targetWidth);
+      anim.addListener(new AnimatorListener() {
+        @Override public void onAnimationStart(Animator animation) {}
+        @Override public void onAnimationCancel(Animator animation) {}
+        @Override public void onAnimationRepeat(Animator animation) {}
+        @Override public void onAnimationEnd(Animator animation) {
+          ViewUtil.animateIn(view, inAnimation);
+        }
+      });
+      anim.start();
+    }
+
+    current = view;
+  }
+
+  private Animator getWidthAnimator(final int from, final int to) {
+    final ValueAnimator anim = ValueAnimator.ofInt(from, to);
+    anim.addUpdateListener(new AnimatorUpdateListener() {
+      @Override public void onAnimationUpdate(ValueAnimator animation) {
+        final int val = (Integer)animation.getAnimatedValue();
+        final ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        layoutParams.width = val;
+        setLayoutParams(layoutParams);
+      }
+    });
+    anim.setInterpolator(new FastOutSlowInInterpolator());
+    anim.setDuration(TRANSITION_MS);
+    return anim;
   }
 
   @SuppressWarnings("unused")
@@ -159,10 +160,10 @@ public class TransferControlView extends AnimatingToggle {
     if (this.slide != null && event.partId.equals(this.slide.getPart().getPartId())) {
       Util.runOnMain(new Runnable() {
         @Override public void run() {
-          progressWheel.setInstantProgress(((float)event.progress) / event.total);
           if (event.progress >= event.total) {
-            hideSmooth();
-            display(null);
+            progressWheel.spin();
+          } else {
+            progressWheel.setInstantProgress(((float)event.progress) / event.total);
           }
         }
       });

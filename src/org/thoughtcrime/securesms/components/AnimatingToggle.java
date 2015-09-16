@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +11,27 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class AnimatingToggle extends FrameLayout {
 
   private View current;
 
+  private final Animation inAnimation;
+  private final Animation outAnimation;
+
   public AnimatingToggle(Context context) {
-    super(context);
+    this(context, null);
   }
 
   public AnimatingToggle(Context context, AttributeSet attrs) {
-    super(context, attrs);
+    this(context, attrs, 0);
   }
 
   public AnimatingToggle(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+    this.outAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_out);
+    this.inAnimation  = AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_in);
   }
 
   @Override
@@ -43,49 +48,14 @@ public class AnimatingToggle extends FrameLayout {
   }
 
   public void display(@Nullable View view) {
-    display(view, true);
-  }
-
-  protected void display(@Nullable View view, boolean animated) {
     if (view == current) return;
-
-    if (animated) {
-      if (current != null) animateOut(current, AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_out));
-      if (view    != null) animateIn(view, AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_in));
-    } else {
-      if (current != null) current.setVisibility(GONE);
-      if (view    != null) view.setVisibility(VISIBLE);
-    }
+    if (current != null) ViewUtil.animateOut(current, outAnimation);
+    if (view    != null) ViewUtil.animateIn(view, inAnimation);
 
     current = view;
   }
 
   protected @Nullable View getCurrent() {
     return current;
-  }
-
-  private void animateOut(final View view, Animation animation) {
-    animation.setAnimationListener(new Animation.AnimationListener() {
-      @Override
-      public void onAnimationStart(Animation animation) {
-      }
-
-      @Override
-      public void onAnimationEnd(Animation animation) {
-        view.setVisibility(View.GONE);
-      }
-
-      @Override
-      public void onAnimationRepeat(Animation animation) {
-      }
-    });
-
-    view.startAnimation(animation);
-  }
-
-  private void animateIn(View view, Animation animation) {
-    animation.setInterpolator(new FastOutSlowInInterpolator());
-    view.setVisibility(View.VISIBLE);
-    view.startAnimation(animation);
   }
 }
