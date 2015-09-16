@@ -1,7 +1,10 @@
 package org.thoughtcrime.redphone.call;
 
+import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
+
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -13,55 +16,70 @@ import java.lang.reflect.Method;
  * @author Stuart O. Anderson
 */
 class ProximityLock {
+
   private final Method wakelockParameterizedRelease = getWakelockParamterizedReleaseMethod();
-  private final PowerManager.WakeLock proximityLock;
+  private final Optional<PowerManager.WakeLock> proximityLock;
 
   private static final int PROXIMITY_SCREEN_OFF_WAKE_LOCK = 32;
   private static final int WAIT_FOR_PROXIMITY_NEGATIVE = 1;
 
   ProximityLock(PowerManager pm) {
-    proximityLock = maybeGetProximityLock(pm);
+    proximityLock = getProximityLock(pm);
   }
 
-  private PowerManager.WakeLock maybeGetProximityLock(PowerManager pm) {
-    /*try {
-      PowerManager.WakeLock lock = pm.newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "RedPhone Incall");
-      if (lock != null) {
-        return lock;
+  private Optional<PowerManager.WakeLock> getProximityLock(PowerManager pm) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      if (pm.isWakeLockLevelSupported(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK)) {
+        return Optional.fromNullable(pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK,
+                                                    "Signal Proximity Lock"));
+      } else {
+        return Optional.absent();
       }
-    } catch (Throwable t) {
-      Log.e("LockManager", "Failed to create proximity lock", t);
-    }*/
-    return null;
+    } else {
+      try {
+        return Optional.fromNullable(pm.newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "RedPhone Incall"));
+      } catch (Throwable t) {
+        Log.e("LockManager", "Failed to create proximity lock", t);
+        return Optional.absent();
+      }
+    }
   }
 
   public void acquire() {
-    if (proximityLock == null || proximityLock.isHeld()) {
+    if (!proximityLock.isPresent() || proximityLock.get().isHeld()) {
       return;
     }
-    proximityLock.acquire();
+
+    proximityLock.get().acquire();
   }
 
   public void release() {
-    if (proximityLock == null || !proximityLock.isHeld()) {
+    if (!proximityLock.isPresent() || !proximityLock.get().isHeld()) {
       return;
     }
-    boolean released = false;
-    if (wakelockParameterizedRelease != null) {
-      try {
-        wakelockParameterizedRelease.invoke(proximityLock, new Integer(WAIT_FOR_PROXIMITY_NEGATIVE));
-        released = true;
-      } catch (IllegalAccessException e) {
-        Log.d("LockManager", "Failed to invoke release method", e);
-      } catch (InvocationTargetException e) {
-        Log.d("LockManager", "Failed to invoke release method", e);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      proximityLock.get().release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
+    } else {
+      boolean released = false;
+
+      if (wakelockParameterizedRelease != null) {
+        try {
+          wakelockParameterizedRelease.invoke(proximityLock.get(), WAIT_FOR_PROXIMITY_NEGATIVE);
+          released = true;
+        } catch (IllegalAccessException e) {
+          Log.w("ProximityLock", e);
+        } catch (InvocationTargetException e) {
+          Log.w("ProximityLock", e);
+        }
+      }
+
+      if (!released) {
+        proximityLock.get().release();
       }
     }
 
-    if(!released) {
-      proximityLock.release();
-    }
-    Log.d("LockManager", "Released proximity lock:" + proximityLock.isHeld());
+    Log.d("LockManager", "Released proximity lock:" + proximityLock.get().isHeld());
   }
 
   private static Method getWakelockParamterizedReleaseMethod() {
