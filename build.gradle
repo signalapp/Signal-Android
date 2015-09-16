@@ -1,4 +1,4 @@
-def verName = "1.0.2.1."
+def verName = "1.0.2.2."
 def verNumber = 4
 
 def gitRevision = (System.env['GIT_COMMIT'] ? System.env['GIT_COMMIT'] : "MASTER  ").toString()
