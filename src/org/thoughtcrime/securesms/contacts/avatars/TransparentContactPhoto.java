@@ -23,6 +23,6 @@ public class TransparentContactPhoto implements ContactPhoto {
 
   @Override
   public Drawable asCallCard(Context context) {
-    return context.getDrawable(R.drawable.ic_contact_picture);
+    return context.getResources().getDrawable(R.drawable.ic_contact_picture);
   }
 }

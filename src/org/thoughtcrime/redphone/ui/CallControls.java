@@ -20,7 +20,6 @@ package org.thoughtcrime.redphone.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
@@ -209,9 +208,9 @@ public class CallControls extends RelativeLayout {
     audioButton.setAudioMode(AudioUtils.getCurrentAudioMode(getContext()));
 
 //    if(ApplicationPreferencesActivity.getBluetoothEnabled(getContext())) {
-//      IntentFilter filter = new IntentFilter();
-//      filter.addAction(AudioUtils.getScoUpdateAction());
-//      handleBluetoothIntent(getContext().registerReceiver(null, filter));
+    IntentFilter filter = new IntentFilter();
+    filter.addAction(AudioUtils.getScoUpdateAction());
+    handleBluetoothIntent(getContext().registerReceiver(null, filter));
 //    }
   }
 
@@ -226,12 +225,12 @@ public class CallControls extends RelativeLayout {
     }
 
     Integer state = intent.getIntExtra(AudioManager.EXTRA_SCO_AUDIO_STATE, -1);
-//    if (state.equals(AudioManager.SCO_AUDIO_STATE_CONNECTED)
+    if (state.equals(AudioManager.SCO_AUDIO_STATE_CONNECTED)) {
 //      && ApplicationPreferencesActivity.getBluetoothEnabled(getContext())) {
-//      audioButton.setHeadsetAvailable(true);
-//    } else if (state.equals(AudioManager.SCO_AUDIO_STATE_DISCONNECTED)) {
+      audioButton.setHeadsetAvailable(true);
+    } else if (state.equals(AudioManager.SCO_AUDIO_STATE_DISCONNECTED)) {
       audioButton.setHeadsetAvailable(false);
-//    }
+    }
   }
 
 

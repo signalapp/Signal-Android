@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/handset"
+            android:title="Handset"/>
+
+    <item
+            android:id="@+id/headset"
+            android:title="Headset"/>
+
+    <item
+            android:id="@+id/speaker"
+            android:title="Speaker"/>
+
+</menu>
