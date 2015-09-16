@@ -6,8 +6,7 @@
                android:layout_height="match_parent"
                android:adjustViewBounds="true"
                android:scaleType="fitCenter"
-               android:contentDescription="@string/conversation_item__mms_image_description"
-               android:layout_margin="@dimen/media_bubble_border_width" />
+               android:contentDescription="@string/conversation_item__mms_image_description" />
 
     <ViewStub android:id="@+id/transfer_controls_stub"
               android:layout_width="70dp"

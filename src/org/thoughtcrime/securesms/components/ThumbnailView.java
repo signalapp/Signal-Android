@@ -155,6 +155,8 @@ public class ThumbnailView extends FrameLayout {
 
   public void setRemoveClickListener(OnClickListener listener) {
     getRemoveButton().setOnClickListener(listener);
+    final int pad = getResources().getDimensionPixelSize(R.dimen.media_bubble_remove_button_size);
+    image.setPadding(pad, pad, pad, 0);
   }
 
   public void setDownloadClickListener(ThumbnailClickListener listener) {
@@ -321,11 +323,15 @@ public class ThumbnailView extends FrameLayout {
         Log.w(TAG, "onResourceReady() for a Bitmap. Saving.");
         part.setThumbnail(((GlideBitmapDrawable)resource).getBitmap());
       }
-      if (resource.getIntrinsicWidth() < resource.getIntrinsicHeight()) {
-        getRemoveButton().setPadding(0, 0, (getWidth() - resource.getIntrinsicWidth()) / 2, 0);
+      LayoutParams layoutParams = (LayoutParams) getRemoveButton().getLayoutParams();
+      if (resource.getIntrinsicWidth() < getWidth()) {
+        layoutParams.topMargin   = 0;
+        layoutParams.rightMargin = Math.max(0, (getWidth() - image.getPaddingRight() - resource.getIntrinsicWidth()) / 2);
       } else {
-        getRemoveButton().setPadding(0, (getHeight() - resource.getIntrinsicHeight()) / 2, 0, 0);
+        layoutParams.topMargin   = Math.max(0, (getHeight() - image.getPaddingTop() - resource.getIntrinsicHeight()) / 2);
+        layoutParams.rightMargin = 0;
       }
+      getRemoveButton().setLayoutParams(layoutParams);
       return false;
     }
   }
