@@ -42,7 +42,7 @@ public class ResourceContactPhoto implements ContactPhoto {
 
   @Override
   public Drawable asCallCard(Context context) {
-    return context.getDrawable(resourceId);
+    return context.getResources().getDrawable(resourceId);
   }
 
   private static class ExpandingLayerDrawable extends LayerDrawable {
