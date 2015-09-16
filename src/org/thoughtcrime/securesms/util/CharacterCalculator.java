@@ -20,15 +20,25 @@ public abstract class CharacterCalculator {
 
   public abstract CharacterState calculateCharacters(int charactersSpent);
 
-  public static class CharacterState {
-    public int charactersRemaining;
-    public int messagesSpent;
-    public int maxMessageSize;
+  public class CharacterState {
+    final public int charactersRemaining;
+    final public int messagesSpent;
+    final public int maxMessageSize;
+    final public int maxNumberOfMessages;
+
+    public CharacterState(int messagesSpent, int charactersRemaining, int maxMessageSize, int maxNumberOfMessages) {
+      this.messagesSpent       = messagesSpent;
+      this.charactersRemaining = charactersRemaining;
+      this.maxMessageSize      = maxMessageSize;
+      this.maxNumberOfMessages = maxNumberOfMessages;
+    }
 
     public CharacterState(int messagesSpent, int charactersRemaining, int maxMessageSize) {
       this.messagesSpent       = messagesSpent;
       this.charactersRemaining = charactersRemaining;
       this.maxMessageSize      = maxMessageSize;
+      // TODO come up with sensible default value
+      this.maxNumberOfMessages = Integer.MAX_VALUE;
     }
   }
 }

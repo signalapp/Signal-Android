@@ -45,6 +45,10 @@ public class AnimatingToggle extends FrameLayout {
     child.setClickable(false);
   }
 
+  public boolean isView(View view) {
+    return view == current;
+  }
+
   public void display(View view) {
     if (view == current) return;
 
