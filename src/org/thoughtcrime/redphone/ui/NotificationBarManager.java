@@ -51,7 +51,7 @@ public class NotificationBarManager {
     Intent contentIntent        = new Intent(context, RedPhone.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
-    String notificationText     = "RedPhone call in progress";
+    String notificationText     = "Signal call in progress";
     Notification notification   = new Notification(R.drawable.redphone_stat_sys_phone_call, null,
                                                    System.currentTimeMillis());
 

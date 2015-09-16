@@ -92,9 +92,9 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   private int state;
   private byte[] zid;
-  private String localNumber;
+//  private String localNumber;
   private String remoteNumber;
-  private String password;
+//  private String password;
   private CallManager currentCallManager;
   private LockManager lockManager;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
@@ -172,8 +172,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   private void initializeResources() {
     this.state            = RedPhone.STATE_IDLE;
     this.zid              = getZID();
-    this.localNumber      = TextSecurePreferences.getLocalNumber(this);
-    this.password         = TextSecurePreferences.getPushServerPassword(this);
+//    this.localNumber      = TextSecurePreferences.getLocalNumber(this);
+//    this.password         = TextSecurePreferences.getPushServerPassword(this);
     this.lockManager      = new LockManager(this);
   }
 
@@ -185,9 +185,12 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   /// Intent Handlers
 
   private void handleIncomingCall(Intent intent) {
-    SessionDescriptor session = intent.getParcelableExtra(EXTRA_SESSION_DESCRIPTOR);
-    remoteNumber              = intent.getStringExtra(EXTRA_REMOTE_NUMBER);
-    state                     = RedPhone.STATE_RINGING;
+    String            localNumber = TextSecurePreferences.getLocalNumber(this);
+    String            password    = TextSecurePreferences.getPushServerPassword(this);
+    SessionDescriptor session     = intent.getParcelableExtra(EXTRA_SESSION_DESCRIPTOR);
+
+    remoteNumber = intent.getStringExtra(EXTRA_REMOTE_NUMBER);
+    state        = RedPhone.STATE_RINGING;
 
     lockManager.updatePhoneState(LockManager.PhoneState.PROCESSING);
     this.currentCallManager = new ResponderCallManager(this, this, remoteNumber, localNumber,
@@ -196,6 +199,9 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleOutgoingCall(Intent intent) {
+    String localNumber = TextSecurePreferences.getLocalNumber(this);
+    String password    = TextSecurePreferences.getPushServerPassword(this);
+
     remoteNumber = intent.getStringExtra(EXTRA_REMOTE_NUMBER);
 
     if (remoteNumber == null || remoteNumber.length() == 0)
@@ -215,7 +221,9 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleBusyCall(Intent intent) {
-    SessionDescriptor session = intent.getParcelableExtra(EXTRA_SESSION_DESCRIPTOR);
+    String            localNumber = TextSecurePreferences.getLocalNumber(this);
+    String            password    = TextSecurePreferences.getPushServerPassword(this);
+    SessionDescriptor session     = intent.getParcelableExtra(EXTRA_SESSION_DESCRIPTOR);
 
     if (currentCallManager != null && session.equals(currentCallManager.getSessionDescriptor())) {
       Log.w("RedPhoneService", "Duplicate incoming call signal, ignoring...");
@@ -305,8 +313,12 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   public Recipient getRecipient() {
-    return RecipientFactory.getRecipientsFromString(this, remoteNumber, true)
-                           .getPrimaryRecipient();
+    if (remoteNumber != null) {
+      return RecipientFactory.getRecipientsFromString(this, remoteNumber, true)
+                             .getPrimaryRecipient();
+    } else {
+      return Recipient.getUnknownRecipient();
+    }
   }
 
 //  public PersonInfo getRemotePersonInfo() {
