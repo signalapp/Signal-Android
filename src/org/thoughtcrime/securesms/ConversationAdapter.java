@@ -57,7 +57,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
   public static final int MESSAGE_TYPE_OUTGOING = 0;
   public static final int MESSAGE_TYPE_INCOMING = 1;
-  public static final int MESSAGE_TYPE_GROUP_ACTION = 2;
+  public static final int MESSAGE_TYPE_UPDATE   = 2;
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
@@ -85,13 +85,22 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
-    ConversationItem item       = (ConversationItem)view;
     long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    item.set(masterSecret, messageRecord, locale, batchSelected, selectionClickListener,
-             groupThread, pushDestination);
+    switch (getItemViewType(cursor)) {
+      case MESSAGE_TYPE_INCOMING:
+      case MESSAGE_TYPE_OUTGOING:
+        ((ConversationItem) view).set(masterSecret, messageRecord, locale, batchSelected,
+                                      selectionClickListener, groupThread, pushDestination);
+        break;
+      case MESSAGE_TYPE_UPDATE:
+        ((ConversationUpdateItem)view).set(messageRecord);
+        break;
+      default:
+        throw new AssertionError("Unknown type!");
+    }
   }
 
   @Override
@@ -113,8 +122,8 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
       case ConversationAdapter.MESSAGE_TYPE_INCOMING:
         view = inflater.inflate(R.layout.conversation_item_received, parent, false);
         break;
-      case ConversationAdapter.MESSAGE_TYPE_GROUP_ACTION:
-        view = inflater.inflate(R.layout.conversation_item_activity, parent, false);
+      case ConversationAdapter.MESSAGE_TYPE_UPDATE:
+        view = inflater.inflate(R.layout.conversation_item_update, parent, false);
         break;
       default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
     }
@@ -138,7 +147,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    if      (messageRecord.isGroupAction()) return MESSAGE_TYPE_GROUP_ACTION;
+    if      (messageRecord.isGroupAction()) return MESSAGE_TYPE_UPDATE;
     else if (messageRecord.isOutgoing())    return MESSAGE_TYPE_OUTGOING;
     else                                    return MESSAGE_TYPE_INCOMING;
   }
@@ -181,6 +190,6 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
   @Override
   public void onMovedToScrapHeap(View view) {
-    ((ConversationItem)view).unbind();
+    ((Unbindable) view).unbind();
   }
 }

@@ -184,7 +184,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {
     if (conversationItem == null) {
       if (messageRecord.isGroupAction()) {
-        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_activity, itemParent, false);
+        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_update, itemParent, false);
       } else if (messageRecord.isOutgoing()) {
         conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_sent, itemParent, false);
       } else {
