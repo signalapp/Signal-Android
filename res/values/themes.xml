@@ -125,8 +125,8 @@
 
 
         <item name="conversation_item_bubble_background">@color/white</item>
-        <item name="conversation_item_sent_text_primary_color">#99000000</item>
-        <item name="conversation_item_sent_text_secondary_color">#bb000000</item>
+        <item name="conversation_item_sent_text_primary_color">@color/grey_800</item>
+        <item name="conversation_item_sent_text_secondary_color">@color/grey_900</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99000000</item>
         <item name="conversation_item_received_text_primary_color">@color/white</item>
         <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
