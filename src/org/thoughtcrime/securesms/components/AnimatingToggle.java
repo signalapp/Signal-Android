@@ -54,8 +54,4 @@ public class AnimatingToggle extends FrameLayout {
 
     current = view;
   }
-
-  protected @Nullable View getCurrent() {
-    return current;
-  }
 }
