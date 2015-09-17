@@ -34,7 +34,7 @@ public class GroupUtil {
     return groupId.startsWith(ENCODED_GROUP_PREFIX);
   }
 
-  public static GroupDescription getDescription(@NonNull Context context, @Nullable String encodedGroup) {
+  public static @NonNull GroupDescription getDescription(@NonNull Context context, @Nullable String encodedGroup) {
     if (encodedGroup == null) {
       return new GroupDescription(context, null);
     }

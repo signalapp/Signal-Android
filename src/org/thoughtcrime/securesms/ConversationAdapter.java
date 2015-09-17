@@ -89,11 +89,17 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    if (view instanceof ConversationItem) {
-      ((ConversationItem) view).set(masterSecret, messageRecord, locale, batchSelected,
-                                    selectionClickListener, groupThread, pushDestination);
-    } else if (view instanceof ConversationUpdateItem) {
-      ((ConversationUpdateItem)view).set(messageRecord);
+    switch (getItemViewType(cursor)) {
+      case MESSAGE_TYPE_INCOMING:
+      case MESSAGE_TYPE_OUTGOING:
+        ((ConversationItem) view).set(masterSecret, messageRecord, locale, batchSelected,
+                                      selectionClickListener, groupThread, pushDestination);
+        break;
+      case MESSAGE_TYPE_UPDATE:
+        ((ConversationUpdateItem)view).set(messageRecord);
+        break;
+      default:
+        throw new AssertionError("Unknown type!");
     }
   }
 
@@ -184,8 +190,6 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
   @Override
   public void onMovedToScrapHeap(View view) {
-    if (view instanceof ConversationItem) {
-      ((ConversationItem) view).unbind();
-    }
+    ((Unbindable) view).unbind();
   }
 }

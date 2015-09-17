@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 public class ConversationUpdateItem extends LinearLayout
-    implements Recipients.RecipientsModifiedListener, Recipient.RecipientModifiedListener, View.OnClickListener
+    implements Recipients.RecipientsModifiedListener, Recipient.RecipientModifiedListener, Unbindable, View.OnClickListener
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
 
@@ -64,13 +64,8 @@ public class ConversationUpdateItem extends LinearLayout
   }
 
   @Override
-  public void onModified(Recipients recipient) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        set(messageRecord);
-      }
-    });
+  public void onModified(Recipients recipients) {
+    onModified(recipients.getPrimaryRecipient());
   }
 
   @Override
@@ -91,6 +86,13 @@ public class ConversationUpdateItem extends LinearLayout
                       new long[] {messageRecord.getIndividualRecipient().getRecipientId()});
 
       getContext().startActivity(intent);
+    }
+  }
+
+  @Override
+  public void unbind() {
+    if (sender != null) {
+      sender.removeListener(this);
     }
   }
 }

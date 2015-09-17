@@ -74,7 +74,7 @@ import java.util.Set;
  *
  */
 
-public class ConversationItem extends LinearLayout implements Recipient.RecipientModifiedListener {
+public class ConversationItem extends LinearLayout implements Recipient.RecipientModifiedListener, Unbindable {
   private final static String TAG = ConversationItem.class.getSimpleName();
 
   private MessageRecord messageRecord;
@@ -203,6 +203,7 @@ public class ConversationItem extends LinearLayout implements Recipient.Recipien
     attrs.recycle();
   }
 
+  @Override
   public void unbind() {
     if (recipient != null) {
       recipient.removeListener(this);
