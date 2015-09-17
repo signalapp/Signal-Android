@@ -35,7 +35,7 @@ public class EmojiEditText extends AppCompatEditText {
     final int          end   = getSelectionEnd();
 
     getText().replace(Math.min(start, end), Math.max(start, end), emoji);
-    setSelection(end + emoji.length());
+    setSelection(start + emoji.length());
   }
 
   @Override public void invalidateDrawable(@NonNull Drawable drawable) {
