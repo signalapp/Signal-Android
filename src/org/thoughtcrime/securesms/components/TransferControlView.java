@@ -27,18 +27,17 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import de.greenrobot.event.EventBus;
 
 public class TransferControlView extends FrameLayout {
-  private static final String TAG           = TransferControlView.class.getSimpleName();
-  private static final int    TRANSITION_MS = 300;
+  private static final int TRANSITION_MS = 300;
 
-            private Slide         slide;
-            private ProgressWheel progressWheel;
-            private TextView      downloadDetails;
-  @Nullable private View          current;
+  @Nullable private Slide slide;
+  @Nullable private View  current;
 
-  private final Animation inAnimation;
-  private final Animation outAnimation;
-  private final int       contractedWidth;
-  private final int       expandedWidth;
+  private final ProgressWheel progressWheel;
+  private final TextView      downloadDetails;
+  private final Animation     inAnimation;
+  private final Animation     outAnimation;
+  private final int           contractedWidth;
+  private final int           expandedWidth;
 
   public TransferControlView(Context context) {
     this(context, null);
