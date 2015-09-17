@@ -176,7 +176,7 @@ public class ContactsDatabase {
     }
 
     if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      uri =uri.buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
+      uri = uri.buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
     }
 
     String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone._ID,
