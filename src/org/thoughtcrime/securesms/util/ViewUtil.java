@@ -24,6 +24,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
@@ -80,7 +81,6 @@ public class ViewUtil {
     if (view.getVisibility() == View.GONE) return;
 
     view.clearAnimation();
-    animation.setInterpolator(new FastOutSlowInInterpolator());
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override public void onAnimationStart(Animation animation) {}
       @Override public void onAnimationRepeat(Animation animation) {}
@@ -94,9 +94,7 @@ public class ViewUtil {
 
   public static void animateIn(final @NonNull View view, final @NonNull Animation animation) {
     if (view.getVisibility() == View.VISIBLE) return;
-
     view.clearAnimation();
-    animation.setInterpolator(new FastOutSlowInInterpolator());
     view.setVisibility(View.VISIBLE);
     view.startAnimation(animation);
   }

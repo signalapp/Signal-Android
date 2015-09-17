@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -14,7 +13,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.Animator.AnimatorListener;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.animation.ValueAnimator.AnimatorUpdateListener;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -54,12 +52,15 @@ public class TransferControlView extends FrameLayout {
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.transfer_controls_view, this);
     setBackgroundResource(R.drawable.transfer_controls_background);
+    setVisibility(GONE);
     this.progressWheel   = ViewUtil.findById(this, R.id.progress_wheel);
     this.downloadDetails = ViewUtil.findById(this, R.id.download_details);
     this.contractedWidth = getResources().getDimensionPixelSize(R.dimen.transfer_controls_contracted_width);
     this.expandedWidth   = getResources().getDimensionPixelSize(R.dimen.transfer_controls_expanded_width);
     this.outAnimation    = new AlphaAnimation(1f, 0f);
     this.inAnimation     = new AlphaAnimation(0f, 1f);
+    this.outAnimation.setInterpolator(new FastOutSlowInInterpolator());
+    this.inAnimation.setInterpolator(new FastOutSlowInInterpolator());
     this.outAnimation.setDuration(TRANSITION_MS);
     this.inAnimation.setDuration(TRANSITION_MS);
   }
@@ -107,34 +108,24 @@ public class TransferControlView extends FrameLayout {
   }
 
   private void display(@Nullable final View view) {
-    if (view == null) {
-      ViewUtil.animateOut(this, outAnimation);
-      if (current != null) ViewUtil.animateOut(current, outAnimation);
-      current = null;
-      return;
-    } else {
-      ViewUtil.animateIn(this, inAnimation);
-    }
-
     final int sourceWidth = current == downloadDetails ? expandedWidth : contractedWidth;
     final int targetWidth = view    == downloadDetails ? expandedWidth : contractedWidth;
+
     if (current == view || current == null) {
       ViewGroup.LayoutParams layoutParams = getLayoutParams();
       layoutParams.width = targetWidth;
       setLayoutParams(layoutParams);
-      if (current == null) ViewUtil.animateIn(view, inAnimation);
     } else {
       ViewUtil.animateOut(current, outAnimation);
       Animator anim = getWidthAnimator(sourceWidth, targetWidth);
-      anim.addListener(new AnimatorListener() {
-        @Override public void onAnimationStart(Animator animation) {}
-        @Override public void onAnimationCancel(Animator animation) {}
-        @Override public void onAnimationRepeat(Animator animation) {}
-        @Override public void onAnimationEnd(Animator animation) {
-          ViewUtil.animateIn(view, inAnimation);
-        }
-      });
       anim.start();
+    }
+
+    if (view == null) {
+      ViewUtil.animateOut(this, outAnimation);
+    } else {
+      ViewUtil.animateIn(this, inAnimation);
+      ViewUtil.animateIn(view, inAnimation);
     }
 
     current = view;
@@ -160,11 +151,7 @@ public class TransferControlView extends FrameLayout {
     if (this.slide != null && event.partId.equals(this.slide.getPart().getPartId())) {
       Util.runOnMain(new Runnable() {
         @Override public void run() {
-          if (event.progress >= event.total) {
-            progressWheel.spin();
-          } else {
-            progressWheel.setInstantProgress(((float)event.progress) / event.total);
-          }
+          progressWheel.setInstantProgress(((float)event.progress) / event.total);
         }
       });
     }
