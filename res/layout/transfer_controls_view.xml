@@ -4,19 +4,22 @@
 
     <com.pnikosis.materialishprogress.ProgressWheel
             android:id="@+id/progress_wheel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/progress_background"
+            android:layout_width="@dimen/transfer_controls_contracted_width"
+            android:layout_height="@dimen/transfer_controls_contracted_width"
             android:visibility="gone"
+            android:layout_gravity="center"
             app:matProg_barColor="@color/white"
             app:matProg_linearProgress="true"
             app:matProg_spinSpeed="0.333" />
 
-    <ImageButton android:id="@+id/download_button"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:layout_gravity="center"
-                 android:background="@drawable/progress_background"
-                 android:src="@drawable/ic_file_download_white_36dp"
-                 android:visibility="gone" />
+    <TextView android:id="@+id/download_details"
+              android:layout_width="@dimen/transfer_controls_expanded_width"
+              android:layout_height="@dimen/transfer_controls_contracted_width"
+              android:padding="15dp"
+              android:gravity="center"
+              android:textColor="?conversation_item_received_text_primary_color"
+              android:drawableLeft="@drawable/ic_file_download_white_36dp"
+              android:textSize="16dp"
+              android:visibility="gone"
+              android:textStyle="bold" />
 </merge>

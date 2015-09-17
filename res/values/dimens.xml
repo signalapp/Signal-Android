@@ -34,4 +34,7 @@
 
     <dimen name="quick_media_drawer_default_height">250dp</dimen>
     <dimen name="quick_camera_shutter_ring_size">52dp</dimen>
+
+    <dimen name="transfer_controls_expanded_width">150dp</dimen>
+    <dimen name="transfer_controls_contracted_width">70dp</dimen>
 </resources>
