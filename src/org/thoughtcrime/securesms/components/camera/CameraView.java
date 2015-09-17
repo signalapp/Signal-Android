@@ -114,19 +114,28 @@ public class CameraView extends FrameLayout {
           host.onCameraFail(result);
           return;
         }
-        cameraReady = true;
-        if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
-          onOrientationChange.enable();
+        try {
+          cameraReady = true;
+          if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
+            onOrientationChange.enable();
+          }
+          setCameraDisplayOrientation();
+          synchronized (CameraView.this) {
+            CameraView.this.notifyAll();
+          }
+          previewCreated();
+          initPreview();
+          requestLayout();
+          invalidate();
+          Log.w(TAG, "onResume() completed");
+        } catch (RuntimeException re) {
+          Log.w(TAG, "exception when starting camera preview", re);
+          try {
+            previewDestroyed();
+          } catch (RuntimeException re2) {
+            Log.w(TAG, "also failed to release camera", re2);
+          }
         }
-        setCameraDisplayOrientation();
-        synchronized (CameraView.this) {
-          CameraView.this.notifyAll();
-        }
-        previewCreated();
-        initPreview();
-        requestLayout();
-        invalidate();
-        Log.w(TAG, "onResume() completed");
       }
     });
   }
@@ -272,9 +281,12 @@ public class CameraView extends FrameLayout {
   }
 
   void previewDestroyed() {
-    if (camera != null) {
-      previewStopped();
-      camera.release();
+    try {
+      if (camera != null) {
+        previewStopped();
+        camera.release();
+      }
+    } finally {
       camera = null;
     }
   }
