@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
 import java.util.Locale;
@@ -181,16 +182,13 @@ public class ConversationItem extends LinearLayout implements Recipient.Recipien
 
     setSelectionBackgroundDrawables(messageRecord);
     setBodyText(messageRecord);
-
-    if (hasConversationBubble(messageRecord)) {
-      setBubbleState(messageRecord, recipient);
-      setStatusIcons(messageRecord);
-      setContactPhoto(recipient);
-      setGroupMessageStatus(messageRecord, recipient);
-      setEvents(messageRecord);
-      setMinimumWidth();
-      setMediaAttributes(messageRecord);
-    }
+    setBubbleState(messageRecord, recipient);
+    setStatusIcons(messageRecord);
+    setContactPhoto(recipient);
+    setGroupMessageStatus(messageRecord, recipient);
+    setEvents(messageRecord);
+    setMinimumWidth();
+    setMediaAttributes(messageRecord);
   }
 
   private void initializeAttributes() {
@@ -234,10 +232,6 @@ public class ConversationItem extends LinearLayout implements Recipient.Recipien
     } else {
       setBackgroundDrawable(normalBackground);
     }
-  }
-
-  private boolean hasConversationBubble(MessageRecord messageRecord) {
-    return !messageRecord.isGroupAction();
   }
 
   private boolean isCaptionlessMms(MessageRecord messageRecord) {
@@ -403,12 +397,15 @@ public class ConversationItem extends LinearLayout implements Recipient.Recipien
   }
 
   @Override
-  public void onModified(Recipient recipient) {
-    if (hasConversationBubble(messageRecord)) {
-      setBubbleState(messageRecord, recipient);
-      setContactPhoto(recipient);
-      setGroupMessageStatus(messageRecord, recipient);
-    }
+  public void onModified(final Recipient recipient) {
+    Util.runOnMain(new Runnable() {
+      @Override
+      public void run() {
+        setBubbleState(messageRecord, recipient);
+        setContactPhoto(recipient);
+        setGroupMessageStatus(messageRecord, recipient);
+      }
+    });
   }
 
   private class ThumbnailDownloadClickListener implements ThumbnailView.ThumbnailClickListener {
@@ -416,6 +413,7 @@ public class ConversationItem extends LinearLayout implements Recipient.Recipien
       DatabaseFactory.getPartDatabase(context).setTransferState(messageRecord.getId(), slide.getPart().getPartId(), PartDatabase.TRANSFER_PROGRESS_STARTED);
     }
   }
+
   private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
     private void fireIntent(Slide slide) {
       Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
