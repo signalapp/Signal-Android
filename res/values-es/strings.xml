@@ -761,6 +761,7 @@ por SMS.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicita la confirmación de entrega de SMS para todos los SMS que envíe.</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Eliminar automáticamente los mensajes más antiguos cuando una conversación exceda el límite de longitud especificado</string>
   <string name="preferences__delete_old_messages">Eliminar mensajes antiguos</string>
+  <string name="preferences__chats">Chats y audiovisuales</string>
   <string name="preferences__conversation_length_limit">Límite de longitud de la conversación</string>
   <string name="preferences__trim_all_threads_now">Recortar todos los hilos ahora</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Escanear todas las conversaciones y forzar los límites de tamaño de conversación</string>
@@ -780,6 +781,11 @@ Mensajería privada gratuita con usuarios de TextSecure y Signal</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilítelo si su dispositivo utiliza entrega de SMS/MMS vía WiFi (actívelo sólo cuando \'Llamada por WiFi\' esté activada en su dispositivo)</string>
   <string name="preferences_app_protection__blocked_contacts">Contactos bloqueados</string>
   <string name="preferences_notifications__display_in_notifications">Mostrar en notificaciones</string>
+  <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
+  <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
+  <string name="preferences_chats__when_roaming">Al usar roaming</string>
+  <string name="preferences_chats__media_auto_download">Auto-descarga de audiovisuales</string>
+  <string name="preferences_chats__message_trimming">Recortado de mensaje</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

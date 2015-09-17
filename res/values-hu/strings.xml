@@ -662,6 +662,9 @@ sikertelen.
   <string name="arrays__name_and_message">Név és üzenet</string>
   <string name="arrays__name_only">Csak név</string>
   <string name="arrays__neither">Egyik sem</string>
+  <string name="arrays__images">Képek</string>
+  <string name="arrays__audio">Hang</string>
+  <string name="arrays__video">Videó</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d óra</item>
@@ -746,6 +749,7 @@ sikertelen.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kézbesítési jelentés kérése minden elküldött SMS esetén</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Régebbi üzenetek automatikus törlése, amikor egy beszélgetésfolyam túllép egy megadott hosszt</string>
   <string name="preferences__delete_old_messages">Régi üzenetek törlése</string>
+  <string name="preferences__chats">Csevegések és média</string>
   <string name="preferences__conversation_length_limit">Beszélgetés hosszának behatárolása</string>
   <string name="preferences__trim_all_threads_now">Minden beszélgetésfolyam csonkolása</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Minden beszélgetésfolyam átnézése és a beszélgetés határoló hossz érvényre juttatása</string>
@@ -765,6 +769,11 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Engedélyezd, ha az eszközöd az SMS/MMS-t WiFi-n keresztül kézbesíti (csak akkor engedélyezd, ha a \'WiFi hívás\' engedélyezve van az eszközödön)</string>
   <string name="preferences_app_protection__blocked_contacts">Letiltott névjegyek</string>
   <string name="preferences_notifications__display_in_notifications">Megjelenítés értesítésekben</string>
+  <string name="preferences_chats__when_using_mobile_data">Mobil adat használatakor</string>
+  <string name="preferences_chats__when_using_wifi">Wi-Fi használatakor</string>
+  <string name="preferences_chats__when_roaming">Barangoláskor</string>
+  <string name="preferences_chats__media_auto_download">Média auto-letöltés</string>
+  <string name="preferences_chats__message_trimming">Üzenet trimmelés</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

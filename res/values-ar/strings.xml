@@ -10,15 +10,15 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s رسائل في المحادثة</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">احذف جميع الرسائل القديمة الآن؟</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من حذف جميع الرسائل بالمحادثات وإبقاء أحدث %s رسالة فقط؟</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من تقليم جميع الرسائل بالمحادثات وإبقاء أحدث %s الرسائل فقط؟</string>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
-إلغاء قفل الشاشة للرسائل؟</string>
+إزالة قفل الشاشة للرسائل؟</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">جارٍ إلغاء التسجيل من رسائل تيكست سيكيور...</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">تعطيل رسائل تيكست سيكيور؟</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">إلغاء رسائل تيكست سيكيور؟</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
 سوف يتم وقف رسائل تيكست سيكيور بإلغاء تسجيلك من الخدمة. سوف يتعين عليك إعادة تسجيل رقم هاتفك لمعاودة استخدام رسائل تيكست سيكيور في المستقبل.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال بالخادم!</string>
@@ -152,14 +152,14 @@
   <string name="DeviceListActivity_network_failed">فشل في الشبكة!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">جهاز غير مسمى</string>
-  <string name="DeviceListItem_linked_s">متصل %s</string>
+  <string name="DeviceListItem_linked_s">مقترن %s</string>
   <string name="DeviceListItem_last_active_s">آخر مرة %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">تصدير</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">تصدير نص غير مشفر إلي بطاقة الذاكرة الخارجية؟</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">تحذير: سوف يتم تصدير محتوى رسائل تيكست سيكيور في هيئة نص مجرد إلى بطاقة الذاكرة.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">تحذير: سيتم تصدير محتوى رسائل تيكست سيكيور إلى بطاقة الذاكرة بدون تشفير.</string>
   <string name="ExportFragment_cancel">إلغاء</string>
   <string name="ExportFragment_exporting">التصدير جارٍ...</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">جارٍ تصدير غير مشفر إلى بطاقة الذاكرة...</string>
@@ -200,7 +200,7 @@
 استرجاع نسخة احتياطية مشفرة سيستبدل بالكامل المفاتيح حالية والإعدادات والرسائل. ستفقد المعلومات الموجودة الآن في تيكست سيكيور وغير موجودة في النسخة الاحتياطية.</string>
   <string name="ImportFragment_restore">استعادة</string>
   <string name="ImportFragment_import_plaintext_backup">استيراد نسخة احتياطية غير مشفرة؟</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">سيتم استيراد رسائل ظاهرة من نسخة احتياطية. إذا قمت سابقا باستيراد هذه النسخة الاحتياطية فسوف يؤدي اسيترادها مرة أخرى إلى تكرار الرسائل.</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">سيتم استيراد رسائل غير مشفرة من نسخة احتياطية. إذا قمت سابقا باستيراد هذا الملف فسوف يؤدي الاستيراد مرة أخرى إلى تكرار الرسائل.</string>
   <string name="ImportFragment_importing">الاستيراد جارٍ...</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">جارٍ استيراد نسخة احتياطية غير مشفرة...</string>
   <string name="ImportFragment_no_plaintext_backup_found">لم يتم العثور على نسخ احتياطية غير مشفرة!</string>
@@ -242,15 +242,15 @@
 \n- استخدام أسمك للإرسال</string>
   <string name="DeviceProvisioningActivity_content_progress_title">ربط الجهاز</string>
   <string name="DeviceProvisioningActivity_content_progress_content">جارٍ ربط الجهاز...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">الجهاز متصل!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">الجهاز مقترن!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرا، لديك بالفعل أجهزة عديدة متصلة. حاول إزالة بعضهم...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرا، لديك أجهزة عديدة مقترنة حاليا. حاول إلغاء إقران بعضهم...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة تيكست سيكيور</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">أرسل العبارة السرية </string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">تطبيق Google Play Service الذي قمت بتثبيته لا يعمل بشكل صحيح. رجاء إعادة تثبيته والمحاولة مرة أخرى.</string>
@@ -316,7 +316,7 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 تم استلام رسالة تبادل مفاتيح مع إصدارة بروتوكول غير صحيحة.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-تم استلام رسالة مع مفتاح هوية مجهول. أنقر للمتابعة والإظهار</string>
+تم استلام رسالة بمفتاح هوية غير معلوم. أنقر للمتابعة والإظهار.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">تم استلام تحديث ولكن معلومات الهوية مجهولة. أنقر للتحقق من الهوية.</string>
   <string name="SmsMessageRecord_secure_session_ended">انتهى التشفير.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
@@ -380,6 +380,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
+  <string name="MessageNotifier_locked_message">رسالة مقفوله...</string>
   <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string>
   <string name="MessageNotifier_no_subject">(بلا عنوان)</string>
   <string name="MessageNotifier_message_delivery_failed">فشل توصيل الرسالة.</string>
@@ -445,7 +446,7 @@
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ ...</string>
   <string name="country_selection_fragment__search">بحث</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">لا توجد أجهزة متصلة...</string>
+  <string name="device_list_fragment__no_devices_linked">لا توجد أجهزة مقترنة...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">تعذر التقاط سجلات التصحيح من هاتفك. يمكنك استخدام ADB للحصول على سجلات التصحيح بدلا من ذلك.</string>
   <string name="log_submit_activity__thanks">شكرا للمساعدة!</string>
@@ -462,7 +463,7 @@
   <string name="database_upgrade_activity__updating_database">تحديث قاعدة البيانات...</string>
   <string name="export_fragment__export_plaintext_backup">تصدير نسخة احتياطية غير مشفرة</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-تصدير نسخة غير مشفرة لبطاقة الذاكرة الخارجية بصيغة متوافقة مع SMSBackup And Restore</string>
+تصدير نسخة غير مشفرة لبطاقة الذاكرة الخارجية بصيغة متوافقة مع \"SMSBackup And Restore\".</string>
   <string name="import_fragment__import_system_sms_database">استيراد قاعدة بيانات الرسائل بالنظام</string>
   <string name="import_fragment__import_the_database_from_the_default_system">استيراد قاعدة البيانات
 من تطبيق الرسائل الافتراضي لنظام التشغيل</string>
@@ -470,7 +471,8 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
 استعادة نسخة احتياطية مشفرة من تيكست سيكيور.</string>
   <string name="import_fragment__import_plaintext_backup">استيراد نسخة احتياطية غير مشفرة</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">استيراد نسخة احتياطية غير مشفرة إلى ملف متوافق مع \"نسخ احتياطي واستعادة الرسائل\"</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+استيراد نسخة احتياطية غير مشفرة، متوافقة مع \"SMSBackup And Restore\".</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">لا توجد صور</string>
   <!--message_recipients_list_item-->
@@ -580,7 +582,7 @@
   <string name="AndroidManifest__media_overview">جميع الصور</string>
   <string name="AndroidManifest__media_overview_named">جميع الصور مع %1$s</string>
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
-  <string name="AndroidManifest_manage_linked_devices">إدارة الأجهزة المتصلة</string>
+  <string name="AndroidManifest_manage_linked_devices">إدارة الأجهزة المقترنة</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد / تصدير</string>
   <string name="arrays__my_identity_key">مفتاح هويتي</string>
@@ -595,6 +597,10 @@
   <string name="arrays__disabled">معطل</string>
   <string name="arrays__name_and_message">الاسم والرسالة</string>
   <string name="arrays__name_only">الاسم فقط</string>
+  <string name="arrays__neither">لا هذا ولا ذاك</string>
+  <string name="arrays__images">صور</string>
+  <string name="arrays__audio">صوت</string>
+  <string name="arrays__video">فيديو</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="zero">%d صفر</item>
@@ -683,8 +689,9 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة قصيرة ترسلها</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">حذف الرسائل القديمة آليا عند تجاوز المحادثة الطول المحدد</string>
   <string name="preferences__delete_old_messages">احذف الرسائل القديمة</string>
+  <string name="preferences__chats">المحادثات والوسائط</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
-  <string name="preferences__trim_all_threads_now">نظف كل المحادثات الآن</string>
+  <string name="preferences__trim_all_threads_now">تقليم كل المحادثات الآن</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">افحص كل المحادثات وافرض حد الطول لكل محادثة</string>
   <string name="preferences__light_theme">فاتح</string>
   <string name="preferences__dark_theme">داكن</string>
@@ -699,16 +706,21 @@
 رسائل مجانية وآمنة مع مستخدمي تيكست سيكيور وسيجنال</string>
   <string name="preferences__submit_debug_log">إرسال سجل التصحيح</string>
   <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يستخدم الواي فاي لتسليم الرسائل النصية والوسائط المتعددة ( قم بالتفعيل فقط في حال تفعيل الاتصال عبر الواي فاي بهاتفك)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم خاصية WiFi Calling لتسليم الرسائل النصية والوسائط المتعددة ( قم بالتفعيل فقط في حال تفعيل WiFi Calling بهاتفك)</string>
   <string name="preferences_app_protection__blocked_contacts">جهات الاتصال المحظورة</string>
   <string name="preferences_notifications__display_in_notifications">أظهر في الإشعارات </string>
+  <string name="preferences_chats__when_using_mobile_data">عند استخدام بيانات الجوّال</string>
+  <string name="preferences_chats__when_using_wifi">عند استخدام واي فاي</string>
+  <string name="preferences_chats__when_roaming">عند استخدام التجوال</string>
+  <string name="preferences_chats__media_auto_download">تنزلي تلقائي للوسائط</string>
+  <string name="preferences_chats__message_trimming">تقليم الرسالة</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">أختر الكل</string>
   <string name="contact_selection_list__menu_unselect_all">إلغاء التحديد</string>
-  <string name="contact_selection_list__header_textsecure_users">مستخدمين تيكست سيكيور</string>
+  <string name="contact_selection_list__header_textsecure_users">مستخدمي تيكست سيكيور</string>
   <string name="contact_selection_list__header_other">جهات الاتصال</string>
   <string name="contact_selection_list__unknown_contact">رسالة جديدة إلى...</string>
   <!--contact_selection-->

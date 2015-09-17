@@ -681,6 +681,11 @@
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">\'Wi-Fi 통화\' 사용 과 SMS/MMS Wi-Fi로 전송 설정되면 사용</string>
   <string name="preferences_app_protection__blocked_contacts">차단된 사용자</string>
   <string name="preferences_notifications__display_in_notifications">알림에 표시</string>
+  <string name="preferences_chats__when_using_mobile_data">모바일 데이터 사용할 때</string>
+  <string name="preferences_chats__when_using_wifi">Wi-Fi 사용할 때</string>
+  <string name="preferences_chats__when_roaming">로밍할 때</string>
+  <string name="preferences_chats__media_auto_download">미디어 자동 다운로드</string>
+  <string name="preferences_chats__message_trimming">대화 줄이기</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

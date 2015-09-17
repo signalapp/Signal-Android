@@ -699,7 +699,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Radera automatiskt gamla meddelanden när en konversationstråd överstiger en specificerad längd</string>
   <string name="preferences__delete_old_messages">Radera gamla meddelanden</string>
   <string name="preferences__chats">Konversationer och media</string>
-  <string name="preferences__conversation_length_limit">Konversationstrådslängd</string>
+  <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
   <string name="preferences__trim_all_threads_now">Trimma alla trådar nu</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skanna igenom alla konversationstrådar och framtvinga konversationstrådslängder.</string>
   <string name="preferences__light_theme">Ljust</string>
@@ -718,6 +718,11 @@ Fria privata meddelanden till användare av TextSecure och Signal</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivera om din enhet använder SMS/MMS sändning över WiFi (aktivera endast när \'WiFi Calling\' är aktiverat på din enhet)</string>
   <string name="preferences_app_protection__blocked_contacts">Blockerade kontakter</string>
   <string name="preferences_notifications__display_in_notifications">Visa i aviseringar</string>
+  <string name="preferences_chats__when_using_mobile_data">Vid användande av mobildata</string>
+  <string name="preferences_chats__when_using_wifi">Vid användande av Wi-Fi</string>
+  <string name="preferences_chats__when_roaming">Vid roaming</string>
+  <string name="preferences_chats__media_auto_download">Autonedladdning av media</string>
+  <string name="preferences_chats__message_trimming">Trimma meddelanden</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

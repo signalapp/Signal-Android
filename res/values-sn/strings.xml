@@ -3,15 +3,15 @@
   <string name="app_name">TextSecure</string>
   <string name="yes">Hongu</string>
   <string name="no">Kwete</string>
-  <string name="delete">Dzimura</string>
+  <string name="delete">Dzima</string>
   <string name="please_wait">Tinokumbira umire kanguva....</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Parizvino: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hausati wagadzira izwi rekudarika!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s tsamba pahutaurwa</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Dzimura tsamba dzekare izvozvi?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Dzima tsamba dzekare izvozvi?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Unechokwadi kuti unoda kudimbura shinda dzehutaurwa dzese kusvika pa %s dzetsamba dzamanje here?</string>
-  <string name="ApplicationPreferencesActivity_delete">Dzimura </string>
+  <string name="ApplicationPreferencesActivity_delete">Dzima </string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Tadzisa izwi rekudarika?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
 Tadzisa kuvhara chivhitivhiti chetsamba?
@@ -29,7 +29,7 @@ Uchada kuti unyorese zvakare svumbunuro dzembozha runhare rwako kuti ushandise t
   <string name="ApplicationPreferencesActivity_sms_disabled">Tsamba pfupi dzatadziswa</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Bata kuti TextSecure ive iri apu yako yehurongwa hwetsamba pfupi</string>
   <string name="ApplicationPreferencesActivity_on">batidza</string>
-  <string name="ApplicationPreferencesActivity_On">Kubatira</string>
+  <string name="ApplicationPreferencesActivity_On">Batidza</string>
   <string name="ApplicationPreferencesActivity_off">dzimwa</string>
   <string name="ApplicationPreferencesActivity_Off">Dzimwa</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">Tsamba pfupi %1$s, Tsamba ine midhiya %2$s</string>
@@ -37,7 +37,7 @@ Uchada kuti unyorese zvakare svumbunuro dzembozha runhare rwako kuti ushandise t
   <string name="AppProtectionPreferenceFragment_minutes">maminiti %d</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(mufananidzo)</string>
-  <string name="DraftDatabase_Draft_audio_snippet">(izwi)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(vhidhiyo)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Hatisi kukwanisa kuwana apu yekusarudza midhiya.</string>
@@ -45,7 +45,7 @@ Uchada kuti unyorese zvakare svumbunuro dzembozha runhare rwako kuti ushandise t
   <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Mufananidzo</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vhidhiyo</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">Izwi</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Mashoko ezita</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Mazita akadzivirirwa</string>
@@ -65,29 +65,29 @@ kwezita iri.</string>
   <string name="ConversationItem_error_not_delivered">Haina kusvitswa</string>
   <string name="ConversationItem_view_secure_media_question">Wowona midhiya yakakwedekerwa?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Midhiya iyi yakachengetedzwa mupfimbi yedhata yakakwedekerwa. Zvisinei, kuti uione nechioneso chemashoko chekunze parizvino zvinoda kuti dhata rimbobviswa kukwedekerwa kwenguva pfupi uye rinyorerwe padhisiki. Unechokwadi chekuti unoda kuita izvi here?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Kanganiso, tsamba yekutsinhana kwesvumbunuro iyi yave yekare.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Tatambira tsamba yekutsinhana svumbunuro, baya kuti ipinde mushishi.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Kanganiso, pagamuchirwa tsamba yekutsinhana kwesvumbunuro iyi yekare.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Tagamuchira tsamba yekutsinhana svumbunuro, baya kuti ipinde mushishi.</string>
   <string name="ConversationItem_group_action_left">%1$s abuda muboka.</string>
   <string name="ConversationItem_click_for_details">Bata kuti uwone zvizere</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Bata kuti zvisina kuchengetedzwa zvidzoke </string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Dzokera kutsamba isina kukwedekerwa? </string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Dzokera kutsamba dzemidhiya isina kukwedekerwa? </string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tsamba iyi<b>haikwanise</b> kukwedekerwa nekuda kwekuti anotambira haasisiri mushandisi weTextSecure.\n\nTotumira tsamba isina kukwedekerwa?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tsamba iyi<b>haikwanise</b> kukwedekerwa nekuda kwekuti anogamuchira haasisiri mushandisi weTextSecure.\n\nTotumira tsamba isina kukwedekerwa?</string>
   <string name="ConversationItem_unable_to_open_media">Hatisi kukwanisa kuwana apu inokwanisa kuvhura midhiya iyi.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Totangisa chikamu chakakwedekerwa?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Totangisa chikamu chakakwedekerwa na %s?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Kutsinhira kuti chikamu chakakwedekerwa chivharwe</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Unechokwadi here kuti unoda kuvhara chikamu chakakwedekerwa?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Kutsinhira kuti shinda idzimurwe</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Unechokwadi here kuti unoda kudzimura hutaurwa uwu zvamuchose?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Kutsinhira kuti shinda idzimwe</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Unechokwadi here kuti unoda kudzima hutaurwa uwu zvamuchose?</string>
   <string name="ConversationActivity_add_attachment">Kuwedzera batanidzwa</string>
   <string name="ConversationActivity_select_contact_info">Sarudza mashoko ezita</string>
   <string name="ConversationActivity_compose_message">Nyora shoko</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ruregerero, paita kanganiso pakugadzira batanidzwa yako.</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">Butiro re\"gif\" rasarudzwa iri rakakurisa!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Ruregerero, vhidhiyo yasarudzwa inodarika hukuru hwetsamba inobvumirwa (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Ruregerero, izwi rasarudzwa rinodarika hukuru hwetsamba inobvumirwa (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Ruregerero, audio rasarudzwa rinodarika hukuru hwetsamba inobvumirwa (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Anotambira haana kero yetsamba pfupi kana tsambambozha inoshanda!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Tsamba haina zvirimo!</string>
   <string name="ConversationActivity_group_members">Nhengo dzemuboka</string>
@@ -117,8 +117,8 @@ kwezita iri.</string>
   <string name="ConversationFragment_message_details">Shoko zvizere</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Fambisa: %1$s\nYatumirwa/Yagamuchirwa: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Mutumiri: %1$s\nFambisa: %2$s\nYatumirwa: %3$s\nYagamuchirwa: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Tsinhira shoko zvizere	</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Unechokwadi here kuti unoda kudzimura tsamba dzese dzasarudzwa zvamuchose?</string>
+  <string name="ConversationFragment_confirm_message_delete">Tsamba yekutsinhira kudzima</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Unechokwadi here kuti unoda kudzima tsamba dzese dzasarudzwa zvamuchose?</string>
   <string name="ConversationFragment_save_to_sd_card">Chengetedza ku pfimbi	</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Kuchengetedza midhiya iyi kupfimbi kuchabvumira mamwe maapu aripa runhare rwako kuti ave nehupindwa pairi.\n\nEnderera?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Paita kanganiso pakuchengetedza batanidzwa kupfimbi!</string>
@@ -135,8 +135,8 @@ kwezita iri.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Tsvaga....</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Todzimura shinda?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Unechokwadi here kuti unoda kudzimura hutaurwa HWOSE hwasarudzwa?</string>
+  <string name="ConversationListFragment_delete_threads_question">Dzima shinda?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Unechokwadi here kuti unoda kudzima hutaurwa HWOSE hwasarudzwa?</string>
   <string name="ConversationListFragment_deleting">Kudzimura</string>
   <string name="ConversationListFragment_deleting_selected_threads">Kudzimura shinda dzasarudzwa...</string>
   <!--ConversationListItem-->
@@ -163,13 +163,13 @@ kwezita iri.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Gova na..</string>
   <!--ExportFragment-->
-  <string name="ExportFragment_export">Tumira</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Tumira bomhoremavara ku SD kadhi?</string>
+  <string name="ExportFragment_export">Exupota</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Exupota bomhoremavara ku SD kadhi?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Yambiro, izvi zvichaita 
-kuti zvirimukati mebomhoremavara retsamba dzako dzeTextSecure zvitumirwe ku SD kadhi.</string>
+kuti zvirimukati mebomhoremavara retsamba dzako dzeTextSecure zviexupotwe ku SD kadhi.</string>
   <string name="ExportFragment_cancel">Kanzura</string>
-  <string name="ExportFragment_exporting">Kutumira</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Kutumira bomhoremavara ku SD kadhi...</string>
+  <string name="ExportFragment_exporting">Kuexupota</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Kuexupota bomhoremavara ku SD kadhi...</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Kanganiso pakunyorera ku SD kadhi!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Paita kanganiso pakati pekunyorera ku SD kadhi!</string>
   <string name="ExportFragment_success">Budiriro</string>
@@ -196,7 +196,7 @@ kuti zvirimukati mebomhoremavara retsamba dzako dzeTextSecure zvitumirwe ku SD k
   <string name="GroupMembersDialog_me">Ini</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Imupota</string>
-  <string name="ImportExportActivity_export">Tumira </string>
+  <string name="ImportExportActivity_export">Exupota</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Imupota gumbapamwe repfimbi yedhata retsamba pfupi?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Izvi zvicha imupota tsamba kubva muhurongwa hwemugumbapamwe retsamba pfupi ku pfimbi yedhata kuTextSecure. Kana uchinge
@@ -330,12 +330,12 @@ Ongorora zvakare kuti iyi inhamba dzako! Tava pedyo nekuiongorora netsamba pfupi
   <string name="RegistrationService_registration_error">Kanganiso pakunyoresa</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Kuregisita paTextSecure kwasangana nedambudziko.</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Tatambira svumbunuro yakaworera
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Tagamuhira svumbunuro yakaworera
 tsinha tsamba!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Tagamuchira tsamba yekutsinhana svumbunuro, baya kuti zvishishwe nekutaridzwa.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Tatambira tsamba ine chitupa chine svumbunuro isingazivikanwe. Baya kuti zvishishwe nekutaridzwa.</string>
+Tagamuchira tsamba ine chitupa chine svumbunuro isingazivikanwe. Baya kuti zvishishwe nekutaridzwa.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Zvagamuchirwa kuwedzerwa asi pane chitupa chemashoko chisingazivikanwi. Bata kuti utsinhidzire chitupa. </string>
   <string name="SmsMessageRecord_secure_session_ended">Chikamu chakakwedekerwa chaguma.</string>
   <string name="SmsMessageRecord_duplicate_message">Tsamba yakafanana</string>
@@ -481,15 +481,15 @@ Tatambira tsamba ine chitupa chine svumbunuro isingazivikanwe. Baya kuti zvishis
   <string name="database_migration_activity__importing">KUIMUPOTA</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Zivisa pfimbi redhata....</string>
-  <string name="export_fragment__export_plaintext_backup">Tumira bhekiapu yebomhoremavara</string>
+  <string name="export_fragment__export_plaintext_backup">Exupota bhekiapu yebomhoremavara</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Tumira bhekiapu rebomhoremavara rinopindirana ne\"Bhekiapu yetsamba pfupi nekudzoreredza\" kuenda kuSD kadhi.</string>
+Exupota bhekiapu rebomhoremavara rinopindirana ne\"Bhekiapu yetsamba pfupi nekudzoreredza\" kuenda kuSD kadhi.</string>
   <string name="import_fragment__import_system_sms_database">Imupota gumbapamwe yepfimbi redhata retsamba pfupi</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Imupota pfimbi yedhata
 kubva kuhurongwa hwegumbapambwe reapu retsamba.</string>
   <string name="import_fragment__import_encrypted_backup">Imupota bhekiapu yakakwedekerwa</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Dzorera bhekiapu yakakwedekerwa yeTextSecure yanga yambo tumirwa.</string>
+Dzorera bhekiapu yakakwedekerwa yeTextSecure yanga yambo exupotwa.</string>
   <string name="import_fragment__import_plaintext_backup">Imupota bhekiapu yebomhoremavara</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Imupota bhekiapu rebomhoremavara. Rinopindirana ne\"Bhekiapu yetsamba pfupi nekudzoreredza\".</string>
@@ -526,7 +526,7 @@ Imupota bhekiapu rebomhoremavara. Rinopindirana ne\"Bhekiapu yetsamba pfupi neku
   <string name="recipient_preferences__color_for_this_contact">Ruvara rwezita iri</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Ruramisa nhamba dzako dzenhare kuti ukochekere kuTextSecure.</string>
+Wongorora kururama kwenhamba dzako dzenhare kuti ukochekere kuTextSecure.</string>
   <string name="registration_activity__your_country">NYIKA YAKO</string>
   <string name="registration_activity__your_country_code_and_phone_number">KODHI YENYIKA YAKO NE
 NHAMBA DZEMBOZHA RUNHARE RWAKO</string>
@@ -597,7 +597,7 @@ kwaramba.</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Zvimwe zvinhu zvinoda teerero yako. </string>
   <string name="message_details_header__sent">Kutumira</string>
-  <string name="message_details_header__received">Kutambira</string>
+  <string name="message_details_header__received">Kugamuchira</string>
   <string name="message_details_header__via">Kuburikidza</string>
   <string name="message_details_header__to">Kuna:</string>
   <string name="message_details_header__from">Kubva:</string>
@@ -617,7 +617,7 @@ kwaramba.</string>
   <string name="AndroidManifest__message_details">Zvizere zvetsamba</string>
   <string name="AndroidManifest_manage_linked_devices">Maneja michina yakakochekerwa </string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Imupota/ Tumira</string>
+  <string name="arrays__import_export">Imupota/ Exupota</string>
   <string name="arrays__my_identity_key">Chitupa chesvumbunuro yangu</string>
   <string name="arrays__use_default">Shandisa hurongwa</string>
   <string name="arrays__use_custom">Shandisa gadziro yako</string>
@@ -631,6 +631,9 @@ kwaramba.</string>
   <string name="arrays__name_and_message">Zita netsamba</string>
   <string name="arrays__name_only">Zita chete</string>
   <string name="arrays__neither">Isiri </string>
+  <string name="arrays__images">Mifananidzo</string>
+  <string name="arrays__audio">Audio </string>
+  <string name="arrays__video">Vhidhiyo</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">awa %d</item>
@@ -639,8 +642,8 @@ kwaramba.</string>
   <!--preferences.xml-->
   <string name="preferences__general">Zvenguva dzose </string>
   <string name="preferences__sms_mms">Tsamba pfupi netsamba ine midhiya</string>
-  <string name="preferences__pref_all_sms_title">Tambira tsamba pfupi dzese</string>
-  <string name="preferences__pref_all_mms_title">Tambira tsamba dzine midhiya dzose</string>
+  <string name="preferences__pref_all_sms_title">Gamuchira tsamba pfupi dzese</string>
+  <string name="preferences__pref_all_mms_title">Gamuchira tsamba dzine midhiya dzose</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Shandisa TextSecure panopinda tsamba dzine mavara dzose</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Shandisa TextSecure panopinda tsamba dzine midhiya dzose</string>
   <string name="preferences__input_settings">Gadziro dzekuisa</string>
@@ -714,7 +717,8 @@ kwaramba.</string>
   <string name="preferences__sms_delivery_reports">Kumhan\'ara kwekusvika kwetsamba pfupi  </string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kumbira kuman\'arwa kwekusvitswa kwetsamba pfupi imwe ne imwe yaunenge watumira </string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Ita kuti tsamba dzakare dzizvidzime pachadzo kana shinda yeutaurwa yapfurikidza hurebu hwakatarwa.</string>
-  <string name="preferences__delete_old_messages">Dzimura tsamba dzekare</string>
+  <string name="preferences__delete_old_messages">Dzima tsamba dzekare</string>
+  <string name="preferences__chats">Hutaurwa ne midhiya</string>
   <string name="preferences__conversation_length_limit">Magumo ehurefu hweutaurwa</string>
   <string name="preferences__trim_all_threads_now">Nyerenyesa shinda dzese izvozvi</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Tsvagiridza mukati meshinda dzehutaurwa uye manikidzira magumo ehurefu hwehutaurwa.</string>
@@ -734,6 +738,11 @@ Sunungura kutumirwa ketsamba dziri puraivheti kuvashandisi veTextSecure neSignal
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Gonesa kana muchina wako uchishandisa nepfenyuro yepasina waya kusvitsa tsamba pfupi/ tsamba dzine midhiya (gonesa chete kana \"kuchaya pasina waya\" kwakagoneswa pamuchina wako). </string>
   <string name="preferences_app_protection__blocked_contacts">Mazita akadzivirirwa</string>
   <string name="preferences_notifications__display_in_notifications">Ratidza zviziviso </string>
+  <string name="preferences_chats__when_using_mobile_data">Kana pachishandiswa dhata rinofamba</string>
+  <string name="preferences_chats__when_using_wifi">Kana pachishandiswa nepfenyuro isina waya</string>
+  <string name="preferences_chats__when_roaming">Kana urikufamba kunze kwenyika</string>
+  <string name="preferences_chats__media_auto_download">Kuzvitutunura kwemidhiya</string>
+  <string name="preferences_chats__message_trimming">Kudimbura tsamba</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -752,7 +761,7 @@ Sunungura kutumirwa ketsamba dziri puraivheti kuvashandisi veTextSecure neSignal
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Shoko zvizere</string>
   <string name="conversation_context__menu_copy_text">Kopa mavara</string>
-  <string name="conversation_context__menu_delete_message">Dzimura tsamba</string>
+  <string name="conversation_context__menu_delete_message">Dzima tsamba</string>
   <string name="conversation_context__menu_forward_message">Endesa tsamba mberi</string>
   <string name="conversation_context__menu_resend_message">Tumira tsamba zvekare</string>
   <!--conversation_context_image-->
@@ -763,7 +772,7 @@ Sunungura kutumirwa ketsamba dziri puraivheti kuvashandisi veTextSecure neSignal
   <string name="conversation_insecure__menu_start_secure_session">Tanga chikamu chakakwedekera</string>
   <string name="conversation_insecure__security">Tsivatsaona</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Dzimura zvasarudzwa</string>
+  <string name="conversation_list_batch__menu_delete_selected">Dzima zvasarudzwa</string>
   <string name="conversation_list_batch__menu_select_all">Sarudza zvese </string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Tsvaga</string>
@@ -784,7 +793,7 @@ Sunungura kutumirwa ketsamba dziri puraivheti kuvashandisi veTextSecure neSignal
   <string name="conversation__menu_add_attachment">Kuwedzera batanidzwa</string>
   <string name="conversation__menu_update_group">Zivisa boka</string>
   <string name="conversation__menu_leave_group">Buda muboka</string>
-  <string name="conversation__menu_delete_thread">Dzimura shinda</string>
+  <string name="conversation__menu_delete_thread">Dzima shinda</string>
   <string name="conversation__menu_view_media">Mifananidzo yese</string>
   <string name="conversation__menu_conversation_settings">Gadziro yehutaurwa</string>
   <!--conversation_popup-->
@@ -826,7 +835,7 @@ Sunungura kutumirwa ketsamba dziri puraivheti kuvashandisi veTextSecure neSignal
   <!--Trimmer-->
   <string name="trimmer__deleting">Kudzimura</string>
   <string name="trimmer__deleting_old_messages">Kudzimura tsamba dzekare....</string>
-  <string name="trimmer__old_messages_successfully_deleted">Tsamba dzekare dzabudirira pakudzimurwa</string>
+  <string name="trimmer__old_messages_successfully_deleted">Tsamba dzekare dzakwanisa kudzimwa</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tumidzira chimiriro chemufanidzo </string>
   <!--quick_attachment_drawer-->

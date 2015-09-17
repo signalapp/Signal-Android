@@ -6,8 +6,6 @@
       <item>English</item>
       <item>Arabic العربية</item>
       <item>Bulgarian български</item>
-      <item>Burmese မြန်မာစာ</item>
-      <item>Català</item>
       <item>Čeština</item>
       <item>Chinese 中国的</item>
       <item>Dansk</item>
@@ -15,7 +13,6 @@
       <item>Español</item>
       <item>Français</item>
       <item>Greek ελληνικά</item>
-      <item>Hebrew עברית</item>
       <item>Hrvatski</item>
       <item>Indonesia</item>
       <item>Italiano</item>
@@ -36,9 +33,7 @@
       <item>Slovenský</item>
       <item>Suomi</item>
       <item>Svenska</item>
-      <item>Tibetan བོད་སྐད།</item>
       <item>Türkçe</item>
-      <item>Ukrainian Український</item>
       <item>Vietnamese Tiếng Việt</item>
   </string-array>
 
@@ -47,8 +42,6 @@
       <item>en</item>
       <item>ar</item>
       <item>bg</item>
-      <item>my</item>
-      <item>ca</item>
       <item>cs</item>
       <item>zh_CN</item>
       <item>da</item>
@@ -56,7 +49,6 @@
       <item>es</item>
       <item>fr</item>
       <item>el</item>
-      <item>iw</item>
       <item>hr</item>
       <item>in</item>
       <item>it</item>
@@ -77,9 +69,7 @@
       <item>sk</item>
       <item>fi</item>
       <item>sv</item>
-      <item>bo</item>
       <item>tr</item>
-      <item>uk</item>
       <item>vi</item>
   </string-array>
 

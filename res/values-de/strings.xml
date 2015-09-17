@@ -10,7 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sie haben noch kein Passwort festgelegt!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s Nachrichten pro Unterhaltung</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Wollen Sie alle Unterhaltungen bis auf die letzten %s Nachrichten wirklich löschen?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Wollen Sie wirklich alle Nachrichten in sämtlichen Unterhaltungen bis auf die letzten %s Nachrichten löschen?</string>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -95,7 +95,7 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="ConversationActivity_calls_not_supported">Anrufe nicht unterstützt</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dieses Gerät scheint keine Wahlvorgänge zu unterstützen.</string>
   <string name="ConversationActivity_leave_group">Gruppe verlassen?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Wollen Sie diese Gruppe wirklich verlassen?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Wollen Sie wirklich diese Gruppe verlassen?</string>
   <string name="ConversationActivity_transport_insecure_sms">Unsichere SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Unsichere MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
@@ -709,8 +709,8 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
-  <string name="preferences_chats__media_auto_download">Automatisches Herunterladen von Medien</string>
-  <string name="preferences_chats__message_trimming">Kürzen von Unterhaltungen</string>
+  <string name="preferences_chats__media_auto_download">Multimediainhalte automatisch herunterladen</string>
+  <string name="preferences_chats__message_trimming">Unterhaltungen kürzen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

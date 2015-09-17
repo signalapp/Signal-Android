@@ -748,6 +748,11 @@ Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS  via WiFi ( abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo )</string>
   <string name="preferences_app_protection__blocked_contacts">Contatti bloccati</string>
   <string name="preferences_notifications__display_in_notifications">Visualizza nelle notifiche</string>
+  <string name="preferences_chats__when_using_mobile_data">Su rete cellulare</string>
+  <string name="preferences_chats__when_using_wifi">Su Wi-Fi</string>
+  <string name="preferences_chats__when_roaming">In roaming</string>
+  <string name="preferences_chats__media_auto_download">Download automatico file</string>
+  <string name="preferences_chats__message_trimming">Cancellazione messaggi</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

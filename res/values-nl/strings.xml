@@ -722,6 +722,11 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Inschakelen als je toestel SMS/MMS over WiFi gebruikt (alleen inschakelen als \'WiFi Bellen\' is ingeschakeld op je toestel)</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contacten</string>
   <string name="preferences_notifications__display_in_notifications">Toon in notificaties</string>
+  <string name="preferences_chats__when_using_mobile_data">Wanneer mobiele gegevensoverdracht gebruikt wordt</string>
+  <string name="preferences_chats__when_using_wifi">Wanneer Wi-Fi gebruikt wordt</string>
+  <string name="preferences_chats__when_roaming">Bij roaming</string>
+  <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
+  <string name="preferences_chats__message_trimming">Bericht inkorten</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
