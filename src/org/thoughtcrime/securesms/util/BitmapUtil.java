@@ -16,6 +16,11 @@ import android.util.Pair;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.load.engine.Resource;
+import com.bumptech.glide.load.resource.bitmap.BitmapResource;
+import com.bumptech.glide.load.resource.bitmap.Downsampler;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 
@@ -69,8 +74,8 @@ public class BitmapUtil {
       throws ExecutionException
   {
     final Pair<Integer, Integer> dimensions = getDimensions(getInputStreamForModel(context, model));
-    final Pair<Integer, Integer> clamped = clampDimensions(dimensions.first, dimensions.second,
-                                                           maxWidth, maxHeight);
+    final Pair<Integer, Integer> clamped    = clampDimensions(dimensions.first, dimensions.second,
+                                                              maxWidth, maxHeight);
     return createScaledBitmapInto(context, model, clamped.first, clamped.second);
   }
 
@@ -89,17 +94,18 @@ public class BitmapUtil {
   private static <T> Bitmap createScaledBitmapInto(Context context, T model, int width, int height)
       throws ExecutionException
   {
-    try {
-      return Glide.with(context)
-                  .load(model)
-                  .asBitmap()
-                  .fitCenter()
-                  .skipMemoryCache(true)
-                  .into(width, height)
-                  .get();
-    } catch (InterruptedException ie) {
-      throw new AssertionError(ie);
+    final Bitmap rough = Downsampler.AT_LEAST.decode(getInputStreamForModel(context, model),
+                                                     Glide.get(context).getBitmapPool(),
+                                                     width, height,
+                                                     DecodeFormat.PREFER_RGB_565);
+
+    final Resource<Bitmap> resource = BitmapResource.obtain(rough, Glide.get(context).getBitmapPool());
+    final Resource<Bitmap> result   = new FitCenter(context).transform(resource, width, height);
+
+    if (result == null) {
+      throw new ExecutionException(new BitmapDecodingException("unable to transform Bitmap"));
     }
+    return result.get();
   }
 
   public static <T> Bitmap createScaledBitmap(Context context, T model, float scale)
