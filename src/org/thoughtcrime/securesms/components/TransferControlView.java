@@ -1,14 +1,17 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -34,8 +37,6 @@ public class TransferControlView extends FrameLayout {
 
   private final ProgressWheel progressWheel;
   private final TextView      downloadDetails;
-  private final Animation     inAnimation;
-  private final Animation     outAnimation;
   private final int           contractedWidth;
   private final int           expandedWidth;
 
@@ -50,18 +51,18 @@ public class TransferControlView extends FrameLayout {
   public TransferControlView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.transfer_controls_view, this);
-    setBackgroundResource(R.drawable.transfer_controls_background);
+
+    final Drawable background = ContextCompat.getDrawable(context, R.drawable.transfer_controls_background);
+    if (VERSION.SDK_INT >= VERSION_CODES.ICE_CREAM_SANDWICH) {
+      background.setColorFilter(0x66ffffff, Mode.MULTIPLY);
+    }
+    ViewUtil.setBackground(this, background);
     setVisibility(GONE);
+
     this.progressWheel   = ViewUtil.findById(this, R.id.progress_wheel);
     this.downloadDetails = ViewUtil.findById(this, R.id.download_details);
     this.contractedWidth = getResources().getDimensionPixelSize(R.dimen.transfer_controls_contracted_width);
     this.expandedWidth   = getResources().getDimensionPixelSize(R.dimen.transfer_controls_expanded_width);
-    this.outAnimation    = new AlphaAnimation(1f, 0f);
-    this.inAnimation     = new AlphaAnimation(0f, 1f);
-    this.outAnimation.setInterpolator(new FastOutSlowInInterpolator());
-    this.inAnimation.setInterpolator(new FastOutSlowInInterpolator());
-    this.outAnimation.setDuration(TRANSITION_MS);
-    this.inAnimation.setDuration(TRANSITION_MS);
   }
 
   @Override protected void onAttachedToWindow() {
@@ -115,16 +116,16 @@ public class TransferControlView extends FrameLayout {
       layoutParams.width = targetWidth;
       setLayoutParams(layoutParams);
     } else {
-      ViewUtil.animateOut(current, outAnimation);
+      ViewUtil.fadeOut(current, TRANSITION_MS);
       Animator anim = getWidthAnimator(sourceWidth, targetWidth);
       anim.start();
     }
 
     if (view == null) {
-      ViewUtil.animateOut(this, outAnimation);
+      ViewUtil.fadeOut(this, TRANSITION_MS);
     } else {
-      ViewUtil.animateIn(this, inAnimation);
-      ViewUtil.animateIn(view, inAnimation);
+      ViewUtil.fadeIn(this, TRANSITION_MS);
+      ViewUtil.fadeIn(view, TRANSITION_MS);
     }
 
     current = view;
