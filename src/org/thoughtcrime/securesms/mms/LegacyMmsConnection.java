@@ -195,6 +195,7 @@ public abstract class LegacyMmsConnection {
 
   protected List<Header> getBaseHeaders() {
     final String number = TelephonyUtil.getManager(context).getLine1Number();
+    final String number_without_cc = number.substring(2, number.length()); // strip of country code
     return new LinkedList<Header>() {{
       add(new BasicHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic"));
       add(new BasicHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml"));
@@ -203,6 +204,9 @@ public abstract class LegacyMmsConnection {
       if (!TextUtils.isEmpty(number)) {
         add(new BasicHeader("x-up-calling-line-id", number));
         add(new BasicHeader("X-MDN", number));
+        
+        // adding Verizon header
+        add(new BasicHeader("x-vzw-mdn", number_without_cc));
       }
     }};
   }
