@@ -6480,6 +6480,26 @@ public final class TextSecureProtos {
      * <code>optional bytes key = 3;</code>
      */
     com.google.protobuf.ByteString getKey();
+
+    // optional uint32 size = 4;
+    /**
+     * <code>optional uint32 size = 4;</code>
+     */
+    boolean hasSize();
+    /**
+     * <code>optional uint32 size = 4;</code>
+     */
+    int getSize();
+
+    // optional bytes thumbnail = 5;
+    /**
+     * <code>optional bytes thumbnail = 5;</code>
+     */
+    boolean hasThumbnail();
+    /**
+     * <code>optional bytes thumbnail = 5;</code>
+     */
+    com.google.protobuf.ByteString getThumbnail();
   }
   /**
    * Protobuf type {@code textsecure.AttachmentPointer}
@@ -6545,6 +6565,16 @@ public final class TextSecureProtos {
             case 26: {
               bitField0_ |= 0x00000004;
               key_ = input.readBytes();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              size_ = input.readUInt32();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000010;
+              thumbnail_ = input.readBytes();
               break;
             }
           }
@@ -6662,10 +6692,44 @@ public final class TextSecureProtos {
       return key_;
     }
 
+    // optional uint32 size = 4;
+    public static final int SIZE_FIELD_NUMBER = 4;
+    private int size_;
+    /**
+     * <code>optional uint32 size = 4;</code>
+     */
+    public boolean hasSize() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional uint32 size = 4;</code>
+     */
+    public int getSize() {
+      return size_;
+    }
+
+    // optional bytes thumbnail = 5;
+    public static final int THUMBNAIL_FIELD_NUMBER = 5;
+    private com.google.protobuf.ByteString thumbnail_;
+    /**
+     * <code>optional bytes thumbnail = 5;</code>
+     */
+    public boolean hasThumbnail() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional bytes thumbnail = 5;</code>
+     */
+    public com.google.protobuf.ByteString getThumbnail() {
+      return thumbnail_;
+    }
+
     private void initFields() {
       id_ = 0L;
       contentType_ = "";
       key_ = com.google.protobuf.ByteString.EMPTY;
+      size_ = 0;
+      thumbnail_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -6688,6 +6752,12 @@ public final class TextSecureProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, key_);
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeUInt32(4, size_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, thumbnail_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -6708,6 +6778,14 @@ public final class TextSecureProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, key_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, size_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, thumbnail_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -6831,6 +6909,10 @@ public final class TextSecureProtos {
         bitField0_ = (bitField0_ & ~0x00000002);
         key_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
+        size_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        thumbnail_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -6871,6 +6953,14 @@ public final class TextSecureProtos {
           to_bitField0_ |= 0x00000004;
         }
         result.key_ = key_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.size_ = size_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.thumbnail_ = thumbnail_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -6897,6 +6987,12 @@ public final class TextSecureProtos {
         }
         if (other.hasKey()) {
           setKey(other.getKey());
+        }
+        if (other.hasSize()) {
+          setSize(other.getSize());
+        }
+        if (other.hasThumbnail()) {
+          setThumbnail(other.getThumbnail());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -7064,6 +7160,75 @@ public final class TextSecureProtos {
       public Builder clearKey() {
         bitField0_ = (bitField0_ & ~0x00000004);
         key_ = getDefaultInstance().getKey();
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 size = 4;
+      private int size_ ;
+      /**
+       * <code>optional uint32 size = 4;</code>
+       */
+      public boolean hasSize() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional uint32 size = 4;</code>
+       */
+      public int getSize() {
+        return size_;
+      }
+      /**
+       * <code>optional uint32 size = 4;</code>
+       */
+      public Builder setSize(int value) {
+        bitField0_ |= 0x00000008;
+        size_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 size = 4;</code>
+       */
+      public Builder clearSize() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        size_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional bytes thumbnail = 5;
+      private com.google.protobuf.ByteString thumbnail_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes thumbnail = 5;</code>
+       */
+      public boolean hasThumbnail() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional bytes thumbnail = 5;</code>
+       */
+      public com.google.protobuf.ByteString getThumbnail() {
+        return thumbnail_;
+      }
+      /**
+       * <code>optional bytes thumbnail = 5;</code>
+       */
+      public Builder setThumbnail(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        thumbnail_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes thumbnail = 5;</code>
+       */
+      public Builder clearThumbnail() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        thumbnail_ = getDefaultInstance().getThumbnail();
         onChanged();
         return this;
       }
@@ -11161,23 +11326,24 @@ public final class TextSecureProtos {
       "\004blob\030\001 \001(\0132\035.textsecure.AttachmentPoint" +
       "er\032l\n\007Request\0222\n\004type\030\001 \001(\0162$.textsecure" +
       ".SyncMessage.Request.Type\"-\n\004Type\022\013\n\007UNK" +
-      "NOWN\020\000\022\014\n\010CONTACTS\020\001\022\n\n\006GROUPS\020\002\"A\n\021Atta" +
+      "NOWN\020\000\022\014\n\010CONTACTS\020\001\022\n\n\006GROUPS\020\002\"b\n\021Atta" +
       "chmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType" +
-      "\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\"\315\001\n\014GroupContext\022\n\n\002" +
-      "id\030\001 \001(\014\022+\n\004type\030\002 \001(\0162\035.textsecure.Grou",
-      "pContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004" +
-      " \003(\t\022-\n\006avatar\030\005 \001(\0132\035.textsecure.Attach" +
-      "mentPointer\"6\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDA" +
-      "TE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\"\220\001\n\016ContactD" +
-      "etails\022\016\n\006number\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0221\n\006" +
-      "avatar\030\003 \001(\0132!.textsecure.ContactDetails" +
-      ".Avatar\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016" +
-      "\n\006length\030\002 \001(\r\"\231\001\n\014GroupDetails\022\n\n\002id\030\001 " +
-      "\001(\014\022\014\n\004name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\022/\n\006av" +
-      "atar\030\004 \001(\0132\037.textsecure.GroupDetails.Ava",
-      "tar\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006le" +
-      "ngth\030\002 \001(\rB?\n+org.whispersystems.textsec" +
-      "ure.internal.pushB\020TextSecureProtos"
+      "\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthu" +
+      "mbnail\030\005 \001(\014\"\315\001\n\014GroupContext\022\n\n\002id\030\001 \001(",
+      "\014\022+\n\004type\030\002 \001(\0162\035.textsecure.GroupContex" +
+      "t.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\022-\n" +
+      "\006avatar\030\005 \001(\0132\035.textsecure.AttachmentPoi" +
+      "nter\"6\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n" +
+      "\007DELIVER\020\002\022\010\n\004QUIT\020\003\"\220\001\n\016ContactDetails\022" +
+      "\016\n\006number\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0221\n\006avatar\030" +
+      "\003 \001(\0132!.textsecure.ContactDetails.Avatar" +
+      "\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006lengt" +
+      "h\030\002 \001(\r\"\231\001\n\014GroupDetails\022\n\n\002id\030\001 \001(\014\022\014\n\004" +
+      "name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\022/\n\006avatar\030\004 ",
+      "\001(\0132\037.textsecure.GroupDetails.Avatar\032-\n\006" +
+      "Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006length\030\002 " +
+      "\001(\rB?\n+org.whispersystems.textsecure.int" +
+      "ernal.pushB\020TextSecureProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -11237,7 +11403,7 @@ public final class TextSecureProtos {
           internal_static_textsecure_AttachmentPointer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_AttachmentPointer_descriptor,
-              new java.lang.String[] { "Id", "ContentType", "Key", });
+              new java.lang.String[] { "Id", "ContentType", "Key", "Size", "Thumbnail", });
           internal_static_textsecure_GroupContext_descriptor =
             getDescriptor().getMessageTypes().get(5);
           internal_static_textsecure_GroupContext_fieldAccessorTable = new

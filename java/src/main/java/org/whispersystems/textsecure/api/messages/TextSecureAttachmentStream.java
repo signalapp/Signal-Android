@@ -16,6 +16,8 @@
  */
 package org.whispersystems.textsecure.api.messages;
 
+import org.whispersystems.libaxolotl.util.guava.Optional;
+
 import java.io.InputStream;
 
 /**
@@ -26,12 +28,18 @@ public class TextSecureAttachmentStream extends TextSecureAttachment {
   private final InputStream      inputStream;
   private final long             length;
   private final ProgressListener listener;
+  private final Optional<byte[]> preview;
 
   public TextSecureAttachmentStream(InputStream inputStream, String contentType, long length, ProgressListener listener) {
+    this(inputStream, contentType, length, Optional.<byte[]>absent(), listener);
+  }
+
+  public TextSecureAttachmentStream(InputStream inputStream, String contentType, long length, Optional<byte[]> preview, ProgressListener listener) {
     super(contentType);
     this.inputStream = inputStream;
     this.length      = length;
     this.listener    = listener;
+    this.preview     = preview;
   }
 
   @Override
@@ -54,5 +62,9 @@ public class TextSecureAttachmentStream extends TextSecureAttachment {
 
   public ProgressListener getListener() {
     return listener;
+  }
+
+  public Optional<byte[]> getPreview() {
+    return preview;
   }
 }

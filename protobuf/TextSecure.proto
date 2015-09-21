@@ -72,6 +72,8 @@ message AttachmentPointer {
   optional fixed64 id          = 1;
   optional string  contentType = 2;
   optional bytes   key         = 3;
+  optional uint32  size        = 4;
+  optional bytes   thumbnail   = 5;
 }
 
 message GroupContext {

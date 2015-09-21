@@ -27,15 +27,25 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
  */
 public class TextSecureAttachmentPointer extends TextSecureAttachment {
 
-  private final long             id;
-  private final byte[]           key;
-  private final Optional<String> relay;
+  private final long              id;
+  private final byte[]            key;
+  private final Optional<String>  relay;
+  private final Optional<Integer> size;
+  private final Optional<byte[]>  preview;
 
   public TextSecureAttachmentPointer(long id, String contentType, byte[] key, String relay) {
+    this(id, contentType, key, relay, Optional.<Integer>absent(), Optional.<byte[]>absent());
+  }
+
+  public TextSecureAttachmentPointer(long id, String contentType, byte[] key, String relay,
+                                     Optional<Integer> size, Optional<byte[]> preview)
+  {
     super(contentType);
-    this.id    = id;
-    this.key   = key;
-    this.relay = Optional.fromNullable(relay);
+    this.id      = id;
+    this.key     = key;
+    this.relay   = Optional.fromNullable(relay);
+    this.size    = size;
+    this.preview = preview;
   }
 
   public long getId() {
@@ -58,5 +68,13 @@ public class TextSecureAttachmentPointer extends TextSecureAttachment {
 
   public Optional<String> getRelay() {
     return relay;
+  }
+
+  public Optional<Integer> getSize() {
+    return size;
+  }
+
+  public Optional<byte[]> getPreview() {
+    return preview;
   }
 }

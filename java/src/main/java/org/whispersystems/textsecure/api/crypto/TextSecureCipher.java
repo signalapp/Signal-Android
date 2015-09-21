@@ -32,6 +32,7 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.api.messages.TextSecureContent;
@@ -164,7 +165,9 @@ public class TextSecureCipher {
       attachments.add(new TextSecureAttachmentPointer(pointer.getId(),
                                                       pointer.getContentType(),
                                                       pointer.getKey().toByteArray(),
-                                                      envelope.getRelay()));
+                                                      envelope.getRelay(),
+                                                      pointer.hasSize() ? Optional.of(pointer.getSize()) : Optional.<Integer>absent(),
+                                                      pointer.hasThumbnail() ? Optional.of(pointer.getThumbnail().toByteArray()): Optional.<byte[]>absent()));
     }
 
     return new TextSecureDataMessage(envelope.getTimestamp(), groupInfo, attachments,
