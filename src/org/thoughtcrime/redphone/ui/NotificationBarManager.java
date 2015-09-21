@@ -22,9 +22,15 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 
 import org.thoughtcrime.redphone.RedPhone;
+import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 
 /**
  * Manages the state of the RedPhone items in the Android notification bar.
@@ -35,7 +41,8 @@ import org.thoughtcrime.securesms.R;
 
 public class NotificationBarManager {
 
-  private static final int RED_PHONE_NOTIFICATION = 313388;
+  private static final int RED_PHONE_NOTIFICATION   = 313388;
+  private static final int MISSED_CALL_NOTIFICATION = 313389;
 
   public static void setCallEnded(Context context) {
     NotificationManager notificationManager = (NotificationManager)context
@@ -61,26 +68,27 @@ public class NotificationBarManager {
   }
 
   public static void notifyMissedCall(Context context, String remoteNumber) {
-//    Intent intent              = new Intent(DialerActivity.CALL_LOG_ACTION, null,
-//                                            context, DialerActivity.class);
-//    PendingIntent launchIntent = PendingIntent.getActivity(context, 0, intent, 0);
-//    PersonInfo remoteInfo      = PersonInfo.getInstance(context, remoteNumber);
+    Intent     intent           = new Intent(context, ConversationActivity.class);
+    Recipients notifyRecipients = RecipientFactory.getRecipientsFromString(context, remoteNumber, false);
+    intent.putExtra("recipients", notifyRecipients.getIds());
+    intent.putExtra("thread_id", DatabaseFactory.getThreadDatabase(context).getThreadIdFor(notifyRecipients));
+    intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
-//    NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-//    builder.setSmallIcon(R.drawable.stat_notify_missed_call);
-//    builder.setWhen(System.currentTimeMillis());
-//    builder.setTicker(context
-//                        .getString(R.string.NotificationBarManager_missed_redphone_call_from_s,
-//                                   remoteInfo.getName()));
-//    builder.setContentTitle(context.getString(R.string.NotificationBarManager_missed_redphone_call));
-//    builder.setContentText(remoteInfo.getName());
-//    builder.setContentIntent(launchIntent);
-//    builder.setDefaults(Notification.DEFAULT_VIBRATE);
-//    builder.setAutoCancel(true);
-//
-//    NotificationManager manager = (NotificationManager)context
-//        .getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//    manager.notify(DialerActivity.MISSED_CALL, builder.build());
+    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+    builder.setSmallIcon(R.drawable.ic_call_missed_grey600_24dp);
+    builder.setWhen(System.currentTimeMillis());
+    builder.setTicker(String.format("Missed call from %s", notifyRecipients.toShortString()));
+    builder.setContentTitle("Missed Signal call");
+    builder.setContentText(String.format("Missed call from %s", notifyRecipients.toShortString()));
+    builder.setContentIntent(pendingIntent);
+    builder.setDefaults(Notification.DEFAULT_VIBRATE);
+    builder.setAutoCancel(true);
+
+    NotificationManager manager = (NotificationManager)context
+        .getSystemService(Context.NOTIFICATION_SERVICE);
+
+    manager.notify(MISSED_CALL_NOTIFICATION, builder.build());
   }
 }
