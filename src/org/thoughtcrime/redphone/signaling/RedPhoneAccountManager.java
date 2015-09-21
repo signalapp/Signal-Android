@@ -1,5 +1,6 @@
 package org.thoughtcrime.redphone.signaling;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -8,6 +9,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.push.TrustStore;
 
 import java.io.IOException;
@@ -44,6 +46,25 @@ public class RedPhoneAccountManager {
     }
   }
 
+  public void setGcmId(Optional<String> gcmId) throws IOException {
+    Request.Builder builder = new Request.Builder();
+    builder.url(baseUrl + "/api/v1/accounts/gcm/");
+    builder.header("Authorization", "Basic " + Base64.encodeBytes((login + ":" + password).getBytes()));
+
+    if (gcmId.isPresent()) {
+      String body = new ObjectMapper().writeValueAsString(new RedPhoneGcmId(gcmId.get()));
+      builder.put(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), body));
+    } else {
+      builder.delete();
+    }
+
+    Response response = client.newCall(builder.build()).execute();
+
+    if (!response.isSuccessful()) {
+      throw new IOException("Failed to perform GCM operation: " + response.code());
+    }
+  }
+
   public void createAccount(String verificationToken, RedPhoneAccountAttributes attributes) throws IOException {
     String body = new ObjectMapper().writeValueAsString(attributes);
 
@@ -56,7 +77,7 @@ public class RedPhoneAccountManager {
     Response response = client.newCall(request).execute();
 
     if (!response.isSuccessful()) {
-      throw new IOException("Failed to create account");
+      throw new IOException("Failed to create account: " + response.code());
     }
   }
 

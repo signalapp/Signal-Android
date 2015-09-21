@@ -38,6 +38,8 @@ import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
+
 import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
 import org.thoughtcrime.redphone.ui.CallControls;
 import org.thoughtcrime.redphone.ui.CallScreen;
@@ -289,22 +291,23 @@ public class RedPhone extends Activity {
 
   private void handleNoSuchUser(final Recipient recipient) {
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
-    AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+    AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(this);
     dialog.setTitle("Number not registered!");
-    dialog.setIcon(android.R.drawable.ic_dialog_info);
-    dialog.setMessage("The number you dialed is not registered");
+    dialog.setIconAttribute(R.attr.dialog_alert_icon);
+    dialog.setMessage("The number you dialed does not support secure voice!");
     dialog.setCancelable(true);
-//    dialog.setPositiveButton(R.string.RedPhone_yes_exclamation, new OnClickListener() {
-//      public void onClick(DialogInterface dialog, int arg) {
-//        RedPhone.this.sendInstallLink(user);
-//        RedPhone.this.handleTerminate(LOCAL_TERMINATE);
-//      }
-//    });
-//    dialog.setNegativeButton(R.string.RedPhone_no_thanks_exclamation, new OnClickListener() {
-//      public void onClick(DialogInterface dialog, int arg) {
-//        RedPhone.this.handleTerminate(LOCAL_TERMINATE);
-//      }
-//    });
+    dialog.setPositiveButton("Got it", new OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        RedPhone.this.handleTerminate(LOCAL_TERMINATE);
+      }
+    });
+    dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+      @Override
+      public void onCancel(DialogInterface dialog) {
+        RedPhone.this.handleTerminate(LOCAL_TERMINATE);
+      }
+    });
     dialog.show();
   }
 
