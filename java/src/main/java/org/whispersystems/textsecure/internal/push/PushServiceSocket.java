@@ -82,6 +82,7 @@ public class PushServiceSocket {
   private static final String VERIFY_ACCOUNT_CODE_PATH  = "/v1/accounts/code/%s";
   private static final String VERIFY_ACCOUNT_TOKEN_PATH = "/v1/accounts/token/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
+  private static final String REQUEST_TOKEN_PATH        = "/v1/accounts/token";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
@@ -133,6 +134,11 @@ public class PushServiceSocket {
     AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId);
     makeRequest(String.format(VERIFY_ACCOUNT_TOKEN_PATH, verificationToken),
                 "PUT", JsonUtil.toJson(signalingKeyEntity));
+  }
+
+  public String getAccountVerificationToken() throws IOException {
+    String responseText = makeRequest(REQUEST_TOKEN_PATH, "GET", null);
+    return JsonUtil.fromJson(responseText, AuthorizationToken.class).getToken();
   }
 
   public String getNewDeviceVerificationCode() throws IOException {
