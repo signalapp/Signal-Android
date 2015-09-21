@@ -46,14 +46,11 @@ import org.thoughtcrime.securesms.R;
 
 public class CallControls extends RelativeLayout {
 
-  private ImageButton endCallButton;
-  private TextView sasTextView;
-//  private ImageButton confirmSasButton;
-//  private View confirmSasWrapper;
-
-  private View activeCallWidget;
+  private ImageButton   endCallButton;
+  private TextView      sasTextView;
+  private View          activeCallWidget;
   private MultiWaveView incomingCallWidget;
-  private TextView redphoneLabel;
+  private TextView      redphoneLabel;
 
   private CompoundButton muteButton;
   private InCallAudioButton audioButton;
@@ -96,7 +93,6 @@ public class CallControls extends RelativeLayout {
     incomingCallWidget.reset(false);
     incomingCallWidget.setVisibility(View.VISIBLE);
     redphoneLabel.setVisibility(View.VISIBLE);
-//    confirmSasWrapper.setVisibility(View.GONE);
 
     handler.sendEmptyMessageDelayed(0, 500);
   }
@@ -106,21 +102,12 @@ public class CallControls extends RelativeLayout {
     redphoneLabel.setVisibility(View.GONE);
     activeCallWidget.setVisibility(View.VISIBLE);
     sasTextView.setVisibility(View.GONE);
-//    confirmSasWrapper.setVisibility(View.GONE);
   }
 
   public void setActiveCall(SASInfo sas) {
     setActiveCall();
     sasTextView.setText(sas.getSasText());
     sasTextView.setVisibility(View.VISIBLE);
-
-//    if (sas.isVerified()) {
-//      confirmSasWrapper.setVisibility(View.GONE);
-//      sasTextView.setTextColor(Color.parseColor("#ffffff"));
-//    } else{
-//      confirmSasWrapper.setVisibility(View.VISIBLE);
-//      sasTextView.setTextColor(Color.parseColor("#f0a621"));
-//    }
   }
 
   public void reset() {
@@ -130,16 +117,6 @@ public class CallControls extends RelativeLayout {
     sasTextView.setText("");
     updateAudioButton();
     muteButton.setChecked(false);
-  }
-
-  public void setConfirmSasButtonListener(final ConfirmSasButtonListener listener) {
-//    confirmSasButton.setOnClickListener(new OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        setActiveCall(new SASInfo(sasTextView.getText().toString(), true));
-//        listener.onClick();
-//      }
-//    });
   }
 
   public void setHangupButtonListener(final HangupButtonListener listener) {
@@ -191,8 +168,6 @@ public class CallControls extends RelativeLayout {
         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.redphone_call_controls, this, true);
 
-//    this.confirmSasButton   = (ImageButton)findViewById(R.id.confirm_sas);
-//    this.confirmSasWrapper  = findViewById(R.id.confirm_wrapper);
     this.endCallButton      = (ImageButton)findViewById(R.id.endButton);
     this.incomingCallWidget = (MultiWaveView)findViewById(R.id.incomingCallWidget);
     this.redphoneLabel      = (TextView)findViewById(R.id.redphone_banner);
@@ -207,11 +182,9 @@ public class CallControls extends RelativeLayout {
   public void updateAudioButton() {
     audioButton.setAudioMode(AudioUtils.getCurrentAudioMode(getContext()));
 
-//    if(ApplicationPreferencesActivity.getBluetoothEnabled(getContext())) {
     IntentFilter filter = new IntentFilter();
     filter.addAction(AudioUtils.getScoUpdateAction());
     handleBluetoothIntent(getContext().registerReceiver(null, filter));
-//    }
   }
 
 
@@ -226,16 +199,10 @@ public class CallControls extends RelativeLayout {
 
     Integer state = intent.getIntExtra(AudioManager.EXTRA_SCO_AUDIO_STATE, -1);
     if (state.equals(AudioManager.SCO_AUDIO_STATE_CONNECTED)) {
-//      && ApplicationPreferencesActivity.getBluetoothEnabled(getContext())) {
       audioButton.setHeadsetAvailable(true);
     } else if (state.equals(AudioManager.SCO_AUDIO_STATE_DISCONNECTED)) {
       audioButton.setHeadsetAvailable(false);
     }
-  }
-
-
-  public static interface ConfirmSasButtonListener {
-    public void onClick();
   }
 
   public static interface HangupButtonListener {

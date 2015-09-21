@@ -31,22 +31,6 @@ public class SignalManager {
     this.queue.execute(new SignalListenerTask());
   }
 
-//  public void sendBusySignal(String remoteNumber, final long sessionId) {
-//    Log.w("SignalManager", "Queuing busy signal...");
-//    queue.execute(new Runnable() {
-//      public void run() {
-//        try {
-//          Log.w("SignalManager", "Sending busy signal...");
-//          signalingSocket.setBusy(sessionId);
-//        } catch (SignalingException se) {
-//          Log.w("SignalManager", se);
-//        }
-//      }
-//    });
-//
-//    interrupted = true;
-//  }
-
   public void terminate() {
     Log.w("SignalManager", "Queuing hangup signal...");
     queue.execute(new Runnable() {

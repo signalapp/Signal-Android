@@ -37,17 +37,13 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
-import org.thoughtcrime.redphone.codec.CodecSetupException;
 import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
 import org.thoughtcrime.redphone.ui.CallControls;
 import org.thoughtcrime.redphone.ui.CallScreen;
 import org.thoughtcrime.redphone.util.AudioUtils;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
-
-import java.security.Security;
 
 /**
  * The main UI class for RedPhone.  Most of the heavy lifting is
@@ -59,10 +55,6 @@ import java.security.Security;
  *
  */
 public class RedPhone extends Activity {
-  static {
-    Security.addProvider(new org.spongycastle.jce.provider.BouncyCastleProvider());
-  }
-
 
   private static final int REMOTE_TERMINATE = 0;
   private static final int LOCAL_TERMINATE  = 1;
@@ -84,7 +76,6 @@ public class RedPhone extends Activity {
   public static final int HANDLE_CONNECTING_TO_INITIATOR = 5;
   public static final int HANDLE_CALL_DISCONNECTED       = 6;
   public static final int HANDLE_CALL_RINGING            = 7;
-  public static final int HANDLE_CODEC_INIT_FAILED       = 8;
   public static final int HANDLE_SERVER_MESSAGE          = 9;
   public static final int HANDLE_RECIPIENT_UNAVAILABLE   = 10;
   public static final int HANDLE_INCOMING_CALL           = 11;
@@ -97,17 +88,15 @@ public class RedPhone extends Activity {
 
   private final Handler callStateHandler = new CallStateHandler();
 
-  private int state;
-  private boolean deliveringTimingData = false;
-  private RedPhoneService redPhoneService;
-  private CallScreen callScreen;
+  private int               state;
+  private RedPhoneService   redPhoneService;
+  private CallScreen        callScreen;
   private BroadcastReceiver bluetoothStateReceiver;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-//    startServiceIfNecessary();
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.redphone);
 
@@ -138,26 +127,6 @@ public class RedPhone extends Activity {
   public void onConfigurationChanged(Configuration newConfiguration) {
     super.onConfigurationChanged(newConfiguration);
   }
-//
-//  private void startServiceIfNecessary() {
-//    Intent intent = this.getIntent();
-//    String action = null;
-//
-//    if (intent != null)
-//      action = intent.getAction();
-//
-//    if (action != null &&
-//        (action.equals(Intent.ACTION_CALL) || action.equals(Intent.ACTION_DIAL) ||
-//         action.equals("android.intent.action.CALL_PRIVILEGED")))
-//    {
-//      Log.w("RedPhone", "Calling startService from within RedPhone!");
-//      String number = Uri.decode(intent.getData().getEncodedSchemeSpecificPart());
-//      Intent serviceIntent = new Intent();
-//      serviceIntent.setClass(this, RedPhoneService.class);
-//      serviceIntent.putExtra(Constants.REMOTE_NUMBER, number);
-//      startService(serviceIntent);
-//    }
-//  }
 
   private void initializeServiceBinding() {
     Log.w("RedPhone", "Binding to RedPhoneService...");
@@ -173,19 +142,7 @@ public class RedPhone extends Activity {
     callScreen.setIncomingCallActionListener(new IncomingCallActionListener());
     callScreen.setMuteButtonListener(new MuteButtonListener());
     callScreen.setAudioButtonListener(new AudioButtonListener());
-    callScreen.setConfirmSasButtonListener(new ConfirmSasButtonListener());
-
-//    PeriodicActionUtils.scheduleUpdate(this, DirectoryUpdateReceiver.class);
   }
-
-//  private void sendInstallLink(String user) {
-//    String message =
-//        String.format(getString(R.string.RedPhone_id_like_to_call_you_securely_using_redphone_you_can_install_redphone_from_the_play_store_s),
-//                      "https://play.google.com/store/apps/details?id=org.thoughtcrime.redphone");
-//
-//    ArrayList<String> messages = SmsManager.getDefault().divideMessage(message);
-//    SmsManager.getDefault().sendMultipartTextMessage(user, null, messages, null, null);
-//  }
 
   private void handleSetMute(boolean enabled) {
     Intent intent = new Intent(this, RedPhoneService.class);
@@ -349,12 +306,6 @@ public class RedPhone extends Activity {
     dialog.show();
   }
 
-  private void handleCodecFailure(CodecSetupException e) {
-    Log.w("RedPhone", e);
-    Toast.makeText(this, "Codec failed to initialize", Toast.LENGTH_LONG).show();
-    handleTerminate(LOCAL_TERMINATE);
-  }
-
   private void delayedFinish() {
     delayedFinish(STANDARD_DELAY_FINISH);
   }
@@ -382,7 +333,6 @@ public class RedPhone extends Activity {
       case HANDLE_SERVER_MESSAGE:          handleServerMessage((String)message.obj);                break;
       case HANDLE_NO_SUCH_USER:            handleNoSuchUser((Recipient)message.obj);                   break;
       case HANDLE_RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable();                            break;
-      case HANDLE_CODEC_INIT_FAILED:		   handleCodecFailure( (CodecSetupException) message.obj ); break;
       case HANDLE_INCOMING_CALL:           handleIncomingCall((Recipient)message.obj);                 break;
       case HANDLE_OUTGOING_CALL:           handleOutgoingCall((Recipient)message.obj);                 break;
       case HANDLE_CALL_BUSY:               handleCallBusy();                                        break;
@@ -390,14 +340,6 @@ public class RedPhone extends Activity {
       case HANDLE_CLIENT_FAILURE:			     handleClientFailure((String)message.obj);                break;
       case HANDLE_DEBUG_INFO:				       handleDebugInfo((String)message.obj);					          break;
       }
-    }
-  }
-
-  private class ConfirmSasButtonListener implements CallControls.ConfirmSasButtonListener {
-    public void onClick() {
-      Intent intent = new Intent(RedPhone.this, RedPhoneService.class);
-      intent.setAction(RedPhoneService.ACTION_CONFIRM_SAS);
-      startService(intent);
     }
   }
 

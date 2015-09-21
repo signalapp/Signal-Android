@@ -28,16 +28,14 @@ import static org.thoughtcrime.redphone.util.AudioUtils.AudioMode.SPEAKER;
  * @author Stuart O. Anderson
  */
 public class InCallAudioButton {
-  private static final String TAG = InCallAudioButton.class.getName();
-//  private static final int HANDSET_ID = 0x10;
-//  private static final int HEADSET_ID = 0x20;
-//  private static final int SPEAKER_ID = 0x30;
 
-  private final CompoundButton mAudioButton;
-  private boolean headsetAvailable;
-  private AudioUtils.AudioMode currentMode;
-  private Context context;
-  private CallControls.AudioButtonListener listener;
+  private static final String TAG = InCallAudioButton.class.getName();
+
+  private final CompoundButton                   mAudioButton;
+  private       boolean                          headsetAvailable;
+  private       AudioUtils.AudioMode             currentMode;
+  private       Context                          context;
+  private       CallControls.AudioButtonListener listener;
 
   public InCallAudioButton(CompoundButton audioButton) {
     mAudioButton = audioButton;
@@ -159,52 +157,14 @@ public class InCallAudioButton {
   }
 
   private void displayAudioChoiceDialog() {
-//    MenuBuilder mb = new MenuBuilder(context);
-//    mb.add(0, HANDSET_ID, 0, "Handset");
-//    mb.add(0, HEADSET_ID, 0, "Headset");
-//    mb.add(0, SPEAKER_ID, 0, "Speaker");
-//    mb.setCallback(new AudioRoutingPopupListener());
-
-//    View attachmentView = ((View) mAudioButton.getParent()).findViewById(R.id.menuAttachment);
     Log.w(TAG, "Displaying popup...");
     PopupMenu popupMenu = new PopupMenu(context, mAudioButton);
     popupMenu.getMenuInflater().inflate(R.menu.redphone_audio_popup_menu, popupMenu.getMenu());
     popupMenu.setOnMenuItemClickListener(new AudioRoutingPopupListener());
     popupMenu.show();
-//    MenuPopupHelper mph = new MenuPopupHelper(context, mb, attachmentView);
-//
-//    mph.show();
   }
 
   private class AudioRoutingPopupListener implements PopupMenu.OnMenuItemClickListener {
-
-//    @Override
-//    public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
-//      switch (item.getItemId()) {
-//        case HANDSET_ID:
-//          currentMode = DEFAULT;
-//          break;
-//        case HEADSET_ID:
-//          currentMode = HEADSET;
-//          break;
-//        case SPEAKER_ID:
-//          currentMode = SPEAKER;
-//          break;
-//        default:
-//          Log.w(TAG, "Unknown item selected in audio popup menu: " + item.toString());
-//      }
-//      Log.d(TAG, "Selected: " + currentMode + " -- " + item.getItemId());
-//
-//      listener.onAudioChange(currentMode);
-//      updateView();
-//      return true;
-//    }
-//
-//    @Override
-//    public void onMenuModeChange(MenuBuilder menu) {
-//      //To change body of implemented methods use File | Settings | File Templates.
-//    }
-
     @Override
     public boolean onMenuItemClick(MenuItem item) {
       switch (item.getItemId()) {

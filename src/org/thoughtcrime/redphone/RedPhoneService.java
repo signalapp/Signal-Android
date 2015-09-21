@@ -37,7 +37,6 @@ import org.thoughtcrime.redphone.call.CallStateListener;
 import org.thoughtcrime.redphone.call.InitiatingCallManager;
 import org.thoughtcrime.redphone.call.LockManager;
 import org.thoughtcrime.redphone.call.ResponderCallManager;
-import org.thoughtcrime.redphone.codec.CodecSetupException;
 import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
 import org.thoughtcrime.redphone.pstn.CallStateView;
 import org.thoughtcrime.redphone.pstn.IncomingPstnCallListener;
@@ -84,31 +83,28 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   private static final String TAG = RedPhoneService.class.getName();
 
-  private final List<Message> bufferedEvents = new LinkedList<Message>();
+  private final List<Message> bufferedEvents = new LinkedList<>();
   private final IBinder binder               = new RedPhoneServiceBinder();
   private final Handler serviceHandler       = new Handler();
 
   private OutgoingRinger outgoingRinger;
   private IncomingRinger incomingRinger;
 
-  private int state;
-  private byte[] zid;
-  private String remoteNumber;
-  private CallManager currentCallManager;
-  private LockManager lockManager;
+  private int                             state;
+  private byte[]                          zid;
+  private String                          remoteNumber;
+  private CallManager                     currentCallManager;
+  private LockManager                     lockManager;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
 
-  private Handler handler;
+  private Handler                  handler;
   private IncomingPstnCallListener pstnCallListener;
 
   @Override
   public void onCreate() {
     super.onCreate();
 
-//    if (Release.DEBUG) Log.w("RedPhoneService", "Service onCreate() called...");
-
     initializeResources();
-//    initializeApplicationContext();
     initializeRingers();
     initializePstnCallListener();
     registerUncaughtExceptionHandler();
@@ -116,11 +112,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   @Override
   public void onStart(Intent intent, int startId) {
-//    if (Release.DEBUG) Log.w("RedPhoneService", "Service onStart() called...");
     if (intent == null) return;
     new Thread(new IntentRunnable(intent)).start();
-
-//    GCMRegistrarHelper.registerClient(this, false);
   }
 
   @Override
@@ -146,7 +139,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     else if (intent.getAction().equals(ACTION_DENY_CALL))                 handleDenyCall(intent);
     else if (intent.getAction().equals(ACTION_HANGUP_CALL))               handleHangupCall(intent);
     else if (intent.getAction().equals(ACTION_SET_MUTE))                  handleSetMute(intent);
-    else if (intent.getAction().equals(ACTION_CONFIRM_SAS))               handleConfirmSas(intent);
   }
 
   ///// Initializers
@@ -269,11 +261,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     }
   }
 
-  private void handleConfirmSas(Intent intent) {
-    if (currentCallManager != null)
-      currentCallManager.setSasVerified();
-  }
-
   /// Helper Methods
 
   private boolean isBusy() {
@@ -311,10 +298,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     }
   }
 
-//  public PersonInfo getRemotePersonInfo() {
-//    return PersonInfo.getInstance(this, remoteNumber);
-//  }
-
   private byte[] getZID() {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -345,16 +328,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     }
   }
 
-//  private String extractRemoteNumber(Intent i) {
-//    String number =  i.getStringExtra(Constants.REMOTE_NUMBER);
-//
-//    if (number == null)
-//      number = i.getData().getSchemeSpecificPart();
-//
-//    if (number.endsWith("*")) return number.substring(0, number.length()-1);
-//    else                      return number;
-//  }
-
   private void startCallCardActivity() {
     Intent activityIntent = new Intent();
     activityIntent.setClass(this, RedPhone.class);
@@ -370,11 +343,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     incomingRinger.stop();
     outgoingRinger.stop();
 
-//    if (currentCallRecord != null) {
-//      currentCallRecord.finishCall();
-//      currentCallRecord = null;
-//    }
-
     if (currentCallManager != null) {
       currentCallManager.terminate();
       currentCallManager = null;
@@ -384,9 +352,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
     state = RedPhone.STATE_IDLE;
     lockManager.updatePhoneState(LockManager.PhoneState.IDLE);
-    // XXX moxie@thoughtcrime.org -- Do we still need to stop the Service?
-//    Log.d("RedPhoneService", "STOP SELF" );
-//    this.stopSelf();
   }
 
   public void setCallStateHandler(Handler handler) {
@@ -528,11 +493,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyServerMessage(String message) {
     sendMessage(RedPhone.HANDLE_SERVER_MESSAGE, message);
-    this.terminate();
-  }
-
-  public void notifyCodecInitFailed(CodecSetupException e) {
-    sendMessage(RedPhone.HANDLE_CODEC_INIT_FAILED, e);
     this.terminate();
   }
 

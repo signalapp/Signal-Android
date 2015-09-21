@@ -63,15 +63,9 @@ public class CallCard extends LinearLayout {
   }
 
   private void setPersonInfo(Recipient recipient) {
-//    if (recipient.getImage() == null) this.photo.setImageResource(R.drawable.picture_unknown);
-//    else                               this.photo.setImageBitmap(personInfo.getImage());
-
-
-
     this.photo.setImageDrawable(recipient.getContactPhoto().asCallCard(getContext()));
     this.name.setText(recipient.getName());
     this.phoneNumber.setText(recipient.getNumber());
-//    this.label.setText(recipient.getLabel());
   }
 
   public void setCard(Recipient recipient, String status) {
