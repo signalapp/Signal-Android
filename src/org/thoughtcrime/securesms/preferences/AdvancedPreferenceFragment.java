@@ -19,7 +19,10 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
+import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.LogSubmitActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RegistrationActivity;
@@ -174,10 +177,15 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       @Override
       protected Integer doInBackground(Void... params) {
         try {
-          Context                  context        = getActivity();
-          TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
+          Context                  context                = getActivity();
+          TextSecureAccountManager accountManager         = TextSecureCommunicationFactory.createManager(context);
+          RedPhoneAccountManager   redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
+                                                                                       new RedPhoneTrustStore(context),
+                                                                                       TextSecurePreferences.getLocalNumber(context),
+                                                                                       TextSecurePreferences.getPushServerPassword(context));
 
           accountManager.setGcmId(Optional.<String>absent());
+          redPhoneAccountManager.setGcmId(Optional.<String>absent());
           GoogleCloudMessaging.getInstance(context).unregister();
 
           return SUCCESS;
