@@ -14,6 +14,9 @@ import android.util.Log;
  * @author Stuart O. Anderson
  */
 public class LockManager {
+
+  private static final String TAG = LockManager.class.getSimpleName();
+
   private final PowerManager.WakeLock        fullLock;
   private final PowerManager.WakeLock        partialLock;
   private final KeyguardManager.KeyguardLock keyGuardLock;
@@ -62,7 +65,7 @@ public class LockManager {
       @Override
       public void orientationChanged(int newOrientation) {
         orientation = newOrientation;
-        Log.d("LockManager", "Orentation Update: " + newOrientation);
+        Log.d(TAG, "Orentation Update: " + newOrientation);
         updateInCallLockState();
       }
     });
@@ -72,7 +75,7 @@ public class LockManager {
 
   private boolean isWifiPowerActiveModeEnabled(Context context) {
     int wifi_pwr_active_mode = Settings.Secure.getInt(context.getContentResolver(), "wifi_pwr_active_mode", -1);
-    Log.d("LockManager", "Wifi Activity Policy: " + wifi_pwr_active_mode);
+    Log.d(TAG, "Wifi Activity Policy: " + wifi_pwr_active_mode);
 
     if (wifi_pwr_active_mode == 0) {
       return false;
@@ -144,7 +147,7 @@ public class LockManager {
       default:
         throw new IllegalArgumentException("Unhandled Mode: " + newState);
     }
-    Log.d("LockManager", "Entered Lock State: " + newState);
+    Log.d(TAG, "Entered Lock State: " + newState);
   }
 
   private void disableKeyguard() {

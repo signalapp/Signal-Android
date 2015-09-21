@@ -56,6 +56,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
  */
 public class RedPhone extends Activity {
 
+  private static final String TAG = RedPhone.class.getSimpleName();
+
   private static final int REMOTE_TERMINATE = 0;
   private static final int LOCAL_TERMINATE  = 1;
 
@@ -129,7 +131,7 @@ public class RedPhone extends Activity {
   }
 
   private void initializeServiceBinding() {
-    Log.w("RedPhone", "Binding to RedPhoneService...");
+    Log.w(TAG, "Binding to RedPhoneService...");
     Intent bindIntent = new Intent(this, RedPhoneService.class);
     bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
   }
@@ -182,8 +184,8 @@ public class RedPhone extends Activity {
   }
 
   private void handleTerminate( int terminationType ) {
-    Log.w("RedPhone", "handleTerminate called");
-    Log.w("RedPhone", "Termination Stack:", new Exception());
+    Log.w(TAG, "handleTerminate called");
+    Log.w(TAG, "Termination Stack:", new Exception());
 
     if( state == STATE_DIALING ) {
       if (terminationType == LOCAL_TERMINATE) {
@@ -321,7 +323,7 @@ public class RedPhone extends Activity {
   private class CallStateHandler extends Handler {
     @Override
     public void handleMessage(Message message) {
-      Log.w("RedPhone", "Got message from service: " + message.what);
+      Log.w(TAG, "Got message from service: " + message.what);
       switch (message.what) {
       case HANDLE_CALL_CONNECTED:          handleCallConnected((SASInfo)message.obj);               break;
       case HANDLE_SERVER_FAILURE:          handleServerFailure();                                   break;
@@ -345,7 +347,7 @@ public class RedPhone extends Activity {
 
   private class HangupButtonListener implements CallControls.HangupButtonListener {
     public void onClick() {
-      Log.w("RedPhone", "Hangup pressed, handling termination now...");
+      Log.w(TAG, "Hangup pressed, handling termination now...");
       Intent intent = new Intent(RedPhone.this, RedPhoneService.class);
       intent.setAction(RedPhoneService.ACTION_HANGUP_CALL);
       startService(intent);
@@ -438,7 +440,7 @@ public class RedPhone extends Activity {
 //      ApplicationContext.getInstance().getContext().getSystemService(Context.AUDIO_SERVICE);
       int curVol = audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
       int maxVol = (int) (audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL) * 0.9);
-      Log.d("RedPhone", "volume up key press detected: " + curVol + " / " + maxVol);
+      Log.d(TAG, "volume up key press detected: " + curVol + " / " + maxVol);
       if(  curVol > maxVol ) {
         audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,maxVol,0);
       }

@@ -40,6 +40,8 @@ import java.net.DatagramSocket;
 
 public class SecureRtpSocket {
 
+  private static final String TAG = SecureRtpPacket.class.getSimpleName();
+
   private final RtpSocket socket;
 
   public SecureRtpSocket(RtpSocket socket) {
@@ -78,7 +80,7 @@ public class SecureRtpSocket {
     if (!verifyCRC || handshakePacket.verifyCRC()) {
       return handshakePacket;
     } else {
-      Log.w("SecureRedPhoneSocket", "Bad CRC!");
+      Log.w(TAG, "Bad CRC!");
       return null;
     }
   }

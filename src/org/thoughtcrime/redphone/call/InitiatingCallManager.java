@@ -49,6 +49,8 @@ import java.net.SocketException;
  */
 public class InitiatingCallManager extends CallManager {
 
+  private static final String TAG = InitiatingCallManager.class.getSimpleName();
+
   private final String localNumber;
   private final String password;
   private final byte[] zid;
@@ -91,23 +93,23 @@ public class InitiatingCallManager extends CallManager {
 
       super.run();
     } catch (NoSuchUserException nsue) {
-      Log.w("InitiatingCallManager", nsue);
+      Log.w(TAG, nsue);
       callStateListener.notifyNoSuchUser();
     } catch (ServerMessageException ife) {
-      Log.w("InitiatingCallManager", ife);
+      Log.w(TAG, ife);
       callStateListener.notifyServerMessage(ife.getMessage());
     } catch (LoginFailedException lfe) {
-      Log.w("InitiatingCallManager", lfe);
+      Log.w(TAG, lfe);
       callStateListener.notifyLoginFailed();
     } catch (SignalingException | SessionInitiationFailureException se) {
-      Log.w("InitiatingCallManager", se);
+      Log.w(TAG, se);
       callStateListener.notifyServerFailure();
     } catch (SocketException e) {
-      Log.w("InitiatingCallManager", e);
+      Log.w(TAG, e);
       callStateListener.notifyCallDisconnected();
     } catch( RuntimeException e ) {
-      Log.e("InitiatingCallManager", "Died with unhandled exception!");
-      Log.w("InitiatingCallManager", e);
+      Log.e(TAG, "Died with unhandled exception!");
+      Log.w(TAG, e);
       callStateListener.notifyClientFailure();
     }
   }

@@ -17,6 +17,8 @@ import java.lang.reflect.Method;
 */
 class ProximityLock {
 
+  private static final String TAG = ProximityLock.class.getSimpleName();
+
   private final Method wakelockParameterizedRelease = getWakelockParamterizedReleaseMethod();
   private final Optional<PowerManager.WakeLock> proximityLock;
 
@@ -39,7 +41,7 @@ class ProximityLock {
       try {
         return Optional.fromNullable(pm.newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "RedPhone Incall"));
       } catch (Throwable t) {
-        Log.e("LockManager", "Failed to create proximity lock", t);
+        Log.e(TAG, "Failed to create proximity lock", t);
         return Optional.absent();
       }
     }
@@ -68,9 +70,9 @@ class ProximityLock {
           wakelockParameterizedRelease.invoke(proximityLock.get(), WAIT_FOR_PROXIMITY_NEGATIVE);
           released = true;
         } catch (IllegalAccessException e) {
-          Log.w("ProximityLock", e);
+          Log.w(TAG, e);
         } catch (InvocationTargetException e) {
-          Log.w("ProximityLock", e);
+          Log.w(TAG, e);
         }
       }
 
@@ -79,14 +81,14 @@ class ProximityLock {
       }
     }
 
-    Log.d("LockManager", "Released proximity lock:" + proximityLock.get().isHeld());
+    Log.d(TAG, "Released proximity lock:" + proximityLock.get().isHeld());
   }
 
   private static Method getWakelockParamterizedReleaseMethod() {
     try {
       return PowerManager.WakeLock.class.getDeclaredMethod("release", Integer.TYPE);
     } catch (NoSuchMethodException e) {
-      Log.d("LockManager", "Parameterized WakeLock release not available on this device.");
+      Log.d(TAG, "Parameterized WakeLock release not available on this device.");
     }
     return null;
   }

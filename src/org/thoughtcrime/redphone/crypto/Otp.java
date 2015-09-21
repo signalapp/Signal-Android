@@ -40,10 +40,8 @@ public class Otp {
       mac.init(key);
 
       return Base64.encodeBytes(mac.doFinal((counter+"").getBytes()));
-    } catch (NoSuchAlgorithmException nsae) {
+    } catch (NoSuchAlgorithmException | InvalidKeyException nsae) {
       throw new AssertionError(nsae);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError(e);
     }
   }
 }

@@ -49,9 +49,11 @@ import java.net.SocketException;
 
 public abstract class CallManager extends Thread {
 
-  protected final String remoteNumber;
+  private static final String TAG = CallManager.class.getSimpleName();
+
+  protected final String            remoteNumber;
   protected final CallStateListener callStateListener;
-  protected final Context context;
+  protected final Context           context;
 
   private   boolean          terminated;
   protected CallAudioManager callAudioManager;
@@ -61,8 +63,8 @@ public abstract class CallManager extends Thread {
   private   boolean          callConnected;
 
   protected SessionDescriptor sessionDescriptor;
-  protected ZRTPSocket zrtpSocket;
-  protected SecureRtpSocket secureSocket;
+  protected ZRTPSocket        zrtpSocket;
+  protected SecureRtpSocket   secureSocket;
   protected SignalingSocket   signalingSocket;
 
   public CallManager(Context context, CallStateListener callStateListener,
@@ -82,7 +84,7 @@ public abstract class CallManager extends Thread {
     Process.setThreadPriority(Process.THREAD_PRIORITY_URGENT_AUDIO);
 
     try {
-      Log.d("CallManager", "negotiating...");
+      Log.d(TAG, "negotiating...");
       if (!terminated) {
         zrtpSocket.negotiateStart();
       }
@@ -98,23 +100,23 @@ public abstract class CallManager extends Thread {
       }
 
       if (!terminated) {
-        Log.d("CallManager", "Finished handshake, calling run() on CallAudioManager...");
+        Log.d(TAG, "Finished handshake, calling run() on CallAudioManager...");
         callConnected = true;
         runAudio(zrtpSocket.getDatagramSocket(), zrtpSocket.getRemoteIp(),
                  zrtpSocket.getRemotePort(), zrtpSocket.getMasterSecret(), muteEnabled);
       }
 
     } catch (RecipientUnavailableException rue) {
-      Log.w("CallManager", rue);
+      Log.w(TAG, rue);
       if (!terminated) callStateListener.notifyRecipientUnavailable();
     } catch (NegotiationFailedException nfe) {
-      Log.w("CallManager", nfe);
+      Log.w(TAG, nfe);
       if (!terminated) callStateListener.notifyHandshakeFailed();
     } catch (AudioException e) {
-      Log.w("CallManager", e);
+      Log.w(TAG, e);
       callStateListener.notifyClientError(e.getClientMessage());
     } catch (IOException e) {
-      Log.w("CallManager", e);
+      Log.w(TAG, e);
       callStateListener.notifyCallDisconnected();
     }
   }
@@ -141,7 +143,7 @@ public abstract class CallManager extends Thread {
   }
 
   protected void processSignals() {
-    Log.w("CallManager", "Starting signal processing loop...");
+    Log.w(TAG, "Starting signal processing loop...");
     this.signalManager = new SignalManager(callStateListener, signalingSocket, sessionDescriptor);
   }
 

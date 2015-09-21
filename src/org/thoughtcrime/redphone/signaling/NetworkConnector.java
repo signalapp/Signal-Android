@@ -42,13 +42,16 @@ import java.util.Map;
  */
 
 public class NetworkConnector {
-  private DatagramSocket socket;
-  private final long sessionId;
-  private final String server;
-  private final int port;
+
+  private static final String TAG = NetworkConnector.class.getSimpleName();
+
+  private       DatagramSocket socket;
+  private final long           sessionId;
+  private final String         server;
+  private final int            port;
 
   public NetworkConnector(long sessionId, String server, int port) {
-    Log.w("NetworkConnector", "Opening up port: " + server + " , " + port);
+    Log.w(TAG, "Opening up port: " + server + " , " + port);
     this.sessionId = sessionId;
     this.server    = server;
     this.port      = port;
@@ -58,7 +61,7 @@ public class NetworkConnector {
     int result = -1;
     int timeout = 1000;
     for (int attempts = 0; attempts < 5; attempts++) {
-      Log.d("NetworkConnector", "attempting connection");
+      Log.d(TAG, "attempting connection");
       result = attemptConnection( timeout );
       if (result != -1)
         break;
@@ -82,7 +85,7 @@ public class NetworkConnector {
       SignalResponse response = readSignalResponse();
 
       if (response.getStatusCode() != 200) {
-        Log.e("NetworkConnector", "Bad response from server.");
+        Log.e(TAG, "Bad response from server.");
         socket.close();
         return -1;
       }
@@ -92,7 +95,7 @@ public class NetworkConnector {
       return localPort;
 
     } catch (IOException | SignalingException e) {
-      Log.w("NetworkConnector", e);
+      Log.w(TAG, e);
     }
     return -1;
   }

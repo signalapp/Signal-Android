@@ -39,6 +39,8 @@ import java.util.Iterator;
  */
 public class LowLatencySocketConnector {
 
+  private static final String TAG = LowLatencySocketConnector.class.getSimpleName();
+
   private static final int CONNECT_TIMEOUT_MILLIS = 10000;
 
   public static Socket connect(InetAddress[] addresses, int port) throws IOException {
@@ -105,7 +107,7 @@ public class LowLatencySocketConnector {
     try {
       return channel.finishConnect();
     } catch (IOException ioe) {
-      Log.w("LowLatencySocketConnector", ioe);
+      Log.w(TAG, ioe);
       return false;
     }
   }

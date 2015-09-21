@@ -68,17 +68,18 @@ import javax.net.ssl.TrustManagerFactory;
  */
 
 public class SignalingSocket {
+
+  private static final String TAG = SignalingSocket.class.getSimpleName();
+
   protected static final int    PROTOCOL_VERSION = 1;
 
   private   final Context context;
   private   final Socket socket;
-  private   final String signalingHost;
-  private   final int    signalingPort;
 
-  protected final LineReader lineReader;
-  protected final OutputStream outputStream;
-  protected final String localNumber;
-  protected final String password;
+  protected final LineReader         lineReader;
+  protected final OutputStream       outputStream;
+  protected final String             localNumber;
+  protected final String             password;
   protected final OtpCounterProvider counterProvider;
 
   private boolean connectionAttemptComplete;
@@ -91,9 +92,7 @@ public class SignalingSocket {
     try {
       this.context                   = context.getApplicationContext();
       this.connectionAttemptComplete = false;
-      this.signalingHost             = host;
-      this.signalingPort             = port;
-      this.socket                    = constructSSLSocket(context, signalingHost, signalingPort);
+      this.socket                    = constructSSLSocket(context, host, port);
       this.outputStream              = this.socket.getOutputStream();
       this.lineReader                = new LineReader(socket.getInputStream());
       this.localNumber               = localNumber;
@@ -126,7 +125,7 @@ public class SignalingSocket {
     InetAddress[] addresses      = InetAddress.getAllByName(host);
     Socket stagedSocket          = LowLatencySocketConnector.connect(addresses, port);
 
-    Log.w("SignalingSocket", "Connected to: " + stagedSocket.getInetAddress().getHostAddress());
+    Log.w(TAG, "Connected to: " + stagedSocket.getInetAddress().getHostAddress());
 
     SocketConnectMonitor monitor = new SocketConnectMonitor(stagedSocket);
 
@@ -263,7 +262,7 @@ public class SignalingSocket {
 
   protected void sendSignal(Signal signal) throws SignalingException {
     try {
-      Log.d("SignalingSocket", "Sending signal...");
+      Log.d(TAG, "Sending signal...");
       this.outputStream.write(signal.serialize().getBytes());
     } catch (IOException ioe) {
       throw new SignalingException(ioe);
@@ -297,7 +296,7 @@ public class SignalingSocket {
           if (!SignalingSocket.this.connectionAttemptComplete) SignalingSocket.this.wait(10000);
           if (!SignalingSocket.this.connectionAttemptComplete) this.socket.close();
         } catch (IOException ioe) {
-          Log.w("SignalingSocket", ioe);
+          Log.w(TAG, ioe);
         } catch (InterruptedException e) {
           throw new AssertionError(e);
         }
