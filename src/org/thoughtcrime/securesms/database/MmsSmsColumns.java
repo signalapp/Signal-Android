@@ -19,6 +19,10 @@ public interface MmsSmsColumns {
     // Base Types
     protected static final long BASE_TYPE_MASK                     = 0x1F;
 
+    protected static final long INCOMING_CALL_TYPE                 = 1;
+    protected static final long OUTGOING_CALL_TYPE                 = 2;
+    protected static final long MISSED_CALL_TYPE                   = 3;
+
     protected static final long BASE_INBOX_TYPE                    = 20;
     protected static final long BASE_OUTBOX_TYPE                   = 21;
     protected static final long BASE_SENDING_TYPE                  = 22;
@@ -148,6 +152,22 @@ public interface MmsSmsColumns {
 
     public static boolean isIdentityUpdate(long type) {
       return (type & KEY_EXCHANGE_IDENTITY_UPDATE_BIT) != 0;
+    }
+
+    public static boolean isCallLog(long type) {
+      return type == INCOMING_CALL_TYPE || type == OUTGOING_CALL_TYPE || type == MISSED_CALL_TYPE;
+    }
+
+    public static boolean isIncomingCall(long type) {
+      return type == INCOMING_CALL_TYPE;
+    }
+
+    public static boolean isOutgoingCall(long type) {
+      return type == OUTGOING_CALL_TYPE;
+    }
+
+    public static boolean isMissedCall(long type) {
+      return type == MISSED_CALL_TYPE;
     }
 
     public static boolean isGroupUpdate(long type) {

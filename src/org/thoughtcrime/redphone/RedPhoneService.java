@@ -48,6 +48,7 @@ import org.thoughtcrime.redphone.signaling.SignalingSocket;
 import org.thoughtcrime.redphone.ui.NotificationBarManager;
 import org.thoughtcrime.redphone.util.Base64;
 import org.thoughtcrime.redphone.util.UncaughtExceptionHandlerManager;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -92,15 +93,12 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   private int state;
   private byte[] zid;
-//  private String localNumber;
   private String remoteNumber;
-//  private String password;
   private CallManager currentCallManager;
   private LockManager lockManager;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
 
   private Handler handler;
-//  private CallLogger.CallRecord currentCallRecord;
   private IncomingPstnCallListener pstnCallListener;
 
   @Override
@@ -163,17 +161,9 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     registerReceiver(pstnCallListener, new IntentFilter("android.intent.action.PHONE_STATE"));
   }
 
-//  private void initializeApplicationContext() {
-//    ApplicationContext context = ApplicationContext.getInstance();
-//    context.setContext(this);
-//    context.setCallStateListener(this);
-//  }
-
   private void initializeResources() {
     this.state            = RedPhone.STATE_IDLE;
     this.zid              = getZID();
-//    this.localNumber      = TextSecurePreferences.getLocalNumber(this);
-//    this.password         = TextSecurePreferences.getPushServerPassword(this);
     this.lockManager      = new LockManager(this);
   }
 
@@ -216,8 +206,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     this.currentCallManager.start();
 
     NotificationBarManager.setCallInProgress(this);
-//
-//    currentCallRecord = CallLogger.logOutgoingCall(this, remoteNumber);
+    DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(remoteNumber);
+
   }
 
   private void handleBusyCall(Intent intent) {
@@ -246,14 +236,14 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleMissedCall(String remoteNumber) {
-//    CallLogger.logMissedCall(this, remoteNumber, System.currentTimeMillis());
+    DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
     NotificationBarManager.notifyMissedCall(this, remoteNumber);
   }
 
   private void handleAnswerCall(Intent intent) {
     state = RedPhone.STATE_ANSWERING;
     incomingRinger.stop();
-//    currentCallRecord = CallLogger.logIncomingCall(this, remoteNumber);
+    DatabaseFactory.getSmsDatabase(this).insertReceivedCall(remoteNumber);
     if (currentCallManager != null) {
       ((ResponderCallManager)this.currentCallManager).answer(true);
     }
@@ -262,7 +252,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   private void handleDenyCall(Intent intent) {
     state = RedPhone.STATE_IDLE;
     incomingRinger.stop();
-//    CallLogger.logMissedCall(this, remoteNumber, System.currentTimeMillis());
+    DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
     if(currentCallManager != null) {
       ((ResponderCallManager)this.currentCallManager).answer(false);
     }

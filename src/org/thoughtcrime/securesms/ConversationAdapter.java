@@ -164,9 +164,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    if      (messageRecord.isGroupAction()) return MESSAGE_TYPE_UPDATE;
-    else if (messageRecord.isOutgoing())    return MESSAGE_TYPE_OUTGOING;
-    else                                    return MESSAGE_TYPE_INCOMING;
+    if      (messageRecord.isGroupAction() || messageRecord.isCallLog()) return MESSAGE_TYPE_UPDATE;
+    else if (messageRecord.isOutgoing())                                 return MESSAGE_TYPE_OUTGOING;
+    else                                                                 return MESSAGE_TYPE_INCOMING;
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
