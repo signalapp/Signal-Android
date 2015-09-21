@@ -33,6 +33,8 @@ import java.net.SocketTimeoutException;
  */
 public class RtpSocket {
 
+  private static final String TAG = RtpSocket.class.getSimpleName();
+
   private final byte [] buf = new byte[4096];
 
   private final String remoteIp;
@@ -46,7 +48,7 @@ public class RtpSocket {
     this.remotePort = remoteAddress.getPort();
 
     socket.connect(new InetSocketAddress(remoteIp, remotePort));
-    Log.d("RtpSocket", "Connected to: " + remoteIp);
+    Log.d(TAG, "Connected to: " + remoteIp);
   }
 
   public String getRemoteIp() {
@@ -65,7 +67,7 @@ public class RtpSocket {
     try {
       socket.setSoTimeout(timeoutMillis);
     } catch (SocketException e) {
-      Log.w("RtpSocket", e);
+      Log.w(TAG, e);
     }
   }
 

@@ -69,6 +69,8 @@ import java.util.List;
  */
 public class RedPhoneService extends Service implements CallStateListener, CallStateView {
 
+  private static final String TAG = RedPhoneService.class.getSimpleName();
+
   public static final String EXTRA_REMOTE_NUMBER      = "remote_number";
   public static final String EXTRA_SESSION_DESCRIPTOR = "session_descriptor";
   public static final String EXTRA_MUTE               = "mute_value";
@@ -79,9 +81,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   public static final String ACTION_DENY_CALL     = "org.thoughtcrime.redphone.RedPhoneService.DENYU_CALL";
   public static final String ACTION_HANGUP_CALL   = "org.thoughtcrime.redphone.RedPhoneService.HANGUP";
   public static final String ACTION_SET_MUTE      = "org.thoughtcrime.redphone.RedPhoneService.SET_MUTE";
-  public static final String ACTION_CONFIRM_SAS   = "org.thoughtcrime.redphone.RedPhoneService.CONFIRM_SAS";
-
-  private static final String TAG = RedPhoneService.class.getName();
 
   private final List<Message> bufferedEvents = new LinkedList<>();
   private final IBinder binder               = new RedPhoneServiceBinder();
@@ -130,7 +129,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private synchronized void onIntentReceived(Intent intent) {
-    Log.w("RedPhoneService", "Received Intent: " + intent.getAction());
+    Log.w(TAG, "Received Intent: " + intent.getAction());
 
     if      (intent.getAction().equals(ACTION_INCOMING_CALL) && isBusy()) handleBusyCall(intent);
     else if (intent.getAction().equals(ACTION_INCOMING_CALL))             handleIncomingCall(intent);
@@ -208,7 +207,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     SessionDescriptor session     = intent.getParcelableExtra(EXTRA_SESSION_DESCRIPTOR);
 
     if (currentCallManager != null && session.equals(currentCallManager.getSessionDescriptor())) {
-      Log.w("RedPhoneService", "Duplicate incoming call signal, ignoring...");
+      Log.w(TAG, "Duplicate incoming call signal, ignoring...");
       return;
     }
 
@@ -223,7 +222,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
       signalingSocket.setBusy(session.sessionId);
       signalingSocket.close();
     } catch (SignalingException e) {
-      Log.w("RedPhoneService", e);
+      Log.w(TAG, e);
     }
   }
 
@@ -336,7 +335,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private synchronized void terminate() {
-    Log.w("RedPhoneService", "termination stack", new Exception());
+    Log.w(TAG, "termination stack", new Exception());
     lockManager.updatePhoneState(LockManager.PhoneState.PROCESSING);
     NotificationBarManager.setCallEnded(this);
 
@@ -369,13 +368,13 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   ///////// CallStateListener Implementation
 
   public void notifyCallStale() {
-    Log.w("RedPhoneService", "Got a stale call, probably an old SMS...");
+    Log.w(TAG, "Got a stale call, probably an old SMS...");
     handleMissedCall(remoteNumber);
     this.terminate();
   }
 
   public void notifyCallFresh() {
-    Log.w("RedPhoneService", "Good call, time to ring and display call card...");
+    Log.w(TAG, "Good call, time to ring and display call card...");
     sendMessage(RedPhone.HANDLE_INCOMING_CALL, getRecipient());
 
     lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);

@@ -31,10 +31,11 @@ import org.thoughtcrime.securesms.BuildConfig;
  */
 
 public class SessionDescriptor implements Parcelable {
-  public int relayPort;
-  public long sessionId;
+
+  public int    relayPort;
+  public long   sessionId;
   public String serverName;
-  public int version;
+  public int    version;
 
   public SessionDescriptor() {}
 

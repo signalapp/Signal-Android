@@ -59,31 +59,13 @@ public class EncryptedSignalMessage {
 
   private final String message;
   private final byte[] key;
-//  private final Context context;
 
   public EncryptedSignalMessage(String message, String key) throws IOException {
     this.message = message;
     this.key     = Base64.decode(key);
-//    this.context = context.getApplicationContext();
   }
 
-//  private byte[] getCombinedKey() throws InvalidEncryptedSignalException, IOException {
-////    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-////    String key                    = preferences.getString(Constants.KEY_PREFERENCE, null);
-//
-//    if (key == null)
-//      throw new InvalidEncryptedSignalException("No combined key available!");
-//
-//    byte[] keyBytes = Base64.decode(key);
-//
-//    if (keyBytes.length != 40)
-//      throw new InvalidEncryptedSignalException("Local cipher+mac key != 40 bytes?");
-//
-//    return keyBytes;
-//  }
-
   private byte[] getCipherKey() throws InvalidEncryptedSignalException, IOException {
-//    byte[] keyBytes       = getCombinedKey();
     byte[] cipherKeyBytes = new byte[16];
 
     System.arraycopy(key, 0, cipherKeyBytes, 0, cipherKeyBytes.length);
@@ -91,7 +73,6 @@ public class EncryptedSignalMessage {
   }
 
   private byte[] getMacKey() throws InvalidEncryptedSignalException, IOException {
-//    byte[] keyBytes    = getCombinedKey();
     byte[] macKeyBytes = new byte[20];
 
     System.arraycopy(key, 16, macKeyBytes, 0, macKeyBytes.length);

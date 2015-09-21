@@ -47,6 +47,8 @@ import java.net.SocketException;
  */
 public class ResponderCallManager extends CallManager {
 
+  private static final String TAG = ResponderCallManager.class.getSimpleName();
+
   private final String localNumber;
   private final String password;
   private final byte[] zid;
@@ -96,24 +98,21 @@ public class ResponderCallManager extends CallManager {
       callStateListener.notifyConnectingtoInitiator();
 
       super.run();
-    } catch (SignalingException se) {
-      Log.w("ResponderCallManager", se);
-      callStateListener.notifyServerFailure();
-    } catch (SessionInitiationFailureException e) {
-      Log.w("ResponderCallManager", e);
+    } catch (SignalingException | SessionInitiationFailureException se) {
+      Log.w(TAG, se);
       callStateListener.notifyServerFailure();
     } catch (SessionStaleException e) {
-      Log.w("ResponderCallManager", e);
+      Log.w(TAG, e);
       callStateListener.notifyCallStale();
     } catch (LoginFailedException lfe) {
-      Log.w("ResponderCallManager", lfe);
+      Log.w(TAG, lfe);
       callStateListener.notifyLoginFailed();
     } catch (SocketException e) {
-      Log.w("ResponderCallManager", e);
+      Log.w(TAG, e);
       callStateListener.notifyCallDisconnected();
     } catch( RuntimeException e ) {
-      Log.e("ResponderCallManager", "Died unhandled with exception!");
-      Log.w("ResponderCallManager", e);
+      Log.e(TAG, "Died unhandled with exception!");
+      Log.w(TAG, e);
       callStateListener.notifyClientFailure();
     }
   }

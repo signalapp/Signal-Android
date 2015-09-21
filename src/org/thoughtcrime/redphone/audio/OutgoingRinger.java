@@ -21,6 +21,7 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 
@@ -31,13 +32,14 @@ import java.io.IOException;
  *
  * @author Stuart O. Anderson
  */
-public class OutgoingRinger implements MediaPlayer.OnCompletionListener,
-        MediaPlayer.OnPreparedListener {
+public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPlayer.OnPreparedListener {
+
+  private static final String TAG = OutgoingRinger.class.getSimpleName();
 
   private MediaPlayer mediaPlayer;
-  private int currentSoundID;
-  private boolean loopEnabled;
-  private Context context;
+  private int         currentSoundID;
+  private boolean     loopEnabled;
+  private Context     context;
 
   public OutgoingRinger(Context context) {
     this.context = context;
@@ -95,26 +97,26 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener,
     try {
       mediaPlayer.setDataSource(context, dataUri);
     } catch (IllegalArgumentException e) {
+      Log.w(TAG, e);
       // TODO Auto-generated catch block
-      e.printStackTrace();
       return;
     } catch (SecurityException e) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      Log.w(TAG, e);
       return;
     } catch (IllegalStateException e) {
-      e.printStackTrace();
+      Log.w(TAG, e);
       return;
     } catch (IOException e) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      Log.w(TAG, e);
       return;
     }
     try {
       mediaPlayer.prepareAsync();
     } catch (IllegalStateException e) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      Log.w(TAG, e);
       return;
     }
   }

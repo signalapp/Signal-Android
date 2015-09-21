@@ -12,6 +12,8 @@ import java.util.concurrent.Executors;
 
 public class SignalManager {
 
+  private static final String TAG = SignalManager.class.getSimpleName();
+
   private final ExecutorService queue = Executors.newSingleThreadExecutor();
 
   private final SignalingSocket signalingSocket;
@@ -32,10 +34,10 @@ public class SignalManager {
   }
 
   public void terminate() {
-    Log.w("SignalManager", "Queuing hangup signal...");
+    Log.w(TAG, "Queuing hangup signal...");
     queue.execute(new Runnable() {
       public void run() {
-        Log.w("SignalManager", "Sending hangup signal...");
+        Log.w(TAG, "Sending hangup signal...");
         signalingSocket.setHangup(sessionDescriptor.sessionId);
         signalingSocket.close();
         queue.shutdownNow();
@@ -47,7 +49,7 @@ public class SignalManager {
 
   private class SignalListenerTask implements Runnable {
     public void run() {
-      Log.w("SignalManager", "Running Signal Listener...");
+      Log.w(TAG, "Running Signal Listener...");
 
       try {
         while (!interrupted) {
@@ -55,7 +57,7 @@ public class SignalManager {
             break;
         }
 
-        Log.w("SignalManager", "Signal Listener Running, interrupted: " + interrupted);
+        Log.w(TAG, "Signal Listener Running, interrupted: " + interrupted);
 
         if (!interrupted) {
           ServerSignal signal = signalingSocket.readSignal();
@@ -64,7 +66,7 @@ public class SignalManager {
           if      (signal.isHangup(sessionId))  callStateListener.notifyCallDisconnected();
           else if (signal.isRinging(sessionId)) callStateListener.notifyCallRinging();
           else if (signal.isBusy(sessionId))    callStateListener.notifyBusy();
-          else if (signal.isKeepAlive())        Log.w("CallManager", "Received keep-alive...");
+          else if (signal.isKeepAlive())        Log.w(TAG, "Received keep-alive...");
 
           signalingSocket.sendOkResponse();
         }
@@ -72,7 +74,7 @@ public class SignalManager {
         interrupted = false;
         queue.execute(this);
       } catch (SignalingException e) {
-        Log.w("CallManager", e);
+        Log.w(TAG, e);
         callStateListener.notifyCallDisconnected();
       }
     }
