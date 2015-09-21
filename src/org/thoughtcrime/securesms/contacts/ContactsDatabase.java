@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import de.gdata.messaging.util.GDataPreferences;
@@ -140,8 +141,25 @@ public class ContactsDatabase {
     } else {
       baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
     }
-    Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
+    Cursor cursorD = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
         PrivacyBridge.getContactSelection(context), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
+
+    HashSet<String> hashSet = new HashSet <String> ();
+    HashSet<Integer> ids = new HashSet <Integer> ();
+    while (cursorD.moveToNext()) {
+      if(hashSet.add(GUtil.numberToLong(cursorD.getString(4))+"")) {
+        ids.add(cursorD.getInt(0));
+      }
+    }
+    StringBuilder selection = new StringBuilder();
+    selection.append(ID_COLUMN +" = '" + 0 + "'");
+    for(Integer id : ids) {
+      selection.append(" OR " + ID_COLUMN +" = '" + id + "'");
+    }
+    Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
+            PrivacyBridge.getContactSelection(context)!=null
+                    ? PrivacyBridge.getContactSelection(context) + "AND (" +selection.toString()+")"
+                    : "" + selection.toString(), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
     return new TypedCursorWrapper(cursor);
   }
 
