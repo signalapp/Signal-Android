@@ -62,9 +62,9 @@
               android:paddingTop="8dp"
               android:paddingBottom="8dp"
               android:textAppearance="?android:attr/textAppearanceLarge"
-              android:textColor="#A0000000"
+              android:textColor="#FFFFFF"
               android:textAllCaps="true"
-              android:background="#ccf0a621"
+              android:background="@color/textsecure_primary"
               android:text="Signal Call"/>
 
 
