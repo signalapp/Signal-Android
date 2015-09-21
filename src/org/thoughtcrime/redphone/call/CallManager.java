@@ -35,10 +35,8 @@ import org.thoughtcrime.redphone.util.AudioUtils;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
-import java.net.InetSocketAddress;
 import java.net.SocketException;
 
-//import org.thoughtcrime.redphone.audio.CallAudioManager;
 
 /**
  * The base class for both Initiating and Responder call
@@ -56,10 +54,9 @@ public abstract class CallManager extends Thread {
   protected final Context context;
 
   private   boolean          terminated;
-//  private   boolean          loopbackMode;
   protected CallAudioManager callAudioManager;
-  private SignalManager signalManager;
-  private SASInfo sasInfo;
+  private   SignalManager    signalManager;
+  private   SASInfo          sasInfo;
   private   boolean          muteEnabled;
   private   boolean          callConnected;
 
@@ -76,7 +73,6 @@ public abstract class CallManager extends Thread {
     this.callStateListener = callStateListener;
     this.terminated        = false;
     this.context           = context;
-//    this.loopbackMode      = ApplicationPreferencesActivity.getLoopbackEnabled(context);
 
     AudioUtils.resetConfiguration(context);
   }
@@ -144,11 +140,6 @@ public abstract class CallManager extends Thread {
     return this.sasInfo;
   }
 
-  public void setSasVerified() {
-//    if (zrtpSocket != null)
-//      zrtpSocket.setSasVerified();
-  }
-
   protected void processSignals() {
     Log.w("CallManager", "Starting signal processing loop...");
     this.signalManager = new SignalManager(callStateListener, signalingSocket, sessionDescriptor);
@@ -174,17 +165,4 @@ public abstract class CallManager extends Thread {
     return callConnected;
   }
 
-  ///**********************
-  // Methods below are SOA's loopback and testing shims.
-  //For loopback operation
-  public void doLoopback() throws AudioException, IOException {
-    DatagramSocket socket = new DatagramSocket(2222);
-    socket.connect(new InetSocketAddress("127.0.0.1", 2222));
-
-    this.callAudioManager = new CallAudioManager(socket, "127.0.0.1", 2222,
-                                                 new byte[16], new byte[20], new byte[14],
-                                                 new byte[16], new byte[20], new byte[14]);
-
-    this.callAudioManager.start();
-  }
 }

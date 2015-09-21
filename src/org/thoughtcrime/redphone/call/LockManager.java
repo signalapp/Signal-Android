@@ -14,15 +14,15 @@ import android.util.Log;
  * @author Stuart O. Anderson
  */
 public class LockManager {
-  private final PowerManager.WakeLock fullLock;
-  private final PowerManager.WakeLock partialLock;
+  private final PowerManager.WakeLock        fullLock;
+  private final PowerManager.WakeLock        partialLock;
   private final KeyguardManager.KeyguardLock keyGuardLock;
-  private final KeyguardManager km;
-  private final WifiManager.WifiLock wifiLock;
-  private final ProximityLock proximityLock;
+  private final KeyguardManager              km;
+  private final WifiManager.WifiLock         wifiLock;
+  private final ProximityLock                proximityLock;
 
   private final AccelerometerListener accelerometerListener;
-  private final boolean wifiLockEnforced;
+  private final boolean               wifiLockEnforced;
 
   private boolean keyguardDisabled;
 

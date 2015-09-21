@@ -21,7 +21,7 @@ import android.util.Log;
 
 import org.thoughtcrime.redphone.network.RtpPacket;
 import org.thoughtcrime.redphone.util.Conversions;
-import org.thoughtcrime.redphone.util.Hex;
+import org.thoughtcrime.securesms.util.Hex;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -118,9 +118,7 @@ public class ConfirmPacket extends HandshakePacket {
       mac.update(this.data, PREIMAGE_OFFSET, ENCRYPTED_LENGTH);
 
       return mac.doFinal();
-    } catch (NoSuchAlgorithmException e) {
-      throw new IllegalArgumentException(e);
-    } catch (InvalidKeyException e) {
+    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
       throw new IllegalArgumentException(e);
     }
   }

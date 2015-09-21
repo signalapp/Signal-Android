@@ -19,6 +19,8 @@ package org.thoughtcrime.redphone.util;
 
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.Hex;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;

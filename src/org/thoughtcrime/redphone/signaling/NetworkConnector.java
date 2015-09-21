@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
 import java.util.Map;
 
 /**
@@ -92,12 +91,8 @@ public class NetworkConnector {
       socket.close();
       return localPort;
 
-    } catch (SocketException e) {
+    } catch (IOException | SignalingException e) {
       Log.w("NetworkConnector", e);
-    } catch (IOException e) {
-      Log.w("NetworkConnector", e);
-    } catch (SignalingException se) {
-      Log.w("NetworkConnector", se);
     }
     return -1;
   }

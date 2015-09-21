@@ -18,28 +18,19 @@
 package org.thoughtcrime.redphone.signaling;
 
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.thoughtcrime.redphone.network.LowLatencySocketConnector;
 import org.thoughtcrime.redphone.signaling.signals.BusySignal;
-import org.thoughtcrime.redphone.signaling.signals.C2DMRegistrationSignal;
-import org.thoughtcrime.redphone.signaling.signals.C2DMUnregistrationSignal;
-import org.thoughtcrime.redphone.signaling.signals.DirectoryRequestSignal;
-import org.thoughtcrime.redphone.signaling.signals.GCMRegistrationSignal;
-import org.thoughtcrime.redphone.signaling.signals.GCMUnregistrationSignal;
 import org.thoughtcrime.redphone.signaling.signals.HangupSignal;
 import org.thoughtcrime.redphone.signaling.signals.InitiateSignal;
 import org.thoughtcrime.redphone.signaling.signals.RingingSignal;
 import org.thoughtcrime.redphone.signaling.signals.ServerSignal;
 import org.thoughtcrime.redphone.signaling.signals.Signal;
-import org.thoughtcrime.redphone.signaling.signals.SignalPreferenceSignal;
 import org.thoughtcrime.redphone.util.LineReader;
 import org.whispersystems.textsecure.api.push.TrustStore;
-import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,7 +42,6 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.util.Map;
 
@@ -93,15 +83,6 @@ public class SignalingSocket {
 
   private boolean connectionAttemptComplete;
 
-//  public SignalingSocket(Context context) throws SignalingException {
-//    this(context,
-//        BuildConfig.RE.MASTER_SERVER_HOST,
-//        Release.SERVER_PORT,
-//        PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.NUMBER_PREFERENCE, "NO_SAVED_NUMBER!"),
-//        PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PASSWORD_PREFERENCE,  "NO_SAVED_PASSWORD!"),
-//        null);
-//  }
-
   public SignalingSocket(Context context, String host, int port,
                          String localNumber, String password,
                          OtpCounterProvider counterProvider)
@@ -115,7 +96,6 @@ public class SignalingSocket {
       this.socket                    = constructSSLSocket(context, signalingHost, signalingPort);
       this.outputStream              = this.socket.getOutputStream();
       this.lineReader                = new LineReader(socket.getInputStream());
-//      this.localNumber               = PhoneNumberFormatter.formatNumber(localNumber);
       this.localNumber               = localNumber;
       this.password                  = password;
       this.counterProvider           = counterProvider;
@@ -132,35 +112,11 @@ public class SignalingSocket {
       SSLContext sslContext = SSLContext.getInstance("TLS");
       sslContext.init(null, trustManagers, null);
 
-
-//
-//      AssetManager assetManager       = context.getAssets();
-//      InputStream keyStoreInputStream = assetManager.open("whisper.store");
-//      KeyStore trustStore             = KeyStore.getInstance("BKS");
-//
-//      trustStore.load(keyStoreInputStream, "whisper".toCharArray());
-//
-//      SSLSocketFactory sslSocketFactory = new SSLSocketFactory(trustStore);
-//      sslSocketFactory.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
-//      } else {
-//        Log.w("SignalingSocket", "Disabling hostname verification...");
-//        sslSocketFactory.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-//      }
-
-//      return timeoutHackConnect(sslSocketFactory, host, port);
       return timeoutHackConnect(sslContext.getSocketFactory(), host, port);
     } catch (IOException ioe) {
       throw new SignalingException(ioe);
     } catch (NoSuchAlgorithmException | KeyManagementException e) {
       throw new IllegalArgumentException(e);
-//    } catch (KeyStoreException e) {
-//      throw new IllegalArgumentException(e);
-//    } catch (CertificateException e) {
-//      throw new IllegalArgumentException(e);
-//    } catch (KeyManagementException e) {
-//      throw new IllegalArgumentException(e);
-//    } catch (UnrecoverableKeyException e) {
-//      throw new IllegalArgumentException(e);
     }
   }
 
@@ -222,15 +178,12 @@ public class SignalingSocket {
 
     SignalResponse response = readSignalResponse();
 
-//    Gson gson = new Gson();
-
     try {
       switch (response.getStatusCode()) {
       case 404: throw new NoSuchUserException("No such redphone user.");
       case 402: throw new ServerMessageException(new String(response.getBody()));
       case 401: throw new LoginFailedException("Initiate threw 401");
       case 200: return new ObjectMapper().readValue(response.getBody(), SessionDescriptor.class);
-  //      .gson.fromJson(new String(response.getBody()), SessionDescriptor.class);
       default:  throw new SignalingException("Unknown response: " + response.getStatusCode());
       }
     } catch (IOException e) {
@@ -270,89 +223,6 @@ public class SignalingSocket {
                               counterProvider.getOtpCounter(context),
                               sessionId));
     readSignalResponse();
-  }
-
-  public void registerSignalingPreference(String preference) throws SignalingException {
-    sendSignal(new SignalPreferenceSignal(localNumber, password, preference));
-    SignalResponse response = readSignalResponse();
-
-    switch (response.getStatusCode()) {
-    case 200: return;
-    default: throw new SignalingException("Received error from server: " +
-                                          new String(response.getBody()));
-    }
-  }
-
-  public void registerGcm(String registrationId) throws SignalingException {
-    sendSignal(new GCMRegistrationSignal(localNumber, password, registrationId));
-    SignalResponse response = readSignalResponse();
-
-    switch (response.getStatusCode()) {
-    case 200: return;
-    default: throw new SignalingException("Received error from server: " +
-                                          new String(response.getBody()));
-    }
-  }
-
-  public void unregisterGcm(String registrationId) throws SignalingException {
-    sendSignal(new GCMUnregistrationSignal(localNumber, password, registrationId));
-    SignalResponse response = readSignalResponse();
-
-    switch (response.getStatusCode()) {
-    case 200: return;
-    default: throw new SignalingException("Received error from server: " +
-                                          new String(response.getBody()));
-    }
-  }
-
-  public void registerC2dm(String registrationId) throws SignalingException {
-    sendSignal(new C2DMRegistrationSignal(localNumber, password, registrationId));
-    SignalResponse response = readSignalResponse();
-
-    switch (response.getStatusCode()) {
-    case 200: return;
-    default:  throw new SignalingException("Received error from server: " +
-                                           new String(response.getBody()));
-    }
-  }
-
-  public void unregisterC2dm() throws SignalingException {
-    sendSignal(new C2DMUnregistrationSignal(localNumber, password));
-    SignalResponse response = readSignalResponse();
-
-    switch (response.getStatusCode()) {
-    case 200: return;
-    default:  throw new SignalingException("Received error from server: " +
-                                           new String(response.getBody()));
-    }
-  }
-
-  public DirectoryResponse getNumberFilter() throws SignalingException {
-    sendSignal(new DirectoryRequestSignal(localNumber, password));
-    SignalResponse response = readSignalResponse();
-
-    switch (response.getStatusCode()) {
-    case 200:
-      try {
-        if (!response.getHeaders().containsKey("X-Hash-Count"))
-          break;
-
-        int hashCount = Integer.parseInt(response.getHeaders().get("X-Hash-Count"));
-
-        Log.w("SignalingSocket", "Got directory response: " + hashCount +
-            " , " + response.getBody());
-
-        return new DirectoryResponse(hashCount, response.getBody());
-      } catch (NumberFormatException nfe) {
-        Log.w("SignalingSocket", nfe);
-        break;
-      }
-    default:
-      Log.w("SignalingSocket", "Unknown response from directory request: " +
-          response.getStatusCode());
-    }
-
-    return null;
   }
 
   public void sendOkResponse() throws SignalingException {

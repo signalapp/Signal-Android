@@ -52,7 +52,6 @@ public class InitiatingCallManager extends CallManager {
   private final String localNumber;
   private final String password;
   private final byte[] zid;
-//  private boolean loopbackMode;
 
   public InitiatingCallManager(Context context, CallStateListener callStateListener,
                                String localNumber, String password,
@@ -62,16 +61,10 @@ public class InitiatingCallManager extends CallManager {
     this.localNumber    = localNumber;
     this.password       = password;
     this.zid            = zid;
-//    this.loopbackMode   = ApplicationPreferencesActivity.getLoopbackEnabled(context);
   }
 
   @Override
   public void run() {
-//    if( loopbackMode ) {
-//      runLoopback();
-//      return;
-//    }
-//
     try {
       callStateListener.notifyCallConnecting();
 
@@ -106,7 +99,7 @@ public class InitiatingCallManager extends CallManager {
     } catch (LoginFailedException lfe) {
       Log.w("InitiatingCallManager", lfe);
       callStateListener.notifyLoginFailed();
-    } catch (SignalingException se) {
+    } catch (SignalingException | SessionInitiationFailureException se) {
       Log.w("InitiatingCallManager", se);
       callStateListener.notifyServerFailure();
     } catch (SocketException e) {
@@ -116,9 +109,6 @@ public class InitiatingCallManager extends CallManager {
       Log.e("InitiatingCallManager", "Died with unhandled exception!");
       Log.w("InitiatingCallManager", e);
       callStateListener.notifyClientFailure();
-    } catch (SessionInitiationFailureException e) {
-      Log.w("InitiatingCallManager", e);
-      callStateListener.notifyServerFailure();
     }
   }
 
@@ -137,18 +127,4 @@ public class InitiatingCallManager extends CallManager {
     this.callAudioManager.setMute(muteEnabled);
     this.callAudioManager.start();
   }
-
-//  //***************************
-//  // SOA's Loopback Code, for debugging.
-//
-//  private void runLoopback() {
-//    try {
-//      super.doLoopback();
-//    } catch( Exception e ) {
-//      Log.e("InitiatingCallManager", "Died with exception!");
-//      Log.w("InitiatingCallManager", e);
-//      callStateListener.notifyClientFailure();
-//    }
-//  }
-
 }

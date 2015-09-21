@@ -58,16 +58,6 @@ public class Util {
     }
   }
 
-  public static String getSecret(int size) {
-    try {
-      byte[] secret = new byte[size];
-      SecureRandom.getInstance("SHA1PRNG").nextBytes(secret);
-      return Base64.encodeBytes(secret);
-    } catch (NoSuchAlgorithmException nsae) {
-      throw new AssertionError(nsae);
-    }
-  }
-
   public static boolean isEmpty(String value) {
     return (value == null || value.trim().length() == 0);
   }
@@ -80,26 +70,5 @@ public class Util {
     return value == null || isEmpty(value.toString());
   }
 
-  public static void showAlertDialog(Context context, String title, String message) {
-    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-    dialog.setTitle(title);
-    dialog.setMessage(message);
-    dialog.setIcon(android.R.drawable.ic_dialog_alert);
-    dialog.setPositiveButton(android.R.string.ok, null);
-    dialog.show();
-  }
-
-//  // XXX-S The consumers of these are way way down in the audio/microphone code.
-//  // Is it possible to refactor them so that they bubble up their errors in a way
-//  // that's a little cleaner than reaching back up from all the way down there?
-//  public static void dieWithError(int msgId) {
-//    ApplicationContext.getInstance().getCallStateListener().notifyClientError( msgId );
-//    Log.d("RedPhone:AC", "Dying with error.");
-//  }
-//
-//  public static void dieWithError(Exception e) {
-//    Log.w("RedPhone:AC", e);
-//    ApplicationContext.getInstance().getCallStateListener().notifyClientError( e.getMessage() );
-//  }
 }
 

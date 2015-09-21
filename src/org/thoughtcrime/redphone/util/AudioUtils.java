@@ -7,6 +7,8 @@ import android.util.Log;
 
 /**
  * Utilities for manipulating device audio configuration
+ *
+ * @author Stuart O. Anderson
  */
 public class AudioUtils {
   private static final String TAG = AudioUtils.class.getName();

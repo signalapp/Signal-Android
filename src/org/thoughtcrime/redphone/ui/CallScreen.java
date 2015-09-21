@@ -73,10 +73,6 @@ public class CallScreen extends FrameLayout {
     callControls.reset();
   }
 
-  public void setConfirmSasButtonListener(CallControls.ConfirmSasButtonListener listener) {
-    callControls.setConfirmSasButtonListener(listener);
-  }
-
   public void setHangupButtonListener(CallControls.HangupButtonListener listener) {
     callControls.setHangupButtonListener(listener);
   }
