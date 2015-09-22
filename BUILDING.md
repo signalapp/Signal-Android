@@ -63,7 +63,6 @@ Code contributions should be sent via github as pull requests, from feature bran
 
 Mailing list
 ------------
+[Join](https://lists.riseup.net/www/info/whispersystems) the mailing list here to get development discussion in your email inbox.
 
-Development discussion happens on the whispersystems mailing list.
-[To join](https://lists.riseup.net/www/info/whispersystems)
-Send emails to whispersystems@lists.riseup.net
+To send an email to the mailing list, send to this address: whispersystems@lists.riseup.net
