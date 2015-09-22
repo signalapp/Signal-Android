@@ -13,8 +13,8 @@ import android.support.v4.preference.PreferenceFragment;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
-import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
-import com.doomonafireball.betterpickers.hmspicker.HmsPickerDialogFragment;
+import com.codetroopers.betterpickers.hmspicker.HmsPickerBuilder;
+import com.codetroopers.betterpickers.hmspicker.HmsPickerDialogFragment;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BlockedContactsActivity;
@@ -113,6 +113,7 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
       new HmsPickerBuilder().setFragmentManager(getFragmentManager())
                             .setStyleResId(hmsStyle.getResourceId(0, R.style.BetterPickersDialogFragment_Light))
                             .addHmsPickerDialogHandler(this)
+                            .setTimeInSeconds(TextSecurePreferences.getPassphraseTimeoutInterval(getActivity()) * 60)
                             .show();
 
       hmsStyle.recycle();
@@ -123,7 +124,7 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     @Override
     public void onDialogHmsSet(int reference, int hours, int minutes, int seconds) {
       int timeoutMinutes = Math.max((int)TimeUnit.HOURS.toMinutes(hours) +
-                                    minutes                         +
+                                    minutes                              +
                                     (int)TimeUnit.SECONDS.toMinutes(seconds), 1);
 
       TextSecurePreferences.setPassphraseTimeoutInterval(getActivity(), timeoutMinutes);

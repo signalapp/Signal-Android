@@ -11,6 +11,7 @@ import android.graphics.YuvImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.WorkerThread;
 import android.util.Log;
 import android.util.Pair;
 
@@ -70,6 +71,7 @@ public class BitmapUtil {
     }
   }
 
+  @WorkerThread
   public static <T> Bitmap createScaledBitmap(Context context, T model, int maxWidth, int maxHeight)
       throws ExecutionException
   {
@@ -108,6 +110,7 @@ public class BitmapUtil {
     return result.get();
   }
 
+  @WorkerThread
   public static <T> Bitmap createScaledBitmap(Context context, T model, float scale)
       throws ExecutionException
   {
