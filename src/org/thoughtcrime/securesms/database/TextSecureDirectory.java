@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
@@ -22,9 +23,10 @@ import java.util.Set;
 public class TextSecureDirectory {
 
   private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
+  private static final int INTRODUCED_VOICE_COLUMN                     = 4;
 
   private static final String DATABASE_NAME    = "whisper_directory.db";
-  private static final int    DATABASE_VERSION = 3;
+  private static final int    DATABASE_VERSION = 4;
 
   private static final String TABLE_NAME   = "directory";
   private static final String ID           = "_id";
@@ -32,11 +34,14 @@ public class TextSecureDirectory {
   private static final String REGISTERED   = "registered";
   private static final String RELAY        = "relay";
   private static final String TIMESTAMP    = "timestamp";
+  private static final String VOICE        = "voice";
+
   private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID + " INTEGER PRIMARY KEY, " +
                               NUMBER       + " TEXT UNIQUE, " +
                               REGISTERED   + " INTEGER, " +
                               RELAY        + " TEXT, " +
-                              TIMESTAMP    + " INTEGER);";
+                              TIMESTAMP    + " INTEGER, " +
+                              VOICE        + " INTEGER);";
 
   private static final Object instanceLock = new Object();
   private static volatile TextSecureDirectory instance;
@@ -73,6 +78,31 @@ public class TextSecureDirectory {
       cursor = db.query(TABLE_NAME,
           new String[]{REGISTERED}, NUMBER + " = ?",
           new String[] {e164number}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0) == 1;
+      } else {
+        throw new NotInDirectoryException();
+      }
+
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
+  public boolean isSecureVoiceSupported(String e164number) throws NotInDirectoryException {
+    if (TextUtils.isEmpty(e164number)) {
+      return false;
+    }
+
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    Cursor         cursor = null;
+
+    try {
+      cursor = db.query(TABLE_NAME,
+                        new String[]{VOICE}, NUMBER + " = ?",
+                        new String[] {e164number}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0) == 1;
@@ -127,6 +157,7 @@ public class TextSecureDirectory {
         values.put(REGISTERED, 1);
         values.put(TIMESTAMP, timestamp);
         values.put(RELAY, token.getRelay());
+        values.put(VOICE, token.isVoice());
         db.replace(TABLE_NAME, null, values);
       }
 
@@ -225,6 +256,10 @@ public class TextSecureDirectory {
                    "relay TEXT, " +
                    "supports_sms INTEGER, " +
                    "timestamp INTEGER);");
+      }
+
+      if (oldVersion < INTRODUCED_VOICE_COLUMN) {
+        db.execSQL("ALTER TABLE directory ADD COLUMN voice INTEGER;");
       }
     }
   }

@@ -8,13 +8,13 @@ import android.content.OperationApplicationException;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.widget.Toast;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -28,6 +28,11 @@ import java.util.List;
 import java.util.Set;
 
 public class DirectoryHelper {
+
+  public enum RegistrationState {
+    REGISTERED, NOT_REGISTERED, UNKNOWN
+  }
+
   private static final String TAG = DirectoryHelper.class.getSimpleName();
 
   public static void refreshDirectory(final Context context) throws IOException {
@@ -72,38 +77,65 @@ public class DirectoryHelper {
     }
   }
 
-  public static boolean isPushDestination(Context context, Recipients recipients) {
+  public static RegistrationState refreshDirectoryFor(Context context, Recipients recipients)
+      throws IOException
+  {
+    try {
+      TextSecureDirectory      directory      = TextSecureDirectory.getInstance(context);
+      TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
+      String                   number         = Util.canonicalizeNumber(context, recipients.getPrimaryRecipient().getNumber());
+
+      Optional<ContactTokenDetails> details = accountManager.getContact(number);
+
+      if (details.isPresent()) {
+        directory.setNumber(details.get(), true);
+        ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context));
+        return RegistrationState.REGISTERED;
+      } else {
+        ContactTokenDetails absent = new ContactTokenDetails();
+        absent.setNumber(number);
+        directory.setNumber(absent, false);
+        return RegistrationState.NOT_REGISTERED;
+      }
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+      return RegistrationState.NOT_REGISTERED;
+    }
+  }
+
+  public static RegistrationState isTextSecureEnabledRecipient(Context context, Recipients recipients) {
     try {
       if (recipients == null) {
-        return false;
+        return RegistrationState.NOT_REGISTERED;
       }
 
       if (!TextSecurePreferences.isPushRegistered(context)) {
-        return false;
+        return RegistrationState.NOT_REGISTERED;
       }
 
       if (!recipients.isSingleRecipient()) {
-        return false;
+        return RegistrationState.NOT_REGISTERED;
       }
 
       if (recipients.isGroupRecipient()) {
-        return true;
+        return RegistrationState.REGISTERED;
       }
 
       final String number = recipients.getPrimaryRecipient().getNumber();
 
       if (number == null) {
-        return false;
+        return RegistrationState.NOT_REGISTERED;
       }
 
       final String e164number = Util.canonicalizeNumber(context, number);
 
-      return TextSecureDirectory.getInstance(context).isActiveNumber(e164number);
+      return TextSecureDirectory.getInstance(context).isActiveNumber(e164number) ?
+             RegistrationState.REGISTERED : RegistrationState.NOT_REGISTERED;
     } catch (InvalidNumberException e) {
       Log.w(TAG, e);
-      return false;
+      return RegistrationState.NOT_REGISTERED;
     } catch (NotInDirectoryException e) {
-      return false;
+      return RegistrationState.UNKNOWN;
     }
   }
 
@@ -127,9 +159,5 @@ public class DirectoryHelper {
       Log.w(TAG, "Failed to create account!");
       return Optional.absent();
     }
-  }
-
-  public static interface DirectoryUpdateFinishedListener {
-    public void onUpdateFinished();
   }
 }

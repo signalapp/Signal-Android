@@ -520,9 +520,9 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
         protected Integer doInBackground(Void... params) {
           try {
             TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
-            int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
+            int                      registrationId = TextSecurePreferences.getLocalRegistrationId(context);
 
-            accountManager.verifyAccountWithCode(code, signalingKey, registrationId);
+            accountManager.verifyAccountWithCode(code, signalingKey, registrationId, true);
 
             return SUCCESS;
           } catch (ExpectationFailedException e) {
