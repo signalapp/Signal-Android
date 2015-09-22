@@ -16,15 +16,24 @@
  */
 package org.whispersystems.textsecure.api.push;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * A class that represents a contact's registration state.
  */
 public class ContactTokenDetails {
 
+  @JsonProperty
   private String  token;
+
+  @JsonProperty
   private String  relay;
+
+  @JsonProperty
   private String  number;
-  private boolean supportsSms;
+
+  @JsonProperty
+  private boolean voice;
 
   public ContactTokenDetails() {}
 
@@ -43,10 +52,10 @@ public class ContactTokenDetails {
   }
 
   /**
-   * @return Whether this contact supports receiving encrypted SMS.
+   * @return Whether this contact supports secure voice calls.
    */
-  public boolean isSupportsSms() {
-    return supportsSms;
+  public boolean isVoice() {
+    return voice;
   }
 
   public void setNumber(String number) {

@@ -123,14 +123,15 @@ public class TextSecureAccountManager {
    *                              This value should remain consistent across registrations for the
    *                              same install, but probabilistically differ across registrations
    *                              for separate installs.
+   * @param voice A boolean that indicates whether the client supports secure voice (RedPhone) calls.
    *
    * @throws IOException
    */
-  public void verifyAccountWithCode(String verificationCode, String signalingKey, int axolotlRegistrationId)
+  public void verifyAccountWithCode(String verificationCode, String signalingKey, int axolotlRegistrationId, boolean voice)
       throws IOException
   {
     this.pushServiceSocket.verifyAccountCode(verificationCode, signalingKey,
-                                             axolotlRegistrationId);
+                                             axolotlRegistrationId, voice);
   }
 
   /**
@@ -144,13 +145,32 @@ public class TextSecureAccountManager {
    *                              This value should remain consistent across registrations for the
    *                              same install, but probabilistically differ across registrations
    *                              for separate installs.
+   * @param voice A boolean that indicates whether the client supports secure voice (RedPhone) calls.
    *
    * @throws IOException
    */
-  public void verifyAccountWithToken(String verificationToken, String signalingKey, int axolotlRegistrationId)
+  public void verifyAccountWithToken(String verificationToken, String signalingKey, int axolotlRegistrationId, boolean voice)
       throws IOException
   {
-    this.pushServiceSocket.verifyAccountToken(verificationToken, signalingKey, axolotlRegistrationId);
+    this.pushServiceSocket.verifyAccountToken(verificationToken, signalingKey, axolotlRegistrationId, voice);
+  }
+
+  /**
+   * Refresh account attributes with server.
+   *
+   * @param signalingKey 52 random bytes.  A 32 byte AES key and a 20 byte Hmac256 key, concatenated.
+   * @param axolotlRegistrationId A random 14-bit number that identifies this TextSecure install.
+   *                              This value should remain consistent across registrations for the same
+   *                              install, but probabilistically differ across registrations for
+   *                              separate installs.
+   * @param voice A boolean that indicates whether the client supports secure voice (RedPhone)
+   *
+   * @throws IOException
+   */
+  public void setAccountAttributes(String signalingKey, int axolotlRegistrationId, boolean voice)
+      throws IOException
+  {
+    this.pushServiceSocket.setAccountAttributes(signalingKey, axolotlRegistrationId, voice);
   }
 
   /**

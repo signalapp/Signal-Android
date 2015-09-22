@@ -83,6 +83,7 @@ public class PushServiceSocket {
   private static final String VERIFY_ACCOUNT_TOKEN_PATH = "/v1/accounts/token/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
   private static final String REQUEST_TOKEN_PATH        = "/v1/accounts/token";
+  private static final String SET_ACCOUNT_ATTRIBUTES    = "/v1/acccounts/attributes";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
@@ -120,20 +121,25 @@ public class PushServiceSocket {
     makeRequest(String.format(path, credentialsProvider.getUser()), "GET", null);
   }
 
-  public void verifyAccountCode(String verificationCode, String signalingKey, int registrationId)
+  public void verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean voice)
       throws IOException
   {
-    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId);
+    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, voice);
     makeRequest(String.format(VERIFY_ACCOUNT_CODE_PATH, verificationCode),
                 "PUT", JsonUtil.toJson(signalingKeyEntity));
   }
 
-  public void verifyAccountToken(String verificationToken, String signalingKey, int registrationId)
+  public void verifyAccountToken(String verificationToken, String signalingKey, int registrationId, boolean voice)
       throws IOException
   {
-    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId);
+    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, voice);
     makeRequest(String.format(VERIFY_ACCOUNT_TOKEN_PATH, verificationToken),
                 "PUT", JsonUtil.toJson(signalingKeyEntity));
+  }
+
+  public void setAccountAttributes(String signalingKey, int registrationId, boolean voice) throws IOException {
+    AccountAttributes accountAttributes = new AccountAttributes(signalingKey, registrationId, voice);
+    makeRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
   }
 
   public String getAccountVerificationToken() throws IOException {
