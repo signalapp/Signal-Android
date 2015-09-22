@@ -35,7 +35,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.view.WindowCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -64,19 +63,18 @@ import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
+import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
+import org.thoughtcrime.securesms.components.camera.HidingImageButton;
+import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
+import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.AttachmentDrawerListener;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
-import org.thoughtcrime.securesms.components.InputAwareLayout;
-import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
+import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.components.camera.HidingImageButton;
-import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.AttachmentDrawerListener;
-import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -86,13 +84,13 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
+import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.MediaTooLargeException;
-import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -110,10 +108,10 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.DirectoryHelper.RegistrationState;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -123,6 +121,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -606,28 +605,53 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void handleDial(Recipient recipient) {
-    Intent intent = new Intent(this, RedPhoneService.class);
-    intent.setAction(RedPhoneService.ACTION_OUTGOING_CALL);
-    intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
-    startService(intent);
+  private void handleDial(final Recipient recipient) {
+    if (recipient == null) return;
 
-    Intent activityIntent = new Intent(this, RedPhone.class);
-    activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    startActivity(activityIntent);
+    new AsyncTask<Recipient, Void, Boolean>() {
+      @Override
+      protected Boolean doInBackground(Recipient... params) {
+        try {
+          Context   context    = ConversationActivity.this;
+          Recipient recipient  = params[0];
+          String    e164number = Util.canonicalizeNumber(context, recipient.getNumber());
 
-//    try {
-//      if (recipient == null) return;
-//
-//      Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-//                              Uri.parse("tel:" + recipient.getNumber()));
-//      startActivity(dialIntent);
-//    } catch (ActivityNotFoundException anfe) {
-//      Log.w(TAG, anfe);
-//      Dialogs.showAlertDialog(this,
-//                           getString(R.string.ConversationActivity_calls_not_supported),
-//                           getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
-//    }
+          return TextSecureDirectory.getInstance(context).isSecureVoiceSupported(e164number);
+        } catch (InvalidNumberException | NotInDirectoryException e) {
+          Log.w(TAG, e);
+          return false;
+        }
+      }
+
+      @Override
+      protected void onPostExecute(Boolean secureVoiceSupported) {
+        handleDial(recipient, secureVoiceSupported);
+      }
+    }.execute(recipient);
+  }
+
+  private void handleDial(Recipient recipient, boolean secureVoice) {
+    if (secureVoice) {
+      Intent intent = new Intent(this, RedPhoneService.class);
+      intent.setAction(RedPhoneService.ACTION_OUTGOING_CALL);
+      intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
+      startService(intent);
+
+      Intent activityIntent = new Intent(this, RedPhone.class);
+      activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      startActivity(activityIntent);
+    } else {
+      try {
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL,
+                                       Uri.parse("tel:" + recipient.getNumber()));
+        startActivity(dialIntent);
+      } catch (ActivityNotFoundException anfe) {
+        Log.w(TAG, anfe);
+        Dialogs.showAlertDialog(this,
+                                getString(R.string.ConversationActivity_calls_not_supported),
+                                getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+      }
+    }
   }
 
   private void handleDisplayGroupRecipients() {
@@ -664,7 +688,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleAddAttachment() {
-    if (this.isMmsEnabled || DirectoryHelper.isPushDestination(this, getRecipients())) {
+    if (this.isMmsEnabled || isEncryptedConversation) {
       new AlertDialogWrapper.Builder(this).setAdapter(attachmentAdapter, new AttachmentTypeListener())
                                           .show();
     } else {
@@ -740,8 +764,37 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeSecurity() {
-    boolean isMediaMessage = !recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent();
-    this.isEncryptedConversation = DirectoryHelper.isPushDestination(this, getRecipients());
+    initializeSecurity(false);
+
+    new AsyncTask<Recipients, Void, Boolean>() {
+      @Override
+      protected Boolean doInBackground(Recipients... params) {
+        try {
+          Context           context           = ConversationActivity.this;
+          Recipients        recipients        = params[0];
+          RegistrationState registrationState = DirectoryHelper.isTextSecureEnabledRecipient(context, recipients);
+
+          if      (registrationState == RegistrationState.NOT_REGISTERED) return false;
+          else if (registrationState == RegistrationState.REGISTERED)     return true;
+          else     return DirectoryHelper.refreshDirectoryFor(context, recipients) == RegistrationState.REGISTERED;
+        } catch (IOException e) {
+          Log.w(TAG, e);
+          return false;
+        }
+      }
+
+      @Override
+      protected void onPostExecute(Boolean result) {
+        if (result != isEncryptedConversation) {
+          initializeSecurity(result);
+        }
+      }
+    }.execute(recipients);
+  }
+
+  private void initializeSecurity(boolean encryptedConversation) {
+    boolean isMediaMessage       = !recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent();
+    this.isEncryptedConversation = encryptedConversation;
 
     sendButton.resetAvailableTransports(isMediaMessage);
 

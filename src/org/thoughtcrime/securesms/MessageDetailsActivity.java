@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -174,8 +173,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     toFrom.setText(toFromRes);
     conversationItem.bind(masterSecret, messageRecord, dynamicLanguage.getCurrentLocale(),
                          new HashSet<MessageRecord>(),
-                         recipients != messageRecord.getRecipients(),
-                         DirectoryHelper.isPushDestination(this, recipients));
+                         recipients != messageRecord.getRecipients());
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
                                                                  recipients, isPushGroup));
   }

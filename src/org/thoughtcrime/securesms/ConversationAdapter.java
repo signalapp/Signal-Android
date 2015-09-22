@@ -72,7 +72,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final MasterSecret           masterSecret;
   private final Locale                 locale;
   private final boolean                groupThread;
-  private final boolean                pushDestination;
   private final MmsSmsDatabase         db;
   private final LayoutInflater         inflater;
 
@@ -97,15 +96,13 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
                              @NonNull Locale locale,
                              @Nullable ItemClickListener clickListener,
                              @Nullable Cursor cursor,
-                             boolean groupThread,
-                             boolean pushDestination)
+                             boolean groupThread)
   {
     super(context, cursor);
     this.masterSecret    = masterSecret;
     this.locale          = locale;
     this.clickListener   = clickListener;
     this.groupThread     = groupThread;
-    this.pushDestination = pushDestination;
     this.inflater        = LayoutInflater.from(context);
     this.db              = DatabaseFactory.getMmsSmsDatabase(context);
   }
@@ -121,7 +118,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, groupThread, pushDestination);
+    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, groupThread);
   }
 
   @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
