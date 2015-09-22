@@ -66,7 +66,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int PUSH_DECRYPT_SERIAL_ID_VERSION       = 131;
   public static final int MIGRATE_SESSION_PLAINTEXT            = 136;
   public static final int CONTACTS_ACCOUNT_VERSION             = 136;
-  public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 146;
+  public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 151;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -233,8 +233,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(part.getMmsId()));
         final MessageRecord record = reader.getNext();
 
-        if (part.getContentLocation() == null) {
-          Log.w(TAG, "corrected a pending self-sent media part " + part.getPartId() + ".");
+        if (part.getDataUri() != null) {
+          Log.w(TAG, "corrected a pending media part " + part.getPartId() + "that already had data.");
           partDb.setTransferState(part.getMmsId(), part.getPartId(), PartDatabase.TRANSFER_PROGRESS_DONE);
         } else if (record != null && !record.isOutgoing() && record.isPush()) {
           Log.w(TAG, "queuing new attachment download job for incoming push part " + part.getPartId() + ".");

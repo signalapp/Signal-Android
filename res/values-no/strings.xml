@@ -716,6 +716,11 @@ Gratis og private meldinger til TextSecure- og Signal-brukere
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver dersom enheten din bruker WiFi for å sende SMS/MMS (brukes bare hvis \'WiFi anrop\' er aktivert på enheten din)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokkerte kontakter</string>
   <string name="preferences_notifications__display_in_notifications">Vis i varslingslisten</string>
+  <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobil data</string>
+  <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
+  <string name="preferences_chats__when_roaming">Ved roaming</string>
+  <string name="preferences_chats__media_auto_download">Media auto-download</string>
+  <string name="preferences_chats__message_trimming">Meldingsavkorting</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

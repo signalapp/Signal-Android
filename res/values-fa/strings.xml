@@ -36,6 +36,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">دوربین</string>
   <string name="AttachmentTypeSelectorAdapter_picture">تصویر</string>
   <string name="AttachmentTypeSelectorAdapter_video">ویدئو</string>
   <string name="AttachmentTypeSelectorAdapter_audio">صدا</string>
@@ -123,7 +124,9 @@
   <string name="CustomDefaultPreference_none">هیچ کدام</string>
   <!--DateUtils-->
   <string name="DateUtils_now">اکنون</string>
+  <string name="DateUtils_minutes_ago">%d دقیقه</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">قطع ارتباط \'%s\'؟</string>
   <string name="DeviceListActivity_try_again">دوباره تلاش کن</string>
   <string name="DeviceListActivity_network_failed">شکست خوردن در شبکه!</string>
   <!--DeviceListItem-->
@@ -475,6 +478,7 @@
   <string name="AndroidManifest__media_overview">همه تصاویر</string>
   <string name="AndroidManifest__media_overview_named">همه عکس ها با %1$s</string>
   <string name="AndroidManifest__message_details">جزئیات پیام</string>
+  <string name="AndroidManifest_manage_linked_devices">مدیریت دستگاه های مرتبط</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">وارد کردن / خروجی گرفتن</string>
   <string name="arrays__my_identity_key">کلید هویت من</string>
@@ -487,6 +491,12 @@
   <string name="arrays__settings_default">تنظیمات پیش فرض</string>
   <string name="arrays__enabled">فعال</string>
   <string name="arrays__disabled">غیر فعال</string>
+  <string name="arrays__name_and_message">نام و پیام</string>
+  <string name="arrays__name_only">تنها نام</string>
+  <string name="arrays__neither">نه</string>
+  <string name="arrays__images">تصویر</string>
+  <string name="arrays__audio">صدا</string>
+  <string name="arrays__video">ویدئو</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ساعت</item>

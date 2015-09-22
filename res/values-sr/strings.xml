@@ -630,6 +630,9 @@
   <string name="arrays__name_and_message">Име и порука</string>
   <string name="arrays__name_only">Само име</string>
   <string name="arrays__neither">Ниједно</string>
+  <string name="arrays__images">Слике</string>
+  <string name="arrays__audio">Звук</string>
+  <string name="arrays__video">Видео</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d сат</item>
@@ -715,6 +718,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Захтевај извештај о испоруци за сваку послату СМС поруку</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Аутоматски обриши старе поруке када нит преписке пређе наведену дужину</string>
   <string name="preferences__delete_old_messages">Бриши старе поруке</string>
+  <string name="preferences__chats">Ћаскања и медији</string>
   <string name="preferences__conversation_length_limit">Ограничење дужине преписке</string>
   <string name="preferences__trim_all_threads_now">Скрати све нити сада</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Претражи све нити преписки и наметни ограничења дужине</string>
@@ -734,6 +738,11 @@
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Омогућите ако ваш уређај доставља СМС/ММС преко бежичне мреже (омогућите само ако је „WiFi Calling“ омогућено на вашем уређају)</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
   <string name="preferences_notifications__display_in_notifications">Прикажи у обавештењу</string>
+  <string name="preferences_chats__when_using_mobile_data">На мобилном интернету</string>
+  <string name="preferences_chats__when_using_wifi">На бежичној</string>
+  <string name="preferences_chats__when_roaming">У ромингу</string>
+  <string name="preferences_chats__media_auto_download">Ауто-преузимање медија</string>
+  <string name="preferences_chats__message_trimming">Скраћивање порука</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

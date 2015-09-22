@@ -185,9 +185,7 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
       }
     }
 
-    synchronized (this) {
-      listeners.add(listener);
-    }
+    listeners.add(listener);
   }
 
   public synchronized void removeListener(RecipientsModifiedListener listener) {

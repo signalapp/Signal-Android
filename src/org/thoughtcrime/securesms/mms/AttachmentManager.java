@@ -21,9 +21,11 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -31,12 +33,13 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Toast;
 
+import junit.framework.Assert;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.CaptureProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
@@ -54,7 +57,7 @@ public class AttachmentManager {
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
-    this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
+    this.thumbnail          = (ThumbnailView) view.findViewById(R.id.attachment_thumbnail);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
     this.attachmentListener = listener;
@@ -70,6 +73,7 @@ public class AttachmentManager {
       @Override public void onAnimationRepeat(Animation animation) {}
       @Override public void onAnimationEnd(Animation animation) {
         slideDeck.clear();
+        thumbnail.clear();
         attachmentView.setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
       }
@@ -83,34 +87,55 @@ public class AttachmentManager {
     captureUri = null;
   }
 
-  public void setImage(MasterSecret masterSecret, Uri image)
-      throws IOException, BitmapDecodingException, MediaTooLargeException
+  public void setMedia(@NonNull final MasterSecret     masterSecret,
+                       @NonNull final Uri              uri,
+                       @NonNull final MediaType        mediaType,
+                       @NonNull final MediaConstraints constraints,
+                                final boolean          isCapture)
   {
-    if (MediaUtil.isGif(MediaUtil.getMimeType(context, image))) {
-      setMedia(new GifSlide(context, masterSecret, image), masterSecret);
-    } else {
-      setMedia(new ImageSlide(context, masterSecret, image), masterSecret);
-    }
-  }
+    new AsyncTask<Void, Void, Slide>() {
+      @Override protected void onPreExecute() {
+        slideDeck.clear();
+        thumbnail.clear();
+        thumbnail.showProgressSpinner();
+        attachmentView.setVisibility(View.VISIBLE);
 
-  public void setVideo(Uri video) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video));
-  }
+        if (isCapture)               captureUri = uri;
+        if (!uri.equals(captureUri)) cleanup();
+      }
 
-  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
-    setMedia(new AudioSlide(context, audio));
-  }
+      @Override protected @Nullable Slide doInBackground(Void... params) {
+        long start = System.currentTimeMillis();
+        try {
+          final long  mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
+          final Slide slide     = mediaType.createSlide(context, uri, mediaSize);
+          Log.w(TAG, "slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
+          return slide;
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
+          return null;
+        }
+      }
 
-  public void setMedia(final Slide slide) {
-    setMedia(slide, null);
-  }
-
-  public void setMedia(final Slide slide, @Nullable MasterSecret masterSecret) {
-    slideDeck.clear();
-    slideDeck.addSlide(slide);
-    attachmentView.setVisibility(View.VISIBLE);
-    thumbnail.setImageResource(slide, masterSecret);
-    attachmentListener.onAttachmentChanged();
+      @Override protected void onPostExecute(@Nullable final Slide slide) {
+        if (slide == null) {
+          attachmentView.setVisibility(View.GONE);
+          Toast.makeText(context,
+                         R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+                         Toast.LENGTH_SHORT).show();
+        } else if (!areConstraintsSatisfied(context, masterSecret, slide, constraints)) {
+          attachmentView.setVisibility(View.GONE);
+          Toast.makeText(context,
+                         R.string.ConversationActivity_attachment_exceeds_size_limits,
+                         Toast.LENGTH_SHORT).show();
+        } else {
+          slideDeck.addSlide(slide);
+          attachmentView.setVisibility(View.VISIBLE);
+          thumbnail.setImageResource(slide, masterSecret);
+          attachmentListener.onAttachmentChanged();
+        }
+      }
+    }.execute();
   }
 
   public boolean isAttachmentPresent() {
@@ -118,7 +143,7 @@ public class AttachmentManager {
   }
 
 
-  public SlideDeck getSlideDeck() {
+  public @NonNull SlideDeck getSlideDeck() {
     return slideDeck;
   }
 
@@ -141,10 +166,6 @@ public class AttachmentManager {
 
   public Uri getCaptureUri() {
     return captureUri;
-  }
-
-  public void setCaptureUri(Uri captureUri) {
-    this.captureUri = captureUri;
   }
 
   public void capturePhoto(Activity activity, Recipients recipients, int requestCode) {
@@ -183,6 +204,16 @@ public class AttachmentManager {
     }
   }
 
+  private boolean areConstraintsSatisfied(final @NonNull  Context context,
+                                          final @NonNull  MasterSecret masterSecret,
+                                          final @Nullable Slide slide,
+                                          final @NonNull  MediaConstraints constraints)
+  {
+   return slide == null                                                   ||
+          constraints.isSatisfied(context, masterSecret, slide.getPart()) ||
+          constraints.canResize(slide.getPart());
+  }
+
   private class RemoveButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
@@ -193,5 +224,23 @@ public class AttachmentManager {
 
   public interface AttachmentListener {
     void onAttachmentChanged();
+  }
+
+  public enum MediaType {
+    IMAGE, GIF, AUDIO, VIDEO;
+
+    public @NonNull Slide createSlide(@NonNull Context context,
+                                      @NonNull Uri     uri,
+                                               long    dataSize)
+        throws IOException
+    {
+      switch (this) {
+      case IMAGE: return new ImageSlide(context, uri, dataSize);
+      case GIF:   return new GifSlide(context, uri, dataSize);
+      case AUDIO: return new AudioSlide(context, uri, dataSize);
+      case VIDEO: return new VideoSlide(context, uri, dataSize);
+      default:    throw  new AssertionError("unrecognized enum");
+      }
+    }
   }
 }

@@ -24,6 +24,7 @@
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="media_bubble_height">210dp</dimen>
     <dimen name="media_bubble_border_width">3dp</dimen>
+    <dimen name="media_bubble_remove_button_size">24dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
@@ -33,4 +34,7 @@
 
     <dimen name="quick_media_drawer_default_height">250dp</dimen>
     <dimen name="quick_camera_shutter_ring_size">52dp</dimen>
+
+    <dimen name="transfer_controls_expanded_width">150dp</dimen>
+    <dimen name="transfer_controls_contracted_width">70dp</dimen>
 </resources>

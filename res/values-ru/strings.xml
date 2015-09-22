@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Удалить все старые сообщения?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Вы уверены, что хотите обрезать все разговоры до %s последних сообщений, удалив более старые?</string>
   <string name="ApplicationPreferencesActivity_delete">Удалить</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Отключить парольную фразу?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Отключить пароль на просмотр сообщений?</string>
   <string name="ApplicationPreferencesActivity_disable">Отключить</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Отменяем регистрацию в TextSecure...</string>
@@ -38,6 +41,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не найдено приложение для выбора медиа-файлов.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Камера</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Изображение</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
@@ -50,6 +54,7 @@
 стоит перепроверить.</string>
   <string name="ConfirmIdentityDialog_accept">Принять</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Сообщение %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Размер сообщения: %d Kб</string>
   <string name="ConversationItem_expires_s">Истекает: %s</string>
@@ -76,6 +81,7 @@
   <string name="ConversationActivity_select_contact_info">Выбрать контакт</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извините, произошла ошибка при обработке вложения.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gif, которую вы выбрали, слишком большая!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Извините, выбранное видео превышает ограничение на размер сообщения (%1$s Кб).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Извините, выбранное аудио превышает ограничение на размер сообщения (%1$s Кб).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты.</string>
@@ -368,6 +374,7 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure разблокирован</string>
   <string name="KeyCachingService_lock">Заблокировать парольной фразой</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от %1$s</string>
   <string name="MessageNotifier_media_message_with_text">MMS-сообщение: %s</string>
   <string name="MessageNotifier_no_subject">(Нет темы)</string>
@@ -382,11 +389,14 @@
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Быстрые ответы недоступны, когда TextSecure заблокирован!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Новое сообщение TextSecure</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Содержимое скрыто</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРИТЕ НОВУЮ ПАРОЛЬНУЮ ФРАЗУ:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Введите имя или номер</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нет контактов.</string>
   <string name="contact_selection_group_activity__finding_contacts">Загружаем контакты...</string>
@@ -590,6 +600,12 @@ SMS-подтверждения...
   <string name="arrays__settings_default">Настройки по умолчанию</string>
   <string name="arrays__enabled">Включено</string>
   <string name="arrays__disabled">Отключено</string>
+  <string name="arrays__name_and_message">Имя и сообщение</string>
+  <string name="arrays__name_only">Только имя</string>
+  <string name="arrays__neither">Ничего</string>
+  <string name="arrays__images">Изображения</string>
+  <string name="arrays__audio">Аудио</string>
+  <string name="arrays__video">Видео</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -616,6 +632,7 @@ SMS-подтверждения...
   <string name="preferences__change_my_passphrase">Изменить мою парольную фразу</string>
   <string name="preferences__enable_passphrase">Включить парольную фразу</string>
   <string name="preferences__passphrase_summary">Парольная фраза %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">Включить пароль на просмотр сообщений</string>
   <string name="preferences__screen_security">Защита экрана</string>
   <string name="preferences__screen_security_summary">Безопасность экрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокировать снимки экрана внутри приложения</string>
@@ -625,6 +642,7 @@ SMS-подтверждения...
   <string name="preferences__pref_timeout_interval_title">Срок хранения</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Время, по прошествии которого парольная фраза будет стёрта из памяти</string>
   <string name="preferences__notifications">Уведомления</string>
+  <string name="preferences__enable_message_notifications">Разрешить уведомления</string>
   <string name="preferences__led_color">Цвет светодиода</string>
   <string name="preferences__led_color_unknown">Неизвестен</string>
   <string name="preferences__pref_led_blink_title">Мигание светодиода</string>
@@ -674,6 +692,7 @@ SMS-подтверждения...
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запрашивать отчёт о доставке каждого отправленного SMS-сообщения</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Автоматически удалять старые сообщения, когда длина разговора превышает заданную</string>
   <string name="preferences__delete_old_messages">Удалять старые сообщения</string>
+  <string name="preferences__chats">Чаты и медиа</string>
   <string name="preferences__conversation_length_limit">Ограничение длины разговора</string>
   <string name="preferences__trim_all_threads_now">Обрезать все разговоры</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Привести длину всех разговоров в соответствие с заданной</string>
@@ -692,6 +711,12 @@ SMS-подтверждения...
   <string name="preferences__support_wifi_calling">Совместимость с Wi-Fi звонками</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включите, если ваше устройство отправляет и принимает SMS и MMS через Wi-Fi (и если Wi-Fi звонки включены)</string>
   <string name="preferences_app_protection__blocked_contacts">Заблокированные контакты</string>
+  <string name="preferences_notifications__display_in_notifications">Отображать в уведомлениях</string>
+  <string name="preferences_chats__when_using_mobile_data">Через мобильную сеть</string>
+  <string name="preferences_chats__when_using_wifi">Через Wi-Fi</string>
+  <string name="preferences_chats__when_roaming">В роуминге</string>
+  <string name="preferences_chats__media_auto_download">Автозагрузка медиа</string>
+  <string name="preferences_chats__message_trimming">Обрезка сообщений</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

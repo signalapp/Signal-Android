@@ -67,6 +67,15 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
     final PartId  partId = new PartId(partRowId, partUniqueId);
     final PduPart part   = DatabaseFactory.getPartDatabase(context).getPart(partId);
 
+    if (part == null) {
+      Log.w(TAG, "part no longer exists.");
+      return;
+    }
+    if (part.getDataUri() != null) {
+      Log.w(TAG, "part was already downloaded.");
+      return;
+    }
+
     Log.w(TAG, "Downloading push part " + partId);
 
     retrievePart(masterSecret, part, messageId);

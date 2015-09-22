@@ -34,6 +34,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Camera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Imagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -70,6 +71,7 @@
   <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
   <string name="ConversationActivity_compose_message">Compune mesaj</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ne pare rău, a apărut o eroare în setarea atașamentului tău.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Fişierul gif pe care l-ai selectat este prea mare!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Ne pare rău, video-ul selectat depășește restricția de mărime a mesajelor (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Ne pare rău, fișierul audio selectat depășește restricția marimii mesajului (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatarul nu este o adresă validă de SMS sau e-mail.</string>
@@ -352,6 +354,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="KeyCachingService_passphrase_cached">TextSecure e deblocat.</string>
   <string name="KeyCachingService_lock">Blocare acces cu parola</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversaţii</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
   <string name="MessageNotifier_locked_message">Mesaj blocat...</string>
   <string name="MessageNotifier_media_message_with_text">Mesaje media: %s</string>
@@ -366,6 +369,8 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Mesaj nou TextSecure</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Conţinut ascuns</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">PAROLA VECHE:</string>
   <string name="change_passphrase_activity__new_passphrase">NOUA PAROLĂ:</string>
@@ -563,8 +568,15 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="arrays__mute_for_two_hours">Silenţios pentru 2 ore</string>
   <string name="arrays__mute_for_one_day">Silenţios pentru o zi</string>
   <string name="arrays__mute_for_seven_days">Silenţios pentru 7 zile</string>
+  <string name="arrays__settings_default">Setări implicite</string>
   <string name="arrays__enabled">Activat</string>
   <string name="arrays__disabled">Dezactivat</string>
+  <string name="arrays__name_and_message">Nume şi mesaj</string>
+  <string name="arrays__name_only">Numai numele</string>
+  <string name="arrays__neither">Niciunul</string>
+  <string name="arrays__images">Imagini</string>
+  <string name="arrays__audio">Audio</string>
+  <string name="arrays__video">Video</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d oră</item>
@@ -598,6 +610,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__pref_timeout_interval_title">Interval expirare</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Perioada de timp de așteptare înainte de a șterge parola din memorie</string>
   <string name="preferences__notifications">Notificări</string>
+  <string name="preferences__enable_message_notifications">Activează notificari pentru mesaje</string>
   <string name="preferences__led_color">Culoare LED</string>
   <string name="preferences__led_color_unknown">Necunoscut</string>
   <string name="preferences__pref_led_blink_title">Tipar de clipire LED</string>
@@ -646,6 +659,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Cere o confirmare de livrare pentru fiecare SMS trimis</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Șterge automat mesajele vechi când conversația depășește mărimea specificată</string>
   <string name="preferences__delete_old_messages">Șterge mesajele vechi</string>
+  <string name="preferences__chats">Conversaţii şi media</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
   <string name="preferences__trim_all_threads_now">Scurtează toate conversaţiile acum</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Verifică toate conversațiile și aplică limite de mărime a conversației</string>
@@ -664,6 +678,11 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__submit_debug_log">Trimite log-urile de depanare</string>
   <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare WiFi\"</string>
   <string name="preferences_app_protection__blocked_contacts">Contacte blocate</string>
+  <string name="preferences_notifications__display_in_notifications">Afişează în notificări</string>
+  <string name="preferences_chats__when_using_mobile_data">Când se utilizează datele mobile </string>
+  <string name="preferences_chats__when_using_wifi">Când se utilizează Wi-Fi </string>
+  <string name="preferences_chats__when_roaming">Când se utilizează roaming-ul </string>
+  <string name="preferences_chats__media_auto_download">Descărcare automată Media</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
