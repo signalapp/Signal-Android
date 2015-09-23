@@ -940,7 +940,7 @@
     <!-- conversation_secure_verified -->
     <string name="conversation_secure_verified__menu_security">Security</string>
     <string name="conversation_secure_verified__menu_verify_identity">Verify identity</string>
-    <string name="conversation_secure_verified__menu_abort_secure_session">End secure session</string>
+    <string name="conversation_secure_verified__menu_reset_secure_session">Reset secure session</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">Unmute</string>
