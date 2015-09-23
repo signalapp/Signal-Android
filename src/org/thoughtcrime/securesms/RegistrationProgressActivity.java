@@ -165,7 +165,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
   private void initializeLinks() {
     TextView        failureText     = (TextView) findViewById(R.id.sms_failed_text);
-    String          pretext         = getString(R.string.registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message);
+    String          pretext         = getString(R.string.registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message);
     String          link            = getString(R.string.RegistrationProblemsActivity_possible_problems);
     SpannableString spannableString = new SpannableString(pretext + " " + link);
 
