@@ -215,7 +215,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeActionBar();
     initializeViews();
     initializeResources();
-    initializeSecurity();
+    initializeSecurity(false);
     initializeDraft();
   }
 
@@ -231,7 +231,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     setIntent(intent);
     initializeResources();
-    initializeSecurity();
+    initializeSecurity(false);
     initializeDraft();
 
     if (fragment != null) {
@@ -267,7 +267,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     quickAttachmentDrawer.onPause();
   }
 
-  @Override public void onConfigurationChanged(Configuration newConfig) {
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
     Log.w(TAG, "onConfigurationChanged(" + newConfig.orientation + ")");
     super.onConfigurationChanged(newConfig);
     composeText.setTransport(sendButton.getSelectedTransport());
@@ -293,10 +294,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     switch (reqCode) {
     case PICK_IMAGE:
-      setMedia(data.getData(),
-               MediaUtil.isGif(MediaUtil.getMimeType(this, data.getData())) ? MediaType.GIF
-                   : MediaType.IMAGE,
-               false);
+      boolean isGif = MediaUtil.isGif(MediaUtil.getMimeType(this, data.getData()));
+      setMedia(data.getData(), isGif ? MediaType.GIF : MediaType.IMAGE, false);
       break;
     case PICK_VIDEO:
       setMedia(data.getData(), MediaType.VIDEO, false);
@@ -704,6 +703,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivity(intent);
   }
 
+  private void handleSecurityChange(boolean encryptedConversation) {
+    boolean isMediaMessage       = !recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent();
+    this.isEncryptedConversation = encryptedConversation;
+
+    sendButton.resetAvailableTransports(isMediaMessage);
+
+    if (!isEncryptedConversation)      sendButton.disableTransport(Type.TEXTSECURE);
+    if (recipients.isGroupRecipient()) sendButton.disableTransport(Type.SMS);
+
+    if (isEncryptedConversation) sendButton.setDefaultTransport(Type.TEXTSECURE);
+    else                         sendButton.setDefaultTransport(Type.SMS);
+
+    calculateCharactersRemaining();
+    supportInvalidateOptionsMenu();
+  }
+
   ///// Initializers
 
   private void initializeDraft() {
@@ -763,8 +778,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute();
   }
 
-  private void initializeSecurity() {
-    initializeSecurity(false);
+  private void initializeSecurity(final boolean current) {
+    handleSecurityChange(current);
 
     new AsyncTask<Recipients, Void, Boolean>() {
       @Override
@@ -785,28 +800,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       protected void onPostExecute(Boolean result) {
-        if (result != isEncryptedConversation) {
-          initializeSecurity(result);
+        if (current != result) {
+          handleSecurityChange(result);
         }
       }
     }.execute(recipients);
   }
 
-  private void initializeSecurity(boolean encryptedConversation) {
-    boolean isMediaMessage       = !recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent();
-    this.isEncryptedConversation = encryptedConversation;
-
-    sendButton.resetAvailableTransports(isMediaMessage);
-
-    if (!isEncryptedConversation)      sendButton.disableTransport(Type.TEXTSECURE);
-    if (recipients.isGroupRecipient()) sendButton.disableTransport(Type.SMS);
-
-    if (isEncryptedConversation) sendButton.setDefaultTransport(Type.TEXTSECURE);
-    else                         sendButton.setDefaultTransport(Type.SMS);
-
-    calculateCharactersRemaining();
-    supportInvalidateOptionsMenu();
-  }
 
   private void initializeMmsEnabledCheck() {
     new AsyncTask<Void, Void, Boolean>() {
@@ -944,12 +944,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        long eventThreadId = intent.getLongExtra("thread_id", -1);
-
-        if (eventThreadId == threadId || eventThreadId == -2) {
-          initializeSecurity();
-          calculateCharactersRemaining();
-        }
+        initializeSecurity(isEncryptedConversation);
+        calculateCharactersRemaining();
       }
     };
 
@@ -1188,8 +1184,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (refreshFragment) {
       fragment.reload(recipients, threadId);
-
-      initializeSecurity();
     }
 
     fragment.scrollToBottom();
@@ -1439,7 +1433,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onAttachmentChanged() {
-    initializeSecurity();
     updateToggleButtonState();
   }
 
