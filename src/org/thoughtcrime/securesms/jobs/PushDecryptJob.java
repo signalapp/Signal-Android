@@ -195,7 +195,7 @@ public class PushDecryptJob extends ContextJob {
     SessionStore sessionStore = new TextSecureSessionStore(context);
     sessionStore.deleteAllSessions(envelope.getSource());
 
-    SecurityEvent.broadcastSecurityUpdateEvent(context, threadId);
+    SecurityEvent.broadcastSecurityUpdateEvent(context);
     MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), threadId);
   }
 
