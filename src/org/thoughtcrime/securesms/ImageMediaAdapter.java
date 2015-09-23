@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -64,7 +65,7 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   }
 
   @Override
-  public void onBindViewHolder(final ViewHolder viewHolder, final Cursor cursor) {
+  public void onBindViewHolder(final ViewHolder viewHolder, final @NonNull Cursor cursor) {
     final ThumbnailView imageView   = viewHolder.imageView;
     final ImageRecord   imageRecord = ImageRecord.from(cursor);
 
