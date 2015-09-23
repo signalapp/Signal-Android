@@ -107,7 +107,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
 
     int contactType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN));
 
-    if (contactType == ContactsDatabase.PUSH_TYPE) holder.text.setText(R.string.contact_selection_list__header_textsecure_users);
+    if (contactType == ContactsDatabase.PUSH_TYPE) holder.text.setText(R.string.contact_selection_list__header_signal_users);
     else                                           holder.text.setText(R.string.contact_selection_list__header_other);
 
     return convertView;

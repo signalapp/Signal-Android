@@ -28,7 +28,7 @@
         android:singleLine="true"
         android:fadingEdge="horizontal"
         android:ellipsize="marquee"
-        android:text="@string/KeyCachingService_textsecure_passphrase_cached_with_lock"
+        android:text="@string/KeyCachingService_signal_passphrase_cached_with_lock"
         />
     </LinearLayout>
     

@@ -23,7 +23,7 @@
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:layout_marginBottom="16dip"
-                      android:text="@string/prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages"/>
+                      android:text="@string/prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages"/>
                     
             <TextView style="@style/Registration.Description"
                       android:layout_width="fill_parent"

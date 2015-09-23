@@ -100,7 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingRight="10dip"
-                        android:text="@string/registration_problems__textsecure_will_not_work_with_google_voice_numbers" />
+                        android:text="@string/registration_problems__signal_will_not_work_with_google_voice_numbers" />
             </LinearLayout>
         </TableRow>
     </TableLayout>

@@ -4,8 +4,8 @@
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="false"
                         android:key="pref_toggle_push_messaging"
-                        android:title="@string/preferences__textsecure_messages"
-                        android:summary="@string/preferences__use_the_data_channel_for_communication_with_other_textsecure_users"/>
+                        android:title="@string/preferences__signal_messages"
+                        android:summary="@string/preferences__use_the_data_channel_for_communication_with_other_signal_users"/>
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="false"
@@ -16,7 +16,7 @@
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_system_emoji"
                         android:title="@string/preferences_advanced__use_system_emoji"
-                        android:summary="@string/preferences_advanced__disable_textsecures_built_in_emoji_support" />
+                        android:summary="@string/preferences_advanced__disable_signal_built_in_emoji_support" />
 
     <Preference android:key="pref_choose_identity"
                 android:title="@string/preferences__choose_identity"

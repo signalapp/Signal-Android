@@ -57,7 +57,7 @@
                         android:layout_below="@+id/alert"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:text="@string/registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message" />
+                        android:text="@string/registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message" />
             </RelativeLayout>
 
 
@@ -94,7 +94,7 @@
                           android:paddingLeft="4dip"
                           android:paddingRight="4dip"
                           android:paddingBottom="10dip"
-                          android:text="@string/registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number"/>
+                          android:text="@string/registration_progress_activity__signal_can_also_call_you_to_verify_your_number"/>
 
                 <LinearLayout android:id="@+id/code_container"
                               android:orientation="horizontal"
@@ -188,7 +188,7 @@
                         android:layout_below="@+id/connectivity_alert"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:text="@string/registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service" />
+                        android:text="@string/registration_progress_activity__signal_was_unable_to_connect_to_the_push_service" />
             </RelativeLayout>
 
             <Button
@@ -289,7 +289,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:paddingLeft="5dip"
-                    android:text="@string/registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message" />
+                    android:text="@string/registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message" />
 
             <TableLayout
                     android:layout_width="fill_parent"
