@@ -25,6 +25,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
@@ -108,7 +109,6 @@ public class ConversationItem extends LinearLayout
 
   private final MmsDownloadClickListener    mmsDownloadClickListener    = new MmsDownloadClickListener();
   private final MmsPreferencesClickListener mmsPreferencesClickListener = new MmsPreferencesClickListener();
-  private final ClickListener               clickListener               = new ClickListener();
   private final Context                     context;
 
   public ConversationItem(Context context) {
@@ -118,6 +118,10 @@ public class ConversationItem extends LinearLayout
   public ConversationItem(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.context = context;
+  }
+
+  @Override public void setOnClickListener(OnClickListener l) {
+    super.setOnClickListener(new ClickListener(l));
   }
 
   @Override
@@ -150,7 +154,7 @@ public class ConversationItem extends LinearLayout
     this.mediaThumbnail           = (ThumbnailView)   findViewById(R.id.image_view);
     this.statusManager            = new StatusManager(pendingIndicator, sentIndicator, deliveredIndicator, failedIndicator, pendingApprovalIndicator);
 
-    setOnClickListener(clickListener);
+    setOnClickListener(new ClickListener(null));
     PassthroughClickListener passthroughClickListener = new PassthroughClickListener();
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
@@ -177,13 +181,12 @@ public class ConversationItem extends LinearLayout
 
     this.recipient.addListener(this);
 
-    setSelectionState(messageRecord);
+    setInteractionState(messageRecord);
     setBodyText(messageRecord);
     setBubbleState(messageRecord, recipient);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient);
     setGroupMessageStatus(messageRecord, recipient);
-    setEvents(messageRecord);
     setMinimumWidth();
     setMediaAttributes(messageRecord);
   }
@@ -222,9 +225,9 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setSelectionState(MessageRecord messageRecord) {
+  private void setInteractionState(MessageRecord messageRecord) {
     setSelected(batchSelected.contains(messageRecord));
-    mediaThumbnail.setClickable(batchSelected.isEmpty());
+    mediaThumbnail.setClickable(!shouldInterceptClicks(messageRecord));
     mediaThumbnail.setLongClickable(batchSelected.isEmpty());
     bodyText.setAutoLinkMask(batchSelected.isEmpty() ? Linkify.ALL : 0);
   }
@@ -321,11 +324,11 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setEvents(MessageRecord messageRecord) {
-    setClickable(batchSelected.isEmpty() &&
-                 (messageRecord.isFailed() ||
-                  messageRecord.isPendingInsecureSmsFallback() ||
-                  messageRecord.isBundleKeyExchange()));
+  private boolean shouldInterceptClicks(MessageRecord messageRecord) {
+    return batchSelected.isEmpty() &&
+           (messageRecord.isFailed() ||
+            messageRecord.isPendingInsecureSmsFallback() ||
+            messageRecord.isBundleKeyExchange());
   }
 
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
@@ -480,10 +483,16 @@ public class ConversationItem extends LinearLayout
     }
   }
   private class ClickListener implements View.OnClickListener {
-    public void onClick(View v) {
-      if (!batchSelected.isEmpty()) return;
+    private OnClickListener parent;
 
-      if (messageRecord.isFailed()) {
+    public ClickListener(@Nullable OnClickListener parent) {
+      this.parent = parent;
+    }
+
+    public void onClick(View v) {
+      if (!shouldInterceptClicks(messageRecord) && parent != null) {
+        parent.onClick(v);
+      } else if (messageRecord.isFailed()) {
         Intent intent = new Intent(context, MessageDetailsActivity.class);
         intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
         intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
