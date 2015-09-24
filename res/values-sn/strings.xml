@@ -329,6 +329,7 @@ Ongorora zvakare kuti iyi inhamba dzako! Tava pedyo nekuiongorora netsamba pfupi
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Kunyoresa paTextSecure kwabudirira kuzadziswa.</string>
   <string name="RegistrationService_registration_error">Kanganiso pakunyoresa</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Kuregisita paTextSecure kwasangana nedambudziko.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Tagamuhira svumbunuro yakaworera
 tsinha tsamba!</string>

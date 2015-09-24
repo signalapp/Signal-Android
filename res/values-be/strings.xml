@@ -266,6 +266,7 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Рэгістрацыя TextSecure выканана паспяхова.</string>
   <string name="RegistrationService_registration_error">Памылка рэгістрацыі</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Падчас рэгістрацыі TextSecure узнікла праблема.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Атрыманы пашкоджаны ключ абмену паведамленнямі!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">

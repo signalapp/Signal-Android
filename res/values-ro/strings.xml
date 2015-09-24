@@ -287,6 +287,7 @@ Trebuie să vă scoateţi de acolo înainte de a vă înregistra aici.</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Inregistrarea TextSecure a fost finalizata cu succes.</string>
   <string name="RegistrationService_registration_error">Eroare de inregistrare</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Inregistrarea TextSecure a intampinat o problema.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Primit mesajul conform caruia
 schimbul de chei este corupt </string>

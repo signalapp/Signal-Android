@@ -112,6 +112,7 @@ verifiera denna kontakt.</string>
   <string name="ConversationActivity_unblock_question">Avblockera?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Är du säker på att du vill avblockera denna kontakt?</string>
   <string name="ConversationActivity_unblock">Avblockera</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Den bifogade filen är för stor för den typ av meddelande du försöker skicka.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSkickat/Mottagits: %2$s</string>
@@ -320,6 +321,10 @@ Dubbelkolla att det här är ditt nummer! Vi ska nu verifiera det med ett SMS.</
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure-registrering har lyckats.</string>
   <string name="RegistrationService_registration_error">Registreringsfel</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure-registreringen har drabbats av ett problem.</string>
+  <!--Slide-->
+  <string name="Slide_image">Bilder</string>
+  <string name="Slide_audio">Ljud</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Tog emot skadat meddelande
 för nyckelutbyte!</string>
@@ -723,6 +728,8 @@ Fria privata meddelanden till användare av TextSecure och Signal</string>
   <string name="preferences_chats__when_roaming">Vid roaming</string>
   <string name="preferences_chats__media_auto_download">Autonedladdning av media</string>
   <string name="preferences_chats__message_trimming">Trimma meddelanden</string>
+  <string name="preferences_advanced__use_system_emoji">Använd systemets emojis</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Stäng av TextSecures inbyggda emojistöd</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

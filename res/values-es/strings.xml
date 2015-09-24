@@ -113,6 +113,7 @@ este contacto.
   <string name="ConversationActivity_unblock_question">¿Desbloquear?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">¿Está seguro de que desea desbloquear este contacto?</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">El adjunto excede los límites de tamaño para el tipo de mensaje que está enviando.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s
@@ -345,6 +346,10 @@ requieren una cuenta de Google, pero deben tener la aplicación Play Store insta
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">El proceso de registro de TextSecure ha finalizado con éxito.</string>
   <string name="RegistrationService_registration_error">Error al registrarse</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">El proceso de registro de TextSecure ha encontrado un problema.</string>
+  <!--Slide-->
+  <string name="Slide_image">Imagen</string>
+  <string name="Slide_audio">Audio</string>
+  <string name="Slide_video">Vídeo</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">¡Se recibió un mensaje corrupto
 de intercambio de claves!
@@ -786,6 +791,8 @@ Mensajería privada gratuita con usuarios de TextSecure y Signal</string>
   <string name="preferences_chats__when_roaming">Al usar roaming</string>
   <string name="preferences_chats__media_auto_download">Auto-descarga de audiovisuales</string>
   <string name="preferences_chats__message_trimming">Recortado de mensaje</string>
+  <string name="preferences_advanced__use_system_emoji">Usar emoji del sistema</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Deshabilitar el soporte de emoji integrado de Textsecure</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

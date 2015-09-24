@@ -109,6 +109,7 @@ questo contatto.</string>
   <string name="ConversationActivity_unblock_question">Sbloccare?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Vuoi davvero sbloccare questo contatto?</string>
   <string name="ConversationActivity_unblock">Sblocca</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">L\'allegato che stai cercando di inviare supera le dimensioni consentite</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Dettagli messaggio</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Trasporto: %1$s\nInviato/Ricevuto: %2$s</string>
@@ -326,6 +327,10 @@ Assicurati che questo sia il tuo numero! Stiamo per verificarlo con un SMS.</str
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">La registrazione di TextSecure è stata competata con successo.</string>
   <string name="RegistrationService_registration_error">Errore nella registrazione</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Si è verificato un problema durante la registrazione a TextSecure.</string>
+  <!--Slide-->
+  <string name="Slide_image">Immagini</string>
+  <string name="Slide_audio">Audio</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Ricevuta una chiave corrotta
 scambia un altro messaggio!
@@ -753,6 +758,8 @@ Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="preferences_chats__when_roaming">In roaming</string>
   <string name="preferences_chats__media_auto_download">Download automatico file</string>
   <string name="preferences_chats__message_trimming">Cancellazione messaggi</string>
+  <string name="preferences_advanced__use_system_emoji">Usa le emoji di sistema</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Disattiva le emoji di TextSecure</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

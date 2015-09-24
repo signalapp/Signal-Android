@@ -258,6 +258,7 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">ثبت نام TextSecure با موفقیت به پایان رسید.</string>
   <string name="RegistrationService_registration_error">خطای ثبت نام</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">ثبت نام TextSecure با مشکل مواجه شده است.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">دریافت کلید خراب
 تبادل پیام!</string>

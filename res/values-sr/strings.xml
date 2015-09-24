@@ -28,9 +28,9 @@
   <string name="ApplicationPreferencesActivity_sms_disabled">СМС онемогућен</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Додирните да бисте поставили Сигурне поруке као подразумевану апликацију за СМС</string>
   <string name="ApplicationPreferencesActivity_on">укључена</string>
-  <string name="ApplicationPreferencesActivity_On">Укључена</string>
+  <string name="ApplicationPreferencesActivity_On">Укључено</string>
   <string name="ApplicationPreferencesActivity_off">искључена</string>
-  <string name="ApplicationPreferencesActivity_Off">Искључена</string>
+  <string name="ApplicationPreferencesActivity_Off">Искључено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">СМС %1$s, ММС %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d минута</string>
@@ -112,6 +112,7 @@
   <string name="ConversationActivity_unblock_question">Одблокирати?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Желите ли заиста да одблокирате овај контакт?</string>
   <string name="ConversationActivity_unblock">Одблокирај</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Прилог прекорачује ограничење величине за тип поруке коју шаљете.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Детаљи поруке</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Пренос: %1$s\nПослата/примљена: %2$s</string>
@@ -143,7 +144,7 @@
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користим посебно: %s</string>
   <string name="CustomDefaultPreference_using_default">Користим подразумевано: %s</string>
-  <string name="CustomDefaultPreference_none">Ниједна</string>
+  <string name="CustomDefaultPreference_none">ништа</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Сад</string>
   <string name="DateUtils_minutes_ago">%d минута</string>
@@ -280,8 +281,8 @@
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одлокирати овај контакт?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Желите ли заиста да одблокирате овај контакт?</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
-  <string name="RecipientPreferenceActivity_enabled">Омогућена</string>
-  <string name="RecipientPreferenceActivity_disabled">Онемогућена</string>
+  <string name="RecipientPreferenceActivity_enabled">Укључено</string>
+  <string name="RecipientPreferenceActivity_disabled">Искључено</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Повежите се на Сигурне поруке</string>
   <string name="RegistrationActivity_select_your_country">Изаберите вашу државу</string>
@@ -329,6 +330,10 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Пријава на Сигурне поруке је успешно завршена.</string>
   <string name="RegistrationService_registration_error">Грешка пријаве</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Дошло је до проблема приликом пријаве на сервер Сигурних порука.</string>
+  <!--Slide-->
+  <string name="Slide_image">Слика</string>
+  <string name="Slide_audio">Звук</string>
+  <string name="Slide_video">Видео</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Примљена је оштећена
 порука размене кључа!</string>
@@ -520,7 +525,7 @@
   <string name="recipient_preferences__mute_conversation">Утишај преписку</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Искључи обавештења за ову преписку</string>
   <string name="recipient_preferences__ringtone">Звоно</string>
-  <string name="recipient_preferences__vibrate">Вибрирај</string>
+  <string name="recipient_preferences__vibrate">Вибрирање</string>
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__color_for_this_contact">Боја за контакт</string>
@@ -687,8 +692,8 @@
   <string name="preferences__three_times">Три пута</string>
   <string name="preferences__five_times">5 пута</string>
   <string name="preferences__ten_times">Десет пута</string>
-  <string name="preferences__vibrate">Вибрирај</string>
-  <string name="preferences__also_vibrate_when_notified">Вибрирај при обавештењу</string>
+  <string name="preferences__vibrate">Вибрирање</string>
+  <string name="preferences__also_vibrate_when_notified">Вибрирање при обавештењу</string>
   <string name="preferences__minutes">минута</string>
   <string name="preferences__hours">сати</string>
   <string name="preferences__green">Зелена</string>
@@ -698,7 +703,7 @@
   <string name="preferences__cyan">Цијан</string>
   <string name="preferences__magenta">Магента</string>
   <string name="preferences__white">Бела</string>
-  <string name="preferences__none">Ниједна</string>
+  <string name="preferences__none">Ништа</string>
   <string name="preferences__fast">Брзо</string>
   <string name="preferences__normal">Нормално</string>
   <string name="preferences__slow">Споро</string>
@@ -727,7 +732,7 @@
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Тема</string>
   <string name="preferences__theme_summary">Тема %s</string>
-  <string name="preferences__default">Подразумеван</string>
+  <string name="preferences__default">Подразумевано</string>
   <string name="preferences__language">Језик</string>
   <string name="preferences__language_summary">Језик %s</string>
   <string name="preferences__textsecure_messages">Сигурне поруке</string>
@@ -743,6 +748,8 @@
   <string name="preferences_chats__when_roaming">У ромингу</string>
   <string name="preferences_chats__media_auto_download">Ауто-преузимање медија</string>
   <string name="preferences_chats__message_trimming">Скраћивање порука</string>
+  <string name="preferences_advanced__use_system_emoji">Користи системски емоџи</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Искључи уграђене емоџије Сигурних порука</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
