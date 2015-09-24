@@ -161,6 +161,7 @@ public class ConversationItem extends LinearLayout
     mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
     mediaThumbnail.setDownloadClickListener(new ThumbnailDownloadClickListener());
     mediaThumbnail.setOnLongClickListener(passthroughClickListener);
+    mediaThumbnail.setOnClickListener(passthroughClickListener);
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
   }
@@ -228,7 +229,8 @@ public class ConversationItem extends LinearLayout
 
   private void setInteractionState(MessageRecord messageRecord) {
     setSelected(batchSelected.contains(messageRecord));
-    mediaThumbnail.setClickable(!shouldInterceptClicks(messageRecord));
+    mediaThumbnail.setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
+    mediaThumbnail.setClickable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
     mediaThumbnail.setLongClickable(batchSelected.isEmpty());
     bodyText.setAutoLinkMask(batchSelected.isEmpty() ? Linkify.ALL : 0);
   }
@@ -420,9 +422,10 @@ public class ConversationItem extends LinearLayout
     }
 
     public void onClick(final View v, final Slide slide) {
-      if (batchSelected.isEmpty() &&
-          MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) &&
-          slide.getThumbnailUri() != null)
+      if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty()) {
+        performClick();
+      } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) &&
+                 slide.getThumbnailUri() != null)
       {
         Intent intent = new Intent(context, MediaPreviewActivity.class);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
