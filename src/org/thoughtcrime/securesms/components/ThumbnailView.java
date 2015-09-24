@@ -67,12 +67,19 @@ public class ThumbnailView extends FrameLayout {
     inflate(context, R.layout.thumbnail_view, this);
     radius = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
     image  = (ImageView) findViewById(R.id.thumbnail_image);
+    setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0);
       backgroundColorHint = typedArray.getColor(0, Color.BLACK);
       typedArray.recycle();
     }
+  }
+
+  @Override public void setClickable(boolean clickable) {
+    super.setClickable(clickable);
+    image.setClickable(clickable);
+    transferControls.setClickable(clickable);
   }
 
   @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -137,12 +144,6 @@ public class ThumbnailView extends FrameLayout {
 
     this.slide = slide;
     loadInto(slide, masterSecret, image);
-
-    if (this.slide.getTransferProgress() == PartDatabase.TRANSFER_PROGRESS_DONE) {
-      setOnClickListener(new ThumbnailClickDispatcher());
-    } else {
-      setOnClickListener(null);
-    }
 
     if (!hideControls) {
       getTransferControls().setSlide(slide);
@@ -291,7 +292,8 @@ public class ThumbnailView extends FrameLayout {
     public void onClick(View view) {
       if (thumbnailClickListener       != null &&
           slide                        != null &&
-          slide.getPart().getDataUri() != null)
+          slide.getPart().getDataUri() != null &&
+          slide.getTransferProgress()  == PartDatabase.TRANSFER_PROGRESS_DONE)
       {
         thumbnailClickListener.onClick(view, slide);
       }
