@@ -124,7 +124,7 @@
                       android:maxLines="1"
                       android:ellipsize="end"
                       android:visibility="visible"
-                      android:text="RedPhone Call"
+                      android:text="@string/redphone_call_card__signal_call"
                       />
 
             <!-- Social status (currently unused) -->

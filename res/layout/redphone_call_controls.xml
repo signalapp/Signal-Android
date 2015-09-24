@@ -137,7 +137,7 @@
                              android:layout_weight="1"
                              android:src="@drawable/redphone_ic_end_call"
                              android:background="@drawable/selectable_item_background"
-                             android:contentDescription="end call"/>
+                             android:contentDescription="@string/redphone_call_controls__end_call"/>
             </LinearLayout>
 
             <!--                              android:background="?android:attr/selectableItemBackground" -->
@@ -199,7 +199,7 @@
                 <ToggleButton android:id="@+id/audioButton"
                               style="@style/InCallCompoundButton"
                               android:background="@drawable/redphone_btn_compound_audio"
-                              android:contentDescription="Audio"
+                              android:contentDescription="@string/redphone_call_controls__audio"
                     />
 
                 <View
@@ -212,7 +212,7 @@
                 <ToggleButton android:id="@+id/muteButton"
                               style="@style/InCallCompoundButton"
                               android:background="@drawable/redphone_btn_compound_mute"
-                              android:contentDescription="Mute"
+                              android:contentDescription="@string/redphone_call_controls__mute"
                     />
 
                 <View

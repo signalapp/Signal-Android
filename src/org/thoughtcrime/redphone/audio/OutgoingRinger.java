@@ -96,20 +96,9 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
 
     try {
       mediaPlayer.setDataSource(context, dataUri);
-    } catch (IllegalArgumentException e) {
+    } catch (IllegalArgumentException | SecurityException | IllegalStateException | IOException e) {
       Log.w(TAG, e);
       // TODO Auto-generated catch block
-      return;
-    } catch (SecurityException e) {
-      // TODO Auto-generated catch block
-      Log.w(TAG, e);
-      return;
-    } catch (IllegalStateException e) {
-      Log.w(TAG, e);
-      return;
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      Log.w(TAG, e);
       return;
     }
     try {

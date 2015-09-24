@@ -58,7 +58,7 @@ public class NotificationBarManager {
     Intent contentIntent        = new Intent(context, RedPhone.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
-    String notificationText     = "Signal call in progress";
+    String notificationText     = context.getString(R.string.NotificationBarManager_signal_call_in_progress);
     Notification notification   = new Notification(R.drawable.redphone_stat_sys_phone_call, null,
                                                    System.currentTimeMillis());
 
@@ -79,9 +79,9 @@ public class NotificationBarManager {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
     builder.setSmallIcon(R.drawable.ic_call_missed_grey600_24dp);
     builder.setWhen(System.currentTimeMillis());
-    builder.setTicker(String.format("Missed call from %s", notifyRecipients.toShortString()));
-    builder.setContentTitle("Missed Signal call");
-    builder.setContentText(String.format("Missed call from %s", notifyRecipients.toShortString()));
+    builder.setTicker(context.getString(R.string.NotificationBarManager_missed_call_from_s, notifyRecipients.toShortString()));
+    builder.setContentTitle(context.getString(R.string.NotificationBarManager_missed_signal_call));
+    builder.setContentText(context.getString(R.string.NotificationBarManager_missed_call_from_s, notifyRecipients.toShortString()));
     builder.setContentIntent(pendingIntent);
     builder.setDefaults(Notification.DEFAULT_VIBRATE);
     builder.setAutoCancel(true);
