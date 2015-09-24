@@ -59,13 +59,13 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   }
 
   @Override
-  public ViewHolder onCreateViewHolder(final ViewGroup viewGroup, final int i) {
+  public ViewHolder onCreateItemViewHolder(final ViewGroup viewGroup, final int i) {
     final View view = LayoutInflater.from(getContext()).inflate(R.layout.media_overview_item, viewGroup, false);
     return new ViewHolder(view);
   }
 
   @Override
-  public void onBindViewHolder(final ViewHolder viewHolder, final @NonNull Cursor cursor) {
+  public void onBindItemViewHolder(final ViewHolder viewHolder, final @NonNull Cursor cursor) {
     final ThumbnailView imageView   = viewHolder.imageView;
     final ImageRecord   imageRecord = ImageRecord.from(cursor);
 

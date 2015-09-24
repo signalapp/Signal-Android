@@ -593,6 +593,9 @@
     <string name="import_fragment__import_a_plaintext_backup_file">
         Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
 
+    <!-- load_more_header -->
+    <string name="load_more_header__load_full_conversation">Load full conversation...</string>
+    
     <!-- media_overview_activity -->
     <string name="media_overview_activity__no_images">No images</string>
 

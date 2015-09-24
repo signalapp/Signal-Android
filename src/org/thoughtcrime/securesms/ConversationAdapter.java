@@ -116,7 +116,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     super.changeCursor(cursor);
   }
 
-  @Override public void onBindViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
+  @Override public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
     long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
     String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
@@ -124,7 +124,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, groupThread, pushDestination);
   }
 
-  @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  @Override public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     final V itemView = ViewUtil.inflate(inflater, parent, getLayoutForViewType(viewType));
     if (viewType == MESSAGE_TYPE_INCOMING || viewType == MESSAGE_TYPE_OUTGOING) {
       itemView.setOnClickListener(new OnClickListener() {
@@ -145,7 +145,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     return new ViewHolder(itemView);
   }
 
-  @Override public void onViewRecycled(ViewHolder holder) {
+  @Override public void onItemViewRecycled(ViewHolder holder) {
     holder.getView().unbind();
   }
 
