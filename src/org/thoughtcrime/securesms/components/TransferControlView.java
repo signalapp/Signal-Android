@@ -56,6 +56,7 @@ public class TransferControlView extends FrameLayout {
     if (VERSION.SDK_INT >= VERSION_CODES.ICE_CREAM_SANDWICH) {
       background.setColorFilter(0x66ffffff, Mode.MULTIPLY);
     }
+    setLongClickable(false);
     ViewUtil.setBackground(this, background);
     setVisibility(GONE);
 
@@ -65,12 +66,26 @@ public class TransferControlView extends FrameLayout {
     this.expandedWidth   = getResources().getDimensionPixelSize(R.dimen.transfer_controls_expanded_width);
   }
 
-  @Override protected void onAttachedToWindow() {
+  @Override
+  public void setFocusable(boolean focusable) {
+    super.setFocusable(focusable);
+    downloadDetails.setFocusable(focusable);
+  }
+
+  @Override
+  public void setClickable(boolean clickable) {
+    super.setClickable(clickable);
+    downloadDetails.setClickable(clickable);
+  }
+
+  @Override
+  protected void onAttachedToWindow() {
     super.onAttachedToWindow();
     if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().registerSticky(this);
   }
 
-  @Override protected void onDetachedFromWindow() {
+  @Override
+  protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
     EventBus.getDefault().unregister(this);
   }
@@ -134,7 +149,8 @@ public class TransferControlView extends FrameLayout {
   private Animator getWidthAnimator(final int from, final int to) {
     final ValueAnimator anim = ValueAnimator.ofInt(from, to);
     anim.addUpdateListener(new AnimatorUpdateListener() {
-      @Override public void onAnimationUpdate(ValueAnimator animation) {
+      @Override
+      public void onAnimationUpdate(ValueAnimator animation) {
         final int val = (Integer)animation.getAnimatedValue();
         final ViewGroup.LayoutParams layoutParams = getLayoutParams();
         layoutParams.width = val;
@@ -150,7 +166,8 @@ public class TransferControlView extends FrameLayout {
   public void onEventAsync(final PartProgressEvent event) {
     if (this.slide != null && event.partId.equals(this.slide.getPart().getPartId())) {
       Util.runOnMain(new Runnable() {
-        @Override public void run() {
+        @Override
+        public void run() {
           progressWheel.setInstantProgress(((float)event.progress) / event.total);
         }
       });
