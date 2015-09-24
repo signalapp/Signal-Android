@@ -127,6 +127,7 @@
     <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Are you sure you want to unblock this contact?</string>
     <string name="ConversationActivity_unblock">Unblock</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
+    <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -271,6 +272,11 @@
     <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>
     <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings...</string>
 
+    <!--- NotificationBarManager -->
+    <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
+    <string name="NotificationBarManager_missed_call_from_s">Missed call from %s</string>
+    <string name="NotificationBarManager_missed_signal_call">Missed Signal call</string>
+
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
 
@@ -327,6 +333,28 @@
     <string name="RecipientPreferenceActivity_unblock">Unblock</string>
     <string name="RecipientPreferenceActivity_enabled">Enabled</string>
     <string name="RecipientPreferenceActivity_disabled">Disabled</string>
+
+    <!-- RedPhone -->
+    <string name="RedPhone_answering">Answering</string>
+    <string name="RedPhone_ending_call">Ending call</string>
+    <string name="RedPhone_dialing">Dialing</string>
+    <string name="RedPhone_canceling_call">Canceling call</string>
+    <string name="RedPhone_call_rejected">Call rejected</string>
+    <string name="RedPhone_ringing">Ringing</string>
+    <string name="RedPhone_busy">Busy</string>
+    <string name="RedPhone_connected">Connected</string>
+    <string name="RedPhone_connecting">Connecting</string>
+    <string name="RedPhone_handshake_failed">Handshake failed!</string>
+    <string name="RedPhone_recipient_unavailable">Recipient unavailable</string>
+    <string name="RedPhone_performing_handshake">Performing handshake</string>
+    <string name="RedPhone_network_failed">Server failed!</string>
+    <string name="RedPhone_client_failed">Client failed</string>
+    <string name="RedPhone_fatal_error">Fatal Error</string>
+    <string name="RedPhone_login_failed">Login failed!</string>
+    <string name="RedPhone_message_from_the_server">Message from the server</string>
+    <string name="RedPhone_number_not_registered">Number not registered!</string>
+    <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">The number you dialed does not support secure voice!</string>
+    <string name="RedPhone_got_it">Got it</string>
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_connect_with_signal">Connect With Signal</string>
@@ -631,6 +659,12 @@
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
     <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
+
+    <!--- redphone_call_controls -->
+    <string name="redphone_call_card__signal_call">Signal Call</string>
+    <string name="redphone_call_controls__end_call">end call</string>
+    <string name="redphone_call_controls__audio">Audio</string>
+    <string name="redphone_call_controls__mute">Mute</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__verify_your_number_to_connect_with_signal">
@@ -1009,8 +1043,6 @@
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
 
-    <!-- quick_attachment_drawer -->
-    <string name="quick_camera_unavailable">Camera unavailable</string>
 
     <!-- EOF -->
 
