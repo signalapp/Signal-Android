@@ -120,6 +120,10 @@ public class ConversationItem extends LinearLayout
     this.context = context;
   }
 
+  @Override public void setOnClickListener(OnClickListener l) {
+    super.setOnClickListener(new ClickListener(l));
+  }
+
   @Override
   public void setOnClickListener(OnClickListener l) {
     super.setOnClickListener(new ClickListener(l));
