@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -430,24 +431,4 @@ public class RedPhone extends Activity {
       redPhoneService.setCallStateHandler(null);
     }
   };
-
-  @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event)
-  {
-
-    boolean result = super.onKeyDown(keyCode, event);
-
-    //limit the maximum volume to 0.9 [echo prevention]
-    if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-      AudioManager audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-//      ApplicationContext.getInstance().getContext().getSystemService(Context.AUDIO_SERVICE);
-      int curVol = audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
-      int maxVol = (int) (audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL) * 0.9);
-      Log.d(TAG, "volume up key press detected: " + curVol + " / " + maxVol);
-      if(  curVol > maxVol ) {
-        audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,maxVol,0);
-      }
-    }
-     return result;
-  }
 }
