@@ -40,12 +40,13 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class ThumbnailView extends FrameLayout {
   private static final String TAG = ThumbnailView.class.getSimpleName();
 
-  private boolean             hideControls;
-  private ImageView           image;
-  private ImageView           removeButton;
-  private TransferControlView transferControls;
-  private int                 backgroundColorHint;
-  private int                 radius;
+  private boolean   hideControls;
+  private ImageView image;
+  private ImageView removeButton;
+  private int       backgroundColorHint;
+  private int       radius;
+
+  private @Nullable TransferControlView transferControls;
 
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
@@ -79,7 +80,7 @@ public class ThumbnailView extends FrameLayout {
   @Override public void setClickable(boolean clickable) {
     super.setClickable(clickable);
     image.setClickable(clickable);
-    transferControls.setClickable(clickable);
+    if (transferControls != null) transferControls.setClickable(clickable);
   }
 
   @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
