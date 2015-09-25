@@ -54,7 +54,7 @@
     <string name="identification_verified_unsuccessfully">密鑰不一致!</string>
     <string name="identification_verified_successfully">身份驗證成功</string>
     <string name="accept_eula_and_continue"><![CDATA[同意 & 繼續]]></string>
-    <string name="eula_gdata"><u>最終用戶許可協議</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">拍照</string>
     <string name="status_available">在線</string>
     <string name="status_busy">忙碌中</string>
