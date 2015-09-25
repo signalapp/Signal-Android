@@ -100,6 +100,7 @@ public class RedPhone extends Activity {
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
     super.onCreate(savedInstanceState);
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);

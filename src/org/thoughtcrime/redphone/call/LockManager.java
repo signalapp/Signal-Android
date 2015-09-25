@@ -3,7 +3,6 @@ package org.thoughtcrime.redphone.call;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
@@ -19,15 +18,12 @@ public class LockManager {
 
   private final PowerManager.WakeLock        fullLock;
   private final PowerManager.WakeLock        partialLock;
-  private final KeyguardManager.KeyguardLock keyGuardLock;
-  private final KeyguardManager              km;
   private final WifiManager.WifiLock         wifiLock;
   private final ProximityLock                proximityLock;
 
   private final AccelerometerListener accelerometerListener;
   private final boolean               wifiLockEnforced;
 
-  private boolean keyguardDisabled;
 
   private int orientation = AccelerometerListener.ORIENTATION_UNKNOWN;
 
@@ -50,9 +46,6 @@ public class LockManager {
     fullLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "RedPhone Full");
     partialLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "RedPhone Partial");
     proximityLock = new ProximityLock(pm);
-
-    km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-    keyGuardLock = km.newKeyguardLock("RedPhone KeyGuard");
 
     WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     wifiLock = wm.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, "RedPhone Wifi");
@@ -98,22 +91,18 @@ public class LockManager {
       case IDLE:
         setLockState(LockState.SLEEP);
         accelerometerListener.enable(false);
-        maybeEnableKeyguard();
         break;
       case PROCESSING:
         setLockState(LockState.PARTIAL);
         accelerometerListener.enable(false);
-        maybeEnableKeyguard();
         break;
       case INTERACTIVE:
         setLockState(LockState.FULL);
         accelerometerListener.enable(false);
-        disableKeyguard();
         break;
       case IN_CALL:
         accelerometerListener.enable(true);
         updateInCallLockState();
-        disableKeyguard();
         break;
     }
   }
@@ -148,26 +137,5 @@ public class LockManager {
         throw new IllegalArgumentException("Unhandled Mode: " + newState);
     }
     Log.d(TAG, "Entered Lock State: " + newState);
-  }
-
-  private void disableKeyguard() {
-    if(keyguardLocked()) {
-      keyGuardLock.disableKeyguard();
-      keyguardDisabled = true;
-    }
-  }
-
-  private void maybeEnableKeyguard() {
-    if (keyguardDisabled) {
-      keyGuardLock.reenableKeyguard();
-      keyguardDisabled = false;
-    }
-  }
-
-  private boolean keyguardLocked() {
-    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      return km.isKeyguardLocked();
-    }
-    return true;
   }
 }
