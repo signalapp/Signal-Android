@@ -53,7 +53,7 @@
     <string name="identification_verified_unsuccessfully">As chaves não são consistentes!</string>
     <string name="identification_verified_successfully">A identificação ocorreu com sucesso.</string>
     <string name="accept_eula_and_continue">Confirmar e avançar</string>
-    <string name="eula_gdata"><u>Termos e condições gerais</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Fazer uma foto</string>
     <string name="status_available">Disponível</string>
     <string name="status_busy">Ocupado</string>

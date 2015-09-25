@@ -54,7 +54,7 @@
     <string name="identification_verified_unsuccessfully">La chiave non corrisponde!</string>
     <string name="identification_verified_successfully">Identificazione avvenuta con successo.</string>
     <string name="accept_eula_and_continue">Accetta e continua</string>
-    <string name="eula_gdata"><u>Condizioni</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Scatta una foto</string>
     <string name="status_available">Disponibile</string>
     <string name="status_busy">Occupato</string>

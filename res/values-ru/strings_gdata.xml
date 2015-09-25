@@ -54,7 +54,7 @@
     <string name="identification_verified_unsuccessfully">Ключи не совпадают!</string>
     <string name="identification_verified_successfully">Успешная идентификация.</string>
     <string name="accept_eula_and_continue"><![CDATA[Принять & Продолжить]]></string>
-    <string name="eula_gdata"><u>Общие условия сделок</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Сделать фото</string>
     <string name="status_available">В сети</string>
     <string name="status_busy">Занят</string>

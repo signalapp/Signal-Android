@@ -53,7 +53,7 @@
     <string name="identification_verified_unsuccessfully">Les clés ne correspondent pas !</string>
     <string name="identification_verified_successfully">Identification réussie.</string>
     <string name="accept_eula_and_continue">Accepter et poursuivre</string>
-    <string name="eula_gdata"><u>Conditions générales</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Prendre une photo</string>
     <string name="status_available">Disponible</string>
     <string name="status_busy">Occupé</string>

@@ -54,7 +54,7 @@
     <string name="identification_verified_unsuccessfully">Anahtarlar uyuşmuyor!</string>
     <string name="identification_verified_successfully">Kimlik belirleme başarıyla sonuçlandı.</string>
     <string name="accept_eula_and_continue"><![CDATA[Kabul et & devam et]]></string>
-    <string name="eula_gdata"><u>Şartlar ve koşullar</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Fotoğraf çekmek </string>
     <string name="status_available">Müsait</string>
     <string name="status_busy">Meşgul</string>

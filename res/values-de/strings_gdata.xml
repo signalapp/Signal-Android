@@ -52,7 +52,7 @@
     <string name="identification_verified_successfully">Identifikation erfolgreich.</string>
     <string name="accept_eula_and_continue">ZUSTIMMEN UND FORTFAHREN</string>
     <string name="claim_textsecure">EINFACH. SICHER. MOMENTE MIT FREUNDEN TEILEN.</string>
-    <string name="eula_gdata"><u>Endnutzervereinbarung</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Foto aufnehmen</string>
     <string name="status_available">Verfügbar</string>
     <string name="status_busy">Beschäftigt</string>
