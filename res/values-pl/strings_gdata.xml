@@ -54,7 +54,7 @@
     <string name="identification_verified_unsuccessfully">Klucze nie pasują do siebie!</string>
     <string name="identification_verified_successfully">Identyfikator potwierdzony.</string>
     <string name="accept_eula_and_continue"><![CDATA[Akceptuj & kontynuuj]]></string>
-    <string name="eula_gdata"><u>EULA</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Zrób zdjęcie</string>
     <string name="status_available">Dostępny</string>
     <string name="status_busy">Zajęty</string>

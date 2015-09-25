@@ -54,7 +54,7 @@
     <string name="identification_verified_unsuccessfully">The keys do not match!</string>
     <string name="identification_verified_successfully">Identification successful.</string>
     <string name="accept_eula_and_continue"><![CDATA[Agree & Continue]]></string>
-    <string name="eula_gdata"><u><![CDATA[T&Cs]]></u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Take picture</string>
     <string name="status_available">Available</string>
     <string name="status_busy">Busy</string>

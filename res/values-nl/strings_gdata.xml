@@ -54,7 +54,7 @@
     <string name="identification_verified_unsuccessfully">De sleutels zijn niet identiek!</string>
     <string name="identification_verified_successfully">Identificatie succesvol.</string>
     <string name="accept_eula_and_continue"><![CDATA[Accepteren & Doorgaan]]></string>
-    <string name="eula_gdata"><u>Voorwaarden</u></string>
+    <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Foto nemen</string>
     <string name="status_available">Beschikbaar</string>
     <string name="status_busy">Bezet</string>
