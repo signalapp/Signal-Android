@@ -405,8 +405,9 @@
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_left_the_group">Left the group...</string>
-    <string name="TheadRecord_secure_session_ended">Secure session ended.</string>
+    <string name="ThreadRecord_secure_session_ended">Secure session ended.</string>
     <string name="ThreadRecord_draft">Draft:</string>
+    <string name="ThreadRecord_sent">You:</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
