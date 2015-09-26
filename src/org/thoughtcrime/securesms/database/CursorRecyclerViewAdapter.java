@@ -40,7 +40,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
       cursor.registerDataSetObserver(observer);
     }
 
-    setHasStableIds(true);
+    setHasStableIds(false);
   }
 
   public Context getContext() {
