@@ -56,6 +56,7 @@ public class TransferControlView extends FrameLayout {
     if (VERSION.SDK_INT >= VERSION_CODES.ICE_CREAM_SANDWICH) {
       background.setColorFilter(0x66ffffff, Mode.MULTIPLY);
     }
+    setLongClickable(false);
     ViewUtil.setBackground(this, background);
     setVisibility(GONE);
 
@@ -63,6 +64,16 @@ public class TransferControlView extends FrameLayout {
     this.downloadDetails = ViewUtil.findById(this, R.id.download_details);
     this.contractedWidth = getResources().getDimensionPixelSize(R.dimen.transfer_controls_contracted_width);
     this.expandedWidth   = getResources().getDimensionPixelSize(R.dimen.transfer_controls_expanded_width);
+  }
+
+  @Override public void setFocusable(boolean focusable) {
+    super.setFocusable(focusable);
+    downloadDetails.setFocusable(focusable);
+  }
+
+  @Override public void setClickable(boolean clickable) {
+    super.setClickable(clickable);
+    downloadDetails.setClickable(clickable);
   }
 
   @Override protected void onAttachedToWindow() {

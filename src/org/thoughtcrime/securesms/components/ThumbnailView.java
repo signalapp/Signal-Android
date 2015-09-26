@@ -34,19 +34,21 @@ import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class ThumbnailView extends FrameLayout {
   private static final String TAG = ThumbnailView.class.getSimpleName();
 
-  private boolean             hideControls;
-  private ImageView           image;
-  private ImageView           removeButton;
-  private TransferControlView transferControls;
-  private int                 backgroundColorHint;
-  private int                 radius;
+  private boolean         hideControls;
+  private ImageView       image;
+  private ImageView       removeButton;
+  private int             backgroundColorHint;
+  private int             radius;
+  private OnClickListener parentClickListener;
 
+  private Optional<TransferControlView>   transferControls       = Optional.absent();
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
   private ThumbnailClickListener          thumbnailClickListener = null;
@@ -67,7 +69,7 @@ public class ThumbnailView extends FrameLayout {
     inflate(context, R.layout.thumbnail_view, this);
     radius = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
     image  = (ImageView) findViewById(R.id.thumbnail_image);
-    setOnClickListener(new ThumbnailClickDispatcher());
+    super.setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0);
@@ -76,10 +78,18 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
+  @Override public void setOnClickListener(OnClickListener l) {
+    parentClickListener = l;
+  }
+
+  @Override public void setFocusable(boolean focusable) {
+    super.setFocusable(focusable);
+    if (transferControls.isPresent()) transferControls.get().setFocusable(focusable);
+  }
+
   @Override public void setClickable(boolean clickable) {
     super.setClickable(clickable);
-    image.setClickable(clickable);
-    transferControls.setClickable(clickable);
+    if (transferControls.isPresent()) transferControls.get().setClickable(clickable);
   }
 
   @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -97,8 +107,10 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private TransferControlView getTransferControls() {
-    if (transferControls == null) transferControls = ViewUtil.inflateStub(this, R.id.transfer_controls_stub);
-    return transferControls;
+    if (!transferControls.isPresent()) {
+      transferControls = Optional.fromNullable((TransferControlView)ViewUtil.inflateStub(this, R.id.transfer_controls_stub));
+    }
+    return transferControls.get();
   }
 
   public void setBackgroundColorHint(int color) {
@@ -117,7 +129,7 @@ public class ThumbnailView extends FrameLayout {
     String slideId = id + "::" + timestamp;
 
     if (!slideId.equals(this.slideId)) {
-      if (transferControls != null) transferControls.clear();
+      if (transferControls.isPresent()) getTransferControls().clear();
       image.setImageDrawable(null);
       this.slide   = null;
       this.slideId = slideId;
@@ -166,9 +178,9 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public void clear() {
-    if (isContextValid())         Glide.clear(image);
-    if (slideDeckFuture != null)  slideDeckFuture.removeListener(slideDeckListener);
-    if (transferControls != null) transferControls.clear();
+    if (isContextValid())             Glide.clear(image);
+    if (slideDeckFuture != null)      slideDeckFuture.removeListener(slideDeckListener);
+    if (transferControls.isPresent()) getTransferControls().clear();
     slide             = null;
     slideId           = null;
     slideDeckFuture   = null;
@@ -177,7 +189,7 @@ public class ThumbnailView extends FrameLayout {
 
   public void hideControls(boolean hideControls) {
     this.hideControls = hideControls;
-    if (hideControls && transferControls != null) transferControls.setVisibility(View.GONE);
+    if (hideControls && transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
   }
 
   public void showProgressSpinner() {
@@ -296,6 +308,8 @@ public class ThumbnailView extends FrameLayout {
           slide.getTransferProgress()  == PartDatabase.TRANSFER_PROGRESS_DONE)
       {
         thumbnailClickListener.onClick(view, slide);
+      } else if (parentClickListener != null) {
+        parentClickListener.onClick(view);
       }
     }
   }
