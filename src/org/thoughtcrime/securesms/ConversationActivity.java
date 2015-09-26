@@ -608,7 +608,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     try {
       if (recipient == null) return;
 
-      Intent dialIntent = new Intent(Intent.ACTION_DIAL,
+      Intent dialIntent = new Intent(Intent.ACTION_CALL,
                               Uri.parse("tel:" + recipient.getNumber()));
       startActivity(dialIntent);
     } catch (ActivityNotFoundException anfe) {
