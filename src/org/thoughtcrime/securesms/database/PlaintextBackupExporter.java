@@ -26,7 +26,11 @@ public class PlaintextBackupExporter {
 
   private static String getPlaintextExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+    File backupDirectory = new File(String.format("%s%s%s", sdDirectory.getAbsolutePath(), File.separator, "TextSecureBackup"));
+    if (!backupDirectory.exists()) {
+      backupDirectory.mkdir();
+    }
+    return backupDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
   }
 
   private static void exportPlaintext(Context context, MasterSecret masterSecret)

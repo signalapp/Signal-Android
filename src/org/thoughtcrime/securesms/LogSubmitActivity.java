@@ -1,22 +1,23 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.libpastelog.SubmitLogFragment;
 
 /**
  * Activity for submitting logcat logs to a pastebin service.
  */
-public class LogSubmitActivity extends BaseActionBarActivity implements SubmitLogFragment.OnLogSubmittedListener {
+public class LogSubmitActivity extends PassphraseRequiredActionBarActivity implements SubmitLogFragment.OnLogSubmittedListener {
   private static final String TAG = LogSubmitActivity.class.getSimpleName();
 
   @Override
-  protected void onCreate(Bundle icicle) {
-    super.onCreate(icicle);
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     setContentView(R.layout.log_submit_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     SubmitLogFragment fragment = SubmitLogFragment.newInstance();
@@ -26,9 +27,7 @@ public class LogSubmitActivity extends BaseActionBarActivity implements SubmitLo
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-  }
+  protected void onResume() { super.onResume(); }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
