@@ -334,6 +334,7 @@ mã số quốc gia bạn</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Đăng ký TextSecure đã hoàn tất tốt đẹp.</string>
   <string name="RegistrationService_registration_error">Có lỗi đăng ký</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Đăng ký TextSecure gặp phải vấn đề.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin
 trao đổi chìa khóa bị hỏng!</string>

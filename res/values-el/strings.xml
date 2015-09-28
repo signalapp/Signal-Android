@@ -300,6 +300,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Η εγγραφή TextSecure ολοκληρώθηκε επιτυχώς.</string>
   <string name="RegistrationService_registration_error">Σφάλμα εγγραφής</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Η εγγραφή TextSecure παρουσίασε ένα πρόβλημα.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Ελήφθη προβληματικό μήνυμα
 ανταλλαγής κλειδιών!

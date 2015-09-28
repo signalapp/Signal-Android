@@ -332,6 +332,7 @@ cet appareil n\'est pas supporté pour la messagerie sur le canal de données. L
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">L\'inscription de TextSecure s\'est achevée avec succès.</string>
   <string name="RegistrationService_registration_error">Erreur lors de l\'enregistrement</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">L\'enregistrement de TextSecure a rencontré un problème.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Une clé corrompue a été reçue
 Message d\'échange!</string>

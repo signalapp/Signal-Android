@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 public class EmojiTextView extends AppCompatTextView {
   private CharSequence source;
   private boolean      needsEllipsizing;
-  private boolean      useSystemEmoji;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -29,17 +28,20 @@ public class EmojiTextView extends AppCompatTextView {
 
   public EmojiTextView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    this.useSystemEmoji = TextSecurePreferences.isSystemEmojiPreferred(getContext());
   }
 
   @Override public void setText(@Nullable CharSequence text, BufferType type) {
-    if (useSystemEmoji) {
+    if (useSystemEmoji()) {
       super.setText(text, type);
       return;
     }
 
     source = EmojiProvider.getInstance(getContext()).emojify(text, this);
     setTextEllipsized(source);
+  }
+
+  private boolean useSystemEmoji() {
+   return TextSecurePreferences.isSystemEmojiPreferred(getContext());
   }
 
   private void setTextEllipsized(final @Nullable CharSequence source) {
@@ -54,7 +56,7 @@ public class EmojiTextView extends AppCompatTextView {
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     final int size = MeasureSpec.getSize(widthMeasureSpec);
     final int mode = MeasureSpec.getMode(widthMeasureSpec);
-    if (!useSystemEmoji                                              &&
+    if (!useSystemEmoji()                                            &&
         getEllipsize() == TruncateAt.END                             &&
         !TextUtils.isEmpty(source)                                   &&
         (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.EXACTLY) &&
@@ -71,7 +73,7 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-    if (changed && !useSystemEmoji) setTextEllipsized(source);
+    if (changed && !useSystemEmoji()) setTextEllipsized(source);
     super.onLayout(changed, left, top, right, bottom);
   }
 }

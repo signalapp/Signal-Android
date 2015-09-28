@@ -296,6 +296,7 @@ Skontrolujte pre istotu znovu, že ste správne zadali Vaše telefónne číslo!
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure registrácia bola úspešne dokončená.</string>
   <string name="RegistrationService_registration_error">Chyba pri registrácii</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pri TextSecure registrácii sa vyskytol problém.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Bola prijatá poškodená správa
 vzájomnej výmeny kľúčov.</string>

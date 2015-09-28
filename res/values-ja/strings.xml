@@ -318,6 +318,7 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure登録が正常に完了しました。</string>
   <string name="RegistrationService_registration_error">登録エラー</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure登録中にエラーが発生しました。</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">無効な鍵交換メッセージを受信しました。</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">

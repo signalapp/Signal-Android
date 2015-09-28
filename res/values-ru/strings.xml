@@ -304,6 +304,7 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Регистрация в TextSecure успешно завершена.</string>
   <string name="RegistrationService_registration_error">Ошибка регистрации</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">При регистрации в TextSecure возникла ошибка.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Получено повреждённое
 сообщение обмена ключами!

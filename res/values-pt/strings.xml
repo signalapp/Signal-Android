@@ -334,6 +334,7 @@ Verifique que este é o seu número! Estamos prestes a confirmá-lo com uma SMS.
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">O registo TextSecure foi completado com sucesso.</string>
   <string name="RegistrationService_registration_error">Erro de registo</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">O registo do TextSecure deparou-se com um problema.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Foi recebida uma
 chave corrompida.

@@ -111,6 +111,7 @@ ten kontakt.
   <string name="ConversationActivity_unblock_question">Odblokować?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Czy jesteś pewny, że chcesz odblokować ten kontakt?</string>
   <string name="ConversationActivity_unblock">Odblokuj</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Rozmiar tego załącznika przekracza limit wiadomości.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nWysłano/Otrzymano: %2$s</string>
@@ -320,6 +321,10 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Rejestracja TextSecure została pomyślnie zakończona.</string>
   <string name="RegistrationService_registration_error">Błąd rejestracji</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Rejestracja TextSecure napotkała problem.</string>
+  <!--Slide-->
+  <string name="Slide_image">Obraz</string>
+  <string name="Slide_audio">Audio</string>
+  <string name="Slide_video">Wideo</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Otrzymano uszkodzony klucz!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
@@ -715,6 +720,13 @@ Darmowe i prywatne wiadomości do użytkowników TextSecure i Signal</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \'Połączenia WiFi\' jest włączone na Twoim urządzeniu)</string>
   <string name="preferences_app_protection__blocked_contacts">Zablokowane kontakty</string>
   <string name="preferences_notifications__display_in_notifications">Pokaż w powiadomieniach</string>
+  <string name="preferences_chats__when_using_mobile_data">Podczas używania Danych Mobilnych</string>
+  <string name="preferences_chats__when_using_wifi">Podczas używania Wi-Fi</string>
+  <string name="preferences_chats__when_roaming">Podczas roamingu</string>
+  <string name="preferences_chats__media_auto_download">Auto-pobieranie plików mediów</string>
+  <string name="preferences_chats__message_trimming">Przycinanie wiadomości</string>
+  <string name="preferences_advanced__use_system_emoji">Używaj emoji systemu</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Wyłącz wbudowane wspomaganie emoji TextSecure</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

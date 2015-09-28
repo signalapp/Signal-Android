@@ -117,6 +117,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_unblock_question">Desbloquear?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Tem certeza que deseja desbloquear este contato?</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede os limites de tamanho para o tipo de mensagem sendo enviada.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s\nEnviadas/Recebidas: %2$s</string>
@@ -343,6 +344,10 @@ Tem certeza que deseja fazer isto?</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">O cadastro em TextSecure foi completado com sucesso.</string>
   <string name="RegistrationService_registration_error">Erro de cadastro</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">O cadastro em TextSecure encontrou um problema.</string>
+  <!--Slide-->
+  <string name="Slide_image">Imagem</string>
+  <string name="Slide_audio">Áudio</string>
+  <string name="Slide_video">Vídeo</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Recebida mensagem de troca
         de chaves corrompida!
@@ -774,6 +779,8 @@ falhou.</string>
   <string name="preferences_chats__when_roaming">Quando em roaming</string>
   <string name="preferences_chats__media_auto_download">Download automático de mídia</string>
   <string name="preferences_chats__message_trimming">Aparar mensagem</string>
+  <string name="preferences_advanced__use_system_emoji">Usar emoji do sistema</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Desabilitar o suporte a emoji nativo do TextSecure</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -112,6 +112,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_unblock_question">Poista esto?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Haluatko varmasti poistaa eston tältä yhteystiedolta?</string>
   <string name="ConversationActivity_unblock">Poista esto</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Liitetiedosto ylittää kyseisen viestityypin kokorajoituikset.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Viestin tiedot</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Tyyppi: %1$s
@@ -332,6 +333,10 @@ Tarkista vielä, että tämä on varmasti numerosi! Aiomme seuraavaksi vahvistaa
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecuren rekisteröityminen onnistui.</string>
   <string name="RegistrationService_registration_error">Rekisteröitymisvirhe</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Rekisteröitymisessä ilmeni ongelma.</string>
+  <!--Slide-->
+  <string name="Slide_image">Kuva</string>
+  <string name="Slide_audio">Äänitallenne</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Vastaanotettu avaintenvaihtoviesti 
 on viallinen!</string>
@@ -739,7 +744,9 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
   <string name="preferences_chats__when_roaming">Roaming-tilassa</string>
   <string name="preferences_chats__media_auto_download">Liitetiedostojen automaattinen lataus</string>
-  <string name="preferences_chats__message_trimming">Viestien karsiminen</string>
+  <string name="preferences_chats__message_trimming">Keskustelujen karsiminen</string>
+  <string name="preferences_advanced__use_system_emoji">Käytä järjestelmän hymiöitä</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Ota TextSecuren omat hymiöt pois käytöstä</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

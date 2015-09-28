@@ -309,6 +309,7 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure регистрацијата е успешно завршена.</string>
   <string name="RegistrationService_registration_error">Грешка при регистрацијата</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure регистрацијата наиде на проблем.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Примена е погрешна порака
 за размена на клучеви!</string>

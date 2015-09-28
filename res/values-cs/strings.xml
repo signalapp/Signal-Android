@@ -112,6 +112,7 @@ kontakt</string>
   <string name="ConversationActivity_unblock_question">Odblokovat?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Opravdu chcete odblokovat tento kontakt?</string>
   <string name="ConversationActivity_unblock">Odblokovat</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost přílohy překročila limit pro typ zprávy kterou posíláte</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti zprávy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Přenos: %1$s\nOdesláno/Přijato: %2$s</string>
@@ -318,6 +319,10 @@ telefonní číslo</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Registrace TextSecure byla úspěšně dokončena</string>
   <string name="RegistrationService_registration_error">Chyba registrace</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Při registraci TextSecure došlo k potížím.</string>
+  <!--Slide-->
+  <string name="Slide_image">Obrázek</string>
+  <string name="Slide_audio">Audio</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Obdržen neplatný požadavek na výměnu klíčů.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
@@ -731,6 +736,13 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
   <string name="preferences_notifications__display_in_notifications">Zobrazit v upozornění</string>
+  <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
+  <string name="preferences_chats__when_using_wifi">Při použití Wfi</string>
+  <string name="preferences_chats__when_roaming">Při roamingu</string>
+  <string name="preferences_chats__media_auto_download">Automatické stahování multimedií</string>
+  <string name="preferences_chats__message_trimming">Ořezávání práv</string>
+  <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Zakázat použití smajlíků integrovaných v TextSecure </string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

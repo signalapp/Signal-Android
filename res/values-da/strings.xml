@@ -108,6 +108,7 @@ denne kontakt.</string>
   <string name="ConversationActivity_unblock_question">Stop blokering?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Er du sikker på, du vil stoppe blokering af denne kontakt?</string>
   <string name="ConversationActivity_unblock">Stop blokering</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Vedhæftet fil overskrider størrelsesbegrænsningen for den type meddelelse, du sender.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Beskeddetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overførsel: %1$s\nSendt/Modtaget: %2$s</string>
@@ -332,6 +333,10 @@ Dobbelttjek, at dette er dit nummer! Vi er ved at verificere det med en SMS.
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure er blevet registreret.</string>
   <string name="RegistrationService_registration_error">Registreringsfejl</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Der opstod en fejl under registreringen af TextSecure.</string>
+  <!--Slide-->
+  <string name="Slide_image">Billede</string>
+  <string name="Slide_audio">Lyd</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Modtog en ugyldig
 nøgle-besked!
@@ -739,6 +744,8 @@ Gratis private beskeder til TextSecure- og Signal-brugere</string>
   <string name="preferences_chats__when_roaming">Når der roames</string>
   <string name="preferences_chats__media_auto_download">Automatisk hentning af multimedier</string>
   <string name="preferences_chats__message_trimming">Trimning af beskeder</string>
+  <string name="preferences_advanced__use_system_emoji">Anvend systemets emoji</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Deaktivér TextSecures indbyggede understøttelse af emoji</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

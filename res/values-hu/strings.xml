@@ -115,6 +115,7 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationActivity_unblock_question">Tiltás feloldása?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan feloldod ennek a névjegynek a tiltását?</string>
   <string name="ConversationActivity_unblock">Tiltás feloldása</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet meghaladja a mérethatárt ahhoz a típusú üzenethez, amit küldesz.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Üzenet részletek</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Átviteli mód: %1$s\nKüldött/Fogadott: %2$s</string>
@@ -339,6 +340,10 @@ Ellenőrizd újra, hogy ez a te számod! Hamarosan egy SMS-ben fogjuk ellenőriz
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">A TextSecure regisztráció sikeresen befejeződött.</string>
   <string name="RegistrationService_registration_error">Regisztráció hiba</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">A TextSecure regisztráció közben hiba merült fel.</string>
+  <!--Slide-->
+  <string name="Slide_image">Kép</string>
+  <string name="Slide_audio">Hang</string>
+  <string name="Slide_video">Videó</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Elrontott csere kulcs
 üzenet érkezett!
@@ -774,6 +779,8 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="preferences_chats__when_roaming">Barangoláskor</string>
   <string name="preferences_chats__media_auto_download">Média auto-letöltés</string>
   <string name="preferences_chats__message_trimming">Üzenet trimmelés</string>
+  <string name="preferences_advanced__use_system_emoji">Rendszer emoji használata</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">A TextSecure beépített emoji támogatásának letiltása</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

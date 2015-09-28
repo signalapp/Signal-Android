@@ -273,6 +273,7 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure பதிவு வெற்றிகரமாக நிறைவுபெற்றது.</string>
   <string name="RegistrationService_registration_error">பதிவுசெய்தலில்  பிழை</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure பதிவு ஒரு பிரச்சனையை சந்தித்தது.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">சிதைந்த சாவிபரிமாற்ற
  செய்தி பெறப்பட்டது!</string>

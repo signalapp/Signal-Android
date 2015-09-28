@@ -4,11 +4,9 @@
                                              android:layout_height="wrap_content"
                                              android:paddingRight="10dip"
                                              android:orientation="vertical"
-                                             android:background="?conversation_item_background"
+                                             android:background="@drawable/conversation_item_background"
                                              xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             xmlns:dots="http://schemas.android.com/apk/res-auto"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto">
+                                             xmlns:tools="http://schemas.android.com/tools">
 
     <TextView android:id="@+id/group_message_status"
               android:layout_width="wrap_content"

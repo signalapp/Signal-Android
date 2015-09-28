@@ -109,6 +109,7 @@ preveriti ta stik.</string>
   <string name="ConversationActivity_unblock_question">Odblokiram?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Ste prepričani, da želite odblokirati ta stik?</string>
   <string name="ConversationActivity_unblock">Odblokiraj</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti sporočila</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Način prenosa: %1$s\nPoslano/Prejeto: %2$s</string>
@@ -311,6 +312,10 @@ Preverite, če je to zares vaša telefonska številka! Overili jo bomo s sporoč
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Registracija TextSecure je bila uspešno zaključena.</string>
   <string name="RegistrationService_registration_error">Napaka pri registraciji</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pri registraciji TextSecure je prišlo do težav.</string>
+  <!--Slide-->
+  <string name="Slide_image">Slika</string>
+  <string name="Slide_audio">Zvok</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Prejeto poškodovano
 sporočilo za izmenjavo ključev!</string>
@@ -719,6 +724,8 @@ Brezplačno zasebno sporočanje za TextSecure in Signal</string>
   <string name="preferences_chats__when_roaming">Med gostovanjem</string>
   <string name="preferences_chats__media_auto_download">Samodejen prenos priponk</string>
   <string name="preferences_chats__message_trimming">Izbris starih sporočil</string>
+  <string name="preferences_advanced__use_system_emoji">Uporabi sistemske emoji</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Onemogoči TextSecure vgrajeno podporo za emoji</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

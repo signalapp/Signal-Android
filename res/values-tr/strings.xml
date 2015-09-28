@@ -290,6 +290,7 @@ Numaranızı ikinci kez kontrol ediniz! Onu bir SMS ile doğrulamak üzereyiz.</
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure kaydı başarıyla tamamlandı.</string>
   <string name="RegistrationService_registration_error">Kayıt hatası</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure kaydı bir sorunla karşılaştı.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Bozulmuş anahtar değişim 
 mesajı alındı!</string>

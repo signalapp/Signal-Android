@@ -290,6 +290,7 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ನ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿ ಮುಕ್ತಾಯಗೊಂಡಿದೆ.</string>
   <string name="RegistrationService_registration_error">ನೋಂದಣಿ ದೋಷ</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ಗೆ ನೋಂದಾಯಿಸುವಾಗ ಸಮಸ್ಯೆ ಎದುರಾಗಿದೆ.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">ಭ್ರಷ್ಟಗೊಂಡಿದೆ ಕೀಲಿಯನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ
 ವಿನಿಮಯ ಸಂದೇಶ!</string>

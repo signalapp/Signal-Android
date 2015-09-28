@@ -109,6 +109,7 @@ denne kontakten.</string>
   <string name="ConversationActivity_unblock_question">Opphev blokkering?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Er du sikker på at du ønsker å oppheve blokkeringen av denne kontakten?</string>
   <string name="ConversationActivity_unblock">Opphev blokkering</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegget overstiger størrelsesbegrensningen for den typen melding du sender.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
@@ -317,6 +318,10 @@ Dobbelsjekk at dette er nummeret ditt! Vi er i ferd med å verifisere det med en
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure registreringen er fullført.</string>
   <string name="RegistrationService_registration_error">Registreringsfeil</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Det oppstod en feil under registeringen til TextSecure.</string>
+  <!--Slide-->
+  <string name="Slide_image">Bilde</string>
+  <string name="Slide_audio">Lyd</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Mottok korrupt nøkkelutvekslingsmelding!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
@@ -721,6 +726,8 @@ Gratis og private meldinger til TextSecure- og Signal-brukere
   <string name="preferences_chats__when_roaming">Ved roaming</string>
   <string name="preferences_chats__media_auto_download">Media auto-download</string>
   <string name="preferences_chats__message_trimming">Meldingsavkorting</string>
+  <string name="preferences_advanced__use_system_emoji">Bruk systemets smilefjes</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Deaktiver TextSecures innebygde støtte for smilefjes</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

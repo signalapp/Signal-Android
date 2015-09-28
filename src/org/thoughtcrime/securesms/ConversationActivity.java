@@ -214,6 +214,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeActionBar();
     initializeViews();
     initializeResources();
+    initializeSecurity();
     initializeDraft();
   }
 
@@ -229,6 +230,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     setIntent(intent);
     initializeResources();
+    initializeSecurity();
     initializeDraft();
 
     if (fragment != null) {
@@ -243,7 +245,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicLanguage.onResume(this);
     quickAttachmentDrawer.onResume();
 
-    initializeSecurity();
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
     composeText.setTransport(sendButton.getSelectedTransport());
@@ -1365,11 +1366,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {}
-  }
-
-  @Override
-  public void setComposeText(String text) {
-    this.composeText.setText(text);
   }
 
   @Override

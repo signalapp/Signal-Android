@@ -109,6 +109,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConversationActivity_unblock_question">Ontblokken?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Weet je zeker dat je dit contact wilt ontblokken?</string>
   <string name="ConversationActivity_unblock">Ontblokken</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wilt versturen.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
@@ -317,6 +318,10 @@ ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Registratie bij TextSecure is succesvol afgerond.</string>
   <string name="RegistrationService_registration_error">Registratiefout</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Registratie bij TextSecure is mislukt.</string>
+  <!--Slide-->
+  <string name="Slide_image">Afbeelding</string>
+  <string name="Slide_audio">Audio</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Misvormd sleuteluitwisselingsbericht
 ontvangen!</string>
@@ -727,6 +732,8 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
   <string name="preferences_chats__message_trimming">Bericht inkorten</string>
+  <string name="preferences_advanced__use_system_emoji">Gebruik systeem emoji</string>
+  <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">TextSecure\'s ingebouwde emoji ondersteuning uitschakelen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
