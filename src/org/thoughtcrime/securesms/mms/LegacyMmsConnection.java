@@ -43,6 +43,9 @@ import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.Phonenumber;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -195,6 +198,15 @@ public abstract class LegacyMmsConnection {
 
   protected List<Header> getBaseHeaders() {
     final String number = TelephonyUtil.getManager(context).getLine1Number();
+    final String numberWithoutCC;
+    PhoneNumberUtil numberUtil = PhoneNumberUtil.getInstance();
+    Phonenumber pn = numberUtil.parse(number, null);
+    try {
+      numberWithoutCC = numberUtil.getNationalSignificantNumber(pn);
+    } catch (NumberParseException e) {
+      Log.w(TAG, e);
+    }
+ 
     return new LinkedList<Header>() {{
       add(new BasicHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic"));
       add(new BasicHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml"));
@@ -203,6 +215,7 @@ public abstract class LegacyMmsConnection {
       if (!TextUtils.isEmpty(number)) {
         add(new BasicHeader("x-up-calling-line-id", number));
         add(new BasicHeader("X-MDN", number));
+        add(new BasicHeader("x-vzw-mdn", numberWithoutCC));
       }
     }};
   }
