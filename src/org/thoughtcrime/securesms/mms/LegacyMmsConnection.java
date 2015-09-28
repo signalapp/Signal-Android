@@ -199,10 +199,10 @@ public abstract class LegacyMmsConnection {
   protected List<Header> getBaseHeaders() {
     final String number = TelephonyUtil.getManager(context).getLine1Number();
     final String numberWithoutCC;
-    PhoneNumberUtil numberUtil = PhoneNumberUtil.getInstance();
-    Phonenumber pn = numberUtil.parse(number, null);
+    Phonenumber pn = PhoneNumberUtil.getInstance().parse(number, null);
+    
     try {
-      numberWithoutCC = numberUtil.getNationalSignificantNumber(pn);
+      numberWithoutCC = PhoneNumberUtil.getInstance().getNationalSignificantNumber(pn);
     } catch (NumberParseException e) {
       Log.w(TAG, e);
     }
