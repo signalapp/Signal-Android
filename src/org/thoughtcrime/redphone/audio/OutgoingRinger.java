@@ -135,8 +135,12 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
     if (am.isBluetoothScoAvailableOffCall()) {
-      am.startBluetoothSco();
-      am.setBluetoothScoOn(true);
+      try {
+        am.startBluetoothSco();
+        am.setBluetoothScoOn(true);
+      } catch (NullPointerException e) {
+        // Lollipop bug (https://stackoverflow.com/questions/26642218/audiomanager-startbluetoothsco-crashes-on-android-lollipop)
+      }
     }
 
     mediaPlayer.start();
