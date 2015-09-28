@@ -779,7 +779,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeSecurity(final boolean current) {
-    handleSecurityChange(current);
+    handleSecurityChange(current || isGroupConversation());
 
     new AsyncTask<Recipients, Void, Boolean>() {
       @Override
