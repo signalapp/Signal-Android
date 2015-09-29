@@ -115,6 +115,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private TypedArray navIcons;
   private FloatingActionButton fab;
   private LinearLayout mDrawerNavi;
+  private SlidingTabLayout mSlidingTabLayout;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -539,7 +540,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     vpPager.setAdapter(adapterViewPager);
     vpPager.setCurrentItem(gDataPreferences.getViewPagersLastPage());
 
-    SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+    mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
     Integer[] iconResourceArray = {R.drawable.stock_sms_gray,
         R.drawable.ic_tab_contacts};
 

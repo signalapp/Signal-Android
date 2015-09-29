@@ -31,6 +31,7 @@ package de.gdata.messaging;
     import android.widget.TextView;
 
     import org.thoughtcrime.securesms.R;
+    import org.thoughtcrime.securesms.database.DatabaseFactory;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -208,6 +209,18 @@ public class SlidingTabLayout extends HorizontalScrollView {
           false);
 
       ImageView iconImageView = (ImageView) tabView.findViewById(R.id.tab_layout_icon);
+      TextView counter = (TextView) tabView.findViewById(R.id.tab_layout_count);
+      if(i==0) {
+        int unreadCount = DatabaseFactory.getMmsDatabase(getContext()).getUnreadThreadsCount();
+        if(unreadCount > 0) {
+          counter.setText(unreadCount+"");
+        } else {
+          counter.setVisibility(View.GONE);
+        }
+      } else {
+        counter.setVisibility(View.GONE);
+      }
+
       iconImageView.setImageDrawable(getContext().getResources().getDrawable(getIconResourceArray()[i]));
 
       tabView.setOnClickListener(tabClickListener);

@@ -422,7 +422,7 @@ public class MmsDatabase extends MessagingDatabase {
     ContentValues contentValues = new ContentValues();
     contentValues.put(STATUS, status);
 
-    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
+    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{messageId + ""});
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
@@ -612,6 +612,20 @@ public class MmsDatabase extends MessagingDatabase {
     jobManager.add(new TrimThreadJob(context, threadId));
 
     return new Pair<>(messageId, threadId);
+  }
+  public int getUnreadThreadsCount() {
+    Cursor cursor = DatabaseFactory.getThreadDatabase(context).getConversationList();
+    int countUnread = 0;
+    if (cursor != null) {
+      if (cursor.moveToFirst()) {
+        do {
+          if(cursor.getInt(6) == 0) {
+            countUnread++;
+          }
+        } while (cursor.moveToNext());
+      }
+    }
+    return countUnread;
   }
 
   public Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret,
