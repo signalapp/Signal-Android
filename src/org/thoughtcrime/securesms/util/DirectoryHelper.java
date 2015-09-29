@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
@@ -29,8 +30,30 @@ import java.util.Set;
 
 public class DirectoryHelper {
 
-  public enum RegistrationState {
-    REGISTERED, NOT_REGISTERED, UNKNOWN
+  public static class UserCapabilities {
+
+    public static final UserCapabilities UNKNOWN     = new UserCapabilities(Capability.UNKNOWN, Capability.UNKNOWN);
+    public static final UserCapabilities UNSUPPORTED = new UserCapabilities(Capability.UNSUPPORTED, Capability.UNSUPPORTED);
+
+    public enum Capability {
+      UNKNOWN, SUPPORTED, UNSUPPORTED
+    }
+
+    private final Capability text;
+    private final Capability voice;
+
+    public UserCapabilities(Capability text, Capability voice) {
+      this.text  = text;
+      this.voice = voice;
+    }
+
+    public Capability getTextCapability() {
+      return text;
+    }
+
+    public Capability getVoiceCapability() {
+      return voice;
+    }
   }
 
   private static final String TAG = DirectoryHelper.class.getSimpleName();
@@ -77,7 +100,7 @@ public class DirectoryHelper {
     }
   }
 
-  public static RegistrationState refreshDirectoryFor(Context context, Recipients recipients)
+  public static UserCapabilities refreshDirectoryFor(Context context, Recipients recipients)
       throws IOException
   {
     try {
@@ -90,52 +113,55 @@ public class DirectoryHelper {
       if (details.isPresent()) {
         directory.setNumber(details.get(), true);
         ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context));
-        return RegistrationState.REGISTERED;
+        return new UserCapabilities(Capability.SUPPORTED, details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
       } else {
         ContactTokenDetails absent = new ContactTokenDetails();
         absent.setNumber(number);
         directory.setNumber(absent, false);
-        return RegistrationState.NOT_REGISTERED;
+        return UserCapabilities.UNSUPPORTED;
       }
     } catch (InvalidNumberException e) {
       Log.w(TAG, e);
-      return RegistrationState.NOT_REGISTERED;
+      return UserCapabilities.UNSUPPORTED;
     }
   }
 
-  public static RegistrationState isTextSecureEnabledRecipient(Context context, Recipients recipients) {
+  public static UserCapabilities getUserCapabilities(Context context, Recipients recipients) {
     try {
       if (recipients == null) {
-        return RegistrationState.NOT_REGISTERED;
+        return UserCapabilities.UNSUPPORTED;
       }
 
       if (!TextSecurePreferences.isPushRegistered(context)) {
-        return RegistrationState.NOT_REGISTERED;
+        return UserCapabilities.UNSUPPORTED;
       }
 
       if (!recipients.isSingleRecipient()) {
-        return RegistrationState.NOT_REGISTERED;
+        return UserCapabilities.UNSUPPORTED;
       }
 
       if (recipients.isGroupRecipient()) {
-        return RegistrationState.REGISTERED;
+        return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED);
       }
 
       final String number = recipients.getPrimaryRecipient().getNumber();
 
       if (number == null) {
-        return RegistrationState.NOT_REGISTERED;
+        return UserCapabilities.UNSUPPORTED;
       }
 
-      final String e164number = Util.canonicalizeNumber(context, number);
+      String  e164number  = Util.canonicalizeNumber(context, number);
+      boolean secureText  = TextSecureDirectory.getInstance(context).isSecureTextSupported(e164number);
+      boolean secureVoice = TextSecureDirectory.getInstance(context).isSecureVoiceSupported(e164number);
 
-      return TextSecureDirectory.getInstance(context).isActiveNumber(e164number) ?
-             RegistrationState.REGISTERED : RegistrationState.NOT_REGISTERED;
+      return new UserCapabilities(secureText  ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                  secureVoice ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+
     } catch (InvalidNumberException e) {
       Log.w(TAG, e);
-      return RegistrationState.NOT_REGISTERED;
+      return UserCapabilities.UNSUPPORTED;
     } catch (NotInDirectoryException e) {
-      return RegistrationState.UNKNOWN;
+      return UserCapabilities.UNKNOWN;
     }
   }
 

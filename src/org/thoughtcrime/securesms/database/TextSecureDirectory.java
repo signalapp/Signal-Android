@@ -66,7 +66,7 @@ public class TextSecureDirectory {
     this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
-  public boolean isActiveNumber(String e164number) throws NotInDirectoryException {
+  public boolean isSecureTextSupported(String e164number) throws NotInDirectoryException {
     if (e164number == null || e164number.length() == 0) {
       return false;
     }

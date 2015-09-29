@@ -44,11 +44,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
   public static final String RECIPIENTS_EXTRA = "recipient_ids";
 
-  private static final String PREFERENCE_MUTED   = "pref_key_recipient_mute";
-  private static final String PREFERENCE_TONE    = "pref_key_recipient_ringtone";
-  private static final String PREFERENCE_VIBRATE = "pref_key_recipient_vibrate";
-  private static final String PREFERENCE_BLOCK   = "pref_key_recipient_block";
-  private static final String PREFERENCE_COLOR   = "pref_key_recipient_color";
+  private static final String PREFERENCE_MUTED    = "pref_key_recipient_mute";
+  private static final String PREFERENCE_TONE     = "pref_key_recipient_ringtone";
+  private static final String PREFERENCE_VIBRATE  = "pref_key_recipient_vibrate";
+  private static final String PREFERENCE_BLOCK    = "pref_key_recipient_block";
+  private static final String PREFERENCE_COLOR    = "pref_key_recipient_color";
+  private static final String PREFERENCE_IDENTITY = "pref_key_recipient_identity";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -171,7 +172,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new BlockClickedListener());
       this.findPreference(PREFERENCE_COLOR)
           .setOnPreferenceChangeListener(new ColorChangeListener());
-    }
+      this.findPreference(PREFERENCE_IDENTITY)
+          .setOnPreferenceClickListener(new IdentityClickedListener());
+   }
 
     @Override
     public void onResume() {
@@ -191,6 +194,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       ListPreference             vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
       ColorPreference            colorPreference    = (ColorPreference) this.findPreference(PREFERENCE_COLOR);
       Preference                 blockPreference    = this.findPreference(PREFERENCE_BLOCK);
+      Preference                 identityPreference = this.findPreference(PREFERENCE_IDENTITY);
 
       mutePreference.setChecked(recipients.isMuted());
 
@@ -222,8 +226,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
         blockPreference.setEnabled(false);
+        identityPreference.setEnabled(false);
       } else {
         blockPreference.setEnabled(true);
+        identityPreference.setEnabled(true);
+
         if (recipients.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
         else                        blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
       }
@@ -349,6 +356,17 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             return null;
           }
         }.execute();
+      }
+    }
+
+    private class IdentityClickedListener implements Preference.OnPreferenceClickListener {
+      @Override
+      public boolean onPreferenceClick(Preference preference) {
+        Intent verifyIdentityIntent = new Intent(getActivity(), VerifyIdentityActivity.class);
+        verifyIdentityIntent.putExtra("recipient", recipients.getPrimaryRecipient().getRecipientId());
+        startActivity(verifyIdentityIntent);
+
+        return true;
       }
     }
 
