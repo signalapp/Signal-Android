@@ -14,6 +14,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.UiThread;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -160,9 +161,9 @@ public class EmojiProvider {
                         paint);
     }
 
+    @UiThread
     @TargetApi(VERSION_CODES.HONEYCOMB_MR1)
     public void setBitmap(Bitmap bitmap) {
-      Util.assertMainThread();
       if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB_MR1 || bmp == null || !bmp.sameAs(bitmap)) {
         bmp = bitmap;
         invalidateSelf();
