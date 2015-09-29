@@ -8,9 +8,11 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
@@ -116,15 +118,20 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
     }
   }
   private void saveSlideToMediaHistory(long messageId, PduPart part) {
-    MmsDatabase smsDatabase      =  DatabaseFactory.getMmsDatabase(context);
+    MmsDatabase smsDatabase      = DatabaseFactory.getMmsDatabase(context);
     ThreadDatabase threadDb      = DatabaseFactory.getThreadDatabase(context);
     long threadId = smsDatabase.getThreadIdForMessage(messageId);
     Recipients sender = threadDb.getRecipientsForThreadId(threadId);
-      if (sender != null) {
+
+    MmsSmsDatabase.Reader reader = DatabaseFactory.getMmsSmsDatabase(context)
+            .readerFor(smsDatabase.getMessage(messageId));
+
+    MessageRecord messageRecord = reader.getCurrent();
+
+      if (sender != null && messageRecord != null && !messageRecord.getBody().isSelfDestruction()) {
         GUtil.saveInMediaHistory(context, part, sender.getPrimaryRecipient().getNumber());
       }
     }
-
   private TextSecureAttachmentPointer createAttachmentPointer(MasterSecret masterSecret, PduPart part)
           throws InvalidPartException
   {
