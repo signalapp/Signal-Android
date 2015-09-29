@@ -36,9 +36,13 @@
             android:persistent="false"
             app:numColumns="5" />
 
+    <Preference android:key="pref_key_recipient_identity"
+                android:title="@string/recipient_preferences__verify_identity"
+                android:persistent="false"/>
 
     <Preference android:key="pref_key_recipient_block"
-                android:title="@string/recipient_preferences__block" />
+                android:title="@string/recipient_preferences__block"
+                android:persistent="false"/>
 
 
 </PreferenceScreen>

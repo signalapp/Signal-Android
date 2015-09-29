@@ -279,7 +279,7 @@ public class MessageSender {
     TextSecureDirectory directory = TextSecureDirectory.getInstance(context);
 
     try {
-      return directory.isActiveNumber(destination);
+      return directory.isSecureTextSupported(destination);
     } catch (NotInDirectoryException e) {
       try {
         TextSecureAccountManager      accountManager = TextSecureCommunicationFactory.createManager(context);

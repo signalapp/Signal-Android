@@ -659,6 +659,7 @@
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
     <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
+    <string name="recipient_preferences__verify_identity">Verify identity</string>
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
@@ -937,7 +938,7 @@
     <!-- refreshing push directory from menu -->
     <string name="push_directory__menu_refresh">Refresh contact list</string>
 
-    <!-- conversation_callable -->
+    <!-- conversation_callable_insecure -->
     <string name="conversation_callable__menu_call">Call</string>
 
     <!-- conversation_context -->
@@ -993,7 +994,7 @@
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expand popup</string>
 
-    <!-- conversation_callable -->
+    <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
 
     <!-- conversation_group_options -->
