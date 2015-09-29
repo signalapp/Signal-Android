@@ -579,19 +579,13 @@
     <string name="database_upgrade_activity__updating_database">Updating database...</string>
 
     <string name="export_fragment__export_plaintext_backup">Export plaintext backup</string>
-    <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Export a plaintext backup compatible with \'SMSBackup And Restore\' to the SD card.</string>
+    <string name="export_fragment__export_a_plaintext_backup_compatible_with">Export a plaintext backup compatible with \'SMS Backup &amp; Restore\' to the SD card</string>
     <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
-    <string name="import_fragment__import_the_database_from_the_default_system">Import the database
-        from the default system messenger app.
-    </string>
-    <string name="import_fragment__import_encrypted_backup">Import encrypted backup</string>
-    <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-        Restore a previously exported encrypted TextSecure backup.
-    </string>
+    <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the default system messenger app</string>
+    <string name="import_fragment__restore_encrypted_backup">Restore encrypted backup</string>
+    <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Restore a previously exported encrypted TextSecure backup</string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
-    <string name="import_fragment__import_a_plaintext_backup_file">
-        Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
+    <string name="import_fragment__import_a_plaintext_backup_file">Import a plaintext backup file. Compatible with \'SMS Backup &amp; Restore.\'</string>
 
     <!-- media_overview_activity -->
     <string name="media_overview_activity__no_images">No images</string>
@@ -626,7 +620,7 @@
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
     <string name="recipient_preferences__disable_notifications_for_this_conversation">Disable notifications for this conversation</string>
-    <string name="recipient_preferences__ringtone">Ringtone</string>
+    <string name="recipient_preferences__notification_sound">Notification sound</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
@@ -815,7 +809,7 @@
     <string name="preferences__pref_led_blink_custom_pattern_on_for">On for:</string>
     <string name="preferences__pref_led_blink_custom_pattern_off_for">Off for:</string>
     <string name="preferences__pref_led_blink_custom_pattern_set">Custom LED blink pattern set!</string>
-    <string name="preferences__sound">Sound</string>
+    <string name="preferences__notification_sound">Notification sound</string>
     <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__inthread_notifications">In-thread notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation</string>

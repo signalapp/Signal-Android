@@ -80,7 +80,7 @@
                 <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           style="@style/Registration.Description"
-                          android:text="@string/import_fragment__import_encrypted_backup"/>
+                          android:text="@string/import_fragment__restore_encrypted_backup"/>
 
                 <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"

@@ -12,7 +12,7 @@
     <org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference
                         android:dependency="pref_key_recipient_mute"
                         android:key="pref_key_recipient_ringtone"
-                        android:title="@string/recipient_preferences__ringtone"
+                        android:title="@string/recipient_preferences__notification_sound"
                         android:ringtoneType="notification"
                         android:showSilent="false"
                         android:showDefault="true"
