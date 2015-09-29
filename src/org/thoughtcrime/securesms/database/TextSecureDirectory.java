@@ -9,14 +9,17 @@ import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.LRUCache;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class TextSecureDirectory {
@@ -41,6 +44,8 @@ public class TextSecureDirectory {
   private static final Object instanceLock = new Object();
   private static volatile TextSecureDirectory instance;
 
+  private final Map<String, Boolean> directoryCache = Collections.synchronizedMap(new LRUCache<String, Boolean>(1000));
+
   public static TextSecureDirectory getInstance(Context context) {
     if (instance == null) {
       synchronized (instanceLock) {
@@ -61,9 +66,19 @@ public class TextSecureDirectory {
     this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
+  public void fillCache() {
+    for (String activeNumber : getActiveNumbers()) {
+      directoryCache.put(activeNumber, true);
+    }
+  }
+
   public boolean isActiveNumber(String e164number) throws NotInDirectoryException {
     if (e164number == null || e164number.length() == 0) {
       return false;
+    }
+
+    if (directoryCache.containsKey(e164number)) {
+      return directoryCache.get(e164number);
     }
 
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
@@ -75,7 +90,9 @@ public class TextSecureDirectory {
           new String[] {e164number}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getInt(0) == 1;
+        final boolean isActive = cursor.getInt(0) == 1;
+        directoryCache.put(e164number, isActive);
+        return isActive;
       } else {
         throw new NotInDirectoryException();
       }
@@ -105,6 +122,7 @@ public class TextSecureDirectory {
   }
 
   public void setNumber(ContactTokenDetails token, boolean active) {
+    directoryCache.put(token.getNumber(), active);
     SQLiteDatabase db     = databaseHelper.getWritableDatabase();
     ContentValues  values = new ContentValues();
     values.put(NUMBER, token.getNumber());
@@ -128,6 +146,7 @@ public class TextSecureDirectory {
         values.put(TIMESTAMP, timestamp);
         values.put(RELAY, token.getRelay());
         db.replace(TABLE_NAME, null, values);
+        directoryCache.put(token.getNumber(), true);
       }
 
       for (String token : inactiveTokens) {
@@ -136,6 +155,7 @@ public class TextSecureDirectory {
         values.put(REGISTERED, 0);
         values.put(TIMESTAMP, timestamp);
         db.replace(TABLE_NAME, null, values);
+        directoryCache.put(token, false);
       }
 
       db.setTransactionSuccessful();

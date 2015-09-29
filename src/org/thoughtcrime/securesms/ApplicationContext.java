@@ -18,11 +18,19 @@ package org.thoughtcrime.securesms;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
+import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
@@ -49,6 +57,7 @@ import dagger.ObjectGraph;
  * @author Moxie Marlinspike
  */
 public class ApplicationContext extends Application implements DependencyInjector {
+  private static final String TAG = ApplicationContext.class.getSimpleName();
 
   private JobManager  jobManager;
   private ObjectGraph objectGraph;
@@ -68,6 +77,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
     initializeDependencyInjection();
     initializeJobManager();
     initializeGcmCheck();
+    initializeCaches();
   }
 
   @Override
@@ -129,4 +139,24 @@ public class ApplicationContext extends Application implements DependencyInjecto
     }
   }
 
+  private void initializeCaches() {
+    new AsyncTask<Context,Void,Void>() {
+      @Override protected Void doInBackground(Context... contexts) {
+        final long    startMillis = System.currentTimeMillis();
+        final Context context     = contexts[0];
+
+        CanonicalAddressDatabase.getInstance(context).fillCache();
+        TextSecureDirectory.getInstance(context).fillCache();
+        if (TextSecurePreferences.isPushRegistered(context)) {
+          try {
+            PhoneNumberUtil.getInstance().parse(TextSecurePreferences.getLocalNumber(context), null);
+          } catch (NumberParseException dgaf) {
+            Log.w(TAG, "failed to warm libphonenumber with the localized phone number");
+          }
+        }
+        Log.w(TAG, "cache warming took " + (System.currentTimeMillis() - startMillis) + "ms");
+        return null;
+      }
+    }.execute(this);
+  }
 }

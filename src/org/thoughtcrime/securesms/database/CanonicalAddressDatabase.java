@@ -65,17 +65,15 @@ public class CanonicalAddressDatabase {
 
   private CanonicalAddressDatabase(Context context) {
     databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-    fillCache();
   }
 
   public void reset(Context context) {
     DatabaseHelper old  = this.databaseHelper;
     this.databaseHelper = new DatabaseHelper(context.getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
     old.close();
-    fillCache();
   }
 
-  private void fillCache() {
+  public void fillCache() {
     Cursor cursor = null;
 
     try {
