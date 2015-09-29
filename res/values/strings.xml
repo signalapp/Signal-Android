@@ -187,6 +187,12 @@
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
 
+    <!-- ExperienceUpgradeActivity -->
+    <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welcome to Signal.</string>
+    <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure and RedPhone are now one private messenger, for every situation: Signal.</string>
+    <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welcome to Signal!</string>
+    <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure is now Signal.</string>
+    <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure and RedPhone are now one app: Signal. Tap to explore.</string>
     <!-- ExportFragment -->
     <string name="ExportFragment_export">Export</string>
     <string name="ExportFragment_export_plaintext_to_sd_card">Export plaintext to SD card?</string>
