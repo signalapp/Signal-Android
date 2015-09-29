@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+              android:orientation="vertical"
+                tools:background="#FF2090ea">
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:id="@+id/blurb"
+              android:textSize="34sp"
+              android:textIsSelectable="false"
+              android:gravity="center_horizontal|bottom"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:fontFamily="sans-serif-light"
+              tools:text="@string/ExperienceUpgradeActivity_welcome_to_signal"
+              android:textColor="@android:color/white" />
+
+    <ImageView android:id="@+id/watermark"
+               android:layout_width="@dimen/onboarding_watermark_size"
+               android:layout_height="0dp"
+               android:layout_weight="2"
+               android:maxHeight="@dimen/onboarding_watermark_size"
+               android:scaleType="fitCenter"
+               tools:src="@drawable/splash_logo"
+               android:layout_gravity="center_horizontal"
+               android:layout_below="@id/blurb"
+               android:layout_marginBottom="20dp"
+               android:layout_marginTop="@dimen/onboarding_margin_vert" />
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="3"
+              android:id="@+id/subblurb"
+              android:textSize="20sp"
+              android:textIsSelectable="false"
+              android:gravity="center_horizontal"
+              android:layout_marginTop="20dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:fontFamily="sans-serif-light"
+              tools:text="@string/ExperienceUpgradeActivity_textsecure_is_now_called_signal"
+              android:textColor="@android:color/white" />
+
+</LinearLayout>

@@ -16,7 +16,7 @@
  */
 package org.thoughtcrime.securesms.util;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -69,6 +69,11 @@ public class ViewUtil {
 
   @SuppressWarnings("unchecked")
   public static <T extends View> T findById(@NonNull View parent, @IdRes int resId) {
+    return (T) parent.findViewById(resId);
+  }
+
+  @SuppressWarnings("unchecked")
+  public static <T extends View> T findById(@NonNull Activity parent, @IdRes int resId) {
     return (T) parent.findViewById(resId);
   }
 

@@ -31,6 +31,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   private static final int STATE_PROMPT_PASSPHRASE        = 2;
   private static final int STATE_UPGRADE_DATABASE         = 3;
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 4;
+  private static final int STATE_EXPERIENCE_UPGRADE       = 5;
 
   private BroadcastReceiver clearKeyReceiver;
   private boolean           isVisible;
@@ -128,17 +129,20 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     Log.w(TAG, "routeApplicationState(), state: " + state);
 
     switch (state) {
-      case STATE_CREATE_PASSPHRASE:        return getCreatePassphraseIntent();
-      case STATE_PROMPT_PASSPHRASE:        return getPromptPassphraseIntent();
-      case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent(masterSecret);
-      case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent(masterSecret);
-      default:                             return null;
+    case STATE_CREATE_PASSPHRASE:        return getCreatePassphraseIntent();
+    case STATE_PROMPT_PASSPHRASE:        return getPromptPassphraseIntent();
+    case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent(masterSecret);
+    case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent(masterSecret);
+    case STATE_EXPERIENCE_UPGRADE:       return getExperienceUpgradeIntent();
+    default:                             return null;
     }
   }
 
   private int getApplicationState(MasterSecret masterSecret) {
     if (!MasterSecretUtil.isPassphraseInitialized(this)) {
       return STATE_CREATE_PASSPHRASE;
+    } else if (ExperienceUpgradeActivity.isUpdate(this)) {
+      return STATE_EXPERIENCE_UPGRADE;
     } else if (masterSecret == null) {
       return STATE_PROMPT_PASSPHRASE;
     } else if (DatabaseUpgradeActivity.isUpdate(this)) {
@@ -164,6 +168,10 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
                                ? getConversationListIntent()
                                : getPushRegistrationIntent(masterSecret),
                            masterSecret);
+  }
+
+  private Intent getExperienceUpgradeIntent() {
+    return getRoutedIntent(ExperienceUpgradeActivity.class, getIntent(), null);
   }
 
   private Intent getPushRegistrationIntent(MasterSecret masterSecret) {
