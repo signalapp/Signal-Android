@@ -102,6 +102,12 @@ public class GDataPreferences {
   public void setProfilUpdateTimeForProfileId(String profileId, Long date) {
     mPreferences.edit().putLong("date:" + profileId, date).commit();
   }
+  public void saveUnreadCountForThread(String threadId, Long count) {
+    mPreferences.edit().putLong("count:" + threadId, count).commit();
+  }
+  public Long getUnreadCountForThread(String threadId) {
+    return mPreferences.getLong("count:" + threadId, 0);
+  }
   public void setApplicationFont(String applicationFont) {
     mPreferences.edit().putString(APPLICATION_FONT, applicationFont).commit();
   }

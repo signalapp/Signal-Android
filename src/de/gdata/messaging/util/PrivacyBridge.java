@@ -39,7 +39,7 @@ public class PrivacyBridge {
   public final static String AUTHORITY = ".privacy.provider";
   public static final String NAME_COLUMN = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
   public static final String RECIPIENT_IDS = "recipient_ids";
-  private static final String ACTION_RELOAD_ADAPTER = "reloadAdapter";
+  public static final String ACTION_RELOAD_ADAPTER = "reloadAdapter";
 
   private static GDataPreferences preferences;
 

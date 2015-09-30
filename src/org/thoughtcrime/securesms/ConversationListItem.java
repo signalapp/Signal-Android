@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Set;
 
+import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
 
@@ -68,6 +69,7 @@ public class ConversationListItem extends RelativeLayout
     private TextView subjectView;
     private TextView fromView;
     private TextView dateView;
+    private TextView unreadCountView;
     private long count;
     private boolean read;
 
@@ -90,6 +92,7 @@ public class ConversationListItem extends RelativeLayout
         this.subjectView = (TextView) findViewById(R.id.subject);
         this.fromView = (TextView) findViewById(R.id.from);
         this.dateView = (TextView) findViewById(R.id.date);
+        this.unreadCountView = (TextView) findViewById(R.id.tab_layout_count);
 
         this.contactPhotoImage = (CircledImageView) findViewById(R.id.contact_photo_image);
 
@@ -118,6 +121,15 @@ public class ConversationListItem extends RelativeLayout
         if (thread.getDate() > 0)
             this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), thread.getDate()));
 
+        if(read) {
+            unreadCountView.setVisibility(View.GONE);
+            new GDataPreferences(getContext()).saveUnreadCountForThread(threadId+"", count);
+        } else {
+            unreadCountView.setVisibility(View.VISIBLE);
+            Long unreadCount = count - new GDataPreferences(getContext()).getUnreadCountForThread(threadId + "");
+            unreadCountView.setText(unreadCount+ "");
+
+        }
         setBackground(read, batchMode);
         setContactPhoto(this.recipients.getPrimaryRecipient());
     }

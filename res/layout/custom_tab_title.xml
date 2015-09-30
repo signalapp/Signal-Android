@@ -12,17 +12,19 @@
         android:id="@+id/tab_layout_icon"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginBottom="5dp"
         android:layout_gravity="center"/>
     <TextView
         android:id="@+id/tab_layout_count"
-        android:layout_width="13dp"
-        android:layout_height="13dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="20"
-        android:textSize="8dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginLeft="2dp"
+        android:text=""
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="3dp"
         android:background="@drawable/bg_circle"
         android:textColor="@color/black"/>
 </LinearLayout>

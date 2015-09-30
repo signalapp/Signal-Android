@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.util.Pair;
 import android.widget.Toast;
@@ -147,8 +149,14 @@ public class PushDecryptJob extends MasterSecretJob {
       Log.w(TAG, e);
       handleUntrustedIdentityMessage(masterSecret, envelope, smsMessageId);
     }
+    reloadHeader();
   }
+  public static final String ACTION_RELOAD_HEADER = "reloadHeader";
 
+  public static void reloadHeader() {
+    Intent intent = new Intent(ACTION_RELOAD_HEADER);
+    LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+  }
   private void handleEndSessionMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
                                        TextSecureMessage message, Optional<Long> smsMessageId)
   {

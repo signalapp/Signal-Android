@@ -80,14 +80,34 @@
                       android:singleLine="true" />
             </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="bottom">
         <TextView android:id="@+id/subject"
-                  android:layout_width="match_parent"
+                  android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceSmall"
                   android:textColor="?attr/conversation_list_item_subject_color"
                   android:fontFamily="sans-serif-light"
                   android:singleLine="true"
+                  android:layout_alignParentLeft="true"
+                  android:layout_marginRight="25dp"
                   android:ellipsize="end" />
-
+        <TextView
+            android:id="@+id/tab_layout_count"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="20"
+            android:textStyle="bold"
+            android:textSize="10dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_red"
+            android:textColor="@color/black"/>
+</RelativeLayout>
     </LinearLayout>
 </org.thoughtcrime.securesms.ConversationListItem>

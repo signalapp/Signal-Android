@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -93,6 +94,7 @@ import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.NavDrawerAdapter;
+import de.gdata.messaging.util.PrivacyBridge;
 import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.pdu.PduPart;
 
@@ -189,8 +191,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-            new IntentFilter("reloadAdapter"));
-
+            new IntentFilter(PrivacyBridge.ACTION_RELOAD_ADAPTER));
+    LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+            new IntentFilter(PushDecryptJob.ACTION_RELOAD_HEADER));
     refreshProfile();
   }
   private void handleOpenProfile() {
@@ -288,7 +291,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(Context context, Intent intent) {
-      reloadAdapter();
+      if(intent.getAction().equals(PrivacyBridge.ACTION_RELOAD_ADAPTER)) {
+        Log.d("MYLOG","MYLOG reload");
+        reloadAdapter();
+      } else if(intent.getAction().equals(PushDecryptJob.ACTION_RELOAD_HEADER)){
+        mSlidingTabLayout.refreshTabTitle();
+      }
     }
   };
   @Override
@@ -304,6 +312,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicLanguage.onResume(this);
     initNavDrawer(navLabels, navIcons);
     refreshProfile();
+    mSlidingTabLayout.refreshTabTitle();
     fab.show();
   }
 
