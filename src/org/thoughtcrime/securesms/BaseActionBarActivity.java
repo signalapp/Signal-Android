@@ -14,7 +14,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.lang.reflect.Field;
 
@@ -31,6 +34,12 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
   }
 
   @Override
+  protected void onResume() {
+    super.onResume();
+    initializeScreenshotSecurity();
+  }
+
+  @Override
   public boolean onKeyDown(int keyCode, KeyEvent event) {
     return (keyCode == KeyEvent.KEYCODE_MENU && BaseActivity.isMenuWorkaroundRequired()) || super.onKeyDown(keyCode, event);
   }
@@ -42,6 +51,16 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
       return true;
     }
     return super.onKeyUp(keyCode, event);
+  }
+
+  private void initializeScreenshotSecurity() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
+            TextSecurePreferences.isScreenSecurityEnabled(this))
+    {
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    } else {
+      getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    }
   }
 
   /**
