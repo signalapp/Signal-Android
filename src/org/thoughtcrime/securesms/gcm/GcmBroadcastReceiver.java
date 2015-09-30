@@ -16,6 +16,8 @@ import org.thoughtcrime.redphone.signaling.signals.CompressedInitiateSignalProto
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
@@ -65,15 +67,20 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
       String                   signalingKey           = TextSecurePreferences.getSignalingKey(context);
       EncryptedSignalMessage   encryptedSignalMessage = new EncryptedSignalMessage(data, signalingKey);
       CompressedInitiateSignal signal                 = CompressedInitiateSignal.parseFrom(encryptedSignalMessage.getPlaintext());
+      Recipients               recipients             = RecipientFactory.getRecipientsFromString(context, signal.getInitiator(), false);
 
-      Intent intent = new Intent(context, RedPhoneService.class);
-      intent.setAction(RedPhoneService.ACTION_INCOMING_CALL);
-      intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, signal.getInitiator());
-      intent.putExtra(RedPhoneService.EXTRA_SESSION_DESCRIPTOR, new SessionDescriptor(signal.getServerName(),
-                                                                                      signal.getPort(),
-                                                                                      signal.getSessionId(),
-                                                                                      signal.getVersion()));
-      context.startService(intent);
+      if (!recipients.isBlocked()) {
+        Intent intent = new Intent(context, RedPhoneService.class);
+        intent.setAction(RedPhoneService.ACTION_INCOMING_CALL);
+        intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, signal.getInitiator());
+        intent.putExtra(RedPhoneService.EXTRA_SESSION_DESCRIPTOR, new SessionDescriptor(signal.getServerName(),
+                                                                                        signal.getPort(),
+                                                                                        signal.getSessionId(),
+                                                                                        signal.getVersion()));
+        context.startService(intent);
+      } else {
+        Log.w(TAG, "*** Received incoming call from blocked number, ignoring...");
+      }
     } catch (InvalidEncryptedSignalException | IOException e) {
       Log.w(TAG, e);
     }
