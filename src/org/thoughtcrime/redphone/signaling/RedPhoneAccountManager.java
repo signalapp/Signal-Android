@@ -60,6 +60,10 @@ public class RedPhoneAccountManager {
 
     Response response = client.newCall(builder.build()).execute();
 
+    if (response.code() == 401 || response.code() == 403) {
+      throw new UnauthorizedException("Failed to perform GCM operation: " + response.code());
+    }
+
     if (!response.isSuccessful()) {
       throw new IOException("Failed to perform GCM operation: " + response.code());
     }
