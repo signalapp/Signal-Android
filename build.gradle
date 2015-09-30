@@ -80,7 +80,6 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'org.whispersystems:textsecure-android:1.8.0'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
     compile 'me.relex:circleindicator:1.0.0@aar'
 
     testCompile 'junit:junit:4.12'
@@ -133,7 +132,6 @@ dependencyVerification {
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
             'org.whispersystems:textsecure-android:226214454003de852d856509ce9ca90a0865f7ad85a45f7a769916c6362fd4d7',
             'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
-            'com.jakewharton:butterknife:3a7a02187cee1bde3b47992f64d2bd87c9b8512b230dd6904a8605b4c52e28be',
             'me.relex:circleindicator:996766d3dad51401331515e742948f2a10982d17c626edd976a246b9bf046aac',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
@@ -200,7 +198,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                           'proguard-google-play-services.pro',
                           'proguard-dagger.pro',
-                          'proguard-butterknife.pro',
                           'proguard-jackson.pro',
                           'proguard-sqlite.pro',
                           'proguard-appcompat-v7.pro',
