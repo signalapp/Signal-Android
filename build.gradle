@@ -164,10 +164,10 @@ android {
         targetSdkVersion 22
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
-        buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service-staging.whispersystems.org\""
+        buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "USER_AGENT", "\"OWA\""
-        buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-staging.whispersystems.org\""
-        buildConfigField "String", "REDPHONE_RELAY_HOST", "\"redphone-staging-relay.whispersystems.org\""
+        buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-master.whispersystems.org\""
+        buildConfigField "String", "REDPHONE_RELAY_HOST", "\"relay.whispersystems.org\""
         buildConfigField "String", "REDPHONE_PREFIX_NAME", "\".whispersystems.org\""
         buildConfigField "boolean", "DEV_BUILD", "false"
     }
