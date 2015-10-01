@@ -200,6 +200,11 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".ExperienceUpgradeActivity"
+              android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".PassphraseCreateActivity"
               android:label="@string/AndroidManifest__create_passphrase"
               android:windowSoftInputMode="stateUnchanged"
@@ -432,6 +437,13 @@
     <receiver android:name=".notifications.MessageNotifier$DeleteReceiver">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION"/>
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".ExperienceUpgradeActivity$AppUpgradeReceiver">
+        <intent-filter>
+            <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+            <data android:scheme="package" />
         </intent-filter>
     </receiver>
 

@@ -58,7 +58,7 @@ dependencies {
     compile 'com.soundcloud.android:android-crop:0.9.10@aar'
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.android.support:recyclerview-v7:21.0.3'
-    compile 'com.melnykov:floatingactionbutton:1.1.0'
+    compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'com.google.zxing:android-integration:3.1.0'
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
         exclude module: 'support-v4'
@@ -80,6 +80,7 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'org.whispersystems:textsecure-android:1.8.0'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
+    compile 'me.relex:circleindicator:1.0.0@aar'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:1.7.1'
@@ -118,7 +119,7 @@ dependencyVerification {
             'com.soundcloud.android:android-crop:ffd4b973cf6e97f7d64118a0dc088df50e9066fd5634fe6911dd0c0c5d346177',
             'com.android.support:appcompat-v7:9a2355537c2f01cf0b95523605c18606b8d824017e6e94a05c77b0cfc8f21c96',
             'com.android.support:recyclerview-v7:e525ad3f33c84bb12b73d2dc975b55364a53f0f2d0697e043efba59ba73e22d2',
-            'com.melnykov:floatingactionbutton:0679ad9f7d61eb7aeab91e8dc56358cdedd5b1c1b9c48464499ffa05c40d3985',
+            'com.melnykov:floatingactionbutton:15d58d4fac0f7a288d0e5301bbaf501a146f5b3f5921277811bf99bd3b397263',
             'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
             'com.android.support:gridlayout-v7:a9b770cffca2c7c5cd83cba4dd12503365de5e8d9c79c479165adf18ab3bc25b',
@@ -131,6 +132,7 @@ dependencyVerification {
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
             'org.whispersystems:textsecure-android:226214454003de852d856509ce9ca90a0865f7ad85a45f7a769916c6362fd4d7',
             'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
+            'me.relex:circleindicator:996766d3dad51401331515e742948f2a10982d17c626edd976a246b9bf046aac',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',

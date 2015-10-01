@@ -55,4 +55,8 @@
          holding the phone, *before* moving it up to your face and having
          the prox sensor kick in.) -->
     <dimen name="button_cluster_side_padding">20dp</dimen>
+
+    <dimen name="onboarding_margin_vert">35dp</dimen>
+    <dimen name="onboarding_margin_land">20dp</dimen>
+    <dimen name="onboarding_watermark_size">140dp</dimen>
 </resources>
