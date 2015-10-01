@@ -26,13 +26,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
-import android.graphics.BitmapFactory;
+import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.CallLog;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.DialogFragment;
@@ -66,28 +66,25 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.CircledImageView;
-import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
-import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 
 import com.melnykov.fab.FloatingActionButton;
 
+
+import java.util.ArrayList;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GService;
@@ -96,7 +93,6 @@ import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.NavDrawerAdapter;
 import de.gdata.messaging.util.PrivacyBridge;
 import de.gdata.messaging.util.ProfileAccessor;
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
     ConversationListFragment.ConversationSelectedListener {
@@ -116,8 +112,19 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private String[] navLabels;
   private TypedArray navIcons;
   private FloatingActionButton fab;
+  private FloatingActionButton fabCOne;
+  private FloatingActionButton fabCTwo;
+  private FloatingActionButton fabCThree;
   private LinearLayout mDrawerNavi;
   private SlidingTabLayout mSlidingTabLayout;
+  private LinearLayout actionFloatMenu;
+  private FloatingActionButton fabConversation;
+  private FloatingActionButton fabGroup;
+  private TextView textViewCOne;
+  private TextView textViewCTwo;
+  private TextView textViewCThree;
+  private TextView textViewNewConversation;
+  private TextView textViewNewGroup;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -163,11 +170,80 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     mDrawerList = (ListView) findViewById(R.id.left_drawer);
     mDrawerLayout.setScrimColor(Color.argb(0xC8, 0xFF, 0xFF, 0xFF));
+    actionFloatMenu = (LinearLayout) findViewById(R.id.action_float_menu);
     fab = (FloatingActionButton) findViewById(R.id.fab);
+    fabCOne = (FloatingActionButton) findViewById(R.id.fab_new_contact_one);
+    fabCTwo = (FloatingActionButton) findViewById(R.id.fab_new_contact_two);
+    fabCThree = (FloatingActionButton) findViewById(R.id.fab_new_contact_three);
+    textViewCOne = (TextView) findViewById(R.id.textViewCOne);
+    textViewCTwo = (TextView) findViewById(R.id.textViewCTwo);
+    textViewCThree = (TextView) findViewById(R.id.textViewCThree);
+    textViewNewConversation = (TextView) findViewById(R.id.textViewNew);
+    textViewNewGroup = (TextView) findViewById(R.id.textViewGroup);
+
+    fab = (FloatingActionButton) findViewById(R.id.fab);
+    fabGroup = (FloatingActionButton) findViewById(R.id.fab_new_group);
+    fabConversation = (FloatingActionButton) findViewById(R.id.fab_new_conversation);
+
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        toggleActionFloatMenu();
+
+        String mobileNumber="";
+        int i = 1;
+        int found = 1;
+        Recipient recCalledRec;
+        ArrayList<Recipient> recentlyRecipients = new ArrayList<Recipient>();
+
+        String strOrder = CallLog.Calls.DATE + " DESC";
+        Cursor mCallCursor = getApplicationContext().getContentResolver().query(CallLog.Calls.CONTENT_URI,
+                null,
+                CallLog.Calls.TYPE + " = " + CallLog.Calls.OUTGOING_TYPE
+                ,null,
+                strOrder);
+        mCallCursor.moveToFirst();
+        do {
+          if( i >10 )
+            break;
+          mobileNumber =   mCallCursor.getString(mCallCursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER));
+          recCalledRec = RecipientFactory.getRecipientsFromString(getApplicationContext(), mobileNumber, false).getPrimaryRecipient();
+          recentlyRecipients.add(recCalledRec);
+
+          if(recCalledRec != null && recCalledRec.getName() != null && !recCalledRec.getName().equals("")) {
+            found++;
+            if(found==1) {
+              fabCOne.setImageBitmap(recCalledRec.getGeneratedAvatar(getApplication()));
+              textViewCOne.setText(recCalledRec.getName());
+            } else if(found == 2) {
+              fabCTwo.setImageBitmap(recCalledRec.getGeneratedAvatar(getApplication()));
+              textViewCTwo.setText(recCalledRec.getName());
+            } else if(found == 3) {
+              fabCThree.setImageBitmap(recCalledRec.getGeneratedAvatar(getApplication()));
+              textViewCThree.setText(recCalledRec.getName());
+            }
+          }
+          i++;
+        }
+        while (mCallCursor.moveToNext());
+
+        Log.d("MYLOG", "LAST CALLED" + recentlyRecipients.size());
+
+
+      }
+    });
+    fabGroup.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        createGroup();
+        actionFloatMenu.setVisibility(View.GONE);
+      }
+    });
+    fabConversation.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
         openSingleContactSelection();
+        actionFloatMenu.setVisibility(View.GONE);
       }
     });
     fab.hide();
@@ -195,6 +271,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
             new IntentFilter(PushDecryptJob.ACTION_RELOAD_HEADER));
     refreshProfile();
+  }
+  public void toggleActionFloatMenu() {
+    actionFloatMenu.setVisibility(actionFloatMenu.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE);
   }
   private void handleOpenProfile() {
     final Intent intent = new Intent(this, ProfileActivity.class);
@@ -292,7 +371,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     @Override
     public void onReceive(Context context, Intent intent) {
       if(intent.getAction().equals(PrivacyBridge.ACTION_RELOAD_ADAPTER)) {
-        Log.d("MYLOG","MYLOG reload");
+        Log.d("MYLOG", "MYLOG reload");
         reloadAdapter();
       } else if(intent.getAction().equals(PushDecryptJob.ACTION_RELOAD_HEADER)){
         mSlidingTabLayout.refreshTabTitle();
@@ -320,6 +399,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   protected void onPause() {
     super.onPause();
     fab.hide();
+    actionFloatMenu.setVisibility(View.GONE);
   }
   @Override
   public void onDestroy() {
@@ -587,6 +667,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
           fab.show();
         } else {
           fab.hide();
+          actionFloatMenu.setVisibility(View.GONE);
         }
       }
 
