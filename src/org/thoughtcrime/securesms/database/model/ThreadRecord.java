@@ -75,6 +75,12 @@ public class ThreadRecord extends DisplayRecord {
     } else if (MmsSmsColumns.Types.isDraftMessageType(type)) {
       String draftText = context.getString(R.string.ThreadRecord_draft);
       return emphasisAdded(draftText + " " + getBody().getBody(), 0, draftText.length());
+    } else if (SmsDatabase.Types.isOutgoingCall(type)) {
+      return emphasisAdded(context.getString(R.string.MessageRecord_called_s, getRecipients().getPrimaryRecipient().getName()));
+    } else if (SmsDatabase.Types.isIncomingCall(type)) {
+      return emphasisAdded(context.getString(R.string.MessageRecord_s_called_you, getRecipients().getPrimaryRecipient().getName()));
+    } else if (SmsDatabase.Types.isMissedCall(type)) {
+      return emphasisAdded(context.getString(R.string.MessageRecord_missed_call_from, getRecipients().getPrimaryRecipient().getName()));
     } else {
       if (TextUtils.isEmpty(getBody().getBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));

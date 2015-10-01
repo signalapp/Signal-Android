@@ -290,6 +290,10 @@
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_updated_group">Updated the group.</string>
+    <string name="MessageRecord_s_called_you">%s called you</string>
+    <string name="MessageRecord_called_s">Called %s</string>
+    <string name="MessageRecord_missed_call_from">Missed call from %s</string>
+
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
