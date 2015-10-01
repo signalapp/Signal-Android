@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class IntroFragment extends Fragment {
+public class BasicIntroFragment extends Fragment {
 
   private static final String ARG_DRAWABLE = "drawable";
   private static final String ARG_TEXT     = "text";
@@ -18,8 +18,8 @@ public class IntroFragment extends Fragment {
   private int text;
   private int subtext;
 
-  public static IntroFragment newInstance(int drawable, int text, int subtext) {
-    IntroFragment fragment = new IntroFragment();
+  public static BasicIntroFragment newInstance(int drawable, int text, int subtext) {
+    BasicIntroFragment fragment = new BasicIntroFragment();
     Bundle args = new Bundle();
     args.putInt(ARG_DRAWABLE, drawable);
     args.putInt(ARG_TEXT, text);
@@ -28,7 +28,7 @@ public class IntroFragment extends Fragment {
     return fragment;
   }
 
-  public IntroFragment() {}
+  public BasicIntroFragment() {}
 
   @Override
   public void onCreate(Bundle savedInstanceState) {

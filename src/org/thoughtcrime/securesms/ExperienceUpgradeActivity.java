@@ -21,7 +21,7 @@ import android.view.View.OnClickListener;
 import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ArgbEvaluator;
 
-import org.thoughtcrime.securesms.IntroPagerAdapter.IntroModel;
+import org.thoughtcrime.securesms.IntroPagerAdapter.IntroPage;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -39,52 +39,52 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
 
   private enum ExperienceUpgrade {
     SIGNAL_REBRANDING(155,
-                      new IntroModel(0xFF2090EA,
-                                     R.drawable.splash_logo,
-                                     R.string.ExperienceUpgradeActivity_welcome_to_signal_dgaf,
-                                     R.string.ExperienceUpgradeActivity_textsecure_is_now_called_signal),
+                      new IntroPage(0xFF2090EA,
+                                    BasicIntroFragment.newInstance(R.drawable.splash_logo,
+                                                                   R.string.ExperienceUpgradeActivity_welcome_to_signal_dgaf,
+                                                                   R.string.ExperienceUpgradeActivity_textsecure_is_now_called_signal)),
                       R.string.ExperienceUpgradeActivity_welcome_to_signal_excited,
                       R.string.ExperienceUpgradeActivity_textsecure_is_now_signal,
                       R.string.ExperienceUpgradeActivity_textsecure_is_now_signal_long);
 
-    private int              version;
-    private List<IntroModel> models;
-    private @StringRes int notificationTitle;
-    private @StringRes int notificationText;
-    private @StringRes int notificationBigText;
+    private            int             version;
+    private            List<IntroPage> pages;
+    private @StringRes int             notificationTitle;
+    private @StringRes int             notificationText;
+    private @StringRes int             notificationBigText;
 
     ExperienceUpgrade(int version,
-                      @NonNull List<IntroModel> models,
+                      @NonNull List<IntroPage> pages,
                       @StringRes int notificationTitle,
                       @StringRes int notificationText,
                       @StringRes int notificationBigText)
     {
-      this.version             = version;
-      this.models              = models;
-      this.notificationTitle   = notificationTitle;
-      this.notificationText    = notificationText;
+      this.version = version;
+      this.pages = pages;
+      this.notificationTitle = notificationTitle;
+      this.notificationText = notificationText;
       this.notificationBigText = notificationBigText;
     }
 
     ExperienceUpgrade(int version,
-                      @NonNull IntroModel model,
+                      @NonNull IntroPage page,
                       @StringRes int notificationTitle,
                       @StringRes int notificationText,
                       @StringRes int notificationBigText)
     {
-      this(version, Collections.singletonList(model), notificationTitle, notificationText, notificationBigText);
+      this(version, Collections.singletonList(page), notificationTitle, notificationText, notificationBigText);
     }
 
     public int getVersion() {
       return version;
     }
 
-    public List<IntroModel> getModels() {
-      return models;
+    public List<IntroPage> getPages() {
+      return pages;
     }
 
-    public IntroModel getModel(int i) {
-      return models.get(i);
+    public IntroPage getPage(int i) {
+      return pages.get(i);
     }
 
     public int getNotificationTitle() {
@@ -116,9 +116,9 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
     final CircleIndicator      indicator = ViewUtil.findById(this, R.id.indicator);
     final FloatingActionButton fab       = ViewUtil.findById(this, R.id.fab);
 
-    pager.setAdapter(new IntroPagerAdapter(getSupportFragmentManager(), upgrade.get().getModels()));
+    pager.setAdapter(new IntroPagerAdapter(getSupportFragmentManager(), upgrade.get().getPages()));
 
-    if (upgrade.get().getModels().size() > 1) {
+    if (upgrade.get().getPages().size() > 1) {
       indicator.setViewPager(pager);
       indicator.setOnPageChangeListener(new OnPageChangeListener(upgrade.get()));
     } else {
@@ -132,7 +132,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
       }
     });
 
-    getWindow().setBackgroundDrawable(new ColorDrawable(upgrade.get().getModel(0).backgroundColor));
+    getWindow().setBackgroundDrawable(new ColorDrawable(upgrade.get().getPage(0).backgroundColor));
     ServiceUtil.getNotificationManager(this).cancel(NOTIFICATION_ID);
   }
 
@@ -187,11 +187,11 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-      final int nextPosition = (position + 1) % upgrade.getModels().size();
+      final int nextPosition = (position + 1) % upgrade.getPages().size();
 
       final int color = (Integer)evaluator.evaluate(positionOffset,
-                                                    upgrade.getModel(position).backgroundColor,
-                                                    upgrade.getModel(nextPosition).backgroundColor);
+                                                    upgrade.getPage(position).backgroundColor,
+                                                    upgrade.getPage(nextPosition).backgroundColor);
       getWindow().setBackgroundDrawable(new ColorDrawable(color));
     }
   }

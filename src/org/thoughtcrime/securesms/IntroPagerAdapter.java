@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -10,39 +8,31 @@ import java.util.List;
 
 public class IntroPagerAdapter extends FragmentStatePagerAdapter {
 
-  public static class IntroModel {
-                 int backgroundColor;
-    @DrawableRes int drawableRes;
-    @StringRes   int titleRes;
-    @StringRes   int subtextRes;
+  public static class IntroPage {
+    final int      backgroundColor;
+    final Fragment fragment;
 
-    public IntroModel(int backgroundColor,
-                      @DrawableRes int drawableRes,
-                      @StringRes   int titleRes,
-                      @StringRes   int subtextRes)
-    {
+    public IntroPage(int backgroundColor, Fragment fragment) {
       this.backgroundColor = backgroundColor;
-      this.drawableRes     = drawableRes;
-      this.titleRes        = titleRes;
-      this.subtextRes      = subtextRes;
+      this.fragment        = fragment;
     }
   }
 
-  private List<IntroModel> models;
+  private List<IntroPage> pages;
 
-  public IntroPagerAdapter(FragmentManager fm, List<IntroModel> models) {
+  public IntroPagerAdapter(FragmentManager fm, List<IntroPage> pages) {
     super(fm);
-    this.models = models;
+    this.pages = pages;
   }
 
   @Override
   public Fragment getItem(int i) {
-    IntroModel model = models.get(i);
-    return IntroFragment.newInstance(model.drawableRes, model.titleRes, model.subtextRes);
+    IntroPage page = pages.get(i);
+    return page.fragment;
   }
 
   @Override
   public int getCount() {
-    return models.size();
+    return pages.size();
   }
 }
