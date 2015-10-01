@@ -914,9 +914,9 @@
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__language_summary">Language %s</string>
-    <string name="preferences__signal_messages">Signal messages</string>
+    <string name="preferences__signal">Signal</string>
     <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-        Free private messaging to Signal users
+        Free private messaging and calling to Signal users
     </string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
