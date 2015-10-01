@@ -1430,6 +1430,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onAttachmentChanged() {
+    handleSecurityChange(isSecureText, isSecureVoice);
     updateToggleButtonState();
   }
 
