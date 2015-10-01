@@ -121,6 +121,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -772,7 +773,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           }
 
           return new Pair<>(capabilities.getTextCapability() == Capability.SUPPORTED,
-                            capabilities.getVoiceCapability() == Capability.SUPPORTED);
+                            capabilities.getVoiceCapability() == Capability.SUPPORTED &&
+                            !isSelfConversation());
         } catch (IOException e) {
           Log.w(TAG, e);
           return new Pair<>(false, false);
@@ -1108,6 +1110,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return record != null && record.isActive();
     } catch (IOException e) {
       Log.w("ConversationActivity", e);
+      return false;
+    }
+  }
+
+  private boolean isSelfConversation() {
+    try {
+      if (!TextSecurePreferences.isPushRegistered(this))       return false;
+      if (!recipients.isSingleRecipient())                     return false;
+      if (recipients.getPrimaryRecipient().isGroupRecipient()) return false;
+
+      return Util.canonicalizeNumber(this, recipients.getPrimaryRecipient().getNumber())
+                 .equals(TextSecurePreferences.getLocalNumber(this));
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
       return false;
     }
   }
