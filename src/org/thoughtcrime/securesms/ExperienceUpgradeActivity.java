@@ -38,7 +38,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
   private static final int    NOTIFICATION_ID = 1339;
 
   private enum ExperienceUpgrade {
-    SIGNAL_REBRANDING(155,
+    SIGNAL_REBRANDING(157,
                       new IntroPage(0xFF2090EA,
                                     BasicIntroFragment.newInstance(R.drawable.splash_logo,
                                                                    R.string.ExperienceUpgradeActivity_welcome_to_signal_dgaf,
@@ -105,9 +105,9 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
     super.onCreate(savedInstanceState);
     setStatusBarColor(getResources().getColor(R.color.signal_primary_dark));
 
-    Optional<ExperienceUpgrade> upgrade = getExperienceUpgrade(this);
+    final Optional<ExperienceUpgrade> upgrade = getExperienceUpgrade(this);
     if (!upgrade.isPresent()) {
-      onContinue();
+      onContinue(upgrade);
       return;
     }
 
@@ -128,7 +128,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
     fab.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        onContinue();
+        onContinue(upgrade);
       }
     });
 
@@ -143,8 +143,11 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
     }
   }
 
-  private void onContinue() {
-    TextSecurePreferences.setLastExperienceVersionCode(this, Util.getCurrentApkReleaseVersion(this));
+  private void onContinue(Optional<ExperienceUpgrade> seenUpgrade) {
+    ServiceUtil.getNotificationManager(this).cancel(NOTIFICATION_ID);
+    int latestVersion = seenUpgrade.isPresent() ? seenUpgrade.get().getVersion()
+                                                : Util.getCurrentApkReleaseVersion(this);
+    TextSecurePreferences.setLastExperienceVersionCode(this, latestVersion);
     startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
     finish();
   }
@@ -158,7 +161,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
     final int lastSeenVersion    = TextSecurePreferences.getLastExperienceVersionCode(context);
     Log.w(TAG, "getExperienceUpgrade(" + lastSeenVersion + ")");
 
-    if (lastSeenVersion >= currentVersionCode || lastSeenVersion == 0) {
+    if (lastSeenVersion >= currentVersionCode) {
       TextSecurePreferences.setLastExperienceVersionCode(context, currentVersionCode);
       return Optional.absent();
     }
