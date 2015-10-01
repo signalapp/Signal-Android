@@ -3,14 +3,14 @@
 
     <item
             android:id="@+id/handset"
-            android:title="Handset"/>
+            android:title="@string/redphone_audio_popup_menu__handset"/>
 
     <item
             android:id="@+id/headset"
-            android:title="Headset"/>
+            android:title="@string/redphone_audio_popup_menu__headset"/>
 
     <item
             android:id="@+id/speaker"
-            android:title="Speaker"/>
+            android:title="@string/redphone_audio_popup_menu__speaker"/>
 
 </menu>

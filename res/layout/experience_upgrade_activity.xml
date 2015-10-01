@@ -14,7 +14,7 @@
     <Button android:id="@+id/continue_button"
             android:layout_width="140sp"
             android:layout_height="wrap_content"
-            android:text="continue"
+            android:text="@string/experience_upgrade_activity__continue"
             android:visibility="invisible"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />

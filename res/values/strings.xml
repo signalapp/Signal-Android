@@ -595,6 +595,9 @@
     <!-- device_list_fragment -->
     <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
 
+    <!-- experience_upgrade_activity -->
+    <string name="experience_upgrade_activity__continue">continue</string>
+
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
@@ -672,6 +675,7 @@
     <string name="redphone_call_controls__end_call">end call</string>
     <string name="redphone_call_controls__audio">Audio</string>
     <string name="redphone_call_controls__mute">Mute</string>
+    <string name="redphone_call_controls__signal_call">Signal Call</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__verify_your_number_to_connect_with_signal">
@@ -1041,6 +1045,11 @@
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__image_content_description">Image Preview</string>
+
+    <!-- redphone_audio_popup_menu -->
+    <string name="redphone_audio_popup_menu__handset">Handset</string>
+    <string name="redphone_audio_popup_menu__headset">Headset</string>
+    <string name="redphone_audio_popup_menu__speaker">Speaker</string>
 
     <!-- Trimmer -->
     <string name="trimmer__deleting">Deleting</string>
