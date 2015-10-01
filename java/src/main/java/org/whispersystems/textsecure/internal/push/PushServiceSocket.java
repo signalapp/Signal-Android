@@ -83,7 +83,7 @@ public class PushServiceSocket {
   private static final String VERIFY_ACCOUNT_TOKEN_PATH = "/v1/accounts/token/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
   private static final String REQUEST_TOKEN_PATH        = "/v1/accounts/token";
-  private static final String SET_ACCOUNT_ATTRIBUTES    = "/v1/acccounts/attributes";
+  private static final String SET_ACCOUNT_ATTRIBUTES    = "/v1/accounts/attributes/";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
