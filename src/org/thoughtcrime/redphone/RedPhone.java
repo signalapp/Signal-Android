@@ -30,12 +30,12 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -47,6 +47,7 @@ import org.thoughtcrime.redphone.ui.CallScreen;
 import org.thoughtcrime.redphone.util.AudioUtils;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * The main UI class for RedPhone.  Most of the heavy lifting is
@@ -116,6 +117,7 @@ public class RedPhone extends Activity {
   public void onResume() {
     super.onResume();
 
+    initializeScreenshotSecurity();
     initializeServiceBinding();
     registerBluetoothReceiver();
   }
@@ -138,6 +140,16 @@ public class RedPhone extends Activity {
     Log.w(TAG, "Binding to RedPhoneService...");
     Intent bindIntent = new Intent(this, RedPhoneService.class);
     bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+  }
+
+  private void initializeScreenshotSecurity() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
+        TextSecurePreferences.isScreenSecurityEnabled(this))
+    {
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    } else {
+      getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    }
   }
 
   private void initializeResources() {
