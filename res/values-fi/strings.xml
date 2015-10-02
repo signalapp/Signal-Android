@@ -169,7 +169,7 @@ Vastaanotettu: %4$s</string>
   <string name="ShareActivity_share_with">Jaa</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tervetuloa Signaliin.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ja RedPhone ovat nyt yhdistetty samaksi ohjelmaksi. Signal sisältää sekä TextSecuren viestipalvelun että RedPhonen puhelupalvelun.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ja RedPhone ovat yhdistyneet nyt Signaliksi: yksityiset viestit ja puhelut samassa paketissa.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tervetuloa Signaliin!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure on nyt Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ja RedPhone ovat nyt yksi ja sama sovellus: Signal. Napsauta tutustuaksesi.</string>
@@ -252,6 +252,9 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettiin viesti, joka on salattu Signalin vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään uusimpaan versioon ja lähettämään viesti uudelleen.</string>
   <string name="MessageRecord_left_group">Olet lähtenyt ryhmästä.</string>
   <string name="MessageRecord_updated_group">Ryhmä päivitetty.</string>
+  <string name="MessageRecord_s_called_you">%s soitti sinulle</string>
+  <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
+  <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>
@@ -381,6 +384,9 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä...</string>
   <string name="TheadRecord_secure_session_ended">Salattu istunto päättyi</string>
   <string name="ThreadRecord_draft">Luonnos:</string>
+  <string name="ThreadRecord_called">Soitit puhelun</string>
+  <string name="ThreadRecord_called_you">Soitti sinulle</string>
+  <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">(Sinulla ei ole identiteettiavainta.)</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">(Vastapuolella ei ole identiteettiavainta.)</string>
@@ -567,7 +573,7 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\" -so
   <string name="recipient_preferences__verify_identity">Varmenna identiteetti</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-puhelu</string>
-  <string name="redphone_call_controls__end_call">Lopeta puhelu</string>
+  <string name="redphone_call_controls__end_call">lopeta puhelu</string>
   <string name="redphone_call_controls__audio">Ääni</string>
   <string name="redphone_call_controls__mute">Mykistä</string>
   <string name="redphone_call_controls__signal_call">Signal-puhelu</string>
@@ -735,7 +741,7 @@ epäonnistui.</string>
   <string name="preferences__cyan">Syaani</string>
   <string name="preferences__magenta">Magenta</string>
   <string name="preferences__white">Valkoinen</string>
-  <string name="preferences__none">Pois päältä</string>
+  <string name="preferences__none">Ei mitään</string>
   <string name="preferences__fast">Nopea</string>
   <string name="preferences__normal">Normaali</string>
   <string name="preferences__slow">Hidas</string>

@@ -160,7 +160,7 @@
   <!--ExportFragment-->
   <string name="ExportFragment_export">내보내기</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">암호화되지 않은 대화를 SD 카드로 내보내시겠습니까?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">시스템 SMS 메시지를 Signal에 가져옵니다. 이전에 가져온 시스템 SMS 메시지를 다시 가져오면 중복됩니다.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">경고: Signal 메시지를 암호화되지 않은 채로 SD 카드로 내보냅니다.</string>
   <string name="ExportFragment_cancel">취소</string>
   <string name="ExportFragment_exporting">대화 내보내기</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">암호화되지 않은 대화를 SD 카드로 내보내는 중…</string>
@@ -222,12 +222,16 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS 제공업체에 연결 오류</string>
   <string name="MmsDownloader_error_reading_mms_settings">이동통신사 MMS 설정 읽기 오류</string>
   <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">Signal 통화 중</string>
+  <string name="NotificationBarManager_missed_call_from_s">%s님의 부재중 Signal 통화</string>
+  <string name="NotificationBarManager_missed_signal_call">부재중 Signal 통화</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">멀티미디어 메시지</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 Signal 하위 버전으로 암호화된 메시지를 받았습니다. 발신자에게 최신 버전으로 업그레이드를 요청해 주세요.</string>
   <string name="MessageRecord_left_group">그룹에서 퇴장했습니다.</string>
   <string name="MessageRecord_updated_group">그룹이 업데이트되었습니다.</string>
+  <string name="MessageRecord_missed_call_from">%s님의 부재중 Signal 통화</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않음</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못됨</string>
@@ -246,7 +250,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">기기 없음</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR코드가 잘못됨</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">기기 연결 가능 갯수 초과하여 기존의 기기 중 하나 연결 해제 필요</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">기기 연결 가능 갯수 초과하여 기존 기기 중 하나 연결 해제 필요</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
@@ -270,6 +274,17 @@
   <string name="RecipientPreferenceActivity_enabled">사용</string>
   <string name="RecipientPreferenceActivity_disabled">사용 안함</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">응답 </string>
+  <string name="RedPhone_ending_call">통화 종료 중</string>
+  <string name="RedPhone_dialing">전화 거는 중</string>
+  <string name="RedPhone_canceling_call">통화 해제 중</string>
+  <string name="RedPhone_call_rejected">통화 거부됨</string>
+  <string name="RedPhone_busy">통화 중</string>
+  <string name="RedPhone_connected">연결됨</string>
+  <string name="RedPhone_connecting">연결 중</string>
+  <string name="RedPhone_recipient_unavailable">응답 없음</string>
+  <string name="RedPhone_network_failed">서버 실패</string>
+  <string name="RedPhone_client_failed">클라이언트 실패</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">Signal로 연결</string>
   <string name="RegistrationActivity_select_your_country">국가 선택</string>
@@ -498,14 +513,18 @@
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">대화 알림 끄기</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">이 대화 알림 끄기</string>
+  <string name="recipient_preferences__notification_tone">알림 벨소리</string>
   <string name="recipient_preferences__vibrate">진동</string>
   <string name="recipient_preferences__block">차단</string>
   <string name="recipient_preferences__color">색상</string>
   <string name="recipient_preferences__color_for_this_contact">사용자 색상</string>
   <string name="recipient_preferences__verify_identity">신분 확인</string>
   <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">Signal 통화</string>
+  <string name="redphone_call_controls__end_call">통화 종료</string>
   <string name="redphone_call_controls__audio">오디오</string>
   <string name="redphone_call_controls__mute">음소거</string>
+  <string name="redphone_call_controls__signal_call">Signal 통화</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">Signal에 연결을 위해 전화번호를 확인합니다.</string>
   <string name="registration_activity__your_country">국가</string>
@@ -688,6 +707,7 @@
   <string name="preferences__language">언어</string>
   <string name="preferences__language_summary">언어 %s</string>
   <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">Signal의 사용자에게 무료 보안 메시지와 통화</string>
   <string name="preferences__submit_debug_log">디버그 로그 보내기</string>
   <string name="preferences__support_wifi_calling">\'Wi-Fi 통화\' 호환 모드</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">\'Wi-Fi 통화\' 사용 과 SMS/MMS Wi-Fi로 전송 설정되면 사용</string>
@@ -790,6 +810,9 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">이미지 미리보기</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">전화</string>
+  <string name="redphone_audio_popup_menu__headset">블루투스</string>
+  <string name="redphone_audio_popup_menu__speaker">스피커</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">이전 메시지 삭제</string>
   <string name="trimmer__deleting_old_messages">이전 메시지를 삭제 중…</string>

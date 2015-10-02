@@ -19,6 +19,9 @@
   <string name="ApplicationPreferencesActivity_unregistering">Одјављујем</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Одјављујем подршку за Сигналове поруке...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages">Онемогућити Сигналове поруке?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
+Ово ће да онемогући Сигналове поруке одјављујући вас са сервера.
+Мораћете поново да пријавите ваш број телефона да бисте опет користили Сигналове поруке.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка повезивања на сервер!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">СМС омогућен</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Додирните да бисте променили подразумевану апликацију за СМС</string>
@@ -46,6 +49,10 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Кључ
+за идентификацију за %1$s је промењен. Ово може да значи или да неко покушава да пресретне вашу комуникацију
+или једноставно да је корисник %2$s поново инсталирао Сигнал и сад има нови кључ
+идентитета.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Можда желите да оверите
 овај контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Прихвати</string>
@@ -153,7 +160,7 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Неименован уређај</string>
   <string name="DeviceListItem_linked_s">Повезан %s</string>
-  <string name="DeviceListItem_last_active_s">Задња активност %s</string>
+  <string name="DeviceListItem_last_active_s">Последња активност %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
   <!--ExperienceUpgradeActivity-->
@@ -200,9 +207,15 @@
   <string name="ImportExportActivity_export">Извоз</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Увести системску СМС базу података?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Ово ће да увезе
+поруке из подразумеване системске СМС базе података у Сигнал. Ако сте већ
+увезли системску СМС базу података, поновним увозом имаћете дупле поруке.</string>
   <string name="ImportFragment_import">Увези</string>
   <string name="ImportFragment_cancel">Одустани</string>
   <string name="ImportFragment_restore_encrypted_backup">Вратити шифровану резерву?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+Враћање шифроване резерве ће у потпуности да замени ваше постојеће кључеве, поставке
+и поруке. Изгубићете све податке ваше текуће инсталације Сигнала који нису у резерви.</string>
   <string name="ImportFragment_restore">Врати</string>
   <string name="ImportFragment_import_plaintext_backup">Увести текстуалну резерву?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Ово ће да увезе
@@ -238,6 +251,8 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Примљена је порука шифрована старим издањем Сигнала које више није подржано. Замолите пошиљаоца да надогради на најновије издање и поново пошаље поруку.</string>
   <string name="MessageRecord_left_group">Напустили сте групу.</string>
   <string name="MessageRecord_updated_group">Група ажурирана.</string>
+  <string name="MessageRecord_s_called_you">%s вас је позвао/ла</string>
+  <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Лозинке се не поклапају!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
@@ -366,6 +381,8 @@
   <string name="ThreadRecord_left_the_group">Напусти групу...</string>
   <string name="TheadRecord_secure_session_ended">Безбедна сесија је окончана.</string>
   <string name="ThreadRecord_draft">Нацрт:</string>
+  <string name="ThreadRecord_called">Позвали сте</string>
+  <string name="ThreadRecord_missed_call">Пропуштен позив</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немате кључ идентитета.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Прималац нема кључ идентитета.</string>
@@ -491,6 +508,7 @@
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Нема повезаних уређаја...</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">настави</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не могу да дохватим дневник са вашег уређаја. Можете да искористите АДБ да бисте добавили дневник исправљања грешака.</string>
   <string name="log_submit_activity__thanks">Хвала вам на помоћи!</string>
@@ -543,6 +561,7 @@
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Утишај преписку</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Искључи обавештења за ову преписку</string>
+  <string name="recipient_preferences__notification_tone">Звук обавештења</string>
   <string name="recipient_preferences__vibrate">Вибрирање</string>
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
@@ -552,6 +571,7 @@
   <string name="redphone_call_card__signal_call">Позив на Сигналу</string>
   <string name="redphone_call_controls__end_call">заврши позив</string>
   <string name="redphone_call_controls__audio">Звук</string>
+  <string name="redphone_call_controls__mute">Без звука</string>
   <string name="redphone_call_controls__signal_call">Позив на Сигналу</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
@@ -568,6 +588,11 @@
   <string name="registration_problems__some_possible_problems_include">Неки од могућих проблема
 су:</string>
   <string name="registration_problems__sms_interceptors">СМС пресретачи.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Неке апликације за поруке, какве су Хандцент или ГоСМС, понашају се лоше и пресрећу
+све долазне СМС поруке. Проверите да ли сте добили текстуалну поруку која почиње
+са „Your TextSecure verification code:“, и у том случају мораћете да подесите вашу
+апликацију за поруке да пропушта текстуалне поруке.</string>
   <string name="registration_problems__incorrect_number">Нетачан број.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Проверите да ли сте унели тачан број и да ли је форматиран исправно за
@@ -755,6 +780,8 @@
   <string name="preferences__language">Језик</string>
   <string name="preferences__language_summary">Језик %s</string>
   <string name="preferences__signal">Сигнал</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Бесплатне приватне поруке и позиви корисницима Сигнала</string>
   <string name="preferences__submit_debug_log">Пошаљи дневник исправљања грешака</string>
   <string name="preferences__support_wifi_calling">Компатибилност са „бежичним позивањем“</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Омогућите ако ваш уређај доставља СМС/ММС преко бежичне мреже (омогућите само ако је „WiFi Calling“ омогућено на вашем уређају)</string>
@@ -857,6 +884,8 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Приказ слике</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__headset">Слушалице са мик.</string>
+  <string name="redphone_audio_popup_menu__speaker">Звучник</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Бришем</string>
   <string name="trimmer__deleting_old_messages">Бришем старе поруке...</string>

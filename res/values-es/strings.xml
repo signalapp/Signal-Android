@@ -20,8 +20,8 @@
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Desregistrándose de los mensajes de Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages">¿Deshabilitar los mensajes de Signal?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-Esto deshabilitará los mensajes de Signal al desregistrarle del servidor.
-Necesitará desregistrar su número de teléfono para usar mensajes de Signal de nuevo en el futuro.</string>
+Esto deshabilitará los mensajes de Signal desregistrándole del servidor.
+Necesitará volver a registrar su número de teléfono para usar mensajes de Signal de nuevo en el futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Error conectando al servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitados</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>

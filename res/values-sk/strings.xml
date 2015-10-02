@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Signal</string>
   <string name="yes">Áno</string>
   <string name="no">Nie</string>
   <string name="delete">Zmazať</string>
@@ -16,6 +17,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS zapnuté</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom sem môžete zmeniť Vašu predvolenú aplikáciu pre SMS.</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS vypnuté</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Signal ako Vašu predvolenú aplikáciu</string>
   <string name="ApplicationPreferencesActivity_on">zapnuté</string>
   <string name="ApplicationPreferencesActivity_On">Zapnuté</string>
   <string name="ApplicationPreferencesActivity_off">vypnuté</string>
@@ -30,17 +32,20 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nepodarilo sa nájsť aplikáciu pre výber médií.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Obrázok</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktné informácie</string>
   <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možno by ste mali overiť
 identitu tohto kontaktu.
 </string>
   <string name="ConfirmIdentityDialog_accept">Potvrdiť</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Správa %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Veľkosť správy: %d KB</string>
   <string name="ConversationItem_expires_s">Expirácia: %s</string>
@@ -66,6 +71,7 @@ identitu tohto kontaktu.
   <string name="ConversationActivity_select_contact_info">Vyberte kontaktné informácie </string>
   <string name="ConversationActivity_compose_message">Vytvoriť správu</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Nastala chyba pri vytváraní prílohy.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Vami vybraný gif súbor je príliš veľký!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Bohužiaľ, vybrané video presahuje obmedzenie na maximlnu veľkosť správy (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Bohužiaľ, vybraná nahrávka presahuje maximálnu veľkosť správy (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Príjemca nie je platná SMS alebo emailová adresa!</string>
@@ -83,12 +89,17 @@ identitu tohto kontaktu.
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste si istí že chcete opustiť túto skupinu?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezašifrovaná SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezašifrovaná MMS</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_get_with_it">Prijať s tým: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Použiť tento chat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba pri opúšťaní skupiny...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nie sú podporované</string>
   <string name="ConversationActivity_mms_not_supported_message">Táto správa nemohla byť odoslaná keďže váš operátor nepodporuje MMS.</string>
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
+  <string name="ConversationActivity_unblock_question">Odblokovať?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Naozaj chcete odblokovať tento kontakt?</string>
+  <string name="ConversationActivity_unblock">Odblokovať</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Kamera je momentálne neprístupná</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
@@ -105,6 +116,7 @@ identitu tohto kontaktu.
   <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Vymazávanie</string>
   <string name="ConversationFragment_deleting_messages">Mažú sa správy...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Hľadaj...</string>
@@ -220,6 +232,8 @@ opätovným importom zduplikujete správy.
   <string name="RatingManager_no_thanks">Nie ďakujem</string>
   <string name="RatingManager_later">Neskôr</string>
   <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Naozaj chcete odblokovať tento kontakt?</string>
+  <string name="RecipientPreferenceActivity_unblock">Odblokovať</string>
   <!--RedPhone-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vyber svoju krajinu</string>
@@ -327,6 +341,7 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Nesprávne kryptovaná MMS správa...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS správa zakryptovaná pre neexistujúcu session...</string>
   <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Vypnúť upozornenia</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Prebieha import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nahrávanie textových správ</string>
@@ -602,14 +617,17 @@ zlyhalo.
   <string name="preferences__default">Štandardné nastavenie</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__language_summary">Jazyk %s</string>
+  <string name="preferences__signal">Signal</string>
   <string name="preferences__submit_debug_log">Odošli ladiaci log</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
+  <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Vybrať všetko</string>
   <string name="contact_selection_list__menu_unselect_all">Zrušiť celý výber</string>
+  <string name="contact_selection_list__header_signal_users">POUŽÍVATELIA APLIKÁCIE SIGNAL</string>
   <string name="contact_selection_list__header_other">VŠETKY KONTAKTY</string>
   <string name="contact_selection_list__unknown_contact">Nová správa pre...</string>
   <!--contact_selection-->
@@ -644,15 +662,20 @@ zlyhalo.
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Bezpečnosť</string>
   <string name="conversation_secure_verified__menu_verify_identity">Over totožnosť</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Obnoviť zabezpečené spojenie</string>
   <!--conversation_muted-->
+  <string name="conversation_muted__unmute">Nahlas</string>
   <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">Vypnúť upozornenia</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Pridaj prílohu</string>
   <string name="conversation__menu_update_group">Aktualizuj skupinu</string>
   <string name="conversation__menu_leave_group">Opusti skupinu</string>
   <string name="conversation__menu_delete_thread">Zmaž vlákno</string>
   <string name="conversation__menu_view_media">Všetky obrázky</string>
+  <string name="conversation__menu_conversation_settings">Nastavenia konverzácií</string>
   <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Rozšíriť okno</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Pridať do kontaktov</string>
   <!--conversation_group_options-->
@@ -671,10 +694,13 @@ zlyhalo.
   <string name="text_secure_normal__menu_clear_passphrase">Zamkni</string>
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Platnosť aplikácie Signal vypršala!</string>
   <string name="reminder_header_expired_build_details">Nie je možné ďalej úspešne odosielať správy. Prosím, aktualizujte na najnovšiu verziu.</string>
   <string name="reminder_header_sms_default_title">Nastaviť ako predvolenú SMS aplikáciu?</string>
+  <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
   <string name="reminder_header_sms_import_title">Načítať systémove SMS správy?</string>
   <string name="reminder_header_sms_import_text">Dotykom sem môžete skopírovať SMS správy z Vašeho telefónu do zašifrovanej databázy.</string>
+  <string name="reminder_header_push_title">Povoliť Signal správy?</string>
   <string name="reminder_header_push_text">Dotykom sem môžete zapnúť funkciu, vďaka ktorej získate okamžité doručovanie vašich správ a väčšie súkromie bez poplatkov za SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
@@ -685,7 +711,11 @@ zlyhalo.
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Náhľad obrázku</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Slúchadlo</string>
+  <string name="redphone_audio_popup_menu__headset">Slúchadlo</string>
+  <string name="redphone_audio_popup_menu__speaker">Hlasitý odposluch</string>
   <!--Trimmer-->
+  <string name="trimmer__deleting">Vymazávanie</string>
   <string name="trimmer__deleting_old_messages">Mažú sa staré správy...</string>
   <string name="trimmer__old_messages_successfully_deleted">Staré správy úspešne vymazané</string>
   <!--transport_selection_list_item-->

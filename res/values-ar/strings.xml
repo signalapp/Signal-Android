@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">سيجنال</string>
   <string name="yes">نعم</string>
   <string name="no">لا</string>
   <string name="delete">حذف</string>
@@ -89,6 +90,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">هل أنت متأكد من ترك المجموعة؟</string>
   <string name="ConversationActivity_transport_insecure_sms">رسالة نصية غير آمنة</string>
   <string name="ConversationActivity_transport_insecure_mms">رسالة وسائط متعددة غير آمنة</string>
+  <string name="ConversationActivity_transport_signal">سيجنال</string>
   <string name="ConversationActivity_get_with_it">احصل معها: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">دعنا نستخدم هذا للمحادثة: %s</string>
   <string name="ConversationActivity_error_leaving_group">خطأ أثناء ترك المجموعة...</string>
@@ -653,6 +655,7 @@
   <string name="preferences__default">افتراضي</string>
   <string name="preferences__language">اللغة</string>
   <string name="preferences__language_summary">اللغة %s</string>
+  <string name="preferences__signal">سيجنال</string>
   <string name="preferences__submit_debug_log">إرسال سجل التصحيح</string>
   <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم خاصية WiFi Calling لتسليم الرسائل النصية والوسائط المتعددة ( قم بالتفعيل فقط في حال تفعيل WiFi Calling بهاتفك)</string>
