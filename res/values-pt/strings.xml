@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
   <string name="yes">Sim</string>
   <string name="no">Não</string>
   <string name="delete">Apagar</string>
@@ -18,17 +17,10 @@ Desabilitar ecrã de bloqueio para mensagens?
 </string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">A eliminar o registo...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">A eliminar o registo de mensagens TextSexure...</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Desabilitar mensagens TextSecure?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-Isto vai desactivar as mensagens TextSecure, eliminando o seu registo do servidor.
-Vai ser necessário re-registar o seu número de telefone se pretender utilizar esta funcionalidade novamente.
-</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activos</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Definir como aplicação SMS por omissão</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Inactivos</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pressione para tornar TextSecure a sua applicação SMS por omissão</string>
   <string name="ApplicationPreferencesActivity_on">ligado</string>
   <string name="ApplicationPreferencesActivity_On">Ligado</string>
   <string name="ApplicationPreferencesActivity_off">desligado</string>
@@ -51,11 +43,6 @@ Vai ser necessário re-registar o seu número de telefone se pretender utilizar 
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contactos bloqueados</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">A
-assinatura deste intercâmbio de chaves é diferente da previamente recebida de %1$s.
-Isto pode significar que alguém está a tentar interceptar esta comunicação ou simplesmente
-que %2$s reinstalou TextSecure e tem agora uma nova chave de identidade.
-</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contracto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
   <!--ContactsDatabase-->
@@ -73,7 +60,6 @@ que %2$s reinstalou TextSecure e tem agora uma nova chave de identidade.
   <string name="ConversationItem_click_to_approve_unencrypted">Pressione para enviar de modo inseguro</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não cifrado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Recorrer a MMS não cifrado?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será cifrada porque o recipiente já não é um utilizador TextSecure. Enviar mensagem de modo inseguro?</string>
   <string name="ConversationItem_unable_to_open_media">Não foi possível encontrar uma aplicação capaz de abrir este média.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
@@ -104,7 +90,6 @@ que %2$s reinstalou TextSecure e tem agora uma nova chave de identidade.
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem a certeza que quer deixar este grupo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS insegura</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS insegura</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Alinha: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %s</string>
   <string name="ConversationActivity_error_leaving_group">Erro a abandonar grupo...</string>
@@ -128,7 +113,6 @@ que %2$s reinstalou TextSecure e tem agora uma nova chave de identidade.
   <string name="ConversationFragment_saving_attachment">A guardar anexo</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">A guardar anexo para o armazenamento local...</string>
   <string name="ConversationFragment_pending">Pendente...</string>
-  <string name="ConversationFragment_push">Dados (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">A apagar</string>
@@ -163,12 +147,10 @@ que %2$s reinstalou TextSecure e tem agora uma nova chave de identidade.
   <string name="DeviceListItem_last_active_s">Activo pela última vez %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partilhar com</string>
+  <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportar</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportar texto simples para cartão SD?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atenção, esta operação
-irá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão SD.
-</string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportar</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">A exportar texto simples para cartão SD...</string>
@@ -176,15 +158,11 @@ irá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão 
   <string name="ExportFragment_error_while_writing_to_sd_card">Erro ao escrever para o cartão SD.</string>
   <string name="ExportFragment_success">Sucesso!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Falha de comunicação TextSecure permanente!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure não se conseguiu registar com os Serviços Google Play. A comunicação através do canal de dados foi inactiva, por favor tente registar-se novamente através do menu de configurações TextSecure.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grupo novo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome do grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Novo Grupo MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Seleccionou um contacto que não suporta grupos TextSecure, pelo que este grupo será um grupo MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Não está registado para usar o canal de dados, pelo que os grupos TextSecure estão desactivados.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Um irro inesperado ocorreu que impossibilitou a criação do grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">É necessária pelo menos uma pessoa para formar um grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número ilegível. Por favor corrija ou remova esse contacto e tente novamente.</string>
@@ -192,7 +170,6 @@ irá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão 
   <string name="GroupCreateActivity_menu_create_title">Criar grupo</string>
   <string name="GroupCreateActivity_creating_group">Criando %1$s...</string>
   <string name="GroupCreateActivity_updating_group">A actualizar %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não pode adicionar contactos não-TextSecure a um grupo TextSecure</string>
   <string name="GroupCreateActivity_loading_group_details">A carregar detalhes do grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
@@ -201,17 +178,9 @@ irá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão 
   <string name="ImportExportActivity_export">Exportar</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importar a base de dados SMS do sistema?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Esta operação irá
-exportar as mensagens da base de dados do seu sistema para o TextSecure. Se já as importou
-anteriormente, importar novamente poderá resultar em mensagens duplicadas.
-</string>
   <string name="ImportFragment_import">Importar</string>
   <string name="ImportFragment_cancel">Cancelar</string>
   <string name="ImportFragment_restore_encrypted_backup">Restaurar cópia de segurança cifrada?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Restaurar um backup cifrado irá substituir totalmente as suas chaves, definições e msangens.
-Irá perder todas as informações na sua instalação atual do TextSecure, mas não do seu backup.
-</string>
   <string name="ImportFragment_restore">Restaurar</string>
   <string name="ImportFragment_import_plaintext_backup">Importar cópia de segurança em texto simples?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Isto irá importar
@@ -229,7 +198,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Não foi encontrada nenhuma chave lida!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalar o Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure necessida do Barcode Scanner para códigos QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">O envio falhou</string>
   <string name="MessageDetailsRecipient_new_identity">Nova identidade</string>
@@ -237,10 +205,10 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MmsDownloader_error_storing_mms">Erro a armazenar MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erro na ligação com o servidor MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler configurações MMS do provedor sem fios...</string>
+  <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem multimedia</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Recebeu uma mensagem cifrada através de uma versão anterior de TextSecure que já não é suportada. Por favor peça ao remetente para actualizar a aplicação para a versão mais actual e reenviar a mensagem.</string>
   <string name="MessageRecord_left_group">Abandonou o grupo.</string>
   <string name="MessageRecord_updated_group">Actualizou o grupo.</string>
   <!--PassphraseChangeActivity-->
@@ -266,7 +234,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lamentamos mas tem demasiados dispositivos interligados, tente remover alguns...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduza palavra-chave</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Icon TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Palavra-chave inválida!</string>
   <!--PlayServicesProblemFragment-->
@@ -286,8 +253,8 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
   <string name="RecipientPreferenceActivity_enabled">Activo</string>
   <string name="RecipientPreferenceActivity_disabled">Desactivado</string>
+  <!--RedPhone-->
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Conectar-se ao TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Escolha o seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Deve escolher o
 indicativo do seu país</string>
@@ -328,12 +295,9 @@ Verifique que este é o seu número! Estamos prestes a confirmá-lo com uma SMS.
   <string name="RegistrationProgressActivity_too_many_requests">Demasiados pedidos!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Já requereu uma chamada recentemente. Pode pedir outra dentro de 20 minutos.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflito de registo</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número já está registado num servidor TextSecure diferente (CyanogenMod?). Tem de eliminar esse registo antes de se registar aqui.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registo completo!</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">O registo TextSecure foi completado com sucesso.</string>
   <string name="RegistrationService_registration_error">Erro de registo</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">O registo do TextSecure deparou-se com um problema.</string>
   <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Foi recebida uma
@@ -399,9 +363,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
   <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Toque para abrir.</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Toque para abrir, ou toque no cadeado para fechar.</string>
-  <string name="KeyCachingService_passphrase_cached">O TextSecure está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear com frase-chave</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensagens em %2$d conversas</string>
@@ -417,10 +378,8 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="MessageNotifier_media_message">Mensagem media</string>
   <string name="MessageNotifier_reply">Responder</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">A resposta rápida encontra-se indisponível quando o TextSecure está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nova mensagem TextSecure</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdos escondidos</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
@@ -442,7 +401,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversa silenciada</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Enviar mensagem TextSecure</string>
   <string name="conversation_activity__type_message_sms_insecure">Enviar SMS insegura</string>
   <string name="conversation_activity__type_message_mms_insecure">Enviar MMS insegura</string>
   <string name="conversation_activity__send">Enviar</string>
@@ -474,13 +432,13 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="country_selection_fragment__search">Procurar</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Nenhum dispositivo interligado...</string>
+  <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possível obter os registos do seu dispositivo. Alternativamente, pode utilizar o ADB para os obter.</string>
   <string name="log_submit_activity__thanks">Obrigado pela sua ajuda!</string>
   <string name="log_submit_activity__submitting">A enviar</string>
   <string name="log_submit_activity__posting_logs">A publicar logs no gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Deseja importar as suas mensages de texto para a base de dados TextSecure cifrada?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados de sistema não será modificada ou alterada de nenhuma forma.</string>
   <string name="database_migration_activity__skip">Saltar</string>
   <string name="database_migration_activity__import">Importar</string>
@@ -496,9 +454,6 @@ Exportar um backup em texto simples compatível com \'SMSBackup e Restaurar\' pa
 da aplicação predefinida do sistema.
 </string>
   <string name="import_fragment__import_encrypted_backup">Importar cópia de segurança cifrada</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Restaurar uma cópia de segurança cifrada TextSecure exportada.
-</string>
   <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup e Restaurar\'</string>
@@ -521,22 +476,18 @@ Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup 
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">O TextSecure precisa de configurações MMS para transmitir média e mensagens de grupo através da sua operadora. O seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar média e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOQUEADO</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silenciar conversa</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Desabilitar notificações para esta conversa</string>
-  <string name="recipient_preferences__ringtone">Toque</string>
   <string name="recipient_preferences__vibrate">Vibrar</string>
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Cor</string>
   <string name="recipient_preferences__color_for_this_contact">Cor para este contacto</string>
+  <!--- redphone_call_controls-->
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Verifique o seu número de telefone para contactar com TextSecure
-</string>
   <string name="registration_activity__your_country">PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">PAÍS E
 NÚMERO DE TELEFONE</string>
@@ -549,49 +500,31 @@ NÚMERO DE TELEFONE</string>
 incluem:
 </string>
   <string name="registration_problems__sms_interceptors">Interceptores de SMS.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Alguns clientes alternativos de mensagem de texto, como Handcent ou GoSMS, comportam-se mal e interceptam todas as mensagens SMS que chegam. Verifique se recebeu uma mensagem de texto que começa com \"Your TextSecure verification code:\". Nesse caso será necessário configurar a sua app de mensagem de texto para deixar as mensagens de texto passarem.</string>
   <string name="registration_problems__incorrect_number">Número incorrecto.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Por favor verifique que o seu número está correctamente inserido, e formatado correctamente
 para a sua região.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-O TextSecure não funcionará com números Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Verificação por voz</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure também pode ligar-lhe para verificar o seu número. Clique em \'Ligue-me\' e insira abaixo o código de seis dígitos que irá ouvir.</string>
   <string name="registration_progress_activity__verify">Verificar</string>
   <string name="registration_progress_activity__call_me">Ligue-me</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>
   <string name="registration_progress_activity__connectivity_error">Erro de ligação.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure foi impossibilitado de se ligar ao serviço push
-</string>
   <string name="registration_progress_activity__some_possible_problems_include">Alguns problemas
 possíveis incluem:
 </string>
   <string name="registration_progress_activity__no_network_connectivity">Sem conectividade
 de rede.
 </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">O seu
-dispositivo necessita de ter conectividade de rede para usar esta funcionalidade TextSecure. Verifique que está ligado via 3G ou Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall restritiva.
 </string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Se está ligado via wifi, é possível que haja uma firewall a bloquar acesso ao
-servidor TextSecure. Tente outra rede ou use a ligação de dados.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure vai agora automaticamente verificar o seu número com um SMS de confirmação.</string>
   <string name="registration_progress_activity__connecting">A ligar...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">A aguardar
 verificação sms...
 </string>
   <string name="registration_progress_activity__registering_with_server">A registar com o servidor...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Isto pode demorar um pouco. Por favor seja paciente, será notificado quanto a verificação estiver completa.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-O tempo de espera da mensagem SMS de verificação TextSecure expirou.</string>
   <string name="registration_progress_activity__sms_verification_failed">A verificação por SMS
 falhou.
 </string>
@@ -617,7 +550,6 @@ falhou.
   <string name="AndroidManifest__create_passphrase">Criar frase-chave</string>
   <string name="AndroidManifest__enter_passphrase">Introduza palavra-chave</string>
   <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure detectado</string>
   <string name="AndroidManifest__public_identity_key">Chave de identidade pública</string>
   <string name="AndroidManifest__change_passphrase">Alterar frase-chave</string>
   <string name="AndroidManifest__verify_identity">Verificar identidade</string>
@@ -652,8 +584,6 @@ falhou.
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Receber todas as SMS</string>
   <string name="preferences__pref_all_mms_title">Receber todas as MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilizar TextSecure para todas as mensagens de texto recebidas</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar TextSecure para todas as mensagens multimedia recebidas</string>
   <string name="preferences__input_settings">Configurações de introdução</string>
   <string name="preferences__enable_enter_key_title">Habilitar a tecla Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Substituir a tecla \'smiley\' por uma tecla \'Enter\'</string>
@@ -737,10 +667,6 @@ falhou.
   <string name="preferences__default">Opção por omissão</string>
   <string name="preferences__language">Língua</string>
   <string name="preferences__language_summary">Língua %s</string>
-  <string name="preferences__textsecure_messages">Mensagens TextSecure</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Mensagens privadas gratuítas para utilizadores TextSecure e Signal
-</string>
   <string name="preferences__submit_debug_log">Submeter registo de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \"Chamada WiFi\"</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Active se o seu dispositivo utiliza entrega de SMS/MMS sobre WiFi (apenas active se \'WiFi Calling\' está activo neste dispositivo)</string>
@@ -752,14 +678,13 @@ Mensagens privadas gratuítas para utilizadores TextSecure e Signal
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Seleccionar tudo</string>
   <string name="contact_selection_list__menu_unselect_all">Desseleccionar tudo</string>
-  <string name="contact_selection_list__header_textsecure_users">UTILIADORES TEXTSECURE</string>
   <string name="contact_selection_list__header_other">TODOS OS CONTACTOS</string>
   <string name="contact_selection_list__unknown_contact">Nova mensagem para...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Terminado</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Actualizar lista de contactos</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable__menu_call">Chamar</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalhes da mensagem</string>
@@ -787,7 +712,6 @@ Mensagens privadas gratuítas para utilizadores TextSecure e Signal
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Segurança</string>
   <string name="conversation_secure_verified__menu_verify_identity">Verificar identidade</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Terminar sessão segura</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Não silenciar</string>
   <!--conversation_unmuted-->
@@ -801,7 +725,7 @@ Mensagens privadas gratuítas para utilizadores TextSecure e Signal
   <string name="conversation__menu_conversation_settings">Configurações de conversa</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandir alerta</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Adicionar aos contactos</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
@@ -819,13 +743,10 @@ Mensagens privadas gratuítas para utilizadores TextSecure e Signal
   <string name="text_secure_normal__menu_clear_passphrase">Desbloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">A sua versão de TextSecure expirou!</string>
   <string name="reminder_header_expired_build_details">As mensagens já não poderão ser enviadas correctamente, por favor actualize para a versão mais recente.</string>
   <string name="reminder_header_sms_default_title">Definir como aplicação SMS por omissão?</string>
-  <string name="reminder_header_sms_default_text">Pressione para tornar TextSecure a sua applicação SMS por omissão.</string>
   <string name="reminder_header_sms_import_title">Importar as SMS do sistema?</string>
   <string name="reminder_header_sms_import_text">Pressione para copiar as suas SMS para a base de dados TextSecure cifrada.</string>
-  <string name="reminder_header_push_title">Habilitar mensagens TextSecure?</string>
   <string name="reminder_header_push_text">Pressione para activar entrega instantânea, mais privacidade, e sem taxas de SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
@@ -835,13 +756,12 @@ Mensagens privadas gratuítas para utilizadores TextSecure e Signal
   <string name="media_preview__save_title">Gravar</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Antevisão de imagem</string>
+  <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">A apagar</string>
   <string name="trimmer__deleting_old_messages">A apagar mensagens antigas...</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas apagadas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icon de transporte</string>
-  <!--quick_attachment_drawer-->
-  <string name="quick_camera_unavailable">Máquina fotográfica indisponível</string>
   <!--EOF-->
 </resources>

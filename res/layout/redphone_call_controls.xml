@@ -65,7 +65,7 @@
               android:textColor="#FFFFFF"
               android:textAllCaps="true"
               android:background="@color/textsecure_primary"
-              android:text="Signal Call"/>
+              android:text="@string/redphone_call_controls__signal_call"/>
 
 
     <!--

@@ -48,8 +48,10 @@ import org.thoughtcrime.redphone.ui.NotificationBarManager;
 import org.thoughtcrime.redphone.util.Base64;
 import org.thoughtcrime.redphone.util.UncaughtExceptionHandlerManager;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
@@ -228,7 +230,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   private void handleMissedCall(String remoteNumber) {
     DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
-    NotificationBarManager.notifyMissedCall(this, remoteNumber);
+    MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this));
   }
 
   private void handleAnswerCall(Intent intent) {

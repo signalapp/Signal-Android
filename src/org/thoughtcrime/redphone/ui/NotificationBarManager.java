@@ -66,29 +66,5 @@ public class NotificationBarManager {
     notification.flags = Notification.FLAG_NO_CLEAR;
     notificationManager.notify(RED_PHONE_NOTIFICATION, notification);
   }
-
-  public static void notifyMissedCall(Context context, String remoteNumber) {
-    Intent     intent           = new Intent(context, ConversationActivity.class);
-    Recipients notifyRecipients = RecipientFactory.getRecipientsFromString(context, remoteNumber, false);
-    intent.putExtra("recipients", notifyRecipients.getIds());
-    intent.putExtra("thread_id", DatabaseFactory.getThreadDatabase(context).getThreadIdFor(notifyRecipients));
-    intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
-
-    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-    builder.setSmallIcon(R.drawable.ic_call_missed_grey600_24dp);
-    builder.setWhen(System.currentTimeMillis());
-    builder.setTicker(context.getString(R.string.NotificationBarManager_missed_call_from_s, notifyRecipients.toShortString()));
-    builder.setContentTitle(context.getString(R.string.NotificationBarManager_missed_signal_call));
-    builder.setContentText(context.getString(R.string.NotificationBarManager_missed_call_from_s, notifyRecipients.toShortString()));
-    builder.setContentIntent(pendingIntent);
-    builder.setDefaults(Notification.DEFAULT_VIBRATE);
-    builder.setAutoCancel(true);
-
-    NotificationManager manager = (NotificationManager)context
-        .getSystemService(Context.NOTIFICATION_SERVICE);
-
-    manager.notify(MISSED_CALL_NOTIFICATION, builder.build());
-  }
+  
 }

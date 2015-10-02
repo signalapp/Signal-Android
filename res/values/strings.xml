@@ -290,6 +290,10 @@
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_updated_group">Updated the group.</string>
+    <string name="MessageRecord_s_called_you">%s called you</string>
+    <string name="MessageRecord_called_s">Called %s</string>
+    <string name="MessageRecord_missed_call_from">Missed call from %s</string>
+
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
@@ -441,6 +445,9 @@
     <string name="ThreadRecord_left_the_group">Left the group...</string>
     <string name="TheadRecord_secure_session_ended">Secure session ended.</string>
     <string name="ThreadRecord_draft">Draft:</string>
+    <string name="ThreadRecord_called">You called</string>
+    <string name="ThreadRecord_called_you">Called you</string>
+    <string name="ThreadRecord_missed_call">Missed call</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
@@ -595,6 +602,9 @@
     <!-- device_list_fragment -->
     <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
 
+    <!-- experience_upgrade_activity -->
+    <string name="experience_upgrade_activity__continue">continue</string>
+
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
@@ -660,7 +670,7 @@
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
     <string name="recipient_preferences__disable_notifications_for_this_conversation">Disable notifications for this conversation</string>
-    <string name="recipient_preferences__ringtone">Ringtone</string>
+    <string name="recipient_preferences__notification_tone">Notification tone</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
@@ -672,6 +682,7 @@
     <string name="redphone_call_controls__end_call">end call</string>
     <string name="redphone_call_controls__audio">Audio</string>
     <string name="redphone_call_controls__mute">Mute</string>
+    <string name="redphone_call_controls__signal_call">Signal Call</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__verify_your_number_to_connect_with_signal">
@@ -910,9 +921,9 @@
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__language_summary">Language %s</string>
-    <string name="preferences__signal_messages">Signal messages</string>
+    <string name="preferences__signal">Signal</string>
     <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-        Free private messaging to Signal and Signal users
+        Free private messaging and calling to Signal users
     </string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
@@ -1041,6 +1052,11 @@
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__image_content_description">Image Preview</string>
+
+    <!-- redphone_audio_popup_menu -->
+    <string name="redphone_audio_popup_menu__handset">Handset</string>
+    <string name="redphone_audio_popup_menu__headset">Headset</string>
+    <string name="redphone_audio_popup_menu__speaker">Speaker</string>
 
     <!-- Trimmer -->
     <string name="trimmer__deleting">Deleting</string>

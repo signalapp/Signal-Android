@@ -327,7 +327,7 @@ public class ConversationItem extends LinearLayout
 
   private boolean shouldInterceptClicks(MessageRecord messageRecord) {
     return batchSelected.isEmpty() &&
-           (messageRecord.isFailed() ||
+            ((messageRecord.isFailed() && !messageRecord.isMmsNotification()) ||
             messageRecord.isPendingInsecureSmsFallback() ||
             messageRecord.isBundleKeyExchange());
   }

@@ -59,4 +59,6 @@
     <dimen name="onboarding_margin_vert">35dp</dimen>
     <dimen name="onboarding_margin_land">20dp</dimen>
     <dimen name="onboarding_watermark_size">140dp</dimen>
+    <dimen name="onboarding_title_size">34sp</dimen>
+    <dimen name="onboarding_subtitle_size">20sp</dimen>
 </resources>
