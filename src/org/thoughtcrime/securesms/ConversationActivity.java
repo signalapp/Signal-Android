@@ -127,6 +127,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -216,8 +217,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeActionBar();
     initializeViews();
     initializeResources();
-    initializeSecurity(false, false);
-    initializeDraft();
+    initializeSecurity(false, false).addListener(new ListenableFuture.Listener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        initializeDraft();
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        throw new AssertionError(e);
+      }
+    });
   }
 
   @Override
@@ -232,8 +242,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     setIntent(intent);
     initializeResources();
-    initializeSecurity(false, false);
-    initializeDraft();
+    initializeSecurity(false, false).addListener(new ListenableFuture.Listener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        initializeDraft();
+      }
+      @Override
+      public void onFailure(ExecutionException e) {
+        throw new AssertionError(e);
+      }
+    });
 
     if (fragment != null) {
       fragment.onNewIntent();
@@ -752,9 +770,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute();
   }
 
-  private void initializeSecurity(final boolean currentSecureText,
-                                  final boolean currentSecureVoice)
+  private ListenableFuture<Boolean> initializeSecurity(final boolean currentSecureText,
+                                                       final boolean currentSecureVoice)
   {
+    final SettableFuture<Boolean> future = new SettableFuture<>();
+
     handleSecurityChange(currentSecureText || isGroupConversation(),
                          currentSecureVoice && !isGroupConversation());
 
@@ -786,8 +806,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (result.first != currentSecureText || result.second != currentSecureVoice) {
           handleSecurityChange(result.first, result.second);
         }
+
+        future.set(true);
       }
     }.execute(recipients);
+
+    return future;
   }
 
 
