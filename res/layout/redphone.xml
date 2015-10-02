@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- In-call state of the Phone UI. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              >
+
+    <org.thoughtcrime.redphone.ui.CallScreen android:id="@+id/callScreen"
+                                             android:layout_width="fill_parent"
+                                             android:layout_height="fill_parent" />
+
+    <!-- Main frame containing all in-call UI elements.
+         This is a FrameLayout with 2 children:
+           (1) inCallPanel: the main set of in-call UI elements
+           (2) manageConferencePanel: the "Manage conference" UI
+         Exactly one of these is visible at any given moment.  -->
+<!--     <FrameLayout android:id="@+id/mainFrame" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="fill_parent" -->
+<!--         android:layout_weight="1" -->
+<!--         android:paddingTop="10dip" -->
+<!--         android:paddingLeft="6dip" -->
+<!--         android:paddingRight="6dip" -->
+<!--         > -->
+
+        <!-- (1) inCallPanel: the main set of in-call UI elements -->
+<!--         <RelativeLayout android:id="@+id/inCallPanel" -->
+<!--                         android:layout_width="fill_parent" -->
+<!--                         android:layout_height="fill_parent" -->
+<!--                         > -->
+
+<!-- 			<org.thoughtcrime.redphone.ui.CallCard xmlns:android="http://schemas.android.com/apk/res/android" -->
+<!--     											   android:id="@+id/callCard" -->
+<!--     											   android:layout_width="fill_parent" -->
+<!--     											   android:layout_height="fill_parent" /> -->
+
+
+ <!--
+            <Button android:id="@+id/answerButton"
+                    android:visibility="gone"
+                    android:layout_width="120px"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="30px"
+                    android:padding="20px"
+                    android:textSize="22px"
+                    android:text="Answer" />
+
+            <Button android:id="@+id/denyButton"
+                    android:visibility="gone"
+                    android:layout_width="120px"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="30px"
+                    android:padding="20px"
+                    android:textSize="22px"
+                    android:text="Deny" />
+
+            <SeekBar android:id="@+id/seek"
+                     android:visibility="gone"
+                     android:layout_width="fill_parent"
+                     android:layout_height="40px"
+                     android:max="100"
+                     android:progress="0"
+                     android:paddingLeft="10px"
+                     android:paddingRight="10px"
+                     android:layout_alignParentBottom="true"
+                     android:layout_margin="30px"
+                     android:thumb="@drawable/slider" />
+
+             <TextView android:id="@+id/seekText"
+                       android:visibility="gone"
+                       android:text="Slide to unlock"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentBottom="true"
+                       android:layout_centerInParent="true"
+                       android:layout_margin="40px"
+                       />
+ -->
+            <!-- The hint about the Menu button, anchored to the bottom of
+                 the screen.  This is used only in landscape mode (see
+                 updateMenuButtonHint()); in portrait mode we use the
+                 menuButtonHint built-in to the CallCard. -->
+<!--             <TextView android:id="@+id/menuButtonHint" -->
+<!--                       android:text="Press Menu for call options  \u2022  Use keyboard to dial" -->
+<!--                       android:textAppearance="?android:attr/textAppearanceMedium" -->
+<!--                       android:textColor="?android:attr/textColorSecondary" -->
+<!--                       android:layout_width="fill_parent" -->
+<!--                       android:layout_height="wrap_content" -->
+<!--                       android:gravity="center" -->
+<!--                       android:visibility="gone" -->
+<!--                       android:layout_alignParentBottom="true" -->
+<!--                       /> -->
+
+<!--         </RelativeLayout>   -->
+<!--     </FrameLayout>   -->
+
+    <!-- The sliding drawer control containing the DTMF dialpad.
+         Note this isn't a child of mainFrame, which ensures that it'll be
+         able to use the full width of the screen.  (And a SlidingDrawer
+         widget needs to be be a direct child of a FrameLayout anyway.)
+         In portrait mode, this is visible; in landscape mode, this is
+         just an empty layout.-->
+
+ <!--
+    <include layout="@layout/dtmf_twelve_key_dialer"/>
+ -->
+
+    <!-- Finally, the "touch lock" overlay, drawn on top of the DTMF
+         dialpad (after some delay) to prevent false touches from
+         triggering DTMF tones.  (When the overlay is up, you need to
+         double-tap the "lock" icon to unlock the dialpad.) -->
+<!--     <RelativeLayout android:id="@+id/touchLockOverlay" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="fill_parent" -->
+<!--         android:visibility="gone" -->
+<!--         android:background="#8000" -->
+<!--         > -->
+        <!-- Layout note: we could use android:layout_centerInParent="true"
+             here to center the lock icon exactly in the middle of the screen.
+             But it actually looks better to have the lock roughly in the
+             middle of the dialpad key area, so instead we position it a
+             fixed distance from the bottom of the screen. -->
+<!--         <TextView android:id="@+id/touchLockIcon" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:gravity="center" -->
+<!--             android:layout_alignParentBottom="true" -->
+<!--             android:layout_centerHorizontal="true" -->
+<!--             android:layout_marginBottom="70dip" -->
+<!--             android:text="Double-tap\nto unlock" -->
+<!--             android:textAppearance="?android:attr/textAppearanceLarge" -->
+<!--             android:background="@drawable/dialpad_lock" -->
+<!--             /> -->
+<!--     </RelativeLayout> -->
+
+</FrameLayout>

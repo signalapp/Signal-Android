@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
   <string name="yes">Áno</string>
   <string name="no">Nie</string>
   <string name="delete">Zmazať</string>
@@ -13,15 +12,10 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ste naozaj si istí, že chcete skrátiť všetky rozhovory na %s najnovších správ?</string>
   <string name="ApplicationPreferencesActivity_delete">Zmazať</string>
   <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Zakázať TextSecure správy?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-Týmto sa odregistrujete zo serveru a zakážete TextSecure správy.
-Pokiaľ v budúcnosti budete chcieť používať TextSecure správy, budete sa musieť znovu zaregistrovať.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba pripojenia na server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS zapnuté</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom sem môžete zmeniť Vašu predvolenú aplikáciu pre SMS.</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS vypnuté</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotykom sem môžete nastaviť TextSecure ako Vašu predvolenú aplikáciu pre SMS.</string>
   <string name="ApplicationPreferencesActivity_on">zapnuté</string>
   <string name="ApplicationPreferencesActivity_On">Zapnuté</string>
   <string name="ApplicationPreferencesActivity_off">vypnuté</string>
@@ -42,10 +36,6 @@ Pokiaľ v budúcnosti budete chcieť používať TextSecure správy, budete sa m
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktné informácie</string>
   <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikačné údaje pre %1$s sa zmenili.
-To môže znamenať buď to, že niekto sa snaží odpočúvať Vašu komunikáciu,
-alebo že %2$s jednoducho preinštaloval TextSecure a teraz má
-nové identifikačné údaje.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možno by ste mali overiť
 identitu tohto kontaktu.
 </string>
@@ -64,7 +54,6 @@ identitu tohto kontaktu.
   <string name="ConversationItem_click_to_approve_unencrypted">Dotykom sem povolíte nezabezpečenú alternatívu.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Prepnúť na nezabezpečené SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Prepnúť na nezabezpečené MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Táto správa <b>nebude</b> zašifrovaná, pretože príjemca už nepoužíva TextSecure.\n\nPrajete si odoslať nešifrovanú správu?</string>
   <string name="ConversationItem_unable_to_open_media">Nepodarilo sa nájst aplikáciu schopnú otvoriť tento typ súboru.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Vytvoriť zabezpečé spojenie?</string>
@@ -94,7 +83,6 @@ identitu tohto kontaktu.
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste si istí že chcete opustiť túto skupinu?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezašifrovaná SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezašifrovaná MMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Prijať s tým: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Použiť tento chat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba pri opúšťaní skupiny...</string>
@@ -115,7 +103,6 @@ identitu tohto kontaktu.
   <string name="ConversationFragment_saving_attachment">Ukladám prílohu</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Ukladám prílohu na dátove úložisko zariadenia...</string>
   <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
-  <string name="ConversationFragment_push">Dáta (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting_messages">Mažú sa správy...</string>
@@ -139,11 +126,10 @@ identitu tohto kontaktu.
   <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľaj s</string>
+  <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportuj čistý text na SD kartu?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozornenie, toto
-exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
   <string name="ExportFragment_cancel">Zrušiť</string>
   <string name="ExportFragment_exporting">Export</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportujem čistý text na SD kartu...</string>
@@ -151,15 +137,11 @@ exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Nastala chyba pri zápise údajov na SD kartu.</string>
   <string name="ExportFragment_success">Úspech!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Trvalá chyba pri komunikácii pomocou TextSecure!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure sa nedokázal zaregistrovať s Google Play Services. Komunikácia cez dátové spojenie bola vypnutá. Skúste znovu spustiť  registráciu z menu TextSecure, prosím.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aktualizuj skupinu</string>
   <string name="GroupCreateActivity_group_name_hint">Názov skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali ste kontakt, ktorý nepodporuje skupiny TextSecure, a preto táto skupina bude MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Nie ste registrovaný na používanie dátového kanálu, Textsecure skupiny nie sú povolené.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Vytvorenie skupiny zlyhalo pre nečakanú chybu.</string>
   <string name="GroupCreateActivity_contacts_no_members">Potrebuješ najmenej jednu osobu v tvojej skupine!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členov Vašej skupiny má číslo, ktoré sa nepodarilo správne prečítať. Prosím, upravte tento kontakt a skúste to znovu.</string>
@@ -167,7 +149,6 @@ exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
   <string name="GroupCreateActivity_menu_create_title">Vytvoriť skupinu</string>
   <string name="GroupCreateActivity_creating_group">Vytváranie %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizácia %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Do skupiny TextSecure nie je možné pridávať kontakty, ktoré nepodporujú TextSecure.</string>
   <string name="GroupCreateActivity_loading_group_details">Načítavajú sa údaje o skupine...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
@@ -176,14 +157,9 @@ exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
   <string name="ImportExportActivity_export">Export</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importovať systémovú databázu SMS?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Toto naimportuje
-správy zo štandardnej systémovj databázy SMS správ do TextSecure. Ak ste predým
-importovali systémovú databázu SMS, opakovaný import zduplikuje správy.</string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Zrušiť</string>
   <string name="ImportFragment_restore_encrypted_backup">Obnoviť zašifrovanú zálohu?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Obnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľúče, nastavenia a správy. Všetky informácie v aktuálnej inštalácii TextSecure budú prepísané. Záloha zostane zachovaná.</string>
   <string name="ImportFragment_restore">Obnovenie</string>
   <string name="ImportFragment_import_plaintext_backup">Importovať nešifrovanú zálohu?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Týmto naimportujete
@@ -201,7 +177,6 @@ opätovným importom zduplikujete správy.
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nenašiel som skenovaný kľúč!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Nainštalovať čítačku čiarových kódov?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Na čítanie QR kódov TextSecure potrebuje príslušnú aplikáciu.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodarilo sa odoslať</string>
   <string name="MessageDetailsRecipient_new_identity">Nová identita</string>
@@ -209,10 +184,10 @@ opätovným importom zduplikujete správy.
   <string name="MmsDownloader_error_storing_mms">Chyba pri ukladaní MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba spojenia s poskytovateľom MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Chyba pri čítaní MMS nastavení operátora...</string>
+  <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediálna správa</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prijatá správa bola zašifrovaná s použitím staršej verzie TextSecure, ktorá už nie je podporovaná. Prosím, požiadajte odosielateľa, aby aktualizoval na najnovšiu verziu a odoslal správu znova.</string>
   <string name="MessageRecord_left_group">Opustili ste skupinu.</string>
   <string name="MessageRecord_updated_group">Skupina bola aktualizovaná.</string>
   <!--PassphraseChangeActivity-->
@@ -234,7 +209,6 @@ opätovným importom zduplikujete správy.
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadajte heslo</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Odošli heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
   <!--PlayServicesProblemFragment-->
@@ -246,8 +220,8 @@ opätovným importom zduplikujete správy.
   <string name="RatingManager_no_thanks">Nie ďakujem</string>
   <string name="RatingManager_later">Neskôr</string>
   <!--RecipientPreferencesActivity-->
+  <!--RedPhone-->
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Pripojiť s TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Vyber svoju krajinu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ty musíš zadať tvoj
 
@@ -290,12 +264,10 @@ Skontrolujte pre istotu znovu, že ste správne zadali Vaše telefónne číslo!
   <string name="RegistrationProgressActivity_too_many_requests">Príliš veľa požiadaviek!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Nedávno ste si už vyžiadali hlasový hovor. Ďalší si môžete vyžiadať až za 20 minút.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflikt pri registrácii</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Toto číslo je už zaregistrované na inom TextSecure serveri (CyanogenMod?). Musíte sa odregistrovať tam, predtým než sa zaregistrujete tu.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrácia dokončená.</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure registrácia bola úspešne dokončená.</string>
   <string name="RegistrationService_registration_error">Chyba pri registrácii</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pri TextSecure registrácii sa vyskytol problém.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Bola prijatá poškodená správa
 vzájomnej výmeny kľúčov.</string>
@@ -359,9 +331,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="ApplicationMigrationService_import_in_progress">Prebieha import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nahrávanie textových správ</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Kliknutím otvor</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Otvorte dotykom sem, alebo zavrite dotykom na symbol zámku.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure je otvorený</string>
   <string name="KeyCachingService_lock">Zamkni s heslom</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_most_recent_from_s">Najnovšie od: %1$s</string>
@@ -391,7 +360,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="contact_selection_recent_activity__no_recent_calls">Žiadne nedávne hovory.</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Pošli TextSecure správu </string>
   <string name="conversation_activity__type_message_sms_insecure">Poslať nezašifrovanú SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Poslať nezašifrovanú MMS</string>
   <string name="conversation_activity__send">Odoslať</string>
@@ -421,13 +389,13 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín...</string>
   <string name="country_selection_fragment__search">Hľadaj</string>
   <!--device_list_fragment-->
+  <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepodarilo sa získať logy z Vašeho zariadenia. Stále môžete použiť ADB na stiahnutie ladiacich logov.</string>
   <string name="log_submit_activity__thanks">Ďakujem za tvoju pomoc!</string>
   <string name="log_submit_activity__submitting">Posielanie</string>
   <string name="log_submit_activity__posting_logs">Posielanie logov do gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať Vaše existujúce textové správy do kryptovanej databázy TextSecure? </string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Predvolená systémová databáza nebude modifikovaná alebo nahradenáv žiadnom prípade.</string>
   <string name="database_migration_activity__skip">Preskoč</string>
   <string name="database_migration_activity__import">Import</string>
@@ -442,8 +410,6 @@ Exportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na 
   <string name="import_fragment__import_the_database_from_the_default_system">Importovať databázu
 štandardnej systémovej aplikácie na správy.</string>
   <string name="import_fragment__import_encrypted_backup">Importovať zakryptovanú zálohu</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Obnoviť predtým exportovanú zakryptovanú TextSecure zálohu.</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
@@ -466,14 +432,11 @@ Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure potrebuje nastavenia MMS pre doručenie médií a skupinových správ s pomocou Vášho operátora. Vaše zariadenie nedalo tieto informácie k dispozícií, čo sa niekedy stáva u zablokovaných zariadení alebo kvôli príliš obmedzujúcim nastaveniam.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pre odosielanie multimédií a skupinových správ vyberte \'OK\' a preveďte potrebné nastavenia. Nastavenia MMS pre Vášho operátora sa väčšinou dajú nájsť zadaním \'Váš operátor APN\' do vyhľadávača na internete. Toto nastavenie je potrebné dokončiť iba prvykrát.</string>
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
+  <!--- redphone_call_controls-->
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Pre spojenie s TextSecure overte Vaše telefónne číslo.
-</string>
   <string name="registration_activity__your_country">TVOJA KRAJINA</string>
   <string name="registration_activity__your_country_code_and_phone_number">Tvoj kód krajiny a
 telefónne číslo</string>
@@ -485,59 +448,31 @@ telefónne číslo</string>
 zahŕňajú:
 </string>
   <string name="registration_problems__sms_interceptors">Odpočúvanie SMS</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Niektoré služby pre posielanie SMS od poskytovateľov ako napríklad Handcent alebo GoSMS
-sa správaju zvláštne a zadržiavajú všetky prichádzajúce SMS správy.
-Overte prosím, či ste dostali textovú správ ktorá začína slovami \'Your TextSecure verification code:\'.
-Možno budete musieť nastaviť Vašu SMS službu tak, aby tieto správy prepustila na Vaše zariadenie.
-</string>
   <string name="registration_problems__incorrect_number">Nesprávne číslo.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Overte prosím, že ste zadali Vaše správne telefónne číslo,
 a že toto číslo je v správnom formáte pre Váš región.
 </string>
   <string name="registration_problems__google_voice">Google hlas</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecure nebude fungovať pre telefónne čísla služby Google Voice.
-</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Hlasové overovanie</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure Vám môže tiež zavolať kvôli overeniu Vášho čísla. Kliknite \"Zavolaj mi\" a vložte 6 číslic
-kód ktoré budete počuť.
-</string>
   <string name="registration_progress_activity__verify">Overené</string>
   <string name="registration_progress_activity__call_me">Zavolaj mi</string>
   <string name="registration_progress_activity__edit_number">Úprav číslo</string>
   <string name="registration_progress_activity__connectivity_error">Problém pripojenia.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure sa nedokázal spojiť so službou push.
-</string>
   <string name="registration_progress_activity__some_possible_problems_include">Niektoré možné
 problémy zahŕňajú:
 </string>
   <string name="registration_progress_activity__no_network_connectivity">Žiadne sieťové
 pripojenie.
 </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Aby ste mohli využívať túto funkciu TextSecure,
-Vaše zariadenie musí byť pripojené na Internet.
-Overte prosím, že ste pripojený ku sieti 3G alebo Wi-Fi.
-</string>
   <string name="registration_progress_activity__restrictive_firewall">Reštriktívny firewall</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Ak ste pripojený pomocou Wi-Fi, je možné, že máte nastavený firewall spôsobom, ktorý blokuje prístup k serveru TextSecure.
-Skúste sa pripojiť na Internet pomocou inej siete alebo pomocou Vášho mobilného operátora.
-</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Teraz TextSecure automaticky overí tvoje číslo prostredníctvom overovacej SMS správy.
-</string>
   <string name="registration_progress_activity__connecting">Pripájanie...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Čakanie na SMS
 overovanie...</string>
   <string name="registration_progress_activity__registering_with_server">Registrujem na server...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Toto môže chvíľu trvať.
 Prosím, majte strpenie. Upozorníme Vás notifikáciou keď bude Vaša verifikácia dokončená.
-</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-Vypršala maximálna doba čakania na verifikačnú SMS.
 </string>
   <string name="registration_progress_activity__sms_verification_failed">Overenie pomocou SMS
 zlyhalo.
@@ -564,7 +499,6 @@ zlyhalo.
   <string name="AndroidManifest__create_passphrase">Vytvor heslo</string>
   <string name="AndroidManifest__enter_passphrase">Zadaj heslo</string>
   <string name="AndroidManifest__select_contacts">Vyber kontakty</string>
-  <string name="AndroidManifest__textsecure_detected">Detekovaný TextSecure</string>
   <string name="AndroidManifest__public_identity_key">Kľúč verejnej totožnosti</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
   <string name="AndroidManifest__verify_identity">Over totožnosť</string>
@@ -589,8 +523,6 @@ zlyhalo.
   <string name="preferences__sms_mms">SMS a MMS</string>
   <string name="preferences__pref_all_sms_title">Príjmy všetky SMS</string>
   <string name="preferences__pref_all_mms_title">Príjmy všetky MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použiť TextSecure pre všetky prichádzajúce textové správy</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Použiť TextSecure pre všetky prichádzajúce multimediálne správy</string>
   <string name="preferences__input_settings">Nastavenia vstupu</string>
   <string name="preferences__enable_enter_key_title">Zapnúť klávesu Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Náhradiť smajlíkov klasickými znakmi</string>
@@ -670,10 +602,6 @@ zlyhalo.
   <string name="preferences__default">Štandardné nastavenie</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__language_summary">Jazyk %s</string>
-  <string name="preferences__textsecure_messages">Správy TextSecure</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Bezplatné šifrované správy medzi používateľmi TextSecure
-</string>
   <string name="preferences__submit_debug_log">Odošli ladiaci log</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
   <!--****************************************-->
@@ -682,14 +610,13 @@ Bezplatné šifrované správy medzi používateľmi TextSecure
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Vybrať všetko</string>
   <string name="contact_selection_list__menu_unselect_all">Zrušiť celý výber</string>
-  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE POUŽÍVATELIA</string>
   <string name="contact_selection_list__header_other">VŠETKY KONTAKTY</string>
   <string name="contact_selection_list__unknown_contact">Nová správa pre...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Hotovo</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Obnov kontakty</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable__menu_call">Volaj</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Podrobnosti správy</string>
@@ -717,7 +644,6 @@ Bezplatné šifrované správy medzi používateľmi TextSecure
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Bezpečnosť</string>
   <string name="conversation_secure_verified__menu_verify_identity">Over totožnosť</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Ukonči bezpečnú session</string>
   <!--conversation_muted-->
   <!--conversation_unmuted-->
   <!--conversation-->
@@ -727,7 +653,7 @@ Bezplatné šifrované správy medzi používateľmi TextSecure
   <string name="conversation__menu_delete_thread">Zmaž vlákno</string>
   <string name="conversation__menu_view_media">Všetky obrázky</string>
   <!--conversation_popup-->
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Pridať do kontaktov</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Zoznam príjemcov</string>
@@ -745,13 +671,10 @@ Bezplatné šifrované správy medzi používateľmi TextSecure
   <string name="text_secure_normal__menu_clear_passphrase">Zamkni</string>
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Vaša verzia TextSecure je príliš stará!</string>
   <string name="reminder_header_expired_build_details">Nie je možné ďalej úspešne odosielať správy. Prosím, aktualizujte na najnovšiu verziu.</string>
   <string name="reminder_header_sms_default_title">Nastaviť ako predvolenú SMS aplikáciu?</string>
-  <string name="reminder_header_sms_default_text">Dotykom sem môžete nastaviť TextSecure ako predvolenú aplikáciu pre SMS správy.</string>
   <string name="reminder_header_sms_import_title">Načítať systémove SMS správy?</string>
   <string name="reminder_header_sms_import_text">Dotykom sem môžete skopírovať SMS správy z Vašeho telefónu do zašifrovanej databázy.</string>
-  <string name="reminder_header_push_title">Povoliť správy TextSecure?</string>
   <string name="reminder_header_push_text">Dotykom sem môžete zapnúť funkciu, vďaka ktorej získate okamžité doručovanie vašich správ a väčšie súkromie bez poplatkov za SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
@@ -761,11 +684,11 @@ Bezplatné šifrované správy medzi používateľmi TextSecure
   <string name="media_preview__save_title">Uložiť</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Náhľad obrázku</string>
+  <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting_old_messages">Mažú sa staré správy...</string>
   <string name="trimmer__old_messages_successfully_deleted">Staré správy úspešne vymazané</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
-  <!--quick_attachment_drawer-->
   <!--EOF-->
 </resources>

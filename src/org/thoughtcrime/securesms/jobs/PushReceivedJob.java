@@ -63,7 +63,7 @@ public abstract class PushReceivedJob extends ContextJob {
     boolean isActiveNumber;
 
     try {
-      isActiveNumber = TextSecureDirectory.getInstance(context).isActiveNumber(e164number);
+      isActiveNumber = TextSecureDirectory.getInstance(context).isSecureTextSupported(e164number);
     } catch (NotInDirectoryException e) {
       isActiveNumber = false;
     }

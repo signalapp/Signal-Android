@@ -5,6 +5,8 @@
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:adjustViewBounds="true"
+               android:clickable="false"
+               android:longClickable="false"
                android:scaleType="fitCenter"
                android:contentDescription="@string/conversation_item__mms_image_description" />
 

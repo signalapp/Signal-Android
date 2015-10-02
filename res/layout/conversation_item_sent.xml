@@ -2,12 +2,11 @@
 <org.thoughtcrime.securesms.ConversationItem
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/conversation_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="?conversation_item_background">
+    android:background="@drawable/conversation_item_background">
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"

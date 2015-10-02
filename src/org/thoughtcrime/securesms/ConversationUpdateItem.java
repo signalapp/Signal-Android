@@ -2,27 +2,35 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.Locale;
+import java.util.Set;
+
 public class ConversationUpdateItem extends LinearLayout
-    implements Recipients.RecipientsModifiedListener, Recipient.RecipientModifiedListener, Unbindable, View.OnClickListener
+    implements Recipients.RecipientsModifiedListener, Recipient.RecipientModifiedListener, BindableConversationItem, View.OnClickListener
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
 
   private ImageView     icon;
   private TextView      body;
+  private TextView      date;
   private Recipient     sender;
   private MessageRecord messageRecord;
+  private Locale        locale;
 
   public ConversationUpdateItem(Context context) {
     super(context);
@@ -38,29 +46,57 @@ public class ConversationUpdateItem extends LinearLayout
 
     this.icon = (ImageView)findViewById(R.id.conversation_update_icon);
     this.body = (TextView)findViewById(R.id.conversation_update_body);
+    this.date = (TextView)findViewById(R.id.conversation_update_date);
 
     setOnClickListener(this);
   }
 
-  public void set(MessageRecord messageRecord) {
+  @Override
+  public void bind(@NonNull MasterSecret masterSecret,
+                   @NonNull MessageRecord messageRecord,
+                   @NonNull Locale locale,
+                   @NonNull Set<MessageRecord> batchSelected,
+                   boolean groupThread)
+  {
+    bind(messageRecord, locale);
+  }
+
+  private void bind(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {
     this.messageRecord = messageRecord;
     this.sender        = messageRecord.getIndividualRecipient();
+    this.locale        = locale;
 
     this.sender.addListener(this);
 
-    if (messageRecord.isGroupAction()) {
-      icon.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_group_grey600_24dp));
+    if      (messageRecord.isGroupAction()) setGroupRecord(messageRecord);
+    else if (messageRecord.isCallLog())     setCallRecord(messageRecord);
+    else                                    throw new AssertionError("Neither group no log.");
+  }
 
-      if (messageRecord.isGroupQuit() && messageRecord.isOutgoing()) {
-        body.setText(R.string.MessageRecord_left_group);
-      } else if (messageRecord.isGroupQuit()) {
-        body.setText(getContext().getString(R.string.ConversationItem_group_action_left, sender.toShortString()));
-      } else {
-        GroupUtil.GroupDescription description = GroupUtil.getDescription(getContext(), messageRecord.getBody().getBody());
-        description.addListener(this);
-        body.setText(description.toString());
-      }
+  private void setCallRecord(MessageRecord messageRecord) {
+    if      (messageRecord.isIncomingCall()) icon.setImageResource(R.drawable.ic_call_received_grey600_24dp);
+    else if (messageRecord.isOutgoingCall()) icon.setImageResource(R.drawable.ic_call_made_grey600_24dp);
+    else                                     icon.setImageResource(R.drawable.ic_call_missed_grey600_24dp);
+
+    body.setText(messageRecord.getDisplayBody());
+    date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateReceived()));
+    date.setVisibility(View.VISIBLE);
+  }
+
+  private void setGroupRecord(MessageRecord messageRecord) {
+    icon.setImageResource(R.drawable.ic_group_grey600_24dp);
+
+    if (messageRecord.isGroupQuit() && messageRecord.isOutgoing()) {
+      body.setText(R.string.MessageRecord_left_group);
+    } else if (messageRecord.isGroupQuit()) {
+      body.setText(getContext().getString(R.string.ConversationItem_group_action_left, sender.toShortString()));
+    } else {
+      GroupUtil.GroupDescription description = GroupUtil.getDescription(getContext(), messageRecord.getBody().getBody());
+      description.addListener(this);
+      body.setText(description.toString());
     }
+
+    date.setVisibility(View.GONE);
   }
 
   @Override
@@ -73,7 +109,7 @@ public class ConversationUpdateItem extends LinearLayout
     Util.runOnMain(new Runnable() {
       @Override
       public void run() {
-        set(messageRecord);
+        bind(messageRecord, locale);
       }
     });
   }

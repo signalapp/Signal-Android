@@ -62,7 +62,7 @@
                   android:layout_width="fill_parent"
                   android:layout_marginBottom="8dip"
                   android:layout_marginTop="16dip"
-                  android:text="@string/registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users"/>
+                  android:text="@string/registration_activity__verify_your_number_to_connect_with_signal"/>
 
         <TextView style="@style/Registration.Description"
                   android:layout_width="fill_parent"

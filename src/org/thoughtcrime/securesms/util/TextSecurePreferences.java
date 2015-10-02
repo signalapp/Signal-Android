@@ -44,6 +44,7 @@ public class TextSecurePreferences {
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
 
   private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
+  private static final String LAST_EXPERIENCE_VERSION_PREF     = "last_experience_version_code";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
@@ -343,7 +344,15 @@ public class TextSecurePreferences {
     if (!setIntegerPrefrenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
       throw new IOException("couldn't write version code to sharedpreferences");
     }
- }
+  }
+
+  public static int getLastExperienceVersionCode(Context context) {
+    return getIntegerPreference(context, LAST_EXPERIENCE_VERSION_PREF, 0);
+  }
+
+  public static void setLastExperienceVersionCode(Context context, int versionCode) {
+    setIntegerPrefrence(context, LAST_EXPERIENCE_VERSION_PREF, versionCode);
+  }
 
   public static String getTheme(Context context) {
     return getStringPreference(context, THEME_PREF, "light");

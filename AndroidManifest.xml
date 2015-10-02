@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="152"
-      android:versionName="2.27.0">
+      android:versionCode="156"
+      android:versionName="2.28.1">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat"/>
 
@@ -90,6 +90,8 @@
     <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
+                 tools:replace="android:allowBackup"
+                 android:allowBackup="false"
                  android:theme="@style/TextSecure.LightTheme">
 
     <meta-data android:name="com.google.android.gms.version"
@@ -97,6 +99,12 @@
 
     <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
                android:value="GlideModule" />
+
+    <activity android:name="org.thoughtcrime.redphone.RedPhone"
+              android:screenOrientation="portrait"
+              android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
+              android:launchMode="singleTask">
+    </activity>
 
     <activity android:name=".CountrySelectionActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -189,6 +197,11 @@
 
     <activity android:name=".DatabaseUpgradeActivity"
               android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".ExperienceUpgradeActivity"
+              android:theme="@style/Theme.AppCompat.Light.NoActionBar"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -301,6 +314,8 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+
+    <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
@@ -422,6 +437,13 @@
     <receiver android:name=".notifications.MessageNotifier$DeleteReceiver">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION"/>
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".ExperienceUpgradeActivity$AppUpgradeReceiver">
+        <intent-filter>
+            <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+            <data android:scheme="package" />
         </intent-filter>
     </receiver>
 

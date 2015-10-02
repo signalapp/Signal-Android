@@ -38,7 +38,7 @@ public class QuickResponseService extends MasterSecretIntentService {
 
     if (masterSecret == null) {
       Log.w(TAG, "Got quick response request when locked...");
-      Toast.makeText(this, R.string.QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked, Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.QuickResponseService_quick_response_unavailable_when_Signal_is_locked, Toast.LENGTH_LONG).show();
       return;
     }
 

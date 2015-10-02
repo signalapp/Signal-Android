@@ -26,8 +26,10 @@ import android.content.Intent;
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.RedPhoneCommunicationModule;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
@@ -120,6 +122,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
   private void initializeDependencyInjection() {
     this.objectGraph = ObjectGraph.create(new TextSecureCommunicationModule(this),
+                                          new RedPhoneCommunicationModule(this),
                                           new AxolotlStorageModule(this));
   }
 

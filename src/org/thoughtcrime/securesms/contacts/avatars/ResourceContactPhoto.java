@@ -40,6 +40,11 @@ public class ResourceContactPhoto implements ContactPhoto {
     return new ExpandingLayerDrawable(new Drawable[] {background, foreground});
   }
 
+  @Override
+  public Drawable asCallCard(Context context) {
+    return context.getResources().getDrawable(resourceId);
+  }
+
   private static class ExpandingLayerDrawable extends LayerDrawable {
     public ExpandingLayerDrawable(Drawable[] layers) {
       super(layers);

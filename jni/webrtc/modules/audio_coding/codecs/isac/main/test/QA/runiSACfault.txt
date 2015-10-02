@@ -1,0 +1,80 @@
+#!/bin/bash
+(set -o igncr) 2>/dev/null && set -o igncr; # force bash to ignore \r character????? ?????? 
+if  [ "$1" = "x64" ] || [ "$#" -eq 0 ]
+    then
+    PLATFORM=_X64
+    ISAC=../x64/Release/ReleaseTest-API_2005.exe
+elif [ "$1" = "2005" ]
+	then
+    PLATFORM=_2005
+    ISAC=../win32/Release/ReleaseTest-API_2005.exe
+elif [ "$1" == "LINUX" ]
+	then
+    PLATFORM=_linux
+    ISAC=../ReleaseTest-API/isacswtest
+else
+	echo Unknown Platform
+	exit 2
+fi
+
+LOGFILE=logfault$PLATFORM.txt
+echo "START FAULT TEST" > $LOGFILE
+
+
+INFILES=$(cat InputFiles.txt)
+SUBSET=$(cat InputFilesFew.txt)
+CHANNELFILES=$(cat ChannelFiles.txt)
+CHANNELLIST=($(cat ChannelFiles.txt))
+INDIR=../data/orig
+INDIRSWB=../data/origswb
+OUTDIR=../dataqaft$PLATFORM
+mkdir -p $OUTDIR
+
+#maximum Target rate for different bandwidth
+TARGETRATE=( 32000 32000 44000 56000 )
+SAMPFREQ=( 16 32 32 32 )
+FAULTTEST=(1 2 3 4 5 6 7 9)
+
+index1=0
+
+file_wb=../data/orig/16kHz.pcm
+file_swb=../data/origswb/32kHz.pcm
+
+for idx in 0 1 2 3 
+  do
+# Fault test
+  echo
+  echo "Sampling Frequency " ${SAMPFREQ[idx]} "kHz, Rate " ${TARGETRATE[idx]} "bps."
+  echo "---------------------------------------------------"
+  if [ ${SAMPFREQ[idx]} -eq 16 ]; then
+    file=$file_wb
+  else
+    file=$file_swb
+  fi
+
+  for testnr in ${FAULTTEST[*]}
+    do
+    echo "Running Fault Test " $testnr
+    $ISAC -I -B "${TARGETRATE[idx]}" -F $testnr -FS "${SAMPFREQ[idx]}" "$file" \
+	$OUTDIR/ft"$testnr"_"${TARGETRATE[idx]}"_"${SAMPFREQ[idx]}".pcm >> LOGFILE
+    echo
+    
+  done
+  
+# Fault test number 10, error in bitstream
+  echo "Running Fault Test 10"
+  $ISAC -I -B "${TARGETRATE[idx]}" -F 10        -FS "${SAMPFREQ[idx]}" "$file" \
+    $OUTDIR/ft10_"${TARGETRATE[idx]}"_"${SAMPFREQ[idx]}".pcm >> LOGFILE
+  echo
+  echo "Running Fault Test 10 with packetloss"
+  $ISAC -I -B "${TARGETRATE[idx]}" -F 10 -PL 10 -FS "${SAMPFREQ[idx]}" "$file" \
+    $OUTDIR/ft10plc_"${TARGETRATE[idx]}"_"${SAMPFREQ[idx]}".pcm >> LOGFILE
+  echo
+done
+
+echo 
+echo
+echo DONE!
+  
+
+

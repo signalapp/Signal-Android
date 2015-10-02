@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">Signal</string>
   <string name="yes">예</string>
   <string name="no">아니요</string>
   <string name="delete">삭제</string>
@@ -15,15 +15,15 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">암호 사용 중지</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">메시지 화면 잠금을 사용 중지하시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_disable">사용 중지</string>
-  <string name="ApplicationPreferencesActivity_unregistering">TextSecure 메시지 서비스 탈퇴</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure 메시지 서비스를 탈퇴 중…</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">TextSecure 메시지를 사용 중지하시겠습니까?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">서버에 탈퇴하여 TextSecure 메시지를 사용 중지합니다. 다시 사용하려면 전화번호를 재가입해야 합니다.</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Signal 메시지 서비스 탈퇴</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Signal 메시지 서비스를 탈퇴 중…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal 메시지를 사용 중지하시겠습니까?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">서버에 탈퇴하여 Signal 메시지를 사용 중지합니다. 다시 사용하려면 전화번호를 재가입해야 합니다.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없음</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS 사용</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">기본 SMS 앱을 변경하려면 터치하세요</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS 사용 안함</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">TextSecure를 기본 SMS 앱으로 설정하려면 터치하세요</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal을 기본 SMS 앱으로 설정하려면 터치하세요</string>
   <string name="ApplicationPreferencesActivity_on">사용</string>
   <string name="ApplicationPreferencesActivity_On">사용</string>
   <string name="ApplicationPreferencesActivity_off">사용 안함</string>
@@ -46,7 +46,7 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">차단된 사용자</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s님의 인증 키가 변경되었습니다. 이 경우 누군가 통신을 가로채려고 하거나 %2$s님께서 TextSecure를 다시 설치하여 새 인증 키가 되었습니다.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s님의 인증 키가 변경되었습니다. 이 경우 누군가 통신을 가로채려고 하거나 %2$s님께서 Signal을 다시 설치하여 새 인증 키가 되었습니다.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">인증 키를 확인할 것을 권장합니다.</string>
   <string name="ConfirmIdentityDialog_accept">수락</string>
   <!--ContactsDatabase-->
@@ -64,7 +64,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">보안 해제로 바꾸려면 터치하세요</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">암호화되지않은 SMS로 바꾸시겠습니까?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">암호화되지않은 MMS로 바꾸시겠습니까?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자는 이젠 TextSecure 사용자가 아니어서 이 메시지는 <b>암호화되지 않습니다</b>.\n\n보안 해제된 메시지를 보내시겠습니까?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자는 이젠 Signal 사용자가 아니어서 이 메시지는 <b>암호화되지 않습니다</b>.\n\n보안 해제된 메시지를 보내시겠습니까?</string>
   <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없음</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">암호화된 세션 시작하시겠습니까?</string>
@@ -95,7 +95,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">이 그룹에서 나가시겠습니까?</string>
   <string name="ConversationActivity_transport_insecure_sms">보안 해제된 SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">보안 해제된 MMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_get_with_it">안 불편해요? %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">이 앱으로 우리 같이 채팅해요~ %s</string>
   <string name="ConversationActivity_error_leaving_group">그룹에서 나가기 오류</string>
@@ -105,6 +105,8 @@
   <string name="ConversationActivity_unblock_question">사용자를 차단 해제하시겠습니까?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">이 사용자를 차단 해제하시겠습니까?</string>
   <string name="ConversationActivity_unblock">차단 해제</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">첨부파일 크기 제한 초과됨</string>
+  <string name="ConversationActivity_quick_camera_unavailable">카메라 사용할 수 없음</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">메시지 세부정보</string>
   <string name="ConversationFragment_transport_s_sent_received_s">전송: %1$s\n송수신: %2$s</string>
@@ -119,7 +121,7 @@
   <string name="ConversationFragment_saving_attachment">첨부파일 저장</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">첨부파일을 저장소에 저장 중…</string>
   <string name="ConversationFragment_pending">대기 중…</string>
-  <string name="ConversationFragment_push">인터넷 (TextSecure)</string>
+  <string name="ConversationFragment_push">인터넷 (Signal)</string>
   <string name="ConversationFragment_mms">MMS (멀티미디어)</string>
   <string name="ConversationFragment_sms">SMS (문자)</string>
   <string name="ConversationFragment_deleting">메시지 삭제</string>
@@ -154,10 +156,11 @@
   <string name="DeviceListItem_last_active_s">최근 사용: %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
+  <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">내보내기</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">암호화되지 않은 대화를 SD 카드로 내보내시겠습니까?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">경고: TextSecure 메시지를 암호화되지 않은 채로 SD 카드로 내보냅니다.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">시스템 SMS 메시지를 Signal에 가져옵니다. 이전에 가져온 시스템 SMS 메시지를 다시 가져오면 중복됩니다.</string>
   <string name="ExportFragment_cancel">취소</string>
   <string name="ExportFragment_exporting">대화 내보내기</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">암호화되지 않은 대화를 SD 카드로 내보내는 중…</string>
@@ -165,15 +168,15 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">SD 카드에 저장하는 동안 오류</string>
   <string name="ExportFragment_success">성공</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">영구적인 TextSecure 통신 실패!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure는 Google Play 서비스에 등록할 수 없습니다. 인터넷 통신은 사용 중지되었으므로 TextSecure 설정 메뉴에서 재가입해 주세요.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">영구적인 Signal 통신 실패!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal은 Google Play 서비스에 등록할 수 없습니다. 인터넷 통신은 사용 중지되었으므로 Signal 설정 메뉴에서 재가입해 주세요.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">그룹 만들기</string>
   <string name="GroupCreateActivity_actionbar_update_title">그룹 업데이트 하기</string>
   <string name="GroupCreateActivity_group_name_hint">그룹 이름</string>
   <string name="GroupCreateActivity_actionbar_mms_title">MMS 그룹 만들기</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">선택된 연락처는 TextSecure 그룹을 지원하지 않아서 이 그룹은 MMS를 사용하게 됩니다.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">인터넷 대화에 가입되지 않아서 TextSecure 그룹이 사용 중지되었습니다.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">선택된 연락처는 Signal 그룹을 지원하지 않아서 이 그룹은 MMS를 사용하게 됩니다.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">인터넷 대화에 가입되지 않아서 Signal 그룹이 사용 중지되었습니다.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">예기치 못한 오류로 인해 그룹 만들지 못함</string>
   <string name="GroupCreateActivity_contacts_no_members">그룹 멤버 한명 이상 선택 되어야 함</string>
   <string name="GroupCreateActivity_contacts_invalid_number">그룹 멤버 중 한명은 잘못된 전화번호가 있으므로 정확한 전화번호를 입력하거나 그 연락처를 삭제하고 다시 시도해 주세요.</string>
@@ -181,7 +184,7 @@
   <string name="GroupCreateActivity_menu_create_title">그룹 만들기</string>
   <string name="GroupCreateActivity_creating_group">%1$s을(를) 만드는 중…</string>
   <string name="GroupCreateActivity_updating_group">%1$s을(를) 업데이트 중…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">TextSecure 그룹에 TextSecure에 가입하지 않은 사용자를 추가할 수 없음</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signal 그룹에 Signal에 가입하지 않은 사용자를 추가할 수 없음</string>
   <string name="GroupCreateActivity_loading_group_details">그룹 세부정보를 로드 중…</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">나</string>
@@ -190,11 +193,11 @@
   <string name="ImportExportActivity_export">내보내기</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">시스템 SMS를 가져오시겠습니까?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">시스템 SMS 메시지를 TextSecure에 가져옵니다. 이전에 가져온 시스템 SMS 메시지를 다시 가져오면 중복됩니다.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">시스템 SMS 메시지를 Signal에 가져옵니다. 이전에 가져온 시스템 SMS 메시지를 다시 가져오면 중복됩니다.</string>
   <string name="ImportFragment_import">가져오기</string>
   <string name="ImportFragment_cancel">취소</string>
   <string name="ImportFragment_restore_encrypted_backup">암호화된 백업을 복원하시겠습니까?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">암호된 백업을 복원하면 키, 설정, 메시지를 모두 대체합니다. 백업에 포함되지 않은 TextSecure 현 정보가 손실됩니다.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">암호된 백업을 복원하면 키, 설정, 메시지를 모두 대체합니다. 백업에 포함되지 않은 Signal 현 정보가 손실됩니다.</string>
   <string name="ImportFragment_restore">복원</string>
   <string name="ImportFragment_import_plaintext_backup">암호화되지 않은 백업을 가져오시겠습니까?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">암호화되지 않은 백업에서 메시지를 가져옵니다. 이전에 가져온 백업을 다시 가져오면 메시지가 중복됩니다.</string>
@@ -210,7 +213,7 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">스캔된 키 없음</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">바코드 스캐너를 설치하시겠습니까?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">QR코드 스캔하려면 TextSecure는 바코드 스캐너가 필요합니다.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">QR코드 스캔하려면 Signal은 바코드 스캐너가 필요합니다.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string>
   <string name="MessageDetailsRecipient_new_identity">새 인증 키</string>
@@ -218,10 +221,11 @@
   <string name="MmsDownloader_error_storing_mms">MMS 메시지를 저장 오류</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS 제공업체에 연결 오류</string>
   <string name="MmsDownloader_error_reading_mms_settings">이동통신사 MMS 설정 읽기 오류</string>
+  <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">멀티미디어 메시지</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 TextSecure 하위 버전으로 암호화된 메시지를 받았습니다. 발신자에게 최신 버전으로 업그레이드를 요청해 주세요.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 Signal 하위 버전으로 암호화된 메시지를 받았습니다. 발신자에게 최신 버전으로 업그레이드를 요청해 주세요.</string>
   <string name="MessageRecord_left_group">그룹에서 퇴장했습니다.</string>
   <string name="MessageRecord_updated_group">그룹이 업데이트되었습니다.</string>
   <!--PassphraseChangeActivity-->
@@ -245,7 +249,7 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">기기 연결 가능 갯수 초과하여 기존의 기기 중 하나 연결 해제 필요</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 아이콘</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">암호 확인</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">암호가 잘못됨</string>
   <!--PlayServicesProblemFragment-->
@@ -265,8 +269,9 @@
   <string name="RecipientPreferenceActivity_unblock">차단 해제</string>
   <string name="RecipientPreferenceActivity_enabled">사용</string>
   <string name="RecipientPreferenceActivity_disabled">사용 안함</string>
+  <!--RedPhone-->
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">TextSecure로 연결</string>
+  <string name="RegistrationActivity_connect_with_signal">Signal로 연결</string>
   <string name="RegistrationActivity_select_your_country">국가 선택</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">국가 번호를 입력해야 함</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">전화번호를 입력해야 함</string>
@@ -299,12 +304,16 @@
   <string name="RegistrationProgressActivity_too_many_requests">요청이 너무 많음</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">이미 최근에 전화로 인증번호 받기를 요청했습니다. 20분 후에 다시 시도해 주세요.</string>
   <string name="RegistrationProgressActivity_registration_conflict">가입 충돌</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">이미 전화번호가 CyanogenMod이나 다른 TextSecure 서버에 등록되었습니다. 그 서버에 탈퇴한 다음 다시 가입해 주세요.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">이미 전화번호가 CyanogenMod이나 다른 Signal 서버에 등록되었습니다. 그 서버에 탈퇴한 다음 다시 가입해 주세요.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">가입 완료</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure 가입이 완료되었습니다.</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Signal 가입이 완료되었습니다.</string>
   <string name="RegistrationService_registration_error">가입 오류</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure 가입에 문제가 발생했습니다.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal 가입에 문제가 발생했습니다.</string>
+  <!--Slide-->
+  <string name="Slide_image">이미지</string>
+  <string name="Slide_audio">오디오</string>
+  <string name="Slide_video">동영상</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">받은 키 교환 메시지가 손상되었습니다.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">받은 키 교환 메시지에 프로토콜 버전이 잘못되었습니다.</string>
@@ -365,9 +374,9 @@
   <string name="ApplicationMigrationService_import_in_progress">가져오는 중입니다.</string>
   <string name="ApplicationMigrationService_importing_text_messages">메시지 가져오기</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">열려면 터치하세요.</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">열려면 터치하세요. 그러나 잠그려면 자물쇠를 터치하세요.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure 잠금 해제 됨</string>
+  <string name="KeyCachingService_signal_passphrase_cached">열려면 터치하세요.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">열려면 터치하세요. 그러나 잠그려면 자물쇠를 터치하세요.</string>
+  <string name="KeyCachingService_passphrase_cached">Signal 잠금 해제 됨</string>
   <string name="KeyCachingService_lock">암호로 잠금</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">대화 %2$d개에 새 메시지 %1$d개</string>
@@ -383,10 +392,10 @@
   <string name="MessageNotifier_media_message">미디어 메시지</string>
   <string name="MessageNotifier_reply">답장</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">TextSecure 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">새 TextSecure 메시지</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">새 Signal 메시지</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">콘텐츠 숨겨짐</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">기존 암호:</string>
@@ -408,7 +417,7 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">대화 알림 꺼짐</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">TextSecure 메시지 보내기</string>
+  <string name="conversation_activity__type_message_push">Signal 메시지 보내기</string>
   <string name="conversation_activity__type_message_sms_insecure">보안 해제된 SMS 보내기</string>
   <string name="conversation_activity__type_message_mms_insecure">보안 해제된 MMS 보내기</string>
   <string name="conversation_activity__send">보내기</string>
@@ -440,13 +449,14 @@
   <string name="country_selection_fragment__search">검색</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">연결된 기기 없음</string>
+  <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
   <string name="log_submit_activity__submitting">보내는 중</string>
   <string name="log_submit_activity__posting_logs">로그를 gist에 게시 중…</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">시스템 SMS 메시지를 TextSecure의 암호화된 데이터베이스에 가져오시겠습니까?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오시겠습니까?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">기본 시스템 SMS 데이터베이스가 변경되지 않습니다.</string>
   <string name="database_migration_activity__skip">건너뛰기</string>
   <string name="database_migration_activity__import">가져오기</string>
@@ -459,7 +469,7 @@
   <string name="import_fragment__import_system_sms_database">시스템 SMS 가져오기</string>
   <string name="import_fragment__import_the_database_from_the_default_system">기본 시스템 SMS 앱의 데이터베이스를 가져옵니다.</string>
   <string name="import_fragment__import_encrypted_backup">암호화된 백업 가져오기</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">내보낸 암호화된 TextSecure 백업을 복원합니다.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">내보낸 암호화된 Signal 백업을 복원합니다.</string>
   <string name="import_fragment__import_plaintext_backup">암호화되지 않은 백업 가져오기</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\'SMS Backup And Restore\'라는 앱에 호환된 암호화되지 않은 백업을 가져옵니다.</string>
   <!--media_overview_activity-->
@@ -481,20 +491,23 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">잠금 해제</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">이동통신사를 통해 멀티미디어 및 그룹 메시지를 전송하기 위해 MMS 설정 정보가 필요합니다. 기기에서 이 정보가 제공되지 않습니다. 참고: SIM락이 걸려 있거나 다른 방법으로 제한된 기기에서는 가끔 그런 경우가 발생할 수 있습니다.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">이동통신사를 통해 멀티미디어 및 그룹 메시지를 전송하기 위해 MMS 설정 정보가 필요합니다. 기기에서 이 정보가 제공되지 않습니다. 참고: SIM락이 걸려 있거나 다른 방법으로 제한된 기기에서는 가끔 그런 경우가 발생할 수 있습니다.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">멀티미디어 및 그룹 메시지를 보내려면 확인을 터치하여 한 번만 설정해야 합니다. 이동통신사의 MMS 설정 정보를 찾으려면 \'이동통신사 이름 APN\'을 검색하세요.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">차단됨</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">대화 알림 끄기</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">이 대화 알림 끄기</string>
-  <string name="recipient_preferences__ringtone">알림 벨소리</string>
   <string name="recipient_preferences__vibrate">진동</string>
   <string name="recipient_preferences__block">차단</string>
   <string name="recipient_preferences__color">색상</string>
   <string name="recipient_preferences__color_for_this_contact">사용자 색상</string>
+  <string name="recipient_preferences__verify_identity">신분 확인</string>
+  <!--- redphone_call_controls-->
+  <string name="redphone_call_controls__audio">오디오</string>
+  <string name="redphone_call_controls__mute">음소거</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">TextSecure에 연결을 위해 전화번호를 확인합니다.</string>
+  <string name="registration_activity__verify_your_number_to_connect_with_signal">Signal에 연결을 위해 전화번호를 확인합니다.</string>
   <string name="registration_activity__your_country">국가</string>
   <string name="registration_activity__your_country_code_and_phone_number">국제전화 나라 번호 및 전화번호</string>
   <string name="registration_activity__phone_number">전화번호</string>
@@ -504,30 +517,30 @@
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">잠재적인 문제</string>
   <string name="registration_problems__sms_interceptors">SMS 가로채는 앱</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Handcent SMS, GO SMS와 같은 일부 타사 메시지 앱들이 모든 SMS 메시지를 가로챕니다. \'Your TextSecure verification code:\'라는 메시지를 받았는지 확인하세요. 이 경우 타사 메시지 앱을 설정하여 메시지가 통과하도록 허용해야 합니다.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Handcent SMS, GO SMS와 같은 일부 타사 메시지 앱들이 모든 SMS 메시지를 가로챕니다. \'Your Signal verification code:\'라는 메시지를 받았는지 확인하세요. 이 경우 타사 메시지 앱을 설정하여 메시지가 통과하도록 허용해야 합니다.</string>
   <string name="registration_problems__incorrect_number">잘못된 전화번호</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">전화번호 입력, 지역에 따라 형식이 올바른지 확인하세요.</string>
   <string name="registration_problems__google_voice">Google 보이스</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecure가 Google 보이스 전화번호와 작동하지 않습니다.</string>
+  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">Signal이 Google 보이스 전화번호와 작동하지 않습니다.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">전화 통화 확인</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">전화번호 확인을 위해 TextSecure가 전화할 수도 있습니다. \'나에게 전화\'를 터치하여 안내된 인증번호 6자리를 입력하세요.</string>
+  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">전화번호 확인을 위해 Signal이 전화할 수도 있습니다. \'나에게 전화\'를 터치하여 안내된 인증번호 6자리를 입력하세요.</string>
   <string name="registration_progress_activity__verify">확인</string>
   <string name="registration_progress_activity__call_me">나에게 전화</string>
   <string name="registration_progress_activity__edit_number">전화번호 수정</string>
   <string name="registration_progress_activity__connectivity_error">연결 실패</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure가 푸시 서비스에 연결하지 못했습니다.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">Signal이 푸시 서비스에 연결하지 못했습니다.</string>
   <string name="registration_progress_activity__some_possible_problems_include">잠재적인 문제</string>
   <string name="registration_progress_activity__no_network_connectivity">네트워크에 연결되지 않음</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">이 TextSecure 기능을 사용하려면 네트워크 연결이 작동해야 합니다. Wi-Fi나 모바일 데이터 네트워크에 연결 상태를 확인하세요.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">이 Signal 기능을 사용하려면 네트워크 연결이 작동해야 합니다. Wi-Fi나 모바일 데이터 네트워크에 연결 상태를 확인하세요.</string>
   <string name="registration_progress_activity__restrictive_firewall">방화벽</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi 네트워크에 연결되면 TextSecure 서버에 액세스를 제한하는 방화벽이 있을 수 있습니다. 다른 Wi-Fi 네트워크나 모바일 데이터에 연결하세요.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure가 자동 SMS 인증메시지로 전화번호를 확인합니다.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi 네트워크에 연결되면 Signal 서버에 액세스를 제한하는 방화벽이 있을 수 있습니다. 다른 Wi-Fi 네트워크나 모바일 데이터에 연결하세요.</string>
+  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">Signal이 자동 SMS 인증메시지로 전화번호를 확인합니다.</string>
   <string name="registration_progress_activity__connecting">연결 중…</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">SMS 인증메시지 기다리는 중…</string>
   <string name="registration_progress_activity__registering_with_server">서버 가입 중…</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">가입은 다소 시간이 걸릴 수 있습니다. 완료되면 알려드리겠습니다.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">SMS 인증메시지를 기다려 시간이 초과되었습니다.</string>
+  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">SMS 인증메시지를 기다려 시간이 초과되었습니다.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS 확인 실패</string>
   <string name="registration_progress_activity__generating_keys">키 작성 중…</string>
   <string name="registration_progress_activity__alert">경보</string>
@@ -551,7 +564,7 @@
   <string name="AndroidManifest__create_passphrase">암호 만들기</string>
   <string name="AndroidManifest__enter_passphrase">암호 입력</string>
   <string name="AndroidManifest__select_contacts">연락처 선택</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure 감지됨</string>
+  <string name="AndroidManifest__signal_detected">Signal 감지됨</string>
   <string name="AndroidManifest__public_identity_key">공개 인증 키</string>
   <string name="AndroidManifest__change_passphrase">암호 변경</string>
   <string name="AndroidManifest__verify_identity">인증 키 확인</string>
@@ -588,8 +601,8 @@
   <string name="preferences__sms_mms">SMS 및 MMS</string>
   <string name="preferences__pref_all_sms_title">SMS 메시지 수신</string>
   <string name="preferences__pref_all_mms_title">MMS 메시지 수신</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">모든 수신 문자를 받을 수 있도록 TextSecure 사용</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">모든 수신 멀티미디어 메시지를 받을 수 있도록 TextSecure 사용</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">모든 수신 문자를 받을 수 있도록 Signal 사용</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">모든 수신 멀티미디어 메시지를 받을 수 있도록 Signal 사용</string>
   <string name="preferences__input_settings">입력 설정</string>
   <string name="preferences__enable_enter_key_title">Enter키 사용</string>
   <string name="preferences__replace_smiley_with_enter_key">이모티콘 키 Enter키로 변경</string>
@@ -674,8 +687,7 @@
   <string name="preferences__default">기본</string>
   <string name="preferences__language">언어</string>
   <string name="preferences__language_summary">언어 %s</string>
-  <string name="preferences__textsecure_messages">TextSecure 메시지</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">TextSecure와 Signal의 사용자에게 무료 보안 메시지</string>
+  <string name="preferences__signal">Signal</string>
   <string name="preferences__submit_debug_log">디버그 로그 보내기</string>
   <string name="preferences__support_wifi_calling">\'Wi-Fi 통화\' 호환 모드</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">\'Wi-Fi 통화\' 사용 과 SMS/MMS Wi-Fi로 전송 설정되면 사용</string>
@@ -686,20 +698,22 @@
   <string name="preferences_chats__when_roaming">로밍할 때</string>
   <string name="preferences_chats__media_auto_download">미디어 자동 다운로드</string>
   <string name="preferences_chats__message_trimming">대화 줄이기</string>
+  <string name="preferences_advanced__use_system_emoji">시스템 이모티콘 사용</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal 이모티콘 사용 중지</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">모두 선택</string>
   <string name="contact_selection_list__menu_unselect_all">모두 선택취소</string>
-  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE 사용자</string>
+  <string name="contact_selection_list__header_signal_users">SIGNAL 사용자</string>
   <string name="contact_selection_list__header_other">모든 연락처</string>
   <string name="contact_selection_list__unknown_contact">(연락처 없음)</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">완료</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">연락처 목록 새로고침</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable__menu_call">전화걸기</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">메시지 세부정보</string>
@@ -727,7 +741,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">보안</string>
   <string name="conversation_secure_verified__menu_verify_identity">신분 확인</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">암호화된 세션 종료</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">암호화된 세션 초기화</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">알림 켜기</string>
   <!--conversation_unmuted-->
@@ -741,7 +755,7 @@
   <string name="conversation__menu_conversation_settings">대화 설정</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">팝업 펼치기</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">주소록에 추가</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">수신자 목록</string>
@@ -756,16 +770,16 @@
   <string name="text_secure_normal__menu_new_message">새 메시지</string>
   <string name="text_secure_normal__menu_new_group">새 그룹</string>
   <string name="text_secure_normal__menu_settings">설정</string>
-  <string name="text_secure_normal__menu_clear_passphrase">TextSecure 잠금</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Signal 잠금</string>
   <string name="text_secure_normal__mark_all_as_read">모두 읽음으로 표시</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">설치된 TextSecure 버전 만료</string>
+  <string name="reminder_header_expired_build">설치된 Signal 버전 만료</string>
   <string name="reminder_header_expired_build_details">메시지를 전송할 수 없으므로 최신 버전으로 업그레이드 해주세요.</string>
   <string name="reminder_header_sms_default_title">기본 SMS앱으로 사용하시겠습니까?</string>
-  <string name="reminder_header_sms_default_text">TextSecure를 기본 SMS 앱으로 설정하려면 터치하세요.</string>
+  <string name="reminder_header_sms_default_text">Signal을 기본 SMS 앱으로 설정하려면 터치하세요.</string>
   <string name="reminder_header_sms_import_title">시스템 SMS를 가져오시겠습니까?</string>
-  <string name="reminder_header_sms_import_text">시스템 SMS 메시지를 TextSecure의 암호화된 데이터베이스에 가져오려면 터치하세요.</string>
-  <string name="reminder_header_push_title">TextSecure 메시지를 사용하시겠습니까?</string>
+  <string name="reminder_header_sms_import_text">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오려면 터치하세요.</string>
+  <string name="reminder_header_push_title">Signal 메시지를 사용하시겠습니까?</string>
   <string name="reminder_header_push_text">빠른 전송, 강화된 개인정보 보호, SMS 요금이 부과되지 않은 서비스로 메시지를 보내려면 터치하세요.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">나</string>
@@ -775,13 +789,12 @@
   <string name="media_preview__save_title">저장</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">이미지 미리보기</string>
+  <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">이전 메시지 삭제</string>
   <string name="trimmer__deleting_old_messages">이전 메시지를 삭제 중…</string>
   <string name="trimmer__old_messages_successfully_deleted">이전 메시지 삭제됨</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
-  <!--quick_attachment_drawer-->
-  <string name="quick_camera_unavailable">카메라 사용할 수 없음</string>
   <!--EOF-->
 </resources>

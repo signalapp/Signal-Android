@@ -25,24 +25,14 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.MmsReceiveJob;
-import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-
-import ws.com.google.android.mms.pdu.GenericPdu;
-import ws.com.google.android.mms.pdu.NotificationInd;
-import ws.com.google.android.mms.pdu.PduHeaders;
-import ws.com.google.android.mms.pdu.PduParser;
 
 public class MmsListener extends BroadcastReceiver {
 
   private static final String TAG = MmsListener.class.getSimpleName();
 
   private boolean isRelevant(Context context, Intent intent) {
-    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT) {
-      return false;
-    }
-
     if (!ApplicationMigrationService.isDatabaseImported(context)) {
       return false;
     }
@@ -60,21 +50,7 @@ public class MmsListener extends BroadcastReceiver {
       return true;
     }
 
-    byte[] mmsData   = intent.getByteArrayExtra("data");
-    PduParser parser = new PduParser(mmsData);
-    GenericPdu pdu   = parser.parse();
-
-    if (pdu == null || pdu.getMessageType() != PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
-      Log.w(TAG, "Received Invalid notification PDU");
-      return false;
-    }
-
-    NotificationInd notificationPdu = (NotificationInd)pdu;
-
-    if (notificationPdu.getSubject() == null)
-      return false;
-
-    return WirePrefix.isEncryptedMmsSubject(notificationPdu.getSubject().getString());
+    return false;
   }
 
   @Override

@@ -133,7 +133,6 @@
 
         <item name="quick_camera_icon">@drawable/quick_camera_light</item>
 
-        <item name="conversation_item_background">@drawable/conversation_item_background</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_light</item>
@@ -204,7 +203,6 @@
 
         <item name="conversation_group_member_name">#99ffffff</item>
 
-        <item name="conversation_item_background">@drawable/conversation_item_background_dark</item>
         <item name="conversation_item_bubble_background">#ff333333</item>
         <item name="conversation_item_sent_text_primary_color">#ffffffff</item>
         <item name="conversation_item_sent_text_secondary_color">#aaeeeeee</item>

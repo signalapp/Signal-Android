@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
   <string name="yes">はい</string>
   <string name="no">いいえ</string>
   <string name="delete">削除</string>
@@ -18,16 +17,10 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">未登録</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecureメッセージが未登録...</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">TextSecureメッセージを無効にしますか？</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-サーバーから登録を取消し、TextSecureメッセージを無効化します。
-再びTextSecureメッセージを使用するには、あなたの電話番号上で再登録をしてくさい。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS 有効</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">タッチしてデフォルトSMSアプリを変更</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS 無効</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">タッチしてTextSecureをデフォルトSMSアプリにできます</string>
   <string name="ApplicationPreferencesActivity_on">オン</string>
   <string name="ApplicationPreferencesActivity_On">オン</string>
   <string name="ApplicationPreferencesActivity_off">オフ</string>
@@ -50,10 +43,6 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">ブロックした連絡先</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">この
-鍵IDの内容である %1$s が変化しています。誰かがあなたの通信を
-傍受しようとしている、もしくは %2$s が単にTextSecureを再インストールしたため、新しい
-認証キーを取得した可能性があります。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">この連絡先を
 照合することが推奨されています。</string>
   <string name="ConfirmIdentityDialog_accept">受け取り</string>
@@ -72,7 +61,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted">タップしてセキュアでない通信を行う</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">代替として暗号化されていないSMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">このメッセージは暗号化されて<b>いません</b>、なぜなら受信者はTextSecureユーザーではなくなったためです。\n\n安全ではないメッセージの送信を行いますか?</string>
   <string name="ConversationItem_unable_to_open_media">このメディアを開くことができるアプリが見つかりません。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
@@ -103,7 +91,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを本当に抜けますか？</string>
   <string name="ConversationActivity_transport_insecure_sms">暗号化されていないSMS</string>
   <string name="ConversationActivity_transport_insecure_mms">暗号化されていないMMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">一緒に取得: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">チャットするのに使います: %s</string>
   <string name="ConversationActivity_error_leaving_group">グループ離脱でエラー...</string>
@@ -127,7 +114,6 @@
   <string name="ConversationFragment_saving_attachment">添付ファイルを保存しています</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">メモリに添付ファイルを保存中…</string>
   <string name="ConversationFragment_pending">ペンディング</string>
-  <string name="ConversationFragment_push">データ (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">削除</string>
@@ -162,10 +148,10 @@
   <string name="DeviceListItem_last_active_s">最後にアクティブ %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
+  <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">エクスポート</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">SDカードへエクスポートしますか？</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">警告：この作業によって、あなたのTextSecureメッセージは、暗号化されていない状態でSDカードへとエクスポートされます！</string>
   <string name="ExportFragment_cancel">中止</string>
   <string name="ExportFragment_exporting">エクスポート中…</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">暗号化されてないテキストをSDカードにエクスポート中…</string>
@@ -173,15 +159,11 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">SDカードに書き込む途中でエラーが発生しました。</string>
   <string name="ExportFragment_success">成功しました。</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">永続的なTextSecureでの通信失敗!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure の Google Play Servicesへの登録ができませんでした。データチャンネルでの通信が無効にされます、 TextSecure の設定メニューから際登録をしてください。</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
   <string name="GroupCreateActivity_actionbar_update_title">グループを更新する</string>
   <string name="GroupCreateActivity_group_name_hint">グループ名</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新規MMSグループ</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">TextSecureのグループに対応していない連絡先を選択しましたので、このグループはMMSで通信を行います。</string>
-  <string name="GroupCreateActivity_you_dont_support_push">あなたがデータチャンネルを使用する登録をしていないので、TextSecureグループは無効です。</string>
   <string name="GroupCreateActivity_contacts_mms_exception">予期せぬエラーが発生したため、グループ作成が失敗しました。</string>
   <string name="GroupCreateActivity_contacts_no_members">最低一人でもグループに参加する必要があります！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">グループ参加者一人の電話番号が解読できません。番号を訂正するか、その宛先をグループから削除してください。</string>
@@ -189,7 +171,6 @@
   <string name="GroupCreateActivity_menu_create_title">グループ作成</string>
   <string name="GroupCreateActivity_creating_group">%1$sを作成中...</string>
   <string name="GroupCreateActivity_updating_group">%1$sを更新...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">既存のTextSecureグループに非TextSecure連絡先は追加できません。</string>
   <string name="GroupCreateActivity_loading_group_details">グループ詳細を読み出し中...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">私</string>
@@ -198,12 +179,9 @@
   <string name="ImportExportActivity_export">エクスポート</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">システムのSMSデータベースをインポートしますか？</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">これで、携帯端末の既定SMSデータベースにあるメッセージがTextSecureにインポートされます。以前にこの作業を行ったことがあれば、メッセージが重複する場合があります。</string>
   <string name="ImportFragment_import">インポート</string>
   <string name="ImportFragment_cancel">中止</string>
   <string name="ImportFragment_restore_encrypted_backup">暗号化されたバックアップを復元しますか？</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
   <string name="ImportFragment_restore">復元</string>
   <string name="ImportFragment_import_plaintext_backup">平文のバックアップをインポートしますか？</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前に同じバックアップ・ファイルをインポートしたことがある場合、メッセージが重複することになります。</string>
@@ -219,7 +197,6 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">バーコードスキャナをインストールする?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecureではQRコードはバーコードスキャナが必要です</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">送信に失敗</string>
   <string name="MessageDetailsRecipient_new_identity">新規の認証キー</string>
@@ -227,10 +204,10 @@
   <string name="MmsDownloader_error_storing_mms">MMS保存中にエラーがありました。</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMSのプロバイダー接続中にエラーが発生しました…</string>
   <string name="MmsDownloader_error_reading_mms_settings">無線プロバイダーのMMS設定が見つかりませんでした。</string>
+  <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">マルチメディアメッセージ</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">対応されていない古いバージョンのTextSecureから暗号化されたメッセージを受信しました。最新バージョンに更新して、再び送信するよう伝えてください</string>
   <string name="MessageRecord_left_group">グループを出ました。</string>
   <string name="MessageRecord_updated_group">グループを更新しました。</string>
   <!--PassphraseChangeActivity-->
@@ -256,7 +233,6 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">すみません、あなたはすでにとても多数のデバイスをリンクしています、なんらかを削除してください...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecureアイコン</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">パスワードを設定</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスワード</string>
   <!--PlayServicesProblemFragment-->
@@ -276,8 +252,8 @@
   <string name="RecipientPreferenceActivity_unblock">ブロック解除</string>
   <string name="RecipientPreferenceActivity_enabled">有効</string>
   <string name="RecipientPreferenceActivity_disabled">無効</string>
+  <!--RedPhone-->
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">TextSecureで接続</string>
   <string name="RegistrationActivity_select_your_country">国を選択</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力して下さい</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">電話番号を入力して下さい</string>
@@ -312,12 +288,10 @@
   <string name="RegistrationProgressActivity_too_many_requests">多数のリクエスト！</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">あなたはすでに確認用通話を要求しました。二十分待ってまたお試しください。</string>
   <string name="RegistrationProgressActivity_registration_conflict">登録紛争</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">この番号はすでに別のTextSecureサーバーで登録されています。（CyanogenMod？）　そのサーバーで登録を取り消してからこちらで登録してください。</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">登録完了</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure登録が正常に完了しました。</string>
   <string name="RegistrationService_registration_error">登録エラー</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure登録中にエラーが発生しました。</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">無効な鍵交換メッセージを受信しました。</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
@@ -380,9 +354,6 @@
   <string name="ApplicationMigrationService_import_in_progress">インポート中</string>
   <string name="ApplicationMigrationService_importing_text_messages">メッセージをインポート中</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">タッチして開く</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">タッチして開く、またはロックをタッチして閉じる</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecureは、アンロックされています</string>
   <string name="KeyCachingService_lock">パスワードでロックする</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d 会話内の %1$d の新規メッセージ</string>
@@ -398,10 +369,8 @@
   <string name="MessageNotifier_media_message">メディアーメッセージ</string>
   <string name="MessageNotifier_reply">返信</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">TextSecureがロックされていますので、クイック返信は利用できません!</string>
   <string name="QuickResponseService_problem_sending_message">送信メッセージでの問題!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">新しいTextSecureメッセージ</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">非表示コンテンツ</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
@@ -423,7 +392,6 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">会話を消音</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">TextSecureメッセージを送信</string>
   <string name="conversation_activity__type_message_sms_insecure">セキュアではないSMSを送信</string>
   <string name="conversation_activity__type_message_mms_insecure">セキュアではないMMSを送信</string>
   <string name="conversation_activity__send">送信</string>
@@ -455,13 +423,13 @@
   <string name="country_selection_fragment__search">検索</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">リンクしたデバイスはありません...</string>
+  <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバッグログの入手に失敗しました。ADBを使ってログの入手は、可能です。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
   <string name="log_submit_activity__submitting">提出中</string>
   <string name="log_submit_activity__posting_logs">ログをgistに投稿中…</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">TextSecureの暗号化されたデータベースに、今あるテキストメッセージをインポートしてもよろしいですか？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">携帯端末にある既定データベースは変更されません。</string>
   <string name="database_migration_activity__skip">スキップする</string>
   <string name="database_migration_activity__import">インポート</string>
@@ -476,8 +444,6 @@
   <string name="import_fragment__import_the_database_from_the_default_system">端末既定のメッセンジャー・アプリから
 データベースをインポート</string>
   <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップ・ファイルをインポート</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-前回エクスポートした暗号化されたTextSecureバックアップ・ファイルを復元</string>
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
@@ -500,22 +466,18 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecureでは、無線通信事業者からファイル付きメッセージを配信するのに、APN設定が必要です。お使いの携帯端末では、この設定のための情報が取得できません。ロックされた端末であるか、その他の制限設定があるとこのような状況が生じます。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ファイル付き及びグループ・メッセージを配信するのに、OKをクリックして設定を完了してください。お使いの通信事業者への設定値は通常、\"通信事業者APN”で検索すると設定できます。この作業の実行は一度だけでいいです。</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ブロック済み</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">消音しての会話</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">会話を表示している間の通知無効化</string>
-  <string name="recipient_preferences__ringtone">着信音</string>
   <string name="recipient_preferences__vibrate">振動</string>
   <string name="recipient_preferences__block">ブロック</string>
   <string name="recipient_preferences__color">色</string>
   <string name="recipient_preferences__color_for_this_contact">この連絡先の色</string>
+  <!--- redphone_call_controls-->
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        あなたの電話番号をTextSecureに接続するための検証。
-    </string>
   <string name="registration_activity__your_country">あなたの国</string>
   <string name="registration_activity__your_country_code_and_phone_number">あなたの国番号と電話番号</string>
   <string name="registration_activity__phone_number">電話番号</string>
@@ -526,40 +488,23 @@
   <string name="registration_problems__some_possible_problems_include">いくつかの問題の可能性があります
 原因:</string>
   <string name="registration_problems__sms_interceptors">SMSインターセプタ</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-まともに起動しないメッセージングアプリをお使いなされてる場合（例えばHandcent、GoSMS）自動検証が行われません。
-「Your TextSecure verification code:」で始まるメッセージを受信したかをお確かめください。
-この問題が起きた場合、問題のアプリがメッセージを通過させるよう設定してください。</string>
   <string name="registration_problems__incorrect_number">番号が間違っています。</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 番号に間違いがない事と国に当たる形式で入力されているかをチェックしてください。</string>
   <string name="registration_problems__google_voice">Google Voice</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecureは、Google Voice番号では使用不可能です。</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">電話で検証</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecureではあなたに自動電話をかけて検証することが可能です。「私に電話」をタップして下に聞こえる番号を入力してください。</string>
   <string name="registration_progress_activity__verify">確認する</string>
   <string name="registration_progress_activity__call_me">私に電話</string>
   <string name="registration_progress_activity__edit_number">番号を編集</string>
   <string name="registration_progress_activity__connectivity_error">接続エラー</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecureはプッシュサービスへの接続に失敗しました。</string>
   <string name="registration_progress_activity__some_possible_problems_include">可能な原因:</string>
   <string name="registration_progress_activity__no_network_connectivity">ネットワークに接続していません。</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">このTextSecure機能を使用するためには、ネットワーク接続が必要です。Wi-Fiか3Gに接続しているかをお確かめください。</string>
   <string name="registration_progress_activity__restrictive_firewall">ファイアウォール制限。</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Wi-Fiに接続している場合、ファイアウォールがTextSecureサーバーへのアクセスを制限する可能性があります。別のネットワークや携帯電話ネットワークに切り替えてみてください。</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-これからTextSecureは、自動的に電話番号を確認SMSで検証します。</string>
   <string name="registration_progress_activity__connecting">接続中...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">検証用SMSをお待ち…</string>
   <string name="registration_progress_activity__registering_with_server">サーバーに登録中...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">検証が終わるまでしばらくお待ちください。検証完了後お知らせします。</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-検証SMSを待っている間、TextSecureがタイムアウトしました。</string>
   <string name="registration_progress_activity__sms_verification_failed">SMSでの検証が失敗しました。</string>
   <string name="registration_progress_activity__generating_keys">鍵を作成中...</string>
   <string name="registration_progress_activity__alert">アラート</string>
@@ -583,7 +528,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="AndroidManifest__create_passphrase">パスワードの作成</string>
   <string name="AndroidManifest__enter_passphrase">パスワード入力</string>
   <string name="AndroidManifest__select_contacts">連絡先を選択</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecureが検出されました</string>
   <string name="AndroidManifest__public_identity_key">公共認証キー</string>
   <string name="AndroidManifest__change_passphrase">パスワードの変更</string>
   <string name="AndroidManifest__verify_identity">認証検証</string>
@@ -620,8 +564,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__sms_mms">SMSとMMS</string>
   <string name="preferences__pref_all_sms_title">全てのSMSを受信</string>
   <string name="preferences__pref_all_mms_title">全てのMMSを受信</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキスト・メッセージ）にTextSecureを使用します</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）にTextSecureを使用します</string>
   <string name="preferences__input_settings">設定入力</string>
   <string name="preferences__enable_enter_key_title">エンターキーを使えるようにする</string>
   <string name="preferences__replace_smiley_with_enter_key">顔文字キーをエンターキーに変える</string>
@@ -707,10 +649,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__default">初期設定の言語</string>
   <string name="preferences__language">言語</string>
   <string name="preferences__language_summary">言語 %s</string>
-  <string name="preferences__textsecure_messages">TextSecureメッセージ</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-        TextSecureとSignalユーザへのフリーのプライベートメッセージ
-    </string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' 互換モード</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">あなたのデバイスでSMS/MMSの配送をWi-Fi(Wi-Fi Callingが有効にできるデバイスで有効にしある時のみ)上で行うのを有効にする</string>
@@ -727,14 +665,13 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">すべて選択</string>
   <string name="contact_selection_list__menu_unselect_all">すべての選択を解除</string>
-  <string name="contact_selection_list__header_textsecure_users">TextSecureユーザ</string>
   <string name="contact_selection_list__header_other">すべての連絡先</string>
   <string name="contact_selection_list__unknown_contact">新規メッセージ…</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">終了</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">連絡先リストを更新</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable__menu_call">通話</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">メッセージの詳細</string>
@@ -762,7 +699,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">セキュリティ</string>
   <string name="conversation_secure_verified__menu_verify_identity">認証検証</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">セキュア・セッションを終了</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">消音解除</string>
   <!--conversation_unmuted-->
@@ -776,7 +712,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="conversation__menu_conversation_settings">会話設定</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ポップアップを拡大</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">連絡帳に追加</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">受信者リスト</string>
@@ -794,13 +730,10 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="text_secure_normal__menu_clear_passphrase">ロック</string>
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">あなたのビルドした TextSecure が期限切れになりました!</string>
   <string name="reminder_header_expired_build_details">もうメッセージの送信が成功することはありません、最新のバージョンへアップデートしてください。</string>
   <string name="reminder_header_sms_default_title">標準のSMSアプリに設定しますか？</string>
-  <string name="reminder_header_sms_default_text">タップしてTextSecureをデフォルトのSMSアプリにします。</string>
   <string name="reminder_header_sms_import_title">システムのSMSをインポートしますか？</string>
   <string name="reminder_header_sms_import_text">タップして電話のSMSメッセージを暗号化したデータベースにコピーする。</string>
-  <string name="reminder_header_push_title">TextSecureメッセージを有効にしますか？</string>
   <string name="reminder_header_push_text">タップして強力なプライバシー保護、そしてSMS料金ゼロでインスタント配信。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>
@@ -810,13 +743,12 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="media_preview__save_title">保存</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">画像プレビュー表示</string>
+  <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">削除</string>
   <string name="trimmer__deleting_old_messages">古いメッセージを削除...</string>
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージの削除に成功</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
-  <!--quick_attachment_drawer-->
-  <string name="quick_camera_unavailable">カメラが利用できません</string>
   <!--EOF-->
 </resources>

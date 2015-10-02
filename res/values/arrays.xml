@@ -208,4 +208,29 @@
   </string-array>
 
   <string-array name="pref_media_download_roaming_default" />
+
+    <!-- RedPhone -->
+
+    <array name="incoming_call_widget_targets">
+        <item>@drawable/redphone_ic_lockscreen_answer</item>
+        <!--         <item>@drawable/ic_lockscreen_send_sms</item> -->
+        <item>@null</item>
+        <item>@drawable/redphone_ic_lockscreen_decline</item>
+        <item>@null</item>
+    </array>
+
+    <array name="incoming_call_widget_target_descriptions">
+        <item>"Answer"</item>
+        <item>"Send SMS"</item>
+        <item>"Decline"</item>
+        <item>@null</item>"
+    </array>
+
+    <array name="incoming_call_widget_direction_descriptions">
+        <item>"Right"</item>
+        <item>"Up"</item>
+        <item>"Left"</item>
+        <item>@null</item>
+    </array>
+
 </resources>

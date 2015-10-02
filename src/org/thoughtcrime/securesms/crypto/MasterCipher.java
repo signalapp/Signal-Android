@@ -17,6 +17,7 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.Base64;
@@ -92,7 +93,7 @@ public class MasterCipher {
     }
   }
 	
-  public byte[] decryptBytes(byte[] decodedBody) throws InvalidMessageException {
+  public byte[] decryptBytes(@NonNull byte[] decodedBody) throws InvalidMessageException {
     try {
       Mac mac              = getMac(masterSecret.getMacKey());
       byte[] encryptedBody = verifyMacBody(mac, decodedBody);
@@ -103,7 +104,7 @@ public class MasterCipher {
       return encrypted;
     } catch (GeneralSecurityException ge) {
       throw new InvalidMessageException(ge);
-    }		
+    }
   }
 	
   public byte[] encryptBytes(byte[] body) {
@@ -153,7 +154,11 @@ public class MasterCipher {
     return Base64.encodeBytes(encryptedAndMacBody);
   }
 	
-  private byte[] verifyMacBody(Mac hmac, byte[] encryptedAndMac) throws InvalidMessageException {		
+  private byte[] verifyMacBody(@NonNull Mac hmac, @NonNull byte[] encryptedAndMac) throws InvalidMessageException {
+    if (encryptedAndMac.length < hmac.getMacLength()) {
+      throw new InvalidMessageException("length(encrypted body + MAC) < length(MAC)");
+    }
+
     byte[] encrypted = new byte[encryptedAndMac.length - hmac.getMacLength()];
     System.arraycopy(encryptedAndMac, 0, encrypted, 0, encrypted.length);
 		

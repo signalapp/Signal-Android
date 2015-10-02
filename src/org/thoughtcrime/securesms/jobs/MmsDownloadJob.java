@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -144,16 +143,9 @@ public class MmsDownloadJob extends MasterSecretJob {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
     IncomingMediaMessage message  = new IncomingMediaMessage(retrieved);
 
-    Pair<Long, Long> messageAndThreadId;
-
-    if (retrieved.getSubject() != null && WirePrefix.isEncryptedMmsSubject(retrieved.getSubject().getString())) {
-      database.markAsLegacyVersion(messageId, threadId);
-      messageAndThreadId = new Pair<>(messageId, threadId);
-    } else {
-      messageAndThreadId = database.insertMessageInbox(new MasterSecretUnion(masterSecret),
-                                                       message, contentLocation, threadId);
-      database.delete(messageId);
-    }
+    Pair<Long, Long> messageAndThreadId  = database.insertMessageInbox(new MasterSecretUnion(masterSecret),
+                                                                       message, contentLocation, threadId);
+    database.delete(messageId);
 
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }

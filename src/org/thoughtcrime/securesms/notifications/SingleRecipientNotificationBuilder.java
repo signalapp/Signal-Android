@@ -67,7 +67,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                             .asDrawable(context, recipient.getColor()
                                                           .toConversationColor(context)));
     } else {
-      setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_new_textsecure_message));
+      setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_new_signal_message));
       setLargeIcon(Recipient.getUnknownRecipient()
                             .getContactPhoto()
                             .asDrawable(context, Recipient.getUnknownRecipient()
@@ -133,9 +133,9 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     if (privacy.isDisplayMessage()) {
       setTicker(getStyledMessage(recipient, message));
     } else if (privacy.isDisplayContact()) {
-      setTicker(getStyledMessage(recipient, context.getString(R.string.SingleRecipientNotificationBuilder_new_textsecure_message)));
+      setTicker(getStyledMessage(recipient, context.getString(R.string.SingleRecipientNotificationBuilder_new_signal_message)));
     } else {
-      setTicker(context.getString(R.string.SingleRecipientNotificationBuilder_new_textsecure_message));
+      setTicker(context.getString(R.string.SingleRecipientNotificationBuilder_new_signal_message));
     }
   }
 

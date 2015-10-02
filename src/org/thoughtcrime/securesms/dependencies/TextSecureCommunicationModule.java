@@ -9,12 +9,14 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DeliveryReceiptJob;
+import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
@@ -41,7 +43,9 @@ import dagger.Provides;
                                      PushNotificationReceiveJob.class,
                                      MultiDeviceContactUpdateJob.class,
                                      MultiDeviceGroupUpdateJob.class,
-                                     DeviceListActivity.DeviceListFragment.class})
+                                     DeviceListActivity.DeviceListFragment.class,
+                                     RefreshAttributesJob.class,
+                                     GcmRefreshJob.class})
 public class TextSecureCommunicationModule {
 
   private final Context context;
@@ -51,30 +55,33 @@ public class TextSecureCommunicationModule {
   }
 
   @Provides TextSecureAccountManager provideTextSecureAccountManager() {
-    return new TextSecureAccountManager(BuildConfig.PUSH_URL,
+    return new TextSecureAccountManager(BuildConfig.TEXTSECURE_URL,
                                         new TextSecurePushTrustStore(context),
                                         TextSecurePreferences.getLocalNumber(context),
-                                        TextSecurePreferences.getPushServerPassword(context));
+                                        TextSecurePreferences.getPushServerPassword(context),
+                                        BuildConfig.USER_AGENT);
   }
 
   @Provides TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
     return new TextSecureMessageSenderFactory() {
       @Override
       public TextSecureMessageSender create() {
-        return new TextSecureMessageSender(BuildConfig.PUSH_URL,
+        return new TextSecureMessageSender(BuildConfig.TEXTSECURE_URL,
                                            new TextSecurePushTrustStore(context),
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
                                            new TextSecureAxolotlStore(context),
+                                           BuildConfig.USER_AGENT,
                                            Optional.<TextSecureMessageSender.EventListener>of(new SecurityEventListener(context)));
       }
     };
   }
 
   @Provides TextSecureMessageReceiver provideTextSecureMessageReceiver() {
-    return new TextSecureMessageReceiver(BuildConfig.PUSH_URL,
+    return new TextSecureMessageReceiver(BuildConfig.TEXTSECURE_URL,
                                          new TextSecurePushTrustStore(context),
-                                         new DynamicCredentialsProvider(context));
+                                         new DynamicCredentialsProvider(context),
+                                         BuildConfig.USER_AGENT);
   }
 
   public static interface TextSecureMessageSenderFactory {

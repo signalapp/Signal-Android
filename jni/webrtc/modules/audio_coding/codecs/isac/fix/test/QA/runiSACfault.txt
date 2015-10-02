@@ -1,0 +1,40 @@
+#!/bin/bash
+(set -o igncr) 2>/dev/null && set -o igncr; # force bash to ignore \r character
+
+LOGFILE=logfault.txt
+echo "START FAULT TEST" > $LOGFILE
+
+ISAC=../Release/kenny.exe
+ISACFIXFLOAT=../Release/testFixFloat.exe
+
+INFILES=$(cat InputFiles.txt)
+SUBSET=$(cat InputFilesFew.txt)
+CHANNELFILES=$(cat ChannelFiles.txt)
+CHANNELLIST=($(cat ChannelFiles.txt))
+INDIR=../data/orig
+OUTDIR=../dataqaft
+mkdir -p $OUTDIR
+
+TARGETRATE=(10000 15000 20000 25000 30000 32000)
+FAULTTEST=(1 2 3 4 5 6 7 9)
+
+index1=0
+
+file=wb_contspeech.pcm
+
+# Fault test
+for testnr in ${FAULTTEST[*]}
+   do
+	$ISAC 32000 -F $testnr $INDIR/"$file" $OUTDIR/ft$testnr"$file" >> $LOGFILE
+done
+
+# Fault test number 10, error in bitstream
+ $ISAC 32000 -F 10 $INDIR/"$file" $OUTDIR/ft10_"$file" >> $LOGFILE
+ $ISAC 32000 -F 10 -PL 10 $INDIR/"$file" $OUTDIR/ft10plc_"$file" >> $LOGFILE
+ $ISAC 32000 -F 10 -NB 1 $INDIR/"$file" $OUTDIR/ft10nb1_"$file" >> $LOGFILE
+ $ISAC 32000 -F 10 -NB 2 -PL 10 $INDIR/"$file" $OUTDIR/ft10nb2_"$file" >> $LOGFILE
+
+echo DONE!
+
+
+

@@ -79,14 +79,6 @@ public class SmsSentJob extends MasterSecretJob {
       switch (result) {
         case Activity.RESULT_OK:
           database.markAsSent(messageId);
-
-          if (record != null && record.isEndSession()) {
-            Log.w(TAG, "Ending session...");
-            SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-            sessionStore.deleteAllSessions(record.getIndividualRecipient().getNumber());
-            SecurityEvent.broadcastSecurityUpdateEvent(context, record.getThreadId());
-          }
-
           break;
         case SmsManager.RESULT_ERROR_NO_SERVICE:
         case SmsManager.RESULT_ERROR_RADIO_OFF:
@@ -94,7 +86,6 @@ public class SmsSentJob extends MasterSecretJob {
           ApplicationContext.getInstance(context)
               .getJobManager()
               .add(new SmsSendJob(context, messageId, record.getIndividualRecipient().getNumber()));
-
           break;
         default:
           database.markAsSentFailed(messageId);
