@@ -15,6 +15,10 @@ public class JsonUtils {
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
   }
 
+  public static <T> T fromJson(byte[] serialized, Class<T> clazz) throws IOException {
+    return fromJson(new String(serialized), clazz);
+  }
+
   public static <T> T fromJson(String serialized, Class<T> clazz) throws IOException {
     return objectMapper.readValue(serialized, clazz);
   }
