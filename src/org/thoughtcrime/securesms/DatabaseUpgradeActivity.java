@@ -227,6 +227,9 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
                           .add(new RefreshAttributesJob(getApplicationContext()));
+        ApplicationContext.getInstance(getApplicationContext())
+                          .getJobManager()
+                          .add(new DirectoryRefreshJob(getApplicationContext()));
       }
 
       return null;

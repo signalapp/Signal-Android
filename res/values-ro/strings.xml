@@ -13,6 +13,9 @@
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Eşti sigur că doreşti să scurtezi toate conversaţiile la %s cele mai recente mesaje?</string>
   <string name="ApplicationPreferencesActivity_delete">Şterge</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+        Dezactivez ecranul de blocare pentru mesaje?
+    </string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivează</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages">Dezactivare mesaje Signal?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
@@ -59,6 +62,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Apasă pentru revenirea la soluția ne-securizată</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Reveniţi la SMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Reveniţi la MMS necriptat ca soluţie de rezervă?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Signal.\n\nTrimit mesaj nesecurizat?</string>
   <string name="ConversationItem_unable_to_open_media">Nu a fost găsită o aplicație pentru a deschide acest tip media.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initializez Sesiune Securizata?</string>
@@ -135,7 +139,9 @@
   <string name="DateUtils_now">Acum</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_network_connection_failed">Conexiunea la reţea a eşuat...</string>
   <string name="DeviceListActivity_try_again">Încearcă din nou</string>
+  <string name="DeviceListActivity_network_failed">Eroare de reţea!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispozitiv fără nume</string>
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
@@ -195,6 +201,7 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nu a fost găsită nici o cheie scanată!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalez scannerul de coduri de bare?</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal are nevoie de Barcode Scanner pentru coduri QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Expediere eşuată</string>
   <string name="MessageDetailsRecipient_new_identity">Identitate nouă</string>
@@ -204,6 +211,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">Eroare la citirea setărilor MMS ale operatorului wireless...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
+  <string name="NotificationBarManager_missed_call_from_s">Apel ratat de la %s</string>
+  <string name="NotificationBarManager_missed_signal_call">Apel Signal ratat</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mesaj multimedia</string>
   <!--MessageRecord-->
@@ -237,6 +246,7 @@
   <string name="RatingManager_later">Mai târziu</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blochez acest contact?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Nu o să mai vezi mesaje trimise de acest utilizator.</string>
   <string name="RecipientPreferenceActivity_block">Blochează</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Deblochez acest contact?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Sunteți sigur că doriți deblocarea acestui contact?</string>
@@ -244,9 +254,27 @@
   <string name="RecipientPreferenceActivity_enabled">Activat</string>
   <string name="RecipientPreferenceActivity_disabled">Dezactivat</string>
   <!--RedPhone-->
+  <string name="RedPhone_ending_call">Se închide apelul</string>
+  <string name="RedPhone_dialing">Se apelează</string>
+  <string name="RedPhone_canceling_call">Se respinge apelul</string>
+  <string name="RedPhone_call_rejected">Apel respins</string>
   <string name="RedPhone_ringing">Sună</string>
   <string name="RedPhone_busy">Ocupat</string>
+  <string name="RedPhone_connected">Conectat</string>
+  <string name="RedPhone_connecting">Se contectează</string>
+  <string name="RedPhone_handshake_failed">Handshake eşuat!</string>
+  <string name="RedPhone_recipient_unavailable">Destinatar indisponibil</string>
+  <string name="RedPhone_performing_handshake">Se execută handshake-ul</string>
+  <string name="RedPhone_network_failed">Eroare de server!</string>
+  <string name="RedPhone_client_failed">Eroare de client</string>
+  <string name="RedPhone_fatal_error">Eroare fatală</string>
+  <string name="RedPhone_login_failed">Autentificare eşuată!</string>
+  <string name="RedPhone_message_from_the_server">Mesaje de la server</string>
+  <string name="RedPhone_number_not_registered">Numărul nu este înregistrat!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numărul format nu suportă apeluri securizate!</string>
+  <string name="RedPhone_got_it">Am înțeles</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">Conectare prin Signal</string>
   <string name="RegistrationActivity_select_your_country">Alegeţi ţara dumneavostră</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie sa specificati
 codul dvs de tara</string>
@@ -351,6 +379,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="ApplicationMigrationService_import_in_progress">Import în curs</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mesajele text sunt importate</string>
   <!--KeyCachingService-->
+  <string name="KeyCachingService_signal_passphrase_cached">Atingeți pentru a deschide.</string>
   <string name="KeyCachingService_passphrase_cached">Signal este deblocat</string>
   <string name="KeyCachingService_lock">Blocare acces cu parola</string>
   <!--MessageNotifier-->
@@ -421,6 +450,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="country_selection_fragment__search">Caută</string>
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">continuă</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nu au putut fi obţinute log-urile pentru dispozitiv. Puteţi folosi în schimb ADB pentru a obţine log-urile.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
@@ -467,6 +497,7 @@ Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</st
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCAT</string>
   <!--recipient_preferences-->
+  <string name="recipient_preferences__notification_tone">Ton notificare</string>
   <string name="recipient_preferences__vibrate">Vibrează</string>
   <string name="recipient_preferences__block">Blochează</string>
   <string name="recipient_preferences__color">Culoare</string>
@@ -474,7 +505,9 @@ Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</st
   <string name="recipient_preferences__verify_identity">Verifică identitate</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Apel Signal</string>
+  <string name="redphone_call_controls__end_call">închide apelul</string>
   <string name="redphone_call_controls__audio">Audio</string>
+  <string name="redphone_call_controls__mute">Silenţios</string>
   <string name="redphone_call_controls__signal_call">Apel Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">TARA DVS.</string>
@@ -493,12 +526,18 @@ sunt:</string>
 Vă rugăm să vă asiguraţi că aţi introdus corect numărul dvs. de telefon şi că acesta este formatat corect pentru
 regiunea dumneavoastră.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
+        Signal nu va funcţiona cu numere Google Voice.
+    </string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Verificare pe bază de apel vocal</string>
   <string name="registration_progress_activity__verify">Verifica</string>
   <string name="registration_progress_activity__call_me">Sună-mă</string>
   <string name="registration_progress_activity__edit_number">Editează număr</string>
   <string name="registration_progress_activity__connectivity_error">Eroare de conectivitate</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
+        Signal nu s-a putut conecta la serviciul de push.
+    </string>
   <string name="registration_progress_activity__some_possible_problems_include">Probleme posibile
 sunt:</string>
   <string name="registration_progress_activity__no_network_connectivity">Nu exista conexiune la retea</string>
@@ -532,6 +571,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="AndroidManifest__create_passphrase">Creează parolă</string>
   <string name="AndroidManifest__enter_passphrase">Introduceţi parola</string>
   <string name="AndroidManifest__select_contacts">Selectează contacte</string>
+  <string name="AndroidManifest__signal_detected">Signal detectat</string>
   <string name="AndroidManifest__public_identity_key">Cheia de identitate publică</string>
   <string name="AndroidManifest__change_passphrase">Schimbă parola</string>
   <string name="AndroidManifest__verify_identity">Verifică identitatea</string>
@@ -569,6 +609,8 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__sms_mms">SMS și MMS</string>
   <string name="preferences__pref_all_sms_title">Recepționează toate SMS-urile</string>
   <string name="preferences__pref_all_mms_title">Recepționează toate MMS-urile</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Utilizează Signal pentru toate mesajele text</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizează Signal pentru toate mesajele multimedia de intrare</string>
   <string name="preferences__input_settings">Setări de introducere</string>
   <string name="preferences__enable_enter_key_title">Activează tasta Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Inlocuiți tasta smiley cu tasta Enter</string>
@@ -581,6 +623,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__change_my_passphrase">Schimbă parola</string>
   <string name="preferences__enable_passphrase">Activează parola</string>
   <string name="preferences__passphrase_summary">Parola %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">Activează ecran de blocare pentru mesaje</string>
   <string name="preferences__screen_security">Securitate ecran</string>
   <string name="preferences__screen_security_summary">Securitate ecran %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blochează screenshot-urile în lista cu aplicaţii recente şi în interiorul applicaţiei</string>
@@ -660,12 +703,15 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences_chats__when_using_wifi">Când se utilizează Wi-Fi </string>
   <string name="preferences_chats__when_roaming">Când se utilizează roaming-ul </string>
   <string name="preferences_chats__media_auto_download">Descărcare automată Media</string>
+  <string name="preferences_chats__message_trimming">Scurtarea mesajului</string>
+  <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Selectează tot</string>
   <string name="contact_selection_list__menu_unselect_all">Deselectează tot</string>
+  <string name="contact_selection_list__header_signal_users">UTILIZATORI SIGNAL</string>
   <string name="contact_selection_list__header_other">TOATE CONTACTELE</string>
   <string name="contact_selection_list__unknown_contact">Mesajul nou către...</string>
   <!--contact_selection-->
@@ -699,6 +745,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Securitate</string>
   <string name="conversation_secure_verified__menu_verify_identity">Verifică identitatea</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Resetează sesiunea securizată</string>
   <!--conversation_muted-->
   <!--conversation_unmuted-->
   <!--conversation-->
@@ -729,8 +776,10 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Mesajele nu vor mai putea fi trimise cu succes, vă rog actualizați aplicația la versiunea cea mai recentă.</string>
   <string name="reminder_header_sms_default_title">Seteaz ca aplicație implicită SMS?</string>
+  <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal ca și aplicație SMS implicită.</string>
   <string name="reminder_header_sms_import_title">Import baza de date cu SMS-uri?</string>
   <string name="reminder_header_sms_import_text">Atingeți  pentru a copia mesajele SMS din telefon în baza de date criptată.</string>
+  <string name="reminder_header_push_title">Activez mesaje Signal ?</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_cant_display">Previzualizarea imaginii a eșuat</string>
@@ -740,6 +789,8 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Previzualizare imagine</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__headset">Căști</string>
+  <string name="redphone_audio_popup_menu__speaker">Difuzor</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Se șterge</string>
   <string name="trimmer__deleting_old_messages">Se șterg mesajele vechi...</string>

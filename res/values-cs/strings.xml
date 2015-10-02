@@ -490,6 +490,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Žádná zařízení nejsou propojena...</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">pokračovat</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepodařilo se zaznamenat logy z vašeho zařízení. Jěště můžete zkusit použít pro získání debug logů nástroj ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
@@ -542,6 +543,7 @@ Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</str
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Ztišit konverzaci</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Zakázat upozornění pro tuto konverzaci</string>
+  <string name="recipient_preferences__notification_tone">Zvuk upozornění</string>
   <string name="recipient_preferences__vibrate">Vibrace</string>
   <string name="recipient_preferences__block">Blokovat</string>
   <string name="recipient_preferences__color">Barva</string>
@@ -760,6 +762,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__language_summary">Jazyk %s</string>
   <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladící log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
@@ -862,6 +866,9 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Náhled obrázku</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Sluchátka</string>
+  <string name="redphone_audio_popup_menu__headset">Sluchátka s mikrofonem</string>
+  <string name="redphone_audio_popup_menu__speaker">Reproduktor</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Mažu</string>
   <string name="trimmer__deleting_old_messages">Mazání starých zpráv...</string>

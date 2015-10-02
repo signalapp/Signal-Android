@@ -241,6 +241,9 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prejeto je bilo sporočilo, šifrirano s starejšo različico aplikacije Signal, ki ni več podprta. Obvsetite pošiljatelja, naj nadgradi aplikacijo Signal na najnovejšo različico.</string>
   <string name="MessageRecord_left_group">Zapustili ste skupino.</string>
   <string name="MessageRecord_updated_group">Skupina je bila posodobljena.</string>
+  <string name="MessageRecord_s_called_you">Oseba %s vas je klicala</string>
+  <string name="MessageRecord_called_s">Klicali ste %s</string>
+  <string name="MessageRecord_missed_call_from">Neodgovorjen klic od %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
@@ -363,6 +366,9 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="ThreadRecord_left_the_group">Zapustili ste skupino...</string>
   <string name="TheadRecord_secure_session_ended">Varna seja je zaključena.</string>
   <string name="ThreadRecord_draft">Osnutek:</string>
+  <string name="ThreadRecord_called">Klicali ste</string>
+  <string name="ThreadRecord_called_you">Imeli ste klic</string>
+  <string name="ThreadRecord_missed_call">Neodgovorjen klic</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nimate identifikacijskega ključa.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Prejemnik nima identifikacijskega ključa.</string>

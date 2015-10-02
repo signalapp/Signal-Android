@@ -240,6 +240,9 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling die niet meer ondersteund wordt. Vraag de afzender om Signal te updaten naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_updated_group">Groep bijgewerkt.</string>
+  <string name="MessageRecord_s_called_you">%s heeft je gebeld</string>
+  <string name="MessageRecord_called_s">%s gebeld</string>
+  <string name="MessageRecord_missed_call_from">Gemist gesprek van %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
@@ -367,6 +370,9 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="ThreadRecord_left_the_group">Je hebt deze groep verlaten...</string>
   <string name="TheadRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
   <string name="ThreadRecord_draft">Concept:</string>
+  <string name="ThreadRecord_called">Jij hebt gebeld</string>
+  <string name="ThreadRecord_called_you">Heeft je gebeld</string>
+  <string name="ThreadRecord_missed_call">Gemist gesprek</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Je hebt geen identiteitssleutel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">De ontvanger heeft geen identiteitssleutel.</string>
@@ -492,6 +498,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Geen apparaten gekoppeld...</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">doorgaan</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kan geen logs van je apparaat verzamelen. Je kan nog steeds ADB gebruiken om debug logs te verzamelen.</string>
   <string name="log_submit_activity__thanks">Bedankt voor uw hulp!</string>
@@ -543,6 +550,7 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Demp conversatie</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Notificaties uitschakelen voor dit gesprek</string>
+  <string name="recipient_preferences__notification_tone">Notificatie toon</string>
   <string name="recipient_preferences__vibrate">Vibreren</string>
   <string name="recipient_preferences__block">Blokkeren</string>
   <string name="recipient_preferences__color">Kleur</string>
@@ -753,6 +761,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__language">Taal</string>
   <string name="preferences__language_summary">Taal %s</string>
   <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Gratis privéberichten versturen aan Signal gebruikers</string>
   <string name="preferences__submit_debug_log">Dien debug log in</string>
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Inschakelen als je toestel SMS/MMS over WiFi gebruikt (alleen inschakelen als \'WiFi Bellen\' is ingeschakeld op je toestel)</string>
@@ -855,6 +865,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Afbeelding Voorvertoning</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Toestel</string>
+  <string name="redphone_audio_popup_menu__headset">Koptelefoon</string>
+  <string name="redphone_audio_popup_menu__speaker">Luidspreker</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Aan het verwijderen</string>
   <string name="trimmer__deleting_old_messages">Oude berichten verwijderen...</string>

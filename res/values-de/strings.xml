@@ -17,7 +17,7 @@
 TextSecure und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Signal-Benutzerkonto wird gelöscht …</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Signal-Registrierung wird gelöscht …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal-Nachrichten deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
 Deaktiviert Signal-Nachrichten, indem Ihre Registrierung vom Server gelöscht wird.
@@ -239,6 +239,9 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, welche nicht mehr unterstützt wird. Bitten Sie den Kontakt, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Sie haben die Gruppe verlassen.</string>
   <string name="MessageRecord_updated_group">Gruppe wurde aktualisiert.</string>
+  <string name="MessageRecord_s_called_you">Eingehender Anruf von %s</string>
+  <string name="MessageRecord_called_s">Ausgehender Anruf an %s</string>
+  <string name="MessageRecord_missed_call_from">Verpasster Anruf von %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -360,6 +363,9 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen …</string>
   <string name="TheadRecord_secure_session_ended">Sichere Unterhaltung beendet.</string>
   <string name="ThreadRecord_draft">Entwurf:</string>
+  <string name="ThreadRecord_called">Ausgehender Anruf</string>
+  <string name="ThreadRecord_called_you">Eingehender Anruf</string>
+  <string name="ThreadRecord_missed_call">Verpasster Anruf</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Kontakt hat keinen Schlüssel.</string>
@@ -579,7 +585,7 @@ Signal kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf �
   <string name="registration_progress_activity__edit_number">Rufnummer bearbeiten</string>
   <string name="registration_progress_activity__connectivity_error">Verbindungsfehler.</string>
   <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Verbindung zu Signal konnte nicht hergestellt werden.</string>
+Verbindung zum Signal-Dienst konnte nicht hergestellt werden.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Einige der möglichen Probleme beinhalten:</string>
   <string name="registration_progress_activity__no_network_connectivity">Keine Netzwerkverbindung.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Um diese Signal-Funktion nutzen zu können, benötigt Ihr Gerät eine Netzverbindung, Stellen Sie sicher, dass eine 3G- oder WLAN-Verbindung besteht.</string>
@@ -655,8 +661,8 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__sms_mms">SMS und MMS</string>
   <string name="preferences__pref_all_sms_title">Für SMS-Empfang verwenden</string>
   <string name="preferences__pref_all_mms_title">Für MMS-Empfang verwenden</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal für alle eingehenden Textnachrichten verwenden</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal für alle eingehenden Multimedianachrichten verwenden</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal für alle eingehenden SMS verwenden</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal für alle eingehenden MMS verwenden</string>
   <string name="preferences__input_settings">Eingabe</string>
   <string name="preferences__enable_enter_key_title">Eingabetaste aktivieren</string>
   <string name="preferences__replace_smiley_with_enter_key">Emoji-Taste durch Eingabetaste ersetzen</string>
@@ -847,7 +853,7 @@ Kostenlos verschlüsselt Nachrichten schreiben und Telefonieren mit Signal-Nutze
   <string name="media_preview_activity__image_content_description">Bildvorschau</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Hörer</string>
-  <string name="redphone_audio_popup_menu__headset">Freisprecheinrichtung</string>
+  <string name="redphone_audio_popup_menu__headset">Headset</string>
   <string name="redphone_audio_popup_menu__speaker">Lautsprecher</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Löschen</string>

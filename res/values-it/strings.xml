@@ -243,6 +243,8 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di Signal che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
   <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
   <string name="MessageRecord_updated_group">Gruppo aggiornato.</string>
+  <string name="MessageRecord_s_called_you">%s ti ha chiamato</string>
+  <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
@@ -373,6 +375,9 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="ThreadRecord_left_the_group">Gruppo abbandonato...</string>
   <string name="TheadRecord_secure_session_ended">Sessione sicura terminata.</string>
   <string name="ThreadRecord_draft">Bozza:</string>
+  <string name="ThreadRecord_called">Hai chiamato</string>
+  <string name="ThreadRecord_called_you">Ti ha chiamato</string>
+  <string name="ThreadRecord_missed_call">Chiamata persa</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Il destinatario non ha una chiave di identità.</string>
@@ -497,6 +502,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Nessun dispositivo collegato...</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">continua</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Non riesco a recuperare i log dal tuo dispositivo. Puoi sempre utilizzare ADB per ottenere i log di debug.</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
@@ -549,6 +555,7 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silenzia conversazione</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Disattiva le notifiche per questa conversazione</string>
+  <string name="recipient_preferences__notification_tone">Suono notifica</string>
   <string name="recipient_preferences__vibrate">Vibra</string>
   <string name="recipient_preferences__block">Blocca</string>
   <string name="recipient_preferences__color">Colore</string>
@@ -770,6 +777,8 @@ non riuscita.
   <string name="preferences__language">Lingua</string>
   <string name="preferences__language_summary">Lingua %s</string>
   <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Messaggistica privata e gratuita tra utenti Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS  via WiFi ( abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo )</string>
@@ -872,6 +881,9 @@ non riuscita.
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Anteprima Immagine</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Telefono</string>
+  <string name="redphone_audio_popup_menu__headset">Cuffie</string>
+  <string name="redphone_audio_popup_menu__speaker">Altoparlante</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Cancellazione</string>
   <string name="trimmer__deleting_old_messages">Cancellazione vecchi messaggi...</string>

@@ -116,11 +116,11 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
     } else if (isIncomingCall()) {
-      return emphasisAdded(String.format("%s called you", getIndividualRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.MessageRecord_s_called_you, getIndividualRecipient().toShortString()));
     } else if (isOutgoingCall()) {
-      return emphasisAdded(String.format("Called %s", getIndividualRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.MessageRecord_called_s, getIndividualRecipient().toShortString()));
     } else if (isMissedCall()) {
-      return emphasisAdded(String.format("Missed call from %s", getIndividualRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.MessageRecord_missed_call_from, getIndividualRecipient().toShortString()));
     } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
       return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
     }

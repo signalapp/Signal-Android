@@ -30,6 +30,7 @@ import org.thoughtcrime.redphone.signaling.signals.RingingSignal;
 import org.thoughtcrime.redphone.signaling.signals.ServerSignal;
 import org.thoughtcrime.redphone.signaling.signals.Signal;
 import org.thoughtcrime.redphone.util.LineReader;
+import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.textsecure.api.push.TrustStore;
 
 import java.io.IOException;
@@ -182,7 +183,7 @@ public class SignalingSocket {
       case 404: throw new NoSuchUserException("No such redphone user.");
       case 402: throw new ServerMessageException(new String(response.getBody()));
       case 401: throw new LoginFailedException("Initiate threw 401");
-      case 200: return new ObjectMapper().readValue(response.getBody(), SessionDescriptor.class);
+      case 200: return JsonUtils.fromJson(response.getBody(), SessionDescriptor.class);
       default:  throw new SignalingException("Unknown response: " + response.getStatusCode());
       }
     } catch (IOException e) {

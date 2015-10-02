@@ -493,6 +493,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Ingen enheter tilkoblet...</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">fortsett</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke hente loggene fra din enhet. Du kan fremdeles benytte ADB for å hente debug logger.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
@@ -543,6 +544,7 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Mute samtale</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Deaktiver varslinger for denne samtalen</string>
+  <string name="recipient_preferences__notification_tone">Varslingslyd</string>
   <string name="recipient_preferences__vibrate">Vibrer</string>
   <string name="recipient_preferences__block">Blokker</string>
   <string name="recipient_preferences__color">Farge</string>
@@ -752,6 +754,9 @@ feilet.</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__language_summary">Språk %s</string>
   <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Gratis og private meldinger til Signal brukere
+ </string>
   <string name="preferences__submit_debug_log">Send debug logg</string>
   <string name="preferences__support_wifi_calling">\'WiFi anrop\' kompatibilititetsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver dersom enheten din bruker WiFi for å sende SMS/MMS (brukes bare hvis \'WiFi anrop\' er aktivert på enheten din)</string>
@@ -854,6 +859,9 @@ feilet.</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Forhåndsvisning av bilde</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Håndsett</string>
+  <string name="redphone_audio_popup_menu__headset">Headset</string>
+  <string name="redphone_audio_popup_menu__speaker">Høyttaler</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Sletter</string>
   <string name="trimmer__deleting_old_messages">Sletter gamle meldinger...</string>

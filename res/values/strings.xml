@@ -290,6 +290,10 @@
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_updated_group">Updated the group.</string>
+    <string name="MessageRecord_s_called_you">%s called you</string>
+    <string name="MessageRecord_called_s">Called %s</string>
+    <string name="MessageRecord_missed_call_from">Missed call from %s</string>
+
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
@@ -353,7 +357,7 @@
     <string name="RedPhone_handshake_failed">Handshake failed!</string>
     <string name="RedPhone_recipient_unavailable">Recipient unavailable</string>
     <string name="RedPhone_performing_handshake">Performing handshake</string>
-    <string name="RedPhone_network_failed">Server failed!</string>
+    <string name="RedPhone_network_failed">Network failed!</string>
     <string name="RedPhone_client_failed">Client failed</string>
     <string name="RedPhone_fatal_error">Fatal Error</string>
     <string name="RedPhone_login_failed">Login failed!</string>
@@ -441,6 +445,9 @@
     <string name="ThreadRecord_left_the_group">Left the group...</string>
     <string name="TheadRecord_secure_session_ended">Secure session ended.</string>
     <string name="ThreadRecord_draft">Draft:</string>
+    <string name="ThreadRecord_called">You called</string>
+    <string name="ThreadRecord_called_you">Called you</string>
+    <string name="ThreadRecord_missed_call">Missed call</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>

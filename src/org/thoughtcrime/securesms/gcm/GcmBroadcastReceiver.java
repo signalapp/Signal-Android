@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.gcm;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.text.TextUtils;
 import android.util.Log;
@@ -62,27 +63,34 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
                       .add(new PushNotificationReceiveJob(context));
   }
 
-  private void handleReceivedCall(Context context, String data) {
-    try {
-      String                   signalingKey           = TextSecurePreferences.getSignalingKey(context);
-      EncryptedSignalMessage   encryptedSignalMessage = new EncryptedSignalMessage(data, signalingKey);
-      CompressedInitiateSignal signal                 = CompressedInitiateSignal.parseFrom(encryptedSignalMessage.getPlaintext());
-      Recipients               recipients             = RecipientFactory.getRecipientsFromString(context, signal.getInitiator(), false);
+  private void handleReceivedCall(final Context context, final String data) {
+    new AsyncTask<Void, Void, Void>() {
+      @Override
+      protected Void doInBackground(Void... params) {
+        try {
+          String                   signalingKey           = TextSecurePreferences.getSignalingKey(context);
+          EncryptedSignalMessage   encryptedSignalMessage = new EncryptedSignalMessage(data, signalingKey);
+          CompressedInitiateSignal signal                 = CompressedInitiateSignal.parseFrom(encryptedSignalMessage.getPlaintext());
+          Recipients               recipients             = RecipientFactory.getRecipientsFromString(context, signal.getInitiator(), false);
 
-      if (!recipients.isBlocked()) {
-        Intent intent = new Intent(context, RedPhoneService.class);
-        intent.setAction(RedPhoneService.ACTION_INCOMING_CALL);
-        intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, signal.getInitiator());
-        intent.putExtra(RedPhoneService.EXTRA_SESSION_DESCRIPTOR, new SessionDescriptor(signal.getServerName(),
-                                                                                        signal.getPort(),
-                                                                                        signal.getSessionId(),
-                                                                                        signal.getVersion()));
-        context.startService(intent);
-      } else {
-        Log.w(TAG, "*** Received incoming call from blocked number, ignoring...");
+          if (!recipients.isBlocked()) {
+            Intent intent = new Intent(context, RedPhoneService.class);
+            intent.setAction(RedPhoneService.ACTION_INCOMING_CALL);
+            intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, signal.getInitiator());
+            intent.putExtra(RedPhoneService.EXTRA_SESSION_DESCRIPTOR, new SessionDescriptor(signal.getServerName(),
+                                                                                            signal.getPort(),
+                                                                                            signal.getSessionId(),
+                                                                                            signal.getVersion()));
+            context.startService(intent);
+          } else {
+            Log.w(TAG, "*** Received incoming call from blocked number, ignoring...");
+          }
+        } catch (InvalidEncryptedSignalException | IOException e) {
+          Log.w(TAG, e);
+        }
+
+        return null;
       }
-    } catch (InvalidEncryptedSignalException | IOException e) {
-      Log.w(TAG, e);
-    }
+    }.execute();
   }
 }
