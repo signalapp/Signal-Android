@@ -357,7 +357,7 @@
     <string name="RedPhone_handshake_failed">Handshake failed!</string>
     <string name="RedPhone_recipient_unavailable">Recipient unavailable</string>
     <string name="RedPhone_performing_handshake">Performing handshake</string>
-    <string name="RedPhone_network_failed">Server failed!</string>
+    <string name="RedPhone_network_failed">Network failed!</string>
     <string name="RedPhone_client_failed">Client failed</string>
     <string name="RedPhone_fatal_error">Fatal Error</string>
     <string name="RedPhone_login_failed">Login failed!</string>
