@@ -51,8 +51,7 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
     return super.onKeyUp(keyCode, event);
   }
 
-  //If some class need to not use flag_secure for some reason. It's just override and do nothing.
-  protected void initializeScreenshotSecurity() {
+  private void initializeScreenshotSecurity() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
             TextSecurePreferences.isScreenSecurityEnabled(this))
     {
