@@ -36,8 +36,8 @@ public class EncryptedBackupExporter extends AbstractBackup {
   }
 
   public static void exportToSd(Context context) throws NoExternalStorageException, IOException {
-    setup();
     verifyCanWrite();
+    setup();
     exportDirectory(context, "");
   }
 
