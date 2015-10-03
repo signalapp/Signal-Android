@@ -26,38 +26,29 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
-public class EncryptedBackupExporter {
+public class EncryptedBackupExporter extends AbstractBackup {
+
+  public static void setup() {
+    File backupDirectory = getDirectoryPath();
+    if (!backupDirectory.exists()) {
+      backupDirectory.mkdirs();
+    }
+  }
 
   public static void exportToSd(Context context) throws NoExternalStorageException, IOException {
-    verifyExternalStorageForExport();
+    setup();
+    verifyCanWrite();
     exportDirectory(context, "");
   }
 
   public static void importFromSd(Context context) throws NoExternalStorageException, IOException {
-    verifyExternalStorageForImport();
+    verifyCanRead();
     importDirectory(context, "");
   }
 
   private static String getExportDirectoryPath() {
     File sdDirectory  = Environment.getExternalStorageDirectory();
     return sdDirectory.getAbsolutePath() + File.separator + "TextSecureExport";
-  }
-
-  private static void verifyExternalStorageForExport() throws NoExternalStorageException {
-    if (!Environment.getExternalStorageDirectory().canWrite())
-      throw new NoExternalStorageException();
-
-    String exportDirectoryPath = getExportDirectoryPath();
-    File exportDirectory       = new File(exportDirectoryPath);
-
-    if (!exportDirectory.exists())
-      exportDirectory.mkdir();
-  }
-
-  private static void verifyExternalStorageForImport() throws NoExternalStorageException {
-    if (!Environment.getExternalStorageDirectory().canRead() ||
-        !(new File(getExportDirectoryPath()).exists()))
-        throw new NoExternalStorageException();
   }
 
   private static void migrateFile(File from, File to) {
