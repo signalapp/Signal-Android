@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.notifications;
 
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -67,7 +70,15 @@ public class NotificationItem {
     if (notifyRecipients != null) intent.putExtra("recipients", notifyRecipients.getIds());
 
     intent.putExtra("thread_id", threadId);
-    intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+    intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
+
+    if(Build.VERSION.SDK_INT >= 16) {
+      PendingIntent pendingIntent = TaskStackBuilder.create(context)
+                                                    .addParentStack(ConversationActivity.class)
+                                                    .addNextIntent(intent)
+                                                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+      return pendingIntent;
+    }
 
     return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
