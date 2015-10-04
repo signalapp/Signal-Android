@@ -260,16 +260,17 @@ public class RegistrationService extends Service {
     DatabaseFactory.getIdentityDatabase(this).saveIdentity(self.getRecipientId(), identityKey.getPublicKey());
     DirectoryHelper.refreshDirectory(this, accountManager, number);
 
-    if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS &&
-        !BuildConfig.FORCE_WEBSOCKETS)
-    {
-      RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
-                                                                               new RedPhoneTrustStore(this),
-                                                                               number, password);
-      String verificationToken = accountManager.getAccountVerificationToken();
-      redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey,
-              TextSecurePreferences.getGcmRegistrationId(this)));
-    }
+    //if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS &&
+    //    !BuildConfig.FORCE_WEBSOCKETS)
+    //{
+    //  RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
+    //                                                                           new RedPhoneTrustStore(this),
+    //                                                                           number, password);
+    //  String verificationToken = accountManager.getAccountVerificationToken();
+    //  redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey,
+    //          TextSecurePreferences.getGcmRegistrationId(this)));
+    //}
+    accountManager.getAccountVerificationToken();
 
     DirectoryRefreshListener.schedule(this);
   }

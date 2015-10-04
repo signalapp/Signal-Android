@@ -235,7 +235,7 @@ android {
         // defaults
       }
       staging {
-        buildConfigField "String", "PUSH_URL", "\"https://textsecure-service-staging.whispersystems.org\""
+        buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service-staging.whispersystems.org\""
         buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-staging.whispersystems.org\""
         buildConfigField "String", "REDPHONE_RELAY_HOST", "\"redphone-staging-relay.whispersystems.org\""
       }
