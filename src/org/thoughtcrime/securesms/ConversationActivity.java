@@ -392,7 +392,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
-    case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
+    case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
@@ -498,12 +498,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void handleAbortSecureSession() {
+  private void handleResetSecureSession() {
     AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this);
-    builder.setTitle(R.string.ConversationActivity_abort_secure_session_confirmation);
+    builder.setTitle(R.string.ConversationActivity_reset_secure_session_confirmation);
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question);
+    builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
