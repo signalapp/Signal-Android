@@ -90,8 +90,8 @@
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate secure session?</string>
     <string name="ConversationActivity_initiate_secure_session_with_s_question">Initiate secure session with %s?</string>
-    <string name="ConversationActivity_abort_secure_session_confirmation">End secure session confirmation</string>
-    <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Are you sure that you want to end this secure session?</string>
+    <string name="ConversationActivity_reset_secure_session_confirmation">Reset secure session confirmation</string>
+    <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Are you sure that you want to reset this secure session?</string>
     <string name="ConversationActivity_delete_thread_confirmation">Delete thread confirmation</string>
     <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Are you sure that you want to permanently delete this conversation?</string>
     <string name="ConversationActivity_add_attachment">Add attachment</string>
@@ -438,12 +438,12 @@
         Received message with unknown identity key. Click to process and display.
     </string>
     <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
-    <string name="SmsMessageRecord_secure_session_ended">Secure session ended.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Secure session reset.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_left_the_group">Left the group...</string>
-    <string name="TheadRecord_secure_session_ended">Secure session ended.</string>
+    <string name="ThreadRecord_secure_session_reset">Secure session reset.</string>
     <string name="ThreadRecord_draft">Draft:</string>
     <string name="ThreadRecord_called">You called</string>
     <string name="ThreadRecord_called_you">Called you</string>
