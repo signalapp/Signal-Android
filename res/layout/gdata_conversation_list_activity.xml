@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout_gdata"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:fab="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gdata_primary_color"
@@ -50,7 +50,7 @@
             android:animateLayoutChanges="true"
             android:gravity="bottom|right"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <LinearLayout
                 android:id="@+id/action_float_menu_pone"
@@ -58,36 +58,39 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textViewCThree"
+                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Heinrich Dieter"
-                    android:textColor="@color/black"
-                    android:elevation="2dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="11dp"
-                    android:background="@drawable/textview_rounded_corners"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center">
 
-                <com.melnykov.fab.FloatingActionButton
+                    <TextView
+                        android:id="@+id/textViewCThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_new_contact_three"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="38dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="0dp"
                     android:elevation="2dp"
                     android:src="?attr/menu_new_conversation_icon"
-                    fab:fab_colorNormal="@android:color/holo_orange_dark"
-                    fab:fab_colorPressed="@color/menuItemBackground"
-                    fab:fab_colorRipple="@color/menuTextColor"
-                    fab:fab_shadow="true"
-                    fab:fab_type="mini" />
+                    app:backgroundTint="@android:color/holo_orange_dark"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -96,35 +99,37 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textViewCTwo"
+                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Heinrich Dieter"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="11dp"
-                    android:elevation="2dp"
-                    android:background="@drawable/textview_rounded_corners"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center">
 
-                <com.melnykov.fab.FloatingActionButton
+                    <TextView
+                        android:id="@+id/textViewCTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_new_contact_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="38dp"
-                    android:layout_marginBottom="15dp"
                     android:src="?attr/menu_new_conversation_icon"
-                    fab:fab_colorNormal="@android:color/holo_purple"
-                    fab:fab_colorPressed="@color/menuItemBackground"
-                    fab:fab_colorRipple="@color/menuTextColor"
-                    fab:fab_shadow="true"
-                    fab:fab_type="mini" />
+                    app:backgroundTint="@android:color/holo_purple"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -133,35 +138,37 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textViewCOne"
+                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Heinrich Dieter"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="11dp"
-                    android:elevation="2dp"
-                    android:background="@drawable/textview_rounded_corners"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center">
 
-                <com.melnykov.fab.FloatingActionButton
+                    <TextView
+                        android:id="@+id/textViewCOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_new_contact_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="38dp"
-                    android:layout_marginBottom="15dp"
                     android:src="?attr/menu_new_conversation_icon"
-                    fab:fab_colorNormal="@color/yellow"
-                    fab:fab_colorPressed="@color/menuItemBackground"
-                    fab:fab_colorRipple="@color/menuTextColor"
-                    fab:fab_shadow="true"
-                    fab:fab_type="mini" />
+                    app:backgroundTint="@color/yellow"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -170,35 +177,37 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textViewNew"
+                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Heinrich Dieter"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:layout_gravity="bottom"
-                    android:elevation="2dp"
-                    android:layout_marginBottom="11dp"
-                    android:background="@drawable/textview_rounded_corners"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center">
 
-                <com.melnykov.fab.FloatingActionButton
+                    <TextView
+                        android:id="@+id/textViewNew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_new_conversation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="38dp"
-                    android:layout_marginBottom="15dp"
                     android:src="?attr/menu_new_conversation_icon"
-                    fab:fab_colorNormal="@android:color/holo_blue_light"
-                    fab:fab_colorPressed="@color/menuItemBackground"
-                    fab:fab_colorRipple="@color/menuTextColor"
-                    fab:fab_shadow="true"
-                    fab:fab_type="mini" />
+                    app:backgroundTint="@android:color/holo_blue_light"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -206,40 +215,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewGroup"
+                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Heinrich Dieter"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="11dp"
-                    android:elevation="2dp"
-                    android:background="@drawable/textview_rounded_corners"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center">
 
-                <com.melnykov.fab.FloatingActionButton
+                    <TextView
+                        android:id="@+id/textViewGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+                <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_new_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="bottom|right"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="38dp"
                     android:src="?attr/menu_new_group_icon"
-                    fab:fab_colorNormal="@color/conversation_item_sent_background_light"
-                    fab:fab_colorPressed="@color/menuItemBackground"
-                    fab:fab_colorRipple="@color/menuTextColor"
-                    fab:fab_shadow="true"
-                    fab:fab_type="mini" />
+                    app:backgroundTint="@color/conversation_item_sent_background_light"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
             </LinearLayout>
         </LinearLayout>
 
-        <com.melnykov.fab.FloatingActionButton
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -248,12 +257,11 @@
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="5dp"
-            android:src="?attr/menu_forward_icon"
-            fab:fab_colorNormal="@color/gdata_red"
-            fab:fab_colorPressed="@color/menuItemBackground"
-            fab:fab_colorRipple="@color/menuTextColor"
-            fab:fab_shadow="true" />
+            android:layout_marginTop="@dimen/fab_compat_margin_bottom"
+            android:src="?attr/menu_new_conversation_icon"
+            app:backgroundTint="@color/gdata_red"
+            app:elevation="2dp"
+            app:pressedTranslationZ="2dp" />
 
     </RelativeLayout>
     <!-- The navigation drawer -->
