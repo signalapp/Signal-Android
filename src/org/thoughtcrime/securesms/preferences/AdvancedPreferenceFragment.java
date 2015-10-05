@@ -19,7 +19,10 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
+import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.LogSubmitActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RegistrationActivity;
@@ -151,7 +154,7 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       private final CheckBoxPreference checkBoxPreference;
 
       public DisablePushMessagesTask(final CheckBoxPreference checkBoxPreference) {
-        super(getActivity(), R.string.ApplicationPreferencesActivity_unregistering, R.string.ApplicationPreferencesActivity_unregistering_from_textsecure_messages);
+        super(getActivity(), R.string.ApplicationPreferencesActivity_unregistering, R.string.ApplicationPreferencesActivity_unregistering_from_signal_messages);
         this.checkBoxPreference = checkBoxPreference;
       }
 
@@ -174,11 +177,17 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       @Override
       protected Integer doInBackground(Void... params) {
         try {
-          Context                  context        = getActivity();
-          TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
+          Context                  context                = getActivity();
+          TextSecureAccountManager accountManager         = TextSecureCommunicationFactory.createManager(context);
+          RedPhoneAccountManager   redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
+                                                                                       new RedPhoneTrustStore(context),
+                                                                                       TextSecurePreferences.getLocalNumber(context),
+                                                                                       TextSecurePreferences.getPushServerPassword(context));
 
           accountManager.setGcmId(Optional.<String>absent());
+
           if (TextSecurePreferences.isGcmRegistered(context)) {
+            redPhoneAccountManager.setGcmId(Optional.<String>absent());
             GoogleCloudMessaging.getInstance(context).unregister();
           }
 
@@ -198,8 +207,8 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       if (((CheckBoxPreference)preference).isChecked()) {
         AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
         builder.setIconAttribute(R.attr.dialog_info_icon);
-        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_textsecure_messages);
-        builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_textsecure_messages);
+        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_signal_messages);
+        builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_signal_messages);
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
           @Override

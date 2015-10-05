@@ -1,0 +1,47 @@
+#!/bin/bash
+(set -o igncr) 2>/dev/null && set -o igncr; # force bash to ignore \r character
+
+LOGFILE=logfxfl.txt
+echo "START FIX-FLOAT TEST" > $LOGFILE
+
+
+ISACFIXFLOAT=../testFixFloat.exe
+
+INFILES=$(cat InputFiles.txt)
+SUBSET=$(cat InputFilesFew.txt)
+CHANNELFILES=$(cat ChannelFiles.txt)
+CHANNELLIST=($(cat ChannelFiles.txt))
+INDIR=../data/orig
+OUTDIR=../dataqafxfl
+mkdir -p $OUTDIR
+
+index1=0
+
+for file in $INFILES # loop over all input files
+  do
+  
+  for channel in $CHANNELFILES
+	do
+	let "index1=index1+1"
+
+	$ISACFIXFLOAT $INDIR/$channel -m 1 -PLC $INDIR/"$file" $OUTDIR/flfx$index1"$file" >> $LOGFILE
+	$ISACFIXFLOAT $INDIR/$channel -m 2 -PLC $INDIR/"$file" $OUTDIR/fxfl$index1"$file" >> $LOGFILE
+  done
+
+done
+
+index1=0
+
+for file in $SUBSET # loop over the subset of input files
+  do
+	let "index1=index1+1"
+	$ISACFIXFLOAT $INDIR/$channel -m 1 -NB 1 $INDIR/"$file" $OUTDIR/flfxnb1_$index1"$file" >> $LOGFILE
+	$ISACFIXFLOAT $INDIR/$channel -m 2 -NB 1 $INDIR/"$file" $OUTDIR/fxflnb1_$index1"$file" >> $LOGFILE
+	$ISACFIXFLOAT $INDIR/$channel -m 1 -NB 2 -PLC $INDIR/"$file" $OUTDIR/flfxnb2_$index1"$file" >> $LOGFILE
+	$ISACFIXFLOAT $INDIR/$channel -m 2 -NB 2 -PLC $INDIR/"$file" $OUTDIR/fxflnb2_$index1"$file" >> $LOGFILE
+done
+
+echo DONE!
+
+
+

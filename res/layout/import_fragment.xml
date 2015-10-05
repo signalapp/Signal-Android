@@ -85,7 +85,7 @@
                 <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:text="@string/import_fragment__restore_a_previously_exported_encrypted_textsecure_backup"/>
+                          android:text="@string/import_fragment__restore_a_previously_exported_encrypted_signal_backup"/>
 
             </LinearLayout>
         </LinearLayout>

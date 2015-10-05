@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">Signal</string>
   <string name="yes">Kyllä</string>
   <string name="no">Ei</string>
   <string name="delete">Poista</string>
@@ -17,16 +17,16 @@
 Poistetaanko sovelluksen ja viestien lukitus salalauseella käytöstä?</string>
   <string name="ApplicationPreferencesActivity_disable">Poista käytöstä</string>
   <string name="ApplicationPreferencesActivity_unregistering">Puretaan rekisteröintiä</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Puretaan rekisteröintiä TextSecure-viestipalvelusta</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Poistetaanko TextSecure-viestit käytöstä?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-Tämä lopettaa TextSecure-viestipalvelun poistamalla tietosi palvelimelta.
-Jos haluat käyttää TextSecure-viestejä jatkossa, sinun täytyy rekisteröityä uudelleen.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Puretaan rekisteröintiä Signalin viestipalvelusta...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">Otetaanko Signal-viestit pois käytöstä?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
+Tämä lopettaa Signalin viestipalvelun ja purkaa rekisteröitymisesi palvelimelta.
+Jos haluat käyttää Signal-viestejä jatkossa, täytyy sinun rekisteröityä uudelleen.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Virhe yhdistettäessä palvelimeen!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Tekstiviestit käytössä</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kosketa, jos haluat vaihtaa oletustekstiviestisovellustasi</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Tekstiviestit poissa käytöstä</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Kosketa, jos haluat asettaa TextSecuren oletustekstiviestisovellukseksi</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Kosketa, jos haluat asettaa Signalin oletustekstiviestisovellukseksi</string>
   <string name="ApplicationPreferencesActivity_on">päällä</string>
   <string name="ApplicationPreferencesActivity_On">Päällä</string>
   <string name="ApplicationPreferencesActivity_off">pois</string>
@@ -51,7 +51,7 @@ Jos haluat käyttää TextSecure-viestejä jatkossa, sinun täytyy rekisteröity
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Yhteystiedon
 %1$s identiteettiavain on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata
-viestiliikennettänne, tai sitä, että %2$s on uudelleenasentanut TextSecuren, ja siksi käyttää nyt
+viestiliikennettänne, tai sitä, että %2$s on uudelleenasentanut Signalin, ja siksi käyttää nyt
 uutta identiteettiavainta.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa
 tämän yhteystiedon.</string>
@@ -63,7 +63,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationItem_expires_s">Umpeutuu: %s</string>
   <string name="ConversationItem_error_not_delivered">Ei toimitettu</string>
   <string name="ConversationItem_view_secure_media_question">Tarkastele salattua mediaa?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tämä media on tallennettu TextSecuren sisäiseen salattuun tietokantaan. Valitettavasti median katselu muilla sovelluksilla vaatii sisällön salauksen purkua ja kopiointia väliaikaisesti laitteesi tallennustilaan. Haluatko varmasti tehdä tämän?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tämä media on tallennettu Signalin sisäiseen salattuun tietokantaan. Valitettavasti median katselu muilla sovelluksilla vaatii sisällön salauksen purkua ja kopiointia väliaikaisesti laitteesi tallennustilaan. Haluatko varmasti tehdä tämän?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Virhe. Vastaanotettiin vanhentunut avaintenvaihtoviesti.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Avaintenvaihtoviesti vastaanotettu. Aloita käsittely napsauttamalla.</string>
   <string name="ConversationItem_group_action_left">%1$s on lähtenyt ryhmästä.</string>
@@ -71,7 +71,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Napsauta, jos haluat lähettää viestin salaamattomana</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Käytä salaamattomia tekstiviestejä?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Käytä salaamattomia MMS-viestejä?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tätä viestiä <b>ei</b> voida salata, koska vastaanottaja ei enää käytä TextSecurea.\n\nLähetetäänkö salaamattomana?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tätä viestiä <b>ei</b> voida salata, koska vastaanottaja ei enää käytä Signalia.\n\nLähetetäänkö salaamattomana?</string>
   <string name="ConversationItem_unable_to_open_media">Median avaamiseen ei löytynyt sovellusta.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Aloita salattu istunto?</string>
@@ -85,8 +85,8 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Virhe liitteen lisäämisessä</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">Valitsemasi gif on liian suuri!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Valitettavasti kyseinen video ylittää viesteille asetetun kokorajoituksen (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Valitettavasti kyseinen äänitallenne ylittää viesteille asetetun kokorajoituksen (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Valitettavasti kyseinen video ylittää viesteille asetetun kokorajoituksen (%1$skt).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Valitettavasti kyseinen äänitallenne ylittää viesteille asetetun kokorajoituksen (%1$skt).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Annettu numero tai sähköpostiosoite ei ole kelvollinen!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Viesti on tyhjä!</string>
   <string name="ConversationActivity_group_members">Ryhmän jäsenet</string>
@@ -102,7 +102,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Haluatko varmasti poistua ryhmästä?</string>
   <string name="ConversationActivity_transport_insecure_sms">Salaamaton tekstiviesti</string>
   <string name="ConversationActivity_transport_insecure_mms">Salaamaton MMS-viesti</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_get_with_it">Yksityisyys. Nyt. %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Hei, kokeillaan keskustella tällä: %s</string>
   <string name="ConversationActivity_error_leaving_group">Virhe ryhmästä lähtiessä...</string>
@@ -112,6 +112,8 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_unblock_question">Poista esto?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Haluatko varmasti poistaa eston tältä yhteystiedolta?</string>
   <string name="ConversationActivity_unblock">Poista esto</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Liitetiedosto ylittää kyseisen viestityypin kokorajoituikset.</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Kamera ei käytettävissä</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Viestin tiedot</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Tyyppi: %1$s
@@ -130,7 +132,7 @@ Vastaanotettu: %4$s</string>
   <string name="ConversationFragment_saving_attachment">Liitettä tallennetaan</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Kopioidaan liitettä tallennustilaan...</string>
   <string name="ConversationFragment_pending">Käsiteltävänä...</string>
-  <string name="ConversationFragment_push">Tietoverkko (TextSecure)</string>
+  <string name="ConversationFragment_push">Tietoverkko (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Poistetaan</string>
@@ -165,11 +167,17 @@ Vastaanotettu: %4$s</string>
   <string name="DeviceListItem_last_active_s">Viimeksi käytetty %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
+  <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tervetuloa Signaliin.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ja RedPhone ovat yhdistyneet nyt Signaliksi: yksityiset viestit ja puhelut samassa paketissa.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tervetuloa Signaliin!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure on nyt Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ja RedPhone ovat nyt yksi ja sama sovellus: Signal. Napsauta tutustuaksesi.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Vie</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Viedäänkö salaamattomana tallennustilaan?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varoitus: tämä vie
-kaikki TextSecure-viestisi salaamattomana laitteesi tallennustilaan.</string>
+kaikki Signal-viestisi salaamattomana laitteesi tallennustilaan.</string>
   <string name="ExportFragment_cancel">Peruuta</string>
   <string name="ExportFragment_exporting">Viedään</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Viedään salaamattomana tallennustilaan...</string>
@@ -177,15 +185,15 @@ kaikki TextSecure-viestisi salaamattomana laitteesi tallennustilaan.</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Tallennustilaan kirjoitettaessa sattui virhe.</string>
   <string name="ExportFragment_success">Onnistui!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Pysyvä TextSecure-yhteysvirhe!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure ei voinut rekisteröityä Google Play Services -palveluun, minkä vuoksi viestintä tietoverkon kautta on nyt otettu pois käytöstä. Kokeile rekisteröityä uudelleen TextSecuren asetuksista.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pysyvä Signal-yhteysvirhe!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei voinut rekisteröityä Google Play Services -palveluun, minkä vuoksi viestintä tietoverkon kautta on nyt otettu pois käytöstä. Kokeile rekisteröityä uudelleen Signalin asetuksista.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Uusi ryhmä</string>
   <string name="GroupCreateActivity_actionbar_update_title">Päivitä ryhmää</string>
   <string name="GroupCreateActivity_group_name_hint">Ryhmän nimi</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Uusi MMS-ryhmä</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Olet valinnut yhteystiedon, joka ei tue TextSecuren ryhmäkeskusteluja. Tämä istunto tulee olemaan MMS-pohjainen.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Et ole rekisteröitynyt käyttämään tietoverkkovälitteistä viestintää, joten ryhmäkeskustelut ovat poissa käytöstä.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Olet valinnut yhteystiedon, joka ei tue Signalin ryhmäkeskusteluja. Tämä ryhmä tulee olemaan MMS-pohjainen.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Et ole rekisteröitynyt käyttämään tietoverkkovälitteistä viestintää, joten Signalin ryhmäkeskustelut ovat poissa käytöstä.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ryhmän luonti epäonnistui odottamattoman virheen takia.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ryhmässä täytyy olla vähintään yksi henkilö!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Yhdellä ryhmän jäsenistä on puhelinnumero, jota ei voida lukea. Ole hyvä ja korjaa tämän henkilön yhteystiedot tai poista hänet ryhmästä ja yritä uudelleen.</string>
@@ -193,7 +201,7 @@ kaikki TextSecure-viestisi salaamattomana laitteesi tallennustilaan.</string>
   <string name="GroupCreateActivity_menu_create_title">Luo ryhmä</string>
   <string name="GroupCreateActivity_creating_group">Luodaan %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Päivitetään %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Olemassa olevaan TextSecuren ryhmäkeskusteluun ei voi lisätä yhteystietoja, jotka eivät käytä TextSecurea</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Olemassa olevaan Signalin ryhmäkeskusteluun ei voi lisätä yhteystietoja, jotka eivät käytä Signalia</string>
   <string name="GroupCreateActivity_loading_group_details">Ladataan ryhmän tiedot...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Minä</string>
@@ -202,15 +210,13 @@ kaikki TextSecure-viestisi salaamattomana laitteesi tallennustilaan.</string>
   <string name="ImportExportActivity_export">Vie</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Tuodaanko järjestelmän tekstiviestitietokanta?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Tämä toiminto kopioi 
-tekstiviestit laitteesi tietokannasta TextSecureen. Jos viestit on tuotu jo aiemmin,
-seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Tämä toiminto kopioi tekstiviestit laitteesi tietokannasta Signaliin. Jos viestit on tuotu jo aiemmin, seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="ImportFragment_import">Tuo</string>
   <string name="ImportFragment_cancel">Peruuta</string>
   <string name="ImportFragment_restore_encrypted_backup">Palautetaanko salattu varmuuskopio?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Salatun varmuuskopion palauttaminen korvaa kaikki olemassa olevat avaimet, asetukset ja
-viestit.  Menetät kaikki TextSecuressa olevat tiedot, jotka eivät ole osa varmuuskopiota.</string>
+viestit. Menetät kaikki Signalissa olevat tiedot, jotka eivät ole osa varmuuskopiota.</string>
   <string name="ImportFragment_restore">Palauta</string>
   <string name="ImportFragment_import_plaintext_backup">Tuodaanko salaamaton varmuuskopio?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Tämä toiminto tuo
@@ -228,7 +234,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Skannattuja avaimia ei löytynyt!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Asenna \"Barcode Scanner\" -viivakoodinlukija?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure tarvitsee \"Barcode Scanner\" -sovelluksen QR-koodeja varten.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal tarvitsee \"Barcode Scanner\" -sovelluksen QR-koodeja varten.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Lähetys epäonnistui</string>
   <string name="MessageDetailsRecipient_new_identity">Uusi identiteetti</string>
@@ -236,12 +242,19 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MmsDownloader_error_storing_mms">Virhe multimediaviestin tallentamisessa!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Virhe yhdistettäessä MMS-palveluntarjoajaan...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Virhe luettaessa operaattorin MMS-asetuksia...</string>
+  <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">Signal-puhelu käynnissä</string>
+  <string name="NotificationBarManager_missed_call_from_s">Vastaamatta jäänyt puhelu: %s</string>
+  <string name="NotificationBarManager_missed_signal_call">Vastaamatta jäänyt Signal-puhelu</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediaviesti</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettiin viesti, joka on salattu TextSecuren vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään TextSecure uusimpaan versioon ja lähettämään viesti uudelleen.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettiin viesti, joka on salattu Signalin vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään uusimpaan versioon ja lähettämään viesti uudelleen.</string>
   <string name="MessageRecord_left_group">Olet lähtenyt ryhmästä.</string>
   <string name="MessageRecord_updated_group">Ryhmä päivitetty.</string>
+  <string name="MessageRecord_s_called_you">%s soitti sinulle</string>
+  <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
+  <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>
@@ -264,14 +277,14 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sinulla on liian monta laitetta yhdistettynä. Kokeile poistaa joitakin...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-kuvake</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal-kuvake</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Syötä salalause</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Salalause ei kelpaa!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Käyttämäsi versio Google Play Servicestä ei toimi kunnolla. Asenna Google Play Services uudelleen ja yritä uudestaan.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Arvostele tämä sovellus</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jos pidät TextSecuresta, voit auttaa meitä arvostelemalla sen.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jos pidät Signalista, voit auttaa meitä arvostelemalla sen.</string>
   <string name="RatingManager_rate_now">Arvostele nyt!</string>
   <string name="RatingManager_no_thanks">Ei kiitos</string>
   <string name="RatingManager_later">Myöhemmin</string>
@@ -284,8 +297,29 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="RecipientPreferenceActivity_unblock">Poista esto</string>
   <string name="RecipientPreferenceActivity_enabled">Päällä</string>
   <string name="RecipientPreferenceActivity_disabled">Poissa päältä</string>
+  <!--RedPhone-->
+  <string name="RedPhone_answering">Vastataan</string>
+  <string name="RedPhone_ending_call">Katkaistaan puhelua</string>
+  <string name="RedPhone_dialing">Soitetaan</string>
+  <string name="RedPhone_canceling_call">Katkaistaan</string>
+  <string name="RedPhone_call_rejected">Puhelu hylätty</string>
+  <string name="RedPhone_ringing">Soi</string>
+  <string name="RedPhone_busy">Varattu</string>
+  <string name="RedPhone_connected">Yhdistetty</string>
+  <string name="RedPhone_connecting">Yhdistetään</string>
+  <string name="RedPhone_handshake_failed">Yhteyden luonti epäonnistui!</string>
+  <string name="RedPhone_recipient_unavailable">Vastaanottaja ei ole saavutettavissa</string>
+  <string name="RedPhone_performing_handshake">Muodostetaan yhteyttä</string>
+  <string name="RedPhone_network_failed">Palvelinvirhe!</string>
+  <string name="RedPhone_client_failed">Sovellusvirhe</string>
+  <string name="RedPhone_fatal_error">Odottamaton virhe</string>
+  <string name="RedPhone_login_failed">Kirjautuminen epäonnistui!</string>
+  <string name="RedPhone_message_from_the_server">Viesti palvelimelta</string>
+  <string name="RedPhone_number_not_registered">Numeroa ei rekisteröity!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numero, johon yritit soittaa, ei tue salattuja puheluita!</string>
+  <string name="RedPhone_got_it">Ymmärrän</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Yhdistä TextSecurella</string>
+  <string name="RegistrationActivity_connect_with_signal">Signalin käyttöönotto</string>
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Suuntanumero täytyy
 määritellä</string>
@@ -326,12 +360,16 @@ Tarkista vielä, että tämä on varmasti numerosi! Aiomme seuraavaksi vahvistaa
   <string name="RegistrationProgressActivity_too_many_requests">Liian monta pyyntöä!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Olet jo äskettäin pyytänyt puhelua. Voit pyytää uutta puhelua 20 minuutin kuluttua.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Rekisteröintiristiriita</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Tämä numero on jo rekisteröitynä toisella TextSecure-palvelimella (CyanogenMod?). Sinun täytyy purkaa rekisteröityminen siellä ennen kuin voit rekisteröityä täällä.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Tämä numero on jo rekisteröitynä toisella Signal-palvelimella (CyanogenMod?). Sinun täytyy purkaa rekisteröityminen siellä, ennen kuin voit rekisteröityä täällä.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Rekisteröinti suoritettu</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecuren rekisteröityminen onnistui.</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Signalin rekisteröityminen onnistui.</string>
   <string name="RegistrationService_registration_error">Rekisteröitymisvirhe</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Rekisteröitymisessä ilmeni ongelma.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signalin rekisteröitymisessä ilmeni ongelma.</string>
+  <!--Slide-->
+  <string name="Slide_image">Kuva</string>
+  <string name="Slide_audio">Äänitallenne</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Vastaanotettu avaintenvaihtoviesti 
 on viallinen!</string>
@@ -346,6 +384,9 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä...</string>
   <string name="TheadRecord_secure_session_ended">Salattu istunto päättyi</string>
   <string name="ThreadRecord_draft">Luonnos:</string>
+  <string name="ThreadRecord_called">Soitit puhelun</string>
+  <string name="ThreadRecord_called_you">Soitti sinulle</string>
+  <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">(Sinulla ei ole identiteettiavainta.)</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">(Vastapuolella ei ole identiteettiavainta.)</string>
@@ -395,9 +436,9 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="ApplicationMigrationService_import_in_progress">Tuonti käynnissä</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tuo tekstiviestejä</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Siirry takaisin sovellukseen koskettamalla tästä.</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Avaa sovellus koskettamalla tästä tai lukitse se koskettamalla lukkoa</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecuren lukitus on auki</string>
+  <string name="KeyCachingService_signal_passphrase_cached">Siirry takaisin sovellukseen koskettamalla tästä.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Avaa sovellus koskettamalla tästä tai lukitse se koskettamalla lukkoa</string>
+  <string name="KeyCachingService_passphrase_cached">Signalin lukitus on auki</string>
   <string name="KeyCachingService_lock">Lukitse salalauseella</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uutta viestiä %2$d keskustelussa</string>
@@ -413,10 +454,10 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="MessageNotifier_media_message">Mediaviesti</string>
   <string name="MessageNotifier_reply">Vastaa</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Pikavastaus ei toimi, kun TextSecure on lukittu!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Uusi TextSecure-viesti</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Uusi Signal-viesti</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Sisältö piilotettu</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">VANHA SALALAUSE:</string>
@@ -438,7 +479,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Keskustelu mykistetty</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Lähetä TextSecure-viesti</string>
+  <string name="conversation_activity__type_message_push">Lähetä Signal-viesti</string>
   <string name="conversation_activity__type_message_sms_insecure">Lähetä salaamaton tekstiviesti</string>
   <string name="conversation_activity__type_message_mms_insecure">Lähetä salaamaton MMS-viesti</string>
   <string name="conversation_activity__send">Lähetä</string>
@@ -470,13 +511,15 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="country_selection_fragment__search">Hae</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Ei yhdistettyjä laitteita...</string>
+  <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">jatka</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Lokien hakeminen laitteesta epäonnistui. Voit sen sijaan käyttää ADB-työkalua virheenkorjauslokien noutamiseen.</string>
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>
   <string name="log_submit_activity__submitting">Lähetetään</string>
   <string name="log_submit_activity__posting_logs">Lokit lähetetään gistiin...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Haluatko tuoda olemassa olevat tekstiviestisi TextSecuren suojattuun tietokantaan?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Napsauta, jos haluat kopioida puhelimesi tekstiviestit Signalin salattuun tietokantaan.</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Järjestelmän oletustietokantaa ei tulla muuttamaan millään tavalla.</string>
   <string name="database_migration_activity__skip">Ohita</string>
   <string name="database_migration_activity__import">Tuo</string>
@@ -489,10 +532,10 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
 Vie salaamaton \"SMS Backup And Restore\" -yhteensopiva varmuuskopio laitteesi tallennustilaan.</string>
   <string name="import_fragment__import_system_sms_database">Tuo järjestelmän tekstiviestit</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Tuo tietokanta
-järjestelmän oletustekstiviestisovelluksesta TextSecureen.</string>
+järjestelmän oletustekstiviestisovelluksesta Signaliin.</string>
   <string name="import_fragment__import_encrypted_backup">Tuo salattu varmuuskopio</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Tuo aiemmin viety salattu TextSecure-varmuuskopio.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
+Tuo aiemmin viety salattu Signal-varmuuskopio.</string>
   <string name="import_fragment__import_plaintext_backup">Tuo salaamaton varmuuskopio</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\" -sovelluksen kanssa.</string>
@@ -515,21 +558,28 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\" -so
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Avaa</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Jotta TextSecure voisi lähettää mediatiedostoja ja ryhmäviestejä puhelinoperaattorisi kautta, täytyy MMS-asetusten olla määritelty. Tällä hetkellä nämä asetukset eivät ole saatavilla laitteessasi, mikä voi johtua laitteesi operaattorilukituksesta tai muista rajoittavista asetuksista.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Jotta Signal voisi lähettää mediatiedostoja ja ryhmäviestejä puhelinoperaattorisi kautta, täytyy MMS-asetusten olla määritelty. Tällä hetkellä nämä asetukset eivät ole saatavilla laitteessasi, mikä voi johtua laitteesi operaattorilukituksesta tai muista rajoittavista asetuksista.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Jotta voit lähettää mediatiedostoja ja ryhmäviestejä, napsauta \"OK\" ja täydennä pyydetyt asetukset. Puhelinoperaattorisi MMS-asetukset yleensä löytyvät, kun haet Internetistä operaattorisi nimellä ja termillä \"APN\". Tämä asetusten säätö tarvitsee tehdä vain kerran.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ESTETTY</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Mykistä keskustelu</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Mykistä kaikki ilmoitukset tästä keskustelusta</string>
-  <string name="recipient_preferences__ringtone">Ilmoitusääni</string>
+  <string name="recipient_preferences__notification_tone">Ilmoitusääni</string>
   <string name="recipient_preferences__vibrate">Värinä</string>
   <string name="recipient_preferences__block">Estä</string>
   <string name="recipient_preferences__color">Väri</string>
   <string name="recipient_preferences__color_for_this_contact">Tämän yhteystiedon väri</string>
+  <string name="recipient_preferences__verify_identity">Varmenna identiteetti</string>
+  <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">Signal-puhelu</string>
+  <string name="redphone_call_controls__end_call">lopeta puhelu</string>
+  <string name="redphone_call_controls__audio">Ääni</string>
+  <string name="redphone_call_controls__mute">Mykistä</string>
+  <string name="redphone_call_controls__signal_call">Signal-puhelu</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Jotta voit ottaa TextSecuren käyttöön, tulee sinun ensin vahvistaa puhelinnumerosi.</string>
+  <string name="registration_activity__verify_your_number_to_connect_with_signal">
+Jotta voit ottaa Signalin käyttöön, tulee sinun ensin vahvistaa puhelinnumerosi.</string>
   <string name="registration_activity__your_country">MAA</string>
   <string name="registration_activity__your_country_code_and_phone_number">MAATUNNUKSESI JA
 PUHELINNUMEROSI</string>
@@ -541,44 +591,40 @@ PUHELINNUMEROSI</string>
   <string name="registration_problems__some_possible_problems_include">Mahdollisiin ongelmiin
 sisältyvät:</string>
   <string name="registration_problems__sms_interceptors">Tekstiviestisieppaajat.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Jotkin kolmansien osapuolten tekstiviestisovellukset, kuten Handcent ja GoSMS, käyttäytyvät
-huonosti, koska ne omivat itselleen kaikki saapuvat tekstiviestit. Tarkista, että olet saanut
-tekstiviestin, joka alkaa sanoilla \"Your TextSecure verification code:\". Tämän jälkeen
-sinun täytyy vielä säätää kolmannen osapuolen tekstiviestisovelluksesi päästämään kaikki tekstiviestit läpi.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent"> Jotkin kolmansien osapuolten tekstiviestisovellukset, kuten Handcent ja GoSMS, käyttäytyvät huonosti, koska ne omivat itselleen kaikki saapuvat tekstiviestit. Tarkista, että olet saanut tekstiviestin, joka alkaa sanoilla \"Your Signal verification code:\". Tämän jälkeen sinun täytyy vielä säätää kolmannen osapuolen tekstiviestisovelluksesi päästämään kaikki tekstiviestit läpi.</string>
   <string name="registration_problems__incorrect_number">Virheellinen puhelinnumero.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Tarkista, että olet syöttänyt puhelinnumerosi oikein, ja että se on muotoiltu oikein alueellesi.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure ei toimi Google Voice -numeroiden kanssa.</string>
+  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
+Signal ei toimi Google Voice -numeroiden kanssa.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Vahvistuspuhelu</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure voi myös soittaa sinulle numerosi vahvistamiseksi. Napsauta \"Soita minulle\" ja syötä kuulemasi kuusinumeroinen koodi alla olevaan kenttään. </string>
+  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
+Signal voi myös soittaa sinulle numerosi vahvistamiseksi. Napsauta \"Soita minulle\" ja syötä kuulemasi kuusinumeroinen koodi alla olevaan kenttään. </string>
   <string name="registration_progress_activity__verify">Vahvista</string>
   <string name="registration_progress_activity__call_me">Soita minulle</string>
   <string name="registration_progress_activity__edit_number">Muokkaa numeroa</string>
   <string name="registration_progress_activity__connectivity_error">Yhteysvirhe.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure ei saanut yhteyttä pikaviestipalveluun.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
+Signal ei saanut yhteyttä pikaviestipalveluun.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mahdollisiin ongelmiin
 sisältyvät:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ei verkkoyhteyttä.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Laitteesi
-tarvitsee verkkoyhteyttä tämän TextSecuren ominaisuuden käyttämiseen. Tarkista, että
+tarvitsee verkkoyhteyttä tämän Signalin ominaisuuden käyttämiseen. Tarkista, että
 laitteesi on yhdistettynä mobiilitiedonsiirto- tai WiFi-verkkoon.</string>
   <string name="registration_progress_activity__restrictive_firewall">Rajoittava palomuuri.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Jos olet yhdistänyt WiFi-verkkoon, on mahdollista että palomuuri estää pääsyn TextSecuren palvelimelle. Kokeile toista verkkoa tai mobiiliverkkoa.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure vahvistaa nyt puhelinnumerosi automaattisesti tekstiviestillä.</string>
+Jos olet WiFi-verkossa, on mahdollista että palomuuri estää pääsyn Signalin palvelimelle. Kokeile toista verkkoa tai mobiiliverkkoa.</string>
+  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+Signal vahvistaa nyt puhelinnumerosi automaattisesti tekstiviestillä.</string>
   <string name="registration_progress_activity__connecting">Yhdistetään...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Odotetaan vahvistustekstiviestiä...</string>
   <string name="registration_progress_activity__registering_with_server">Rekisteröidytään palvelimelle...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Tämä voi kestää hetken. Ole kärsivällinen — ilmoitamme, kun vahvistus on suoritettu.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
+  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
+Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-vahvistus
 epäonnistui.</string>
   <string name="registration_progress_activity__generating_keys">Luodaan avaimia...</string>
@@ -603,7 +649,7 @@ epäonnistui.</string>
   <string name="AndroidManifest__create_passphrase">Luo salalause</string>
   <string name="AndroidManifest__enter_passphrase">Syötä salalause</string>
   <string name="AndroidManifest__select_contacts">Valitse yhteystiedot</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure havaittu</string>
+  <string name="AndroidManifest__signal_detected">Signal havaittu</string>
   <string name="AndroidManifest__public_identity_key">Julkinen identiteettiavain</string>
   <string name="AndroidManifest__change_passphrase">Vaihda salalause</string>
   <string name="AndroidManifest__verify_identity">Varmenna identiteetti</string>
@@ -641,8 +687,8 @@ epäonnistui.</string>
   <string name="preferences__sms_mms">SMS ja MMS</string>
   <string name="preferences__pref_all_sms_title">Vastaanota kaikki tekstiviestit</string>
   <string name="preferences__pref_all_mms_title">Vastaanota kaikki multimediaviestit</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Käytä TextSecurea kaikkiin saapuviin tekstiviesteihin</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Käytä TextSecurea kaikkiin saapuviin multimediaviesteihin</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Käytä Signalia kaikkiin saapuviin tekstiviesteihin</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Käytä Signalia kaikkiin saapuviin multimediaviesteihin</string>
   <string name="preferences__input_settings">Syöttöasetukset</string>
   <string name="preferences__enable_enter_key_title">Ota rivinvaihto käyttöön</string>
   <string name="preferences__replace_smiley_with_enter_key">Korvaa hymiönäppäin rivinvaihtonäppäimellä</string>
@@ -695,7 +741,7 @@ epäonnistui.</string>
   <string name="preferences__cyan">Syaani</string>
   <string name="preferences__magenta">Magenta</string>
   <string name="preferences__white">Valkoinen</string>
-  <string name="preferences__none">Pois päältä</string>
+  <string name="preferences__none">Ei mitään</string>
   <string name="preferences__fast">Nopea</string>
   <string name="preferences__normal">Normaali</string>
   <string name="preferences__slow">Hidas</string>
@@ -727,9 +773,9 @@ epäonnistui.</string>
   <string name="preferences__default">Oletus</string>
   <string name="preferences__language">Kieli</string>
   <string name="preferences__language_summary">Kieli %s</string>
-  <string name="preferences__textsecure_messages">TextSecure-viestit</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
+  <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Ilmaiset ja yksityiset viestit sekä puhelut Signalin käyttäjille</string>
   <string name="preferences__submit_debug_log">Lähetä virheenkorjausloki</string>
   <string name="preferences__support_wifi_calling">\"WiFi Calling\" -yhteensopiva tila</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ota käyttöön, jos laitteesi lähettää SMS- ja MMS-viestit WiFi-yhteyden kautta. (Ota käyttöön vain, kun \"WiFi Calling\" on käytössä laitteessasi.)</string>
@@ -739,21 +785,23 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
   <string name="preferences_chats__when_roaming">Roaming-tilassa</string>
   <string name="preferences_chats__media_auto_download">Liitetiedostojen automaattinen lataus</string>
-  <string name="preferences_chats__message_trimming">Viestien karsiminen</string>
+  <string name="preferences_chats__message_trimming">Keskustelujen karsiminen</string>
+  <string name="preferences_advanced__use_system_emoji">Käytä järjestelmän hymiöitä</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Ota Signalin omat hymiöt pois käytöstä</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Valitse kaikki</string>
   <string name="contact_selection_list__menu_unselect_all">Poista kaikkien valinta</string>
-  <string name="contact_selection_list__header_textsecure_users">TEXTSECUREN KÄYTTÄJÄT</string>
+  <string name="contact_selection_list__header_signal_users">SIGNALIN KÄYTTÄJÄT</string>
   <string name="contact_selection_list__header_other">KAIKKI YHTEYSTIEDOT</string>
   <string name="contact_selection_list__unknown_contact">Uusi viesti henkilölle...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Valmis</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Päivitä yhteystietoluettelo</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable__menu_call">Soita</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Viestin tiedot</string>
@@ -781,7 +829,7 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Turvallisuus</string>
   <string name="conversation_secure_verified__menu_verify_identity">Varmenna identiteetti</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Lopeta salattu istunto</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Alusta salattu istunto</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Poista mykistys</string>
   <!--conversation_unmuted-->
@@ -795,7 +843,7 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="conversation__menu_conversation_settings">Keskustelun asetukset</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Suurenna ponnahdusikkuna</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Lisää yhteystietoihin</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Vastaanottajalista</string>
@@ -813,13 +861,13 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lukitse</string>
   <string name="text_secure_normal__mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Käyttämäsi TextSecure on vanhentunut!</string>
+  <string name="reminder_header_expired_build">Käyttämäsi Signalin versio on vanhentunut!</string>
   <string name="reminder_header_expired_build_details">Viestien lähetys ei enää onnistu. Päivitä sovellus viimeisimpään versioon.</string>
   <string name="reminder_header_sms_default_title">Käytä oletuksena tekstiviesteille?</string>
-  <string name="reminder_header_sms_default_text">Napsauta, jos haluat tehdä TextSecuresta oletustekstiviestisovelluksesi.</string>
+  <string name="reminder_header_sms_default_text">Napsauta, jos haluat tehdä Signalista oletustekstiviestisovelluksesi.</string>
   <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit?</string>
-  <string name="reminder_header_sms_import_text">Napsauta, jos haluat kopioida puhelimesi tekstiviestit TextSecuren salattuun tietokantaan.</string>
-  <string name="reminder_header_push_title">Ota käyttöön TextSecure-viestipalvelu?</string>
+  <string name="reminder_header_sms_import_text">Napsauta, jos haluat kopioida puhelimesi tekstiviestit Signalin salattuun tietokantaan.</string>
+  <string name="reminder_header_push_title">Ota käyttöön Signal-viestipalvelu?</string>
   <string name="reminder_header_push_text">Napsauta tästä, jos haluat sanoa ei tekstiviestimaksuille ja kyllä vahvemmalle yksityisyydensuojalle sekä nopeille viesteille.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sinä</string>
@@ -829,13 +877,15 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="media_preview__save_title">Tallenna</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Kuvan esikatselu</string>
+  <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Luuri</string>
+  <string name="redphone_audio_popup_menu__headset">Kuulokkeet</string>
+  <string name="redphone_audio_popup_menu__speaker">Kaiutin</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Poistetaan</string>
   <string name="trimmer__deleting_old_messages">Vanhoja viestejä poistetaan...</string>
   <string name="trimmer__old_messages_successfully_deleted">Vanhojen viestien poisto onnistui</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
-  <!--quick_attachment_drawer-->
-  <string name="quick_camera_unavailable">Kamera ei käytettävissä</string>
   <!--EOF-->
 </resources>

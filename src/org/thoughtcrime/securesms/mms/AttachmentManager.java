@@ -33,8 +33,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Toast;
 
-import junit.framework.Assert;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -69,9 +67,12 @@ public class AttachmentManager {
     AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
     animation.setDuration(200);
     animation.setAnimationListener(new Animation.AnimationListener() {
-      @Override public void onAnimationStart(Animation animation) {}
-      @Override public void onAnimationRepeat(Animation animation) {}
-      @Override public void onAnimationEnd(Animation animation) {
+      @Override
+      public void onAnimationStart(Animation animation) {}
+      @Override
+      public void onAnimationRepeat(Animation animation) {}
+      @Override
+      public void onAnimationEnd(Animation animation) {
         slideDeck.clear();
         thumbnail.clear();
         attachmentView.setVisibility(View.GONE);
@@ -94,7 +95,8 @@ public class AttachmentManager {
                                 final boolean          isCapture)
   {
     new AsyncTask<Void, Void, Slide>() {
-      @Override protected void onPreExecute() {
+      @Override
+      protected void onPreExecute() {
         slideDeck.clear();
         thumbnail.clear();
         thumbnail.showProgressSpinner();
@@ -104,7 +106,8 @@ public class AttachmentManager {
         if (!uri.equals(captureUri)) cleanup();
       }
 
-      @Override protected @Nullable Slide doInBackground(Void... params) {
+      @Override
+      protected @Nullable Slide doInBackground(Void... params) {
         long start = System.currentTimeMillis();
         try {
           final long  mediaSize = MediaUtil.getMediaSize(context, masterSecret, uri);
@@ -117,7 +120,8 @@ public class AttachmentManager {
         }
       }
 
-      @Override protected void onPostExecute(@Nullable final Slide slide) {
+      @Override
+      protected void onPostExecute(@Nullable final Slide slide) {
         if (slide == null) {
           attachmentView.setVisibility(View.GONE);
           Toast.makeText(context,

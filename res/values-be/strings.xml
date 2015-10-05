@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
   <string name="yes">Так</string>
   <string name="no">Не</string>
   <string name="delete">Выдаліць</string>
@@ -17,7 +16,6 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS уключаны</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Націсніце, каб змяніць стандартную праграму для SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS выключаны</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Націсніце, каб зрабіць TextSecure вашай стандартнай праграмай для SMS</string>
   <string name="ApplicationPreferencesActivity_on">Укл</string>
   <string name="ApplicationPreferencesActivity_On">Укл</string>
   <string name="ApplicationPreferencesActivity_off">Выкл</string>
@@ -38,8 +36,6 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Кантактная інфармацыя</string>
   <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Ідэнтыфікацыйны ключ для %1$s быў зменены. Гэта можа вызначаць, што нехта спрабуе перахапіць вашыя паведамленні, альбо проста %2$s пераўсталяваў па-новай TextSecure і зараз мае новы ідэнтыфікацыйны ключ.
-    </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Магчыма Вы жадаеце верыфікаваць гэты кантакт?</string>
   <!--ContactsDatabase-->
   <!--ConversationItem-->
@@ -55,7 +51,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Націсніце для небяспечнага паўтора</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Паўтарыць у небяспечным SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Паўтарыць у небяспечным MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Гэтае паведамленне <b>ня</b> будзе зашыфравана, бо атрымальнік ўжо не з\'яўляецца карыстальнікам TextSecure. \n\n Даслаць простае паведамленне?</string>
   <string name="ConversationItem_unable_to_open_media">Немагчыма знайсці праграму, якая б адкрывала гэты кантэнт.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Пачаць бяспечную сэсію?</string>
@@ -85,7 +80,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы ўпэўнены, што хочаце пакінуць групу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Небяспечная SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Небяспечная MMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Атрымай з гэтым: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Выкарыстайце гэта, каб пачаць гутарку: %s</string>
   <string name="ConversationActivity_error_leaving_group">Памылка выхаду з групы...</string>
@@ -105,7 +99,6 @@
   <string name="ConversationFragment_saving_attachment">Захаванне дадатку</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Захаванне дадатку на дыск...</string>
   <string name="ConversationFragment_pending">У працэсе...</string>
-  <string name="ConversationFragment_push">Дадзеныя (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting_messages">Выдаленне паведамлення...</string>
@@ -127,11 +120,10 @@
   <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Падзяліцца з</string>
+  <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспарт</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Экспартаваць простым тэкстам на SD картку?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Увага,
- гэта прывядзе да экспарту вашых паведамленняў з TextSecure  ў выглядзе простага тэкстку на SD картку.</string>
   <string name="ExportFragment_cancel">Адмена</string>
   <string name="ExportFragment_exporting">Экспарт</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Экспарт простым тэкстам на SD картку...</string>
@@ -139,15 +131,11 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">Памылк падчас запісу на SD картку.</string>
   <string name="ExportFragment_success">Паспяхова!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Збой пастаяннай камунікацыі TextSecure!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure ня можа зарэгістравацца з дапамогай сервісаў Google Play. Камунікацыя праз каналы сувязі была адключана, калі ласка паспрабуйце перарэгістравацца па-новай з меню наладаў TextSecure.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Новая група</string>
   <string name="GroupCreateActivity_actionbar_update_title">Абнавіць групу</string>
   <string name="GroupCreateActivity_group_name_hint">Імя групы</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS група</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Вы абралі кантакт, які не падтрымлівае групы TextSecure, таму група будзе MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Вы не зарэгістраваны для выкарыстання каналаў сувязі, таму групы TextSecure недасяжны.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">З прычыны раптоўнай памылкі, стварэнне групы не атрымалася.</string>
   <string name="GroupCreateActivity_contacts_no_members">Для вашай групы неабходны як мінімум адзін ўдзельнік!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Адзін з удзельнікаў вашай групы мае некарэтна напісаны нумар. Калі ласка выправіце напісанне гэтага нумару, альбо выдаліце яго ды паспрабуйце паўтарыць ізноў.</string>
@@ -155,7 +143,6 @@
   <string name="GroupCreateActivity_menu_create_title">Стварыць групу</string>
   <string name="GroupCreateActivity_creating_group">Стварэнне %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Абнаўленне %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Немагчыма дадаць не-TextSecure кантакт да існуючай TextSecure групы</string>
   <string name="GroupCreateActivity_loading_group_details">Загрузка дэталяў групы...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Я</string>
@@ -164,14 +151,9 @@
   <string name="ImportExportActivity_export">Экспарт</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Імпартаваць сістэмную базу SMS паведамленняў?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Гэты працэс прывядзе да імпарта сістэмнай базы SMS паведамленняў у TextSecure.
-Калі раней Вы ўжо рабілі гэта, цяперашні імпарт можа прывесці да з\'яўлення SMS дублікатаў.</string>
   <string name="ImportFragment_import">Імпарт</string>
   <string name="ImportFragment_cancel">Адмена</string>
   <string name="ImportFragment_restore_encrypted_backup">Аднавіць зашыфраваную рэзервную копію?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Аднаўленне з зашыфраванай рэзервнай копіі поўнасцю перапіша ўжо існуючыя ключы, налады і паведамленні.
-Вы згубіце ўсю інфармацыю з цяперашняй інсталяцыі TextSecure, але не з рэзервнай копіі.</string>
   <string name="ImportFragment_restore">Аднавіць</string>
   <string name="ImportFragment_import_plaintext_backup">Імпартаваць рэзервную копію простым тэкстам?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Гэты працэс прывядзе да імпарта паведамленняў простым тэкстам з рэзервнай копіі.
@@ -187,7 +169,6 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ня знойдзена адсканаваных ключоў!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Усталяваць сканэр штрыхкодаў?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure неабходны сканэр штрыхкодаў для працы з QR кодамі.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не атрымалася даслаць</string>
   <string name="MessageDetailsRecipient_new_identity">Новая асоба</string>
@@ -195,10 +176,10 @@
   <string name="MmsDownloader_error_storing_mms">Памылка захавання MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Памылка злучэння з MMS правайдэрам...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Памылка счытвання параметраў бесправаднога MMS правайдэра...</string>
+  <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Было атрымана паведамленне, зашыфраванае састарэлай версійя TextSecure, якая ўжо не падтрымліваецца. Папрасіце адпраўшчыка абнавіць TextSecure да апошняй версіі і выслаць паведамленне ізноў.</string>
   <string name="MessageRecord_left_group">Вы пакінулі групу</string>
   <string name="MessageRecord_updated_group">Абноўленая група.</string>
   <!--PassphraseChangeActivity-->
@@ -220,14 +201,13 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Няправільны QR код.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Увядзіце пароль</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Іконка TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Адправіць пароль</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Няправільны пароль!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--RecipientPreferencesActivity-->
+  <!--RedPhone-->
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Падключыць да TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Абярыце вашу краіну</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Вы мусіце ўказаць код краіны</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Вы мусіце ўказаць ваш нумар тэлефона</string>
@@ -260,12 +240,10 @@
   <string name="RegistrationProgressActivity_too_many_requests">Зашмат запытаў!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Нядаўна вы ўжо запытвалі галасавы выклік. Вы можаце запытаць новы галасавы выклік праз 20 хвілін.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Канфлікт рэгістрацыі</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Гэты нумар ужо зарэгістраваны на іншым серверы TextSecure (магчыма CyanogenMod?). Вы мусіць разрэгістравацца там перад тым, як зрабіць гэта тут.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Рэгістрацыя ваканана</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Рэгістрацыя TextSecure выканана паспяхова.</string>
   <string name="RegistrationService_registration_error">Памылка рэгістрацыі</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Падчас рэгістрацыі TextSecure узнікла праблема.</string>
+  <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Атрыманы пашкоджаны ключ абмену паведамленнямі!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
@@ -327,9 +305,6 @@
   <string name="ApplicationMigrationService_import_in_progress">Імпарт у працэсе</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпарт тэкставых паведамленняў</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Дакраніцеся каб адкрыць.</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Дакраніцеся каб адкрыць, альбо дакраніцеся да замка, каб закрыць.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure разблакіравана</string>
   <string name="KeyCachingService_lock">Замкнуць гэты пароль</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_media_message_with_text">Мультымедыя паведамленне: %s</string>
@@ -358,7 +333,6 @@
   <string name="contact_selection_recent_activity__no_recent_calls">Няма новых выклікаў.</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Даслаць паведамленне TextSecure</string>
   <string name="conversation_activity__type_message_sms_insecure">Даслаць неабароненую SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Даслаць неабароненую MMS</string>
   <string name="conversation_activity__send">Даслаць</string>
@@ -388,13 +362,13 @@
   <string name="country_selection_fragment__loading_countries">Загрузка краінаў...</string>
   <string name="country_selection_fragment__search">Пошук</string>
   <!--device_list_fragment-->
+  <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не атрымалася ўзяць логі з вашай прылады. Вы па-ранейшаму можаце выкарыстоўваць ADB, каб атрымаць логі замест гэтага.</string>
   <string name="log_submit_activity__thanks">Дзякуй за вашу дапамогу!</string>
   <string name="log_submit_activity__submitting">Падпіска</string>
   <string name="log_submit_activity__posting_logs">Публікацыя логаў у gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ці жадаеце вы імпартаваць вашыя ўжо існуючыя паведамленні ў зашыфраваную базу TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Сістэмная база паведамленняў ня будзе зменена ніякім чынам.</string>
   <string name="database_migration_activity__skip">Прапусціць</string>
   <string name="database_migration_activity__import">Імпарт</string>
@@ -409,8 +383,6 @@
   <string name="import_fragment__import_the_database_from_the_default_system">Імпарт базы дадзеных
 са стандартнай сістэмнай праграмы для SMS.</string>
   <string name="import_fragment__import_encrypted_backup">Імпарт зашыфраванай рэзервнай копіі</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Аднавіць папярэдне экспартавануаю зашыфраваную рэзервную копію TextSecure.</string>
   <string name="import_fragment__import_plaintext_backup">Імпартаваць рэзервную копію простым тэкстам</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Імпартаваць простым тэкстам рэзервную копію з файла. Сумяшчальна з \'SMSBackup And Restore.\'</string>
@@ -433,13 +405,11 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Разблакіраваць</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure патрэбныя налады MMS для дастаўкі медыя і групавых паведамленняў праз аператара мабільнай сувязі. Ваша прылада не дазваляе атрымаць гэтыя налады.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Каб даслаць медыя ці групавыя паведамленні, націсніце \'OK\' і задайце неабходныя налады. Налады MMS для вашага аператара могуць быць атрыманыя праз пошук у \'APN вашага аператара\'. Вы можаце зрабіць гэта толькі адзін раз. </string>
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
+  <!--- redphone_call_controls-->
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Праверце ваш тэлефонны нумар каб падлучыцца да TextSecure.</string>
   <string name="registration_activity__your_country">ВАША КРАІНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШАЙ КРАІНЫ І
 НУМАР ТЭЛЕФОНА</string>
@@ -450,38 +420,23 @@
   <string name="registration_problems__some_possible_problems_include">Неаторыя верагодныя праблемы
 уключаюць:</string>
   <string name="registration_problems__sms_interceptors">SMS перахопнікі.</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Некаторыя іншыя праграмы для працы з тэкставымі паведамленнямі, такія як Handcent альбо GoSMS, спрацавалі некарэктна і перахопліваюць ўсе ўваходзячыя SMS паведамленні. Праверце, ці атрымалі вы SMS, якое пачынаецца з \'Your TextSecure verification code:\'. Калі гэта так, то вам неабходна наладзіць гэтую праграму такім чынам, каб яна прапускала далей гэтыя SMS.</string>
   <string name="registration_problems__incorrect_number">Няправільны нумар</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Калі ласка праверце правільнасць уводу вашага тэлефоннага нумару. Ён мусіць быць ўведзены па правілах вашага рэгіёну.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure ня будзе працаваць з Google Voice нумарамі.
-    </string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Галасавая верыфікацыя</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure таксама можа набраць вам для праверкі тэлефоннага нумару. Націсніце \'Набраць мне\' і ўвядзіце 6ці значны код, які пачуеце.</string>
   <string name="registration_progress_activity__verify">Праверыць</string>
   <string name="registration_progress_activity__call_me">Набраць мне</string>
   <string name="registration_progress_activity__edit_number">Рэдагаваць нумар</string>
   <string name="registration_progress_activity__connectivity_error">Памылка злучэння.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure ня можа злучыцца з push сервісам.
-    </string>
   <string name="registration_progress_activity__some_possible_problems_include">Некаторыя магчымыя праблемы, уключна:</string>
   <string name="registration_progress_activity__no_network_connectivity">Няма сеткавага злучэння.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Вашай прыладзе неабходна сеткавае злучэнне, каб выкарыстоўваць гэтыя функцыі TextSecure. Праверце ці падлучаны вы да сеткі праз 3G альбо Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Амбежавальны сеткавы экран.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Калі вы падлучаны да інтэрнэта праз Wi-Fi, то верагодна што сеткавы экран блакіруе доступ да сервероў TextSecure. Паспрабуйце іншую сетку альбо мабільны інтэрнэт.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Зараз TextSecure будзе аўматачна правяраць ваш тэлефонны нумар з дапамогай SMS.</string>
   <string name="registration_progress_activity__connecting">Падлучэнне...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Чакаем на праверачную SMS...</string>
   <string name="registration_progress_activity__registering_with_server">Рэгістрацыя на серверы...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Гэта можа заняць пэўны час. Калі ласка пацярпіце, мы паведамім, як толькі праверка будзе выканана.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure не дачакаўся параверачная SMS.</string>
   <string name="registration_progress_activity__sms_verification_failed">Не атрымалася прайсці праверку праз SMS.</string>
   <string name="registration_progress_activity__generating_keys">Генерацыя ключоў...</string>
   <string name="registration_progress_activity__alert">Папярэджванне</string>
@@ -505,7 +460,6 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="AndroidManifest__create_passphrase">Стварыць пароль</string>
   <string name="AndroidManifest__enter_passphrase">Увядзіце пароль</string>
   <string name="AndroidManifest__select_contacts">Абраць кантакты</string>
-  <string name="AndroidManifest__textsecure_detected">Выяўлена TextSecure</string>
   <string name="AndroidManifest__public_identity_key">Публічны ідэнтыфікацыйны ключ</string>
   <string name="AndroidManifest__change_passphrase">Змяніць пароль</string>
   <string name="AndroidManifest__verify_identity">Праверыць ідэнтыфікатар</string>
@@ -530,8 +484,6 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="preferences__sms_mms">SMS і MMS</string>
   <string name="preferences__pref_all_sms_title">Атрымаць усе SMS</string>
   <string name="preferences__pref_all_mms_title">Атрымаць усе MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Выкарыстоўваць TextSecure для ўсіх уваходных SMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Выкарыстоўваць TextSecure для ўсіх уваходных MMS</string>
   <string name="preferences__input_settings">Налады ўводу</string>
   <string name="preferences__enable_enter_key_title">Уключыць клавішу Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Замяніць ключ смайліка на клавішу Enter</string>
@@ -611,9 +563,6 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="preferences__default">Па-змоўчані</string>
   <string name="preferences__language">Мова</string>
   <string name="preferences__language_summary">Мова %s</string>
-  <string name="preferences__textsecure_messages">Паведамленне TextSecure</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Бясплатнае паведамленне для карыстальнікаў TextSecure альбо Signal</string>
   <string name="preferences__submit_debug_log">Выслаць debug log</string>
   <string name="preferences__support_wifi_calling">Рэжым сумяшчальнасці \'WiFi выклік\' </string>
   <!--****************************************-->
@@ -622,14 +571,13 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Абраць усё</string>
   <string name="contact_selection_list__menu_unselect_all">Ачысціць усё</string>
-  <string name="contact_selection_list__header_textsecure_users">КАРЫСТАЛЬНІКІ TEXTSECURE</string>
   <string name="contact_selection_list__header_other">УСЕ КАНТАКТЫ</string>
   <string name="contact_selection_list__unknown_contact">Новае паведамленне для...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Гатова</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Абнавіць спіс кантактаў</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable__menu_call">Набраць</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Дэталі паведамлення</string>
@@ -657,7 +605,6 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Бяспка</string>
   <string name="conversation_secure_verified__menu_verify_identity">Праверыць ідэнтыфікатар</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Скончыць бяспечную сэсію</string>
   <!--conversation_muted-->
   <!--conversation_unmuted-->
   <!--conversation-->
@@ -667,7 +614,7 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="conversation__menu_delete_thread">Выдаліць ланцужок</string>
   <string name="conversation__menu_view_media">Усе выявы</string>
   <!--conversation_popup-->
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Дадаць да кантактаў</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Спіс атрымальнікаў</string>
@@ -685,13 +632,10 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Заблакіраваць</string>
   <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Ваша зборка TextSecure з\'яўляецца старой!</string>
   <string name="reminder_header_expired_build_details">Паведамленні больш ня будуць высылацца. Калі ласка абнавіцеся да больш новай версіі.</string>
   <string name="reminder_header_sms_default_title">Выкарыстоўваць як стандартную аплікацыю для SMS?</string>
-  <string name="reminder_header_sms_default_text">Націсніце, каб зрабіць TextSecure вашай стандартнай аплікацыяй для SMS.</string>
   <string name="reminder_header_sms_import_title">Імпартаваць сістэмныя SMS?</string>
   <string name="reminder_header_sms_import_text">Націсніце каб скапіраваць вашыя SMS з тэлефона ў зашыфраваную базу.</string>
-  <string name="reminder_header_push_title">Уключыць паведамленні TextSecure?</string>
   <string name="reminder_header_push_text">Націсніце для імгненнай дастаўкі, якаснай прыватнасці, і адсутнасці збораў за SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
@@ -701,11 +645,11 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="media_preview__save_title">Захаваць</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Перадпрагляд выявы</string>
+  <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting_old_messages">Выдаленне старых паведамленняў...</string>
   <string name="trimmer__old_messages_successfully_deleted">Старыя паведамленні паспяхова выдалены</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Транспартны значок</string>
-  <!--quick_attachment_drawer-->
   <!--EOF-->
 </resources>

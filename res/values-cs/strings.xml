@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">Signal</string>
   <string name="yes">Ano</string>
   <string name="no">Ne</string>
   <string name="delete">Smazat</string>
@@ -17,16 +17,14 @@
 Zakázat uzamčení obrazovky zpráv?</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Odregistrace TextSecure zpráv</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Zakázat TextSecure zprávy?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-Tímto zakážete TextSecure zprávy odregistrací tohoto telefonního čísla ze serveru.
-Abyste mohli v budoucnu používat TextSecure zprávy, bude nutno toto telefonní číslo znovu zaregistrovat.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Odregistrace Signal zpráv...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">Zakázat Signal zprávy?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">Tímto zakážete Signal zprávy odregistrací ze serveru. Abyste mohli používat Signal zprávy v budoucnosti, budete muset znovu registrovat vaše telefonní číslo.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba při připojování k serveru!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS povoleny</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykem nastavte výchozí aplikaci pro SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS zazány</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotykem nastavíte TextSecure jako výchozí SMS aplikaci</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykem nastavíte Signal jako výchozí SMS aplikaci</string>
   <string name="ApplicationPreferencesActivity_on">zap.</string>
   <string name="ApplicationPreferencesActivity_On">Zap.</string>
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
@@ -49,10 +47,8 @@ Abyste mohli v budoucnu používat TextSecure zprávy, bude nutno toto telefonn�
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokovaný kontakt</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Idenitifkační
-klíč %1$s byl změněn. To může znamenat, že se buď někdo snaží
-zachytit vaši konverzaci, nebo že %2$s jen přeinstaloval TextSecure a nyní má nový
-identifikační klíč.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikační
+ klíč %1$s se změnil. To může být způsobeno tím že se někdo snaží odpolechnout vaši komunikaci, nebo %2$s přeinstaloval aplikaci Signal a nyní má nový klíč.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možná budete chtít ověřit tento
 kontakt</string>
   <string name="ConfirmIdentityDialog_accept">Akceptovat</string>
@@ -71,7 +67,7 @@ kontakt</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Kliněte pro nešifrovaný záložní způsob</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Použít záložní způsob přes nešifrovanou SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Použít záložní způsob přes nešifrovanou MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tato zpráva <b>nebude</b> zašifrována protože příjemce již není uživatelem TextSecure.\n\nPoslat nešifrovanou zprávu?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tato zpráva <b>není</b> šifrována protože příjemce již není uživatelem Signal.\n\nOdeslat nešifrovanou zprávu?</string>
   <string name="ConversationItem_unable_to_open_media">Nemohu nalézt aplikaci pro otevření tohoto typu dat</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Zahájit šifrovanou komunikaci?</string>
@@ -102,7 +98,7 @@ kontakt</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jsi si jistý, že chceš opustit tuto skupinu?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezabezpečená SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_get_with_it">Získat s ním: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Použít pro rozhovor: %s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba při opouštění skupiny.</string>
@@ -112,6 +108,8 @@ kontakt</string>
   <string name="ConversationActivity_unblock_question">Odblokovat?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Opravdu chcete odblokovat tento kontakt?</string>
   <string name="ConversationActivity_unblock">Odblokovat</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost přílohy překročila limit pro typ zprávy kterou posíláte</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Kamera není dostupná</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti zprávy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Přenos: %1$s\nOdesláno/Přijato: %2$s</string>
@@ -126,7 +124,7 @@ kontakt</string>
   <string name="ConversationFragment_saving_attachment">Ukládám přílohu</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Ukládám přílohu do paměti.</string>
   <string name="ConversationFragment_pending">Probíhající:</string>
-  <string name="ConversationFragment_push">Data (TextSecure)</string>
+  <string name="ConversationFragment_push">Data(Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Mažu</string>
@@ -161,10 +159,17 @@ kontakt</string>
   <string name="DeviceListItem_last_active_s">Naposled aktivní %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
+  <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Vítejte v systému Signal</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure a RedPhone jsou nyní jednou platformou pro důvěrnou komunikaci: Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Vítejte v systému Signal!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je nyní Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure a RedPhone jsou nyní jednou aplikací: Signal. Dotkněte se a prozkoumejte.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportovat nešifrovaný text na SD kartu?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varování: Tímto exportujete obsah vašich zpráv v TextSecure v nezašifrovaném formátu na SD kartu.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varování, toto exportuje
+dešifrované obsah vašich Signal zpráv na SD kartu.</string>
   <string name="ExportFragment_cancel">Storno</string>
   <string name="ExportFragment_exporting">Exportuji</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportuji nešifrovaný text na SD kartu...</string>
@@ -172,15 +177,15 @@ kontakt</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Chyba při zápisu na SD kartu.</string>
   <string name="ExportFragment_success">Úspěšně dokončeno!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Trvalá chyba komunikace TextSecure</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure se nemůže registrovat k službě Google Play. Datová komunikace byla zakázána, prosím zkuste se znovu registrovat v menu nastavení TextSecure.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nemůže registrovat k službě Google Play. Datová komunikace byla zakázána, prosím zkuste se znovu registrovat v menu nastavení Signal.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Upravit skupinu</string>
   <string name="GroupCreateActivity_group_name_hint">Název skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Zvolený kontakt nepodporuje skupiny TextSecure. Tato skupina bude MMS Skupina.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Nejste registrováni k používání datového kanálu, tudíž nejsou skupiny TextSecure povoleny.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali jste kontakt</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Nejste zaregistrován k použití datové komunikace, takže jsou skupiny Signal zakázány.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Došlo k neočekávané chybě, která znemožnila vytvoření skupiny.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ve vaší skupině musí být alespoň jeden kontakt.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členů Vaší skupiny má číslo, které se nedaří správně zpracovat. Prosím opravte jej nebo odstraňte a zkuste znovu.</string>
@@ -188,7 +193,7 @@ kontakt</string>
   <string name="GroupCreateActivity_menu_create_title">Vytvořit skupinu</string>
   <string name="GroupCreateActivity_creating_group">Vytvářím %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizuji %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nemohu pridat ne-TextSecure kontakt do existující TextSecure skupiny</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nemohu přidat kontakty které nejsou v systému Signal do existující skupiny Signal</string>
   <string name="GroupCreateActivity_loading_group_details">Načítám detaily skupiny...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Já</string>
@@ -197,13 +202,13 @@ kontakt</string>
   <string name="ImportExportActivity_export">Export</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importovat všechny SMSky v telefonu?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Tímto importujete zprávy z výchozí systémové databáze SMS do TextSecure. Pokud
-jste už databázi někdy importovali, některé zprávy se mohou objevit vícekrát.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Toto importuje zprávy ze systémové SMS databáze do apliace Signal. Pokud jste již dříve importovali systémovou SMS databázi, mohou se některé zprávy objevit vícekrát.</string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Storno</string>
   <string name="ImportFragment_restore_encrypted_backup">Obnovit šifrovanou zálohu?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Obnova zašifrované zálohy zcela nahradí vaše současné klíče, nastavení a zprávy. Ztratíte všechny nezálohované informace ve vaší současné instalaci TextSecure.</string>
+Obnova ze šifrované zálohy kompletně nahradí vaše aktuální klíče, nastavení a zprávy.
+Přijdete o všechny informace z vaší aktuální instalce Signal které nejou v záloze.</string>
   <string name="ImportFragment_restore">Obnovení</string>
   <string name="ImportFragment_import_plaintext_backup">Obnovit nešifrovanou zálohu?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Tímto importujete zprávy z nešifrované zálohy. Pokud jste již někdy
@@ -220,7 +225,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Klíč při snímání nebyl nalezen!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalovat Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure potřebuje Barcode Scanner pro čtení QR kódů</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal vyžaduje Barcode Scanner pro QR kódy.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodařilo se odeslat</string>
   <string name="MessageDetailsRecipient_new_identity">Nová identita</string>
@@ -228,10 +233,14 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MmsDownloader_error_storing_mms">Chyba při ukládání MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba při připojování k poskytovateli MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Chyba při čtení nastavení MMS</string>
+  <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">Probíhá Signal volání</string>
+  <string name="NotificationBarManager_missed_call_from_s">Zmeškaný hovor od %s</string>
+  <string name="NotificationBarManager_missed_signal_call">Zmeškaný Signal hovor</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediální zpráva</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijatá zpráva byla zašifrována starší verzí TextSecure, která již není podporována. Požádejte prosím odesílatele, aby akutlizoval aplikaci TextSecure, a poté poslal zprávu znovu.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou verzí aplikace Signal, která již není podporována. Prosím požádejte odesílatele, aby si aktualizoval aplikaci Signal na nejnovější verzi a pak poslal zprávu znovu.</string>
   <string name="MessageRecord_left_group">Opustil(a) jste skupinu</string>
   <string name="MessageRecord_updated_group">Upravena skupina</string>
   <!--PassphraseChangeActivity-->
@@ -256,7 +265,7 @@ Poslat zprávy Vaším jménem.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Omlouváme se, ale máte propojeno příliš mnoho zařízení, pokuste se některé odpojit...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadat heslo</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Zadejte heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Chybné heslo!</string>
   <!--PlayServicesProblemFragment-->
@@ -276,8 +285,29 @@ Poslat zprávy Vaším jménem.</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>
   <string name="RecipientPreferenceActivity_enabled">Povoleno</string>
   <string name="RecipientPreferenceActivity_disabled">Zakázáno</string>
+  <!--RedPhone-->
+  <string name="RedPhone_answering">Odpovídám</string>
+  <string name="RedPhone_ending_call">Ukončování hovoru</string>
+  <string name="RedPhone_dialing">Vytáčím</string>
+  <string name="RedPhone_canceling_call">Stornuji volání</string>
+  <string name="RedPhone_call_rejected">Hovor odmítnut</string>
+  <string name="RedPhone_ringing">Vyzvání</string>
+  <string name="RedPhone_busy">Obsazeno</string>
+  <string name="RedPhone_connected">Připojeno</string>
+  <string name="RedPhone_connecting">Probíhá připojování</string>
+  <string name="RedPhone_handshake_failed">Navázání komunikace selhalo!</string>
+  <string name="RedPhone_recipient_unavailable">Příjemce nedostupný</string>
+  <string name="RedPhone_performing_handshake">Navazuji komunikaci</string>
+  <string name="RedPhone_network_failed">Chyba serveru!</string>
+  <string name="RedPhone_client_failed">Chyba klienta</string>
+  <string name="RedPhone_fatal_error">Fatální chyba</string>
+  <string name="RedPhone_login_failed">Přihlášení se nezdařilo!</string>
+  <string name="RedPhone_message_from_the_server">Zpráva od serveru</string>
+  <string name="RedPhone_number_not_registered">Číslo není registrováno!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Volané číslo nepodporuje šifrované hovory!</string>
+  <string name="RedPhone_got_it">Mám to.</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Připojení pomocí TextSecure</string>
+  <string name="RegistrationActivity_connect_with_signal">Připojení pomocí Signal</string>
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zadejte kód
 vaší země</string>
@@ -312,12 +342,16 @@ telefonní číslo</string>
   <string name="RegistrationProgressActivity_too_many_requests">Příliš mnoho požadavků!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">O ověřovací zpětné volání jste již požádal. Další žádost můžete odeslat až po 20 minutách po předchozí.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konfliktní registrace</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Toto číslo je již registrováno na jiném TextSecure serveru (CyanogenMod?). Abyste se zde mohl zaregistrovat, musíte se nejdřív odregistrovat na původním serveru.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Toto číslo je již registrováno na jiném Signal serveru (CyanogenMod?). Před novou registrací je nejprve nutno se odregistrovat.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrace dokončena</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Registrace TextSecure byla úspěšně dokončena</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Registrace Signal byla úspěšně dokončena</string>
   <string name="RegistrationService_registration_error">Chyba registrace</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Při registraci TextSecure došlo k potížím.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Při registraci Signal došlo k potížím.</string>
+  <!--Slide-->
+  <string name="Slide_image">Obrázek</string>
+  <string name="Slide_audio">Audio</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Obdržen neplatný požadavek na výměnu klíčů.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
@@ -380,9 +414,9 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuji textové zprávy</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Stisknutím otevřete.</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Dotykem otevřete nebo stisknutím zámku uzavřete.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure je odemčený</string>
+  <string name="KeyCachingService_signal_passphrase_cached">Stisknutím otevřete.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotykem otevřete nebo stisknutím zámku uzavřete.</string>
+  <string name="KeyCachingService_passphrase_cached">Signal je odemčen</string>
   <string name="KeyCachingService_lock">Uzamknout heslem</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nových zpráv v %2$d konverzacích</string>
@@ -398,10 +432,10 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="MessageNotifier_media_message">Multimediální zpráva</string>
   <string name="MessageNotifier_reply">Odpověď</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Rychlá dopověď není dostupná pokud je TextSecure uzamčen!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá dopověď není dostupná pokud je Signal uzamčen!</string>
   <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nová TextSecure zpráva</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nová Signal zpráva</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Obsah skrytý</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARÉ HESLO</string>
@@ -423,7 +457,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Konverzace ztišena</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Poslat TextSecure zprávu</string>
+  <string name="conversation_activity__type_message_push">Poslat Signal zprávu</string>
   <string name="conversation_activity__type_message_sms_insecure">Poslat nezabezpečenou SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Poslat nezabezpečenou MMS</string>
   <string name="conversation_activity__send">Odeslat</string>
@@ -455,13 +489,15 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="country_selection_fragment__search">Hledat</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Žádná zařízení nejsou propojena...</string>
+  <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">pokračovat</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepodařilo se zaznamenat logy z vašeho zařízení. Jěště můžete zkusit použít pro získání debug logů nástroj ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
   <string name="log_submit_activity__submitting">Odesílání</string>
   <string name="log_submit_activity__posting_logs">Posílání logů do gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovat své dosavadní textové zprávy do šifrované databáze TextSecure?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovat vaše existující textové zpávy do zašifrované databáze Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Původní systémová databáze tím nebude dotčena, ani žádným způsobem modifikována.</string>
   <string name="database_migration_activity__skip">Přeskočit</string>
   <string name="database_migration_activity__import">Import</string>
@@ -476,8 +512,8 @@ Exportovat nezašifrovanou zálohu kompatibilní s \"SMSBackup And Restore\" na 
   <string name="import_fragment__import_the_database_from_the_default_system">Importovat databázi
 z výchozí aplikace pro SMS a MMS.</string>
   <string name="import_fragment__import_encrypted_backup">Obnovit ze zašifrované zálohy</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Obnovit dříve exportovanou zašifrovanou zálohu TextSecure.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
+Obnovit dříve exportovanou šifrovanou zálohu Signal</string>
   <string name="import_fragment__import_plaintext_backup">Obnovit nešifrovanou zálohu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</string>
@@ -500,21 +536,28 @@ Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</str
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odemknout</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány. Váš přístroj tyto informace neposkytuje, což se stává u zamknutých nebo jinak upravených přístrojů.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány. Váš přístroj tyto informace neposkytuje, což se stává u zamknutých nebo jinak upravených přístrojů.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pro odesílání médií a skupinových zpráv klepněte na OK a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto je je třeba udělat pouze jednou.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKOVÁN</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Ztišit konverzaci</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Zakázat upozornění pro tuto konverzaci</string>
-  <string name="recipient_preferences__ringtone">Vyzvánění</string>
+  <string name="recipient_preferences__notification_tone">Zvuk upozornění</string>
   <string name="recipient_preferences__vibrate">Vibrace</string>
   <string name="recipient_preferences__block">Blokovat</string>
   <string name="recipient_preferences__color">Barva</string>
   <string name="recipient_preferences__color_for_this_contact">Brava tohoto kontaktu</string>
+  <string name="recipient_preferences__verify_identity">Ověření identity</string>
+  <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">Signal volání</string>
+  <string name="redphone_call_controls__end_call">ukončit hovor</string>
+  <string name="redphone_call_controls__audio">Audio</string>
+  <string name="redphone_call_controls__mute">Ztlumit</string>
+  <string name="redphone_call_controls__signal_call">Signal volání</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Ověření vašeho telefoního čísla pro připojení k TextSecure</string>
+  <string name="registration_activity__verify_your_number_to_connect_with_signal">
+Ověření vašeho telefoního čísla pro připojení k Signal</string>
   <string name="registration_activity__your_country">Země</string>
   <string name="registration_activity__your_country_code_and_phone_number">Kód země
         Telefonní číslo
@@ -527,41 +570,37 @@ Ověření vašeho telefoního čísla pro připojení k TextSecure</string>
   <string name="registration_problems__some_possible_problems_include">Možné příčiny jsou:</string>
   <string name="registration_problems__sms_interceptors">Přijemci SMS</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-        Některé aplikace pro SMS, například Handcent nebo GoSMS, se nechovají správně
-        a mohou narušit přijetí ověřovací zprávy. Ověřte, zda jste neobdrželi SMS zprávu,
-        která začíná textem \'Your TextSecure verification code:\', Pokud ano, musíte překonfigurovat
-        vaši SMS aplikaci, aby nechala ověřovací zprávu projít.
-    </string>
+Některé aplikace třetích stran pro posílání zpráv jako Handcent nebo GoSMS fungují špatně a přijímají veškeré textové zprávy. Zkontrolujte zda jste přijali zprávu která začíná \'Your Signal verification code:\'. V takovém případě nakonfigurujte vaši aplikaci aby propouštěla SMS zprávy.</string>
   <string name="registration_problems__incorrect_number">Nesprávné číslo.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
         Prosím ověřte, že Vaše číslo je zadáno správně a ve správném
         národním formátu.
     </string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-        Pro TextSecure nelze použít telefonní čísla Google Voice.
-    </string>
+  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
+Pro Signal nelze použít telefonní čísla Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Hlasové ověření</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-        Je možné také použít telefonní ověření. TextSecure secure vám může zavolat a ověřovací 
-        kód nadiktovat. Klikněte na \'Zavolej mi\' a zadejte šestimístný kód, který uslyšíte.
-    </string>
+  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
+Je možné také použít telefonní ověření. Signal vám může zavolat a ověřovací kód nadiktovat. Klikněte na \'Zavolej mi\' a zadejte šestimístný kód, který uslyšíte. </string>
   <string name="registration_progress_activity__verify">Ověřit</string>
   <string name="registration_progress_activity__call_me">Zavolej mi</string>
   <string name="registration_progress_activity__edit_number">Upravit číslo</string>
   <string name="registration_progress_activity__connectivity_error">Chyba připojení.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure se nemůže připojit k službě TextSecure zpráv.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
+Signal se nemůže připojit ke službe push.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Příčiny mohou být:</string>
   <string name="registration_progress_activity__no_network_connectivity">Není připojení
         k síti.
     </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaše zařízení musí být připojeno k síti, jinak nelze tuto funkci využívat. Ověřte, že jste připojen k 3G či WiFi. </string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaše
+zařízení potřebuje síťové připojení aby moh používat tuto funkci aplikace Signal. Zkontrolujte,
+zda je připojeno k 3G nebo Wifi</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Jste li připojen přes WiFi, je pravděpodobnější, že vaše připojení k serveru TextSecure blokuje nějaký firewall. Zkuste jinou síť či mobilní data.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzovací SMS zprávy.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+Jste-li připojeni přes Wifi, je možné, že existuje firewall který blokuje přístup k Signal serverům. Zkuste jinou síť, nebo mobilní data.</string>
+  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+Signal nyní automaticky ověří vaše telefonní číslo pomocí potvrzovací SMS zprávy.</string>
   <string name="registration_progress_activity__connecting">Probíhá připojování...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Čekám na ověřovací
         ověřovací SMS...
@@ -570,9 +609,8 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Může
         to chvíli trvat. Prosíme o trpělivost, upozorníme Vás, až bude ověření dokončeno.
     </string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-        TextSecure se nedočkal přijetí ověřovací SMS.
-    </string>
+  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
+Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="registration_progress_activity__sms_verification_failed">Ověření pomocí SMS
         selhalo.
     </string>
@@ -598,7 +636,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="AndroidManifest__create_passphrase">Vytvořit heslo</string>
   <string name="AndroidManifest__enter_passphrase">Zadat heslo</string>
   <string name="AndroidManifest__select_contacts">Výběr kontaktů</string>
-  <string name="AndroidManifest__textsecure_detected">Rozpoznáno použití TextSecure</string>
+  <string name="AndroidManifest__signal_detected">Signal detekován</string>
   <string name="AndroidManifest__public_identity_key">Veřejný identifikační klíč</string>
   <string name="AndroidManifest__change_passphrase">Změnit heslo</string>
   <string name="AndroidManifest__verify_identity">Ověření identity</string>
@@ -637,8 +675,8 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__sms_mms">SMS a MMS</string>
   <string name="preferences__pref_all_sms_title">Přijímat všechny SMS</string>
   <string name="preferences__pref_all_mms_title">Přijímat všechny MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použít TextSecure pro všechny příchozí textové zprávy</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Použít TextSecure pro všechny příchozí multimediální zprávy</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Použít Signal pro všechny příchozí textové zprávy</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použít Signal pro všechny příchozí multimediální zprávy</string>
   <string name="preferences__input_settings">Nastavení vstupu</string>
   <string name="preferences__enable_enter_key_title">Používat Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Nahradit klávesu smajlík klávesou enter</string>
@@ -723,28 +761,35 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__language_summary">Jazyk %s</string>
-  <string name="preferences__textsecure_messages">TextSecure zprávy</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
+  <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladící log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
   <string name="preferences_notifications__display_in_notifications">Zobrazit v upozornění</string>
+  <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
+  <string name="preferences_chats__when_using_wifi">Při použití Wfi</string>
+  <string name="preferences_chats__when_roaming">Při roamingu</string>
+  <string name="preferences_chats__media_auto_download">Automatické stahování multimedií</string>
+  <string name="preferences_chats__message_trimming">Ořezávání práv</string>
+  <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Signal </string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Označit vše</string>
   <string name="contact_selection_list__menu_unselect_all">Odznačit vše</string>
-  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE UŽIVATELÉ</string>
+  <string name="contact_selection_list__header_signal_users">UŽIVATELÉ SIGNAL</string>
   <string name="contact_selection_list__header_other">VŠECHNY KONTAKTY</string>
   <string name="contact_selection_list__unknown_contact">Nová zpráva ...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Dokončeno</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Aktualizovat seznam kontaktů</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable__menu_call">Volat</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Podrobnosti zprávy</string>
@@ -772,7 +817,7 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Zabezpečení</string>
   <string name="conversation_secure_verified__menu_verify_identity">Ověření identity</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Ukončit zabezpečenou konverzaci</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Resetovat zabezpečenou konverzaci</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Nahlas</string>
   <!--conversation_unmuted-->
@@ -786,7 +831,7 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="conversation__menu_conversation_settings">Nastavení konverzace</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Rozbalit menu</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Přidat do kontaktů</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Seznam příjemců</string>
@@ -804,13 +849,13 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="text_secure_normal__menu_clear_passphrase">Uzamknout</string>
   <string name="text_secure_normal__mark_all_as_read">Označit vše jako přečtené</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Vaše verze TextSecure je zastaralá!</string>
+  <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal skončila!</string>
   <string name="reminder_header_expired_build_details">Zprávy již nemohou být odesílány, prosím aktualizujte na nejnovější verzi.</string>
   <string name="reminder_header_sms_default_title">Nastavit jako výchozí aplikaci pro SMS</string>
-  <string name="reminder_header_sms_default_text">Poklepejte k nastavení TextSecure jako výchozí SMS aplikaci.</string>
+  <string name="reminder_header_sms_default_text">Dotykem nastavíte Signal jako výchozí SMS aplikaci</string>
   <string name="reminder_header_sms_import_title">Importovat systémové SMS?</string>
   <string name="reminder_header_sms_import_text">Poklepejte ke zkopírování SMS zpráv ve Vašem telefonu do šifrované databáze.</string>
-  <string name="reminder_header_push_title">Povolit TextSecure zprávy?</string>
+  <string name="reminder_header_push_title">Povolit Signal zprávy?</string>
   <string name="reminder_header_push_text">Poklepejte pro okamžité doručení, větší soukromí a žádné SMS poplatky.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
@@ -820,13 +865,15 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="media_preview__save_title">Uložit</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Náhled obrázku</string>
+  <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Sluchátka</string>
+  <string name="redphone_audio_popup_menu__headset">Sluchátka s mikrofonem</string>
+  <string name="redphone_audio_popup_menu__speaker">Reproduktor</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Mažu</string>
   <string name="trimmer__deleting_old_messages">Mazání starých zpráv...</string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
-  <!--quick_attachment_drawer-->
-  <string name="quick_camera_unavailable">Kamera není dostupná</string>
   <!--EOF-->
 </resources>

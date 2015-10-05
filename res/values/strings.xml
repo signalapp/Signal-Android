@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TextSecure</string>
+    <string name="app_name">Signal</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="delete">Delete</string>
@@ -19,17 +19,17 @@
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Unregistering from TextSecure messages...</string>
-    <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Disable TextSecure messages?</string>
-    <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-        This will disable TextSecure messages by unregistering you from the server.
-        You will need to re-register your phone number to use TextSecure messages again in the future.
+    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Unregistering from Signal messages...</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages">Disable Signal messages?</string>
+    <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
+        This will disable Signal messages by unregistering you from the server.
+        You will need to re-register your phone number to use Signal messages again in the future.
     </string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
     <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabled</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Touch to make TextSecure your default SMS app</string>
+    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Touch to make Signal your default SMS app</string>
     <string name="ApplicationPreferencesActivity_on">on</string>
     <string name="ApplicationPreferencesActivity_On">On</string>
     <string name="ApplicationPreferencesActivity_off">off</string>
@@ -60,7 +60,7 @@
     <!-- ConfirmIdentityDialog -->
     <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The
         identifying key material for %1$s has changed. This could either mean that someone is trying to
-        intercept your communication, or that %2$s simply re-installed TextSecure and now has a new
+        intercept your communication, or that %2$s simply re-installed Signal and now has a new
         identity key.
     </string>
     <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">You may wish to verify
@@ -84,7 +84,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for unsecured fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback to unencrypted SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because the recipient is no longer a TextSecure user.\n\nSend unsecured message?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because the recipient is no longer a Signal user.\n\nSend unsecured message?</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
 
     <!-- ConversationActivity -->
@@ -116,7 +116,7 @@
     <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Are you sure you want to leave this group?</string>
     <string name="ConversationActivity_transport_insecure_sms">Insecure SMS</string>
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
-    <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+    <string name="ConversationActivity_transport_signal">Signal</string>
     <string name="ConversationActivity_get_with_it">Get with it: %s</string>
     <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
@@ -127,6 +127,7 @@
     <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Are you sure you want to unblock this contact?</string>
     <string name="ConversationActivity_unblock">Unblock</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
+    <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -142,7 +143,7 @@
     <string name="ConversationFragment_saving_attachment">Saving attachment</string>
     <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to storage...</string>
     <string name="ConversationFragment_pending">Pending...</string>
-    <string name="ConversationFragment_push">Data (TextSecure)</string>
+    <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Deleting</string>
@@ -186,11 +187,17 @@
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
 
+    <!-- ExperienceUpgradeActivity -->
+    <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welcome to Signal.</string>
+    <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure and RedPhone are now one private messenger, for every situation: Signal.</string>
+    <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welcome to Signal!</string>
+    <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure is now Signal.</string>
+    <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure and RedPhone are now one app: Signal. Tap to explore.</string>
     <!-- ExportFragment -->
     <string name="ExportFragment_export">Export</string>
     <string name="ExportFragment_export_plaintext_to_sd_card">Export plaintext to SD card?</string>
     <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Warning, this will
-        export the plaintext contents of your TextSecure messages to the SD card.
+        export the plaintext contents of your Signal messages to the SD card.
     </string>
     <string name="ExportFragment_cancel">Cancel</string>
     <string name="ExportFragment_exporting">Exporting</string>
@@ -200,16 +207,16 @@
     <string name="ExportFragment_success">Success!</string>
 
     <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Permanent TextSecure communication failure!</string>
-    <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure was unable to register with Google Play Services. Communication over the data channel has been disabled, please try re-registering from the TextSecure settings menu.</string>
+    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with Google Play Services. Communication over the data channel has been disabled, please try re-registering from the Signal settings menu.</string>
 
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New group</string>
     <string name="GroupCreateActivity_actionbar_update_title">Update group</string>
     <string name="GroupCreateActivity_group_name_hint">Group name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS group</string>
-    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support TextSecure groups, so this group will be MMS.</string>
-    <string name="GroupCreateActivity_you_dont_support_push">You\'re not registered for using the data channel, so TextSecure groups are disabled.</string>
+    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support Signal groups, so this group will be MMS.</string>
+    <string name="GroupCreateActivity_you_dont_support_push">You\'re not registered for using the data channel, so Signal groups are disabled.</string>
     <string name="GroupCreateActivity_contacts_mms_exception">An unexpected error happened that has made group creation fail.</string>
     <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
     <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
@@ -217,7 +224,7 @@
     <string name="GroupCreateActivity_menu_create_title">Create group</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
-    <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-TextSecure contacts to an existing TextSecure group</string>
+    <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-Signal contacts to an existing Signal group</string>
     <string name="GroupCreateActivity_loading_group_details">Loading group details...</string>
 
     <!-- GroupMembersDialog -->
@@ -230,7 +237,7 @@
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import system SMS database?</string>
     <string name="ImportFragment_this_will_import_messages_from_the_system">This will import
-        messages from the system\'s default SMS database to TextSecure. If you\'ve previously
+        messages from the system\'s default SMS database to Signal. If you\'ve previously
         imported the system\'s SMS database, importing again will result in duplicated messages.
     </string>
     <string name="ImportFragment_import">Import</string>
@@ -238,7 +245,7 @@
     <string name="ImportFragment_restore_encrypted_backup">Restore encrypted backup?</string>
     <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
         Restoring an encrypted backup will completely replace your existing keys, preferences, and
-        messages. You will lose any information that\'s in your current TextSecure install but not
+        messages. You will lose any information that\'s in your current Signal install but not
         in the backup.
     </string>
     <string name="ImportFragment_restore">Restore</string>
@@ -260,7 +267,7 @@
     <!-- KeyScanningActivity -->
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
     <string name="KeyScanningActivity_install_barcode_Scanner">Install Barcode Scanner?</string>
-    <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure needs Barcode Scanner for QR codes.</string>
+    <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal needs Barcode Scanner for QR codes.</string>
 
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
@@ -271,13 +278,22 @@
     <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>
     <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings...</string>
 
+    <!--- NotificationBarManager -->
+    <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
+    <string name="NotificationBarManager_missed_call_from_s">Missed call from %s</string>
+    <string name="NotificationBarManager_missed_signal_call">Missed Signal call</string>
+
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
 
     <!-- MessageRecord -->
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of TextSecure that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_updated_group">Updated the group.</string>
+    <string name="MessageRecord_s_called_you">%s called you</string>
+    <string name="MessageRecord_called_s">Called %s</string>
+    <string name="MessageRecord_missed_call_from">Missed call from %s</string>
+
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
@@ -304,7 +320,7 @@
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
-    <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icon</string>
+    <string name="PassphrasePromptActivity_watermark_content_description">Signal icon</string>
     <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
 
@@ -328,8 +344,30 @@
     <string name="RecipientPreferenceActivity_enabled">Enabled</string>
     <string name="RecipientPreferenceActivity_disabled">Disabled</string>
 
+    <!-- RedPhone -->
+    <string name="RedPhone_answering">Answering</string>
+    <string name="RedPhone_ending_call">Ending call</string>
+    <string name="RedPhone_dialing">Dialing</string>
+    <string name="RedPhone_canceling_call">Canceling call</string>
+    <string name="RedPhone_call_rejected">Call rejected</string>
+    <string name="RedPhone_ringing">Ringing</string>
+    <string name="RedPhone_busy">Busy</string>
+    <string name="RedPhone_connected">Connected</string>
+    <string name="RedPhone_connecting">Connecting</string>
+    <string name="RedPhone_handshake_failed">Handshake failed!</string>
+    <string name="RedPhone_recipient_unavailable">Recipient unavailable</string>
+    <string name="RedPhone_performing_handshake">Performing handshake</string>
+    <string name="RedPhone_network_failed">Network failed!</string>
+    <string name="RedPhone_client_failed">Client failed</string>
+    <string name="RedPhone_fatal_error">Fatal Error</string>
+    <string name="RedPhone_login_failed">Login failed!</string>
+    <string name="RedPhone_message_from_the_server">Message from the server</string>
+    <string name="RedPhone_number_not_registered">Number not registered!</string>
+    <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">The number you dialed does not support secure voice!</string>
+    <string name="RedPhone_got_it">Got it</string>
+
     <!-- RegistrationActivity -->
-    <string name="RegistrationActivity_connect_with_textsecure">Connect With TextSecure</string>
+    <string name="RegistrationActivity_connect_with_signal">Connect With Signal</string>
     <string name="RegistrationActivity_select_your_country">Select your country</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your
         country code
@@ -376,13 +414,13 @@
     <string name="RegistrationProgressActivity_too_many_requests">Too many requests!</string>
     <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">You\'ve already recently requested a voice call. You can request another in 20 minutes.</string>
     <string name="RegistrationProgressActivity_registration_conflict">Registration conflict</string>
-    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different TextSecure server (CyanogenMod?). You must unregister there before registering here.</string>
+    <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">This number is already registered on a different Signal server (CyanogenMod?). You must unregister there before registering here.</string>
 
     <!-- RegistrationService -->
     <string name="RegistrationService_registration_complete">Registration complete</string>
-    <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure registration has successfully completed.</string>
+    <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registration has successfully completed.</string>
     <string name="RegistrationService_registration_error">Registration error</string>
-    <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure registration has encountered a problem.</string>
+    <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal registration has encountered a problem.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
@@ -407,6 +445,9 @@
     <string name="ThreadRecord_left_the_group">Left the group...</string>
     <string name="TheadRecord_secure_session_ended">Secure session ended.</string>
     <string name="ThreadRecord_draft">Draft:</string>
+    <string name="ThreadRecord_called">You called</string>
+    <string name="ThreadRecord_called_you">Called you</string>
+    <string name="ThreadRecord_missed_call">Missed call</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
@@ -467,9 +508,9 @@
     <string name="ApplicationMigrationService_importing_text_messages">Importing text messages</string>
 
     <!-- KeyCachingService -->
-    <string name="KeyCachingService_textsecure_passphrase_cached">Touch to open.</string>
-    <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Touch to open, or touch the lock to close.</string>
-    <string name="KeyCachingService_passphrase_cached">TextSecure is unlocked</string>
+    <string name="KeyCachingService_signal_passphrase_cached">Touch to open.</string>
+    <string name="KeyCachingService_signal_passphrase_cached_with_lock">Touch to open, or touch the lock to close.</string>
+    <string name="KeyCachingService_passphrase_cached">Signal is unlocked</string>
     <string name="KeyCachingService_lock">Lock with passphrase</string>
 
     <!-- MessageNotifier -->
@@ -487,11 +528,11 @@
     <string name="MessageNotifier_reply">Reply</string>
 
     <!-- QuickResponseService -->
-    <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Quick response unavailable when TextSecure is locked!</string>
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
 
     <!-- SingleRecipientNotificationBuilder -->
-    <string name="SingleRecipientNotificationBuilder_new_textsecure_message">New TextSecure message</string>
+    <string name="SingleRecipientNotificationBuilder_new_signal_message">New Signal message</string>
     <string name="SingleRecipientNotificationBuilder_contents_hidden">Contents hidden</string>
 
     <!-- change_passphrase_activity -->
@@ -522,7 +563,7 @@
     <string name="conversation_title_view__conversation_muted">Conversation muted</string>
 
     <!-- conversation_activity -->
-    <string name="conversation_activity__type_message_push">Send TextSecure message</string>
+    <string name="conversation_activity__type_message_push">Send Signal message</string>
     <string name="conversation_activity__type_message_sms_insecure">Send unsecured SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Send unsecured MMS</string>
     <string name="conversation_activity__send">Send</string>
@@ -561,6 +602,9 @@
     <!-- device_list_fragment -->
     <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
 
+    <!-- experience_upgrade_activity -->
+    <string name="experience_upgrade_activity__continue">continue</string>
+
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
@@ -568,7 +612,7 @@
     <string name="log_submit_activity__posting_logs">Posting logs to gist&#8230;</string>
 
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal\'s encrypted database?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">The default system database will not be modified or altered in any way.</string>
     <string name="database_migration_activity__skip">Skip</string>
     <string name="database_migration_activity__import">Import</string>
@@ -586,8 +630,8 @@
         from the default system messenger app.
     </string>
     <string name="import_fragment__import_encrypted_backup">Import encrypted backup</string>
-    <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-        Restore a previously exported encrypted TextSecure backup.
+    <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
+        Restore a previously exported encrypted Signal backup.
     </string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
     <string name="import_fragment__import_a_plaintext_backup_file">
@@ -617,7 +661,7 @@
     <string name="prompt_passphrase_activity__unlock">Unlock</string>
 
     <!-- prompt_mms_activity -->
-    <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
+    <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
     <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">To send media and group messages, click \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
 
     <!-- recipient_preferences_activity -->
@@ -626,15 +670,23 @@
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
     <string name="recipient_preferences__disable_notifications_for_this_conversation">Disable notifications for this conversation</string>
-    <string name="recipient_preferences__ringtone">Ringtone</string>
+    <string name="recipient_preferences__notification_tone">Notification tone</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
     <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
+    <string name="recipient_preferences__verify_identity">Verify identity</string>
+
+    <!--- redphone_call_controls -->
+    <string name="redphone_call_card__signal_call">Signal Call</string>
+    <string name="redphone_call_controls__end_call">end call</string>
+    <string name="redphone_call_controls__audio">Audio</string>
+    <string name="redphone_call_controls__mute">Mute</string>
+    <string name="redphone_call_controls__signal_call">Signal Call</string>
 
     <!-- registration_activity -->
-    <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        Verify your phone number to connect with TextSecure.
+    <string name="registration_activity__verify_your_number_to_connect_with_signal">
+        Verify your phone number to connect with Signal.
     </string>
     <string name="registration_activity__your_country">YOUR COUNTRY</string>
     <string name="registration_activity__your_country_code_and_phone_number">YOUR COUNTRY CODE AND
@@ -653,7 +705,7 @@
     <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
         Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and
         intercept all incoming SMS messages. Check to see if you received a text message that starts
-        with \'Your TextSecure verification code:\', in which case you\'ll need to configure your
+        with \'Your Signal verification code:\', in which case you\'ll need to configure your
         third party text messaging app to let text messages through.
     </string>
     <string name="registration_problems__incorrect_number">Incorrect number.</string>
@@ -662,22 +714,22 @@
         your region.
     </string>
     <string name="registration_problems__google_voice">Google Voice.</string>
-    <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-        TextSecure will not work with Google Voice numbers.
+    <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
+        Signal will not work with Google Voice numbers.
     </string>
 
     <!-- registration_progress_activity -->
     <string name="registration_progress_activity__voice_verification">Voice verification</string>
-    <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-        TextSecure can also call you to verify your number. Tap \'Call Me\' and enter the six digit
+    <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
+        Signal can also call you to verify your number. Tap \'Call Me\' and enter the six digit
         code that you hear below.
     </string>
     <string name="registration_progress_activity__verify">Verify</string>
     <string name="registration_progress_activity__call_me">Call me</string>
     <string name="registration_progress_activity__edit_number">Edit number</string>
     <string name="registration_progress_activity__connectivity_error">Connectivity error.</string>
-    <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-        TextSecure was unable to connect to the push service.
+    <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
+        Signal was unable to connect to the push service.
     </string>
     <string name="registration_progress_activity__some_possible_problems_include">Some possible
         problems include:
@@ -686,17 +738,17 @@
         connectivity.
     </string>
     <string name="registration_progress_activity__your_device_needs_network_connectivity">Your
-        device needs network connectivity in order to use this TextSecure feature. Check to ensure
+        device needs network connectivity in order to use this Signal feature. Check to ensure
         that it is connected to 3G or Wi-Fi.
     </string>
     <string name="registration_progress_activity__restrictive_firewall">Restrictive firewall.
     </string>
     <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
         If you are connected via Wi-Fi, it\'s possible that there is a firewall blocking access to
-        the TextSecure server. Try another network or mobile data.
+        the Signal server. Try another network or mobile data.
     </string>
-    <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-        TextSecure will now automatically verify your number with a confirmation SMS message.
+    <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+        Signal will now automatically verify your number with a confirmation SMS message.
     </string>
     <string name="registration_progress_activity__connecting">Connecting...</string>
     <string name="registration_progress_activity__waiting_for_sms_verification">Waiting for SMS
@@ -706,8 +758,8 @@
     <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">This
         could take a moment. Please be patient, we\'ll notify you when verification is complete.
     </string>
-    <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-        TextSecure timed out while waiting for a verification SMS message.
+    <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
+        Signal timed out while waiting for a verification SMS message.
     </string>
     <string name="registration_progress_activity__sms_verification_failed">SMS verification
         failed.
@@ -738,7 +790,7 @@
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>
     <string name="AndroidManifest__enter_passphrase">Enter passphrase</string>
     <string name="AndroidManifest__select_contacts">Select contacts</string>
-    <string name="AndroidManifest__textsecure_detected">TextSecure detected</string>
+    <string name="AndroidManifest__signal_detected">Signal detected</string>
     <string name="AndroidManifest__public_identity_key">Public identity key</string>
     <string name="AndroidManifest__change_passphrase">Change passphrase</string>
     <string name="AndroidManifest__verify_identity">Verify identity</string>
@@ -783,8 +835,8 @@
     <string name="preferences__sms_mms">SMS and MMS</string>
     <string name="preferences__pref_all_sms_title">Receive all SMS</string>
     <string name="preferences__pref_all_mms_title">Receive all MMS</string>
-    <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for all incoming text messages</string>
-    <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for all incoming multimedia messages</string>
+    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Use Signal for all incoming text messages</string>
+    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use Signal for all incoming multimedia messages</string>
     <string name="preferences__input_settings">Input Settings</string>
     <string name="preferences__enable_enter_key_title">Enable Enter key</string>
     <string name="preferences__replace_smiley_with_enter_key">Replace the smiley key with an Enter key</string>
@@ -869,9 +921,9 @@
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__language_summary">Language %s</string>
-    <string name="preferences__textsecure_messages">TextSecure messages</string>
-    <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-        Free private messaging to TextSecure and Signal users
+    <string name="preferences__signal">Signal</string>
+    <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+        Free private messaging and calling to Signal users
     </string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
@@ -884,7 +936,7 @@
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_trimming">Message trimming</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
-    <string name="preferences_advanced__disable_textsecures_built_in_emoji_support">Disable TextSecure\'s built-in emoji support</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -893,7 +945,7 @@
     <!-- contact_selection_list -->
     <string name="contact_selection_list__menu_select_all">Select all</string>
     <string name="contact_selection_list__menu_unselect_all">Unselect all</string>
-    <string name="contact_selection_list__header_textsecure_users">TEXTSECURE USERS</string>
+    <string name="contact_selection_list__header_signal_users">SIGNAL USERS</string>
     <string name="contact_selection_list__header_other">ALL CONTACTS</string>
     <string name="contact_selection_list__unknown_contact">New message to...</string>
 
@@ -903,7 +955,7 @@
     <!-- refreshing push directory from menu -->
     <string name="push_directory__menu_refresh">Refresh contact list</string>
 
-    <!-- conversation_callable -->
+    <!-- conversation_callable_insecure -->
     <string name="conversation_callable__menu_call">Call</string>
 
     <!-- conversation_context -->
@@ -940,7 +992,7 @@
     <!-- conversation_secure_verified -->
     <string name="conversation_secure_verified__menu_security">Security</string>
     <string name="conversation_secure_verified__menu_verify_identity">Verify identity</string>
-    <string name="conversation_secure_verified__menu_abort_secure_session">End secure session</string>
+    <string name="conversation_secure_verified__menu_reset_secure_session">Reset secure session</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">Unmute</string>
@@ -959,7 +1011,7 @@
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expand popup</string>
 
-    <!-- conversation_callable -->
+    <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
 
     <!-- conversation_group_options -->
@@ -981,13 +1033,13 @@
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_expired_build">Your build of TextSecure has expired!</string>
+    <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
     <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
-    <string name="reminder_header_sms_default_text">Tap to make TextSecure your default SMS app.</string>
+    <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
     <string name="reminder_header_sms_import_title">Import system SMS?</string>
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
-    <string name="reminder_header_push_title">Enable TextSecure messages?</string>
+    <string name="reminder_header_push_title">Enable Signal messages?</string>
     <string name="reminder_header_push_text">Tap for instant delivery, stronger privacy, and no SMS fees.</string>
 
     <!-- MediaPreviewActivity -->
@@ -1001,6 +1053,11 @@
     <!-- media_preview_activity -->
     <string name="media_preview_activity__image_content_description">Image Preview</string>
 
+    <!-- redphone_audio_popup_menu -->
+    <string name="redphone_audio_popup_menu__handset">Handset</string>
+    <string name="redphone_audio_popup_menu__headset">Headset</string>
+    <string name="redphone_audio_popup_menu__speaker">Speaker</string>
+
     <!-- Trimmer -->
     <string name="trimmer__deleting">Deleting</string>
     <string name="trimmer__deleting_old_messages">Deleting old messages...</string>
@@ -1009,8 +1066,6 @@
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
 
-    <!-- quick_attachment_drawer -->
-    <string name="quick_camera_unavailable">Camera unavailable</string>
 
     <!-- EOF -->
 

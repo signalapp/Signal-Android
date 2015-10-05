@@ -173,7 +173,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   private static boolean isActiveInDirectory(Context context, Recipient recipient) {
     try {
-      if (!TextSecureDirectory.getInstance(context).isActiveNumber(Util.canonicalizeNumber(context, recipient.getNumber()))) {
+      if (!TextSecureDirectory.getInstance(context).isSecureTextSupported(Util.canonicalizeNumber(context, recipient.getNumber()))) {
         return false;
       }
     } catch (NotInDirectoryException e) {

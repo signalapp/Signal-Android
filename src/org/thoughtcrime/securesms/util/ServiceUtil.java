@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.view.WindowManager;
@@ -17,5 +18,9 @@ public class ServiceUtil {
 
   public static ConnectivityManager getConnectivityManager(Context context) {
     return (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
+  }
+
+  public static NotificationManager getNotificationManager(Context context) {
+    return (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
   }
 }

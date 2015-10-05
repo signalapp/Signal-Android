@@ -4,18 +4,18 @@
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="true"
                         android:key="pref_all_sms"
-                        android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages"
+                        android:summary="@string/preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages"
                         android:title="@string/preferences__pref_all_sms_title" />
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="true"
                         android:key="pref_all_mms"
-                        android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
+                        android:summary="@string/preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages"
                         android:title="@string/preferences__pref_all_mms_title" />
 
     <Preference android:key="pref_set_default"
                 android:title="@string/ApplicationPreferencesActivity_sms_disabled"
-                android:summary="@string/ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app" />
+                android:summary="@string/ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app" />
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="false"

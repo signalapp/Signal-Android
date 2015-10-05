@@ -61,7 +61,7 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
         intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getActivity().getPackageName());
         defaultPreference.setIntent(intent);
         defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
-        defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app));
+        defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app));
       }
     } else if (defaultPreference != null) {
       preferenceScreen.removePreference(defaultPreference);

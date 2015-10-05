@@ -35,11 +35,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.view.WindowCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -58,23 +58,24 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.google.protobuf.ByteString;
 
+import org.thoughtcrime.redphone.RedPhone;
+import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
+import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
+import org.thoughtcrime.securesms.components.camera.HidingImageButton;
+import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
+import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.AttachmentDrawerListener;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
-import org.thoughtcrime.securesms.components.InputAwareLayout;
-import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
+import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.components.camera.HidingImageButton;
-import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.AttachmentDrawerListener;
-import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -89,8 +90,6 @@ import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.MediaTooLargeException;
-import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -108,10 +107,11 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities;
+import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -121,11 +121,13 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -187,7 +189,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private Recipients recipients;
   private long       threadId;
   private int        distributionType;
-  private boolean    isEncryptedConversation;
+  private boolean    isSecureText;
+  private boolean    isSecureVoice;
   private boolean    isMmsEnabled = true;
 
   private DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -214,7 +217,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeActionBar();
     initializeViews();
     initializeResources();
-    initializeDraft();
+    initializeSecurity(false, false).addListener(new ListenableFuture.Listener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        initializeDraft();
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        throw new AssertionError(e);
+      }
+    });
   }
 
   @Override
@@ -229,7 +242,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     setIntent(intent);
     initializeResources();
-    initializeDraft();
+    initializeSecurity(false, false).addListener(new ListenableFuture.Listener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        initializeDraft();
+      }
+      @Override
+      public void onFailure(ExecutionException e) {
+        throw new AssertionError(e);
+      }
+    });
 
     if (fragment != null) {
       fragment.onNewIntent();
@@ -243,7 +265,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicLanguage.onResume(this);
     quickAttachmentDrawer.onResume();
 
-    initializeSecurity();
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
     composeText.setTransport(sendButton.getSelectedTransport());
@@ -265,7 +286,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     quickAttachmentDrawer.onPause();
   }
 
-  @Override public void onConfigurationChanged(Configuration newConfig) {
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
     Log.w(TAG, "onConfigurationChanged(" + newConfig.orientation + ")");
     super.onConfigurationChanged(newConfig);
     composeText.setTransport(sendButton.getSelectedTransport());
@@ -291,10 +313,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     switch (reqCode) {
     case PICK_IMAGE:
-      setMedia(data.getData(),
-               MediaUtil.isGif(MediaUtil.getMimeType(this, data.getData())) ? MediaType.GIF
-                   : MediaType.IMAGE,
-               false);
+      boolean isGif = MediaUtil.isGif(MediaUtil.getMimeType(this, data.getData()));
+      setMedia(data.getData(), isGif ? MediaType.GIF : MediaType.IMAGE, false);
       break;
     case PICK_VIDEO:
       setMedia(data.getData(), MediaType.VIDEO, false);
@@ -325,15 +345,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    if (isSingleConversation() && isEncryptedConversation) {
-      inflater.inflate(R.menu.conversation_secure_identity, menu);
-      inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
-    } else if (isSingleConversation()) {
-      inflater.inflate(R.menu.conversation_insecure, menu);
-    }
-
     if (isSingleConversation()) {
-      inflater.inflate(R.menu.conversation_callable, menu);
+      if (isSecureVoice) inflater.inflate(R.menu.conversation_callable_secure, menu);
+      else               inflater.inflate(R.menu.conversation_callable_insecure, menu);
     } else if (isGroupConversation()) {
       inflater.inflate(R.menu.conversation_group_options, menu);
 
@@ -351,6 +365,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     inflater.inflate(R.menu.conversation, menu);
 
+    if (isSingleConversation() && isSecureText) {
+      inflater.inflate(R.menu.conversation_secure, menu);
+    } else if (isSingleConversation()) {
+      inflater.inflate(R.menu.conversation_insecure, menu);
+    }
+
     if (recipients != null && recipients.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
     else                                            inflater.inflate(R.menu.conversation_unmuted, menu);
 
@@ -366,13 +386,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
-    case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
+    case R.id.menu_call_secure:
+    case R.id.menu_call_insecure:             handleDial(getRecipients().getPrimaryRecipient()); return true;
     case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
-    case R.id.menu_verify_identity:           handleVerifyIdentity();                            return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
@@ -476,12 +496,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
-  }
-
-  private void handleVerifyIdentity() {
-    Intent verifyIdentityIntent = new Intent(this, VerifyIdentityActivity.class);
-    verifyIdentityIntent.putExtra("recipient", getRecipients().getPrimaryRecipient().getRecipientId());
-    startActivity(verifyIdentityIntent);
   }
 
   private void handleAbortSecureSession() {
@@ -603,18 +617,29 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void handleDial(Recipient recipient) {
-    try {
-      if (recipient == null) return;
+  private void handleDial(final Recipient recipient) {
+    if (recipient == null) return;
 
-      Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                              Uri.parse("tel:" + recipient.getNumber()));
-      startActivity(dialIntent);
-    } catch (ActivityNotFoundException anfe) {
-      Log.w(TAG, anfe);
-      Dialogs.showAlertDialog(this,
-                           getString(R.string.ConversationActivity_calls_not_supported),
-                           getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+    if (isSecureVoice) {
+      Intent intent = new Intent(this, RedPhoneService.class);
+      intent.setAction(RedPhoneService.ACTION_OUTGOING_CALL);
+      intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
+      startService(intent);
+
+      Intent activityIntent = new Intent(this, RedPhone.class);
+      activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      startActivity(activityIntent);
+    } else {
+      try {
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL,
+                                       Uri.parse("tel:" + recipient.getNumber()));
+        startActivity(dialIntent);
+      } catch (ActivityNotFoundException anfe) {
+        Log.w(TAG, anfe);
+        Dialogs.showAlertDialog(this,
+                                getString(R.string.ConversationActivity_calls_not_supported),
+                                getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+      }
     }
   }
 
@@ -652,7 +677,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleAddAttachment() {
-    if (this.isMmsEnabled || DirectoryHelper.isPushDestination(this, getRecipients())) {
+    if (this.isMmsEnabled || isSecureText) {
       new AlertDialogWrapper.Builder(this).setAdapter(attachmentAdapter, new AttachmentTypeListener())
                                           .show();
     } else {
@@ -666,6 +691,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(this, PromptMmsActivity.class);
     intent.putExtras(getIntent().getExtras());
     startActivity(intent);
+  }
+
+  private void handleSecurityChange(boolean isSecureText, boolean isSecureVoice) {
+    this.isSecureText  = isSecureText;
+    this.isSecureVoice = isSecureVoice;
+
+    boolean isMediaMessage = !recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent();
+
+    sendButton.resetAvailableTransports(isMediaMessage);
+
+    if (!isSecureText)                 sendButton.disableTransport(Type.TEXTSECURE);
+    if (recipients.isGroupRecipient()) sendButton.disableTransport(Type.SMS);
+
+    if (isSecureText) sendButton.setDefaultTransport(Type.TEXTSECURE);
+    else              sendButton.setDefaultTransport(Type.SMS);
+
+    calculateCharactersRemaining();
+    supportInvalidateOptionsMenu();
   }
 
   ///// Initializers
@@ -727,21 +770,50 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute();
   }
 
-  private void initializeSecurity() {
-    boolean isMediaMessage = !recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent();
-    this.isEncryptedConversation = DirectoryHelper.isPushDestination(this, getRecipients());
+  private ListenableFuture<Boolean> initializeSecurity(final boolean currentSecureText,
+                                                       final boolean currentSecureVoice)
+  {
+    final SettableFuture<Boolean> future = new SettableFuture<>();
 
-    sendButton.resetAvailableTransports(isMediaMessage);
+    handleSecurityChange(currentSecureText || isGroupConversation(),
+                         currentSecureVoice && !isGroupConversation());
 
-    if (!isEncryptedConversation)      sendButton.disableTransport(Type.TEXTSECURE);
-    if (recipients.isGroupRecipient()) sendButton.disableTransport(Type.SMS);
+    new AsyncTask<Recipients, Void, Pair<Boolean, Boolean>>() {
+      @Override
+      protected Pair<Boolean, Boolean> doInBackground(Recipients... params) {
+        try {
+          Context           context      = ConversationActivity.this;
+          Recipients        recipients   = params[0];
+          UserCapabilities  capabilities = DirectoryHelper.getUserCapabilities(context, recipients);
 
-    if (isEncryptedConversation) sendButton.setDefaultTransport(Type.TEXTSECURE);
-    else                         sendButton.setDefaultTransport(Type.SMS);
+          if (capabilities.getTextCapability() == Capability.UNKNOWN ||
+              capabilities.getVoiceCapability() == Capability.UNKNOWN)
+          {
+            capabilities = DirectoryHelper.refreshDirectoryFor(context, recipients);
+          }
 
-    calculateCharactersRemaining();
-    supportInvalidateOptionsMenu();
+          return new Pair<>(capabilities.getTextCapability() == Capability.SUPPORTED,
+                            capabilities.getVoiceCapability() == Capability.SUPPORTED &&
+                            !isSelfConversation());
+        } catch (IOException e) {
+          Log.w(TAG, e);
+          return new Pair<>(false, false);
+        }
+      }
+
+      @Override
+      protected void onPostExecute(Pair<Boolean, Boolean> result) {
+        if (result.first != currentSecureText || result.second != currentSecureVoice) {
+          handleSecurityChange(result.first, result.second);
+        }
+
+        future.set(true);
+      }
+    }.execute(recipients);
+
+    return future;
   }
+
 
   private void initializeMmsEnabledCheck() {
     new AsyncTask<Void, Void, Boolean>() {
@@ -814,6 +886,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         calculateCharactersRemaining();
         composeText.setTransport(newTransport);
         buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
+        buttonToggle.getBackground().invalidateSelf();
       }
     });
 
@@ -879,12 +952,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        long eventThreadId = intent.getLongExtra("thread_id", -1);
-
-        if (eventThreadId == threadId || eventThreadId == -2) {
-          initializeSecurity();
-          calculateCharactersRemaining();
-        }
+        initializeSecurity(isSecureText, isSecureVoice);
+        calculateCharactersRemaining();
       }
     };
 
@@ -1070,6 +1139,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private boolean isSelfConversation() {
+    try {
+      if (!TextSecurePreferences.isPushRegistered(this))       return false;
+      if (!recipients.isSingleRecipient())                     return false;
+      if (recipients.getPrimaryRecipient().isGroupRecipient()) return false;
+
+      return Util.canonicalizeNumber(this, recipients.getPrimaryRecipient().getNumber())
+                 .equals(TextSecurePreferences.getLocalNumber(this));
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+      return false;
+    }
+  }
+
   private boolean isGroupConversation() {
     return getRecipients() != null &&
         (!getRecipients().isSingleRecipient() || getRecipients().isGroupRecipient());
@@ -1123,8 +1206,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (refreshFragment) {
       fragment.reload(recipients, threadId);
-
-      initializeSecurity();
     }
 
     fragment.scrollToBottom();
@@ -1190,7 +1271,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(this, recipients, slideDeck,
                                                                     getMessage(), distributionType);
 
-    if (isEncryptedConversation && !forceSms) {
+    if (isSecureText && !forceSms) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
     }
 
@@ -1216,7 +1297,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final Context context = getApplicationContext();
     OutgoingTextMessage message;
 
-    if (isEncryptedConversation && !forceSms) {
+    if (isSecureText && !forceSms) {
       message = new OutgoingEncryptedMessage(recipients, getMessage());
     } else {
       message = new OutgoingTextMessage(recipients, getMessage());
@@ -1264,7 +1345,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onCameraFail(FailureReason reason) {
-    Toast.makeText(this, R.string.quick_camera_unavailable, Toast.LENGTH_SHORT).show();
+    Toast.makeText(this, R.string.ConversationActivity_quick_camera_unavailable, Toast.LENGTH_SHORT).show();
     quickAttachmentDrawer.hide(false);
     quickAttachmentToggle.disable();
   }
@@ -1368,18 +1449,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void setComposeText(String text) {
-    this.composeText.setText(text);
-  }
-
-  @Override
   public void setThreadId(long threadId) {
     this.threadId = threadId;
   }
 
   @Override
   public void onAttachmentChanged() {
-    initializeSecurity();
+    handleSecurityChange(isSecureText, isSecureVoice);
     updateToggleButtonState();
   }
 

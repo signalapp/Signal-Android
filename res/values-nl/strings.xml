@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">Signal</string>
   <string name="yes">Ja</string>
   <string name="no">Nee</string>
   <string name="delete">Verwijderen</string>
@@ -18,16 +18,15 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Af aan het melden</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Aan het afmelden voor TextSecure berichten...</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">TextSecure berichten uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-Dit schakelt TextSecure berichten uit door je af te melden bij de server. 
-Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je telefoonnummer opnieuw moeten registreren.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Aan het afmelden voor Signal berichten...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal berichten uitschakelen?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
+Dit zal Signal berichten uitzetten door je registratie bij de server ongedaan te maken. Je zal je telefoonnummer opnieuw moeten registreren als je Signal berichten weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS ingeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Aanraken om je standaard SMS-applicatie te veranderen</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS uitgeschakeld</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Aanraken om TextSecure je standaard SMS-applicatie te maken</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Aanraken om Signal je standaard SMS-applicatie te maken</string>
   <string name="ApplicationPreferencesActivity_on">aan</string>
   <string name="ApplicationPreferencesActivity_On">Aan</string>
   <string name="ApplicationPreferencesActivity_off">uit</string>
@@ -50,7 +49,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Geblokkeerde contacten</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identificerende sleutel van %1$s is veranderd. Dit kan betekenen dat iemand probeert je communicatie te onderscheppen óf %2$s heeft simpelweg TextSecure opnieuw geïnstalleerd en heeft nu een nieuwe identiteitssleutel.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identiteitssleutel van %1$s is gewijzigd. Dit kan betekenen dat iemand probeert uw communicatie the onderscheppen, of dat %2$s gewoon Signal opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
   <string name="ConfirmIdentityDialog_accept">Accepteren</string>
   <!--ContactsDatabase-->
@@ -68,7 +67,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConversationItem_click_to_approve_unencrypted">Tik voor terugvallen naar onbeveiligd</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden om de ontvanger geen TextSecure meer gebruikt.\n\nOnbeveiligd bericht verzenden?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden om de ontvanger geen Signal meer gebruikt.\n\nOnbeveiligd bericht verzenden?</string>
   <string name="ConversationItem_unable_to_open_media">Geen app gevonden om dit bestand te openen.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Veilige sessie initiëren?</string>
@@ -99,7 +98,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet je zeker dat je deze groep wil verlaten?</string>
   <string name="ConversationActivity_transport_insecure_sms">Onveilige SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Onveilige MMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_get_with_it">Kom erbij: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten via: %s</string>
   <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep...</string>
@@ -109,6 +108,8 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConversationActivity_unblock_question">Ontblokken?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Weet je zeker dat je dit contact wilt ontblokken?</string>
   <string name="ConversationActivity_unblock">Ontblokken</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wilt versturen.</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Camera niet beschikbaar</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
@@ -123,7 +124,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConversationFragment_saving_attachment">Bijlage opslaan</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Bijlage aan het opslaan...</string>
   <string name="ConversationFragment_pending">In afwachting...</string>
-  <string name="ConversationFragment_push">Data (TextSecure)</string>
+  <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Aan het verwijderen</string>
@@ -158,10 +159,16 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="DeviceListItem_last_active_s">Laatst actief %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Delen met</string>
+  <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welkom bij Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure en RedPhone zijn nu samen één app, geschikt voor iedere situatie: Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welkom bij Signal!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heet nu Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure en RedPhone zijn nu één app: Signal. Maak snel kennis!</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporteer</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Onversleutelde tekst exporteren naar SD-kaart?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Waarschuwing, dit exporteert de onversleutelde tekst van je berichten in Textsecure naar de SD-kaart.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Pas op, dit exporteert je al je berichten onversleuteld naar de SD-kaart.</string>
   <string name="ExportFragment_cancel">Annuleren</string>
   <string name="ExportFragment_exporting">Aan het exporteren</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Onversleutelde tekst aan het exporteren naar de SD-kaart...</string>
@@ -169,15 +176,15 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ExportFragment_error_while_writing_to_sd_card">Fout tijdens het schrijven naar de SD-kaart.</string>
   <string name="ExportFragment_success">Succesvol!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Permanent TextSecure communicatie falen!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure was niet in staat met Google Play services te registreren. Communicatie over Data kanaal is uitgeschakeld, probeer te her-registreren via het TextSecure  instellingen menu.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanente Signal communicatiefout!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat zich bij Google Play services te registreren. Communicatie over het data kanaal is uitgeschakeld, probeer het opnieuw via het Signal instellingen menu.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
   <string name="GroupCreateActivity_actionbar_update_title">Groep bijwerken</string>
   <string name="GroupCreateActivity_group_name_hint">Groepsnaam</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe MMS-Groep</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen TextSecure-groepen ondersteunt, dus deze groep zal gebruik maken van MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Je bent niet geregistreerd om het datakanaal te gebruiken, dus TextSecure groepen zijn uitgeschakeld.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Je bent niet geregistreerd om het datakanaal te gebruiken, dus Signal groepen zijn uitgeschakeld.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Er is een onverwachte fout opgetreden waardoor het aanmaken van een groep is mislukt.</string>
   <string name="GroupCreateActivity_contacts_no_members">Je groep moet ten minste één persoon bevatten.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Het nummer van een van de leden van uw groep kan niet goed worden gelezen. Corrigeer dit of verwijder deze persoon, en probeer het opnieuw.</string>
@@ -185,7 +192,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="GroupCreateActivity_menu_create_title">Groep aanmaken</string>
   <string name="GroupCreateActivity_creating_group">%1$s maken...</string>
   <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Je kunt geen niet-TextSecure gebruikers toevoegen aan een bestaande TextSecure groep</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Je kunt geen niet-Signal gebruikers toevoegen aan een bestaande Signal groep</string>
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails laden...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">IK</string>
@@ -194,12 +201,12 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ImportExportActivity_export">Exporteer</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard SMS-database van het systeem importeren naar TextSecure. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard SMS-database van het systeem importeren naar Signal. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_import">Importeer</string>
   <string name="ImportFragment_cancel">Annuleren</string>
   <string name="ImportFragment_restore_encrypted_backup">Versleutelde back-up herstellen?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en berichten volledig vervangen. Je zult alle informatie verliezen die wel in je huidige TextSecure-installatie zit, maar niet de back-up.</string>
+Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en berichten volledig vervangen. Je zult alle informatie verliezen die wel in je huidige Signal-installatie zit, maar niet de back-up.</string>
   <string name="ImportFragment_restore">Herstellen</string>
   <string name="ImportFragment_import_plaintext_backup">Onversleutelde back-up importeren?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dit zal berichten importeren uit een platte tekstbackup. Als je deze backup eerder al eens hebt geimporteerd, zal het opnieuw importeren resulteren in dubbele berichten.</string>
@@ -215,7 +222,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Geen gescande sleutel gevonden!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Installeer Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure heeft Barcode Scanner nodig voor QR codes.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal heeft Barcode Scanner nodig voor QR codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Verzenden mislukt</string>
   <string name="MessageDetailsRecipient_new_identity">Nieuwe identiteit</string>
@@ -223,12 +230,19 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MmsDownloader_error_storing_mms">MMS opslaan mislukt!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fout bij verbinden met MMS provider...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de MMS-instellingen van uw provider...</string>
+  <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">Signal gesprek aan de gang</string>
+  <string name="NotificationBarManager_missed_call_from_s">Gemist gesprek van %s</string>
+  <string name="NotificationBarManager_missed_signal_call">Gemist Signal gesprek</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling die niet meer ondersteund wordt. Vraag de afzender om TextSecure te updaten naar de meest recente versie en het bericht opnieuw te verzenden.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling die niet meer ondersteund wordt. Vraag de afzender om Signal te updaten naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_updated_group">Groep bijgewerkt.</string>
+  <string name="MessageRecord_s_called_you">%s heeft je gebeld</string>
+  <string name="MessageRecord_called_s">%s gebeld</string>
+  <string name="MessageRecord_missed_call_from">Gemist gesprek van %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
@@ -252,7 +266,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, u hebt teveel gekoppelde apparaten, probeer er te verwijderen...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icoon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal icoon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
   <!--PlayServicesProblemFragment-->
@@ -272,8 +286,29 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RecipientPreferenceActivity_unblock">Ontblokken</string>
   <string name="RecipientPreferenceActivity_enabled">Ingeschakeld</string>
   <string name="RecipientPreferenceActivity_disabled">Uitgeschakeld</string>
+  <!--RedPhone-->
+  <string name="RedPhone_answering">Beantwoorden</string>
+  <string name="RedPhone_ending_call">Gesprek aan het beëindigen</string>
+  <string name="RedPhone_dialing">Kiezende</string>
+  <string name="RedPhone_canceling_call">Gesprek aan het annuleren</string>
+  <string name="RedPhone_call_rejected">Gesprek geweigerd</string>
+  <string name="RedPhone_ringing">Bellende</string>
+  <string name="RedPhone_busy">Bezig</string>
+  <string name="RedPhone_connected">Verbonden</string>
+  <string name="RedPhone_connecting">Aan het verbinden</string>
+  <string name="RedPhone_handshake_failed">Verbinden mislukt!</string>
+  <string name="RedPhone_recipient_unavailable">Ontvanger niet beschikbaar</string>
+  <string name="RedPhone_performing_handshake">Aan het verbinden</string>
+  <string name="RedPhone_network_failed">Serverfout!</string>
+  <string name="RedPhone_client_failed">Cliëntfout</string>
+  <string name="RedPhone_fatal_error">Fatale Fout</string>
+  <string name="RedPhone_login_failed">Login mislukt!</string>
+  <string name="RedPhone_message_from_the_server">Bericht van de server</string>
+  <string name="RedPhone_number_not_registered">Nummer niet geregistreerd!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Het gebelde nummer ondersteunt geen veilig bellen!</string>
+  <string name="RedPhone_got_it">Begrepen</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Verbind met TextSecure</string>
+  <string name="RegistrationActivity_connect_with_signal">Verbind met Signal</string>
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet je
 landcode opgeven</string>
@@ -311,12 +346,16 @@ ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Te veel verzoeken!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Je hebt al een spraakgesprek aangevraagd. Je kunt dit opnieuw doen na 20 minuten.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registratie conflict</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dit nummer bestaat al op een andere TextSecure server (CyanogenMod?). Maak daar eerst je registratie ongedaan voordat je je hier registreert.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dit nummer bestaat al op een andere Signal server (CyanogenMod?). Maak daar eerst je registratie ongedaan voordat je je hier registreert.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registratie voltooid</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Registratie bij TextSecure is succesvol afgerond.</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Registratie bij Signal is succesvol afgerond.</string>
   <string name="RegistrationService_registration_error">Registratiefout</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Registratie bij TextSecure is mislukt.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Registratie bij Signal is mislukt.</string>
+  <!--Slide-->
+  <string name="Slide_image">Afbeelding</string>
+  <string name="Slide_audio">Audio</string>
+  <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Misvormd sleuteluitwisselingsbericht
 ontvangen!</string>
@@ -331,6 +370,9 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="ThreadRecord_left_the_group">Je hebt deze groep verlaten...</string>
   <string name="TheadRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
   <string name="ThreadRecord_draft">Concept:</string>
+  <string name="ThreadRecord_called">Jij hebt gebeld</string>
+  <string name="ThreadRecord_called_you">Heeft je gebeld</string>
+  <string name="ThreadRecord_missed_call">Gemist gesprek</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Je hebt geen identiteitssleutel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">De ontvanger heeft geen identiteitssleutel.</string>
@@ -380,9 +422,9 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="ApplicationMigrationService_import_in_progress">Bezig met importeren</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tekstberichten aan het importeren</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Aanraken om te openen.</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Aanraken om te openen of slot aanraken om te sluiten.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure is ontgrendeld</string>
+  <string name="KeyCachingService_signal_passphrase_cached">Aanraken om te openen.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Aanraken om te openen of om te sluiten het slot aanraken.</string>
+  <string name="KeyCachingService_passphrase_cached">Signal is ontgrendeld</string>
   <string name="KeyCachingService_lock">Vergrendelen met wachtwoord</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
@@ -398,10 +440,10 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="MessageNotifier_media_message">Mediabericht</string>
   <string name="MessageNotifier_reply">Reageren</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Snel reageren niet beschikbaar als TextSecure vergrendeld is!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar als Signal vergrendeld is!</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij het bericht versturen!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nieuw TextSecuer bericht</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nieuw Signal bericht</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Inhoud verborgen</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord:</string>
@@ -423,7 +465,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversatie gedempt</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">TextSecure bericht versturen</string>
+  <string name="conversation_activity__type_message_push">Signal bericht versturen</string>
   <string name="conversation_activity__type_message_sms_insecure">Verstuur onbeveiligde SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Verstuur onbeveiligde MMS</string>
   <string name="conversation_activity__send">Verstuur</string>
@@ -455,13 +497,15 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="country_selection_fragment__search">Zoeken</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Geen apparaten gekoppeld...</string>
+  <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">doorgaan</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kan geen logs van je apparaat verzamelen. Je kan nog steeds ADB gebruiken om debug logs te verzamelen.</string>
   <string name="log_submit_activity__thanks">Bedankt voor uw hulp!</string>
   <string name="log_submit_activity__submitting">Aan het indienen</string>
   <string name="log_submit_activity__posting_logs">Logs posten naar gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je jouw huidige tekstberichtendatabase importeren naar de versleutelde database van TextSecure?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je jouw huidige tekstberichtendatabase importeren naar de versleutelde database van Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabase zal niet gewijzigd of aangepast worden op enigerlei wijze.</string>
   <string name="database_migration_activity__skip">Overslaan</string>
   <string name="database_migration_activity__import">Importeer</string>
@@ -475,8 +519,8 @@ Exporteer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\' naar 
   <string name="import_fragment__import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database uit de standaard berichtenapp van het systeem.</string>
   <string name="import_fragment__import_encrypted_backup">Versleutelde back-up importeren</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Herstel een eerder geëxporteerde versleutelde back-up van TextSecure.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
+Herstel een eerder geëxporteerde versleutelde back-up van Signal.</string>
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren...</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</string>
@@ -499,21 +543,28 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ontgrendel</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure heeft MMS-instellingen nodig om mediaberichten te kunnen versturen via uw telefoonprovider. Je toestel heeft deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte toestellen en andere beperkende configuraties.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal heeft MMS-instellingen nodig om mediaberichten te kunnen versturen via je telefoonprovider. Je toestel heeft deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte toestellen en andere beperkende configuraties.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Om mediaberichten en groepsberichten te versturen, drukt u op \'OK\' en voert u de gevraagde gegevens in. De MMS-instellingen voor uw provider kunnen meestal gevonden worden door te zoeken naar \'&amp;lt;uw provider&amp;gt; APN\'. U hoeft dit maar eenmaal te doen.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">GEBLOKKEERD</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Demp conversatie</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Notificaties uitschakelen voor dit gesprek</string>
-  <string name="recipient_preferences__ringtone">Beltoon</string>
+  <string name="recipient_preferences__notification_tone">Notificatie toon</string>
   <string name="recipient_preferences__vibrate">Vibreren</string>
   <string name="recipient_preferences__block">Blokkeren</string>
   <string name="recipient_preferences__color">Kleur</string>
   <string name="recipient_preferences__color_for_this_contact">Kleur voor dit contact</string>
+  <string name="recipient_preferences__verify_identity">Identiteit verifiëren</string>
+  <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">Signal Gesprek</string>
+  <string name="redphone_call_controls__end_call">Gesprek beëindigen</string>
+  <string name="redphone_call_controls__audio">Audio</string>
+  <string name="redphone_call_controls__mute">Dempen</string>
+  <string name="redphone_call_controls__signal_call">Signal Gesprek</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        Verifieer je telefoonnummer om met TextSecure verbinding te maken.
+  <string name="registration_activity__verify_your_number_to_connect_with_signal">
+Verifieer je telefoonnummer om met Signal verbinding te maken.
     </string>
   <string name="registration_activity__your_country">JE LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">JE LANDCODE EN
@@ -527,45 +578,41 @@ TELEFOONNUMMER</string>
 zijn:</string>
   <string name="registration_problems__sms_interceptors">SMS onderscheppers</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Sommige third party SMS-clients, zoals Handcent of GoSMS, gedragen zich slecht en onderscheppen 
-alle inkomende SMS-berichten. Controleer of je een SMS-bericht hebt ontvangen dat begint
-met \"Your TextSecure verification code:\", in welk geval je je andere SMS-apps zal moeten
-configureren om SMS-berichten door te laten.</string>
+Sommige SMS-apps van derden, zoals Handcent of GoSMS, gedragen zich slecht en onderscheppen alle inkomende SMS-berichten. Controleer of je een SMS-bericht hebt ontvangen dat begint met \"Your Signal verification code:\", in welk geval je je andere SMS-apps zal moeten configureren om SMS-berichten door te laten.</string>
   <string name="registration_problems__incorrect_number">Incorrect nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Controleer of je jouw nummer correct hebt ingevuld, en of het 
 in correct formaat is
 voor jouw regio.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure werkt niet met nummers van Google Voice.</string>
+  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
+Signal werkt niet met nummers van Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Spraakverificatie</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure kan je ook bellen om je nummer te verifiëren. Raak \'Bel Me\' aan en voer hieronder de 6-cijferige code code in die wordt voorgelezen.</string>
+  <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
+Signal kan je ook bellen om je nummer te verifiëren. Raak \'Bel Me\' aan en voer hieronder de 6-cijferige code code in die wordt voorgelezen.</string>
   <string name="registration_progress_activity__verify">Verifiëren</string>
   <string name="registration_progress_activity__call_me">Bel me</string>
   <string name="registration_progress_activity__edit_number">Nummer bewerken</string>
   <string name="registration_progress_activity__connectivity_error">Verbindingsfout.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure kon geen verbinding maken met de push service.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
+Signal kon geen verbinding maken met de push service.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mogelijke problemen
 zijn:</string>
   <string name="registration_progress_activity__no_network_connectivity">Geen netwerkverbinding.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Je apparaat heeft een netwerkverbinding nodig voor deze TextSecure functie. Controleer of je verbonden bent met 3G of WiFi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Je apparaat heeft een netwerkverbinding nodig voor deze Signal functie. Controleer of je verbonden bent met je mobiele internet of WiFi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Beperkende firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Als je bent verbonden via WiFi is het mogelijk dat een firewall de verbinding met
-de TextSecure-server blokkeert. Probeer een ander- of het mobiele netwerk.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure zal uw nummer nu automatisch verifiëren door middel van een SMS-bericht.</string>
+Als je bent verbonden via WiFi is het mogelijk dat een firewall de verbinding met de Signal-server blokkeert. Probeer een ander- of het mobiele netwerk.</string>
+  <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+Signal zal je nummer nu automatisch verifiëren door middel van een SMS-bericht.</string>
   <string name="registration_progress_activity__connecting">Verbinden...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Wachten op
 SMS-verificatie...</string>
   <string name="registration_progress_activity__registering_with_server">Aanmelden op de server...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dit kan een moment duren. Een ogenblik geduld, we zullen u op de hoogte stellen wanneer de verificatie voltooid is.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</string>
+  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
+Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-verificatie mislukt.</string>
   <string name="registration_progress_activity__generating_keys">Sleutels genereren...</string>
   <string name="registration_progress_activity__alert">Melding</string>
@@ -589,7 +636,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="AndroidManifest__create_passphrase">Wachtwoord creëren</string>
   <string name="AndroidManifest__enter_passphrase">Wachtwoord invoeren</string>
   <string name="AndroidManifest__select_contacts">Contacten selecteren</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure gedetecteerd</string>
+  <string name="AndroidManifest__signal_detected">Signal gedetecteerd</string>
   <string name="AndroidManifest__public_identity_key">Publieke identiteitssleutel</string>
   <string name="AndroidManifest__change_passphrase">Wachtwoord veranderen</string>
   <string name="AndroidManifest__verify_identity">Identiteit verifiëren</string>
@@ -627,8 +674,8 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__sms_mms">SMS en MMS</string>
   <string name="preferences__pref_all_sms_title">Ontvang alle SMS</string>
   <string name="preferences__pref_all_mms_title">Ontvang alle MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure gebruiken voor alle inkomende tekstberichten</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure gebruiken voor alle inkomende multimediaberichten</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal gebruiken voor alle inkomende tekstberichten</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal gebruiken voor alle inkomende multimediaberichten</string>
   <string name="preferences__input_settings">Invoer Instellingen</string>
   <string name="preferences__enable_enter_key_title">Activeer Enter-toets</string>
   <string name="preferences__replace_smiley_with_enter_key">De smiley-toets vervangen door een Enter-toets</string>
@@ -713,10 +760,9 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__default">Standaard</string>
   <string name="preferences__language">Taal</string>
   <string name="preferences__language_summary">Taal %s</string>
-  <string name="preferences__textsecure_messages">TextSecure berichten</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-        Gratis privéberichten versturen aan TextSecure en Signal gebruikers
-    </string>
+  <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Gratis privéberichten versturen aan Signal gebruikers</string>
   <string name="preferences__submit_debug_log">Dien debug log in</string>
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Inschakelen als je toestel SMS/MMS over WiFi gebruikt (alleen inschakelen als \'WiFi Bellen\' is ingeschakeld op je toestel)</string>
@@ -727,20 +773,22 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
   <string name="preferences_chats__message_trimming">Bericht inkorten</string>
+  <string name="preferences_advanced__use_system_emoji">Gebruik systeem emoji</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal\'s ingebouwde emoji ondersteuning uitschakelen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Alles selecteren</string>
   <string name="contact_selection_list__menu_unselect_all">Alles deselecteren</string>
-  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE GEBRUIKERS</string>
+  <string name="contact_selection_list__header_signal_users">SIGNAL GEBRUIKERS</string>
   <string name="contact_selection_list__header_other">ALLE CONTACTEN</string>
   <string name="contact_selection_list__unknown_contact">Nieuw bericht naar...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Voltooid</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Contactenlijst verversen</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_callable__menu_call">Bel</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Berichtdetails</string>
@@ -768,7 +816,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Beveiliging</string>
   <string name="conversation_secure_verified__menu_verify_identity">Identiteit verifiëren</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Beveiligde sessie beëindigen</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Beveiligde sessie resetten</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Niet meer dempen</string>
   <!--conversation_unmuted-->
@@ -782,7 +830,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Popup vergroten</string>
-  <!--conversation_callable-->
+  <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Toevoegen aan contacten</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lijst met ontvangers</string>
@@ -800,13 +848,13 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendelen</string>
   <string name="text_secure_normal__mark_all_as_read">Alles als gelezen markeren</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Je build van TextSecure is verlopen!</string>
+  <string name="reminder_header_expired_build">Je versie van Signal is verouderd!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
   <string name="reminder_header_sms_default_title">Als standaard SMS-app gebruiken?</string>
-  <string name="reminder_header_sms_default_text">Aanraken om van TextSecure je standaard SMS applicatie te maken.</string>
+  <string name="reminder_header_sms_default_text">Aanraken om Signal je standaard SMS-applicatie te maken.</string>
   <string name="reminder_header_sms_import_title">SMS importeren uit systeem?</string>
   <string name="reminder_header_sms_import_text">Aanraken om de SMS berichten in je telefoon te kopiëren naar een versleutelde database.</string>
-  <string name="reminder_header_push_title">Activeer TextSecure berichten</string>
+  <string name="reminder_header_push_title">Signal berichten inschakelen?</string>
   <string name="reminder_header_push_text">Aanraken voor directe aflevering, sterkere privacy, en geen SMS kosten.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jij</string>
@@ -816,13 +864,15 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="media_preview__save_title">Opslaan</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Afbeelding Voorvertoning</string>
+  <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Toestel</string>
+  <string name="redphone_audio_popup_menu__headset">Koptelefoon</string>
+  <string name="redphone_audio_popup_menu__speaker">Luidspreker</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Aan het verwijderen</string>
   <string name="trimmer__deleting_old_messages">Oude berichten verwijderen...</string>
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportkanaal icoon</string>
-  <!--quick_attachment_drawer-->
-  <string name="quick_camera_unavailable">Camera niet beschikbaar</string>
   <!--EOF-->
 </resources>

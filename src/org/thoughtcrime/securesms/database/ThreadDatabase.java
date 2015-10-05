@@ -198,9 +198,9 @@ public class ThreadDatabase extends Database {
     try {
       cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId);
 
-      if (cursor != null && cursor.getCount() > length) {
+      if (cursor != null && length > 0 && cursor.getCount() > length) {
         Log.w("ThreadDatabase", "Cursor count is greater than length!");
-        cursor.moveToPosition(cursor.getCount() - length);
+        cursor.moveToPosition(length - 1);
 
         long lastTweetDate = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
 

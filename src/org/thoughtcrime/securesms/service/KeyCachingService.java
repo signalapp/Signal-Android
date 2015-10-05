@@ -44,9 +44,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.MasterSecretDecryptJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.EncryptionKeys;
 
 import java.util.concurrent.TimeUnit;
 
@@ -240,7 +238,7 @@ public class KeyCachingService extends Service {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
     builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
-    builder.setContentText(getString(R.string.KeyCachingService_textsecure_passphrase_cached));
+    builder.setContentText(getString(R.string.KeyCachingService_signal_passphrase_cached));
     builder.setSmallIcon(R.drawable.icon_cached);
     builder.setWhen(0);
     builder.setPriority(Notification.PRIORITY_MIN);
@@ -268,11 +266,11 @@ public class KeyCachingService extends Service {
 
   private void foregroundServiceLegacy() {
     Notification notification  = new Notification(R.drawable.icon_cached,
-                                                  getString(R.string.KeyCachingService_textsecure_passphrase_cached),
+                                                  getString(R.string.KeyCachingService_signal_passphrase_cached),
                                                   System.currentTimeMillis());
     notification.setLatestEventInfo(getApplicationContext(),
                                     getString(R.string.KeyCachingService_passphrase_cached),
-                                    getString(R.string.KeyCachingService_textsecure_passphrase_cached),
+                                    getString(R.string.KeyCachingService_signal_passphrase_cached),
                                     buildLaunchIntent());
     notification.tickerText = null;
 

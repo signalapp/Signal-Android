@@ -8,15 +8,16 @@ import android.content.OperationApplicationException;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.widget.Toast;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
@@ -28,6 +29,33 @@ import java.util.List;
 import java.util.Set;
 
 public class DirectoryHelper {
+
+  public static class UserCapabilities {
+
+    public static final UserCapabilities UNKNOWN     = new UserCapabilities(Capability.UNKNOWN, Capability.UNKNOWN);
+    public static final UserCapabilities UNSUPPORTED = new UserCapabilities(Capability.UNSUPPORTED, Capability.UNSUPPORTED);
+
+    public enum Capability {
+      UNKNOWN, SUPPORTED, UNSUPPORTED
+    }
+
+    private final Capability text;
+    private final Capability voice;
+
+    public UserCapabilities(Capability text, Capability voice) {
+      this.text  = text;
+      this.voice = voice;
+    }
+
+    public Capability getTextCapability() {
+      return text;
+    }
+
+    public Capability getVoiceCapability() {
+      return voice;
+    }
+  }
+
   private static final String TAG = DirectoryHelper.class.getSimpleName();
 
   public static void refreshDirectory(final Context context) throws IOException {
@@ -72,38 +100,68 @@ public class DirectoryHelper {
     }
   }
 
-  public static boolean isPushDestination(Context context, Recipients recipients) {
+  public static UserCapabilities refreshDirectoryFor(Context context, Recipients recipients)
+      throws IOException
+  {
+    try {
+      TextSecureDirectory      directory      = TextSecureDirectory.getInstance(context);
+      TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
+      String                   number         = Util.canonicalizeNumber(context, recipients.getPrimaryRecipient().getNumber());
+
+      Optional<ContactTokenDetails> details = accountManager.getContact(number);
+
+      if (details.isPresent()) {
+        directory.setNumber(details.get(), true);
+        ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context));
+        return new UserCapabilities(Capability.SUPPORTED, details.get().isVoice() ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+      } else {
+        ContactTokenDetails absent = new ContactTokenDetails();
+        absent.setNumber(number);
+        directory.setNumber(absent, false);
+        return UserCapabilities.UNSUPPORTED;
+      }
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+      return UserCapabilities.UNSUPPORTED;
+    }
+  }
+
+  public static UserCapabilities getUserCapabilities(Context context, Recipients recipients) {
     try {
       if (recipients == null) {
-        return false;
+        return UserCapabilities.UNSUPPORTED;
       }
 
       if (!TextSecurePreferences.isPushRegistered(context)) {
-        return false;
+        return UserCapabilities.UNSUPPORTED;
       }
 
       if (!recipients.isSingleRecipient()) {
-        return false;
+        return UserCapabilities.UNSUPPORTED;
       }
 
       if (recipients.isGroupRecipient()) {
-        return true;
+        return new UserCapabilities(Capability.SUPPORTED, Capability.UNSUPPORTED);
       }
 
       final String number = recipients.getPrimaryRecipient().getNumber();
 
       if (number == null) {
-        return false;
+        return UserCapabilities.UNSUPPORTED;
       }
 
-      final String e164number = Util.canonicalizeNumber(context, number);
+      String  e164number  = Util.canonicalizeNumber(context, number);
+      boolean secureText  = TextSecureDirectory.getInstance(context).isSecureTextSupported(e164number);
+      boolean secureVoice = TextSecureDirectory.getInstance(context).isSecureVoiceSupported(e164number);
 
-      return TextSecureDirectory.getInstance(context).isActiveNumber(e164number);
+      return new UserCapabilities(secureText  ? Capability.SUPPORTED : Capability.UNSUPPORTED,
+                                  secureVoice ? Capability.SUPPORTED : Capability.UNSUPPORTED);
+
     } catch (InvalidNumberException e) {
       Log.w(TAG, e);
-      return false;
+      return UserCapabilities.UNSUPPORTED;
     } catch (NotInDirectoryException e) {
-      return false;
+      return UserCapabilities.UNKNOWN;
     }
   }
 
@@ -127,9 +185,5 @@ public class DirectoryHelper {
       Log.w(TAG, "Failed to create account!");
       return Optional.absent();
     }
-  }
-
-  public static interface DirectoryUpdateFinishedListener {
-    public void onUpdateFinished();
   }
 }

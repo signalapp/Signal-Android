@@ -59,7 +59,7 @@ dependencies {
     compile 'com.soundcloud.android:android-crop:0.9.10@aar'
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.android.support:recyclerview-v7:21.0.3'
-    compile 'com.melnykov:floatingactionbutton:1.1.0'
+    compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'com.google.zxing:android-integration:3.1.0'
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
         exclude module: 'support-v4'
@@ -76,11 +76,12 @@ dependencies {
     compile 'com.commonsware.cwac:camera:0.6.12'
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
-    compile 'org.whispersystems:jobmanager:0.11.0'
+    compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.6'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:textsecure-android:2.6.2'
+    compile 'org.whispersystems:textsecure-android:2.8.1'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
+    compile 'me.relex:circleindicator:1.0.0@aar'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:1.7.1'
@@ -119,7 +120,7 @@ dependencyVerification {
             'com.soundcloud.android:android-crop:ffd4b973cf6e97f7d64118a0dc088df50e9066fd5634fe6911dd0c0c5d346177',
             'com.android.support:appcompat-v7:9a2355537c2f01cf0b95523605c18606b8d824017e6e94a05c77b0cfc8f21c96',
             'com.android.support:recyclerview-v7:e525ad3f33c84bb12b73d2dc975b55364a53f0f2d0697e043efba59ba73e22d2',
-            'com.melnykov:floatingactionbutton:0679ad9f7d61eb7aeab91e8dc56358cdedd5b1c1b9c48464499ffa05c40d3985',
+            'com.melnykov:floatingactionbutton:15d58d4fac0f7a288d0e5301bbaf501a146f5b3f5921277811bf99bd3b397263',
             'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
             'com.android.support:gridlayout-v7:a9b770cffca2c7c5cd83cba4dd12503365de5e8d9c79c479165adf18ab3bc25b',
@@ -127,12 +128,14 @@ dependencyVerification {
             'com.doomonafireball.betterpickers:library:132ecd685c95a99e7377c4e27bfadbb2d7ed0bea995944060cd62d4369fdaf3d',
             'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
             'com.commonsware.cwac:camera:dcc93ddbb2f0393114fa1f31a13fe9e6edfcf5dbe96b22bc4b66c7b15e179054',
-            'org.whispersystems:jobmanager:ea9cb943c4892fb90c1eea1be30efeb85cefca213d52c788419553b58d0ed70d',
+            'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
             'org.whispersystems:libpastelog:550d33c565380d90f4c671e7b8ed5f3a6da55a9fda468373177106b2eb5220b2',
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
+            'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
+            'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
+            'me.relex:circleindicator:996766d3dad51401331515e742948f2a10982d17c626edd976a246b9bf046aac',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
-            'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
             'org.whispersystems:axolotl-android:40d3db5004a84749a73f68d2f0d01b2ae35a73c54df96d8c6c6723b96efb6fc0',
             'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
             'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
@@ -146,8 +149,8 @@ dependencyVerification {
             'org.whispersystems:curve25519-java:9ccef8f5aba05d9942336f023c589d6278b4f9135bdc34a7bade1f4e7ad65fa3',
             'com.android.support:support-v4:1e2e4d35ac7fd30db5ce3bc177b92e4d5af86acef2ef93e9221599d733346f56',
             'com.android.support:support-annotations:7bc07519aa613b186001160403bcfd68260fa82c61cc7e83adeedc9b862b94ae',
-            'org.whispersystems:textsecure-android:28d3cb7ee8ac8437f148b9b4f689546d1393287798f0f09acbe21716c8aee8d0',
-            'org.whispersystems:textsecure-java:5be870e48adce18fc911c648c264cc968b16cd2299eb9170dd3ddc63d716eaa7',
+            'org.whispersystems:textsecure-android:56be70da9701f87610045e07d1910b6b1373887678dad8b20ec6efbf9d5bda46',
+            'org.whispersystems:textsecure-java:88dc97785c7bd9a91ed1eddc89b531212165b8006b166e742ece3a0c1a159e0f',
     ]
 }
 
@@ -165,7 +168,11 @@ android {
         targetSdkVersion 22
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
-        buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
+        buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
+        buildConfigField "String", "USER_AGENT", "\"OWA\""
+        buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-master.whispersystems.org\""
+        buildConfigField "String", "REDPHONE_RELAY_HOST", "\"relay.whispersystems.org\""
+        buildConfigField "String", "REDPHONE_PREFIX_NAME", "\".whispersystems.org\""
         buildConfigField "boolean", "DEV_BUILD", "false"
         buildConfigField "boolean", "FORCE_WEBSOCKETS", "false"
     }
@@ -203,6 +210,7 @@ android {
                           'proguard-rounded-image-view.pro',
                           'proguard-glide.pro',
                           'proguard-shortcutbadger.pro',
+                          'proguard-retrofit.pro',
                           'proguard.cfg'
         }
         release {
@@ -227,7 +235,9 @@ android {
         // defaults
       }
       staging {
-        buildConfigField "String", "PUSH_URL", "\"https://textsecure-service-staging.whispersystems.org\""
+        buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service-staging.whispersystems.org\""
+        buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-staging.whispersystems.org\""
+        buildConfigField "String", "REDPHONE_RELAY_HOST", "\"redphone-staging-relay.whispersystems.org\""
       }
     }
     sourceSets {
@@ -239,6 +249,7 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
         }
         androidTest {
             java.srcDirs = ['test/androidTest/java']

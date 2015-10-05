@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -11,15 +12,25 @@ import org.mockito.stubbing.Answer;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+
+import javax.crypto.spec.SecretKeySpec;
 
 import static org.mockito.Matchers.anyString;
+import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest( { Log.class, Handler.class, Looper.class })
+@PrepareForTest({ Log.class, Handler.class, Looper.class })
 public abstract class BaseUnitTest {
+  protected Context      context;
+  protected MasterSecret masterSecret;
+
   @Before
   public void setUp() throws Exception {
+    context      = mock(Context.class);
+    masterSecret = new MasterSecret(new SecretKeySpec(new byte[16], "AES"),
+                                    new SecretKeySpec(new byte[16], "HmacSHA1"));
     mockStatic(Looper.class);
     mockStatic(Log.class);
     mockStatic(Handler.class);

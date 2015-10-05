@@ -12,7 +12,7 @@
     <org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference
                         android:dependency="pref_key_recipient_mute"
                         android:key="pref_key_recipient_ringtone"
-                        android:title="@string/recipient_preferences__ringtone"
+                        android:title="@string/recipient_preferences__notification_tone"
                         android:ringtoneType="notification"
                         android:showSilent="false"
                         android:showDefault="true"
@@ -36,9 +36,13 @@
             android:persistent="false"
             app:numColumns="5" />
 
+    <Preference android:key="pref_key_recipient_identity"
+                android:title="@string/recipient_preferences__verify_identity"
+                android:persistent="false"/>
 
     <Preference android:key="pref_key_recipient_block"
-                android:title="@string/recipient_preferences__block" />
+                android:title="@string/recipient_preferences__block"
+                android:persistent="false"/>
 
 
 </PreferenceScreen>

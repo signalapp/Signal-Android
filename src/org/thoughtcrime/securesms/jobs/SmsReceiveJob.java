@@ -11,11 +11,9 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -108,16 +106,6 @@ public class SmsReceiveJob extends ContextJob {
       return Optional.absent();
     }
 
-    IncomingTextMessage message =  new IncomingTextMessage(messages);
-
-    if (WirePrefix.isEncryptedMessage(message.getMessageBody()) ||
-        WirePrefix.isKeyExchange(message.getMessageBody())      ||
-        WirePrefix.isPreKeyBundle(message.getMessageBody())     ||
-        WirePrefix.isEndSession(message.getMessageBody()))
-    {
-      return Optional.<IncomingTextMessage>of(new IncomingEncryptedMessage(message, message.getMessageBody()));
-    } else {
-      return Optional.of(message);
-    }
+    return Optional.of(new IncomingTextMessage(messages));
   }
 }

@@ -1,0 +1,23 @@
+#!/bin/bash
+(set -o igncr) 2>/dev/null && set -o igncr; # force bash to ignore \r character
+
+LOGFILE=logplc.txt
+echo "START PLC TEST" > $LOGFILE
+
+ISAC=../Release/kenny.exe
+
+INDIR=../data/orig
+OUTDIR=../dataqaplc_0
+mkdir -p $OUTDIR
+
+$ISAC 12000 -PL 15 $INDIR/speechmusic.pcm $OUTDIR/outplc1.pcm 
+$ISAC 20000 -PL 15 $INDIR/speechmusic.pcm $OUTDIR/outplc2.pcm 
+$ISAC 32000 -PL 15 $INDIR/speechmusic.pcm $OUTDIR/outplc3.pcm 
+$ISAC 12000 -PL 15 $INDIR/tone_cisco.pcm $OUTDIR/outplc4.pcm 
+$ISAC 20000 -PL 15 $INDIR/tone_cisco.pcm $OUTDIR/outplc5.pcm 
+$ISAC 32000 -PL 15 $INDIR/tone_cisco.pcm $OUTDIR/outplc6.pcm 
+
+echo DONE!
+
+
+

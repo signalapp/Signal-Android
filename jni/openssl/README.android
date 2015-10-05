@@ -1,0 +1,87 @@
+OpenSSL on the Android platform.
+---
+
+The code in this directory is based on $OPENSSL_VERSION in the file
+openssl.version. See patches/README for more information on how the
+code differs from $OPENSSL_VERSION.
+
+Porting New Versions of OpenSSL.
+--
+
+The following steps are recommended for porting new OpenSSL versions.
+
+1) Retrieve the appropriate version of the OpenSSL source from
+   www.openssl.org/source (in openssl-*.tar.gz file). Check the PGP
+   signature (found in matching openssl-*.tar.gz.asc file) with:
+
+     gpg openssl-*.tar.gz.asc
+
+   If the public key is not found, import the the one with the
+   matching RSA key ID from http://www.openssl.org/about/, using:
+
+     gpg --import # paste PGP public key block on stdin
+
+2) Update the variables in openssl.config and openssl.version as appropriate.
+   At the very least you will need to update the openssl.version.
+
+3) Run:
+
+     ./import_openssl.sh import openssl-*.tar.gz
+
+4) If there are any errors, then modify openssl.config, openssl.version
+   and patches in patches/ as appropriate.  You might want to use:
+
+     ./import_openssl.sh regenerate patches/*.patch
+
+   Repeat step 3.
+
+5) Cleanup before building with:
+
+     m -j16 clean-libcrypto clean-libssl clean-openssl clean-ssltest
+
+6) Build openssl from the external/openssl directory with:
+
+     mm -j16 snod && adb remount && adb sync system
+
+   If there are build errors, then patches/*.mk, openssl.config, or
+   android-config.mk may need updating.
+
+7) Run tests to make sure things are working:
+
+     # Run local openssl tests
+     (cd android.testssl/ && ./testssl.sh)
+     # Build and sync libcore tests
+     (croot && cd libcore && mm -j16 snod && adb remount && adb sync)
+     # Run tests from libcore
+     (croot && vogar --classpath out/target/common/obj/JAVA_LIBRARIES/core-tests_intermediates/classes.jar javax.net.ssl tests.api.javax.net)
+     # Run tests from Harmony
+     (croot && vogar --classpath out/target/common/obj/JAVA_LIBRARIES/apache-harmony-tests_intermediates/classes.jar tests.api.java.math.BigIntegerTest org.apache.harmony.tests.java.math)
+     # try an https website
+     adb shell am start https://online.citibank.com # confirm result in browser
+
+     The vogar tool can be found externally at http://code.google.com/p/vogar/
+
+     Quick installation instructions (without rebuilding from source):
+        VOGAR=$HOME/vogar
+        svn co http://vogar.googlecode.com/svn/trunk/ $VOGAR
+        mkdir -p $VOGAR/build/
+        curl -o $VOGAR/build/vogar.jar https://vogar.googlecode.com/files/vogar.jar
+        PATH=$PATH:$VOGAR/bin
+
+     Within Google, you can find it under:
+       /home/dalvik-prebuild/vogar/bin/vogar
+
+     # You can also run openssl s_server as a test server on the device:
+     adb push ./android.testssl/CAss.cnf /sdcard/CAss.cnf
+     adb shell openssl req -config /sdcard/CAss.cnf -x509 -nodes -days 365 -subj '/C=US/ST=California/L=Mountain View/CN=localhost' -newkey rsa:1024 -keyout /sdcard/server.pem -out /sdcard/server.pem
+     adb shell openssl s_server -cert /sdcard/server.pem -www -verify 1
+     adb shell am start https://localhost:4433 # confirm result in browser
+
+8) Do a full build before checking in:
+
+     m -j16
+
+Optionally, check whether build flags (located in CONFIGURE_ARGS in
+openssl.config, plus some extras in android-config.mk), need to be updated.
+Doing this step will help ensure that the compiled library is appropriately
+optimized for speed and size.

@@ -27,7 +27,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
-import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -121,7 +120,7 @@ public class SmsListener extends BroadcastReceiver {
       return true;
     }
 
-    return WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody);
+    return false;
   }
 
   private boolean isChallenge(Context context, Intent intent) {

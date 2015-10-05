@@ -95,6 +95,22 @@ public abstract class DisplayRecord {
     return isGroupUpdate() || isGroupQuit();
   }
 
+  public boolean isCallLog() {
+    return SmsDatabase.Types.isCallLog(type);
+  }
+
+  public boolean isIncomingCall() {
+    return SmsDatabase.Types.isIncomingCall(type);
+  }
+
+  public boolean isOutgoingCall() {
+    return SmsDatabase.Types.isOutgoingCall(type);
+  }
+
+  public boolean isMissedCall() {
+    return SmsDatabase.Types.isMissedCall(type);
+  }
+
   public static class Body {
     private final String body;
     private final boolean plaintext;
