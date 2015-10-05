@@ -37,6 +37,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Инфо за контакт</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Овој контакт би требало да го верфивикувате.</string>
   <string name="ConfirmIdentityDialog_accept">Прифати</string>
@@ -58,8 +59,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Стартувај шифрирана сесија?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Стартувај шифрирана сесија со %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Потврда за завршување на шифрирана сесија</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Дали сте сигурни за крај на оваа шифрирана сесија?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Потврде за бришење на тема на разговор</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Дали сте сигурни дека сакате трајно бришење на овај разговор?</string>
   <string name="ConversationActivity_add_attachment">Прикачи датотека</string>
@@ -287,11 +286,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Примена е порака со непознат клуч за идентификација. Притиснете за процесирање и приказ.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Примени се ажурирани, но непознати информации за идентификација. Притиснете за проверка на идентитетот.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Шифрираната сесија заврши.</string>
   <string name="SmsMessageRecord_duplicate_message">Дупла порака.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ја напушти групата...</string>
-  <string name="TheadRecord_secure_session_ended">Шифрираната сесија заврши.</string>
   <string name="ThreadRecord_draft">Скица:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немат клуч за идентификација.</string>

@@ -35,6 +35,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">Ήχος</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Πληροφοριες επαφής</string>
   <!--BlockedContactsActivity-->
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Προτείνεται να επιβεβαιώσετε
         αυτήν την επαφή.
@@ -58,8 +59,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Εκκίνηση ασφαλούς συνεδρίας;</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Έναρξη ασφαλούς συζήτησης με τον/την %s;</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Επιβεβαίωση τερματισμού ασφαλής συνεδρίας</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Είστε σίγουροι πως θέλετε να τελειώσετε αυτήν την συνέδρια ασφαλούς συζήτησης;</string>
   <string name="ConversationActivity_delete_thread_confirmation">Επιβεβαίωση διαγραφής συζήτησης</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Είστε σίγουροι πως θέλετε να διαγράψετε οριστικά αυτήν τη συζήτηση;</string>
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
@@ -276,11 +275,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Ελήφθη μήνυμα με άγνωστο κλειδί ταυτότητας. Κλικ για επεξεργασία και προβολή.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Λήφθηκε ενημερωμένη αλλά άγνωστη πληροφορία ταυτότητας. Πατήστε για επιβεβαίωση ταυτότητας.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Η ασφαλής συνεδρία τερματίστηκε.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Έφυγε από την ομάδα...</string>
-  <string name="TheadRecord_secure_session_ended">Η ασφαλής συνεδρία τερματίστηκε.</string>
   <string name="ThreadRecord_draft">Πρόχειρο:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Δεν έχετε κλειδί ταυτότητας.</string>

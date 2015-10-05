@@ -48,6 +48,8 @@ Dit zal Signal berichten uitzetten door je registratie bij de server ongedaan te
   <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Geblokkeerde contacten</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Inkomend gesprek</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identiteitssleutel van %1$s is gewijzigd. Dit kan betekenen dat iemand probeert uw communicatie the onderscheppen, of dat %2$s gewoon Signal opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
@@ -72,8 +74,8 @@ Dit zal Signal berichten uitzetten door je registratie bij de server ongedaan te
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Veilige sessie initiëren?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initieer beveiligde sessie met %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Beëindigen beveiligde sessie bevestigen</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Weet je zeker dat je deze beveiligde sessie wilt beëindigen?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Beveiligde sessie reset bevestigen</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Weet je zeker dat je deze beveiligde sessie wilt resetten?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Verwijderen gesprek bevestigen</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Weet je zeker dat je dit gesprek permanent wilt verwijderen?</string>
   <string name="ConversationActivity_add_attachment">Voeg bijlage toe</string>
@@ -299,7 +301,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RedPhone_handshake_failed">Verbinden mislukt!</string>
   <string name="RedPhone_recipient_unavailable">Ontvanger niet beschikbaar</string>
   <string name="RedPhone_performing_handshake">Aan het verbinden</string>
-  <string name="RedPhone_network_failed">Serverfout!</string>
+  <string name="RedPhone_network_failed">Netwerkfout!</string>
   <string name="RedPhone_client_failed">Cliëntfout</string>
   <string name="RedPhone_fatal_error">Fatale Fout</string>
   <string name="RedPhone_login_failed">Login mislukt!</string>
@@ -364,11 +366,11 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en weer te geven.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bijgewerkte maar onbekende identiteitsgegevens ontvangen. Aanraken om identiteit te bevestigen.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Beveiligde sessie gereset.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliceer bericht.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Je hebt deze groep verlaten...</string>
-  <string name="TheadRecord_secure_session_ended">Beveiligde sessie beëindigd.</string>
+  <string name="ThreadRecord_secure_session_reset">Beveiligde sessie gereset.</string>
   <string name="ThreadRecord_draft">Concept:</string>
   <string name="ThreadRecord_called">Jij hebt gebeld</string>
   <string name="ThreadRecord_called_you">Heeft je gebeld</string>

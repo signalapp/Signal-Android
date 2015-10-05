@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Signal</string>
   <string name="yes">Sim</string>
   <string name="no">Não</string>
   <string name="delete">Excluir</string>
@@ -17,10 +18,17 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Descadastrando de mensagens Signal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">Desabilitar mensagens Signal?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
+        Isto irá desabilitar mensagens do Signal, descadastrando-o do servidor.
+        Você precisará recadastrar seu número de telefone para usar o Signal novamente no futuro.
+    </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitado</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para mudar seu app padrão de SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS desabilitado</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Signal o seu app padrão de SMS</string>
   <string name="ApplicationPreferencesActivity_on">ligado</string>
   <string name="ApplicationPreferencesActivity_On">Ligado</string>
   <string name="ApplicationPreferencesActivity_off">desligado</string>
@@ -42,6 +50,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Informações de contato</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contatos bloqueados</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Talvez você queira verificar
         este contato.
@@ -67,8 +76,6 @@ Tem certeza que deseja fazer isto?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniciar sessão segura com %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Confirmação de término de sessão segura</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Tem certeza que deseja encerrar esta sessão segura?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confirmação de exclusão da conversa</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Tem certeza que deseja excluir permanentemente esta conversa?</string>
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
@@ -93,6 +100,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_get_with_it">Baixar com: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo...</string>
@@ -103,6 +111,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Tem certeza que deseja desbloquear este contato?</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede os limites de tamanho para o tipo de mensagem sendo enviada.</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Câmera indisponível</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s\nEnviadas/Recebidas: %2$s</string>
@@ -117,6 +126,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationFragment_saving_attachment">Salvando anexo</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Salvando anexo no cartão SD...</string>
   <string name="ConversationFragment_pending">Pendente...</string>
+  <string name="ConversationFragment_push">Dados (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Excluindo</string>
@@ -152,9 +162,17 @@ Tem certeza que deseja fazer isto?</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartilhar com</string>
   <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bem vindo ao Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um mensageiro privado, para todas as situações: Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bem vindo ao Signal!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure agora é Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são um app: Signal. Clique para explorar.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportar</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportar texto claro para cartão SD?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Aviso, isto irá
+        exportar os conteúdos em texto claro das suas mensagens Signal para o cartão SD.
+    </string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportando</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando texto claro para cartão SD...</string>
@@ -162,6 +180,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Erro durante escrita no cartão SD.</string>
   <string name="ExportFragment_success">Sucesso!</string>
   <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Novo grupo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Atualizar grupo</string>
@@ -322,11 +341,9 @@ Tem certeza que deseja fazer isto?</string>
         Mensagem recebida com chave de identidade desconhecida. Clique para processar e exibir.
     </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Foi recebida atualização mas com informação de identidade desconhecida. Clique para validar a identidade.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Sessão segura terminada.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Saiu do grupo...</string>
-  <string name="TheadRecord_secure_session_ended">Sessão segura terminada.</string>
   <string name="ThreadRecord_draft">Rascunho:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>
@@ -684,6 +701,7 @@ falhou.</string>
   <string name="preferences__default">Padrão</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__language_summary">Idioma %s</string>
+  <string name="preferences__signal">Signal</string>
   <string name="preferences__submit_debug_log">Enviar log de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>

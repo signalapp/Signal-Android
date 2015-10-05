@@ -41,6 +41,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Контактная информация</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Заблокированные контакты</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Возможно, этого собеседника
 стоит перепроверить.</string>
@@ -64,8 +65,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Начать защищённый сеанс?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Начать защищённый сеанс связи с %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Подтвердите завершение сеанса</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Вы уверены, что хотите завершить этот защищённый сеанс связи?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Подтвердите удаление разговора</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Вы уверены, что хотите навсегда удалить этот разговор?</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
@@ -291,11 +290,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Получено сообщение с неизвестным личным ключом. Нажмите, чтобы обработать и показать его.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получены новые, но неизвестные данные о личности. Нажмите, чтобы проверить.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Защищённый сеанс завершён.</string>
   <string name="SmsMessageRecord_duplicate_message">Дубликат сообщения.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Вы покинули группу...</string>
-  <string name="TheadRecord_secure_session_ended">Защищённый сеанс завершён.</string>
   <string name="ThreadRecord_draft">Черновик:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>

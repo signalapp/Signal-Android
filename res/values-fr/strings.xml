@@ -47,6 +47,7 @@ Désactiver l\'écran de protection des messages ?
   <string name="AttachmentTypeSelectorAdapter_contact">Informations de contact</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacts bloqués</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">La signature de %1$s a changée. Cela peut signifier que quelqu’un essaye d\'intercepter vos communications, ou simplement que %2$s a réinstalle Signal et possède maintenant une nouvelle clé.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Vous devriez
@@ -72,8 +73,6 @@ vérifier ce contact.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initier une session sécurisée ?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initier une session sécurisée avec %s ?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Confirmation de  la fin de la session sécurisée</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Êtes-vous sûr de vouloir terminer cette session sécurisée ?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confirmation de la suppression du fil de discussion</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Êtes-vous sûr de vouloir supprimer définitivement cette conversation ?</string>
   <string name="ConversationActivity_add_attachment">Ajouter une pièce jointe</string>
@@ -300,7 +299,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="RedPhone_handshake_failed">La négociation de la connexion a échoué !</string>
   <string name="RedPhone_recipient_unavailable">Destinataire indisponible</string>
   <string name="RedPhone_performing_handshake">Exécution de la négociation de la connexion</string>
-  <string name="RedPhone_network_failed">Le serveur a échoué !</string>
+  <string name="RedPhone_network_failed">Erreur réseau !</string>
   <string name="RedPhone_client_failed">Le client a échoué</string>
   <string name="RedPhone_fatal_error">Erreur fatale</string>
   <string name="RedPhone_login_failed">La connexion a échoué !</string>
@@ -368,11 +367,9 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'accepter et l\'afficher.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Nouvelle information d\'identité mise à jour mais inconnue reçue. Appuyez pour valider l\'identité.</string>
-  <string name="SmsMessageRecord_secure_session_ended">La session sécurisée s’est terminée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message doublon.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Groupe quitté…</string>
-  <string name="TheadRecord_secure_session_ended">La session sécurisée s’est terminée.</string>
   <string name="ThreadRecord_draft">Brouillon:</string>
   <string name="ThreadRecord_called">Vous avez appelé</string>
   <string name="ThreadRecord_called_you">Vous a appelé</string>

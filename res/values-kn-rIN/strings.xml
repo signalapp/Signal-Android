@@ -38,6 +38,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">ಶ್ರಾವ್ಯ</string>
   <string name="AttachmentTypeSelectorAdapter_contact">ಸಂಪರ್ಕದ ವಿವರಗಳು</string>
   <!--BlockedContactsActivity-->
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ನೀವು ಪರಿಶೀಲಿಸಲು ಇಚ್ಛಿಸಬಹುದಾದ ⏎ 
 ಸಂಪರ್ಕ. ⏎</string>
@@ -61,8 +62,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಪ್ರಾರಂಭಿಸಿ?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%s ನೊಂದಿಗೆ ಸುರಕ್ಷಿತ ಅಧಿವೇಶನವನ್ನು ಪ್ರಾರಂಭಿಸಲೆ?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಕೊನೆಗೊಂಡ ದೃಢೀಕರಣ</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">ಈ ಸುರಕ್ಷಿತ ಅಧಿವೇಶನವನ್ನು ಕೊನೆಗೊಳಿಸು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <string name="ConversationActivity_delete_thread_confirmation">ಈ ಎಳೆಯ ದೃಢೀಕರಣನ್ನು ಅಳಿಸಿ</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">ನೀವು ಶಾಶ್ವತವಾಗಿ ಈ ಸಂಭಾಷಣೆ ಅಳಿಸಲು ಖಚಿತವಾಗಿ ನಿರ್ಧರಿಸಿರುವಿರಾ?</string>
   <string name="ConversationActivity_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
@@ -276,11 +275,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 ಸ್ವೀಕರಿಸಿದ ಸಂದೇಶ ಅಪರಿಚಿತ ಗುರುತಿನ ಕೀಯನ್ನು ಹೊಂದಿದೆ. ಸಂಸ್ಕರಿಸಲು ಮತ್ತು ಪ್ರದರ್ಶಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">ಇತ್ತೀಚೆಗೆ ಅಪ್ಡೇಟ್ಗೊಳಿಸಲಾದ ಆದರೆ ಅಪರಿಚಿತ ಗುರುತು ಮಾಹಿತಿಯನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ.  ಈ ಗುರುತನ್ನು ಮಾನ್ಯಗೊಳಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-  <string name="SmsMessageRecord_secure_session_ended">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಕೊನೆಗೋಂಡಿದೆ</string>
   <string name="SmsMessageRecord_duplicate_message">ನಕಲಿ ಸಂದೇಶ.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ ...</string>
-  <string name="TheadRecord_secure_session_ended">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಕೊನೆಗೋಂಡಿದೆ.</string>
   <string name="ThreadRecord_draft">ಕರಡು</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">ನೀವು ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>

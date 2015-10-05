@@ -47,6 +47,8 @@ Questo disabiliterà i messaggi di Signal e annullerà la tua registrazione sul 
   <string name="AttachmentTypeSelectorAdapter_contact">Informazioni contatto</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contatti bloccati</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">La chiave che identifica %1$s è cambiata. Questo può voler dire che qualcuno sta cercando di intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal e ora ha una nuova chiave.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Dovresti verificare
@@ -72,8 +74,8 @@ questo contatto.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniziare sessione sicura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniziare una sessione sicura con %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Conferma di conclusione sessione sicura</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Vuoi davvero concludere questa sessione sicura?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Conferma azzeramento sessione sicura</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Sei sicuro di voler azzerare questa sessione sicura?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Conferma cancellazione conversazione</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Sei sicuro di voler cancellare permanentemente questa conversazione?</string>
   <string name="ConversationActivity_add_attachment">Aggiungi allegato</string>
@@ -300,7 +302,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="RedPhone_handshake_failed">Handshake fallito!</string>
   <string name="RedPhone_recipient_unavailable">Destinatario non disponibile</string>
   <string name="RedPhone_performing_handshake">Esecuzione dello handshake</string>
-  <string name="RedPhone_network_failed">Fallimento del server!</string>
+  <string name="RedPhone_network_failed">Errore di rete!</string>
   <string name="RedPhone_client_failed">Fallimento del client</string>
   <string name="RedPhone_fatal_error">Fatal Error</string>
   <string name="RedPhone_login_failed">Login fallito!</string>
@@ -369,11 +371,11 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
 Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elaborarla e mostrarla.
 </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Ricevute informazioni di identità aggiornate ma sconosciute. Clicca per validare l\'identità.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Sessione sicura terminata.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Sessione sicura azzerata.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Gruppo abbandonato...</string>
-  <string name="TheadRecord_secure_session_ended">Sessione sicura terminata.</string>
+  <string name="ThreadRecord_secure_session_reset">Sessione sicura azzerata.</string>
   <string name="ThreadRecord_draft">Bozza:</string>
   <string name="ThreadRecord_called">Hai chiamato</string>
   <string name="ThreadRecord_called_you">Ti ha chiamato</string>

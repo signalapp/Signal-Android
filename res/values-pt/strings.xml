@@ -46,6 +46,8 @@ Desabilitar ecrã de bloqueio para mensagens?
   <string name="AttachmentTypeSelectorAdapter_contact">Informação de contacto</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contactos bloqueados</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">A receber chamada</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contracto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
@@ -69,8 +71,8 @@ Desabilitar ecrã de bloqueio para mensagens?
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniciar sessão segura com %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Confirmação de término de sessão segura</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Tem a certeza que deseja terminar esta sessão segura?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Confirmação de reinicio de sessão segura</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Tem a certeza que pretende reiniciar esta sessão segura?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confirme apagar a conversa</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Tem a certeza que pretende apagar permanentemente esta conversa?</string>
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
@@ -297,7 +299,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="RedPhone_handshake_failed">\"Handshake\" falhou!</string>
   <string name="RedPhone_recipient_unavailable">Destinatário indisponível</string>
   <string name="RedPhone_performing_handshake">A executar \"handshake\"</string>
-  <string name="RedPhone_network_failed">O servidor falhou!</string>
+  <string name="RedPhone_network_failed">A rede falhou!</string>
   <string name="RedPhone_client_failed">O cliente falhou</string>
   <string name="RedPhone_fatal_error">Erro fatal</string>
   <string name="RedPhone_login_failed">O login falhou!</string>
@@ -365,11 +367,11 @@ chave corrompida.
 Recebida mensagem com chave de identidade desconhecida. Clique para processar e exibir.
     </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Actualização recebida mas com infomação de identidade desconhecida. Toque para validar identidade.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Sessão segura terminada.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Deixou o grupo...</string>
-  <string name="TheadRecord_secure_session_ended">Sessão segura terminada.</string>
+  <string name="ThreadRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="ThreadRecord_draft">Rascunho:</string>
   <string name="ThreadRecord_called">Você ligou</string>
   <string name="ThreadRecord_called_you">Ligou-lhe</string>
@@ -506,6 +508,7 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="log_submit_activity__submitting">A enviar</string>
   <string name="log_submit_activity__posting_logs">A publicar logs no gist...</string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar as suas mensagens de texto existentes para a base de dados cifrada do Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados de sistema não será modificada ou alterada de nenhuma forma.</string>
   <string name="database_migration_activity__skip">Saltar</string>
   <string name="database_migration_activity__import">Importar</string>
@@ -586,6 +589,8 @@ incluem:
 Por favor verifique que o seu número está correctamente inserido, e formatado correctamente
 para a sua região.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
+O Signal não funciona com números Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Verificação por voz</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
@@ -615,6 +620,8 @@ verificação sms...
 </string>
   <string name="registration_progress_activity__registering_with_server">A registar com o servidor...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Isto pode demorar um pouco. Por favor seja paciente, será notificado quanto a verificação estiver completa.</string>
+  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
+O tempo de espera da mensagem SMS de verificação Signal expirou.</string>
   <string name="registration_progress_activity__sms_verification_failed">A verificação por SMS
 falhou.
 </string>
@@ -777,6 +784,9 @@ Mensagens privadas gratuitas para utilizadores Signal
   <string name="preferences_chats__when_using_wifi">Quando utilizar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Quando em roaming</string>
   <string name="preferences_chats__media_auto_download">Descarregar media automaticamente</string>
+  <string name="preferences_chats__message_trimming">Abreviação da mensagem</string>
+  <string name="preferences_advanced__use_system_emoji">Utilizar emoji de sistema</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desactivar o suporte de emoji próprios do Signal</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -856,6 +866,7 @@ Mensagens privadas gratuitas para utilizadores Signal
   <string name="reminder_header_sms_default_text">Pressione para tornar Signal a sua applicação SMS por omissão.</string>
   <string name="reminder_header_sms_import_title">Importar as SMS do sistema?</string>
   <string name="reminder_header_sms_import_text">Pressione para copiar as suas SMS para a base de dados TextSecure cifrada.</string>
+  <string name="reminder_header_push_title">Habilitar mensagens do Signal?</string>
   <string name="reminder_header_push_text">Pressione para activar entrega instantânea, mais privacidade, e sem taxas de SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
@@ -866,6 +877,8 @@ Mensagens privadas gratuitas para utilizadores Signal
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Antevisão de imagem</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Auscultador</string>
+  <string name="redphone_audio_popup_menu__headset">Auricular</string>
   <string name="redphone_audio_popup_menu__speaker">Altifalante</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">A apagar</string>

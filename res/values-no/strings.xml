@@ -48,6 +48,8 @@ Om du vil benytte Signal meldinger igjen i fremtiden må du registrere telefonnu
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformasjon</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokkerte kontakter</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Innkommende anrop</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Det identifiserende nøkkelmaterialet for %1$s har endret seg. Dette kan enten bety at noen forsøker å avlytte kommunikasjonen din, eller at %2$s har installert Signal på nytt og dermed fått en ny identitetsnøkkel.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verifisere
@@ -73,8 +75,8 @@ denne kontakten.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Starte sikker sesjon?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Starte sikker sesjon med %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Bekreft avslutning av sikker sesjon</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Er du sikker på at du ønsker å avslutte denne sikre sesjonen?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Bekreft nullstilling av sikker sesjon</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Er du sikker på at du ønsker å nullstille denne sikre sesjonen?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Bekreft sletting av tråd</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Er du sikker på at du ønsker å slette denne samtalen?</string>
   <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
@@ -242,6 +244,9 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok en melding kryptert med en eldre versjon av Signal som ikke lenger er støttet. Vær vennlig å spørre avsender om å oppgradere til siste versjon og send meldingen på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppen.</string>
   <string name="MessageRecord_updated_group">Gruppen er oppdatert.</string>
+  <string name="MessageRecord_s_called_you">%s ringte deg</string>
+  <string name="MessageRecord_called_s">Ringte %s</string>
+  <string name="MessageRecord_missed_call_from">Ubesvart anrop fra %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -298,7 +303,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="RedPhone_handshake_failed">Handshake feilet!</string>
   <string name="RedPhone_recipient_unavailable">Mottaker utilgjengelig</string>
   <string name="RedPhone_performing_handshake">Utfører handshake</string>
-  <string name="RedPhone_network_failed">Server feilet!</string>
+  <string name="RedPhone_network_failed">Nettverk feilet!</string>
   <string name="RedPhone_client_failed">Klient feilet!</string>
   <string name="RedPhone_fatal_error">Fatal feil</string>
   <string name="RedPhone_login_failed">Login feilet!</string>
@@ -362,12 +367,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Mottok oppdatert men ukjent identitetsinformasjon. Trykk for å validere identiteten.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Sikker sesjon avsluttet.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Sikker sesjon nullstilt.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplisert melding.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Forlot gruppen...</string>
-  <string name="TheadRecord_secure_session_ended">Sikker sesjon avsluttet.</string>
+  <string name="ThreadRecord_secure_session_reset">Sikker sesjon nullstilt.</string>
   <string name="ThreadRecord_draft">Kladd:</string>
+  <string name="ThreadRecord_called">Du ringte</string>
+  <string name="ThreadRecord_called_you">Ringte deg</string>
+  <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>

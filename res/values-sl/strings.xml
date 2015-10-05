@@ -48,6 +48,8 @@ Za ponovno uporabo sporočil Signal se boste morali zopet prijaviti s svojo tele
   <string name="AttachmentTypeSelectorAdapter_contact">Podatki o stiku</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokirani stiki</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Dohodni klic</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikacijski podpis osebe %1$s je bil spremenjen. To lahko pomeni, da nekdo prestreza komunikacijo, ali pa, da je oseba %2$s ponovno namestila Signal in ima zdaj nov identifikacijski ključ.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Morda bi želeli
@@ -73,8 +75,8 @@ preveriti ta stik.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Začnem varno sejo?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Začnem varno sejo z %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Potrditev prekinitve varne seje</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Ste prepričani, da želite zaključiti varno sejo?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Potrdilo o ponastavitvi varne seje</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Ste prepričani, da želite ponastaviti to varno sejo?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potrditev brisanja pogovora</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Ste prepričani, da želite trajno izbrisati pogovor?</string>
   <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
@@ -299,7 +301,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="RedPhone_handshake_failed">Izmenjava ni uspela!</string>
   <string name="RedPhone_recipient_unavailable">Prejemnik ni na voljo</string>
   <string name="RedPhone_performing_handshake">Izmenjava je v teku</string>
-  <string name="RedPhone_network_failed">Napaka strežnika!</string>
+  <string name="RedPhone_network_failed">Napaka omrežja!</string>
   <string name="RedPhone_client_failed">Napaka klienta!</string>
   <string name="RedPhone_fatal_error">Usodna napaka</string>
   <string name="RedPhone_login_failed">Vpis ni uspel!</string>
@@ -360,11 +362,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo in prikaz.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Prejet je bil nadgrajen identifikacijski ključ neznanega stika. Tapnite za potrditev istovetnosti.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Varna seja je zaključena.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Varna seja ponastavljena.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Zapustili ste skupino...</string>
-  <string name="TheadRecord_secure_session_ended">Varna seja je zaključena.</string>
+  <string name="ThreadRecord_secure_session_reset">Varna seja ponastavljena.</string>
   <string name="ThreadRecord_draft">Osnutek:</string>
   <string name="ThreadRecord_called">Klicali ste</string>
   <string name="ThreadRecord_called_you">Imeli ste klic</string>
@@ -549,7 +551,7 @@ Obnovi podatke iz predhodno ustvarjene šifrirane varnostne kopije Signal.</stri
   <string name="recipient_preferences__block">Blokiraj</string>
   <string name="recipient_preferences__color">Barva</string>
   <string name="recipient_preferences__color_for_this_contact">Barva stika</string>
-  <string name="recipient_preferences__verify_identity">POveri identiteto</string>
+  <string name="recipient_preferences__verify_identity">Overi identiteto</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Klic Signal</string>
   <string name="redphone_call_controls__end_call">zaključi klic</string>

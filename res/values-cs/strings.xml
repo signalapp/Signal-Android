@@ -46,6 +46,8 @@ Zakázat uzamčení obrazovky zpráv?</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Informace o kontaktu</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokovaný kontakt</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Příchozí hovor</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikační
  klíč %1$s se změnil. To může být způsobeno tím že se někdo snaží odpolechnout vaši komunikaci, nebo %2$s přeinstaloval aplikaci Signal a nyní má nový klíč.</string>
@@ -72,8 +74,8 @@ kontakt</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Zahájit šifrovanou komunikaci?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Zahájit šifrovanou komunikaci s %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Potvrzení ukončení zabezpečené komunikace</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Opravdu chcete ukončit tuto zabezpečenou relaci?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Potvrzení resetu zabezpečené komunikace</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Opravdu chcete resetovat tuto zabezpečenou komunikaci?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potvrzení smazání konverzace</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Opravdu chcete trvale smazat tuto konverzaci?</string>
   <string name="ConversationActivity_add_attachment">Přidat přílohu</string>
@@ -243,6 +245,9 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou verzí aplikace Signal, která již není podporována. Prosím požádejte odesílatele, aby si aktualizoval aplikaci Signal na nejnovější verzi a pak poslal zprávu znovu.</string>
   <string name="MessageRecord_left_group">Opustil(a) jste skupinu</string>
   <string name="MessageRecord_updated_group">Upravena skupina</string>
+  <string name="MessageRecord_s_called_you">%s vám volal</string>
+  <string name="MessageRecord_called_s">Volán %s</string>
+  <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nejsou stejná</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Chybné staré heslo!</string>
@@ -298,7 +303,7 @@ Poslat zprávy Vaším jménem.</string>
   <string name="RedPhone_handshake_failed">Navázání komunikace selhalo!</string>
   <string name="RedPhone_recipient_unavailable">Příjemce nedostupný</string>
   <string name="RedPhone_performing_handshake">Navazuji komunikaci</string>
-  <string name="RedPhone_network_failed">Chyba serveru!</string>
+  <string name="RedPhone_network_failed">Síť selhala!</string>
   <string name="RedPhone_client_failed">Chyba klienta</string>
   <string name="RedPhone_fatal_error">Fatální chyba</string>
   <string name="RedPhone_login_failed">Přihlášení se nezdařilo!</string>
@@ -359,12 +364,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zpracování a zobrazení.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Aktualizována přijatá dat od neznámé identity. Klikněte pro ověření identity.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Konec zabezpečeného sezení.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Reset zabezpečené komunikace.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opustil skupinu...</string>
-  <string name="TheadRecord_secure_session_ended">Konec zabezpečeného sezení.</string>
+  <string name="ThreadRecord_secure_session_reset">Reset zabezpečené komunikace.</string>
   <string name="ThreadRecord_draft">Koncept:</string>
+  <string name="ThreadRecord_called">Vy jste volal</string>
+  <string name="ThreadRecord_called_you">Volal vás</string>
+  <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Příjemce nemá identifikační klíč.</string>

@@ -48,6 +48,7 @@ Du kommer behöva registrera om ditt telefonnummer för att använda Signal-medd
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformation</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blockerade kontakter</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Signaturen för nyckelutbytet för %1$s har ändrats.
 Detta kan innebära antingen att någon försöker avlyssna din kommunikation, eller att %2$s helt enkelt installerade om Signal och nu har en ny identitetsnyckel.</string>
@@ -74,8 +75,6 @@ verifiera denna kontakt.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Påbörja säker session?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Upprätta en säker förbindelse med %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Bekräfta avslutning av säker session</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Är du säker på att du vill avsluta denna säkra session?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Bekräfta radering av tråd</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Är du säker att du vill permanent radera denna konversation?</string>
   <string name="ConversationActivity_add_attachment">Bifoga fil</string>
@@ -247,6 +246,9 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottog ett meddelande krypterat med en äldre version av Signal som inte längre stöds. Vänligen be personen uppgradera till den nyaste versionen av Signal och skicka sen meddelandet igen.</string>
   <string name="MessageRecord_left_group">Du har lämnat gruppen.</string>
   <string name="MessageRecord_updated_group">Uppdaterade gruppen.</string>
+  <string name="MessageRecord_s_called_you">%s ringde dig</string>
+  <string name="MessageRecord_called_s">Ringde %s</string>
+  <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Inkorrekt gammalt lösenord!</string>
@@ -302,7 +304,7 @@ som inte finns i säkerhetskopian.</string>
   <string name="RedPhone_handshake_failed">Handskakning misslyckades!</string>
   <string name="RedPhone_recipient_unavailable">Mottagaren ej tillgänglig</string>
   <string name="RedPhone_performing_handshake">Utför handskakning</string>
-  <string name="RedPhone_network_failed">Servern misslyckades!</string>
+  <string name="RedPhone_network_failed">Nätverket misslyckades</string>
   <string name="RedPhone_client_failed">Klienten misslyckades</string>
   <string name="RedPhone_fatal_error">Fatalt fel</string>
   <string name="RedPhone_login_failed">Inloggning misslyckades!</string>
@@ -363,12 +365,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och visa.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Mottagit uppdaterad men okänd identitetsinformation. Klicka för att bekräfta identitet.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Säker session avslutad.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Lämnat gruppen...</string>
-  <string name="TheadRecord_secure_session_ended">Säker session avslutad.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
+  <string name="ThreadRecord_called">Du ringde</string>
+  <string name="ThreadRecord_called_you">Ringde dig</string>
+  <string name="ThreadRecord_missed_call">Missat samtal</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnyckel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottagaren har ingen identitetsnyckel.</string>
@@ -494,6 +497,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Inga länkade enheter...</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">fortsätt</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunde inte plocka loggarna från din enhet, men du kan använda ADB för att hämta debugloggarna istället.</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
@@ -544,6 +548,7 @@ från systemets standardapp för meddelanden.</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Tysta konversation</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Inaktivera aviseringar för denna konversation</string>
+  <string name="recipient_preferences__notification_tone">Aviseringsljud</string>
   <string name="recipient_preferences__vibrate">Vibrera</string>
   <string name="recipient_preferences__block">Blockera</string>
   <string name="recipient_preferences__color">Färg</string>
@@ -753,6 +758,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__language_summary">Språk %s</string>
   <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+Fria privata meddelanden och samtal till Signalanvändare</string>
   <string name="preferences__submit_debug_log">Skicka in loggfilen för felsökning</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' kompatibilitetsläge</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivera om din enhet använder SMS/MMS sändning över WiFi (aktivera endast när \'WiFi Calling\' är aktiverat på din enhet)</string>
@@ -855,6 +862,9 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Förhandsvisning av bild</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Mobiltelefon</string>
+  <string name="redphone_audio_popup_menu__headset">Hörlurar</string>
+  <string name="redphone_audio_popup_menu__speaker">Högtalare</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Raderar</string>
   <string name="trimmer__deleting_old_messages">Raderar gamla meddelanden...</string>

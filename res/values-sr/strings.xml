@@ -48,6 +48,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Подаци о контакту</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Кључ
 за идентификацију за %1$s је промењен. Ово може да значи или да неко покушава да пресретне вашу комуникацију
@@ -76,8 +77,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Започети безбедну сесију?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Започети безбедну сесију са %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Потврда окончања безбедне сесије</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Желите ли заиста да окончате ову безбедну сесију?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Потврда брисања нити</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Желите ли заиста трајно да обришете ову преписку?</string>
   <string name="ConversationActivity_add_attachment">Додај прилог</string>
@@ -308,7 +307,7 @@
   <string name="RedPhone_handshake_failed">Руковање није успело!</string>
   <string name="RedPhone_recipient_unavailable">Прималац није доступан</string>
   <string name="RedPhone_performing_handshake">Извршавам руковање</string>
-  <string name="RedPhone_network_failed">Неуспех сервера!</string>
+  <string name="RedPhone_network_failed">Неуспех мреже!</string>
   <string name="RedPhone_client_failed">Неуспех клијента</string>
   <string name="RedPhone_fatal_error">Кобна грешка</string>
   <string name="RedPhone_login_failed">Пријава није успела!</string>
@@ -375,11 +374,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Примљена је порука непознатог кључа идентификације. Кликните за обраду и приказ.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Примљени су ажурирани али непознати подаци идентитета. Додирните за оверу идентитета.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Безбедна сесија је окончана.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусти групу...</string>
-  <string name="TheadRecord_secure_session_ended">Безбедна сесија је окончана.</string>
   <string name="ThreadRecord_draft">Нацрт:</string>
   <string name="ThreadRecord_called">Позвали сте</string>
   <string name="ThreadRecord_missed_call">Пропуштен позив</string>
@@ -672,7 +669,7 @@
   <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
   <string name="arrays__mute_for_two_hours">Утишај 2 сата</string>
   <string name="arrays__mute_for_one_day">Утишај 1 дан</string>
-  <string name="arrays__mute_for_seven_days">Утишај 7 сата</string>
+  <string name="arrays__mute_for_seven_days">Утишај 7 сати</string>
   <string name="arrays__settings_default">Подразумевана поставка</string>
   <string name="arrays__enabled">Омогућена</string>
   <string name="arrays__disabled">Онемогућена</string>

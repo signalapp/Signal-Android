@@ -42,6 +42,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">بيانات الاتصال</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">جهات الاتصال المحظورة</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال.</string>
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
@@ -64,8 +65,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">بدء محادثة آمنة؟</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">بدء التشفير مع %s؟</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">تأكيد إنهاء المحادثة الآمنة</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">هل أنت متأكد من إنهاء جلسة التشفير الحالية؟</string>
   <string name="ConversationActivity_delete_thread_confirmation">تأكيد حذف المحادثة</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">هل تريد حقاَ حذف هذه المحادثة نهائياً؟</string>
   <string name="ConversationActivity_add_attachment">إضافة مرفقات</string>
@@ -302,11 +301,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 تم استلام رسالة بمفتاح هوية غير معلوم. أنقر للمتابعة والإظهار.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">تم استلام تحديث ولكن معلومات الهوية مجهولة. أنقر للتحقق من الهوية.</string>
-  <string name="SmsMessageRecord_secure_session_ended">انتهى التشفير.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترك المجموعة...</string>
-  <string name="TheadRecord_secure_session_ended">انتهى التشفير.</string>
   <string name="ThreadRecord_draft">مسودة:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">لا يوجد لديك مفتاح تعريفي.</string>

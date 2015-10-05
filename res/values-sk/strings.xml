@@ -39,6 +39,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktné informácie</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možno by ste mali overiť
 identitu tohto kontaktu.
@@ -63,8 +64,6 @@ identitu tohto kontaktu.
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Vytvoriť zabezpečé spojenie?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Vytvoriť zabezpečenú spojenie s %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Potvrdenie ukončenia zabezpečeného spojenia</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Ste si naozaj istí, že chcete ukončiť zabezpečné spojenie?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potvrdenie zmazania vlákna</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Ste si naozaj istí, že chcete natrvalo zmazať túto konveráciu?</string>
   <string name="ConversationActivity_add_attachment">Pridať prílohu</string>
@@ -291,11 +290,9 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bola prijatá aktualizované, ale neznáme identifikačné údaje. Dotykom potvrdíte idenitu.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Bezpečné spojenie ukončené.</string>
   <string name="SmsMessageRecord_duplicate_message">Zduplikuj správu.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opustil skupinu...</string>
-  <string name="TheadRecord_secure_session_ended">Bezpečné spojenie ukončené.</string>
   <string name="ThreadRecord_draft">Rozpísaná správa:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte kľúč totožnosti.</string>

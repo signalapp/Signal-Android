@@ -42,6 +42,7 @@ Tắt khóa màn hình cho tin nhắn?
   <string name="AttachmentTypeSelectorAdapter_contact">Chi tiết liên lạc</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Chặn các liên lạc</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
 địa chỉ liên lạc này.
@@ -66,8 +67,6 @@ Tắt khóa màn hình cho tin nhắn?
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Khởi động phiên mã hóa?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Khởi động phiên mã hóa với %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Xác nhận kết thúc phiên mã hóa</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Bạn có chắc là muốn chấm dứt phiên trao đổi an toàn này?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Xác nhận xóa chuỗi</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Bạn có chắc là muốn xóa vĩnh viễn cuộc chuyện trò này?</string>
   <string name="ConversationActivity_add_attachment">Thêm tập tin đính kèm</string>
@@ -309,11 +308,9 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý và hiển thị.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Nhận được cập nhật nhưng không rõ thông tin danh tính. Nhấn vào để kiểm nhận danh tính.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Phiên bảo mật chấm dứt.</string>
   <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Rời nhóm...</string>
-  <string name="TheadRecord_secure_session_ended">Phiên bảo mật chấm dứt.</string>
   <string name="ThreadRecord_draft">Nháp:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Bạn không có chìa khóa danh tính.</string>

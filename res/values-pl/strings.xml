@@ -42,6 +42,7 @@ Wyłączyć blokadę ekranu dla wiadomości?
   <string name="AttachmentTypeSelectorAdapter_contact">Informacje kontaktowe</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Zablokowane kontakty</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Może chcesz zweryfikować 
 ten kontakt.
@@ -66,8 +67,6 @@ ten kontakt.
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Rozpocząć bezpieczną sesję?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Rozpocząć bezpieczną sesję z %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Potwierdzenie zakończenia bezpiecznej sesji</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Czy na pewno chcesz zakończyć bezpieczną sesję?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potwierdzenie usunięcia wątku</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Czy na pewno chcesz permanentnie skasować tą konwersację?</string>
   <string name="ConversationActivity_add_attachment">Dodaj załącznik</string>
@@ -308,11 +307,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć i wyświetlić.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Otrzymał zaktualizowany, ale z nieznaną informacją tożsamości. Dotknij aby potwierdzić tożsamość.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Bezpieczna sesja zakończona.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opuścił grupę...</string>
-  <string name="TheadRecord_secure_session_ended">Bezpieczna sesja zakończona.</string>
   <string name="ThreadRecord_draft">Szkic:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>

@@ -32,6 +32,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">ஆடியோ</string>
   <string name="AttachmentTypeSelectorAdapter_contact">தொடர்பின் தகவல்</string>
   <!--BlockedContactsActivity-->
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">நீங்கள் இந்த தொடர்புபை 
 உறுதி செய்ய விரும்பலாம்</string>
@@ -53,8 +54,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">பாதுகாப்பான அமர்வை தொடங்களாமா?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%s-உடன் பாதுகாப்பான அமர்வை தொடங்களாமா?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">பாதுகாப்பான அமர்வை முடிக்க உறுதிபடுத்துதல்</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">நீங்கள் பாதுகாப்பான அமர்வை முடிக்க உறுதி செய்கிறீர்களா?</string>
   <string name="ConversationActivity_delete_thread_confirmation">உரையாடல்நூலை நீக்க உறுதிப்படுத்தல்</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">நீங்கள் இந்த உரையாடலை நிரந்தரமாக நீக்க உறுதிசெய்கிறீர்களா? </string>
   <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
@@ -254,11 +253,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 அறியப்படாத அடையாளச்சாவியுடன் செய்தி பெறப்பட்டது. செயல்படுத்தி காட்ட கிளிக் செய்யவும்.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">மேம்படுத்தப்பட்ட ஆனால் தெரியாத அடையாளத்தகவல் பெறப்பட்டது. அடையாளத்தை சரிபார்க்க தொடவும்.</string>
-  <string name="SmsMessageRecord_secure_session_ended">பாதுகாப்பான அமர்வு முடிந்தது.</string>
   <string name="SmsMessageRecord_duplicate_message">நகல் செய்தி.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">குழுவை விட்டு விலகினார்...</string>
-  <string name="TheadRecord_secure_session_ended">பாதுகாப்பான அமர்வு முடிந்தது.</string>
   <string name="ThreadRecord_draft">வரைவு:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">உங்களிடம் ஒரு அடையாளச்சாவி இல்லை.</string>

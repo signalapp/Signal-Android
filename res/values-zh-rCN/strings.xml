@@ -48,6 +48,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">联系人信息</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">已屏蔽的联系人</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">当前 %1$s 的身份密钥已经改变。
 这可能是由于有人尝试破解您和对方的通信，
@@ -74,8 +75,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">发起安全会话？</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">与 %s 启动安全会话？</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">确认结束安全会话</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">是否确定要结束此安全会话？</string>
   <string name="ConversationActivity_delete_thread_confirmation">确认删除线程</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">是否确定要永久删除此对话？</string>
   <string name="ConversationActivity_add_attachment">添加附件</string>
@@ -319,11 +318,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 收到的消息来自未知的身份密钥，点击将处理并显示。</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">已经收到更新，但是无法确认身份信息。点击并验证身份。</string>
-  <string name="SmsMessageRecord_secure_session_ended">安全会话已结束。</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">离开此群组...</string>
-  <string name="TheadRecord_secure_session_ended">安全会话已结束。</string>
   <string name="ThreadRecord_draft">草稿：</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>

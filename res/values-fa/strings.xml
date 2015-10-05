@@ -39,6 +39,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">اطلاعات مخاطب</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">اطلاعات تماس مسدود</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">شما ممکن است مایل به منظور بررسی
 تماس با ما</string>
@@ -59,8 +60,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">گفتگوی امن آغاز شود؟</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">گفتگوی امن با %s آغاز شود؟</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">تأیید پایان گفتگوی امن</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">آیا مطمئنید که می‌خواهید ارتباط امن را خاتمه دهید؟</string>
   <string name="ConversationActivity_delete_thread_confirmation">حذف تاییدیه موضوع</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">آیا مطمئن هستید که می خواهید این مکالمه به طور دائم حذف کنید؟</string>
   <string name="ConversationActivity_add_attachment">پیوست فایل</string>
@@ -261,11 +260,9 @@
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">دریافت کلید خراب
 تبادل پیام!</string>
-  <string name="SmsMessageRecord_secure_session_ended">جلسه امن به پایان رسید.</string>
   <string name="SmsMessageRecord_duplicate_message">تکثیر پیام.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترک گروه ...</string>
-  <string name="TheadRecord_secure_session_ended">جلسه امن به پایان رسید.</string>
   <string name="ThreadRecord_draft">پیش نویس:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">شما یک کلید هویت ندارد.</string>

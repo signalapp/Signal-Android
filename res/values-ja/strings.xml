@@ -42,6 +42,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">連絡先情報</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">ブロックした連絡先</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">この連絡先を
 照合することが推奨されています。</string>
@@ -65,8 +66,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%sさんとセキュア・セッションを開始しますか？</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">セキュア・セッション終了の確認</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">このセキュア・セッションを本当に終了しますか？</string>
   <string name="ConversationActivity_delete_thread_confirmation">スレッド削除確認</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">この会話を完全に削除してもよろしいですか？</string>
   <string name="ConversationActivity_add_attachment">添付</string>
@@ -299,11 +298,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 受信したメッセージの認証キーは不明です。タップで表示。</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">新たな識別情報を受信しましたが認証が不明です。タップで検証してください。</string>
-  <string name="SmsMessageRecord_secure_session_ended">セキュア・セッション終了</string>
   <string name="SmsMessageRecord_duplicate_message">多重送信メッセージ。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">グループを出ました…</string>
-  <string name="TheadRecord_secure_session_ended">セキュア・セッション終了</string>
   <string name="ThreadRecord_draft">草稿:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>

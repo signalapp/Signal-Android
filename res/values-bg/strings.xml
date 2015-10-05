@@ -48,6 +48,8 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Информация за контакта</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Идентифициращият ключ за %1$s е променен. Това значи че или някой се опитва да прихване комуникациите ти, или че %2$s е преинсталирал Signal и вече има нов ключ за самоличност.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Може би е добре да се провери ⏎
@@ -73,8 +75,8 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Започни сигурна сесия?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Започни сигурна сесия с %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Потвърждение за прекратяване на сигурна сесия</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Сигурен ли си, че искаш да прекратиш сигурната сесия?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Започни нова сигурна сесия</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Сигурен ли си, че искаш да започнеш от начало сигурната сесия?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Потвърждение за изтриване на разговора</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Сигурен ли си, че искаш да изтриеш необратимо този разговор?</string>
   <string name="ConversationActivity_add_attachment">Прикачи файл</string>
@@ -305,7 +307,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="RedPhone_handshake_failed">Неуспешно установяването на връзката!</string>
   <string name="RedPhone_recipient_unavailable">Приемащия повикването не е на линия</string>
   <string name="RedPhone_performing_handshake">Установяване на връзка</string>
-  <string name="RedPhone_network_failed">Сървърна грешка!</string>
+  <string name="RedPhone_network_failed">Грешка в мрежата!</string>
   <string name="RedPhone_client_failed">Грешка в Signal!</string>
   <string name="RedPhone_fatal_error">Фатална грешка</string>
   <string name="RedPhone_login_failed">Неуспешно вписване!</string>
@@ -372,11 +374,11 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Получено е съобщение с не познат ключ за самоличност. Натисни, за да го обработиш и покажеш.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получена е променена, но непозната информация за самоличност. Натисни, за да я провериш.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Сигурната сесия приключи.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Сигурната сесия е започната от начало.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусна групата...</string>
-  <string name="TheadRecord_secure_session_ended">Сигурната сесия приключи.</string>
+  <string name="ThreadRecord_secure_session_reset">Започване на нова сигурна сесия.</string>
   <string name="ThreadRecord_draft">Чернова:</string>
   <string name="ThreadRecord_called">Вие се обадихте</string>
   <string name="ThreadRecord_called_you">Ви се обади</string>

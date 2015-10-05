@@ -44,6 +44,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Informații contact</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacte blocate</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Probabil ca doresti sa verifici aceasta persoana.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptă</string>
@@ -67,8 +68,6 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initializez Sesiune Securizata?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initializez Sesiune Securizata cu %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Se confirmă terminarea sesiunii securizate</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Sunteți sigur că doriți terminarea sesiunii securizate?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confirmă ștergerea conversației</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Ești sigur că dorești să ștergi permanent această conversație?</string>
   <string name="ConversationActivity_add_attachment">Adauga atasament</string>
@@ -265,7 +264,6 @@
   <string name="RedPhone_handshake_failed">Handshake eşuat!</string>
   <string name="RedPhone_recipient_unavailable">Destinatar indisponibil</string>
   <string name="RedPhone_performing_handshake">Se execută handshake-ul</string>
-  <string name="RedPhone_network_failed">Eroare de server!</string>
   <string name="RedPhone_client_failed">Eroare de client</string>
   <string name="RedPhone_fatal_error">Eroare fatală</string>
   <string name="RedPhone_login_failed">Autentificare eşuată!</string>
@@ -325,11 +323,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru a-l procesa și afișa.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">S-au primit informații de identitate actualizate dar necunoscute. Apăsați pentru a valida identitatea.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Sesiune securizată terminată.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">A ieșit din grup...</string>
-  <string name="TheadRecord_secure_session_ended">Sesiune securizată terminată.</string>
   <string name="ThreadRecord_draft">Ciornă:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nu ai o cheie de identitate.</string>

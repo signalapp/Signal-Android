@@ -4,7 +4,7 @@
   <string name="yes">Kyllä</string>
   <string name="no">Ei</string>
   <string name="delete">Poista</string>
-  <string name="please_wait">Hetki vain...</string>
+  <string name="please_wait">Odota hetki...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Tällä hetkellä: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
@@ -48,6 +48,8 @@ Jos haluat käyttää Signal-viestejä jatkossa, täytyy sinun rekisteröityä u
   <string name="AttachmentTypeSelectorAdapter_contact">Yhteystieto</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Estetyt yhteystiedot</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Saapuva puhelu</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Yhteystiedon
 %1$s identiteettiavain on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata
@@ -74,10 +76,10 @@ tämän yhteystiedon.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tätä viestiä <b>ei</b> voida salata, koska vastaanottaja ei enää käytä Signalia.\n\nLähetetäänkö salaamattomana?</string>
   <string name="ConversationItem_unable_to_open_media">Median avaamiseen ei löytynyt sovellusta.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Aloita salattu istunto?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Aloita salattu istunto yhteystiedon %s kanssa?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Varmista salatun istunnon lopetus</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Haluatko varmasti lopettaa salatun istunnon?</string>
+  <string name="ConversationActivity_initiate_secure_session_question">Aloita suojattu istunto?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">Aloita suojattu istunto yhteystiedon %s kanssa?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Suojatun istunnon alustuksen varmistus</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Haluatko varmasti alustaa tämän suojatun istunnon?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Varmista keskustelun poisto</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Haluatko varmasti poistaa tämän keskustelun?</string>
   <string name="ConversationActivity_add_attachment">Lisää liite</string>
@@ -310,7 +312,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="RedPhone_handshake_failed">Yhteyden luonti epäonnistui!</string>
   <string name="RedPhone_recipient_unavailable">Vastaanottaja ei ole saavutettavissa</string>
   <string name="RedPhone_performing_handshake">Muodostetaan yhteyttä</string>
-  <string name="RedPhone_network_failed">Palvelinvirhe!</string>
+  <string name="RedPhone_network_failed">Verkkoyhteysvirhe!</string>
   <string name="RedPhone_client_failed">Sovellusvirhe</string>
   <string name="RedPhone_fatal_error">Odottamaton virhe</string>
   <string name="RedPhone_login_failed">Kirjautuminen epäonnistui!</string>
@@ -378,11 +380,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely napsauttamalla.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Vastaanotettiin päivitetty, mutta tuntematon identiteetti. Varmenna identiteetti napsauttamalla.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Salattu istunto päättyi</string>
+  <string name="SmsMessageRecord_secure_session_reset">Suojattu istunto alustettu</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä...</string>
-  <string name="TheadRecord_secure_session_ended">Salattu istunto päättyi</string>
+  <string name="ThreadRecord_secure_session_reset">Suojattu istunto alustettu</string>
   <string name="ThreadRecord_draft">Luonnos:</string>
   <string name="ThreadRecord_called">Soitit puhelun</string>
   <string name="ThreadRecord_called_you">Soitti sinulle</string>
@@ -814,7 +816,7 @@ Ilmaiset ja yksityiset viestit sekä puhelut Signalin käyttäjille</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Kutsu</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Aloita salattu istunto</string>
+  <string name="conversation_insecure__menu_start_secure_session">Aloita suojattu istunto</string>
   <string name="conversation_insecure__security">Turvallisuus</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Poista valitut</string>
@@ -829,7 +831,7 @@ Ilmaiset ja yksityiset viestit sekä puhelut Signalin käyttäjille</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Turvallisuus</string>
   <string name="conversation_secure_verified__menu_verify_identity">Varmenna identiteetti</string>
-  <string name="conversation_secure_verified__menu_reset_secure_session">Alusta salattu istunto</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Alusta suojattu istunto</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Poista mykistys</string>
   <!--conversation_unmuted-->
