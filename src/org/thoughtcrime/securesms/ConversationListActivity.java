@@ -83,6 +83,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GDataPreferences;
@@ -276,56 +277,60 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         String strOrder = CallLog.Calls.DATE + " DESC";
         Cursor mCallCursor = getApplicationContext().getContentResolver().query(CallLog.Calls.CONTENT_URI,
                 null,
-                CallLog.Calls.TYPE + " = " + CallLog.Calls.OUTGOING_TYPE
+                CallLog.Calls.TYPE + " = " + CallLog.Calls.OUTGOING_TYPE +" OR " + CallLog.Calls.TYPE + " = " + CallLog.Calls.INCOMING_TYPE
                 , null,
                 strOrder);
         mCallCursor.moveToFirst();
         do {
-            if (i > 10)
+            if (i>20)
                 break;
             mobileNumber = mCallCursor.getString(mCallCursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER));
             recCalledRec = RecipientFactory.getRecipientsFromString(getApplicationContext(), mobileNumber, false);
-            recentlyRecipients.add(recCalledRec);
 
             if (recCalledRec.getPrimaryRecipient() != null && recCalledRec.getPrimaryRecipient().getName() != null && !recCalledRec.getPrimaryRecipient().getName().equals("")) {
-                found++;
-                if (found == 1) {
-                    final Recipients fOne = recCalledRec;
-                    fabCOne.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            openConversationForRecipients(fOne);
-                        }
-                    });
-                    fabCOne.setImageBitmap(fOne.getPrimaryRecipient().getCircleCroppedContactPhoto());
-                    textViewCOne.setText(fOne.getPrimaryRecipient().getName());
-                } else if (found == 2) {
-                    final Recipients fTwo = recCalledRec;
-                    fabCTwo.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            openConversationForRecipients(fTwo);
-                        }
-                    });
-                    fabCTwo.setImageBitmap(fTwo.getPrimaryRecipient().getCircleCroppedContactPhoto());
-                    textViewCTwo.setText(fTwo.getPrimaryRecipient().getName());
-                } else if (found == 3) {
-                    final Recipients fThree = recCalledRec;
-                    fabCThree.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            openConversationForRecipients(fThree);
-                        }
-                    });
-                    fabCThree.setImageBitmap(fThree.getPrimaryRecipient().getCircleCroppedContactPhoto());
-                    textViewCThree.setText(fThree.getPrimaryRecipient().getName());
-                }
+                recentlyRecipients.add(recCalledRec);
                 recCalledRec = null;
             }
             i++;
         }
         while (mCallCursor.moveToNext());
 
+        recentlyRecipients = getFrequentContact(recentlyRecipients);
+
+        for(Recipients recipients : recentlyRecipients) {
+            found++;
+            if (found == 1) {
+                final Recipients fOne = recipients;
+                fabCOne.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openConversationForRecipients(fOne);
+                    }
+                });
+                fabCOne.setImageBitmap(fOne.getPrimaryRecipient().getCircleCroppedContactPhoto());
+                textViewCOne.setText(fOne.getPrimaryRecipient().getName());
+            } else if (found == 2) {
+                final Recipients fTwo = recipients;
+                fabCTwo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openConversationForRecipients(fTwo);
+                    }
+                });
+                fabCTwo.setImageBitmap(fTwo.getPrimaryRecipient().getCircleCroppedContactPhoto());
+                textViewCTwo.setText(fTwo.getPrimaryRecipient().getName());
+            } else if (found == 3) {
+                final Recipients fThree = recipients;
+                fabCThree.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openConversationForRecipients(fThree);
+                    }
+                });
+                fabCThree.setImageBitmap(fThree.getPrimaryRecipient().getCircleCroppedContactPhoto());
+                textViewCThree.setText(fThree.getPrimaryRecipient().getName());
+            }
+        }
         if (found < 3) {
             fabCThree.setVisibility(View.GONE);
             textViewCThree.setVisibility(View.GONE);
@@ -339,7 +344,46 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             textViewCOne.setVisibility(View.GONE);
         }
     }
+    public ArrayList<Recipients> getFrequentContact(ArrayList<Recipients> logEntriesArray) {
 
+        ArrayList<String> numArray        = new ArrayList<String>();
+        ArrayList<Recipients> recArray        = new ArrayList<Recipients>();
+        ArrayList<Recipients> orderedRecArray        = new ArrayList<Recipients>();
+        ArrayList<Integer> callCountArray = new ArrayList<Integer>();
+
+        for (int i = 0; i < logEntriesArray.size(); i++) {
+            int index = numArray.indexOf(GUtil.numberToLong(logEntriesArray.get(i).getPrimaryRecipient().getNumber())+"");
+            if (numArray.contains(GUtil.numberToLong(logEntriesArray.get(i).getPrimaryRecipient().getNumber())+"")) {
+                int newCount = callCountArray.get(index) + 1;
+                callCountArray.set(index, newCount);
+            } else {
+                numArray.add(GUtil.numberToLong(logEntriesArray.get(i).getPrimaryRecipient().getNumber())+"");
+                recArray.add(logEntriesArray.get(i));
+                callCountArray.add(1);
+            }
+        }
+        addAndRemoveMax(callCountArray, recArray, orderedRecArray);
+
+        return orderedRecArray;
+    }
+    public void addAndRemoveMax(ArrayList<Integer> callCountArray,  ArrayList<Recipients> recArray, ArrayList<Recipients> orderedRecArray) {
+        if(callCountArray.size()>0) {
+            int maxValue = Collections.max(callCountArray);
+            int maxId = -1;
+            for (int i = 0; i < callCountArray.size(); i++) {
+                if (callCountArray.get(i) == maxValue) {
+                    orderedRecArray.add(recArray.get(i));
+                    maxId = i;
+                    break;
+                }
+            }
+            if (maxId > -1) {
+                callCountArray.remove(maxId);
+                recArray.remove(maxId);
+                addAndRemoveMax(callCountArray, recArray, orderedRecArray);
+            }
+        }
+    }
     private void openConversationForRecipients(Recipients rec) {
         if (masterSecret != null) {
             Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
@@ -480,7 +524,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     @Override
     protected void onPause() {
         super.onPause();
-        toggleActionFloatMenu(true, true, true);
     }
 
     @Override
