@@ -111,7 +111,7 @@ public class ResponderCallManager extends CallManager {
       Log.w(TAG, e);
       callStateListener.notifyCallDisconnected();
     } catch( RuntimeException e ) {
-      Log.e(TAG, "Died unhandled with exception!");
+      Log.e(TAG, "Died with unhandled exception!");
       Log.w(TAG, e);
       callStateListener.notifyClientFailure();
     }
