@@ -124,9 +124,7 @@ public class AttachmentManager {
     }
     File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
               "prof_image"+ new GDataPreferences(activity).getLastImageIndicator() +" .jpg");
- if(mediaFile.exists()) {
-    mediaFile.delete();
-  }
+
     return mediaFile;
   }
   public static void selectContactInfo(Activity activity, int requestCode) {
