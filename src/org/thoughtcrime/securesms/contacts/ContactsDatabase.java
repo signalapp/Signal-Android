@@ -147,14 +147,14 @@ public class ContactsDatabase {
     HashSet<String> hashSet = new HashSet <String> ();
     HashSet<Integer> ids = new HashSet <Integer> ();
     while (cursorD.moveToNext()) {
-      if(hashSet.add(GUtil.numberToLong(cursorD.getString(4))+"")) {
+      if(!hashSet.add(GUtil.numberToLong(cursorD.getString(4))+"")) {
         ids.add(cursorD.getInt(0));
       }
     }
     StringBuilder selection = new StringBuilder();
-    selection.append(ID_COLUMN +" = '" + 0 + "'");
+    selection.append(ID_COLUMN +" == '" + 0 + "'");
     for(Integer id : ids) {
-      selection.append(" OR " + ID_COLUMN +" = '" + id + "'");
+      selection.append(" OR " + ID_COLUMN +" != '" + id + "'");
     }
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
             PrivacyBridge.getContactSelection(context)!=null
