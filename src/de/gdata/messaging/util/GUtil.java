@@ -198,10 +198,12 @@ public class GUtil {
 
   public static int getCountryCodeLength(String number) {
     int length = 0;
-    for (int i = 0; i <= 3 && length == 0; i++) {
-      for (String code : CountryCodes.m_Codes) {
-        if (number.substring(0, i).equals(code)) {
-          length = i;
+    if(number.length()>2) {
+      for (int i = 0; i <= 3 && length == 0; i++) {
+        for (String code : CountryCodes.m_Codes) {
+          if (number.substring(0, i).equals(code)) {
+            length = i;
+          }
         }
       }
     }
