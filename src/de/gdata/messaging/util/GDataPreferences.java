@@ -103,6 +103,9 @@ public class GDataPreferences {
     mPreferences.edit().putLong("date:" + profileId, date).commit();
   }
   public void saveUnreadCountForThread(String threadId, Long count) {
+    if(count<0) {
+      count = 1L;
+    }
     mPreferences.edit().putLong("count:" + threadId, count).commit();
   }
   public Long getUnreadCountForThread(String threadId) {
