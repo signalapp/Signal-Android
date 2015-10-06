@@ -113,7 +113,7 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
                     if (data != null) {
                         try {
                             OutputStream out;
-                            File f = AttachmentManager.getOutputMediaFile();
+                            File f = AttachmentManager.getOutputMediaFile(getApplicationContext());
                             if (f.exists()) {
                                 f.delete();
                             }
@@ -138,7 +138,7 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
                         return;
                     }
                         try {
-                            File image = AttachmentManager.getOutputMediaFile();
+                            File image = AttachmentManager.getOutputMediaFile(getApplicationContext());
                             if (image != null) {
                                 Uri fileUri = Uri.fromFile(image);
                                 if(!isGroup) {

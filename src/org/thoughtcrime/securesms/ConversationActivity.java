@@ -340,13 +340,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 break;
             case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
                 if (resultCode == RESULT_CANCELED) return;
-                handleTakenPhoto();
+                handleTakenPhoto(getApplicationContext());
                 break;
         }
     }
 
-    public void handleTakenPhoto() {
-        File image = AttachmentManager.getOutputMediaFile();
+    public void handleTakenPhoto(Context context) {
+        File image = AttachmentManager.getOutputMediaFile(context);
         if (image != null) {
             Uri fileUri = Uri.fromFile(image);
             try {

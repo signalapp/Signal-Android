@@ -3,21 +3,17 @@ package de.gdata.messaging.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
-
-import com.google.common.reflect.TypeToken;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
+import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
 
 public class GDataPreferences {
 
@@ -39,6 +35,7 @@ public class GDataPreferences {
   private static final String PROFILE_PICTURE_URI = "PROFILE_PICTURE_URI";
   private static final String PROFILE_STATUS = "PROFILE_STATUS";
   private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
+  private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
 
 
   private final SharedPreferences mPreferences;
@@ -55,7 +52,12 @@ public class GDataPreferences {
   public int getViewPagersLastPage() {
     return mPreferences.getInt(VIEW_PAGER_LAST_PAGE, 0);
   }
-
+  public void setLastImageNumber(int number) {
+    mPreferences.edit().putInt(LAST_IMAGE_NUMBER, number).commit();
+  }
+  public int getLastImageIndicator() {
+    return mPreferences.getInt(LAST_IMAGE_NUMBER, 0);
+  }
   public void setPrivacyActivated(boolean activated) {
     mPreferences.edit().putBoolean(PRIVACY_ACTIVATED, activated).commit();
   }
@@ -227,6 +229,24 @@ public class GDataPreferences {
       arrayType[i] = mPreferences.getString(MEDIA_HISTORY + "_type_" + recipientId + "_" + i, "");
     }
     return arrayType;
+  }
+
+  public int getNextImageIndicator() {
+    int lastImageNumber = getLastImageIndicator();
+
+    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES), "SecureChat");
+
+    File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+            "prof_image"+ lastImageNumber +" .jpg");
+    if(mediaFile.exists()) {
+      mediaFile.delete();
+    }
+    lastImageNumber = lastImageNumber + 1;
+    setLastImageNumber(lastImageNumber);
+
+    lastImageNumber = getLastImageIndicator();
+    return lastImageNumber;
   }
 }
 

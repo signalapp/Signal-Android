@@ -20,16 +20,13 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -40,19 +37,18 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import java.io.File;
 import java.io.IOException;
 
+import de.gdata.messaging.util.GDataPreferences;
 import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
-  private final Context            context;
+  private static Context            context;
   private final View               attachmentView;
   private final ThumbnailView      thumbnail;
   private final ImageButton        removeButton;
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
-
-  public static String random  = "0";
 
   private static File captureFile;
 
@@ -73,9 +69,6 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
-public static void generateNewRandomOutputName() {
-  random = ((int)(Math.random() * 30.0)) + "";
-}
   public void cleanup() {
     if (captureFile != null) captureFile.delete();
     captureFile = null;
@@ -104,12 +97,12 @@ public static void generateNewRandomOutputName() {
   }
 
   public static void selectImage(Activity activity, int requestCode) {
-    generateNewRandomOutputName();
+    new GDataPreferences(activity).getNextImageIndicator();
     selectMediaType(activity, ContentType.IMAGE_UNSPECIFIED, requestCode);
   }
   public static void takePhoto(Activity activity, int requestCode) {
-    generateNewRandomOutputName();
-    File image = getOutputMediaFile();
+    new GDataPreferences(activity).getNextImageIndicator();
+    File image = getOutputMediaFile(activity);
     if(image != null) {
       Uri fileUri = Uri.fromFile(image);
       Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -120,7 +113,7 @@ public static void generateNewRandomOutputName() {
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }
-  public static File getOutputMediaFile(){
+  public static File getOutputMediaFile(Context activity){
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES), "SecureChat");
     if (!mediaStorageDir.exists()){
@@ -130,8 +123,10 @@ public static void generateNewRandomOutputName() {
       }
     }
     File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-              "prof_image"+ random +" .jpg");
-
+              "prof_image"+ new GDataPreferences(activity).getLastImageIndicator() +" .jpg");
+ if(mediaFile.exists()) {
+    mediaFile.delete();
+  }
     return mediaFile;
   }
   public static void selectContactInfo(Activity activity, int requestCode) {
