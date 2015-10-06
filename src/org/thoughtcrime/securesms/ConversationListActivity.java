@@ -292,7 +292,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     @Override
     public void onReceive(Context context, Intent intent) {
       if(intent.getAction().equals(PrivacyBridge.ACTION_RELOAD_ADAPTER)) {
-        Log.d("MYLOG","MYLOG reload");
         reloadAdapter();
       } else if(intent.getAction().equals(PushDecryptJob.ACTION_RELOAD_HEADER)){
         mSlidingTabLayout.refreshTabTitle();
@@ -490,6 +489,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         return null;
       }
     }.execute();
+    Intent intent = new Intent(PushDecryptJob.ACTION_RELOAD_HEADER);
+    LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
   }
 
   private void initializeContactUpdatesReceiver() {
