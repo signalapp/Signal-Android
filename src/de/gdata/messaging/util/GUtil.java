@@ -293,6 +293,7 @@ public class GUtil {
   public static Long numberToLong(String number) {
     String longNumber = "";
     if(number != null) {
+      number = number.replaceAll(" ", "");
       if (number.contains("+")) {
         number = number.replace("+", "");
         number = number.substring(getCountryCodeLength(number), number.length());
@@ -300,7 +301,6 @@ public class GUtil {
       if (number.length() > 0 && number.charAt(0) == '0') {
         number = number.substring(1);
       }
-      number = number.replaceAll(" ", "");
       for (int i = 0; i < number.length(); i++) {
         char a = number.charAt(i);
         if (('0' <= a && a <= '9')) {

@@ -148,17 +148,23 @@ public class ContactsDatabase {
     HashSet<Integer> ids = new HashSet <Integer> ();
     while (cursorD.moveToNext()) {
       if(!hashSet.add(GUtil.numberToLong(cursorD.getString(4))+"")) {
-        ids.add(cursorD.getInt(0));
+       ids.add(cursorD.getInt(0));
       }
     }
     StringBuilder selection = new StringBuilder();
-    selection.append(ID_COLUMN +" == '" + 0 + "'");
+    int c = 0;
     for(Integer id : ids) {
-      selection.append(" OR " + ID_COLUMN +" != '" + id + "'");
+      c++;
+      if(c==1) {
+        selection.append(ID_COLUMN + " != '" + id + "'");
+      } else {
+        selection.append(" AND " + ID_COLUMN + " != '" + id + "'");
+      }
     }
+    String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
-            PrivacyBridge.getContactSelection(context)!=null
-                    ? PrivacyBridge.getContactSelection(context) + "AND (" +selection.toString()+")"
+            !contactSelection.equals("null")
+                    ? contactSelection + " AND (" +selection.toString()+")"
                     : "" + selection.toString(), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
     return new TypedCursorWrapper(cursor);
   }
