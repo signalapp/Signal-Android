@@ -43,7 +43,6 @@ dependencies {
 
     compile 'me.leolin:ShortcutBadger:1.0.2-WS2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
-    compile 'com.google.android.gms:play-services-base:6.5.87'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
@@ -55,11 +54,12 @@ dependencies {
     compile 'com.google.zxing:core:3.2.0'
     compile 'me.dm7.barcodescanner:zxing:1.7.2'
     compile 'com.android.support:cardview-v7:21.0.+'
-    compile ('com.afollestad:material-dialogs:0.7.3.1') {
+    compile('com.afollestad:material-dialogs:0.7.3.1') {
         exclude module: 'appcompat-v7'
         exclude module: 'recyclerview-v7'
         exclude module: 'support-annotations'
     }
+    compile 'com.google.android.gms:play-services-base:6.5.87'
 
     compile 'com.github.bumptech.glide:glide:3.6.0'
     compile 'com.makeramen:roundedimageview:1.5.0'
@@ -131,16 +131,16 @@ android {
 
         resConfigs "en", "de", "fr", "it", "es", "pt", "pt-rBR", "nl", "ja", "tr", "ru", "pl", "zh-rCN", "zh-rTW"
     }
-
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "1600M"
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
     signingConfigs {
         release
-    }
-    dexOptions {
-        javaMaxHeapSize "2g"
     }
     buildTypes {
         debug {
