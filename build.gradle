@@ -139,6 +139,9 @@ android {
     signingConfigs {
         release
     }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
     buildTypes {
         debug {
             minifyEnabled true
