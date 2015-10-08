@@ -50,12 +50,13 @@
             android:animateLayoutChanges="true"
             android:gravity="bottom|right"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <LinearLayout
                 android:id="@+id/action_float_menu_pone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
@@ -97,6 +98,7 @@
                 android:id="@+id/action_float_menu_ptwo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
@@ -136,6 +138,7 @@
                 android:id="@+id/action_float_menu_pthree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
@@ -175,6 +178,7 @@
                 android:id="@+id/action_float_menu_conv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
@@ -214,6 +218,7 @@
                 android:id="@+id/action_float_menu_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:orientation="horizontal">
                 <android.support.v7.widget.CardView
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
