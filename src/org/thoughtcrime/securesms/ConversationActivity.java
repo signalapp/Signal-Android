@@ -880,7 +880,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         SessionStore sessionStore = new TextSecureSessionStore(this, masterSecret);
         Recipient primaryRecipient = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
         boolean isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
-        AxolotlAddress axolotlAddress = new AxolotlAddress(primaryRecipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
+        AxolotlAddress axolotlAddress = new AxolotlAddress(primaryRecipient != null ?  primaryRecipient.getNumber() : "", TextSecureAddress.DEFAULT_DEVICE_ID);
         boolean isSecureDestination = (isSingleConversation() && sessionStore.containsSession(axolotlAddress)) /*|| isPushGroupConversation()*/;
 
         if (isPushDestination || isSecureDestination) {
