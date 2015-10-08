@@ -131,10 +131,6 @@ android {
 
         resConfigs "en", "de", "fr", "it", "es", "pt", "pt-rBR", "nl", "ja", "tr", "ru", "pl", "zh-rCN", "zh-rTW"
     }
-    dexOptions {
-        incremental true
-        javaMaxHeapSize "1600M"
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
