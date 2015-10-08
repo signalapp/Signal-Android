@@ -1220,6 +1220,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (refreshFragment) {
       fragment.reload(recipients, threadId);
+      MessageNotifier.setVisibleThread(threadId);
     }
 
     fragment.scrollToBottom();
