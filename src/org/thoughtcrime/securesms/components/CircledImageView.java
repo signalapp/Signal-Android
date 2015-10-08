@@ -10,6 +10,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,12 +55,15 @@ public class CircledImageView extends ImageView {
     }
     try {
     Bitmap roundBitmap;
-    if (!(drawable instanceof GlideBitmapDrawable) && !(drawable instanceof SquaringDrawable)) {
+    if (!(drawable instanceof GlideBitmapDrawable) && !(drawable instanceof SquaringDrawable) && !(drawable instanceof TransitionDrawable)) {
       roundBitmap = BitmapUtil.getCircleBitmap(BitmapUtil.scaleCircleCenterCrop(context, ((BitmapDrawable) drawable).getBitmap(), low));
-    } else if(!(drawable instanceof SquaringDrawable)){
+    } else if(!(drawable instanceof SquaringDrawable) && !(drawable instanceof TransitionDrawable)){
       roundBitmap = BitmapUtil.getCircleBitmap(BitmapUtil.scaleCircleCenterCrop(context, ((GlideBitmapDrawable) drawable).getBitmap(), low));
-    } else {
+    } else if(drawable instanceof SquaringDrawable){
       SquaringDrawable squaringDrawable = ((SquaringDrawable) drawable);
+      roundBitmap = BitmapUtil.getCircleBitmap(((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap());
+    } else {
+      TransitionDrawable squaringDrawable = ((TransitionDrawable) drawable);
       roundBitmap = BitmapUtil.getCircleBitmap(((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap());
     }
     canvas.drawBitmap(roundBitmap, 0, padding, null);
