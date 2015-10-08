@@ -343,6 +343,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             fabCOne.setVisibility(View.GONE);
             textViewCOne.setVisibility(View.GONE);
         }
+        if(gDataPreferences.getViewPagersLastPage() == 1) {
+            toggleActionFloatMenu(true,true,true);
+        }
     }
     public ArrayList<Recipients> getFrequentContact(ArrayList<Recipients> logEntriesArray) {
 
