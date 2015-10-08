@@ -266,6 +266,7 @@
             android:src="?attr/menu_new_conversation_icon"
             app:backgroundTint="@color/gdata_red"
             app:elevation="2dp"
+            app:borderWidth="0dp"
             app:pressedTranslationZ="2dp" />
 
     </RelativeLayout>
