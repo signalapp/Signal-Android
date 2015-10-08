@@ -164,7 +164,7 @@ public class ContactsDatabase {
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
             !contactSelection.equals("null")
-                    ? contactSelection + " AND (" +selection.toString()+")"
+                    ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
                     : "" + selection.toString(), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
     return new TypedCursorWrapper(cursor);
   }
