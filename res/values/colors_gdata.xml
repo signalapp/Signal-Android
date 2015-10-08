@@ -30,5 +30,6 @@
     <color name="translucent_black">#80000000</color>
     <color name="gdata_primary_color">@color/gdata_grey</color>
     <color name="gdata_primary_background_color">@color/gdata_grey_near</color>
+    <color name="yellow">#FFFF00</color>
 
 </resources>
