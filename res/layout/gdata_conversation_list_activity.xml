@@ -50,7 +50,7 @@
             android:animateLayoutChanges="true"
             android:gravity="bottom|right"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <LinearLayout
                 android:id="@+id/action_float_menu_pone"

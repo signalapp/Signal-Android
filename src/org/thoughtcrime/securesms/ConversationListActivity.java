@@ -196,7 +196,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggleActionFloatMenu(true, false, false);
+                toggleActionFloatMenu(true, false);
             }
         });
         fabGroup.setOnClickListener(new View.OnClickListener() {
@@ -240,24 +240,30 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         setActionFloatMenuIcons();
     }
 
-    public void toggleActionFloatMenu(boolean toggleMenu, boolean toggleButton, boolean isLeaving) {
+    public void toggleActionFloatMenu(boolean toggleMenu, boolean toggleButton) {
 
         Animation slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_from_right);
         Animation slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_to_right);
+        boolean firstPage = gDataPreferences.getViewPagersLastPage() == 0;
         if(toggleMenu) {
             if (actionFloatMenu.getVisibility() == View.INVISIBLE) {
-                if(!isLeaving) {
+                if(firstPage) {
                     actionFloatMenu.setVisibility(actionFloatMenu.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
                     actionFloatMenu.startAnimation(slideUp);
                 }
             } else {
-                actionFloatMenu.startAnimation(slideDown);
-                actionFloatMenu.setVisibility(actionFloatMenu.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+                if(firstPage) {
+                    actionFloatMenu.startAnimation(slideDown);
+                    actionFloatMenu.setVisibility(actionFloatMenu.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+                } else {
+                    actionFloatMenu.startAnimation(slideDown);
+                    actionFloatMenu.setVisibility(View.INVISIBLE);
+                }
             }
         }
         if(toggleButton) {
             if (fab.getVisibility() == View.INVISIBLE) {
-                if(!isLeaving) {
+                if(firstPage) {
                     fab.setVisibility(fab.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
                     fab.startAnimation(slideUp);
                 }
@@ -344,7 +350,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             textViewCOne.setVisibility(View.GONE);
         }
         if(gDataPreferences.getViewPagersLastPage() == 1) {
-            toggleActionFloatMenu(true,true,true);
+            toggleActionFloatMenu(true,true);
         }
     }
     public ArrayList<Recipients> getFrequentContact(ArrayList<Recipients> logEntriesArray) {
@@ -793,7 +799,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             public void onPageSelected(int i) {
                 gDataPreferences.setViewPagerLastPage(i);
                 supportInvalidateOptionsMenu();
-                toggleActionFloatMenu(i != 0, true, i != 0);
+                toggleActionFloatMenu(i != 0, true);
             }
 
             @Override
