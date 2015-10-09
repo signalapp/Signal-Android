@@ -269,6 +269,13 @@
             app:borderWidth="0dp"
             app:pressedTranslationZ="2dp" />
 
+        <org.thoughtcrime.securesms.components.CircledImageView
+            android:id="@+id/circledpreloader"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:visibility="invisible" />
     </RelativeLayout>
     <!-- The navigation drawer -->
     <LinearLayout

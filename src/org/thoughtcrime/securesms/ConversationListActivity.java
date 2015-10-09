@@ -27,7 +27,11 @@ import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,7 +50,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberUtils;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -66,19 +72,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.nineoldandroids.animation.ObjectAnimator;
 
+import org.thoughtcrime.securesms.components.CircledImageView;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -312,7 +322,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fOne);
                     }
                 });
-                fabCOne.setImageBitmap(fOne.getPrimaryRecipient().getCircleCroppedContactPhoto());
+                setProfilePictureToFloatButton(fabCOne, fOne);
                 textViewCOne.setText(fOne.getPrimaryRecipient().getName());
             } else if (found == 2) {
                 final Recipients fTwo = recipients;
@@ -322,7 +332,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fTwo);
                     }
                 });
-                fabCTwo.setImageBitmap(fTwo.getPrimaryRecipient().getCircleCroppedContactPhoto());
+                setProfilePictureToFloatButton(fabCTwo, fTwo);
                 textViewCTwo.setText(fTwo.getPrimaryRecipient().getName());
             } else if (found == 3) {
                 final Recipients fThree = recipients;
@@ -332,7 +342,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fThree);
                     }
                 });
-                fabCThree.setImageBitmap(fThree.getPrimaryRecipient().getCircleCroppedContactPhoto());
+                setProfilePictureToFloatButton(fabCThree, fThree);
                 textViewCThree.setText(fThree.getPrimaryRecipient().getName());
             }
         }
@@ -352,6 +362,56 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             toggleActionFloatMenu(true,true);
         }
     }
+    private class GetImageFromImageSlide extends AsyncTask<String, Integer, Long> {
+
+        private FloatingActionButton fab;
+        private String number;
+        private CircledImageView temp;
+
+        public GetImageFromImageSlide(FloatingActionButton fab,  String number) {
+            this.fab = fab;
+            this.number = number;
+        }
+
+        protected Long doInBackground(String... string) {
+
+            if(fab != null) {
+                final ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(getApplicationContext(), masterSecret, GUtil.numberToLong(number) + "");
+                temp = ((CircledImageView) findViewById(R.id.circledpreloader));
+              temp.post(new Runnable() {
+                  public void run() {
+                      ProfileAccessor.buildGlideRequest(avatarSlide).into(temp);
+                  }
+              });
+            }
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+        }
+        protected void onPostExecute(Long result) {
+            if(temp!= null) {
+                Drawable tempDrawable = temp.getDrawable();
+                int w = temp.getWidth(), low = temp.getHeight();
+                low = w < low ? w : low;
+                if(tempDrawable != null) {
+                    fab.setImageBitmap(BitmapUtil.getCircleBitmap(BitmapUtil.scaleCircleCenterCrop(getApplicationContext(), ((GlideBitmapDrawable) tempDrawable).getBitmap(), low)));
+                }
+            }
+        }
+    }
+    private void setProfilePictureToFloatButton(FloatingActionButton fabCOne, Recipients fOne) {
+        if(fOne.getPrimaryRecipient() != null) {
+            ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, GUtil.numberToLong(fOne.getPrimaryRecipient().getNumber())+"");
+            if (avatarSlide != null) {
+                GetImageFromImageSlide loadImageTask = new GetImageFromImageSlide(fabCOne, fOne.getPrimaryRecipient().getNumber());
+                loadImageTask.execute("");
+            } else {
+                fabCOne.setImageBitmap(fOne.getPrimaryRecipient().getCircleCroppedContactPhoto());
+            }
+        }
+    }
+
     public ArrayList<Recipients> getFrequentContact(ArrayList<Recipients> logEntriesArray) {
 
         ArrayList<String> numArray        = new ArrayList<String>();
@@ -527,6 +587,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         initNavDrawer(navLabels, navIcons);
         refreshProfile();
         mSlidingTabLayout.refreshTabTitle();
+        setActionFloatMenuIcons();
     }
 
     @Override
