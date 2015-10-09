@@ -775,7 +775,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   {
     final SettableFuture<Boolean> future = new SettableFuture<>();
 
-    handleSecurityChange(currentSecureText || isGroupConversation(),
+    handleSecurityChange(currentSecureText || isPushGroupConversation(),
                          currentSecureVoice && !isGroupConversation());
 
     new AsyncTask<Recipients, Void, Pair<Boolean, Boolean>>() {
