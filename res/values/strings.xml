@@ -91,8 +91,6 @@
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
 
     <!-- ConversationActivity -->
-    <string name="ConversationActivity_initiate_secure_session_question">Initiate secure session?</string>
-    <string name="ConversationActivity_initiate_secure_session_with_s_question">Initiate secure session with %s?</string>
     <string name="ConversationActivity_reset_secure_session_confirmation">Reset secure session confirmation</string>
     <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Are you sure that you want to reset this secure session?</string>
     <string name="ConversationActivity_delete_thread_confirmation">Delete thread confirmation</string>
@@ -476,7 +474,6 @@
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
-    <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">You\'ve already sent a session initiation request to this recipient, are you sure you\'d like to send another?  This will invalidate the first request.</string>
     <string name="KeyExchangeInitiator_send">Send</string>
 
     <!-- MessageDisplayHelper -->
@@ -975,7 +972,6 @@
     <string name="conversation_insecure__invite">Invite</string>
 
     <!-- conversation_insecure_no_push -->
-    <string name="conversation_insecure__menu_start_secure_session">Start secure session</string>
     <string name="conversation_insecure__security">Security</string>
 
     <!-- conversation_list_batch -->
