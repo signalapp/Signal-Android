@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Signal</string>
   <string name="yes">Có</string>
   <string name="no">Không</string>
   <string name="delete">Xóa</string>
@@ -17,10 +18,17 @@ Tắt khóa màn hình cho tin nhắn?
     </string>
   <string name="ApplicationPreferencesActivity_disable">Tắt</string>
   <string name="ApplicationPreferencesActivity_unregistering">Tháo gỡ đăng ký</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Huỷ đăng ký với tin nhắn Signal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">Tắt tin nhắn Signal?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
+Thao tác này sẽ tắt tin nhắn Signal bằng cách huỷ đăng ký từ máy chủ.
+Bạn sẽ phải đăng ký lại số điện thoại để dùng tin nhắn Signal trong tương lai.
+</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Có lỗi kết nối vào máy chủ!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Đã mở SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Đã tắt SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Chạm để chọn Signal làm ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_on">mở</string>
   <string name="ApplicationPreferencesActivity_On">Mở</string>
   <string name="ApplicationPreferencesActivity_off">tắt</string>
@@ -43,6 +51,7 @@ Tắt khóa màn hình cho tin nhắn?
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Chặn các liên lạc</string>
   <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Cuộc gọi đến</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
 địa chỉ liên lạc này.
@@ -91,6 +100,7 @@ Tắt khóa màn hình cho tin nhắn?
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_get_with_it">Làm đi: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Có lỗi khi rời nhóm</string>
@@ -114,6 +124,7 @@ Tắt khóa màn hình cho tin nhắn?
   <string name="ConversationFragment_saving_attachment">Đang lưu lại phần đính kèm</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Đang lưu phần đính kèm vào thẻ nhớ...</string>
   <string name="ConversationFragment_pending">Chờ giải quyết...</string>
+  <string name="ConversationFragment_push">Dữ liệu (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Đang xóa</string>
@@ -149,6 +160,10 @@ Tắt khóa màn hình cho tin nhắn?
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Chào mừng bạn đến với Signal!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure bây giờ là Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Signal. Chạm để khám phá.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Xuất</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Xuất văn bản thường ra thẻ nhớ?</string>
@@ -207,11 +222,16 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="MmsDownloader_error_connecting_to_mms_provider">Có lỗi kết nối vào nhà dịch vụ MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Có lỗi khi đọc thiết đặt MMS của dịch vụ di động...</string>
   <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_missed_call_from_s">Cuộc gọi nhỡ từ %s</string>
+  <string name="NotificationBarManager_missed_signal_call">Cuộc gọi Signal nhỡ</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Tin nhắn đa phương tiện</string>
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
   <string name="MessageRecord_updated_group">Cập nhật nhóm.</string>
+  <string name="MessageRecord_s_called_you">%s đã gọi cho bạn</string>
+  <string name="MessageRecord_called_s">Đã gọi cho %s</string>
+  <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Cụm từ mật khẩu không khớp nhau!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Cụm từ mật khẩu cũ không đúng!</string>
@@ -235,6 +255,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Xin lỗi, bạn có quá nhiều thiết bị đã được liên kết, thử tháo bỏ vài cái...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mật khẩu</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Nộp cụm từ mật khẩu</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mật khẩu không đúng!</string>
   <!--PlayServicesProblemFragment-->
@@ -255,7 +276,21 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="RecipientPreferenceActivity_enabled">Mở</string>
   <string name="RecipientPreferenceActivity_disabled">Tắt</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Đang trả lời</string>
+  <string name="RedPhone_ending_call">Đang kết thúc cuộc gọi</string>
+  <string name="RedPhone_dialing">Đang quay số</string>
+  <string name="RedPhone_canceling_call">Đang huỷ cuộc gọi</string>
+  <string name="RedPhone_call_rejected">Cuộc gọi bị từ chối</string>
+  <string name="RedPhone_ringing">Đang reo</string>
+  <string name="RedPhone_busy">Bận</string>
+  <string name="RedPhone_connected">Đã kết nối</string>
+  <string name="RedPhone_connecting">Đang kết nối</string>
+  <string name="RedPhone_fatal_error">Lỗi nghiêm trọng</string>
+  <string name="RedPhone_login_failed">Đăng nhập thất bại!</string>
+  <string name="RedPhone_message_from_the_server">Thông điệp từ máy chủ</string>
+  <string name="RedPhone_number_not_registered">Số điện thoại chưa đăng ký!</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">Kết nối với Signal</string>
   <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết
 mã số quốc gia bạn</string>
@@ -300,6 +335,7 @@ mã số quốc gia bạn</string>
   <string name="RegistrationService_registration_complete">Đăng ký hoàn tất</string>
   <string name="RegistrationService_registration_error">Có lỗi đăng ký</string>
   <!--Slide-->
+  <string name="Slide_image">Ảnh</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin
 trao đổi chìa khóa bị hỏng!</string>
@@ -312,6 +348,9 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Rời nhóm...</string>
   <string name="ThreadRecord_draft">Nháp:</string>
+  <string name="ThreadRecord_called">Bạn đã gọi</string>
+  <string name="ThreadRecord_called_you">Đã gọi cho bạn</string>
+  <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Bạn không có chìa khóa danh tính.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Người nhận không có chìa khóa danh tính.</string>
@@ -361,6 +400,9 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="ApplicationMigrationService_import_in_progress">Đang tiến hành việc nhập vào</string>
   <string name="ApplicationMigrationService_importing_text_messages">Đang nhập vào tin nhắn</string>
   <!--KeyCachingService-->
+  <string name="KeyCachingService_signal_passphrase_cached">Chạm vào để mở.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
+  <string name="KeyCachingService_passphrase_cached">Signal đã mở khóa</string>
   <string name="KeyCachingService_lock">Khóa bằng cụm từ mật khẩu</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc chuyện trò</string>
@@ -378,6 +420,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Thông điệp Signal mới</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Nội dung được ẩn</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">CỤM TỪ MẬT KHẨU CŨ:</string>
@@ -399,6 +442,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Chuyện trò tạm im</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Gửi thông điệp Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Gửi SMS không mã hóa</string>
   <string name="conversation_activity__type_message_mms_insecure">Gửi MMS không mã hóa</string>
   <string name="conversation_activity__send">Gửi</string>
@@ -431,6 +475,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Không có thiết bị liên kết...</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">tiếp tục</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Không lấy được ký sự từ thiết bị của bạn. Thay vào đó, bạn có thể dùng ADB để lấy ký sự dò lỗi (debug).</string>
   <string name="log_submit_activity__thanks">Cám ơn sự trợ giúp của bạn!</string>
@@ -479,11 +524,16 @@ Nhập tập tin sao lưu thường-không mã hóa. Tương thích với ứng 
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Tạm im chuyện trò</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Tắt thông báo cho cuộc chuyện trò này</string>
+  <string name="recipient_preferences__notification_tone">Âm báo</string>
   <string name="recipient_preferences__vibrate">Rung</string>
   <string name="recipient_preferences__block">Chặn</string>
   <string name="recipient_preferences__color">Màu</string>
   <string name="recipient_preferences__color_for_this_contact">Màu cho liên lạc này</string>
+  <string name="recipient_preferences__verify_identity">Xác minh danh tính</string>
   <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">Cuộc gọi Signal</string>
+  <string name="redphone_call_controls__end_call">kết thúc cuộc gọi</string>
+  <string name="redphone_call_controls__signal_call">Cuộc gọi Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">QUỐC GIA BẠN</string>
   <string name="registration_activity__your_country_code_and_phone_number">MÃ SỐ QUỐC GIA VÀ
@@ -660,17 +710,21 @@ SMS thất bại.
   <string name="preferences__default">Mặc định</string>
   <string name="preferences__language">Ngôn ngữ</string>
   <string name="preferences__language_summary">Ngôn ngữ %s</string>
+  <string name="preferences__signal">Signal</string>
   <string name="preferences__submit_debug_log">Nộp ký sự dò lỗi</string>
   <string name="preferences__support_wifi_calling">Dạng tương thích \"Gọi qua WiFi\"</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Mở nếu thiết bị bạn dùng SMS/MMS qua WiFi (chỉ mở lên khi \'Gọi qua WiFi\' được mở lên trong thiết bị) </string>
   <string name="preferences_app_protection__blocked_contacts">Chặn các liên lạc</string>
   <string name="preferences_notifications__display_in_notifications">Hiển thị trong phần thông báo</string>
+  <string name="preferences_chats__when_using_mobile_data">Khi dùng dữ liệu di động</string>
+  <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Chọn tất cả</string>
   <string name="contact_selection_list__menu_unselect_all">Không chọn tất cả</string>
+  <string name="contact_selection_list__header_signal_users">NHỮNG NGƯỜI DÙNG SIGNAL</string>
   <string name="contact_selection_list__header_other">TẤT CẢ LIÊN HỆ</string>
   <string name="contact_selection_list__unknown_contact">Tin nhắn mới cho...</string>
   <!--contact_selection-->
@@ -750,6 +804,9 @@ SMS thất bại.
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Xem trước Hình</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Thiết bị cầm tay</string>
+  <string name="redphone_audio_popup_menu__headset">Bộ tai nghe</string>
+  <string name="redphone_audio_popup_menu__speaker">Loa</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Đang xóa</string>
   <string name="trimmer__deleting_old_messages">Đang xóa tin nhắn cũ...</string>

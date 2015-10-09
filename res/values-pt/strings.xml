@@ -20,6 +20,10 @@ Desabilitar ecrã de bloqueio para mensagens?
   <string name="ApplicationPreferencesActivity_unregistering">A eliminar o registo...</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">A eliminar o registo de mensagens Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages">Desabilitar mensagens Signal?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
+Isto vai desactivar as mensagens Signal, eliminando o seu registo do servidor.
+Vai ser necessário re-registar o seu número de telefone se pretender utilizar esta funcionalidade novamente.
+</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activos</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Definir como aplicação SMS por omissão</string>
@@ -49,6 +53,11 @@ Desabilitar ecrã de bloqueio para mensagens?
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">A receber chamada</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">A
+assinatura deste intercâmbio de chaves é diferente da previamente recebida de %1$s.
+Isto pode significar que alguém está a tentar interceptar esta comunicação ou simplesmente
+que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
+</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contracto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
   <!--ContactsDatabase-->
@@ -107,6 +116,7 @@ Desabilitar ecrã de bloqueio para mensagens?
   <string name="ConversationActivity_unblock_question">Desbloquear?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Tem a certeza que quer desbloquear este contacto?</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo tem um tamanho superior ao limite do tipo de mensagem que está a enviar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Máquina fotográfica indisponível</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
@@ -183,6 +193,8 @@ exportar o conteúdo em texto simples das suas mensagens Signal para o cartão S
   <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome do grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Novo Grupo MMS</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Seleccionou um contacto que não suporta grupos Signal, pelo que este grupo será um grupo MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Não está registado para usar o canal de dados, pelo que os grupos Signal estão desabilitados.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Um irro inesperado ocorreu que impossibilitou a criação do grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">É necessária pelo menos uma pessoa para formar um grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número ilegível. Por favor corrija ou remova esse contacto e tente novamente.</string>
@@ -190,6 +202,7 @@ exportar o conteúdo em texto simples das suas mensagens Signal para o cartão S
   <string name="GroupCreateActivity_menu_create_title">Criar grupo</string>
   <string name="GroupCreateActivity_creating_group">Criando %1$s...</string>
   <string name="GroupCreateActivity_updating_group">A actualizar %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não é possível adicionar um contacto não-Signal a um grupo Signal</string>
   <string name="GroupCreateActivity_loading_group_details">A carregar detalhes do grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
@@ -206,6 +219,10 @@ Importar novamente poderá resultar em mensagens duplicadas.
   <string name="ImportFragment_import">Importar</string>
   <string name="ImportFragment_cancel">Cancelar</string>
   <string name="ImportFragment_restore_encrypted_backup">Restaurar cópia de segurança cifrada?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Restaurar de uma cópia de segurança cifrada vai substituir todas as chaves, preferências e
+mensagens. Irá perder toda a informação na configuração actual de Signal mas
+não na cópia de segurança.
+</string>
   <string name="ImportFragment_restore">Restaurar</string>
   <string name="ImportFragment_import_plaintext_backup">Importar cópia de segurança em texto simples?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Isto irá importar
@@ -238,6 +255,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem multimedia</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Foi recebida uma mensagem cifrada com uma versão anterior de Signal que já não é suportada. Por favor peça ao remetente para actualizar para a versão mais recente e reenviar a mensagem.</string>
   <string name="MessageRecord_left_group">Abandonou o grupo.</string>
   <string name="MessageRecord_updated_group">Actualizou o grupo.</string>
   <string name="MessageRecord_s_called_you">%s ligou-lhe</string>
@@ -349,6 +367,7 @@ Verifique que este é o seu número! Estamos prestes a confirmá-lo com uma SMS.
   <string name="RegistrationProgressActivity_too_many_requests">Demasiados pedidos!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Já requereu uma chamada recentemente. Pode pedir outra dentro de 20 minutos.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflito de registo</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número já se encontra registado num servidor Signal diferente (CyanogenMod?). Tem de eliminar o registo lá antes de se registar connosco.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registo completo!</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">O registo Signal foi completado com sucesso.</string>
@@ -584,6 +603,12 @@ NÚMERO DE TELEFONE</string>
 incluem:
 </string>
   <string name="registration_problems__sms_interceptors">Interceptores de SMS.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Alguns clientes de mensagem de texto, como o Handcent ou o GoSMS, comportam-se erradamente e
+interceptam todas as mensagens SMS.  Verifique se recebeu uma mensagem que começa com
+\'Your Signal verification code:\', e nesse caso, tem de configurar a sua aplicação de SMS
+para deixar passar as mensagens.
+</string>
   <string name="registration_problems__incorrect_number">Número incorrecto.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Por favor verifique que o seu número está correctamente inserido, e formatado correctamente
@@ -610,7 +635,16 @@ possíveis incluem:
   <string name="registration_progress_activity__no_network_connectivity">Sem conectividade
 de rede.
 </string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">O seu
+dispositivo necessita de conectividade para usar esta funcionalidade Signal.
+Pressione para assegurar
+que está ligado a 3G ou Wi-Fi.
+</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall restritiva.
+</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+Se está ligado via Wi-Fi, é possível que haja uma firewall a bloquear acesso ao
+servidor Signal. Tente aceder de outra rede ou via dados móveis.
 </string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Signal vai agora automaticamente verificar o seu número com um SMS de confirmação.</string>

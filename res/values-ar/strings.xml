@@ -17,10 +17,15 @@
 إزالة قفل الشاشة للرسائل؟</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">جارٍ إلغاء التسجيل من رسائل سيجنال..</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">تعطيل رسائل سيجنال؟</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
+ سوف يتم تعطيل رسائل سيجنال بإلغاء تسجيلك من الخدمة. سوف يتعين عليك إعادة تسجيل رقم هاتفك لمعاودة استخدام رسائل سيجنال في المستقبل.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال بالخادم!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">الرسائل النصية مفعلة</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">أضغط لتغيير التطبيق الافتراضي للرسائل</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">المس لتغيير التطبيق الافتراضي للرسائل</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">الرسائل النصية معطلة</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">المس لجعل سيجنال التطبيق الافتراضي للرسائل</string>
   <string name="ApplicationPreferencesActivity_on">يعمل</string>
   <string name="ApplicationPreferencesActivity_On">يعمل</string>
   <string name="ApplicationPreferencesActivity_off">مغلق</string>
@@ -43,7 +48,9 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">جهات الاتصال المحظورة</string>
   <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">مكالمة واردة</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">لقد تغير المفتاح التعريفي الخاص بـ%1$s. وهذا يعني أن شخص ما يحاول اعتراض المحادثة أو %2$s قام بإعادة تثبيت سيجنال وأصبح لديه مفتاح تعريفي جديد.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال.</string>
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
   <!--ContactsDatabase-->
@@ -61,6 +68,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">أنقر من أجل استعاضة غير آمنة</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة غير مشفرة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مشفرة؟</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة <b>لن تكون</b> مشفرة لأن المستلم لم يعد مستخدم سيجنال. .\n\nهل ترغب في إرسال رسالة غير محمية؟</string>
   <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">بدء محادثة آمنة؟</string>
@@ -114,6 +122,7 @@
   <string name="ConversationFragment_saving_attachment">حفظ المرفق</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">جارٍ حفظ المرفق في الذاكرة...</string>
   <string name="ConversationFragment_pending">معلق...</string>
+  <string name="ConversationFragment_push">بيانات (سيجنال)</string>
   <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
   <string name="ConversationFragment_sms">رسالة نصية</string>
   <string name="ConversationFragment_deleting">جارٍ الحذف</string>
@@ -149,9 +158,15 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
   <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">أهلا في سيجنال.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">تم دمج تيسكت سيكيور وريدفون في تطبيق واحد للتواصل الخاص في كل المواقف: سيجنال</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">أهلا في سيجنال!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">تيكست سيكيور أصبح سيجنال الآن.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">تم دمج تيكست سيكيور وريدفون في تطبيق واحد الآن: سيجنال</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">تصدير</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">تصدير نص غير مشفر إلي بطاقة الذاكرة الخارجية؟</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">تحذير: سيتم تصدير محتوى رسائل سيجنال إلى بطاقة الذاكرة بدون تشفير.</string>
   <string name="ExportFragment_cancel">إلغاء</string>
   <string name="ExportFragment_exporting">التصدير جارٍ...</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">جارٍ تصدير غير مشفر إلى بطاقة الذاكرة...</string>
@@ -159,11 +174,14 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">خطأ أثناء الكتابة على بطاقة الذاكرة.</string>
   <string name="ExportFragment_success">تم بنجاح!</string>
   <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال سيجنال!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">عملية تسجيل سيجنال مع خدمات جوجل بلاي لم تتم. اتصال البيانات عبر شبكة الجوال معطلة، رجاء محاولة إعادة التسجيل من خلال قائمة إعدادات سيجنال.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
   <string name="GroupCreateActivity_actionbar_update_title">تحديث المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات سيجنال وبالتالي ستكون مجموعة وسائط متعددة.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">خطأ غير متوقع تسبب في تعذر إنشاء المجموعة.</string>
   <string name="GroupCreateActivity_contacts_no_members">تحتاج إلى شخص واحد على الأقل في المجموعة!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">لا يمكن قراءة رقم أحد أعضاء المجموعة بشكل صحيح. رجاء تصحيح أو حذف هذا العضو والمحاولة مرة أخرى.</string>
@@ -179,9 +197,12 @@
   <string name="ImportExportActivity_export">تصدير</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">استيراد قاعدة بيانات الرسائل من النظام؟</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">سوف يتم استيراد الرسائل النصية من النظام إلى سيجنال. إذا قمت بهذا من قبل، فأن الاستيراد مرة أخرى سيتسبب في تكرار الرسائل.</string>
   <string name="ImportFragment_import">استيراد</string>
   <string name="ImportFragment_cancel">إلغاء</string>
   <string name="ImportFragment_restore_encrypted_backup">استعادة نسخة احتياطية مشفرة؟</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+ استرجاع نسخة احتياطية مشفرة سوف يقوم باستبدال المفاتيح حالية والإعدادات والرسائل. ستفقد المعلومات الموجودة الآن في سيجنال وغير موجودة في النسخة الاحتياطية.</string>
   <string name="ImportFragment_restore">استعادة</string>
   <string name="ImportFragment_import_plaintext_backup">استيراد نسخة احتياطية غير مشفرة؟</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">سيتم استيراد رسائل غير مشفرة من نسخة احتياطية. إذا قمت سابقا باستيراد هذا الملف فسوف يؤدي الاستيراد مرة أخرى إلى تكرار الرسائل.</string>
@@ -197,6 +218,7 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">لم يتم العثور على مفتاح!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">تثبيت ماسح Barcode؟</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">سيجنال يحتاج إلى ماسح Barcode لرموز الاستجابة السريعة.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string>
   <string name="MessageDetailsRecipient_new_identity">هوية جديدة</string>
@@ -208,6 +230,7 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط متعددة</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مشفرة من إصدارة سيجنال قديمة وتوقف دعمها. من فضلك اطلب من الراسل الترقية إلي أحدث إصدار وإعادة إرسال الرسالة.</string>
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
   <string name="MessageRecord_updated_group">تم تحديث المجموعة.</string>
   <!--PassphraseChangeActivity-->

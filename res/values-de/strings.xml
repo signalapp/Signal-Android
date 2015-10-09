@@ -272,14 +272,14 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google Play-Dienste funktioniert nicht korrekt. Bitte installieren Sie die Google Play-Dienste neu und versuchen Sie es noch einmal.</string>
   <!--RatingManager-->
-  <string name="RatingManager_rate_this_app">Diese App bewerten</string>
+  <string name="RatingManager_rate_this_app">Bewerten Sie diese App</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Helfen Sie uns durch Ihre Bewertung, wenn Ihnen die App gefällt.</string>
   <string name="RatingManager_rate_now">Jetzt bewerten!</string>
   <string name="RatingManager_no_thanks">Nein danke</string>
   <string name="RatingManager_later">Später</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Nachrichten dieses Kontakts werden nicht mehr angezeigt werden.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Kommunikation dieses Kontakts wird nicht mehr angezeigt werden.</string>
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Nicht mehr blockieren?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Diesen Kontakt nicht mehr blockieren.</string>

@@ -16,10 +16,13 @@
 Отключить пароль на просмотр сообщений?</string>
   <string name="ApplicationPreferencesActivity_disable">Отключить</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Отменяем регистрацию в TextSecure...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">Выключить общение через TextSecure?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS включены</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора SMS-приложения по умолчанию</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS отключены</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Нажмите, чтобы использовать TextSecure для всех SMS</string>
   <string name="ApplicationPreferencesActivity_on">включена</string>
   <string name="ApplicationPreferencesActivity_On">Включено</string>
   <string name="ApplicationPreferencesActivity_off">выключена</string>
@@ -742,6 +745,7 @@ SMS-подтверждения...
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Предпросмотр</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__speaker">динамик</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Удаление</string>
   <string name="trimmer__deleting_old_messages">Удаляем старые сообщения</string>

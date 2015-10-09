@@ -238,7 +238,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 Signal 하위 버전으로 암호화된 메시지를 받았습니다. 발신자에게 최신 버전으로 업그레이드를 요청해 주세요.</string>
   <string name="MessageRecord_left_group">그룹에서 퇴장했습니다.</string>
   <string name="MessageRecord_updated_group">그룹이 업데이트되었습니다.</string>
-  <string name="MessageRecord_s_called_you">%s님으로부터의 수신통화</string>
+  <string name="MessageRecord_s_called_you">%s님으로 부터의 수신통화</string>
   <string name="MessageRecord_called_s">%s님에게 발신통화</string>
   <string name="MessageRecord_missed_call_from">%s님의 부재중 통화</string>
   <!--PassphraseChangeActivity-->
@@ -299,7 +299,7 @@
   <string name="RedPhone_client_failed">클라이언트 실패</string>
   <string name="RedPhone_fatal_error">치명적인 오류</string>
   <string name="RedPhone_login_failed">로그인 되지 않음</string>
-  <string name="RedPhone_message_from_the_server">서버로부터의 메시지</string>
+  <string name="RedPhone_message_from_the_server">서버로 부터의 메시지</string>
   <string name="RedPhone_number_not_registered">전화번호 등록되지 않음</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">지금 거신 전화번호가 보안 통화를 지원하지 않습니다.</string>
   <string name="RedPhone_got_it">확인</string>
@@ -478,7 +478,7 @@
   <string name="conversation_item_received__contact_photo_description">연락처 사진</string>
   <string name="conversation_item_received__downloading">다운로드 중</string>
   <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">여러 메시지 선택</string>
+  <string name="conversation_fragment_cab__batch_selection_mode">여러 대화 선택</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s개 선택됨</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>

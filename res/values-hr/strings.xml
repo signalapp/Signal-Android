@@ -49,6 +49,7 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili Signal
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokirani kontakti</string>
   <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Dolazni poziv</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikacijski
 ključ za %1$s je promijenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju, ili
@@ -76,6 +77,8 @@ ovaj kontakt.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Započmi sigurnu sesiju?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Započmi sigurnu sesiju sa %s?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Resetiraj potvrdu sigurne sesije</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Jeste li sigurni da želite resetirati ovu sigurnu sesiju?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potvrda brisanja teme</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Jeste li sigurni da želite trajno obrisati ovaj razgovor?</string>
   <string name="ConversationActivity_add_attachment">Dodaj privitak</string>
@@ -374,9 +377,11 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prikaz.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Primljene ažurirane ali nepoznate infomacije o identitetu. Pritisnite za provjeru identiteta.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Napustio grupu...</string>
+  <string name="ThreadRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
   <string name="ThreadRecord_draft">Skica:</string>
   <string name="ThreadRecord_called">Zvali ste</string>
   <string name="ThreadRecord_called_you">Zvali su vas</string>

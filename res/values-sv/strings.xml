@@ -49,6 +49,7 @@ Du kommer behöva registrera om ditt telefonnummer för att använda Signal-medd
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blockerade kontakter</string>
   <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Inkommande samtal</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Signaturen för nyckelutbytet för %1$s har ändrats.
 Detta kan innebära antingen att någon försöker avlyssna din kommunikation, eller att %2$s helt enkelt installerade om Signal och nu har en ny identitetsnyckel.</string>
@@ -75,6 +76,8 @@ verifiera denna kontakt.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Påbörja säker session?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Upprätta en säker förbindelse med %s?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Bekräftelse för återställande av säker session</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Är du säker att du vill återställa denna säkra session?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Bekräfta radering av tråd</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Är du säker att du vill permanent radera denna konversation?</string>
   <string name="ConversationActivity_add_attachment">Bifoga fil</string>
@@ -365,9 +368,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och visa.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Mottagit uppdaterad men okänd identitetsinformation. Klicka för att bekräfta identitet.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Säker session nollställd.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Lämnat gruppen...</string>
+  <string name="ThreadRecord_secure_session_reset">Säker session nollställd.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
   <string name="ThreadRecord_called">Du ringde</string>
   <string name="ThreadRecord_called_you">Ringde dig</string>

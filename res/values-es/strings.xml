@@ -49,6 +49,7 @@ Necesitará volver a registrar su número de teléfono para usar mensajes de Sig
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contactos bloqueados</string>
   <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Llamada entrante</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">El
 material de la clave identificadora para %1$s ha cambiado. Esto podría bien significar que alguien está intentando
@@ -78,6 +79,8 @@ este contacto.
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">¿Iniciar sesión segura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">¿Iniciar sesión segura con %s?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Confirmación de reinicio de sesión segura</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">¿Está seguro de que quiere reiniciar esta sesión segura?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confirmación de borrado del hilo</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">¿Está seguro de que desea borrar esta conversación permanentemente?</string>
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
@@ -392,9 +395,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
 Se recibió un mensaje con una clave de identidad desconocida. Haga clic para procesar y mostrar.
 </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Recibí actualizado pero con información de identidad desconocida. Pulse para validar identidad.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Reinicio de sesión segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ha dejado el grupo...</string>
+  <string name="ThreadRecord_secure_session_reset">Reinicio de sesión segura.</string>
   <string name="ThreadRecord_draft">Borrador:</string>
   <string name="ThreadRecord_called">Llamó</string>
   <string name="ThreadRecord_called_you">Le llamaron</string>

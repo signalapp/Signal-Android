@@ -19,7 +19,7 @@
   <string name="ApplicationPreferencesActivity_disable">Dezactivează</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages">Dezactivare mesaje Signal?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS activat</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atingeţi pentru a schimba aplicaţia SMS implicită</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Dezactivat</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Atingeţi pentru a seta Signal ca şi aplicaţie SMS implicită</string>
@@ -467,6 +467,9 @@ Exportă un backup necriptat compatibil cu \"SMSBackup And Restore\" pe SD card.
   <string name="import_fragment__import_the_database_from_the_default_system">Importă baza de date 
 din aplicația de mesaje a dispozitivului.</string>
   <string name="import_fragment__import_encrypted_backup">Importă backup criptat</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
+        Restaurează un backup criptat exportat anterior din Signal.
+    </string>
   <string name="import_fragment__import_plaintext_backup">Importă backup text</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</string>
@@ -640,6 +643,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__sound">Sunet</string>
   <string name="preferences__change_notification_sound">Schimbă sunetul de notificare</string>
   <string name="preferences__inthread_notifications">Notificări în conversație</string>
+  <string name="preferences__play_inthread_notifications">Redare sunet de notificare în timp ce vizualizați o conversație activă</string>
   <string name="preferences__repeat_alerts">Repetă alerte</string>
   <string name="preferences__never">Niciodată</string>
   <string name="preferences__one_time">O dată</string>
@@ -674,7 +678,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__mms_proxy_port">Port Proxy MMS</string>
   <string name="preferences__mmsc_username">Nume utilizator MMSC</string>
   <string name="preferences__mmsc_password">Parolă MMSC</string>
-  <string name="preferences__sms_delivery_reports">Confirmari de livrare SMS</string>
+  <string name="preferences__sms_delivery_reports">Confirmări de livrare SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Cere o confirmare de livrare pentru fiecare SMS trimis</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Șterge automat mesajele vechi când conversația depășește mărimea specificată</string>
   <string name="preferences__delete_old_messages">Șterge mesajele vechi</string>
@@ -691,8 +695,12 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__language">Limba</string>
   <string name="preferences__language_summary">Limba %s</string>
   <string name="preferences__signal">Signal</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
+        Mesagerie și apeluri, private şi gratuite cu utilizatorii Signal
+    </string>
   <string name="preferences__submit_debug_log">Trimite log-urile de depanare</string>
   <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare WiFi\"</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activează dacă dispozitivul tău trimite SMS/MMS prin WiFi (activează atunci când \"Apelare WiFi\" este activat pe dispozitivul tău)</string>
   <string name="preferences_app_protection__blocked_contacts">Contacte blocate</string>
   <string name="preferences_notifications__display_in_notifications">Afişează în notificări</string>
   <string name="preferences_chats__when_using_mobile_data">Când se utilizează datele mobile </string>
@@ -701,6 +709,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences_chats__media_auto_download">Descărcare automată Media</string>
   <string name="preferences_chats__message_trimming">Scurtarea mesajului</string>
   <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivează icoanele emoji oferite de Signal </string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
