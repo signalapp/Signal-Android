@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -10,30 +11,30 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import java.io.File;
 import java.io.IOException;
 
-public class PlaintextBackupExporter {
+public class PlaintextBackupExporter extends AbstractBackup {
 
   public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
-    verifyExternalStorageForPlaintextExport();
+    Log.w("PlaintextBackupExporter", "Exporting plaintext...");
+    verifyCanWrite();
+    setup();
     exportPlaintext(context, masterSecret);
   }
 
-  private static void verifyExternalStorageForPlaintextExport() throws NoExternalStorageException {
-    if (!Environment.getExternalStorageDirectory().canWrite())
-      throw new NoExternalStorageException();
-  }
-
-  private static String getPlaintextExportDirectoryPath() {
-    File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+  public static void setup() {
+    File backupDirectory = getDirectoryPath();
+    if (!backupDirectory.exists()) {
+      backupDirectory.mkdirs();
+    }
   }
 
   private static void exportPlaintext(Context context, MasterSecret masterSecret)
       throws IOException
   {
-    int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath(), count);
+    String filePath         = getFilePath("TextSecurePlaintextBackup.xml").getAbsolutePath();
+    int    count            = DatabaseFactory.getSmsDatabase(context).getMessageCount();
+    XmlBackup.Writer writer = new XmlBackup.Writer(filePath, count);
 
 
     SmsMessageRecord record;

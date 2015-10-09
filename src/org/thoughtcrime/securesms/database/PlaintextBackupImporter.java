@@ -19,37 +19,35 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class PlaintextBackupImporter {
+public class PlaintextBackupImporter extends AbstractBackup {
 
   public static void importPlaintextFromSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
     Log.w("PlaintextBackupImporter", "Importing plaintext...");
-    verifyExternalStorageForPlaintextImport();
+    verifyCanRead();
     importPlaintext(context, masterSecret);
   }
 
-  private static void verifyExternalStorageForPlaintextImport() throws NoExternalStorageException {
-    if (!Environment.getExternalStorageDirectory().canRead() ||
-        !(new File(getPlaintextExportDirectoryPath()).exists()))
-      throw new NoExternalStorageException();
-  }
-
-  private static String getPlaintextExportDirectoryPath() {
-    File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+  private static File findPlaintextBackupFile() {
+    File backup = getFilePath("TextSecurePlaintextBackup.xml");
+    if (backup.exists()){
+      return backup;
+    }
+    return getOldFilePath();
   }
 
   private static void importPlaintext(Context context, MasterSecret masterSecret)
       throws IOException
   {
     Log.w("PlaintextBackupImporter", "importPlaintext()");
+    String         filePath    = findPlaintextBackupFile().getAbsolutePath();
     SmsDatabase    db          = DatabaseFactory.getSmsDatabase(context);
     SQLiteDatabase transaction = db.beginTransaction();
 
     try {
       ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      XmlBackup      backup          = new XmlBackup(getPlaintextExportDirectoryPath());
+      XmlBackup      backup          = new XmlBackup(filePath);
       MasterCipher   masterCipher    = new MasterCipher(masterSecret);
       Set<Long>      modifiedThreads = new HashSet<Long>();
       XmlBackup.XmlBackupItem item;
