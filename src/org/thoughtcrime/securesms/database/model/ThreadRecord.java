@@ -81,6 +81,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_called_you));
     } else if (SmsDatabase.Types.isMissedCall(type)) {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
+    } else if (this.recipients.isBlocked()) {
+      return emphasisAdded("Blocked");
     } else {
       if (TextUtils.isEmpty(getBody().getBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));
