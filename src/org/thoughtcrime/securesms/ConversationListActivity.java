@@ -390,7 +390,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     private void setProfilePictureToFloatButton(final FloatingActionButton fab, Recipients recipients, CircledImageView imgView) {
         if(recipients.getPrimaryRecipient() != null) {
-            Log.d("MYLOG","MYLOG IMG " + GUtil.numberToLong(recipients.getPrimaryRecipient().getNumber()));
             ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, GUtil.numberToLong(recipients.getPrimaryRecipient().getNumber())+"");
             if (avatarSlide != null) {
                     imgView.setVisibility(View.VISIBLE);
