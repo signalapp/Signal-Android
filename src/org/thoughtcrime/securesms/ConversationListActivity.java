@@ -133,6 +133,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     private Recipients recCalledRec;
     private Animation slideDown;
     private Animation slideUp;
+    private CircledImageView fabImageBackgroundThree;
+    private CircledImageView fabImageBackgroundOne;
+    private CircledImageView fabImageBackgroundTwo;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -183,6 +186,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         fabCOne = (FloatingActionButton) findViewById(R.id.fab_new_contact_one);
         fabCTwo = (FloatingActionButton) findViewById(R.id.fab_new_contact_two);
         fabCThree = (FloatingActionButton) findViewById(R.id.fab_new_contact_three);
+        fabImageBackgroundOne = (CircledImageView) findViewById(R.id.img_new_contact_one);
+        fabImageBackgroundTwo = (CircledImageView) findViewById(R.id.img_new_contact_two);
+        fabImageBackgroundThree = (CircledImageView) findViewById(R.id.img_new_contact_three);
         textViewCOne = (TextView) findViewById(R.id.textViewCOne);
         textViewCTwo = (TextView) findViewById(R.id.textViewCTwo);
         textViewCThree = (TextView) findViewById(R.id.textViewCThree);
@@ -333,7 +339,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fOne);
                     }
                 });
-                setProfilePictureToFloatButton(fabCOne, fOne, (CircledImageView) findViewById(R.id.img_new_contact_one));
+                setProfilePictureToFloatButton(fabCOne, fOne, fabImageBackgroundOne);
                 textViewCOne.setText(fOne.getPrimaryRecipient().getName());
             } else if (found == 2) {
                 final Recipients fTwo = recipients;
@@ -343,7 +349,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fTwo);
                     }
                 });
-                setProfilePictureToFloatButton(fabCTwo, fTwo, (CircledImageView) findViewById(R.id.img_new_contact_two));
+                setProfilePictureToFloatButton(fabCTwo, fTwo, fabImageBackgroundTwo);
                 textViewCTwo.setText(fTwo.getPrimaryRecipient().getName());
             } else if (found == 3) {
                 final Recipients fThree = recipients;
@@ -353,21 +359,24 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fThree);
                     }
                 });
-                setProfilePictureToFloatButton(fabCThree, fThree, (CircledImageView) findViewById(R.id.img_new_contact_three));
+                setProfilePictureToFloatButton(fabCThree, fThree, fabImageBackgroundThree);
                 textViewCThree.setText(fThree.getPrimaryRecipient().getName());
             }
         }
         if (found < 3) {
             fabCThree.setVisibility(View.GONE);
             textViewCThree.setVisibility(View.GONE);
+            fabImageBackgroundThree.setVisibility(View.GONE);
         }
         if (found < 2) {
             fabCTwo.setVisibility(View.GONE);
             textViewCTwo.setVisibility(View.GONE);
+            fabImageBackgroundTwo.setVisibility(View.GONE);
         }
         if (found < 1) {
             fabCOne.setVisibility(View.GONE);
             textViewCOne.setVisibility(View.GONE);
+            fabImageBackgroundOne.setVisibility(View.GONE);
         }
         if(gDataPreferences.getViewPagersLastPage() == 1) {
             toggleActionFloatMenu(true, true, true);
@@ -575,7 +584,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         refreshProfile();
         mSlidingTabLayout.refreshTabTitle();
         setActionFloatMenuIcons();
-        Log.d("MYLOG", "MYLOG ON RESUME");
     }
 
     @Override
