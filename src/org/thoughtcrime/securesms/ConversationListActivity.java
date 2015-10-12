@@ -211,14 +211,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             @Override
             public void onClick(View view) {
                 createGroup();
-                actionFloatMenu.setVisibility(View.GONE);
             }
         });
         fabConversation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openSingleContactSelection();
-                actionFloatMenu.setVisibility(View.GONE);
             }
         });
         initNavDrawer(navLabels, navIcons);
@@ -282,7 +280,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 fab.setVisibility(fab.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
             }
         }
-        if(actionFloatMenu.getVisibility() == View.VISIBLE) {
+        if(actionFloatMenu.getVisibility() == View.VISIBLE &&  findViewById(R.id.fastclose).getVisibility() == View.VISIBLE) {
             findViewById(R.id.overlay_gray).setVisibility(View.VISIBLE);
             findViewById(R.id.overlay_gray).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -374,7 +372,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         if(gDataPreferences.getViewPagersLastPage() == 1) {
             toggleActionFloatMenu(true, true, true);
         } else {
-            toggleActionFloatMenu(true, false, true);
+            if(actionFloatMenu.getVisibility() == View.VISIBLE &&  findViewById(R.id.fastclose).getVisibility() == View.VISIBLE) {
+                toggleActionFloatMenu(true, false, true);
+            }
         }
     }
 
@@ -575,6 +575,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         refreshProfile();
         mSlidingTabLayout.refreshTabTitle();
         setActionFloatMenuIcons();
+        Log.d("MYLOG", "MYLOG ON RESUME");
     }
 
     @Override
