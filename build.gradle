@@ -36,6 +36,7 @@ repositories {
         url "https://raw.github.com/whispersystems/maven/master/shortcutbadger/releases/"
     }
     maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
+    maven { url "https://jitpack.io" }
     jcenter()
 }
 
