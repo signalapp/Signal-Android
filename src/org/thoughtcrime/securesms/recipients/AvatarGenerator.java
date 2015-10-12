@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
  */
 public class AvatarGenerator {
 
-  public static Bitmap generateFor(Context context, Recipient recipient) {
+  public static Bitmap generateFor(Context context, Recipient recipient, int setColor) {
     if ((recipient == null) || (recipient.getName() == null)) {
       return BitmapUtil.getCircleBitmap(ContactPhotoFactory.getDefaultContactPhoto(context));
     }
@@ -30,7 +30,7 @@ public class AvatarGenerator {
     final int    size            = ContactPhotoFactory.getDefaultContactPhoto(context).getHeight();
     final Bitmap output          = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
     final Canvas canvas          = new Canvas(output);
-    final int    color           = getColorForRecipient(recipient, context);
+    final int    color           = (setColor != -1) ? setColor : getColorForRecipient(recipient, context);
     final Paint  paint           = new Paint();
     final int    innerRectOffset = (int) Math.ceil((size - Math.sqrt(2) * (size / 2)) / 2);
     final Rect   innerRect       = new Rect(innerRectOffset, innerRectOffset,

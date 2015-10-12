@@ -27,11 +27,8 @@ import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,11 +45,10 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.telephony.PhoneNumberUtils;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -69,10 +65,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.nineoldandroids.animation.ObjectAnimator;
 
 import org.thoughtcrime.securesms.components.CircledImageView;
@@ -88,7 +84,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -105,6 +100,7 @@ import de.gdata.messaging.util.ProfileAccessor;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
         ConversationListFragment.ConversationSelectedListener {
+    private static final int LAST_XX_CALLS = 20;
     // private final DynamicTheme dynamicTheme = new DynamicTheme();
     private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -135,6 +131,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     private TextView textViewNewConversation;
     private TextView textViewNewGroup;
     private Recipients recCalledRec;
+    private Animation slideDown;
+    private Animation slideUp;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -206,7 +204,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggleActionFloatMenu(true, false);
+                toggleActionFloatMenu(true, false, false);
             }
         });
         fabGroup.setOnClickListener(new View.OnClickListener() {
@@ -246,15 +244,17 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 new IntentFilter(PrivacyBridge.ACTION_RELOAD_ADAPTER));
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter(PushDecryptJob.ACTION_RELOAD_HEADER));
+        slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_from_right);
+        slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_to_right);
         refreshProfile();
         setActionFloatMenuIcons();
     }
 
-    public void toggleActionFloatMenu(boolean toggleMenu, boolean toggleButton) {
-
-        Animation slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_from_right);
-        Animation slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_to_right);
+    public void toggleActionFloatMenu(boolean toggleMenu, boolean toggleButton, boolean fastClose) {
         boolean firstPage = gDataPreferences.getViewPagersLastPage() == 0;
+
+        ((RelativeLayout) findViewById(R.id.fastclose)).setVisibility(fastClose?View.INVISIBLE:View.VISIBLE);
+
         if(toggleMenu) {
             if (actionFloatMenu.getVisibility() == View.INVISIBLE) {
                 if(firstPage) {
@@ -282,6 +282,19 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 fab.setVisibility(fab.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
             }
         }
+        if(actionFloatMenu.getVisibility() == View.VISIBLE) {
+            findViewById(R.id.overlay_gray).setVisibility(View.VISIBLE);
+            findViewById(R.id.overlay_gray).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    toggleActionFloatMenu(true, false, false);
+                }
+            });
+            fab.setImageBitmap(((BitmapDrawable)getResources().getDrawable(R.drawable.ic_cancel_white_24dp)).getBitmap());
+        } else {
+            fab.setImageBitmap(((BitmapDrawable)getResources().getDrawable(R.drawable.ic_add_white_24dp)).getBitmap());
+            findViewById(R.id.overlay_gray).setVisibility(View.INVISIBLE);
+        }
     }
     public void setActionFloatMenuIcons() {
         String mobileNumber = "";
@@ -297,7 +310,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 strOrder);
         mCallCursor.moveToFirst();
         do {
-            if (i>20)
+            if (i>LAST_XX_CALLS)
                 break;
             mobileNumber = mCallCursor.getString(mCallCursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER));
             recCalledRec = RecipientFactory.getRecipientsFromString(getApplicationContext(), mobileNumber, false);
@@ -322,7 +335,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fOne);
                     }
                 });
-                setProfilePictureToFloatButton(fabCOne, fOne);
+                setProfilePictureToFloatButton(fabCOne, fOne, (CircledImageView) findViewById(R.id.img_new_contact_one));
                 textViewCOne.setText(fOne.getPrimaryRecipient().getName());
             } else if (found == 2) {
                 final Recipients fTwo = recipients;
@@ -332,7 +345,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fTwo);
                     }
                 });
-                setProfilePictureToFloatButton(fabCTwo, fTwo);
+                setProfilePictureToFloatButton(fabCTwo, fTwo, (CircledImageView) findViewById(R.id.img_new_contact_two));
                 textViewCTwo.setText(fTwo.getPrimaryRecipient().getName());
             } else if (found == 3) {
                 final Recipients fThree = recipients;
@@ -342,7 +355,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fThree);
                     }
                 });
-                setProfilePictureToFloatButton(fabCThree, fThree);
+                setProfilePictureToFloatButton(fabCThree, fThree, (CircledImageView) findViewById(R.id.img_new_contact_three));
                 textViewCThree.setText(fThree.getPrimaryRecipient().getName());
             }
         }
@@ -359,55 +372,29 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             textViewCOne.setVisibility(View.GONE);
         }
         if(gDataPreferences.getViewPagersLastPage() == 1) {
-            toggleActionFloatMenu(true,true);
+            toggleActionFloatMenu(true, true, true);
+        } else {
+            toggleActionFloatMenu(true, false, true);
         }
     }
-    private class GetImageFromImageSlide extends AsyncTask<String, Integer, Long> {
 
-        private FloatingActionButton fab;
-        private String number;
-        private CircledImageView temp;
-
-        public GetImageFromImageSlide(FloatingActionButton fab,  String number) {
-            this.fab = fab;
-            this.number = number;
-        }
-
-        protected Long doInBackground(String... string) {
-
-            if(fab != null) {
-                final ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(getApplicationContext(), masterSecret, GUtil.numberToLong(number) + "");
-                temp = ((CircledImageView) findViewById(R.id.circledpreloader));
-              temp.post(new Runnable() {
-                  public void run() {
-                      ProfileAccessor.buildGlideRequest(avatarSlide).into(temp);
-                  }
-              });
-            }
-            return null;
-        }
-
-        protected void onProgressUpdate(Integer... progress) {
-        }
-        protected void onPostExecute(Long result) {
-            if(temp!= null) {
-                Drawable tempDrawable = temp.getDrawable();
-                int w = temp.getWidth(), low = temp.getHeight();
-                low = w < low ? w : low;
-                if(tempDrawable != null) {
-                    fab.setImageBitmap(BitmapUtil.getCircleBitmap(BitmapUtil.scaleCircleCenterCrop(getApplicationContext(), ((GlideBitmapDrawable) tempDrawable).getBitmap(), low)));
-                }
-            }
-        }
-    }
-    private void setProfilePictureToFloatButton(FloatingActionButton fabCOne, Recipients fOne) {
-        if(fOne.getPrimaryRecipient() != null) {
-            ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, GUtil.numberToLong(fOne.getPrimaryRecipient().getNumber())+"");
+    private void setProfilePictureToFloatButton(final FloatingActionButton fab, Recipients recipients, CircledImageView imgView) {
+        if(recipients.getPrimaryRecipient() != null) {
+            ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, GUtil.numberToLong(recipients.getPrimaryRecipient().getNumber())+"");
             if (avatarSlide != null) {
-                GetImageFromImageSlide loadImageTask = new GetImageFromImageSlide(fabCOne, fOne.getPrimaryRecipient().getNumber());
-                loadImageTask.execute("");
+                    imgView.setVisibility(View.VISIBLE);
+                    fab.setVisibility(View.INVISIBLE);
+                    ProfileAccessor.buildGlideRequest(avatarSlide).into(imgView);
+                    imgView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            fab.performClick();
+                        }
+                    });
             } else {
-                fabCOne.setImageBitmap(fOne.getPrimaryRecipient().getCircleCroppedContactPhoto());
+                fab.setVisibility(View.VISIBLE);
+                fab.setImageBitmap(recipients.getPrimaryRecipient().getGeneratedAvatarWithColor(getApplicationContext(), fab.getSolidColor()));
+                ((CardView) imgView.getParent()).setVisibility(View.GONE);
             }
         }
     }
@@ -860,7 +847,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             public void onPageSelected(int i) {
                 gDataPreferences.setViewPagerLastPage(i);
                 supportInvalidateOptionsMenu();
-                toggleActionFloatMenu(i != 0, true);
+                toggleActionFloatMenu(i != 0, true, false);
             }
 
             @Override

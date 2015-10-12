@@ -159,11 +159,16 @@ public class Recipient {
 
   public synchronized Bitmap getGeneratedAvatar(Context context) {
     if (this.generatedAvatar == null)
-      this.generatedAvatar = AvatarGenerator.generateFor(context, this);
+      this.generatedAvatar = AvatarGenerator.generateFor(context, this, -1);
 
     return this.generatedAvatar;
   }
+  public synchronized Bitmap getGeneratedAvatarWithColor(Context context, int color) {
+    if (this.generatedAvatar == null)
+      this.generatedAvatar = AvatarGenerator.generateFor(context, this, color);
 
+    return this.generatedAvatar;
+  }
   public static Recipient getUnknownRecipient(Context context) {
     return new Recipient("Unknown", "Unknown", -1, null,
                          ContactPhotoFactory.getDefaultContactPhoto(context),
