@@ -237,10 +237,13 @@ public class GDataPreferences {
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES), "SecureChat");
 
-    File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-            "prof_image"+ lastImageNumber +" .jpg");
-    if(mediaFile.exists()) {
-      mediaFile.delete();
+    File mediaFile = new File("");
+    for(int i = 0; i<= lastImageNumber;i++) {
+      mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+              "prof_image"+ i +" .jpg");
+      if(mediaFile.exists()) {
+        mediaFile.delete();
+      }
     }
     lastImageNumber = lastImageNumber + 1;
     setLastImageNumber(lastImageNumber);

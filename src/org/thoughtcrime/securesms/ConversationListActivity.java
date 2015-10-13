@@ -323,6 +323,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 recentlyRecipients.add(recCalledRec);
                 recCalledRec = null;
             }
+
             i++;
         }
         while (mCallCursor.moveToNext());
@@ -365,18 +366,18 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         }
         if (found < 3) {
             fabCThree.setVisibility(View.GONE);
-            textViewCThree.setVisibility(View.GONE);
-            fabImageBackgroundThree.setVisibility(View.GONE);
+            ((CardView)textViewCThree.getParent()).setVisibility(View.GONE);
+            ((CardView)fabImageBackgroundThree.getParent()).setVisibility(View.GONE);
         }
         if (found < 2) {
             fabCTwo.setVisibility(View.GONE);
-            textViewCTwo.setVisibility(View.GONE);
-            fabImageBackgroundTwo.setVisibility(View.GONE);
+            ((CardView)textViewCTwo.getParent()).setVisibility(View.GONE);
+            ((CardView)fabImageBackgroundTwo.getParent()).setVisibility(View.GONE);
         }
         if (found < 1) {
             fabCOne.setVisibility(View.GONE);
-            textViewCOne.setVisibility(View.GONE);
-            fabImageBackgroundOne.setVisibility(View.GONE);
+            ((CardView)textViewCOne.getParent()).setVisibility(View.GONE);
+            ((CardView)fabImageBackgroundOne.getParent()).setVisibility(View.GONE);
         }
         if(gDataPreferences.getViewPagersLastPage() == 1) {
             toggleActionFloatMenu(true, true, true);
