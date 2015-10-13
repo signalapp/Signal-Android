@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GDataPreferences;
@@ -320,15 +321,21 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             recCalledRec = RecipientFactory.getRecipientsFromString(getApplicationContext(), mobileNumber, false);
 
             if (recCalledRec.getPrimaryRecipient() != null && recCalledRec.getPrimaryRecipient().getName() != null && !recCalledRec.getPrimaryRecipient().getName().equals("")) {
-                recentlyRecipients.add(recCalledRec);
+                if(!new GDataPreferences(getApplicationContext()).isPrivacyActivated() || !GService.shallBeBlockedByPrivacy(recCalledRec.getPrimaryRecipient().getNumber())) {
+                    recentlyRecipients.add(recCalledRec);
+                }
                 recCalledRec = null;
             }
-
             i++;
         }
         while (mCallCursor.moveToNext());
 
         recentlyRecipients = getFrequentContact(recentlyRecipients);
+
+        ArrayList<Boolean> hadImages = new ArrayList<>(3);
+        hadImages.add(false);
+        hadImages.add(false);
+        hadImages.add(false);
 
         for(Recipients recipients : recentlyRecipients) {
             found++;
@@ -340,7 +347,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fOne);
                     }
                 });
-                setProfilePictureToFloatButton(fabCOne, fOne, fabImageBackgroundOne);
+                hadImages.set(0, setProfilePictureToFloatButton(fabCOne, fOne, fabImageBackgroundOne));
                 textViewCOne.setText(fOne.getPrimaryRecipient().getName());
             } else if (found == 2) {
                 final Recipients fTwo = recipients;
@@ -350,7 +357,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fTwo);
                     }
                 });
-                setProfilePictureToFloatButton(fabCTwo, fTwo, fabImageBackgroundTwo);
+                hadImages.set(1, setProfilePictureToFloatButton(fabCTwo, fTwo, fabImageBackgroundTwo));
                 textViewCTwo.setText(fTwo.getPrimaryRecipient().getName());
             } else if (found == 3) {
                 final Recipients fThree = recipients;
@@ -360,25 +367,22 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fThree);
                     }
                 });
-                setProfilePictureToFloatButton(fabCThree, fThree, fabImageBackgroundThree);
+                hadImages.set(2, setProfilePictureToFloatButton(fabCThree, fThree, fabImageBackgroundThree));
                 textViewCThree.setText(fThree.getPrimaryRecipient().getName());
             }
         }
-        if (found < 3) {
-            fabCThree.setVisibility(View.GONE);
-            ((CardView)textViewCThree.getParent()).setVisibility(View.GONE);
-            ((CardView)fabImageBackgroundThree.getParent()).setVisibility(View.GONE);
-        }
-        if (found < 2) {
-            fabCTwo.setVisibility(View.GONE);
-            ((CardView)textViewCTwo.getParent()).setVisibility(View.GONE);
-            ((CardView)fabImageBackgroundTwo.getParent()).setVisibility(View.GONE);
-        }
-        if (found < 1) {
-            fabCOne.setVisibility(View.GONE);
-            ((CardView)textViewCOne.getParent()).setVisibility(View.GONE);
-            ((CardView)fabImageBackgroundOne.getParent()).setVisibility(View.GONE);
-        }
+            fabCThree.setVisibility(found < 3 ? View.GONE : hadImages.get(2) ? View.GONE : View.VISIBLE);
+            ((CardView)textViewCThree.getParent()).setVisibility(found < 3 ? View.GONE : View.VISIBLE);
+            ((CardView)fabImageBackgroundThree.getParent()).setVisibility(found < 3 ? View.GONE : hadImages.get(2) ? View.VISIBLE : View.GONE);
+
+            fabCTwo.setVisibility(found < 2 ? View.GONE : hadImages.get(1) ? View.GONE : View.VISIBLE);
+            ((CardView)textViewCTwo.getParent()).setVisibility(found < 2 ? View.GONE : View.VISIBLE);
+            ((CardView)fabImageBackgroundTwo.getParent()).setVisibility(found < 2 ? View.GONE : hadImages.get(1) ? View.VISIBLE : View.GONE);
+
+            fabCOne.setVisibility(found < 1 ? View.GONE : hadImages.get(0) ? View.GONE : View.VISIBLE);
+            ((CardView)textViewCOne.getParent()).setVisibility(found < 1 ? View.GONE : View.VISIBLE);
+            ((CardView)fabImageBackgroundOne.getParent()).setVisibility(found < 1 ? View.GONE : hadImages.get(0) ? View.VISIBLE : View.GONE);
+
         if(gDataPreferences.getViewPagersLastPage() == 1) {
             toggleActionFloatMenu(true, true, true);
         } else {
@@ -388,10 +392,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         }
     }
 
-    private void setProfilePictureToFloatButton(final FloatingActionButton fab, Recipients recipients, CircledImageView imgView) {
+    private boolean setProfilePictureToFloatButton(final FloatingActionButton fab, Recipients recipients, CircledImageView imgView) {
+        boolean hadImage = false;
         if(recipients.getPrimaryRecipient() != null) {
             ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, GUtil.numberToLong(recipients.getPrimaryRecipient().getNumber())+"");
             if (avatarSlide != null) {
+                hadImage = true;
                     imgView.setVisibility(View.VISIBLE);
                     fab.setVisibility(View.INVISIBLE);
                     ProfileAccessor.buildGlideRequest(avatarSlide).into(imgView);
@@ -407,6 +413,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 ((CardView) imgView.getParent()).setVisibility(View.GONE);
             }
         }
+        return hadImage;
     }
 
     public ArrayList<Recipients> getFrequentContact(ArrayList<Recipients> logEntriesArray) {
