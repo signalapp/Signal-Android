@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
@@ -34,7 +35,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -50,8 +51,6 @@ import java.io.File;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class DatabaseUpgradeActivity extends BaseActivity {
   private static final String TAG = DatabaseUpgradeActivity.class.getSimpleName();
@@ -236,23 +235,23 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     }
 
     private void schedulePendingIncomingParts(Context context) {
-      final PartDatabase  partDb       = DatabaseFactory.getPartDatabase(context);
-      final MmsDatabase   mmsDb        = DatabaseFactory.getMmsDatabase(context);
-      final List<PduPart> pendingParts = DatabaseFactory.getPartDatabase(context).getPendingParts();
+      final AttachmentDatabase       attachmentDb       = DatabaseFactory.getAttachmentDatabase(context);
+      final MmsDatabase              mmsDb              = DatabaseFactory.getMmsDatabase(context);
+      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments();
 
-      Log.w(TAG, pendingParts.size() + " pending parts.");
-      for (PduPart part : pendingParts) {
-        final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(part.getMmsId()));
+      Log.w(TAG, pendingAttachments.size() + " pending parts.");
+      for (DatabaseAttachment attachment : pendingAttachments) {
+        final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(attachment.getMmsId()));
         final MessageRecord record = reader.getNext();
 
-        if (part.getDataUri() != null) {
-          Log.w(TAG, "corrected a pending media part " + part.getPartId() + "that already had data.");
-          partDb.setTransferState(part.getMmsId(), part.getPartId(), PartDatabase.TRANSFER_PROGRESS_DONE);
+        if (attachment.hasData()) {
+          Log.w(TAG, "corrected a pending media part " + attachment.getAttachmentId() + "that already had data.");
+          attachmentDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), AttachmentDatabase.TRANSFER_PROGRESS_DONE);
         } else if (record != null && !record.isOutgoing() && record.isPush()) {
-          Log.w(TAG, "queuing new attachment download job for incoming push part " + part.getPartId() + ".");
+          Log.w(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
           ApplicationContext.getInstance(context)
                             .getJobManager()
-                            .add(new AttachmentDownloadJob(context, part.getMmsId(), part.getPartId()));
+                            .add(new AttachmentDownloadJob(context, attachment.getMmsId(), attachment.getAttachmentId()));
         }
         reader.close();
       }

@@ -23,32 +23,22 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.Attachment;
 
 import java.io.IOException;
 
 import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class ImageSlide extends Slide {
+
   private static final String TAG = ImageSlide.class.getSimpleName();
 
-  public ImageSlide(Context context, PduPart part) {
-    super(context, part);
+  public ImageSlide(@NonNull Context context, @NonNull Attachment attachment) {
+    super(context, attachment);
   }
 
   public ImageSlide(Context context, Uri uri, long size) throws IOException {
-    super(context, constructPartFromUri(context, uri, ContentType.IMAGE_JPEG, size));
-  }
-
-  @Override
-  public Uri getThumbnailUri() {
-    if (getPart().getDataUri() != null) {
-      return isDraft()
-             ? getPart().getDataUri()
-             : PartAuthority.getThumbnailUri(getPart().getPartId());
-    }
-
-    return null;
+    super(context, constructAttachmentFromUri(context, uri, ContentType.IMAGE_JPEG, size));
   }
 
   @Override

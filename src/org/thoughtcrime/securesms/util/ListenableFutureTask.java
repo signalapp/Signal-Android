@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.support.annotation.Nullable;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -26,17 +28,30 @@ public class ListenableFutureTask<V> extends FutureTask<V> {
 
   private final List<FutureTaskListener<V>> listeners = new LinkedList<>();
 
+  @Nullable
+  private final Object identifier;
+
   public ListenableFutureTask(Callable<V> callable) {
+    this(callable, null);
+  }
+
+  public ListenableFutureTask(Callable<V> callable, @Nullable Object identifier) {
     super(callable);
+    this.identifier = identifier;
   }
 
   public ListenableFutureTask(final V result) {
+    this(result, null);
+  }
+
+  public ListenableFutureTask(final V result, @Nullable Object identifier) {
     super(new Callable<V>() {
       @Override
       public V call() throws Exception {
         return result;
       }
     });
+    this.identifier = identifier;
     this.run();
   }
 
@@ -73,5 +88,20 @@ public class ListenableFutureTask<V> extends FutureTask<V> {
         listener.onFailure(e);
       }
     }
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other != null && other instanceof ListenableFutureTask && this.identifier != null) {
+      return identifier.equals(other);
+    } else {
+      return super.equals(other);
+    }
+  }
+
+  @Override
+  public int hashCode() {
+    if (identifier != null) return identifier.hashCode();
+    else                    return super.hashCode();
   }
 }

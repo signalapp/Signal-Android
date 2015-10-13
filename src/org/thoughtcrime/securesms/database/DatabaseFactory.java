@@ -78,7 +78,8 @@ public class DatabaseFactory {
   private final SmsDatabase sms;
   private final EncryptingSmsDatabase encryptingSms;
   private final MmsDatabase mms;
-  private final PartDatabase part;
+  private final AttachmentDatabase attachments;
+  private final ImageDatabase image;
   private final ThreadDatabase thread;
   private final CanonicalAddressDatabase address;
   private final MmsAddressDatabase mmsAddress;
@@ -123,8 +124,12 @@ public class DatabaseFactory {
     return getInstance(context).encryptingSms;
   }
 
-  public static PartDatabase getPartDatabase(Context context) {
-    return getInstance(context).part;
+  public static AttachmentDatabase getAttachmentDatabase(Context context) {
+    return getInstance(context).attachments;
+  }
+
+  public static ImageDatabase getImageDatabase(Context context) {
+    return getInstance(context).image;
   }
 
   public static MmsAddressDatabase getMmsAddressDatabase(Context context) {
@@ -160,7 +165,8 @@ public class DatabaseFactory {
     this.sms                         = new SmsDatabase(context, databaseHelper);
     this.encryptingSms               = new EncryptingSmsDatabase(context, databaseHelper);
     this.mms                         = new MmsDatabase(context, databaseHelper);
-    this.part                        = new PartDatabase(context, databaseHelper);
+    this.attachments                 = new AttachmentDatabase(context, databaseHelper);
+    this.image                       = new ImageDatabase(context, databaseHelper);
     this.thread                      = new ThreadDatabase(context, databaseHelper);
     this.address                     = CanonicalAddressDatabase.getInstance(context);
     this.mmsAddress                  = new MmsAddressDatabase(context, databaseHelper);
@@ -180,7 +186,7 @@ public class DatabaseFactory {
     this.sms.reset(databaseHelper);
     this.encryptingSms.reset(databaseHelper);
     this.mms.reset(databaseHelper);
-    this.part.reset(databaseHelper);
+    this.attachments.reset(databaseHelper);
     this.thread.reset(databaseHelper);
     this.mmsAddress.reset(databaseHelper);
     this.mmsSmsDatabase.reset(databaseHelper);
@@ -377,6 +383,7 @@ public class DatabaseFactory {
 
               body = (body == null) ? Util.readFullyAsString(is) : body + " " + Util.readFullyAsString(is);
 
+              //noinspection ResultOfMethodCallIgnored
               dataFile.delete();
               db.delete("part", "_id = ?", new String[] {partId+""});
             } catch (IOException e) {
@@ -491,7 +498,7 @@ public class DatabaseFactory {
     public void onCreate(SQLiteDatabase db) {
       db.execSQL(SmsDatabase.CREATE_TABLE);
       db.execSQL(MmsDatabase.CREATE_TABLE);
-      db.execSQL(PartDatabase.CREATE_TABLE);
+      db.execSQL(AttachmentDatabase.CREATE_TABLE);
       db.execSQL(ThreadDatabase.CREATE_TABLE);
       db.execSQL(MmsAddressDatabase.CREATE_TABLE);
       db.execSQL(IdentityDatabase.CREATE_TABLE);
@@ -502,7 +509,7 @@ public class DatabaseFactory {
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
-      executeStatements(db, PartDatabase.CREATE_INDEXS);
+      executeStatements(db, AttachmentDatabase.CREATE_INDEXS);
       executeStatements(db, ThreadDatabase.CREATE_INDEXS);
       executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
       executeStatements(db, DraftDatabase.CREATE_INDEXS);

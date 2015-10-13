@@ -135,7 +135,7 @@ public class AttachmentManager {
         } else {
           slideDeck.addSlide(slide);
           attachmentView.setVisibility(View.VISIBLE);
-          thumbnail.setImageResource(slide, masterSecret);
+          thumbnail.setImageResource(masterSecret, slide, false, true);
           attachmentListener.onAttachmentChanged();
         }
       }
@@ -213,9 +213,9 @@ public class AttachmentManager {
                                           final @Nullable Slide slide,
                                           final @NonNull  MediaConstraints constraints)
   {
-   return slide == null                                                   ||
-          constraints.isSatisfied(context, masterSecret, slide.getPart()) ||
-          constraints.canResize(slide.getPart());
+   return slide == null                                                        ||
+          constraints.isSatisfied(context, masterSecret, slide.asAttachment()) ||
+          constraints.canResize(slide.asAttachment());
   }
 
   private class RemoveButtonListener implements View.OnClickListener {
