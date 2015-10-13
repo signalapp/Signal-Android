@@ -453,7 +453,7 @@ SecureChat werkt niet met nummers van Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Spraakverificatie</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-SecureChat kan ook u bellen om uw nummer te verifiëren. Raak \'Call Me\' aan en voer hieronder de 6-cijferige code code in die wordt voorgelezen.</string>
+SecureChat kan ook u bellen om uw nummer te verifiëren. Raak \'Bel me\' aan en voer hieronder de 6-cijferige code code in die wordt voorgelezen.</string>
   <string name="registration_progress_activity__verify">Verifieer</string>
   <string name="registration_progress_activity__call_me">Bel me</string>
   <string name="registration_progress_activity__edit_number">Nummer bewerken</string>
