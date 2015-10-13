@@ -4,14 +4,14 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.PartParser;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
@@ -31,8 +31,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.SendReq;
 
 import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 
@@ -63,15 +61,15 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throws RetryLaterException, MmsException, NoSuchMessageException,
              UndeliverableMessageException
   {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-    SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
+    MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
+    OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
       deliver(masterSecret, message);
       database.markAsPush(messageId);
       database.markAsSecure(messageId);
-      database.markAsSent(messageId, "push".getBytes(), 0);
-      markPartsUploaded(messageId, message.getBody());
+      database.markAsSent(messageId);
+      markAttachmentsUploaded(messageId, message.getAttachments());
     } catch (InsecureFallbackApprovalException ifae) {
       Log.w(TAG, ifae);
       database.markAsPendingInsecureSmsFallback(messageId);
@@ -100,23 +98,20 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
-  private void deliver(MasterSecret masterSecret, SendReq message)
+  private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message)
       throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
              UndeliverableMessageException
   {
     TextSecureMessageSender messageSender = messageSenderFactory.create();
-    String                  destination   = message.getTo()[0].getString();
 
     try {
-      message = getResolvedMessage(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
-
-      TextSecureAddress          address      = getPushAddress(destination);
-      List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);
-      String                     body         = PartParser.getMessageText(message.getBody());
-      TextSecureDataMessage      mediaMessage = TextSecureDataMessage.newBuilder()
-                                                                     .withBody(body)
-                                                                     .withAttachments(attachments)
-                                                                     .withTimestamp(message.getSentTimestamp())
+      TextSecureAddress          address           = getPushAddress(message.getRecipients().getPrimaryRecipient().getNumber());
+      List<Attachment>           scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.PUSH_CONSTRAINTS, message.getAttachments());
+      List<TextSecureAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
+      TextSecureDataMessage      mediaMessage      = TextSecureDataMessage.newBuilder()
+                                                                     .withBody(message.getBody())
+                                                                     .withAttachments(attachmentStreams)
+                                                                     .withTimestamp(message.getSentTimeMillis())
                                                                      .build();
 
       messageSender.sendMessage(address, mediaMessage);

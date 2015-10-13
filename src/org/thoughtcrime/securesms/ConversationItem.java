@@ -262,10 +262,10 @@ public class ConversationItem extends LinearLayout
       setNotificationMmsAttributes((NotificationMmsMessageRecord) messageRecord);
     } else if (hasMedia(messageRecord)) {
       mediaThumbnail.setVisibility(View.VISIBLE);
-      mediaThumbnail.setImageResource(masterSecret, messageRecord.getId(),
-                                      messageRecord.getDateReceived(),
-                                      ((MediaMmsMessageRecord)messageRecord).getSlideDeckFuture());
-      mediaThumbnail.hideControls(messageRecord.isFailed() || (messageRecord.isOutgoing() && !messageRecord.isPending()));
+      mediaThumbnail.setImageResource(masterSecret,
+                                      ((MediaMmsMessageRecord)messageRecord).getSlideDeckFuture(),
+                                      !messageRecord.isFailed() && (!messageRecord.isOutgoing() || messageRecord.isPending()),
+                                      false);
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
     } else {
       mediaThumbnail.setVisibility(View.GONE);
@@ -401,7 +401,9 @@ public class ConversationItem extends LinearLayout
 
   private class ThumbnailDownloadClickListener implements ThumbnailView.ThumbnailClickListener {
     @Override public void onClick(View v, final Slide slide) {
-      DatabaseFactory.getPartDatabase(context).setTransferState(messageRecord.getId(), slide.getPart().getPartId(), PartDatabase.TRANSFER_PROGRESS_STARTED);
+      DatabaseFactory.getPartDatabase(context).setTransferState(messageRecord.getId(),
+                                                                slide.asAttachment(),
+                                                                PartDatabase.TRANSFER_PROGRESS_STARTED);
     }
   }
 
@@ -410,7 +412,7 @@ public class ConversationItem extends LinearLayout
       Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
+      intent.setDataAndType(PartAuthority.getAttachmentPublicUri(slide.getUri()), slide.getContentType());
       try {
         context.startActivity(intent);
       } catch (ActivityNotFoundException anfe) {

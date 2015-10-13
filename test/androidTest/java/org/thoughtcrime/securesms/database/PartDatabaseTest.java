@@ -3,13 +3,12 @@ package org.thoughtcrime.securesms.database;
 import android.net.Uri;
 
 import org.thoughtcrime.securesms.TextSecureTestCase;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.PartDatabase.PartId;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
-import ws.com.google.android.mms.pdu.PduPart;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyFloat;
@@ -34,34 +33,37 @@ public class PartDatabaseTest extends TextSecureTestCase {
   }
 
   public void testTaskNotRunWhenThumbnailExists() throws Exception {
-    final PartId partId = new PartId(ROW_ID, UNIQUE_ID);
+    final AttachmentId attachmentId = new AttachmentId(ROW_ID, UNIQUE_ID);
 
-    when(database.getPart(partId)).thenReturn(getPduPartSkeleton("x/x"));
-    doReturn(mock(InputStream.class)).when(database).getDataStream(any(MasterSecret.class), any(PartId.class), eq("thumbnail"));
-    database.getThumbnailStream(null, partId);
+    when(database.getAttachment(attachmentId)).thenReturn(getMockAttachment("x/x"));
 
-    verify(database, never()).updatePartThumbnail(any(MasterSecret.class), any(PartId.class), any(PduPart.class), any(InputStream.class), anyFloat());
+    doReturn(mock(InputStream.class)).when(database).getDataStream(any(MasterSecret.class), any(AttachmentId.class), eq("thumbnail"));
+    database.getThumbnailStream(mock(MasterSecret.class), attachmentId);
+
+    // XXX - I don't think this is testing anything? The thumbnail would be updated asynchronously.
+    verify(database, never()).updateAttachmentThumbnail(any(MasterSecret.class), any(AttachmentId.class), any(InputStream.class), anyFloat());
   }
 
   public void testTaskRunWhenThumbnailMissing() throws Exception {
-    final PartId partId = new PartId(ROW_ID, UNIQUE_ID);
+    final AttachmentId attachmentId = new AttachmentId(ROW_ID, UNIQUE_ID);
 
-    when(database.getPart(partId)).thenReturn(getPduPartSkeleton("image/png"));
-    doReturn(null).when(database).getDataStream(any(MasterSecret.class), any(PartId.class), eq("thumbnail"));
-    doNothing().when(database).updatePartThumbnail(any(MasterSecret.class), any(PartId.class), any(PduPart.class), any(InputStream.class), anyFloat());
+    when(database.getAttachment(attachmentId)).thenReturn(getMockAttachment("image/png"));
+    doReturn(null).when(database).getDataStream(any(MasterSecret.class), any(AttachmentId.class), eq("thumbnail"));
+    doNothing().when(database).updateAttachmentThumbnail(any(MasterSecret.class), any(AttachmentId.class), any(InputStream.class), anyFloat());
 
     try {
-      database.new ThumbnailFetchCallable(mock(MasterSecret.class), partId).call();
+      database.new ThumbnailFetchCallable(mock(MasterSecret.class), attachmentId).call();
       throw new AssertionError("didn't try to generate thumbnail");
     } catch (FileNotFoundException fnfe) {
       // success
     }
   }
 
-  private PduPart getPduPartSkeleton(String contentType) {
-    PduPart part = new PduPart();
-    part.setContentType(contentType.getBytes());
-    part.setDataUri(Uri.EMPTY);
-    return part;
+  private DatabaseAttachment getMockAttachment(String contentType) {
+    DatabaseAttachment attachment = mock(DatabaseAttachment.class);
+    when(attachment.getContentType()).thenReturn(contentType);
+    when(attachment.getDataUri()).thenReturn(Uri.EMPTY);
+
+    return attachment;
   }
 }

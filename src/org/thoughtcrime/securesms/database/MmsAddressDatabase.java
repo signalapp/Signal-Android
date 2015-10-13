@@ -21,20 +21,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.EncodedStringValue;
-import ws.com.google.android.mms.pdu.PduHeaders;
-
-import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
+
+import ws.com.google.android.mms.pdu.PduHeaders;
 
 public class MmsAddressDatabase extends Database {
 
@@ -59,83 +55,77 @@ public class MmsAddressDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  private void insertAddress(long messageId, int type, EncodedStringValue address) {
-    if (address != null) {
-      SQLiteDatabase database = databaseHelper.getWritableDatabase();
-      ContentValues contentValues = new ContentValues();
-      contentValues.put(MMS_ID, messageId);
-      contentValues.put(TYPE, type);
-      contentValues.put(ADDRESS, toIsoString(address.getTextString()));
-      contentValues.put(ADDRESS_CHARSET, address.getCharacterSet());
-      database.insert(TABLE_NAME, null, contentValues);
+  private void insertAddress(long messageId, int type, @NonNull String value) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(MMS_ID, messageId);
+    contentValues.put(TYPE, type);
+    contentValues.put(ADDRESS, value);
+    contentValues.put(ADDRESS_CHARSET, "UTF-8");
+    database.insert(TABLE_NAME, null, contentValues);
+  }
+
+  private void insertAddress(long messageId, int type, @NonNull List<String> addresses) {
+    for (String address : addresses) {
+      insertAddress(messageId, type, address);
     }
   }
 
-  private void insertAddress(long messageId, int type, EncodedStringValue[] addresses) {
-    if (addresses != null) {
-      for (int i=0;i<addresses.length;i++) {
-        insertAddress(messageId, type, addresses[i]);
-      }
+  public void insertAddressesForId(long messageId, MmsAddresses addresses) {
+    if (addresses.getFrom() != null) {
+      insertAddress(messageId, PduHeaders.FROM, addresses.getFrom());
     }
+
+    insertAddress(messageId, PduHeaders.TO, addresses.getTo());
+    insertAddress(messageId, PduHeaders.CC, addresses.getCc());
+    insertAddress(messageId, PduHeaders.BCC, addresses.getBcc());
   }
 
-  private void addAddress(Cursor cursor, PduHeaders headers) {
-    long type      = cursor.getLong(cursor.getColumnIndexOrThrow(TYPE));
-    String address = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
-    long charset   = cursor.getLong(cursor.getColumnIndexOrThrow(ADDRESS_CHARSET));
-
-    EncodedStringValue encodedAddress = new EncodedStringValue((int)charset, getBytes(address));
-
-    if (type == PduHeaders.FROM)
-      headers.setEncodedStringValue(encodedAddress, PduHeaders.FROM);
-    else
-      headers.appendEncodedStringValue(encodedAddress, (int)type);
-  }
-
-  public void insertAddressesForId(long messageId, PduHeaders headers) {
-    insertAddress(messageId, PduHeaders.FROM, headers.getEncodedStringValue(PduHeaders.FROM));
-    insertAddress(messageId, PduHeaders.TO, headers.getEncodedStringValues(PduHeaders.TO));
-    insertAddress(messageId, PduHeaders.CC, headers.getEncodedStringValues(PduHeaders.CC));
-    insertAddress(messageId, PduHeaders.BCC, headers.getEncodedStringValues(PduHeaders.BCC));
-  }
-
-  public void getAddressesForId(long messageId, PduHeaders headers) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor cursor           = null;
-
-    try {
-      cursor = database.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {messageId+""}, null, null, null);
-
-      while (cursor != null && cursor.moveToNext()) {
-        addAddress(cursor, headers);
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-  }
-
-  public List<String> getAddressesForId(long messageId) {
-    List<String>   results  = new LinkedList<String>();
+  public MmsAddresses getAddressesForId(long messageId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
+    String         from     = null;
+    List<String>   to       = new LinkedList<>();
+    List<String>   cc       = new LinkedList<>();
+    List<String>   bcc      = new LinkedList<>();
 
     try {
       cursor = database.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {messageId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        results.add(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        long   type    = cursor.getLong(cursor.getColumnIndexOrThrow(TYPE));
+        String address = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
+
+        if (type == PduHeaders.FROM) from = address;
+        if (type == PduHeaders.TO)   to.add(address);
+        if (type == PduHeaders.CC)   cc.add(address);
+        if (type == PduHeaders.BCC)  bcc.add(address);
       }
     } finally {
       if (cursor != null)
         cursor.close();
     }
+
+    return new MmsAddresses(from, to, cc, bcc);
+  }
+
+  public List<String> getAddressesListForId(long messageId) {
+    List<String> results   = new LinkedList<>();
+    MmsAddresses addresses = getAddressesForId(messageId);
+
+    if (addresses.getFrom() != null) {
+      results.add(addresses.getFrom());
+    }
+
+    results.addAll(addresses.getTo());
+    results.addAll(addresses.getCc());
+    results.addAll(addresses.getBcc());
 
     return results;
   }
 
   public Recipients getRecipientsForId(long messageId) {
-    List<String>    numbers = getAddressesForId(messageId);
+    List<String>    numbers = getAddressesListForId(messageId);
     List<Recipient> results = new LinkedList<>();
 
     for (String number : numbers) {
@@ -157,23 +147,5 @@ public class MmsAddressDatabase extends Database {
   public void deleteAllAddresses() {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);
-  }
-
-  private byte[] getBytes(String data) {
-    try {
-      return data.getBytes(CharacterSets.MIMENAME_ISO_8859_1);
-    } catch (UnsupportedEncodingException e) {
-      Log.e("PduHeadersBuilder", "ISO_8859_1 must be supported!", e);
-      return new byte[0];
-    }
-  }
-
-  private String toIsoString(byte[] bytes) {
-    try {
-      return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
-    } catch (UnsupportedEncodingException e) {
-      Log.e("MmsDatabase", "ISO_8859_1 must be supported!", e);
-      return "";
-    }
   }
 }

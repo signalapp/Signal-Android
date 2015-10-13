@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.mms;
 import android.content.ContentUris;
 import android.net.Uri;
 
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.PartDatabase;
-import org.thoughtcrime.securesms.util.Hex;
-
-import java.io.IOException;
 
 public class PartUriParser {
 
@@ -16,8 +14,8 @@ public class PartUriParser {
     this.uri = uri;
   }
 
-  public PartDatabase.PartId getPartId() {
-    return new PartDatabase.PartId(getId(), getUniqueId());
+  public AttachmentId getPartId() {
+    return new AttachmentId(getId(), getUniqueId());
   }
 
   private long getId() {

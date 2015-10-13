@@ -6,6 +6,8 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
@@ -18,6 +20,7 @@ import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -62,7 +65,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class PushDecryptJob extends ContextJob {
 
@@ -254,13 +256,14 @@ public class PushDecryptJob extends ContextJob {
                                                                  message.getGroupInfo(),
                                                                  message.getAttachments());
 
-    Pair<Long, Long> messageAndThreadId = database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
+    Pair<Long, Long>         messageAndThreadId = database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
+    List<DatabaseAttachment> attachments        = DatabaseFactory.getPartDatabase(context).getAttachmentsForMessage(messageAndThreadId.first);
 
-    List<PduPart> parts = DatabaseFactory.getPartDatabase(context).getParts(messageAndThreadId.first);
-    for (PduPart part : parts) {
+    for (DatabaseAttachment attachment : attachments) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new AttachmentDownloadJob(context, messageAndThreadId.first, part.getPartId()));
+                        .add(new AttachmentDownloadJob(context, messageAndThreadId.first,
+                                                       attachment.getAttachmentId()));
     }
 
     if (smsMessageId.isPresent()) {
@@ -277,22 +280,22 @@ public class PushDecryptJob extends ContextJob {
   {
     MmsDatabase           database     = DatabaseFactory.getMmsDatabase(context);
     Recipients            recipients   = getSyncMessageDestination(message);
-    OutgoingMediaMessage  mediaMessage = new OutgoingMediaMessage(context, masterSecret, recipients,
-                                                                  message.getMessage().getAttachments().get(),
-                                                                  message.getMessage().getBody().orNull());
+    OutgoingMediaMessage  mediaMessage = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
+                                                                  PointerAttachment.forPointers(masterSecret, message.getMessage().getAttachments()),
+                                                                  message.getTimestamp(), ThreadDatabase.DistributionTypes.DEFAULT);
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-    long messageId = database.insertMessageOutbox(masterSecret, mediaMessage, threadId, false, message.getTimestamp());
+    long messageId = database.insertMessageOutbox(masterSecret, mediaMessage, threadId, false);
 
-    database.markAsSent(messageId, "push".getBytes(), 0);
+    database.markAsSent(messageId);
     database.markAsPush(messageId);
 
-    for (PduPart part : DatabaseFactory.getPartDatabase(context).getParts(messageId)) {
+    for (DatabaseAttachment attachment : DatabaseFactory.getPartDatabase(context).getAttachmentsForMessage(messageId)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new AttachmentDownloadJob(context, messageId, part.getPartId()));
+                        .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId()));
     }
 
     if (smsMessageId.isPresent()) {

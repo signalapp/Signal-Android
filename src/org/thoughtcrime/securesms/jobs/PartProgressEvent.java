@@ -1,15 +1,19 @@
 package org.thoughtcrime.securesms.jobs;
 
-import org.thoughtcrime.securesms.database.PartDatabase.PartId;
+
+import android.support.annotation.NonNull;
+
+import org.thoughtcrime.securesms.attachments.Attachment;
 
 public class PartProgressEvent {
-  public PartId partId;
-  public long   total;
-  public long   progress;
 
-  public PartProgressEvent(PartId partId, long total, long progress) {
-    this.partId   = partId;
-    this.total    = total;
-    this.progress = progress;
+  public final Attachment attachment;
+  public final long       total;
+  public final long       progress;
+
+  public PartProgressEvent(@NonNull Attachment attachment, long total, long progress) {
+    this.attachment = attachment;
+    this.total      = total;
+    this.progress   = progress;
   }
 }

@@ -79,6 +79,7 @@ public class DatabaseFactory {
   private final EncryptingSmsDatabase encryptingSms;
   private final MmsDatabase mms;
   private final PartDatabase part;
+  private final ImageDatabase image;
   private final ThreadDatabase thread;
   private final CanonicalAddressDatabase address;
   private final MmsAddressDatabase mmsAddress;
@@ -127,6 +128,10 @@ public class DatabaseFactory {
     return getInstance(context).part;
   }
 
+  public static ImageDatabase getImageDatabase(Context context) {
+    return getInstance(context).image;
+  }
+
   public static MmsAddressDatabase getMmsAddressDatabase(Context context) {
     return getInstance(context).mmsAddress;
   }
@@ -161,6 +166,7 @@ public class DatabaseFactory {
     this.encryptingSms               = new EncryptingSmsDatabase(context, databaseHelper);
     this.mms                         = new MmsDatabase(context, databaseHelper);
     this.part                        = new PartDatabase(context, databaseHelper);
+    this.image                       = new ImageDatabase(context, databaseHelper);
     this.thread                      = new ThreadDatabase(context, databaseHelper);
     this.address                     = CanonicalAddressDatabase.getInstance(context);
     this.mmsAddress                  = new MmsAddressDatabase(context, databaseHelper);

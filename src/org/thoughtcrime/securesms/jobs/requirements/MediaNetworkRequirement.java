@@ -6,9 +6,10 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
-import org.thoughtcrime.securesms.database.PartDatabase.PartId;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -17,8 +18,6 @@ import org.whispersystems.jobqueue.requirements.Requirement;
 
 import java.util.Collections;
 import java.util.Set;
-
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class MediaNetworkRequirement implements Requirement, ContextDependent {
   private static final long   serialVersionUID = 0L;
@@ -30,14 +29,15 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
   private final long partRowId;
   private final long partUniqueId;
 
-  public MediaNetworkRequirement(Context context, long messageId, PartId partId) {
+  public MediaNetworkRequirement(Context context, long messageId, AttachmentId attachmentId) {
     this.context      = context;
     this.messageId    = messageId;
-    this.partRowId    = partId.getRowId();
-    this.partUniqueId = partId.getUniqueId();
+    this.partRowId    = attachmentId.getRowId();
+    this.partUniqueId = attachmentId.getUniqueId();
   }
 
-  @Override public void setContext(Context context) {
+  @Override
+  public void setContext(Context context) {
     this.context = context;
   }
 
@@ -74,23 +74,26 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
 
   @Override
   public boolean isPresent() {
-    final PartId       partId = new PartId(partRowId, partUniqueId);
-    final PartDatabase db     = DatabaseFactory.getPartDatabase(context);
-    final PduPart      part   = db.getPart(partId);
-    if (part == null) {
-      Log.w(TAG, "part was null, returning vacuous true");
+    final AttachmentId attachmentId = new AttachmentId(partRowId, partUniqueId);
+    final PartDatabase db           = DatabaseFactory.getPartDatabase(context);
+    final Attachment   attachment   = db.getAttachment(attachmentId);
+
+    if (attachment == null) {
+      Log.w(TAG, "attachment was null, returning vacuous true");
       return true;
     }
 
-    Log.w(TAG, "part transfer progress is " + part.getTransferProgress());
-    switch (part.getTransferProgress()) {
+    Log.w(TAG, "part transfer progress is " + attachment.getTransferState());
+    switch (attachment.getTransferState()) {
     case PartDatabase.TRANSFER_PROGRESS_STARTED:
       return true;
     case PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING:
       final Set<String> allowedTypes = getAllowedAutoDownloadTypes();
-      final boolean     isAllowed    = allowedTypes.contains(MediaUtil.getDiscreteMimeType(part));
+      final boolean     isAllowed    = allowedTypes.contains(MediaUtil.getDiscreteMimeType(attachment.getContentType()));
 
-      if (isAllowed) db.setTransferState(messageId, partId, PartDatabase.TRANSFER_PROGRESS_STARTED);
+      /// XXX WTF -- This is *hella* gross. A requirement shouldn't have the side effect of
+      // *modifying the database* just by calling isPresent().
+      if (isAllowed) db.setTransferState(messageId, attachmentId, PartDatabase.TRANSFER_PROGRESS_STARTED);
       return isAllowed;
     default:
       return false;

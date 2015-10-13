@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
@@ -50,8 +51,6 @@ import java.io.File;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class DatabaseUpgradeActivity extends BaseActivity {
   private static final String TAG = DatabaseUpgradeActivity.class.getSimpleName();
@@ -236,23 +235,23 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     }
 
     private void schedulePendingIncomingParts(Context context) {
-      final PartDatabase  partDb       = DatabaseFactory.getPartDatabase(context);
-      final MmsDatabase   mmsDb        = DatabaseFactory.getMmsDatabase(context);
-      final List<PduPart> pendingParts = DatabaseFactory.getPartDatabase(context).getPendingParts();
+      final PartDatabase             partDb             = DatabaseFactory.getPartDatabase(context);
+      final MmsDatabase              mmsDb              = DatabaseFactory.getMmsDatabase(context);
+      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getPartDatabase(context).getPendingAttachments();
 
-      Log.w(TAG, pendingParts.size() + " pending parts.");
-      for (PduPart part : pendingParts) {
-        final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(part.getMmsId()));
+      Log.w(TAG, pendingAttachments.size() + " pending parts.");
+      for (DatabaseAttachment attachment : pendingAttachments) {
+        final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(attachment.getMmsId()));
         final MessageRecord record = reader.getNext();
 
-        if (part.getDataUri() != null) {
-          Log.w(TAG, "corrected a pending media part " + part.getPartId() + "that already had data.");
-          partDb.setTransferState(part.getMmsId(), part.getPartId(), PartDatabase.TRANSFER_PROGRESS_DONE);
+        if (attachment.hasData()) {
+          Log.w(TAG, "corrected a pending media part " + attachment.getAttachmentId() + "that already had data.");
+          partDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), PartDatabase.TRANSFER_PROGRESS_DONE);
         } else if (record != null && !record.isOutgoing() && record.isPush()) {
-          Log.w(TAG, "queuing new attachment download job for incoming push part " + part.getPartId() + ".");
+          Log.w(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
           ApplicationContext.getInstance(context)
                             .getJobManager()
-                            .add(new AttachmentDownloadJob(context, part.getMmsId(), part.getPartId()));
+                            .add(new AttachmentDownloadJob(context, attachment.getMmsId(), attachment.getAttachmentId()));
         }
         reader.close();
       }

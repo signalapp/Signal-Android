@@ -5,7 +5,7 @@ import android.content.Context;
 import org.junit.Before;
 import org.junit.Test;
 import org.thoughtcrime.securesms.BaseUnitTest;
-import org.thoughtcrime.securesms.database.PartDatabase.PartId;
+import org.thoughtcrime.securesms.database.PartDatabase.AttachmentId;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob.InvalidPartException;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -20,7 +20,7 @@ public class AttachmentDownloadJobTest extends BaseUnitTest {
   @Override
   public void setUp() throws Exception {
     super.setUp();
-    job = new AttachmentDownloadJob(mock(Context.class), 1L, new PartId(1L, 1L));
+    job = new AttachmentDownloadJob(mock(Context.class), 1L, new AttachmentId(1L, 1L));
   }
 
   @Test(expected = InvalidPartException.class)

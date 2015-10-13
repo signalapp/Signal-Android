@@ -31,7 +31,9 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
     this.context = context;
   }
 
-  @Nullable @Override public SendConf send(@NonNull byte[] pduBytes)
+  @Nullable
+  @Override
+  public SendConf send(@NonNull byte[] pduBytes)
       throws UndeliverableMessageException
   {
     try {
@@ -47,7 +49,9 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
     }
   }
 
-  @Nullable @Override public RetrieveConf retrieve(@NonNull String contentLocation,
+  @Nullable
+  @Override
+  public RetrieveConf retrieve(@NonNull String contentLocation,
                                                    byte[] transactionId)
       throws MmsException, MmsRadioException, ApnUnavailableException, IOException
   {

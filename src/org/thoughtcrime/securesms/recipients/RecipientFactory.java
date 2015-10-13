@@ -81,6 +81,20 @@ public class RecipientFactory {
     return getRecipientsForIds(context, ids, asynchronous);
   }
 
+  public static Recipients getRecipientsFromStrings(@NonNull Context context, @NonNull List<String> numbers, boolean asynchronous) {
+    List<String> ids = new LinkedList<>();
+
+    for (String number : numbers) {
+      Optional<Long> id = getRecipientIdFromNumber(context, number);
+
+      if (id.isPresent()) {
+        ids.add(String.valueOf(id.get()));
+      }
+    }
+
+    return getRecipientsForIds(context, ids, asynchronous);
+  }
+
   private static Recipients getRecipientsForIds(Context context, List<String> idStrings, boolean asynchronous) {
     long[]       ids      = new long[idStrings.size()];
     int          i        = 0;

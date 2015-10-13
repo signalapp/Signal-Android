@@ -100,7 +100,7 @@ public class MessageSender {
       }
 
       Recipients recipients = message.getRecipients();
-      long       messageId  = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), message, allocatedThreadId, forceSms, System.currentTimeMillis());
+      long       messageId  = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), message, allocatedThreadId, forceSms);
 
       sendMediaMessage(context, masterSecret, recipients, forceSms, messageId);
 
@@ -177,7 +177,7 @@ public class MessageSender {
       throws MmsException
   {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-    database.markAsSent(messageId, "self-send".getBytes(), 0);
+    database.markAsSent(messageId);
     database.markAsPush(messageId);
 
     long newMessageId = database.copyMessageInbox(masterSecret, messageId);

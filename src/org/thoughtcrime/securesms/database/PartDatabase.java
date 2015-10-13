@@ -21,7 +21,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,60 +29,50 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VisibleForTesting;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
-import de.greenrobot.event.EventBus;
-import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class PartDatabase extends Database {
+  
   private static final String TAG = PartDatabase.class.getSimpleName();
 
-  private static final String TABLE_NAME          = "part";
-  private static final String ROW_ID              = "_id";
-  private static final String MMS_ID              = "mid";
-  private static final String SEQUENCE            = "seq";
-  private static final String CONTENT_TYPE        = "ct";
-  private static final String NAME                = "name";
-  private static final String CHARSET             = "chset";
-  private static final String CONTENT_DISPOSITION = "cd";
-  private static final String FILENAME            = "fn";
-  private static final String CONTENT_ID          = "cid";
-  private static final String CONTENT_LOCATION    = "cl";
-  private static final String CONTENT_TYPE_START  = "ctt_s";
-  private static final String CONTENT_TYPE_TYPE   = "ctt_t";
-  private static final String ENCRYPTED           = "encrypted";
-  private static final String DATA                = "_data";
-  private static final String TRANSFER_STATE      = "pending_push";
-  private static final String SIZE                = "data_size";
-  private static final String THUMBNAIL           = "thumbnail";
-  private static final String ASPECT_RATIO        = "aspect_ratio";
-  private static final String UNIQUE_ID           = "unique_id";
+          static final String TABLE_NAME             = "part";
+          static final String ROW_ID                 = "_id";
+          static final String MMS_ID                 = "mid";
+          static final String CONTENT_TYPE           = "ct";
+  private static final String NAME                   = "name";
+  private static final String CONTENT_DISPOSITION    = "cd";
+  private static final String CONTENT_LOCATION       = "cl";
+          static final String DATA                   = "_data";
+          static final String TRANSFER_STATE         = "pending_push";
+          static final String SIZE                   = "data_size";
+  private static final String THUMBNAIL              = "thumbnail";
+          static final String THUMBNAIL_ASPECT_RATIO = "aspect_ratio";
+          static final String UNIQUE_ID              = "unique_id";
 
   public static final int TRANSFER_PROGRESS_DONE         = 0;
   public static final int TRANSFER_PROGRESS_STARTED      = 1;
@@ -93,33 +82,18 @@ public class PartDatabase extends Database {
   private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
-    MMS_ID + " INTEGER, " + SEQUENCE + " INTEGER DEFAULT 0, "                        +
-    CONTENT_TYPE + " TEXT, " + NAME + " TEXT, " + CHARSET + " INTEGER, "             +
-    CONTENT_DISPOSITION + " TEXT, " + FILENAME + " TEXT, " + CONTENT_ID + " TEXT, "  +
-    CONTENT_LOCATION + " TEXT, " + CONTENT_TYPE_START + " INTEGER, "                 +
-    CONTENT_TYPE_TYPE + " TEXT, " + ENCRYPTED + " INTEGER, "                         +
+    MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
+    CONTENT_TYPE + " TEXT, " + NAME + " TEXT, " + "chset" + " INTEGER, "             +
+    CONTENT_DISPOSITION + " TEXT, " + "fn" + " TEXT, " + "cid" + " TEXT, "  +
+    CONTENT_LOCATION + " TEXT, " + "ctt_s" + " INTEGER, "                 +
+    "ctt_t" + " TEXT, " + "encrypted" + " INTEGER, "                         +
     TRANSFER_STATE + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER, "   +
-    THUMBNAIL + " TEXT, " + ASPECT_RATIO + " REAL, " + UNIQUE_ID + " INTEGER NOT NULL);";
+    THUMBNAIL + " TEXT, " + THUMBNAIL_ASPECT_RATIO + " REAL, " + UNIQUE_ID + " INTEGER NOT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
     "CREATE INDEX IF NOT EXISTS pending_push_index ON " + TABLE_NAME + " (" + TRANSFER_STATE + ");",
   };
-
-  private final static String IMAGES_QUERY = "SELECT " + TABLE_NAME + "." + ROW_ID + ", "
-                                                       + TABLE_NAME + "." + CONTENT_TYPE + ", "
-                                                       + TABLE_NAME + "." + ASPECT_RATIO + ", "
-                                                       + TABLE_NAME + "." + UNIQUE_ID + ", "
-                                                       + MmsDatabase.TABLE_NAME + "." + MmsDatabase.NORMALIZED_DATE_RECEIVED + ", "
-                                                       + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ADDRESS + " "
-                                           + "FROM " + TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
-                                                                  + " ON " + TABLE_NAME + "." + MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
-                                           + "WHERE " + MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
-                                                                   + " FROM " + MmsDatabase.TABLE_NAME
-                                                                   + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND "
-                                                      + CONTENT_TYPE + " LIKE 'image/%' "
-                                           + "ORDER BY " + TABLE_NAME + "." + ROW_ID + " DESC";
-
 
   private final ExecutorService thumbnailExecutor = Util.newSingleThreadedLifoExecutor();
 
@@ -127,36 +101,57 @@ public class PartDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public InputStream getPartStream(MasterSecret masterSecret, PartId partId)
-      throws FileNotFoundException
+  public @NonNull InputStream getAttachmentStream(MasterSecret masterSecret, AttachmentId attachmentId)
+      throws IOException
   {
-    return getDataStream(masterSecret, partId, DATA);
+    InputStream dataStream = getDataStream(masterSecret, attachmentId, DATA);
+
+    if (dataStream == null) throw new IOException("No stream for: " + attachmentId);
+    else                    return dataStream;
   }
 
-  public void updateFailedDownloadedPart(long messageId, PartId partId, PduPart part)
+  public @NonNull InputStream getThumbnailStream(@NonNull MasterSecret masterSecret, @NonNull AttachmentId attachmentId)
+      throws IOException
+  {
+    Log.w(TAG, "getThumbnailStream(" + attachmentId + ")");
+    InputStream dataStream = getDataStream(masterSecret, attachmentId, THUMBNAIL);
+
+    if (dataStream != null) {
+      return dataStream;
+    }
+
+    try {
+      InputStream generatedStream = thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, attachmentId)).get();
+
+      if (generatedStream == null) throw new IOException("No thumbnail stream available: " + attachmentId);
+      else                         return generatedStream;
+    } catch (InterruptedException ie) {
+      throw new AssertionError("interrupted");
+    } catch (ExecutionException ee) {
+      Log.w(TAG, ee);
+      throw new IOException(ee);
+    }
+  }
+
+  public void setTransferProgressFailed(AttachmentId attachmentId, long mmsId)
       throws MmsException
   {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    ContentValues  values   = new ContentValues();
+    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_FAILED);
 
-    part.setContentDisposition(new byte[0]);
-    part.setTransferProgress(TRANSFER_PROGRESS_FAILED);
-
-    ContentValues values = getContentValuesForPart(part);
-
-    values.put(DATA, (String)null);
-
-    database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
-    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+    database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
+    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
   }
 
-  public PduPart getPart(PartId partId) {
+  public @Nullable Attachment getAttachment(AttachmentId attachmentId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor cursor           = null;
 
     try {
-      cursor = database.query(TABLE_NAME, null, PART_ID_WHERE, partId.toStrings(), null, null, null);
+      cursor = database.query(TABLE_NAME, null, PART_ID_WHERE, attachmentId.toStrings(), null, null, null);
 
-      if (cursor != null && cursor.moveToFirst()) return getPart(cursor);
+      if (cursor != null && cursor.moveToFirst()) return getAttachment(cursor);
       else                                        return null;
 
     } finally {
@@ -165,24 +160,17 @@ public class PartDatabase extends Database {
     }
   }
 
-  public Cursor getImagesForThread(long threadId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor cursor = database.rawQuery(IMAGES_QUERY, new String[]{threadId+""});
-    setNotifyConverationListeners(cursor, threadId);
-    return cursor;
-  }
-
-  public List<PduPart> getParts(long mmsId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    List<PduPart>  results  = new LinkedList<>();
-    Cursor         cursor   = null;
+  public @NonNull List<DatabaseAttachment> getAttachmentsForMessage(long mmsId) {
+    SQLiteDatabase           database = databaseHelper.getReadableDatabase();
+    List<DatabaseAttachment> results  = new LinkedList<>();
+    Cursor                   cursor   = null;
 
     try {
       cursor = database.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {mmsId+""},
                               null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        results.add(getPart(cursor));
+        results.add(getAttachment(cursor));
       }
 
       return results;
@@ -192,8 +180,25 @@ public class PartDatabase extends Database {
     }
   }
 
+  public @NonNull List<DatabaseAttachment> getPendingAttachments() {
+    final SQLiteDatabase           database    = databaseHelper.getReadableDatabase();
+    final List<DatabaseAttachment> attachments = new LinkedList<>();
+
+    Cursor cursor = null;
+    try {
+      cursor = database.query(TABLE_NAME, null, TRANSFER_STATE + " = ?", new String[] {String.valueOf(TRANSFER_PROGRESS_STARTED)}, null, null, null);
+      while (cursor != null && cursor.moveToNext()) {
+        attachments.add(getAttachment(cursor));
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
+    return attachments;
+  }
+
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  public void deleteParts(long mmsId) {
+  public void deleteAttachmentsForMessage(long mmsId) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor cursor           = null;
 
@@ -202,7 +207,7 @@ public class PartDatabase extends Database {
                               new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        String data      = cursor.getString(0);
+        String data = cursor.getString(0);
         String thumbnail = cursor.getString(1);
 
         if (!TextUtils.isEmpty(data)) {
@@ -222,156 +227,140 @@ public class PartDatabase extends Database {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  public void deleteAllParts() {
+  public void deleteAllAttachments() {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);
 
-    File   partsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
-    File[] parts          = partsDirectory.listFiles();
+    File   attachmentsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
+    File[] attachments          = attachmentsDirectory.listFiles();
 
-    for (File part : parts) {
-      part.delete();
+    for (File attachment : attachments) {
+      attachment.delete();
     }
   }
 
-  void insertParts(MasterSecretUnion masterSecret, long mmsId, PduBody body) throws MmsException {
-    Log.w(TAG, "insertParts(" + body.getPartsNum() + ")");
-    for (int i=0;i<body.getPartsNum();i++) {
-      PduPart part = body.getPart(i);
-      PartId partId = insertPart(masterSecret, part, mmsId, part.getThumbnail());
-      Log.w(TAG, "Inserted part at ID: " + partId);
-    }
-  }
+  public long insertAttachmentsForPlaceholder(@NonNull MasterSecret masterSecret, long mmsId,
+                                              @NonNull AttachmentId attachmentId,
+                                              @NonNull InputStream inputStream)
+      throws MmsException
+  {
+    SQLiteDatabase   database = databaseHelper.getWritableDatabase();
+    Pair<File, Long> partData = setAttachmentData(masterSecret, inputStream);
+    ContentValues values = new ContentValues();
 
-  private void getPartValues(PduPart part, Cursor cursor) {
+    values.put(DATA, partData.first.getAbsolutePath());
+    values.put(SIZE, partData.second);
+    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    values.put(CONTENT_LOCATION, (String)null);
+    values.put(CONTENT_DISPOSITION, (String)null);
+    values.put(NAME, (String) null);
 
-    part.setRowId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)));
-    part.setUniqueId(cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID)));
-    part.setMmsId(cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)));
-
-    int charsetColumn = cursor.getColumnIndexOrThrow(CHARSET);
-
-    if (!cursor.isNull(charsetColumn))
-      part.setCharset(cursor.getInt(charsetColumn));
-
-    int contentTypeColumn = cursor.getColumnIndexOrThrow(CONTENT_TYPE);
-
-    if (!cursor.isNull(contentTypeColumn))
-      part.setContentType(Util.toIsoBytes(cursor.getString(contentTypeColumn)));
-
-    int nameColumn = cursor.getColumnIndexOrThrow(NAME);
-
-    if (!cursor.isNull(nameColumn))
-      part.setName(Util.toIsoBytes(cursor.getString(nameColumn)));
-
-    int fileNameColumn = cursor.getColumnIndexOrThrow(FILENAME);
-
-    if (!cursor.isNull(fileNameColumn))
-      part.setFilename(Util.toIsoBytes(cursor.getString(fileNameColumn)));
-
-    int contentDispositionColumn = cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION);
-
-    if (!cursor.isNull(contentDispositionColumn))
-      part.setContentDisposition(Util.toIsoBytes(cursor.getString(contentDispositionColumn)));
-
-    int contentIdColumn = cursor.getColumnIndexOrThrow(CONTENT_ID);
-
-    if (!cursor.isNull(contentIdColumn))
-      part.setContentId(Util.toIsoBytes(cursor.getString(contentIdColumn)));
-
-    int contentLocationColumn = cursor.getColumnIndexOrThrow(CONTENT_LOCATION);
-
-    if (!cursor.isNull(contentLocationColumn))
-      part.setContentLocation(Util.toIsoBytes(cursor.getString(contentLocationColumn)));
-
-    int encryptedColumn = cursor.getColumnIndexOrThrow(ENCRYPTED);
-
-    if (!cursor.isNull(encryptedColumn))
-      part.setEncrypted(cursor.getInt(encryptedColumn) == 1);
-
-    int transferStateColumn = cursor.getColumnIndexOrThrow(TRANSFER_STATE);
-
-    if (!cursor.isNull(transferStateColumn))
-      part.setTransferProgress(cursor.getInt(transferStateColumn));
-
-    int sizeColumn = cursor.getColumnIndexOrThrow(SIZE);
-
-    if (!cursor.isNull(sizeColumn))
-      part.setDataSize(cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)));
-
-    int dataColumn = cursor.getColumnIndexOrThrow(DATA);
-
-    if (!cursor.isNull(dataColumn))
-      part.setDataUri(PartAuthority.getPartUri(part.getPartId()));
-  }
-
-  private ContentValues getContentValuesForPart(PduPart part) throws MmsException {
-    ContentValues contentValues = new ContentValues();
-
-    if (part.getCharset() != 0 ) {
-      contentValues.put(CHARSET, part.getCharset());
-    }
-
-    if (part.getContentType() != null) {
-      contentValues.put(CONTENT_TYPE, Util.toIsoString(part.getContentType()));
-
-      if (Util.toIsoString(part.getContentType()).equals(ContentType.APP_SMIL)) {
-        contentValues.put(SEQUENCE, -1);
-      }
+    if (database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings()) == 0) {
+      //noinspection ResultOfMethodCallIgnored
+      partData.first.delete();
     } else {
-      throw new MmsException("There is no content type for this part.");
+      notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
     }
 
-    if (part.getName() != null) {
-      contentValues.put(NAME, new String(part.getName()));
-    }
-
-    if (part.getFilename() != null) {
-      contentValues.put(FILENAME, new String(part.getFilename()));
-    }
-
-    if (part.getContentDisposition() != null) {
-      contentValues.put(CONTENT_DISPOSITION, Util.toIsoString(part.getContentDisposition()));
-    }
-
-    if (part.getContentId() != null) {
-      contentValues.put(CONTENT_ID, Util.toIsoString(part.getContentId()));
-    }
-
-    if (part.getContentLocation() != null) {
-      contentValues.put(CONTENT_LOCATION, Util.toIsoString(part.getContentLocation()));
-    }
-
-    contentValues.put(ENCRYPTED, part.getEncrypted() ? 1 : 0);
-    contentValues.put(TRANSFER_STATE, part.getTransferProgress());
-    contentValues.put(UNIQUE_ID, part.getUniqueId());
-
-    return contentValues;
+    thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, attachmentId));
+    return partData.second;
   }
 
-  private InputStream getPartInputStream(MasterSecret masterSecret, File path)
-      throws FileNotFoundException
+
+  void insertAttachmentsForMessage(@NonNull MasterSecretUnion masterSecret,
+                                   long mmsId,
+                                   @NonNull List<Attachment> attachments)
+      throws MmsException
   {
-    Log.w(TAG, "Getting part at: " + path.getAbsolutePath());
-    return new DecryptingPartInputStream(path, masterSecret);
+    Log.w(TAG, "insertParts(" + attachments.size() + ")");
+
+    for (Attachment attachment : attachments) {
+      AttachmentId attachmentId = insertAttachment(masterSecret, mmsId, attachment);
+      Log.w(TAG, "Inserted attachment at ID: " + attachmentId);
+    }
   }
 
-  protected OutputStream getPartOutputStream(MasterSecret masterSecret, File path, PduPart part)
-      throws FileNotFoundException
+  public @NonNull Attachment updateAttachmentData(@NonNull MasterSecret masterSecret,
+                                                  @NonNull Attachment attachment,
+                                                  @NonNull InputStream inputStream)
+      throws MmsException
   {
-    Log.w(TAG, "Writing part to: " + path.getAbsolutePath());
-    part.setEncrypted(true);
-    return new EncryptingPartOutputStream(path, masterSecret);
+    SQLiteDatabase     database           = databaseHelper.getWritableDatabase();
+    DatabaseAttachment databaseAttachment = (DatabaseAttachment) attachment;
+    File               dataFile           = getAttachmentDataFile(databaseAttachment.getAttachmentId(), DATA);
+
+    if (dataFile == null) {
+      throw new MmsException("No attachment data found!");
+    }
+
+    long dataSize = setAttachmentData(masterSecret, dataFile, inputStream);
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(SIZE, dataSize);
+
+    database.update(TABLE_NAME, contentValues, PART_ID_WHERE, databaseAttachment.getAttachmentId().toStrings());
+
+    return new DatabaseAttachment(databaseAttachment.getAttachmentId(),
+                                  databaseAttachment.getMmsId(),
+                                  databaseAttachment.hasData(),
+                                  databaseAttachment.getContentType(),
+                                  databaseAttachment.getTransferState(),
+                                  dataSize, databaseAttachment.getLocation(),
+                                  databaseAttachment.getKey(),
+                                  databaseAttachment.getRelay());
   }
 
-  @VisibleForTesting InputStream getDataStream(MasterSecret masterSecret, PartId partId, String dataType)
-      throws FileNotFoundException
+
+  public void markAttachmentUploaded(long messageId, Attachment attachment) {
+    ContentValues  values   = new ContentValues(1);
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    database.update(TABLE_NAME, values, PART_ID_WHERE, ((DatabaseAttachment)attachment).getAttachmentId().toStrings());
+
+    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+  }
+
+  public void setTransferState(long messageId, @NonNull Attachment attachment, int transferState) {
+    if (!(attachment instanceof DatabaseAttachment)) {
+      throw new AssertionError("Attempt to update attachment that doesn't belong to DB!");
+    }
+
+    setTransferState(messageId, ((DatabaseAttachment) attachment).getAttachmentId(), transferState);
+  }
+
+  public void setTransferState(long messageId, @NonNull AttachmentId attachmentId, int transferState) {
+    final ContentValues  values   = new ContentValues(1);
+    final SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+    values.put(TRANSFER_STATE, transferState);
+    database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
+    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+    ApplicationContext.getInstance(context).notifyMediaControlEvent();
+  }
+
+  @VisibleForTesting
+  @Nullable InputStream getDataStream(MasterSecret masterSecret, AttachmentId attachmentId, String dataType)
+  {
+    File dataFile = getAttachmentDataFile(attachmentId, dataType);
+
+    try {
+      if (dataFile != null) return new DecryptingPartInputStream(dataFile, masterSecret);
+      else                  return null;
+    } catch (FileNotFoundException e) {
+      Log.w(TAG, e);
+      return null;
+    }
+  }
+
+  private @Nullable File getAttachmentDataFile(@NonNull AttachmentId attachmentId,
+                                               @NonNull String dataType)
   {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[]{dataType}, PART_ID_WHERE, partId.toStrings(),
+      cursor = database.query(TABLE_NAME, new String[]{dataType}, PART_ID_WHERE, attachmentId.toStrings(),
                               null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
@@ -379,335 +368,164 @@ public class PartDatabase extends Database {
           return null;
         }
 
-        return getPartInputStream(masterSecret, new File(cursor.getString(0)));
+        return new File(cursor.getString(0));
       } else {
-        throw new FileNotFoundException("No part for id: " + partId);
+        return null;
       }
     } finally {
       if (cursor != null)
         cursor.close();
     }
+
   }
 
-  private Pair<File, Long> writePartData(MasterSecret masterSecret, PduPart part, InputStream in)
+  private @NonNull Pair<File, Long> setAttachmentData(@NonNull MasterSecret masterSecret,
+                                                      @NonNull Uri uri)
       throws MmsException
   {
     try {
-      File         partsDirectory  = context.getDir("parts", Context.MODE_PRIVATE);
-      File         dataFile        = File.createTempFile("part", ".mms", partsDirectory);
-      OutputStream out             = getPartOutputStream(masterSecret, dataFile, part);
-      long         plaintextLength = Util.copy(in, out);
-
-      return new Pair<>(dataFile, plaintextLength);
+      InputStream inputStream = PartAuthority.getAttachmentStream(context, masterSecret, uri);
+      return setAttachmentData(masterSecret, inputStream);
     } catch (IOException e) {
       throw new MmsException(e);
     }
   }
 
-  private Pair<File, Long> writePartData(MasterSecret masterSecret, PduPart part)
+  private @NonNull Pair<File, Long> setAttachmentData(@NonNull MasterSecret masterSecret,
+                                                      @NonNull InputStream in)
       throws MmsException
   {
     try {
-      if (part.getData() != null) {
-        Log.w(TAG, "Writing part data from buffer");
-        return writePartData(masterSecret, part, new ByteArrayInputStream(part.getData()));
-      } else if (part.getDataUri() != null) {
-        Log.w(TAG, "Writing part data from URI");
-        InputStream in = PartAuthority.getPartStream(context, masterSecret, part.getDataUri());
-        return writePartData(masterSecret, part, in);
-      } else {
-        throw new MmsException("Part is empty!");
-      }
+      File partsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
+      File dataFile       = File.createTempFile("part", ".mms", partsDirectory);
+
+      return new Pair<>(dataFile, setAttachmentData(masterSecret, dataFile, in));
     } catch (IOException e) {
       throw new MmsException(e);
     }
   }
 
-  public InputStream getThumbnailStream(MasterSecret masterSecret, PartId partId) throws IOException {
-    Log.w(TAG, "getThumbnailStream(" + partId + ")");
-    final InputStream dataStream = getDataStream(masterSecret, partId, THUMBNAIL);
-    if (dataStream != null) {
-      return dataStream;
-    }
-
+  private long setAttachmentData(@NonNull MasterSecret masterSecret,
+                                 @NonNull File destination,
+                                 @NonNull InputStream in)
+      throws MmsException
+  {
     try {
-      return thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId)).get();
-    } catch (InterruptedException ie) {
-      throw new AssertionError("interrupted");
-    } catch (ExecutionException ee) {
-      Log.w(TAG, ee);
-      throw new IOException(ee);
+      OutputStream out = new EncryptingPartOutputStream(destination, masterSecret);
+      return Util.copy(in, out);
+    } catch (IOException e) {
+      throw new MmsException(e);
     }
   }
 
-  private PduPart getPart(Cursor cursor) {
-    PduPart part = new PduPart();
-
-    getPartValues(part, cursor);
-
-    return part;
+  private DatabaseAttachment getAttachment(Cursor cursor) {
+    return new DatabaseAttachment(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),
+                                                   cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))),
+                                  cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)),
+                                  !cursor.isNull(cursor.getColumnIndexOrThrow(DATA)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(TRANSFER_STATE)),
+                                  cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(NAME)));
   }
 
-  public @NonNull List<PduPart> getPendingParts() {
-    final SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    final List<PduPart>  parts    = new LinkedList<>();
 
-    Cursor cursor = null;
-    try {
-      cursor = database.query(TABLE_NAME, null, TRANSFER_STATE + " = ?", new String[] {String.valueOf(TRANSFER_PROGRESS_STARTED)}, null, null, null);
-      while (cursor != null && cursor.moveToNext()) {
-        parts.add(getPart(cursor));
-      }
-    } finally {
-      if (cursor != null) cursor.close();
-    }
+  private AttachmentId insertAttachment(MasterSecretUnion masterSecret, long mmsId, Attachment attachment)
+      throws MmsException
+  {
+    Log.w(TAG, "Inserting attachment for mms id: " + mmsId);
 
-    return parts;
-  }
-
-  private PartId insertPart(MasterSecretUnion masterSecret, PduPart part, long mmsId, Bitmap thumbnail) throws MmsException {
-    Log.w(TAG, "inserting part to mms " + mmsId);
     SQLiteDatabase   database = databaseHelper.getWritableDatabase();
     Pair<File, Long> partData = null;
+    long             uniqueId = System.currentTimeMillis();
 
-    if ((part.getData() != null || part.getDataUri() != null) && masterSecret.getMasterSecret().isPresent()) {
-      partData = writePartData(masterSecret.getMasterSecret().get(), part);
+    if (masterSecret.getMasterSecret().isPresent() && attachment.getDataUri() != null) {
+      partData = setAttachmentData(masterSecret.getMasterSecret().get(), attachment.getDataUri());
       Log.w(TAG, "Wrote part to file: " + partData.first.getAbsolutePath());
     }
 
-    ContentValues contentValues = getContentValuesForPart(part);
+    ContentValues contentValues = new ContentValues();
     contentValues.put(MMS_ID, mmsId);
+    contentValues.put(CONTENT_TYPE, attachment.getContentType());
+    contentValues.put(TRANSFER_STATE, attachment.getTransferState());
+    contentValues.put(UNIQUE_ID, uniqueId);
+    contentValues.put(CONTENT_LOCATION, attachment.getLocation());
+    contentValues.put(CONTENT_DISPOSITION, attachment.getKey());
+    contentValues.put(NAME, attachment.getRelay());
 
     if (partData != null) {
       contentValues.put(DATA, partData.first.getAbsolutePath());
       contentValues.put(SIZE, partData.second);
     }
 
-    long   partRowId = database.insert(TABLE_NAME, null, contentValues);
-    PartId partId    = new PartId(partRowId, part.getUniqueId());
+    long         rowId        = database.insert(TABLE_NAME, null, contentValues);
+    AttachmentId attachmentId = new AttachmentId(rowId, uniqueId);
 
-    if (thumbnail != null && masterSecret.getMasterSecret().isPresent()) {
+    if (attachment.getThumbnail() != null && masterSecret.getMasterSecret().isPresent()) {
       Log.w(TAG, "inserting pre-generated thumbnail");
-      ThumbnailData data = new ThumbnailData(thumbnail);
-      updatePartThumbnail(masterSecret.getMasterSecret().get(), partId, part, data.toDataStream(), data.getAspectRatio());
-    } else if (!part.isInProgress()) {
-      thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret.getMasterSecret().get(), partId));
+      ThumbnailData data = new ThumbnailData(attachment.getThumbnail());
+      updateAttachmentThumbnail(masterSecret.getMasterSecret().get(), attachmentId, data.toDataStream(), data.getAspectRatio());
+    } else if (!attachment.isInProgress()) {
+      thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret.getMasterSecret().get(), attachmentId));
     }
 
-    return partId;
+    return attachmentId;
   }
 
-  public void updateDownloadedPart(MasterSecret masterSecret, long messageId,
-                                   PartId partId, PduPart part, InputStream data)
+
+  @VisibleForTesting
+  void updateAttachmentThumbnail(MasterSecret masterSecret, AttachmentId attachmentId, InputStream in, float aspectRatio)
       throws MmsException
   {
-    SQLiteDatabase   database = databaseHelper.getWritableDatabase();
-    Pair<File, Long> partData = writePartData(masterSecret, part, data);
+    Log.w(TAG, "updating part thumbnail for #" + attachmentId);
 
-    part.setContentDisposition(new byte[0]);
-    part.setTransferProgress(TRANSFER_PROGRESS_DONE);
-
-    ContentValues values = getContentValuesForPart(part);
-
-    if (partData != null) {
-      values.put(DATA, partData.first.getAbsolutePath());
-      values.put(SIZE, partData.second);
-    }
-
-    database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
-
-    thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
-
-    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
-  }
-
-  public void markPartUploaded(long messageId, PduPart part) {
-    ContentValues  values   = new ContentValues(1);
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-
-    part.setTransferProgress(TRANSFER_PROGRESS_DONE);
-    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
-    database.update(TABLE_NAME, values, PART_ID_WHERE, part.getPartId().toStrings());
-
-    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
-  }
-
-  public void setTransferState(long messageId, @NonNull PartId partId, int transferState) {
-    final ContentValues  values   = new ContentValues(1);
-    final SQLiteDatabase database = databaseHelper.getWritableDatabase();
-
-    values.put(TRANSFER_STATE, transferState);
-    database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
-    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
-    ApplicationContext.getInstance(context).notifyMediaControlEvent();
-  }
-
-  public void updatePartData(MasterSecret masterSecret, PduPart part, InputStream data)
-      throws MmsException
-  {
-    SQLiteDatabase   database = databaseHelper.getWritableDatabase();
-    Pair<File, Long> partData = writePartData(masterSecret, part, data);
-
-    if (partData == null) throw new MmsException("couldn't update part data");
-
-    Cursor cursor = null;
-    try {
-      cursor = database.query(TABLE_NAME, new String[]{DATA}, PART_ID_WHERE,
-                              part.getPartId().toStrings(), null, null, null);
-
-      if (cursor != null && cursor.moveToFirst()) {
-        int dataColumn = cursor.getColumnIndexOrThrow(DATA);
-        if (!cursor.isNull(dataColumn) && !new File(cursor.getString(dataColumn)).delete()) {
-            Log.w(TAG, "Couldn't delete old part file");
-        }
-      }
-    } finally {
-      if (cursor != null) cursor.close();
-    }
-    ContentValues values = new ContentValues(2);
-    values.put(DATA, partData.first.getAbsolutePath());
-    values.put(SIZE, partData.second);
-
-    part.setDataSize(partData.second);
-
-    database.update(TABLE_NAME, values, PART_ID_WHERE, part.getPartId().toStrings());
-    Log.w(TAG, "updated data for part #" + part.getPartId());
-  }
-
-  public void updatePartThumbnail(MasterSecret masterSecret, PartId partId, PduPart part, InputStream in, float aspectRatio)
-      throws MmsException
-  {
-    Log.w(TAG, "updating part thumbnail for #" + partId);
-
-    Pair<File, Long> thumbnailFile = writePartData(masterSecret, part, in);
+    Pair<File, Long> thumbnailFile = setAttachmentData(masterSecret, in);
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues  values   = new ContentValues(2);
 
     values.put(THUMBNAIL, thumbnailFile.first.getAbsolutePath());
-    values.put(ASPECT_RATIO, aspectRatio);
+    values.put(THUMBNAIL_ASPECT_RATIO, aspectRatio);
 
-    database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
+    database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
   }
 
-  public static class ImageRecord {
-    private PartId partId;
-    private String contentType;
-    private String address;
-    private long   date;
 
-    private ImageRecord(PartId partId, String contentType, String address, long date) {
-      this.partId      = partId;
-      this.contentType = contentType;
-      this.address     = address;
-      this.date        = date;
-    }
-
-    public static ImageRecord from(Cursor cursor) {
-      PartId partId = new PartId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),
-                                 cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID)));
-
-      return new ImageRecord(partId,
-                             cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
-                             cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED)));
-    }
-
-    public PartId getPartId() {
-      return partId;
-    }
-
-    public String getContentType() {
-      return contentType;
-    }
-
-    public String getAddress() {
-      return address;
-    }
-
-    public long getDate() {
-      return date;
-    }
-
-    public Uri getUri() {
-      return PartAuthority.getPartUri(partId);
-    }
-  }
-
-  @VisibleForTesting class ThumbnailFetchCallable implements Callable<InputStream> {
+  @VisibleForTesting
+  class ThumbnailFetchCallable implements Callable<InputStream> {
     private final MasterSecret masterSecret;
-    private final PartId       partId;
+    private final AttachmentId attachmentId;
 
-    public ThumbnailFetchCallable(MasterSecret masterSecret, PartId partId) {
+    public ThumbnailFetchCallable(MasterSecret masterSecret, AttachmentId attachmentId) {
       this.masterSecret = masterSecret;
-      this.partId       = partId;
+      this.attachmentId = attachmentId;
     }
 
     @Override
     public @Nullable InputStream call() throws Exception {
-      final InputStream stream = getDataStream(masterSecret, partId, THUMBNAIL);
+      final InputStream stream = getDataStream(masterSecret, attachmentId, THUMBNAIL);
+
       if (stream != null) {
         return stream;
       }
 
-      PduPart part = getPart(partId);
-      if (part.isInProgress()) {
+      Attachment attachment = getAttachment(attachmentId);
+
+      if (attachment == null || attachment.isInProgress()) {
         return null;
       }
 
-      ThumbnailData data = MediaUtil.generateThumbnail(context, masterSecret, part.getDataUri(), Util.toIsoString(part.getContentType()));
+      ThumbnailData data = MediaUtil.generateThumbnail(context, masterSecret, attachment.getContentType(), attachment.getDataUri());
+
       if (data == null) {
         return null;
       }
 
-      updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
+      updateAttachmentThumbnail(masterSecret, attachmentId, data.toDataStream(), data.getAspectRatio());
 
-      return getDataStream(masterSecret, partId, THUMBNAIL);
-    }
-  }
-
-  public static class PartId {
-
-    private final long rowId;
-    private final long uniqueId;
-
-    public PartId(long rowId, long uniqueId) {
-      this.rowId    = rowId;
-      this.uniqueId = uniqueId;
-    }
-
-    public long getRowId() {
-      return rowId;
-    }
-
-    public long getUniqueId() {
-      return uniqueId;
-    }
-
-    public String[] toStrings() {
-      return new String[] {String.valueOf(rowId), String.valueOf(uniqueId)};
-    }
-
-    public String toString() {
-      return "(row id: " + rowId + ", unique ID: " + uniqueId + ")";
-    }
-
-    public boolean isValid() {
-      return rowId >= 0 && uniqueId >= 0;
-    }
-
-    @Override public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-
-      PartId partId = (PartId)o;
-
-      if (rowId != partId.rowId) return false;
-      return uniqueId == partId.uniqueId;
-    }
-
-    @Override public int hashCode() {
-      return Util.hashCode(rowId, uniqueId);
+      return getDataStream(masterSecret, attachmentId, THUMBNAIL);
     }
   }
 }

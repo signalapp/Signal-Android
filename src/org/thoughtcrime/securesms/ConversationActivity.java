@@ -94,7 +94,6 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.providers.CaptureProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -563,8 +562,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                              .setType(GroupContext.Type.QUIT)
                                              .build();
 
-          OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, getRecipients(),
-                                                                                    context, null);
+          OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(getRecipients(), context, null);
           MessageSender.send(self, masterSecret, outgoingMessage, threadId, false);
           DatabaseFactory.getGroupDatabase(self).remove(groupId, TextSecurePreferences.getLocalNumber(self));
           initializeEnabledCheck();
@@ -1246,30 +1244,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendMediaMessage(final boolean forceSms)
       throws InvalidMessageException
   {
-    final Context context = getApplicationContext();
-    SlideDeck slideDeck;
-
-    if (attachmentManager.isAttachmentPresent()) {
-      Slide            mediaSlide  = attachmentManager.getSlideDeck().getThumbnailSlide();
-      MediaConstraints constraints = getCurrentMediaConstraints();
-
-      if (mediaSlide != null &&
-          !constraints.isSatisfied(this, masterSecret, mediaSlide.getPart()) &&
-          !constraints.canResize(mediaSlide.getPart()))
-      {
-        Toast.makeText(context,
-                       R.string.ConversationActivity_attachment_exceeds_size_limits,
-                       Toast.LENGTH_SHORT).show();
-        return;
-      }
-
-      slideDeck = new SlideDeck(attachmentManager.getSlideDeck());
-    } else {
-      slideDeck = new SlideDeck();
-    }
-
-    OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(this, recipients, slideDeck,
-                                                                    getMessage(), distributionType);
+    final Context context                = getApplicationContext();
+    OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(recipients,
+                                                                    attachmentManager.getSlideDeck(),
+                                                                    getMessage(),
+                                                                    System.currentTimeMillis(),
+                                                                    distributionType);
 
     if (isSecureText && !forceSms) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);

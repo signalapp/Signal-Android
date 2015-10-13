@@ -98,7 +98,7 @@ public class CaptureProvider {
     }
   }
 
-  public InputStream getStream(MasterSecret masterSecret, long id) throws IOException {
+  public @NonNull InputStream getStream(MasterSecret masterSecret, long id) throws IOException {
     final byte[] cached = cache.get((int)id);
     return cached != null ? new ByteArrayInputStream(cached)
                           : new DecryptingPartInputStream(getFile(id), masterSecret);
