@@ -105,6 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
+                        android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                         android:scaleType="fitXY"
                         android:src="?attr/menu_new_conversation_icon"
                         android:visibility="visible"
@@ -119,15 +120,16 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         card_view:cardCornerRadius="19dp"
-                        card_view:cardElevation="2dp"
-                        card_view:cardPreventCornerOverlap="false">
+                        card_view:cardPreventCornerOverlap="false"
+                        card_view:cardBackgroundColor="@color/transparent"
+                        android:background="@color/transparent">
 
                         <org.thoughtcrime.securesms.components.CircledImageView
                             android:id="@+id/img_new_contact_one"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_gravity="center"
                             android:padding="2dp"
+                            android:layout_gravity="center"
                             android:scaleType="fitXY"
                             android:visibility="visible" />
                     </android.support.v7.widget.CardView>
@@ -171,6 +173,7 @@
                         android:id="@+id/fab_new_contact_two"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                         android:src="?attr/menu_new_conversation_icon"
                         app:backgroundTint="@color/holo_purple"
                         app:borderWidth="0dp"
@@ -183,15 +186,14 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         card_view:cardCornerRadius="19dp"
-                        card_view:cardElevation="2dp"
                         card_view:cardPreventCornerOverlap="false">
 
                         <org.thoughtcrime.securesms.components.CircledImageView
                             android:id="@+id/img_new_contact_two"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_gravity="center"
                             android:padding="2dp"
+                            android:layout_gravity="center"
                             android:scaleType="fitXY"
                             android:visibility="visible" />
                     </android.support.v7.widget.CardView>
@@ -248,7 +250,6 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         card_view:cardCornerRadius="19dp"
-                        card_view:cardElevation="2dp"
                         card_view:cardPreventCornerOverlap="false">
 
                         <org.thoughtcrime.securesms.components.CircledImageView
@@ -269,6 +270,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
