@@ -562,6 +562,9 @@ public class ConversationItem extends LinearLayout {
 
       if (messageRecord.isFailed()) {
         dateText.setText(R.string.ConversationItem_error_sending_message_gdata);
+        if(indicatorText != null) {
+          indicatorText.setVisibility(View.GONE);
+        }
       } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
         dateText.setText("");
         if (messageRecord.isPendingSecureSmsFallback()) {
