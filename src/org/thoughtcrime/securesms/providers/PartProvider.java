@@ -65,7 +65,7 @@ public class PartProvider extends ContentProvider {
 
   @SuppressWarnings("ConstantConditions")
   private File copyPartToTemporaryFile(MasterSecret masterSecret, AttachmentId attachmentId) throws IOException {
-    InputStream in        = DatabaseFactory.getPartDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId);
+    InputStream in        = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId);
     File tmpDir           = getContext().getDir("tmp", 0);
     File tmpFile          = File.createTempFile("test", ".jpg", tmpDir);
     FileOutputStream fout = new FileOutputStream(tmpFile);

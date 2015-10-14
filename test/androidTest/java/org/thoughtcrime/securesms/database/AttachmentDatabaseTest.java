@@ -21,15 +21,15 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PartDatabaseTest extends TextSecureTestCase {
+public class AttachmentDatabaseTest extends TextSecureTestCase {
   private static final long ROW_ID    = 1L;
   private static final long UNIQUE_ID = 2L;
 
-  private PartDatabase database;
+  private AttachmentDatabase database;
 
   @Override
   public void setUp() {
-    database = spy(DatabaseFactory.getPartDatabase(getInstrumentation().getTargetContext()));
+    database = spy(DatabaseFactory.getAttachmentDatabase(getInstrumentation().getTargetContext()));
   }
 
   public void testTaskNotRunWhenThumbnailExists() throws Exception {

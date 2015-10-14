@@ -4,7 +4,6 @@ import android.content.ContentUris;
 import android.net.Uri;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.PartDatabase;
 
 public class PartUriParser {
 

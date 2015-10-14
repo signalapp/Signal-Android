@@ -54,7 +54,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -475,7 +475,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
                                        .build();
 
     Uri                       avatarUri        = SingleUseBlobProvider.getInstance().createUri(avatar);
-    Attachment                avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_JPEG, PartDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
+    Attachment                avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_JPEG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
     OutgoingGroupMediaMessage outgoingMessage  = new OutgoingGroupMediaMessage(groupRecipient, context, avatarAttachment);
     long                      threadId         = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 

@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -401,9 +401,9 @@ public class ConversationItem extends LinearLayout
 
   private class ThumbnailDownloadClickListener implements ThumbnailView.ThumbnailClickListener {
     @Override public void onClick(View v, final Slide slide) {
-      DatabaseFactory.getPartDatabase(context).setTransferState(messageRecord.getId(),
-                                                                slide.asAttachment(),
-                                                                PartDatabase.TRANSFER_PROGRESS_STARTED);
+      DatabaseFactory.getAttachmentDatabase(context).setTransferState(messageRecord.getId(),
+                                                                      slide.asAttachment(),
+                                                                      AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
     }
   }
 

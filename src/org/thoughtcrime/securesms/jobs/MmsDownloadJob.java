@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
@@ -181,7 +181,7 @@ public class MmsDownloadJob extends MasterSecretJob {
         } else if (part.getData() != null) {
           Uri uri = provider.createUri(part.getData());
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
-                                            PartDatabase.TRANSFER_PROGRESS_DONE,
+                                            AttachmentDatabase.TRANSFER_PROGRESS_DONE,
                                             part.getData().length));
         }
       }

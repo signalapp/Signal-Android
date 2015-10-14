@@ -17,11 +17,7 @@
 
 package ws.com.google.android.mms.pdu;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
-
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.PartDatabase;
 
 import java.util.HashMap;
 import java.util.Map;

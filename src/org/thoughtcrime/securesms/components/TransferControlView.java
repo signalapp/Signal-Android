@@ -21,7 +21,7 @@ import com.nineoldandroids.animation.ValueAnimator.AnimatorUpdateListener;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.jobs.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.Util;
@@ -92,7 +92,7 @@ public class TransferControlView extends FrameLayout {
 
   public void setSlide(final @NonNull Slide slide) {
     this.slide = slide;
-    if (slide.getTransferState() == PartDatabase.TRANSFER_PROGRESS_STARTED) {
+    if (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
       showProgressSpinner();
     } else if (slide.isPendingDownload()) {
       downloadDetails.setText(slide.getContentDescription());

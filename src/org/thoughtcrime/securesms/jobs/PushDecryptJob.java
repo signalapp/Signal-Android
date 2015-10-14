@@ -257,7 +257,7 @@ public class PushDecryptJob extends ContextJob {
                                                                  message.getAttachments());
 
     Pair<Long, Long>         messageAndThreadId = database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
-    List<DatabaseAttachment> attachments        = DatabaseFactory.getPartDatabase(context).getAttachmentsForMessage(messageAndThreadId.first);
+    List<DatabaseAttachment> attachments        = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageAndThreadId.first);
 
     for (DatabaseAttachment attachment : attachments) {
       ApplicationContext.getInstance(context)
@@ -292,7 +292,7 @@ public class PushDecryptJob extends ContextJob {
     database.markAsSent(messageId);
     database.markAsPush(messageId);
 
-    for (DatabaseAttachment attachment : DatabaseFactory.getPartDatabase(context).getAttachmentsForMessage(messageId)) {
+    for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId()));

@@ -2,14 +2,13 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Util;
@@ -44,7 +43,7 @@ public abstract class SendJob extends MasterSecretJob {
   protected abstract void onSend(MasterSecret masterSecret) throws Exception;
 
   protected void markAttachmentsUploaded(long messageId, @NonNull List<Attachment> attachments) {
-    PartDatabase database = DatabaseFactory.getPartDatabase(context);
+    AttachmentDatabase database = DatabaseFactory.getAttachmentDatabase(context);
 
     for (Attachment attachment : attachments) {
       database.markAttachmentUploaded(messageId, attachment);
@@ -56,8 +55,8 @@ public abstract class SendJob extends MasterSecretJob {
                                               @NonNull List<Attachment> attachments)
       throws UndeliverableMessageException
   {
-    PartDatabase     partDatabase = DatabaseFactory.getPartDatabase(context);
-    List<Attachment> results      = new LinkedList<>();
+    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    List<Attachment>   results            = new LinkedList<>();
 
     for (Attachment attachment : attachments) {
       try {
@@ -65,7 +64,7 @@ public abstract class SendJob extends MasterSecretJob {
           results.add(attachment);
         } else if (constraints.canResize(attachment)) {
           InputStream resized = constraints.getResizedMedia(context, masterSecret, attachment);
-          results.add(partDatabase.updateAttachmentData(masterSecret, attachment, resized));
+          results.add(attachmentDatabase.updateAttachmentData(masterSecret, attachment, resized));
         } else {
           throw new UndeliverableMessageException("Size constraints could not be met!");
         }

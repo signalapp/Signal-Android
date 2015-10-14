@@ -11,23 +11,23 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 
 public class ImageDatabase extends Database {
 
-    private final static String IMAGES_QUERY = "SELECT " + PartDatabase.TABLE_NAME + "." + PartDatabase.ROW_ID + ", "
-        + PartDatabase.TABLE_NAME + "." + PartDatabase.CONTENT_TYPE + ", "
-        + PartDatabase.TABLE_NAME + "." + PartDatabase.THUMBNAIL_ASPECT_RATIO + ", "
-        + PartDatabase.TABLE_NAME + "." + PartDatabase.UNIQUE_ID + ", "
-        + PartDatabase.TABLE_NAME + "." + PartDatabase.MMS_ID + ", "
-        + PartDatabase.TABLE_NAME + "." + PartDatabase.TRANSFER_STATE + ", "
-        + PartDatabase.TABLE_NAME + "." + PartDatabase.SIZE + ", "
-        + PartDatabase.TABLE_NAME + "." + PartDatabase.DATA + ", "
+    private final static String IMAGES_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL_ASPECT_RATIO + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.NORMALIZED_DATE_RECEIVED + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ADDRESS + " "
-        + "FROM " + PartDatabase.TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
-        + " ON " + PartDatabase.TABLE_NAME + "." + PartDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
-        + "WHERE " + PartDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
+        + "FROM " + AttachmentDatabase.TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
+        + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
+        + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
         + " FROM " + MmsDatabase.TABLE_NAME
         + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND "
-        + PartDatabase.CONTENT_TYPE + " LIKE 'image/%' "
-        + "ORDER BY " + PartDatabase.TABLE_NAME + "." + PartDatabase.ROW_ID + " DESC";
+        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' "
+        + "ORDER BY " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC";
 
   public ImageDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -65,17 +65,17 @@ public class ImageDatabase extends Database {
     }
 
     public static ImageRecord from(Cursor cursor) {
-      AttachmentId attachmentId = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(PartDatabase.ROW_ID)),
-                                 cursor.getLong(cursor.getColumnIndexOrThrow(PartDatabase.UNIQUE_ID)));
+      AttachmentId attachmentId = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)),
+                                                   cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));
 
       return new ImageRecord(attachmentId,
-                             cursor.getLong(cursor.getColumnIndexOrThrow(PartDatabase.MMS_ID)),
-                             !cursor.isNull(cursor.getColumnIndexOrThrow(PartDatabase.DATA)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(PartDatabase.CONTENT_TYPE)),
+                             cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID)),
+                             !cursor.isNull(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.CONTENT_TYPE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
                              cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED)),
-                             cursor.getInt(cursor.getColumnIndexOrThrow(PartDatabase.TRANSFER_STATE)),
-                             cursor.getLong(cursor.getColumnIndexOrThrow(PartDatabase.SIZE)));
+                             cursor.getInt(cursor.getColumnIndexOrThrow(AttachmentDatabase.TRANSFER_STATE)),
+                             cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE)));
     }
 
     public Attachment getAttachment() {

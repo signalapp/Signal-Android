@@ -9,7 +9,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -74,9 +74,9 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
 
   @Override
   public boolean isPresent() {
-    final AttachmentId attachmentId = new AttachmentId(partRowId, partUniqueId);
-    final PartDatabase db           = DatabaseFactory.getPartDatabase(context);
-    final Attachment   attachment   = db.getAttachment(attachmentId);
+    final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
+    final AttachmentDatabase db           = DatabaseFactory.getAttachmentDatabase(context);
+    final Attachment         attachment   = db.getAttachment(attachmentId);
 
     if (attachment == null) {
       Log.w(TAG, "attachment was null, returning vacuous true");
@@ -85,15 +85,15 @@ public class MediaNetworkRequirement implements Requirement, ContextDependent {
 
     Log.w(TAG, "part transfer progress is " + attachment.getTransferState());
     switch (attachment.getTransferState()) {
-    case PartDatabase.TRANSFER_PROGRESS_STARTED:
+    case AttachmentDatabase.TRANSFER_PROGRESS_STARTED:
       return true;
-    case PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING:
+    case AttachmentDatabase.TRANSFER_PROGRESS_AUTO_PENDING:
       final Set<String> allowedTypes = getAllowedAutoDownloadTypes();
       final boolean     isAllowed    = allowedTypes.contains(MediaUtil.getDiscreteMimeType(attachment.getContentType()));
 
       /// XXX WTF -- This is *hella* gross. A requirement shouldn't have the side effect of
       // *modifying the database* just by calling isPresent().
-      if (isAllowed) db.setTransferState(messageId, attachmentId, PartDatabase.TRANSFER_PROGRESS_STARTED);
+      if (isAllowed) db.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
       return isAllowed;
     default:
       return false;

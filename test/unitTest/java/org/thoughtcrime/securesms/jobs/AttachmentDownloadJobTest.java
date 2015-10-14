@@ -5,7 +5,7 @@ import android.content.Context;
 import org.junit.Before;
 import org.junit.Test;
 import org.thoughtcrime.securesms.BaseUnitTest;
-import org.thoughtcrime.securesms.database.PartDatabase.AttachmentId;
+import org.thoughtcrime.securesms.database.AttachmentDatabase.AttachmentId;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob.InvalidPartException;
 import org.thoughtcrime.securesms.util.Util;
 

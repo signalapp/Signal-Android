@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.MediaKey;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 
@@ -42,7 +42,7 @@ public class PointerAttachment extends Attachment {
         if (pointer.isPointer()) {
           String encryptedKey = MediaKey.getEncrypted(masterSecret, pointer.asPointer().getKey());
           results.add(new PointerAttachment(pointer.getContentType(),
-                                            PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING,
+                                            AttachmentDatabase.TRANSFER_PROGRESS_AUTO_PENDING,
                                             pointer.asPointer().getSize().or(0),
                                             String.valueOf(pointer.asPointer().getId()),
                                             encryptedKey, pointer.asPointer().getRelay().orNull()));

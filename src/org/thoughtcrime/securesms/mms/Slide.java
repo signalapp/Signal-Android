@@ -25,7 +25,7 @@ import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -80,8 +80,8 @@ public abstract class Slide {
   }
 
   public boolean isPendingDownload() {
-    return getTransferState() == PartDatabase.TRANSFER_PROGRESS_FAILED ||
-           getTransferState() == PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING;
+    return getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_FAILED ||
+           getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_AUTO_PENDING;
   }
 
   public long getTransferState() {
@@ -103,7 +103,7 @@ public abstract class Slide {
     throws IOException
   {
     Optional<String> resolvedType = Optional.fromNullable(MediaUtil.getMimeType(context, uri));
-    return new UriAttachment(uri, resolvedType.or(defaultMime), PartDatabase.TRANSFER_PROGRESS_STARTED, size);
+    return new UriAttachment(uri, resolvedType.or(defaultMime), AttachmentDatabase.TRANSFER_PROGRESS_STARTED, size);
   }
 
   @Override

@@ -46,10 +46,10 @@ public class PartAuthority {
       switch (match) {
       case PART_ROW:
         PartUriParser partUri = new PartUriParser(uri);
-        return DatabaseFactory.getPartDatabase(context).getAttachmentStream(masterSecret, partUri.getPartId());
+        return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(masterSecret, partUri.getPartId());
       case THUMB_ROW:
         partUri = new PartUriParser(uri);
-        return DatabaseFactory.getPartDatabase(context).getThumbnailStream(masterSecret, partUri.getPartId());
+        return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(masterSecret, partUri.getPartId());
       case CAPTURE_ROW:
         return CaptureProvider.getInstance(context).getStream(masterSecret, ContentUris.parseId(uri));
       case SINGLE_USE_ROW:

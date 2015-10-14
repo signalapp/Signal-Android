@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.MediaKey;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirement;
@@ -66,7 +66,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
     final AttachmentId attachmentId = new AttachmentId(partRowId, partUniqueId);
-    final Attachment   attachment   = DatabaseFactory.getPartDatabase(context).getAttachment(attachmentId);
+    final Attachment   attachment   = DatabaseFactory.getAttachmentDatabase(context).getAttachment(attachmentId);
 
     if (attachment == null) {
       Log.w(TAG, "attachment no longer exists.");
@@ -102,8 +102,8 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       throws IOException
   {
 
-    PartDatabase database       = DatabaseFactory.getPartDatabase(context);
-    File         attachmentFile = null;
+    AttachmentDatabase database       = DatabaseFactory.getAttachmentDatabase(context);
+    File               attachmentFile = null;
 
     try {
       attachmentFile = createTempFile();
@@ -168,7 +168,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
   private void markFailed(long messageId, AttachmentId attachmentId) {
     try {
-      PartDatabase database = DatabaseFactory.getPartDatabase(context);
+      AttachmentDatabase database = DatabaseFactory.getAttachmentDatabase(context);
       database.setTransferProgressFailed(attachmentId, messageId);
     } catch (MmsException e) {
       Log.w(TAG, e);

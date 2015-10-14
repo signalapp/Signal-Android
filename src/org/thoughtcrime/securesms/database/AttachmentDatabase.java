@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.util.Util;
@@ -56,9 +55,9 @@ import java.util.concurrent.ExecutorService;
 
 import ws.com.google.android.mms.MmsException;
 
-public class PartDatabase extends Database {
+public class AttachmentDatabase extends Database {
   
-  private static final String TAG = PartDatabase.class.getSimpleName();
+  private static final String TAG = AttachmentDatabase.class.getSimpleName();
 
           static final String TABLE_NAME             = "part";
           static final String ROW_ID                 = "_id";
@@ -97,7 +96,7 @@ public class PartDatabase extends Database {
 
   private final ExecutorService thumbnailExecutor = Util.newSingleThreadedLifoExecutor();
 
-  public PartDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public AttachmentDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 

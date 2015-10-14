@@ -25,7 +25,7 @@ import com.bumptech.glide.request.target.Target;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -277,7 +277,7 @@ public class ThumbnailView extends FrameLayout {
       if (thumbnailClickListener            != null &&
           slide                             != null &&
           slide.asAttachment().getDataUri() != null &&
-          slide.getTransferState()  == PartDatabase.TRANSFER_PROGRESS_DONE)
+          slide.getTransferState()  == AttachmentDatabase.TRANSFER_PROGRESS_DONE)
       {
         thumbnailClickListener.onClick(view, slide);
       } else if (parentClickListener != null) {

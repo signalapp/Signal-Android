@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -235,9 +235,9 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     }
 
     private void schedulePendingIncomingParts(Context context) {
-      final PartDatabase             partDb             = DatabaseFactory.getPartDatabase(context);
+      final AttachmentDatabase       attachmentDb       = DatabaseFactory.getAttachmentDatabase(context);
       final MmsDatabase              mmsDb              = DatabaseFactory.getMmsDatabase(context);
-      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getPartDatabase(context).getPendingAttachments();
+      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments();
 
       Log.w(TAG, pendingAttachments.size() + " pending parts.");
       for (DatabaseAttachment attachment : pendingAttachments) {
@@ -246,7 +246,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
 
         if (attachment.hasData()) {
           Log.w(TAG, "corrected a pending media part " + attachment.getAttachmentId() + "that already had data.");
-          partDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), PartDatabase.TRANSFER_PROGRESS_DONE);
+          attachmentDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), AttachmentDatabase.TRANSFER_PROGRESS_DONE);
         } else if (record != null && !record.isOutgoing() && record.isPush()) {
           Log.w(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
           ApplicationContext.getInstance(context)

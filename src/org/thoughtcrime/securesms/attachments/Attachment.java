@@ -1,16 +1,11 @@
 package org.thoughtcrime.securesms.attachments;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.PartDatabase;
-
-import java.io.IOException;
-import java.io.InputStream;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 
 public abstract class Attachment {
 
@@ -54,8 +49,8 @@ public abstract class Attachment {
   }
 
   public boolean isInProgress() {
-    return transferState != PartDatabase.TRANSFER_PROGRESS_DONE &&
-           transferState != PartDatabase.TRANSFER_PROGRESS_FAILED;
+    return transferState != AttachmentDatabase.TRANSFER_PROGRESS_DONE &&
+           transferState != AttachmentDatabase.TRANSFER_PROGRESS_FAILED;
   }
 
   public long getSize() {

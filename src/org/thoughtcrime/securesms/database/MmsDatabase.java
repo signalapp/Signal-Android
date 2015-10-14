@@ -473,10 +473,10 @@ public class MmsDatabase extends MessagingDatabase {
   public OutgoingMediaMessage getOutgoingMessage(MasterSecret masterSecret, long messageId)
       throws MmsException, NoSuchMessageException
   {
-    MmsAddressDatabase addr         = DatabaseFactory.getMmsAddressDatabase(context);
-    PartDatabase       partDatabase = DatabaseFactory.getPartDatabase(context);
-    SQLiteDatabase     database     = databaseHelper.getReadableDatabase();
-    Cursor             cursor       = null;
+    MmsAddressDatabase addr               = DatabaseFactory.getMmsAddressDatabase(context);
+    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    SQLiteDatabase     database           = databaseHelper.getReadableDatabase();
+    Cursor             cursor             = null;
 
     try {
       cursor = database.query(TABLE_NAME, MMS_PROJECTION, ID_WHERE, new String[]{String.valueOf(messageId)}, null, null, null);
@@ -485,7 +485,7 @@ public class MmsDatabase extends MessagingDatabase {
         long             outboxType   = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
         String           messageText  = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
         long             timestamp    = cursor.getLong(cursor.getColumnIndexOrThrow(NORMALIZED_DATE_SENT));
-        List<Attachment> attachments  = new LinkedList<Attachment>(partDatabase.getAttachmentsForMessage(messageId));
+        List<Attachment> attachments  = new LinkedList<Attachment>(attachmentDatabase.getAttachmentsForMessage(messageId));
         MmsAddresses     addresses    = addr.getAddressesForId(messageId);
         List<String>     destinations = new LinkedList<>();
         String           body         = getDecryptedBody(masterSecret, messageText, outboxType);
@@ -538,7 +538,7 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getMmsId(),
                                                databaseAttachment.hasData(),
                                                databaseAttachment.getContentType(),
-                                               PartDatabase.TRANSFER_PROGRESS_DONE,
+                                               AttachmentDatabase.TRANSFER_PROGRESS_DONE,
                                                databaseAttachment.getSize(),
                                                databaseAttachment.getLocation(),
                                                databaseAttachment.getKey(),
@@ -771,7 +771,7 @@ public class MmsDatabase extends MessagingDatabase {
       throws MmsException
   {
     SQLiteDatabase     db              = databaseHelper.getWritableDatabase();
-    PartDatabase       partsDatabase   = DatabaseFactory.getPartDatabase(context);
+    AttachmentDatabase partsDatabase   = DatabaseFactory.getAttachmentDatabase(context);
     MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
 
     if (Types.isSymmetricEncryption(contentValues.getAsLong(MESSAGE_BOX)) ||
@@ -802,10 +802,10 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   public boolean delete(long messageId) {
-    long threadId                   = getThreadIdForMessage(messageId);
-    MmsAddressDatabase addrDatabase = DatabaseFactory.getMmsAddressDatabase(context);
-    PartDatabase partDatabase       = DatabaseFactory.getPartDatabase(context);
-    partDatabase.deleteAttachmentsForMessage(messageId);
+    long               threadId           = getThreadIdForMessage(messageId);
+    MmsAddressDatabase addrDatabase       = DatabaseFactory.getMmsAddressDatabase(context);
+    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    attachmentDatabase.deleteAttachmentsForMessage(messageId);
     addrDatabase.deleteAddressesForId(messageId);
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -874,7 +874,7 @@ public class MmsDatabase extends MessagingDatabase {
 
 
   public void deleteAllThreads() {
-    DatabaseFactory.getPartDatabase(context).deleteAllAttachments();
+    DatabaseFactory.getAttachmentDatabase(context).deleteAllAttachments();
     DatabaseFactory.getMmsAddressDatabase(context).deleteAllAddresses();
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -1090,10 +1090,10 @@ public class MmsDatabase extends MessagingDatabase {
       Callable<SlideDeck> task = new Callable<SlideDeck>() {
         @Override
         public SlideDeck call() throws Exception {
-          PartDatabase     partDatabase = DatabaseFactory.getPartDatabase(context);
-          List<Attachment> attachments  = new LinkedList<Attachment>(partDatabase.getAttachmentsForMessage(id));
-          SlideDeck        slideDeck    = new SlideDeck(context, attachments);
-          boolean          progress     = false;
+          AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+          List<Attachment>   attachments        = new LinkedList<Attachment>(attachmentDatabase.getAttachmentsForMessage(id));
+          SlideDeck          slideDeck          = new SlideDeck(context, attachments);
+          boolean            progress           = false;
 
           for (Attachment attachment : attachments) {
             if (attachment.isInProgress()) progress = true;
