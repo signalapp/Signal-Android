@@ -25,7 +25,7 @@
     <string name="privacy_pw_dialog_toast_reload">Restoring conversations...</string>
     <string name="privacy_pw_dialog_toast_hide">Hiding conversations...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Hiding conversation...</string>
-    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Vor dem Senden einer kostenpflichtigen SMS/MMS nachfragen</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Ask before sending a chargeable SMS/MMS</string>
     <string name="privacy_toast_install_premium">You need the G DATA Internet Security, to use this feature.</string>
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
     <string name="preferences_notification_never">Never</string>
@@ -66,7 +66,7 @@
     <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions"> Sorry, the selected audio exceeds message size restrictions (%1$skB).</string>
     <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions"> Sorry, the selected video exceeds message size restrictions (%1$skB).</string>
     <string name="eula_gdata_header_one">WELCOME TO</string>
-    <string name="msg_failed">Hinweis: Vermutlich hat sich der Schlüssel eines Empfängers durch eine Neuinstallation oder den versuchten Angriff eines Dritten geändert. Innerhalb einer Gruppe kann dieses Problem gelöst werden indem ein gewöhnlicher Schlüsselaustausch über eine neue Unterhaltung mit dem Kontakt stattfindet und anschließend die Gruppe aktualisiert wird.</string>
+    <string name="msg_failed">Note: The key of one of the recipients may have been changed due to a reinstallation or an attempted attack by a third party. Within a group this problem can be solved by initiating a regular key exchange in a new conversation with the contact and then refreshing the group.</string>
     <string name="profile_history_label">Media</string>
     <string name="profile_history_content">No images have been exchanged yet</string>
     <string name="menu_invite_to_sc">Invite</string>
@@ -75,4 +75,5 @@
     <string name="dialog_compressing"> The video is compressing...</string>
     <string name="dialog_compressing_header">Please wait...</string>
     <string name="preferences__versnr">Version</string>
+    <string name="profile_select_picture">Select profile picture</string>
 </resources>
