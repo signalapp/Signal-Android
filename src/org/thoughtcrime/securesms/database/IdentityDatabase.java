@@ -132,8 +132,6 @@ public class IdentityDatabase extends Database {
       } catch (InvalidMessageException e) {
         Log.w("GDATA", e);
       }
-    } else {
-      Toast.makeText(context, "Not registered", Toast.LENGTH_LONG).show();
     }
   }
 
