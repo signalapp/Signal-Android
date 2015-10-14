@@ -126,6 +126,7 @@ import java.util.List;
 import de.gdata.messaging.components.SelectTransportButton;
 import de.gdata.messaging.components.SelfDestructionButton;
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.PrivacyBridge;
 import de.gdata.messaging.util.ProfileAccessor;
@@ -219,6 +220,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             currentConversationType = ConversationItem.GROUP_CONVERSATION;
         } else {
             currentConversationType = ConversationItem.SINGLE_CONVERSATION;
+            if(recipients != null && recipients.getPrimaryRecipient() != null
+            && recipients.getPrimaryRecipient().getNumber() != null && new GDataPreferences(getApplicationContext()).isPrivacyActivated()
+                    && GService.shallBeBlockedByPrivacy(recipients.getPrimaryRecipient().getNumber())) {
+                this.finish();
+            }
         }
     }
 
