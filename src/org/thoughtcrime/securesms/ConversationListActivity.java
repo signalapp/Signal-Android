@@ -580,6 +580,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     };
 
     @Override
+    public void onBackPressed() {
+        if(actionFloatMenu.getVisibility() == View.VISIBLE) {
+            fab.performClick();
+        } else {
+            this.finish();
+        }
+    }
+
+    @Override
     protected void onPostCreate(Bundle bundle) {
         super.onPostCreate(bundle);
         mDrawerToggle.syncState();
