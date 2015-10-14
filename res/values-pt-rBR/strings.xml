@@ -437,7 +437,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="database_upgrade_activity__updating_database">Atualizando base de dados...</string>
   <string name="export_fragment__export_plaintext_backup">Exportar backup de texto claro</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Exportar um backup de texto claro compatível com \'SMS Backup And Restore\' para o cartão SD.</string>
+        Exportar um backup de texto claro compatível com \'SMS Backup &amp; Restore\' para o cartão SD.</string>
   <string name="import_fragment__import_system_sms_database">Importar base de dados SMS do sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar base de dados
         do app de mensagens padrão do sistema.
@@ -448,7 +448,7 @@ Tem certeza que deseja fazer isto?</string>
     </string>
   <string name="import_fragment__import_plaintext_backup">Importar backup de texto claro</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-        Importar um backup de texto claro. Compatível com \'SMS Backup And Restore.\'</string>
+        Importar um backup de texto claro. Compatível com \'SMS Backup &amp; Restore\'</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">É necessária a configuração manual de MMS para seu aparelho.</string>
   <string name="MmsPreferencesFragment__enabled">Habilitado</string>

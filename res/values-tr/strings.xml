@@ -411,7 +411,7 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="database_upgrade_activity__updating_database">Veritabanı güncelleniyor...</string>
   <string name="export_fragment__export_plaintext_backup">Şifrelenmemiş açık metin yedeği dışa aktar</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-\'SMS Backup And Restore\' ile uyumlu şifrelenmemiş metin yedeğini SD karta kaydet.  </string>
+\'SMS Backup &amp; Restore\' ile uyumlu şifrelenmemiş metin yedeğini SD karta kaydet.  </string>
   <string name="import_fragment__import_system_sms_database">Sistem SMS veritabanını içe aktar</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Öntanımlı sistem mesaj uygulamasından
 veritabanı içe aktarımı</string>
@@ -420,7 +420,7 @@ veritabanı içe aktarımı</string>
 Daha önce dışa aktarılmış bir şifrelenmiş SecureChat yedeğini yeniden yükle. </string>
   <string name="import_fragment__import_plaintext_backup">Şifrelenmemiş açık metin yedeği içe aktar</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-\'SMS Backup And Restore\' ile uyumlu bir şifrelenmemiş metin yedeğini içe aktar.</string>
+\'SMS Backup &amp; Restore\' ile uyumlu bir şifrelenmemiş metin yedeğini içe aktar.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telefonunuz için manuel MMS ayarları gerekmektedir.</string>
   <string name="MmsPreferencesFragment__enabled">Etkinleştirildi</string>
