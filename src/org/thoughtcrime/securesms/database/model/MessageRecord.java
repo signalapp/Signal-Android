@@ -84,7 +84,11 @@ public abstract class MessageRecord extends DisplayRecord {
         MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
         getDeliveryStatus() == DELIVERY_STATUS_FAILED;
   }
-
+  public boolean isDeliveryFailed() {
+    return
+            MmsSmsColumns.Types.isFailedMessageType(type)            ||
+                    getDeliveryStatus() == DELIVERY_STATUS_FAILED;
+  }
   public boolean isOutgoing() {
     return MmsSmsColumns.Types.isOutgoingMessageType(type);
   }
