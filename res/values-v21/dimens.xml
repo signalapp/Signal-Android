@@ -18,4 +18,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_compat_margin">16dp</dimen>
     <dimen name="fab_compat_margin_bottom">5dp</dimen>
+    <dimen name="fab_compat_margin_right">0dp</dimen>
 </resources>
