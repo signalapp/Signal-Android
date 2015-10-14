@@ -202,6 +202,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private String profileId = "0";
     private ProgressDialog compressingDialog;
     private boolean compressingIsrunning = false;
+    private String draftText;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -233,7 +234,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
             saveDraft();
             attachmentManager.clear();
-            composeText.setText("");
+            setComposeText("");
         }
         setIntent(intent);
 
@@ -269,6 +270,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if(compressingIsrunning) {
             compressingDialog = ProgressDialog.show(this, getString(R.string.dialog_compressing_header), getString(R.string.dialog_compressing));
         }
+        if (draftText != null) composeText.setText(draftText+ "");
     }
 
     @Override
@@ -822,12 +824,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     private void initializeDraft() {
-        String draftText = getIntent().getStringExtra(DRAFT_TEXT_EXTRA);
+        draftText = getIntent().getExtras().getString(DRAFT_TEXT_EXTRA);
         Uri draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
         Uri draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
         Uri draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
         String contentType = getIntent().getStringExtra(DRAFT_MEDIA_TYPE_EXTRA);
-        if (draftText != null) composeText.setText(draftText);
+
         if (draftImage != null) addAttachmentImage(draftImage);
         if (draftAudio != null && ContentType.isAudioType(contentType))
             addAttachmentAudio(draftAudio, contentType);
@@ -868,7 +870,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             protected void onPostExecute(List<Draft> drafts) {
                 for (Draft draft : drafts) {
                     if (draft.getType().equals(Draft.TEXT)) {
-                        composeText.setText(draft.getValue());
+                        setComposeText(draft.getValue());
                     } else if (draft.getType().equals(Draft.IMAGE)) {
                         addAttachmentImage(Uri.parse(draft.getValue()));
                     } else if (draft.getType().equals(Draft.AUDIO)) {
@@ -1371,7 +1373,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
 
         attachmentManager.clear();
-        composeText.setText("");
+        setComposeText("");
 
         new AsyncTask<OutgoingMediaMessage, Void, Long>() {
             @Override
@@ -1397,7 +1399,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             message = new OutgoingTextMessage(recipients, getMessage());
         }
 
-        this.composeText.setText("");
+        setComposeText("");
 
         new AsyncTask<OutgoingTextMessage, Void, Long>() {
             @Override
@@ -1591,7 +1593,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void setComposeText(String text) {
-        this.composeText.setText(text);
+        this.composeText.setText(composeText.getText() + text);
     }
 
     @Override
