@@ -321,21 +321,6 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
     this.stale = true;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    Recipients that = (Recipients)o;
-
-    return recipients.equals(that.recipients);
-  }
-
-  @Override
-  public int hashCode() {
-    return recipients.hashCode();
-  }
-
   public interface RecipientsModifiedListener {
     public void onModified(Recipients recipient);
   }

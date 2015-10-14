@@ -1480,7 +1480,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     protected void onPostExecute(Pair<Recipients, Boolean> result) {
-      if (!result.second && result.first.equals(recipients)) {
+      if (!result.second && result.first == recipients) {
         InviteReminder reminder = new InviteReminder(ConversationActivity.this, result.first);
         reminder.setOkListener(new OnClickListener() {
           @Override
