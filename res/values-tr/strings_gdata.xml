@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 saniye</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 saniye</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 saniye</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Devre dýþý býrak</string>
     <string name="gdata_contact_selection_page_title">Rehber girişleri</string>
     <string name="gdata_conversation_list_page_title">Eğlence</string>
     <string name="gd_dialog_fragment_phishing_title">Web Korumasý</string>
@@ -22,8 +21,6 @@
     <string name="menu_privacy_single_hide">Eðlenceyi gizle</string>
     <string name="menu_filter_block_contact">Rehber girişini engelle</string>
     <string name="privacy_pw_dialog_header">Parola girin: </string>
-    <string name="privacy_pw_dialog_toast_wrong">Girdiğiniz parola, G DATA Internet Security parolasıyla aynı değil.</string>
-    <string name="privacy_pw_dialog_hint">Not: Android için G DATA Internet Security uygulamasýnda seçtiðiniz parola söz konusudur.</string>
     <string name="privacy_pw_dialog_toast_reload">Eðlenceler geri yükleniyor...</string>
     <string name="privacy_pw_dialog_toast_hide">Eðlenceler gizlenmek üzere hazýrlanýyor...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Eðlence gizleniyor...</string>
@@ -65,4 +62,18 @@
     <string name="status_onlyurgentcalls">Sadece önemli aramalar</string>
     <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Maalesef seçilen audio mesaj boyutu kısıtlamasını aşıyor (%1$skB).</string>
     <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Maalesef seçilen video mesaj boyutu kısıtlamasını aşıyor (%1$skB).</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Kendi kendini imhayı devre dışı bırak</string>
+    <string name="privacy_pw_dialog_hint">Not: Bu, G DATA Internet Security for Android uygulamasında seçtiğiniz parola.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Girdiğiniz parola, G DATA Internet Security parolasıyla aynı değil.</string>
+    <string name="msg_failed">Not: Alıcılardan birinin anahtarı, yeniden kurma işlemi sonucunda veya üçüncü şahıslar tarafından bir saldırı girişimi nedeniyle değişmiş olabilir. Bir grupta bu sorun, ilgili kişiyle yeni bir görüşmede normal bir anahtar alışverişi başlatıp ardından grubun yenilenmesiyle çözülebilir.</string>
+    <string name="profile_history_label">Medya</string>
+    <string name="profile_history_content">Henüz herhangi bir görüntü alışverişi yapılmadı</string>
+    <string name="menu_invite_to_sc">Davet</string>
+    <string name="group_title">Başlık</string>
+    <string name="status_hint">Durumunuzu seçin:</string>
+    <string name="dialog_compressing"> Video sıkıştırılıyor...</string>
+    <string name="dialog_compressing_header">Lütfen bekleyin...</string>
+    <string name="preferences__versnr">Sürüm</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Ücretli SMS/MMS göndermeden önce sor</string>
+    <string name="profile_select_picture">Profil resmi seç</string>
 </resources>
