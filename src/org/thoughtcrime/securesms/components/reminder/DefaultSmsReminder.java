@@ -1,9 +1,8 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.components.reminder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.provider.Telephony;
 import android.view.View;
@@ -17,9 +16,9 @@ public class DefaultSmsReminder extends Reminder {
 
   @TargetApi(VERSION_CODES.KITKAT)
   public DefaultSmsReminder(final Context context) {
-    super(R.drawable.sms_selection_icon,
-          R.string.reminder_header_sms_default_title,
-          R.string.reminder_header_sms_default_text);
+    super(context.getString(R.string.reminder_header_sms_default_title),
+          context.getString(R.string.reminder_header_sms_default_text),
+          context.getString(R.string.reminder_header_sms_default_button));
 
     final OnClickListener okListener = new OnClickListener() {
       @Override
@@ -30,14 +29,14 @@ public class DefaultSmsReminder extends Reminder {
         context.startActivity(intent);
       }
     };
-    final OnClickListener cancelListener = new OnClickListener() {
+    final OnClickListener dismissListener = new OnClickListener() {
       @Override
       public void onClick(View v) {
         TextSecurePreferences.setPromptedDefaultSmsProvider(context, true);
       }
     };
     setOkListener(okListener);
-    setCancelListener(cancelListener);
+    setDismissListener(dismissListener);
   }
 
   public static boolean isEligible(Context context) {

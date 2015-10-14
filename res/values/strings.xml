@@ -1037,12 +1037,20 @@
     <!-- reminder_header -->
     <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
     <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
+    <string name="reminder_header_expired_build_button">UPGRADE</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
+    <string name="reminder_header_sms_default_button">SET</string>
     <string name="reminder_header_sms_import_title">Import system SMS?</string>
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
-    <string name="reminder_header_push_title">Enable Signal messages?</string>
-    <string name="reminder_header_push_text">Tap for instant delivery, stronger privacy, and no SMS fees.</string>
+    <string name="reminder_header_sms_import_button">IMPORT</string>
+    <string name="reminder_header_push_title">Enable Signal?</string>
+    <string name="reminder_header_push_text">Upgrade your messaging experience.</string>
+    <string name="reminder_header_push_button">ENABLE</string>
+    <string name="reminder_header_invite_title">Invite to Signal?</string>
+    <string name="reminder_header_invite_text">Take your conversation with %1$s to the next level.</string>
+    <string name="reminder_header_invite_button">INVITE</string>
+    <string name="reminder_header_close_button">CLOSE</string>
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>
