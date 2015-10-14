@@ -373,15 +373,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         }
             fabCThree.setVisibility(found < 3 ? View.GONE : hadImages.get(2) ? View.GONE : View.VISIBLE);
             ((CardView)textViewCThree.getParent()).setVisibility(found < 3 ? View.GONE : View.VISIBLE);
-            ((CardView)fabImageBackgroundThree.getParent()).setVisibility(found < 3 ? View.GONE : hadImages.get(2) ? View.VISIBLE : View.GONE);
+            fabImageBackgroundThree.setVisibility(found < 3 ? View.GONE : hadImages.get(2) ? View.VISIBLE : View.GONE);
 
             fabCTwo.setVisibility(found < 2 ? View.GONE : hadImages.get(1) ? View.GONE : View.VISIBLE);
             ((CardView)textViewCTwo.getParent()).setVisibility(found < 2 ? View.GONE : View.VISIBLE);
-            ((CardView)fabImageBackgroundTwo.getParent()).setVisibility(found < 2 ? View.GONE : hadImages.get(1) ? View.VISIBLE : View.GONE);
+            fabImageBackgroundTwo.setVisibility(found < 2 ? View.GONE : hadImages.get(1) ? View.VISIBLE : View.GONE);
 
             fabCOne.setVisibility(found < 1 ? View.GONE : hadImages.get(0) ? View.GONE : View.VISIBLE);
             ((CardView)textViewCOne.getParent()).setVisibility(found < 1 ? View.GONE : View.VISIBLE);
-            ((CardView)fabImageBackgroundOne.getParent()).setVisibility(found < 1 ? View.GONE : hadImages.get(0) ? View.VISIBLE : View.GONE);
+            fabImageBackgroundOne.setVisibility(found < 1 ? View.GONE : hadImages.get(0) ? View.VISIBLE : View.GONE);
 
         if(gDataPreferences.getViewPagersLastPage() == 1) {
             toggleActionFloatMenu(true, true, true);
@@ -392,7 +392,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         }
     }
 
-    private boolean setProfilePictureToFloatButton(final FloatingActionButton fab, Recipients recipients, CircledImageView imgView) {
+    private boolean setProfilePictureToFloatButton(final FloatingActionButton fab, Recipients recipients, final CircledImageView imgView) {
         boolean hadImage = false;
         if(recipients.getPrimaryRecipient() != null) {
             ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, GUtil.numberToLong(recipients.getPrimaryRecipient().getNumber())+"");
@@ -404,13 +404,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                     imgView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            Animation animFadein = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.abc_fade_in);
+                            imgView.startAnimation(animFadein);
                             fab.performClick();
                         }
                     });
             } else {
                 fab.setVisibility(View.VISIBLE);
                 fab.setImageBitmap(recipients.getPrimaryRecipient().getGeneratedAvatarWithColor(getApplicationContext(), fab.getSolidColor()));
-                ((CardView) imgView.getParent()).setVisibility(View.GONE);
+                imgView.setVisibility(View.GONE);
             }
         }
         return hadImage;
