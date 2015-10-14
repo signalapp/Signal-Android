@@ -190,11 +190,11 @@ public class PrivacyBridge {
   }
 
   public static String getConversationSelection(Context context) {
-    return getPreferences().isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(0)[0] : null;
+    return getPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(0)[0] : null;
   }
 
   public static String[] getConversationSelectionArgs(Context context) {
-    return getPreferences().isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(1) : null;
+    return getPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(1) : null;
   }
 
   public static void addContactToPrivacy(String displayName, List<String> numbers) {
@@ -218,7 +218,9 @@ public class PrivacyBridge {
   public static GDataPreferences getPreferences() {
     return preferences == null ? new GDataPreferences(GService.appContext): preferences;
   }
-
+  public static GDataPreferences getPreferences(Context context) {
+    return preferences == null ? new GDataPreferences(context): preferences;
+  }
   private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
     @Override
     protected Integer doInBackground(final List<NumberEntry>... arrayLists) {

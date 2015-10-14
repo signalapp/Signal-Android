@@ -23,6 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -109,26 +110,28 @@ public class IdentityDatabase extends Database {
 
   public void saveIdentity(MasterSecret masterSecret, long recipientId, IdentityKey identityKey)
   {
-    SQLiteDatabase database   = databaseHelper.getWritableDatabase();
-    MasterCipher masterCipher = new MasterCipher(masterSecret);
-    String identityKeyString  = Base64.encodeBytes(identityKey.serialize());
-    String macString          = Base64.encodeBytes(masterCipher.getMacFor(recipientId +
-                                                                              identityKeyString));
+    if(identityKey != null) {
+      SQLiteDatabase database = databaseHelper.getWritableDatabase();
+      MasterCipher masterCipher = new MasterCipher(masterSecret);
+      String identityKeyString = Base64.encodeBytes(identityKey.serialize());
+      String macString = Base64.encodeBytes(masterCipher.getMacFor(recipientId +
+              identityKeyString));
 
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(RECIPIENT, recipientId);
-    contentValues.put(IDENTITY_KEY, identityKeyString);
-    contentValues.put(MAC, macString);
+      ContentValues contentValues = new ContentValues();
+      contentValues.put(RECIPIENT, recipientId);
+      contentValues.put(IDENTITY_KEY, identityKeyString);
+      contentValues.put(MAC, macString);
 
-    database.replace(TABLE_NAME, null, contentValues);
+      database.replace(TABLE_NAME, null, contentValues);
 
-    context.getContentResolver().notifyChange(CHANGE_URI, null);
-    try {
-      long[] ids = new long[1];
-      ids[0] = recipientId;
-      ProfileAccessor.sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsForIds(context, ids, false));
-    } catch (InvalidMessageException e) {
-      Log.w("GDATA", e);
+      context.getContentResolver().notifyChange(CHANGE_URI, null);
+      try {
+        long[] ids = new long[1];
+        ids[0] = recipientId;
+        ProfileAccessor.sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsForIds(context, ids, false));
+      } catch (InvalidMessageException e) {
+        Log.w("GDATA", e);
+      }
     }
   }
 
