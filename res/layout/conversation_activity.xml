@@ -20,6 +20,11 @@
                   android:paddingTop="?attr/actionBarSize"
                   android:gravity="bottom">
 
+        <org.thoughtcrime.securesms.components.reminder.ReminderView
+            android:id="@+id/reminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <FrameLayout android:id="@+id/fragment_content"
                      android:layout_width="match_parent"
                      android:layout_height="0dp"
