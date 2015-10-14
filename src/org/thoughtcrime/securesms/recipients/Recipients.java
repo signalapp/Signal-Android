@@ -321,7 +321,8 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
     this.stale = true;
   }
 
-  @Override public boolean equals(Object o) {
+  @Override
+  public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
@@ -330,7 +331,8 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
     return recipients.equals(that.recipients);
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return recipients.hashCode();
   }
 

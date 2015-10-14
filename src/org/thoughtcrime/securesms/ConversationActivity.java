@@ -1469,7 +1469,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private class ShowInviteReminderTask extends AsyncTask<Recipients, Void, Pair<Recipients,Boolean>> {
-    @Override protected Pair<Recipients, Boolean> doInBackground(Recipients... recipients) {
+    @Override
+    protected Pair<Recipients, Boolean> doInBackground(Recipients... recipients) {
       if (recipients.length != 1 || recipients[0] == null) throw new AssertionError("task needs exactly one Recipients object");
 
       Optional<RecipientsPreferences> prefs = DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
@@ -1477,11 +1478,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return new Pair<>(recipients[0], prefs.isPresent() && prefs.get().hasSeenInviteReminder());
     }
 
-    @Override protected void onPostExecute(Pair<Recipients, Boolean> result) {
+    @Override
+    protected void onPostExecute(Pair<Recipients, Boolean> result) {
       if (!result.second && result.first.equals(recipients)) {
         InviteReminder reminder = new InviteReminder(ConversationActivity.this, result.first);
         reminder.setOkListener(new OnClickListener() {
-          @Override public void onClick(View v) {
+          @Override
+          public void onClick(View v) {
             handleInviteLink();
             reminderView.requestDismiss();
           }

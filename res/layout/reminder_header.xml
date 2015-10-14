@@ -39,7 +39,10 @@
               android:layout_height="wrap_content"
               android:textSize="16sp"
               android:fontFamily="sans-serif-medium"
-              android:background="@drawable/md_btn_selector_ripple_dark"
+              android:paddingLeft="6dp"
+              android:paddingRight="6dp"
+              android:paddingTop="8dp"
+              android:paddingBottom="8dp"
               android:textColor="#99ffffff"
               android:clickable="true"
               android:text="@string/reminder_header_close_button" />
@@ -49,7 +52,10 @@
               android:layout_height="wrap_content"
               android:textSize="16sp"
               android:fontFamily="sans-serif-medium"
-              android:background="@drawable/md_btn_selector_ripple_dark"
+              android:paddingLeft="6dp"
+              android:paddingRight="6dp"
+              android:paddingTop="8dp"
+              android:paddingBottom="8dp"
               android:textColor="@color/white"
               tools:text="ENABLE" />
 
