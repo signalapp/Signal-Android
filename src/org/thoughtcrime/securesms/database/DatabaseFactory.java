@@ -66,7 +66,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_ENVELOPE_CONTENT_VERSION = 19;
   private static final int INTRODUCED_COLOR_PREFERENCE_VERSION = 20;
   private static final int INTRODUCED_DB_OPTIMIZATIONS_VERSION = 21;
-  private static final int DATABASE_VERSION                    = 21;
+  private static final int INTRODUCED_INVITE_REMINDERS_VERSION = 22;
+  private static final int DATABASE_VERSION                    = 22;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -759,6 +760,10 @@ public class DatabaseFactory {
         db.execSQL("UPDATE mms SET date_received = (date_received * 1000), date = (date * 1000);");
         db.execSQL("CREATE INDEX IF NOT EXISTS sms_thread_date_index ON sms (thread_id, date);");
         db.execSQL("CREATE INDEX IF NOT EXISTS mms_thread_date_index ON mms (thread_id, date_received);");
+      }
+
+      if (oldVersion < INTRODUCED_INVITE_REMINDERS_VERSION) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN seen_invite_reminder INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

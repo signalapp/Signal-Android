@@ -58,6 +58,8 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.google.protobuf.ByteString;
 
+import junit.framework.Assert;
+
 import org.thoughtcrime.redphone.RedPhone;
 import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
@@ -66,6 +68,8 @@ import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
+import org.thoughtcrime.securesms.components.reminder.InviteReminder;
+import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.camera.HidingImageButton;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
@@ -85,6 +89,7 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
@@ -118,16 +123,17 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -176,6 +182,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   InputAwareLayout      container;
   private   View                  composePanel;
   private   View                  composeBubble;
+  private   ReminderView          reminderView;
 
   private   AttachmentTypeSelectorAdapter attachmentAdapter;
   private   AttachmentManager             attachmentManager;
@@ -217,17 +224,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeActionBar();
     initializeViews();
     initializeResources();
-    initializeSecurity(false, false).addListener(new ListenableFuture.Listener<Boolean>() {
-      @Override
-      public void onSuccess(Boolean result) {
-        initializeDraft();
-      }
-
-      @Override
-      public void onFailure(ExecutionException e) {
-        throw new AssertionError(e);
-      }
-    });
+    initializeSecurity(false, false);
   }
 
   @Override
@@ -242,16 +239,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     setIntent(intent);
     initializeResources();
-    initializeSecurity(false, false).addListener(new ListenableFuture.Listener<Boolean>() {
-      @Override
-      public void onSuccess(Boolean result) {
-        initializeDraft();
-      }
-      @Override
-      public void onFailure(ExecutionException e) {
-        throw new AssertionError(e);
-      }
-    });
+    initializeSecurity(false, false);
 
     if (fragment != null) {
       fragment.onNewIntent();
@@ -770,11 +758,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute();
   }
 
-  private ListenableFuture<Boolean> initializeSecurity(final boolean currentSecureText,
+  private void initializeSecurity(final boolean currentSecureText,
                                                        final boolean currentSecureVoice)
   {
-    final SettableFuture<Boolean> future = new SettableFuture<>();
-
     handleSecurityChange(currentSecureText || isPushGroupConversation(),
                          currentSecureVoice && !isGroupConversation());
 
@@ -806,14 +792,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (result.first != currentSecureText || result.second != currentSecureVoice) {
           handleSecurityChange(result.first, result.second);
         }
-
-        future.set(true);
+        onSecurityUpdated();
       }
     }.execute(recipients);
-
-    return future;
   }
 
+  private void onSecurityUpdated() {
+    initializeDraft();
+    updateInviteReminder();
+  }
+
+  private void updateInviteReminder() {
+    if (TextSecurePreferences.isPushRegistered(this) && !isSecureText && recipients.isSingleRecipient()) {
+      new ShowInviteReminderTask().execute(recipients);
+    } else {
+      reminderView.hide();
+    }
+  }
 
   private void initializeMmsEnabledCheck() {
     new AsyncTask<Void, Void, Boolean>() {
@@ -830,21 +825,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
-    titleView      = (ConversationTitleView) getSupportActionBar().getCustomView();
-    buttonToggle   = (AnimatingToggle)       findViewById(R.id.button_toggle);
-    sendButton     = (SendButton)            findViewById(R.id.send_button);
-    attachButton   = (ImageButton)           findViewById(R.id.attach_button);
-    composeText    = (ComposeText)           findViewById(R.id.embedded_text_editor);
-    charactersLeft = (TextView)              findViewById(R.id.space_left);
-    emojiToggle    = (EmojiToggle)           findViewById(R.id.emoji_toggle);
-    emojiDrawer    = (EmojiDrawer)           findViewById(R.id.emoji_drawer);
-    unblockButton  = (Button)                findViewById(R.id.unblock_button);
-    composePanel   =                         findViewById(R.id.bottom_panel);
-    composeBubble  =                         findViewById(R.id.compose_bubble);
-    container      = (InputAwareLayout)      findViewById(R.id.layout_container);
-
-    quickAttachmentDrawer = (QuickAttachmentDrawer) findViewById(R.id.quick_attachment_drawer);
-    quickAttachmentToggle = (HidingImageButton)     findViewById(R.id.quick_attachment_toggle);
+    titleView             = (ConversationTitleView) getSupportActionBar().getCustomView();
+    buttonToggle          = ViewUtil.findById(this, R.id.button_toggle);
+    sendButton            = ViewUtil.findById(this, R.id.send_button);
+    attachButton          = ViewUtil.findById(this, R.id.attach_button);
+    composeText           = ViewUtil.findById(this, R.id.embedded_text_editor);
+    charactersLeft        = ViewUtil.findById(this, R.id.space_left);
+    emojiToggle           = ViewUtil.findById(this, R.id.emoji_toggle);
+    emojiDrawer           = ViewUtil.findById(this, R.id.emoji_drawer);
+    unblockButton         = ViewUtil.findById(this, R.id.unblock_button);
+    composePanel          = ViewUtil.findById(this, R.id.bottom_panel);
+    composeBubble         = ViewUtil.findById(this, R.id.compose_bubble);
+    container             = ViewUtil.findById(this, R.id.layout_container);
+    reminderView          = ViewUtil.findById(this, R.id.reminder);
+    quickAttachmentDrawer = ViewUtil.findById(this, R.id.quick_attachment_drawer);
+    quickAttachmentToggle = ViewUtil.findById(this, R.id.quick_attachment_toggle);
 
     container.addOnKeyboardShownListener(this);
 
@@ -944,6 +939,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         titleView.setTitle(recipients);
         setBlockedUserState(recipients);
         setActionBarColor(recipients.getColor());
+        updateInviteReminder();
       }
     });
   }
@@ -1459,4 +1455,28 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateToggleButtonState();
   }
 
+  private class ShowInviteReminderTask extends AsyncTask<Recipients, Void, Pair<Recipients,Boolean>> {
+    @Override protected Pair<Recipients, Boolean> doInBackground(Recipients... recipients) {
+      if (recipients.length != 1 || recipients[0] == null) throw new AssertionError("task needs exactly one Recipients object");
+
+      Optional<RecipientsPreferences> prefs = DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+                                                             .getRecipientsPreferences(recipients[0].getIds());
+      return new Pair<>(recipients[0], prefs.isPresent() && prefs.get().hasSeenInviteReminder());
+    }
+
+    @Override protected void onPostExecute(Pair<Recipients, Boolean> result) {
+      if (!result.second && result.first.equals(recipients)) {
+        InviteReminder reminder = new InviteReminder(ConversationActivity.this, result.first);
+        reminder.setOkListener(new OnClickListener() {
+          @Override public void onClick(View v) {
+            handleInviteLink();
+            reminderView.requestDismiss();
+          }
+        });
+        reminderView.showReminder(reminder);
+      } else {
+        reminderView.hide();
+      }
+    }
+  }
 }
