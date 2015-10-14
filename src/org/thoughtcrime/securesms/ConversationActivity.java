@@ -58,8 +58,6 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.google.protobuf.ByteString;
 
-import junit.framework.Assert;
-
 import org.thoughtcrime.redphone.RedPhone;
 import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
@@ -112,6 +110,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
@@ -224,7 +223,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeActionBar();
     initializeViews();
     initializeResources();
-    initializeSecurity(false, false);
+    initializeSecurity(false, false).addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        initializeDraft();
+      }
+    });
   }
 
   @Override
@@ -239,7 +243,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     setIntent(intent);
     initializeResources();
-    initializeSecurity(false, false);
+    initializeSecurity(false, false).addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        initializeDraft();
+      }
+    });
 
     if (fragment != null) {
       fragment.onNewIntent();
@@ -758,9 +767,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute();
   }
 
-  private void initializeSecurity(final boolean currentSecureText,
+  private ListenableFuture<Boolean> initializeSecurity(final boolean currentSecureText,
                                                        final boolean currentSecureVoice)
   {
+    final SettableFuture<Boolean> future = new SettableFuture<>();
+
     handleSecurityChange(currentSecureText || isPushGroupConversation(),
                          currentSecureVoice && !isGroupConversation());
 
@@ -792,13 +803,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (result.first != currentSecureText || result.second != currentSecureVoice) {
           handleSecurityChange(result.first, result.second);
         }
+        future.set(true);
         onSecurityUpdated();
       }
     }.execute(recipients);
+
+    return future;
   }
 
   private void onSecurityUpdated() {
-    initializeDraft();
     updateInviteReminder();
   }
 
