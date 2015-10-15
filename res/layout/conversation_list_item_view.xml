@@ -10,13 +10,13 @@
         android:orientation="horizontal">
 
     <LinearLayout android:id="@+id/contact_photo_frame"
-                 android:layout_width="70dp"
+                 android:layout_width="80dp"
                  android:layout_height="fill_parent"
                  android:layout_gravity="center"
                  android:paddingTop="4dp"
                  android:paddingBottom="3dp"
                  android:paddingLeft="10dp"
-                 android:paddingRight="10dp"
+                 android:paddingRight="7dp"
                  android:visibility="visible">
 
         <org.thoughtcrime.securesms.components.CircledImageView
