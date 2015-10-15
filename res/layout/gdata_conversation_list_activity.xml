@@ -56,7 +56,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/fab"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:gravity="bottom">
         <LinearLayout
             android:id="@+id/action_float_menu"
@@ -66,7 +66,7 @@
             android:animateLayoutChanges="true"
             android:gravity="bottom|right"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <LinearLayout
                 android:id="@+id/action_float_menu_pone"
@@ -110,7 +110,6 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                         android:scaleType="fitXY"
-                        android:src="?attr/menu_new_conversation_icon"
                         android:visibility="invisible"
                         app:backgroundTint="@color/holo_orange_dark"
                         app:borderWidth="0dp"
