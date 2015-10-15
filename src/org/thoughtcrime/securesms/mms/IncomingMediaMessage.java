@@ -1,38 +1,42 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.text.TextUtils;
-import android.util.Log;
-
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.crypto.MediaKey;
-import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.MmsAddresses;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 
+import java.util.LinkedList;
 import java.util.List;
-
-import ws.com.google.android.mms.pdu.CharacterSets;
-import ws.com.google.android.mms.pdu.EncodedStringValue;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduHeaders;
-import ws.com.google.android.mms.pdu.PduPart;
-import ws.com.google.android.mms.pdu.RetrieveConf;
 
 public class IncomingMediaMessage {
 
-  private final PduHeaders headers;
-  private final PduBody    body;
-  private final String     groupId;
-  private final boolean    push;
+  private final String  from;
+  private final String  body;
+  private final String  groupId;
+  private final boolean push;
+  private final long    sentTimeMillis;
 
-  public IncomingMediaMessage(RetrieveConf retrieved) {
-    this.headers = retrieved.getPduHeaders();
-    this.body    = retrieved.getBody();
-    this.groupId = null;
-    this.push    = false;
+  private final List<String>     to          = new LinkedList<>();
+  private final List<String>     cc          = new LinkedList<>();
+  private final List<Attachment> attachments = new LinkedList<>();
+
+  public IncomingMediaMessage(String from, List<String> to, List<String> cc,
+                              String body, long sentTimeMillis,
+                              List<Attachment> attachments)
+  {
+    this.from           = from;
+    this.sentTimeMillis = sentTimeMillis;
+    this.body           = body;
+    this.groupId        = null;
+    this.push           = false;
+
+    this.to.addAll(to);
+    this.cc.addAll(cc);
+    this.attachments.addAll(attachments);
   }
 
   public IncomingMediaMessage(MasterSecretUnion masterSecret,
@@ -44,57 +48,28 @@ public class IncomingMediaMessage {
                               Optional<TextSecureGroup> group,
                               Optional<List<TextSecureAttachment>> attachments)
   {
-    this.headers = new PduHeaders();
-    this.body    = new PduBody();
-    this.push    = true;
+    this.push           = true;
+    this.from           = from;
+    this.sentTimeMillis = sentTimeMillis;
+    this.body           = body.orNull();
 
-    if (group.isPresent()) {
-      this.groupId = GroupUtil.getEncodedId(group.get().getGroupId());
-    } else {
-      this.groupId = null;
-    }
+    if (group.isPresent()) this.groupId = GroupUtil.getEncodedId(group.get().getGroupId());
+    else                   this.groupId = null;
 
-    this.headers.setEncodedStringValue(new EncodedStringValue(from), PduHeaders.FROM);
-    this.headers.appendEncodedStringValue(new EncodedStringValue(to), PduHeaders.TO);
-    this.headers.setLongInteger(sentTimeMillis / 1000, PduHeaders.DATE);
-
-
-    if (body.isPresent() && !TextUtils.isEmpty(body.get())) {
-      PduPart text = new PduPart();
-      text.setData(Util.toUtf8Bytes(body.get()));
-      text.setContentType(Util.toIsoBytes("text/plain"));
-      text.setCharset(CharacterSets.UTF_8);
-      this.body.addPart(text);
-    }
-
-    if (attachments.isPresent()) {
-      for (TextSecureAttachment attachment : attachments.get()) {
-        if (attachment.isPointer()) {
-          PduPart media        = new PduPart();
-          String  encryptedKey = MediaKey.getEncrypted(masterSecret, attachment.asPointer().getKey());
-
-          media.setContentType(Util.toIsoBytes(attachment.getContentType()));
-          media.setContentLocation(Util.toIsoBytes(String.valueOf(attachment.asPointer().getId())));
-          media.setContentDisposition(Util.toIsoBytes(encryptedKey));
-
-          if (relay.isPresent()) {
-            media.setName(Util.toIsoBytes(relay.get()));
-          }
-
-          media.setTransferProgress(PartDatabase.TRANSFER_PROGRESS_AUTO_PENDING);
-
-          this.body.addPart(media);
-        }
-      }
-    }
+    this.to.add(to);
+    this.attachments.addAll(PointerAttachment.forPointers(masterSecret, attachments));
   }
 
-  public PduHeaders getPduHeaders() {
-    return headers;
-  }
-
-  public PduBody getBody() {
+  public String getBody() {
     return body;
+  }
+
+  public MmsAddresses getAddresses() {
+    return new MmsAddresses(from, to, cc, new LinkedList<String>());
+  }
+
+  public List<Attachment> getAttachments() {
+    return attachments;
   }
 
   public String getGroupId() {
@@ -105,10 +80,11 @@ public class IncomingMediaMessage {
     return push;
   }
 
+  public long getSentTimeMillis() {
+    return sentTimeMillis;
+  }
+
   public boolean isGroupMessage() {
-    return groupId != null                                           ||
-        !Util.isEmpty(headers.getEncodedStringValues(PduHeaders.CC)) ||
-        (headers.getEncodedStringValues(PduHeaders.TO) != null &&
-         headers.getEncodedStringValues(PduHeaders.TO).length > 1);
+    return groupId != null || to.size() > 1 || cc.size() > 0;
   }
 }

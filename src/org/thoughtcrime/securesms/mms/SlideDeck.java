@@ -22,6 +22,7 @@ import android.support.annotation.Nullable;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.dom.smil.parser.SmilXmlSerializer;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -43,14 +44,9 @@ public class SlideDeck {
 
   private final List<Slide> slides = new LinkedList<>();
 
-  public SlideDeck(SlideDeck copy) {
-    this.slides.addAll(copy.getSlides());
-  }
-
-  public SlideDeck(Context context, PduBody body) {
-    for (int i=0;i<body.getPartsNum();i++) {
-      String contentType = Util.toIsoString(body.getPart(i).getContentType());
-      Slide  slide       = MediaUtil.getSlideForPart(context, body.getPart(i), contentType);
+  public SlideDeck(Context context, List<Attachment> attachments) {
+    for (Attachment attachment : attachments) {
+      Slide slide = MediaUtil.getSlideForAttachment(context, attachment);
       if (slide != null) slides.add(slide);
     }
   }
@@ -62,15 +58,14 @@ public class SlideDeck {
     slides.clear();
   }
 
-  public PduBody toPduBody() {
-    PduBody body = new PduBody();
+  public List<Attachment> asAttachments() {
+    List<Attachment> attachments = new LinkedList<>();
 
     for (Slide slide : slides) {
-      PduPart part = slide.getPart();
-      body.addPart(part);
+      attachments.add(slide.asAttachment());
     }
 
-    return body;
+    return attachments;
   }
 
   public void addSlide(Slide slide) {

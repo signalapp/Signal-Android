@@ -9,9 +9,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import com.bumptech.glide.Glide;
-
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
@@ -21,24 +20,24 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
 
 import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class MediaUtil {
   private static final String TAG = MediaUtil.class.getSimpleName();
 
-  public static ThumbnailData generateThumbnail(Context context, MasterSecret masterSecret, Uri uri, String type)
+  public static @Nullable ThumbnailData generateThumbnail(Context context, MasterSecret masterSecret, String contentType, Uri uri)
       throws ExecutionException
   {
     long   startMillis = System.currentTimeMillis();
-    ThumbnailData data;
-    if      (ContentType.isImageType(type)) data = new ThumbnailData(generateImageThumbnail(context, masterSecret, uri));
-    else                                    data = null;
+    ThumbnailData data = null;
+
+    if (ContentType.isImageType(contentType)) {
+      data = new ThumbnailData(generateImageThumbnail(context, masterSecret, uri));
+    }
 
     if (data != null) {
       Log.w(TAG, String.format("generated thumbnail for part, %dx%d (%.3f:1) in %dms",
@@ -49,16 +48,6 @@ public class MediaUtil {
     return data;
   }
 
-  public static byte[] getPartData(Context context, MasterSecret masterSecret, PduPart part)
-      throws IOException
-  {
-    ByteArrayOutputStream os = part.getDataSize() > 0 && part.getDataSize() < Integer.MAX_VALUE
-        ? new ByteArrayOutputStream((int) part.getDataSize())
-        : new ByteArrayOutputStream();
-    Util.copy(PartAuthority.getPartStream(context, masterSecret, part.getDataUri()), os);
-    return os.toByteArray();
-  }
-
   private static Bitmap generateImageThumbnail(Context context, MasterSecret masterSecret, Uri uri)
       throws ExecutionException
   {
@@ -66,22 +55,22 @@ public class MediaUtil {
     return BitmapUtil.createScaledBitmap(context, new DecryptableUri(masterSecret, uri), maxSize, maxSize);
   }
 
-  public static Slide getSlideForPart(Context context, PduPart part, String contentType) {
+  public static Slide getSlideForAttachment(Context context, Attachment attachment) {
     Slide slide = null;
-    if (isGif(contentType)) {
-      slide = new GifSlide(context, part);
-    } else if (ContentType.isImageType(contentType)) {
-      slide = new ImageSlide(context, part);
-    } else if (ContentType.isVideoType(contentType)) {
-      slide = new VideoSlide(context, part);
-    } else if (ContentType.isAudioType(contentType)) {
-      slide = new AudioSlide(context, part);
+    if (isGif(attachment.getContentType())) {
+      slide = new GifSlide(context, attachment);
+    } else if (ContentType.isImageType(attachment.getContentType())) {
+      slide = new ImageSlide(context, attachment);
+    } else if (ContentType.isVideoType(attachment.getContentType())) {
+      slide = new VideoSlide(context, attachment);
+    } else if (ContentType.isAudioType(attachment.getContentType())) {
+      slide = new AudioSlide(context, attachment);
     }
 
     return slide;
   }
 
-  public static String getMimeType(Context context, Uri uri) {
+  public static @Nullable String getMimeType(Context context, Uri uri) {
     String type = context.getContentResolver().getType(uri);
     if (type == null) {
       final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
@@ -91,7 +80,7 @@ public class MediaUtil {
   }
 
   public static long getMediaSize(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
-    InputStream in = PartAuthority.getPartStream(context, masterSecret, uri);
+    InputStream in = PartAuthority.getAttachmentStream(context, masterSecret, uri);
     if (in == null) throw new IOException("Couldn't obtain input stream.");
 
     long   size   = 0;
@@ -110,24 +99,20 @@ public class MediaUtil {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif");
   }
 
-  public static boolean isGif(PduPart part) {
-    return isGif(Util.toIsoString(part.getContentType()));
+  public static boolean isGif(Attachment attachment) {
+    return isGif(attachment.getContentType());
   }
 
-  public static boolean isImage(PduPart part) {
-    return ContentType.isImageType(Util.toIsoString(part.getContentType()));
+  public static boolean isImage(Attachment attachment) {
+    return ContentType.isImageType(attachment.getContentType());
   }
 
-  public static boolean isAudio(PduPart part) {
-    return ContentType.isAudioType(Util.toIsoString(part.getContentType()));
+  public static boolean isAudio(Attachment attachment) {
+    return ContentType.isAudioType(attachment.getContentType());
   }
 
-  public static boolean isVideo(PduPart part) {
-    return ContentType.isVideoType(Util.toIsoString(part.getContentType()));
-  }
-
-  public static @Nullable String getDiscreteMimeType(@NonNull PduPart part) {
-    return getDiscreteMimeType(Util.toIsoString(part.getContentType()));
+  public static boolean isVideo(Attachment attachment) {
+    return ContentType.isVideoType(attachment.getContentType());
   }
 
   public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {
