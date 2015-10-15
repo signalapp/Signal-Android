@@ -4,12 +4,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <FrameLayout android:id="@+id/contact_photo_frame"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerVertical="true"
-                 android:layout_alignParentLeft="true"
-                 android:paddingTop="3dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <LinearLayout android:id="@+id/contact_photo_frame"
+                 android:layout_width="70dp"
+                 android:layout_height="fill_parent"
+                 android:layout_gravity="center"
+                 android:paddingTop="4dp"
                  android:paddingBottom="3dp"
                  android:paddingLeft="10dp"
                  android:paddingRight="10dp"
@@ -18,22 +22,20 @@
         <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:cropToPadding="true"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:scaleType="centerCrop"
             android:visibility="gone"
-            android:contentDescription="Contact Photo Image"
-            android:layout_marginLeft="0dp" />
-    </FrameLayout>
+            android:contentDescription="Contact Photo Image" />
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dip"
+        android:layout_marginTop="8dip"
         android:layout_marginLeft="4dip"
         android:layout_marginRight="8dip"
-        android:layout_marginBottom="4dip"
+        android:layout_marginBottom="8dip"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/contact_photo_frame"
         android:orientation="vertical">
@@ -109,5 +111,6 @@
             android:background="@drawable/bg_red"
             android:textColor="@color/black"/>
 </RelativeLayout>
+    </LinearLayout>
     </LinearLayout>
 </org.thoughtcrime.securesms.ConversationListItem>
