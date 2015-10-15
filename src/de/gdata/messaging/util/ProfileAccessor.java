@@ -166,7 +166,10 @@ public class ProfileAccessor {
     PduPart part = database.getPart(ProfileAccessor.getPartId(context, profileId));
     mMasterSecret = masterSecret;
     if (part != null) {
-      return new ImageSlide(context, masterSecret, part);
+      if (mMasterSecret != null && context != null) {
+        ImageSlide slide = new ImageSlide(context, masterSecret, part);
+        return slide.getThumbnailUri() != null ? slide : null;
+      }
     }
     return null;
   }
@@ -176,8 +179,9 @@ public class ProfileAccessor {
     PduPart part = database.getPart(ProfileAccessor.getPartId(context, profileId));
 
     if (part != null) {
-      if(mMasterSecret != null) {
-        return new ImageSlide(context, mMasterSecret, part);
+      if(mMasterSecret != null && context != null) {
+        ImageSlide slide = new ImageSlide(context, mMasterSecret, part);
+        return slide.getThumbnailUri() != null ? slide : null;
       }
     }
     return null;
