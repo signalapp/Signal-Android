@@ -26,15 +26,17 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.thoughtcrime.securesms.util.VisibleForTesting;
+
 /**
  * RecyclerView.Adapter that manages a Cursor, comparable to the CursorAdapter usable in ListView/GridView.
  */
 public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-  private final Context         context;
+  private final Context context;
   private final DataSetObserver observer = new AdapterDataSetObserver();
 
-  private final static int HEADER_TYPE = Integer.MIN_VALUE;
-  private final static int FOOTER_TYPE = Integer.MIN_VALUE + 1;
+  @VisibleForTesting final static int HEADER_TYPE = Integer.MIN_VALUE;
+  @VisibleForTesting final static int FOOTER_TYPE = Integer.MIN_VALUE + 1;
 
   private           Cursor  cursor;
   private           boolean valid;
@@ -49,13 +51,11 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   protected CursorRecyclerViewAdapter(Context context, Cursor cursor) {
     this.context = context;
-    this.cursor  = cursor;
+    this.cursor = cursor;
     if (cursor != null) {
       valid = true;
       cursor.registerDataSetObserver(observer);
     }
-
-    setHasStableIds(false);
   }
 
   protected @NonNull Context getContext() {
@@ -127,16 +127,6 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   }
 
   public void onItemViewRecycled(VH holder) {}
-
-  @Override
-  public long getItemId(int position) {
-    if (isHeaderPosition(position)) return HEADER_TYPE;
-    if (isFooterPosition(position)) return FOOTER_TYPE;
-
-    return isActiveCursor() && cursor.moveToPosition(getCursorPosition(position))
-           ? cursor.getLong(cursor.getColumnIndexOrThrow("_id"))
-           : 0;
-  }
 
   @Override public final ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     switch (viewType) {
