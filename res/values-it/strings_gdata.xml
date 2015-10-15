@@ -63,7 +63,7 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_0">Disabilita autodistruzione</string>
     <string name="privacy_pw_dialog_hint">Nota: questa è la password che hai selezionato in G DATA Internet Security per Android.</string>
     <string name="privacy_pw_dialog_toast_wrong">La password immessa non corrisponde a quella di G DATA Internet Security.</string>
-    <string name="msg_failed">Nota: la chiave di uno dei destinatari potrebbe essere cambiata in seguito a una reinstallazione o a un tentativo di attacco di terzi. All&apos;interno di un gruppo, questo problema si può risolvere avviando in una nuova conversazione un regolare scambio di chiavi con il contatto e quindi aggiornando il gruppo.</string>
+    <string name="msg_failed">Nota: la chiave di uno dei destinatari potrebbe essere cambiata in seguito a una reinstallazione o a un tentativo di attacco di terzi. All\'interno di un gruppo, questo problema si può risolvere avviando in una nuova conversazione un regolare scambio di chiavi con il contatto e quindi aggiornando il gruppo.</string>
     <string name="profile_history_label">Media</string>
     <string name="profile_history_content">Non sono ancora state scambiate immagini</string>
     <string name="menu_invite_to_sc">Invito</string>
