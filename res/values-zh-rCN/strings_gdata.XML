@@ -22,8 +22,8 @@
     <string name="menu_privacy_single_hide">隐藏对话</string>
     <string name="menu_filter_block_contact">阻止联系人</string>
     <string name="privacy_pw_dialog_header">输入密码: </string>
-    <string name="privacy_pw_dialog_toast_wrong">您输入的密码和移动安全软件的密码不一致。</string>
-    <string name="privacy_pw_dialog_hint">提示: 这里需要输入移动安全软件密码</string>
+    <string name="privacy_pw_dialog_toast_wrong">您输入的密码和G DATA移动安全软件的密码不一致。</string>
+    <string name="privacy_pw_dialog_hint">提示: 这里需要输入G DATA移动安全软件密码</string>
     <string name="privacy_pw_dialog_toast_reload">对话恢复显示中……</string>
     <string name="privacy_pw_dialog_toast_hide">正在准备隐藏此对话中……</string>
     <string name="privacy_pw_dialog_toast_hide_single">正在隐藏此对话中……</string>

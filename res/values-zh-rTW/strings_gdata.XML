@@ -22,8 +22,8 @@
     <string name="menu_privacy_single_hide">隱藏對話</string>
     <string name="menu_filter_block_contact">阻止聯系人</string>
     <string name="privacy_pw_dialog_header">輸入密碼: </string>
-    <string name="privacy_pw_dialog_toast_wrong">您輸入的密碼和行動安全防護軟體的密碼不一致。</string>
-    <string name="privacy_pw_dialog_hint">提示: 這裏需要輸入移動安全軟件密碼</string>
+    <string name="privacy_pw_dialog_toast_wrong">您輸入的密碼和G DATA行動安全防護軟體的密碼不一致。</string>
+    <string name="privacy_pw_dialog_hint">提示: 這裏需要輸入G DATA移動安全軟件密碼</string>
     <string name="privacy_pw_dialog_toast_reload">對話恢複顯示中……</string>
     <string name="privacy_pw_dialog_toast_hide">正在准備隱藏此對話中……</string>
     <string name="privacy_pw_dialog_toast_hide_single">正在隱藏此對話中……</string>
