@@ -95,17 +95,17 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   }
 
   @Override
-  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     return new ViewHolder((ConversationListItem)inflater.inflate(R.layout.conversation_list_item_view,
                                                                  parent, false), clickListener);
   }
 
-  @Override public void onViewRecycled(ViewHolder holder) {
+  @Override public void onItemViewRecycled(ViewHolder holder) {
     holder.getItem().unbind();
   }
 
   @Override
-  public void onBindViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
+  public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
     ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
     ThreadRecord          record = reader.getCurrent();
 
