@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class SingleUseBlobProvider {
 
-  private static final String TAG = CaptureProvider.class.getSimpleName();
+  private static final String TAG = SingleUseBlobProvider.class.getSimpleName();
 
   public  static final String AUTHORITY   = "org.thoughtcrime.securesms";
   public  static final String PATH        = "memory/*/#";
