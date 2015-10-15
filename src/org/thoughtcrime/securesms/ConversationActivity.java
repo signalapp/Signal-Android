@@ -1593,7 +1593,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void setComposeText(String text) {
-        this.composeText.setText(composeText.getText() + text);
+        this.composeText.setText(text);
     }
 
     @Override
