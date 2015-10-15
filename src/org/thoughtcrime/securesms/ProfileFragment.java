@@ -384,37 +384,39 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.status_suggestions));
-        profileStatus.setAdapter(adapter);
-        profileStatus.setCompletionHint(getString(R.string.status_hint));
-        profileStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                profileStatus.dismissDropDown();
-            }
-        });
-        profileStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                profileStatus.setEnabled(!profileStatus.isEnabled());
-                if (!profileStatus.isEnabled()) {
-                    hasChanged = true;
-                    hasLeft = false;
-                    profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_content_edit));
+        if (isMyProfile) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.status_suggestions));
+            profileStatus.setAdapter(adapter);
+            profileStatus.setCompletionHint(getString(R.string.status_hint));
+            profileStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    profileStatus.dismissDropDown();
+                }
+            });
+            profileStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    profileStatus.setEnabled(!profileStatus.isEnabled());
+                    if (!profileStatus.isEnabled()) {
+                        hasChanged = true;
+                        hasLeft = false;
+                        profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_content_edit));
 
-                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
-                            Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(profileStatus.getWindowToken(), 0);
-                    if (isGroup) {
-                        new UpdateWhisperGroupAsyncTask().execute();
-                    } else {
-                        ProfileAccessor.setProfileStatus(getActivity(), profileStatus.getText() + "");
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                                Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(profileStatus.getWindowToken(), 0);
+                        if (isGroup) {
+                            new UpdateWhisperGroupAsyncTask().execute();
+                        } else {
+                            ProfileAccessor.setProfileStatus(getActivity(), profileStatus.getText() + "");
+                        }
                     }
                 }
-            }
             });
-        if(!isMyProfile) {
+        } else {
+//        if(!isMyProfile) {
             setMediaHistoryImages();
         }
         xCloseButton.setOnClickListener(new View.OnClickListener() {
