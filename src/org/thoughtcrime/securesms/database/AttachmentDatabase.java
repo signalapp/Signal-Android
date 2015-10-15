@@ -245,7 +245,7 @@ public class AttachmentDatabase extends Database {
   {
     SQLiteDatabase   database = databaseHelper.getWritableDatabase();
     Pair<File, Long> partData = setAttachmentData(masterSecret, inputStream);
-    ContentValues values = new ContentValues();
+    ContentValues    values   = new ContentValues();
 
     values.put(DATA, partData.first.getAbsolutePath());
     values.put(SIZE, partData.second);

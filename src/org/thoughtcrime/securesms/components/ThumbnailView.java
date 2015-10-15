@@ -277,7 +277,7 @@ public class ThumbnailView extends FrameLayout {
       if (thumbnailClickListener            != null &&
           slide                             != null &&
           slide.asAttachment().getDataUri() != null &&
-          slide.getTransferState()  == AttachmentDatabase.TRANSFER_PROGRESS_DONE)
+          slide.getTransferState()          == AttachmentDatabase.TRANSFER_PROGRESS_DONE)
       {
         thumbnailClickListener.onClick(view, slide);
       } else if (parentClickListener != null) {

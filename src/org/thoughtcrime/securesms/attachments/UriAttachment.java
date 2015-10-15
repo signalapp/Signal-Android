@@ -24,8 +24,8 @@ public class UriAttachment extends Attachment {
                        String contentType, int transferState, long size)
   {
     super(contentType, transferState, size, null, null, null);
-    this.dataUri         = dataUri;
-    this.thumbnailUri    = thumbnailUri;
+    this.dataUri      = dataUri;
+    this.thumbnailUri = thumbnailUri;
   }
 
   @Override

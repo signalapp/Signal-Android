@@ -109,10 +109,10 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       List<Attachment>           scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.PUSH_CONSTRAINTS, message.getAttachments());
       List<TextSecureAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
       TextSecureDataMessage      mediaMessage      = TextSecureDataMessage.newBuilder()
-                                                                     .withBody(message.getBody())
-                                                                     .withAttachments(attachmentStreams)
-                                                                     .withTimestamp(message.getSentTimeMillis())
-                                                                     .build();
+                                                                          .withBody(message.getBody())
+                                                                          .withAttachments(attachmentStreams)
+                                                                          .withTimestamp(message.getSentTimeMillis())
+                                                                          .build();
 
       messageSender.sendMessage(address, mediaMessage);
     } catch (InvalidNumberException | UnregisteredUserException e) {
