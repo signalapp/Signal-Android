@@ -59,8 +59,8 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private MasterSecret masterSecret;
   private ViewGroup    fragmentContainer;
   private View         progressWheel;
-
   private Uri          resolvedExtra;
+  private boolean      isPassingAlongMedia;
 
   @Override
   protected void onPreCreate() {
@@ -98,11 +98,17 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onPause() {
     super.onPause();
-    if (!isFinishing()) finish();
+    if (!isPassingAlongMedia && resolvedExtra != null) {
+      PersistentBlobProvider.getInstance(this).delete(resolvedExtra);
+    }
+    if (!isFinishing()) {
+      finish();
+    }
   }
 
   private void initializeMedia() {
     final Context context = this;
+    isPassingAlongMedia = false;
     fragmentContainer.setVisibility(View.GONE);
     progressWheel.setVisibility(View.VISIBLE);
     new AsyncTask<Uri, Void, Uri>() {
@@ -156,6 +162,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   private void handleNewConversation() {
     Intent intent = getBaseShareIntent(NewConversationActivity.class);
+    isPassingAlongMedia = true;
     startActivity(intent);
   }
 
@@ -170,6 +177,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 
+    isPassingAlongMedia = true;
     startActivity(intent);
   }
 

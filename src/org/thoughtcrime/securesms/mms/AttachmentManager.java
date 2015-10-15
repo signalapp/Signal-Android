@@ -111,12 +111,12 @@ public class AttachmentManager {
     new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
-        if (uri != captureUri) cleanup();
-        else                   cleanupCurrentSlide();
-
         thumbnail.clear();
         thumbnail.showProgressSpinner();
         attachmentView.setVisibility(View.VISIBLE);
+        
+        if (!uri.equals(captureUri)) cleanup();
+        else                         cleanupCurrentSlide();
       }
 
       @Override
