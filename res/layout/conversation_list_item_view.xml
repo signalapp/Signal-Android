@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dip"
         android:layout_marginLeft="4dip"
@@ -38,23 +38,26 @@
         android:layout_marginBottom="8dip"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/contact_photo_frame"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical|right"
+        android:gravity="right">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="1"
-            android:gravity="bottom">
+            android:gravity="bottom|right"
+            android:layout_gravity="right">
 
             <TextView android:id="@+id/from"
-                      android:layout_weight="1"
+                      android:layout_weight="3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:textAppearance="?android:attr/textAppearanceMedium"
                       android:textColor="?attr/conversation_list_item_contact_color"
                       android:singleLine="true"
-                      android:ellipsize="marquee" />
+                      android:ellipsize="marquee"
+                android:layout_gravity="left" />
 
             <ImageView android:id="@+id/attachment"
                        android:layout_marginLeft="3dip"
@@ -75,11 +78,14 @@
             <TextView android:id="@+id/date"
                       android:layout_marginLeft="3dip"
                       android:layout_height="wrap_content"
-                      android:layout_width="wrap_content"
+                     android:layout_weight="0.8"
+                      android:layout_width="0dp"
                       android:textAppearance="?android:attr/textAppearanceSmall"
                       android:textColor="?attr/conversation_list_item_date_color"
                       android:fontFamily="sans-serif-light"
-                      android:singleLine="true" />
+                      android:singleLine="true"
+                android:layout_gravity="right"
+                android:gravity="right" />
             </LinearLayout>
 
     <RelativeLayout
@@ -87,7 +93,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:layout_gravity="right">
         <TextView android:id="@+id/subject"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -107,6 +114,7 @@
             android:text="20"
             android:textStyle="bold"
             android:textSize="10dp"
+            android:visibility="invisible"
             android:layout_alignParentRight="true"
             android:background="@drawable/bg_red"
             android:textColor="@color/black"/>
