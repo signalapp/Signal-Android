@@ -251,7 +251,9 @@ public class PushDecryptJob extends MasterSecretJob {
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
       } else {
         long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageAndThreadId.first);
-        DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+        if(!DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId).isGroupRecipient()) {
+          DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+        }
       }
     }
   }
