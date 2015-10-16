@@ -368,6 +368,7 @@ public class ProfileFragment extends Fragment {
                     hasLeft = false;
                     ProfileAccessor.deleteMyProfilePicture(getActivity());
                     refreshLayout();
+                    profileStatus.dismissDropDown();
                 }
             });
             profileImageEdit.setOnClickListener(new View.OnClickListener() {
