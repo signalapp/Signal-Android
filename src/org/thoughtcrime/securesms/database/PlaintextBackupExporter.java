@@ -18,11 +18,11 @@ public class PlaintextBackupExporter extends AbstractBackup {
   {
     Log.w("PlaintextBackupExporter", "Exporting plaintext...");
     verifyCanWrite();
-    setup();
+    checkAndCreateFolder();
     exportPlaintext(context, masterSecret);
   }
 
-  public static void setup() {
+  private static void checkAndCreateFolder() {
     File backupDirectory = getDirectoryPath();
     if (!backupDirectory.exists()) {
       backupDirectory.mkdirs();

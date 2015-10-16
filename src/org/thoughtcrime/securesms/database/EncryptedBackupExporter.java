@@ -28,7 +28,7 @@ import java.nio.channels.FileChannel;
 
 public class EncryptedBackupExporter extends AbstractBackup {
 
-  public static void setup() {
+  private static void checkAndCreateFolder() {
     File backupDirectory = getDirectoryPath();
     if (!backupDirectory.exists()) {
       backupDirectory.mkdirs();
@@ -37,7 +37,7 @@ public class EncryptedBackupExporter extends AbstractBackup {
 
   public static void exportToSd(Context context) throws NoExternalStorageException, IOException {
     verifyCanWrite();
-    setup();
+    checkAndCreateFolder();
     exportDirectory(context, "");
   }
 
