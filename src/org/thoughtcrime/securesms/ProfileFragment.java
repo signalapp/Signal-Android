@@ -303,7 +303,9 @@ public class ProfileFragment extends Fragment {
                 scaleImage((ImageView) getView().findViewById(R.id.profile_picture_group), avatar);
             }
             imageText.setText(groupName);
-            profileStatus.setText(groupName);
+            if(profileStatusString.equals("")) {
+                profileStatus.setText(groupName);
+            }
             layout_phone.setVisibility(View.GONE);
 
             leaveGroup.setOnClickListener(new View.OnClickListener() {
