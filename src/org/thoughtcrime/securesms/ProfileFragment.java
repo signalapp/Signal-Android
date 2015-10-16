@@ -27,21 +27,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.Pair;
 import android.view.ContextThemeWrapper;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -53,7 +47,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -86,7 +79,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
@@ -117,6 +109,7 @@ public class ProfileFragment extends Fragment {
     private MasterSecret masterSecret;
     private GDataPreferences gDataPreferences;
     private String profileId = "";
+    private String phonenumber = "";
 
     private static final int PICK_IMAGE = 1;
     private static final int TAKE_PHOTO = 2;
@@ -202,7 +195,7 @@ public class ProfileFragment extends Fragment {
         historyContentTextView = (TextView) getView().findViewById(R.id.history_content);
         historyScrollView = (HorizontalScrollView) getView().findViewById(R.id.horizontal_scroll);
         recipientsPanel = (PushRecipientsPanel) getView().findViewById(R.id.recipients);
-        profilePhone.setText(profileId);
+        profilePhone.setText(phonenumber);
         profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
         phoneCall = (ImageView) getView().findViewById(R.id.phone_call);
         (getView().findViewById(R.id.contacts_button)).setOnClickListener(new AddRecipientButtonListener());
@@ -809,7 +802,8 @@ public class ProfileFragment extends Fragment {
 
     private void initializeResources() {
         this.masterSecret = getActivity().getIntent().getParcelableExtra("master_secret");
-        this.profileId = getActivity().getIntent().getStringExtra("profile_id");
+        this.phonenumber = getActivity().getIntent().getStringExtra("profile_id");
+        this.profileId = GUtil.numberToLong(phonenumber) + "";
         this.isGroup = getActivity().getIntent().getBooleanExtra("is_group", false);
         threadId = getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
         this.recipients = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent()
