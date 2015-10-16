@@ -736,7 +736,7 @@ public class ProfileFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(),
                 R.style.GSecure_Light_Dialog));
         builder.setIcon(R.drawable.ic_dialog_attach);
-        builder.setTitle(R.string.ConversationActivity_add_attachment);
+        builder.setTitle(R.string.profile_select_picture);
         builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
         builder.show();
     }
