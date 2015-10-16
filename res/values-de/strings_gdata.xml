@@ -64,10 +64,10 @@
     <string name="ConversationItem_error_sending_message_gdata">Fehler beim Senden: ein Empfänger hat ihre Nachricht möglicherweise nicht erhalten.</string>
     <string name="eula_gdata_header_one">WILLKOMMEN BEI</string>
     <string name="msg_failed">Hinweis: Vermutlich hat sich der Schlüssel eines Empfängers durch eine Neuinstallation oder den versuchten Angriff eines Dritten geändert. Innerhalb einer Gruppe kann dieses Problem gelöst werden indem ein gewöhnlicher Schlüsselaustausch über eine neue Unterhaltung mit dem Kontakt stattfindet und anschließend die Gruppe aktualisiert wird.</string>
-    <string name="profile_history_label">Media</string>
+    <string name="profile_history_label">Medien</string>
     <string name="profile_history_content">Keine Bilder verschickt</string>
     <string name="menu_invite_to_sc">Einladen</string>
-    <string name="group_title">Title</string>
+    <string name="group_title">Titel</string>
     <string name="status_hint">Wählen Sie Ihren Status:</string>
     <string name="dialog_compressing">Das Video wird komprimiert...</string>
     <string name="dialog_compressing_header">Bitte warten...</string>
