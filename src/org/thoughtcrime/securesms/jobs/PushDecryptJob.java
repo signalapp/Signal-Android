@@ -82,7 +82,7 @@ public class PushDecryptJob extends ContextJob {
   public PushDecryptJob(Context context, long pushMessageId, long smsMessageId, String sender) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
-                                .withGroupId(sender)
+                                .withGroupId("__PUSH_DECRYPT_JOB__")
                                 .withWakeLock(true, 5, TimeUnit.SECONDS)
                                 .create());
     this.messageId    = pushMessageId;
@@ -94,6 +94,7 @@ public class PushDecryptJob extends ContextJob {
 
   @Override
   public void onRun() throws NoSuchMessageException {
+
     if (!IdentityKeyUtil.hasIdentityKey(context)) {
       Log.w(TAG, "Skipping job, waiting for migration...");
       MessageNotifier.updateNotification(context, null, true, -2);
