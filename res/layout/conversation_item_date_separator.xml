@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView android:id="@+id/conversation_item_date_separator"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="6dp"
+              android:background="?attr/conversation_item_date_separator_background"
+              android:fontFamily="sans-serif-light"
+              android:padding="6sp"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:textColor="?attr/conversation_item_date_separator_text_color"
+              android:textSize="@dimen/conversation_item_date_text_size"
+              tools:text="31 January 2013"/>
+
+</RelativeLayout>

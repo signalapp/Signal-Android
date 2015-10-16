@@ -24,13 +24,28 @@ import java.util.Locale;
 
 import org.thoughtcrime.securesms.R;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Utility methods to help display dates in a nice, easily readable way.
  */
 public class DateUtils extends android.text.format.DateUtils {
+
+  private static final long JANUARY_FIRST_MILLIS;
+
+  static {
+    Calendar c = GregorianCalendar.getInstance();
+    c.set(Calendar.MONTH, Calendar.JANUARY);
+    c.set(Calendar.DAY_OF_MONTH, 1);
+    c.set(Calendar.HOUR_OF_DAY, 0);
+    c.set(Calendar.MINUTE, 0);
+    c.set(Calendar.SECOND, 0);
+    c.set(Calendar.MILLISECOND, 0);
+    JANUARY_FIRST_MILLIS = c.getTimeInMillis();
+  }
 
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);
@@ -92,6 +107,14 @@ public class DateUtils extends android.text.format.DateUtils {
     }
 
     return new SimpleDateFormat(dateFormatPattern, locale);
+  }
+
+  public static String getDateSeparatorString(final Locale l, final long timestamp) {
+    String format;
+    if (timestamp < JANUARY_FIRST_MILLIS) format = "MMM d, yyyy";
+    else                                  format = "MMM d";
+
+    return getFormattedDateTime(timestamp, format, l);
   }
 
 }
