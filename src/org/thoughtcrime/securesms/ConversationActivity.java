@@ -27,6 +27,10 @@ import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -51,6 +55,7 @@ import android.view.View.OnKeyListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -750,6 +755,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
         TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
         CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
+        int color = Color.parseColor(GUtil.generateRandomColor(getApplicationContext()));
+        ((RelativeLayout) mCustomView.findViewById(R.id.drawerall).getParent()).setBackgroundColor(color);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
 
         profileId = GUtil.numberToLong(recipient.getNumber()) + "" ;
         mCustomView.setOnClickListener(new OnClickListener() {

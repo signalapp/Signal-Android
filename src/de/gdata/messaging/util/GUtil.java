@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -40,6 +42,7 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -323,6 +326,22 @@ public class GUtil {
       Log.w("MYLOG ", "If not parseable, no profile id - so no problem - " + e.getMessage());
     }
     return longId;
+  }
+  public static String generateRandomColor(Context context) {
+    Random color = new Random();
+    int ran1 = color.nextInt(80);
+    int ran2 = color.nextInt(200);
+    int ran3 = color.nextInt(200);
+    String randomColor = "#" + convert(ran1) + convert(ran2) +convert(ran3);
+    try {
+      Color.parseColor(randomColor);
+    } catch (Exception e) {
+      randomColor = generateRandomColor(context);
+    }
+    return randomColor;
+  }
+  public static String convert(int n) {
+    return Integer.toHexString(n);
   }
   public static int setListViewHeightBasedOnChildren(ListView listView) {
     ListAdapter listAdapter = listView.getAdapter();

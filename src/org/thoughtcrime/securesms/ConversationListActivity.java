@@ -29,6 +29,7 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -136,6 +137,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     private CircledImageView fabImageBackgroundThree;
     private CircledImageView fabImageBackgroundOne;
     private CircledImageView fabImageBackgroundTwo;
+    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -144,7 +146,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         super.onCreate(icicle);
         gDataPreferences = new GDataPreferences(getBaseContext());
         setContentView(R.layout.gdata_conversation_list_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        TextView txtView = new TextView(getApplicationContext());
+        txtView.setText(R.string.app_name);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
         navLabels = getResources().getStringArray(R.array.array_nav_labels);
@@ -176,6 +182,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setElevation(0);
+
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
@@ -252,6 +259,16 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_to_right);
         refreshProfile();
         setActionFloatMenuIcons();
+        setRandomColor();
+
+    }
+
+    private void setRandomColor() {
+        int color = Color.parseColor(GUtil.generateRandomColor(getApplicationContext()));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+        toolbar.setBackgroundColor(color);
+        toolbar.setDrawingCacheBackgroundColor(color);
+        mSlidingTabLayout.setBackgroundColor(color);
     }
 
     public void toggleActionFloatMenu(boolean toggleMenu, boolean toggleButton, boolean fastClose) {
@@ -584,6 +601,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         refreshProfile();
         mSlidingTabLayout.refreshTabTitle();
         setActionFloatMenuIcons();
+        setRandomColor();
     }
 
     @Override
