@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
@@ -122,6 +123,15 @@ public class ThumbnailView extends FrameLayout {
     if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(slide, masterSecret).into(image);
     else if (slide.hasPlaceholder())          buildPlaceholderGlideRequest(slide).into(image);
     else                                      Glide.clear(image);
+  }
+
+  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Uri uri) {
+    if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
+
+    Glide.with(getContext()).load(new DecryptableUri(masterSecret, uri))
+         .crossFade()
+         .transform(new RoundedCorners(getContext(), true, radius, backgroundColorHint))
+         .into(image);
   }
 
   public void setThumbnailClickListener(SlideClickListener listener) {

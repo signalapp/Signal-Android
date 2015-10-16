@@ -791,14 +791,14 @@ public class MmsDatabase extends MessagingDatabase {
       addressDatabase.insertAddressesForId(messageId, addresses);
       partsDatabase.insertAttachmentsForMessage(masterSecret, messageId, attachments);
 
-      notifyConversationListeners(contentValues.getAsLong(THREAD_ID));
-      DatabaseFactory.getThreadDatabase(context).update(contentValues.getAsLong(THREAD_ID));
       db.setTransactionSuccessful();
       return messageId;
     } finally {
       db.endTransaction();
-    }
 
+      notifyConversationListeners(contentValues.getAsLong(THREAD_ID));
+      DatabaseFactory.getThreadDatabase(context).update(contentValues.getAsLong(THREAD_ID));
+    }
   }
 
   public boolean delete(long messageId) {

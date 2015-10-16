@@ -266,6 +266,7 @@ public class AttachmentDatabase extends Database {
       partData.first.delete();
     } else {
       notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
+      notifyConversationListListeners();
     }
 
     thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, attachmentId));

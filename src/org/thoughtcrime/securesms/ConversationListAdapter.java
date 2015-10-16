@@ -47,6 +47,7 @@ import java.util.Set;
 public class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationListAdapter.ViewHolder> {
 
   private final ThreadDatabase    threadDatabase;
+  private final MasterSecret      masterSecret;
   private final MasterCipher      masterCipher;
   private final Locale            locale;
   private final Context           context;
@@ -86,6 +87,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
                                  @Nullable Cursor cursor,
                                  @Nullable ItemClickListener clickListener) {
     super(context, cursor);
+    this.masterSecret   = masterSecret;
     this.masterCipher   = new MasterCipher(masterSecret);
     this.context        = context;
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
@@ -109,7 +111,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
     ThreadRecord          record = reader.getCurrent();
 
-    viewHolder.getItem().set(record, locale, batchSet, batchMode);
+    viewHolder.getItem().set(masterSecret, record, locale, batchSet, batchMode);
   }
 
   public void toggleThreadInBatchSet(long threadId) {
