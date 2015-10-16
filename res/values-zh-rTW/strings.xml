@@ -177,6 +177,8 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">多媒體訊息</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">您收到一則已加密的訊息，但採用的是舊版／不支援的 SecureChat。您須提醒該名連絡人更新 SecureChat 版本後再重送。</string>
+  <string name="MessageRecord_left_group">您退出了群。</string>
+  <string name="MessageRecord_updated_group">已更新群组。</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的「自訂密碼」不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的「自訂密碼」！</string>
@@ -402,6 +404,10 @@
 匯入一個未加密的備份資料。 相容於 \"SMS Backup &amp; Restore\"。</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手機需要手動設定 MMS多媒體簡訊。</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s 加入了群。</string>
+  <string name="GroupUtil_group_updated">群信息已更新。</string>
+  <string name="GroupUtil_title_is_now">群聊名稱是\'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
