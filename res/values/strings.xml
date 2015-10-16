@@ -440,9 +440,9 @@
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Send SecureChat message</string>
     <string name="conversation_activity__type_message_sms_secure">Send secure SMS</string>
-    <string name="conversation_activity__type_message_sms_insecure">Send unsecured SMS</string>
+    <string name="conversation_activity__type_message_sms_insecure">Send insecure SMS</string>
     <string name="conversation_activity__type_message_mms_secure">Send secure MMS</string>
-    <string name="conversation_activity__type_message_mms_insecure">Send unsecured MMS</string>
+    <string name="conversation_activity__type_message_mms_insecure">Send insecure MMS</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
     <string name="conversation_activity__window_description">Conversation with %1$s</string>

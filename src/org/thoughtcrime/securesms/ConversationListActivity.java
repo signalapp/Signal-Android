@@ -474,7 +474,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     private void handleOpenProfile() {
         final Intent intent = new Intent(this, ProfileActivity.class);
         intent.putExtra("master_secret", masterSecret);
-        intent.putExtra("profile_id", GUtil.numberToLong(gDataPreferences.getE164Number()) + "");
+        intent.putExtra("profile_id", gDataPreferences.getE164Number());
         if (getSupportActionBar() != null) {
             intent.putExtra("profile_name", getSupportActionBar().getTitle());
         }
