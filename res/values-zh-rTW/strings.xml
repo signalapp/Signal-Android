@@ -81,6 +81,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">您使用的裝置看來不支援撥號通話功能。</string>
   <string name="ConversationActivity_leave_group">離開群組？</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">您確定要離開此群組？</string>
+  <string name="ConversationActivity_transport_insecure_sms">不安全的SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">不安全的MMS</string>
+  <string name="ConversationActivity_transport_secure_sms">安全的SMS</string>
+  <string name="ConversationActivity_transport_secure_mms">安全的MMS</string>
   <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">訊息細節</string>
