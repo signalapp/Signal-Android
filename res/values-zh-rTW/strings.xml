@@ -551,6 +551,7 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__slow">緩慢</string>
   <string name="preferences__custom">自訂</string>
   <string name="preferences__advanced">進階</string>
+  <string name="preferences__app_protection">应用保护</string>
   <string name="preferences__override_system_mms_settings">您可自訂 MMS多媒體簡訊設定，並覆蓋過系統的預設值。</string>
   <string name="preferences__mmsc_url_required">電信業者所提供的 MMSC URL（多媒體簡訊中繼伺服器網址）（必要）:</string>
   <string name="preferences__mms_proxy_host_optional">MMS多媒體簡訊代理伺服器位址(選擇性):</string>
