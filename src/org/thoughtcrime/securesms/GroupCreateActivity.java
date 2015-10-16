@@ -476,7 +476,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
     Uri                       avatarUri        = SingleUseBlobProvider.getInstance().createUri(avatar);
     Attachment                avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_JPEG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
-    OutgoingGroupMediaMessage outgoingMessage  = new OutgoingGroupMediaMessage(groupRecipient, context, avatarAttachment);
+    OutgoingGroupMediaMessage outgoingMessage  = new OutgoingGroupMediaMessage(groupRecipient, context, avatarAttachment, System.currentTimeMillis());
     long                      threadId         = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 
     return new Pair<>(threadId, groupRecipient);

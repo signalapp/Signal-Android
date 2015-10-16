@@ -31,7 +31,8 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 
   public OutgoingGroupMediaMessage(@NonNull Recipients recipients,
                                    @NonNull GroupContext group,
-                                   @Nullable final Attachment avatar)
+                                   @Nullable final Attachment avatar,
+                                   long sentTimeMillis)
   {
     super(recipients, Base64.encodeBytes(group.toByteArray()),
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},

@@ -143,7 +143,7 @@ public class PushDecryptJob extends ContextJob {
       } else if (content.getSyncMessage().isPresent()) {
         TextSecureSyncMessage syncMessage = content.getSyncMessage().get();
 
-        if      (syncMessage.getSent().isPresent())    handleSynchronizeSentMessage(masterSecret, syncMessage.getSent().get(), smsMessageId);
+        if      (syncMessage.getSent().isPresent())    handleSynchronizeSentMessage(masterSecret, envelope, syncMessage.getSent().get(), smsMessageId);
         else if (syncMessage.getRequest().isPresent()) handleSynchronizeRequestMessage(masterSecret, syncMessage.getRequest().get());
       }
 
@@ -206,7 +206,7 @@ public class PushDecryptJob extends ContextJob {
                                   @NonNull TextSecureDataMessage message,
                                   @NonNull Optional<Long> smsMessageId)
   {
-    GroupMessageProcessor.process(context, masterSecret, envelope, message);
+    GroupMessageProcessor.process(context, masterSecret, envelope, message, false);
 
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
@@ -214,11 +214,14 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleSynchronizeSentMessage(@NonNull MasterSecretUnion masterSecret,
+                                            @NonNull TextSecureEnvelope envelope,
                                             @NonNull SentTranscriptMessage message,
                                             @NonNull Optional<Long> smsMessageId)
       throws MmsException
   {
-    if (message.getMessage().getAttachments().isPresent()) {
+    if (message.getMessage().isGroupUpdate()) {
+      GroupMessageProcessor.process(context, masterSecret, envelope, message.getMessage(), true);
+    } else if (message.getMessage().getAttachments().isPresent()) {
       handleSynchronizeSentMediaMessage(masterSecret, message, smsMessageId);
     } else {
       handleSynchronizeSentTextMessage(masterSecret, message, smsMessageId);
