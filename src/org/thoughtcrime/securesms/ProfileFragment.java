@@ -224,9 +224,9 @@ public class ProfileFragment extends Fragment {
                             return false;
                         }
                     });
-                    statusDate.setText(GUtil.getDate(
+                    statusDate.setText(GUtil.getLocalDate(
                             ProfileAccessor.getProfileUpdateTimeForRecepient(getActivity(), profileId),
-                            "dd.MM.yyyy hh:mm:ss"));
+                            getActivity().getApplicationContext()));
                     imageText.setText(recipient.getName());
                 }
                 profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
