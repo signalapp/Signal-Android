@@ -127,6 +127,10 @@ public class ConversationFragment extends Fragment
     }
   }
 
+  public void reloadList() {
+    getLoaderManager().restartLoader(0, null, this);
+  }
+
   private void initializeResources() {
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);

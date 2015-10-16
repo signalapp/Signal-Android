@@ -163,6 +163,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_CONTACT_INFO = 4;
   private static final int GROUP_EDIT        = 5;
   private static final int TAKE_PHOTO        = 6;
+  private static final int ADD_CONTACT       = 7;
 
   private   MasterSecret          masterSecret;
   protected ComposeText           composeText;
@@ -336,6 +337,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (attachmentManager.getCaptureUri() != null) {
         setMedia(attachmentManager.getCaptureUri(), MediaType.IMAGE, true);
       }
+      break;
+    case ADD_CONTACT:
+      recipients = RecipientFactory.getRecipientsForIds(ConversationActivity.this, recipients.getIds(), true);
+      recipients.addListener(this);
+      fragment.reloadList();
       break;
     }
   }
@@ -673,7 +679,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
     intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
     intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-    startActivity(intent);
+    startActivityForResult(intent, ADD_CONTACT);
   }
 
   private void handleAddAttachment() {
