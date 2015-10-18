@@ -130,6 +130,8 @@
         <item name="conversation_item_sent_text_indicator_tab_color">#99000000</item>
         <item name="conversation_item_received_text_primary_color">@color/white</item>
         <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
+        <item name="conversation_item_date_separator_text_color">#99000000</item>
+        <item name="conversation_item_date_separator_background">@drawable/conversation_item_date_separator_background</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_light</item>
 
@@ -210,6 +212,8 @@
         <item name="conversation_item_received_text_primary_color">@color/white</item>
         <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
+        <item name="conversation_item_date_separator_text_color">#ffffffff</item>
+        <item name="conversation_item_date_separator_background">@drawable/conversation_item_date_separator_background_dark</item>
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>

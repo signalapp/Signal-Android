@@ -134,8 +134,10 @@ public class ConversationFragment extends Fragment
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null,
-                                              (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient()));
+      ConversationAdapter adapter = new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null,
+                                                            (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient());
+      list.setAdapter(adapter);
+      list.addItemDecoration(new DateSeparatorItemDecoration(adapter, list, locale));
       getLoaderManager().restartLoader(0, null, this);
     }
   }

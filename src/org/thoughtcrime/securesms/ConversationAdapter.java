@@ -31,7 +31,6 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -114,11 +113,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
   @Override public void onBindViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-    String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
-
-    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, groupThread);
+    viewHolder.getView().bind(masterSecret, getMessageRecord(cursor), locale, batchSelected, groupThread);
   }
 
   @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -157,16 +152,26 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public int getItemViewType(@NonNull Cursor cursor) {
-    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
-    String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
+    MessageRecord messageRecord = getMessageRecord(cursor);
 
     if      (messageRecord.isGroupAction() || messageRecord.isCallLog()) return MESSAGE_TYPE_UPDATE;
     else if (messageRecord.isOutgoing())                                 return MESSAGE_TYPE_OUTGOING;
     else                                                                 return MESSAGE_TYPE_INCOMING;
   }
 
-  private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
+  public long getDatestamp(int position) {
+    Cursor c = getCursor();
+    if (!c.isClosed()) {
+      c.moveToPosition(position);
+      return getMessageRecord(c).getDatestamp();
+    } else {
+      return 0;
+    }
+  }
+
+  private MessageRecord getMessageRecord(Cursor cursor) {
+    long messageId                               = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
+    String type                                  = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     final SoftReference<MessageRecord> reference = messageRecordCache.get(type + messageId);
     if (reference != null) {
       final MessageRecord record = reference.get();

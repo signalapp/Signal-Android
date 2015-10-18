@@ -31,6 +31,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -57,6 +59,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final int                       receiptCount;
   private final List<IdentityKeyMismatch> mismatches;
   private final List<NetworkFailure>      networkFailures;
+  private final long                      datestamp;
 
   MessageRecord(Context context, long id, Body body, Recipients recipients,
                 Recipient individualRecipient, int recipientDeviceId,
@@ -73,6 +76,15 @@ public abstract class MessageRecord extends DisplayRecord {
     this.receiptCount        = receiptCount;
     this.mismatches          = mismatches;
     this.networkFailures     = networkFailures;
+
+    Calendar cal = GregorianCalendar.getInstance();
+    if (isPush()) cal.setTimeInMillis(dateSent);
+    else          cal.setTimeInMillis(dateReceived);
+    cal.set(Calendar.HOUR_OF_DAY, 0);
+    cal.set(Calendar.MINUTE, 0);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    this.datestamp = cal.getTimeInMillis();
   }
 
   public abstract boolean isMms();
@@ -221,6 +233,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public int hashCode() {
     return (int)getId();
+  }
+
+  public long getDatestamp() {
+    return datestamp;
   }
 
 }
