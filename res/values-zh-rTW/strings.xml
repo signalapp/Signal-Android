@@ -581,6 +581,7 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
   <string name="preferences__sms_fallback">發送SMS/MMS</string>
   <string name="preferences__sms_outgoing_push_users">SecureChat 使用者</string>
+  <string name="preferences__sms_fallback_push_users_ask">先询问</string>
   <string name="preferences__sms_outgoing_push_users_description">如果網路斷線，改送出付費的加密手機簡訊</string>
   <string name="preferences__sms_fallback_ask_before_sending_sms_mms">發送SMS/MMS前詢問</string>
   <string name="preferences__sms_fallback_never_send_mms">從不發送MMS</string>
