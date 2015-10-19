@@ -146,12 +146,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case R.id.menu_new_group:         createGroup();                  return true;
-    case R.id.menu_settings:          handleDisplaySettings();        return true;
-    case R.id.menu_clear_passphrase:  handleClearPassphrase();        return true;
-    case R.id.menu_mark_all_read:     handleMarkAllRead();            return true;
-    case R.id.menu_import_export:     handleImportExport();           return true;
-    case R.id.menu_my_identity:       handleMyIdentity();             return true;
+    case R.id.menu_new_group:         createGroup();           return true;
+    case R.id.menu_settings:          handleDisplaySettings(); return true;
+    case R.id.menu_clear_passphrase:  handleClearPassphrase(); return true;
+    case R.id.menu_mark_all_read:     handleMarkAllRead();     return true;
+    case R.id.menu_import_export:     handleImportExport();    return true;
+    case R.id.menu_my_identity:       handleMyIdentity();      return true;
+    case R.id.menu_invite:            handleInvite();          return true;
     }
 
     return false;
@@ -205,6 +206,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         return null;
       }
     }.execute();
+  }
+
+  private void handleInvite() {
+    startActivity(new Intent(this, InviteActivity.class));
   }
 
   private void initializeContactUpdatesReceiver() {

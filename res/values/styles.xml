@@ -44,6 +44,11 @@
         <item name="android:textColorSecondary">#BFffffff</item>
     </style>
 
+    <style name="TextSecure.FlatLightActionBar"
+           parent="@style/TextSecure.LightActionBar">
+        <item name="elevation">0dp</item>
+    </style>
+
     <style name="TextSecure.DarkActionBar.TabBar"
         parent="@style/Widget.AppCompat.ActionBar.TabBar">
         <item name="background">@color/gray95</item>
