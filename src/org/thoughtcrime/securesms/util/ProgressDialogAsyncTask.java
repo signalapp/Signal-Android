@@ -14,7 +14,7 @@ public abstract class ProgressDialogAsyncTask<Params, Progress, Result> extends 
 
   public ProgressDialogAsyncTask(Context context, String title, String message) {
     super();
-    this.contextReference = new WeakReference<Context>(context);
+    this.contextReference = new WeakReference<>(context);
     this.title            = title;
     this.message          = message;
   }

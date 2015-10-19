@@ -150,7 +150,9 @@ public class DirectoryHelper {
     }
   }
 
-  public static UserCapabilities getUserCapabilities(Context context, Recipients recipients) {
+  public static @NonNull UserCapabilities getUserCapabilities(@NonNull Context context,
+                                                              @Nullable Recipients recipients)
+  {
     try {
       if (recipients == null) {
         return UserCapabilities.UNSUPPORTED;

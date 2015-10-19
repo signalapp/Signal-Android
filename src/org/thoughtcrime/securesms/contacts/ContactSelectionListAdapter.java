@@ -21,6 +21,7 @@ import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,10 +60,6 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     this.multiSelect = multiSelect;
   }
 
-  public static class HeaderViewHolder {
-    TextView text;
-  }
-
   @Override
   public View newView(Context context, Cursor cursor, ViewGroup parent) {
     return li.inflate(R.layout.contact_selection_list_item, parent, false);
@@ -90,27 +87,23 @@ public class ContactSelectionListAdapter extends    CursorAdapter
 
   @Override
   public View getHeaderView(int i, View convertView, ViewGroup viewGroup) {
-    Cursor cursor  = getCursor();
+    Cursor cursor = getCursor();
 
-    HeaderViewHolder holder;
-
+    final TextView text;
     if (convertView == null) {
-      holder      = new HeaderViewHolder();
-      convertView = li.inflate(R.layout.contact_selection_list_header, viewGroup, false);
-      holder.text = (TextView) convertView.findViewById(R.id.text);
-      convertView.setTag(holder);
+      text = (TextView)li.inflate(R.layout.contact_selection_list_header, viewGroup, false);
     } else {
-      holder = (HeaderViewHolder) convertView.getTag();
+      text = (TextView)convertView;
     }
 
     cursor.moveToPosition(i);
 
     int contactType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN));
 
-    if (contactType == ContactsDatabase.PUSH_TYPE) holder.text.setText(R.string.contact_selection_list__header_signal_users);
-    else                                           holder.text.setText(R.string.contact_selection_list__header_other);
+    if (contactType == ContactsDatabase.PUSH_TYPE) text.setText(R.string.contact_selection_list__header_signal_users);
+    else                                           text.setText(R.string.contact_selection_list__header_other);
 
-    return convertView;
+    return text;
   }
 
   @Override

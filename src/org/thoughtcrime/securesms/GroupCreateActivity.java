@@ -50,6 +50,7 @@ import com.soundcloud.android.crop.Crop;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -422,7 +423,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     @Override
     public void onClick(View v) {
       Intent intent = new Intent(GroupCreateActivity.this, PushContactSelectionActivity.class);
-      if (existingContacts != null) intent.putExtra(PushContactSelectionActivity.PUSH_ONLY_EXTRA, true);
+      if (existingContacts != null) intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE,
+                                                    ContactSelectionListFragment.DISPLAY_MODE_PUSH_ONLY);
       startActivityForResult(intent, PICK_CONTACT);
     }
   }
