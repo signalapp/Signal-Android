@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -161,6 +162,7 @@ public class ConversationItem extends LinearLayout {
   private ThumbnailView thumbnailDestroyDialog;
   private ImageView loadingDestroyIndicator;
   private GDataPreferences mPreferences;
+  private Dialog alertDialogDestroy;
 
   public ConversationItem(Context context) {
     super(context);
@@ -272,7 +274,7 @@ public class ConversationItem extends LinearLayout {
         }
     }
   private boolean messageIsInDialog(String uniqueId) {
-    return uniqueId.equals(openedMessageId);
+    return uniqueId.equals(openedMessageId) && alertDialogDestroy !=null && alertDialogDestroy.isShowing();
   }
   private boolean dialogIsClosed() {
     return openedMessageId.equals("");
@@ -380,7 +382,6 @@ public class ConversationItem extends LinearLayout {
     String text = "";
     String countdown = "";
 
-    private AlertDialog alertDialogDestroy;
     private int currentCountdown = 0;
     private boolean alreadyDestroyed = false;
 
