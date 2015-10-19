@@ -194,7 +194,7 @@
         <item name="share_list_item_divider">@drawable/gdata_share_list_divider_shape</item>
         <item name="conversation_group_member_name">#99ffffff</item>
         <item name="conversation_sent_text_primary_color">@color/white</item>
-        <item name="conversation_sent_text_secondary_color">@color/black</item>
+        <item name="conversation_sent_text_secondary_color">@color/white</item>
         <item name="conversation_received_text_primary_color">@color/black</item>
         <item name="conversation_received_text_secondary_color">@color/black</item>
         <item name="contact_selection_push_user">#000000</item>

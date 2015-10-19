@@ -219,7 +219,7 @@
             android:paddingLeft="5dip"
             android:paddingRight="5dip"
             android:paddingTop="3dp"
-            android:textColor="?conversation_sent_text_secondary_color"
+            android:textColor="@color/black"
             android:textSize="12sp"
             android:visibility="gone"/>
 
