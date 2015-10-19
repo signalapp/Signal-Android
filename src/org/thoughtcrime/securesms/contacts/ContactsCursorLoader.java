@@ -37,14 +37,18 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private static final String TAG = ContactsCursorLoader.class.getSimpleName();
 
-  private final String  filter;
-  private       boolean includeSmsContacts;
+  public final static int MODE_ALL        = 0;
+  public final static int MODE_PUSH_ONLY  = 1;
+  public final static int MODE_OTHER_ONLY = 2;
 
-  public ContactsCursorLoader(Context context, boolean includeSmsContacts, String filter) {
+  private final String filter;
+  private final int    mode;
+
+  public ContactsCursorLoader(Context context, int mode, String filter) {
     super(context);
 
-    this.filter   = filter;
-    this.includeSmsContacts = includeSmsContacts;
+    this.filter = filter;
+    this.mode   = mode;
   }
 
   @Override
@@ -52,9 +56,11 @@ public class ContactsCursorLoader extends CursorLoader {
     ContactsDatabase  contactsDatabase = DatabaseFactory.getContactsDatabase(getContext());
     ArrayList<Cursor> cursorList       = new ArrayList<>(3);
 
-    cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
+    if (mode != MODE_OTHER_ONLY) {
+      cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
+    }
 
-    if (includeSmsContacts) {
+    if (mode != MODE_PUSH_ONLY) {
       cursorList.add(contactsDatabase.querySystemContacts(filter));
     }
 

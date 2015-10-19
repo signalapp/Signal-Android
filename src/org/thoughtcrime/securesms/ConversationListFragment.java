@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
+import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -142,6 +143,8 @@ public class ConversationListFragment extends Fragment
           return Optional.of((new SystemSmsImportReminder(context, masterSecret)));
         } else if (PushRegistrationReminder.isEligible(context)) {
           return Optional.of((new PushRegistrationReminder(context, masterSecret)));
+        } else if (ShareReminder.isEligible(context)) {
+          return Optional.of(new ShareReminder(context));
         } else {
           return Optional.absent();
         }

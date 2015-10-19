@@ -3,19 +3,21 @@
 <LinearLayout android:id="@+id/container"
               xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="center_vertical"
               android:visibility="gone"
+              tools:visibility="visible"
+              android:elevation="1dp"
               android:background="?reminder_header_background">
 
-    <LinearLayout android:id="@+id/reminder"
-                  android:layout_width="0dp"
+    <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_weight="1"
-                  android:layout_margin="10dp"
-                  android:orientation="vertical">
+                  android:orientation="vertical"
+                  android:paddingTop="20dp"
+                  android:paddingLeft="20dp"
+                  android:paddingRight="20dp">
 
         <TextView android:id="@+id/reminder_title"
                   android:layout_width="wrap_content"
@@ -34,29 +36,23 @@
 
     </LinearLayout>
 
-    <TextView android:id="@+id/cancel"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:textSize="16sp"
-              android:fontFamily="sans-serif-medium"
-              android:paddingLeft="6dp"
-              android:paddingRight="6dp"
-              android:paddingTop="8dp"
-              android:paddingBottom="8dp"
-              android:textColor="#99ffffff"
-              android:clickable="true"
-              android:text="@string/reminder_header_close_button" />
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="right">
 
-    <TextView android:id="@+id/accept"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:textSize="16sp"
-              android:fontFamily="sans-serif-medium"
-              android:paddingLeft="6dp"
-              android:paddingRight="6dp"
-              android:paddingTop="8dp"
-              android:paddingBottom="8dp"
-              android:textColor="@color/white"
-              tools:text="ENABLE" />
+        <Button android:id="@+id/cancel"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/reminder_header_close_button" />
+
+        <Button android:id="@+id/accept"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                tools:text="ENABLE" />
+    </LinearLayout>
 
 </LinearLayout>
