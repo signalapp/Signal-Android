@@ -77,6 +77,7 @@ public class ConversationListItem extends RelativeLayout
 
     private final Handler handler = new Handler();
     private int distributionType;
+    private GDataPreferences preferences;
 
     public ConversationListItem(Context context) {
         super(context);
@@ -106,6 +107,7 @@ public class ConversationListItem extends RelativeLayout
         this.count = thread.getCount();
         this.read = thread.isRead();
         this.distributionType = thread.getDistributionType();
+        this.preferences = new GDataPreferences(getContext());
 
         this.recipients.addListener(this);
         this.fromView.setText(formatFrom(recipients, count, read));
@@ -123,12 +125,15 @@ public class ConversationListItem extends RelativeLayout
 
         if(read) {
             unreadCountView.setVisibility(View.GONE);
-            new GDataPreferences(getContext()).saveUnreadCountForThread(threadId+"", count);
+            preferences.saveUnreadCountForThread(threadId+"", count);
         } else {
-            unreadCountView.setVisibility(View.VISIBLE);
-            Long unreadCount = count - new GDataPreferences(getContext()).getUnreadCountForThread(threadId + "");
-            unreadCountView.setText(unreadCount+ "");
-
+            Long unreadCount = count - preferences.getUnreadCountForThread(threadId + "");
+            if (unreadCount<=0){
+                preferences.saveUnreadCountForThread(threadId + "", count);
+            } else {
+                unreadCountView.setVisibility(View.VISIBLE);
+                unreadCountView.setText(unreadCount + "");
+            }
         }
         setBackground(read, batchMode);
         setContactPhoto(this.recipients.getPrimaryRecipient());
