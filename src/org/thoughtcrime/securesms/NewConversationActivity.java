@@ -18,8 +18,8 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.MenuItem;
-import android.view.View;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -38,10 +38,10 @@ public class NewConversationActivity extends ContactSelectionActivity {
   private static final String TAG = NewConversationActivity.class.getSimpleName();
 
   @Override
-  public void onCreate(Bundle bundle, MasterSecret masterSecret) {
+  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     super.onCreate(bundle, masterSecret);
 
-    action.setVisibility(View.GONE);
+    getToolbar().setShowCustomNavigationButton(false);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 

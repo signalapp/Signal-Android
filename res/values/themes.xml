@@ -30,6 +30,13 @@
         <item name="contact_selection_header_text">#66eeeeee</item>
     </style>
 
+    <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">
+        <item name="actionBarStyle">@style/TextSecure.FlatLightActionBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="android:windowBackground">@color/signal_primary</item>
+        <item name="colorButtonNormal">@color/white</item>
+    </style>
+
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
         <!--<item name="colorPrimary">@android:color/transparent</item>-->
         <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
