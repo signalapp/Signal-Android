@@ -66,7 +66,11 @@ public class SmsMigrator {
     if (cursor.isNull(columnIndex)) {
       statement.bindNull(index);
     } else {
-      statement.bindLong(index, cursor.getLong(columnIndex));
+      if(key.equals(SmsDatabase.READ)) {
+        statement.bindLong(index, 0);
+      } else {
+        statement.bindLong(index, cursor.getLong(columnIndex));
+      }
     }
   }
 
@@ -163,37 +167,43 @@ public class SmsMigrator {
   private static void migrateConversation(Context context, MasterSecret masterSecret,
                                           SmsMigrationProgressListener listener,
                                           ProgressDescription progress,
-                                          long theirThreadId, long ourThreadId)
-  {
+                                          long theirThreadId, long ourThreadId) {
     SmsDatabase ourSmsDatabase = DatabaseFactory.getSmsDatabase(context);
-    Cursor cursor              = null;
+    Cursor cursor = null;
+    boolean threadIsFullRead = true;
 
     try {
-      Uri uri                    = Uri.parse("content://sms/conversations/" + theirThreadId);
-      cursor                     = context.getContentResolver().query(uri, null, null, null, null);
+      Uri uri = Uri.parse("content://sms/conversations/" + theirThreadId);
+      cursor = context.getContentResolver().query(uri, null, null, null, null);
       SQLiteDatabase transaction = ourSmsDatabase.beginTransaction();
-      SQLiteStatement statement  = ourSmsDatabase.createInsertStatement(transaction);
+      SQLiteStatement statement = ourSmsDatabase.createInsertStatement(transaction);
 
       while (cursor != null && cursor.moveToNext()) {
         int typeColumn = cursor.getColumnIndex(SmsDatabase.TYPE);
-
         if (cursor.isNull(typeColumn) || isAppropriateTypeForMigration(cursor, typeColumn)) {
-          getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
-          statement.execute();
+          int columnIndex = cursor.getColumnIndexOrThrow(SmsDatabase.READ);
+          if (!cursor.isNull(columnIndex)) {
+            if (cursor.getLong(columnIndex) == 0) {
+              threadIsFullRead = false;
+            }
+          }
+            getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
+            statement.execute();
+          }
+          listener.progressUpdate(new ProgressDescription(progress, cursor.getCount(), cursor.getPosition()));
         }
+        ourSmsDatabase.endTransaction(transaction);
+        if (!threadIsFullRead) {
+          DatabaseFactory.getThreadDatabase(context).markAsUnread(ourThreadId);
+        }
+        DatabaseFactory.getThreadDatabase(context).update(ourThreadId);
+        DatabaseFactory.getThreadDatabase(context).notifyConversationListeners(ourThreadId);
 
-        listener.progressUpdate(new ProgressDescription(progress, cursor.getCount(), cursor.getPosition()));
+      }finally{
+        if (cursor != null)
+          cursor.close();
       }
-
-      ourSmsDatabase.endTransaction(transaction);
-      DatabaseFactory.getThreadDatabase(context).update(ourThreadId);
-      DatabaseFactory.getThreadDatabase(context).notifyConversationListeners(ourThreadId);
-
-    } finally {
-      if (cursor != null)
-        cursor.close();
     }
-  }
 
   public static void migrateDatabase(Context context,
                                      MasterSecret masterSecret,

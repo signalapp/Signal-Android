@@ -63,7 +63,7 @@ public class ThreadDatabase extends Database {
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                             +
     DATE + " INTEGER DEFAULT 0, " + MESSAGE_COUNT + " INTEGER DEFAULT 0, "                         +
     RECIPIENT_IDS + " TEXT, " + SNIPPET + " TEXT, " + SNIPPET_CHARSET + " INTEGER DEFAULT 0, "     +
-    READ + " INTEGER DEFAULT 1, " + TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, " +
+    READ + " INTEGER DEFAULT 0, " + TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, " +
     SNIPPET_TYPE + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
@@ -146,7 +146,7 @@ public class ThreadDatabase extends Database {
 
   private void deleteThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.delete(TABLE_NAME, ID_WHERE, new String[] {threadId+""});
+    db.delete(TABLE_NAME, ID_WHERE, new String[]{threadId + ""});
     notifyConversationListListeners();
   }
 
@@ -243,7 +243,17 @@ public class ThreadDatabase extends Database {
     DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
     notifyConversationListListeners();
   }
+  public void markAsUnread(long threadId) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(READ, 0);
 
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
+
+    DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
+    DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
+    notifyConversationListListeners();
+  }
   public void setUnread(long threadId) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 0);
