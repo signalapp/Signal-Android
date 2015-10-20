@@ -151,7 +151,7 @@ public class ConversationListItem extends RelativeLayout
     private void handleOpenProfile(String profileId) {
         final Intent intent = new Intent(getContext(), ProfileActivity.class);
         intent.putExtra("master_secret", ProfileAccessor.getMasterSecred());
-        intent.putExtra("profile_id", profileId);
+        intent.putExtra("profile_id", recipients.getPrimaryRecipient().getNumber()); //profileId);
         intent.putExtra("is_group", getRecipients().isGroupRecipient());
         intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, getRecipients().getIds());
         getContext().startActivity(intent);
