@@ -1037,7 +1037,7 @@
 
     <!-- reminder_header -->
     <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
-    <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
+    <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update via the app store.</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
     <string name="reminder_header_sms_import_title">Import system SMS?</string>
