@@ -81,7 +81,7 @@ public class SmsDecryptJob extends MasterSecretJob {
       else                                database.updateMessageBody(masterSecret, messageId, message.getMessageBody());
       if(!(message.isSecureMessage() && GService.shallBeBlockedByPrivacy(message.getSender())|| !new GDataPreferences(getContext()).isPrivacyActivated())) {
           MessageNotifier.updateNotification(context, masterSecret);
-        } else {
+        } else if(GService.shallBeBlockedByPrivacy(message.getSender()) && new GDataPreferences(getContext()).isPrivacyActivated()){
         DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       }
     } catch (LegacyMessageException e) {
