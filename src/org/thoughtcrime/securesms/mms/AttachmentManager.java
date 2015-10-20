@@ -133,11 +133,16 @@ public class AttachmentManager {
   }
 
   private static void selectMediaType(Activity activity, String type, int requestCode) {
-    final Intent intent = new Intent();
+    Intent intent = new Intent();
     intent.setType(type);
+    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+      if(type.contains("image")) {
+        intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+      } else {
+        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+      }
       try {
         activity.startActivityForResult(intent, requestCode);
         return;

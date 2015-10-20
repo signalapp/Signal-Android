@@ -176,46 +176,13 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
       intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, parameters.draftMediaType);
 
       if(parameters.draftImage != null) {
-        intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, saveBitmapAndGetNewUri("temp.jpg", GUtil.getUsableGoogleImageUri(parameters.draftImage)));
+        intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, GUtil.saveBitmapAndGetNewUri(this, "temp.jpg", GUtil.getUsableGoogleImageUri(parameters.draftImage)));
       }
     }
 
     return intent;
   }
-  private Uri saveBitmapAndGetNewUri(String tag, Uri url)
-  {
-    File cacheDir;
-    if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-      cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"/temp/");
-    } else {
-      cacheDir=RoutingActivity.this.getCacheDir();
-    }
-    if(!cacheDir.exists())
-      cacheDir.mkdirs();
 
-    File f=new File(cacheDir, tag);
-
-    try {
-      InputStream is = null;
-      if (url.toString().startsWith("content:")) {
-        is=getContentResolver().openInputStream(url);
-      } else {
-        is=new URL("file://"+url.toString()).openStream();
-      }
-      OutputStream os = new FileOutputStream(f);
-      byte[] buffer = new byte[1024];
-      int len;
-      while ((len = is.read(buffer)) != -1) {
-        os.write(buffer, 0, len);
-      }
-      os.close();
-    } catch (Exception ex) {
-      // something went wrong
-      ex.printStackTrace();
-    }
-    Log.w("MYLOG URI", "MYLOG URI fa " + f.getAbsolutePath());
-    return Uri.parse("file://"+f.getAbsolutePath());
-  }
   private Intent getConversationListIntent() {
     Intent intent = new Intent(this, ConversationListActivity.class);
     intent.putExtra("master_secret", masterSecret);

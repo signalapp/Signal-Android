@@ -36,7 +36,12 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,6 +65,39 @@ public class GUtil {
     Typeface font = TypeFaces.getTypeFace(context, prefs.getApplicationFont());
     setFontToLayouts(root, font);
     return root;
+  }
+  public static Uri saveBitmapAndGetNewUri(Activity activity, String tag, Uri url)
+  {
+    File cacheDir;
+    if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+      cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"/temp/");
+    } else {
+      cacheDir=activity.getCacheDir();
+    }
+    if(!cacheDir.exists())
+      cacheDir.mkdirs();
+
+    File f=new File(cacheDir, tag);
+
+    try {
+      InputStream is = null;
+      if (url.toString().startsWith("content:")) {
+        is=activity.getContentResolver().openInputStream(url);
+      } else {
+        is=new URL("file://"+url.toString()).openStream();
+      }
+      OutputStream os = new FileOutputStream(f);
+      byte[] buffer = new byte[1024];
+      int len;
+      while ((len = is.read(buffer)) != -1) {
+        os.write(buffer, 0, len);
+      }
+      os.close();
+    } catch (Exception ex) {
+      // something went wrong
+      ex.printStackTrace();
+    }
+    return Uri.parse("file://"+f.getAbsolutePath());
   }
   public static String getDate(long milliseconds, String format)
   {
