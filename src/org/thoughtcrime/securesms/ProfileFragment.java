@@ -294,6 +294,12 @@ public class ProfileFragment extends Fragment {
                 }
                 adapter.setMasterSecret(masterSecret);
                 adapter.setThreadId(threadId);
+                adapter.setOnRecipientDeletedListener(new SelectedRecipientsAdapter.OnRecipientDeletedListener() {
+                    @Override
+                    public void onRecipientDeleted(Recipient recipient) {
+                        removeSelectedContact(recipient);
+                    }
+                });
                 groupMember.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
@@ -664,6 +670,16 @@ public class ProfileFragment extends Fragment {
     private void addAllSelectedContacts(Collection<Recipient> contacts) {
         for (Recipient contact : contacts) {
             addSelectedContact(contact);
+        }
+    }
+
+    private void removeSelectedContact(Recipient contact) {
+        selectedContacts.remove(contact);
+        if (!isActiveInDirectory(getActivity(), contact)) {
+            for (Recipient recipient : selectedContacts) {
+                if (!isActiveInDirectory(getActivity(), recipient))
+                    return;
+            }
         }
     }
     private void syncAdapterWithSelectedContacts() {
