@@ -547,11 +547,19 @@ public class ConversationItem extends LinearLayout {
       }
     }
 
-    private void setStatusIcons(MessageRecord messageRecord) {
+    private void setStatusIcons(final MessageRecord messageRecord) {
       failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
       if (messageRecord.isOutgoing()) {
-        pendingIndicator.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
+        pendingIndicator.setVisibility(messageRecord.isPendingSmsFallback() || messageRecord.isFailed() ? View.VISIBLE : View.GONE);
         indicatorText.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
+        pendingIndicator.setOnClickListener(new OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            if(messageRecord.isFailed()) {
+              handleMessageApproval();
+            }
+          }
+        });
       }
       secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
       bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() || messageRecord.displaysAKey() ? R.drawable.ic_menu_login : 0, 0);
