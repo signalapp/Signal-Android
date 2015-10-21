@@ -21,12 +21,12 @@ public class NotificationItem {
   private final long                        threadId;
   private final CharSequence                text;
   private final long                        timestamp;
-  private final ListenableFutureTask<SlideDeck> slideDeck;
+  private final @Nullable SlideDeck         slideDeck;
 
   public NotificationItem(Recipient individualRecipient, Recipients recipients,
                           Recipients threadRecipients, long threadId,
                           CharSequence text, long timestamp,
-                          @Nullable ListenableFutureTask<SlideDeck> slideDeck)
+                          @Nullable SlideDeck slideDeck)
   {
     this.individualRecipient = individualRecipient;
     this.recipients          = recipients;
@@ -57,7 +57,7 @@ public class NotificationItem {
     return threadId;
   }
 
-  public @Nullable ListenableFutureTask<SlideDeck> getSlideDeck() {
+  public @Nullable SlideDeck getSlideDeck() {
     return slideDeck;
   }
 
