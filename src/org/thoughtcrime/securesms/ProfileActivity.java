@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -127,8 +128,10 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
                                 new DecodeCropAndSetAsyncTask(Uri.fromFile(f)).execute();
                             }
                         } catch (IOException e) {
+                            Toast.makeText(getApplicationContext(),getString(R.string.MediaPreviewActivity_unssuported_media_type), Toast.LENGTH_LONG).show();
                             Log.w("GDATA", e);
                         } catch (BitmapDecodingException e) {
+                            Toast.makeText(getApplicationContext(),getString(R.string.MediaPreviewActivity_unssuported_media_type), Toast.LENGTH_LONG).show();
                             Log.w("GDATA", e);
                         }
                     }
@@ -150,8 +153,10 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
                             }
                         } catch (IOException e) {
                             Log.w("GDATA", e);
+                            Toast.makeText(getApplicationContext(),getString(R.string.MediaPreviewActivity_unssuported_media_type), Toast.LENGTH_LONG).show();
                         } catch (BitmapDecodingException e) {
                             Log.w("GDATA", e);
+                            Toast.makeText(getApplicationContext(),getString(R.string.MediaPreviewActivity_unssuported_media_type), Toast.LENGTH_LONG).show();
                         }
                     break;
             }
