@@ -342,7 +342,7 @@ public class ConversationItem extends LinearLayout {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
               TextView.BufferType.SPANNABLE);
-    } else if(messageRecord.isDeliveryFailed() && messageRecord.getIndividualRecipient() != null && !messageRecord.isGroupAction() && "Unknown".equals(messageRecord.getIndividualRecipient().getName()) && messageRecord.isOutgoing()) {
+    } else if(messageRecord.isDeliveryFailed() && messageRecord.getIndividualRecipient() != null && groupThread && "Unknown".equals(messageRecord.getIndividualRecipient().getName()) && messageRecord.isOutgoing()) {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.msg_failed),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
               TextView.BufferType.SPANNABLE);
