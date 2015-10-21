@@ -26,10 +26,11 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.StringTokenizer;
+
+import de.gdata.messaging.util.GDataPreferences;
 
 public class SmsMigrator {
 
@@ -66,11 +67,7 @@ public class SmsMigrator {
     if (cursor.isNull(columnIndex)) {
       statement.bindNull(index);
     } else {
-      if(key.equals(SmsDatabase.READ)) {
-        statement.bindLong(index, 0);
-      } else {
-        statement.bindLong(index, cursor.getLong(columnIndex));
-      }
+      statement.bindLong(index, cursor.getLong(columnIndex));
     }
   }
 
@@ -163,6 +160,7 @@ public class SmsMigrator {
     MasterCipher masterCipher = new MasterCipher(masterSecret);
     return masterCipher.encryptBody(body);
   }
+  private static GDataPreferences preferences;
 
   private static void migrateConversation(Context context, MasterSecret masterSecret,
                                           SmsMigrationProgressListener listener,
@@ -170,8 +168,9 @@ public class SmsMigrator {
                                           long theirThreadId, long ourThreadId) {
     SmsDatabase ourSmsDatabase = DatabaseFactory.getSmsDatabase(context);
     Cursor cursor = null;
-    boolean threadIsFullRead = true;
-
+    int unreadCount = 0;
+    int readCount = 0;
+    preferences = new GDataPreferences(context);
     try {
       Uri uri = Uri.parse("content://sms/conversations/" + theirThreadId);
       cursor = context.getContentResolver().query(uri, null, null, null, null);
@@ -184,7 +183,9 @@ public class SmsMigrator {
           int columnIndex = cursor.getColumnIndexOrThrow(SmsDatabase.READ);
           if (!cursor.isNull(columnIndex)) {
             if (cursor.getLong(columnIndex) == 0) {
-              threadIsFullRead = false;
+              unreadCount++;
+            } else {
+              readCount++;
             }
           }
             getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
@@ -193,7 +194,10 @@ public class SmsMigrator {
           listener.progressUpdate(new ProgressDescription(progress, cursor.getCount(), cursor.getPosition()));
         }
         ourSmsDatabase.endTransaction(transaction);
-        if (!threadIsFullRead) {
+
+        if (unreadCount>0) {
+          Long threadReadCount = preferences.getReadCount(ourThreadId+"");
+          preferences.saveReadCount(ourThreadId + "", 0L + threadReadCount - unreadCount);
           DatabaseFactory.getThreadDatabase(context).markAsUnread(ourThreadId);
         }
         DatabaseFactory.getThreadDatabase(context).update(ourThreadId);

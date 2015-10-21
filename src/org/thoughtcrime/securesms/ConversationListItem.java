@@ -49,8 +49,6 @@ import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
 
-import de.gdata.messaging.util.ProfileAccessor;
-
 /**
  * A view that displays the element in a list of multiple conversation threads.
  * Used by SecureSMS's ListActivity via a ConversationListAdapter.
@@ -125,11 +123,11 @@ public class ConversationListItem extends RelativeLayout
 
         if(read) {
             unreadCountView.setVisibility(View.GONE);
-            preferences.saveUnreadCountForThread(threadId+"", count);
+            preferences.saveReadCount(threadId + "", count);
         } else {
-            Long unreadCount = count - preferences.getUnreadCountForThread(threadId + "");
-            if (unreadCount<=0){
-                preferences.saveUnreadCountForThread(threadId + "", count);
+            Long unreadCount = count - preferences.getReadCount(threadId + "");
+            if (unreadCount<0){
+                preferences.saveReadCount(threadId + "", count);
             } else {
                 unreadCountView.setVisibility(View.VISIBLE);
                 unreadCountView.setText(unreadCount + "");
