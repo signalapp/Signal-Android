@@ -33,6 +33,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
+import android.text.method.ScrollingMovementMethod;
 import android.transition.Explode;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -437,6 +438,7 @@ public class ConversationItem extends LinearLayout {
       ((TextView) rlView.findViewById(R.id.textDialog)).setText(Emoji.getInstance(context).emojify(text,
                       new Emoji.InvalidatingPageLoadedListener(((TextView) rlView.findViewById(R.id.textDialog)))),
               TextView.BufferType.SPANNABLE);
+      ((TextView) rlView.findViewById(R.id.textDialog)).setMovementMethod(new ScrollingMovementMethod());
 
       builder.setView(rlView);
       builder.setPositiveButton(R.string.self_destruction, new DialogInterface.OnClickListener() {
