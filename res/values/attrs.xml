@@ -134,4 +134,9 @@
     <declare-styleable name="ThumbnailView">
         <attr name="backgroundColorHint" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="AudioView">
+        <attr name="tintColor" format="color" />
+    </declare-styleable>
+
 </resources>

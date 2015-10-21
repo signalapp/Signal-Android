@@ -41,13 +41,14 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
+import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -101,6 +102,7 @@ public class ConversationItem extends LinearLayout
   private StatusManager      statusManager;
   private Set<MessageRecord> batchSelected;
   private ThumbnailView      mediaThumbnail;
+  private AudioView          audioView;
   private Button             mmsDownloadButton;
   private TextView           mmsDownloadingLabel;
 
@@ -152,15 +154,20 @@ public class ConversationItem extends LinearLayout
     this.pendingApprovalIndicator = (ImageView)       findViewById(R.id.pending_approval_indicator);
     this.pendingIndicator         =                   findViewById(R.id.pending_indicator);
     this.mediaThumbnail           = (ThumbnailView)   findViewById(R.id.image_view);
+    this.audioView                = (AudioView)       findViewById(R.id.audio_view);
     this.statusManager            = new StatusManager(pendingIndicator, sentIndicator, deliveredIndicator, failedIndicator, pendingApprovalIndicator);
 
     setOnClickListener(new ClickListener(null));
-    PassthroughClickListener passthroughClickListener = new PassthroughClickListener();
+    PassthroughClickListener       passthroughClickListener = new PassthroughClickListener();
+    ThumbnailDownloadClickListener downloadClickListener    = new ThumbnailDownloadClickListener();
+
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
-    mediaThumbnail.setDownloadClickListener(new ThumbnailDownloadClickListener());
+    mediaThumbnail.setDownloadClickListener(downloadClickListener);
     mediaThumbnail.setOnLongClickListener(passthroughClickListener);
     mediaThumbnail.setOnClickListener(passthroughClickListener);
+    audioView.setDownloadClickListener(downloadClickListener);
+    audioView.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
   }
@@ -218,6 +225,7 @@ public class ConversationItem extends LinearLayout
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
       mediaThumbnail.setBackgroundColorHint(defaultBubbleColor);
+      audioView.setTint(recipient.getColor().toConversationColor(context));
     } else {
       int color = recipient.getColor().toConversationColor(context);
       bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
@@ -237,7 +245,13 @@ public class ConversationItem extends LinearLayout
     return TextUtils.isEmpty(messageRecord.getDisplayBody()) && messageRecord.isMms();
   }
 
-  private boolean hasMedia(MessageRecord messageRecord) {
+  private boolean hasAudio(MessageRecord messageRecord) {
+    return messageRecord.isMms() &&
+           !messageRecord.isMmsNotification() &&
+           ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getAudioSlide() != null;
+  }
+
+  private boolean hasThumbnail(MessageRecord messageRecord) {
     return messageRecord.isMms()              &&
            !messageRecord.isMmsNotification() &&
            ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
@@ -256,20 +270,33 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setMediaAttributes(MessageRecord messageRecord) {
+    boolean showControls = !messageRecord.isFailed() && (!messageRecord.isOutgoing() || messageRecord.isPending());
+
     if (messageRecord.isMmsNotification()) {
       mediaThumbnail.setVisibility(View.GONE);
+      audioView.setVisibility(View.GONE);
+
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
       setNotificationMmsAttributes((NotificationMmsMessageRecord) messageRecord);
-    } else if (hasMedia(messageRecord)) {
+    } else if (hasAudio(messageRecord)) {
+      audioView.setVisibility(View.VISIBLE);
+      mediaThumbnail.setVisibility(View.GONE);
+
+      //noinspection ConstantConditions
+      audioView.setAudio(masterSecret, ((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
+      bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+    } else if (hasThumbnail(messageRecord)) {
       mediaThumbnail.setVisibility(View.VISIBLE);
+      audioView.setVisibility(View.GONE);
+
       //noinspection ConstantConditions
       mediaThumbnail.setImageResource(masterSecret,
                                       ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
-                                      !messageRecord.isFailed() && (!messageRecord.isOutgoing() || messageRecord.isPending()),
-                                      false);
+                                      showControls);
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
     } else {
       mediaThumbnail.setVisibility(View.GONE);
+      audioView.setVisibility(View.GONE);
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
   }
