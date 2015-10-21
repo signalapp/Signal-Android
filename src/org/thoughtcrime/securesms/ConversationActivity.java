@@ -274,7 +274,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId) == null && threadId != -1) {
             finish();
         }
-        ;
         if (compressingIsrunning) {
             compressingDialog = ProgressDialog.show(this, getString(R.string.dialog_compressing_header), getString(R.string.dialog_compressing));
         }
