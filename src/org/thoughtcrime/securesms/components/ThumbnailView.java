@@ -17,35 +17,31 @@ import android.widget.ImageView;
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 public class ThumbnailView extends FrameLayout {
+
   private static final String TAG = ThumbnailView.class.getSimpleName();
 
   private ImageView       image;
-  private ImageView       removeButton;
   private int             backgroundColorHint;
   private int             radius;
   private OnClickListener parentClickListener;
 
-  private Optional<TransferControlView>   transferControls       = Optional.absent();
-  private ThumbnailClickListener          thumbnailClickListener = null;
-  private ThumbnailClickListener          downloadClickListener  = null;
-  private Slide                           slide                  = null;
+  private Optional<TransferControlView> transferControls       = Optional.absent();
+  private SlideClickListener            thumbnailClickListener = null;
+  private SlideClickListener            downloadClickListener  = null;
+  private Slide                         slide                  = null;
 
   public ThumbnailView(Context context) {
     this(context, null);
@@ -57,9 +53,11 @@ public class ThumbnailView extends FrameLayout {
 
   public ThumbnailView(final Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
+
     inflate(context, R.layout.thumbnail_view, this);
-    radius = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
-    image  = (ImageView) findViewById(R.id.thumbnail_image);
+
+    this.radius = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
+    this.image  = (ImageView) findViewById(R.id.thumbnail_image);
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {
@@ -86,21 +84,6 @@ public class ThumbnailView extends FrameLayout {
     if (transferControls.isPresent()) transferControls.get().setClickable(clickable);
   }
 
-  @Override
-  protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-    super.onLayout(changed, left, top, right, bottom);
-    if (removeButton != null) {
-      final int paddingHorizontal = removeButton.getWidth()  / 2;
-      final int paddingVertical   = removeButton.getHeight() / 2;
-      image.setPadding(paddingHorizontal, paddingVertical, paddingHorizontal, 0);
-    }
-  }
-
-  private ImageView getRemoveButton() {
-    if (removeButton == null) removeButton = ViewUtil.inflateStub(this, R.id.remove_button_stub);
-    return removeButton;
-  }
-
   private TransferControlView getTransferControls() {
     if (!transferControls.isPresent()) {
       transferControls = Optional.of((TransferControlView)ViewUtil.inflateStub(this, R.id.transfer_controls_stub));
@@ -112,9 +95,8 @@ public class ThumbnailView extends FrameLayout {
     this.backgroundColorHint = color;
   }
 
-  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide,
-                               boolean showControls, boolean showRemove)
-  {
+  public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide, boolean showControls) {
+
     if (Util.equals(slide, this.slide)) {
       Log.w(TAG, "Not re-loading slide " + slide.asAttachment().getDataUri());
       return;
@@ -137,22 +119,16 @@ public class ThumbnailView extends FrameLayout {
 
     this.slide = slide;
 
-    if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(slide, masterSecret, showRemove).into(image);
+    if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(slide, masterSecret).into(image);
     else if (slide.hasPlaceholder())          buildPlaceholderGlideRequest(slide).into(image);
     else                                      Glide.clear(image);
   }
 
-  public void setThumbnailClickListener(ThumbnailClickListener listener) {
+  public void setThumbnailClickListener(SlideClickListener listener) {
     this.thumbnailClickListener = listener;
   }
 
-  public void setRemoveClickListener(OnClickListener listener) {
-    getRemoveButton().setOnClickListener(listener);
-    final int pad = getResources().getDimensionPixelSize(R.dimen.media_bubble_remove_button_size);
-    image.setPadding(pad, pad, pad, 0);
-  }
-
-  public void setDownloadClickListener(ThumbnailClickListener listener) {
+  public void setDownloadClickListener(SlideClickListener listener) {
     this.downloadClickListener = listener;
   }
 
@@ -174,14 +150,10 @@ public class ThumbnailView extends FrameLayout {
            !((Activity)getContext()).isDestroyed();
   }
 
-  private GenericRequestBuilder buildThumbnailGlideRequest(@NonNull Slide slide, @NonNull MasterSecret masterSecret, boolean showRemove) {
+  private GenericRequestBuilder buildThumbnailGlideRequest(@NonNull Slide slide, @NonNull MasterSecret masterSecret) {
     DrawableRequestBuilder<DecryptableUri> builder = Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
                                                           .crossFade()
                                                           .transform(new RoundedCorners(getContext(), true, radius, backgroundColorHint));
-
-    if (showRemove) {
-      builder = builder.listener(new ThumbnailSetListener(slide.asAttachment()));
-    }
 
     if (slide.isInProgress()) return builder;
     else                      return builder.error(R.drawable.ic_missing_thumbnail_picture);
@@ -191,10 +163,6 @@ public class ThumbnailView extends FrameLayout {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
                                    .asBitmap()
                                    .fitCenter();
-  }
-
-  public interface ThumbnailClickListener {
-    void onClick(View v, Slide slide);
   }
 
   private class ThumbnailClickDispatcher implements View.OnClickListener {
@@ -218,38 +186,6 @@ public class ThumbnailView extends FrameLayout {
       if (downloadClickListener != null && slide != null) {
         downloadClickListener.onClick(view, slide);
       }
-    }
-  }
-
-  private class ThumbnailSetListener implements RequestListener<Object, GlideDrawable> {
-
-    private final Attachment attachment;
-
-    public ThumbnailSetListener(@NonNull Attachment attachment) {
-      this.attachment = attachment;
-    }
-
-    @Override
-    public boolean onException(Exception e, Object model, Target<GlideDrawable> target, boolean isFirstResource) {
-      return false;
-    }
-
-    @Override
-    public boolean onResourceReady(GlideDrawable resource, Object model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-      if (resource instanceof GlideBitmapDrawable) {
-        Log.w(TAG, "onResourceReady() for a Bitmap. Saving.");
-        attachment.setThumbnail(((GlideBitmapDrawable) resource).getBitmap());
-      }
-      LayoutParams layoutParams = (LayoutParams) getRemoveButton().getLayoutParams();
-      if (resource.getIntrinsicWidth() < getWidth()) {
-        layoutParams.topMargin   = 0;
-        layoutParams.rightMargin = Math.max(0, (getWidth() - image.getPaddingRight() - resource.getIntrinsicWidth()) / 2);
-      } else {
-        layoutParams.topMargin   = Math.max(0, (getHeight() - image.getPaddingTop() - resource.getIntrinsicHeight()) / 2);
-        layoutParams.rightMargin = 0;
-      }
-      getRemoveButton().setLayoutParams(layoutParams);
-      return false;
     }
   }
 }

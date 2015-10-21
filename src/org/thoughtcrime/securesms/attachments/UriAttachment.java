@@ -13,15 +13,15 @@ import java.io.InputStream;
 
 public class UriAttachment extends Attachment {
 
-  private final Uri dataUri;
-  private final Uri thumbnailUri;
+  private final @NonNull Uri dataUri;
+  private final @NonNull Uri thumbnailUri;
 
-  public UriAttachment(Uri uri, String contentType, int transferState, long size) {
+  public UriAttachment(@NonNull Uri uri, @NonNull String contentType, int transferState, long size) {
     this(uri, uri, contentType, transferState, size);
   }
 
-  public UriAttachment(Uri dataUri, Uri thumbnailUri,
-                       String contentType, int transferState, long size)
+  public UriAttachment(@NonNull Uri dataUri, @NonNull Uri thumbnailUri,
+                       @NonNull String contentType, int transferState, long size)
   {
     super(contentType, transferState, size, null, null, null);
     this.dataUri      = dataUri;
@@ -38,5 +38,15 @@ public class UriAttachment extends Attachment {
   @NonNull
   public Uri getThumbnailUri() {
     return thumbnailUri;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    return other != null && other instanceof UriAttachment && ((UriAttachment) other).dataUri.equals(this.dataUri);
+  }
+
+  @Override
+  public int hashCode() {
+    return dataUri.hashCode();
   }
 }

@@ -81,6 +81,17 @@ public class SlideDeck {
         return slide;
       }
     }
+
+    return null;
+  }
+
+  public @Nullable AudioSlide getAudioSlide() {
+    for (Slide slide : slides) {
+      if (slide.hasAudio()) {
+        return (AudioSlide)slide;
+      }
+    }
+
     return null;
   }
 }

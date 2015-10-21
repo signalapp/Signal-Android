@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout android:id="@+id/audio_widget_container"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+        <LinearLayout android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                      android:orientation="horizontal">
+
+            <org.thoughtcrime.securesms.components.AnimatingToggle
+                    android:id="@+id/control_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                <com.pnikosis.materialishprogress.ProgressWheel
+                        android:id="@+id/download_progress"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        app:matProg_barColor="@color/white"
+                        app:matProg_linearProgress="true"
+                        app:matProg_spinSpeed="0.333"
+                        tools:visibility="visible"/>
+
+                <ImageView android:id="@+id/play"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="center_vertical"
+                           android:gravity="center_vertical"
+                           android:clickable="true"
+                           android:visibility="gone"
+                           android:background="@drawable/circle_touch_highlight_background"
+                           android:src="@drawable/ic_play_circle_fill_white_48dp"
+                           android:contentDescription="Play"/>
+
+                <ImageView android:id="@+id/pause"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="center_vertical"
+                           android:gravity="center_vertical"
+                           android:clickable="true"
+                           android:visibility="gone"
+                           android:background="@drawable/circle_touch_highlight_background"
+                           android:src="@drawable/ic_pause_circle_fill_white_48dp"
+                           android:contentDescription="Pause"/>
+
+                <ImageView android:id="@+id/download"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="center_vertical"
+                           android:clickable="true"
+                           android:visibility="gone"
+                           android:background="@drawable/circle_touch_highlight_background"
+                           android:src="@drawable/ic_download_circle_fill_white_48dp"
+                           android:contentDescription="Download"/>
+
+            </org.thoughtcrime.securesms.components.AnimatingToggle>
+
+            <SeekBar android:id="@+id/seek"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_vertical"
+                     android:minWidth="210dp"/>
+
+        </LinearLayout>
+
+    <TextView android:id="@+id/timestamp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="76dip"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:textColor="?conversation_item_sent_text_secondary_color"
+              android:textSize="@dimen/conversation_item_date_text_size"
+              android:fontFamily="sans-serif-light"
+              android:autoLink="none"
+              android:visibility="gone"
+              tools:text="00:15"
+              tools:visibility="visible"
+            />
+
+    </LinearLayout>
+
+</merge>

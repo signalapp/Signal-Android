@@ -34,6 +34,8 @@ import android.view.animation.Animation;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.AudioView;
+import org.thoughtcrime.securesms.components.RemovableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.CaptureProvider;
@@ -43,24 +45,29 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import java.io.IOException;
 
 public class AttachmentManager {
+
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
-  private final Context            context;
-  private final View               attachmentView;
-  private final ThumbnailView      thumbnail;
-  private final SlideDeck          slideDeck;
-  private final AttachmentListener attachmentListener;
+  private final @NonNull Context            context;
+  private final @NonNull View               attachmentView;
+  private final @NonNull RemovableMediaView removableMediaView;
+  private final @NonNull ThumbnailView      thumbnail;
+  private final @NonNull AudioView          audioView;
+  private final @NonNull SlideDeck          slideDeck;
+  private final @NonNull AttachmentListener attachmentListener;
 
   private Uri captureUri;
 
-  public AttachmentManager(Activity view, AttachmentListener listener) {
+  public AttachmentManager(@NonNull Activity view, @NonNull AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
     this.thumbnail          = (ThumbnailView) view.findViewById(R.id.attachment_thumbnail);
+    this.audioView          = (AudioView) view.findViewById(R.id.attachment_audio);
+    this.removableMediaView = (RemovableMediaView) view.findViewById(R.id.removable_media_view);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
     this.attachmentListener = listener;
 
-    thumbnail.setRemoveClickListener(new RemoveButtonListener());
+    removableMediaView.setRemoveClickListener(new RemoveButtonListener());
   }
 
   public void clear() {
@@ -81,6 +88,7 @@ public class AttachmentManager {
     });
 
     attachmentView.startAnimation(animation);
+    audioView.cleanup();
   }
 
   public void cleanup() {
@@ -135,7 +143,15 @@ public class AttachmentManager {
         } else {
           slideDeck.addSlide(slide);
           attachmentView.setVisibility(View.VISIBLE);
-          thumbnail.setImageResource(masterSecret, slide, false, true);
+
+          if (slide.hasAudio()) {
+            audioView.setAudio(masterSecret, (AudioSlide)slide, false);
+            removableMediaView.display(audioView);
+          } else {
+            thumbnail.setImageResource(masterSecret, slide, false);
+            removableMediaView.display(thumbnail);
+          }
+
           attachmentListener.onAttachmentChanged();
         }
       }
