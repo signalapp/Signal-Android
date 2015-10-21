@@ -1012,8 +1012,7 @@ public class MmsDatabase extends MessagingDatabase {
       Recipients                recipients      = getRecipientsFor(address);
       List<IdentityKeyMismatch> mismatches      = getMismatchedIdentities(mismatchDocument);
       List<NetworkFailure>      networkFailures = getFailures(networkDocument);
-
-      ListenableFutureTask<SlideDeck> slideDeck = getSlideDeck(dateReceived, id);
+      SlideDeck                 slideDeck       = getSlideDeck(cursor);
 
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                        addressDeviceId, dateSent, dateReceived, receiptCount,
@@ -1078,63 +1077,9 @@ public class MmsDatabase extends MessagingDatabase {
       }
     }
 
-    private ListenableFutureTask<SlideDeck> getSlideDeck(final long timestamp,
-                                                         final long id)
-    {
-      ListenableFutureTask<SlideDeck> future = getCachedSlideDeck(timestamp, id);
-
-      if (future != null) {
-        return future;
-      }
-
-      Callable<SlideDeck> task = new Callable<SlideDeck>() {
-        @Override
-        public SlideDeck call() throws Exception {
-          AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-          List<Attachment>   attachments        = new LinkedList<Attachment>(attachmentDatabase.getAttachmentsForMessage(id));
-          SlideDeck          slideDeck          = new SlideDeck(context, attachments);
-          boolean            progress           = false;
-
-          for (Attachment attachment : attachments) {
-            if (attachment.isInProgress()) progress = true;
-          }
-
-          if (!progress) {
-            slideCache.put(timestamp + "::" + id, new SoftReference<>(slideDeck));
-          }
-
-          return slideDeck;
-        }
-      };
-
-      future = new ListenableFutureTask<>(task, timestamp + "::" + id);
-      slideResolver.execute(future);
-
-      return future;
-    }
-
-    private ListenableFutureTask<SlideDeck> getCachedSlideDeck(final long timestamp, final long id) {
-      SoftReference<SlideDeck> reference = slideCache.get(timestamp + "::" + id);
-
-      if (reference != null) {
-        final SlideDeck slideDeck = reference.get();
-
-        if (slideDeck != null) {
-          Callable<SlideDeck> task = new Callable<SlideDeck>() {
-            @Override
-            public SlideDeck call() throws Exception {
-              return slideDeck;
-            }
-          };
-
-          ListenableFutureTask<SlideDeck> future = new ListenableFutureTask<>(task);
-          future.run();
-
-          return future;
-        }
-      }
-
-      return null;
+    private SlideDeck getSlideDeck(@NonNull Cursor cursor) {
+      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
+      return new SlideDeck(context, attachment);
     }
 
     public void close() {

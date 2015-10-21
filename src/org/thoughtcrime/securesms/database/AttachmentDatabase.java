@@ -61,11 +61,12 @@ public class AttachmentDatabase extends Database {
 
           static final String TABLE_NAME             = "part";
           static final String ROW_ID                 = "_id";
+          static final String ATTACHMENT_ID_ALIAS    = "attachment_id";
           static final String MMS_ID                 = "mid";
           static final String CONTENT_TYPE           = "ct";
-  private static final String NAME                   = "name";
-  private static final String CONTENT_DISPOSITION    = "cd";
-  private static final String CONTENT_LOCATION       = "cl";
+          static final String NAME                   = "name";
+          static final String CONTENT_DISPOSITION    = "cd";
+          static final String CONTENT_LOCATION       = "cl";
           static final String DATA                   = "_data";
           static final String TRANSFER_STATE         = "pending_push";
           static final String SIZE                   = "data_size";
@@ -79,6 +80,12 @@ public class AttachmentDatabase extends Database {
   public static final int TRANSFER_PROGRESS_FAILED       = 3;
 
   private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
+
+  private static final String[] PROJECTION = new String[] {ROW_ID + " AS " + ATTACHMENT_ID_ALIAS,
+                                                           MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
+                                                           CONTENT_LOCATION, DATA, TRANSFER_STATE,
+                                                           SIZE, THUMBNAIL, THUMBNAIL_ASPECT_RATIO,
+                                                           UNIQUE_ID};
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -148,7 +155,7 @@ public class AttachmentDatabase extends Database {
     Cursor cursor           = null;
 
     try {
-      cursor = database.query(TABLE_NAME, null, PART_ID_WHERE, attachmentId.toStrings(), null, null, null);
+      cursor = database.query(TABLE_NAME, PROJECTION, PART_ID_WHERE, attachmentId.toStrings(), null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) return getAttachment(cursor);
       else                                        return null;
@@ -165,7 +172,7 @@ public class AttachmentDatabase extends Database {
     Cursor                   cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {mmsId+""},
+      cursor = database.query(TABLE_NAME, PROJECTION, MMS_ID + " = ?", new String[] {mmsId+""},
                               null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
@@ -185,7 +192,7 @@ public class AttachmentDatabase extends Database {
 
     Cursor cursor = null;
     try {
-      cursor = database.query(TABLE_NAME, null, TRANSFER_STATE + " = ?", new String[] {String.valueOf(TRANSFER_PROGRESS_STARTED)}, null, null, null);
+      cursor = database.query(TABLE_NAME, PROJECTION, TRANSFER_STATE + " = ?", new String[] {String.valueOf(TRANSFER_PROGRESS_STARTED)}, null, null, null);
       while (cursor != null && cursor.moveToNext()) {
         attachments.add(getAttachment(cursor));
       }
@@ -417,8 +424,8 @@ public class AttachmentDatabase extends Database {
     }
   }
 
-  private DatabaseAttachment getAttachment(Cursor cursor) {
-    return new DatabaseAttachment(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),
+  DatabaseAttachment getAttachment(Cursor cursor) {
+    return new DatabaseAttachment(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ATTACHMENT_ID_ALIAS)),
                                                    cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))),
                                   cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)),
                                   !cursor.isNull(cursor.getColumnIndexOrThrow(DATA)),

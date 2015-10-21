@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
@@ -305,21 +304,16 @@ public class ConversationFragment extends Fragment
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
-
-        message.fetchMediaSlide(new FutureTaskListener<Slide>() {
-          @Override
-          public void onSuccess(Slide slide) {
+        for (Slide slide : message.getSlideDeck().getSlides()) {
+          if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
             SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret);
             saveTask.execute(new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived()));
+            return;
           }
+        }
 
-          @Override
-          public void onFailure(Throwable error) {
-            Log.w(TAG, "No slide with attachable media found, failing nicely.");
-            Log.w(TAG, error);
-            Toast.makeText(getActivity(), R.string.ConversationFragment_error_while_saving_attachment_to_sd_card, Toast.LENGTH_LONG).show();
-          }
-        });
+        Log.w(TAG, "No slide with attachable media found, failing nicely.");
+        Toast.makeText(getActivity(), R.string.ConversationFragment_error_while_saving_attachment_to_sd_card, Toast.LENGTH_LONG).show();
       }
     });
   }

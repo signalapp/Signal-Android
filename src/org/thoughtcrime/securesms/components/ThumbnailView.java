@@ -29,9 +29,6 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -46,8 +43,6 @@ public class ThumbnailView extends FrameLayout {
   private OnClickListener parentClickListener;
 
   private Optional<TransferControlView>   transferControls       = Optional.absent();
-  private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
-  private SlideDeckListener               slideDeckListener      = null;
   private ThumbnailClickListener          thumbnailClickListener = null;
   private ThumbnailClickListener          downloadClickListener  = null;
   private Slide                           slide                  = null;
@@ -117,25 +112,6 @@ public class ThumbnailView extends FrameLayout {
     this.backgroundColorHint = color;
   }
 
-  public void setImageResource(@NonNull MasterSecret masterSecret,
-                               @NonNull ListenableFutureTask<SlideDeck> slideDeckFuture,
-                               boolean showControls, boolean showRemove)
-  {
-    if (this.slideDeckFuture != null && this.slideDeckListener != null) {
-      this.slideDeckFuture.removeListener(this.slideDeckListener);
-    }
-
-    if (!slideDeckFuture.equals(this.slideDeckFuture)) {
-      if (transferControls.isPresent()) getTransferControls().clear();
-      image.setImageDrawable(null);
-      this.slide = null;
-    }
-
-    this.slideDeckListener = new SlideDeckListener(masterSecret, showControls, showRemove);
-    this.slideDeckFuture   = slideDeckFuture;
-    this.slideDeckFuture.addListener(this.slideDeckListener);
-  }
-
   public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide,
                                boolean showControls, boolean showRemove)
   {
@@ -182,11 +158,9 @@ public class ThumbnailView extends FrameLayout {
 
   public void clear() {
     if (isContextValid())             Glide.clear(image);
-    if (slideDeckFuture != null)      slideDeckFuture.removeListener(slideDeckListener);
     if (transferControls.isPresent()) getTransferControls().clear();
-    slide             = null;
-    slideDeckFuture   = null;
-    slideDeckListener = null;
+
+    slide = null;
   }
 
   public void showProgressSpinner() {
@@ -217,54 +191,6 @@ public class ThumbnailView extends FrameLayout {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
                                    .asBitmap()
                                    .fitCenter();
-  }
-
-  private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
-    private final MasterSecret masterSecret;
-    private final boolean      showControls;
-    private final boolean      showRemove;
-
-    public SlideDeckListener(@NonNull MasterSecret masterSecret, boolean showControls, boolean showRemove) {
-      this.masterSecret = masterSecret;
-      this.showControls = showControls;
-      this.showRemove   = showRemove;
-    }
-
-    @Override
-    public void onSuccess(final SlideDeck slideDeck) {
-      if (slideDeck == null) return;
-
-      final Slide slide = slideDeck.getThumbnailSlide();
-
-      if (slide != null) {
-        Util.runOnMain(new Runnable() {
-          @Override
-          public void run() {
-            setImageResource(masterSecret, slide, showControls, showRemove);
-          }
-        });
-      } else {
-        Util.runOnMain(new Runnable() {
-          @Override
-          public void run() {
-            Log.w(TAG, "Resolved slide was null!");
-            setVisibility(View.GONE);
-          }
-        });
-      }
-    }
-
-    @Override
-    public void onFailure(Throwable error) {
-      Log.w(TAG, error);
-      Util.runOnMain(new Runnable() {
-        @Override
-        public void run() {
-          Log.w(TAG, "onFailure!");
-          setVisibility(View.GONE);
-        }
-      });
-    }
   }
 
   public interface ThumbnailClickListener {

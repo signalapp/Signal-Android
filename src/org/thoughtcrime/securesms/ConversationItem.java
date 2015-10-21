@@ -240,7 +240,7 @@ public class ConversationItem extends LinearLayout
   private boolean hasMedia(MessageRecord messageRecord) {
     return messageRecord.isMms()              &&
            !messageRecord.isMmsNotification() &&
-           ((MediaMmsMessageRecord)messageRecord).getPartCount() > 0;
+           ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
   }
 
   private void setBodyText(MessageRecord messageRecord) {
@@ -262,8 +262,9 @@ public class ConversationItem extends LinearLayout
       setNotificationMmsAttributes((NotificationMmsMessageRecord) messageRecord);
     } else if (hasMedia(messageRecord)) {
       mediaThumbnail.setVisibility(View.VISIBLE);
+      //noinspection ConstantConditions
       mediaThumbnail.setImageResource(masterSecret,
-                                      ((MediaMmsMessageRecord)messageRecord).getSlideDeckFuture(),
+                                      ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
                                       !messageRecord.isFailed() && (!messageRecord.isOutgoing() || messageRecord.isPending()),
                                       false);
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
