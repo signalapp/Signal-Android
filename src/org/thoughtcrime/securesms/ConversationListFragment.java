@@ -219,6 +219,10 @@ public class ConversationListFragment extends ListFragment
 
             @Override
             protected Void doInBackground(Void... params) {
+              GDataPreferences pref = new GDataPreferences(getActivity());
+              for(Long threadId : selectedConversations) {
+                pref.saveReadCount(threadId+"", 0L);
+              }
               DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
               MessageNotifier.updateNotification(getActivity(), masterSecret);
               GUtil.reloadUnreadHeaderCounter();

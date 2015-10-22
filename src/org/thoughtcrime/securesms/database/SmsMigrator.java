@@ -197,7 +197,7 @@ public class SmsMigrator {
 
         if (unreadCount>0) {
           Long threadReadCount = preferences.getReadCount(ourThreadId+"");
-          preferences.saveReadCount(ourThreadId + "", 0L + threadReadCount - unreadCount);
+          preferences.saveReadCount(ourThreadId + "", 0L + threadReadCount + readCount);
           DatabaseFactory.getThreadDatabase(context).markAsUnread(ourThreadId);
         }
         DatabaseFactory.getThreadDatabase(context).update(ourThreadId);

@@ -801,6 +801,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (threadId > 0) {
+                    GDataPreferences pref = new GDataPreferences(getApplicationContext());
+                        pref.saveReadCount(threadId+"", 0L);
                     DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
                     finish();
                 }
