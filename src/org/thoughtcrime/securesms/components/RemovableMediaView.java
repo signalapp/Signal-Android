@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -29,16 +29,9 @@ public class RemovableMediaView extends FrameLayout {
   public RemovableMediaView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
-    this.remove     = new ImageView(getContext());
+    this.remove     = (ImageView)LayoutInflater.from(context).inflate(R.layout.media_view_remove_button, this, false);
     this.removeSize = getResources().getDimensionPixelSize(R.dimen.media_bubble_remove_button_size);
 
-    LayoutParams layoutParams = new LayoutParams(getContext(), attrs);
-    layoutParams.gravity = Gravity.TOP | Gravity.RIGHT;
-    layoutParams.width   = removeSize;
-    layoutParams.height  = removeSize;
-
-    this.remove.setLayoutParams(layoutParams);
-    this.remove.setImageResource(R.drawable.conversation_attachment_close_circle);
     this.remove.setVisibility(View.GONE);
   }
 

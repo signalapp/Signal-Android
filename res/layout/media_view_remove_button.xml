@@ -3,4 +3,6 @@
            android:id="@+id/remove_image_button"
            android:layout_width="@dimen/media_bubble_remove_button_size"
            android:layout_height="@dimen/media_bubble_remove_button_size"
-           android:src="@drawable/conversation_attachment_close_circle" />
+           android:layout_gravity="top|right"
+           android:src="@drawable/conversation_attachment_close_circle"
+           android:visibility="gone"/>
