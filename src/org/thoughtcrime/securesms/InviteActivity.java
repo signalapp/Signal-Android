@@ -59,7 +59,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
 
     super.onCreate(savedInstanceState, masterSecret);
     setContentView(R.layout.invite_activity);
-    getSupportActionBar().setTitle(R.string.AndroidManifest__invite_contacts);
+    getSupportActionBar().setTitle(R.string.AndroidManifest__invite_friends);
 
     initializeResources();
   }
