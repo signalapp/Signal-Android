@@ -3,6 +3,7 @@ package de.gdata.messaging.util;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -65,6 +67,11 @@ public class GUtil {
     Typeface font = TypeFaces.getTypeFace(context, prefs.getApplicationFont());
     setFontToLayouts(root, font);
     return root;
+  }
+  public static final String ACTION_RELOAD_HEADER = "reloadHeader";
+  public static void reloadUnreadHeaderCounter() {
+    Intent intent = new Intent(ACTION_RELOAD_HEADER);
+    LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
   }
   public static Uri saveBitmapAndGetNewUri(Activity activity, String tag, Uri url)
   {

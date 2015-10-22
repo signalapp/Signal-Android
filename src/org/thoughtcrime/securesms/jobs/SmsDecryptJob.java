@@ -125,6 +125,8 @@ public class SmsDecryptJob extends MasterSecretJob {
       MessageNotifier.updateNotification(context, masterSecret, threadId);
     }
     if (message.isEndSession()) SecurityEvent.broadcastSecurityUpdateEvent(context, threadId);
+
+    GUtil.reloadUnreadHeaderCounter();
   }
 
   private void handlePreKeyWhisperMessage(MasterSecret masterSecret, long messageId, long threadId,

@@ -60,6 +60,7 @@ import java.util.Set;
 
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GService;
+import de.gdata.messaging.util.GUtil;
 
 public class ConversationListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
@@ -220,7 +221,7 @@ public class ConversationListFragment extends ListFragment
             protected Void doInBackground(Void... params) {
               DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
               MessageNotifier.updateNotification(getActivity(), masterSecret);
-              LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(new Intent(PushDecryptJob.ACTION_RELOAD_HEADER));
+              GUtil.reloadUnreadHeaderCounter();
               return null;
             }
 

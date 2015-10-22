@@ -248,7 +248,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter(PrivacyBridge.ACTION_RELOAD_ADAPTER));
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter(PushDecryptJob.ACTION_RELOAD_HEADER));
+                new IntentFilter(GUtil.ACTION_RELOAD_HEADER));
         slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_from_right);
         slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_to_right);
         refreshProfile();
@@ -573,7 +573,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(PrivacyBridge.ACTION_RELOAD_ADAPTER)) {
                 reloadAdapter();
-            } else if (intent.getAction().equals(PushDecryptJob.ACTION_RELOAD_HEADER)) {
+            } else if (intent.getAction().equals(GUtil.ACTION_RELOAD_HEADER)) {
                 mSlidingTabLayout.refreshTabTitle();
             }
         }
@@ -778,8 +778,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 return null;
             }
         }.execute();
-        Intent intent = new Intent(PushDecryptJob.ACTION_RELOAD_HEADER);
-        LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+        GUtil.reloadUnreadHeaderCounter();
     }
 
     private void initializeContactUpdatesReceiver() {
