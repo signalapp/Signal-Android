@@ -60,9 +60,11 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -76,7 +78,7 @@ import java.util.Set;
  */
 
 public class ConversationItem extends LinearLayout
-    implements Recipient.RecipientModifiedListener, BindableConversationItem
+    implements Recipient.RecipientModifiedListener, Recipients.RecipientsModifiedListener, BindableConversationItem
 {
   private final static String TAG = ConversationItem.class.getSimpleName();
 
@@ -99,12 +101,13 @@ public class ConversationItem extends LinearLayout
   private View            pendingIndicator;
   private ImageView       pendingApprovalIndicator;
 
-  private StatusManager      statusManager;
-  private Set<MessageRecord> batchSelected;
-  private ThumbnailView      mediaThumbnail;
-  private AudioView          audioView;
-  private Button             mmsDownloadButton;
-  private TextView           mmsDownloadingLabel;
+  private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
+  private @Nullable Recipients          conversationRecipients;
+  private @NonNull  StatusManager       statusManager;
+  private @NonNull  ThumbnailView       mediaThumbnail;
+  private @NonNull  AudioView           audioView;
+  private @NonNull  Button              mmsDownloadButton;
+  private @NonNull  TextView            mmsDownloadingLabel;
 
   private int defaultBubbleColor;
 
@@ -161,7 +164,7 @@ public class ConversationItem extends LinearLayout
     PassthroughClickListener       passthroughClickListener = new PassthroughClickListener();
     ThumbnailDownloadClickListener downloadClickListener    = new ThumbnailDownloadClickListener();
 
-    if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
+    mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
     mediaThumbnail.setDownloadClickListener(downloadClickListener);
     mediaThumbnail.setOnLongClickListener(passthroughClickListener);
@@ -177,16 +180,18 @@ public class ConversationItem extends LinearLayout
                    @NonNull MessageRecord      messageRecord,
                    @NonNull Locale             locale,
                    @NonNull Set<MessageRecord> batchSelected,
-                   boolean groupThread)
+                   @NonNull Recipients         conversationRecipients)
   {
     this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
     this.locale                 = locale;
     this.batchSelected          = batchSelected;
-    this.groupThread            = groupThread;
+    this.conversationRecipients = conversationRecipients;
+    this.groupThread            = !conversationRecipients.isSingleRecipient() || conversationRecipients.isGroupRecipient();
     this.recipient              = messageRecord.getIndividualRecipient();
 
     this.recipient.addListener(this);
+    this.conversationRecipients.addListener(this);
 
     setInteractionState(messageRecord);
     setBodyText(messageRecord);
@@ -225,7 +230,7 @@ public class ConversationItem extends LinearLayout
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
       mediaThumbnail.setBackgroundColorHint(defaultBubbleColor);
-      audioView.setTint(recipient.getColor().toConversationColor(context));
+      audioView.setTint(conversationRecipients.getColor().toConversationColor(context));
     } else {
       int color = recipient.getColor().toConversationColor(context);
       bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
@@ -425,6 +430,11 @@ public class ConversationItem extends LinearLayout
         setGroupMessageStatus(messageRecord, recipient);
       }
     });
+  }
+
+  @Override
+  public void onModified(Recipients recipient) {
+    onModified(recipient.getPrimaryRecipient());
   }
 
   private class ThumbnailDownloadClickListener implements ThumbnailView.ThumbnailClickListener {
