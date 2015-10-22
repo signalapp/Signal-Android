@@ -219,10 +219,12 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       if (context == null) return null;
 
       for (String number : numbers) {
-        final Recipients recipients = RecipientFactory.getRecipientsFromString(context, number, true);
-        if (recipients != null) {
+        final Recipients recipients = RecipientFactory.getRecipientsFromString(context, number, false);
+        if (recipients != null && recipients.getPrimaryRecipient() != null) {
           MessageSender.send(context, masterSecret, new OutgoingTextMessage(recipients, message), -1L, true);
-          DatabaseFactory.getRecipientPreferenceDatabase(context).setSeenInviteReminder(recipients, true);
+          if (recipients.getPrimaryRecipient().getContactUri() != null) {
+            DatabaseFactory.getRecipientPreferenceDatabase(context).setSeenInviteReminder(recipients, true);
+          }
         }
       }
       return null;
