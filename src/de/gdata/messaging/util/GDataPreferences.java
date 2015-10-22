@@ -104,13 +104,13 @@ public class GDataPreferences {
   public void setProfilUpdateTimeForProfileId(String profileId, Long date) {
     mPreferences.edit().putLong("date:" + profileId, date).commit();
   }
-  public void saveUnreadCountForThread(String threadId, Long count) {
+  public void saveReadCount(String threadId, Long count) {
     if(count<0) {
-      count = 1L;
+      count = 0L;
     }
     mPreferences.edit().putLong("count:" + threadId, count).commit();
   }
-  public Long getUnreadCountForThread(String threadId) {
+  public Long getReadCount(String threadId) {
     return mPreferences.getLong("count:" + threadId, 0);
   }
   public void setApplicationFont(String applicationFont) {
