@@ -279,7 +279,6 @@ public class MmsSmsDatabase extends Database {
       return getCurrent();
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public MessageRecord getCurrent() {
       String type = cursor.getString(cursor.getColumnIndexOrThrow(TRANSPORT));
 
