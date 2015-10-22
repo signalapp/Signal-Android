@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.jobs.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -40,8 +41,8 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   private final @NonNull SeekBar         seekBar;
   private final @NonNull TextView        timestamp;
 
-  private @Nullable ThumbnailView.ThumbnailClickListener downloadListener;
-  private @Nullable AudioSlidePlayer                     audioSlidePlayer;
+  private @Nullable SlideClickListener downloadListener;
+  private @Nullable AudioSlidePlayer   audioSlidePlayer;
   private int backwardsCounter;
 
   public AudioView(Context context) {
@@ -104,7 +105,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     }
   }
 
-  public void setDownloadClickListener(@Nullable ThumbnailView.ThumbnailClickListener listener) {
+  public void setDownloadClickListener(@Nullable SlideClickListener listener) {
     this.downloadListener = listener;
   }
 

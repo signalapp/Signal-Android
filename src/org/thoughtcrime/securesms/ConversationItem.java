@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -161,8 +162,8 @@ public class ConversationItem extends LinearLayout
     this.statusManager            = new StatusManager(pendingIndicator, sentIndicator, deliveredIndicator, failedIndicator, pendingApprovalIndicator);
 
     setOnClickListener(new ClickListener(null));
-    PassthroughClickListener       passthroughClickListener = new PassthroughClickListener();
-    ThumbnailDownloadClickListener downloadClickListener    = new ThumbnailDownloadClickListener();
+    PassthroughClickListener        passthroughClickListener = new PassthroughClickListener();
+    AttachmentDownloadClickListener downloadClickListener    = new AttachmentDownloadClickListener();
 
     mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
@@ -437,7 +438,7 @@ public class ConversationItem extends LinearLayout
     onModified(recipient.getPrimaryRecipient());
   }
 
-  private class ThumbnailDownloadClickListener implements ThumbnailView.ThumbnailClickListener {
+  private class AttachmentDownloadClickListener implements SlideClickListener {
     @Override public void onClick(View v, final Slide slide) {
       DatabaseFactory.getAttachmentDatabase(context).setTransferState(messageRecord.getId(),
                                                                       slide.asAttachment(),
@@ -445,7 +446,7 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
+  private class ThumbnailClickListener implements SlideClickListener {
     private void fireIntent(Slide slide) {
       Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
       Intent intent = new Intent(Intent.ACTION_VIEW);

@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -37,10 +38,10 @@ public class ThumbnailView extends FrameLayout {
   private int             radius;
   private OnClickListener parentClickListener;
 
-  private Optional<TransferControlView>   transferControls       = Optional.absent();
-  private ThumbnailClickListener          thumbnailClickListener = null;
-  private ThumbnailClickListener          downloadClickListener  = null;
-  private Slide                           slide                  = null;
+  private Optional<TransferControlView> transferControls       = Optional.absent();
+  private SlideClickListener            thumbnailClickListener = null;
+  private SlideClickListener            downloadClickListener  = null;
+  private Slide                         slide                  = null;
 
   public ThumbnailView(Context context) {
     this(context, null);
@@ -123,11 +124,11 @@ public class ThumbnailView extends FrameLayout {
     else                                      Glide.clear(image);
   }
 
-  public void setThumbnailClickListener(ThumbnailClickListener listener) {
+  public void setThumbnailClickListener(SlideClickListener listener) {
     this.thumbnailClickListener = listener;
   }
 
-  public void setDownloadClickListener(ThumbnailClickListener listener) {
+  public void setDownloadClickListener(SlideClickListener listener) {
     this.downloadClickListener = listener;
   }
 
@@ -162,10 +163,6 @@ public class ThumbnailView extends FrameLayout {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
                                    .asBitmap()
                                    .fitCenter();
-  }
-
-  public interface ThumbnailClickListener {
-    void onClick(View v, Slide slide);
   }
 
   private class ThumbnailClickDispatcher implements View.OnClickListener {
