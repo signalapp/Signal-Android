@@ -110,7 +110,8 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                         android:scaleType="fitXY"
-                        android:visibility="invisible"
+                        android:src="?attr/menu_new_conversation_icon"
+                        android:visibility="visible"
                         app:backgroundTint="@color/holo_orange_dark"
                         app:borderWidth="0dp"
                         app:elevation="2dp"
@@ -125,7 +126,7 @@
                             android:layout_gravity="center"
                             android:scaleType="fitXY"
                             android:visibility="visible"
-                            android:src="@drawable/common_ic_googleplayservices" />
+                          />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -213,7 +214,6 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="38dp"
                     android:gravity="left">
@@ -241,52 +241,12 @@
 p
                 </RelativeLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/action_float_menu_conv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:id="@+id/textViewNew"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/textview_rounded_corners"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </android.support.v7.widget.CardView>
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fab_new_conversation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="38dp"
-                    android:src="@drawable/ic_message_white"
-                    app:backgroundTint="@color/holo_blue_dark"
-                    app:borderWidth="0dp"
-                    app:elevation="2dp"
-                    app:fabSize="mini"
-                    app:pressedTranslationZ="2dp" />
-            </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/action_float_menu_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -315,6 +275,44 @@ p
                     android:layout_marginRight="38dp"
                     android:src="@drawable/ic_group_white_24dp"
                     app:backgroundTint="@color/conversation_item_sent_background_light"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/action_float_menu_conv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/textViewNew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_new_conversation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="38dp"
+                    android:src="@drawable/ic_message_white"
+                    app:backgroundTint="@color/holo_blue_dark"
                     app:borderWidth="0dp"
                     app:elevation="2dp"
                     app:fabSize="mini"
