@@ -57,6 +57,7 @@ public class ComposeText extends EmojiEditText {
     }
 
     append(invite);
+    setSelection(getText().length());
   }
 
   private boolean isLandscape() {

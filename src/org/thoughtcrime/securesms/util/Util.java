@@ -159,7 +159,7 @@ public class Util {
     return PhoneNumberFormatter.formatNumber(number, localNumber);
   }
 
-  public static String canonicalizeNumberOrGroup(Context context, String number)
+  public static String canonicalizeNumberOrGroup(@NonNull Context context, @NonNull String number)
       throws InvalidNumberException
   {
     if (GroupUtil.isEncodedGroup(number)) return number;

@@ -23,10 +23,10 @@ import android.widget.TextView;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.thoughtcrime.securesms.components.DefaultSmsReminder;
-import org.thoughtcrime.securesms.components.ExpiredBuildReminder;
-import org.thoughtcrime.securesms.components.PushRegistrationReminder;
-import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
+import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
+import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
+import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
+import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import static android.support.test.espresso.Espresso.onView;

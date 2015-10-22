@@ -112,6 +112,16 @@
     <activity android:name=".ImportExportActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".InviteActivity"
+              android:theme="@style/TextSecure.HighlightTheme"
+              android:windowSoftInputMode="stateHidden"
+              android:parentActivityName=".ConversationListActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="org.thoughtcrime.securesms.ConversationListActivity" />
+    </activity>
+
     <activity android:name=".PromptMmsActivity"
               android:label="Configure MMS Settings"
               android:windowSoftInputMode="stateUnchanged"

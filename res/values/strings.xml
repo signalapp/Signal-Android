@@ -91,8 +91,6 @@
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
 
     <!-- ConversationActivity -->
-    <string name="ConversationActivity_initiate_secure_session_question">Initiate secure session?</string>
-    <string name="ConversationActivity_initiate_secure_session_with_s_question">Initiate secure session with %s?</string>
     <string name="ConversationActivity_reset_secure_session_confirmation">Reset secure session confirmation</string>
     <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Are you sure that you want to reset this secure session?</string>
     <string name="ConversationActivity_delete_thread_confirmation">Delete thread confirmation</string>
@@ -120,8 +118,8 @@
     <string name="ConversationActivity_transport_insecure_sms">Insecure SMS</string>
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
     <string name="ConversationActivity_transport_signal">Signal</string>
-    <string name="ConversationActivity_get_with_it">Get with it: %s</string>
-    <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal %1$s</string>
+    <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %1$s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
     <string name="ConversationActivity_mms_not_supported_title">MMS not supported</string>
     <string name="ConversationActivity_mms_not_supported_message">This message cannot be sent since your carrier doesn\'t support MMS.</string>
@@ -266,6 +264,20 @@
     <string name="ImportFragment_restoring_encrypted_backup">Restoring encrypted backup...</string>
     <string name="ImportFragment_no_encrypted_backup_found">No encrypted backup found!</string>
     <string name="ImportFragment_restore_complete">Restore complete!</string>
+
+    <!-- InviteActivity -->
+    <string name="InviteActivity_share">Share</string>
+    <string name="InviteActivity_send_sms">Send SMS</string>
+    <string name="InviteActivity_cancel">Cancel</string>
+    <string name="InviteActivity_sending">Sending...</string>
+    <string name="InviteActivity_heart_content_description">Heart</string>
+    <string name="InviteActivity_invitations_sent">Invitations sent!</string>
+    <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
+    <string name="InviteActivity_send_to_friends">SEND TO %1$s FRIEND(S)</string>
+    <string name="InviteActivity_send_sms_invites">Send %1$s SMS invite(s)?</string>
+    <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
+    <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
+    <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
 
     <!-- KeyScanningActivity -->
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
@@ -476,7 +488,6 @@
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
-    <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">You\'ve already sent a session initiation request to this recipient, are you sure you\'d like to send another?  This will invalidate the first request.</string>
     <string name="KeyExchangeInitiator_send">Send</string>
 
     <!-- MessageDisplayHelper -->
@@ -639,6 +650,9 @@
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
     <string name="import_fragment__import_a_plaintext_backup_file">
         Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
+
+    <!-- load_more_header -->
+    <string name="load_more_header__load_full_conversation">Load full conversation...</string>
 
     <!-- media_overview_activity -->
     <string name="media_overview_activity__no_images">No images</string>
@@ -803,6 +817,7 @@
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
     <string name="AndroidManifest__message_details">Message Details</string>
     <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
+    <string name="AndroidManifest__invite_friends">Invite friends</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
@@ -975,7 +990,6 @@
     <string name="conversation_insecure__invite">Invite</string>
 
     <!-- conversation_insecure_no_push -->
-    <string name="conversation_insecure__menu_start_secure_session">Start secure session</string>
     <string name="conversation_insecure__security">Security</string>
 
     <!-- conversation_list_batch -->
@@ -1034,16 +1048,28 @@
     <string name="text_secure_normal__menu_settings">Settings</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
+    <string name="text_secure_normal__invite_contacts">Invite contacts</string>
 
     <!-- reminder_header -->
     <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
     <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
+    <string name="reminder_header_expired_build_button">UPGRADE</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
+    <string name="reminder_header_sms_default_button">SET</string>
     <string name="reminder_header_sms_import_title">Import system SMS?</string>
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
-    <string name="reminder_header_push_title">Enable Signal messages?</string>
-    <string name="reminder_header_push_text">Tap for instant delivery, stronger privacy, and no SMS fees.</string>
+    <string name="reminder_header_sms_import_button">IMPORT</string>
+    <string name="reminder_header_push_title">Enable Signal?</string>
+    <string name="reminder_header_push_text">Upgrade your messaging experience.</string>
+    <string name="reminder_header_push_button">ENABLE</string>
+    <string name="reminder_header_invite_title">Invite to Signal?</string>
+    <string name="reminder_header_invite_text">Take your conversation with %1$s to the next level.</string>
+    <string name="reminder_header_invite_button">INVITE</string>
+    <string name="reminder_header_share_title">Invite your friends!</string>
+    <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
+    <string name="reminder_header_share_button">SHARE</string>
+    <string name="reminder_header_close_button">CLOSE</string>
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>

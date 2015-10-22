@@ -1,23 +1,23 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
+import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.ThreadDatabase.DistributionTypes;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
-import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
-import org.thoughtcrime.securesms.mms.OutgoingLollipopMmsConnection;
-import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -25,20 +25,29 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.SmilUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
+import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
+import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduComposer;
 import ws.com.google.android.mms.pdu.PduHeaders;
+import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendConf;
 import ws.com.google.android.mms.pdu.SendReq;
 
 public class MmsSendJob extends SendJob {
+
+  private static final long serialVersionUID = 0L;
+
   private static final String TAG = MmsSendJob.class.getSimpleName();
 
   private final long messageId;
@@ -62,18 +71,20 @@ public class MmsSendJob extends SendJob {
 
   @Override
   public void onSend(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-    SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
+    MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
+    OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
-      validateDestinations(message);
+      SendReq pdu = constructSendPdu(masterSecret, message);
 
-      final byte[]        pduBytes = getPduBytes(masterSecret, message);
+      validateDestinations(message, pdu);
+
+      final byte[]        pduBytes = getPduBytes(pdu);
       final SendConf      sendConf = new CompatMmsConnection(context).send(pduBytes);
-      final MmsSendResult result   = getSendResult(sendConf, message);
+      final MmsSendResult result   = getSendResult(sendConf, pdu);
 
-      database.markAsSent(messageId, result.getMessageId(), result.getResponseStatus());
-      markPartsUploaded(messageId, message.getBody());
+      database.markAsSent(messageId);
+      markAttachmentsUploaded(messageId, message.getAttachments());
     } catch (UndeliverableMessageException | IOException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
@@ -96,21 +107,19 @@ public class MmsSendJob extends SendJob {
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
-  private byte[] getPduBytes(MasterSecret masterSecret, SendReq message)
+  private byte[] getPduBytes(SendReq message)
       throws IOException, UndeliverableMessageException, InsecureFallbackApprovalException
   {
     String number = TelephonyUtil.getManager(context).getLine1Number();
 
-    message = getResolvedMessage(masterSecret, message, MediaConstraints.MMS_CONSTRAINTS, true);
     message.setBody(SmilUtil.getSmilBody(message.getBody()));
-    if (MmsDatabase.Types.isSecureType(message.getDatabaseMessageBox())) {
-      throw new UndeliverableMessageException("Attempt to send encrypted MMS?");
-    }
 
-    if (number != null && number.trim().length() != 0) {
+    if (!TextUtils.isEmpty(number)) {
       message.setFrom(new EncodedStringValue(number));
     }
+
     byte[] pduBytes = new PduComposer(context, message).make();
+
     if (pduBytes == null) {
       throw new UndeliverableMessageException("PDU composition failed, null payload");
     }
@@ -149,7 +158,7 @@ public class MmsSendJob extends SendJob {
     }
   }
 
-  private void validateDestinations(SendReq message) throws UndeliverableMessageException {
+  private void validateDestinations(OutgoingMediaMessage media, SendReq message) throws UndeliverableMessageException {
     validateDestinations(message.getTo());
     validateDestinations(message.getCc());
     validateDestinations(message.getBcc());
@@ -157,6 +166,59 @@ public class MmsSendJob extends SendJob {
     if (message.getTo() == null && message.getCc() == null && message.getBcc() == null) {
       throw new UndeliverableMessageException("No to, cc, or bcc specified!");
     }
+
+    if (media.isSecure()) {
+      throw new UndeliverableMessageException("Attempt to send encrypted MMS?");
+    }
+  }
+
+  private SendReq constructSendPdu(MasterSecret masterSecret, OutgoingMediaMessage message)
+      throws UndeliverableMessageException
+  {
+    SendReq sendReq = new SendReq();
+    PduBody body    = new PduBody();
+
+    for (Recipient recipient : message.getRecipients()) {
+      if (message.getDistributionType() == DistributionTypes.CONVERSATION) {
+        sendReq.addTo(new EncodedStringValue(Util.toIsoBytes(recipient.getNumber())));
+      } else {
+        sendReq.addBcc(new EncodedStringValue(Util.toIsoBytes(recipient.getNumber())));
+      }
+    }
+
+    sendReq.setDate(message.getSentTimeMillis() / 1000L);
+
+    if (!TextUtils.isEmpty(message.getBody())) {
+      PduPart part = new PduPart();
+      part.setData(Util.toUtf8Bytes(message.getBody()));
+      part.setCharset(CharacterSets.UTF_8);
+      part.setContentType(ContentType.TEXT_PLAIN.getBytes());
+      part.setContentId((System.currentTimeMillis()+"").getBytes());
+      part.setName(("Text"+System.currentTimeMillis()).getBytes());
+
+      body.addPart(part);
+    }
+
+    List<Attachment> scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.MMS_CONSTRAINTS, message.getAttachments());
+
+    for (Attachment attachment : scaledAttachments) {
+      try {
+        if (attachment.getDataUri() == null) throw new IOException("Assertion failed, attachment for outgoing MMS has no data!");
+
+        PduPart part = new PduPart();
+        part.setData(Util.readFully(PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri())));
+        part.setContentType(Util.toIsoBytes(attachment.getContentType()));
+        part.setContentId((System.currentTimeMillis() + "").getBytes());
+        part.setName((System.currentTimeMillis() + "").getBytes());
+
+        body.addPart(part);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+      }
+    }
+
+    sendReq.setBody(body);
+    return sendReq;
   }
 
   private void notifyMediaMessageDeliveryFailed(Context context, long messageId) {

@@ -175,7 +175,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
     @Override
     public Cursor getCursor() {
-      return DatabaseFactory.getPartDatabase(getContext()).getImagesForThread(threadId);
+      return DatabaseFactory.getImageDatabase(getContext()).getImagesForThread(threadId);
     }
   }
 }
