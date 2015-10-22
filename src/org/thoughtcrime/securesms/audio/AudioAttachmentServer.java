@@ -3,11 +3,14 @@ package org.thoughtcrime.securesms.audio;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import org.spongycastle.util.encoders.Hex;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -22,6 +25,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.security.MessageDigest;
 import java.util.Map;
 import java.util.Properties;
 import java.util.StringTokenizer;
@@ -38,6 +42,7 @@ public class AudioAttachmentServer implements Runnable {
   private final Attachment   attachment;
   private final ServerSocket socket;
   private final int          port;
+  private final String       auth;
 
   private volatile boolean isRunning;
 
@@ -50,6 +55,7 @@ public class AudioAttachmentServer implements Runnable {
       this.attachment   = attachment;
       this.socket       = new ServerSocket(0, 0, InetAddress.getByAddress(new byte[]{127, 0, 0, 1}));
       this.port         = socket.getLocalPort();
+      this.auth         = new String(Hex.encode(Util.getSecretBytes(16)));
 
       this.socket.setSoTimeout(5000);
     } catch (UnknownHostException e) {
@@ -58,7 +64,7 @@ public class AudioAttachmentServer implements Runnable {
   }
 
   public Uri getUri() {
-    return Uri.parse(String.format("http://127.0.0.1:%d", port));
+    return Uri.parse(String.format("http://127.0.0.1:%d/%s", port, auth));
   }
 
   public void start() {
@@ -73,11 +79,13 @@ public class AudioAttachmentServer implements Runnable {
   @Override
   public void run() {
     while (isRunning) {
+      Socket client = null;
+
       try {
-        Socket client = socket.accept();
+        client = socket.accept();
 
         if (client != null) {
-          StreamToMediaPlayerTask task = new StreamToMediaPlayerTask(client);
+          StreamToMediaPlayerTask task = new StreamToMediaPlayerTask(client, "/" + auth);
 
           if (task.processRequest()) {
             task.execute();
@@ -88,6 +96,8 @@ public class AudioAttachmentServer implements Runnable {
         Log.w(TAG, e);
       } catch (IOException e) {
         Log.e(TAG, "Error connecting to client", e);
+      } finally {
+        try {if (client != null) client.close();} catch (IOException e) {}
       }
     }
 
@@ -97,7 +107,8 @@ public class AudioAttachmentServer implements Runnable {
 
   private class StreamToMediaPlayerTask {
 
-    private final Socket client;
+    private final @NonNull Socket client;
+    private final @NonNull String auth;
 
     private long       cbSkip;
     private Properties parameters;
@@ -105,8 +116,9 @@ public class AudioAttachmentServer implements Runnable {
     private Properties requestHeaders;
 //    private String filePath;
 
-    public StreamToMediaPlayerTask(Socket client) {
+    public StreamToMediaPlayerTask(@NonNull Socket client, @NonNull String auth) {
       this.client = client;
+      this.auth   = auth;
     }
 
     public boolean processRequest() throws IOException {
@@ -161,6 +173,13 @@ public class AudioAttachmentServer implements Runnable {
 
       if(!request.get("method").equals("GET")) {
         Log.e(TAG, "Only GET is supported");
+        return false;
+      }
+
+      String receivedAuth = request.getProperty("uri");
+
+      if (receivedAuth == null || !MessageDigest.isEqual(receivedAuth.getBytes(), auth.getBytes())) {
+        Log.w(TAG, "Bad auth token!");
         return false;
       }
 
