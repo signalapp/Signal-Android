@@ -36,6 +36,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.MmsException;
@@ -61,7 +62,8 @@ public class ProfileImageDownloadJob extends MasterSecretJob implements Injectab
   }
 
   @Override
-  public void onAdded() {}
+  public void onAdded() {
+  }
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
@@ -85,7 +87,6 @@ public class ProfileImageDownloadJob extends MasterSecretJob implements Injectab
   @Override
   public void onCanceled() {
   }
-
   @Override
   public boolean onShouldRetryThrowable(Exception exception) {
     return (exception instanceof PushNetworkException);
@@ -118,6 +119,9 @@ public class ProfileImageDownloadJob extends MasterSecretJob implements Injectab
           ProfileAccessor.setProfilePartRow(context, GUtil.numberToLong(contact.getNumber()), part.getPartId().getRowId());
         }
         attachmentFile.delete();
+        if(GService.reloadHandler != null) {
+          GService.reloadHandler.sendEmptyMessage(0);
+        }
       }
     }
   }
