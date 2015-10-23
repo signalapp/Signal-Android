@@ -136,13 +136,6 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
     ServiceUtil.getNotificationManager(this).cancel(NOTIFICATION_ID);
   }
 
-  @TargetApi(VERSION_CODES.LOLLIPOP)
-  private void setStatusBarColor(int color) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(color);
-    }
-  }
-
   private void onContinue(Optional<ExperienceUpgrade> seenUpgrade) {
     ServiceUtil.getNotificationManager(this).cancel(NOTIFICATION_ID);
     int latestVersion = seenUpgrade.isPresent() ? seenUpgrade.get().getVersion()

@@ -14,7 +14,7 @@
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
-TextSecure und Benachrichtigungen dauerhaft entsperren.</string>
+Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Signal-Registrierung wird gelöscht …</string>
@@ -75,7 +75,7 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <string name="ConversationActivity_initiate_secure_session_question">Sichere Sitzung starten?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Sichere Sitzung mit %s starten?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Verschlüsselung neu starten?</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Die Verschlüsselung neu starten.</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Derzeit bestehende sichere Sitzung beenden und anlässlich der nächsten Nachricht eine neue aufbauen. Hilfreich bei Problemen mit der Verschlüsselung.</string>
   <string name="ConversationActivity_delete_thread_confirmation">Unterhaltung löschen?</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Diese Unterhaltung unwiderruflich löschen.</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
@@ -135,7 +135,7 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <string name="ConversationListActivity_search">Suchen …</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Unterhaltungen löschen?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ALLE ausgewählten Unterhaltungen werden unwiderruflich gelöscht.</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ALLE ausgewählten Unterhaltungen unwiderruflich löschen.</string>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Ausgewählte Unterhaltungen werden gelöscht …</string>
   <!--ConversationListItem-->
@@ -203,14 +203,14 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <string name="ImportExportActivity_export">Exportieren</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">System-SMS importieren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Importiert Nachrichten aus der Standard-SMS-Datenbank in Signal. Falls Sie dies schon einmal gemacht haben, wird es zu doppelten Nachrichten kommen.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Nachrichten aus der Standard-SMS-Datenbank in Signal importieren. Falls Sie dies schon einmal gemacht haben, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_import">Importieren</string>
   <string name="ImportFragment_cancel">Abbruch</string>
   <string name="ImportFragment_restore_encrypted_backup">Verschlüsselte Sicherung wiederherstellen?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt Ihre bestehenden Schlüssel, Einstellungen und Nachrichten. Sie werden jegliche Informationen Ihrer jetzigen Signal-Installation verlieren, die nicht in dieser Datensicherung enthalten sind.</string>
   <string name="ImportFragment_restore">Wiederherstellen</string>
   <string name="ImportFragment_import_plaintext_backup">Klartextsicherung importieren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Importiert Nachrichten aus einer Klartext-Datensicherung in TextSecure. Falls Sie bereits zuvor diese Datensicherung importiert haben, wird es zu doppelten Nachrichten kommen.</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Nachrichten aus einer Klartext-Datensicherung in Signal importieren. Falls Sie bereits zuvor diese Datensicherung importiert haben, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_importing">Importieren</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Klartextsicherung wird importiert …</string>
   <string name="ImportFragment_no_plaintext_backup_found">Keine Klartextsicherung gefunden!</string>
@@ -236,7 +236,7 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <string name="NotificationBarManager_missed_call_from_s">Verpasster Anruf von %s</string>
   <string name="NotificationBarManager_missed_signal_call">Verpasster Signal-Anruf</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">Mediennachricht</string>
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimedianachricht</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitten Sie den Kontakt, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Sie haben die Gruppe verlassen.</string>
@@ -426,7 +426,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
   <string name="MessageNotifier_locked_message">Gesperrte Nachricht …</string>
   <string name="MessageNotifier_media_message_with_text">Mediennachricht: %s</string>
-  <string name="MessageNotifier_no_subject">(Kein Betreff)</string>
+  <string name="MessageNotifier_no_subject">(ohne Text)</string>
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_error_delivering_message">Nachrichtenübermittlung fehlgeschlagen.</string>
@@ -464,7 +464,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS schreiben</string>
   <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS schreiben</string>
   <string name="conversation_activity__send">Senden</string>
-  <string name="conversation_activity__remove">Löschen</string>
+  <string name="conversation_activity__remove">Entfernen</string>
   <string name="conversation_activity__window_description">Unterhaltung mit %1$s</string>
   <string name="conversation_activity__compose_description">Nachricht verfassen</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji-Tastatur aktivieren</string>
@@ -479,7 +479,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="conversation_item_sent__downloading">Herunterladen</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Senden fehlgeschlagen</string>
   <string name="conversation_item_sent__pending_approval_description">Bestätigung ausstehend</string>
-  <string name="conversation_item_sent__delivered_description">Übermittelt</string>
+  <string name="conversation_item_sent__delivered_description">Zugestellt</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Herunterladen</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktbild</string>
@@ -495,9 +495,9 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">Fortsetzen</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Entweder konnte kein Diagnoseprotokoll vom Gerät gelesen werden oder es gab Probleme dieses an den Server zu senden. Wenn Sie sicher sind, dass das Gerät mit dem Internet verbunden ist, können Sie versuchen das Protokoll mit ADB auszulesen.</string>
+  <string name="log_submit_activity__log_fetch_failed">Entweder konnte kein Diagnoseprotokoll vom Gerät gelesen werden oder es gab Probleme, dieses an den Server zu senden. Wenn Sie sicher sind, dass das Gerät mit dem Internet verbunden ist, können Sie versuchen, das Protokoll mit ADB auszulesen.</string>
   <string name="log_submit_activity__thanks">Danke für Ihre Hilfe!</string>
-  <string name="log_submit_activity__submitting">Versenden</string>
+  <string name="log_submit_activity__submitting">Übermitteln</string>
   <string name="log_submit_activity__posting_logs">Diagnoseprotokoll wird übermittelt …</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Möchten Sie Ihre vorhandenen Nachrichten in Signals verschlüsselte Datenbank importieren?</string>
@@ -581,7 +581,7 @@ Signal funktioniert nicht mit Google Voice-Rufnummern.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Überprüfung durch Anruf</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf „Anrufen“ und geben Sie die sechs gehörten Ziffern ein.</string>
+Signal kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf „Anrufen“ und geben Sie unten den gehörten sechsstelligen Code ein.</string>
   <string name="registration_progress_activity__verify">Überprüfen</string>
   <string name="registration_progress_activity__call_me">Mich anrufen</string>
   <string name="registration_progress_activity__edit_number">Rufnummer bearbeiten</string>
@@ -677,7 +677,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__change_my_passphrase">Ihr Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
   <string name="preferences__passphrase_summary">Passwort %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">TextSecure und Benachrichtigungen mit Passwort sperren</string>
+  <string name="preferences__enable_lock_screen_for_messages">Signal und Benachrichtigungen mit Passwort sperren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__screen_security_summary">Bildschirmschutz %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
@@ -834,11 +834,11 @@ Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und tele
   <string name="text_secure_normal__menu_new_message">Neue Unterhaltung</string>
   <string name="text_secure_normal__menu_new_group">Neue Gruppe</string>
   <string name="text_secure_normal__menu_settings">Einstellungen</string>
-  <string name="text_secure_normal__menu_clear_passphrase">TextSecure sperren</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Signal sperren</string>
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ihre Version von Signal ist veraltet!</string>
-  <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte TextSecure auf die neueste Version aktualisieren.</string>
+  <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte Signal auf die neueste Version aktualisieren.</string>
   <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden?</string>
   <string name="reminder_header_sms_default_text">Antippen, um Signal als Standard-SMS-App zu verwenden.</string>
   <string name="reminder_header_sms_import_title">SMS des Telefons importieren?</string>
