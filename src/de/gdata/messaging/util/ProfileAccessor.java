@@ -239,14 +239,13 @@ public class ProfileAccessor {
   {
     final GenericRequestBuilder builder;
       builder = buildThumbnailGlideRequest(slide, mMasterSecret);
-
     return builder.error(R.drawable.ic_missing_thumbnail_picture);
   }
   public static GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
 
     final GenericRequestBuilder builder;
     if (slide.isDraft()) builder = buildDraftGlideRequest(slide);
-    else                 builder = buildEncryptedPartGlideRequest(slide, masterSecret);
+    else builder = buildEncryptedPartGlideRequest(slide, masterSecret);
     return builder;
   }
   public static GenericRequestBuilder buildDraftGlideRequest(Slide slide) {
@@ -257,6 +256,9 @@ public class ProfileAccessor {
   public static GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret) {
     if (masterSecret == null) {
       throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
+    }
+    if(GService.appContext!=null) {
+      throw new IllegalStateException("null context");
     }
     return  Glide.with(GService.appContext).load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, slide.getThumbnailUri()))
         .transform(new ThumbnailTransform(GService.appContext));
