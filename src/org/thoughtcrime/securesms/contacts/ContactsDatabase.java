@@ -192,14 +192,14 @@ public class ContactsDatabase {
   private Cursor queryLocalDb(String selection, String[] selectionArgs, String[] columns) {
     SQLiteDatabase localDb = dbHelper.getReadableDatabase();
     final Cursor localCursor;
+    try {
     if (localDb != null) localCursor = localDb.query(TABLE_NAME, columns, selection, selectionArgs, null, null, CONTACT_LIST_SORT);
     else                 localCursor = null;
-    try {
     if (localCursor != null && !localCursor.moveToFirst()) {
       localCursor.close();
       return null;
     }
-    } catch(IllegalStateException ex) {
+    } catch(Exception ex) {
       //Randomly and rarely appearing error while opening and closing the application fast after another Bug #43946
       //Couldn`t find the trigger
       return null;
