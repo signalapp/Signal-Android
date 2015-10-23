@@ -230,7 +230,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             currentConversationType = ConversationItem.SINGLE_CONVERSATION;
             if (recipients != null && recipients.getPrimaryRecipient() != null
                     && recipients.getPrimaryRecipient().getNumber() != null && new GDataPreferences(getApplicationContext()).isPrivacyActivated()
-                    && GService.shallBeBlockedByPrivacy(recipients.getPrimaryRecipient().getNumber())) {
+                    && GService.shallBeBlockedByPrivacy(recipients.getPrimaryRecipient().getNumber()) && PrivacyBridge.isHiddenContact(recipients.getPrimaryRecipient().getNumber())) {
                 this.finish();
             }
         }
@@ -869,7 +869,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
                 ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, profileId + "");
                 if (avatarSlide != null) {
-                    ProfileAccessor.buildGlideRequest(avatarSlide).into(thumbnail);
+                    ProfileAccessor.buildGlideRequest(avatarSlide, getApplicationContext()).into(thumbnail);
                 } else {
                     thumbnail.setImageBitmap(recipient.getCircleCroppedContactPhoto());
                 }

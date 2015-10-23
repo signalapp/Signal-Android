@@ -614,7 +614,7 @@ public class ProfileFragment extends Fragment {
                     layoutParams.setMargins(5, 0, 5, 0);
 
                     historyMedia.setLayoutParams(layoutParams);
-                    ProfileAccessor.buildEncryptedPartGlideRequest(mediaHistorySlide, masterSecret).into(historyMedia);
+                    ProfileAccessor.buildEncryptedPartGlideRequest(mediaHistorySlide, masterSecret, getActivity()).into(historyMedia);
                     historyLayout.addView(historyMedia);
                     historyMedia.setSlide(mediaHistorySlide);
                 }

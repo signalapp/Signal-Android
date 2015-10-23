@@ -98,7 +98,7 @@ public class PrivacyBridge {
         Log.e("PrivacyBridge", e.getMessage());
       }
       for (String number : hiddenNumbers) {
-        newHiddenRecipients.add(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient());
+          newHiddenRecipients.add(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient());
       }
       getPreferences().saveHiddenRecipients(newHiddenRecipients);
       hiddenRecipients = newHiddenRecipients;
@@ -106,6 +106,17 @@ public class PrivacyBridge {
     GService.reloadHandler.sendEmptyMessage(0);
 
     Log.d("PRIVACY", "Privacy loading contacts done");
+  }
+  public static boolean isHiddenContact(String number) {
+    boolean isHiddenContact = false;
+    if(hiddenRecipients != null){
+      for(Recipient recipient : hiddenRecipients){
+        if(recipient.getNumber().equals(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient().getNumber())) {
+          isHiddenContact = true;
+        }
+      }
+    }
+    return isHiddenContact;
   }
   /**
    * Removes hidden contacts from cursor.

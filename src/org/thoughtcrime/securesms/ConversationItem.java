@@ -723,7 +723,7 @@ public class ConversationItem extends LinearLayout {
 
         ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, GUtil.numberToLong(recipient.getNumber()) + "");
         if (avatarSlide != null) {
-            ProfileAccessor.buildGlideRequest(avatarSlide).into(contactPhoto);
+            ProfileAccessor.buildGlideRequest(avatarSlide, context).into(contactPhoto);
             contactPhoto.setVisibility(View.VISIBLE);
         } else {
             if ((recipient.getContactPhoto() == ContactPhotoFactory.getDefaultContactPhoto(context)) && (groupThread)) {

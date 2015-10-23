@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="drawable" name="ic_dialog_info_light">@android:drawable/ic_dialog_info</item>
-    <item type="drawable" name="ic_dialog_alert_light">@android:drawable/ic_dialog_alert</item>
-    <item type="drawable" name="ic_dialog_info_dark">@android:drawable/ic_dialog_info</item>
-    <item type="drawable" name="ic_dialog_alert_dark">@android:drawable/ic_dialog_alert</item>
+    <item type="drawable" name="ic_dialog_info_light">@drawable/ic_dialog_info_holo_light</item>
+    <item type="drawable" name="ic_dialog_alert_light">@drawable/ic_dialog_info_holo_dark</item>
+    <item type="drawable" name="ic_dialog_info_dark">@drawable/ic_dialog_alert_holo_light</item>
+    <item type="drawable" name="ic_dialog_alert_dark">@drawable/ic_dialog_alert_holo_dark</item>
 </resources>

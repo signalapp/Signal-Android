@@ -199,7 +199,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     ImageSlide profileSlide = ProfileAccessor.getProfileAsImageSlide(context,  contactData.number);
 
     if(profileSlide != null) {
-      ProfileAccessor.buildGlideRequest(profileSlide).into(holder.contactPhoto);
+      ProfileAccessor.buildGlideRequest(profileSlide, context).into(holder.contactPhoto);
     } else {
       if (contactData.id > -1) loadBitmap(contactData.number, holder.contactPhoto);
     }

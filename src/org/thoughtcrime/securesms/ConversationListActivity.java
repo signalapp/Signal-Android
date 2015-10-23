@@ -400,7 +400,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 hadImage = true;
                     imgView.setVisibility(View.VISIBLE);
                     fab.setVisibility(View.INVISIBLE);
-                    ProfileAccessor.buildGlideRequest(avatarSlide).into(imgView);
+                    ProfileAccessor.buildGlideRequest(avatarSlide, getApplicationContext()).into(imgView);
                     imgView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

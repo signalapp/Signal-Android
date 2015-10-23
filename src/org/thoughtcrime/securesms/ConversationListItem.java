@@ -160,7 +160,7 @@ public class ConversationListItem extends RelativeLayout
 
         ImageSlide profileSlide = ProfileAccessor.getProfileAsImageSlide(context, recipient.getNumber());
         if (profileSlide != null && !recipient.isGroupRecipient()) {
-            ProfileAccessor.buildGlideRequest(profileSlide).into(contactPhotoImage);
+            ProfileAccessor.buildGlideRequest(profileSlide, context).into(contactPhotoImage);
         } else {
             contactPhotoImage.setImageBitmap(recipient.getCircleCroppedContactPhoto());
         }
