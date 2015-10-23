@@ -131,8 +131,14 @@
     <string name="ConversationFragment_message_details">Message details</string>
     <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSent/Received: %2$s</string>
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
-    <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
-    <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Are you sure that you want to permanently delete all selected messages?</string>
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Delete selected message?</item>
+        <item quantity="other">Delete selected messages?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">This will permanently delete the selected message.</item>
+        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+    </plurals>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
     <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Saving this media to storage will allow any other apps on your phone to access it.\n\nContinue?</string>
     <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to storage!</string>
@@ -151,8 +157,14 @@
     <string name="ConversationListActivity_search">Search...</string>
 
     <!-- ConversationListFragment -->
-    <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
-    <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Are you sure you wish to delete ALL selected conversation threads?</string>
+    <plurals name="ConversationListFragment_delete_selected_conversations">
+        <item quantity="one">Delete selected conversation?</item>
+        <item quantity="other">Delete selected conversations?</item>
+    </plurals>
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+        <item quantity="one">This will permanently delete the selected conversation.</item>
+        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+    </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
     <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads...</string>
 
