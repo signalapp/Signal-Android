@@ -90,6 +90,15 @@ public class TextSecurePreferences {
   public  static final String MEDIA_DOWNLOAD_ROAMING_PREF      = "pref_media_download_roaming";
 
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
+  private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
+
+  public static void setMultiDevice(Context context, boolean value) {
+    setBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, value);
+  }
+
+  public static boolean isMultiDevice(Context context) {
+    return getBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, false);
+  }
 
   public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {
     return new NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"));
