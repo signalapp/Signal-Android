@@ -29,6 +29,8 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import de.greenrobot.event.EventBus;
+
 public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener {
 
   private static final String TAG = AudioView.class.getSimpleName();
@@ -74,6 +76,18 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
       setTint(typedArray.getColor(R.styleable.AudioView_tintColor, Color.WHITE));
       typedArray.recycle();
     }
+  }
+
+  @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().registerSticky(this);
+  }
+
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    EventBus.getDefault().unregister(this);
   }
 
   public void setAudio(final @NonNull MasterSecret masterSecret,
