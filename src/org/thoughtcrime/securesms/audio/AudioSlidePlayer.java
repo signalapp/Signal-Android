@@ -72,14 +72,19 @@ public class AudioSlidePlayer {
       @Override
       public void onPrepared(MediaPlayer mp) {
         Log.w(TAG, "onPrepared");
-        if (progress > 0) {
-          mediaPlayer.seekTo((int)(mediaPlayer.getDuration() * progress));
+        synchronized (AudioSlidePlayer.this) {
+          if (mediaPlayer == null) return;
+
+          if (progress > 0) {
+            mediaPlayer.seekTo((int) (mediaPlayer.getDuration() * progress));
+          }
+
+          mediaPlayer.start();
+
+          setPlaying(AudioSlidePlayer.this);
         }
 
-        mediaPlayer.start();
-
         notifyOnStart();
-        setPlaying(AudioSlidePlayer.this);
         progressEventHandler.sendEmptyMessage(0);
       }
     });
@@ -88,9 +93,11 @@ public class AudioSlidePlayer {
       @Override
       public void onCompletion(MediaPlayer mp) {
         Log.w(TAG, "onComplete");
-        mediaPlayer = null;
-        audioAttachmentServer.stop();
-        audioAttachmentServer = null;
+        synchronized (AudioSlidePlayer.this) {
+          mediaPlayer = null;
+          audioAttachmentServer.stop();
+          audioAttachmentServer = null;
+        }
 
         notifyOnStop();
         progressEventHandler.removeMessages(0);
@@ -109,24 +116,9 @@ public class AudioSlidePlayer {
     mediaPlayer.prepareAsync();
   }
 
-  public void stop() {
+  public synchronized void stop() {
     Log.w(TAG, "Stop called!");
-    shutdown();
-  }
 
-  public void setListener(@NonNull Listener listener) {
-    this.listener = new WeakReference<>(listener);
-
-    if (this.mediaPlayer != null && this.mediaPlayer.isPlaying()) {
-      notifyOnStart();
-    }
-  }
-
-  public @NonNull AudioSlide getAudioSlide() {
-    return slide;
-  }
-
-  private void shutdown() {
     removePlaying(this);
 
     if (this.mediaPlayer != null) {
@@ -139,6 +131,18 @@ public class AudioSlidePlayer {
 
     this.mediaPlayer           = null;
     this.audioAttachmentServer = null;
+  }
+
+  public void setListener(@NonNull Listener listener) {
+    this.listener = new WeakReference<>(listener);
+
+    if (this.mediaPlayer != null && this.mediaPlayer.isPlaying()) {
+      notifyOnStart();
+    }
+  }
+
+  public @NonNull AudioSlide getAudioSlide() {
+    return slide;
   }
 
   private Pair<Double, Integer> getProgress() {
