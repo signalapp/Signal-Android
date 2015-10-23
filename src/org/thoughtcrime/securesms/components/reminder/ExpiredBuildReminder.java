@@ -14,8 +14,7 @@ public class ExpiredBuildReminder extends Reminder {
 
   public ExpiredBuildReminder(final Context context) {
     super(context.getString(R.string.reminder_header_expired_build),
-          context.getString(R.string.reminder_header_expired_build_details),
-          context.getString(R.string.reminder_header_expired_build_button));
+          context.getString(R.string.reminder_header_expired_build_details));
     setOkListener(new OnClickListener() {
       @Override public void onClick(View v) {
         try {
