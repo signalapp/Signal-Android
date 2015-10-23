@@ -45,6 +45,7 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacte blocate</string>
   <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Apel de intrare</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Probabil ca doresti sa verifici aceasta persoana.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptă</string>
@@ -102,6 +103,7 @@
   <string name="ConversationActivity_unblock_question">Deblochez ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Sunteți sigur că doriți deblocarea acestui contact?</string>
   <string name="ConversationActivity_unblock">Deblochează</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vrei să-l trimiți.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cameră indisponibilă</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
@@ -217,6 +219,9 @@
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">Ai parăsit grupul.</string>
   <string name="MessageRecord_updated_group">Grupul a fost actualizat.</string>
+  <string name="MessageRecord_s_called_you">%s te-a sunat</string>
+  <string name="MessageRecord_called_s">Apel %s</string>
+  <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
@@ -264,6 +269,7 @@
   <string name="RedPhone_handshake_failed">Handshake eşuat!</string>
   <string name="RedPhone_recipient_unavailable">Destinatar indisponibil</string>
   <string name="RedPhone_performing_handshake">Se execută handshake-ul</string>
+  <string name="RedPhone_network_failed">Eroare de reţea!</string>
   <string name="RedPhone_client_failed">Eroare de client</string>
   <string name="RedPhone_fatal_error">Eroare fatală</string>
   <string name="RedPhone_login_failed">Autentificare eşuată!</string>
@@ -311,6 +317,7 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Înregistrarea este completă</string>
   <string name="RegistrationService_registration_error">Eroare de inregistrare</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Înregistrarea Signal a întampinat o problemă.</string>
   <!--Slide-->
   <string name="Slide_image">Imagine</string>
   <string name="Slide_audio">Audio</string>
@@ -327,6 +334,9 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">A ieșit din grup...</string>
   <string name="ThreadRecord_draft">Ciornă:</string>
+  <string name="ThreadRecord_called">Ai sunat</string>
+  <string name="ThreadRecord_called_you">Te-a sunat</string>
+  <string name="ThreadRecord_missed_call">Apel ratat</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nu ai o cheie de identitate.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Destinatarul nu are o cheie de identitate.</string>
@@ -779,6 +789,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="text_secure_normal__menu_clear_passphrase">Blocare</string>
   <string name="text_secure_normal__mark_all_as_read">Marchează tot ca citit</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Versiunea ta de Signal a expirat!</string>
   <string name="reminder_header_expired_build_details">Mesajele nu vor mai putea fi trimise cu succes, vă rog actualizați aplicația la versiunea cea mai recentă.</string>
   <string name="reminder_header_sms_default_title">Seteaz ca aplicație implicită SMS?</string>
   <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal ca și aplicație SMS implicită.</string>

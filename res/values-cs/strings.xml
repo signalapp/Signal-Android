@@ -19,11 +19,11 @@ Zakázat uzamčení obrazovky zpráv?</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Odregistrace Signal zpráv...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages">Zakázat Signal zprávy?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">Tímto zakážete Signal zprávy odregistrací ze serveru. Abyste mohli používat Signal zprávy v budoucnosti, budete muset znovu registrovat vaše telefonní číslo.</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">Tímto zakážete Signal zprávy odregistrací ze serveru. Abyste mohli používat Signal zprávy v budoucnosti, budete muset znovu registrovat svoje telefonní číslo.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba při připojování k serveru!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS povoleny</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykem nastavte výchozí aplikaci pro SMS</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS zazány</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS zakázány</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykem nastavíte Signal jako výchozí SMS aplikaci</string>
   <string name="ApplicationPreferencesActivity_on">zap.</string>
   <string name="ApplicationPreferencesActivity_On">Zap.</string>
@@ -37,7 +37,7 @@ Zakázat uzamčení obrazovky zpráv?</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat</string>
+  <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Foto</string>
@@ -53,7 +53,7 @@ Zakázat uzamčení obrazovky zpráv?</string>
  klíč %1$s se změnil. To může být způsobeno tím že se někdo snaží odpolechnout vaši komunikaci, nebo %2$s přeinstaloval aplikaci Signal a nyní má nový klíč.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možná budete chtít ověřit tento
 kontakt</string>
-  <string name="ConfirmIdentityDialog_accept">Akceptovat</string>
+  <string name="ConfirmIdentityDialog_accept">Přijmout</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
   <!--ConversationItem-->
@@ -63,14 +63,14 @@ kontakt</string>
   <string name="ConversationItem_view_secure_media_question">Zobrazit zabezpečená média?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tato média byla uložena v zašifrované databázi. Aby bylo možné je zobrazit v jiném programu, musí být dočasně dešifrována a v dešifrované podobě uložena. Opravdu to chcete udělat?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Chyba při předávání klíčů.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Byl vám doručen klíč, klepněte pro jeho přijetí</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Byl vám doručen klíč, klepněte pro jeho přijetí.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil(a) skupinu.</string>
   <string name="ConversationItem_click_for_details">Klikněte pro detail</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Kliněte pro nešifrovaný záložní způsob</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Použít záložní způsob přes nešifrovanou SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Použít záložní způsob přes nešifrovanou MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tato zpráva <b>není</b> šifrována protože příjemce již není uživatelem Signal.\n\nOdeslat nešifrovanou zprávu?</string>
-  <string name="ConversationItem_unable_to_open_media">Nemohu nalézt aplikaci pro otevření tohoto typu dat</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tato zpráva <b>není</b> šifrována, protože příjemce již není uživatelem Signal.\n\nOdeslat nešifrovanou zprávu?</string>
+  <string name="ConversationItem_unable_to_open_media">Nemohu nalézt aplikaci pro otevření tohoto typu dat.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Zahájit šifrovanou komunikaci?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Zahájit šifrovanou komunikaci s %s?</string>
@@ -83,8 +83,8 @@ kontakt</string>
   <string name="ConversationActivity_compose_message">Napište zprávu</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Omlouváme se, ale došlo k chybě při zpracování přílohy</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">Vybraný gif je příliš velký!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Omlouvám se, vybrané video překračuje maximální povolenou velikost (%1$skB)</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Omlouvám se, vybrané audio překračuje maximální povolenou velikost (%1$skB)</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Omlouvám se, vybrané video překračuje maximální povolenou velikost (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Omlouvám se, vybrané audio překračuje maximální povolenou velikost (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Adresa příjemce není ve správném tvaru! (sms či email)</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Zpráva je prázdná!</string>
   <string name="ConversationActivity_group_members">Členové skupiny</string>
@@ -105,7 +105,7 @@ kontakt</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Použít pro rozhovor: %s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba při opouštění skupiny.</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nejsou podporovány</string>
-  <string name="ConversationActivity_mms_not_supported_message">Zpráva nemůže být odeslána protože váš operátor nepodporuje MMS.</string>
+  <string name="ConversationActivity_mms_not_supported_message">Zpráva nemůže být odeslána, protože váš operátor nepodporuje MMS.</string>
   <string name="ConversationActivity_specify_recipient">Vyberte prosím kontakt</string>
   <string name="ConversationActivity_unblock_question">Odblokovat?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Opravdu chcete odblokovat tento kontakt?</string>
@@ -119,7 +119,7 @@ kontakt</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrďte smazání zpráv</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Opravdu chcete trvale smazat všechny vybrané zprávy?</string>
   <string name="ConversationFragment_save_to_sd_card">Uložit do paměti?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Uložením dat do paměti umožníte přístup k nim kterékoliv aplikaci ve vašem telefonu.\n\nPokračovat?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Uložením dat do paměti k nim umožníte přístup kterékoliv aplikaci ve svém telefonu.\n\nPokračovat?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Chyba při ukládání přílohy!</string>
   <string name="ConversationFragment_success_exclamation">Úspěšně dokončeno!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nelze uložit data do paměti.</string>
@@ -633,7 +633,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="verify_identity_activity__their_identity_they_read">Jejich identita (čtou)</string>
   <string name="verify_identity_activity__your_identity_you_read">Vaše identita (čtete):</string>
   <!--message_details_header-->
-  <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadujíé vaši pozornost</string>
+  <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadují vaši pozornost</string>
   <string name="message_details_header__sent">Odesláno</string>
   <string name="message_details_header__received">Přijato</string>
   <string name="message_details_header__via">Přes</string>
@@ -657,7 +657,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__my_identity_key">Můj identifikační klíč</string>
-  <string name="arrays__use_default">Použít defualtní</string>
+  <string name="arrays__use_default">Použít výchozí</string>
   <string name="arrays__use_custom">Použít vlastní</string>
   <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
   <string name="arrays__mute_for_two_hours">Ztišit na 2 hodiny</string>

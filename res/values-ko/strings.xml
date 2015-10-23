@@ -296,7 +296,7 @@
   <string name="RedPhone_recipient_unavailable">응답 없음</string>
   <string name="RedPhone_performing_handshake">핸드셰이크 중</string>
   <string name="RedPhone_network_failed">네트워크에 연결되지 않음</string>
-  <string name="RedPhone_client_failed">클라이언트 실패</string>
+  <string name="RedPhone_client_failed">내부 오류</string>
   <string name="RedPhone_fatal_error">치명적인 오류</string>
   <string name="RedPhone_login_failed">로그인 되지 않음</string>
   <string name="RedPhone_message_from_the_server">서버로 부터의 메시지</string>

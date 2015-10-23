@@ -14,10 +14,10 @@
   <string name="ApplicationPreferencesActivity_delete">Törlés</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Jelszó tiltása?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
-Tárolt képernyő engedélyezése az üzeneteknek?</string>
+Képernyő zárolásának tiltása az üzeneteknél?</string>
   <string name="ApplicationPreferencesActivity_disable">Tiltás</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Leregisztrálás</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Leregisztrálás Signal üzenetekről...</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Regisztráció megszüntetése...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Regisztráció törlése a Signal üzenetekről...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal üzenetek letiltása?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
         Ez letiltja a Signal üzeneteket a kiszolgálóról való leregisztrálásoddal.
@@ -172,7 +172,7 @@ ezt a névjegyet.
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Üdvözöl a Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">A TextSecure és a RedPhone most egy privát üzenetküldő minden helyzetre: Signal.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Üdvözöl a Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">A TextSecure most Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">A TextSecure mostantól Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">A TextSecure és a RedPhone most egy alkalmazás: Signal. Koppints a felfedezéshez.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportálás</string>
@@ -187,7 +187,7 @@ ezt a névjegyet.
   <string name="ExportFragment_error_while_writing_to_sd_card">Hiba történt az SD kártya írása közben.</string>
   <string name="ExportFragment_success">Sikerült!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Tartós Signal kommunikációs hiba!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal képtelen volt regisztrálni Google Play Szolgáltatásokkal. Az adatcsatornán keresztüli kommunikáció le van tiltva, kérlek próbálj meg újra regisztrálni a Signal beállítások menüből.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Új csoport</string>
