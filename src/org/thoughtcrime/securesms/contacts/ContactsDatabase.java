@@ -70,7 +70,7 @@ public class ContactsDatabase {
     this.context  = context;
   }
 
-  public synchronized void setRegisteredUsers(Account account, List<String> e164numbers)
+  public synchronized boolean setRegisteredUsers(Account account, List<String> e164numbers)
       throws RemoteException, OperationApplicationException
   {
     Map<String, Long>                   currentContacts    = new HashMap<>();
@@ -111,6 +111,9 @@ public class ContactsDatabase {
 
     if (!operations.isEmpty()) {
       context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
+      return true;
+    } else {
+      return false;
     }
   }
 
