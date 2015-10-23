@@ -131,6 +131,11 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   @Override
   public void onStop() {
     this.controlToggle.display(this.playButton);
+
+    if (seekBar.getProgress() + 5 >= seekBar.getMax()) {
+      backwardsCounter = 4;
+      onProgress(0.0, 0);
+    }
   }
 
   @Override
