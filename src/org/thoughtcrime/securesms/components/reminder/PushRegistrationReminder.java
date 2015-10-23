@@ -14,8 +14,7 @@ public class PushRegistrationReminder extends Reminder {
 
   public PushRegistrationReminder(final Context context, final MasterSecret masterSecret) {
     super(context.getString(R.string.reminder_header_push_title),
-          context.getString(R.string.reminder_header_push_text),
-          context.getString(R.string.reminder_header_push_button));
+          context.getString(R.string.reminder_header_push_text));
 
     final OnClickListener okListener = new OnClickListener() {
       @Override

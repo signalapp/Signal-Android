@@ -1,12 +1,9 @@
 package org.thoughtcrime.securesms.components.reminder;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.view.View.OnClickListener;
 
 public abstract class Reminder {
-  private CharSequence buttonText;
   private CharSequence title;
   private CharSequence text;
 
@@ -14,12 +11,10 @@ public abstract class Reminder {
   private OnClickListener dismissListener;
 
   public Reminder(@NonNull CharSequence title,
-                  @NonNull CharSequence text,
-                  @NonNull CharSequence buttonText)
+                  @NonNull CharSequence text)
   {
     this.title      = title;
     this.text       = text;
-    this.buttonText = buttonText;
   }
 
   public CharSequence getTitle() {
@@ -28,10 +23,6 @@ public abstract class Reminder {
 
   public CharSequence getText() {
     return text;
-  }
-
-  public CharSequence getButtonText() {
-    return buttonText;
   }
 
   public OnClickListener getOkListener() {

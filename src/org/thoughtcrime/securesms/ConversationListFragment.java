@@ -89,6 +89,7 @@ public class ConversationListFragment extends Fragment
     fab          = (FloatingActionButton) view.findViewById(R.id.fab);
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
+    reminderView.setDismissClickListener(new ReminderDismissListener());
     return view;
   }
 
@@ -110,7 +111,7 @@ public class ConversationListFragment extends Fragment
   public void onResume() {
     super.onResume();
 
-    initializeReminders();
+    updateReminders();
     list.getAdapter().notifyDataSetChanged();
   }
 
@@ -129,7 +130,7 @@ public class ConversationListFragment extends Fragment
     }
   }
 
-  private void initializeReminders() {
+  private void updateReminders() {
     reminderView.hide();
     new AsyncTask<Context, Void, Optional<? extends Reminder>>() {
       @Override protected Optional<? extends Reminder> doInBackground(Context... params) {
@@ -312,6 +313,11 @@ public class ConversationListFragment extends Fragment
     actionMode = null;
   }
 
+  private class ReminderDismissListener implements OnClickListener {
+    @Override public void onClick(View v) {
+      updateReminders();
+    }
+  }
 }
 
 

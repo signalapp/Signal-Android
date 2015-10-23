@@ -16,8 +16,7 @@ public class InviteReminder extends Reminder {
                         final @NonNull Recipients recipients)
   {
     super(context.getString(R.string.reminder_header_invite_title),
-          context.getString(R.string.reminder_header_invite_text, recipients.toShortString()),
-          context.getString(R.string.reminder_header_invite_button));
+          context.getString(R.string.reminder_header_invite_text, recipients.toShortString()));
 
     setDismissListener(new OnClickListener() {
       @Override public void onClick(View v) {

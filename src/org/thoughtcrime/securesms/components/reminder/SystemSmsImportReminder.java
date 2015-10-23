@@ -15,8 +15,7 @@ public class SystemSmsImportReminder extends Reminder {
 
   public SystemSmsImportReminder(final Context context, final MasterSecret masterSecret) {
     super(context.getString(R.string.reminder_header_sms_import_title),
-          context.getString(R.string.reminder_header_sms_import_text),
-          context.getString(R.string.reminder_header_sms_import_button));
+          context.getString(R.string.reminder_header_sms_import_text));
 
     final OnClickListener okListener = new OnClickListener() {
       @Override

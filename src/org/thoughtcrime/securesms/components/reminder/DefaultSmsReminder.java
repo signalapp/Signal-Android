@@ -17,8 +17,7 @@ public class DefaultSmsReminder extends Reminder {
   @TargetApi(VERSION_CODES.KITKAT)
   public DefaultSmsReminder(final Context context) {
     super(context.getString(R.string.reminder_header_sms_default_title),
-          context.getString(R.string.reminder_header_sms_default_text),
-          context.getString(R.string.reminder_header_sms_default_button));
+          context.getString(R.string.reminder_header_sms_default_text));
 
     final OnClickListener okListener = new OnClickListener() {
       @Override
