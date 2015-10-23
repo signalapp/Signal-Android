@@ -218,23 +218,26 @@ public class ContactsDatabase {
 
   public @NonNull Cursor queryNonTextSecureContacts(String filter) {
     final Cursor cursor = querySystemContacts(filter);
-    final MatrixCursor matrix = new MatrixCursor(new String[]{Phone._ID,
-                                                              Phone.DISPLAY_NAME,
-                                                              Phone.NUMBER,
-                                                              Phone.TYPE,
-                                                              Phone.LABEL});
+    final MatrixCursor matrix = new MatrixCursor(new String[]{ID_COLUMN,
+                                                              NAME_COLUMN,
+                                                              NUMBER_COLUMN,
+                                                              NUMBER_TYPE_COLUMN,
+                                                              LABEL_COLUMN,
+                                                              CONTACT_TYPE_COLUMN});
     while (cursor.moveToNext()) {
-      final String number = cursor.getString(cursor.getColumnIndexOrThrow(Phone.NUMBER));
+      final String number = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_COLUMN));
       if (DirectoryHelper.getUserCapabilities(context, RecipientFactory.getRecipientsFromString(context, number, true))
                          .getTextCapability() != Capability.SUPPORTED)
       {
-        matrix.addRow(new Object[] {cursor.getLong(cursor.getColumnIndexOrThrow(Phone._ID)),
-                                    cursor.getString(cursor.getColumnIndexOrThrow(Phone.DISPLAY_NAME)),
+        matrix.addRow(new Object[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN)),
+                                    cursor.getString(cursor.getColumnIndexOrThrow(NAME_COLUMN)),
                                     number,
-                                    cursor.getString(cursor.getColumnIndexOrThrow(Phone.TYPE)),
-                                    cursor.getString(cursor.getColumnIndexOrThrow(Phone.LABEL))});
+                                    cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_TYPE_COLUMN)),
+                                    cursor.getString(cursor.getColumnIndexOrThrow(LABEL_COLUMN)),
+                                    NORMAL_TYPE});
       }
     }
+    return matrix;
   }
 
   public @NonNull Cursor queryTextSecureContacts(String filter) {

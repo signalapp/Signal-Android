@@ -60,8 +60,10 @@ public class ContactsCursorLoader extends CursorLoader {
       cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
     }
 
-    if (mode != MODE_PUSH_ONLY) {
+    if (mode == MODE_ALL) {
       cursorList.add(contactsDatabase.querySystemContacts(filter));
+    } else if (mode == MODE_OTHER_ONLY) {
+      cursorList.add(contactsDatabase.queryNonTextSecureContacts(filter));
     }
 
     if (!TextUtils.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
