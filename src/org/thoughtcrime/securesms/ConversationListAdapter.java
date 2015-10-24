@@ -27,6 +27,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
@@ -60,12 +61,17 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     public ViewHolder(final @NonNull ConversationListItem itemView,
                       final @Nullable ItemClickListener clickListener) {
       super(itemView);
-      itemView.setOnClickListener(new OnClickListener() {
+
+      ThumbnailView thumbnailView = (ThumbnailView) itemView.findViewById(R.id.thumbnail);
+      OnClickListener l = new OnClickListener() {
         @Override
         public void onClick(View view) {
           if (clickListener != null) clickListener.onItemClick(itemView);
         }
-      });
+      };
+
+      thumbnailView.setOnClickListener(l);
+      itemView.setOnClickListener(l);
       itemView.setOnLongClickListener(new OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
