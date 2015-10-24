@@ -133,6 +133,12 @@ public class AudioSlidePlayer {
     this.audioAttachmentServer = null;
   }
 
+  public synchronized static void stopAll() {
+    if (playing.isPresent()) {
+      playing.get().stop();
+    }
+  }
+
   public void setListener(@NonNull Listener listener) {
     this.listener = new WeakReference<>(listener);
 
