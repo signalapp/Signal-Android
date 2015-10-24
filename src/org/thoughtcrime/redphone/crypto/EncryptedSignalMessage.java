@@ -17,9 +17,7 @@
 
 package org.thoughtcrime.redphone.crypto;
 
-import android.content.Context;
-
-import org.thoughtcrime.redphone.util.Base64;
+import org.thoughtcrime.securesms.util.Base64;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
