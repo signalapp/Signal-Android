@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
+import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.providers.SingleUseBlobProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -38,6 +39,7 @@ import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.NotificationInd;
+import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.RetrieveConf;
 
@@ -173,12 +175,13 @@ public class MmsDownloadJob extends MasterSecretJob {
     }
 
     if (retrieved.getBody() != null) {
-      for (int i=0;i<retrieved.getBody().getPartsNum();i++) {
-        PduPart part = retrieved.getBody().getPart(i);
+      body = PartParser.getMessageText(retrieved.getBody());
+      PduBody media = PartParser.getSupportedMediaParts(retrieved.getBody());
 
-        if (Util.toIsoString(part.getContentType()).equals(ContentType.TEXT_PLAIN)) {
-          body = Util.toIsoString(part.getData());
-        } else if (part.getData() != null) {
+      for (int i=0;i<media.getPartsNum();i++) {
+        PduPart part = media.getPart(i);
+
+        if (part.getData() != null) {
           Uri uri = provider.createUri(part.getData());
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,

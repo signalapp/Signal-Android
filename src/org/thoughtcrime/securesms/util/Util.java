@@ -49,6 +49,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -63,6 +64,10 @@ import ws.com.google.android.mms.pdu.EncodedStringValue;
 
 public class Util {
   public static Handler handler = new Handler(Looper.getMainLooper());
+
+  public static String join(String[] list, String delimiter) {
+    return join(Arrays.asList(list), delimiter);
+  }
 
   public static String join(Collection<String> list, String delimiter) {
     StringBuilder result = new StringBuilder();
