@@ -337,7 +337,7 @@
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
-    <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">You will no longer see messages sent from this user.</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">You will no longer receive calls or messages from this user.</string>
     <string name="RecipientPreferenceActivity_block">Block</string>
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Unblock this contact?</string>
     <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Are you sure you want to unblock this contact?</string>
