@@ -222,6 +222,7 @@ public class MmsSmsDatabase extends Database {
     String unionQuery = unionQueryBuilder.buildUnionQuery(new String[] {smsSubQuery, mmsSubQuery}, order, limit);
 
     SQLiteQueryBuilder outerQueryBuilder = new SQLiteQueryBuilder();
+    outerQueryBuilder.setDistinct(true);
     outerQueryBuilder.setTables("(" + unionQuery + ")");
 
     String query      = outerQueryBuilder.buildQuery(projection, null, null, null, null, null, null);

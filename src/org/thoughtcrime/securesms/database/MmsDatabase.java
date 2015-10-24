@@ -309,7 +309,7 @@ public class MmsDatabase extends MessagingDatabase {
 
   private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    return database.rawQuery("SELECT " + Util.join(MMS_PROJECTION, ",") +
+    return database.rawQuery("SELECT DISTINCT " + Util.join(MMS_PROJECTION, ",") +
                              " FROM " + MmsDatabase.TABLE_NAME +  " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME +
                              " ON (" + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")" +
                              " WHERE " + where, arguments);
