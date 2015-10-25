@@ -25,9 +25,12 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.SmilUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -175,14 +178,15 @@ public class MmsSendJob extends SendJob {
   private SendReq constructSendPdu(MasterSecret masterSecret, OutgoingMediaMessage message)
       throws UndeliverableMessageException
   {
-    SendReq sendReq = new SendReq();
-    PduBody body    = new PduBody();
+    SendReq      sendReq = new SendReq();
+    PduBody      body    = new PduBody();
+    List<String> numbers = message.getRecipients().toNumberStringList(true);
 
-    for (Recipient recipient : message.getRecipients()) {
+    for (String number : numbers) {
       if (message.getDistributionType() == DistributionTypes.CONVERSATION) {
-        sendReq.addTo(new EncodedStringValue(Util.toIsoBytes(recipient.getNumber())));
+        sendReq.addTo(new EncodedStringValue(Util.toIsoBytes(number)));
       } else {
-        sendReq.addBcc(new EncodedStringValue(Util.toIsoBytes(recipient.getNumber())));
+        sendReq.addBcc(new EncodedStringValue(Util.toIsoBytes(number)));
       }
     }
 
