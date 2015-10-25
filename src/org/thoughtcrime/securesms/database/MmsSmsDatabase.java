@@ -167,8 +167,15 @@ public class MmsSmsDatabase extends Database {
     mmsQueryBuilder.setDistinct(true);
     smsQueryBuilder.setDistinct(true);
 
-    mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME + " ON (" + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")");
     smsQueryBuilder.setTables(SmsDatabase.TABLE_NAME);
+    mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " +
+                              AttachmentDatabase.TABLE_NAME +
+                              " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " = " +
+                                  " (SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID +
+                                  " FROM " + AttachmentDatabase.TABLE_NAME + " WHERE " +
+                                  AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " +
+                                  MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " LIMIT 1)");
+
 
     Set<String> mmsColumnsPresent = new HashSet<>();
     mmsColumnsPresent.add(MmsSmsColumns.ID);
@@ -222,7 +229,6 @@ public class MmsSmsDatabase extends Database {
     String unionQuery = unionQueryBuilder.buildUnionQuery(new String[] {smsSubQuery, mmsSubQuery}, order, limit);
 
     SQLiteQueryBuilder outerQueryBuilder = new SQLiteQueryBuilder();
-    outerQueryBuilder.setDistinct(true);
     outerQueryBuilder.setTables("(" + unionQuery + ")");
 
     String query      = outerQueryBuilder.buildQuery(projection, null, null, null, null, null, null);
