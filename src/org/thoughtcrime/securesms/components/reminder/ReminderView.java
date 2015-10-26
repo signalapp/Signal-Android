@@ -41,7 +41,7 @@ public class ReminderView extends LinearLayout {
 
   private void initialize() {
     LayoutInflater.from(getContext()).inflate(R.layout.reminder_header, this, true);
-    container = ViewUtil.findById(this, R.id.container);
+    container   = ViewUtil.findById(this, R.id.container);
     closeButton = ViewUtil.findById(this, R.id.cancel);
     title       = ViewUtil.findById(this, R.id.reminder_title);
     text        = ViewUtil.findById(this, R.id.reminder_text);
