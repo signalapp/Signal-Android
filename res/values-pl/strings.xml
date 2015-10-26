@@ -735,8 +735,6 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Wiadomości nie będą już pomylnie wysyłane, prosimy o aktualizację do najnowszej wersji.</string>
-  <string name="reminder_header_sms_default_title">Użyć jako domyślnej aplikacji SMS?</string>
-  <string name="reminder_header_sms_import_title">Importować SMS?</string>
   <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS na tym telefonie do szyfrowanej bazy danych.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ty</string>

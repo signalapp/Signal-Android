@@ -540,7 +540,7 @@ Tuo aiemmin viety salattu Signal-varmuuskopio.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\" -sovelluksen kanssa.</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Näytä koko keskustelu...</string>
+  <string name="load_more_header__see_full_conversation">Näytä koko keskustelu...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Ei kuvia</string>
   <!--message_recipients_list_item-->
@@ -865,16 +865,16 @@ Ilmaiset ja yksityiset viestit sekä puhelut Signalin käyttäjille</string>
   <string name="reminder_header_expired_build">Käyttämäsi Signalin versio on vanhentunut!</string>
   <string name="reminder_header_expired_build_details">Viestien lähetys ei enää onnistu. Päivitä sovellus viimeisimpään versioon.</string>
   <string name="reminder_header_expired_build_button">PÄIVITÄ</string>
-  <string name="reminder_header_sms_default_title">Käytä oletuksena tekstiviesteille?</string>
+  <string name="reminder_header_sms_default_title">Käytä oletustekstiviestisovelluksena</string>
   <string name="reminder_header_sms_default_text">Napsauta, jos haluat tehdä Signalista oletustekstiviestisovelluksesi.</string>
   <string name="reminder_header_sms_default_button">ASETA</string>
-  <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit?</string>
+  <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit</string>
   <string name="reminder_header_sms_import_text">Napsauta, jos haluat kopioida puhelimesi tekstiviestit Signalin salattuun tietokantaan.</string>
   <string name="reminder_header_sms_import_button">TUO</string>
-  <string name="reminder_header_push_title">Ota Signal käyttöön?</string>
+  <string name="reminder_header_push_title">Ota Signal käyttöön</string>
   <string name="reminder_header_push_text">Päivitä pikaviestikokemuksesi.</string>
   <string name="reminder_header_push_button">OTA KÄYTTÖÖN</string>
-  <string name="reminder_header_invite_title">Kutsu Signaliin?</string>
+  <string name="reminder_header_invite_title">Kutsu Signaliin</string>
   <string name="reminder_header_invite_text">Vie keskustelusi yhteystiedon %1$s kanssa seuraavalle tasolle.</string>
   <string name="reminder_header_invite_button">KUTSU</string>
   <string name="reminder_header_close_button">SULJE</string>

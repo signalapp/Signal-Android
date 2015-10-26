@@ -787,9 +787,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Versiunea ta de Signal a expirat!</string>
   <string name="reminder_header_expired_build_details">Mesajele nu vor mai putea fi trimise cu succes, vă rog actualizați aplicația la versiunea cea mai recentă.</string>
-  <string name="reminder_header_sms_default_title">Seteaz ca aplicație implicită SMS?</string>
   <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal ca și aplicație SMS implicită.</string>
-  <string name="reminder_header_sms_import_title">Import baza de date cu SMS-uri?</string>
   <string name="reminder_header_sms_import_text">Atingeți  pentru a copia mesajele SMS din telefon în baza de date criptată.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>

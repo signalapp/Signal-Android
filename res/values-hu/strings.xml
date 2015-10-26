@@ -554,7 +554,6 @@ az alapértelmezett rendszer üzenetküldő alkalmazásból.
   <string name="import_fragment__import_a_plaintext_backup_file">
 Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági mentés és visszaállítás\" kompatibilis.</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Teljes beszélgetés betöltése...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Nincs fénykép</string>
   <!--message_recipients_list_item-->
@@ -908,16 +907,12 @@ sikertelen.
   <string name="reminder_header_expired_build">A Signal-od buildje lejárt!</string>
   <string name="reminder_header_expired_build_details">Az üzenetek küldése nem lesz sikeres, kérlek frissíts a legújabb verzióra!</string>
   <string name="reminder_header_expired_build_button">FRISSÍTÉS</string>
-  <string name="reminder_header_sms_default_title">Alapértelmezett SMS alkalmazásként szeretnéd használni?</string>
   <string name="reminder_header_sms_default_text">Koppints a Signal alapértelmezett SMS alkalmazássá tételéhez.</string>
   <string name="reminder_header_sms_default_button">BEÁLLÍTÁS</string>
-  <string name="reminder_header_sms_import_title">Rendszer SMS adatbázis importálása?</string>
   <string name="reminder_header_sms_import_text">Koppints a telefon SMS üzeneteinek titkosított adatbázisba másolásához.</string>
   <string name="reminder_header_sms_import_button">IMPORTÁLÁS</string>
-  <string name="reminder_header_push_title">Signal engedélyezése?</string>
   <string name="reminder_header_push_text">Frissítse fel az üzenetküldési élményét.</string>
   <string name="reminder_header_push_button">ENGEDÉLYEZÉS</string>
-  <string name="reminder_header_invite_title">Meghívás a Signal-ba?</string>
   <string name="reminder_header_invite_text">Vigye a beszélgetését a következő szintre vele: %1$s.</string>
   <string name="reminder_header_invite_button">MEGHÍVÁS</string>
   <string name="reminder_header_close_button">BEZÁRÁS</string>

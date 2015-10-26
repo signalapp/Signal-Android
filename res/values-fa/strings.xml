@@ -434,7 +434,6 @@
   <string name="import_fragment__import_encrypted_backup">واردکردن پشتیبان رمزگذاری شده</string>
   <string name="import_fragment__import_plaintext_backup">وارد کردن پشتیبان ساده</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">بارگذاری گفتگوی کامل ...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">بدون تصاویر</string>
   <!--message_recipients_list_item-->
@@ -717,12 +716,8 @@
   <!--reminder_header-->
   <string name="reminder_header_expired_build">نسخه سیگنال شما منقضی شده است!</string>
   <string name="reminder_header_expired_build_button">آپگرید</string>
-  <string name="reminder_header_sms_default_title">استفاده به عنوان برنامه پیش فرض SMS؟</string>
   <string name="reminder_header_sms_default_button">تنظیم</string>
-  <string name="reminder_header_sms_import_title">سیستم وارد کردن SMS؟</string>
-  <string name="reminder_header_push_title">فعال کردن سیگنال؟</string>
   <string name="reminder_header_push_button">فعال کردن</string>
-  <string name="reminder_header_invite_title">دعوت به سیگنال؟</string>
   <string name="reminder_header_invite_button">دعوت كردن</string>
   <string name="reminder_header_close_button">بستن</string>
   <!--MediaPreviewActivity-->

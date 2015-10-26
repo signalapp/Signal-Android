@@ -555,7 +555,6 @@ Restaurar una copia de seguridad cifrada de Signal previamente exportada.</strin
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importar una copia de seguridad en texto plano. Compatible con \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Cargar conversación completa...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">No hay imágenes</string>
   <!--message_recipients_list_item-->
@@ -899,16 +898,12 @@ Mensajería y llamadas privadas y gratuitas a usuarios de Signal</string>
   <string name="reminder_header_expired_build">¡Su versión de Signal ha caducado!</string>
   <string name="reminder_header_expired_build_details">Los mensajes ya no se enviarán con éxito, por favor, actualice a la versión más reciente.</string>
   <string name="reminder_header_expired_build_button">ACTUALIZAR</string>
-  <string name="reminder_header_sms_default_title">¿Usar como aplicación de SMS por defecto?</string>
   <string name="reminder_header_sms_default_text">Pulse para hacer de Signal su aplicación de SMS predeterminada.</string>
   <string name="reminder_header_sms_default_button">AJUSTAR</string>
-  <string name="reminder_header_sms_import_title">¿Importar SMS del sistema?</string>
   <string name="reminder_header_sms_import_text">Pulse para copiar los mensajes SMS de su teléfono en su base de datos cifrada.</string>
   <string name="reminder_header_sms_import_button">IMPORTAR</string>
-  <string name="reminder_header_push_title">Activar Signal?</string>
   <string name="reminder_header_push_text">Actualiza tu experiencia de mensajería.</string>
   <string name="reminder_header_push_button">HABILITAR</string>
-  <string name="reminder_header_invite_title">¿Invitar a Signal?</string>
   <string name="reminder_header_invite_text">Llevar tu conversación con %1$s al siguiente nivel.</string>
   <string name="reminder_header_invite_button">INVITAR</string>
   <string name="reminder_header_close_button">CERRAR</string>

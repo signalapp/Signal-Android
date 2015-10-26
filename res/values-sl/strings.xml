@@ -519,7 +519,6 @@ Obnovi podatke iz predhodno ustvarjene šifrirane varnostne kopije Signal.</stri
   <string name="import_fragment__import_plaintext_backup">Uvoz iz nešifrirane varnostne kopije</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Uvozi iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami sporočil SMS.</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Naloži celoten pogovor...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Brez slik</string>
   <!--message_recipients_list_item-->
@@ -848,16 +847,12 @@ Brezplačno zasebno sporočanje in klici za uporabnike storitve Signal</string>
   <string name="reminder_header_expired_build">Vaša različica aplikacije Signal je potekla!</string>
   <string name="reminder_header_expired_build_details">Pošiljanje sporočil ni več mogoče. Prosimo, posodobite aplikacijo na zadnjo različico.</string>
   <string name="reminder_header_expired_build_button">NADGRADI</string>
-  <string name="reminder_header_sms_default_title">Uporabljam kot privzeto aplikacijo SMS?</string>
   <string name="reminder_header_sms_default_text">Z dotikom nastavite Signal za privzeto aplikacijo SMS</string>
   <string name="reminder_header_sms_default_button">NASTAVI</string>
-  <string name="reminder_header_sms_import_title">Uvozim iz sistemske zbirke sporočil SMS?</string>
   <string name="reminder_header_sms_import_text">Tapnite za prenos sporočil SMS iz vašega telefona v šifrirano zbirko.</string>
   <string name="reminder_header_sms_import_button">UVOZI</string>
-  <string name="reminder_header_push_title">Omogočim Signal?</string>
   <string name="reminder_header_push_text">Nadgradite izkušnjo svoje komunikacije.</string>
   <string name="reminder_header_push_button">OMOGOČI</string>
-  <string name="reminder_header_invite_title">Povabilo k uporabi aplikacije Signal?</string>
   <string name="reminder_header_invite_text">Prenesite svojo komunikacijo z osebo %1$s na novo raven.</string>
   <string name="reminder_header_invite_button">POVABI</string>
   <string name="reminder_header_close_button">ZAPRI</string>

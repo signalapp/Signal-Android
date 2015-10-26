@@ -659,8 +659,6 @@ başarısız.</string>
   <string name="text_secure_normal__mark_all_as_read">Tümünü okundu işaretle</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Mesajlar artık başarılı olarak gönderilemeyecektir, lütfen en yeni sürüme güncelleyiniz. </string>
-  <string name="reminder_header_sms_default_title">Varsayılan SMS uygulaması olarak kullanılsın mı?</string>
-  <string name="reminder_header_sms_import_title">Sistem SMS içe aktarılsın mı?</string>
   <string name="reminder_header_sms_import_text">Telefonunuzdaki SMS mesajlarınızı, şifreli veritabanına aktarmak için hafifçe vurun.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Siz</string>

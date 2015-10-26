@@ -534,7 +534,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="import_fragment__import_a_plaintext_backup_file">
 Внасяне на разшифрован архив. Съвместимо с \'SMSBackup And Restore.\'</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Зареди пълния разговор...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Няма изображения</string>
   <!--message_recipients_list_item-->
@@ -868,16 +867,12 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="reminder_header_expired_build">Вдашата Signal версия е изтекла!</string>
   <string name="reminder_header_expired_build_details">Съобщенията няма повече да бъдат успешно доставени, моля, обновете до най-новата версия.</string>
   <string name="reminder_header_expired_build_button">ОБНОВИ</string>
-  <string name="reminder_header_sms_default_title">Използвай като SMS програма по подразбиране?</string>
   <string name="reminder_header_sms_default_text">Натисни, за да направиш Signal своята SMS програма по подразбиране.</string>
   <string name="reminder_header_sms_default_button">ЗАДАЙ</string>
-  <string name="reminder_header_sms_import_title">Внеси вече съществуващите SMS?</string>
   <string name="reminder_header_sms_import_text">Натисните, за да копирате своите SMS съобщения в шифрованата база данни.</string>
   <string name="reminder_header_sms_import_button">ВНЕСИ</string>
-  <string name="reminder_header_push_title">Активирай Signal?</string>
   <string name="reminder_header_push_text">Обнови програмата.</string>
   <string name="reminder_header_push_button">АКТИВИРАЙ</string>
-  <string name="reminder_header_invite_title">Покани в Signal?</string>
   <string name="reminder_header_invite_text">Издигни разговора си с %1$s до ново ниво.</string>
   <string name="reminder_header_invite_button">ПОКАНИ</string>
   <string name="reminder_header_close_button">ЗАТВОРИ</string>

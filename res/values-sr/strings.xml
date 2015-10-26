@@ -539,7 +539,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">
 Увези обични текстуални фајл резерве. Компатибилно са апликацијом „SMSBackup And Restore“.</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Учитај целу преписку...</string>
+  <string name="load_more_header__see_full_conversation">Погледај читаву преписку</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Нема слика</string>
   <!--message_recipients_list_item-->
@@ -874,16 +874,16 @@
   <string name="reminder_header_expired_build">Ваше издање Сигнала је истекло!</string>
   <string name="reminder_header_expired_build_details">Више нећете моћи да шаљете поруке успешно, надоградите на најскорије издање.</string>
   <string name="reminder_header_expired_build_button">НАДОГРАДИ</string>
-  <string name="reminder_header_sms_default_title">Користити као подразумевану СМС апликацију?</string>
+  <string name="reminder_header_sms_default_title">Користи као подразумевану апл. за СМС</string>
   <string name="reminder_header_sms_default_text">Тапните да поставите Сигнал за подразумевану апликацију за СМС.</string>
   <string name="reminder_header_sms_default_button">ПОСТАВИ</string>
-  <string name="reminder_header_sms_import_title">Увести СМС поруке са система?</string>
+  <string name="reminder_header_sms_import_title">Увези системске СМС</string>
   <string name="reminder_header_sms_import_text">Тапните да копирате СМС поруке са вашег телефона у шифровану базу.</string>
   <string name="reminder_header_sms_import_button">УВЕЗИ</string>
-  <string name="reminder_header_push_title">Омогућити Сигнал?</string>
+  <string name="reminder_header_push_title">Омогући Сигнал</string>
   <string name="reminder_header_push_text">Побољшајте доживљај слања порука.</string>
   <string name="reminder_header_push_button">ОМОГУЋИ</string>
-  <string name="reminder_header_invite_title">Позвати у Сигнал?</string>
+  <string name="reminder_header_invite_title">Позови у Сигнал</string>
   <string name="reminder_header_invite_text">Подигните комуникацију са %1$s на идући ниво.</string>
   <string name="reminder_header_invite_button">ПОЗОВИ</string>
   <string name="reminder_header_close_button">ЗАТВОРИ</string>

@@ -534,7 +534,6 @@
   <string name="import_fragment__import_a_plaintext_backup_file">
 导入明文备份文件，与\"SMSBackup And Restore\"软件兼容。</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">读取整个会话…</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">没有图片</string>
   <!--message_recipients_list_item-->
@@ -868,16 +867,12 @@
   <string name="reminder_header_expired_build">您的暗号版本已过期！</string>
   <string name="reminder_header_expired_build_details">您的信息已经长时间没有成功发送了，请更新到最新版本。</string>
   <string name="reminder_header_expired_build_button">升级</string>
-  <string name="reminder_header_sms_default_title">使用默认的SMS应用程序？</string>
   <string name="reminder_header_sms_default_text">触击以将暗号标记为默认的短信应用</string>
   <string name="reminder_header_sms_default_button">设置</string>
-  <string name="reminder_header_sms_import_title">导入系统短信？</string>
   <string name="reminder_header_sms_import_text">点击将手机中的短信息复制到 TextSecure 的加密的数据库中。</string>
   <string name="reminder_header_sms_import_button">导入</string>
-  <string name="reminder_header_push_title">启用暗号？</string>
   <string name="reminder_header_push_text">升级您的信息体验。</string>
   <string name="reminder_header_push_button">启用</string>
-  <string name="reminder_header_invite_title">邀请朋友到暗号？</string>
   <string name="reminder_header_invite_text">使用 %1$s 将您的会话提升的下一个等级。</string>
   <string name="reminder_header_invite_button">邀请</string>
   <string name="reminder_header_close_button">关闭</string>

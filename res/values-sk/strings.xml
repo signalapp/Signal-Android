@@ -690,9 +690,7 @@ zlyhalo.
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Platnosť aplikácie Signal vypršala!</string>
   <string name="reminder_header_expired_build_details">Nie je možné ďalej úspešne odosielať správy. Prosím, aktualizujte na najnovšiu verziu.</string>
-  <string name="reminder_header_sms_default_title">Nastaviť ako predvolenú SMS aplikáciu?</string>
   <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
-  <string name="reminder_header_sms_import_title">Načítať systémove SMS správy?</string>
   <string name="reminder_header_sms_import_text">Dotykom sem môžete skopírovať SMS správy z Vašeho telefónu do zašifrovanej databázy.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>

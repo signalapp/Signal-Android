@@ -530,7 +530,6 @@ Ripristina un backup criptato con Signal precedentemente esportato.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Carica tutta la conversazione...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Nessuna immagine</string>
   <!--message_recipients_list_item-->
@@ -868,16 +867,12 @@ Messaggistica privata e gratuita tra utenti Signal</string>
   <string name="reminder_header_expired_build">La tua versione di Signal è scaduta!</string>
   <string name="reminder_header_expired_build_details">Non riesci più a mandare messaggi, per piacere aggiorna all\'ultima versione.</string>
   <string name="reminder_header_expired_build_button">UPGRADE</string>
-  <string name="reminder_header_sms_default_title">Adotta come applicazione predefinita per SMS.</string>
   <string name="reminder_header_sms_default_text">Tocca per usare Signal come applicazione di default per gli SMS.</string>
   <string name="reminder_header_sms_default_button">IMPOSTA</string>
-  <string name="reminder_header_sms_import_title">Vuoi importare gli SMS precedenti?</string>
   <string name="reminder_header_sms_import_text">Tocca per copiare gli SMS del telefono nel database criptato.</string>
   <string name="reminder_header_sms_import_button">IMPORTA</string>
-  <string name="reminder_header_push_title">Attivare Signal?</string>
   <string name="reminder_header_push_text">Fai l\'upgrade della tua esperienza messaggi.</string>
   <string name="reminder_header_push_button">ATTIVA</string>
-  <string name="reminder_header_invite_title">Invitare in Signal?</string>
   <string name="reminder_header_invite_text">Porta la tua conversazione con %1$s ad un nuovo livello.</string>
   <string name="reminder_header_invite_button">INVITA</string>
   <string name="reminder_header_close_button">CHIUDI</string>

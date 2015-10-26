@@ -813,8 +813,6 @@ SMS-подтверждения...
   <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Сообщения больше не будут отправляться. Пожалуйста, обновитесь до последней версии.</string>
-  <string name="reminder_header_sms_default_title">Использовать как SMS-приложение по умолчанию?</string>
-  <string name="reminder_header_sms_import_title">Импортировать SMS из системы?</string>
   <string name="reminder_header_sms_import_text">Нажмите, чтобы скопировать SMS с вашего устройства в зашифрованную базу данных.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>

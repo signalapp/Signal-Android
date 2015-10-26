@@ -537,7 +537,7 @@ Vrati prethodno izvezenu kriptiranu Signal kopiju.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Učitaj cijeli razgovor...</string>
+  <string name="load_more_header__see_full_conversation">Prikaži cijeli razgovor</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Nema slika</string>
   <!--message_recipients_list_item-->
@@ -871,16 +871,16 @@ Besplatno privatno dopisivanje i pozivanje sa Signal korisnicima</string>
   <string name="reminder_header_expired_build">Vaša Signal inačica je istekla!</string>
   <string name="reminder_header_expired_build_details">Poruke više neće biti moguće uspješno poslati, nadogradite na najnoviju dostupnu inačicu.</string>
   <string name="reminder_header_expired_build_button">NADOGRADI</string>
-  <string name="reminder_header_sms_default_title">Koristi kao zadanu SMS aplikaciju?</string>
+  <string name="reminder_header_sms_default_title">Koristi kao zadanu SMS aplikaciju</string>
   <string name="reminder_header_sms_default_text">Pritisnite kako biste postavili Signal kao zadanu SMS aplikaciju.</string>
   <string name="reminder_header_sms_default_button">POSTAVI</string>
-  <string name="reminder_header_sms_import_title">Uvezi SMS poruke sustava?</string>
+  <string name="reminder_header_sms_import_title">Uvezi SMS poruke sustava</string>
   <string name="reminder_header_sms_import_text">Pritisnite kako biste kopirali SMS poruke telefona u kriptiranu bazu podataka.</string>
   <string name="reminder_header_sms_import_button">UVOZ</string>
-  <string name="reminder_header_push_title">Omogući Signal?</string>
+  <string name="reminder_header_push_title">Omogući Signal</string>
   <string name="reminder_header_push_text">Nadogradi svoje iskustvo dopisivanja.</string>
   <string name="reminder_header_push_button">OMOGUĆI</string>
-  <string name="reminder_header_invite_title">Pozovi u Signal?</string>
+  <string name="reminder_header_invite_title">Pozovi u Signal</string>
   <string name="reminder_header_invite_text">Dovedite svoj razgovor s %1$s na sljedeću razinu.</string>
   <string name="reminder_header_invite_button">POZOVI</string>
   <string name="reminder_header_close_button">ZATVORI</string>

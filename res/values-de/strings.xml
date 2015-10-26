@@ -518,7 +518,7 @@ Eine zuvor exportierte, verschlüsselte Signal-Datensicherung wiederherstellen</
   <string name="import_fragment__import_a_plaintext_backup_file">
 Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung importieren</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Gesamte Unterhaltung laden …</string>
+  <string name="load_more_header__see_full_conversation">Ganze Unterhaltung anzeigen</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Keine Bilder</string>
   <!--message_recipients_list_item-->
@@ -839,16 +839,16 @@ Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und tele
   <string name="reminder_header_expired_build">Ihre Version von Signal ist veraltet!</string>
   <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte Signal auf die neueste Version aktualisieren.</string>
   <string name="reminder_header_expired_build_button">UPGRADEN</string>
-  <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden?</string>
+  <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden</string>
   <string name="reminder_header_sms_default_text">Antippen, um Signal als Standard-SMS-App zu verwenden.</string>
   <string name="reminder_header_sms_default_button">FESTLEGEN</string>
-  <string name="reminder_header_sms_import_title">SMS des Telefons importieren?</string>
+  <string name="reminder_header_sms_import_title">SMS des Telefons importieren</string>
   <string name="reminder_header_sms_import_text">Antippen, um auf dem Telefon gespeicherte SMS-Nachrichten in die verschlüsselte Datenbank zu importieren.</string>
   <string name="reminder_header_sms_import_button">IMPORTIEREN</string>
-  <string name="reminder_header_push_title">Signal aktivieren?</string>
+  <string name="reminder_header_push_title">Signal-Kommunikation ermöglichen</string>
   <string name="reminder_header_push_text">Verbessern Sie Ihr Kommunikationserlebnis.</string>
   <string name="reminder_header_push_button">AKTIVIEREN</string>
-  <string name="reminder_header_invite_title">Zu Signal einladen?</string>
+  <string name="reminder_header_invite_title">Zu Signal einladen</string>
   <string name="reminder_header_invite_text">Heben Sie Ihre Kommunikation mit %1$s auf die nächste Stufe.</string>
   <string name="reminder_header_invite_button">EINLADEN</string>
   <string name="reminder_header_close_button">SCHLIESSEN</string>

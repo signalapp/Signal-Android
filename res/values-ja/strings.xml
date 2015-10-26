@@ -724,8 +724,6 @@
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">もうメッセージの送信が成功することはありません、最新のバージョンへアップデートしてください。</string>
-  <string name="reminder_header_sms_default_title">標準のSMSアプリに設定しますか？</string>
-  <string name="reminder_header_sms_import_title">システムのSMSをインポートしますか？</string>
   <string name="reminder_header_sms_import_text">タップして電話のSMSメッセージを暗号化したデータベースにコピーする。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>

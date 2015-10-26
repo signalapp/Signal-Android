@@ -627,8 +627,6 @@
   <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Паведамленні больш ня будуць высылацца. Калі ласка абнавіцеся да больш новай версіі.</string>
-  <string name="reminder_header_sms_default_title">Выкарыстоўваць як стандартную аплікацыю для SMS?</string>
-  <string name="reminder_header_sms_import_title">Імпартаваць сістэмныя SMS?</string>
   <string name="reminder_header_sms_import_text">Націсніце каб скапіраваць вашыя SMS з тэлефона ў зашыфраваную базу.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>

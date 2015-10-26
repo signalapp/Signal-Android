@@ -861,9 +861,7 @@ Appels et messages privés et gratuits vers les utilisateurs de Signal</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Votre version de Signal a expiré !</string>
   <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>
-  <string name="reminder_header_sms_default_title">Définir TextSecure comme application SMS par défaut ? </string>
   <string name="reminder_header_sms_default_text">Appuyez pour faire de Signal votre application SMS par défaut.</string>
-  <string name="reminder_header_sms_import_title">Désirez-vous importer les SMS du système ?</string>
   <string name="reminder_header_sms_import_text">Appuyez pour copier les SMS de votre téléphone dans sa base chiffrée.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vous</string>

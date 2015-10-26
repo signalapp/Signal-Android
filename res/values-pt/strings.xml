@@ -892,9 +892,7 @@ Mensagens privadas gratuitas para utilizadores Signal
   <!--reminder_header-->
   <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>
   <string name="reminder_header_expired_build_details">As mensagens já não poderão ser enviadas correctamente, por favor actualize para a versão mais recente.</string>
-  <string name="reminder_header_sms_default_title">Definir como aplicação SMS por omissão?</string>
   <string name="reminder_header_sms_default_text">Pressione para tornar Signal a sua applicação SMS por omissão.</string>
-  <string name="reminder_header_sms_import_title">Importar as SMS do sistema?</string>
   <string name="reminder_header_sms_import_text">Pressione para copiar as suas SMS para a base de dados TextSecure cifrada.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>

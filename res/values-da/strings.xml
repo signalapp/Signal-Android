@@ -744,8 +744,6 @@ mislykkedes.</string>
   <string name="text_secure_normal__mark_all_as_read">Markér alle som læst</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Beskeder vil ikke længere blive sendt. Opdatér venligst til den nyeste version.</string>
-  <string name="reminder_header_sms_default_title">Anvend som standard SMS-app?</string>
-  <string name="reminder_header_sms_import_title">Importér enhedens SMS?</string>
   <string name="reminder_header_sms_import_text">Tryk for at kopiere din telefons SMS\'er til TextSecures krypterede database.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Dig</string>

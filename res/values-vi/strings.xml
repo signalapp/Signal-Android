@@ -886,9 +886,7 @@ Miễn phí nhắn tin và gọi điện riêng tư đến người dùng Signal
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Bản dựng Signal này đã hết hạn!</string>
   <string name="reminder_header_expired_build_details">Tin nhắn không còn gửi đi được nữa, xin vui lòng cập nhật lên phiên bản mới nhất.</string>
-  <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định?</string>
   <string name="reminder_header_sms_default_text">Chạm để đặt Signal làm ứng dụng SMS mặc định.</string>
-  <string name="reminder_header_sms_import_title">Nhập SMS của hệ thống?</string>
   <string name="reminder_header_sms_import_text">Nhấn để sao chép tin nhắn SMS trong điện thoại vào cơ sở dữ liệu mã hóa.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Bạn</string>

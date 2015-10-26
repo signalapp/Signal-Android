@@ -648,8 +648,6 @@
   <string name="text_secure_normal__mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ. ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ಅಪ್ಡೇಟ್ ಮಾಡಿ. </string>
-  <string name="reminder_header_sms_default_title">ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಉಪಯೋಗಿಸಿ.</string>
-  <string name="reminder_header_sms_import_title">ವ್ಯವಸ್ಥೆಯ ಎಸ್.ಎಮ್.ಎಸ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ?</string>
   <string name="reminder_header_sms_import_text">ನಿಮ್ಮ ಫೋನಿನ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು  ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ದತ್ತಾಂಶಕ್ಕೆ  ನಕಲು ಮಾಡಿಕೊಳ್ಳಲು ಸ್ಪರ್ಶಿಸಿ.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">ನೀವು</string>

@@ -688,8 +688,6 @@
   <string name="text_secure_normal__mark_all_as_read">Обележи ги сите како прочитани</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Пораките не ќе можат повеќе да се испраќаат, актуализирајте на најновата верзија.</string>
-  <string name="reminder_header_sms_default_title">Користете како стандардна апликација за SMS?</string>
-  <string name="reminder_header_sms_import_title">Импортирајте ги SMS пораките од системот?</string>
   <string name="reminder_header_sms_import_text">Притиснете за копирање на SMS пораките од вашиот телефон во шифрираната база на податоци.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вие</string>

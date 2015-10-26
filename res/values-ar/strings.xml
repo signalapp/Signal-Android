@@ -841,9 +841,7 @@
   <!--reminder_header-->
   <string name="reminder_header_expired_build">لقد انتهت صلاحية هذه النسخة من سيجنال!</string>
   <string name="reminder_header_expired_build_details">رجاء التحديث لآخر إصداره من التطبيق. لن ترسل الرسائل بنجاح بعد الآن.</string>
-  <string name="reminder_header_sms_default_title">اجعله التطبيق الافتراضي المستخدم للرسائل؟</string>
   <string name="reminder_header_sms_default_text">المس لجعل سيجنال التطبيق الافتراضي للرسائل.</string>
-  <string name="reminder_header_sms_import_title">استيراد رسائل النظام؟</string>
   <string name="reminder_header_sms_import_text">أضغط لنسخ الرسائل النصية القصيرة على الهاتف إلى قاعدة البيانات المشفرة.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">أنت</string>

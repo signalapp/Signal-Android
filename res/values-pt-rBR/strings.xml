@@ -781,8 +781,6 @@ falhou.</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">As mensagens não serão enviadas com sucesso, favor atualizar para a versão mais recente.</string>
-  <string name="reminder_header_sms_default_title">Usar como app SMS padrão?</string>
-  <string name="reminder_header_sms_import_title">Importar mensagens SMS do sistema?</string>
   <string name="reminder_header_sms_import_text">Clique para copiar as mensagens SMS do seu telefone para a base de dados criptografada.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>

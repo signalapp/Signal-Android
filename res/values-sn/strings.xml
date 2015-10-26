@@ -738,8 +738,6 @@ kwaramba.</string>
   <string name="text_secure_normal__mark_all_as_read">Mara ose se averengwa</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Tsamba hadzichazogona kutumirwa zvekare, rukumbiro kwidziridza kuenda kevhezheni remanje. </string>
-  <string name="reminder_header_sms_default_title">Shandisa sehurongwa hwe apu yetsamba pfupi?</string>
-  <string name="reminder_header_sms_import_title">Kuimupota gumbapamwe retsamba pfupi?</string>
   <string name="reminder_header_sms_import_text">Bata kuti ikopere tsamba pfupi dzembozha runhare yako kupfimbi redhate rakakwedekerwa.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Iwewe</string>

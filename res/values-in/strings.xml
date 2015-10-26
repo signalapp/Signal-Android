@@ -533,7 +533,6 @@ dari aplikasi perpesan bawaan
   <string name="import_fragment__import_a_plaintext_backup_file">
 Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
-  <string name="load_more_header__load_full_conversation">Muat seluruh percakapan...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Tidak ada gambar</string>
   <!--message_recipients_list_item-->
@@ -883,15 +882,11 @@ Telah gagal
   <string name="reminder_header_expired_build">Versi Signal Anda telah usang!</string>
   <string name="reminder_header_expired_build_details">Pesan tidak akan bisa lagi terkirim dengan sukses, mohon mutakhirkan ke versi terbaru.</string>
   <string name="reminder_header_expired_build_button">PERBARUI</string>
-  <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS baku?</string>
   <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS baku Anda.</string>
   <string name="reminder_header_sms_default_button">SET</string>
-  <string name="reminder_header_sms_import_title">Impor SMS sistem?</string>
   <string name="reminder_header_sms_import_text">Ketuk untuk menyalin pesan SMS telepon Anda ke dalam basis data terenkripsi.</string>
   <string name="reminder_header_sms_import_button">IMPOR</string>
-  <string name="reminder_header_push_title">Aktifkan Signal?</string>
   <string name="reminder_header_push_button">AKTIFKAN</string>
-  <string name="reminder_header_invite_title">Undang ke Signal?</string>
   <string name="reminder_header_invite_button">UNDANG</string>
   <string name="reminder_header_close_button">TUTUP</string>
   <!--MediaPreviewActivity-->

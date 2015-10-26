@@ -636,8 +636,6 @@
   <string name="text_secure_normal__mark_all_as_read">அனைத்தையும் படித்தாக குறியிடு</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">செய்திகள் இனிமேல் வெற்றிகரமாக அனுப்ப முடியாது. மிக சமீபத்திய பதிப்பிற்கு தயவு செய்து புதுப்பிக்கவும்.</string>
-  <string name="reminder_header_sms_default_title">இயல்புநிலை SMS மென்பொருளாக்கலாமா?</string>
-  <string name="reminder_header_sms_import_title">தொலைபேசியிலுள்ள SMS-களை இறக்குமதி செய்யலாமா?</string>
   <string name="reminder_header_sms_import_text">மறையாக்கப்பட்ட கோப்பினுள் உங்கள் தொலைபேசியின் SMS-செய்திகளை நகலெடுக்க, தட்டவும்.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">நீங்கள்</string>

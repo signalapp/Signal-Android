@@ -804,8 +804,6 @@
   <string name="text_secure_normal__mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Τα μηνύματα δεν θα στείλνονται με επιτυχία, παρακαλούμε αναβαθμίστε στην πιο πρόσφατη έκδοση.</string>
-  <string name="reminder_header_sms_default_title">Χρήση ως προεπιλεγμένη εφαρμογή για SMS;</string>
-  <string name="reminder_header_sms_import_title">Να εισαγχθούν όλα τα προϋπάρχοντα SMS;</string>
   <string name="reminder_header_sms_import_text">Πατήστε για να αντιγράψετε τα μηνύματα SMS του κινητού σας τηλεφώνου στην κρυπτογραφημένη βάση δεδομένων.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Εσείς</string>
