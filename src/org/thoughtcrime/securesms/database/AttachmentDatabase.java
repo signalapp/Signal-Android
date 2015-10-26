@@ -150,7 +150,7 @@ public class AttachmentDatabase extends Database {
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
   }
 
-  public @Nullable Attachment getAttachment(AttachmentId attachmentId) {
+  public @Nullable DatabaseAttachment getAttachment(AttachmentId attachmentId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor cursor           = null;
 
@@ -518,9 +518,9 @@ public class AttachmentDatabase extends Database {
         return stream;
       }
 
-      Attachment attachment = getAttachment(attachmentId);
+      DatabaseAttachment attachment = getAttachment(attachmentId);
 
-      if (attachment == null || attachment.isInProgress()) {
+      if (attachment == null || !attachment.hasData()) {
         return null;
       }
 
