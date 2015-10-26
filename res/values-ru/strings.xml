@@ -72,8 +72,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal.\n\nОтправить незащищенное сообщение?</string>
   <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Начать защищённый сеанс?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Начать защищённый сеанс связи с %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Подтверждение сброса защищенного сеанса</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Вы уверены, что хотите сбросить защищенный сеанс?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Подтвердите удаление разговора</string>
@@ -270,7 +268,6 @@
   <string name="RatingManager_later">Позже</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокировать этот контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Вы больше не будете видеть сообщения от этого пользователя.</string>
   <string name="RecipientPreferenceActivity_block">Заблокировать</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Разблокировать этот контакт?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Вы уверены, что хотите разблокировать этот контакт?</string>
@@ -382,7 +379,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">Мой отпечаток</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Игнорировать предыдущий запрос?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Вы уже отправили этому собеседнику запрос на начало сеанса. Вы уверены, что хотите отправить ещё один? Предыдущий будет аннулирован.</string>
   <string name="KeyExchangeInitiator_send">Отправить</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Зашифрованное сообщение испорчено...</string>
@@ -507,6 +503,7 @@
   <string name="import_fragment__import_plaintext_backup">Импорт простой резервной копии</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Импортировать из простой резервной копии. Совместимо с приложением «SMSBackup And Restore».</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Изображений нет</string>
   <!--message_recipients_list_item-->
@@ -769,7 +766,6 @@ SMS-подтверждения...
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Пригласить</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Начать защищённый сеанс</string>
   <string name="conversation_insecure__security">Безопасность</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Удалить выбранное</string>
@@ -820,7 +816,6 @@ SMS-подтверждения...
   <string name="reminder_header_sms_default_title">Использовать как SMS-приложение по умолчанию?</string>
   <string name="reminder_header_sms_import_title">Импортировать SMS из системы?</string>
   <string name="reminder_header_sms_import_text">Нажмите, чтобы скопировать SMS с вашего устройства в зашифрованную базу данных.</string>
-  <string name="reminder_header_push_text">Мгновенная доставка, улучшенная защита приватности и никакой платы за SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
   <string name="MediaPreviewActivity_cant_display">Не удалось просмотреть это изобажение</string>

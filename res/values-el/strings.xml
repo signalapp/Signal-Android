@@ -69,8 +69,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Χρήση μη κρυπτογραφημένου MMS ως εναλλακτική;</string>
   <string name="ConversationItem_unable_to_open_media">Δεν μπορεί να βρεθεί κατάλληλη εφαρμογή για το άνοιγμα αυτού του πολυμέσου.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Εκκίνηση ασφαλούς συνεδρίας;</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Έναρξη ασφαλούς συζήτησης με τον/την %s;</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Επιβεβαίωση επαναφοράς ασφαλούς συνεδρίας</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Είσαι σίγουρος/η πως θέλεις να επαναφέρεις αυτή την ασφαλή συνεδρία;</string>
   <string name="ConversationActivity_delete_thread_confirmation">Επιβεβαίωση διαγραφής συζήτησης</string>
@@ -275,7 +273,6 @@
   <string name="RatingManager_later">Αργότερα</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Μπλοκάρισμα αυτής της επαφής;</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Δεν θα βλέπεις πλέον μηνύματα από αυτόν τον χρήστη.</string>
   <string name="RecipientPreferenceActivity_block">Μπλοκάρισμα</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Ξεμπλοκάρισμα αυτής της επαφής;</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Είσαι σίγουρος/η πως θες να ξεμπλοκάρεις αυτή την επαφή;</string>
@@ -382,7 +379,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">Το αποτύπωμα της ταυτότητάς μου</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Εκκίνηση παρά την υπάρχουσα αίτηση;</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Έχετε ήδη ζητήσει την έναρξη συζήτησης με αυτόν τον παραλήπτη, είστε σίγουροι πως θέλετε να στείλετε νέα αίτηση; Η πρώτη αίτηση θα ακυρωθεί.</string>
   <string name="KeyExchangeInitiator_send">Αποστολή</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Κακώς κρυπτογραφημένο μήνυμα...</string>
@@ -506,6 +502,7 @@
   <string name="import_fragment__import_plaintext_backup">Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
         Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας. Συμβατό με την εφαρμογή «SMSBackup And Restore».</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Δεν υπάρχουν εικόνες</string>
   <!--message_recipients_list_item-->
@@ -760,7 +757,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Πρόσκληση</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Έναρξη Ασφαλούς Συζήτησης</string>
   <string name="conversation_insecure__security">Ασφάλεια</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Διαγραφή Επιλεγμένων</string>
@@ -811,8 +807,6 @@
   <string name="reminder_header_sms_default_title">Χρήση ως προεπιλεγμένη εφαρμογή για SMS;</string>
   <string name="reminder_header_sms_import_title">Να εισαγχθούν όλα τα προϋπάρχοντα SMS;</string>
   <string name="reminder_header_sms_import_text">Πατήστε για να αντιγράψετε τα μηνύματα SMS του κινητού σας τηλεφώνου στην κρυπτογραφημένη βάση δεδομένων.</string>
-  <string name="reminder_header_push_title">Ενεργοποίηση μηνυμάτων Signal;</string>
-  <string name="reminder_header_push_text">Πατήστε για άμεση παράδοση, ισχυρότερη προστασία της ιδιωτικής ζωής, και χωρίς έξοδα SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Εσείς</string>
   <string name="MediaPreviewActivity_cant_display">Αποτυχία προβολής αυτής της εικόνας</string>

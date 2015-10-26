@@ -74,8 +74,6 @@ verifiera denna kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denna meddelande kommer <b>inte</b> krypterades eftersom mottagaren inte längre är en Signal-användare. \n\nSkicka osäkert meddelande?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ej hitta app som kan öppna denna media.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Påbörja säker session?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Upprätta en säker förbindelse med %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Bekräftelse för återställande av säker session</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Är du säker att du vill återställa denna säkra session?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Bekräfta radering av tråd</string>
@@ -287,7 +285,6 @@ som inte finns i säkerhetskopian.</string>
   <string name="RatingManager_later">Senare</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blockera denna kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Du kommer inte längre att se meddelanden skickade från denna användare.</string>
   <string name="RecipientPreferenceActivity_block">Blockera</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Avblockera denna kontakt?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Är du säker på att du vill avblockera denna kontakt?</string>
@@ -377,6 +374,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="ThreadRecord_called">Du ringde</string>
   <string name="ThreadRecord_called_you">Ringde dig</string>
   <string name="ThreadRecord_missed_call">Missat samtal</string>
+  <string name="ThreadRecord_media_message">Mediameddelande</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnyckel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottagaren har ingen identitetsnyckel.</string>
@@ -399,7 +397,6 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="ViewIdentityActivity_my_identity_fingerprint">Mitt identitets-fingeravtryck</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Påbörja ny nyckelutbytesförfrågan trots redan existerande?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har redan skickat en sessionsinitieringsbegäran till denna mottagare, är du säker på att du vill skicka en till? Detta kommer göra din första begäran ogiltig.</string>
   <string name="KeyExchangeInitiator_send">Skicka</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Dåligt krypterat meddelande...</string>
@@ -527,6 +524,8 @@ från systemets standardapp för meddelanden.</string>
 Återställ en tidigare exporterad krypterad säkerhetskopia av Signal.</string>
   <string name="import_fragment__import_plaintext_backup">Importera okrypterad backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\'.</string>
+  <!--load_more_header-->
+  <string name="load_more_header__load_full_conversation">Ladda hela konversationen...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Inga bilder</string>
   <!--message_recipients_list_item-->
@@ -803,7 +802,6 @@ Fria privata meddelanden och samtal till Signalanvändare</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Bjud in</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Starta säker session</string>
   <string name="conversation_insecure__security">Säkerhet</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Radera markerade</string>
@@ -852,12 +850,20 @@ Fria privata meddelanden och samtal till Signalanvändare</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Din version av Signal har utgått!</string>
   <string name="reminder_header_expired_build_details">Meddelanden kommer inte längre att skickas framgångsrikt, vänligen uppdatera till den senaste versionen.</string>
+  <string name="reminder_header_expired_build_button">UPPGRADERA</string>
   <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
   <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string>
+  <string name="reminder_header_sms_default_button">STÄLL IN</string>
   <string name="reminder_header_sms_import_title">Importera systemets SMS?</string>
   <string name="reminder_header_sms_import_text">Tryck för att kopiera din telefons SMS-meddelanden till dess krypterade databas.</string>
-  <string name="reminder_header_push_title">Slå på Signal-meddelanden?</string>
-  <string name="reminder_header_push_text">Tryck för omedelbar leverans, starkare sekretess och inga SMS-avgifter.</string>
+  <string name="reminder_header_sms_import_button">IMPORTERA</string>
+  <string name="reminder_header_push_title">Aktivera Signal?</string>
+  <string name="reminder_header_push_text">Uppgradera din meddelandeupplevelse</string>
+  <string name="reminder_header_push_button">AKTIVERA</string>
+  <string name="reminder_header_invite_title">Bjud in till Signal?</string>
+  <string name="reminder_header_invite_text">Ta din konversation med %1$s till nästa nivå.</string>
+  <string name="reminder_header_invite_button">BJUD IN</string>
+  <string name="reminder_header_close_button">STÄNG</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_cant_display">Misslyckades med att förhandsgranska bilden</string>

@@ -75,8 +75,6 @@ ovaj kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj nije više Signal korisnik.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Započmi sigurnu sesiju?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Započmi sigurnu sesiju sa %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Resetiraj potvrdu sigurne sesije</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Jeste li sigurni da želite resetirati ovu sigurnu sesiju?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potvrda brisanja teme</string>
@@ -290,7 +288,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="RatingManager_later">Kasnije</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiraj kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Nećete više vidjeti poruke poslane od ovog korisnika.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Nećete više primati pozive ili poruke od ovog korisnika.</string>
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Ukloni blokadu ovog kontakta?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Jeste li sigurni da želite ukloniti blokadu ovog kontakta?</string>
@@ -386,6 +384,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="ThreadRecord_called">Zvali ste</string>
   <string name="ThreadRecord_called_you">Zvali su vas</string>
   <string name="ThreadRecord_missed_call">Propušteni poziv</string>
+  <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemate ključ identiteta.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Primatelj nema ključ identiteta.</string>
@@ -408,7 +407,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="ViewIdentityActivity_my_identity_fingerprint">Otisak prsta mog identiteta</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Već ste poslali zahtjev za pokretanje sesije ovom primatelju, jeste li sigurni da želite poslati još jedan? To će poništiti prvi zahtjev.</string>
   <string name="KeyExchangeInitiator_send">Pošalji</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Loše kriptirana poruka...</string>
@@ -538,6 +536,8 @@ Vrati prethodno izvezenu kriptiranu Signal kopiju.</string>
   <string name="import_fragment__import_plaintext_backup">Uvezi nekriptiranu kopiju</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
+  <!--load_more_header-->
+  <string name="load_more_header__load_full_conversation">Učitaj cijeli razgovor...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Nema slika</string>
   <!--message_recipients_list_item-->
@@ -822,7 +822,6 @@ Besplatno privatno dopisivanje i pozivanje sa Signal korisnicima</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozovi</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Započmi sigurnu sesiju</string>
   <string name="conversation_insecure__security">Sigurnost</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Obriši odabrano</string>
@@ -871,12 +870,20 @@ Besplatno privatno dopisivanje i pozivanje sa Signal korisnicima</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Vaša Signal inačica je istekla!</string>
   <string name="reminder_header_expired_build_details">Poruke više neće biti moguće uspješno poslati, nadogradite na najnoviju dostupnu inačicu.</string>
+  <string name="reminder_header_expired_build_button">NADOGRADI</string>
   <string name="reminder_header_sms_default_title">Koristi kao zadanu SMS aplikaciju?</string>
   <string name="reminder_header_sms_default_text">Pritisnite kako biste postavili Signal kao zadanu SMS aplikaciju.</string>
+  <string name="reminder_header_sms_default_button">POSTAVI</string>
   <string name="reminder_header_sms_import_title">Uvezi SMS poruke sustava?</string>
   <string name="reminder_header_sms_import_text">Pritisnite kako biste kopirali SMS poruke telefona u kriptiranu bazu podataka.</string>
-  <string name="reminder_header_push_title">Omogući Signal poruke?</string>
-  <string name="reminder_header_push_text">Pritisnite za instant isporuku, pojačanu privatnost i SMS bez troškova.</string>
+  <string name="reminder_header_sms_import_button">UVOZ</string>
+  <string name="reminder_header_push_title">Omogući Signal?</string>
+  <string name="reminder_header_push_text">Nadogradi svoje iskustvo dopisivanja.</string>
+  <string name="reminder_header_push_button">OMOGUĆI</string>
+  <string name="reminder_header_invite_title">Pozovi u Signal?</string>
+  <string name="reminder_header_invite_text">Dovedite svoj razgovor s %1$s na sljedeću razinu.</string>
+  <string name="reminder_header_invite_button">POZOVI</string>
+  <string name="reminder_header_close_button">ZATVORI</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_cant_display">Pregled prikaza slike nije uspio.</string>

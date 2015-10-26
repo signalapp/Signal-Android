@@ -78,8 +78,6 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será cifrada porque o destinatário já não é um utilizador Signal.\n\nEnviar mensagem de modo inseguro?</string>
   <string name="ConversationItem_unable_to_open_media">Não foi possível encontrar uma aplicação capaz de abrir este média.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniciar sessão segura com %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Confirmação de reinicio de sessão segura</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Tem a certeza que pretende reiniciar esta sessão segura?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confirme apagar a conversa</string>
@@ -297,7 +295,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="RatingManager_later">Mais tarde</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear este contacto?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Não irá ver mensagens adicionais deste utilizador.</string>
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Desbloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Tem a certeza que quer desbloquear este contacto?</string>
@@ -417,7 +414,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="ViewIdentityActivity_my_identity_fingerprint">A minha impressão digital da identidade</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Já enviou um pedido de início de sessão para este destinatário, tem a certeza que pretende enviar outro? Isto invalidará o pedido anterior.</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem cifrada corrompida...</string>
@@ -549,6 +545,7 @@ Restaurar uma cópia de segurança cifrada Signal exportada.
   <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup e Restaurar\'</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Sem imagens</string>
   <!--message_recipients_list_item-->
@@ -847,7 +844,6 @@ Mensagens privadas gratuitas para utilizadores Signal
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convidar</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Iniciar sessão segura</string>
   <string name="conversation_insecure__security">Segurança</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Apagar seleccionado</string>
@@ -900,8 +896,6 @@ Mensagens privadas gratuitas para utilizadores Signal
   <string name="reminder_header_sms_default_text">Pressione para tornar Signal a sua applicação SMS por omissão.</string>
   <string name="reminder_header_sms_import_title">Importar as SMS do sistema?</string>
   <string name="reminder_header_sms_import_text">Pressione para copiar as suas SMS para a base de dados TextSecure cifrada.</string>
-  <string name="reminder_header_push_title">Habilitar mensagens do Signal?</string>
-  <string name="reminder_header_push_text">Pressione para activar entrega instantânea, mais privacidade, e sem taxas de SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_cant_display">A antevisão desta imagem falhou</string>

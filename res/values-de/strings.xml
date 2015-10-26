@@ -72,8 +72,6 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt sein, da der Kontakt Signal nicht mehr verwendet.\n\nUnsichere Nachricht senden?</string>
   <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen der Datei gefunden.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Sichere Sitzung starten?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Sichere Sitzung mit %s starten?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Verschlüsselung neu starten?</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Derzeit bestehende sichere Sitzung beenden und anlässlich der nächsten Nachricht eine neue aufbauen. Hilfreich bei Problemen mit der Verschlüsselung.</string>
   <string name="ConversationActivity_delete_thread_confirmation">Unterhaltung löschen?</string>
@@ -279,7 +277,7 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <string name="RatingManager_later">Später</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Kommunikation dieses Kontakts wird nicht mehr angezeigt werden.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Sie werden keine Anrufe oder Nachrichten mehr von diesem Kontakt erhalten.</string>
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Nicht mehr blockieren?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Diesen Kontakt nicht mehr blockieren.</string>
@@ -368,6 +366,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="ThreadRecord_called">Ausgegangener Anruf</string>
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
   <string name="ThreadRecord_missed_call">Verpasster Anruf</string>
+  <string name="ThreadRecord_media_message">Multimedianachricht</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Kontakt hat keinen Schlüssel.</string>
@@ -390,7 +389,6 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">Ihr Schlüssel</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz bestehender Anfrage starten?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Sie haben bereits eine Anfrage für eine sichere Sitzung an den Kontakt gesendet. Wollen Sie wirklich eine weitere senden? Dies wird die erste Anfrage ungültig machen.</string>
   <string name="KeyExchangeInitiator_send">Senden</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht …</string>
@@ -519,6 +517,8 @@ Eine zuvor exportierte, verschlüsselte Signal-Datensicherung wiederherstellen</
   <string name="import_fragment__import_plaintext_backup">Klartextsicherung importieren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung importieren</string>
+  <!--load_more_header-->
+  <string name="load_more_header__load_full_conversation">Gesamte Unterhaltung laden …</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Keine Bilder</string>
   <!--message_recipients_list_item-->
@@ -790,7 +790,6 @@ Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und tele
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Einladen</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Sichere Sitzung starten</string>
   <string name="conversation_insecure__security">Sicherheit</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ausgewählte löschen</string>
@@ -839,12 +838,20 @@ Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und tele
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ihre Version von Signal ist veraltet!</string>
   <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte Signal auf die neueste Version aktualisieren.</string>
+  <string name="reminder_header_expired_build_button">UPGRADEN</string>
   <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden?</string>
   <string name="reminder_header_sms_default_text">Antippen, um Signal als Standard-SMS-App zu verwenden.</string>
+  <string name="reminder_header_sms_default_button">FESTLEGEN</string>
   <string name="reminder_header_sms_import_title">SMS des Telefons importieren?</string>
   <string name="reminder_header_sms_import_text">Antippen, um auf dem Telefon gespeicherte SMS-Nachrichten in die verschlüsselte Datenbank zu importieren.</string>
-  <string name="reminder_header_push_title">Signal-Nachrichten aktivieren?</string>
-  <string name="reminder_header_push_text">Antippen für schnellere Zustellung, bessere Privatsphäre und keine SMS-Kosten.</string>
+  <string name="reminder_header_sms_import_button">IMPORTIEREN</string>
+  <string name="reminder_header_push_title">Signal aktivieren?</string>
+  <string name="reminder_header_push_text">Verbessern Sie Ihr Kommunikationserlebnis.</string>
+  <string name="reminder_header_push_button">AKTIVIEREN</string>
+  <string name="reminder_header_invite_title">Zu Signal einladen?</string>
+  <string name="reminder_header_invite_text">Heben Sie Ihre Kommunikation mit %1$s auf die nächste Stufe.</string>
+  <string name="reminder_header_invite_button">EINLADEN</string>
+  <string name="reminder_header_close_button">SCHLIESSEN</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sie</string>
   <string name="MediaPreviewActivity_cant_display">Bildvorschau fehlgeschlagen</string>

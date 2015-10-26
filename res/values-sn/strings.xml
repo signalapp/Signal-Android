@@ -64,8 +64,6 @@ kwezita iri.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Dzokera kutsamba dzemidhiya isina kukwedekerwa? </string>
   <string name="ConversationItem_unable_to_open_media">Hatisi kukwanisa kuwana apu inokwanisa kuvhura midhiya iyi.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Totangisa chikamu chakakwedekerwa?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Totangisa chikamu chakakwedekerwa na %s?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Kutsinhira kuti shinda idzimwe</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Unechokwadi here kuti unoda kudzima hutaurwa uwu zvamuchose?</string>
   <string name="ConversationActivity_add_attachment">Kuwedzera batanidzwa</string>
@@ -245,7 +243,6 @@ kuiimupota zvakare zvichakonzeresa kudzokororwa kwetsamba.</string>
   <string name="RatingManager_later">Mbaimbai</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Dzivirira zita iri?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Hauchakwanisi kuwona tsamba kubva kune mushandisi uyu.</string>
   <string name="RecipientPreferenceActivity_block">Dzivirira</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Bvisa dziviriro pane zita iri?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Unechokwadi kuti unoda kubvisa dziviriro pane zita iri?</string>
@@ -331,7 +328,6 @@ Tagamuchira tsamba ine chitupa chine svumbunuro isingazivikanwe. Baya kuti zvish
   <string name="ViewIdentityActivity_my_identity_fingerprint">Chidhindo changu  </string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Totanga kunyangwe paine chikumbiro chiripo?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Watumira rukumbiro rwekutangidzwa kwechikamu kumugamuchiri uyu nechekare, unechokwadi here kuti unoda kutumira imwe? Izvi zvinoita kuti rutumiro rwekutanga rwushaye basa.</string>
   <string name="KeyExchangeInitiator_send">Tumira	</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Tsamba yakakwedekerwa iyi yakaipa...</string>
@@ -451,6 +447,7 @@ kubva kuhurongwa hwegumbapambwe reapu retsamba.</string>
   <string name="import_fragment__import_plaintext_backup">Imupota bhekiapu yebomhoremavara</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Imupota bhekiapu rebomhoremavara. Rinopindirana ne\"Bhekiapu yetsamba pfupi nekudzoreredza\".</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Hapana mifananidzo</string>
   <!--message_recipients_list_item-->
@@ -695,7 +692,6 @@ kwaramba.</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Koka</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Tanga chikamu chakakwedekera</string>
   <string name="conversation_insecure__security">Tsivatsaona</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Dzima zvasarudzwa</string>
@@ -745,7 +741,6 @@ kwaramba.</string>
   <string name="reminder_header_sms_default_title">Shandisa sehurongwa hwe apu yetsamba pfupi?</string>
   <string name="reminder_header_sms_import_title">Kuimupota gumbapamwe retsamba pfupi?</string>
   <string name="reminder_header_sms_import_text">Bata kuti ikopere tsamba pfupi dzembozha runhare yako kupfimbi redhate rakakwedekerwa.</string>
-  <string name="reminder_header_push_text">Bata kuitira kutumiridzira kunechichimbi, puraivheti yakanyanya uye pasina kubhadharwa kwetsamba pfupi.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Iwewe</string>
   <string name="MediaPreviewActivity_cant_display">Kutadza kuona mufananidzo uyu muchidimbu </string>

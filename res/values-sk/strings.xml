@@ -62,8 +62,6 @@ identitu tohto kontaktu.
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Prepnúť na nezabezpečené MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Nepodarilo sa nájst aplikáciu schopnú otvoriť tento typ súboru.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Vytvoriť zabezpečé spojenie?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Vytvoriť zabezpečenú spojenie s %s?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potvrdenie zmazania vlákna</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Ste si naozaj istí, že chcete natrvalo zmazať túto konveráciu?</string>
   <string name="ConversationActivity_add_attachment">Pridať prílohu</string>
@@ -316,7 +314,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="ViewIdentityActivity_my_identity_fingerprint">Môj identifikačný fingerprint</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Začať aj napriek existujúcemu požiadavku?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Tomuto príjemcovi ste už poslali požiadavku na vytvorenie bezpečnej session. Poslanie ďalšej požiadavky zneplatní predchádzajúcu požiadavku.  Ste si istí že chcete poslať ďalšiu požiadavku?</string>
   <string name="KeyExchangeInitiator_send">Odošli</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Nesprávne kryptovaná správa...</string>
@@ -425,6 +422,7 @@ Exportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na 
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Žiadne obrázky</string>
   <!--message_recipients_list_item-->
@@ -644,7 +642,6 @@ zlyhalo.
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozvať</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Začni bezpečnú reláciu</string>
   <string name="conversation_insecure__security">Bezpečnosť</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Odstrániť označené</string>
@@ -697,8 +694,6 @@ zlyhalo.
   <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
   <string name="reminder_header_sms_import_title">Načítať systémove SMS správy?</string>
   <string name="reminder_header_sms_import_text">Dotykom sem môžete skopírovať SMS správy z Vašeho telefónu do zašifrovanej databázy.</string>
-  <string name="reminder_header_push_title">Povoliť Signal správy?</string>
-  <string name="reminder_header_push_text">Dotykom sem môžete zapnúť funkciu, vďaka ktorej získate okamžité doručovanie vašich správ a väčšie súkromie bez poplatkov za SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
   <string name="MediaPreviewActivity_cant_display">Nepodarilo sa zobraziť náhľad pre tento obrázok</string>
