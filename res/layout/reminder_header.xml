@@ -2,13 +2,13 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:visibility="gone"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content">
     <LinearLayout android:id="@+id/container"
                   android:orientation="horizontal"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:visibility="gone"
                   android:gravity="center_vertical"
                   android:background="?reminder_header_background">
 
