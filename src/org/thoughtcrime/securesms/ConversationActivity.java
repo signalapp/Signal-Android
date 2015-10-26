@@ -816,7 +816,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateInviteReminder() {
-    if (TextSecurePreferences.isPushRegistered(this) && !isSecureText && recipients.isSingleRecipient()) {
+    if (TextSecurePreferences.isPushRegistered(this) &&
+        !isSecureText                                &&
+        recipients.isSingleRecipient()               &&
+        recipients.getPrimaryRecipient() != null     &&
+        recipients.getPrimaryRecipient().getContactUri() != null)
+    {
       new ShowInviteReminderTask().execute(recipients);
     } else {
       reminderView.hide();
