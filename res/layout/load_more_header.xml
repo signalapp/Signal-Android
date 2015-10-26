@@ -5,5 +5,5 @@
         android:layout_gravity="center"
         android:background="?conversation_item_bubble_background"
         android:textColor="?conversation_item_sent_text_primary_color"
-        android:text="@string/load_more_header__load_full_conversation" />
+        android:text="@string/load_more_header__view_full_conversation" />
 
