@@ -23,33 +23,33 @@ import android.view.View;
 
 import java.io.IOException;
 
-class SurfacePreviewStrategy implements PreviewStrategy,
-    SurfaceHolder.Callback {
+class SurfacePreviewStrategy implements PreviewStrategy, SurfaceHolder.Callback {
   private final static String TAG = SurfacePreviewStrategy.class.getSimpleName();
-  private final CameraView cameraView;
-  private SurfaceView preview=null;
-  private SurfaceHolder previewHolder=null;
-  private boolean ready = false;
+
+  private final CameraView  cameraView;
+  private final SurfaceView preview;
+
+  private boolean ready;
 
   @SuppressWarnings("deprecation")
   SurfacePreviewStrategy(CameraView cameraView) {
-    this.cameraView=cameraView;
-    preview=new SurfaceView(cameraView.getContext());
-    previewHolder=preview.getHolder();
-    previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-    previewHolder.addCallback(this);
+    this.cameraView = cameraView;
+    this.preview    = new SurfaceView(cameraView.getContext());
+    preview.getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+    preview.getHolder().addCallback(this);
   }
 
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
     Log.w(TAG, "surfaceCreated()");
     ready = true;
-    synchronized (cameraView) { cameraView.notifyAll(); }
+    synchronized (cameraView) {
+      cameraView.notifyAll();
+    }
   }
 
   @Override
-  public void surfaceChanged(SurfaceHolder holder, int format,
-                             int width, int height) {
+  public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
     Log.w(TAG, "surfaceChanged()");
   }
 
@@ -59,20 +59,21 @@ class SurfacePreviewStrategy implements PreviewStrategy,
     cameraView.onPause();
   }
 
+  @SuppressWarnings("deprecation")
   @Override
   public void attach(Camera camera) throws IOException {
-    Log.w(TAG, "attach(Camera)");
-    camera.setPreviewDisplay(previewHolder);
+    Log.w(TAG, "attach()");
+    camera.setPreviewDisplay(preview.getHolder());
   }
 
   @Override
   public void attach(MediaRecorder recorder) {
-    recorder.setPreviewDisplay(previewHolder.getSurface());
+    recorder.setPreviewDisplay(preview.getHolder().getSurface());
   }
 
   @Override
   public View getWidget() {
-    return(preview);
+    return preview;
   }
 
   @Override

@@ -21,8 +21,10 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.hardware.Camera;
+import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.PreviewCallback;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -39,6 +41,7 @@ import com.commonsware.cwac.camera.CameraHost;
 import com.commonsware.cwac.camera.CameraHost.FailureReason;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.Job;
 import org.whispersystems.jobqueue.JobParameters;
@@ -47,16 +50,16 @@ import org.whispersystems.jobqueue.JobParameters;
 public class CameraView extends FrameLayout {
   private static final String TAG = CameraView.class.getSimpleName();
 
+  private final OnOrientationChange onOrientationChange;
+
   private          PreviewStrategy     previewStrategy        = null;
   private          Camera.Size         previewSize            = null;
   private volatile Camera              camera                 = null;
   private          boolean             inPreview              = false;
-  private          boolean             cameraReady            = false;
-  private          CameraHost          host                   = null;
-  private          OnOrientationChange onOrientationChange    = null;
+  private          boolean             cameraReady;
+  private          CameraHost          host;
   private          int                 displayOrientation     = -1;
   private          int                 outputOrientation      = -1;
-  private          int                 cameraId               = -1;
   private          int                 lastPictureOrientation = -1;
 
   public CameraView(Context context) {
@@ -74,11 +77,7 @@ public class CameraView extends FrameLayout {
     onOrientationChange = new OnOrientationChange(context.getApplicationContext());
   }
 
-  public CameraHost getHost() {
-    return host;
-  }
-
-  public void setHost(CameraHost host) {
+  public void setHost(@NonNull CameraHost host) {
     this.host = host;
 
     if (host.getDeviceProfile().useTextureView()) {
@@ -92,13 +91,11 @@ public class CameraView extends FrameLayout {
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void onResume() {
     Log.w(TAG, "onResume() queued");
-    final CameraHost host = getHost();
-    submitTask(new SerializedAsyncTask<FailureReason>() {
+    enqueueTask(new SerialAsyncTask<FailureReason>() {
       @Override protected FailureReason onRunBackground() {
         try {
-          cameraId = host.getCameraId();
-          if (cameraId >= 0) {
-            camera = Camera.open(cameraId);
+          if (host.getCameraId() >= 0) {
+            camera = Camera.open(host.getCameraId());
           } else {
             return FailureReason.NO_CAMERAS_REPORTED;
           }
@@ -142,7 +139,7 @@ public class CameraView extends FrameLayout {
 
   public void onPause() {
     Log.w(TAG, "onPause() queued");
-    submitTask(new SerializedAsyncTask<Void>() {
+    enqueueTask(new SerialAsyncTask<Void>() {
       @Override protected void onPreMain() {
         cameraReady = false;
       }
@@ -157,38 +154,33 @@ public class CameraView extends FrameLayout {
         previewSize = null;
         displayOrientation = -1;
         outputOrientation = -1;
-        cameraId = -1;
         lastPictureOrientation = -1;
         Log.w(TAG, "onPause() completed");
       }
     });
   }
 
-  // based on CameraPreview.java from ApiDemos
-
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
     if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0 && camera != null && cameraReady) {
       Camera.Size newSize = null;
 
       try {
-        if (getHost().getRecordingHint() != CameraHost.RecordingHint.STILL_ONLY) {
-          newSize = getHost().getPreferredPreviewSizeForVideo(getDisplayOrientation(),
+        if (host.getRecordingHint() != CameraHost.RecordingHint.STILL_ONLY) {
+          newSize = host.getPreferredPreviewSizeForVideo(getDisplayOrientation(),
                                                               getMeasuredWidth(),
                                                               getMeasuredHeight(),
                                                               camera.getParameters(),
                                                               null);
         }
         if (newSize == null || newSize.width * newSize.height < 65536) {
-          newSize = getHost().getPreviewSize(getDisplayOrientation(),
+          newSize = host.getPreviewSize(getDisplayOrientation(),
                                              getMeasuredWidth(),
                                              getMeasuredHeight(),
                                              camera.getParameters());
         }
       } catch (Exception e) {
         Log.e(TAG, "Could not work with camera parameters?", e);
-        // TODO get this out to library clients
       }
 
       if (newSize != null) {
@@ -209,45 +201,40 @@ public class CameraView extends FrameLayout {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
   }
 
-  // based on CameraPreview.java from ApiDemos
-
-  @SuppressWarnings("SuspiciousNameCombination") @Override
+  @SuppressWarnings("SuspiciousNameCombination")
+  @Override
   protected void onLayout(boolean changed, int l, int t, int r, int b) {
-    if (getChildCount() > 0) {
-      final View child         = getChildAt(0);
-      final int  width         = r - l;
-      final int  height        = b - t;
-      final int  previewWidth;
-      final int  previewHeight;
+    final View child         = previewStrategy.getWidget();
+    final int  width         = r - l;
+    final int  height        = b - t;
 
-      // handle orientation
+    final int  previewWidth;
+    final int  previewHeight;
+    if (previewSize != null && (getDisplayOrientation() == 90 || getDisplayOrientation() == 270)) {
+      previewWidth  = previewSize.height;
+      previewHeight = previewSize.width;
+    } else if (previewSize != null) {
+      previewWidth  = previewSize.width;
+      previewHeight = previewSize.height;
+    } else {
+      previewWidth  = width;
+      previewHeight = height;
+    }
 
-      if (previewSize != null && (getDisplayOrientation() == 90 || getDisplayOrientation() == 270)) {
-        previewWidth  = previewSize.height;
-        previewHeight = previewSize.width;
-      } else if (previewSize != null) {
-        previewWidth  = previewSize.width;
-        previewHeight = previewSize.height;
-      } else {
-        previewWidth  = width;
-        previewHeight = height;
-      }
+    if (previewHeight == 0 || previewWidth == 0) {
+      Log.w(TAG, "skipping layout due to zero-width/height preview size");
+      return;
+    }
 
-      if (previewHeight == 0 || previewWidth == 0) {
-        Log.w(TAG, "skipping layout due to zero-width/height preview size");
-        return;
-      }
+    boolean useFirstStrategy = (width * previewHeight > height * previewWidth);
+    boolean useFullBleed     = host.useFullBleedPreview();
 
-      boolean useFirstStrategy = (width * previewHeight > height * previewWidth);
-      boolean useFullBleed     = getHost().useFullBleedPreview();
-
-      if ((useFirstStrategy && !useFullBleed) || (!useFirstStrategy && useFullBleed)) {
-        final int scaledChildWidth = previewWidth * height / previewHeight;
-        child.layout((width - scaledChildWidth) / 2, 0, (width + scaledChildWidth) / 2, height);
-      } else {
-        final int scaledChildHeight = previewHeight * width / previewWidth;
-        child.layout(0, (height - scaledChildHeight) / 2, width, (height + scaledChildHeight) / 2);
-      }
+    if ((useFirstStrategy && !useFullBleed) || (!useFirstStrategy && useFullBleed)) {
+      final int scaledChildWidth = previewWidth * height / previewHeight;
+      child.layout((width - scaledChildWidth) / 2, 0, (width + scaledChildWidth) / 2, height);
+    } else {
+      final int scaledChildHeight = previewHeight * width / previewWidth;
+      child.layout(0, (height - scaledChildHeight) / 2, width, (height + scaledChildHeight) / 2);
     }
   }
 
@@ -265,8 +252,7 @@ public class CameraView extends FrameLayout {
 
   void previewCreated() {
     Log.w(TAG, "previewCreated() queued");
-    final CameraHost host = getHost();
-    submitTask(new PostInitializationTask<Void>() {
+    enqueueTask(new PostInitializationTask<Void>() {
       @Override protected void onPostMain(Void avoid) {
         try {
           if (camera != null) {
@@ -283,7 +269,7 @@ public class CameraView extends FrameLayout {
   void previewDestroyed() {
     try {
       if (camera != null) {
-        previewStopped();
+        stopPreview();
         camera.release();
       }
     } finally {
@@ -291,16 +277,10 @@ public class CameraView extends FrameLayout {
     }
   }
 
-  private void previewStopped() {
-    if (inPreview) {
-      stopPreview();
-    }
-  }
-
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void initPreview() {
     Log.w(TAG, "initPreview() queued");
-    submitTask(new PostInitializationTask<Void>() {
+    enqueueTask(new PostInitializationTask<Void>() {
       @Override protected void onPostMain(Void avoid) {
         if (camera != null && cameraReady) {
           Camera.Parameters parameters = camera.getParameters();
@@ -308,10 +288,10 @@ public class CameraView extends FrameLayout {
           parameters.setPreviewSize(previewSize.width, previewSize.height);
 
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            parameters.setRecordingHint(getHost().getRecordingHint() != CameraHost.RecordingHint.STILL_ONLY);
+            parameters.setRecordingHint(host.getRecordingHint() != CameraHost.RecordingHint.STILL_ONLY);
           }
 
-          camera.setParameters(getHost().adjustPreviewParameters(parameters));
+          camera.setParameters(host.adjustPreviewParameters(parameters));
           startPreview();
           requestLayout();
           invalidate();
@@ -324,14 +304,16 @@ public class CameraView extends FrameLayout {
   private void startPreview() {
     camera.startPreview();
     inPreview = true;
-    getHost().autoFocusAvailable();
+    host.autoFocusAvailable();
   }
 
   private void stopPreview() {
-    camera.startPreview();
-    inPreview = false;
-    getHost().autoFocusUnavailable();
-    camera.stopPreview();
+    if (inPreview) {
+      camera.startPreview();
+      inPreview = false;
+      host.autoFocusUnavailable();
+      camera.stopPreview();
+    }
   }
 
   // based on
@@ -343,7 +325,7 @@ public class CameraView extends FrameLayout {
     int               degrees  = 0;
     DisplayMetrics    dm       = new DisplayMetrics();
 
-    Camera.getCameraInfo(cameraId, info);
+    Camera.getCameraInfo(host.getCameraId(), info);
     getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 
     switch (rotation) {
@@ -375,15 +357,11 @@ public class CameraView extends FrameLayout {
   }
 
   public int getCameraPictureOrientation() {
-    Camera.CameraInfo info = new Camera.CameraInfo();
-
-    Camera.getCameraInfo(cameraId, info);
-
     if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
-      outputOrientation = getCameraPictureRotation(getActivity().getWindowManager()
-                                                                .getDefaultDisplay()
-                                                                .getOrientation());
-    } else if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+      outputOrientation = getCameraPictureRotation(ServiceUtil.getWindowManager(getContext())
+                                                              .getDefaultDisplay()
+                                                              .getOrientation());
+    } else if (getCameraInfo().facing == CameraInfo.CAMERA_FACING_FRONT) {
       outputOrientation = (360 - displayOrientation) % 360;
     } else {
       outputOrientation = displayOrientation;
@@ -395,28 +373,30 @@ public class CameraView extends FrameLayout {
     return outputOrientation;
   }
 
-  // based on:
-  // http://developer.android.com/reference/android/hardware/Camera.Parameters.html#setRotation(int)
+  private CameraInfo getCameraInfo() {
+    final CameraInfo info = new Camera.CameraInfo();
+    Camera.getCameraInfo(host.getCameraId(), info);
+    return info;
+  }
+
+  // XXX this sucks
+  private Activity getActivity() {
+    return (Activity)getContext();
+  }
 
   public int getCameraPictureRotation(int orientation) {
-    Camera.CameraInfo info = new Camera.CameraInfo();
-    Camera.getCameraInfo(cameraId, info);
-    int rotation;
+    final CameraInfo info = getCameraInfo();
+    final int        rotation;
 
     orientation = (orientation + 45) / 90 * 90;
 
     if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
       rotation = (info.orientation - orientation + 360) % 360;
-    }
-    else { // back-facing camera
+    } else {
       rotation = (info.orientation + orientation) % 360;
     }
 
     return rotation;
-  }
-
-  Activity getActivity() {
-    return (Activity)getContext();
   }
 
   private class OnOrientationChange extends OrientationEventListener {
@@ -449,13 +429,13 @@ public class CameraView extends FrameLayout {
     }
   }
 
-  private void submitTask(SerializedAsyncTask job) {
+  private void enqueueTask(SerialAsyncTask job) {
     ApplicationContext.getInstance(getContext()).getJobManager().add(job);
   }
 
-  private static abstract class SerializedAsyncTask<Result> extends Job {
+  private static abstract class SerialAsyncTask<Result> extends Job {
 
-    public SerializedAsyncTask() {
+    public SerialAsyncTask() {
       super(JobParameters.newBuilder().withGroupId(CameraView.class.getSimpleName()).create());
     }
 
@@ -512,7 +492,7 @@ public class CameraView extends FrameLayout {
     protected void onPostMain(Result result) {}
   }
 
-  private abstract class PostInitializationTask<Result> extends SerializedAsyncTask<Result> {
+  private abstract class PostInitializationTask<Result> extends SerialAsyncTask<Result> {
     @Override protected void onWait() throws PreconditionsNotMetException {
       synchronized (CameraView.this) {
         if (!cameraReady) {

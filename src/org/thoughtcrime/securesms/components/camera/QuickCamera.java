@@ -22,7 +22,8 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import java.io.IOException;
 import java.util.List;
 
-@SuppressWarnings("deprecation") public class QuickCamera extends CameraView {
+@SuppressWarnings("deprecation")
+public class QuickCamera extends CameraView {
   private static final String TAG = QuickCamera.class.getSimpleName();
 
   private QuickCameraListener listener;
@@ -175,7 +176,8 @@ import java.util.List;
       super(context);
     }
 
-    @TargetApi(VERSION_CODES.ICE_CREAM_SANDWICH) @Override
+    @TargetApi(VERSION_CODES.ICE_CREAM_SANDWICH)
+    @Override
     public Parameters adjustPreviewParameters(Parameters parameters) {
       List<String> focusModes = parameters.getSupportedFocusModes();
       if (focusModes.contains(Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {

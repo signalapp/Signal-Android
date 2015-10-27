@@ -18,6 +18,7 @@ import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.media.MediaRecorder;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
@@ -25,46 +26,47 @@ import android.view.View;
 import java.io.IOException;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-class TexturePreviewStrategy implements PreviewStrategy,
-    TextureView.SurfaceTextureListener {
+class TexturePreviewStrategy implements PreviewStrategy, TextureView.SurfaceTextureListener {
   private final static String TAG = TexturePreviewStrategy.class.getSimpleName();
-  private final CameraView cameraView;
-  private TextureView widget=null;
-  private SurfaceTexture surface=null;
+
+  private final CameraView  cameraView;
+  private final TextureView preview;
+
+  private SurfaceTexture surface;
 
   TexturePreviewStrategy(CameraView cameraView) {
-    this.cameraView=cameraView;
-    widget=new TextureView(cameraView.getContext());
-    widget.setSurfaceTextureListener(this);
+    this.cameraView = cameraView;
+    this.preview    = new TextureView(cameraView.getContext());
+    this.preview.setSurfaceTextureListener(this);
   }
 
   @Override
   public void onSurfaceTextureAvailable(SurfaceTexture surface,
-                                        int width, int height) {
+                                        int width, int height)
+  {
     Log.w(TAG, "onSurfaceTextureAvailable()");
-    this.surface=surface;
-    synchronized (cameraView) { cameraView.notifyAll(); }
-  }
-
-  @Override
-  public void onSurfaceTextureSizeChanged(SurfaceTexture surface,
-                                          int width, int height) {
-    Log.w(TAG, "onSurfaceTextureChanged()");
+    this.surface = surface;
+    synchronized (cameraView) {
+      cameraView.notifyAll();
+    }
   }
 
   @Override
   public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
     Log.w(TAG, "onSurfaceTextureDestroyed()");
     cameraView.onPause();
-
-    return(true);
+    return true;
   }
 
   @Override
-  public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-    // no-op
+  public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+    Log.w(TAG, "onSurfaceTextureSizeChanged()");
   }
 
+  @Override
+  public void onSurfaceTextureUpdated(SurfaceTexture surface) {}
+
+  @SuppressWarnings("deprecation")
   @Override
   public void attach(Camera camera) throws IOException {
     camera.setPreviewTexture(surface);
@@ -72,22 +74,18 @@ class TexturePreviewStrategy implements PreviewStrategy,
 
   @Override
   public void attach(MediaRecorder recorder) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      // no-op
-    }
-    else {
-      throw new IllegalStateException(
-          "Cannot use TextureView with MediaRecorder");
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+      throw new IllegalStateException("Cannot use TextureView with MediaRecorder");
     }
   }
 
   @Override
   public boolean isReady() {
-    return widget.isAvailable();
+    return preview.isAvailable();
   }
 
   @Override
-  public View getWidget() {
-    return(widget);
+  public @NonNull View getWidget() {
+    return preview;
   }
 }
