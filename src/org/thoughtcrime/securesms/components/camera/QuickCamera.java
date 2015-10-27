@@ -69,7 +69,8 @@ public class QuickCamera extends CameraView {
       return;
     }
 
-    final Parameters cameraParameters = getCameraParameters();
+    // TODO check camera state
+    final Parameters cameraParameters = getCamera().get().getParameters();
     if (cameraParameters == null) {
       Log.w(TAG, "camera not in capture-ready state");
       return;

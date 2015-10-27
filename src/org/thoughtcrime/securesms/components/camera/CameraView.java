@@ -25,7 +25,7 @@ import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.PreviewCallback;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.support.v4.util.Pair;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.Job;
 import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 @SuppressWarnings("deprecation")
 public class CameraView extends FrameLayout {
@@ -52,15 +53,15 @@ public class CameraView extends FrameLayout {
 
   private final OnOrientationChange onOrientationChange;
 
-  private          PreviewStrategy     previewStrategy        = null;
-  private          Camera.Size         previewSize            = null;
-  private volatile Camera              camera                 = null;
-  private          boolean             inPreview              = false;
-  private          boolean             cameraReady;
-  private          CameraHost          host;
-  private          int                 displayOrientation     = -1;
-  private          int                 outputOrientation      = -1;
-  private          int                 lastPictureOrientation = -1;
+  private          PreviewStrategy  previewStrategy = null;
+  private          Camera.Size      previewSize     = null;
+  private @NonNull Optional<Camera> camera = Optional.absent();
+  private          boolean          inPreview       = false;
+
+  private CameraHost host;
+  private int displayOrientation     = -1;
+  private int outputOrientation      = -1;
+  private int lastPictureOrientation = -1;
 
   public CameraView(Context context) {
     this(context, null);
@@ -91,28 +92,27 @@ public class CameraView extends FrameLayout {
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void onResume() {
     Log.w(TAG, "onResume() queued");
-    enqueueTask(new SerialAsyncTask<FailureReason>() {
-      @Override protected FailureReason onRunBackground() {
+    enqueueTask(new SerialAsyncTask<Pair<Camera, FailureReason>>() {
+      @Override protected Pair<Camera, FailureReason> onRunBackground() {
         try {
           if (host.getCameraId() >= 0) {
-            camera = Camera.open(host.getCameraId());
+            return new Pair<>(Camera.open(host.getCameraId()), null);
           } else {
-            return FailureReason.NO_CAMERAS_REPORTED;
+            return new Pair<>(null, FailureReason.NO_CAMERAS_REPORTED);
           }
         } catch (Exception e) {
-          return FailureReason.UNKNOWN;
+          return new Pair<>(null, FailureReason.UNKNOWN);
         }
-
-        return null;
       }
 
-      @Override protected void onPostMain(FailureReason result) {
-        if (result != null) {
-          host.onCameraFail(result);
+      @Override protected void onPostMain(Pair<Camera, FailureReason> result) {
+        if (result.first == null) {
+          host.onCameraFail(result.second);
           return;
         }
+
+        camera = Optional.of(result.first);
         try {
-          cameraReady = true;
           if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
             onOrientationChange.enable();
           }
@@ -127,11 +127,7 @@ public class CameraView extends FrameLayout {
           Log.w(TAG, "onResume() completed");
         } catch (RuntimeException re) {
           Log.w(TAG, "exception when starting camera preview", re);
-          try {
-            previewDestroyed();
-          } catch (RuntimeException re2) {
-            Log.w(TAG, "also failed to release camera", re2);
-          }
+          onPause();
         }
       }
     });
@@ -139,13 +135,18 @@ public class CameraView extends FrameLayout {
 
   public void onPause() {
     Log.w(TAG, "onPause() queued");
+    final Optional<Camera> cameraToDestroy = camera;
+
     enqueueTask(new SerialAsyncTask<Void>() {
       @Override protected void onPreMain() {
-        cameraReady = false;
+        camera = Optional.absent();
       }
 
       @Override protected Void onRunBackground() {
-        previewDestroyed();
+        if (cameraToDestroy.isPresent()) {
+          stopPreview();
+          cameraToDestroy.get().release();
+        }
         return null;
       }
 
@@ -162,7 +163,7 @@ public class CameraView extends FrameLayout {
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0 && camera != null && cameraReady) {
+    if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0 && camera.isPresent()) {
       Camera.Size newSize = null;
 
       try {
@@ -170,14 +171,14 @@ public class CameraView extends FrameLayout {
           newSize = host.getPreferredPreviewSizeForVideo(getDisplayOrientation(),
                                                               getMeasuredWidth(),
                                                               getMeasuredHeight(),
-                                                              camera.getParameters(),
+                                                              camera.get().getParameters(),
                                                               null);
         }
         if (newSize == null || newSize.width * newSize.height < 65536) {
           newSize = host.getPreviewSize(getDisplayOrientation(),
                                              getMeasuredWidth(),
                                              getMeasuredHeight(),
-                                             camera.getParameters());
+                                             camera.get().getParameters());
         }
       } catch (Exception e) {
         Log.e(TAG, "Could not work with camera parameters?", e);
@@ -243,11 +244,7 @@ public class CameraView extends FrameLayout {
   }
 
   public void setOneShotPreviewCallback(PreviewCallback callback) {
-    if (camera != null) camera.setOneShotPreviewCallback(callback);
-  }
-
-  public @Nullable Camera.Parameters getCameraParameters() {
-    return camera == null || !cameraReady ? null : camera.getParameters();
+    if (camera.isPresent()) camera.get().setOneShotPreviewCallback(callback);
   }
 
   void previewCreated() {
@@ -255,8 +252,8 @@ public class CameraView extends FrameLayout {
     enqueueTask(new PostInitializationTask<Void>() {
       @Override protected void onPostMain(Void avoid) {
         try {
-          if (camera != null) {
-            previewStrategy.attach(camera);
+          if (camera.isPresent()) {
+            previewStrategy.attach(camera.get());
           }
         } catch (IOException e) {
           host.handleException(e);
@@ -266,53 +263,46 @@ public class CameraView extends FrameLayout {
     });
   }
 
-  void previewDestroyed() {
-    try {
-      if (camera != null) {
-        stopPreview();
-        camera.release();
-      }
-    } finally {
-      camera = null;
-    }
-  }
-
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void initPreview() {
     Log.w(TAG, "initPreview() queued");
     enqueueTask(new PostInitializationTask<Void>() {
       @Override protected void onPostMain(Void avoid) {
-        if (camera != null && cameraReady) {
-          Camera.Parameters parameters = camera.getParameters();
-
-          parameters.setPreviewSize(previewSize.width, previewSize.height);
-
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            parameters.setRecordingHint(host.getRecordingHint() != CameraHost.RecordingHint.STILL_ONLY);
-          }
-
-          camera.setParameters(host.adjustPreviewParameters(parameters));
-          startPreview();
-          requestLayout();
-          invalidate();
-          Log.w(TAG, "initPreview() completed");
+        if (!camera.isPresent()) {
+          return;
         }
+
+        Camera.Parameters parameters = camera.get().getParameters();
+
+        parameters.setPreviewSize(previewSize.width, previewSize.height);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+          parameters.setRecordingHint(host.getRecordingHint() != CameraHost.RecordingHint.STILL_ONLY);
+        }
+
+        camera.get().setParameters(host.adjustPreviewParameters(parameters));
+        startPreview();
+        requestLayout();
+        invalidate();
+        Log.w(TAG, "initPreview() completed");
       }
     });
   }
 
   private void startPreview() {
-    camera.startPreview();
+    if (!camera.isPresent()) return;
+
+    camera.get().startPreview();
     inPreview = true;
     host.autoFocusAvailable();
   }
 
   private void stopPreview() {
-    if (inPreview) {
-      camera.startPreview();
+    if (inPreview && camera.isPresent()) {
+      camera.get().startPreview();
       inPreview = false;
       host.autoFocusUnavailable();
-      camera.stopPreview();
+      camera.get().stopPreview();
     }
   }
 
@@ -320,12 +310,11 @@ public class CameraView extends FrameLayout {
   // http://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int)
   // and http://stackoverflow.com/a/10383164/115145
   private void setCameraDisplayOrientation() {
-    Camera.CameraInfo info     = new Camera.CameraInfo();
+    Camera.CameraInfo info     = getCameraInfo();
     int               rotation = getActivity().getWindowManager().getDefaultDisplay().getRotation();
     int               degrees  = 0;
     DisplayMetrics    dm       = new DisplayMetrics();
 
-    Camera.getCameraInfo(host.getCameraId(), info);
     getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 
     switch (rotation) {
@@ -349,7 +338,7 @@ public class CameraView extends FrameLayout {
       stopPreview();
     }
 
-    camera.setDisplayOrientation(displayOrientation);
+    camera.get().setDisplayOrientation(displayOrientation);
 
     if (wasInPreview) {
       startPreview();
@@ -384,6 +373,10 @@ public class CameraView extends FrameLayout {
     return (Activity)getContext();
   }
 
+  protected @NonNull Optional<Camera> getCamera() {
+    return camera;
+  }
+
   public int getCameraPictureRotation(int orientation) {
     final CameraInfo info = getCameraInfo();
     final int        rotation;
@@ -407,18 +400,18 @@ public class CameraView extends FrameLayout {
 
     @Override
     public void onOrientationChanged(int orientation) {
-      if (camera != null && orientation != ORIENTATION_UNKNOWN) {
+      if (camera.isPresent() && orientation != ORIENTATION_UNKNOWN) {
         int newOutputOrientation = getCameraPictureRotation(orientation);
 
         if (newOutputOrientation != outputOrientation) {
           outputOrientation = newOutputOrientation;
 
-          Camera.Parameters params = camera.getParameters();
+          Camera.Parameters params = camera.get().getParameters();
 
           params.setRotation(outputOrientation);
 
           try {
-            camera.setParameters(params);
+            camera.get().setParameters(params);
             lastPictureOrientation = outputOrientation;
           }
           catch (Exception e) {
@@ -495,12 +488,12 @@ public class CameraView extends FrameLayout {
   private abstract class PostInitializationTask<Result> extends SerialAsyncTask<Result> {
     @Override protected void onWait() throws PreconditionsNotMetException {
       synchronized (CameraView.this) {
-        if (!cameraReady) {
+        if (!camera.isPresent()) {
           throw new PreconditionsNotMetException();
         }
-        while (camera == null || previewSize == null || !previewStrategy.isReady()) {
-          Log.w(TAG, String.format("waiting. camera? %s previewSize? %s prevewStrategy? %s",
-                                   camera != null, previewSize != null, previewStrategy.isReady()));
+        while (previewSize == null || !previewStrategy.isReady()) {
+          Log.w(TAG, String.format("waiting. previewSize? %s prevewStrategy? %s",
+                                   previewSize != null, previewStrategy.isReady()));
           Util.wait(CameraView.this, 0);
         }
       }
