@@ -962,7 +962,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 intent.putExtra("title", getString(R.string.app_name));
                 intent.putExtra("header", getString(R.string.menu_privacy_single_hide));
                 intent.putExtra("numberpicker_allow_wildcard", false);
-                startActivityForResult(intent,50);
+                startActivity(intent);
             } catch (Exception e) {
             }
         } else if (ACTION_ID == CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY) {
@@ -982,7 +982,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             try {
                 Intent intent = new Intent("de.gdata.mobilesecurity.activities.filter.FilterListActivity");
                 intent.putExtra("title", getString(R.string.app_name));
-                startActivityForResult(intent,50);
+                startActivity(intent);
             } catch (Exception e) {
                 Log.d("GDATA", "Activity not found " + e.toString());
             }
