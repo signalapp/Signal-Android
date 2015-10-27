@@ -1043,10 +1043,10 @@
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
     <string name="reminder_header_sms_import_button">IMPORT</string>
     <string name="reminder_header_push_title">Enable Signal calls and messages</string>
-    <string name="reminder_header_push_text">Upgrade your communication experience.</string>
+    <string name="reminder_header_push_text">Enjoy free secure calls and messages with other Signal users.</string>
     <string name="reminder_header_push_button">ENABLE</string>
     <string name="reminder_header_invite_title">Invite to Signal</string>
-    <string name="reminder_header_invite_text">Take your communication with %1$s to the next level.</string>
+    <string name="reminder_header_invite_text">Enjoy free secure calls and messages with %1$s.</string>
     <string name="reminder_header_invite_button">INVITE</string>
     <string name="reminder_header_close_button">CLOSE</string>
 
