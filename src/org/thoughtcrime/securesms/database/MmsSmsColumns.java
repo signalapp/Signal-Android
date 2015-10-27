@@ -22,6 +22,7 @@ public interface MmsSmsColumns {
     protected static final long INCOMING_CALL_TYPE                 = 1;
     protected static final long OUTGOING_CALL_TYPE                 = 2;
     protected static final long MISSED_CALL_TYPE                   = 3;
+    protected static final long JOINED_TYPE                        = 4;
 
     protected static final long BASE_INBOX_TYPE                    = 20;
     protected static final long BASE_OUTBOX_TYPE                   = 21;
@@ -112,6 +113,10 @@ public interface MmsSmsColumns {
 
     public static boolean isInboxType(long type) {
       return (type & BASE_TYPE_MASK) == BASE_INBOX_TYPE;
+    }
+
+    public static boolean isJoinedType(long type) {
+      return (type & BASE_TYPE_MASK) == JOINED_TYPE;
     }
 
     public static boolean isSecureType(long type) {

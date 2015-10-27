@@ -90,6 +90,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_called_you));
     } else if (SmsDatabase.Types.isMissedCall(type)) {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
+    } else if (SmsDatabase.Types.isJoinedType(type)) {
+      return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal_say_hey, getRecipients().getPrimaryRecipient().toShortString()));
     } else {
       if (TextUtils.isEmpty(getBody().getBody())) {
         return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
