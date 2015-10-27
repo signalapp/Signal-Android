@@ -26,7 +26,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Pair;
@@ -104,8 +106,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private static final int PICK_CONTACT = 1;
-  private static final int PICK_AVATAR  = 2;
-  public static final  int AVATAR_SIZE  = 210;
+  public  static final int AVATAR_SIZE  = 210;
 
   private EditText            groupName;
   private ListView            lv;
@@ -114,7 +115,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   private TextView            creatingText;
 
   private Recipient      groupRecipient    = null;
-  private long           groupThread       = -1;
   private byte[]         groupId           = null;
   private Set<Recipient> existingContacts  = null;
   private String         existingTitle     = null;
@@ -146,7 +146,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
-    getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
+    setActionBarTitle();
     if (!TextSecurePreferences.isPushRegistered(this)) {
       disableWhisperGroupUi(R.string.GroupCreateActivity_you_dont_support_push);
     }
@@ -168,12 +168,24 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     findViewById(R.id.push_disabled).setVisibility(View.GONE);
     avatar.setEnabled(true);
     groupName.setEnabled(true);
-    final CharSequence groupNameText = groupName.getText();
-    if (groupNameText != null && groupNameText.length() > 0) {
-      getSupportActionBar().setTitle(groupNameText);
-    } else {
-      getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
+    setActionBarTitle();
+  }
+
+  private void setActionBarTitle() {
+    final Editable  groupNameText = groupName.getText();
+    final String    name          = groupNameText == null ? null : groupNameText.toString();
+    final ActionBar actionBar     = getSupportActionBar();
+
+    final int prefixResId = (groupId != null) ? R.string.GroupCreateActivity_actionbar_update_title
+                                              : R.string.GroupCreateActivity_actionbar_title;
+
+    if(!whisperGroupUiEnabled()) {
+      actionBar.setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
+      return;
     }
+
+    actionBar.setTitle(prefixResId);
+    actionBar.setSubtitle(!TextUtils.isEmpty(name) ? name : null);
   }
 
   private static boolean isActiveInDirectory(Context context, Recipient recipient) {
@@ -195,6 +207,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
       Toast.makeText(getApplicationContext(),
                      R.string.GroupCreateActivity_cannot_add_non_push_to_existing_group,
                      Toast.LENGTH_LONG).show();
+      setActionBarTitle();
       return;
     }
 
@@ -202,7 +215,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
       selectedContacts.add(contact);
     if (!isPushUser) {
       disableWhisperGroupUi(R.string.GroupCreateActivity_contacts_dont_support_push);
-      getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
+      setActionBarTitle();
     }
   }
 
@@ -225,7 +238,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   private void initializeResources() {
     groupRecipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(GROUP_RECIPIENT_EXTRA, -1), true);
-    groupThread = getIntent().getLongExtra(GROUP_THREAD_EXTRA, -1);
     if (groupRecipient != null) {
       final String encodedGroupId = groupRecipient.getNumber();
       if (encodedGroupId != null) {
@@ -254,14 +266,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
       public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) { }
       @Override
       public void afterTextChanged(Editable editable) {
-        final int prefixResId = (groupId != null)
-                                ? R.string.GroupCreateActivity_actionbar_update_title
-                                : R.string.GroupCreateActivity_actionbar_title;
-        if (editable.length() > 0) {
-          getSupportActionBar().setTitle(getString(prefixResId) + ": " + editable.toString());
-        } else {
-          getSupportActionBar().setTitle(prefixResId);
-        }
+        setActionBarTitle();
       }
     });
 
@@ -302,6 +307,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     menu.clear();
 
     inflater.inflate(R.menu.group_create, menu);
+
+    if (groupId != null) {
+      MenuItem menuItem = menu.findItem(R.id.menu_create_group);
+      if (menuItem != null) menuItem.setTitle(R.string.GroupCreateActivity_menu_update_title);
+    }
+
     super.onPrepareOptionsMenu(menu);
     return true;
   }

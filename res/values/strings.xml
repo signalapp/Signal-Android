@@ -223,6 +223,7 @@
     <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
     <string name="GroupCreateActivity_avatar_content_description">Group avatar</string>
     <string name="GroupCreateActivity_menu_create_title">Create group</string>
+    <string name="GroupCreateActivity_menu_update_title">Update group</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
     <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-Signal contacts to an existing Signal group</string>
