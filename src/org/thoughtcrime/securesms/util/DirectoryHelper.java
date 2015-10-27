@@ -7,17 +7,25 @@ import android.content.Context;
 import android.content.OperationApplicationException;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
+import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
@@ -59,13 +67,29 @@ public class DirectoryHelper {
 
   private static final String TAG = DirectoryHelper.class.getSimpleName();
 
-  public static void refreshDirectory(final Context context) throws IOException {
-    refreshDirectory(context,
-                     TextSecureCommunicationFactory.createManager(context),
-                     TextSecurePreferences.getLocalNumber(context));
+  public static void refreshDirectory(@NonNull Context context, @Nullable MasterSecret masterSecret)
+      throws IOException
+  {
+    List<String> newUsers = refreshDirectory(context,
+                                             TextSecureCommunicationFactory.createManager(context),
+                                             TextSecurePreferences.getLocalNumber(context));
+
+    if (!newUsers.isEmpty() && TextSecurePreferences.isMultiDevice(context)) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new MultiDeviceContactUpdateJob(context));
+    }
+
+    for (String newUser : newUsers) {
+      IncomingJoinedMessage message        = new IncomingJoinedMessage(newUser);
+      Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
+      MessageNotifier.updateNotification(context, masterSecret, smsAndThreadId.second);
+    }
   }
 
-  public static void refreshDirectory(final Context context, final TextSecureAccountManager accountManager, final String localNumber)
+  public static @NonNull List<String> refreshDirectory(@NonNull Context context,
+                                                       @NonNull TextSecureAccountManager accountManager,
+                                                       @NonNull String localNumber)
       throws IOException
   {
     TextSecureDirectory       directory              = TextSecureDirectory.getInstance(context);
@@ -89,19 +113,15 @@ public class DirectoryHelper {
         }
 
         try {
-          boolean modified = DatabaseFactory.getContactsDatabase(context)
-                                            .setRegisteredUsers(account.get(), e164numbers);
-
-          if (modified && TextSecurePreferences.isMultiDevice(context)) {
-            ApplicationContext.getInstance(context)
-                              .getJobManager()
-                              .add(new MultiDeviceContactUpdateJob(context));
-          }
+          return  DatabaseFactory.getContactsDatabase(context)
+                                 .setRegisteredUsers(account.get(), localNumber, e164numbers);
         } catch (RemoteException | OperationApplicationException e) {
           Log.w(TAG, e);
         }
       }
     }
+
+    return new LinkedList<>();
   }
 
   public static UserCapabilities refreshDirectoryFor(Context context, Recipients recipients)
@@ -173,8 +193,16 @@ public class DirectoryHelper {
     AccountManager accountManager = AccountManager.get(context);
     Account[]      accounts       = accountManager.getAccountsByType("org.thoughtcrime.securesms");
 
-    if (accounts.length == 0) return createAccount(context);
-    else                      return Optional.of(accounts[0]);
+    Optional<Account> account;
+
+    if (accounts.length == 0) account = createAccount(context);
+    else                      account = Optional.of(accounts[0]);
+
+    if (account.isPresent() && !ContentResolver.getSyncAutomatically(account.get(), ContactsContract.AUTHORITY)) {
+      ContentResolver.setSyncAutomatically(account.get(), ContactsContract.AUTHORITY, true);
+    }
+
+    return account;
   }
 
   private static Optional<Account> createAccount(Context context) {

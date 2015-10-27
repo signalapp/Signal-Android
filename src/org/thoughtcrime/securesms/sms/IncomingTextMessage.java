@@ -188,6 +188,10 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
+  public boolean isJoined() {
+    return false;
+  }
+
   @Override
   public int describeContents() {
     return 0;
