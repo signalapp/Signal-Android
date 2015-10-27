@@ -922,10 +922,8 @@
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__language_summary">Language %s</string>
-    <string name="preferences__signal">Signal</string>
-    <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-        Free private messaging and calling to Signal users
-    </string>
+    <string name="preferences__signal_calls_and_messages_title">Signal calls and messages</string>
+    <string name="preferences__signal_calls_and_messages_text">Free secure calls and messages to Signal users</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
