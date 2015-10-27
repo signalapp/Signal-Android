@@ -18,10 +18,10 @@
         Disable lock screen for messages?
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_unregistering_title">Unregistering</string>
-    <string name="ApplicationPreferencesActivity_unregistering_text">Unregistering from Signal calls and messages...</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_title">Disable Signal calls and messages?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_text">Disable Signal calls and messages by unregistering from the server. You will need to re-register your phone number to use them again in the future.</string>
+    <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>
+    <string name="ApplicationPreferencesActivity_unregistering_from_signal_calls_and_messages">Unregistering from Signal calls and messages...</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_calls_and_messages">Disable Signal calls and messages?</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_calls_and_messages_by_unregistering">Disable Signal calls and messages by unregistering from the server. You will need to re-register your phone number to use them again in the future.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
@@ -922,8 +922,8 @@
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__language_summary">Language %s</string>
-    <string name="preferences__signal_calls_and_messages_title">Signal calls and messages</string>
-    <string name="preferences__signal_calls_and_messages_text">Free secure calls and messages to Signal users</string>
+    <string name="preferences__signal_calls_and_messages">Signal calls and messages</string>
+    <string name="preferences__free_secure_calls_and_messages">Free secure calls and messages to Signal users</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
@@ -1041,10 +1041,10 @@
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
     <string name="reminder_header_sms_import_button">IMPORT</string>
     <string name="reminder_header_push_title">Enable Signal calls and messages</string>
-    <string name="reminder_header_push_text">Enjoy free secure calls and messages with other Signal users.</string>
+    <string name="reminder_header_push_text">Upgrade your messaging experience.</string>
     <string name="reminder_header_push_button">ENABLE</string>
     <string name="reminder_header_invite_title">Invite to Signal</string>
-    <string name="reminder_header_invite_text">Enjoy free secure calls and messages with %1$s.</string>
+    <string name="reminder_header_invite_text">Take your conversation with %1$s to the next level.</string>
     <string name="reminder_header_invite_button">INVITE</string>
     <string name="reminder_header_close_button">CLOSE</string>
 

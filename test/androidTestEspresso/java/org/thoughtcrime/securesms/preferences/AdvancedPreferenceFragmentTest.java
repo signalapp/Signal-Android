@@ -97,7 +97,7 @@ public class AdvancedPreferenceFragmentTest extends TextSecureEspressoTestCase<C
     loadActivity(ConversationListActivity.class, STATE_REGISTERED);
     clickAdvancedSettingAndCheckState();
     AdvancedPreferenceFragmentActions.clickTextSecureMessages();
-    onView(withText(R.string.ApplicationPreferencesActivity_disable_signal_title))
+    onView(withText(R.string.ApplicationPreferencesActivity_disable_signal_calls_and_messages))
           .check(matches(isDisplayed()));
     onView(withText(android.R.string.cancel)).perform(click());
   }
