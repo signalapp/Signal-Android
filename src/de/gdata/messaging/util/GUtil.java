@@ -70,8 +70,10 @@ public class GUtil {
   }
   public static final String ACTION_RELOAD_HEADER = "reloadHeader";
   public static void reloadUnreadHeaderCounter() {
-    Intent intent = new Intent(ACTION_RELOAD_HEADER);
-    LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+    if(GService.appContext != null) {
+      Intent intent = new Intent(ACTION_RELOAD_HEADER);
+      LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+    }
   }
   public static Uri saveBitmapAndGetNewUri(Activity activity, String tag, Uri url)
   {
