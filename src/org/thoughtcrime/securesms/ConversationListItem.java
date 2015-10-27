@@ -129,6 +129,9 @@ public class ConversationListItem extends RelativeLayout
             if (unreadCount<0){
                 preferences.saveReadCount(threadId + "", count);
             } else {
+                if(unreadCount == 0) {
+                    unreadCount = 1L;
+                }
                 unreadCountView.setVisibility(View.VISIBLE);
                 unreadCountView.setText(unreadCount + "");
             }
