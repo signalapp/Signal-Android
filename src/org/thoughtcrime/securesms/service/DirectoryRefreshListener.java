@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DirectoryRefreshListener extends BroadcastReceiver {
 
+  private static final String TAG = DirectoryRefreshListener.class.getSimpleName();
+
   private static final String REFRESH_EVENT = "org.whispersystems.whisperpush.DIRECTORY_REFRESH";
   private static final String BOOT_EVENT    = "android.intent.action.BOOT_COMPLETED";
 
@@ -51,7 +53,7 @@ public class DirectoryRefreshListener extends BroadcastReceiver {
       time = System.currentTimeMillis() + INTERVAL;
     }
 
-    Log.w("DirectoryRefreshListener", "Scheduling for: " + time);
+    Log.w(TAG, "Scheduling for: " + time);
 
     alarmManager.cancel(pendingIntent);
     alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);

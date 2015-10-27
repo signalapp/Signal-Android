@@ -61,6 +61,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
 
   protected ContactSelectionListFragment contactsFragment;
 
+  private   MasterSecret    masterSecret;
   private   Toolbar         toolbar;
   private   EditText        searchText;
   private   AnimatingToggle toggle;
@@ -79,6 +80,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   @Override
   protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
     setContentView(R.layout.contact_selection_activity);
+    this.masterSecret = masterSecret;
 
     initializeToolbar();
     initializeResources();
@@ -216,16 +218,19 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   private static class RefreshDirectoryTask extends AsyncTask<Context, Void, Void> {
 
     private final WeakReference<ContactSelectionActivity> activity;
+    private final MasterSecret masterSecret;
 
     private RefreshDirectoryTask(ContactSelectionActivity activity) {
-      this.activity = new WeakReference<>(activity);
+      this.activity     = new WeakReference<>(activity);
+      this.masterSecret = activity.masterSecret;
     }
 
 
     @Override
     protected Void doInBackground(Context... params) {
+
       try {
-        DirectoryHelper.refreshDirectory(params[0]);
+        DirectoryHelper.refreshDirectory(params[0], masterSecret);
       } catch (IOException e) {
         Log.w(TAG, e);
       }

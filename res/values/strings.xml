@@ -291,6 +291,7 @@
     <string name="MessageRecord_s_called_you">%s called you</string>
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
+    <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
 
 
     <!-- PassphraseChangeActivity -->
@@ -447,6 +448,7 @@
     <string name="ThreadRecord_called_you">Called you</string>
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
+    <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>

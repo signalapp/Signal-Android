@@ -3,6 +3,6 @@
               android:contentAuthority="com.android.contacts"
               android:accountType="org.thoughtcrime.securesms"
               android:userVisible="true"
-              android:supportsUploading="false"
+              android:supportsUploading="true"
               android:allowParallelSyncs="false"
               android:isAlwaysSyncable="true"/>
