@@ -18,13 +18,10 @@
         Disable lock screen for messages?
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Unregistering from Signal messages...</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages">Disable Signal messages?</string>
-    <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-        This will disable Signal messages by unregistering you from the server.
-        You will need to re-register your phone number to use Signal messages again in the future.
-    </string>
+    <string name="ApplicationPreferencesActivity_unregistering_title">Unregistering</string>
+    <string name="ApplicationPreferencesActivity_unregistering_text">Unregistering from Signal calls and messages...</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_title">Disable Signal calls and messages?</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_text">Disable Signal calls and messages by unregistering you from the server. You will need to re-register your phone number to use them again in the future.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
@@ -1045,11 +1042,11 @@
     <string name="reminder_header_sms_import_title">Import system SMS</string>
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
     <string name="reminder_header_sms_import_button">IMPORT</string>
-    <string name="reminder_header_push_title">Enable Signal</string>
-    <string name="reminder_header_push_text">Upgrade your messaging experience.</string>
+    <string name="reminder_header_push_title">Enable Signal calls and messages</string>
+    <string name="reminder_header_push_text">Upgrade your communication experience.</string>
     <string name="reminder_header_push_button">ENABLE</string>
     <string name="reminder_header_invite_title">Invite to Signal</string>
-    <string name="reminder_header_invite_text">Take your conversation with %1$s to the next level.</string>
+    <string name="reminder_header_invite_text">Take your communication with %1$s to the next level.</string>
     <string name="reminder_header_invite_button">INVITE</string>
     <string name="reminder_header_close_button">CLOSE</string>
 

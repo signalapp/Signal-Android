@@ -154,7 +154,7 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       private final CheckBoxPreference checkBoxPreference;
 
       public DisablePushMessagesTask(final CheckBoxPreference checkBoxPreference) {
-        super(getActivity(), R.string.ApplicationPreferencesActivity_unregistering, R.string.ApplicationPreferencesActivity_unregistering_from_signal_messages);
+        super(getActivity(), R.string.ApplicationPreferencesActivity_unregistering_title, R.string.ApplicationPreferencesActivity_unregistering_text);
         this.checkBoxPreference = checkBoxPreference;
       }
 
@@ -204,8 +204,8 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       if (((CheckBoxPreference)preference).isChecked()) {
         AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
         builder.setIconAttribute(R.attr.dialog_info_icon);
-        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_signal_messages);
-        builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_signal_messages);
+        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_signal_title);
+        builder.setMessage(R.string.ApplicationPreferencesActivity_disable_signal_text);
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
           @Override
