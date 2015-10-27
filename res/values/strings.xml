@@ -285,7 +285,7 @@
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
 
     <!-- MessageRecord -->
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_updated_group">Updated the group.</string>
     <string name="MessageRecord_s_called_you">%s called you</string>
@@ -1033,7 +1033,7 @@
     <!-- reminder_header -->
     <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
     <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
-    <string name="reminder_header_expired_build_button">UPGRADE</string>
+    <string name="reminder_header_expired_build_button">UPDATE</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
     <string name="reminder_header_sms_default_button">SET</string>
