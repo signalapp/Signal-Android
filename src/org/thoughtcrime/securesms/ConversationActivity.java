@@ -424,7 +424,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     private void handleOpenProfile() {
-        if(isActiveGroup()) {
+        if((isActiveGroup() && isGroupConversation()) || isSingleConversation()) {
             final Intent intent = new Intent(this, ProfileActivity.class);
             intent.putExtra("master_secret", masterSecret);
             intent.putExtra("profile_id", getRecipients().getPrimaryRecipient().getNumber());
