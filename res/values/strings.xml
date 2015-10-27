@@ -21,7 +21,7 @@
     <string name="ApplicationPreferencesActivity_unregistering_title">Unregistering</string>
     <string name="ApplicationPreferencesActivity_unregistering_text">Unregistering from Signal calls and messages...</string>
     <string name="ApplicationPreferencesActivity_disable_signal_title">Disable Signal calls and messages?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_text">Disable Signal calls and messages by unregistering you from the server. You will need to re-register your phone number to use them again in the future.</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_text">Disable Signal calls and messages by unregistering from the server. You will need to re-register your phone number to use them again in the future.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
