@@ -3,9 +3,6 @@ package org.thoughtcrime.redphone.audio;
 import android.os.Build;
 import android.util.Log;
 
-
-import org.thoughtcrime.securesms.R;
-
 import java.io.FileDescriptor;
 import java.lang.reflect.Field;
 import java.net.DatagramSocket;
@@ -44,9 +41,9 @@ public class CallAudioManager {
   public void start() throws AudioException {
     try {
       start(handle);
-    } catch (NativeAudioException e) {
+    } catch (NativeAudioException | NoSuchMethodError e) {
       Log.w(TAG, e);
-      throw new AudioException("sorry_there_was_a_problem_initializing_the_audio_on_your_device");
+      throw new AudioException("Sorry, there was a problem initiating the audio on your device.");
     }
   }
 
