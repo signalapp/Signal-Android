@@ -62,7 +62,6 @@ public class CameraView extends FrameLayout {
 
   private int displayOrientation     = -1;
   private int outputOrientation      = -1;
-  private int lastPictureOrientation = -1;
 
   public CameraView(Context context) {
     this(context, null);
@@ -149,7 +148,6 @@ public class CameraView extends FrameLayout {
         onOrientationChange.disable();
         displayOrientation = -1;
         outputOrientation = -1;
-        lastPictureOrientation = -1;
         Log.w(TAG, "onPause() completed");
       }
     });
@@ -195,22 +193,21 @@ public class CameraView extends FrameLayout {
       previewHeight = height;
     }
 
-    Log.w(TAG, "width " + width + "x" + height);
-    Log.w(TAG, "layout preview target " + previewWidth + "x" + previewHeight);
+    Log.w(TAG, "layout " + width + "x" + height + ", target " + previewWidth + "x" + previewHeight);
 
     if (previewHeight == 0 || previewWidth == 0) {
       Log.w(TAG, "skipping layout due to zero-width/height preview size");
       return;
     }
 
-    boolean useFirstStrategy = (width * previewHeight > height * previewWidth);
+    boolean widerThanTall = (width * previewHeight > height * previewWidth);
 
-    if (!useFirstStrategy) {
-      final int scaledChildWidth = previewWidth * height / previewHeight;
-      surface.layout((width - scaledChildWidth) / 2, 0, (width + scaledChildWidth) / 2, height);
-    } else {
+    if (widerThanTall) {
       final int scaledChildHeight = previewHeight * width / previewWidth;
       surface.layout(0, (height - scaledChildHeight) / 2, width, (height + scaledChildHeight) / 2);
+    } else {
+      final int scaledChildWidth = previewWidth * height / previewHeight;
+      surface.layout((width - scaledChildWidth) / 2, 0, (width + scaledChildWidth) / 2, height);
     }
   }
 
@@ -227,7 +224,6 @@ public class CameraView extends FrameLayout {
 
     final Parameters parameters = camera.get().getParameters();
     if (VERSION.SDK_INT >= 14) parameters.setRecordingHint(true);
-//    parameters.setPictureFormat(ImageFormat.NV21);
     camera.get().setParameters(parameters);
 
     enqueueTask(new PostInitializationTask<Void>() {
@@ -247,7 +243,9 @@ public class CameraView extends FrameLayout {
   @TargetApi(11)
   private @Nullable Size getPreferredPreviewSize(@NonNull Camera camera) {
     final Camera.Parameters parameters = camera.getParameters();
-    Log.w(TAG, String.format("original preview size: %dx%d", parameters.getPreviewSize().width, parameters.getPreviewSize().height));
+    Log.w(TAG, "original preview size: " +
+               parameters.getPreviewSize().width + "x" + parameters.getPreviewSize().height);
+
     Size preferredSize = VERSION.SDK_INT > 11 ? camera.getParameters().getPreferredPreviewSizeForVideo() : null;
     if (preferredSize == null) {
       preferredSize = CameraUtils.getBestAspectPreviewSize(getDisplayOrientation(),
@@ -315,9 +313,6 @@ public class CameraView extends FrameLayout {
       outputOrientation = displayOrientation;
     }
 
-    if (lastPictureOrientation != outputOrientation) {
-      lastPictureOrientation = outputOrientation;
-    }
     return outputOrientation;
   }
 
@@ -371,7 +366,6 @@ public class CameraView extends FrameLayout {
 
           try {
             camera.get().setParameters(params);
-            lastPictureOrientation = outputOrientation;
           }
           catch (Exception e) {
             Log.e(TAG, "Exception updating camera parameters in orientation change", e);
