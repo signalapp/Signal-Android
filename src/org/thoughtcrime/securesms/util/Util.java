@@ -327,8 +327,9 @@ public class Util {
     }
   }
 
-  public static boolean isBuildFresh() {
-    return BuildConfig.BUILD_TIMESTAMP + TimeUnit.DAYS.toMillis(90) > System.currentTimeMillis();
+  public static int getDaysTillBuildExpiry() {
+    int age = (int)TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP);
+    return 90 - age;
   }
 
   @TargetApi(VERSION_CODES.LOLLIPOP)

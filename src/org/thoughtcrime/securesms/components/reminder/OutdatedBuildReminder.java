@@ -4,19 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
-import android.view.View.OnClickListener;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Util;
 
-public class ExpiredBuildReminder extends Reminder {
-  private static final String TAG = ExpiredBuildReminder.class.getSimpleName();
+public class OutdatedBuildReminder extends Reminder {
 
-  public ExpiredBuildReminder(final Context context) {
-    super(context.getString(R.string.reminder_header_expired_build),
-          context.getString(R.string.reminder_header_expired_build_details));
-    setOkListener(new OnClickListener() {
-      @Override public void onClick(View v) {
+  public OutdatedBuildReminder(final Context context) {
+    super(context.getString(R.string.reminder_header_outdated_build),
+          getPluralsText(context));
+    setOkListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
         try {
           context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + context.getPackageName())));
         } catch (android.content.ActivityNotFoundException anfe) {
@@ -26,13 +25,21 @@ public class ExpiredBuildReminder extends Reminder {
     });
   }
 
+  private static CharSequence getPluralsText(final Context context) {
+    int days = Util.getDaysTillBuildExpiry() - 1;
+    if (days == 0) {
+      return context.getString(R.string.reminder_header_outdated_build_details_today);
+    }
+    return context.getResources().getQuantityString(R.plurals.reminder_header_outdated_build_details, days, days);
+  }
+
   @Override
   public boolean isDismissable() {
     return false;
   }
 
   public static boolean isEligible() {
-    return Util.getDaysTillBuildExpiry() <= 0;
+    return Util.getDaysTillBuildExpiry() <= 10;
   }
 
 }
