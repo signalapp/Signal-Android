@@ -35,7 +35,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.Surface;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import java.io.IOException;
@@ -58,8 +57,8 @@ public class CameraView extends FrameLayout {
 
   private @NonNull volatile Optional<Camera> camera = Optional.absent();
 
-  private CameraHost       host;
-  private PreviewStrategy  previewStrategy;
+  private CameraHost        host;
+  private CameraSurfaceView surface;
 
   private int displayOrientation     = -1;
   private int outputOrientation      = -1;
@@ -77,14 +76,13 @@ public class CameraView extends FrameLayout {
     super(context, attrs, defStyle);
     setBackgroundColor(Color.BLACK);
 
+    surface             = new CameraSurfaceView(getContext());
     onOrientationChange = new OnOrientationChange(context.getApplicationContext());
+    addView(surface);
   }
 
   public void setHost(@NonNull CameraHost host) {
     this.host = host;
-
-    previewStrategy = new SurfacePreviewStrategy(this);
-    addView(previewStrategy.getWidget());
   }
 
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -178,7 +176,6 @@ public class CameraView extends FrameLayout {
   @SuppressWarnings("SuspiciousNameCombination")
   @Override
   protected void onLayout(boolean changed, int l, int t, int r, int b) {
-    final View child         = previewStrategy.getWidget();
     final int  width         = r - l;
     final int  height        = b - t;
     final int  previewWidth;
@@ -210,10 +207,10 @@ public class CameraView extends FrameLayout {
 
     if (!useFirstStrategy) {
       final int scaledChildWidth = previewWidth * height / previewHeight;
-      child.layout((width - scaledChildWidth) / 2, 0, (width + scaledChildWidth) / 2, height);
+      surface.layout((width - scaledChildWidth) / 2, 0, (width + scaledChildWidth) / 2, height);
     } else {
       final int scaledChildHeight = previewHeight * width / previewWidth;
-      child.layout(0, (height - scaledChildHeight) / 2, width, (height + scaledChildHeight) / 2);
+      surface.layout(0, (height - scaledChildHeight) / 2, width, (height + scaledChildHeight) / 2);
     }
   }
 
@@ -237,7 +234,7 @@ public class CameraView extends FrameLayout {
       @Override protected void onPostMain(Void avoid) {
         if (camera.isPresent()) {
           try {
-            previewStrategy.attach(camera.get());
+            camera.get().setPreviewDisplay(surface.getHolder());
             startPreview();
           } catch (IOException e) {
             Log.w(TAG, e);
@@ -436,8 +433,8 @@ public class CameraView extends FrameLayout {
           Log.w(TAG, "throwing preconditions not met");
           throw new PreconditionsNotMetException();
         }
-        while (getMeasuredHeight() <= 0 || getMeasuredWidth() <= 0 || !previewStrategy.isReady()) {
-          Log.w(TAG, String.format("waiting. prevewStrategy? %s", previewStrategy.isReady()));
+        while (getMeasuredHeight() <= 0 || getMeasuredWidth() <= 0 || !surface.isReady()) {
+          Log.w(TAG, String.format("waiting. prevewStrategy? %s", surface.isReady()));
           Util.wait(CameraView.this, 0);
         }
         Log.w(TAG, "done waiting!");
