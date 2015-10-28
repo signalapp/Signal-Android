@@ -34,7 +34,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   private final WeakReference<MasterSecret> masterSecretReference;
 
   public SaveAttachmentTask(Context context, MasterSecret masterSecret) {
-    super(context, R.string.ConversationFragment_saving_attachment, R.string.ConversationFragment_saving_attachment_to_sd_card);
+    super(context, R.string.ConversationFragment_saving_attachment, R.string.ConversationFragment_saving_attachment_to_storage);
     this.contextReference      = new WeakReference<>(context);
     this.masterSecretReference = new WeakReference<>(masterSecret);
   }
@@ -86,7 +86,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
     switch (result) {
       case FAILURE:
-        Toast.makeText(context, R.string.ConversationFragment_error_while_saving_attachment_to_sd_card,
+        Toast.makeText(context, R.string.ConversationFragment_error_while_saving_attachment_to_storage,
             Toast.LENGTH_LONG).show();
         break;
       case SUCCESS:
@@ -94,7 +94,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
             Toast.LENGTH_LONG).show();
         break;
       case WRITE_ACCESS_FAILURE:
-        Toast.makeText(context, R.string.ConversationFragment_unable_to_write_to_sd_card_exclamation,
+        Toast.makeText(context, R.string.ConversationFragment_unable_to_write_to_storage,
             Toast.LENGTH_LONG).show();
         break;
     }
@@ -150,10 +150,10 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
   public static void showWarningDialog(Context context, OnClickListener onAcceptListener) {
     AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
-    builder.setTitle(R.string.ConversationFragment_save_to_sd_card);
+    builder.setTitle(R.string.ConversationFragment_save_to_storage);
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning);
+    builder.setMessage(R.string.ConversationFragment_saving_this_media_to_storage_warning);
     builder.setPositiveButton(R.string.yes, onAcceptListener);
     builder.setNegativeButton(R.string.no, null);
     builder.show();
