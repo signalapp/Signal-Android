@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Locale;
@@ -144,7 +145,7 @@ public class ConversationListFragment extends Fragment
           return Optional.of(new ExpiredBuildReminder(context));
         } else if (DefaultSmsReminder.isEligible(context)) {
           return Optional.of(new DefaultSmsReminder(context));
-        } else if (SystemSmsImportReminder.isEligible(context)) {
+        } else if (Util.isDefaultSmsProvider(context) && SystemSmsImportReminder.isEligible(context)) {
           return Optional.of((new SystemSmsImportReminder(context, masterSecret)));
         } else if (PushRegistrationReminder.isEligible(context)) {
           return Optional.of((new PushRegistrationReminder(context, masterSecret)));
