@@ -172,8 +172,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
     toFrom.setText(toFromRes);
     conversationItem.bind(masterSecret, messageRecord, dynamicLanguage.getCurrentLocale(),
-                         new HashSet<MessageRecord>(),
-                         recipients != messageRecord.getRecipients());
+                         new HashSet<MessageRecord>(), recipients);
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
                                                                  recipients, isPushGroup));
   }

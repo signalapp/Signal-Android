@@ -65,8 +65,6 @@ ten kontakt.
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć te media.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Rozpocząć bezpieczną sesję?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Rozpocząć bezpieczną sesję z %s?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potwierdzenie usunięcia wątku</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Czy na pewno chcesz permanentnie skasować tą konwersację?</string>
   <string name="ConversationActivity_add_attachment">Dodaj załącznik</string>
@@ -247,7 +245,6 @@ ten kontakt.
   <string name="RatingManager_later">Później</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokować ten kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Już więcej nie będziesz otrzymywać wiadomości od tego użytkownika.</string>
   <string name="RecipientPreferenceActivity_block">Blokuj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokować ten kontakt?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Czy jesteś pewny, że chcesz odblokować ten kontakt?</string>
@@ -333,7 +330,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="ViewIdentityActivity_my_identity_fingerprint">Mój odcisk klucza</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Rozpocząć pomimo istniejącego żądania?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Już wysłałeś żądanie o rozpoczęcie sesji do tego odbiorcy, czy na pewno chcesz wysłać jeszcze jedno żądanie? Spowoduje to utratę pierwszego żądania.</string>
   <string name="KeyExchangeInitiator_send">Wyślij</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Źle zaszyfrowana wiadomość...</string>
@@ -453,6 +449,7 @@ z domyślnej systemowej aplikacji SMS.</string>
   <string name="import_fragment__import_plaintext_backup">Importuj nieszyfrowaną kopię zapasową</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Restore\'.</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Brak obrazów</string>
   <!--message_recipients_list_item-->
@@ -692,7 +689,6 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Zaproś</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Rozpocznij bezpieczną sesję</string>
   <string name="conversation_insecure__security">Bezpieczeństwo</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Usuń zaznaczone</string>
@@ -739,10 +735,7 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Wiadomości nie będą już pomylnie wysyłane, prosimy o aktualizację do najnowszej wersji.</string>
-  <string name="reminder_header_sms_default_title">Użyć jako domyślnej aplikacji SMS?</string>
-  <string name="reminder_header_sms_import_title">Importować SMS?</string>
   <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS na tym telefonie do szyfrowanej bazy danych.</string>
-  <string name="reminder_header_push_text">Dotknij dla natychmiastowego dostarczania, mocnej prywatności i ominięcia płatności za SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ty</string>
   <string name="MediaPreviewActivity_cant_display">Podgląd tego obrazu nie udał się</string>

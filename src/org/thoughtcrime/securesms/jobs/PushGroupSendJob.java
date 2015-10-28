@@ -6,27 +6,25 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.PartParser;
+import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.api.push.exceptions.NetworkFailureException;
@@ -40,7 +38,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.SendReq;
 
 import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 
@@ -78,16 +75,16 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   public void onSend(MasterSecret masterSecret)
       throws MmsException, IOException, NoSuchMessageException
   {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-    SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
+    MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
+    OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
       deliver(masterSecret, message, filterRecipientId);
 
       database.markAsPush(messageId);
       database.markAsSecure(messageId);
-      database.markAsSent(messageId, "push".getBytes(), 0);
-      markPartsUploaded(messageId, message.getBody());
+      database.markAsSent(messageId);
+      markAttachmentsUploaded(messageId, message.getAttachments());
     } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
@@ -100,11 +97,6 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
         Recipient recipient = RecipientFactory.getRecipientsFromString(context, nfe.getE164number(), false).getPrimaryRecipient();
         failures.add(new NetworkFailure(recipient.getRecipientId()));
       }
-
-//      for (UnregisteredUserException uue : e.getUnregisteredUserExceptions()) {
-//        Recipient recipient = RecipientFactory.getRecipientsFromString(context, uue.getE164Number(), false).getPrimaryRecipient();
-//        failures.add(new NetworkFailure(recipient.getRecipientId(), NetworkFailure.UNREGISTERED_FAILURE));
-//      }
 
       for (UntrustedIdentityException uie : e.getUntrustedIdentityExceptions()) {
         Recipient recipient = RecipientFactory.getRecipientsFromString(context, uie.getE164Number(), false).getPrimaryRecipient();
@@ -130,39 +122,31 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 
-  private void deliver(MasterSecret masterSecret, SendReq message, long filterRecipientId)
+  private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message, long filterRecipientId)
       throws IOException, RecipientFormattingException, InvalidNumberException,
       EncapsulatedExceptions, UndeliverableMessageException
   {
-    message = getResolvedMessage(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
-
     TextSecureMessageSender    messageSender = messageSenderFactory.create();
-    byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
+    byte[]                     groupId       = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
     Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
-    List<TextSecureAttachment> attachments   = getAttachments(masterSecret, message);
+    List<TextSecureAttachment> attachments   = getAttachmentsFor(masterSecret, message.getAttachments());
     List<TextSecureAddress>    addresses;
 
     if (filterRecipientId >= 0) addresses = getPushAddresses(filterRecipientId);
     else                        addresses = getPushAddresses(recipients);
 
-    if (MmsSmsColumns.Types.isGroupUpdate(message.getDatabaseMessageBox()) ||
-        MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()))
-    {
-      String content = PartParser.getMessageText(message.getBody());
+    if (message.isGroup()) {
+      OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
+      GroupContext              groupContext     = groupMessage.getGroupContext();
+      TextSecureAttachment      avatar           = attachments.isEmpty() ? null : attachments.get(0);
+      TextSecureGroup.Type      type             = groupMessage.isGroupQuit() ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
+      TextSecureGroup           group            = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
+      TextSecureDataMessage     groupDataMessage = new TextSecureDataMessage(message.getSentTimeMillis(), group, null, null);
 
-      if (content != null && !content.trim().isEmpty()) {
-        GroupContext          groupContext = GroupContext.parseFrom(Base64.decode(content));
-        TextSecureAttachment  avatar       = attachments.isEmpty() ? null : attachments.get(0);
-        TextSecureGroup.Type  type         = MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()) ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
-        TextSecureGroup       group        = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
-        TextSecureDataMessage groupMessage = new TextSecureDataMessage(message.getSentTimestamp(), group, null, null);
-
-        messageSender.sendMessage(addresses, groupMessage);
-      }
+      messageSender.sendMessage(addresses, groupDataMessage);
     } else {
-      String                body         = PartParser.getMessageText(message.getBody());
       TextSecureGroup       group        = new TextSecureGroup(groupId);
-      TextSecureDataMessage groupMessage = new TextSecureDataMessage(message.getSentTimestamp(), group, attachments, body);
+      TextSecureDataMessage groupMessage = new TextSecureDataMessage(message.getSentTimeMillis(), group, attachments, message.getBody());
 
       messageSender.sendMessage(addresses, groupMessage);
     }

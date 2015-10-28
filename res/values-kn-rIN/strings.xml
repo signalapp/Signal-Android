@@ -60,8 +60,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ಅಸುರಕ್ಶಿತ ಎಮ್.ಎಮ್.ಎಸ್ ಹಿಮ್ಮರಳಿ ?</string>
   <string name="ConversationItem_unable_to_open_media">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಪ್ರಾರಂಭಿಸಿ?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">%s ನೊಂದಿಗೆ ಸುರಕ್ಷಿತ ಅಧಿವೇಶನವನ್ನು ಪ್ರಾರಂಭಿಸಲೆ?</string>
   <string name="ConversationActivity_delete_thread_confirmation">ಈ ಎಳೆಯ ದೃಢೀಕರಣನ್ನು ಅಳಿಸಿ</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">ನೀವು ಶಾಶ್ವತವಾಗಿ ಈ ಸಂಭಾಷಣೆ ಅಳಿಸಲು ಖಚಿತವಾಗಿ ನಿರ್ಧರಿಸಿರುವಿರಾ?</string>
   <string name="ConversationActivity_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
@@ -301,7 +299,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">ನನ್ನ ಗುರುತಿನ ಬೆರಳಚ್ಚು</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ವಿನಂತಿ ಹೊರತಾಗಿಯೂ ಸಹ ಪುನಃ ಪ್ರಾರಂಭಿಸಿ?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">ನೀವು ಈಗಾಗಲೇ ಈ ಸ್ವೀಕತದಾರರಿಗೆ  ಒಂದು ಸೆಷನ್ ಇನಿಷಿಯೇಷನ್ ವಿನಂತಿಯನ್ನು ಕಳುಹಿಸಿದ್ದಿರಿ, ನೀವು ಮತ್ತೊಂದು ಕಳುಹಿಸಲು ಬಯಸುವುವಿರ? ಇದು ಅ ಮೊದಲ ವಿನಂತಿಯನ್ನು ಅಮಾನ್ಯಗೊಳಿಸುತ್ತದೆ.</string>
   <string name="KeyExchangeInitiator_send">ಕಳುಹಿಸು</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">ಕಳಪೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಸಂದೇಶ...</string>
@@ -409,6 +406,7 @@
   <string name="import_fragment__import_plaintext_backup">ಸರಳಪಠ್ಯದ  ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 ಒಂದು ಸರಳಪಠ್ಯ ಬ್ಯಾಕಪ್ ಕಡತವನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ . \'SMSBackup And Restore\' ಜೋತೆ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ.</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">ಯಾವುದೇ ಚಿತ್ರಗಳಿಲ್ಲ</string>
   <!--message_recipients_list_item-->
@@ -608,7 +606,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ಆಹ್ವಾನ</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಪ್ರಾರಂಭಿಸು</string>
   <string name="conversation_insecure__security">ಸುರಕ್ಷತೆ</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">ಆಯ್ಕೆಮಾಡಿದನ್ನು ಅಳಿಸಿ</string>
@@ -651,10 +648,7 @@
   <string name="text_secure_normal__mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ. ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ಅಪ್ಡೇಟ್ ಮಾಡಿ. </string>
-  <string name="reminder_header_sms_default_title">ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಉಪಯೋಗಿಸಿ.</string>
-  <string name="reminder_header_sms_import_title">ವ್ಯವಸ್ಥೆಯ ಎಸ್.ಎಮ್.ಎಸ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ?</string>
   <string name="reminder_header_sms_import_text">ನಿಮ್ಮ ಫೋನಿನ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು  ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ದತ್ತಾಂಶಕ್ಕೆ  ನಕಲು ಮಾಡಿಕೊಳ್ಳಲು ಸ್ಪರ್ಶಿಸಿ.</string>
-  <string name="reminder_header_push_text">ತತ್ಕ್ಷಣ ವಿತರಣೆ, ಬಲವಾದ ಗೌಪ್ಯತೆ ಮತ್ತು ಯಾವುದೇ ಎಸ್ಎಂಎಸ್ ಶುಲ್ಕ ಇಲ್ಲದ ಸೇವೆಗೆ ಸ್ಪರ್ಶಿಸಿ.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">ನೀವು</string>
   <string name="MediaPreviewActivity_cant_display">ಈ ಚಿತ್ರದ ಮುನ್ನೋಟ ವಿಫಲಗೊಂಡಿದೆ</string>

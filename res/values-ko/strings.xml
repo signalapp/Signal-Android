@@ -69,8 +69,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자는 이젠 Signal 사용자가 아니어서 이 메시지는 <b>암호화되지 않습니다</b>.\n\n보안 해제된 메시지를 보내시겠습니까?</string>
   <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없음</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">암호화된 세션 시작하시겠습니까?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">%s님와 암호화된 세션을 시작하시겠습니까?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">암호화된 세션 초기화</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">암호화된 세션을 초기화하시겠습니까?</string>
   <string name="ConversationActivity_delete_thread_confirmation">대화 삭제</string>
@@ -275,7 +273,7 @@
   <string name="RatingManager_later">나중에</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">사용자를 차단하시겠습니까?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">차단한 사용자가 보내는 메시지를 볼 수 없습니다.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">차단한 사용자로 부터의 통화와 메시지를 받을 수 없습니다.</string>
   <string name="RecipientPreferenceActivity_block">차단</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">사용자를 차단 해제하시겠습니까?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">이 사용자를 차단 해제하시겠습니까?</string>
@@ -296,7 +294,7 @@
   <string name="RedPhone_recipient_unavailable">응답 없음</string>
   <string name="RedPhone_performing_handshake">핸드셰이크 중</string>
   <string name="RedPhone_network_failed">네트워크에 연결되지 않음</string>
-  <string name="RedPhone_client_failed">클라이언트 실패</string>
+  <string name="RedPhone_client_failed">내부 오류</string>
   <string name="RedPhone_fatal_error">치명적인 오류</string>
   <string name="RedPhone_login_failed">로그인 되지 않음</string>
   <string name="RedPhone_message_from_the_server">서버로 부터의 메시지</string>
@@ -361,6 +359,7 @@
   <string name="ThreadRecord_called">발신통화</string>
   <string name="ThreadRecord_called_you">수신통화</string>
   <string name="ThreadRecord_missed_call">부재중 통화</string>
+  <string name="ThreadRecord_media_message">미디어 메시지</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">내 인증 키가 없습니다.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">수신자는 인증 키가 없습니다.</string>
@@ -383,7 +382,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">내 인증 키 지문</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">이미 요청을 보냈어도 다시 보내시겠습니까?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">이미 이 수신자에게 세션 개시 요청을 보냈습니다. 다시 보내면  첫 번째 요청이 취소됩니다.</string>
   <string name="KeyExchangeInitiator_send">보내기</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">암호화된 메시지가 잘못되었습니다.</string>
@@ -509,6 +507,7 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">내보낸 암호화된 Signal 백업을 복원합니다.</string>
   <string name="import_fragment__import_plaintext_backup">암호화되지 않은 백업 가져오기</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\'SMS Backup And Restore\'라는 앱에 호환된 암호화되지 않은 백업을 가져옵니다.</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">이미지 없음</string>
   <!--message_recipients_list_item-->
@@ -768,7 +767,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">초대</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">암호화된 세션 시작</string>
   <string name="conversation_insecure__security">보안</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">선택된 대화 삭제</string>
@@ -817,12 +815,16 @@
   <!--reminder_header-->
   <string name="reminder_header_expired_build">설치된 Signal 버전 만료</string>
   <string name="reminder_header_expired_build_details">메시지를 전송할 수 없으므로 최신 버전으로 업그레이드 해주세요.</string>
-  <string name="reminder_header_sms_default_title">기본 SMS앱으로 사용하시겠습니까?</string>
+  <string name="reminder_header_expired_build_button">업그레이드</string>
   <string name="reminder_header_sms_default_text">Signal을 기본 SMS 앱으로 설정하려면 터치하세요.</string>
-  <string name="reminder_header_sms_import_title">시스템 SMS를 가져오시겠습니까?</string>
+  <string name="reminder_header_sms_default_button">기본 SMS 앱으로 설정</string>
   <string name="reminder_header_sms_import_text">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오려면 터치하세요.</string>
-  <string name="reminder_header_push_title">Signal 메시지를 사용하시겠습니까?</string>
-  <string name="reminder_header_push_text">빠른 전송, 강화된 개인정보 보호, SMS 요금이 부과되지 않은 서비스로 메시지를 보내려면 터치하세요.</string>
+  <string name="reminder_header_sms_import_button">가져오기</string>
+  <string name="reminder_header_push_text">메시징 경험을 업그레이드 합니다.</string>
+  <string name="reminder_header_push_button">사용</string>
+  <string name="reminder_header_invite_text">%1$s님과 대화를 다음 단계로 끌어올립니다.</string>
+  <string name="reminder_header_invite_button">초대</string>
+  <string name="reminder_header_close_button">닫기</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">나</string>
   <string name="MediaPreviewActivity_cant_display">이미지 미리보기 실패</string>

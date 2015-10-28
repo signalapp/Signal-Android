@@ -76,8 +76,6 @@ tämän yhteystiedon.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tätä viestiä <b>ei</b> voida salata, koska vastaanottaja ei enää käytä Signalia.\n\nLähetetäänkö salaamattomana?</string>
   <string name="ConversationItem_unable_to_open_media">Median avaamiseen ei löytynyt sovellusta.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Aloita suojattu istunto?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Aloita suojattu istunto yhteystiedon %s kanssa?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Suojatun istunnon alustuksen varmistus</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Haluatko varmasti alustaa tämän suojatun istunnon?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Varmista keskustelun poisto</string>
@@ -292,7 +290,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="RatingManager_later">Myöhemmin</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Estä tämä yhteystieto?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Jatkossa et enää näe tämän yhteystiedon lähettämiä viestejä.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Jatkossa et enää saa puheluita etkä viestejä tältä yhteystiedolta.</string>
   <string name="RecipientPreferenceActivity_block">Estä</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Poista esto tältä yhteystiedolta?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Haluatko varmasti poistaa eston tältä yhteystiedolta?</string>
@@ -389,6 +387,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="ThreadRecord_called">Soitit puhelun</string>
   <string name="ThreadRecord_called_you">Soitti sinulle</string>
   <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
+  <string name="ThreadRecord_media_message">Mediaviesti</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">(Sinulla ei ole identiteettiavainta.)</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">(Vastapuolella ei ole identiteettiavainta.)</string>
@@ -411,7 +410,6 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="ViewIdentityActivity_my_identity_fingerprint">Identiteettini sormenjälki</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Aloita olemassa olevasta pyynnöstä huolimatta?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Olet jo lähettänyt istunnon aloituspyynnön tälle vastaanottajalle. Haluatko varmasti lähettää toisen pyynnön? Tämä mitätöi ensimmäisen pyynnön.</string>
   <string name="KeyExchangeInitiator_send">Lähetä</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Viestin salaus on kelvoton...</string>
@@ -541,6 +539,8 @@ Tuo aiemmin viety salattu Signal-varmuuskopio.</string>
   <string name="import_fragment__import_plaintext_backup">Tuo salaamaton varmuuskopio</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\" -sovelluksen kanssa.</string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Näytä koko keskustelu...</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Ei kuvia</string>
   <!--message_recipients_list_item-->
@@ -816,7 +816,6 @@ Ilmaiset ja yksityiset viestit sekä puhelut Signalin käyttäjille</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Kutsu</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Aloita suojattu istunto</string>
   <string name="conversation_insecure__security">Turvallisuus</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Poista valitut</string>
@@ -865,12 +864,20 @@ Ilmaiset ja yksityiset viestit sekä puhelut Signalin käyttäjille</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Käyttämäsi Signalin versio on vanhentunut!</string>
   <string name="reminder_header_expired_build_details">Viestien lähetys ei enää onnistu. Päivitä sovellus viimeisimpään versioon.</string>
-  <string name="reminder_header_sms_default_title">Käytä oletuksena tekstiviesteille?</string>
+  <string name="reminder_header_expired_build_button">PÄIVITÄ</string>
+  <string name="reminder_header_sms_default_title">Käytä oletustekstiviestisovelluksena</string>
   <string name="reminder_header_sms_default_text">Napsauta, jos haluat tehdä Signalista oletustekstiviestisovelluksesi.</string>
-  <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit?</string>
+  <string name="reminder_header_sms_default_button">ASETA</string>
+  <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit</string>
   <string name="reminder_header_sms_import_text">Napsauta, jos haluat kopioida puhelimesi tekstiviestit Signalin salattuun tietokantaan.</string>
-  <string name="reminder_header_push_title">Ota käyttöön Signal-viestipalvelu?</string>
-  <string name="reminder_header_push_text">Napsauta tästä, jos haluat sanoa ei tekstiviestimaksuille ja kyllä vahvemmalle yksityisyydensuojalle sekä nopeille viesteille.</string>
+  <string name="reminder_header_sms_import_button">TUO</string>
+  <string name="reminder_header_push_title">Ota Signal käyttöön</string>
+  <string name="reminder_header_push_text">Päivitä pikaviestikokemuksesi.</string>
+  <string name="reminder_header_push_button">OTA KÄYTTÖÖN</string>
+  <string name="reminder_header_invite_title">Kutsu Signaliin</string>
+  <string name="reminder_header_invite_text">Vie keskustelusi yhteystiedon %1$s kanssa seuraavalle tasolle.</string>
+  <string name="reminder_header_invite_button">KUTSU</string>
+  <string name="reminder_header_close_button">SULJE</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sinä</string>
   <string name="MediaPreviewActivity_cant_display">Kuvan esikatselu epäonnistui</string>

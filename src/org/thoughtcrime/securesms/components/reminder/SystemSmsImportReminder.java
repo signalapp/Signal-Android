@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.components.reminder;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 public class SystemSmsImportReminder extends Reminder {
 
   public SystemSmsImportReminder(final Context context, final MasterSecret masterSecret) {
-    super(R.drawable.sms_system_import_icon,
-          R.string.reminder_header_sms_import_title,
-          R.string.reminder_header_sms_import_text);
+    super(context.getString(R.string.reminder_header_sms_import_title),
+          context.getString(R.string.reminder_header_sms_import_text));
 
     final OnClickListener okListener = new OnClickListener() {
       @Override
@@ -42,7 +41,7 @@ public class SystemSmsImportReminder extends Reminder {
       }
     };
     setOkListener(okListener);
-    setCancelListener(cancelListener);
+    setDismissListener(cancelListener);
   }
 
   public static boolean isEligible(Context context) {

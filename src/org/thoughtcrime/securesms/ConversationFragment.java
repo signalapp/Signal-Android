@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
@@ -58,6 +58,8 @@ public class ConversationFragment extends Fragment
 {
   private static final String TAG = ConversationFragment.class.getSimpleName();
 
+  private static final long   PARTIAL_CONVERSATION_LIMIT = 500L;
+
   private final ActionModeCallback actionModeCallback     = new ActionModeCallback();
   private final ItemClickListener  selectionClickListener = new ConversationFragmentItemClickListener();
 
@@ -69,6 +71,7 @@ public class ConversationFragment extends Fragment
   private ActionMode   actionMode;
   private Locale       locale;
   private RecyclerView list;
+  private View         loadMoreView;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -81,19 +84,24 @@ public class ConversationFragment extends Fragment
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
     list = ViewUtil.findById(view, android.R.id.list);
+    final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
+    list.setHasFixedSize(false);
+    list.setLayoutManager(layoutManager);
+
+    loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
+    loadMoreView.setOnClickListener(new OnClickListener() {
+      @Override public void onClick(View v) {
+        Bundle args = new Bundle();
+        args.putLong("limit", 0);
+        getLoaderManager().restartLoader(0, args, ConversationFragment.this);
+      }
+    });
     return view;
   }
 
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
-
-    final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-    layoutManager.setReverseLayout(true);
-    list.setHasFixedSize(false);
-    list.setScrollContainer(true);
-    list.setLayoutManager(layoutManager);
 
     initializeResources();
     initializeListAdapter();
@@ -123,20 +131,19 @@ public class ConversationFragment extends Fragment
     initializeListAdapter();
 
     if (threadId == -1) {
-      getLoaderManager().restartLoader(0, null, this);
+      getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
     }
   }
 
   private void initializeResources() {
-    this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
-    this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
+    this.recipients = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
+    this.threadId   = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null,
-                                              (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient()));
-      getLoaderManager().restartLoader(0, null, this);
+      list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients));
+      getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
     }
   }
 
@@ -296,33 +303,33 @@ public class ConversationFragment extends Fragment
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
-
-        message.fetchMediaSlide(new FutureTaskListener<Slide>() {
-          @Override
-          public void onSuccess(Slide slide) {
+        for (Slide slide : message.getSlideDeck().getSlides()) {
+          if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
             SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret);
             saveTask.execute(new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived()));
+            return;
           }
+        }
 
-          @Override
-          public void onFailure(Throwable error) {
-            Log.w(TAG, "No slide with attachable media found, failing nicely.");
-            Log.w(TAG, error);
-            Toast.makeText(getActivity(), R.string.ConversationFragment_error_while_saving_attachment_to_sd_card, Toast.LENGTH_LONG).show();
-          }
-        });
+        Log.w(TAG, "No slide with attachable media found, failing nicely.");
+        Toast.makeText(getActivity(), R.string.ConversationFragment_error_while_saving_attachment_to_sd_card, Toast.LENGTH_LONG).show();
       }
     });
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationLoader(getActivity(), threadId);
+  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    return new ConversationLoader(getActivity(), threadId, args.getLong("limit", PARTIAL_CONVERSATION_LIMIT));
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
+  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
     if (list.getAdapter() != null) {
+      if (cursor.getCount() >= PARTIAL_CONVERSATION_LIMIT && ((ConversationLoader)loader).hasLimit()) {
+        getListAdapter().setFooterView(loadMoreView);
+      } else {
+        getListAdapter().setFooterView(null);
+      }
       getListAdapter().changeCursor(cursor);
     }
   }

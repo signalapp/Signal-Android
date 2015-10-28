@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
@@ -12,11 +10,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 
 import java.io.IOException;
-import java.net.Inet6Address;
-import java.net.InterfaceAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
 
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.RetrieveConf;
@@ -31,7 +24,9 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
     this.context = context;
   }
 
-  @Nullable @Override public SendConf send(@NonNull byte[] pduBytes)
+  @Nullable
+  @Override
+  public SendConf send(@NonNull byte[] pduBytes)
       throws UndeliverableMessageException
   {
     try {
@@ -47,8 +42,10 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
     }
   }
 
-  @Nullable @Override public RetrieveConf retrieve(@NonNull String contentLocation,
-                                                   byte[] transactionId)
+  @Nullable
+  @Override
+  public RetrieveConf retrieve(@NonNull String contentLocation,
+                               byte[] transactionId)
       throws MmsException, MmsRadioException, ApnUnavailableException, IOException
   {
     try {

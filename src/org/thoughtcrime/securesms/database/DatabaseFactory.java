@@ -46,27 +46,29 @@ import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
-  private static final int INTRODUCED_IDENTITIES_VERSION       = 2;
-  private static final int INTRODUCED_INDEXES_VERSION          = 3;
-  private static final int INTRODUCED_DATE_SENT_VERSION        = 4;
-  private static final int INTRODUCED_DRAFTS_VERSION           = 5;
-  private static final int INTRODUCED_NEW_TYPES_VERSION        = 6;
-  private static final int INTRODUCED_MMS_BODY_VERSION         = 7;
-  private static final int INTRODUCED_MMS_FROM_VERSION         = 8;
-  private static final int INTRODUCED_TOFU_IDENTITY_VERSION    = 9;
-  private static final int INTRODUCED_PUSH_DATABASE_VERSION    = 10;
-  private static final int INTRODUCED_GROUP_DATABASE_VERSION   = 11;
-  private static final int INTRODUCED_PUSH_FIX_VERSION         = 12;
-  private static final int INTRODUCED_DELIVERY_RECEIPTS        = 13;
-  private static final int INTRODUCED_PART_DATA_SIZE_VERSION   = 14;
-  private static final int INTRODUCED_THUMBNAILS_VERSION       = 15;
-  private static final int INTRODUCED_IDENTITY_COLUMN_VERSION  = 16;
-  private static final int INTRODUCED_UNIQUE_PART_IDS_VERSION  = 17;
-  private static final int INTRODUCED_RECIPIENT_PREFS_DB       = 18;
-  private static final int INTRODUCED_ENVELOPE_CONTENT_VERSION = 19;
-  private static final int INTRODUCED_COLOR_PREFERENCE_VERSION = 20;
-  private static final int INTRODUCED_DB_OPTIMIZATIONS_VERSION = 21;
-  private static final int DATABASE_VERSION                    = 21;
+  private static final int INTRODUCED_IDENTITIES_VERSION                   = 2;
+  private static final int INTRODUCED_INDEXES_VERSION                      = 3;
+  private static final int INTRODUCED_DATE_SENT_VERSION                    = 4;
+  private static final int INTRODUCED_DRAFTS_VERSION                       = 5;
+  private static final int INTRODUCED_NEW_TYPES_VERSION                    = 6;
+  private static final int INTRODUCED_MMS_BODY_VERSION                     = 7;
+  private static final int INTRODUCED_MMS_FROM_VERSION                     = 8;
+  private static final int INTRODUCED_TOFU_IDENTITY_VERSION                = 9;
+  private static final int INTRODUCED_PUSH_DATABASE_VERSION                = 10;
+  private static final int INTRODUCED_GROUP_DATABASE_VERSION               = 11;
+  private static final int INTRODUCED_PUSH_FIX_VERSION                     = 12;
+  private static final int INTRODUCED_DELIVERY_RECEIPTS                    = 13;
+  private static final int INTRODUCED_PART_DATA_SIZE_VERSION               = 14;
+  private static final int INTRODUCED_THUMBNAILS_VERSION                   = 15;
+  private static final int INTRODUCED_IDENTITY_COLUMN_VERSION              = 16;
+  private static final int INTRODUCED_UNIQUE_PART_IDS_VERSION              = 17;
+  private static final int INTRODUCED_RECIPIENT_PREFS_DB                   = 18;
+  private static final int INTRODUCED_ENVELOPE_CONTENT_VERSION             = 19;
+  private static final int INTRODUCED_COLOR_PREFERENCE_VERSION             = 20;
+  private static final int INTRODUCED_DB_OPTIMIZATIONS_VERSION             = 21;
+  private static final int INTRODUCED_INVITE_REMINDERS_VERSION             = 22;
+  private static final int INTRODUCED_CONVERSATION_LIST_THUMBNAILS_VERSION = 23;
+  private static final int DATABASE_VERSION                                = 23;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -78,7 +80,8 @@ public class DatabaseFactory {
   private final SmsDatabase sms;
   private final EncryptingSmsDatabase encryptingSms;
   private final MmsDatabase mms;
-  private final PartDatabase part;
+  private final AttachmentDatabase attachments;
+  private final ImageDatabase image;
   private final ThreadDatabase thread;
   private final CanonicalAddressDatabase address;
   private final MmsAddressDatabase mmsAddress;
@@ -123,8 +126,12 @@ public class DatabaseFactory {
     return getInstance(context).encryptingSms;
   }
 
-  public static PartDatabase getPartDatabase(Context context) {
-    return getInstance(context).part;
+  public static AttachmentDatabase getAttachmentDatabase(Context context) {
+    return getInstance(context).attachments;
+  }
+
+  public static ImageDatabase getImageDatabase(Context context) {
+    return getInstance(context).image;
   }
 
   public static MmsAddressDatabase getMmsAddressDatabase(Context context) {
@@ -160,7 +167,8 @@ public class DatabaseFactory {
     this.sms                         = new SmsDatabase(context, databaseHelper);
     this.encryptingSms               = new EncryptingSmsDatabase(context, databaseHelper);
     this.mms                         = new MmsDatabase(context, databaseHelper);
-    this.part                        = new PartDatabase(context, databaseHelper);
+    this.attachments                 = new AttachmentDatabase(context, databaseHelper);
+    this.image                       = new ImageDatabase(context, databaseHelper);
     this.thread                      = new ThreadDatabase(context, databaseHelper);
     this.address                     = CanonicalAddressDatabase.getInstance(context);
     this.mmsAddress                  = new MmsAddressDatabase(context, databaseHelper);
@@ -180,7 +188,7 @@ public class DatabaseFactory {
     this.sms.reset(databaseHelper);
     this.encryptingSms.reset(databaseHelper);
     this.mms.reset(databaseHelper);
-    this.part.reset(databaseHelper);
+    this.attachments.reset(databaseHelper);
     this.thread.reset(databaseHelper);
     this.mmsAddress.reset(databaseHelper);
     this.mmsSmsDatabase.reset(databaseHelper);
@@ -377,6 +385,7 @@ public class DatabaseFactory {
 
               body = (body == null) ? Util.readFullyAsString(is) : body + " " + Util.readFullyAsString(is);
 
+              //noinspection ResultOfMethodCallIgnored
               dataFile.delete();
               db.delete("part", "_id = ?", new String[] {partId+""});
             } catch (IOException e) {
@@ -491,7 +500,7 @@ public class DatabaseFactory {
     public void onCreate(SQLiteDatabase db) {
       db.execSQL(SmsDatabase.CREATE_TABLE);
       db.execSQL(MmsDatabase.CREATE_TABLE);
-      db.execSQL(PartDatabase.CREATE_TABLE);
+      db.execSQL(AttachmentDatabase.CREATE_TABLE);
       db.execSQL(ThreadDatabase.CREATE_TABLE);
       db.execSQL(MmsAddressDatabase.CREATE_TABLE);
       db.execSQL(IdentityDatabase.CREATE_TABLE);
@@ -502,7 +511,7 @@ public class DatabaseFactory {
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
-      executeStatements(db, PartDatabase.CREATE_INDEXS);
+      executeStatements(db, AttachmentDatabase.CREATE_INDEXS);
       executeStatements(db, ThreadDatabase.CREATE_INDEXS);
       executeStatements(db, MmsAddressDatabase.CREATE_INDEXS);
       executeStatements(db, DraftDatabase.CREATE_INDEXS);
@@ -759,6 +768,14 @@ public class DatabaseFactory {
         db.execSQL("UPDATE mms SET date_received = (date_received * 1000), date = (date * 1000);");
         db.execSQL("CREATE INDEX IF NOT EXISTS sms_thread_date_index ON sms (thread_id, date);");
         db.execSQL("CREATE INDEX IF NOT EXISTS mms_thread_date_index ON mms (thread_id, date_received);");
+      }
+
+      if (oldVersion < INTRODUCED_INVITE_REMINDERS_VERSION) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN seen_invite_reminder INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < INTRODUCED_CONVERSATION_LIST_THUMBNAILS_VERSION) {
+        db.execSQL("ALTER TABLE thread ADD COLUMN snippet_uri TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

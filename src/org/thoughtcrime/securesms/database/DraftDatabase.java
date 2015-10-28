@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
@@ -136,7 +138,7 @@ public class DraftDatabase extends Database {
   public static class Drafts extends LinkedList<Draft> {
     private Draft getDraftOfType(String type) {
       for (Draft draft : this) {
-        if (Draft.TEXT.equals(draft.getType())) {
+        if (type.equals(draft.getType())) {
           return draft;
         }
       }
@@ -152,6 +154,16 @@ public class DraftDatabase extends Database {
       } else {
         return "";
       }
+    }
+
+    public @Nullable Uri getUriSnippet(Context context) {
+      Draft imageDraft = getDraftOfType(Draft.IMAGE);
+
+      if (imageDraft != null && imageDraft.getValue() != null) {
+        return Uri.parse(imageDraft.getValue());
+      }
+
+      return null;
     }
   }
 }

@@ -58,11 +58,11 @@ public class RecipientFactory {
     return provider.getRecipients(context, ids, asynchronous);
   }
 
-  public static Recipient getRecipientForId(Context context, long recipientId, boolean asynchronous) {
+  public @NonNull static Recipient getRecipientForId(Context context, long recipientId, boolean asynchronous) {
     return provider.getRecipient(context, recipientId, asynchronous);
   }
 
-  public static Recipients getRecipientsForIds(Context context, long[] recipientIds, boolean asynchronous) {
+  public @NonNull static Recipients getRecipientsForIds(Context context, long[] recipientIds, boolean asynchronous) {
     return provider.getRecipients(context, recipientIds, asynchronous);
   }
 
@@ -72,6 +72,20 @@ public class RecipientFactory {
 
     while (tokenizer.hasMoreTokens()) {
       Optional<Long> id = getRecipientIdFromNumber(context, tokenizer.nextToken());
+
+      if (id.isPresent()) {
+        ids.add(String.valueOf(id.get()));
+      }
+    }
+
+    return getRecipientsForIds(context, ids, asynchronous);
+  }
+
+  public static Recipients getRecipientsFromStrings(@NonNull Context context, @NonNull List<String> numbers, boolean asynchronous) {
+    List<String> ids = new LinkedList<>();
+
+    for (String number : numbers) {
+      Optional<Long> id = getRecipientIdFromNumber(context, number);
 
       if (id.isPresent()) {
         ids.add(String.valueOf(id.get()));

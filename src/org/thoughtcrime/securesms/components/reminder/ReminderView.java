@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.components.reminder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -7,23 +7,21 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * View to display actionable reminders to the user
  */
 public class ReminderView extends LinearLayout {
   private ViewGroup   container;
-  private ImageButton cancel;
+  private ImageButton closeButton;
   private TextView    title;
   private TextView    text;
-  private ImageView   icon;
 
   public ReminderView(Context context) {
     super(context);
@@ -43,33 +41,35 @@ public class ReminderView extends LinearLayout {
 
   private void initialize() {
     LayoutInflater.from(getContext()).inflate(R.layout.reminder_header, this, true);
-    container = (ViewGroup  ) findViewById(R.id.container);
-    cancel    = (ImageButton) findViewById(R.id.cancel);
-    title     = (TextView   ) findViewById(R.id.reminder_title);
-    text      = (TextView   ) findViewById(R.id.reminder_text);
-    icon      = (ImageView  ) findViewById(R.id.icon);
+    container   = ViewUtil.findById(this, R.id.container);
+    closeButton = ViewUtil.findById(this, R.id.cancel);
+    title       = ViewUtil.findById(this, R.id.reminder_title);
+    text        = ViewUtil.findById(this, R.id.reminder_text);
   }
 
   public void showReminder(final Reminder reminder) {
-    icon.setImageResource(reminder.getIconResId());
-    title.setText(reminder.getTitleResId());
-    text.setText(reminder.getTextResId());
+    title.setText(reminder.getTitle());
+    text.setText(reminder.getText());
 
-    this.setOnClickListener(reminder.getOkListener());
+    setOnClickListener(reminder.getOkListener());
 
     if (reminder.isDismissable()) {
-      cancel.setOnClickListener(new OnClickListener() {
+      closeButton.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
           hide();
-          if (reminder.getCancelListener() != null) reminder.getCancelListener().onClick(v);
+          if (reminder.getDismissListener() != null) reminder.getDismissListener().onClick(v);
         }
       });
     } else {
-      cancel.setVisibility(View.GONE);
+      closeButton.setVisibility(View.GONE);
     }
 
     container.setVisibility(View.VISIBLE);
+  }
+
+  public void requestDismiss() {
+    closeButton.performClick();
   }
 
   public void hide() {

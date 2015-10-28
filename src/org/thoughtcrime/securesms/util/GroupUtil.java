@@ -30,7 +30,7 @@ public class GroupUtil {
     return Hex.fromStringCondensed(groupId.split("!", 2)[1]);
   }
 
-  public static boolean isEncodedGroup(String groupId) {
+  public static boolean isEncodedGroup(@NonNull String groupId) {
     return groupId.startsWith(ENCODED_GROUP_PREFIX);
   }
 

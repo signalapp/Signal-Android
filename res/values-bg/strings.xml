@@ -73,8 +73,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>НЯМА</b> да бъде криптирано, защото получтеля вече не е потребител на Signal.\n\nИзпрати незащитено съобщение?</string>
   <string name="ConversationItem_unable_to_open_media">Неуспешно откриване на приложение за отваряне на този файл.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Започни сигурна сесия?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Започни сигурна сесия с %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Започни нова сигурна сесия</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Сигурен ли си, че искаш да започнеш от начало сигурната сесия?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Потвърждение за изтриване на разговора</string>
@@ -287,7 +285,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="RatingManager_later">По-късно</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирай този контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Повече няма да получавап съобщения от този потребител.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Повече няма да получавате разговори или съобщения от този потребител.</string>
   <string name="RecipientPreferenceActivity_block">Блокирай</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокирай този контакт?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Сигурен ли си, че искаш да отблокираш този контакт?</string>
@@ -383,6 +381,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ThreadRecord_called">Вие се обадихте</string>
   <string name="ThreadRecord_called_you">Ви се обади</string>
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
+  <string name="ThreadRecord_media_message">Медийно съобщение</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма ключ за самоличност.</string>
@@ -405,7 +404,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ViewIdentityActivity_my_identity_fingerprint">Моят ключ за самоличност</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Вече изпрати искане за започване на сесия до този получател, сигурен ли си, че искаш да го изпратиш повторно? Това ще анулира първото искане.</string>
   <string name="KeyExchangeInitiator_send">Изпрати</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Лошо шифровано съобщение...</string>
@@ -535,6 +533,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="import_fragment__import_plaintext_backup">Внеси разшифрован архив </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Внасяне на разшифрован архив. Съвместимо с \'SMSBackup And Restore.\'</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Няма изображения</string>
   <!--message_recipients_list_item-->
@@ -819,7 +818,6 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Покани</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Започни сигурна сесия</string>
   <string name="conversation_insecure__security">Сигурност</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Изтрий избраното</string>
@@ -868,12 +866,16 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Вдашата Signal версия е изтекла!</string>
   <string name="reminder_header_expired_build_details">Съобщенията няма повече да бъдат успешно доставени, моля, обновете до най-новата версия.</string>
-  <string name="reminder_header_sms_default_title">Използвай като SMS програма по подразбиране?</string>
+  <string name="reminder_header_expired_build_button">ОБНОВИ</string>
   <string name="reminder_header_sms_default_text">Натисни, за да направиш Signal своята SMS програма по подразбиране.</string>
-  <string name="reminder_header_sms_import_title">Внеси вече съществуващите SMS?</string>
+  <string name="reminder_header_sms_default_button">ЗАДАЙ</string>
   <string name="reminder_header_sms_import_text">Натисните, за да копирате своите SMS съобщения в шифрованата база данни.</string>
-  <string name="reminder_header_push_title">Активирай Signal съобщения?</string>
-  <string name="reminder_header_push_text">Натисните за мигновено доставяне, по-добра защита на личното пространство, и без SMS такси.</string>
+  <string name="reminder_header_sms_import_button">ВНЕСИ</string>
+  <string name="reminder_header_push_text">Обнови програмата.</string>
+  <string name="reminder_header_push_button">АКТИВИРАЙ</string>
+  <string name="reminder_header_invite_text">Издигни разговора си с %1$s до ново ниво.</string>
+  <string name="reminder_header_invite_button">ПОКАНИ</string>
+  <string name="reminder_header_close_button">ЗАТВОРИ</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ти</string>
   <string name="MediaPreviewActivity_cant_display">Неуспешен преглед на това изображение</string>
