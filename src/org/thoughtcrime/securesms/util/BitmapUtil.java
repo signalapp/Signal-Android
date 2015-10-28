@@ -166,14 +166,33 @@ public class BitmapUtil {
     return bytes;
   }
 
+  /*
+   * NV21 a.k.a. YUV420sp
+   * YUV 4:2:0 planar image, with 8 bit Y samples, followed by interleaved V/U plane with 8bit 2x2
+   * subsampled chroma samples.
+   *
+   * a 4x4 image's bytes would look like:
+   *
+   * YYYY
+   * YYYY
+   * YYYY
+   * YYYY
+   * VUVU
+   * VUVU
+   *
+   * http://www.fourcc.org/yuv.php#NV21
+   */
   public static byte[] rotateNV21(@NonNull final byte[] yuv,
                                   final int width,
                                   final int height,
                                   final int rotation)
   {
+    Log.w(TAG, String.format("rotateNV21(%dx%d, %d degrees)", width, height, rotation));
     if (rotation == 0) return yuv;
     if (rotation % 90 != 0 || rotation < 0 || rotation > 270) {
       throw new IllegalArgumentException("0 <= rotation < 360, rotation % 90 == 0");
+    } else if ((width * height * 3) / 2 != yuv.length) {
+      throw new IllegalArgumentException("provided width and height don't jive with the data length");
     }
 
     final byte[]  output    = new byte[yuv.length];

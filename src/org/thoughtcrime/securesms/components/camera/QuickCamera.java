@@ -80,35 +80,15 @@ public class QuickCamera extends CameraView {
       @Override
       public void onPreviewFrame(byte[] data, final Camera camera) {
         final int  rotation     = getCameraPictureOrientation();
-        final Size previewSize  = cameraParameters.getPreviewSize();
+        final Size previewSize  = camera.getParameters().getPreviewSize();
         final Rect croppingRect = getCroppedRect(previewSize, previewRect, rotation);
 
         Log.w(TAG, "previewSize: " + previewSize.width + "x" + previewSize.height);
-        Log.w(TAG, "previewFormat: " + cameraParameters.getPreviewFormat());
+        Log.w(TAG, "data bytes: " + data.length);
+        Log.w(TAG, "previewFormat: " + camera.getParameters().getPreviewFormat());
         Log.w(TAG, "croppingRect: " + croppingRect.toString());
         Log.w(TAG, "rotation: " + rotation);
-        new AsyncTask<byte[], Void, byte[]>() {
-          @Override
-          protected byte[] doInBackground(byte[]... params) {
-            byte[] data = params[0];
-            try {
-
-              return BitmapUtil.createFromNV21(data,
-                                               previewSize.width,
-                                               previewSize.height,
-                                               rotation,
-                                               croppingRect);
-            } catch (IOException e) {
-              return null;
-            }
-          }
-
-          @Override
-          protected void onPostExecute(byte[] imageBytes) {
-            capturing = false;
-            if (imageBytes != null && listener != null) listener.onImageCapture(imageBytes);
-          }
-        }.execute(data);
+        new RotatePreviewAsyncTask(previewSize, rotation, croppingRect).execute(data);
       }
     });
   }
@@ -205,6 +185,39 @@ public class QuickCamera extends CameraView {
     public void onCameraFail(FailureReason reason) {
       super.onCameraFail(reason);
       if (listener != null) listener.onCameraFail(reason);
+    }
+  }
+
+  private class RotatePreviewAsyncTask extends AsyncTask<byte[], Void, byte[]> {
+    private final Size previewSize;
+    private final int  rotation;
+    private final Rect croppingRect;
+
+    public RotatePreviewAsyncTask(Size previewSize, int rotation, Rect croppingRect) {
+      this.previewSize = previewSize;
+      this.rotation = rotation;
+      this.croppingRect = croppingRect;
+    }
+
+    @Override
+    protected byte[] doInBackground(byte[]... params) {
+      byte[] data = params[0];
+      try {
+
+        return BitmapUtil.createFromNV21(data,
+                                         previewSize.width,
+                                         previewSize.height,
+                                         rotation,
+                                         croppingRect);
+      } catch (IOException e) {
+        return null;
+      }
+    }
+
+    @Override
+    protected void onPostExecute(byte[] imageBytes) {
+      capturing = false;
+      if (imageBytes != null && listener != null) listener.onImageCapture(imageBytes);
     }
   }
 }
