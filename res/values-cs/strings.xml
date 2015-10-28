@@ -524,6 +524,7 @@ Obnovit dříve exportovanou šifrovanou zálohu Signal</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Prohlédnout si celou konverzaci</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Žádné obrázky</string>
   <!--message_recipients_list_item-->
@@ -858,12 +859,16 @@ Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal skončila!</string>
   <string name="reminder_header_expired_build_details">Zprávy již nemohou být odesílány, prosím aktualizujte na nejnovější verzi.</string>
   <string name="reminder_header_expired_build_button">AKTUALIZACE</string>
+  <string name="reminder_header_sms_default_title">Nastavit jako výchozí aplikaci pro SMS</string>
   <string name="reminder_header_sms_default_text">Dotykem nastavíte Signal jako výchozí SMS aplikaci</string>
   <string name="reminder_header_sms_default_button">NASTAVIT</string>
+  <string name="reminder_header_sms_import_title">Importovat SMS ze systému</string>
   <string name="reminder_header_sms_import_text">Poklepejte ke zkopírování SMS zpráv ve Vašem telefonu do šifrované databáze.</string>
   <string name="reminder_header_sms_import_button">IMPORTOVAT</string>
+  <string name="reminder_header_push_title">Povolit Signal</string>
   <string name="reminder_header_push_text">Aktualizujte si zasílání zpráv.</string>
   <string name="reminder_header_push_button">POVOLIT</string>
+  <string name="reminder_header_invite_title">Pozvat do Signalu</string>
   <string name="reminder_header_invite_text">Posuňte vaši konverzaci s %1$s na vyšší úroveň.</string>
   <string name="reminder_header_invite_button">POZVAT</string>
   <string name="reminder_header_close_button">ZAVŘÍT</string>
