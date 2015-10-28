@@ -128,11 +128,16 @@
             android:theme="@style/Theme.Transparent"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".ConversationListActivity"
+            android:name="org.thoughtcrime.securesms.ConversationListActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/GSecureNotActionBar"/>
+            android:theme="@style/GSecureNotActionBar">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.ConversationListActivity" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".ConversationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
