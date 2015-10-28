@@ -33,6 +33,14 @@ public abstract class Reminder {
     return dismissListener;
   }
 
+  public void setTitle(@NonNull CharSequence title) {
+    this.text = title;
+  }
+
+  public void setText(@NonNull CharSequence text) {
+    this.text = text;
+  }
+
   public void setOkListener(OnClickListener okListener) {
     this.okListener = okListener;
   }
