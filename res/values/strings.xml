@@ -549,6 +549,13 @@
     <string name="SingleRecipientNotificationBuilder_new_signal_message">New Signal message</string>
     <string name="SingleRecipientNotificationBuilder_contents_hidden">Contents hidden</string>
 
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__image">Image</string>
+    <string name="attachment_type_selector__audio">Audio</string>
+    <string name="attachment_type_selector__video">Video</string>
+    <string name="attachment_type_selector__contact">Contact</string>
+    <string name="attachment_type_selector__camera">Camera</string>
+
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
     <string name="change_passphrase_activity__new_passphrase">NEW PASSPHRASE:</string>
