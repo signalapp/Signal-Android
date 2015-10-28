@@ -30,7 +30,6 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.util.Pair;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -39,10 +38,9 @@ import android.view.Surface;
 import android.widget.FrameLayout;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-
-import com.commonsware.cwac.camera.CameraHost.FailureReason;
-import com.commonsware.cwac.camera.CameraUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -90,26 +88,28 @@ public class CameraView extends FrameLayout {
     if (started) return;
     started = true;
     Log.w(TAG, "onResume() queued");
-    enqueueTask(new SerialAsyncTask<Pair<Camera, FailureReason>>() {
-      @Override protected Pair<Camera, FailureReason> onRunBackground() {
+    enqueueTask(new SerialAsyncTask<Camera>() {
+      @Override
+      protected @Nullable Camera onRunBackground() {
         try {
           if (cameraId >= 0) {
-            return new Pair<>(Camera.open(cameraId), null);
+            return Camera.open(cameraId);
           } else {
-            return new Pair<>(null, FailureReason.NO_CAMERAS_REPORTED);
+            return null;
           }
         } catch (Exception e) {
-          return new Pair<>(null, FailureReason.UNKNOWN);
+          return null;
         }
       }
 
-      @Override protected void onPostMain(Pair<Camera, FailureReason> result) {
-        if (result.first == null) {
-          if (listener != null) listener.onCameraFail(result.second);
+      @Override
+      protected void onPostMain(@Nullable Camera camera) {
+        if (camera == null) {
+          if (listener != null) listener.onCameraFail();
           return;
         }
 
-        camera = Optional.of(result.first);
+        CameraView.this.camera = Optional.of(camera);
         try {
           if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
             onOrientationChange.enable();
@@ -279,10 +279,10 @@ public class CameraView extends FrameLayout {
 
     Size preferredSize = VERSION.SDK_INT > 11 ? camera.getParameters().getPreferredPreviewSizeForVideo() : null;
     if (preferredSize == null) {
-      preferredSize = CameraUtils.getBestAspectPreviewSize(displayOrientation,
-                                                           getMeasuredWidth(),
-                                                           getMeasuredHeight(),
-                                                           parameters);
+      preferredSize = getBestAspectPreviewSize(displayOrientation,
+                                               getMeasuredWidth(),
+                                               getMeasuredHeight(),
+                                               parameters);
     }
 
     return preferredSize;
@@ -447,6 +447,46 @@ public class CameraView extends FrameLayout {
     return visibleRect;
   }
 
+  public static Camera.Size getBestAspectPreviewSize(int displayOrientation,
+                                                     int width,
+                                                     int height,
+                                                     Camera.Parameters parameters) {
+    double targetRatio = (double)width / height;
+    Size   optimalSize = null;
+    double minDiff     = Double.MAX_VALUE;
+
+    if (displayOrientation == 90 || displayOrientation == 270) {
+      targetRatio = (double)height / width;
+    }
+
+    List<Size> sizes = parameters.getSupportedPreviewSizes();
+
+    Collections.sort(sizes, Collections.reverseOrder(new SizeComparator()));
+
+    for (Size size : sizes) {
+      double ratio = (double)size.width / size.height;
+
+      if (Math.abs(ratio - targetRatio) < minDiff) {
+        optimalSize = size;
+        minDiff     = Math.abs(ratio - targetRatio);
+      }
+    }
+
+    return optimalSize;
+  }
+
+  private static class SizeComparator implements Comparator<Size> {
+    @Override
+    public int compare(Size lhs, Size rhs) {
+      int left  = lhs.width * lhs.height;
+      int right = rhs.width * rhs.height;
+
+      if (left < right) return -1;
+      if (left > right) return 1;
+      else              return 0;
+    }
+  }
+
   @SuppressWarnings("SuspiciousNameCombination")
   private void rotateRect(Rect rect) {
     rect.set(rect.top, rect.left, rect.bottom, rect.right);
@@ -501,14 +541,12 @@ public class CameraView extends FrameLayout {
     @Override protected void onWait() throws PreconditionsNotMetException {
       synchronized (CameraView.this) {
         if (!camera.isPresent()) {
-          Log.w(TAG, "throwing preconditions not met");
           throw new PreconditionsNotMetException();
         }
         while (getMeasuredHeight() <= 0 || getMeasuredWidth() <= 0 || !surface.isReady()) {
-          Log.w(TAG, String.format("waiting. prevewStrategy? %s", surface.isReady()));
+          Log.w(TAG, String.format("waiting. surface ready? %s", surface.isReady()));
           Util.wait(CameraView.this, 0);
         }
-        Log.w(TAG, "done waiting!");
       }
     }
   }
@@ -549,7 +587,6 @@ public class CameraView extends FrameLayout {
 
   public interface CameraViewListener {
     void onImageCapture(@NonNull final byte[] imageBytes);
-
-    void onCameraFail(FailureReason reason);
+    void onCameraFail();
   }
 }
