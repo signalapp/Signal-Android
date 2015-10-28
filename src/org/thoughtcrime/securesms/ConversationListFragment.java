@@ -54,6 +54,7 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
+import org.thoughtcrime.securesms.components.reminder.OutdatedBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
@@ -166,8 +167,10 @@ public class ConversationListFragment extends Fragment
     new AsyncTask<Context, Void, Optional<? extends Reminder>>() {
       @Override protected Optional<? extends Reminder> doInBackground(Context... params) {
         final Context context = params[0];
-        if (ExpiredBuildReminder.isEligible(context)) {
+        if (ExpiredBuildReminder.isEligible()) {
           return Optional.of(new ExpiredBuildReminder(context));
+        } else if (OutdatedBuildReminder.isEligible()) {
+          return Optional.of(new OutdatedBuildReminder(context));
         } else if (DefaultSmsReminder.isEligible(context)) {
           return Optional.of(new DefaultSmsReminder(context));
         } else if (Util.isDefaultSmsProvider(context) && SystemSmsImportReminder.isEligible(context)) {
