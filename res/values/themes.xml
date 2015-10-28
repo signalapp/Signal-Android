@@ -85,6 +85,7 @@
         <item name="colorAccent">@color/textsecure_primary_dark</item>
         <item name="android:windowBackground">@color/gray5</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
+        <item name="attachment_type_selector_background">@color/white</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
         <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_unread_background</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background</item>
@@ -190,6 +191,7 @@
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
         <item name="theme_type">dark</item>
+        <item name="attachment_type_selector_background">@color/gray95</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>

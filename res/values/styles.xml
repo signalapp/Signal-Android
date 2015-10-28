@@ -196,6 +196,10 @@
         <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
     </style>
 
+    <style name="AttachmentTypeLabel">
+        <item name="android:textColor">#ff999999</item>
+    </style>
+
     <!-- RedPhone -->
 
     <!-- Buttons in the main "button row" of the in-call onscreen touch UI. -->

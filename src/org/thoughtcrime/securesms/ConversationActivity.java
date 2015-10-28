@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
+import org.thoughtcrime.securesms.components.AttachmentTypeSelector;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
@@ -181,14 +182,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   View                  composeBubble;
   private   ReminderView          reminderView;
 
-  private   AttachmentTypeSelectorAdapter attachmentAdapter;
-  private   AttachmentManager             attachmentManager;
-  private   BroadcastReceiver             securityUpdateReceiver;
-  private   BroadcastReceiver             groupUpdateReceiver;
-  private   EmojiDrawer                   emojiDrawer;
-  private   EmojiToggle                   emojiToggle;
-  protected HidingImageButton             quickAttachmentToggle;
-  private   QuickAttachmentDrawer         quickAttachmentDrawer;
+  private   AttachmentTypeSelector attachmentTypeSelector;
+  private   AttachmentManager      attachmentManager;
+  private   BroadcastReceiver      securityUpdateReceiver;
+  private   BroadcastReceiver      groupUpdateReceiver;
+  private   EmojiDrawer            emojiDrawer;
+  private   EmojiToggle            emojiToggle;
+  protected HidingImageButton      quickAttachmentToggle;
+  private   QuickAttachmentDrawer  quickAttachmentDrawer;
 
   private Recipients recipients;
   private long       threadId;
@@ -673,8 +674,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleAddAttachment() {
     if (this.isMmsEnabled || isSecureText) {
-      new AlertDialogWrapper.Builder(this).setAdapter(attachmentAdapter, new AttachmentTypeListener())
-                                          .show();
+      attachmentTypeSelector.show(this, attachButton);
     } else {
       handleManualMmsRequired();
     }
@@ -865,8 +865,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
     colors.recycle();
 
-    attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
-    attachmentManager = new AttachmentManager(this, this);
+    attachmentTypeSelector = new AttachmentTypeSelector(this, new AttachmentTypeListener());
+    attachmentManager      = new AttachmentManager(this, this);
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -1348,11 +1348,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   // Listeners
 
-  private class AttachmentTypeListener implements DialogInterface.OnClickListener {
+  private class AttachmentTypeListener implements AttachmentTypeSelector.AttachmentClickedListener {
     @Override
-    public void onClick(DialogInterface dialog, int which) {
-      addAttachment(attachmentAdapter.buttonToCommand(which));
-      dialog.dismiss();
+    public void onClick(int type) {
+      addAttachment(type);
     }
   }
 
