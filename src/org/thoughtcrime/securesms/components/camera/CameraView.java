@@ -24,7 +24,6 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.Parameters;
-import android.hardware.Camera.PreviewCallback;
 import android.hardware.Camera.Size;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -203,16 +202,13 @@ public class CameraView extends FrameLayout {
       previewHeight = height;
     }
 
-    Log.w(TAG, "layout " + width + "x" + height + ", target " + previewWidth + "x" + previewHeight);
-
     if (previewHeight == 0 || previewWidth == 0) {
       Log.w(TAG, "skipping layout due to zero-width/height preview size");
       return;
     }
+    Log.w(TAG, "layout " + width + "x" + height + ", target " + previewWidth + "x" + previewHeight);
 
-    boolean widerThanTall = (width * previewHeight > height * previewWidth);
-
-    if (widerThanTall) {
+    if (width * previewHeight > height * previewWidth) {
       final int scaledChildHeight = previewHeight * width / previewWidth;
       surface.layout(0, (height - scaledChildHeight) / 2, width, (height + scaledChildHeight) / 2);
     } else {
@@ -234,22 +230,15 @@ public class CameraView extends FrameLayout {
   }
 
   public void flipCamera() {
-    enqueueTask(new PostInitializationTask() {
-      @Override protected void onPostMain(Object o) {
-        if (Camera.getNumberOfCameras() > 1) {
-          cameraId = cameraId == CameraInfo.CAMERA_FACING_FRONT
-                   ? CameraInfo.CAMERA_FACING_BACK
-                   : CameraInfo.CAMERA_FACING_FRONT;
-          onPause();
-          onResume();
-        }
-      }
-    });
+    if (Camera.getNumberOfCameras() > 1) {
+      cameraId = cameraId == CameraInfo.CAMERA_FACING_BACK
+                 ? CameraInfo.CAMERA_FACING_FRONT
+                 : CameraInfo.CAMERA_FACING_BACK;
+      onPause();
+      onResume();
+    }
   }
 
-  public void setOneShotPreviewCallback(PreviewCallback callback) {
-    if (camera.isPresent()) camera.get().setOneShotPreviewCallback(callback);
-  }
 
   @TargetApi(14)
   private void onCameraReady() {
@@ -367,10 +356,6 @@ public class CameraView extends FrameLayout {
     return (Activity)getContext();
   }
 
-  protected @NonNull Optional<Camera> getCamera() {
-    return camera;
-  }
-
   public int getCameraPictureRotation(int orientation) {
     final CameraInfo info = getCameraInfo();
     final int        rotation;
@@ -416,13 +401,12 @@ public class CameraView extends FrameLayout {
   }
 
   public void takePicture(final Rect previewRect) {
-    // TODO check camera state
-    if (!getCamera().isPresent() || getCamera().get().getParameters() == null) {
+    if (!camera.isPresent() || camera.get().getParameters() == null) {
       Log.w(TAG, "camera not in capture-ready state");
       return;
     }
 
-    setOneShotPreviewCallback(new Camera.PreviewCallback() {
+    camera.get().setOneShotPreviewCallback(new Camera.PreviewCallback() {
       @Override
       public void onPreviewFrame(byte[] data, final Camera camera) {
         final int  rotation     = getCameraPictureOrientation();

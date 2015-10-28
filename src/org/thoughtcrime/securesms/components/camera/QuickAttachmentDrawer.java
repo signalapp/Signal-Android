@@ -533,7 +533,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
     public void onClick(View v) {
       cameraView.flipCamera();
       swapCameraButton.setImageResource(cameraView.isRearCamera() ? R.drawable.quick_camera_front
-                                                                   : R.drawable.quick_camera_rear);
+                                                                  : R.drawable.quick_camera_rear);
     }
   }
 
