@@ -674,7 +674,7 @@
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
     <string name="recipient_preferences__disable_notifications_for_this_conversation">Disable notifications for this conversation</string>
-    <string name="recipient_preferences__notification_tone">Notification tone</string>
+    <string name="recipient_preferences__notification_sound">Notification sound</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
