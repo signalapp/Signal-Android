@@ -38,8 +38,6 @@ import android.view.Surface;
 import android.widget.FrameLayout;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -167,9 +165,11 @@ public class CameraView extends FrameLayout {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
     if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0 && camera.isPresent()) {
-      final Size       preferredPreviewSize = getPreferredPreviewSize(camera.get());
-      final Parameters parameters           = camera.get().getParameters();
-
+      final Size preferredPreviewSize = CameraUtils.getPreferredPreviewSize(displayOrientation,
+                                                                            getMeasuredWidth(),
+                                                                            getMeasuredHeight(),
+                                                                            camera.get());
+      final Parameters parameters = camera.get().getParameters();
       if (preferredPreviewSize != null && !parameters.getPreviewSize().equals(preferredPreviewSize)) {
         stopPreview();
         parameters.setPreviewSize(preferredPreviewSize.width, preferredPreviewSize.height);
@@ -269,23 +269,6 @@ public class CameraView extends FrameLayout {
         }
       }
     });
-  }
-
-  @TargetApi(11)
-  private @Nullable Size getPreferredPreviewSize(@NonNull Camera camera) {
-    final Camera.Parameters parameters = camera.getParameters();
-    Log.w(TAG, "original preview size: " +
-               parameters.getPreviewSize().width + "x" + parameters.getPreviewSize().height);
-
-    Size preferredSize = VERSION.SDK_INT > 11 ? camera.getParameters().getPreferredPreviewSizeForVideo() : null;
-    if (preferredSize == null) {
-      preferredSize = getBestAspectPreviewSize(displayOrientation,
-                                               getMeasuredWidth(),
-                                               getMeasuredHeight(),
-                                               parameters);
-    }
-
-    return preferredSize;
   }
 
   private void startPreview() {
@@ -436,7 +419,7 @@ public class CameraView extends FrameLayout {
     final float newWidth  = visibleRect.width()  * scale;
     final float newHeight = visibleRect.height() * scale;
     final float centerX   = (VERSION.SDK_INT < 14) ? previewWidth - newWidth / 2 : previewWidth / 2;
-    final float centerY   = previewHeight        / 2;
+    final float centerY   = previewHeight / 2;
 
     visibleRect.set((int) (centerX - newWidth  / 2),
                     (int) (centerY - newHeight / 2),
@@ -447,45 +430,6 @@ public class CameraView extends FrameLayout {
     return visibleRect;
   }
 
-  public static Camera.Size getBestAspectPreviewSize(int displayOrientation,
-                                                     int width,
-                                                     int height,
-                                                     Camera.Parameters parameters) {
-    double targetRatio = (double)width / height;
-    Size   optimalSize = null;
-    double minDiff     = Double.MAX_VALUE;
-
-    if (displayOrientation == 90 || displayOrientation == 270) {
-      targetRatio = (double)height / width;
-    }
-
-    List<Size> sizes = parameters.getSupportedPreviewSizes();
-
-    Collections.sort(sizes, Collections.reverseOrder(new SizeComparator()));
-
-    for (Size size : sizes) {
-      double ratio = (double)size.width / size.height;
-
-      if (Math.abs(ratio - targetRatio) < minDiff) {
-        optimalSize = size;
-        minDiff     = Math.abs(ratio - targetRatio);
-      }
-    }
-
-    return optimalSize;
-  }
-
-  private static class SizeComparator implements Comparator<Size> {
-    @Override
-    public int compare(Size lhs, Size rhs) {
-      int left  = lhs.width * lhs.height;
-      int right = rhs.width * rhs.height;
-
-      if (left < right) return -1;
-      if (left > right) return 1;
-      else              return 0;
-    }
-  }
 
   @SuppressWarnings("SuspiciousNameCombination")
   private void rotateRect(Rect rect) {
@@ -557,16 +501,15 @@ public class CameraView extends FrameLayout {
     private final Rect croppingRect;
 
     public RotatePreviewAsyncTask(Size previewSize, int rotation, Rect croppingRect) {
-      this.previewSize = previewSize;
-      this.rotation = rotation;
+      this.previewSize  = previewSize;
+      this.rotation     = rotation;
       this.croppingRect = croppingRect;
     }
 
     @Override
     protected byte[] doInBackground(byte[]... params) {
-      byte[] data = params[0];
+      final byte[] data = params[0];
       try {
-
         return BitmapUtil.createFromNV21(data,
                                          previewSize.width,
                                          previewSize.height,

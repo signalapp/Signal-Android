@@ -177,13 +177,13 @@ public class BitmapUtil {
                                   final int width,
                                   final int height,
                                   final int rotation)
+      throws IOException
   {
-    Log.w(TAG, String.format("rotateNV21(%dx%d, %d degrees)", width, height, rotation));
     if (rotation == 0) return yuv;
     if (rotation % 90 != 0 || rotation < 0 || rotation > 270) {
       throw new IllegalArgumentException("0 <= rotation < 360, rotation % 90 == 0");
     } else if ((width * height * 3) / 2 != yuv.length) {
-      throw new IllegalArgumentException("provided width and height don't jive with the data length");
+      throw new IOException("provided width and height don't jive with the data length");
     }
 
     final byte[]  output    = new byte[yuv.length];
