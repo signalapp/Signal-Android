@@ -58,11 +58,11 @@ public class RecipientFactory {
     return provider.getRecipients(context, ids, asynchronous);
   }
 
-  public static Recipient getRecipientForId(Context context, long recipientId, boolean asynchronous) {
+  public @NonNull static Recipient getRecipientForId(Context context, long recipientId, boolean asynchronous) {
     return provider.getRecipient(context, recipientId, asynchronous);
   }
 
-  public static Recipients getRecipientsForIds(Context context, long[] recipientIds, boolean asynchronous) {
+  public @NonNull static Recipients getRecipientsForIds(Context context, long[] recipientIds, boolean asynchronous) {
     return provider.getRecipients(context, recipientIds, asynchronous);
   }
 
