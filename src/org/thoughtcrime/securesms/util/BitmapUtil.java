@@ -171,15 +171,6 @@ public class BitmapUtil {
    * YUV 4:2:0 planar image, with 8 bit Y samples, followed by interleaved V/U plane with 8bit 2x2
    * subsampled chroma samples.
    *
-   * a 4x4 image's bytes would look like:
-   *
-   * YYYY
-   * YYYY
-   * YYYY
-   * YYYY
-   * VUVU
-   * VUVU
-   *
    * http://www.fourcc.org/yuv.php#NV21
    */
   public static byte[] rotateNV21(@NonNull final byte[] yuv,
