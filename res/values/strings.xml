@@ -674,7 +674,7 @@
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
     <string name="recipient_preferences__disable_notifications_for_this_conversation">Disable notifications for this conversation</string>
-    <string name="recipient_preferences__notification_tone">Notification tone</string>
+    <string name="recipient_preferences__notification_sound">Notification sound</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
@@ -871,7 +871,7 @@
     <string name="preferences__pref_led_blink_custom_pattern_on_for">On for:</string>
     <string name="preferences__pref_led_blink_custom_pattern_off_for">Off for:</string>
     <string name="preferences__pref_led_blink_custom_pattern_set">Custom LED blink pattern set!</string>
-    <string name="preferences__sound">Sound</string>
+    <string name="preferences__notification_sound">Notification sound</string>
     <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__inthread_notifications">In-thread notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation</string>
