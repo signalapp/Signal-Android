@@ -59,11 +59,17 @@ public class NotificationBarManager {
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
     String notificationText     = context.getString(R.string.NotificationBarManager_signal_call_in_progress);
-    Notification notification   = new Notification(R.drawable.redphone_stat_sys_phone_call, null,
-                                                   System.currentTimeMillis());
 
-    notification.setLatestEventInfo(context, notificationText, notificationText, pendingIntent);
-    notification.flags = Notification.FLAG_NO_CLEAR;
+    Notification notification = new NotificationCompat.Builder(context)
+            .setContentTitle(notificationText)
+            .setContentText(notificationText)
+            .setSmallIcon(R.drawable.redphone_stat_sys_phone_call)
+            .setContentIntent(pendingIntent)
+            .setOngoing(true)
+            .setPriority(5) // High
+            .setTicker(null)
+            .build();
+
     notificationManager.notify(RED_PHONE_NOTIFICATION, notification);
   }
   
