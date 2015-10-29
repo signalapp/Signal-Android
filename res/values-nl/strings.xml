@@ -525,6 +525,7 @@ Herstel een eerder geëxporteerde versleutelde back-up van Signal.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Bekijk gehele gesprek</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Geen afbeeldingen</string>
   <!--message_recipients_list_item-->
@@ -851,12 +852,16 @@ Gratis privéberichten versturen aan Signal gebruikers</string>
   <string name="reminder_header_expired_build">Je versie van Signal is verouderd!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
   <string name="reminder_header_expired_build_button">UPGRADEN</string>
+  <string name="reminder_header_sms_default_title">Gebruiken als standaard SMS-app</string>
   <string name="reminder_header_sms_default_text">Aanraken om Signal je standaard SMS-applicatie te maken.</string>
   <string name="reminder_header_sms_default_button">SET</string>
+  <string name="reminder_header_sms_import_title">SMS uit systeem importeren</string>
   <string name="reminder_header_sms_import_text">Aanraken om de SMS berichten in je telefoon te kopiëren naar een versleutelde database.</string>
   <string name="reminder_header_sms_import_button">IMPORTEREN</string>
+  <string name="reminder_header_push_title">Signal inschakelen</string>
   <string name="reminder_header_push_text">Uw gesprekservaringervarig verbeteren.</string>
   <string name="reminder_header_push_button">AANZETTEN</string>
+  <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
   <string name="reminder_header_invite_text">Haal uw gesprek met %1$s naar het volgende niveau.</string>
   <string name="reminder_header_invite_button">UITNODIGEN</string>
   <string name="reminder_header_close_button">SLUITEN</string>

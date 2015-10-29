@@ -525,6 +525,7 @@ Gjenopprett en tidligere eksportert kryptert Signal backup.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Se hele samtalen</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Ingen bilder</string>
   <!--message_recipients_list_item-->
@@ -851,12 +852,16 @@ Gratis og private meldinger til Signal brukere
   <string name="reminder_header_expired_build">Din versjon av Signal er foreldet!</string>
   <string name="reminder_header_expired_build_details">Det vil ikke lenger være mulig å sende meldinger. Vær vennlig å oppdatere til siste versjon.</string>
   <string name="reminder_header_expired_build_button">OPPGRADER</string>
+  <string name="reminder_header_sms_default_title">Bruk som standard SMS applikasjon</string>
   <string name="reminder_header_sms_default_text">Klikk for å la Signal være din standard SMS applikasjon.</string>
   <string name="reminder_header_sms_default_button">SETT</string>
+  <string name="reminder_header_sms_import_title">Importer systemets SMS</string>
   <string name="reminder_header_sms_import_text">Klikk for å kopiere telefonens SMS meldinger til sin krypterte database.</string>
   <string name="reminder_header_sms_import_button">IMPORTER</string>
+  <string name="reminder_header_push_title">Aktiver Signal</string>
   <string name="reminder_header_push_text">Oppgrader meldingsopplevelsen din.</string>
   <string name="reminder_header_push_button">AKTIVER</string>
+  <string name="reminder_header_invite_title">Inviter til Signal</string>
   <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>
   <string name="reminder_header_invite_button">INVITER</string>
   <string name="reminder_header_close_button">LUKK</string>
