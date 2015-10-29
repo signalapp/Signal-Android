@@ -19,17 +19,9 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,14 +38,14 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
 
   @Override
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
+    getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
     super.onCreate(icicle, masterSecret);
-    contactsFragment.setMultiSelect(true);
 
-    action.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_white_24dp));
-    action.setOnClickListener(new View.OnClickListener() {
+    getToolbar().setNavigationIcon(R.drawable.ic_check_white_24dp);
+    getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent       resultIntent     = getIntent();
+        Intent resultIntent = getIntent();
         List<String> selectedContacts = contactsFragment.getSelectedContacts();
 
         if (selectedContacts != null) {

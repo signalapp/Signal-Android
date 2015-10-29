@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -65,4 +67,12 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
                                          .toBundle();
     ActivityCompat.startActivity(this, intent, bundle);
   }
+
+  @TargetApi(VERSION_CODES.LOLLIPOP)
+  protected void setStatusBarColor(int color) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setStatusBarColor(color);
+    }
+  }
+
 }
