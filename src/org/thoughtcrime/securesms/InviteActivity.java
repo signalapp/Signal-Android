@@ -167,6 +167,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     public void onClick(View v) {
       new AlertDialog.Builder(InviteActivity.this)
           .setTitle(getString(R.string.InviteActivity_send_sms_invites, contactsFragment.getSelectedContacts().size()))
+          .setMessage(inviteText.getText().toString())
           .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override public void onClick(DialogInterface dialog, int which) {
               sendSmsInvites();
