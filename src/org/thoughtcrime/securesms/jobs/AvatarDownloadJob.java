@@ -28,6 +28,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import de.gdata.messaging.util.GService;
+
 public class AvatarDownloadJob extends MasterSecretJob {
 
   private static final String TAG = AvatarDownloadJob.class.getSimpleName();
@@ -82,6 +84,9 @@ public class AvatarDownloadJob extends MasterSecretJob {
     } finally {
       if (attachment != null)
         attachment.delete();
+      if(GService.reloadHandler != null) {
+        GService.reloadHandler.sendEmptyMessage(0);
+      }
     }
   }
 

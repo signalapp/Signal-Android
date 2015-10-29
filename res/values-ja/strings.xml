@@ -379,14 +379,14 @@
   <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
   <string name="export_fragment__export_plaintext_backup">テキスト形式のバックアップファイルをエクスポート</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-\'SMSバックアップと復元\' と互換性のあるテキスト形式のバックアップファイルをSDカードにエクスポートします</string>
+\'SMS Backup &amp; Restore\' と互換性のあるテキスト形式のバックアップファイルをSDカードにエクスポートします</string>
   <string name="import_fragment__import_system_sms_database">端末のSMSデータベースをインポート</string>
   <string name="import_fragment__import_the_database_from_the_default_system">デフォルトに設定されているSMSアプリのデータベースからインポートします。</string>
   <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップファイルをインポート</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
 前回エクスポートされた暗号化したSecureChatバックアップファイルを復元</string>
   <string name="import_fragment__import_plaintext_backup">テキスト形式のバックアップファイルをインポート</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\'SMSバックアップと復元\' と互換性のあるテキスト形式のバックアップファイルをインポートします。</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\'SMS Backup &amp; Restore\' と互換性のあるテキスト形式のバックアップファイルをインポートします。</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">この端末は手動でMMS設定する必要があります。</string>
   <string name="MmsPreferencesFragment__enabled">有効</string>

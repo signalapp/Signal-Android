@@ -149,14 +149,10 @@ public class PushDecryptJob extends MasterSecretJob {
       Log.w(TAG, e);
       handleUntrustedIdentityMessage(masterSecret, envelope, smsMessageId);
     }
-    reloadHeader();
+    GUtil.reloadUnreadHeaderCounter();
   }
-  public static final String ACTION_RELOAD_HEADER = "reloadHeader";
 
-  public static void reloadHeader() {
-    Intent intent = new Intent(ACTION_RELOAD_HEADER);
-    LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
-  }
+
   private void handleEndSessionMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
                                        TextSecureMessage message, Optional<Long> smsMessageId)
   {
@@ -251,7 +247,9 @@ public class PushDecryptJob extends MasterSecretJob {
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
       } else {
         long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageAndThreadId.first);
-        DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+        if(!DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId).isGroupRecipient()) {
+          DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+        }
       }
     }
   }

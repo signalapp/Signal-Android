@@ -27,21 +27,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.Pair;
 import android.view.ContextThemeWrapper;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -53,7 +47,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -86,7 +79,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
@@ -117,6 +109,7 @@ public class ProfileFragment extends Fragment {
     private MasterSecret masterSecret;
     private GDataPreferences gDataPreferences;
     private String profileId = "";
+    private String phonenumber = "";
 
     private static final int PICK_IMAGE = 1;
     private static final int TAKE_PHOTO = 2;
@@ -202,7 +195,7 @@ public class ProfileFragment extends Fragment {
         historyContentTextView = (TextView) getView().findViewById(R.id.history_content);
         historyScrollView = (HorizontalScrollView) getView().findViewById(R.id.horizontal_scroll);
         recipientsPanel = (PushRecipientsPanel) getView().findViewById(R.id.recipients);
-        profilePhone.setText(profileId);
+        profilePhone.setText(phonenumber);
         profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
         phoneCall = (ImageView) getView().findViewById(R.id.phone_call);
         (getView().findViewById(R.id.contacts_button)).setOnClickListener(new AddRecipientButtonListener());
@@ -231,9 +224,9 @@ public class ProfileFragment extends Fragment {
                             return false;
                         }
                     });
-                    statusDate.setText(GUtil.getDate(
+                    statusDate.setText(GUtil.getLocalDate(
                             ProfileAccessor.getProfileUpdateTimeForRecepient(getActivity(), profileId),
-                            "dd.MM.yyyy hh:mm:ss"));
+                            getActivity().getApplicationContext()));
                     imageText.setText(recipient.getName());
                 }
                 profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
@@ -301,6 +294,12 @@ public class ProfileFragment extends Fragment {
                 }
                 adapter.setMasterSecret(masterSecret);
                 adapter.setThreadId(threadId);
+                adapter.setOnRecipientDeletedListener(new SelectedRecipientsAdapter.OnRecipientDeletedListener() {
+                    @Override
+                    public void onRecipientDeleted(Recipient recipient) {
+                        removeSelectedContact(recipient);
+                    }
+                });
                 groupMember.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
@@ -310,7 +309,9 @@ public class ProfileFragment extends Fragment {
                 scaleImage((ImageView) getView().findViewById(R.id.profile_picture_group), avatar);
             }
             imageText.setText(groupName);
-            profileStatus.setText(groupName);
+            if(profileStatusString.equals("")) {
+                profileStatus.setText(groupName);
+            }
             layout_phone.setVisibility(View.GONE);
 
             leaveGroup.setOnClickListener(new View.OnClickListener() {
@@ -373,6 +374,7 @@ public class ProfileFragment extends Fragment {
                     hasLeft = false;
                     ProfileAccessor.deleteMyProfilePicture(getActivity());
                     refreshLayout();
+                    profileStatus.dismissDropDown();
                 }
             });
             profileImageEdit.setOnClickListener(new View.OnClickListener() {
@@ -384,37 +386,39 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.status_suggestions));
-        profileStatus.setAdapter(adapter);
-        profileStatus.setCompletionHint(getString(R.string.status_hint));
-        profileStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                profileStatus.dismissDropDown();
-            }
-        });
-        profileStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                profileStatus.setEnabled(!profileStatus.isEnabled());
-                if (!profileStatus.isEnabled()) {
-                    hasChanged = true;
-                    hasLeft = false;
-                    profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_content_edit));
+        if (isMyProfile) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.status_suggestions));
+            profileStatus.setAdapter(adapter);
+            profileStatus.setCompletionHint(getString(R.string.status_hint));
+            profileStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    profileStatus.dismissDropDown();
+                }
+            });
+            profileStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    profileStatus.setEnabled(!profileStatus.isEnabled());
+                    if (!profileStatus.isEnabled()) {
+                        hasChanged = true;
+                        hasLeft = false;
+                        profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_content_edit));
 
-                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
-                            Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(profileStatus.getWindowToken(), 0);
-                    if (isGroup) {
-                        new UpdateWhisperGroupAsyncTask().execute();
-                    } else {
-                        ProfileAccessor.setProfileStatus(getActivity(), profileStatus.getText() + "");
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                                Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(profileStatus.getWindowToken(), 0);
+                        if (isGroup) {
+                            new UpdateWhisperGroupAsyncTask().execute();
+                        } else {
+                            ProfileAccessor.setProfileStatus(getActivity(), profileStatus.getText() + "");
+                        }
                     }
                 }
-            }
             });
-        if(!isMyProfile) {
+        } else {
+//        if(!isMyProfile) {
             setMediaHistoryImages();
         }
         xCloseButton.setOnClickListener(new View.OnClickListener() {
@@ -610,7 +614,7 @@ public class ProfileFragment extends Fragment {
                     layoutParams.setMargins(5, 0, 5, 0);
 
                     historyMedia.setLayoutParams(layoutParams);
-                    ProfileAccessor.buildEncryptedPartGlideRequest(mediaHistorySlide, masterSecret).into(historyMedia);
+                    ProfileAccessor.buildEncryptedPartGlideRequest(mediaHistorySlide, masterSecret, getActivity()).into(historyMedia);
                     historyLayout.addView(historyMedia);
                     historyMedia.setSlide(mediaHistorySlide);
                 }
@@ -666,6 +670,16 @@ public class ProfileFragment extends Fragment {
     private void addAllSelectedContacts(Collection<Recipient> contacts) {
         for (Recipient contact : contacts) {
             addSelectedContact(contact);
+        }
+    }
+
+    private void removeSelectedContact(Recipient contact) {
+        selectedContacts.remove(contact);
+        if (!isActiveInDirectory(getActivity(), contact)) {
+            for (Recipient recipient : selectedContacts) {
+                if (!isActiveInDirectory(getActivity(), recipient))
+                    return;
+            }
         }
     }
     private void syncAdapterWithSelectedContacts() {
@@ -739,7 +753,7 @@ public class ProfileFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(),
                 R.style.GSecure_Light_Dialog));
         builder.setIcon(R.drawable.ic_dialog_attach);
-        builder.setTitle(R.string.ConversationActivity_add_attachment);
+        builder.setTitle(R.string.profile_select_picture);
         builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
         builder.show();
     }
@@ -807,7 +821,8 @@ public class ProfileFragment extends Fragment {
 
     private void initializeResources() {
         this.masterSecret = getActivity().getIntent().getParcelableExtra("master_secret");
-        this.profileId = getActivity().getIntent().getStringExtra("profile_id");
+        this.phonenumber = getActivity().getIntent().getStringExtra("profile_id");
+        this.profileId = GUtil.numberToLong(phonenumber) + "";
         this.isGroup = getActivity().getIntent().getBooleanExtra("is_group", false);
         threadId = getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
         this.recipients = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent()

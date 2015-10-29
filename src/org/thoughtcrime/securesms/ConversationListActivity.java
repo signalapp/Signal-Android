@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GDataPreferences;
@@ -247,7 +248,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter(PrivacyBridge.ACTION_RELOAD_ADAPTER));
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter(PushDecryptJob.ACTION_RELOAD_HEADER));
+                new IntentFilter(GUtil.ACTION_RELOAD_HEADER));
         slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_from_right);
         slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_to_right);
         refreshProfile();
@@ -320,7 +321,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             recCalledRec = RecipientFactory.getRecipientsFromString(getApplicationContext(), mobileNumber, false);
 
             if (recCalledRec.getPrimaryRecipient() != null && recCalledRec.getPrimaryRecipient().getName() != null && !recCalledRec.getPrimaryRecipient().getName().equals("")) {
-                recentlyRecipients.add(recCalledRec);
+                if(!new GDataPreferences(getApplicationContext()).isPrivacyActivated() || !GService.shallBeBlockedByPrivacy(recCalledRec.getPrimaryRecipient().getNumber())) {
+                    recentlyRecipients.add(recCalledRec);
+                }
                 recCalledRec = null;
             }
             i++;
@@ -328,6 +331,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         while (mCallCursor.moveToNext());
 
         recentlyRecipients = getFrequentContact(recentlyRecipients);
+
+        ArrayList<Boolean> hadImages = new ArrayList<>(3);
+        hadImages.add(false);
+        hadImages.add(false);
+        hadImages.add(false);
 
         for(Recipients recipients : recentlyRecipients) {
             found++;
@@ -339,7 +347,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fOne);
                     }
                 });
-                setProfilePictureToFloatButton(fabCOne, fOne, fabImageBackgroundOne);
+                hadImages.set(0, setProfilePictureToFloatButton(fabCOne, fOne, fabImageBackgroundOne));
                 textViewCOne.setText(fOne.getPrimaryRecipient().getName());
             } else if (found == 2) {
                 final Recipients fTwo = recipients;
@@ -349,7 +357,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fTwo);
                     }
                 });
-                setProfilePictureToFloatButton(fabCTwo, fTwo, fabImageBackgroundTwo);
+                hadImages.set(1, setProfilePictureToFloatButton(fabCTwo, fTwo, fabImageBackgroundTwo));
                 textViewCTwo.setText(fTwo.getPrimaryRecipient().getName());
             } else if (found == 3) {
                 final Recipients fThree = recipients;
@@ -359,25 +367,22 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                         openConversationForRecipients(fThree);
                     }
                 });
-                setProfilePictureToFloatButton(fabCThree, fThree, fabImageBackgroundThree);
+                hadImages.set(2, setProfilePictureToFloatButton(fabCThree, fThree, fabImageBackgroundThree));
                 textViewCThree.setText(fThree.getPrimaryRecipient().getName());
             }
         }
-        if (found < 3) {
-            fabCThree.setVisibility(View.GONE);
-            textViewCThree.setVisibility(View.GONE);
-            fabImageBackgroundThree.setVisibility(View.GONE);
-        }
-        if (found < 2) {
-            fabCTwo.setVisibility(View.GONE);
-            textViewCTwo.setVisibility(View.GONE);
-            fabImageBackgroundTwo.setVisibility(View.GONE);
-        }
-        if (found < 1) {
-            fabCOne.setVisibility(View.GONE);
-            textViewCOne.setVisibility(View.GONE);
-            fabImageBackgroundOne.setVisibility(View.GONE);
-        }
+            fabCThree.setVisibility(found < 3 ? View.GONE : hadImages.get(2) ? View.GONE : View.VISIBLE);
+            ((CardView)textViewCThree.getParent()).setVisibility(found < 3 ? View.GONE : View.VISIBLE);
+            fabImageBackgroundThree.setVisibility(found < 3 ? View.GONE : hadImages.get(2) ? View.VISIBLE : View.GONE);
+
+            fabCTwo.setVisibility(found < 2 ? View.GONE : hadImages.get(1) ? View.GONE : View.VISIBLE);
+            ((CardView)textViewCTwo.getParent()).setVisibility(found < 2 ? View.GONE : View.VISIBLE);
+            fabImageBackgroundTwo.setVisibility(found < 2 ? View.GONE : hadImages.get(1) ? View.VISIBLE : View.GONE);
+
+            fabCOne.setVisibility(found < 1 ? View.GONE : hadImages.get(0) ? View.GONE : View.VISIBLE);
+            ((CardView)textViewCOne.getParent()).setVisibility(found < 1 ? View.GONE : View.VISIBLE);
+            fabImageBackgroundOne.setVisibility(found < 1 ? View.GONE : hadImages.get(0) ? View.VISIBLE : View.GONE);
+
         if(gDataPreferences.getViewPagersLastPage() == 1) {
             toggleActionFloatMenu(true, true, true);
         } else {
@@ -387,25 +392,30 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         }
     }
 
-    private void setProfilePictureToFloatButton(final FloatingActionButton fab, Recipients recipients, CircledImageView imgView) {
+    private boolean setProfilePictureToFloatButton(final FloatingActionButton fab, Recipients recipients, final CircledImageView imgView) {
+        boolean hadImage = false;
         if(recipients.getPrimaryRecipient() != null) {
             ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, GUtil.numberToLong(recipients.getPrimaryRecipient().getNumber())+"");
             if (avatarSlide != null) {
+                hadImage = true;
                     imgView.setVisibility(View.VISIBLE);
                     fab.setVisibility(View.INVISIBLE);
-                    ProfileAccessor.buildGlideRequest(avatarSlide).into(imgView);
+                    ProfileAccessor.buildGlideRequest(avatarSlide, getApplicationContext()).into(imgView);
                     imgView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            Animation animFadein = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.abc_fade_in);
+                            imgView.startAnimation(animFadein);
                             fab.performClick();
                         }
                     });
             } else {
                 fab.setVisibility(View.VISIBLE);
                 fab.setImageBitmap(recipients.getPrimaryRecipient().getGeneratedAvatarWithColor(getApplicationContext(), fab.getSolidColor()));
-                ((CardView) imgView.getParent()).setVisibility(View.GONE);
+                imgView.setVisibility(View.GONE);
             }
         }
+        return hadImage;
     }
 
     public ArrayList<Recipients> getFrequentContact(ArrayList<Recipients> logEntriesArray) {
@@ -464,7 +474,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     private void handleOpenProfile() {
         final Intent intent = new Intent(this, ProfileActivity.class);
         intent.putExtra("master_secret", masterSecret);
-        intent.putExtra("profile_id", GUtil.numberToLong(gDataPreferences.getE164Number()) + "");
+        intent.putExtra("profile_id", gDataPreferences.getE164Number());
         if (getSupportActionBar() != null) {
             intent.putExtra("profile_name", getSupportActionBar().getTitle());
         }
@@ -563,11 +573,20 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(PrivacyBridge.ACTION_RELOAD_ADAPTER)) {
                 reloadAdapter();
-            } else if (intent.getAction().equals(PushDecryptJob.ACTION_RELOAD_HEADER)) {
+            } else if (intent.getAction().equals(GUtil.ACTION_RELOAD_HEADER)) {
                 mSlidingTabLayout.refreshTabTitle();
             }
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        if(actionFloatMenu.getVisibility() == View.VISIBLE) {
+            fab.performClick();
+        } else {
+            this.finish();
+        }
+    }
 
     @Override
     protected void onPostCreate(Bundle bundle) {
@@ -759,8 +778,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 return null;
             }
         }.execute();
-        Intent intent = new Intent(PushDecryptJob.ACTION_RELOAD_HEADER);
-        LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+        GUtil.reloadUnreadHeaderCounter();
     }
 
     private void initializeContactUpdatesReceiver() {

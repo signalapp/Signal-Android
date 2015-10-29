@@ -166,7 +166,10 @@ public class ProfileAccessor {
     PduPart part = database.getPart(ProfileAccessor.getPartId(context, profileId));
     mMasterSecret = masterSecret;
     if (part != null) {
-      return new ImageSlide(context, masterSecret, part);
+      if (mMasterSecret != null && context != null) {
+        ImageSlide slide = new ImageSlide(context, masterSecret, part);
+        return slide.getThumbnailUri() != null ? slide : null;
+      }
     }
     return null;
   }
@@ -176,8 +179,9 @@ public class ProfileAccessor {
     PduPart part = database.getPart(ProfileAccessor.getPartId(context, profileId));
 
     if (part != null) {
-      if(mMasterSecret != null) {
-        return new ImageSlide(context, mMasterSecret, part);
+      if(mMasterSecret != null && context != null) {
+        ImageSlide slide = new ImageSlide(context, mMasterSecret, part);
+        return slide.getThumbnailUri() != null ? slide : null;
       }
     }
     return null;
@@ -231,18 +235,17 @@ public class ProfileAccessor {
   public static void setMasterSecred(MasterSecret ma) {
     mMasterSecret = ma;
   }
-  public static GenericRequestBuilder buildGlideRequest(@NonNull Slide slide)
+  public static GenericRequestBuilder buildGlideRequest(@NonNull Slide slide, Context context)
   {
     final GenericRequestBuilder builder;
-      builder = buildThumbnailGlideRequest(slide, mMasterSecret);
-
+      builder = buildThumbnailGlideRequest(slide, mMasterSecret, context);
     return builder.error(R.drawable.ic_missing_thumbnail_picture);
   }
-  public static GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
+  public static GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret, Context context) {
 
     final GenericRequestBuilder builder;
     if (slide.isDraft()) builder = buildDraftGlideRequest(slide);
-    else                 builder = buildEncryptedPartGlideRequest(slide, masterSecret);
+    else builder = buildEncryptedPartGlideRequest(slide, masterSecret, context);
     return builder;
   }
   public static GenericRequestBuilder buildDraftGlideRequest(Slide slide) {
@@ -250,12 +253,12 @@ public class ProfileAccessor {
         .fitCenter();
   }
 
-  public static GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret) {
+  public static GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret, Context context) {
     if (masterSecret == null) {
       throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
     }
-    return  Glide.with(GService.appContext).load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, slide.getThumbnailUri()))
-        .transform(new ThumbnailTransform(GService.appContext));
+    return  Glide.with(context).load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, slide.getThumbnailUri()))
+        .transform(new ThumbnailTransform(context));
   }
 
   public static void sendProfileUpdateToContactWithThread(Context activity, String profileId) {

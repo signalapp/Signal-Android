@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 secondes</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 secondes</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 secondes</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Désactiver</string>
     <string name="gdata_contact_selection_page_title">Contacts</string>
     <string name="gdata_conversation_list_page_title">Conversations</string>
     <string name="gd_dialog_fragment_phishing_title">Protection Web</string>
@@ -22,8 +21,6 @@
     <string name="menu_privacy_single_hide">Masquer la conversation</string>
     <string name="menu_filter_block_contact">Bloquer le contact</string>
     <string name="privacy_pw_dialog_header">Saisir le mot de passe : </string>
-    <string name="privacy_pw_dialog_toast_wrong">Le mot de passe que vous avez saisi ne correspond pas au mot de passe de l’application G DATA Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Remarque : il s’agit du mot de passe que vous avez sélectionné dans l’application G DATA Internet Security pour Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Les conversations sont rétablies...</string>
     <string name="privacy_pw_dialog_toast_hide">Les conversations sont préparées pour le masquage...</string>
     <string name="privacy_pw_dialog_toast_hide_single">La conversation est masquée...</string>
@@ -62,4 +59,18 @@
     <string name="status_donotdisturb">Ne pas déranger</string>
     <string name="status_nocallsjustchat">Aucun appel, SecureChat uniquement</string>
     <string name="status_onlyurgentcalls">Appels urgents uniquement</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Désactiver la destruction automatique</string>
+    <string name="privacy_pw_dialog_hint">Remarque : il s’agit du mot de passe que vous avez sélectionné dans l’application G DATA Internet Security pour Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Le mot de passe saisi ne correspond pas à celui de l’application G DATA Internet Security.</string>
+    <string name="msg_failed">Remarque : il est possible que la clé de l’un des destinataires ait été modifiée en raison d’une réinstallation ou d’une tentative d’attaque par un tiers. Au sein d’un groupe, ce problème peut être résolu en initiant un échange de clés régulier dans une nouvelle conversation avec le contact, puis en actualisant le groupe.</string>
+    <string name="profile_history_label">Support</string>
+    <string name="profile_history_content">Aucune image n’a encore été échangée.</string>
+    <string name="menu_invite_to_sc">Inviter</string>
+    <string name="group_title">Titre</string>
+    <string name="status_hint">Sélectionnez votre statut :</string>
+    <string name="dialog_compressing"> La vidéo est en cours de compression...</string>
+    <string name="dialog_compressing_header">Veuillez patienter...</string>
+    <string name="preferences__versnr">Version</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Demander avant l’envoi d’un SMS/MMS payant</string>
+    <string name="profile_select_picture">Sélectionner la photo du profil</string>
 </resources>

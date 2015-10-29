@@ -104,13 +104,13 @@ public class GDataPreferences {
   public void setProfilUpdateTimeForProfileId(String profileId, Long date) {
     mPreferences.edit().putLong("date:" + profileId, date).commit();
   }
-  public void saveUnreadCountForThread(String threadId, Long count) {
+  public void saveReadCount(String threadId, Long count) {
     if(count<0) {
-      count = 1L;
+      count = 0L;
     }
     mPreferences.edit().putLong("count:" + threadId, count).commit();
   }
-  public Long getUnreadCountForThread(String threadId) {
+  public Long getReadCount(String threadId) {
     return mPreferences.getLong("count:" + threadId, 0);
   }
   public void setApplicationFont(String applicationFont) {
@@ -237,10 +237,13 @@ public class GDataPreferences {
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES), "SecureChat");
 
-    File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-            "prof_image"+ lastImageNumber +" .jpg");
-    if(mediaFile.exists()) {
-      mediaFile.delete();
+    File mediaFile = new File("");
+    for(int i = 0; i<= lastImageNumber;i++) {
+      mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+              "prof_image"+ i +" .jpg");
+      if(mediaFile.exists()) {
+        mediaFile.delete();
+      }
     }
     lastImageNumber = lastImageNumber + 1;
     setLastImageNumber(lastImageNumber);

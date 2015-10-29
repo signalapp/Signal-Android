@@ -418,7 +418,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Mise à jour de la base de donnée...</string>
   <string name="export_fragment__export_plaintext_backup">Exporter une sauvegarde en clair</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter une sauvegarde en texte clair compatible avec «SMS Backup And Restore» sur la carte SD.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter une sauvegarde en texte clair compatible avec \"SMS Backup &amp; Restore\" sur la carte SD.</string>
   <string name="import_fragment__import_system_sms_database">Importer la base de données SMS du système</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importer la base de données
 depuis l\'application SMS par défaut.</string>
@@ -427,7 +427,7 @@ depuis l\'application SMS par défaut.</string>
 Restaurer une sauvegarde SecureChat chiffrée précédemment exportée.</string>
   <string name="import_fragment__import_plaintext_backup">Importer la sauvegarde en clair</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Importer un fichier de sauvegarde en texte clair. Compatible avec «SMS Backup And Restore».</string>
+Importer un fichier de sauvegarde en texte clair. Compatible avec \"SMS Backup &amp; Restore\".</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Des paramètres MMS manuels sont nécessaires pour votre téléphone.</string>
   <string name="MmsPreferencesFragment__enabled">Activé</string>

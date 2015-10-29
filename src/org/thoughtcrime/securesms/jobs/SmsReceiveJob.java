@@ -57,6 +57,7 @@ public class SmsReceiveJob extends ContextJob {
         }
       }
     }
+    GUtil.reloadUnreadHeaderCounter();
   }
 
   @Override

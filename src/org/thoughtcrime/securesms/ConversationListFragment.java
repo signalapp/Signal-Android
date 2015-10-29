@@ -20,12 +20,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
@@ -49,6 +51,7 @@ import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Dialogs;
@@ -56,6 +59,8 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import java.util.Set;
 
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GService;
+import de.gdata.messaging.util.GUtil;
 
 public class ConversationListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
@@ -214,8 +219,13 @@ public class ConversationListFragment extends ListFragment
 
             @Override
             protected Void doInBackground(Void... params) {
+              GDataPreferences pref = new GDataPreferences(getActivity());
+              for(Long threadId : selectedConversations) {
+                pref.saveReadCount(threadId+"", 0L);
+              }
               DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
               MessageNotifier.updateNotification(getActivity(), masterSecret);
+              GUtil.reloadUnreadHeaderCounter();
               return null;
             }
 

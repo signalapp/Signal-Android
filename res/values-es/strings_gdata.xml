@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 segundos</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 segundos</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 segundos</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Desactivar</string>
     <string name="gdata_contact_selection_page_title">Contactos</string>
     <string name="gdata_conversation_list_page_title">Conversaciones</string>
     <string name="gd_dialog_fragment_phishing_title">Protección web</string>
@@ -22,8 +21,6 @@
     <string name="menu_privacy_single_hide">Ocultar conversación</string>
     <string name="menu_filter_block_contact">Bloquear contacto</string>
     <string name="privacy_pw_dialog_header">Introducir contraseña: </string>
-    <string name="privacy_pw_dialog_toast_wrong">La contraseña introducida no coincide con la de G DATA Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Nota: se trata de la contraseña que ha elegido en G DATA Internet Security para Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Restaurando las conversaciones...</string>
     <string name="privacy_pw_dialog_toast_hide">Preparando las conversaciones para ocultarlas...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Ocultando la conversación...</string>
@@ -62,4 +59,18 @@
     <string name="status_donotdisturb">No molestar</string>
     <string name="status_nocallsjustchat">Llamadas no, solo SecureChat</string>
     <string name="status_onlyurgentcalls">Solo llamadas urgentes</string>
-Vollme</resources>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Deshabilitar autodestrucción</string>
+    <string name="privacy_pw_dialog_hint">Nota: esta es la contraseña que ha escogido en G DATA Internet Security para Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">La contraseña que ha introducido no coincide con la de G DATA Internet Security.</string>
+    <string name="msg_failed">Nota: la clave de uno de los destinatarios puede haber cambiado debido a una reinstalación o a un intento de ataque de un tercero. En un grupo, este problema se puede solucionar iniciando un intercambio normal de claves en una conversación nueva con el contacto y luego refrescando el grupo.</string>
+    <string name="profile_history_label">Medios</string>
+    <string name="profile_history_content">Aún no se han intercambiado imágenes</string>
+    <string name="menu_invite_to_sc">Invitar</string>
+    <string name="group_title">Título</string>
+    <string name="status_hint">Escoja su estado:</string>
+    <string name="dialog_compressing"> El vídeo se está comprimiendo...</string>
+    <string name="dialog_compressing_header">Espere, por favor...</string>
+    <string name="preferences__versnr">Versión</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Preguntar antes de enviar un SMS/MMS de pago</string>
+    <string name="profile_select_picture">Seleccionar imagen de perfil</string>
+</resources>

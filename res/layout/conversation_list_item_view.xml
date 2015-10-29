@@ -4,55 +4,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <FrameLayout android:id="@+id/contact_photo_frame"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerVertical="true"
-                 android:layout_alignParentLeft="true"
-                 android:paddingTop="3dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <LinearLayout android:id="@+id/contact_photo_frame"
+                 android:layout_width="80dp"
+                 android:layout_height="fill_parent"
+                 android:layout_gravity="center"
+                 android:paddingTop="4dp"
                  android:paddingBottom="3dp"
                  android:paddingLeft="10dp"
-                 android:paddingRight="10dp"
+                 android:paddingRight="7dp"
                  android:visibility="visible">
 
         <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:cropToPadding="true"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:scaleType="centerCrop"
             android:visibility="gone"
-            android:contentDescription="Contact Photo Image"
-            android:layout_marginLeft="0dp" />
-    </FrameLayout>
+            android:contentDescription="Contact Photo Image" />
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dip"
+        android:layout_marginTop="8dip"
         android:layout_marginLeft="4dip"
         android:layout_marginRight="8dip"
-        android:layout_marginBottom="4dip"
+        android:layout_marginBottom="8dip"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/contact_photo_frame"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical|right"
+        android:gravity="right">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="1"
-            android:gravity="bottom">
+            android:gravity="bottom|right"
+            android:layout_gravity="right">
 
             <TextView android:id="@+id/from"
-                      android:layout_weight="1"
+                      android:layout_weight="3"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:textAppearance="?android:attr/textAppearanceMedium"
                       android:textColor="?attr/conversation_list_item_contact_color"
                       android:singleLine="true"
-                      android:ellipsize="marquee" />
+                      android:ellipsize="marquee"
+                android:layout_gravity="left" />
 
             <ImageView android:id="@+id/attachment"
                        android:layout_marginLeft="3dip"
@@ -73,11 +78,14 @@
             <TextView android:id="@+id/date"
                       android:layout_marginLeft="3dip"
                       android:layout_height="wrap_content"
-                      android:layout_width="wrap_content"
+                     android:layout_weight="0.8"
+                      android:layout_width="0dp"
                       android:textAppearance="?android:attr/textAppearanceSmall"
                       android:textColor="?attr/conversation_list_item_date_color"
                       android:fontFamily="sans-serif-light"
-                      android:singleLine="true" />
+                      android:singleLine="true"
+                android:layout_gravity="right"
+                android:gravity="right" />
             </LinearLayout>
 
     <RelativeLayout
@@ -85,7 +93,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:layout_gravity="right">
         <TextView android:id="@+id/subject"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -105,9 +114,11 @@
             android:text="20"
             android:textStyle="bold"
             android:textSize="10dp"
+            android:visibility="invisible"
             android:layout_alignParentRight="true"
             android:background="@drawable/bg_red"
             android:textColor="@color/black"/>
 </RelativeLayout>
+    </LinearLayout>
     </LinearLayout>
 </org.thoughtcrime.securesms.ConversationListItem>

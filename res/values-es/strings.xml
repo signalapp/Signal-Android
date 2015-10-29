@@ -438,7 +438,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="database_upgrade_activity__updating_database">Actualizando base de datos...</string>
   <string name="export_fragment__export_plaintext_backup">Exportar copia de seguridad en texto simple</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Exportar una copia de seguridad de los mensajes en claro compatible con \'SMS Backup And Restore\'  a la tarjeta SD.</string>
+        Exportar una copia de seguridad de los mensajes en claro compatible con \'SMS Backup &amp; Restore\'  a la tarjeta SD.</string>
   <string name="import_fragment__import_system_sms_database">Importar base de datos de SMS del sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar la base de datos
         desde la aplicación de mensajería del sistema por defecto.
@@ -449,7 +449,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
     </string>
   <string name="import_fragment__import_plaintext_backup">Importar copia de seguridad en texto simple</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-        Importar una copia de seguridad de mensajes en claro compatible con \'SMS Backup And Restore.\'</string>
+        Importar una copia de seguridad de mensajes en claro compatible con \'SMS Backup &amp; Restore\'</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Se requiere configuración manual de MMS para su teléfono.</string>
   <string name="MmsPreferencesFragment__enabled">Habilitado</string>

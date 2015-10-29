@@ -49,8 +49,6 @@ import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
 
-import de.gdata.messaging.util.ProfileAccessor;
-
 /**
  * A view that displays the element in a list of multiple conversation threads.
  * Used by SecureSMS's ListActivity via a ConversationListAdapter.
@@ -77,6 +75,7 @@ public class ConversationListItem extends RelativeLayout
 
     private final Handler handler = new Handler();
     private int distributionType;
+    private GDataPreferences preferences;
 
     public ConversationListItem(Context context) {
         super(context);
@@ -106,6 +105,7 @@ public class ConversationListItem extends RelativeLayout
         this.count = thread.getCount();
         this.read = thread.isRead();
         this.distributionType = thread.getDistributionType();
+        this.preferences = new GDataPreferences(getContext());
 
         this.recipients.addListener(this);
         this.fromView.setText(formatFrom(recipients, count, read));
@@ -123,12 +123,18 @@ public class ConversationListItem extends RelativeLayout
 
         if(read) {
             unreadCountView.setVisibility(View.GONE);
-            new GDataPreferences(getContext()).saveUnreadCountForThread(threadId+"", count);
+            preferences.saveReadCount(threadId + "", count);
         } else {
-            unreadCountView.setVisibility(View.VISIBLE);
-            Long unreadCount = count - new GDataPreferences(getContext()).getUnreadCountForThread(threadId + "");
-            unreadCountView.setText(unreadCount+ "");
-
+            Long unreadCount = count - preferences.getReadCount(threadId + "");
+            if (unreadCount<0){
+                preferences.saveReadCount(threadId + "", count);
+            } else {
+                if(unreadCount == 0) {
+                    unreadCount = 1L;
+                }
+                unreadCountView.setVisibility(View.VISIBLE);
+                unreadCountView.setText(unreadCount + "");
+            }
         }
         setBackground(read, batchMode);
         setContactPhoto(this.recipients.getPrimaryRecipient());
@@ -146,7 +152,7 @@ public class ConversationListItem extends RelativeLayout
     private void handleOpenProfile(String profileId) {
         final Intent intent = new Intent(getContext(), ProfileActivity.class);
         intent.putExtra("master_secret", ProfileAccessor.getMasterSecred());
-        intent.putExtra("profile_id", profileId);
+        intent.putExtra("profile_id", recipients.getPrimaryRecipient().getNumber()); //profileId);
         intent.putExtra("is_group", getRecipients().isGroupRecipient());
         intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, getRecipients().getIds());
         getContext().startActivity(intent);
@@ -157,7 +163,7 @@ public class ConversationListItem extends RelativeLayout
 
         ImageSlide profileSlide = ProfileAccessor.getProfileAsImageSlide(context, recipient.getNumber());
         if (profileSlide != null && !recipient.isGroupRecipient()) {
-            ProfileAccessor.buildGlideRequest(profileSlide).into(contactPhotoImage);
+            ProfileAccessor.buildGlideRequest(profileSlide, context).into(contactPhotoImage);
         } else {
             contactPhotoImage.setImageBitmap(recipient.getCircleCroppedContactPhoto());
         }

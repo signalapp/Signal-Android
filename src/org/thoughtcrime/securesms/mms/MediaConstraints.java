@@ -66,6 +66,7 @@ public abstract class MediaConstraints {
                                           getImageMaxHeight(),
                                           getImageMaxSize());
     } catch (BitmapDecodingException bde) {
+      //Decoed Stream was null at org.thoughtcrime.securesms.mms.MediaConstraints.getResizedMedia(MediaConstraints.java:69)
       throw new IOException(bde);
     }
   }

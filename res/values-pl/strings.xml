@@ -405,7 +405,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="database_upgrade_activity__updating_database">Aktualizowanie bazy danych...</string>
   <string name="export_fragment__export_plaintext_backup">Eksport nieszyfrowanej kopi zapasowej</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Eksportuj niezaszyfrowaną kopię zapasową kompatybilną z \'SMS Backup And Restore\' na kartę SD.</string>
+Eksportuj niezaszyfrowaną kopię zapasową kompatybilną z \'SMS Backup &amp; Restore\' na kartę SD.</string>
   <string name="import_fragment__import_system_sms_database">Importuj systemową bazę danych SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importuj bazę danych 
 z domyślnej systemowej aplikacji SMS.</string>
@@ -414,7 +414,7 @@ z domyślnej systemowej aplikacji SMS.</string>
 Przywróć poprzednio wyeksportowaną szyfrowaną kopię zapasową SecureChat.</string>
   <string name="import_fragment__import_plaintext_backup">Importuj nieszyfrowaną kopię zapasową</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMS Backup And Restore\'.</string>
+Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMS Backup &amp; Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Ręczne ustawienia MMS są wymagane dla Twojego telefonu.</string>
   <string name="MmsPreferencesFragment__enabled">Włączony</string>

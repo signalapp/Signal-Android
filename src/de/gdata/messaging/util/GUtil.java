@@ -3,6 +3,7 @@ package de.gdata.messaging.util;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -36,9 +38,15 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,11 +68,58 @@ public class GUtil {
     setFontToLayouts(root, font);
     return root;
   }
+  public static final String ACTION_RELOAD_HEADER = "reloadHeader";
+  public static void reloadUnreadHeaderCounter() {
+    if(GService.appContext != null) {
+      Intent intent = new Intent(ACTION_RELOAD_HEADER);
+      LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+    }
+  }
+  public static Uri saveBitmapAndGetNewUri(Activity activity, String tag, Uri url)
+  {
+    File cacheDir;
+    if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+      cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"/temp/");
+    } else {
+      cacheDir=activity.getCacheDir();
+    }
+    if(!cacheDir.exists())
+      cacheDir.mkdirs();
+
+    File f=new File(cacheDir, tag);
+
+    try {
+      InputStream is = null;
+      if (url.toString().startsWith("content:")) {
+        is=activity.getContentResolver().openInputStream(url);
+      } else {
+        is=new URL("file://"+url.toString()).openStream();
+      }
+      OutputStream os = new FileOutputStream(f);
+      byte[] buffer = new byte[1024];
+      int len;
+      while ((len = is.read(buffer)) != -1) {
+        os.write(buffer, 0, len);
+      }
+      os.close();
+    } catch (Exception ex) {
+      // something went wrong
+      ex.printStackTrace();
+    }
+    return Uri.parse("file://"+f.getAbsolutePath());
+  }
   public static String getDate(long milliseconds, String format)
   {
     SimpleDateFormat sdf = new SimpleDateFormat(format);
     return sdf.format(milliseconds);
   }
+  public static String getLocalDate(long milliseconds, Context context) {
+    java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+    java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
+    Date dateAndTime = new Date(milliseconds);
+    return  dateFormat.format(dateAndTime) + " " + timeFormat.format(dateAndTime);
+  }
+
   /**
    * Sets the Typeface e.g. Roboto-Thin.tff for an Activity
    *

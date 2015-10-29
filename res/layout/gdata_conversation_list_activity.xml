@@ -73,12 +73,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="visible">
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/textViewCOne"
@@ -98,13 +100,15 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="38dp"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_weight="0">
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fab_new_contact_one"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
+                        android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                         android:scaleType="fitXY"
                         android:src="?attr/menu_new_conversation_icon"
                         android:visibility="visible"
@@ -114,23 +118,15 @@
                         app:fabSize="mini"
                         app:pressedTranslationZ="2dp" />
 
-                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="19dp"
-                        card_view:cardElevation="2dp"
-                        card_view:cardPreventCornerOverlap="false">
-
                         <org.thoughtcrime.securesms.components.CircledImageView
                             android:id="@+id/img_new_contact_one"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_marginRight="@dimen/fab_compat_margin_right"
                             android:layout_gravity="center"
-                            android:padding="2dp"
                             android:scaleType="fitXY"
-                            android:visibility="visible" />
-                    </android.support.v7.widget.CardView>
+                            android:visibility="visible"
+                          />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -171,6 +167,7 @@
                         android:id="@+id/fab_new_contact_two"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
                         android:src="?attr/menu_new_conversation_icon"
                         app:backgroundTint="@color/holo_purple"
                         app:borderWidth="0dp"
@@ -178,23 +175,14 @@
                         app:fabSize="mini"
                         app:pressedTranslationZ="2dp" />
 
-                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="19dp"
-                        card_view:cardElevation="2dp"
-                        card_view:cardPreventCornerOverlap="false">
-
                         <org.thoughtcrime.securesms.components.CircledImageView
                             android:id="@+id/img_new_contact_two"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
-                            android:padding="2dp"
                             android:scaleType="fitXY"
+                            android:layout_marginRight="@dimen/fab_compat_margin_right"
                             android:visibility="visible" />
-                    </android.support.v7.widget.CardView>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -226,10 +214,9 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="38dp"
-                    android:gravity="center">
+                    android:gravity="left">
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fab_new_contact_three"
@@ -243,27 +230,56 @@
                         app:fabSize="mini"
                         app:pressedTranslationZ="2dp" />
 
-                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        card_view:cardCornerRadius="19dp"
-                        card_view:cardElevation="2dp"
-                        card_view:cardPreventCornerOverlap="false">
-
                         <org.thoughtcrime.securesms.components.CircledImageView
                             android:id="@+id/img_new_contact_three"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
-                            android:padding="2dp"
                             android:scaleType="fitXY"
+                            android:layout_marginRight="@dimen/fab_compat_margin_right"
                             android:visibility="visible" />
-                    </android.support.v7.widget.CardView>
-
+p
                 </RelativeLayout>
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/action_float_menu_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
 
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/textViewGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_new_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="38dp"
+                    android:src="@drawable/ic_group_white_24dp"
+                    app:backgroundTint="@color/conversation_item_sent_background_light"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/action_float_menu_conv"
                 android:layout_width="wrap_content"
@@ -297,45 +313,6 @@
                     android:layout_marginRight="38dp"
                     android:src="@drawable/ic_message_white"
                     app:backgroundTint="@color/holo_blue_dark"
-                    app:borderWidth="0dp"
-                    app:elevation="2dp"
-                    app:fabSize="mini"
-                    app:pressedTranslationZ="2dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/action_float_menu_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:id="@+id/textViewGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/textview_rounded_corners"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </android.support.v7.widget.CardView>
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fab_new_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="38dp"
-                    android:src="@drawable/ic_group_white_24dp"
-                    app:backgroundTint="@color/conversation_item_sent_background_light"
                     app:borderWidth="0dp"
                     app:elevation="2dp"
                     app:fabSize="mini"

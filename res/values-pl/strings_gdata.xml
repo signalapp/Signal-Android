@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 sek.</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 sek.</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 sek.</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Wyłącz</string>
     <string name="gdata_contact_selection_page_title">Kontakty</string>
     <string name="gdata_conversation_list_page_title">Konwersacje</string>
     <string name="gd_dialog_fragment_phishing_title">Ochrona przeglądarek</string>
@@ -22,8 +21,6 @@
     <string name="menu_privacy_single_hide">Ukryj konwersację</string>
     <string name="menu_filter_block_contact">Zablokuj kontakt</string>
     <string name="privacy_pw_dialog_header">Podaj hasło: </string>
-    <string name="privacy_pw_dialog_toast_wrong">To nie jest hasło do aplikacji G DATA Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Wskazówka: Chodzi o Twoje hasło w programie G DATA Internet Security for Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Przywracanie konwersacji...</string>
     <string name="privacy_pw_dialog_toast_hide">Przygotowuję konwersacje do ukrycia...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Ukrywanie konwersacji...</string>
@@ -63,4 +60,18 @@
     <string name="status_donotdisturb">Nie przeszkadzać</string>
     <string name="status_nocallsjustchat">Nie dzwonić, tylko SecureChat</string>
     <string name="status_onlyurgentcalls">Tylko pilne połączenia</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Wyłącz automatyczne niszczenie</string>
+    <string name="privacy_pw_dialog_hint">Uwaga: To jest hasło ustawione w programie G DATA Internet Security for Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Hasło nie jest zgodne z hasłem ustawionym w programie G DATA Internet Security.</string>
+    <string name="msg_failed">Uwaga: Klucz jednego z odbiorców mógł zostać zmodyfikowany z powodu reinstalacji programu lub wykrycia ataku. W obrębie grupy ten problem można rozwiązać przez zainicjowanie regularnej wymiany kluczy w nowej konwersacji z kontaktem i odświeżenie grupy.</string>
+    <string name="profile_history_label">Nośnik</string>
+    <string name="profile_history_content">Nie nastąpiła jeszcze wymiana obrazów</string>
+    <string name="menu_invite_to_sc">Zaproś</string>
+    <string name="group_title">Nazwa grupy</string>
+    <string name="status_hint">Wybierz status:</string>
+    <string name="dialog_compressing"> Trwa kompresja filmu...</string>
+    <string name="dialog_compressing_header">Proszę czekać...</string>
+    <string name="preferences__versnr">Wersja</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Pytaj przed wysłaniem płatnej wiadomości SMS/MMS</string>
+    <string name="profile_select_picture">Wybierz obraz profilu</string>
 </resources>

@@ -408,14 +408,14 @@
   <string name="database_upgrade_activity__updating_database">更新数据库…</string>
   <string name="export_fragment__export_plaintext_backup">导出明文备份</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-导出与SMSBackup And Restore软件兼容的明文备份到SD卡。</string>
+导出与\"SMS Backup &amp; Restore\"软件兼容的明文备份到SD卡。</string>
   <string name="import_fragment__import_system_sms_database">导入系统短信数据库</string>
   <string name="import_fragment__import_the_database_from_the_default_system">从系统默认的短信应用中导入数据库。</string>
   <string name="import_fragment__import_encrypted_backup">导入已加密的备份</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">还原之前导出的SecureChat加密备份。</string>
   <string name="import_fragment__import_plaintext_backup">导入明文备份</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-导入明文备份文件，与\"SMS Backup And Restore\"软件兼容。</string>
+导入明文备份文件，与\"SMS Backup &amp; Restore\"软件兼容。</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手机需要手动设置彩信。</string>
   <string name="MmsPreferencesFragment__enabled">启用</string>
