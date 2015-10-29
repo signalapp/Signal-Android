@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.OperationApplicationException;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -130,7 +132,9 @@ public class DirectoryHelper {
     }
   }
 
-  public static UserCapabilities getUserCapabilities(Context context, Recipients recipients) {
+  public static @NonNull UserCapabilities getUserCapabilities(@NonNull Context context,
+                                                              @Nullable Recipients recipients)
+  {
     try {
       if (recipients == null) {
         return UserCapabilities.UNSUPPORTED;
