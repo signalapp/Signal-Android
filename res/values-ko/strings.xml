@@ -508,6 +508,7 @@
   <string name="import_fragment__import_plaintext_backup">암호화되지 않은 백업 가져오기</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\'SMS Backup And Restore\'라는 앱에 호환된 암호화되지 않은 백업을 가져옵니다.</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">대화 전체 보기</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">이미지 없음</string>
   <!--message_recipients_list_item-->
@@ -816,12 +817,16 @@
   <string name="reminder_header_expired_build">설치된 Signal 버전 만료</string>
   <string name="reminder_header_expired_build_details">메시지를 전송할 수 없으므로 최신 버전으로 업그레이드 해주세요.</string>
   <string name="reminder_header_expired_build_button">업그레이드</string>
+  <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string>
   <string name="reminder_header_sms_default_text">Signal을 기본 SMS 앱으로 설정하려면 터치하세요.</string>
   <string name="reminder_header_sms_default_button">기본 SMS 앱으로 설정</string>
+  <string name="reminder_header_sms_import_title">시스템 SMS 가져오기</string>
   <string name="reminder_header_sms_import_text">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오려면 터치하세요.</string>
   <string name="reminder_header_sms_import_button">가져오기</string>
+  <string name="reminder_header_push_title">Signal 메시지 사용</string>
   <string name="reminder_header_push_text">메시징 경험을 업그레이드 합니다.</string>
   <string name="reminder_header_push_button">사용</string>
+  <string name="reminder_header_invite_title">Signal로 초대</string>
   <string name="reminder_header_invite_text">%1$s님과 대화를 다음 단계로 끌어올립니다.</string>
   <string name="reminder_header_invite_button">초대</string>
   <string name="reminder_header_close_button">닫기</string>

@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -460,10 +461,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     return handlePushOperation(groupId, groupName, avatar, memberE164Numbers);
   }
 
-  private Pair<Long, Recipients> handlePushOperation(byte[] groupId, String groupName, byte[] avatar,
+  private Pair<Long, Recipients> handlePushOperation(byte[] groupId, String groupName,
+                                                     @Nullable byte[] avatar,
                                                      Set<String> e164numbers)
       throws InvalidNumberException
   {
+    Attachment avatarAttachment = null;
     String     groupRecipientId = GroupUtil.getEncodedId(groupId);
     Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
 
@@ -474,8 +477,11 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
                                        .addAllMembers(e164numbers)
                                        .build();
 
-    Uri                       avatarUri        = SingleUseBlobProvider.getInstance().createUri(avatar);
-    Attachment                avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_JPEG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
+    if (avatar != null) {
+      Uri avatarUri = SingleUseBlobProvider.getInstance().createUri(avatar);
+      avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_JPEG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
+    }
+
     OutgoingGroupMediaMessage outgoingMessage  = new OutgoingGroupMediaMessage(groupRecipient, context, avatarAttachment, System.currentTimeMillis());
     long                      threadId         = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 

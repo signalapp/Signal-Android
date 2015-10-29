@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
@@ -252,34 +253,36 @@ public class MmsDatabase extends MessagingDatabase {
       return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
     }
 
-      Set<String> group = new HashSet<>();
+    String      localNumber;
+    Set<String> group       = new HashSet<>();
 
-      if (retrieved.getAddresses().getFrom() == null) {
-        throw new MmsException("FROM value in PduHeaders did not exist.");
+    if (retrieved.getAddresses().getFrom() == null) {
+      throw new MmsException("FROM value in PduHeaders did not exist.");
+    }
+
+    group.add(retrieved.getAddresses().getFrom());
+
+    if (TextSecurePreferences.isPushRegistered(context)) {
+      localNumber = TextSecurePreferences.getLocalNumber(context);
+    } else {
+      localNumber = ServiceUtil.getTelephonyManager(context).getLine1Number();
+    }
+
+    for (String cc : retrieved.getAddresses().getCc()) {
+      PhoneNumberUtil.MatchType match;
+
+      if (localNumber == null) match = PhoneNumberUtil.MatchType.NO_MATCH;
+      else                     match = PhoneNumberUtil.getInstance().isNumberMatch(localNumber, cc);
+
+      if (match == PhoneNumberUtil.MatchType.NO_MATCH ||
+          match == PhoneNumberUtil.MatchType.NOT_A_NUMBER)
+      {
+        group.add(cc);
       }
+    }
 
-      group.add(retrieved.getAddresses().getFrom());
 
-      TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-      String           localNumber      = telephonyManager.getLine1Number();
-
-      if (localNumber == null) {
-          localNumber = TextSecurePreferences.getLocalNumber(context);
-      }
-
-      for (String cc : retrieved.getAddresses().getCc()) {
-        PhoneNumberUtil.MatchType match;
-
-        if (localNumber == null) match = PhoneNumberUtil.MatchType.NO_MATCH;
-        else                     match = PhoneNumberUtil.getInstance().isNumberMatch(localNumber, cc);
-
-        if (match == PhoneNumberUtil.MatchType.NO_MATCH ||
-            match == PhoneNumberUtil.MatchType.NOT_A_NUMBER)
-        {
-            group.add(cc);
-        }
-      }
-
+    if (retrieved.getAddresses().getTo().size() > 1) {
       for (String to : retrieved.getAddresses().getTo()) {
         PhoneNumberUtil.MatchType match;
 
@@ -291,11 +294,14 @@ public class MmsDatabase extends MessagingDatabase {
         {
           group.add(to);
         }
-      }
 
-      String recipientsList = Util.join(group, ",");
-      Recipients recipients = RecipientFactory.getRecipientsFromString(context, recipientsList, false);
-      return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+      }
+    }
+
+    String     recipientsList = Util.join(group, ",");
+    Recipients recipients     = RecipientFactory.getRecipientsFromString(context, recipientsList, false);
+
+    return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
   }
 
   private long getThreadIdFor(@NonNull NotificationInd notification) {
