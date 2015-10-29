@@ -382,7 +382,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       private void handleBlock() {
         new AlertDialogWrapper.Builder(getActivity())
             .setTitle(R.string.RecipientPreferenceActivity_block_this_contact_question)
-            .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user)
+            .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user)
             .setCancelable(true)
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.RecipientPreferenceActivity_block, new DialogInterface.OnClickListener() {

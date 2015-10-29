@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -34,7 +35,6 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,6 +53,14 @@ public class ContactSelectionListFragment extends    Fragment
 {
   private static final String TAG = ContactSelectionListFragment.class.getSimpleName();
 
+  public final static String DISPLAY_MODE = "display_mode";
+  public final static String MULTI_SELECT = "multi_select";
+  public final static String REFRESHABLE  = "refreshable";
+
+  public final static int DISPLAY_MODE_ALL        = ContactsCursorLoader.MODE_ALL;
+  public final static int DISPLAY_MODE_PUSH_ONLY  = ContactsCursorLoader.MODE_PUSH_ONLY;
+  public final static int DISPLAY_MODE_OTHER_ONLY = ContactsCursorLoader.MODE_OTHER_ONLY;
+
   private TextView emptyText;
 
   private Map<Long, String>         selectedContacts;
@@ -60,8 +68,6 @@ public class ContactSelectionListFragment extends    Fragment
   private StickyListHeadersListView listView;
   private SwipeRefreshLayout        swipeRefresh;
   private String                    cursorFilter;
-
-  private boolean multi = false;
 
   @Override
   public void onActivityCreated(Bundle icicle) {
@@ -91,26 +97,27 @@ public class ContactSelectionListFragment extends    Fragment
     listView.setDrawingListUnderStickyHeader(false);
     listView.setOnItemClickListener(new ListClickListener());
 
-    swipeRefresh.setEnabled(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
+    swipeRefresh.setEnabled(getActivity().getIntent().getBooleanExtra(REFRESHABLE, true) &&
+                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
 
     return view;
   }
 
-  public List<String> getSelectedContacts() {
-    if (selectedContacts == null) return null;
-
+  public @NonNull List<String> getSelectedContacts() {
     List<String> selected = new LinkedList<>();
-    selected.addAll(selectedContacts.values());
+    if (selectedContacts != null) {
+      selected.addAll(selectedContacts.values());
+    }
 
     return selected;
   }
 
-  public void setMultiSelect(boolean multi) {
-    this.multi = multi;
+  private boolean isMulti() {
+    return getActivity().getIntent().getBooleanExtra(MULTI_SELECT, false);
   }
 
   private void initializeCursor() {
-    ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(getActivity(), null, multi);
+    ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(getActivity(), null, isMulti());
     selectedContacts = adapter.getSelectedContacts();
     listView.setAdapter(adapter);
     this.getLoaderManager().initLoader(0, null, this);
@@ -126,12 +133,16 @@ public class ContactSelectionListFragment extends    Fragment
     swipeRefresh.setRefreshing(false);
   }
 
+  public void reset() {
+    selectedContacts.clear();
+    getLoaderManager().restartLoader(0, null, this);
+  }
+
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    boolean pushOnly    = getActivity().getIntent().getBooleanExtra(ContactSelectionActivity.PUSH_ONLY_EXTRA, false);
-    boolean supportsSms = TextSecurePreferences.isSmsEnabled(getActivity());
-
-    return new ContactsCursorLoader(getActivity(), !pushOnly && supportsSms, cursorFilter);
+    return new ContactsCursorLoader(getActivity(),
+                                    getActivity().getIntent().getIntExtra(DISPLAY_MODE, DISPLAY_MODE_ALL),
+                                    cursorFilter);
   }
 
   @Override
@@ -150,13 +161,14 @@ public class ContactSelectionListFragment extends    Fragment
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
       ContactSelectionListItem contact = (ContactSelectionListItem)v;
 
-      if (!multi || !selectedContacts.containsKey(contact.getContactId())) {
+      if (!isMulti() || !selectedContacts.containsKey(contact.getContactId())) {
         selectedContacts.put(contact.getContactId(), contact.getNumber());
         contact.setChecked(true);
         if (onContactSelectedListener != null) onContactSelectedListener.onContactSelected(contact.getNumber());
       } else {
         selectedContacts.remove(contact.getContactId());
         contact.setChecked(false);
+        if (onContactSelectedListener != null) onContactSelectedListener.onContactDeselected(contact.getNumber());
       }
     }
   }
@@ -170,6 +182,7 @@ public class ContactSelectionListFragment extends    Fragment
   }
 
   public interface OnContactSelectedListener {
-    public void onContactSelected(String number);
+    void onContactSelected(String number);
+    void onContactDeselected(String number);
   }
 }

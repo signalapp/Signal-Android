@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.OperationApplicationException;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -15,6 +17,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
@@ -59,13 +62,9 @@ public class DirectoryHelper {
   private static final String TAG = DirectoryHelper.class.getSimpleName();
 
   public static void refreshDirectory(final Context context) throws IOException {
-    refreshDirectory(context, TextSecureCommunicationFactory.createManager(context));
-  }
-
-  public static void refreshDirectory(final Context context, final TextSecureAccountManager accountManager)
-      throws IOException
-  {
-    refreshDirectory(context, accountManager, TextSecurePreferences.getLocalNumber(context));
+    refreshDirectory(context,
+                     TextSecureCommunicationFactory.createManager(context),
+                     TextSecurePreferences.getLocalNumber(context));
   }
 
   public static void refreshDirectory(final Context context, final TextSecureAccountManager accountManager, final String localNumber)
@@ -92,7 +91,14 @@ public class DirectoryHelper {
         }
 
         try {
-          DatabaseFactory.getContactsDatabase(context).setRegisteredUsers(account.get(), e164numbers);
+          boolean modified = DatabaseFactory.getContactsDatabase(context)
+                                            .setRegisteredUsers(account.get(), e164numbers);
+
+          if (modified && TextSecurePreferences.isMultiDevice(context)) {
+            ApplicationContext.getInstance(context)
+                              .getJobManager()
+                              .add(new MultiDeviceContactUpdateJob(context));
+          }
         } catch (RemoteException | OperationApplicationException e) {
           Log.w(TAG, e);
         }
@@ -126,7 +132,9 @@ public class DirectoryHelper {
     }
   }
 
-  public static UserCapabilities getUserCapabilities(Context context, Recipients recipients) {
+  public static @NonNull UserCapabilities getUserCapabilities(@NonNull Context context,
+                                                              @Nullable Recipients recipients)
+  {
     try {
       if (recipients == null) {
         return UserCapabilities.UNSUPPORTED;

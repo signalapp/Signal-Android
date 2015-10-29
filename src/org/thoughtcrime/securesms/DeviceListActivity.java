@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceInfo;
 
@@ -122,8 +123,12 @@ public class DeviceListActivity extends PassphraseRequiredActionBarActivity {
 
       setListAdapter(new DeviceListAdapter(getActivity(), R.layout.device_list_item_view, data));
 
-      if (data.isEmpty()) empty.setVisibility(View.VISIBLE);
-      else                empty.setVisibility(View.GONE);
+      if (data.isEmpty()) {
+        empty.setVisibility(View.VISIBLE);
+        TextSecurePreferences.setMultiDevice(getActivity(), false);
+      } else {
+        empty.setVisibility(View.GONE);
+      }
     }
 
     @Override

@@ -18,7 +18,7 @@
 package org.thoughtcrime.redphone.signaling.signals;
 
 import org.thoughtcrime.redphone.crypto.Otp;
-import org.thoughtcrime.redphone.util.Base64;
+import org.thoughtcrime.securesms.util.Base64;
 
 /**
  * Base class for constructing a signal.

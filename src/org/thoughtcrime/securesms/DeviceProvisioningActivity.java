@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
@@ -111,6 +112,7 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
           IdentityKeyPair          identityKeyPair  = IdentityKeyUtil.getIdentityKeyPair(context);
 
           accountManager.addDevice(ephemeralId, publicKey, identityKeyPair, verificationCode);
+          TextSecurePreferences.setMultiDevice(context, true);
           return SUCCESS;
 
 

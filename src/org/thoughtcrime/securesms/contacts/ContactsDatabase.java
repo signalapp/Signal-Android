@@ -23,11 +23,13 @@ import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.MatrixCursor;
+import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,6 +37,10 @@ import android.text.TextUtils;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.ArrayList;
@@ -51,7 +57,9 @@ import java.util.Set;
  */
 public class ContactsDatabase {
 
-  private static final String TAG = ContactsDatabase.class.getSimpleName();
+  private static final String TAG  = ContactsDatabase.class.getSimpleName();
+  private static final String MIME = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact";
+  private static final String SYNC = "__TS";
 
   public static final String ID_COLUMN           = "_id";
   public static final String NAME_COLUMN         = "name";
@@ -70,7 +78,7 @@ public class ContactsDatabase {
     this.context  = context;
   }
 
-  public synchronized void setRegisteredUsers(Account account, List<String> e164numbers)
+  public synchronized boolean setRegisteredUsers(Account account, List<String> e164numbers)
       throws RemoteException, OperationApplicationException
   {
     Map<String, Long>                   currentContacts    = new HashMap<>();
@@ -111,6 +119,9 @@ public class ContactsDatabase {
 
     if (!operations.isEmpty()) {
       context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -133,12 +144,12 @@ public class ContactsDatabase {
                                            .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
                                            .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, e164number)
                                            .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_OTHER)
-                                           .withValue(ContactsContract.Data.SYNC2, "__TS")
+                                           .withValue(ContactsContract.Data.SYNC2, SYNC)
                                            .build());
 
     operations.add(ContentProviderOperation.newInsert(dataUri)
                                            .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, index)
-                                           .withValue(ContactsContract.Data.MIMETYPE, "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact")
+                                           .withValue(ContactsContract.Data.MIMETYPE, MIME)
                                            .withValue(ContactsContract.Data.DATA1, e164number)
                                            .withValue(ContactsContract.Data.DATA2, context.getString(R.string.app_name))
                                            .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_message_s, e164number))
@@ -198,7 +209,7 @@ public class ContactsDatabase {
     Cursor cursor = context.getContentResolver().query(uri, projection,
                                                        ContactsContract.Data.SYNC2 + " IS NULL OR " +
                                                        ContactsContract.Data.SYNC2 + " != ?",
-                                                       new String[] {"__TS"},
+                                                       new String[] {SYNC},
                                                        sort);
 
     return new ProjectionMappingCursor(cursor, projectionMap,
@@ -224,13 +235,13 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
                                                   projection,
                                                   ContactsContract.Data.MIMETYPE + " = ?",
-                                                  new String[] {"vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact"},
+                                                  new String[] {MIME},
                                                   sort);
     } else {
       cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
                                                   projection,
                                                   ContactsContract.Data.MIMETYPE + " = ? AND (" + ContactsContract.Contacts.DISPLAY_NAME + " LIKE ? OR " + ContactsContract.Data.DATA1 + " LIKE ?)",
-                                                  new String[] {"vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact",
+                                                  new String[] {MIME,
                                                                 "%" + filter + "%", "%" + filter + "%"},
                                                   sort);
     }
