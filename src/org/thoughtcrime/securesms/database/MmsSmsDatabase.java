@@ -167,8 +167,15 @@ public class MmsSmsDatabase extends Database {
     mmsQueryBuilder.setDistinct(true);
     smsQueryBuilder.setDistinct(true);
 
-    mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME + " ON (" + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")");
     smsQueryBuilder.setTables(SmsDatabase.TABLE_NAME);
+    mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " +
+                              AttachmentDatabase.TABLE_NAME +
+                              " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " = " +
+                                  " (SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID +
+                                  " FROM " + AttachmentDatabase.TABLE_NAME + " WHERE " +
+                                  AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " +
+                                  MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " LIMIT 1)");
+
 
     Set<String> mmsColumnsPresent = new HashSet<>();
     mmsColumnsPresent.add(MmsSmsColumns.ID);

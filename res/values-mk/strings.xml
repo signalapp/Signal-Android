@@ -57,8 +57,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Враќање на нешифрирани MMS пораки?</string>
   <string name="ConversationItem_unable_to_open_media">Не може да се пронајде апликација за отворање на овој тип на датотека.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Стартувај шифрирана сесија?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Стартувај шифрирана сесија со %s?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Потврде за бришење на тема на разговор</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Дали сте сигурни дека сакате трајно бришење на овај разговор?</string>
   <string name="ConversationActivity_add_attachment">Прикачи датотека</string>
@@ -225,7 +223,6 @@
   <string name="RatingManager_later">Покасно</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирај го контактот?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Повеќе нема да се покажуваат пораките од овој корисник.</string>
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одблокирај го контактот?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Дали сте сигурни дека сакате да го одблокирате овој контакт?</string>
@@ -312,7 +309,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">Мојот отисок за идентификација</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Иницирај и покрај постоечкото барање?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Веќе испративте барање за иницирање на сесија со овој примател. Сакате да испратите повторно? Ова ќе го поништи претходното барање.</string>
   <string name="KeyExchangeInitiator_send">Испратено</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Погрешно шифрирана порака...</string>
@@ -423,6 +419,7 @@
   <string name="import_fragment__import_plaintext_backup">Импортирајте нешифрирана копија</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
         Импортирајте нешифрирана копија. Компатибилна со \'SMSBackup And Restore.\'</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Нема слики</string>
   <!--message_recipients_list_item-->
@@ -647,7 +644,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Покани</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Започни шифрирана сесија</string>
   <string name="conversation_insecure__security">Сигурност</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Избриши избрани</string>
@@ -692,10 +688,7 @@
   <string name="text_secure_normal__mark_all_as_read">Обележи ги сите како прочитани</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Пораките не ќе можат повеќе да се испраќаат, актуализирајте на најновата верзија.</string>
-  <string name="reminder_header_sms_default_title">Користете како стандардна апликација за SMS?</string>
-  <string name="reminder_header_sms_import_title">Импортирајте ги SMS пораките од системот?</string>
   <string name="reminder_header_sms_import_text">Притиснете за копирање на SMS пораките од вашиот телефон во шифрираната база на податоци.</string>
-  <string name="reminder_header_push_text">Притисни за инстантно испраќање, подобра сигурност и бесплатни SMS пораки.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вие</string>
   <string name="MediaPreviewActivity_cant_display">Неуспешно прикажување на сликата</string>

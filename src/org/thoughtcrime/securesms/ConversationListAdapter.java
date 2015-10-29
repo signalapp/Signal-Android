@@ -50,7 +50,6 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   private final MasterSecret      masterSecret;
   private final MasterCipher      masterCipher;
   private final Locale            locale;
-  private final Context           context;
   private final LayoutInflater    inflater;
   private final ItemClickListener clickListener;
 
@@ -89,7 +88,6 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     super(context, cursor);
     this.masterSecret   = masterSecret;
     this.masterCipher   = new MasterCipher(masterSecret);
-    this.context        = context;
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
     this.locale         = locale;
     this.inflater       = LayoutInflater.from(context);

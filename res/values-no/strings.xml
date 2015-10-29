@@ -73,8 +73,6 @@ denne kontakten.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen vil <b>ikke</b> bli kryptert fordi mottakeren ikke lenger er en Signal bruker.\n\nSend meldingen ukryptert?</string>
   <string name="ConversationItem_unable_to_open_media">Finner ikke en applikasjon som kan åpne dette mediet.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Starte sikker sesjon?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Starte sikker sesjon med %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Bekreft nullstilling av sikker sesjon</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Er du sikker på at du ønsker å nullstille denne sikre sesjonen?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Bekreft sletting av tråd</string>
@@ -283,7 +281,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="RatingManager_later">Senere</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokker denne kontakten?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Du vil ikke lenger se meldinger fra denne brukeren.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Du vil ikke lenger motta anrop eller meldinger fra denne brukeren.</string>
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Opphev blokkering av denne kontakten?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Er du sikker på at du ønsker å oppheve blokkeringen av denne kontakten?</string>
@@ -376,6 +374,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="ThreadRecord_called">Du ringte</string>
   <string name="ThreadRecord_called_you">Ringte deg</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
+  <string name="ThreadRecord_media_message">Media melding</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
@@ -398,7 +397,6 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">Mitt ID-fingeravtrykk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har allerede sendt en forespørsel om å initiere en sesjon til denne mottakeren. Er du sikker på at du vil sende en til? Dette vil ugyldiggjøre tidligere forespørsel.</string>
   <string name="KeyExchangeInitiator_send">Send</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding...</string>
@@ -526,6 +524,8 @@ Gjenopprett en tidligere eksportert kryptert Signal backup.</string>
   <string name="import_fragment__import_plaintext_backup">Importer klartekst backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Se hele samtalen</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Ingen bilder</string>
   <!--message_recipients_list_item-->
@@ -803,7 +803,6 @@ Gratis og private meldinger til Signal brukere
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Inviter</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Start sikker sesjon</string>
   <string name="conversation_insecure__security">Sikkerhet</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slett merkede</string>
@@ -852,12 +851,20 @@ Gratis og private meldinger til Signal brukere
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Din versjon av Signal er foreldet!</string>
   <string name="reminder_header_expired_build_details">Det vil ikke lenger være mulig å sende meldinger. Vær vennlig å oppdatere til siste versjon.</string>
-  <string name="reminder_header_sms_default_title">Bruk som standard SMS applikasjon?</string>
+  <string name="reminder_header_expired_build_button">OPPGRADER</string>
+  <string name="reminder_header_sms_default_title">Bruk som standard SMS applikasjon</string>
   <string name="reminder_header_sms_default_text">Klikk for å la Signal være din standard SMS applikasjon.</string>
-  <string name="reminder_header_sms_import_title">Importer enhetens SMS database?</string>
+  <string name="reminder_header_sms_default_button">SETT</string>
+  <string name="reminder_header_sms_import_title">Importer systemets SMS</string>
   <string name="reminder_header_sms_import_text">Klikk for å kopiere telefonens SMS meldinger til sin krypterte database.</string>
-  <string name="reminder_header_push_title">Aktiver Signal meldinger?</string>
-  <string name="reminder_header_push_text">Klikk for umiddelbar levering, sterkere personvern og ingen SMS kostnader.</string>
+  <string name="reminder_header_sms_import_button">IMPORTER</string>
+  <string name="reminder_header_push_title">Aktiver Signal</string>
+  <string name="reminder_header_push_text">Oppgrader meldingsopplevelsen din.</string>
+  <string name="reminder_header_push_button">AKTIVER</string>
+  <string name="reminder_header_invite_title">Inviter til Signal</string>
+  <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>
+  <string name="reminder_header_invite_button">INVITER</string>
+  <string name="reminder_header_close_button">LUKK</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_cant_display">Klarte ikke å forhåndsvise dette bildet</string>

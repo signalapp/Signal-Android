@@ -71,8 +71,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة <b>لن تكون</b> مشفرة لأن المستلم لم يعد مستخدم سيجنال. .\n\nهل ترغب في إرسالها غير مشفرة؟</string>
   <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">بدء محادثة آمنة؟</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">بدء التشفير مع %s؟</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">تأكيد إعادة ضبط الجلسة الآمنة</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">هل أنت متأكد من إعادة ضبط هذه الجلسة الآمنة؟</string>
   <string name="ConversationActivity_delete_thread_confirmation">تأكيد حذف المحادثة</string>
@@ -207,7 +205,7 @@
   <string name="ImportFragment_cancel">إلغاء</string>
   <string name="ImportFragment_restore_encrypted_backup">استعادة نسخة احتياطية مشفرة؟</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
- استرجاع نسخة احتياطية مشفرة يقوم باستبدال المفاتيح حالية والإعدادات والرسائل. المعلومات الموجودة الآن في سيجنال وغير موجودة في النسخة الاحتياطية سوف تفقد.</string>
+ استرجاع نسخة احتياطية مشفرة يؤدي إلى استبدال المفاتيح حالية والإعدادات والرسائل. المعلومات الحالية في سيجنال والغير موجودة في النسخة الاحتياطية سوف تفقد.</string>
   <string name="ImportFragment_restore">استعادة</string>
   <string name="ImportFragment_import_plaintext_backup">استيراد نسخة احتياطية غير مشفرة؟</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">سيتم استيراد رسائل غير مشفرة من نسخة احتياطية. إذا قمت سابقا باستيراد هذا الملف فسوف يؤدي الاستيراد مرة أخرى إلى تكرار الرسائل.</string>
@@ -279,7 +277,7 @@
   <string name="RatingManager_later">فيما بعد</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">حظر جهة الاتصال؟</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">لن ترى مجددا الرسائل المرسلة من هذا المستخدم.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">لن تتلقى مكالمات أو رسائل من هذا المستخدم مستقبلا.</string>
   <string name="RecipientPreferenceActivity_block">حظر</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">إلغاء حظر جهة الاتصال؟</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">تأكيد إلغاء حظر جهة الاتصال؟</string>
@@ -308,7 +306,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">الرقم المطلوب لا يدعم مكالمات صوتية مشفرة!</string>
   <string name="RedPhone_got_it">عُلم</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">سجل مع سيجنال</string>
+  <string name="RegistrationActivity_connect_with_signal">تواصل مع سيجنال</string>
   <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">يجب عليك تحديد
@@ -369,6 +367,7 @@
   <string name="ThreadRecord_called">مكالمات صاردة</string>
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
   <string name="ThreadRecord_missed_call">مكالمة فائتة</string>
+  <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">لا يوجد لديك مفتاح تعريفي.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">لا يوجد لدى الطرف الاخر مفتاح تعريفي.</string>
@@ -391,7 +390,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">بصمة هويتي</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ابدأ على الرغم من الطلب الحالي؟</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">لقد قمت بارسال طلب انشاء قناة اتصال مسبقاً لهذه الجهة، هل تريد ارسال طلب آخر؟، هذه العملية ستلغي الطلب السابق.</string>
   <string name="KeyExchangeInitiator_send">أرسل</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">خطأ بالرسالة المشفرة...</string>
@@ -521,6 +519,8 @@
   <string name="import_fragment__import_plaintext_backup">استيراد نسخة احتياطية غير مشفرة</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 استيراد نسخة احتياطية غير مشفرة، متوافقة مع \"SMSBackup And Restore\".</string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">مطالعة المحادثة بالكامل</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">لا توجد صور</string>
   <!--message_recipients_list_item-->
@@ -592,10 +592,10 @@
   <string name="registration_progress_activity__some_possible_problems_include">بعض المشاكل 
 المحتملة وتتضمن:</string>
   <string name="registration_progress_activity__no_network_connectivity">لا يوجد شبكة اتصال.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">الجهاز في حاجة إلى اتصال بالشبكة من أجل استخدام هذه الخاصية من سيجنال. تأكد من الاتصال ببيانات شبكة الجوال أو Wi-Fi. </string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">الجهاز في حاجة إلى اتصال بالإترنت من أجل استخدام هذه الخاصية من سيجنال. تأكد من الاتصال ببيانات شبكة الجوال أو Wi-Fi. </string>
   <string name="registration_progress_activity__restrictive_firewall">تقييد بواسطة جدار ناري.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
- إذا كنت متصل ببواسطة Wi-Fi من المحتمل وجود جدار ناري يمنع النفاذ إلى خادم سيجنال. قم بتجربة شبكة أخرى أو بيانات شبكة الجوال.</string>
+ إذا كنت متصل عبر Wi-Fi فإنه من الوارد وجود جدار ناري يمنع النفاذ إلى خادم سيجنال. قم بتجربة شبكة أخرى أو بيانات شبكة الجوال.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
  سيقوم سيجنال الآن بالتحقق من رقم هاتفك آليا بواسطة رسالة نصية.</string>
   <string name="registration_progress_activity__connecting">الاتصال جارِ...</string>
@@ -796,7 +796,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">دعوة</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">بدء محادثة آمنة</string>
   <string name="conversation_insecure__security">الأمن</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">احذف المختار</string>
@@ -845,12 +844,19 @@
   <!--reminder_header-->
   <string name="reminder_header_expired_build">لقد انتهت صلاحية هذه النسخة من سيجنال!</string>
   <string name="reminder_header_expired_build_details">رجاء التحديث لآخر إصداره من التطبيق. لن ترسل الرسائل بنجاح بعد الآن.</string>
-  <string name="reminder_header_sms_default_title">اجعله التطبيق الافتراضي المستخدم للرسائل؟</string>
+  <string name="reminder_header_expired_build_button">ترقية</string>
+  <string name="reminder_header_sms_default_title">اجعله تطبيق المراسلة الافتراضي</string>
   <string name="reminder_header_sms_default_text">المس لجعل سيجنال التطبيق الافتراضي للرسائل.</string>
-  <string name="reminder_header_sms_import_title">استيراد رسائل النظام؟</string>
+  <string name="reminder_header_sms_default_button">تعيين</string>
+  <string name="reminder_header_sms_import_title">استيراد رسائل النظام</string>
   <string name="reminder_header_sms_import_text">أضغط لنسخ الرسائل النصية القصيرة على الهاتف إلى قاعدة البيانات المشفرة.</string>
-  <string name="reminder_header_push_title">تفعيل رسائل سيجنال؟</string>
-  <string name="reminder_header_push_text">أنقر من أجل تراسل لحظي،  خصوصية أقوي، وبدون رسوم الرسائل النصية.</string>
+  <string name="reminder_header_sms_import_button">استيراد</string>
+  <string name="reminder_header_push_title">تفعيل سيجنال</string>
+  <string name="reminder_header_push_text">ترقية تجربتك في التراسلات.</string>
+  <string name="reminder_header_push_button">تفعيل</string>
+  <string name="reminder_header_invite_title">دعوة إلى سيجنال</string>
+  <string name="reminder_header_invite_button">دعوة</string>
+  <string name="reminder_header_close_button">إغلاق</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">أنت</string>
   <string name="MediaPreviewActivity_cant_display">خطأ في معاينة هذه الصورة</string>

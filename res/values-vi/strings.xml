@@ -80,8 +80,6 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã khoá bởi vì người nhận không còn sử dụng Signal.\n\ngSẽ gửi tin nhắn không bảo mật chứ?</string>
   <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở dữ liệu truyền thông này.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Khởi động phiên mã hóa?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Khởi động phiên mã hóa với %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Tái thiết lập việc xác nhận phiên bảo mật</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Có chắc là bạn muốn tái thiết lập phiên bảo mật này?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Xác nhận xóa chuỗi</string>
@@ -297,7 +295,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="RatingManager_later">Sau này</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Chặn liên lạc này?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Bạn sẽ không thấy tin nhắn của người dùng này gửi.</string>
   <string name="RecipientPreferenceActivity_block">Chặn</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Không chặn liên lạc này?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Bạn có chắc là không chặn liên lạc này?</string>
@@ -416,7 +413,6 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="ViewIdentityActivity_my_identity_fingerprint">Dấu vân tay danh tính của tôi</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Khởi tạo mặc dầu đã có yêu cầu rồi?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Bạn đã gửi yêu cầu khởi tạo phiên trao đổi với người nhận này, bạn có chắc là muốn gửi lần nữa? Điều này sẽ làm yêu cầu đầu tiên mất hiệu lực.</string>
   <string name="KeyExchangeInitiator_send">Gửi</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Tin nhắn mã hóa bị hỏng...</string>
@@ -547,6 +543,7 @@ Khôi phục bản sao lưu Signal được mã khoá đã xuất từ trước.
   <string name="import_fragment__import_plaintext_backup">Nhập sao lưu văn bản thường</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Nhập tập tin sao lưu thường-không mã hóa. Tương thích với ứng dụng \'SMSBackup And Restore\'.</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Không hình ảnh</string>
   <!--message_recipients_list_item-->
@@ -841,7 +838,6 @@ Miễn phí nhắn tin và gọi điện riêng tư đến người dùng Signal
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Mời</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Bắt đầu phiên bảo mật</string>
   <string name="conversation_insecure__security">An Ninh</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Xóa cái chọn</string>
@@ -890,12 +886,8 @@ Miễn phí nhắn tin và gọi điện riêng tư đến người dùng Signal
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Bản dựng Signal này đã hết hạn!</string>
   <string name="reminder_header_expired_build_details">Tin nhắn không còn gửi đi được nữa, xin vui lòng cập nhật lên phiên bản mới nhất.</string>
-  <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định?</string>
   <string name="reminder_header_sms_default_text">Chạm để đặt Signal làm ứng dụng SMS mặc định.</string>
-  <string name="reminder_header_sms_import_title">Nhập SMS của hệ thống?</string>
   <string name="reminder_header_sms_import_text">Nhấn để sao chép tin nhắn SMS trong điện thoại vào cơ sở dữ liệu mã hóa.</string>
-  <string name="reminder_header_push_title">Bật tin nhắn Signal?</string>
-  <string name="reminder_header_push_text">Nhấn để có nhắn tin nhanh, bảo mật chắc và không tốn phí SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Bạn</string>
   <string name="MediaPreviewActivity_cant_display">Không xem trước hình được</string>

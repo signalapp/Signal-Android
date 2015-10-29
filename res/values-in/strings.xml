@@ -75,8 +75,6 @@ kontak ini.
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Signal.\n\nTetap kirim pesan tidak aman?</string>
   <string name="ConversationItem_unable_to_open_media">Tidak bisa menemukan aplikasi untuk membuka media ini.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Inisiasi sesi aman?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Inisiasi sesi aman dengan %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Konfirmasi penyetelan ulang sesi aman</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Apakah Anda yakin ingin menyetel ulang sesi aman ini?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Konfirmasi penghapusan percakapan</string>
@@ -286,7 +284,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="RatingManager_later">Nanti</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokir kontak ini?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Anda tidak akan melihat lagi pesan yang dikirimkan dari pengguna ini.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Anda tidak akan lagi menerima panggilan atau pesan dari pengguna ini.</string>
   <string name="RecipientPreferenceActivity_block">Blokir</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Apakah Anda yakin ingin membuka blokir kontak ini?</string>
@@ -405,7 +403,6 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="ViewIdentityActivity_verified_exclamation">Terverifikasi!</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">Sidik jari identitas saya</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Anda telah mengirimkan permintaan inisiasi sesi untuk penerima ini, apakah anda yakin untuk mengirimkan lagi? Hal ini akan membuat permintaan sesi sebelumnya menjadi tidak sah</string>
   <string name="KeyExchangeInitiator_send">Kirim</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Enkripsi pada pesan tidak dapat dikenali</string>
@@ -535,6 +532,7 @@ dari aplikasi perpesan bawaan
     </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Restore\'.</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Tidak ada gambar</string>
   <!--message_recipients_list_item-->
@@ -835,7 +833,6 @@ Telah gagal
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Undang</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Mulai sesi aman</string>
   <string name="conversation_insecure__security">Keamanan</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Hapus terpilih</string>
@@ -884,12 +881,14 @@ Telah gagal
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Versi Signal Anda telah usang!</string>
   <string name="reminder_header_expired_build_details">Pesan tidak akan bisa lagi terkirim dengan sukses, mohon mutakhirkan ke versi terbaru.</string>
-  <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS baku?</string>
+  <string name="reminder_header_expired_build_button">PERBARUI</string>
   <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS baku Anda.</string>
-  <string name="reminder_header_sms_import_title">Impor SMS sistem?</string>
+  <string name="reminder_header_sms_default_button">SET</string>
   <string name="reminder_header_sms_import_text">Ketuk untuk menyalin pesan SMS telepon Anda ke dalam basis data terenkripsi.</string>
-  <string name="reminder_header_push_title">Aktifkan perpesanan Signal?</string>
-  <string name="reminder_header_push_text">Ketuk untuk pengiriman instan, privasi yang lebih baik, dan gratis.</string>
+  <string name="reminder_header_sms_import_button">IMPOR</string>
+  <string name="reminder_header_push_button">AKTIFKAN</string>
+  <string name="reminder_header_invite_button">UNDANG</string>
+  <string name="reminder_header_close_button">TUTUP</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Anda</string>
   <string name="MediaPreviewActivity_cant_display">Gagal meninjau gambar ini</string>

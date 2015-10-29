@@ -102,6 +102,13 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
              UndeliverableMessageException
   {
+    if (message.getRecipients() == null                       ||
+        message.getRecipients().getPrimaryRecipient() == null ||
+        message.getRecipients().getPrimaryRecipient().getNumber() == null)
+    {
+      throw new UndeliverableMessageException("No destination address.");
+    }
+
     TextSecureMessageSender messageSender = messageSenderFactory.create();
 
     try {

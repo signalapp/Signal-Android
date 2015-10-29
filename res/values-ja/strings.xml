@@ -64,8 +64,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
   <string name="ConversationItem_unable_to_open_media">このメディアを開くことができるアプリが見つかりません。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">%sさんとセキュア・セッションを開始しますか？</string>
   <string name="ConversationActivity_delete_thread_confirmation">スレッド削除確認</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">この会話を完全に削除してもよろしいですか？</string>
   <string name="ConversationActivity_add_attachment">添付</string>
@@ -244,7 +242,6 @@
   <string name="RatingManager_later">後で</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">この連絡先をブロックしますか?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">このユーザーから送信されたメッセージをもう見ることはなくなります。</string>
   <string name="RecipientPreferenceActivity_block">ブロック</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">この連絡先のブロックを解除しますか?</string>
@@ -324,7 +321,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">自分の認証フィンガープリント</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">セッション開始のリクエストはすでにこの受信者に送られています。別のリクエストをまた送ってもよろしいですか？送信すると、最初に送ったリクエストは無効になります。</string>
   <string name="KeyExchangeInitiator_send">送信</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">メッセージが正しく暗号化されていません…</string>
@@ -444,6 +440,7 @@
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">画像なし</string>
   <!--message_recipients_list_item-->
@@ -681,7 +678,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">招待</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">セキュア・セッションを開始</string>
   <string name="conversation_insecure__security">セキュリティ</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">選択したものを削除</string>
@@ -728,10 +724,7 @@
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">もうメッセージの送信が成功することはありません、最新のバージョンへアップデートしてください。</string>
-  <string name="reminder_header_sms_default_title">標準のSMSアプリに設定しますか？</string>
-  <string name="reminder_header_sms_import_title">システムのSMSをインポートしますか？</string>
   <string name="reminder_header_sms_import_text">タップして電話のSMSメッセージを暗号化したデータベースにコピーする。</string>
-  <string name="reminder_header_push_text">タップして強力なプライバシー保護、そしてSMS料金ゼロでインスタント配信。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>
   <string name="MediaPreviewActivity_cant_display">この画像のプレビューに失敗</string>

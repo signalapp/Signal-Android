@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
-              android:visibility="gone"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content">
     <LinearLayout android:id="@+id/container"
                   android:orientation="horizontal"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:visibility="gone"
+                  tools:visibility="visible"
+                  android:padding="2dp"
                   android:gravity="center_vertical"
                   android:background="?reminder_header_background">
 
@@ -23,12 +26,14 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:layout_marginBottom="5dp"
+                      tools:text="Invite to Signal"
                       android:textColor="@color/white"
                       android:textSize="18sp"/>
 
             <TextView android:id="@+id/reminder_text"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
+                      tools:text="Take your conversation with Jules Bonnot to the next level."
                       android:fontFamily="sans-serif-light"
                       android:textColor="@color/white"
                       android:textSize="16sp"/>
@@ -51,27 +56,8 @@
                              android:layout_height="40dp"
                              android:padding="10dp"
                              android:background="@drawable/touch_highlight_background"
-                             android:src="@drawable/ic_menu_remove_holo_light"/>
+                             android:src="@drawable/ic_close_white_24dp"/>
             </LinearLayout>
-
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="0dp"
-                          android:layout_weight="1"
-                          android:gravity="bottom">
-
-                <Button android:id="@+id/ok"
-                        android:layout_width="60sp"
-                        android:layout_height="40sp"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:background="@drawable/light_touch_highlight_background"
-                        android:fontFamily="sans-serif-light"
-                        android:textColor="@color/white"
-                        android:clickable="false"
-                        android:text="@string/yes"
-                        android:padding="2dp"/>
-
-            </LinearLayout>
-
           </LinearLayout>
 
     </LinearLayout>

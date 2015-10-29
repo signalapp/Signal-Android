@@ -337,7 +337,7 @@
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
-    <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">You will no longer see messages sent from this user.</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">You will no longer receive calls or messages from this user.</string>
     <string name="RecipientPreferenceActivity_block">Block</string>
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Unblock this contact?</string>
     <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Are you sure you want to unblock this contact?</string>
@@ -639,7 +639,7 @@
         Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
 
     <!-- load_more_header -->
-    <string name="load_more_header__load_full_conversation">Load full conversation...</string>
+    <string name="load_more_header__see_full_conversation">See full conversation</string>
 
     <!-- media_overview_activity -->
     <string name="media_overview_activity__no_images">No images</string>
@@ -1039,16 +1039,16 @@
     <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
     <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
     <string name="reminder_header_expired_build_button">UPGRADE</string>
-    <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
+    <string name="reminder_header_sms_default_title">Use as default SMS app</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
     <string name="reminder_header_sms_default_button">SET</string>
-    <string name="reminder_header_sms_import_title">Import system SMS?</string>
+    <string name="reminder_header_sms_import_title">Import system SMS</string>
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
     <string name="reminder_header_sms_import_button">IMPORT</string>
-    <string name="reminder_header_push_title">Enable Signal?</string>
+    <string name="reminder_header_push_title">Enable Signal</string>
     <string name="reminder_header_push_text">Upgrade your messaging experience.</string>
     <string name="reminder_header_push_button">ENABLE</string>
-    <string name="reminder_header_invite_title">Invite to Signal?</string>
+    <string name="reminder_header_invite_title">Invite to Signal</string>
     <string name="reminder_header_invite_text">Take your conversation with %1$s to the next level.</string>
     <string name="reminder_header_invite_button">INVITE</string>
     <string name="reminder_header_close_button">CLOSE</string>
