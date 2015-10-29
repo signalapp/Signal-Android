@@ -428,7 +428,7 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="database_upgrade_activity__updating_database">Datubasea eguneratzen...</string>
   <string name="export_fragment__export_plaintext_backup">Esportatu enkriptatu gabeko babeskopia</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-\'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babeskopia bat esportatu SD txartelera.</string>
+\'SMS Backup and Restorekin\' bateragarria den enkriptatu gabeko babeskopia bat esportatu SD txartelera.</string>
   <string name="import_fragment__import_system_sms_database">Inportatu sistemaren SMS datubasea</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Inportatu datubasea sisteman lehenetsitako mezularitza aplikaziotik.</string>
   <string name="import_fragment__import_encrypted_backup">Enkriptatutako babeskopia inportatu</string>
@@ -437,7 +437,7 @@ Aurretik enkriptatu eta esportatu den SecureChat babeskopia leheneratu.
 </string>
   <string name="import_fragment__import_plaintext_backup">Enkriptatu gabeko babeskopia inportatu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Enkriptatu gabeko babeskopia bat inportatu. Bateragarria \'SMSBackup Eta Restore\'-ekin.</string>
+Enkriptatu gabeko babeskopia bat inportatu. Bateragarria \'SMS Backup Eta Restore\'-ekin.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">MMS eskuzko ezarpenak behar dira zure telefonorako.</string>
   <string name="MmsPreferencesFragment__enabled">Gaituta</string>

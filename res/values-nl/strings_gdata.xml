@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 seconden</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 seconden</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 seconden</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Uitschakelen</string>
     <string name="gdata_contact_selection_page_title">Contactpersonen</string>
     <string name="gdata_conversation_list_page_title">Chat</string>
     <string name="gd_dialog_fragment_phishing_title">Webbeveiliging</string>
@@ -22,8 +21,6 @@
     <string name="menu_privacy_single_hide">Chat verbergen</string>
     <string name="menu_filter_block_contact">Contactpersoon blokkeren</string>
     <string name="privacy_pw_dialog_header">Wachtwoord invoeren: </string>
-    <string name="privacy_pw_dialog_toast_wrong">Het ingevoerde wachtwoord komt niet overeen met het wachtwoord van Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Opmerking: het gaat om het wachtwoord dat u hebt gekozen in Internet Security voor Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Chat wordt hersteld...</string>
     <string name="privacy_pw_dialog_toast_hide">Het verbergen van de chats wordt voorbereid...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Chat wordt verborgen...</string>
@@ -63,4 +60,18 @@
     <string name="status_donotdisturb">Niet storen</string>
     <string name="status_nocallsjustchat">Geen gesprekken, alleen SecureChat</string>
     <string name="status_onlyurgentcalls">Alleen dringende gesprekken</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Zelfvernietiging uitschakelen</string>
+    <string name="privacy_pw_dialog_hint">Opmerking: dit is het wachtwoord dat u in G DATA Internet Security voor Android hebt gekozen.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Het ingevoerde wachtwoord komt niet overeen met dat van G DATA Internet Security.</string>
+    <string name="msg_failed">Opmerking: de sleutel van een van de ontvangers is mogelijk gewijzigd door een nieuwe installatie of een aanvalspoging door een derde partij. In een groep kan dit probleem worden opgelost door regelmatig sleutels uit te wisselen in een nieuw gesprek met de contactpersoon en daarna de groep te vernieuwen.</string>
+    <string name="profile_history_label">Media</string>
+    <string name="profile_history_content">Er zijn nog geen afbeeldingen uitgewisseld</string>
+    <string name="menu_invite_to_sc">Uitnodigen</string>
+    <string name="group_title">Titel</string>
+    <string name="status_hint">Kies uw status:</string>
+    <string name="dialog_compressing"> De video wordt gecomprimeerd...</string>
+    <string name="dialog_compressing_header">Even geduld...</string>
+    <string name="preferences__versnr">Versie</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Toestemming vragen vóór het verzenden van een factureerbare sms/mms</string>
+    <string name="profile_select_picture">Profielfoto selecteren</string>
 </resources>

@@ -396,7 +396,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="database_upgrade_activity__updating_database">Ažuriranje baze podataka...</string>
   <string name="export_fragment__export_plaintext_backup">Izvezi nekriptiranu kopiju</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Izvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\' na SD karticu.</string>
+Izvezi nekriptiranu kopiju kompatibilnu s \'SMS Backup And Restore\' na SD karticu.</string>
   <string name="import_fragment__import_system_sms_database">Uvezi SMS bazu podataka sustava</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Uvezi bazu podataka
 iz zadane aplikacije za poruke sustava.</string>
@@ -405,7 +405,7 @@ iz zadane aplikacije za poruke sustava.</string>
 Vrati prethodno izvezenu kriptiranu SecureChat kopiju.</string>
   <string name="import_fragment__import_plaintext_backup">Uvezi nekriptiranu kopiju</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
+Uvezi nekriptiranu kopiju kompatibilnu s \'SMS Backup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Ručne MMS postavke su potrebne za vaš telefon.</string>
   <string name="MmsPreferencesFragment__enabled">Omogućeno</string>

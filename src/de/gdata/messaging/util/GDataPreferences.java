@@ -2,21 +2,18 @@ package de.gdata.messaging.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
-
-import com.google.common.reflect.TypeToken;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
+import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
 
 public class GDataPreferences {
 
@@ -38,10 +35,12 @@ public class GDataPreferences {
   private static final String PROFILE_PICTURE_URI = "PROFILE_PICTURE_URI";
   private static final String PROFILE_STATUS = "PROFILE_STATUS";
   private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
+  private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
 
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
+  private static final String MEDIA_HISTORY = "MEDIA_HISTORY";
 
   public GDataPreferences(Context context) {
     mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -53,7 +52,12 @@ public class GDataPreferences {
   public int getViewPagersLastPage() {
     return mPreferences.getInt(VIEW_PAGER_LAST_PAGE, 0);
   }
-
+  public void setLastImageNumber(int number) {
+    mPreferences.edit().putInt(LAST_IMAGE_NUMBER, number).commit();
+  }
+  public int getLastImageIndicator() {
+    return mPreferences.getInt(LAST_IMAGE_NUMBER, 0);
+  }
   public void setPrivacyActivated(boolean activated) {
     mPreferences.edit().putBoolean(PRIVACY_ACTIVATED, activated).commit();
   }
@@ -92,13 +96,22 @@ public class GDataPreferences {
     mPreferences.edit().putString("status:" + profileId, status).commit();
   }
   public String getProfileStatusForProfileId(String profileId) {
-    return mPreferences.getString("status:" +profileId, "");
+    return mPreferences.getString("status:" + profileId, "");
   }
   public Long getProfileUpdateTimeForProfileId(String profileId) {
     return mPreferences.getLong("date:" + profileId, System.currentTimeMillis());
   }
   public void setProfilUpdateTimeForProfileId(String profileId, Long date) {
     mPreferences.edit().putLong("date:" + profileId, date).commit();
+  }
+  public void saveReadCount(String threadId, Long count) {
+    if(count<0) {
+      count = 0L;
+    }
+    mPreferences.edit().putLong("count:" + threadId, count).commit();
+  }
+  public Long getReadCount(String threadId) {
+    return mPreferences.getLong("count:" + threadId, 0);
   }
   public void setApplicationFont(String applicationFont) {
     mPreferences.edit().putString(APPLICATION_FONT, applicationFont).commit();
@@ -175,6 +188,68 @@ public class GDataPreferences {
   }
   public void removeFromList(String id) {
     mPreferences.edit().remove("msgid:" + id).commit();
+  }
+
+  public boolean saveMediaForHistory(Uri mediaUri, String mediaType, long recipientId){
+    if(!historyHasUriAlready(mediaUri.toString(), recipientId)) {
+      String[] array = getMediaUriHistoryForId(recipientId);
+      int newLength = array.length + 1;
+
+      mPreferences.edit().putInt(MEDIA_HISTORY + "_size_" + recipientId, newLength).commit();
+      mPreferences.edit().putString(MEDIA_HISTORY + "_uri_" + recipientId + "_" + (newLength - 1), mediaUri.toString()).commit();
+      mPreferences.edit().putString(MEDIA_HISTORY + "_type_" + recipientId + "_" + (newLength - 1), mediaType).commit();
+    }
+    return  mPreferences.edit().commit();
+  }
+  public boolean historyHasUriAlready(String uri, long recipientId) {
+    boolean hasAlready = false;
+    String[] array = getMediaUriHistoryForId(recipientId);
+    for(int i=0;i<array.length;i++) {
+      if (array[i].contains(uri)) {
+        hasAlready = true;
+      }
+    }
+    return hasAlready;
+  }
+  public String[] getMediaUriHistoryForId(long recipientId) {
+    int size = mPreferences.getInt(MEDIA_HISTORY + "_size_" + recipientId, 0);
+    String arrayUri[] = new String[size];
+    for(int i=0;i<size;i++) {
+      arrayUri[i] = mPreferences.getString(MEDIA_HISTORY + "_uri_" + recipientId + "_" + i, "");
+    }
+    if(size > 0) {
+      arrayUri = GUtil.reverseOrder(arrayUri);
+    }
+    return arrayUri;
+  }
+  public String[] getMediaTypeHistoryForId(long recipientId) {
+    int size = mPreferences.getInt(MEDIA_HISTORY + "_size_" + recipientId, 0);
+    String arrayType[] = new String[size];
+    for(int i=0;i<size;i++) {
+      arrayType[i] = mPreferences.getString(MEDIA_HISTORY + "_type_" + recipientId + "_" + i, "");
+    }
+    return arrayType;
+  }
+
+  public int getNextImageIndicator() {
+    int lastImageNumber = getLastImageIndicator();
+
+    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES), "SecureChat");
+
+    File mediaFile = new File("");
+    for(int i = 0; i<= lastImageNumber;i++) {
+      mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+              "prof_image"+ i +" .jpg");
+      if(mediaFile.exists()) {
+        mediaFile.delete();
+      }
+    }
+    lastImageNumber = lastImageNumber + 1;
+    setLastImageNumber(lastImageNumber);
+
+    lastImageNumber = getLastImageIndicator();
+    return lastImageNumber;
   }
 }
 

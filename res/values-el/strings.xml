@@ -377,7 +377,7 @@
   <string name="database_upgrade_activity__updating_database">Ενημέρωση Βάσης Δεδομένων...</string>
   <string name="export_fragment__export_plaintext_backup">Εξαγωγή Μη Κρυπτογραφημένου Αντιγράφου Ασφαλείας</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Εξαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας συμβατό με την εφαρμογή «SMSBackup And Restore» στην κάρτα μνήμης.</string>
+        Εξαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας συμβατό με την εφαρμογή «SMS Backup And Restore» στην κάρτα μνήμης.</string>
   <string name="import_fragment__import_system_sms_database">Εισαγωγή Της Βάσης Δεδομένων SMS Του Συστήματος</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Εισαγωγή της βάσης δεδομένων
         της προκαθορισμένης εφαρμογής μηνυμάτων της συσκευής σας.
@@ -388,7 +388,7 @@
     </string>
   <string name="import_fragment__import_plaintext_backup">Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-        Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας. Συμβατό με την εφαρμογή «SMSBackup And Restore».</string>
+        Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας. Συμβατό με την εφαρμογή «SMS Backup And Restore».</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Απαιτούνται προσαρμοσμένες ρυθμίσεις MMS για το κινητό σας.</string>
   <!--prompt_passphrase_activity-->

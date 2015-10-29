@@ -20,34 +20,37 @@
             android:clipToPadding="false"
             android:visibility="visible"/>
 
-    <LinearLayout
-        android:id="@+id/drawerll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="5dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        >
-    <TextView
-        android:id="@+id/action_bar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#fff"
-        android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/drawerll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            >
+                <TextView
+                    android:id="@+id/action_bar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#fff"
+                    android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/action_bar_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#fff"
-        android:maxLines="2"
-        android:paddingBottom="2dp"
-        android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/action_bar_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#fff"
+                    android:maxLines="2"
+                    android:lineSpacingMultiplier="0.75"
+                    android:paddingBottom="2dp"
+                    android:textStyle="italic"
+                    android:ellipsize="end"
+                    android:layout_weight="1"
+                    />
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
 </RelativeLayout>

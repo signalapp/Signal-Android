@@ -215,7 +215,7 @@
   <string name="database_migration_activity__importing">מייבא</string>
   <!--database_upgrade_activity-->
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-יצא גיבוי לא מוצפן שתואם את האפליקציה \'SMSBackup And Restore\' לכרטיס ה-SD.</string>
+יצא גיבוי לא מוצפן שתואם את האפליקציה \'SMS Backup And Restore\' לכרטיס ה-SD.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">יבא את בסיס הנתונים
 מאפליקציית ברירת המחדל של המערכת.
 </string>
@@ -223,7 +223,7 @@
 שחזר גיבוי מוצפן של SecureChat שיוצא בעבר.
 </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-יבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
+יבא קובץ גיבוי לא מוצפן. תואם \'SMS Backup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
   <!--prompt_passphrase_activity-->

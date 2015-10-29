@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,11 +26,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.doomonafireball.betterpickers.Utils;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+
+import de.gdata.messaging.util.GUtil;
 
 /**
  * An activity to quickly share content with contacts
@@ -145,11 +160,11 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Uri    draftVideo  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA);
     final Uri    draftAudio  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
     final String mediaType   = originalIntent.getStringExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA);
-    Log.d("MYLOG", "MYLOG getBaseShareIntent " + draftImage);
+
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, draftText);
-    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, draftImage);
-    intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, draftVideo);
-    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, draftAudio);
+    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, GUtil.getUsableGoogleImageUri(draftImage));
+    intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, GUtil.getUsableGoogleImageUri(draftVideo));
+    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, GUtil.getUsableGoogleImageUri(draftAudio));
     intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, mediaType);
     intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
 

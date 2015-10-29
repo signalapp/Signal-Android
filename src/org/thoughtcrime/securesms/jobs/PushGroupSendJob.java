@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
@@ -35,7 +36,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.gdata.messaging.util.GUtil;
 import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendReq;
 
 import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
@@ -111,9 +114,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, RecipientFormattingException, InvalidNumberException, EncapsulatedExceptions
   {
     TextSecureMessageSender    messageSender = messageSenderFactory.create(masterSecret);
+    String                     destination   = message.getTo()[0].getString();
     byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
     Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
-    List<TextSecureAddress>          addresses     = getPushAddresses(recipients);
+    List<TextSecureAddress>    addresses     = getPushAddresses(recipients);
     List<TextSecureAttachment> attachments   = getAttachments(masterSecret, message);
 
     if (MmsSmsColumns.Types.isGroupUpdate(message.getDatabaseMessageBox()) ||
@@ -136,6 +140,13 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, attachments, body, false);
 
       messageSender.sendMessage(addresses, groupMessage);
+      if(message != null & message.getBody() != null) {
+        for (int i = 0; i < message.getBody().getPartsNum(); i++) {
+          PduPart part = message.getBody().getPart(i);
+          String number = RecipientFactory.getRecipientsFromString(context, destination, false).getPrimaryRecipient().getNumber();
+          GUtil.saveInMediaHistory(context, part, number);
+        }
+      }
     }
   }
 

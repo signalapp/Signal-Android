@@ -393,7 +393,7 @@
   <string name="database_upgrade_activity__updating_database">تحديث قاعدة البيانات...</string>
   <string name="export_fragment__export_plaintext_backup">تصدير نسخة احتياطية غير مشفرة</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-تصدير نسخة غير مشفرة لبطاقة الذاكرة الخارجية بصيغة متوافقة مع SMSBackup And Restore</string>
+تصدير نسخة غير مشفرة لبطاقة الذاكرة الخارجية بصيغة متوافقة مع SMS Backup And Restore</string>
   <string name="import_fragment__import_system_sms_database">استيراد قاعدة بيانات الرسائل بالنظام</string>
   <string name="import_fragment__import_the_database_from_the_default_system">استيراد قاعدة البيانات
 من تطبيق الرسائل الافتراضي لنظام التشغيل</string>

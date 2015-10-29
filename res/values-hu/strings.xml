@@ -393,7 +393,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="database_upgrade_activity__updating_database">Adatbázis frissítés...</string>
   <string name="export_fragment__export_plaintext_backup">Titkosítatlan biztonsági mentés exportálása</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Kódolatlan szöveg biztonsági mentés exportja az SD kártyára, mely \"SMS mentése és visszaállítása\" kompatibilis. </string>
+Kódolatlan szöveg biztonsági mentés exportja az SD kártyára, mely \"SMS Backup &amp; Restore\" kompatibilis. </string>
   <string name="import_fragment__import_system_sms_database">Rendszer SMS adatbázis importálása</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Az adatbázis importálása
 az alapértelmezett rendszer üzenetküldő alkalmazásból.
@@ -404,7 +404,7 @@ Egy korábbi exportált titkosított SecureChat biztonsági mentés visszaállí
  </string>
   <string name="import_fragment__import_plaintext_backup">Titkosítatlan biztonsági mentés importálása</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági mentés és visszaállítás\" kompatibilis.</string>
+Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS Backup &amp; Restore\" kompatibilis.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Az MMS beállítások kézi megadása szükséges a telefonodon.</string>
   <!--prompt_passphrase_activity-->

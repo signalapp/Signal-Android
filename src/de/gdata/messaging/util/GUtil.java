@@ -1,10 +1,19 @@
 package de.gdata.messaging.util;
 
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
+import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,14 +38,21 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.gdata.messaging.CountryCodes;
+import ws.com.google.android.mms.pdu.PduPart;
 
 /**
  * Created by jan on 20.01.15.
@@ -52,11 +68,58 @@ public class GUtil {
     setFontToLayouts(root, font);
     return root;
   }
+  public static final String ACTION_RELOAD_HEADER = "reloadHeader";
+  public static void reloadUnreadHeaderCounter() {
+    if(GService.appContext != null) {
+      Intent intent = new Intent(ACTION_RELOAD_HEADER);
+      LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+    }
+  }
+  public static Uri saveBitmapAndGetNewUri(Activity activity, String tag, Uri url)
+  {
+    File cacheDir;
+    if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+      cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"/temp/");
+    } else {
+      cacheDir=activity.getCacheDir();
+    }
+    if(!cacheDir.exists())
+      cacheDir.mkdirs();
+
+    File f=new File(cacheDir, tag);
+
+    try {
+      InputStream is = null;
+      if (url.toString().startsWith("content:")) {
+        is=activity.getContentResolver().openInputStream(url);
+      } else {
+        is=new URL("file://"+url.toString()).openStream();
+      }
+      OutputStream os = new FileOutputStream(f);
+      byte[] buffer = new byte[1024];
+      int len;
+      while ((len = is.read(buffer)) != -1) {
+        os.write(buffer, 0, len);
+      }
+      os.close();
+    } catch (Exception ex) {
+      // something went wrong
+      ex.printStackTrace();
+    }
+    return Uri.parse("file://"+f.getAbsolutePath());
+  }
   public static String getDate(long milliseconds, String format)
   {
     SimpleDateFormat sdf = new SimpleDateFormat(format);
     return sdf.format(milliseconds);
   }
+  public static String getLocalDate(long milliseconds, Context context) {
+    java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+    java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
+    Date dateAndTime = new Date(milliseconds);
+    return  dateFormat.format(dateAndTime) + " " + timeFormat.format(dateAndTime);
+  }
+
   /**
    * Sets the Typeface e.g. Roboto-Thin.tff for an Activity
    *
@@ -190,10 +253,12 @@ public class GUtil {
 
   public static int getCountryCodeLength(String number) {
     int length = 0;
-    for (int i = 0; i <= 3 && length == 0; i++) {
-      for (String code : CountryCodes.m_Codes) {
-        if (number.substring(0, i).equals(code)) {
-          length = i;
+    if(number.length()>2) {
+      for (int i = 0; i <= 3 && length == 0; i++) {
+        for (String code : CountryCodes.m_Codes) {
+          if (number.substring(0, i).equals(code)) {
+            length = i;
+          }
         }
       }
     }
@@ -283,6 +348,7 @@ public class GUtil {
   public static Long numberToLong(String number) {
     String longNumber = "";
     if(number != null) {
+      number = number.replaceAll(" ", "");
       if (number.contains("+")) {
         number = number.replace("+", "");
         number = number.substring(getCountryCodeLength(number), number.length());
@@ -290,11 +356,12 @@ public class GUtil {
       if (number.length() > 0 && number.charAt(0) == '0') {
         number = number.substring(1);
       }
-      number = number.replaceAll(" ", "");
       for (int i = 0; i < number.length(); i++) {
         char a = number.charAt(i);
         if (('0' <= a && a <= '9')) {
-          longNumber += a;
+          if(Character.isDigit(a)) {
+            longNumber += a;
+          }
         }
       }
       if (longNumber.trim().length() <= 0) {
@@ -302,19 +369,21 @@ public class GUtil {
       }
     }
     Long longId = 0L;
+    if(longNumber.length()>11) {
+      longNumber = longNumber.toString().substring(0, 11);
+    }
     try {
-      longId = Long.parseLong(longNumber);
+      longId = Long.valueOf(longNumber.trim());
     } catch (NumberFormatException e) {
-      Log.w("MYLOG ", "If not parseable, no profile id - so no problem");
+      Log.w("MYLOG ", "If not parseable, no profile id - so no problem - " + e.getMessage());
     }
     return longId;
   }
-
-  public static void setListViewHeightBasedOnChildren(ListView listView) {
+  public static int setListViewHeightBasedOnChildren(ListView listView) {
     ListAdapter listAdapter = listView.getAdapter();
     if (listAdapter == null) {
       // pre-condition
-      return;
+      return 0;
     }
 
     int totalHeight = 0;
@@ -331,6 +400,192 @@ public class GUtil {
     params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
     listView.setLayoutParams(params);
     listView.requestLayout();
+    return totalHeight;
+  }
 
+  public static void saveInMediaHistory(Context context, PduPart part, String recId) {
+    if(part != null && part.getDataUri() != null) {
+      new GDataPreferences(context).saveMediaForHistory(part.getDataUri(), "", GUtil.numberToLong(recId));
+      ProfileAccessor.savePartIdForUri(context, part.getDataUri().toString(), part.getPartId().getUniqueId());
+      ProfileAccessor.savePartRowForUri(context, part.getDataUri().toString(), part.getPartId().getRowId());
+    }
+  }
+
+  public static String[] reverseOrder(String[] arrayUri) {
+    String array[] = arrayUri;
+    String temp;
+    for (int i = 0; i < arrayUri.length/2; i++)
+    {
+      temp = array[i];
+      array[i] = array[arrayUri.length-1 - i];
+      array[arrayUri.length-1 - i] = temp;
+    }
+    return array;
+  }
+  /*
+   * Some Google Apps dont return a proper uri for picked images for sharing (workaround)
+   */
+  public static Uri getUsableGoogleImageUri(Uri contentUri) {
+      if (isGoogleUri(contentUri)) {
+        String unusablePath = contentUri.getPath();
+        int startIndex = unusablePath.indexOf("external/");
+        int endIndex = unusablePath.indexOf("/ACTUAL");
+        String embeddedPath = unusablePath.substring(startIndex, endIndex);
+
+        Uri.Builder builder = contentUri.buildUpon();
+        builder.path(embeddedPath);
+        builder.authority("media");
+        return builder.build();
+      }
+    return contentUri;
+  }
+  public static boolean isGoogleUri(Uri contentUri) {
+    if(contentUri != null) {
+      String unusablePath = contentUri.getPath();
+      if (unusablePath.contains("external") && unusablePath.contains("ACTUAL")) {
+      return true;
+      }
+    }
+    return false;
+  }
+  /**
+   * Get a file path from a Uri. This will get the the path for Storage Access
+   * Framework Documents, as well as the _data field for the MediaStore and
+   * other file-based ContentProviders.
+   *
+   * @param context The context.
+   * @param uri The Uri to query.
+   * @author paulburke
+   */
+  public static String getPath(final Context context, final Uri uri) {
+
+    final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+    // DocumentProvider
+    if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+      // ExternalStorageProvider
+      if (isExternalStorageDocument(uri)) {
+        final String docId = DocumentsContract.getDocumentId(uri);
+        final String[] split = docId.split(":");
+        final String type = split[0];
+
+        if ("primary".equalsIgnoreCase(type)) {
+          return Environment.getExternalStorageDirectory() + "/" + split[1];
+        }
+
+        // TODO handle non-primary volumes
+      }
+      // DownloadsProvider
+      else if (isDownloadsDocument(uri)) {
+
+        final String id = DocumentsContract.getDocumentId(uri);
+        final Uri contentUri = ContentUris.withAppendedId(
+                Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+        return getDataColumn(context, contentUri, null, null);
+      }
+      // MediaProvider
+      else if (isMediaDocument(uri)) {
+        final String docId = DocumentsContract.getDocumentId(uri);
+        final String[] split = docId.split(":");
+        final String type = split[0];
+
+        Uri contentUri = null;
+        if ("image".equals(type)) {
+          contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        } else if ("video".equals(type)) {
+          contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+        } else if ("audio".equals(type)) {
+          contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        }
+
+        final String selection = "_id=?";
+        final String[] selectionArgs = new String[] {
+                split[1]
+        };
+
+        return getDataColumn(context, contentUri, selection, selectionArgs);
+      }
+    }
+    // MediaStore (and general)
+    else if ("content".equalsIgnoreCase(uri.getScheme())) {
+
+      // Return the remote address
+      if (isGooglePhotosUri(uri))
+        return uri.getLastPathSegment();
+
+      return getDataColumn(context, uri, null, null);
+    }
+    // File
+    else if ("file".equalsIgnoreCase(uri.getScheme())) {
+      return uri.getPath();
+    }
+
+    return null;
+  }
+  /**
+   * Get the value of the data column for this Uri. This is useful for
+   * MediaStore Uris, and other file-based ContentProviders.
+   *
+   * @param context The context.
+   * @param uri The Uri to query.
+   * @param selection (Optional) Filter used in the query.
+   * @param selectionArgs (Optional) Selection arguments used in the query.
+   * @return The value of the _data column, which is typically a file path.
+   */
+  public static String getDataColumn(Context context, Uri uri, String selection,
+                                     String[] selectionArgs) {
+
+    Cursor cursor = null;
+    final String column = "_data";
+    final String[] projection = {
+            column
+    };
+
+    try {
+      cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+              null);
+      if (cursor != null && cursor.moveToFirst()) {
+        final int index = cursor.getColumnIndexOrThrow(column);
+        return cursor.getString(index);
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+    return null;
+  }
+
+
+  /**
+   * @param uri The Uri to check.
+   * @return Whether the Uri authority is ExternalStorageProvider.
+   */
+  public static boolean isExternalStorageDocument(Uri uri) {
+    return "com.android.externalstorage.documents".equals(uri.getAuthority());
+  }
+
+  /**
+   * @param uri The Uri to check.
+   * @return Whether the Uri authority is DownloadsProvider.
+   */
+  public static boolean isDownloadsDocument(Uri uri) {
+    return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+  }
+
+  /**
+   * @param uri The Uri to check.
+   * @return Whether the Uri authority is MediaProvider.
+   */
+  public static boolean isMediaDocument(Uri uri) {
+    return "com.android.providers.media.documents".equals(uri.getAuthority());
+  }
+
+  /**
+   * @param uri The Uri to check.
+   * @return Whether the Uri authority is Google Photos.
+   */
+  public static boolean isGooglePhotosUri(Uri uri) {
+    return "com.google.android.apps.photos.content".equals(uri.getAuthority());
   }
 }

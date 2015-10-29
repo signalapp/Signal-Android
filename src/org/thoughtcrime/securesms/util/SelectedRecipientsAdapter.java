@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.ArrayList;
@@ -17,6 +21,8 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<SelectedRecipientsAd
 
   private ArrayList<RecipientWrapper> recipients;
   private OnRecipientDeletedListener onRecipientDeletedListener;
+  private long threadId;
+  private MasterSecret masterSecret;
 
   public SelectedRecipientsAdapter(Context context, int textViewResourceId) {
     super(context, textViewResourceId);
@@ -52,6 +58,20 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<SelectedRecipientsAd
 
       if (name != null) {
         name.setText(p.getName());
+        v.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+        if(masterSecret!=null) {
+            Intent intent = new Intent(getContext(), ConversationActivity.class);
+            intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, new long[]{p.getRecipientId()});
+            intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
+            intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
+            intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, 0);
+
+            getContext().startActivity(intent);
+            }
+          }
+        });
       }
       if (phone != null) {
         phone.setText(p.getNumber());
@@ -81,6 +101,14 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<SelectedRecipientsAd
 
   public void setOnRecipientDeletedListener(OnRecipientDeletedListener listener) {
     onRecipientDeletedListener = listener;
+  }
+
+  public void setThreadId(long threadId) {
+    this.threadId = threadId;
+  }
+
+  public void setMasterSecret(MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
   }
 
   public interface OnRecipientDeletedListener {

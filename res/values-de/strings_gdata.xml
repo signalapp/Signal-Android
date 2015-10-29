@@ -3,7 +3,7 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 Sekunden</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 Sekunden</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 Sekunden</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Deaktivieren</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Keine Selbstzerstörung</string>
     <string name="gdata_contact_selection_page_title">Kontakte</string>
     <string name="gdata_conversation_list_page_title">Unterhaltungen</string>
     <string name="gd_dialog_fragment_phishing_title">Web-Schutz</string>
@@ -21,8 +21,8 @@
     <string name="self_destruction_body">Der Inhalt dieser Nachricht wird sich nach dem Öffnen in #1# Sekunden selbst löschen.</string>
     <string name="self_destruction_compose_hint">Selbstzerstörende Nachricht</string>
     <string name="privacy_pw_dialog_header">Passwort eingeben: </string>
-    <string name="privacy_pw_dialog_hint">Hinweis: Es handelt sich um das von Ihnen gewählte Passwort in der Internet Security für Android.</string>
-    <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der Internet Security überein.</string>
+    <string name="privacy_pw_dialog_hint">Hinweis: Es handelt sich um das von Ihnen gewählte Passwort in der G DATA Internet Security für Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der G DATA Internet Security überein.</string>
     <string name="privacy_pw_dialog_toast_reload">Unterhaltungen werden wiederhergestellt...</string>
     <string name="privacy_pw_dialog_toast_hide">Unterhaltungen werden zum Verstecken vorbereitet...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Unterhaltung wird versteckt...</string>
@@ -38,19 +38,19 @@
     <string name="preferences_notification_title">Benachrichtigung wiederholen</string>
     <string name="unknown_country">Unbekanntes Land</string>
     <string name="tk_mail">sc-feedback@gdata.de</string>
-    <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
-    <string name="log_submit_activity__button_submit">Submit</string>
-    <string name="import_complete_dialog">SecureChat system database import is complete.</string>
+    <string name="log_submit_activity__button_dont_submit">Nicht senden</string>
+    <string name="log_submit_activity__button_submit">Senden</string>
+    <string name="import_complete_dialog">SMS Datenbank wurde importiert.</string>
     <string name="profile_status_label">Status</string>
-    <string name="profile_number_label">Phone</string>
-    <string name="profile_status_member">Member</string>
+    <string name="profile_number_label">Telefonnummer</string>
+    <string name="profile_status_member">Mitglieder</string>
     <string name="identification">Identifikation</string>
     <string name="identification_title">Dieser Schlüssel ist Ihre Identifikation. Lassen Sie den Schlüssel von Ihren Gesprächspartnern einscannen. So können diese darauf vertrauen, dass Nachrichten von diesem Schlüssel wirklich von Ihnen stammen.</string>
     <string name="verify_identity_activity_their_identity">Empfängeridentifikation - Dieser Schlüssel identifiziert Ihren Gesprächspartner. Scannen Sie den Schlüssel um zu bestätigen, dass eingehende Nachrichten authentisch sind.</string>
     <string name="verify_identity_activity_your_identity" >Eigene Identität - Dieser Schlüssel ist Ihre Identifikation. Lassen Sie den Schlüssel von Ihren Gesprächspartnern einscannen, um Ihre Nachrichten zu authentifizieren.</string>
     <string name="identification_verified_unsuccessfully">Die Schlüssel stimmen nicht überein!</string>
     <string name="identification_verified_successfully">Identifikation erfolgreich.</string>
-    <string name="accept_eula_and_continue">Zustimmen und Fortfahren</string>
+    <string name="accept_eula_and_continue">ZUSTIMMEN UND FORTFAHREN</string>
     <string name="claim_textsecure">EINFACH. SICHER. MOMENTE MIT FREUNDEN TEILEN.</string>
     <string name="eula_gdata"><u>GNU GENERAL PUBLIC LICENSE</u></string>
     <string name="take_picture">Foto aufnehmen</string>
@@ -63,5 +63,15 @@
     <string name="status_onlyurgentcalls">Nur dringende Anrufe</string>
     <string name="ConversationItem_error_sending_message_gdata">Fehler beim Senden: ein Empfänger hat ihre Nachricht möglicherweise nicht erhalten.</string>
     <string name="eula_gdata_header_one">WILLKOMMEN BEI</string>
+    <string name="msg_failed">Hinweis: Vermutlich hat sich der Schlüssel eines Empfängers durch eine Neuinstallation oder den versuchten Angriff eines Dritten geändert. Innerhalb einer Gruppe kann dieses Problem gelöst werden indem ein gewöhnlicher Schlüsselaustausch über eine neue Unterhaltung mit dem Kontakt stattfindet und anschließend die Gruppe aktualisiert wird.</string>
+    <string name="profile_history_label">Medien</string>
+    <string name="profile_history_content">Keine Bilder verschickt</string>
+    <string name="menu_invite_to_sc">Einladen</string>
+    <string name="group_title">Titel</string>
+    <string name="status_hint">Wählen Sie Ihren Status:</string>
+    <string name="dialog_compressing">Das Video wird komprimiert...</string>
+    <string name="dialog_compressing_header">Bitte warten...</string>
+    <string name="preferences__versnr">Version</string>
+    <string name="profile_select_picture">Profilbild auswählen</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Vor dem Senden einer kostenpflichtigen SMS/MMS nachfragen</string>
 </resources>
-

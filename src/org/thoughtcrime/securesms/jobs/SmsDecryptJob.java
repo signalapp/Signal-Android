@@ -81,7 +81,9 @@ public class SmsDecryptJob extends MasterSecretJob {
       else                                database.updateMessageBody(masterSecret, messageId, message.getMessageBody());
       if(!(message.isSecureMessage() && GService.shallBeBlockedByPrivacy(message.getSender())|| !new GDataPreferences(getContext()).isPrivacyActivated())) {
           MessageNotifier.updateNotification(context, masterSecret);
-        }
+        } else if(GService.shallBeBlockedByPrivacy(message.getSender()) && new GDataPreferences(getContext()).isPrivacyActivated()){
+        DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+      }
     } catch (LegacyMessageException e) {
       Log.w(TAG, e);
       database.markAsLegacyVersion(messageId);
@@ -123,6 +125,8 @@ public class SmsDecryptJob extends MasterSecretJob {
       MessageNotifier.updateNotification(context, masterSecret, threadId);
     }
     if (message.isEndSession()) SecurityEvent.broadcastSecurityUpdateEvent(context, threadId);
+
+    GUtil.reloadUnreadHeaderCounter();
   }
 
   private void handlePreKeyWhisperMessage(MasterSecret masterSecret, long messageId, long threadId,

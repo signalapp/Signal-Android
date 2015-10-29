@@ -146,7 +146,7 @@ public class ThreadDatabase extends Database {
 
   private void deleteThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.delete(TABLE_NAME, ID_WHERE, new String[] {threadId+""});
+    db.delete(TABLE_NAME, ID_WHERE, new String[]{threadId + ""});
     notifyConversationListListeners();
   }
 
@@ -243,7 +243,17 @@ public class ThreadDatabase extends Database {
     DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
     notifyConversationListListeners();
   }
+  public void markAsUnread(long threadId) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(READ, 0);
 
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
+
+    DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
+    DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
+    notifyConversationListListeners();
+  }
   public void setUnread(long threadId) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 0);

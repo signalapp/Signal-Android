@@ -43,7 +43,15 @@
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
                         android:visibility="visible" />
-
+                    <ImageView
+                        android:id="@+id/profile_picture_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"
+                        android:visibility="gone" />
                     <TextView
                         android:id="@+id/image_text"
                         android:layout_width="match_parent"
@@ -180,7 +188,7 @@
                         android:layout_below="@+id/profile_status_ll"
                         android:orientation="horizontal">
 
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/profile_status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -297,7 +305,79 @@
                         </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/textview_border">
 
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/phone_history_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/history_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint=""
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="6dp"
+                            android:paddingTop="25dp"
+                            android:text="@string/profile_history_label"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="18sp" />
+
+                        <View
+                            android:id="@+id/devider_five"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginBottom="0dp"
+                            android:layout_marginTop="1dp"
+                            android:background="?android:attr/listDivider" />
+                    </LinearLayout>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/history_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/phone_history_ll"
+                        android:orientation="horizontal"
+                        android:layout_margin="8dp">
+
+                        <HorizontalScrollView
+                            android:id="@+id/horizontal_scroll"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:descendantFocusability="blocksDescendants"
+                            >
+                            <LinearLayout
+                                android:id="@+id/historylayout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="100dp"
+                                android:orientation="horizontal"
+                                android:descendantFocusability="blocksDescendants"
+                                android:layout_margin="2dp"
+                                android:gravity="center">
+                                <TextView
+                                    android:id="@+id/history_content"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:hint="@string/profile_history_content"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/black"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+                        </HorizontalScrollView>
+                    </LinearLayout>
+                </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/layout_member"
                     android:layout_width="wrap_content"
@@ -334,11 +414,25 @@
                             android:layout_marginTop="1dp"
                             android:background="?android:attr/listDivider" />
 
+                        <org.thoughtcrime.securesms.components.PushRecipientsPanel android:id="@+id/recipients"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp" />
+
                         <ListView
                             android:id="@+id/selected_contacts_list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/group_info"
+                        android:text="@string/conversation__menu_leave_group"
+                        android:id="@+id/buttonLeaveGroup" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -348,7 +442,6 @@
                 android:layout_below="@+id/mainlayout"
                 android:background="@color/gray5"
                 android:orientation="vertical"></LinearLayout>
-
         </RelativeLayout>
     </ScrollView>
 

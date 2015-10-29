@@ -2,13 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_weight="1"
+    android:layout_gravity="center"
+    android:gravity="center"
               android:paddingTop="10dp"
               android:layout_height="40dp"
-              android:orientation="vertical">
+              android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/tab_layout_icon"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginBottom="5dp"
         android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/tab_layout_count"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text=""
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="3dp"
+        android:background="@drawable/bg_circle"
+        android:textColor="@color/black"/>
 </LinearLayout>

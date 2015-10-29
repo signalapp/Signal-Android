@@ -81,6 +81,10 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">您使用的裝置看來不支援撥號通話功能。</string>
   <string name="ConversationActivity_leave_group">離開群組？</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">您確定要離開此群組？</string>
+  <string name="ConversationActivity_transport_insecure_sms">不安全的SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">不安全的MMS</string>
+  <string name="ConversationActivity_transport_secure_sms">安全的SMS</string>
+  <string name="ConversationActivity_transport_secure_mms">安全的MMS</string>
   <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">訊息細節</string>
@@ -177,6 +181,8 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">多媒體訊息</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">您收到一則已加密的訊息，但採用的是舊版／不支援的 SecureChat。您須提醒該名連絡人更新 SecureChat 版本後再重送。</string>
+  <string name="MessageRecord_left_group">您退出了群。</string>
+  <string name="MessageRecord_updated_group">已更新群组。</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的「自訂密碼」不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的「自訂密碼」！</string>
@@ -390,7 +396,7 @@
   <string name="database_upgrade_activity__updating_database">更新資料庫...</string>
   <string name="export_fragment__export_plaintext_backup">匯出未加密的備份資料</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-匯出一個未加密、但相容於 \"SMSBackup And Restore\" 格式的備份資料到 SD 卡。</string>
+匯出一個未加密、但相容於 \"SMS Backup &amp; Restore\" 格式的備份資料到 SD 卡。</string>
   <string name="import_fragment__import_system_sms_database">匯入裝置上的手機簡訊</string>
   <string name="import_fragment__import_the_database_from_the_default_system">從裝置上預設的手機簡訊管理程式
 匯入簡訊資料。</string>
@@ -399,9 +405,13 @@
 還原前一個匯出的 SecureChat 加密備份資料庫。</string>
   <string name="import_fragment__import_plaintext_backup">匯入未加密的資料備份</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-匯入一個未加密的備份資料。 相容於 \"SMSBackup And Restore\"。</string>
+匯入一個未加密的備份資料。 相容於 \"SMS Backup &amp; Restore\"。</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手機需要手動設定 MMS多媒體簡訊。</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s 加入了群。</string>
+  <string name="GroupUtil_group_updated">群信息已更新。</string>
+  <string name="GroupUtil_title_is_now">群聊名稱是\'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
@@ -545,6 +555,7 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__slow">緩慢</string>
   <string name="preferences__custom">自訂</string>
   <string name="preferences__advanced">進階</string>
+  <string name="preferences__app_protection">应用保护</string>
   <string name="preferences__override_system_mms_settings">您可自訂 MMS多媒體簡訊設定，並覆蓋過系統的預設值。</string>
   <string name="preferences__mmsc_url_required">電信業者所提供的 MMSC URL（多媒體簡訊中繼伺服器網址）（必要）:</string>
   <string name="preferences__mms_proxy_host_optional">MMS多媒體簡訊代理伺服器位址(選擇性):</string>
@@ -570,6 +581,7 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
   <string name="preferences__sms_fallback">發送SMS/MMS</string>
   <string name="preferences__sms_outgoing_push_users">SecureChat 使用者</string>
+  <string name="preferences__sms_fallback_push_users_ask">先询问</string>
   <string name="preferences__sms_outgoing_push_users_description">如果網路斷線，改送出付費的加密手機簡訊</string>
   <string name="preferences__sms_fallback_ask_before_sending_sms_mms">發送SMS/MMS前詢問</string>
   <string name="preferences__sms_fallback_never_send_mms">從不發送MMS</string>

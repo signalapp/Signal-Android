@@ -98,7 +98,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
-  public static final  int AVATAR_SIZE  = 410;
+  public static final  int AVATAR_SIZE  = 1000;
 
   private EditText            groupName;
   private ListView            lv;
@@ -257,6 +257,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     });
 
     SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this, android.R.id.text1, new ArrayList<SelectedRecipientsAdapter.RecipientWrapper>());
+    adapter.setMasterSecret(masterSecret);
+    adapter.setThreadId(-1);
     adapter.setOnRecipientDeletedListener(new SelectedRecipientsAdapter.OnRecipientDeletedListener() {
       @Override
       public void onRecipientDeleted(Recipient recipient) {

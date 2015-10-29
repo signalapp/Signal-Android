@@ -335,7 +335,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="database_upgrade_activity__updating_database">Se actualizează baza de date...</string>
   <string name="export_fragment__export_plaintext_backup">Exportă backup necriptat</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Exportă un backup necriptat compatibil cu \"SMSBackup And Restore\" pe SD card.</string>
+Exportă un backup necriptat compatibil cu \"SMS Backup And Restore\" pe SD card.</string>
   <string name="import_fragment__import_system_sms_database">Import baza de date cu SMS-uri?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importă baza de date 
 din aplicația de mesaje a dispozitivului.</string>
@@ -344,7 +344,7 @@ din aplicația de mesaje a dispozitivului.</string>
 Restaurează un backup criptat exportat anterior din SecureChat.</string>
   <string name="import_fragment__import_plaintext_backup">Importă backup text</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</string>
+Importă un fișier de backup text. Compatibil cu \'SMS Backup And Restore.\'</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Pentru telefonul tău sunt necesare setări MMS manuale.</string>
   <!--prompt_passphrase_activity-->

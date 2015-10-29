@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.R;
  */
 public class ReminderView extends LinearLayout {
   private ViewGroup   container;
-  private ImageButton cancel;
+  private Button cancel;
   private Button      ok;
   private TextView    title;
   private TextView    text;
@@ -45,7 +45,7 @@ public class ReminderView extends LinearLayout {
   private void initialize() {
     LayoutInflater.from(getContext()).inflate(R.layout.reminder_header, this, true);
     container = (ViewGroup  ) findViewById(R.id.container);
-    cancel    = (ImageButton) findViewById(R.id.cancel);
+    cancel    = (Button) findViewById(R.id.cancel);
     ok        = (Button     ) findViewById(R.id.ok);
     title     = (TextView   ) findViewById(R.id.reminder_title);
     text      = (TextView   ) findViewById(R.id.reminder_text);

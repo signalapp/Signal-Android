@@ -357,14 +357,14 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Uppgraderar databasen...</string>
   <string name="export_fragment__export_plaintext_backup">Exportera okrypterad backup</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exportera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\' till minneskortet.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exportera en okrypterad säkerhetskopia kompatibel med \'SMS Backup And Restore\' till minneskortet.</string>
   <string name="import_fragment__import_system_sms_database">Importera systemets SMS-databas</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importera databasen
 från systemets standardapp för meddelanden.</string>
   <string name="import_fragment__import_encrypted_backup">Importera krypterad backup</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Återställ en tidigare krypterad säkerhetskopia av SecureChat.</string>
   <string name="import_fragment__import_plaintext_backup">Importera okrypterad backup</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\'.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia kompatibel med \'SMS Backup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuella MMS inställningar krävs för din telefon.</string>
   <!--prompt_passphrase_activity-->

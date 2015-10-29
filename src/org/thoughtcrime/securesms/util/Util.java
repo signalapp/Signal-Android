@@ -159,7 +159,7 @@ public class Util {
       throws InvalidNumberException
   {
     String localNumber = TextSecurePreferences.getLocalNumber(context);
-    return PhoneNumberFormatter.formatNumber(number, localNumber);
+    return (number != null && number.length() > 0) ? PhoneNumberFormatter.formatNumber(number, localNumber) : "";
   }
 
   public static String canonicalizeNumberOrGroup(Context context, String number)

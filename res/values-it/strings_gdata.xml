@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 secondi</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 secondi</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 secondi</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Disattiva</string>
     <string name="gdata_contact_selection_page_title">Contatti</string>
     <string name="gdata_conversation_list_page_title">Intrattenimenti</string>
     <string name="gd_dialog_fragment_phishing_title">Protezione Web</string>
@@ -22,8 +21,6 @@
     <string name="menu_privacy_single_hide">Nascondi intrattenimento</string>
     <string name="menu_filter_block_contact">Blocca contatto</string>
     <string name="privacy_pw_dialog_header">Inserire la password: </string>
-    <string name="privacy_pw_dialog_toast_wrong">La password immessa non corrisponde a quella di Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Nota: si tratta della password scelta da te in Internet Security per Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Gli intrattenimenti vengono ripristinati...</string>
     <string name="privacy_pw_dialog_toast_hide">Gli intrattenimenti vengono preparati per essere nascosti...</string>
     <string name="privacy_pw_dialog_toast_hide_single">L\'intrattenimento viene nascosto...</string>
@@ -63,4 +60,18 @@
     <string name="status_donotdisturb">Si prega di non disturbare</string>
     <string name="status_nocallsjustchat">Nessuna chiamata, solo SecureChat</string>
     <string name="status_onlyurgentcalls">Solo chiamate urgenti</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Disabilita autodistruzione</string>
+    <string name="privacy_pw_dialog_hint">Nota: questa è la password che hai selezionato in G DATA Internet Security per Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">La password immessa non corrisponde a quella di G DATA Internet Security.</string>
+    <string name="msg_failed">Nota: la chiave di uno dei destinatari potrebbe essere cambiata in seguito a una reinstallazione o a un tentativo di attacco di terzi. All\'interno di un gruppo, questo problema si può risolvere avviando in una nuova conversazione un regolare scambio di chiavi con il contatto e quindi aggiornando il gruppo.</string>
+    <string name="profile_history_label">Media</string>
+    <string name="profile_history_content">Non sono ancora state scambiate immagini</string>
+    <string name="menu_invite_to_sc">Invito</string>
+    <string name="group_title">Titolo</string>
+    <string name="status_hint">Scegli il tuo stato:</string>
+    <string name="dialog_compressing"> Il video è in fase di compressione...</string>
+    <string name="dialog_compressing_header">Attendere...</string>
+    <string name="preferences__versnr">Versione</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Chiedi prima di inviare un SMS/MMS da addebitare</string>
+    <string name="profile_select_picture">Seleziona la foto del profilo</string>
 </resources>

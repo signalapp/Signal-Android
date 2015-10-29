@@ -113,6 +113,7 @@
         </item>
         <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered_dark</item>
         <item name="conversation_transport_indicators">@array/transport_selection_icons_gdata</item>
+        <item name="conversation_transport_indicators_invite">@array/transport_selection_icons_invite_gdata</item>
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
@@ -255,6 +256,7 @@
         </item>
         <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered_dark</item>
         <item name="conversation_transport_indicators">@array/transport_selection_icons_gdata</item>
+        <item name="conversation_transport_indicators_invite">@array/transport_selection_icons_invite_gdata</item>
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>

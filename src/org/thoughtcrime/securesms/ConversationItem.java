@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,6 +33,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
+import android.text.method.ScrollingMovementMethod;
 import android.transition.Explode;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -78,10 +80,10 @@ import java.io.InputStream;
 import java.util.Set;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
+
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
-
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -161,6 +163,7 @@ public class ConversationItem extends LinearLayout {
   private ThumbnailView thumbnailDestroyDialog;
   private ImageView loadingDestroyIndicator;
   private GDataPreferences mPreferences;
+  private Dialog alertDialogDestroy;
 
   public ConversationItem(Context context) {
     super(context);
@@ -218,10 +221,6 @@ public class ConversationItem extends LinearLayout {
 
     this.conversationFragment = fragment;
 
-    if(messageRecord.getRecipients().isGroupRecipient()) {
-      this.setVisibility(View.GONE);
-    }
-
     setConversationBackgroundDrawables(messageRecord);
     setSelectionBackgroundDrawables(messageRecord);
     setBodyText();
@@ -276,7 +275,7 @@ public class ConversationItem extends LinearLayout {
         }
     }
   private boolean messageIsInDialog(String uniqueId) {
-    return uniqueId.equals(openedMessageId);
+    return uniqueId.equals(openedMessageId) && alertDialogDestroy !=null && alertDialogDestroy.isShowing();
   }
   private boolean dialogIsClosed() {
     return openedMessageId.equals("");
@@ -334,12 +333,17 @@ public class ConversationItem extends LinearLayout {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.MessageRecord_left_group),
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
           TextView.BufferType.SPANNABLE);
-    }  else if(messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey()) {
-      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.ConversationListItem_key_exchange_message),
+    }  else if(messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey() && !messageRecord.getRecipients().isGroupRecipient()) {
+      deleteMessage(messageRecord);
+      handleKeyExchangeClicked();
+    } else if (messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey() && messageRecord.getRecipients().isGroupRecipient()) {
+        deleteMessage(messageRecord);
+    } else if(messageRecord != null  && !messageRecord.isFailed() && messageRecord.isGroupAction() && messageRecord.getIndividualRecipient() != null && "Unknown".equals(messageRecord.getIndividualRecipient().getName())) {
+      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
               TextView.BufferType.SPANNABLE);
-    } else if(messageRecord.isGroupAction()) {
-      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
+    } else if(messageRecord.isDeliveryFailed() && messageRecord.getIndividualRecipient() != null && groupThread && "Unknown".equals(messageRecord.getIndividualRecipient().getName()) && messageRecord.isOutgoing()) {
+      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.msg_failed),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
               TextView.BufferType.SPANNABLE);
     } else {
@@ -379,7 +383,6 @@ public class ConversationItem extends LinearLayout {
     String text = "";
     String countdown = "";
 
-    private AlertDialog alertDialogDestroy;
     private int currentCountdown = 0;
     private boolean alreadyDestroyed = false;
 
@@ -435,6 +438,7 @@ public class ConversationItem extends LinearLayout {
       ((TextView) rlView.findViewById(R.id.textDialog)).setText(Emoji.getInstance(context).emojify(text,
                       new Emoji.InvalidatingPageLoadedListener(((TextView) rlView.findViewById(R.id.textDialog)))),
               TextView.BufferType.SPANNABLE);
+      ((TextView) rlView.findViewById(R.id.textDialog)).setMovementMethod(new ScrollingMovementMethod());
 
       builder.setView(rlView);
       builder.setPositiveButton(R.string.self_destruction, new DialogInterface.OnClickListener() {
@@ -543,14 +547,24 @@ public class ConversationItem extends LinearLayout {
       }
     }
 
-    private void setStatusIcons(MessageRecord messageRecord) {
+    private void setStatusIcons(final MessageRecord messageRecord) {
       failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
       if (messageRecord.isOutgoing()) {
-        pendingIndicator.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
+        pendingIndicator.setVisibility(messageRecord.isPendingSmsFallback() || messageRecord.isFailed() ? View.VISIBLE : View.GONE);
         indicatorText.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
+        pendingIndicator.setOnClickListener(new OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            if(messageRecord.isFailed()) {
+              handleMessageApproval();
+            }
+          }
+        });
       }
       secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
-      bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
+      bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() || messageRecord.displaysAKey() ? R.drawable.ic_menu_login : 0, 0);
+      if(messageRecord.displaysAKey()) bodyText.setText("");
+
       deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
 
       mmsThumbnail.setVisibility(View.GONE);
@@ -559,6 +573,9 @@ public class ConversationItem extends LinearLayout {
 
       if (messageRecord.isFailed()) {
         dateText.setText(R.string.ConversationItem_error_sending_message_gdata);
+        if(indicatorText != null) {
+          indicatorText.setVisibility(View.GONE);
+        }
       } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
         dateText.setText("");
         if (messageRecord.isPendingSecureSmsFallback()) {
@@ -706,7 +723,7 @@ public class ConversationItem extends LinearLayout {
 
         ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, GUtil.numberToLong(recipient.getNumber()) + "");
         if (avatarSlide != null) {
-            ProfileAccessor.buildGlideRequest(avatarSlide).into(contactPhoto);
+            ProfileAccessor.buildGlideRequest(avatarSlide, context).into(contactPhoto);
             contactPhoto.setVisibility(View.VISIBLE);
         } else {
             if ((recipient.getContactPhoto() == ContactPhotoFactory.getDefaultContactPhoto(context)) && (groupThread)) {
@@ -747,6 +764,7 @@ public class ConversationItem extends LinearLayout {
       intent.putExtra("is_push", messageRecord.isPush());
       intent.putExtra("master_secret", masterSecret);
       intent.putExtra("sent", messageRecord.isOutgoing());
+      intent.putExtra("from_sender", messageRecord.type == TYPE_WRONG_KEY);
       context.startActivity(intent);
     }
 

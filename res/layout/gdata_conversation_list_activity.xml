@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout_gdata"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:fab="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gdata_primary_color"
@@ -17,8 +16,7 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/drawer_layout_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,8 +30,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/gdata_primary_color" />
 
-            <android.support.v4.view.ViewPager
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
@@ -44,19 +41,302 @@
                 tools:context=".ActivityUser" />
         </LinearLayout>
 
-        <com.melnykov.fab.FloatingActionButton
+        <LinearLayout
+            android:id="@+id/overlay_gray"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:animateLayoutChanges="true"
+            android:background="#BB000000"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal"
+            android:visibility="gone"></LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/fastclose"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/fab"
+        android:visibility="invisible"
+        android:gravity="bottom">
+        <LinearLayout
+            android:id="@+id/action_float_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:animateLayoutChanges="true"
+            android:gravity="bottom|right"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:id="@+id/action_float_menu_pone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/textViewCOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="38dp"
+                    android:gravity="center"
+                    android:layout_weight="0">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab_new_contact_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
+                        android:scaleType="fitXY"
+                        android:src="?attr/menu_new_conversation_icon"
+                        android:visibility="visible"
+                        app:backgroundTint="@color/holo_orange_dark"
+                        app:borderWidth="0dp"
+                        app:elevation="2dp"
+                        app:fabSize="mini"
+                        app:pressedTranslationZ="2dp" />
+
+                        <org.thoughtcrime.securesms.components.CircledImageView
+                            android:id="@+id/img_new_contact_one"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="@dimen/fab_compat_margin_right"
+                            android:layout_gravity="center"
+                            android:scaleType="fitXY"
+                            android:visibility="visible"
+                          />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/action_float_menu_ptwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/textViewCTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="38dp"
+                    android:gravity="center">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab_new_contact_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
+                        android:src="?attr/menu_new_conversation_icon"
+                        app:backgroundTint="@color/holo_purple"
+                        app:borderWidth="0dp"
+                        app:elevation="2dp"
+                        app:fabSize="mini"
+                        app:pressedTranslationZ="2dp" />
+
+                        <org.thoughtcrime.securesms.components.CircledImageView
+                            android:id="@+id/img_new_contact_two"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitXY"
+                            android:layout_marginRight="@dimen/fab_compat_margin_right"
+                            android:visibility="visible" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/action_float_menu_pthree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/textViewCThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="38dp"
+                    android:gravity="left">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab_new_contact_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
+                        android:src="@drawable/ic_message_white"
+                        app:backgroundTint="@color/yellow"
+                        app:borderWidth="0dp"
+                        app:elevation="2dp"
+                        app:fabSize="mini"
+                        app:pressedTranslationZ="2dp" />
+
+                        <org.thoughtcrime.securesms.components.CircledImageView
+                            android:id="@+id/img_new_contact_three"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitXY"
+                            android:layout_marginRight="@dimen/fab_compat_margin_right"
+                            android:visibility="visible" />
+p
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/action_float_menu_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/textViewGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_new_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="38dp"
+                    android:src="@drawable/ic_group_white_24dp"
+                    app:backgroundTint="@color/conversation_item_sent_background_light"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/action_float_menu_conv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/textViewNew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_rounded_corners"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_new_conversation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/fab_compat_margin_bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="38dp"
+                    android:src="@drawable/ic_message_white"
+                    app:backgroundTint="@color/holo_blue_dark"
+                    app:borderWidth="0dp"
+                    app:elevation="2dp"
+                    app:fabSize="mini"
+                    app:pressedTranslationZ="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+</RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="bottom|right"
-            android:layout_margin="30dp"
-            android:src="?attr/menu_new_conversation_icon"
-            fab:fab_colorNormal="@color/gdata_red"
-            fab:fab_colorPressed="@color/menuItemBackground"
-            fab:fab_colorRipple="@color/menuTextColor"
-            fab:fab_shadow="false" />
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="@dimen/fab_compat_margin_bottom"
+            android:src="@drawable/ic_add_white_24dp"
+            app:backgroundTint="@color/gdata_red"
+            app:borderWidth="0dp"
+            app:elevation="2dp"
+            app:paddingEnd="0dp"
+            app:paddingStart="0dp"
+            app:pressedTranslationZ="2dp" />
 
     </RelativeLayout>
     <!-- The navigation drawer -->
@@ -81,66 +361,69 @@
                 android:id="@+id/containerrl"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
-            <LinearLayout
-                android:id="@+id/container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:background="@color/gdata_primary_color"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
 
-                <org.thoughtcrime.securesms.components.ForegroundImageView
-                    android:id="@+id/profile_picture"
-                    android:layout_width="230dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:visibility="visible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/drawer2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="30dp">
                 <LinearLayout
-                    android:id="@+id/drawer_background"
+                    android:id="@+id/container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:background="@color/gdata_primary_color"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <org.thoughtcrime.securesms.components.ForegroundImageView
+                        android:id="@+id/profile_picture"
+                        android:layout_width="230dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/drawer2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:background="@color/bpTransparent_black">
-                <TextView
-                    android:id="@+id/profileName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:text=""
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="10sp" />
+                    android:paddingTop="30dp">
 
-                <TextView
-                    android:id="@+id/profileStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:text=""
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="10sp" />
+                    <LinearLayout
+                        android:id="@+id/drawer_background"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bpTransparent_black"
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp">
+
+                        <TextView
+                            android:id="@+id/profileName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/profileStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
-</LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
 
         <ListView
             android:id="@+id/left_drawer"

@@ -153,7 +153,12 @@ public class MasterCipher {
     return Base64.encodeBytes(encryptedAndMacBody);
   }
 	
-  private byte[] verifyMacBody(Mac hmac, byte[] encryptedAndMac) throws InvalidMessageException {		
+  private byte[] verifyMacBody(Mac hmac, byte[] encryptedAndMac) throws InvalidMessageException {
+    try {
+      byte[] workaround = new byte[encryptedAndMac.length - hmac.getMacLength()];
+    } catch(NegativeArraySizeException ex) {
+      throw new InvalidMessageException("MAC NegativeArraySizeException");
+    }
     byte[] encrypted = new byte[encryptedAndMac.length - hmac.getMacLength()];
     System.arraycopy(encryptedAndMac, 0, encrypted, 0, encrypted.length);
 		

@@ -147,18 +147,24 @@ public class ContactsDatabase {
     HashSet<String> hashSet = new HashSet <String> ();
     HashSet<Integer> ids = new HashSet <Integer> ();
     while (cursorD.moveToNext()) {
-      if(hashSet.add(GUtil.numberToLong(cursorD.getString(4))+"")) {
-        ids.add(cursorD.getInt(0));
+      if(!hashSet.add(GUtil.numberToLong(cursorD.getString(4))+"")) {
+       ids.add(cursorD.getInt(0));
       }
     }
     StringBuilder selection = new StringBuilder();
-    selection.append(ID_COLUMN +" = '" + 0 + "'");
+    int c = 0;
     for(Integer id : ids) {
-      selection.append(" OR " + ID_COLUMN +" = '" + id + "'");
+      c++;
+      if(c==1) {
+        selection.append(ID_COLUMN + " != '" + id + "'");
+      } else {
+        selection.append(" AND " + ID_COLUMN + " != '" + id + "'");
+      }
     }
+    String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
-            PrivacyBridge.getContactSelection(context)!=null
-                    ? PrivacyBridge.getContactSelection(context) + "AND (" +selection.toString()+")"
+            !contactSelection.equals("null")
+                    ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
                     : "" + selection.toString(), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
     return new TypedCursorWrapper(cursor);
   }
@@ -186,14 +192,14 @@ public class ContactsDatabase {
   private Cursor queryLocalDb(String selection, String[] selectionArgs, String[] columns) {
     SQLiteDatabase localDb = dbHelper.getReadableDatabase();
     final Cursor localCursor;
+    try {
     if (localDb != null) localCursor = localDb.query(TABLE_NAME, columns, selection, selectionArgs, null, null, CONTACT_LIST_SORT);
     else                 localCursor = null;
-    try {
     if (localCursor != null && !localCursor.moveToFirst()) {
       localCursor.close();
       return null;
     }
-    } catch(IllegalStateException ex) {
+    } catch(Exception ex) {
       //Randomly and rarely appearing error while opening and closing the application fast after another Bug #43946
       //Couldn`t find the trigger
       return null;

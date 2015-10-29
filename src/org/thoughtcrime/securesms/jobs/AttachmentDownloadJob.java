@@ -1,15 +1,24 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
@@ -27,6 +36,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.gdata.messaging.util.GService;
+import de.gdata.messaging.util.GUtil;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
 
@@ -49,7 +60,8 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   }
 
   @Override
-  public void onAdded() {}
+  public void onAdded() {
+  }
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
@@ -94,6 +106,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       InputStream                 attachment = messageReceiver.retrieveAttachment(pointer, attachmentFile);
 
       database.updateDownloadedPart(masterSecret, messageId, partId, part, attachment);
+      saveSlideToMediaHistory(messageId, part, masterSecret);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
       Log.w(TAG, e);
       markFailed(messageId, part, partId);
@@ -102,7 +115,33 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         attachmentFile.delete();
     }
   }
+  public MessageRecord getMessage(MasterSecret masterSecret, long messageId) throws NoSuchMessageException {
+    MmsDatabase mmsDatabase      = DatabaseFactory.getMmsDatabase(context);
+    Cursor cursor = mmsDatabase.getMessage(messageId);
+    MmsDatabase.Reader reader = mmsDatabase.readerFor(masterSecret, cursor);
+    MessageRecord record = reader.getNext();
 
+    reader.close();
+
+    if (record == null) throw new NoSuchMessageException("No message for ID: " + messageId);
+    else                return record;
+  }
+  private void saveSlideToMediaHistory(long messageId, PduPart part, MasterSecret masterSecret) {
+    MmsDatabase smsDatabase      = DatabaseFactory.getMmsDatabase(context);
+    ThreadDatabase threadDb      = DatabaseFactory.getThreadDatabase(context);
+    long threadId = smsDatabase.getThreadIdForMessage(messageId);
+    Recipients sender = threadDb.getRecipientsForThreadId(threadId);
+
+    MessageRecord   messageRecord       = null;
+    try {
+      messageRecord = getMessage(masterSecret, messageId);
+    } catch (NoSuchMessageException e) {
+      e.printStackTrace();
+    }
+    if (sender != null && messageRecord != null && !messageRecord.getBody().isSelfDestruction()) {
+        GUtil.saveInMediaHistory(context, part, sender.getPrimaryRecipient().getNumber());
+      }
+    }
   private TextSecureAttachmentPointer createAttachmentPointer(MasterSecret masterSecret, PduPart part)
           throws InvalidPartException
   {

@@ -2,14 +2,17 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v4.preference.PreferenceFragment;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.LogSubmitActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -20,6 +23,7 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
   private static final String TAG = AdvancedPreferenceFragment.class.getSimpleName();
 
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
+  private static final String VERSION_KEY_PREF = "pref_vers_nr";
 
   private static final int PICK_IDENTITY_CONTACT = 1;
 
@@ -32,6 +36,7 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
 
     this.findPreference(SUBMIT_DEBUG_LOG_PREF)
       .setOnPreferenceClickListener(new SubmitDebugLogListener());
+    this.findPreference(VERSION_KEY_PREF).setSummary(BuildConfig.VERSION_NAME);
   }
 
   @Override

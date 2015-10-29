@@ -68,13 +68,14 @@
                 android:visibility="gone">
 
                 <org.thoughtcrime.securesms.components.ThumbnailView android:id="@+id/image_view"
-                    android:layout_width="230dip"
-                    android:layout_height="174dip"
+                    android:layout_width="160dip"
+                    android:layout_height="100dip"
                     android:layout_gravity="center"
                     android:scaleType="centerInside"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/conversation_item__mms_image_description"
                     android:visibility="gone" />
+
                 <ImageButton android:id="@+id/play_slideshow_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

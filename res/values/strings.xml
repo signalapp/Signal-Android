@@ -440,9 +440,9 @@
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Send SecureChat message</string>
     <string name="conversation_activity__type_message_sms_secure">Send secure SMS</string>
-    <string name="conversation_activity__type_message_sms_insecure">Send unsecured SMS</string>
+    <string name="conversation_activity__type_message_sms_insecure">Send insecure SMS</string>
     <string name="conversation_activity__type_message_mms_secure">Send secure MMS</string>
-    <string name="conversation_activity__type_message_mms_insecure">Send unsecured MMS</string>
+    <string name="conversation_activity__type_message_mms_insecure">Send insecure MMS</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
     <string name="conversation_activity__window_description">Conversation with %1$s</string>
@@ -493,7 +493,7 @@
 
     <string name="export_fragment__export_plaintext_backup">Export plaintext backup</string>
     <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Export a plaintext backup compatible with \'SMSBackup And Restore\' to the SD card.</string>
+        Export a plaintext backup compatible with \'SMS Backup &amp; Restore\' to the SD card.</string>
     <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
     <string name="import_fragment__import_the_database_from_the_default_system">Import the database
         from the default system messenger app.
@@ -504,7 +504,7 @@
     </string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
     <string name="import_fragment__import_a_plaintext_backup_file">
-        Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
+        Import a plaintext backup file. Compatible with \'SMS Backup &amp; Restore\'</string>
 
     <!-- MmsPreferencesFragment -->
     <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
@@ -839,6 +839,8 @@
     <string name="trimmer__deleting">Deleting...</string>
     <string name="trimmer__deleting_old_messages">Deleting old messages...</string>
     <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
+    <string name="gdata_twillio_number">4915735982710</string>
+    <string name="gdata_twillio_replacement">G DATA SecureChat</string>
 
 
     <!-- EOF -->

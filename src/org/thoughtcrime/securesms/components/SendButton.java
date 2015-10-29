@@ -54,8 +54,8 @@ public class SendButton extends ImageButton {
     return transportOptions.getSelectedTransport();
   }
 
-  public void initializeAvailableTransports(boolean isMediaMessage) {
-    transportOptions.initializeAvailableTransports(isMediaMessage);
+  public void initializeAvailableTransports(boolean isMediaMessage, boolean isEncryptedOrGroupMessage) {
+    transportOptions.initializeAvailableTransports(isMediaMessage, isEncryptedOrGroupMessage);
   }
 
   public void disableTransport(String transport) {

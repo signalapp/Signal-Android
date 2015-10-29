@@ -36,6 +36,7 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   @Override
   public void onResume() {
       dynamicTheme.onResume(this);
+      initializeResources();
       super.onResume();
   }
 

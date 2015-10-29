@@ -4,338 +4,329 @@
   <string name="yes">はい</string>
   <string name="no">いいえ</string>
   <string name="delete">削除</string>
-  <string name="please_wait">お待ち下さい…</string>
+  <string name="please_wait">お待ちください…</string>
   <!--ApplicationPreferencesActivity-->
-  <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">全ての古いメッセージを今、削除しますか？</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">今すぐ全ての会話スレッドを最新メッセージ%s通にまで縮小（トリム）しますか？</string>
+  <string name="ApplicationPreferencesActivity_currently_s">現在: %s</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが設定されていません。</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">古いメッセージの削除</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">最新 %s 通のメッセージを除いて、古いメッセージをすべて削除しますか?</string>
   <string name="ApplicationPreferencesActivity_delete">削除</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">端末内保存データの暗号化を無効にしますか？</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！
-通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">端末の暗号化を無効にしますか?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">警告: この操作を実行すると、端末内の全メッセージと鍵の暗号化が無効になります! 通信上（セッション）の暗号化は引き続き行われますが、第三者がお使いの端末に物理的なアクセスを試みた場合、メッセージや鍵などの情報にアクセスされる可能性があります。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
-  <string name="ApplicationPreferencesActivity_unregistering">登録破棄中…</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">データ通信を行うために登録を取消しています</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">プッシュメッセージを無効化しますか？</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-サーバーから登録を取消し、プッシュメッセージを無効化します。
-再びプッシュメッセージを使用するには、</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMSの受信</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">デフォルトSMSアップをタッチで変更</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS受信が無効です。</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">タッチでSecureChatをデフォルトのSMSアップにできます</string>
+  <string name="ApplicationPreferencesActivity_unregistering">登録解除中…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">SecureChatサービスへの登録を解除中...</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">SecureChatメッセージを無効にしますか?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">SecureChatサービスへの登録を解除します。登録解除後にSecureChatを利用する場合は、電話番号を再登録する必要があります。</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバーへの接続時にエラーが発生しました!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">受信SMS: 有効</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">デフォルトのSMSアプリを変更</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">受信SMS: 無効</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">SecureChatをデフォルトのSMSアプリに設定する</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(画像)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(音声)</string>
   <string name="DraftDatabase_Draft_video_snippet">(動画)</string>
   <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">メディアの選択用アプリが見つかりません。</string>
+  <string name="AttachmentManager_cant_open_media_selection">メディアを選択できるアプリが見つかりません。</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_message_size_d_kb">メッセージのサイズ： %d KB</string>
-  <string name="ConversationItem_expires_s">有効期限： %s</string>
+  <string name="ConversationItem_message_size_d_kb">メッセージのサイズ: %d KB</string>
+  <string name="ConversationItem_expires_s">有効期限: %s</string>
   <string name="ConversationItem_error_sending_message">メッセージが送信できませんでした。</string>
-  <string name="ConversationItem_view_secure_media_question">暗号化されたファイルを表示しますか？</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">このファイルは暗号化されたデータベースに保存されています。外部コンテンツのビューアで見るには、データを一時的に復号し、ディスクに書き込まなければなりません。この作業を実行してもいいですか？</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">エラー、古い鍵交換のメッセージを受信してしまいました。</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">鍵交換のメッセージを受信しました。クリックして実行してください。</string>
-  <string name="ConversationItem_group_action_left">%1$sがグループを抜けました。</string>
-  <string name="ConversationItem_click_to_approve_sms">タップすれば代替としてSMSを使います。</string>
-  <string name="ConversationItem_click_to_approve_mms">タップすれば代替としてMMSを使います。</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">代替としてSMSに切り替わりますか？</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">代替としてMMSに切り替わりますか？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">代替として暗号化されていないSMSに切り替わりますか？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
-  <string name="ConversationItem_unable_to_open_media">このメディアに対応するアップが見つかりません。</string>
+  <string name="ConversationItem_view_secure_media_question">暗号化されたファイルを表示しますか?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">このファイルは暗号化されたデータベースに保存されています。ファイルを表示させるには、データを一時的に復号して保存する必要があります。続行してもよろしいですか?</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">エラー: 失効した鍵交換のメッセージを受信しました。</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">鍵交換のメッセージを受信しました。タップして続行してください。</string>
+  <string name="ConversationItem_group_action_left">%1$s がグループから退会しました。</string>
+  <string name="ConversationItem_click_to_approve_sms">タップすれば代替としてSMSを使います</string>
+  <string name="ConversationItem_click_to_approve_mms">タップすれば代替としてMMSを使います</string>
+  <string name="ConversationItem_click_to_approve_sms_dialog_title">代替としてSMSに切り替えますか?</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">代替としてMMSに切り替えますか?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">代替として暗号化されていないSMSに切り替えますか?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替えますか?</string>
+  <string name="ConversationItem_unable_to_open_media">このメディアを開くアプリが見つかりませんでした。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">%sさんとセキュア・セッションを開始しますか？</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">セキュア・セッション終了の確認</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">このセキュア・セッションを本当に終了しますか？</string>
-  <string name="ConversationActivity_delete_thread_confirmation">スレッド削除確認</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">この会話を完全に削除してもよろしいですか？</string>
-  <string name="ConversationActivity_add_attachment">添付</string>
+  <string name="ConversationActivity_initiate_secure_session_question">セキュアなチャットを開始しますか?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">%s さんとセキュアなチャットを開始しますか?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">セキュアなチャットの終了を確認</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">セキュアなチャットを終了しますか?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">チャット削除の確認</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">このチャットを完全に削除してよろしいですか?</string>
+  <string name="ConversationActivity_add_attachment">ファイルを添付</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
-  <string name="ConversationActivity_compose_message">メッセージ作成</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">添付中にエラーが発生しました。</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">受信先のSMS又はEメールアドレスが有効ではありません。</string>
+  <string name="ConversationActivity_compose_message">メッセージを作成</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ファイルの添付中にエラーが発生しました。</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">送信先のSMSまたはメールアドレスが有効ではありません。</string>
   <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です。</string>
-  <string name="ConversationActivity_group_conversation_recipients">グループチャットの宛先</string>
+  <string name="ConversationActivity_group_conversation_recipients">グループチャットのメンバー</string>
   <string name="ConversationActivity_group_conversation">グループチャット</string>
-  <string name="ConversationActivity_unnamed_group">無名グループ</string>
-  <string name="ConversationActivity_d_recipients_in_group">参加者%d人</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">参加者1人</string>
+  <string name="ConversationActivity_unnamed_group">名称のないグループ</string>
+  <string name="ConversationActivity_d_recipients_in_group">メンバー %d 人</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">メンバー 1 人</string>
   <string name="ConversationActivity_saved_draft">下書きとして保存しました</string>
-  <string name="ConversationActivity_invalid_recipient">受信先が無効です。</string>
-  <string name="ConversationActivity_calls_not_supported">通話は対応されていません</string>
-  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末は、ダイヤル機能に対応していないようです。</string>
-  <string name="ConversationActivity_leave_group">グループを抜けますか？</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを本当に抜けますか？</string>
-  <string name="ConversationActivity_transport_insecure_sms">暗号化されていないSMS</string>
-  <string name="ConversationActivity_transport_insecure_mms">暗号化されていないMMS</string>
-  <string name="ConversationActivity_transport_secure_sms">暗号化されているSMS</string>
-  <string name="ConversationActivity_transport_secure_mms">暗号化されているMMS</string>
+  <string name="ConversationActivity_invalid_recipient">送信先が無効です!</string>
+  <string name="ConversationActivity_calls_not_supported">通話には対応していません</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末はダイヤル操作に非対応のようです</string>
+  <string name="ConversationActivity_leave_group">グループから退会しますか?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループから退会してよろしいですか?</string>
+  <string name="ConversationActivity_transport_insecure_sms">安全性の低いSMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">安全性の低いMMS</string>
+  <string name="ConversationActivity_transport_secure_sms">セキュアなSMS</string>
+  <string name="ConversationActivity_transport_secure_mms">セキュアなMMS</string>
   <string name="ConversationActivity_transport_textsecure">SecureChat</string>
-  <string name="ConversationActivity_get_with_it">一緒に取得: %s</string>
+  <string name="ConversationActivity_get_with_it">セキュアに通信: %s</string>
   <string name="ConversationActivity_install_textsecure">SecureChatをインストール: %s</string>
-  <string name="ConversationActivity_error_leaving_group">グループ離脱でエラー...</string>
+  <string name="ConversationActivity_error_leaving_group">グループからの退会時にエラー発生...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n送信方法: %2$s\n送信: %3$s\n受信: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">メッセージ削除の確認</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">あなたは、選択したメッセージの永久的な削除を希望してますが、よいのですね?</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">このメッセージを完全に削除してもよろしいですか？</string>
-  <string name="ConversationFragment_save_to_sd_card">メモリに保存しますか？</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">このファイルを保存すれば、別のアプリもこのファイルをアクセスできます。\n\nよろしいですか？</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">保存中にエラーが発生しました。</string>
-  <string name="ConversationFragment_success_exclamation">成功しました。</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">メモリに書き込めませんでした。</string>
-  <string name="ConversationFragment_saving_attachment">添付ファイルを保存しています</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">メモリに添付ファイルを保存中…</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">選択したメッセージを本当に削除してよろしいですか?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">このメッセージを完全に削除してもよろしいですか?</string>
+  <string name="ConversationFragment_save_to_sd_card">端末のストレージに保存しますか?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">このファイルを保存した場合、端末にインストールされている別のアプリもこのファイルへアクセスできます。\n\n続行しますか?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">保存時にエラーが発生しました!</string>
+  <string name="ConversationFragment_success_exclamation">成功しました!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ストレージに書き込めませんでした!</string>
+  <string name="ConversationFragment_saving_attachment">添付ファイルを保存中</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">ストレージに添付ファイルを保存中…</string>
   <string name="ConversationFragment_pending">保留</string>
-  <string name="ConversationFragment_push">送信</string>
+  <string name="ConversationFragment_push">PUSH</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">削除...</string>
-  <string name="ConversationFragment_deleting_messages">メッセージの削除...</string>
+  <string name="ConversationFragment_deleting">削除中...</string>
+  <string name="ConversationFragment_deleting_messages">メッセージを削除中...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">スレッドを削除しますか？</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">選択したすべての会話スレッドを、本当に削除してもよろしいですか？</string>
+  <string name="ConversationListFragment_delete_threads_question">チャットを削除しますか?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">選択したチャットをすべて削除してよろしいですか?</string>
   <string name="ConversationListFragment_deleting">削除</string>
-  <string name="ConversationListFragment_deleting_selected_threads">選択したスレッドを削除中…</string>
+  <string name="ConversationListFragment_deleting_selected_threads">選択したチャットを削除中…</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">エクスポート</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">SDカードへエクスポートしますか？</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">警告：この作業によって、あなたのSecureChatメッセージは、暗号化されていない状態でSDカードへとエクスポートされます！</string>
-  <string name="ExportFragment_cancel">中止</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">プレーンテキストをSDカードへエクスポートしますか?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">警告: あなたのSecureChatメッセージはテキスト形式でSDカードへエクスポートされます!</string>
+  <string name="ExportFragment_cancel">キャンセル</string>
   <string name="ExportFragment_exporting">エクスポート中…</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">暗号化されてないテキストをSDカードにエクスポート中…</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">SDカードに書き込む途中でエラーが発生しました。</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">SDカードに書き込む途中でエラーが発生しました。</string>
-  <string name="ExportFragment_success">成功しました。</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">プレーンテキストをSDカードにエクスポート中…</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">SDカードへの書き込み時にエラーが発生しました。</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">SDカードへの書き込み時にエラーが発生しました。</string>
+  <string name="ExportFragment_success">成功しました!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">永続的なSecureChatでの通信失敗!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat の Google Play Servicesへの登録ができませんでした。データチャネルでの通信が無効にされます、 SecureChat の設定メニューから際登録をしてください。</string>
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">SecureChatサービスで永続的なエラーが発生!</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat が \"Google Play Services\" へ接続できなかったため、SecureChatサービスが無効化されました。\"設定\"メニューから再登録してください。</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
-  <string name="GroupCreateActivity_actionbar_update_title">グループを更新する</string>
+  <string name="GroupCreateActivity_actionbar_update_title">グループを更新</string>
   <string name="GroupCreateActivity_group_name_hint">グループ名</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新規MMSグループ</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">SecureChatのグループに対応していない連絡先を選択しましたので、このグループはMMSで通信を行います。</string>
-  <string name="GroupCreateActivity_you_dont_support_push">あなたがデータチャンネルを使用する登録をしていないので、SecureChatグループは無効です。</string>
-  <string name="GroupCreateActivity_contacts_mms_exception">予期せぬエラーが発生したため、グループ作成が失敗しました。</string>
-  <string name="GroupCreateActivity_contacts_no_members">最低一人でもグループに参加する必要があります！</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">グループ参加者一人の電話番号が解読できません。番号を訂正するか、その宛先をグループから削除してください。</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">SecureChatのグループをサポートしない連絡先を選択したため、このグループはMMSで通信を行います。</string>
+  <string name="GroupCreateActivity_you_dont_support_push">SecureChatサービスへ登録していないため、グループは利用できません。</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">予期しないエラーが発生したため、グループ作成に失敗しました。</string>
+  <string name="GroupCreateActivity_contacts_no_members">少なくとも一件の連絡先を加えてください!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">グループメンバーの電話番号で無効なものがあります。電話番号を訂正するか、その連絡先をグループから削除してから、再試行してください。</string>
   <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
-  <string name="GroupCreateActivity_menu_create_title">グループ作成</string>
-  <string name="GroupCreateActivity_creating_group">%1$sを作成中...</string>
-  <string name="GroupCreateActivity_updating_group">%1$sを更新...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">既存のSecureChatグループに非SecureChat連絡先は追加できません。</string>
-  <string name="GroupCreateActivity_loading_group_details">グループ詳細を読み出し中...</string>
+  <string name="GroupCreateActivity_menu_create_title">グループを作成</string>
+  <string name="GroupCreateActivity_creating_group">%1$s を作成中...</string>
+  <string name="GroupCreateActivity_updating_group">%1$s を更新中...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">SecureChatを利用していない連絡先は、既存のSecureChatグループに追加できません。</string>
+  <string name="GroupCreateActivity_loading_group_details">グループの詳細を読み取り中...</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">私</string>
-  <string name="GroupMembersDialog_members">参加者...</string>
+  <string name="GroupMembersDialog_me">自分</string>
+  <string name="GroupMembersDialog_members">メンバー...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">インポート</string>
   <string name="ImportExportActivity_export">エクスポート</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">システムのSMSデータベースをインポートしますか？</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">これで、携帯端末の既定SMSデータベースにあるメッセージがSecureChatにインポートされます。以前にこの作業を行ったことがあれば、メッセージが重複する場合があります。</string>
+  <string name="ImportFragment_import_system_sms_database">端末内のSMSをインポートしますか?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">端末のデフォルトSMSアプリのデータベースにあるメッセージがSecureChatにインポートされます。以前に同じデータベースのインポート作業を行ったことがある場合、重複メッセージが発生します。</string>
   <string name="ImportFragment_import">インポート</string>
-  <string name="ImportFragment_cancel">中止</string>
-  <string name="ImportFragment_restore_encrypted_backup">暗号化されたバックアップを復元しますか？</string>
+  <string name="ImportFragment_cancel">キャンセル</string>
+  <string name="ImportFragment_restore_encrypted_backup">暗号化されたバックアップを復元しますか?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のSecureChatインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
+暗号化されたバックアップファイルを復元すると、既存の鍵、設定、およびメッセージは完全に上書きされます。現在のSecureChatインストール環境は上書きされますが、バックアップファイルは残ります。</string>
   <string name="ImportFragment_restore">復元</string>
-  <string name="ImportFragment_import_plaintext_backup">平文のバックアップをインポートしますか？</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前に同じバックアップ・ファイルをインポートしたことがある場合、メッセージが重複することになります。</string>
+  <string name="ImportFragment_import_plaintext_backup">テキスト形式のバックアップをインポートしますか?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">テキスト形式のバックアップファイルからインポートします。以前に同じバックアップファイルのインポート作業を行ったことがある場合、重複メッセージが発生します。</string>
   <string name="ImportFragment_importing">インポート中…</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">非暗号テキストのバックアップ・ファイルをインポート中…</string>
-  <string name="ImportFragment_no_plaintext_backup_found">非暗号テキストのバックアップ・ファイルが見つかりませんでした。</string>
-  <string name="ImportFragment_error_importing_backup">バックアップ・ファイルのインポート中にエラーが発生しました。</string>
-  <string name="ImportFragment_import_complete">インポート完了！</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">テキスト形式のバックアップファイルをインポート中…</string>
+  <string name="ImportFragment_no_plaintext_backup_found">テキスト形式のバックアップファイルが見つかりませんでした。</string>
+  <string name="ImportFragment_error_importing_backup">バックアップファイルのインポート中にエラーが発生しました。</string>
+  <string name="ImportFragment_import_complete">インポート完了!</string>
   <string name="ImportFragment_restoring">復元中…</string>
-  <string name="ImportFragment_restoring_encrypted_backup">暗号化されたバックアップ・ファイルをインポート中…</string>
-  <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップ・ファイルは見つかりませんでした。</string>
-  <string name="ImportFragment_restore_complete">復元完了！</string>
+  <string name="ImportFragment_restoring_encrypted_backup">暗号化されたバックアップファイルを復元中…</string>
+  <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップファイルが見つかりませんでした。</string>
+  <string name="ImportFragment_restore_complete">復元完了!</string>
   <!--KeyScanningActivity-->
-  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>
-  <string name="KeyScanningActivity_install_barcode_Scanner">バーコードスキャナをインストールする?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecureではQRコードはバーコードスキャナが必要です</string>
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンできる鍵がありません。</string>
+  <string name="KeyScanningActivity_install_barcode_Scanner">バーコードスキャナをインストールしますか?</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">QRコードを読み取るには、バーコードスキャナが必要です。</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_storing_mms">MMS保存中にエラーがありました。</string>
-  <string name="MmsDownloader_error_connecting_to_mms_provider">MMSのプロバイダー接続中にエラーが発生しました…</string>
-  <string name="MmsDownloader_error_reading_mms_settings">無線プロバイダーのMMS設定が見つかりませんでした。</string>
+  <string name="MmsDownloader_error_storing_mms">MMSの保存中にエラーが発生しました。</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">MMSプロバイダーへの接続に失敗しました…</string>
+  <string name="MmsDownloader_error_reading_mms_settings">MMSプロバイダーの設定を読み取ることができませんでした...</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">マルチメディアーメッセージ</string>
+  <string name="NotificationMmsMessageRecord_multimedia_message">マルチメディアメッセージ</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">対応されていない古いバージョンのSecureChatから暗号化されたメッセージを受信しました。最新バージョンに更新して、再び送信するよう伝えてください</string>
-  <string name="MessageRecord_left_group">グループを出ました。</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">旧バージョンのSecureChatプロトコルで暗号化されたメッセージを受信しました。最新バージョンに更新した後、メッセージを再送するように送信者に伝えてください</string>
+  <string name="MessageRecord_left_group">グループから退会しました。</string>
   <string name="MessageRecord_updated_group">グループを更新しました。</string>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスワードが一致していません！</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスワードが一致していません!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスワードが正しくありません。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
   <string name="PassphrasePromptActivity_watermark_content_description">SecureChatアイコン</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">パスワードを設定</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスワード</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">パスワードを送信</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスワード!</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">この
-鍵交換の電子署名は、以前この連絡先から受信したものと違っています。
-誰かがあなたの通信を傍受しようとしているか、もしくは
-単にこの連絡先がSecureChatを再インストールしたため、認証キーが新しくなった可能性があります。</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">この連絡先を
-照合することが推奨されています。</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">この
-鍵交換の電子署名は信用されていますが、「自動で鍵交換を完了する」設定は
-無効になっています。</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">この鍵交換の電子署名は、以前この連絡先から受信したものと一致していません。
+あなたの通信が傍受しようとしているか、もしくは単にこの連絡先がSecureChatを再インストールしたため、新しい鍵を利用している可能性があります。</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">この連絡先について一度確認することをお勧めします。</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">この鍵交換の電子署名は信頼性の高いものですが、\'自動で鍵交換を完了する\' 設定は無効になっています。</string>
   <string name="ReceiveKeyActivity_processing">処理中</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">鍵交換を処理中...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">SecureChatで接続</string>
+  <string name="RegistrationActivity_connect_with_textsecure">SecureChatの利用登録</string>
   <string name="RegistrationActivity_select_your_country">国を選択</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力して下さい</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">電話番号を入力して下さい</string>
-  <string name="RegistrationActivity_invalid_number">無効な番号</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">指定された番号(%s)はお使いできません。</string>
-  <string name="RegistrationActivity_unsupported">使用不可能</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">申し訳ありませんが、 お使いのデバイスではデータメッセージの送信ができません。4.0より古いバージョンのアンドロイドをお使いの場合、グーグルアカウントに登録する必要があります。4.0または4.0より新しいバージョンをお使いの場合、グーグルアカウントへの登録は必要ありませんが、Google Play ストア アプリをインストールする必要があります。</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力してください</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">電話番号を入力してください</string>
+  <string name="RegistrationActivity_invalid_number">無効な電話番号</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">入力された電話番号(%s)は無効です。</string>
+  <string name="RegistrationActivity_unsupported">サポートされていません</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">お使いの端末ではデータメッセージの送信ができません。Android 4.0より古いバージョンをお使いの場合、Googleアカウントに登録する必要があります。4.0またはそれ以降のバージョンをお使いの場合、Googleアカウントへの登録は必要ありませんが、Playストア アプリをインストールする必要があります。</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-これから、以下の番号がこのデバイスに付属するかを確認します。\n\n%s\n\nこの番号は正しいですか、それとも編集しますか？</string>
+以下の電話番号がこの端末で利用されているか確認します。\n\n%s\n\nこの電話番号は正しいですか、それとも続行する前に編集しますか??</string>
   <string name="RegistrationActivity_continue">続行</string>
   <string name="RegistrationActivity_edit">編集</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">可能な原因</string>
+  <string name="RegistrationProblemsActivity_possible_problems">起こりうる問題</string>
   <!--RegistrationProgressActivity-->
-  <string name="RegistrationProgressActivity_verifying_number">番号を確認中...</string>
-  <string name="RegistrationProgressActivity_edit_s">%sを編集</string>
-  <string name="RegistrationProgressActivity_registration_complete">登録完了！</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">まず、もらったコードを入力して下さい</string>
+  <string name="RegistrationProgressActivity_verifying_number">電話番号を検証中</string>
+  <string name="RegistrationProgressActivity_edit_s">%s を編集</string>
+  <string name="RegistrationProgressActivity_registration_complete">登録完了!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">まず受け取ったコードを入力してください</string>
   <string name="RegistrationProgressActivity_connecting">接続中</string>
-  <string name="RegistrationProgressActivity_connecting_for_verification">確認するために接続中...</string>
-  <string name="RegistrationProgressActivity_network_error">ネットワークエラー！</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">接続できませんでした。インターネットにつながっているかを確かめてください。</string>
-  <string name="RegistrationProgressActivity_verification_failed">検証失敗！</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">検証コードが合っていません。もう一度お試しください。</string>
-  <string name="RegistrationProgressActivity_too_many_attempts">大数の試行</string>
-  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">検証コードが数回間違えて入力されました。一分待ってまたお試しください。</string>
-  <string name="RegistrationProgressActivity_requesting_call">通話を要求中</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">検証用通話を要求中…</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">検証のため接続中...</string>
+  <string name="RegistrationProgressActivity_network_error">ネットワークエラー!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">接続できませんでした。インターネット接続を確認して再試行してください。</string>
+  <string name="RegistrationProgressActivity_verification_failed">検証失敗!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">入力されたコードが正しくありません。もう一度お試しください。</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">過度の試行</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">検証コードの入力を複数回間違えました。一分後にもう一度お試しください。</string>
+  <string name="RegistrationProgressActivity_requesting_call">通話をリクエスト</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">確認用の通話をリクエスト中…</string>
   <string name="RegistrationProgressActivity_server_error">サーバーエラー</string>
-  <string name="RegistrationProgressActivity_the_server_encountered_an_error">サーバーがエラーを検出しました。もう一度お試しください。</string>
-  <string name="RegistrationProgressActivity_too_many_requests">多数のリクエスト！</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">あなたはすでに確認用通話を要求しました。二十分待ってまたお試しください。</string>
-  <string name="RegistrationProgressActivity_registration_conflict">登録紛争</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">この番号はすでに別のSecureChatサーバーで登録されています。（CyanogenMod？）　そのサーバーで登録を取り消してからこちらで登録してください。</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">エラーが発生しました。もう一度お試しください。</string>
+  <string name="RegistrationProgressActivity_too_many_requests">過度のリクエスト!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">すでに確認用の通話をリクエストしました。再リクエストは二十分後に可能です。</string>
+  <string name="RegistrationProgressActivity_registration_conflict">登録が重複しています</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">この電話番号はすでに別のSecureChatサーバーで登録済みです。（CyanogenMod?）　そのサーバーで登録解除した後で、こちらで登録してください。</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">登録完了</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">SecureChat登録が正常に完了しました。</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">SecureChatの登録が正常に完了しました。</string>
   <string name="RegistrationService_registration_error">登録エラー</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">SecureChat登録中にエラーが発生しました。</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">SecureChatの登録中にエラーが発生しました。</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">無効な鍵交換メッセージを受信しました。</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">破損した鍵交換メッセージを受信しました!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 受信した鍵交換メッセージのプロトコルバージョンが無効です。</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-受信したメッセージの認証キーは不明です。タップで表示。</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">新たな識別情報を受信しましたが認証が不明です。タップで検証してください。</string>
-  <string name="SmsMessageRecord_secure_session_ended">セキュア・セッション終了</string>
-  <string name="SmsMessageRecord_duplicate_message">二度送信メッセージ。</string>
+受信したメッセージのID鍵は不明です。タップして表示します。</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">更新された情報を受信しましたが、不明なIDです。タップして確認してください。</string>
+  <string name="SmsMessageRecord_secure_session_ended">セキュアなチャットを終了しました。</string>
+  <string name="SmsMessageRecord_duplicate_message">重複メッセージ。</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">グループを出ました…</string>
-  <string name="TheadRecord_secure_session_ended">セキュア・セッション終了</string>
-  <string name="ThreadRecord_draft">草稿:</string>
+  <string name="ThreadRecord_left_the_group">グループから退会しました…</string>
+  <string name="TheadRecord_secure_session_ended">セキュアなチャットを終了しました。</string>
+  <string name="ThreadRecord_draft">ドラフト:</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">受信者は認証キーがありません。</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">受信者は認証キーがありません！</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">鍵をスキャンして比較</string>
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">ID鍵がありません。</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">受信者にはID鍵がありません。</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">受信者にはID鍵がありません!</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">受信者の鍵をスキャン</string>
   <string name="VerifyIdentityActivity_get_my_key_scanned">自分の鍵をスキャンしてもらう</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告、スキャンした鍵が正しくありません！フィンガープリントのテキストを慎重にチェックしてください。</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">鍵が一致しました。これらの鍵と一緒に、自分の鍵も確認する必要があります。</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">照合しました。</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">認証キーがありません。</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告: スキャンした鍵と一致していません!フィンガープリントのテキストを慎重にチェックしてください。</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">照合できませんでした!</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">受信者の鍵が一致しました。受信者にあなたの鍵も確認させてください。</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">照合できました。</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">ID鍵がありません。</string>
   <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">ID鍵がありません。</string>
   <string name="ViewIdentityActivity_scan_to_compare">スキャンして比較</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">スキャンして比較してもらう</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告、スキャンした鍵が正しくありません！</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">スキャンした鍵が一致しました！</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告: スキャンした鍵と一致していません!</string>
+  <string name="ViewIdentityActivity_not_verified_exclamation">照合できませんでした!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">スキャンした鍵が一致しました!</string>
   <string name="ViewIdentityActivity_verified_exclamation">照合できました。</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">自分の認証フィンガープリント</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">自分のIDのフィンガープリント</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">セッション開始のリクエストはすでにこの受信者に送られています。別のリクエストをまた送ってもよろしいですか？送信すると、最初に送ったリクエストは無効になります。</string>
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか?</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">この受信者へのセッション開始のリクエストは送信済みです。別のリクエストを再送してよろしいですか?再送信すると、最初に送ったリクエストは無効になります。</string>
   <string name="KeyExchangeInitiator_send">送信</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">メッセージが正しく暗号化されていません…</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">復号しています。お待ち下さい…</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されています…</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">復号中。お待ちください…</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されました…</string>
   <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">メッセージの復号化エラー。</string>
+  <string name="EncryptingSmsDatabase_error_decrypting_message">メッセージの復号時にエラーが発生しました。</string>
   <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">メッセージの復号化エラー。</string>
+  <string name="ThreadDatabase_error_decrypting_message">メッセージの復号時にエラーが発生しました。</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">MMSサーバーに接続中…</string>
   <string name="MmsDatabase_downloading_mms">MMSをダウンロード中…</string>
-  <string name="MmsDatabase_mms_download_failed">MMSをダウンロード失敗！</string>
+  <string name="MmsDatabase_mms_download_failed">MMSをダウンロード失敗しました!</string>
   <string name="MmsDatabase_downloading">ダウンロード中…</string>
-  <string name="MmsDatabase_mms_pending_download">ダウンロードを続行するのに、MMS設定を行って下さい。</string>
-  <string name="MmsDatabase_error_decrypting_message">メッセージの復号化エラー。</string>
+  <string name="MmsDatabase_mms_pending_download">MMSのダウンロードを続行するには、MMSの設定を行ってください。</string>
+  <string name="MmsDatabase_error_decrypting_message">メッセージの復号時にエラーが発生しました。</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSを復号しています。お待ち下さい…</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSを復号中。お待ちください…</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">MMSメッセージが正しく暗号化されていません…</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMSメッセージは存在しないセッションのために暗号化されています…</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMSメッセージは存在しないセッションのために暗号化されました…</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">インポート中</string>
   <string name="ApplicationMigrationService_importing_text_messages">メッセージをインポート中</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">タッチして開く</string>
-  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">タッチして開く、またはロックをタッチして閉じる</string>
-  <string name="KeyCachingService_passphrase_cached">SecureChatは、アンロックされています</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached">タップして開く</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">テキストをタップするとアプリが開きます。錠アイコンをタップすると閉じます。</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChatはロック解除されています</string>
   <string name="KeyCachingService_lock">パスワードでロックする</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d 新しいメッセージ</string>
-  <string name="MessageNotifier_most_recent_from_s">最新の送信者： %s</string>
+  <string name="MessageNotifier_d_new_messages">%d 件の新しいメッセージ</string>
+  <string name="MessageNotifier_most_recent_from_s">最新の送信者: %s</string>
   <string name="MessageNotifier_encrypted_message">暗号化されたメッセージ…</string>
-  <string name="MessageNotifier_no_subject">（無題）</string>
+  <string name="MessageNotifier_no_subject">（件名なし）</string>
   <string name="MessageNotifier_message_delivery_failed">メッセージの配信に失敗しました。</string>
   <string name="MessageNotifier_failed_to_deliver_message">メッセージの配信に失敗しました。</string>
-  <string name="MessageNotifier_error_delivering_message">メッセージ配信中にエラーがありました。</string>
+  <string name="MessageNotifier_error_delivering_message">メッセージ配信中にエラーが発生しました。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_as_read">既読にする</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">申し訳ありませんが、クイック返信はSecureChatではまだできません！</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">SecureChatではクイック返信機能はまだサポートされていません!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">SecureChat暗号化セッションをサポートする人からメッセージが来ています。セキュア・セッションを開始しますか？</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">SecureChatの暗号化チャット機能を利用する人からメッセージが届いています。セキュアなチャットを開始しますか?</string>
   <string name="auto_initiate_activity__initiate_exchange">交換開始</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
-  <string name="change_passphrase_activity__new_passphrase">新規のパスワード：</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">新規のパスワードを再入力：</string>
+  <string name="change_passphrase_activity__old_passphrase">古いパスワード:</string>
+  <string name="change_passphrase_activity__new_passphrase">新しいパスワード:</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">新しいパスワードの確認入力:</string>
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">連絡先はありません。</string>
   <string name="contact_selection_group_activity__finding_contacts">連絡先を読み込み中…</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">あなたはプッシュサービスに登録していません。</string>
-  <string name="SingleContactSelectionActivity_updating_directory">ダイレクトリーを更新しています</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">プッシュダイレクトリーを更新中…</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">SecureChatサービスにまだ登録していません。</string>
+  <string name="SingleContactSelectionActivity_updating_directory">更新中</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">連絡先の一覧を更新中…</string>
   <string name="SingleContactSelectionActivity_contact_photo">連絡先の写真</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">選択</string>
@@ -343,189 +334,184 @@
   <string name="contact_selection_recent_activity__no_recent_calls">最近の通話はありません。</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">SecureChatメッセージを送信</string>
-  <string name="conversation_activity__type_message_sms_secure">暗号化されているSMSを送信</string>
-  <string name="conversation_activity__type_message_sms_insecure">セキュアではないSMSを送信</string>
-  <string name="conversation_activity__type_message_mms_secure">暗号化されているMMSを送信</string>
-  <string name="conversation_activity__type_message_mms_insecure">セキュアではないMMSを送信</string>
+  <string name="conversation_activity__type_message_sms_secure">セキュアなSMSを送信</string>
+  <string name="conversation_activity__type_message_sms_insecure">セキュアでないSMSを送信</string>
+  <string name="conversation_activity__type_message_mms_secure">セキュアなMMSを送信</string>
+  <string name="conversation_activity__type_message_mms_insecure">セキュアでないMMSを送信</string>
   <string name="conversation_activity__send">送信</string>
   <string name="conversation_activity__remove">削除</string>
-  <string name="conversation_activity__window_description">%1$sとの会話</string>
-  <string name="conversation_activity__compose_description">新たなメッセージ</string>
+  <string name="conversation_activity__window_description">%1$s とのチャット</string>
+  <string name="conversation_activity__compose_description">新しいメッセージ</string>
   <string name="conversation_activity__emoji_toggle_description">絵文字キーボードを切り替え</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_image_description">メディアーメッセージ</string>
+  <string name="conversation_item__mms_image_description">メディアメッセージ</string>
   <string name="conversation_item__play_button_description">再生ボタン</string>
-  <string name="conversation_item__secure_message_description">暗号化されたメッセージ</string>
+  <string name="conversation_item__secure_message_description">セキュアなメッセージ</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">ダウンロード</string>
   <string name="conversation_item_sent__downloading">ダウンロード中</string>
   <string name="conversation_item_sent__send_failed_indicator_description">送信失敗</string>
   <string name="conversation_item_sent__pending_approval_description">承認待ち</string>
-  <string name="conversation_item_sent__delivered_description">受信成功</string>
+  <string name="conversation_item_sent__delivered_description">配信済み</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">ダウンロード</string>
   <string name="conversation_item_received__contact_photo_description">連絡先の写真</string>
   <string name="conversation_item_received__downloading">ダウンロード中</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">一括選択モード</string>
-  <string name="conversation_fragment_cab__batch_selection_amount">選択数: %s</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">%s 件を選択</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">国名を読み込み中...</string>
   <string name="country_selection_fragment__search">検索</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">デバッグログの入手に失敗しました。ADBを使ってログの入手は、可能です。</string>
-  <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
-  <string name="log_submit_activity__submitting">提出中</string>
-  <string name="log_submit_activity__posting_logs">ログをgistに投稿中…</string>
+  <string name="log_submit_activity__log_fetch_failed">デバッグログを取得できませんでした。インターネットに接続されている場合、ADBを使ってログを取得することもできます。</string>
+  <string name="log_submit_activity__thanks">ログを送信いただき、ありがとうございました!</string>
+  <string name="log_submit_activity__submitting">送信中</string>
+  <string name="log_submit_activity__posting_logs">ログを転送中…</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">SecureChatの暗号化されたデータベースに、今あるテキストメッセージをインポートしてもよろしいですか？</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">携帯端末にある既定データベースは変更されません。</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">端末内のSMSをSecureChatの暗号化されたデータベースにインポートしてよろしいですか?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">SMSが保存されている端末の既定データベースは変更されません。</string>
   <string name="database_migration_activity__skip">スキップする</string>
   <string name="database_migration_activity__import">インポート</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">この作業は時間がかかります。しばらくお待ち下さい。インポートが完了すると、通知されます。</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">この作業には時間がかかります。インポート後に通知するので、しばらくお待ちください。</string>
   <string name="database_migration_activity__importing">インポート中</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
-  <string name="export_fragment__export_plaintext_backup">非暗号テキストのバックアップ・ファイルをエクスポート</string>
+  <string name="export_fragment__export_plaintext_backup">テキスト形式のバックアップファイルをエクスポート</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
-  <string name="import_fragment__import_system_sms_database">システムのSMSデータベースをインポート</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">端末既定のメッセンジャー・アプリから
-データベースをインポート</string>
-  <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップ・ファイルをインポート</string>
+\'SMS Backup &amp; Restore\' と互換性のあるテキスト形式のバックアップファイルをSDカードにエクスポートします</string>
+  <string name="import_fragment__import_system_sms_database">端末のSMSデータベースをインポート</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">デフォルトに設定されているSMSアプリのデータベースからインポートします。</string>
+  <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップファイルをインポート</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-前回エクスポートした暗号化されたSecureChatバックアップ・ファイルを復元</string>
-  <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
+前回エクスポートされた暗号化したSecureChatバックアップファイルを復元</string>
+  <string name="import_fragment__import_plaintext_backup">テキスト形式のバックアップファイルをインポート</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">\'SMS Backup &amp; Restore\' と互換性のあるテキスト形式のバックアップファイルをインポートします。</string>
   <!--MmsPreferencesFragment-->
-  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">この端末は、ご自分でMMS設定をする必要があります。</string>
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">この端末は手動でMMS設定する必要があります。</string>
   <string name="MmsPreferencesFragment__enabled">有効</string>
   <string name="MmsPreferencesFragment__disabled">無効</string>
   <string name="MmsPreferencesFragment__not_set">セットしてない</string>
-  <string name="MmsPreferencesFragment__invalid_uri">入力されたテキストは妥当なURIではありません</string>
-  <string name="MmsPreferencesFragment__invalid_host">入力されたテキストは妥当なホストではありません</string>
+  <string name="MmsPreferencesFragment__invalid_uri">入力されたテキストは有効なURIではありません</string>
+  <string name="MmsPreferencesFragment__invalid_host">入力されたテキストは有効なホストではありません</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s グループに参加。</string>
-  <string name="GroupUtil_group_updated">グループ更新。</string>
-  <string name="GroupUtil_title_is_now">現在のタイトルは \'%1$s\'。</string>
+  <string name="GroupUtil_joined_the_group">%1$s がグループに参加しました。</string>
+  <string name="GroupUtil_group_updated">グループを更新しました。</string>
+  <string name="GroupUtil_title_is_now">現在のタイトルは \'%1$s\' です。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChatでは、無線通信事業者からファイル付きメッセージを配信するのに、APN設定が必要です。お使いの携帯端末では、この設定のための情報が取得できません。ロックされた端末であるか、その他の制限設定があるとこのような状況が生じます。</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ファイル付き及びグループ・メッセージを配信するのに、OKをクリックして設定を完了してください。お使いの通信事業者への設定値は通常、\"通信事業者APN”で検索すると設定できます。この作業の実行は一度だけでいいです。</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">ファイル付きメッセージやグループメッセージを配信するには、MMS設定を行う必要があります。お使いの端末では、このMMS設定の情報が利用できません。この問題は、ロックされた端末やその他の制限設定が構成された端末で発生することがあります。</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ファイル付きメッセージやグループメッセージを配信するには、「OK」をタップして必要な設定を完了してください。お使いの通信事業者のMMS設定がわからない場合は、\"通信事業者名 APN”でインターネット検索するか、通信事業者に確認してください。</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完了</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-登録は無料で他のSecureChatユーザーとの通信の場合、私事権を最もよく守ります。携帯番号を検証してください。</string>
+登録は無料です。SecureChatを利用するユーザーと安全性の高いチャットができるようになります。あなたの電話番号を確認してください。</string>
   <string name="registration_activity__your_country">あなたの国</string>
   <string name="registration_activity__your_country_code_and_phone_number">あなたの国番号と電話番号</string>
   <string name="registration_activity__phone_number">電話番号</string>
   <string name="registration_activity__register">登録</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">登録にはサーバーへのコンタクト情報の送信が必要です。その情報は保存されません。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">登録時にはアプリからユーザー情報がサーバーに送信されますが、送信された情報がサーバー側で保存されることはありません。</string>
   <string name="registration_activity__skip">スキップする</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">可能な原因:</string>
-  <string name="registration_problems__sms_interceptors">SMSインターセプタ</string>
+  <string name="registration_problems__some_possible_problems_include">起こりうる問題:</string>
+  <string name="registration_problems__sms_interceptors">SMSインターセプター</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-まともに起動しないメッセージングアプリをお使いなされてる場合（例えばHandcent、GoSMS）自動検証が行われません。
-「Your SecureChat verification code:」で始まるメッセージを受信したかをお確かめください。
-この問題が起きた場合、問題のアプリがメッセージを通過させるよう設定してください。</string>
-  <string name="registration_problems__incorrect_number">番号が間違っています。</string>
+特定のサードパーティSMSアプリ（例: HandcentやGoSMSなど）は、すべてのSMSがフィルタに引っ掛かることがあります。\'Your SecureChat verification code:\' で始まるSMSを受信しているかお確かめください。問題が発生した場合は、当該アプリでSMSを通過させるよう設定してください。</string>
+  <string name="registration_problems__incorrect_number">電話番号が正しくありません。</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-番号に間違いがない事と国に当たる形式で入力されているかをチェックしてください。</string>
+国番号と電話番号に間違いがないことを確認してください。</string>
   <string name="registration_problems__google_voice">Google Voice</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-SecureChatは、Google Voice番号では使用不可能です。</string>
+SecureChatはGoogle Voiceの電話番号と互換性がありません。</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">電話で検証</string>
+  <string name="registration_progress_activity__voice_verification">電話確認</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-SecureChatではあなたに自動電話をかけて検証することが可能です。「私に電話」をタップして下に聞こえる番号を入力してください。</string>
+SecureChatではあなたに電話をかけて電話番号の確認ができます。「自分に電話」をタップして、6桁の番号を入力してください。</string>
   <string name="registration_progress_activity__verify">確認する</string>
-  <string name="registration_progress_activity__call_me">私に電話</string>
-  <string name="registration_progress_activity__edit_number">番号を編集</string>
+  <string name="registration_progress_activity__call_me">自分に電話</string>
+  <string name="registration_progress_activity__edit_number">電話番号を編集</string>
   <string name="registration_progress_activity__connectivity_error">接続エラー</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-SecureChatはプッシュサービスへの接続に失敗しました。</string>
-  <string name="registration_progress_activity__some_possible_problems_include">可能な原因:</string>
+SecureChatサービスへ接続できませんでした。</string>
+  <string name="registration_progress_activity__some_possible_problems_include">起こりうる問題:</string>
   <string name="registration_progress_activity__no_network_connectivity">ネットワークに接続していません。</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">このSecureChat機能を使用するためには、ネットワーク接続が必要です。Wi-Fiか3Gに接続しているかをお確かめください。</string>
-  <string name="registration_progress_activity__restrictive_firewall">ファイアウォール制限。</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">この機能を使用するには、ネットワーク接続が必要です。Wi-Fiもしくはデータ通信に接続しているかお確かめください。</string>
+  <string name="registration_progress_activity__restrictive_firewall">ファイアウォールによる制限。</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Wi-Fiに接続している場合、ファイアウォールがSecureChatサーバーへのアクセスを制限する可能性があります。別のネットワークや携帯電話ネットワークに切り替えてみてください。</string>
+Wi-Fi接続を利用している場合、SecureChatサーバーへの接続がファイアウォールによってブロックされている可能性があります。別のネットワークやデータ通信に切り替えて、接続を試してください。</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-これからSecureChatは、自動的に電話番号を確認SMSで検証します。</string>
-  <string name="registration_progress_activity__connecting">接続中...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">検証用SMSをお待ち…</string>
-  <string name="registration_progress_activity__registering_with_server">サーバーに登録中...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">検証が終わるまでしばらくお待ちください。検証完了後お知らせします。</string>
+これからあなたの電話番号をSMSで確認します。</string>
+  <string name="registration_progress_activity__connecting">接続しています...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">SMS確認を待機しています…</string>
+  <string name="registration_progress_activity__registering_with_server">サーバーに登録しています...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">確認が終わるまで、しばらくお待ちください。確認完了後にお知らせします。</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-検証SMSを待っている間、SecureChatがタイムアウトしました。</string>
-  <string name="registration_progress_activity__sms_verification_failed">SMSでの検証が失敗しました。</string>
-  <string name="registration_progress_activity__generating_keys">鍵を作成中...</string>
+SMS確認の待機中にタイムアウトが発生しました。</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS確認に失敗しました。</string>
+  <string name="registration_progress_activity__generating_keys">鍵を生成しています...</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
+  <string name="recipients_panel__to"><small>名前または電話番号を入力してください</small></string>
   <string name="recipients_panel__add_member">参加者を追加する</string>
   <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">相手の認証キー（通信相手が読む）:</string>
-  <string name="verify_identity_activity__your_identity_you_read">自分の認証キー（自分が読む）:</string>
+  <string name="verify_identity_activity__their_identity_they_read">相手のID鍵:</string>
+  <string name="verify_identity_activity__your_identity_you_read">自分のID鍵:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">パスワードの作成</string>
-  <string name="AndroidManifest__enter_passphrase">パスワード入力</string>
+  <string name="AndroidManifest__enter_passphrase">パスワードの入力</string>
   <string name="AndroidManifest__select_contacts">連絡先を選択</string>
   <string name="AndroidManifest__textsecure_detected">SecureChatが検出されました</string>
-  <string name="AndroidManifest__public_identity_key">公共認証キー</string>
+  <string name="AndroidManifest__public_identity_key">公開ID鍵</string>
   <string name="AndroidManifest__change_passphrase">パスワードの変更</string>
-  <string name="AndroidManifest__verify_identity">認証検証</string>
-  <string name="AndroidManifest__complete_key_exchange">鍵交換を自動的に実行</string>
+  <string name="AndroidManifest__verify_identity">受信者のID確認</string>
+  <string name="AndroidManifest__complete_key_exchange">鍵交換を実行</string>
   <string name="AndroidManifest__log_submit">デバッグログを提出</string>
-  <string name="AndroidManifest__media_preview">メディアのプレビュー表示</string>
+  <string name="AndroidManifest__media_preview">プレビュー表示</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">インポート／エクスポート</string>
-  <string name="arrays__my_identity_key">自分の認証キー</string>
+  <string name="arrays__import_export">インポート/エクスポート</string>
+  <string name="arrays__my_identity_key">自分のID鍵</string>
   <!--preferences.xml-->
   <string name="preferences__general">一般設定</string>
-  <string name="preferences__sms_mms">SMSとMMS</string>
-  <string name="preferences__push_sms_category">プッシュとSMS</string>
-  <string name="preferences__pref_all_sms_title">全てのSMSを受信</string>
-  <string name="preferences__pref_all_mms_title">全てのMMSを受信</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキストメッセージ）の表示、及び保存にSecureChatを使用します</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）の表示、及び保存にSecureChatを使用します</string>
-  <string name="preferences__input_settings">設定入力</string>
-  <string name="preferences__replace_smiley_with_enter_key">顔文字キーをエンターキーに変える</string>
+  <string name="preferences__sms_mms">SMS/MMS</string>
+  <string name="preferences__push_sms_category">SecureChatメッセージ、SMSおよびMMS</string>
+  <string name="preferences__pref_all_sms_title">SMS受信で使用</string>
+  <string name="preferences__pref_all_mms_title">MMS受信で使用</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">すべての受信SMSの表示や保存にSecureChatを使用します。</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">すべての受信MMSの表示や保存にSecureChatを使用します。</string>
+  <string name="preferences__input_settings">入力設定</string>
+  <string name="preferences__replace_smiley_with_enter_key">顔文字ボタンをエンターキーで代用する</string>
   <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すと、今すぐテキストメッセージを送信します</string>
   <string name="preferences__display_settings">表示設定</string>
-  <string name="preferences__choose_identity">認証を選択</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
+  <string name="preferences__choose_identity">IDを選択</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストから連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
-  <string name="preferences__change_my_passphrase">パスワードの変更</string>
-  <string name="preferences__complete_key_exchanges">鍵交換の自動完了</string>
-  <string name="preferences__screen_security">スクリーンセキュリティ</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">同じIDネームとの新しいセッション、又は現在のセッションをするのに鍵交換を自動で完了させる</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">スクリーンショットをアプリ表示の場合防ぐ</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">一定時間経過するとメモリからパスワードを消去する</string>
-  <string name="preferences__timeout_passphrase">パスワードの
-タイムアウト</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">パスワードタイムアウトを選択</string>
-  <string name="preferences__pref_timeout_interval_title">タイムアウトの間隔</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">メモリからパスワードを消去するまでの待ち時間です</string>
+  <string name="preferences__change_my_passphrase">自分のパスワードを変更</string>
+  <string name="preferences__complete_key_exchanges">鍵交換</string>
+  <string name="preferences__screen_security">スクリーン保護</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">同じID鍵との新規/既存チャットでは鍵交換を自動で行う</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">スクリーンショットの取得をブロックする</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">一定時間が経過すると、メモリからパスワードを消去する</string>
+  <string name="preferences__timeout_passphrase">パスワードの保存</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">パスワードの保存時間を設定</string>
+  <string name="preferences__pref_timeout_interval_title">保存時間</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">メモリからパスワードを消去するまでの時間です</string>
   <string name="preferences__notifications">通知</string>
-  <string name="preferences__display_message_notifications_in_status_bar">受信通知をステータスバーに表示</string>
-  <string name="preferences__led_color">LED色</string>
+  <string name="preferences__display_message_notifications_in_status_bar">通知をステータスバーに表示する</string>
+  <string name="preferences__led_color">LEDの色</string>
   <string name="preferences__led_color_unknown">不明</string>
-  <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">通知LEDの点滅パターンを設定</string>
+  <string name="preferences__pref_led_blink_title">LEDの点滅パターン</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">LED通知の点滅パターンを設定</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">点灯時間:</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">消灯時間:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">オリジナルのLED点滅パターンが設定されました！</string>
-  <string name="preferences__sound">着信音</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">オリジナルのLED点滅パターンが設定されました!</string>
+  <string name="preferences__sound">通知音</string>
   <string name="preferences__change_notification_sound">通知音を変更</string>
-  <string name="preferences__inthread_notifications">スレッド内通知</string>
-  <string name="preferences__play_inthread_notifications">会話を表示している間、通知音を再生する。</string>
-  <string name="preferences__vibrate">振動</string>
-  <string name="preferences__also_vibrate_when_notified">通知する時に振動もする</string>
+  <string name="preferences__inthread_notifications">チャット中の通知</string>
+  <string name="preferences__play_inthread_notifications">チャット表示中も通知音を再生する</string>
+  <string name="preferences__vibrate">バイブレーション</string>
+  <string name="preferences__also_vibrate_when_notified">通知をバイブレーションでも知らせる</string>
   <string name="preferences__minutes">分</string>
   <string name="preferences__hours">時間</string>
   <string name="preferences__green">緑</string>
@@ -535,69 +521,68 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="preferences__cyan">水色</string>
   <string name="preferences__magenta">赤紫</string>
   <string name="preferences__white">白</string>
-  <string name="preferences__none">無し</string>
-  <string name="preferences__fast">速い</string>
+  <string name="preferences__none">なし</string>
+  <string name="preferences__fast">高速</string>
   <string name="preferences__normal">普通</string>
-  <string name="preferences__slow">遅い</string>
+  <string name="preferences__slow">スロー</string>
   <string name="preferences__custom">カスタム</string>
   <string name="preferences__advanced">詳細設定</string>
-  <string name="preferences__app_protection">アプリ防御</string>
+  <string name="preferences__app_protection">アプリ保護</string>
   <string name="preferences__advanced_mms_access_point_names">手動MMS設定</string>
   <string name="preferences__enable_manual_mms">手動MMS設定を使う</string>
   <string name="preferences__override_system_mms_settings">システムのMMS設定を下の設定で上書きする。</string>
   <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
-  <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
-  <string name="preferences__mms_proxy_port_optional">MMSプロキシ・ポート（選択自由）</string>
-  <string name="preferences__mmsc_username_optional">MMSCユーザ名 (オプション)</string>
-  <string name="preferences__mmsc_password_optional">MMSCパスワード (オプション)</string>
+  <string name="preferences__mms_proxy_host_optional">MMSプロキシホスト（任意）</string>
+  <string name="preferences__mms_proxy_port_optional">MMSプロキシポート（任意）</string>
+  <string name="preferences__mmsc_username_optional">MMSCユーザ名（任意）</string>
+  <string name="preferences__mmsc_password_optional">MMSCパスワード（任意）</string>
   <string name="preferences__sms_delivery_reports">SMS配信報告</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">会話スレッドが一定の長さを超えると、古いメッセージが自動的に削除されます</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">すべての発信SMSに配信レポートを要求する</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">チャット内のメッセージが一定数を超えると、古いメッセージが自動的に削除されます</string>
   <string name="preferences__delete_old_messages">古いメッセージの削除</string>
-  <string name="preferences__conversation_length_limit">会話の最大の長さ</string>
-  <string name="preferences__trim_all_threads_now">全スレッドを今、トリムする</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">すべての会話スレッドをスキャンして、会話の長さの制限を強制します</string>
+  <string name="preferences__conversation_length_limit">保存するメッセージ数</string>
+  <string name="preferences__trim_all_threads_now">メッセージ数を今すぐ調整する</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">すべてのチャットをチェックして、設定したメッセージ数の制限を適用します</string>
   <string name="preferences__light_theme">ライト</string>
   <string name="preferences__dark_theme">ダーク</string>
-  <string name="preferences__appearance">デザイン設定</string>
+  <string name="preferences__appearance">外観</string>
   <string name="preferences__theme">テーマ</string>
-  <string name="preferences__default">初期設定の言語</string>
+  <string name="preferences__default">デフォルト</string>
   <string name="preferences__language">言語</string>
-  <string name="preferences__make_default_sms_app">標準のSMSアプリに設定する</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">お使いの端末で、SecureChatをSMS／MMSの標準アプリにする</string>
-  <string name="preferences__use_data_channel">プッシュメッセージ</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-データーチャンネルを利用して他のSecureChatウーザーとの会話をする時、安全性を高めてSMS料金を避けますか？</string>
-  <string name="preferences__submit_debug_log">デバッグログを提出</string>
-  <string name="preferences__sms_fallback">SMS/MMS送信</string>
-  <string name="preferences__sms_outgoing_push_users">SecureChatウーザー</string>
-  <string name="preferences__sms_fallback_push_users_ask">送信前に確認</string>
+  <string name="preferences__make_default_sms_app">デフォルトのSMSアプリに設定する</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">SecureChatをSMS/MMSのデフォルトアプリに設定します。</string>
+  <string name="preferences__use_data_channel">SecureChatメッセージ</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">SecureChatユーザー間で安全性の高いチャットが無料で楽しめます（インターネット接続必須）</string>
+  <string name="preferences__submit_debug_log">デバッグログの送信</string>
+  <string name="preferences__sms_fallback">発信SMS/MMS</string>
+  <string name="preferences__sms_outgoing_push_users">SecureChatユーザー</string>
+  <string name="preferences__sms_fallback_push_users_ask">送信前に確認する</string>
   <string name="preferences__sms_fallback_push_users_no_mms">MMSなし</string>
-  <string name="preferences__sms_outgoing_push_users_description">データーチャンネルが使用不可能の時、暗号化されたSMSを送る</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">SMS/MMSを送信する前に尋ねる</string>
+  <string name="preferences__sms_outgoing_push_users_description">インターネットが利用できない場合、暗号化されたSMSを送信する</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">SMS/MMSの送信前に確認する</string>
   <string name="preferences__sms_fallback_never_send_mms">MMSを送信しない</string>
-  <string name="preferences__sms_fallback_non_push_users">SecureChatを使用しない方</string>
-  <string name="preferences__sms_fallback_nobody">無人</string>
-  <string name="preferences__support_wifi_calling">\'WiFi Calling\' 互換モード</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">あなたのデバイスで  WiFi (ただし \'WiFi Calling\' があんたのデバイスで有効になっている場合のみ)での SMS/MMS の配送を有効にする。</string>
+  <string name="preferences__sms_fallback_non_push_users">SecureChatを利用されていないユーザー</string>
+  <string name="preferences__sms_fallback_nobody">該当なし</string>
+  <string name="preferences__support_wifi_calling">\'WiFi通話\' 互換モード</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">端末がWiFi経由でSMS/MMSを発信する場合、有効にする（\'WiFi通話\' が有効になっている場合のみ）</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">すべて選択</string>
   <string name="contact_selection_list__menu_unselect_all">すべての選択を解除</string>
-  <string name="contact_selection_list__header_textsecure_users">SECURECHATウーザー</string>
+  <string name="contact_selection_list__header_textsecure_users">SECURECHAT ユーザー</string>
   <string name="contact_selection_list__header_other">すべての連絡先</string>
   <string name="contact_selection_list__unknown_contact">新規メッセージ…</string>
   <!--contact_selection-->
-  <string name="contact_selection__menu_finished">終了</string>
+  <string name="contact_selection__menu_finished">完了</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">連絡先リストを更新</string>
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">SecureChatメッセージを送信</string>
-  <string name="conversation_button_context__send_secure_sms">暗号化されているSMSを送信</string>
+  <string name="conversation_button_context__send_secure_sms">セキュアなSMSを送信</string>
   <string name="conversation_button_context__send_insecure_sms">セキュアでないSMSを送信</string>
-  <string name="conversation_button_context__send_secure_mms">暗号化されているMMSを送信</string>
+  <string name="conversation_button_context__send_secure_mms">セキュアなMMSを送信</string>
   <string name="conversation_button_context__send_insecure_mms">セキュアでないMMSを送信</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">通話</string>
@@ -610,51 +595,51 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">添付を保存</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">セキュア・セッションを開始</string>
+  <string name="conversation_insecure__menu_start_secure_session">セキュアなチャットを開始</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">選択したものを削除</string>
+  <string name="conversation_list_batch__menu_delete_selected">選択した対象を削除</string>
   <string name="conversation_list_batch__menu_select_all">すべて選択</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">検索</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">セキュリティ</string>
-  <string name="conversation_secure_verified__menu_verify_identity">認証検証</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">セキュア・セッションを終了</string>
+  <string name="conversation_secure_verified__menu_verify_identity">受信者のID確認</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">セキュアなチャットを終了する</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付</string>
-  <string name="conversation__menu_update_group">グループを更新する</string>
-  <string name="conversation__menu_leave_group">グループを抜ける</string>
-  <string name="conversation__menu_delete_thread">スレッドを削除</string>
+  <string name="conversation__menu_update_group">グループを更新</string>
+  <string name="conversation__menu_leave_group">グループから退会</string>
+  <string name="conversation__menu_delete_thread">チャットを削除</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">連絡帳に追加</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">受信者リスト</string>
+  <string name="convesation_group_options__recipients_list">メンバーリスト</string>
   <string name="conversation_group_options__delivery">配信</string>
-  <string name="conversation_group_options__conversation">会話</string>
+  <string name="conversation_group_options__conversation">チャット</string>
   <string name="conversation_group_options__broadcast">一斉送信</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">比較</string>
   <string name="key_scanning__menu_get_scanned_to_compare">スキャンして比較してもらう</string>
   <string name="key_scanning__menu_scan_to_compare">スキャンして比較</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">新規メッセージ</string>
+  <string name="text_secure_normal__menu_new_message">新規チャット</string>
   <string name="text_secure_normal__menu_new_group">新規グループ</string>
   <string name="text_secure_normal__menu_settings">設定</string>
-  <string name="text_secure_normal__menu_clear_passphrase">ロック</string>
+  <string name="text_secure_normal__menu_clear_passphrase">SecureChatをロック</string>
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">あなたのビルドした SecureChat が期限切れになりました!</string>
-  <string name="reminder_header_expired_build_details">もうメッセージの送信が成功することはありません、最新のバージョンへアップデートしてください。</string>
-  <string name="reminder_header_sms_default_title">標準のSMSアプリに設定しますか？</string>
-  <string name="reminder_header_sms_default_text">現在SecureChatは標準のSMSアプリではありません</string>
-  <string name="reminder_header_sms_import_title">システムのSMSをインポートしますか？</string>
-  <string name="reminder_header_sms_import_text">SecureChatは、電話のSMSメッセージを暗号化されたデータベースへコピーできます。</string>
-  <string name="reminder_header_push_title">SecureChatメッセージを有効にしますか？</string>
-  <string name="reminder_header_push_text">インスタント配信、強いプライバシー、SMS料金ゼロ！</string>
+  <string name="reminder_header_expired_build">ご利用のSecureChatは最新のバージョンではありません!</string>
+  <string name="reminder_header_expired_build_details">メッセージを送信できません。最新版にアップデートしてください。</string>
+  <string name="reminder_header_sms_default_title">デフォルトのSMSアプリに設定しますか?</string>
+  <string name="reminder_header_sms_default_text">現在、SecureChatはデフォルトのSMSアプリとして設定されていません。</string>
+  <string name="reminder_header_sms_import_title">端末内に保存されているSMSをインポートしますか?</string>
+  <string name="reminder_header_sms_import_text">この端末に保存されているSMSをSecureChatの暗号化されたデータベースへコピーできます。</string>
+  <string name="reminder_header_push_title">SecureChatサービスを有効にしますか?</string>
+  <string name="reminder_header_push_text">信頼性の高いセキュアなチャット、SMS送信無料。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>
-  <string name="MediaPreviewActivity_cant_display">この画像のプレビューに失敗</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディア種別</string>
+  <string name="MediaPreviewActivity_cant_display">画像のプレビューに失敗しました</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">サポートされていないメディアの種類</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <!--media_preview_activity-->
@@ -662,14 +647,14 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
 
   <string name="AppProtectionPreferenceFragment_minutes">%d 分</string>
   <string name="AttachmentTypeSelectorAdapter_contact">連絡先情報</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">タップして未暗号化メッセージを送付 (フォールバック時)</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">安全なセッションが確立されなかったため、このメッセージは 暗号化<b>されません</b> 。\n\nメッセージを送信しますか?</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">メッセージとキーのローカル暗号化を有効にする</string>
-  <string name="preferences__enable_passphrase">啓用密碼</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">タップして未暗号化メッセージを送付</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">セキュアなチャットを確立できなかったため、このメッセージは暗号化<b>されません</b> 。\n\nセキュアでないメッセージを送信しますか?</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">メッセージと鍵のローカル暗号化を有効にする</string>
+  <string name="preferences__enable_passphrase">パスワードを有効にする</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">選択したオーディオファイルはメッセージの許容サイズ (%1$skB) を超えています。</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">選択した動画ファイルはメッセージの許容サイズ (%1$skB) を超えています。</string>
   <string name="ApplicationPreferencesActivity_incoming_sms">着信</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s 件のメッセージ (チャット履歴)</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">チャットあたり %s 件のメッセージ</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
   <string name="ApplicationPreferencesActivity_Off">オフ</string>
   <string name="ApplicationPreferencesActivity_off">オフ</string>
@@ -678,10 +663,10 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="ApplicationPreferencesActivity_outgoing_sms">発信</string>
   <string name="ApplicationPreferencesActivity_partial">部分的</string>
   <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="preferences__enable_enter_key_title">Enter キーを有効にする</string>
+  <string name="preferences__enable_enter_key_title">エンターキーを有効にする</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">削除...</string>
-  <string name="trimmer__deleting_old_messages">古いメッセージを削除...</string>
-  <string name="trimmer__old_messages_successfully_deleted">古いメッセージの削除に成功</string>
+  <string name="trimmer__deleting">削除中...</string>
+  <string name="trimmer__deleting_old_messages">古いメッセージを削除中...</string>
+  <string name="trimmer__old_messages_successfully_deleted">古いメッセージを削除しました</string>
   <!--EOF-->
 </resources>

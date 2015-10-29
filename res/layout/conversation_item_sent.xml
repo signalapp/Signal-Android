@@ -75,15 +75,15 @@
                          android:layout_height="wrap_content"
                          android:visibility="gone">
 
-                <org.thoughtcrime.securesms.components.ThumbnailView
-                    android:id="@+id/image_view"
-                    android:layout_width="230dip"
-                    android:layout_height="174dip"
+                <org.thoughtcrime.securesms.components.ThumbnailView android:id="@+id/image_view"
+                    android:layout_width="160dip"
+                    android:layout_height="100dip"
                     android:layout_gravity="center"
+                    android:scaleType="centerInside"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/conversation_item__mms_image_description"
-                    android:scaleType="centerInside"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
+
 
                 <ImageButton
                     android:id="@+id/play_slideshow_button"
@@ -219,7 +219,7 @@
             android:paddingLeft="5dip"
             android:paddingRight="5dip"
             android:paddingTop="3dp"
-            android:textColor="?conversation_sent_text_secondary_color"
+            android:textColor="@color/black"
             android:textSize="12sp"
             android:visibility="gone"/>
 

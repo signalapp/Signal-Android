@@ -83,6 +83,7 @@ public class ReceiveKeyActivity extends Activity {
   private MasterSecret               masterSecret;
   private IncomingKeyExchangeMessage message;
   private IdentityKey                identityKey;
+  private boolean fromSender = false;
 
   @Override
   protected void onCreate(Bundle state) {
@@ -126,7 +127,9 @@ public class ReceiveKeyActivity extends Activity {
         Intent intent = new Intent(ReceiveKeyActivity.this, VerifyIdentityActivity.class);
         intent.putExtra("recipient", recipient.getRecipientId());
         intent.putExtra("master_secret", masterSecret);
-        intent.putExtra("remote_identity", new IdentityKeyParcelable(identityKey));
+        if(identityKey != null && identityKey.serialize() != null) {
+          intent.putExtra("remote_identity", new IdentityKeyParcelable(identityKey));
+        }
         startActivity(intent);
       }
     }, getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different).length() +1,
@@ -173,6 +176,7 @@ public class ReceiveKeyActivity extends Activity {
     this.recipientDeviceId    = getIntent().getIntExtra("recipient_device_id", -1);
     this.messageId            = getIntent().getLongExtra("message_id", -1);
     this.masterSecret         = getIntent().getParcelableExtra("master_secret");
+    this.fromSender           = getIntent().getBooleanExtra("from_sender", false);
   }
 
   private void initializeListeners() {
@@ -220,35 +224,39 @@ public class ReceiveKeyActivity extends Activity {
           IdentityDatabase      identityDatabase = DatabaseFactory.getIdentityDatabase(context);
           EncryptingSmsDatabase smsDatabase      = DatabaseFactory.getEncryptingSmsDatabase(context);
           PushDatabase          pushDatabase     = DatabaseFactory.getPushDatabase(context);
+          if(!fromSender) {
+            identityDatabase.saveIdentity(masterSecret, recipient.getRecipientId(), identityKey);
 
-          identityDatabase.saveIdentity(masterSecret, recipient.getRecipientId(), identityKey);
-
-          if (message.isIdentityUpdate()) {
-            smsDatabase.markAsProcessedKeyExchange(messageId);
-          } else {
-            if (getIntent().getBooleanExtra("is_push", false)) {
-              try {
-                byte[]             body     = Base64.decode(message.getMessageBody());
-                TextSecureEnvelope envelope = new TextSecureEnvelope(3, message.getSender(),
-                                                                     message.getSenderDeviceId(), "",
-                                                                     message.getSentTimestampMillis(),
-                                                                     body);
-
-                long pushId = pushDatabase.insert(envelope);
-
-                ApplicationContext.getInstance(context)
-                                  .getJobManager()
-                                  .add(new PushDecryptJob(context, pushId));
-
-                smsDatabase.deleteMessage(messageId);
-              } catch (IOException e) {
-                throw new AssertionError(e);
-              }
+            if (message.isIdentityUpdate()) {
+              smsDatabase.markAsProcessedKeyExchange(messageId);
             } else {
-              ApplicationContext.getInstance(context)
-                                .getJobManager()
-                                .add(new SmsDecryptJob(context, messageId));
+              if (getIntent().getBooleanExtra("is_push", false)) {
+                try {
+                  byte[]             body     = Base64.decode(message.getMessageBody());
+                  TextSecureEnvelope envelope = new TextSecureEnvelope(3, message.getSender(),
+                          message.getSenderDeviceId(), "",
+                          message.getSentTimestampMillis(),
+                          body);
+
+                  long pushId = pushDatabase.insert(envelope);
+
+                  ApplicationContext.getInstance(context)
+                          .getJobManager()
+                          .add(new PushDecryptJob(context, pushId));
+
+                  smsDatabase.deleteMessage(messageId);
+                } catch (IOException e) {
+                  throw new AssertionError(e);
+                }
+              } else {
+                ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new SmsDecryptJob(context, messageId));
+              }
             }
+          } else {
+            //deletes the key and makes it possible to trigger an automatic key exchange with the next message
+            identityDatabase.deleteIdentity(recipient.getRecipientId());
           }
 
           return null;

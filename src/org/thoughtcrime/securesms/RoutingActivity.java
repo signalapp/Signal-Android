@@ -13,8 +13,14 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+
 import de.gdata.messaging.util.GService;
-import ws.com.google.android.mms.ContentType;
+import de.gdata.messaging.util.GUtil;
 
 public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
@@ -168,6 +174,10 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
       intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
       intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
       intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, parameters.draftMediaType);
+
+      if(parameters.draftImage != null) {
+        intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, GUtil.saveBitmapAndGetNewUri(this, "temp.jpg", GUtil.getUsableGoogleImageUri(parameters.draftImage)));
+      }
     }
 
     return intent;

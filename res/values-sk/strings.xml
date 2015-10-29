@@ -287,7 +287,7 @@ telefónne číslo</string>
   <string name="database_upgrade_activity__updating_database">Aktualizujem databázu...</string>
   <string name="export_fragment__export_plaintext_backup">Exportovať nezakryptovanú zálohu</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Exportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na SD kartu.</string>
+Exportovať nezakryptovanú zálohu kompatibilnú so \'SMS Backup a Restore\' na SD kartu.</string>
   <string name="import_fragment__import_system_sms_database">Importovať systémovú databázu SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importovať databázu
 štandardnej systémovej aplikácie na správy.</string>
@@ -296,7 +296,7 @@ Exportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na 
 Obnoviť predtým exportovanú zakryptovanú SecureChat zálohu.</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
+Importovať nezakryptovanú zálohu. Kompatibilné so \'SMS Backup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
   <!--prompt_passphrase_activity-->

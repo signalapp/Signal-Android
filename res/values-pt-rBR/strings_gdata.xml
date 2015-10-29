@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 segundos</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 segundos</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 segundos</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Desativar</string>
     <string name="gdata_contact_selection_page_title">Contatos</string>
     <string name="gdata_conversation_list_page_title">Conversas</string>
     <string name="gd_dialog_fragment_phishing_title">Proteção da internet</string>
@@ -22,8 +21,6 @@
     <string name="menu_privacy_single_hide">Ocultar a conversa</string>
     <string name="menu_filter_block_contact">Bloquear o contato</string>
     <string name="privacy_pw_dialog_header">Inserir senha: </string>
-    <string name="privacy_pw_dialog_toast_wrong">A senha inserida não corresponde à senha da Internet Security.</string>
-    <string name="privacy_pw_dialog_hint">Observação: Trata-se da sua senha escolhida no Internet Security para Android.</string>
     <string name="privacy_pw_dialog_toast_reload">Restaurando as conversas...</string>
     <string name="privacy_pw_dialog_toast_hide">Preparando as conversas para ocultar...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Ocultando a conversa...</string>
@@ -41,7 +38,7 @@
     <string name="self_destruction_body">O conteúdo desta mensagem irá se apagar automaticamente em #1# segundos depois da abertura.</string>
     <string name="unknown_country">País desconhecido</string>
     <string name="self_destruction_compose_hint">Enviar mensagem autodestrutiva</string>
-    <string name="privacy_toast_unlock_premium">Para usar estas funções, você deve ativar a função premium da G Data Internet Security.</string>
+    <string name="privacy_toast_unlock_premium">Para usar estas funções, você deve ativar a função premium da G Data G DATA Internet Security.</string>
     <string name="import_complete_dialog">A importação da base de dados do sistema SecureChat foi completada.</string>
     <string name="profile_status_label">Status</string>
     <string name="profile_number_label">Número de telefone</string>
@@ -62,4 +59,18 @@
     <string name="status_donotdisturb">Não perturbe</string>
     <string name="status_nocallsjustchat">Não posso falar, apenas SecureChat</string>
     <string name="status_onlyurgentcalls">Apenas ligações urgentes</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Desativar autodestruição </string>
+    <string name="privacy_pw_dialog_hint">Nota: Esta é a palavra-passe que selecionou no G DATA Internet Security para Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">A palavra-passe que introduziu não coincide com a do G DATA Internet Security.</string>
+    <string name="msg_failed">Nota: A chave de um dos recipientes pode ter sido alterada devido a uma reinstalação ou a uma tentativa de ataque por terceiros. Dentro de um grupo, este problema pode ser resolvido iniciando uma troca de chaves normal numa nova conversação com o contacto e depois atualizando o grupo.</string>
+    <string name="profile_history_label">Multimédia</string>
+    <string name="profile_history_content">Ainda não foram trocadas imagens</string>
+    <string name="menu_invite_to_sc">Convidar</string>
+    <string name="group_title">Título</string>
+    <string name="status_hint">Escolha o seu estado:</string>
+    <string name="dialog_compressing"> A comprimir o vídeo...</string>
+    <string name="dialog_compressing_header">Aguarde...</string>
+    <string name="preferences__versnr">Versão</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Pergunte antes de enviar uma SMS/MMS paga</string>
+    <string name="profile_select_picture">Selecionar a imagem de perfil</string>
 </resources>

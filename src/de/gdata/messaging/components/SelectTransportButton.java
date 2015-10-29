@@ -20,6 +20,9 @@ import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+
 public class SelectTransportButton extends ImageButton {
     private TransportOptions transportOptions;
     private EditText composeText;
@@ -42,7 +45,17 @@ public class SelectTransportButton extends ImageButton {
         super(context, attrs, defStyle);
         initialize();
     }
-
+    private String handleInviteLink() {
+        try {
+            boolean a = SecureRandom.getInstance("SHA1PRNG").nextBoolean();
+            if (a)
+                return getContext().getString(R.string.ConversationActivity_get_with_it, getContext().getString(R.string.conversation_activity_invite_link));
+            else
+                return getContext().getString(R.string.ConversationActivity_install_textsecure, getContext().getString(R.string.conversation_activity_invite_link));
+        } catch (NoSuchAlgorithmException e) {
+            throw new AssertionError(e);
+        }
+    }
     private void initialize() {
         transportOptions = new TransportOptions(getContext());
         transportOptions.setOnTransportChangedListener(new TransportOptions.OnTransportChangedListener() {
@@ -57,9 +70,12 @@ public class SelectTransportButton extends ImageButton {
                     destroyButtonReference.setVisibility(View.GONE);
                     destroyButtonReference.setEnabled(false);
                     setComposeTextHint(newTransport.composeHint);
-                } else {
+                } else if(!newTransport.key.contains("invite")){
                     destroyButtonReference.setVisibility(View.VISIBLE);
                     destroyButtonReference.setEnabled(true);
+                }
+                if(newTransport.key.contains("invite")) {
+                    setComposeText(handleInviteLink());
                 }
                 if (newTransport.isForcedSms()) {
                     if (newTransport.isForcedPlaintext()) {
@@ -79,7 +95,7 @@ public class SelectTransportButton extends ImageButton {
             @Override
             public boolean onLongClick(View view) {
                 if (transportOptions.getEnabledTransports().size() > 1) {
-                    transportOptions.showPopup(SelectTransportButton.this);
+                    transportOptions.showPopup((View) getParent());
                     return true;
                 }
                 return false;
@@ -94,8 +110,8 @@ public class SelectTransportButton extends ImageButton {
         return transportOptions.getSelectedTransport();
     }
 
-    public void initializeAvailableTransports(boolean isMediaMessage) {
-        transportOptions.initializeAvailableTransports(isMediaMessage);
+    public void initializeAvailableTransports(boolean isMediaMessage, boolean isGroupOrEncryptedConversation) {
+        transportOptions.initializeAvailableTransports(isMediaMessage, isGroupOrEncryptedConversation);
     }
 
     public void disableTransport(String transport) {
@@ -110,12 +126,21 @@ public class SelectTransportButton extends ImageButton {
         if (hint == null) {
             this.composeText.setHint(null);
         } else {
+            setComposeText("");
             SpannableString span = new SpannableString(hint);
             span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             this.composeText.setHint(span);
         }
     }
-
+    private void setComposeText(String text) {
+        if (text == null) {
+            this.composeText.setHint(null);
+        } else {
+            SpannableString span = new SpannableString(text);
+            span.setSpan(new RelativeSizeSpan(0.8f), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            this.composeText.setText(span);
+        }
+    }
     public void setDestroyButtonReference(SelfDestructionButton pDestroyButtonReference) {
         destroyButtonReference = pDestroyButtonReference;
     }

@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Set;
 
+import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
 
@@ -66,6 +67,7 @@ public class ConversationListItem extends RelativeLayout
     private TextView subjectView;
     private TextView fromView;
     private TextView dateView;
+    private TextView unreadCountView;
     private long count;
     private boolean read;
 
@@ -73,6 +75,7 @@ public class ConversationListItem extends RelativeLayout
 
     private final Handler handler = new Handler();
     private int distributionType;
+    private GDataPreferences preferences;
 
     public ConversationListItem(Context context) {
         super(context);
@@ -83,12 +86,12 @@ public class ConversationListItem extends RelativeLayout
         super(context, attrs);
         this.context = context;
     }
-
     @Override
     protected void onFinishInflate() {
         this.subjectView = (TextView) findViewById(R.id.subject);
         this.fromView = (TextView) findViewById(R.id.from);
         this.dateView = (TextView) findViewById(R.id.date);
+        this.unreadCountView = (TextView) findViewById(R.id.tab_layout_count);
 
         this.contactPhotoImage = (CircledImageView) findViewById(R.id.contact_photo_image);
 
@@ -102,6 +105,7 @@ public class ConversationListItem extends RelativeLayout
         this.count = thread.getCount();
         this.read = thread.isRead();
         this.distributionType = thread.getDistributionType();
+        this.preferences = new GDataPreferences(getContext());
 
         this.recipients.addListener(this);
         this.fromView.setText(formatFrom(recipients, count, read));
@@ -117,6 +121,21 @@ public class ConversationListItem extends RelativeLayout
         if (thread.getDate() > 0)
             this.dateView.setText(DateUtils.getRelativeTimeSpanString(getContext(), thread.getDate()));
 
+        if(read) {
+            unreadCountView.setVisibility(View.GONE);
+            preferences.saveReadCount(threadId + "", count);
+        } else {
+            Long unreadCount = count - preferences.getReadCount(threadId + "");
+            if (unreadCount<0){
+                preferences.saveReadCount(threadId + "", count);
+            } else {
+                if(unreadCount == 0) {
+                    unreadCount = 1L;
+                }
+                unreadCountView.setVisibility(View.VISIBLE);
+                unreadCountView.setText(unreadCount + "");
+            }
+        }
         setBackground(read, batchMode);
         setContactPhoto(this.recipients.getPrimaryRecipient());
     }
@@ -133,7 +152,7 @@ public class ConversationListItem extends RelativeLayout
     private void handleOpenProfile(String profileId) {
         final Intent intent = new Intent(getContext(), ProfileActivity.class);
         intent.putExtra("master_secret", ProfileAccessor.getMasterSecred());
-        intent.putExtra("profile_id", profileId);
+        intent.putExtra("profile_id", recipients.getPrimaryRecipient().getNumber()); //profileId);
         intent.putExtra("is_group", getRecipients().isGroupRecipient());
         intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, getRecipients().getIds());
         getContext().startActivity(intent);
@@ -144,7 +163,7 @@ public class ConversationListItem extends RelativeLayout
 
         ImageSlide profileSlide = ProfileAccessor.getProfileAsImageSlide(context, recipient.getNumber());
         if (profileSlide != null && !recipient.isGroupRecipient()) {
-            ProfileAccessor.buildGlideRequest(profileSlide).into(contactPhotoImage);
+            ProfileAccessor.buildGlideRequest(profileSlide, context).into(contactPhotoImage);
         } else {
             contactPhotoImage.setImageBitmap(recipient.getCircleCroppedContactPhoto());
         }

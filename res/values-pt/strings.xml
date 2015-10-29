@@ -421,7 +421,7 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="database_upgrade_activity__updating_database">A actualizar a base de dados...</string>
   <string name="export_fragment__export_plaintext_backup">Exportar cópia de segurança em texto simples</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Exportar um backup em texto simples compatível com \'SMSBackup e Restaurar\' para o cartão SD.</string>
+Exportar um backup em texto simples compatível com \'SMS Backup &amp; Restore\' para o cartão SD.</string>
   <string name="import_fragment__import_system_sms_database">Importar a base de dados SMS do sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar a base de dados
 da aplicação predefinida do sistema.
@@ -432,7 +432,7 @@ Restaurar uma cópia de segurança cifrada SecureChat exportada.
 </string>
   <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup e Restaurar\'</string>
+Importar uma cópia de segurança de texto simples. Compatível com \'SMS Backup &amp; Restore\'</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">É necessária a configuração manual de MMS para o seu aparelho.</string>
   <string name="MmsPreferencesFragment__enabled">Activo</string>

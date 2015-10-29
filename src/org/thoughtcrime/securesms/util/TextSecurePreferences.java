@@ -153,7 +153,7 @@ public class TextSecurePreferences {
     }
 
     public static boolean isFallbackSmsAskRequired(Context context) {
-        return getBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, false);
+        return getBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, true);
     }
 
     public static void setFallbackSmsAskRequired(Context context, boolean required) {

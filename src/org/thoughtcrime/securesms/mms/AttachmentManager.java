@@ -20,16 +20,14 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
@@ -39,26 +37,25 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import java.io.File;
 import java.io.IOException;
 
+import de.gdata.messaging.util.GDataPreferences;
 import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
-  private final Context            context;
+  private static Context            context;
   private final View               attachmentView;
   private final ThumbnailView      thumbnail;
-  private final Button             removeButton;
+  private final ImageButton        removeButton;
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
-
-  public static String random  = "0";
 
   private static File captureFile;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
     this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
-    this.removeButton       = (Button)view.findViewById(R.id.remove_image_button);
+    this.removeButton       = (ImageButton)view.findViewById(R.id.remove_image_button);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
     this.attachmentListener = listener;
@@ -72,9 +69,6 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
-public static void generateNewRandomOutputName() {
-  random = ((int)(Math.random() * 30.0)) + "";
-}
   public void cleanup() {
     if (captureFile != null) captureFile.delete();
     captureFile = null;
@@ -103,12 +97,12 @@ public static void generateNewRandomOutputName() {
   }
 
   public static void selectImage(Activity activity, int requestCode) {
-    generateNewRandomOutputName();
+    new GDataPreferences(activity).getNextImageIndicator();
     selectMediaType(activity, ContentType.IMAGE_UNSPECIFIED, requestCode);
   }
   public static void takePhoto(Activity activity, int requestCode) {
-    generateNewRandomOutputName();
-    File image = getOutputMediaFile();
+    new GDataPreferences(activity).getNextImageIndicator();
+    File image = getOutputMediaFile(activity);
     if(image != null) {
       Uri fileUri = Uri.fromFile(image);
       Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -119,7 +113,7 @@ public static void generateNewRandomOutputName() {
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }
-  public static File getOutputMediaFile(){
+  public static File getOutputMediaFile(Context activity){
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES), "SecureChat");
     if (!mediaStorageDir.exists()){
@@ -129,7 +123,7 @@ public static void generateNewRandomOutputName() {
       }
     }
     File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-              "prof_image"+ random +" .jpg");
+              "prof_image"+ new GDataPreferences(activity).getLastImageIndicator() +" .jpg");
 
     return mediaFile;
   }
@@ -139,11 +133,16 @@ public static void generateNewRandomOutputName() {
   }
 
   private static void selectMediaType(Activity activity, String type, int requestCode) {
-    final Intent intent = new Intent();
+    Intent intent = new Intent();
     intent.setType(type);
+    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+      if(type.contains("image")) {
+        intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+      } else {
+        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+      }
       try {
         activity.startActivityForResult(intent, requestCode);
         return;

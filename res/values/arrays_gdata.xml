@@ -47,4 +47,13 @@
         <item>@drawable/ic_action_settings</item>
         <item>@drawable/ic_menu_lock_holo_light</item>
     </string-array>
+    <string-array name="status_suggestions">
+        <item>@string/status_available</item>
+        <item>@string/status_busy</item>
+        <item>@string/status_atwork</item>
+        <item>@string/status_meeting</item>
+        <item>@string/status_donotdisturb</item>
+        <item>@string/status_nocallsjustchat</item>
+        <item>@string/status_onlyurgentcalls</item>
+    </string-array>
 </resources>

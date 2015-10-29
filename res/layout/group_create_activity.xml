@@ -21,21 +21,24 @@
             android:gravity="center_vertical">
 
             <org.thoughtcrime.securesms.components.CircledImageView android:id="@+id/avatar"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 position="bottom_right"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/ic_group_photo"
-                android:contentDescription="@string/GroupCreateActivity_avatar_content_description" />
+                android:contentDescription="@string/GroupCreateActivity_avatar_content_description"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
 
             <EditText android:id="@+id/group_name"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:padding="10dp"
                 android:lines="1"
                 android:inputType="textAutoCorrect"
-                android:hint="@string/GroupCreateActivity_group_name_hint" />
+                android:hint="@string/GroupCreateActivity_group_name_hint"
+                android:layout_weight="3"/>
             </LinearLayout>
 
         <LinearLayout android:id="@+id/creating_group_layout"

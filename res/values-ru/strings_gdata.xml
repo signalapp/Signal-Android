@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 секунд</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 секунд</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 секунд</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Отключить</string>
     <string name="gdata_contact_selection_page_title">Контакты</string>
     <string name="gdata_conversation_list_page_title">Беседы</string>
     <string name="gd_dialog_fragment_phishing_title">Веб-защита</string>
@@ -20,11 +19,9 @@
     <string name="menu_privacy_single_hide">Скрыть беседу</string>
     <string name="menu_filter_block_contact">Заблокировать контакт</string>
     <string name="privacy_pw_dialog_header">Ввести пароль: </string>
-    <string name="privacy_pw_dialog_toast_wrong">Введен неверный пароль для Internet Security.</string>
     <string name="privacy_pw_dialog_toast_reload">Беседы восстанавливаются...</string>
     <string name="privacy_pw_dialog_toast_hide">Идет подготовка к скрытию бесед...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Скрытие беседы...</string>
-    <string name="privacy_pw_dialog_hint">Примечание: Речь идет о пароле, выбранном вами в приложении Internet Security для Android.</string>
     <string name="privacy_toast_install_premium">Для использования данной функции необходима версия G DATA Internet Security для ОС Android</string>
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
     <string name="preferences_notification_never">Никогда</string>
@@ -63,4 +60,18 @@
     <string name="status_donotdisturb">Не беспокоить</string>
     <string name="status_nocallsjustchat">Не звонить. Только SecureChat</string>
     <string name="status_onlyurgentcalls">Только срочные звонки</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Отключить самоуничтожение</string>
+    <string name="privacy_pw_dialog_hint">Примечание: это пароль, который вы выбрали в модуле G DATA Internet Security для Android.</string>
+    <string name="privacy_pw_dialog_toast_wrong">Введенный пароль не совпадает с паролем G DATA Internet Security.</string>
+    <string name="msg_failed">Примечание: Возможно, ключ одного из получателей был изменен в результате переустановки или попытки атаки третьей стороной. В пределах группы данную проблему можно решить, инициировав обычный обмен ключом в новой беседе с контактом, а затем обновив группу.</string>
+    <string name="profile_history_label">Носитель</string>
+    <string name="profile_history_content">Обмен изображениями не выполнялся</string>
+    <string name="menu_invite_to_sc">Пригласить</string>
+    <string name="group_title">Название</string>
+    <string name="status_hint">Выберите свой статус:</string>
+    <string name="dialog_compressing"> Выполняется сжатие видео...</string>
+    <string name="dialog_compressing_header">Пожалуйста, подождите...</string>
+    <string name="preferences__versnr">Версия</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Спрашивать перед отправкой платных SMS/MMS</string>
+    <string name="profile_select_picture">Выбрать картинку профиля</string>
 </resources>

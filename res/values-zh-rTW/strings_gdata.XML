@@ -6,7 +6,6 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_3">5秒</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15秒</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60秒</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">關閉</string>
     <string name="gdata_contact_selection_page_title">聯系人</string>
     <string name="gdata_conversation_list_page_title">對話</string>
     <string name="gd_dialog_fragment_phishing_title">網頁保護</string>
@@ -22,8 +21,6 @@
     <string name="menu_privacy_single_hide">隱藏對話</string>
     <string name="menu_filter_block_contact">阻止聯系人</string>
     <string name="privacy_pw_dialog_header">輸入密碼: </string>
-    <string name="privacy_pw_dialog_toast_wrong">您輸入的密碼和行動安全防護軟體的密碼不一致。</string>
-    <string name="privacy_pw_dialog_hint">提示: 這裏需要輸入移動安全軟件密碼</string>
     <string name="privacy_pw_dialog_toast_reload">對話恢複顯示中……</string>
     <string name="privacy_pw_dialog_toast_hide">正在准備隱藏此對話中……</string>
     <string name="privacy_pw_dialog_toast_hide_single">正在隱藏此對話中……</string>
@@ -63,4 +60,18 @@
     <string name="status_donotdisturb">請勿打擾</string>
     <string name="status_nocallsjustchat">請勿來電，只接受SecureChat消息</string>
     <string name="status_onlyurgentcalls">只允許緊急呼叫</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">關閉自動刪除功能</string>
+    <string name="privacy_pw_dialog_hint">提示: 這裏需要輸入行動安全防護軟體密碼。</string>
+    <string name="privacy_pw_dialog_toast_wrong">您輸入的密碼和行動安全防護軟體的密碼不一致。</string>
+    <string name="msg_failed">提示: 由于重新安裝或者第三方企圖攻擊，群中有成員的密鑰發生改變。可以通過單獨對話獲取對方新的密鑰，然後刷新群即可。</string>
+    <string name="profile_history_label">圖片</string>
+    <string name="profile_history_content">沒有更換過圖片</string>
+    <string name="menu_invite_to_sc">邀請</string>
+    <string name="group_title">名稱</string>
+    <string name="status_hint">選擇您的狀態:</string>
+    <string name="dialog_compressing"> 正在壓縮視頻中...</string>
+    <string name="dialog_compressing_header">請等待...</string>
+    <string name="preferences__versnr">版本</string>
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">發送收費SMS/MMS之前請詢問</string>
+    <string name="profile_select_picture">選擇個人頭像</string>
 </resources>

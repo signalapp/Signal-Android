@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.util.Pair;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -146,7 +149,9 @@ public class PushDecryptJob extends MasterSecretJob {
       Log.w(TAG, e);
       handleUntrustedIdentityMessage(masterSecret, envelope, smsMessageId);
     }
+    GUtil.reloadUnreadHeaderCounter();
   }
+
 
   private void handleEndSessionMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
                                        TextSecureMessage message, Optional<Long> smsMessageId)
@@ -202,6 +207,9 @@ public class PushDecryptJob extends MasterSecretJob {
       }
       if (!GService.shallBeBlockedByPrivacy(envelope.getSource()) || !new GDataPreferences(getContext()).isPrivacyActivated()) {
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      } else {
+        long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageAndThreadId.first);
+        DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       }
     }
   }
@@ -237,6 +245,11 @@ public class PushDecryptJob extends MasterSecretJob {
       }
       if (!GService.shallBeBlockedByPrivacy(envelope.getSource()) || !new GDataPreferences(getContext()).isPrivacyActivated()) {
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      } else {
+        long threadId = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageAndThreadId.first);
+        if(!DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId).isGroupRecipient()) {
+          DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+        }
       }
     }
   }

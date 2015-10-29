@@ -102,7 +102,24 @@ public class ProfileAccessor {
     }
     return profilePicture;
   }
-
+  public static PartDatabase.PartId getPartIdForUri(Context context, String uri) {
+    return new PartDatabase.PartId(getPreferences(context).getProfilePartRow(uri + ""), getPreferences(context).getProfilePartId(uri + ""));
+  }
+  public static void savePartIdForUri(Context context, String uri, Long partId) {
+    getPreferences(context).setProfilePartId(uri + "", partId);
+  }
+  public static void savePartRowForUri(Context context, String uri, Long partRow) {
+    getPreferences(context).setProfilePartRow(uri + "", partRow);
+  }
+  public static ImageSlide getSlideForUri(Context context, MasterSecret masterSecret, String uriToPart) {
+    PartDatabase database = DatabaseFactory.getPartDatabase(context);
+    PduPart part = database.getPart(ProfileAccessor.getPartIdForUri(context, uriToPart));
+    mMasterSecret = masterSecret;
+    if (part != null) {
+      return new ImageSlide(context, masterSecret, part);
+    }
+    return null;
+  }
   public static void setProfileStatus(Context context, String status) {
     getPreferences(context).setProfileStatus(status);
   }
@@ -122,14 +139,13 @@ public class ProfileAccessor {
   public static String getProfileStatusForRecepient(Context context, String profileId) {
     return getPreferences(context).getProfileStatusForProfileId(profileId);
   }
-  public static void sendProfileUpdate(final Context context, final MasterSecret masterSecret, Recipients recipients, boolean encrypted) throws InvalidMessageException {
+  public static void sendProfileUpdate(final Context context, final MasterSecret masterSecret, Recipients recipients) throws InvalidMessageException {
     mMasterSecret = masterSecret;
     SlideDeck slideDeck = new SlideDeck();
     slideDeck.addSlide(ProfileAccessor.getMyProfilePicture(context));
       OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(context, recipients, slideDeck,
           getProfileStatus(context), ThreadDatabase.DistributionTypes.BROADCAST);
 
-    if (encrypted) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
       outgoingMessage.setProfileUpdateMessage(true);
       new AsyncTask<OutgoingMediaMessage, Void, Long>() {
@@ -143,7 +159,6 @@ public class ProfileAccessor {
           Log.d("GDATA", "RESULT " + result);
         }
       }.execute(outgoingMessage);
-    }
   }
 
   public static ImageSlide getProfileAsImageSlide(Context context, MasterSecret masterSecret, String profileId) {
@@ -151,7 +166,10 @@ public class ProfileAccessor {
     PduPart part = database.getPart(ProfileAccessor.getPartId(context, profileId));
     mMasterSecret = masterSecret;
     if (part != null) {
-      return new ImageSlide(context, masterSecret, part);
+      if (mMasterSecret != null && context != null) {
+        ImageSlide slide = new ImageSlide(context, masterSecret, part);
+        return slide.getThumbnailUri() != null ? slide : null;
+      }
     }
     return null;
   }
@@ -161,8 +179,9 @@ public class ProfileAccessor {
     PduPart part = database.getPart(ProfileAccessor.getPartId(context, profileId));
 
     if (part != null) {
-      if(mMasterSecret != null) {
-        return new ImageSlide(context, mMasterSecret, part);
+      if(mMasterSecret != null && context != null) {
+        ImageSlide slide = new ImageSlide(context, mMasterSecret, part);
+        return slide.getThumbnailUri() != null ? slide : null;
       }
     }
     return null;
@@ -204,7 +223,7 @@ public class ProfileAccessor {
 
     if(isPushDestination && isSecureDestination) {
       try {
-        ProfileAccessor.sendProfileUpdate(GService.appContext, mMasterSecret, recipients, true);
+        ProfileAccessor.sendProfileUpdate(GService.appContext, mMasterSecret, recipients);
       } catch (InvalidMessageException e) {
         Log.w("GDATA", e);
       }
@@ -216,18 +235,17 @@ public class ProfileAccessor {
   public static void setMasterSecred(MasterSecret ma) {
     mMasterSecret = ma;
   }
-  public static GenericRequestBuilder buildGlideRequest(@NonNull Slide slide)
+  public static GenericRequestBuilder buildGlideRequest(@NonNull Slide slide, Context context)
   {
     final GenericRequestBuilder builder;
-      builder = buildThumbnailGlideRequest(slide, mMasterSecret);
-
+      builder = buildThumbnailGlideRequest(slide, mMasterSecret, context);
     return builder.error(R.drawable.ic_missing_thumbnail_picture);
   }
-  public static GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
+  public static GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret, Context context) {
 
     final GenericRequestBuilder builder;
     if (slide.isDraft()) builder = buildDraftGlideRequest(slide);
-    else                 builder = buildEncryptedPartGlideRequest(slide, masterSecret);
+    else builder = buildEncryptedPartGlideRequest(slide, masterSecret, context);
     return builder;
   }
   public static GenericRequestBuilder buildDraftGlideRequest(Slide slide) {
@@ -235,13 +253,12 @@ public class ProfileAccessor {
         .fitCenter();
   }
 
-  public static GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret) {
+  public static GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret, Context context) {
     if (masterSecret == null) {
       throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
     }
-
-    return  Glide.with(GService.appContext).load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, slide.getThumbnailUri()))
-        .transform(new ThumbnailTransform(GService.appContext));
+    return  Glide.with(context).load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, slide.getThumbnailUri()))
+        .transform(new ThumbnailTransform(context));
   }
 
   public static void sendProfileUpdateToContactWithThread(Context activity, String profileId) {
@@ -252,7 +269,6 @@ public class ProfileAccessor {
       updateProfileInformations(RecipientFactory.getRecipientsFromString(activity, profileId, false));
     }
   }
-
   public static MasterSecret getMasterSecred() {
     return mMasterSecret;
   }
