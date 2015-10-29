@@ -5,7 +5,7 @@
                         android:defaultValue="false"
                         android:key="pref_toggle_push_messaging"
                         android:title="@string/preferences__signal_messages_and_calls"
-                        android:summary="@string/preferences__free_secure_messages_and_calls"/>
+                        android:summary="@string/preferences__free_private_messages_and_calls"/>
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="false"
