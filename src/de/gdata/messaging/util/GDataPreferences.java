@@ -31,6 +31,7 @@ public class GDataPreferences {
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
   private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTS";
   private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
+  private static final String COLOR_HEX = "COLOR_HEX";
 
   private static final String PROFILE_PICTURE_URI = "PROFILE_PICTURE_URI";
   private static final String PROFILE_STATUS = "PROFILE_STATUS";
@@ -119,6 +120,9 @@ public class GDataPreferences {
   public void saveFilterGroupIdForContact(String phoneNo, long filterGroupId) {
     mPreferences.edit().putLong(phoneNo, filterGroupId).commit();
   }
+  public void saveCurrentColorValue(String colorHex) {
+    mPreferences.edit().putString(COLOR_HEX, colorHex).commit();
+  }
   public boolean saveActiveContacts(String[] array) {
     mPreferences.edit().putInt(ACTIVE_CONTACTS + "_size", array.length).commit();
     for(int i=0;i<array.length;i++) {
@@ -171,6 +175,9 @@ public class GDataPreferences {
   }
   public String getApplicationFont() {
     return mPreferences.getString(APPLICATION_FONT, "");
+  }
+  public String getCurrentColorHex() {
+    return mPreferences.getString(COLOR_HEX, "");
   }
 
   public void saveE164Number(String e164number) {

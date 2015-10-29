@@ -338,11 +338,13 @@ public class GUtil {
     } catch (Exception e) {
       randomColor = generateRandomColor(context);
     }
-    return randomColor;
+    Log.d("MYLOG","MYLOG COLOR " + randomColor);
+    return "#4b5b66";//2d614c//4b5b66//2f582f//2e74b3//388c6f
   }
   public static String convert(int n) {
     return Integer.toHexString(n);
   }
+
   public static int setListViewHeightBasedOnChildren(ListView listView) {
     ListAdapter listAdapter = listView.getAdapter();
     if (listAdapter == null) {
