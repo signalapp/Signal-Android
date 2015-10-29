@@ -1021,7 +1021,7 @@
     <string name="convesation_group_options__recipients_list">Recipients list</string>
     <string name="conversation_group_options__delivery">Delivery</string>
     <string name="conversation_group_options__conversation">Conversation</string>
-    <string name="conversation_group_options__broadcast">Broadcast</string>
+    <string name="conversation_group_options__broadcast">Broadcast MMS</string>
 
     <!-- key_scanning -->
     <string name="key_scanning__menu_compare">Compare</string>
