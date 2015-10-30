@@ -206,6 +206,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private String profileId = "0";
     private ProgressDialog compressingDialog;
     private boolean compressingIsrunning = false;
+    private GDataPreferences gDataPref;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -225,6 +226,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
             currentConversationType = ConversationItem.SINGLE_CONVERSATION;
         }
+        gDataPref = new GDataPreferences(this);
     }
 
     @Override
@@ -755,9 +757,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
         TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
         CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
-        int color = Color.parseColor(GUtil.generateRandomColor(getApplicationContext()));
+        int color = gDataPref.getCurrentColorHex();
         ((RelativeLayout) mCustomView.findViewById(R.id.drawerall).getParent()).setBackgroundColor(color);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
 
         profileId = GUtil.numberToLong(recipient.getNumber()) + "" ;
         mCustomView.setOnClickListener(new OnClickListener() {

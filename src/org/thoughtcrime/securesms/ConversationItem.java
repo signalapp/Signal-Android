@@ -26,6 +26,9 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
@@ -298,6 +301,11 @@ public class ConversationItem extends LinearLayout {
 
         setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
         setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
+        if(messageRecord.isOutgoing()) {
+          int color = mPreferences.getCurrentColorHex();
+          triangleTick.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
+          conversationParent.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
+        }
       }
     }
   }

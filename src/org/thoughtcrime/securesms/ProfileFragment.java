@@ -37,6 +37,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.Pair;
@@ -60,6 +61,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -157,6 +159,8 @@ public class ProfileFragment extends Fragment {
     private int heightMemberList = 0;
 
     private ViewTreeObserver.OnScrollChangedListener onScrollChangeListener;
+    private SeekBar seekBarFont;
+    private FloatingActionButton floatingActionColorButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -210,6 +214,8 @@ public class ProfileFragment extends Fragment {
         recipient = recipients.getPrimaryRecipient();
         attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
         scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
+        seekBarFont = (SeekBar)getView().findViewById(R.id.seekbar_font);
+        floatingActionColorButton = (FloatingActionButton) getView().findViewById(R.id.fab_new_color);
         final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
 
         if (!isGroup) {
@@ -240,6 +246,7 @@ public class ProfileFragment extends Fragment {
             } else if (ProfileAccessor.getMyProfilePicture(getActivity()).hasImage() && isMyProfile) {
                 profileStatus.setText(ProfileAccessor.getProfileStatus(getActivity()), TextView.BufferType.EDITABLE);
                 imageText.setText(getString(R.string.MediaPreviewActivity_you));
+                initColorSeekbar();
                 profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
                 if ((ProfileAccessor.getMyProfilePicture(getActivity()).getUri() + "").equals("")) {
                     profilePicture.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getActivity()));
@@ -589,6 +596,61 @@ public class ProfileFragment extends Fragment {
                 syncAdapterWithSelectedContacts();
                 break;
         }
+    }
+    private void initColorSeekbar() {
+        seekBarFont.setMax(256*5-1);
+        seekBarFont.setProgress(gDataPreferences.getCurrentColorHex()-510);
+        floatingActionColorButton.setRippleColor(gDataPreferences.getCurrentColorHex());
+        seekBarFont.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            int color = Color.BLUE;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(fromUser){
+                    int r = 0;
+                    int g = 0;
+                    int b = 0;
+
+                    if(progress < 256){
+                        b = progress;
+                    } else if(progress < 256*2) {
+                        g = progress%256;
+                        b = 256 - progress%256;
+                    } else if(progress < 256*3) {
+                        g = 255;
+                        b = progress%256;
+                    } else if(progress < 256*4) {
+                        r = progress%256;
+                        g = 256 - progress%256;
+                        b = 256 - progress%256;
+                    } else if(progress < 256*5) {
+                        r = 255;
+                        g = 0;
+                        b = progress%256;
+                    } else if(progress < 256*6) {
+                        r = 255;
+                        g = progress%256;
+                        b = 256 - progress%256;
+                    } else if(progress < 256*7) {
+                        r = 255;
+                        g = 255;
+                        b = progress%256;
+                    }
+                    color = Color.argb(255, r, g, b);
+                    floatingActionColorButton.setRippleColor(color);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                gDataPreferences.saveCurrentColorValue(color);
+            }
+        });
     }
     private void setMediaHistoryImages() {
         String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(GUtil.numberToLong(recipient.getNumber()));

@@ -259,16 +259,18 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_to_right);
         refreshProfile();
         setActionFloatMenuIcons();
-        setRandomColor();
+        setColorBar();
 
     }
 
-    private void setRandomColor() {
-        int color = Color.parseColor(GUtil.generateRandomColor(getApplicationContext()));
+    private void setColorBar() {
+        //int color = Color.parseColor(GUtil.generateRandomColor(getApplicationContext()));
+        int color = gDataPreferences.getCurrentColorHex();
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
         toolbar.setBackgroundColor(color);
         toolbar.setDrawingCacheBackgroundColor(color);
         mSlidingTabLayout.setBackgroundColor(color);
+        fab.setRippleColor(color);
     }
 
     public void toggleActionFloatMenu(boolean toggleMenu, boolean toggleButton, boolean fastClose) {
@@ -601,7 +603,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         refreshProfile();
         mSlidingTabLayout.refreshTabTitle();
         setActionFloatMenuIcons();
-        setRandomColor();
+        setColorBar();
     }
 
     @Override

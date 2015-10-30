@@ -2,6 +2,7 @@ package de.gdata.messaging.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -120,8 +121,8 @@ public class GDataPreferences {
   public void saveFilterGroupIdForContact(String phoneNo, long filterGroupId) {
     mPreferences.edit().putLong(phoneNo, filterGroupId).commit();
   }
-  public void saveCurrentColorValue(String colorHex) {
-    mPreferences.edit().putString(COLOR_HEX, colorHex).commit();
+  public void saveCurrentColorValue(int colorHex) {
+    mPreferences.edit().putInt(COLOR_HEX, colorHex).commit();
   }
   public boolean saveActiveContacts(String[] array) {
     mPreferences.edit().putInt(ACTIVE_CONTACTS + "_size", array.length).commit();
@@ -176,8 +177,8 @@ public class GDataPreferences {
   public String getApplicationFont() {
     return mPreferences.getString(APPLICATION_FONT, "");
   }
-  public String getCurrentColorHex() {
-    return mPreferences.getString(COLOR_HEX, "");
+  public int getCurrentColorHex() {
+    return mPreferences.getInt(COLOR_HEX, Color.RED);
   }
 
   public void saveE164Number(String e164number) {

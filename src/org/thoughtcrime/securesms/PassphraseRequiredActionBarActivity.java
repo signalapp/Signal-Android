@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+
+import de.gdata.messaging.util.GDataPreferences;
 
 
 public class PassphraseRequiredActionBarActivity extends ActionBarActivity implements PassphraseRequiredActivity {
@@ -14,6 +17,9 @@ public class PassphraseRequiredActionBarActivity extends ActionBarActivity imple
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     delegate.onCreate(this);
+    if(getSupportActionBar()!= null) {
+      getSupportActionBar().setBackgroundDrawable(new ColorDrawable(new GDataPreferences(this).getCurrentColorHex()));
+    }
   }
 
   @Override

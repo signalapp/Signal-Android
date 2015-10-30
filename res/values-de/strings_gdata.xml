@@ -72,4 +72,5 @@
     <string name="dialog_compressing">Das Video wird komprimiert...</string>
     <string name="dialog_compressing_header">Bitte warten...</string>
     <string name="preferences__versnr">Version</string>
+    <string name="profile_color_label">Farbe</string>
 </resources>
