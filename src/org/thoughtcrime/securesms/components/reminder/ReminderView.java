@@ -54,18 +54,15 @@ public class ReminderView extends LinearLayout {
 
     setOnClickListener(reminder.getOkListener());
 
-    if (reminder.isDismissable()) {
-      closeButton.setOnClickListener(new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          hide();
-          if (reminder.getDismissListener() != null) reminder.getDismissListener().onClick(v);
-          if (dismissListener != null) dismissListener.onDismiss();
-        }
-      });
-    } else {
-      closeButton.setVisibility(View.GONE);
-    }
+    closeButton.setVisibility(reminder.isDismissable() ? View.VISIBLE : View.GONE);
+    closeButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        hide();
+        if (reminder.getDismissListener() != null) reminder.getDismissListener().onClick(v);
+        if (dismissListener != null) dismissListener.onDismiss();
+      }
+    });
 
     container.setVisibility(View.VISIBLE);
   }

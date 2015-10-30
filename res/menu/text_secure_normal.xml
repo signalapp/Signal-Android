@@ -10,7 +10,7 @@
     <item android:title="@string/text_secure_normal__mark_all_as_read"
           android:id="@+id/menu_mark_all_read" />
 
-    <item android:title="@string/text_secure_normal__invite_contacts"
+    <item android:title="@string/text_secure_normal__invite_friends"
           android:id="@+id/menu_invite" />
 
     <item android:title="@string/arrays__import_export"
