@@ -338,7 +338,7 @@ public class ConversationItem extends LinearLayout
   private void setFailedStatusIcons() {
     statusManager.displayFailed();
     dateText.setText(R.string.ConversationItem_error_not_delivered);
-    if (indicatorText != null) {
+    if (messageRecord.isOutgoing()) {
       indicatorText.setText(R.string.ConversationItem_click_for_details);
       indicatorText.setVisibility(View.VISIBLE);
     }
@@ -351,7 +351,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setMinimumWidth() {
-    if (indicatorText != null && indicatorText.getVisibility() == View.VISIBLE && indicatorText.getText() != null) {
+    if (indicatorText.getVisibility() == View.VISIBLE && indicatorText.getText() != null) {
       final float density = getResources().getDisplayMetrics().density;
       bodyBubble.setMinimumWidth(indicatorText.getText().length() * (int) (6.5 * density) + (int) (22.0 * density));
     } else {
