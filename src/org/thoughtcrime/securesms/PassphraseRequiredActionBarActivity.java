@@ -38,6 +38,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
+    Log.w(TAG, "onCreate(" + savedInstanceState + ")");
     onPreCreate();
     final MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
     routeApplicationState(masterSecret);
@@ -53,6 +54,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onResume() {
+    Log.w(TAG, "onResume()");
     super.onResume();
     initializeScreenshotSecurity();
     KeyCachingService.registerPassphraseActivityStarted(this);
@@ -62,6 +64,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onPause() {
+    Log.w(TAG, "onPause()");
     super.onPause();
     KeyCachingService.registerPassphraseActivityStopped(this);
     MessageRetrievalService.registerActivityStopped(this);
@@ -70,6 +73,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onDestroy() {
+    Log.w(TAG, "onDestroy()");
     super.onDestroy();
     removeClearKeyReceiver(this);
   }
