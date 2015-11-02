@@ -21,33 +21,31 @@ package org.thoughtcrime.redphone;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
-import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
 import org.thoughtcrime.redphone.ui.CallControls;
 import org.thoughtcrime.redphone.ui.CallScreen;
 import org.thoughtcrime.redphone.util.AudioUtils;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.events.RedPhoneEvent;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * The main UI class for RedPhone.  Most of the heavy lifting is
@@ -62,40 +60,9 @@ public class RedPhone extends Activity {
 
   private static final String TAG = RedPhone.class.getSimpleName();
 
-  private static final int REMOTE_TERMINATE = 0;
-  private static final int LOCAL_TERMINATE  = 1;
-
-  public static final int STATE_IDLE      = 0;
-  public static final int STATE_RINGING   = 2;
-  public static final int STATE_DIALING   = 3;
-  public static final int STATE_ANSWERING = 4;
-  public static final int STATE_CONNECTED = 5;
-
-  private static final int STANDARD_DELAY_FINISH    = 3000;
+  private static final int STANDARD_DELAY_FINISH    = 1000;
   public  static final int BUSY_SIGNAL_DELAY_FINISH = 5500;
 
-  public static final int HANDLE_CALL_CONNECTED          = 0;
-  public static final int HANDLE_WAITING_FOR_RESPONDER   = 1;
-  public static final int HANDLE_SERVER_FAILURE          = 2;
-  public static final int HANDLE_PERFORMING_HANDSHAKE    = 3;
-  public static final int HANDLE_HANDSHAKE_FAILED        = 4;
-  public static final int HANDLE_CONNECTING_TO_INITIATOR = 5;
-  public static final int HANDLE_CALL_DISCONNECTED       = 6;
-  public static final int HANDLE_CALL_RINGING            = 7;
-  public static final int HANDLE_SERVER_MESSAGE          = 9;
-  public static final int HANDLE_RECIPIENT_UNAVAILABLE   = 10;
-  public static final int HANDLE_INCOMING_CALL           = 11;
-  public static final int HANDLE_OUTGOING_CALL           = 12;
-  public static final int HANDLE_CALL_BUSY               = 13;
-  public static final int HANDLE_LOGIN_FAILED            = 14;
-  public static final int HANDLE_CLIENT_FAILURE          = 15;
-  public static final int HANDLE_DEBUG_INFO              = 16;
-  public static final int HANDLE_NO_SUCH_USER            = 17;
-
-  private final Handler callStateHandler = new CallStateHandler();
-
-  private int               state;
-  private RedPhoneService   redPhoneService;
   private CallScreen        callScreen;
   private BroadcastReceiver bluetoothStateReceiver;
 
@@ -118,7 +85,7 @@ public class RedPhone extends Activity {
     super.onResume();
 
     initializeScreenshotSecurity();
-    initializeServiceBinding();
+    EventBus.getDefault().registerSticky(this);
     registerBluetoothReceiver();
   }
 
@@ -127,19 +94,13 @@ public class RedPhone extends Activity {
   public void onPause() {
     super.onPause();
 
-    unbindService(serviceConnection);
+    EventBus.getDefault().unregister(this);
     unregisterReceiver(bluetoothStateReceiver);
   }
 
   @Override
   public void onConfigurationChanged(Configuration newConfiguration) {
     super.onConfigurationChanged(newConfiguration);
-  }
-
-  private void initializeServiceBinding() {
-    Log.w(TAG, "Binding to RedPhoneService...");
-    Intent bindIntent = new Intent(this, RedPhoneService.class);
-    bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
   }
 
   private void initializeScreenshotSecurity() {
@@ -154,8 +115,6 @@ public class RedPhone extends Activity {
 
   private void initializeResources() {
     callScreen = (CallScreen)findViewById(R.id.callScreen);
-    state      = STATE_IDLE;
-
     callScreen.setHangupButtonListener(new HangupButtonListener());
     callScreen.setIncomingCallActionListener(new IncomingCallActionListener());
     callScreen.setMuteButtonListener(new MuteButtonListener());
@@ -170,140 +129,123 @@ public class RedPhone extends Activity {
   }
 
   private void handleAnswerCall() {
-    state = STATE_ANSWERING;
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_answering));
+    RedPhoneEvent event = EventBus.getDefault().getStickyEvent(RedPhoneEvent.class);
 
-    Intent intent = new Intent(this, RedPhoneService.class);
-    intent.setAction(RedPhoneService.ACTION_ANSWER_CALL);
-    startService(intent);
+    if (event != null) {
+      callScreen.setActiveCall(event.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_answering));
+
+      Intent intent = new Intent(this, RedPhoneService.class);
+      intent.setAction(RedPhoneService.ACTION_ANSWER_CALL);
+      startService(intent);
+    }
   }
 
   private void handleDenyCall() {
-    state = STATE_IDLE;
+    RedPhoneEvent event = EventBus.getDefault().getStickyEvent(RedPhoneEvent.class);
 
-    Intent intent = new Intent(this, RedPhoneService.class);
-    intent.setAction(RedPhoneService.ACTION_DENY_CALL);
-    startService(intent);
+    if (event != null) {
+      Intent intent = new Intent(this, RedPhoneService.class);
+      intent.setAction(RedPhoneService.ACTION_DENY_CALL);
+      startService(intent);
 
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_ending_call));
-    delayedFinish();
+      callScreen.setActiveCall(event.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_ending_call));
+      delayedFinish();
+    }
   }
 
-  private void handleIncomingCall(Recipient recipient) {
-    state = STATE_RINGING;
-    callScreen.setIncomingCall(redPhoneService.getRecipient());
+  private void handleIncomingCall(@NonNull RedPhoneEvent event) {
+    callScreen.setIncomingCall(event.getRecipient());
   }
 
-  private void handleOutgoingCall(Recipient recipient) {
-    state = STATE_DIALING;
-    callScreen.setActiveCall(recipient, getString(org.thoughtcrime.securesms.R.string.RedPhone_dialing));
+  private void handleOutgoingCall(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_dialing));
   }
 
-  private void handleTerminate( int terminationType ) {
+  private void handleTerminate(@NonNull Recipient recipient /*, int terminationType */) {
     Log.w(TAG, "handleTerminate called");
     Log.w(TAG, "Termination Stack:", new Exception());
 
-    if( state == STATE_DIALING ) {
-      if (terminationType == LOCAL_TERMINATE) {
-        callScreen.setActiveCall(redPhoneService.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_canceling_call));
-      } else {
-        callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_call_rejected));
-      }
-    } else if (state != STATE_IDLE) {
-      callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_ending_call));
-    }
+    callScreen.setActiveCall(recipient, getString(R.string.RedPhone_ending_call));
 
-    state = STATE_IDLE;
     delayedFinish();
   }
 
-  private void handleCallRinging() {
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_ringing));
+  private void handleCallRinging(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_ringing));
   }
 
-  private void handleCallBusy() {
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_busy));
+  private void handleCallBusy(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_busy));
 
-    state = STATE_IDLE;
     delayedFinish(BUSY_SIGNAL_DELAY_FINISH);
   }
 
-  private void handleCallConnected(SASInfo sas) {
+  private void handleCallConnected(@NonNull RedPhoneEvent event) {
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES);
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_connected), sas);
-
-    state = STATE_CONNECTED;
-    redPhoneService.notifyCallConnectionUIUpdateComplete();
+    callScreen.setActiveCall(event.getRecipient(),
+                             getString(R.string.RedPhone_connected),
+                             event.getExtra());
   }
 
-  private void handleDebugInfo( String info ) {
-//    debugCard.setInfo( info );
+  private void handleConnectingToInitiator(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_connecting));
   }
 
-  private void handleConnectingToInitiator() {
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_connecting));
-  }
-
-  private void handleHandshakeFailed() {
-    state = STATE_IDLE;
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_handshake_failed));
+  private void handleHandshakeFailed(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_handshake_failed));
     delayedFinish();
   }
 
-  private void handleRecipientUnavailable() {
-    state = STATE_IDLE;
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_recipient_unavailable));
+  private void handleRecipientUnavailable(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_recipient_unavailable));
     delayedFinish();
   }
 
-  private void handlePerformingHandshake() {
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_performing_handshake));
+  private void handlePerformingHandshake(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_performing_handshake));
   }
 
-  private void handleServerFailure() {
-    state = STATE_IDLE;
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_network_failed));
+  private void handleServerFailure(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_network_failed));
     delayedFinish();
   }
 
-  private void handleClientFailure(String msg) {
-    state = STATE_IDLE;
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_client_failed));
-    if( msg != null && !isFinishing() ) {
+  private void handleClientFailure(final @NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_client_failed));
+    if( event.getExtra() != null && !isFinishing() ) {
       AlertDialog.Builder ad = new AlertDialog.Builder(this);
       ad.setTitle(R.string.RedPhone_fatal_error);
-      ad.setMessage(msg);
+      ad.setMessage(event.getExtra());
       ad.setCancelable(false);
       ad.setPositiveButton(android.R.string.ok, new OnClickListener() {
         public void onClick(DialogInterface dialog, int arg) {
-          RedPhone.this.handleTerminate(LOCAL_TERMINATE);
+          RedPhone.this.handleTerminate(event.getRecipient());
         }
       });
       ad.show();
     }
   }
 
-  private void handleLoginFailed() {
-    state = STATE_IDLE;
-    callScreen.setActiveCall(redPhoneService.getRecipient(), getString(R.string.RedPhone_login_failed));
+  private void handleLoginFailed(@NonNull RedPhoneEvent event) {
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_login_failed));
     delayedFinish();
   }
 
-  private void handleServerMessage(String message) {
+  private void handleServerMessage(final @NonNull RedPhoneEvent event) {
     if( isFinishing() ) return; //we're already shutting down, this might crash
     AlertDialog.Builder ad = new AlertDialog.Builder(this);
     ad.setTitle(R.string.RedPhone_message_from_the_server);
-    ad.setMessage(message);
+    ad.setMessage(event.getExtra());
     ad.setCancelable(false);
     ad.setPositiveButton(android.R.string.ok, new OnClickListener() {
       public void onClick(DialogInterface dialog, int arg) {
-        RedPhone.this.handleTerminate(LOCAL_TERMINATE);
+        RedPhone.this.handleTerminate(event.getRecipient());
       }
     });
     ad.show();
   }
 
-  private void handleNoSuchUser(final Recipient recipient) {
+  private void handleNoSuchUser(final @NonNull RedPhoneEvent event) {
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
     AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(this);
     dialog.setTitle(R.string.RedPhone_number_not_registered);
@@ -313,13 +255,13 @@ public class RedPhone extends Activity {
     dialog.setPositiveButton(R.string.RedPhone_got_it, new OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        RedPhone.this.handleTerminate(LOCAL_TERMINATE);
+        RedPhone.this.handleTerminate(event.getRecipient());
       }
     });
     dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
       @Override
       public void onCancel(DialogInterface dialog) {
-        RedPhone.this.handleTerminate(LOCAL_TERMINATE);
+        RedPhone.this.handleTerminate(event.getRecipient());
       }
     });
     dialog.show();
@@ -330,35 +272,33 @@ public class RedPhone extends Activity {
   }
 
   private void delayedFinish(int delayMillis) {
-    callStateHandler.postDelayed(new Runnable() {
-
-    public void run() {
-      RedPhone.this.finish();
-    }}, delayMillis);
+    callScreen.postDelayed(new Runnable() {
+      public void run() {
+        RedPhone.this.finish();
+      }
+    }, delayMillis);
   }
 
-  private class CallStateHandler extends Handler {
-    @Override
-    public void handleMessage(Message message) {
-      Log.w(TAG, "Got message from service: " + message.what);
-      switch (message.what) {
-      case HANDLE_CALL_CONNECTED:          handleCallConnected((SASInfo)message.obj);               break;
-      case HANDLE_SERVER_FAILURE:          handleServerFailure();                                   break;
-      case HANDLE_PERFORMING_HANDSHAKE:    handlePerformingHandshake();                             break;
-      case HANDLE_HANDSHAKE_FAILED:        handleHandshakeFailed();                                 break;
-      case HANDLE_CONNECTING_TO_INITIATOR: handleConnectingToInitiator();                           break;
-      case HANDLE_CALL_RINGING:            handleCallRinging();                                     break;
-      case HANDLE_CALL_DISCONNECTED:       handleTerminate( REMOTE_TERMINATE );                     break;
-      case HANDLE_SERVER_MESSAGE:          handleServerMessage((String)message.obj);                break;
-      case HANDLE_NO_SUCH_USER:            handleNoSuchUser((Recipient)message.obj);                   break;
-      case HANDLE_RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable();                            break;
-      case HANDLE_INCOMING_CALL:           handleIncomingCall((Recipient)message.obj);                 break;
-      case HANDLE_OUTGOING_CALL:           handleOutgoingCall((Recipient)message.obj);                 break;
-      case HANDLE_CALL_BUSY:               handleCallBusy();                                        break;
-      case HANDLE_LOGIN_FAILED:            handleLoginFailed();                                     break;
-      case HANDLE_CLIENT_FAILURE:			     handleClientFailure((String)message.obj);                break;
-      case HANDLE_DEBUG_INFO:				       handleDebugInfo((String)message.obj);					          break;
-      }
+  @SuppressWarnings("unused")
+  public void onEventMainThread(final RedPhoneEvent event) {
+    Log.w(TAG, "Got message from service: " + event.getType());
+
+    switch (event.getType()) {
+      case CALL_CONNECTED:          handleCallConnected(event);            break;
+      case SERVER_FAILURE:          handleServerFailure(event);            break;
+      case PERFORMING_HANDSHAKE:    handlePerformingHandshake(event);      break;
+      case HANDSHAKE_FAILED:        handleHandshakeFailed(event);          break;
+      case CONNECTING_TO_INITIATOR: handleConnectingToInitiator(event);    break;
+      case CALL_RINGING:            handleCallRinging(event);              break;
+      case CALL_DISCONNECTED:       handleTerminate(event.getRecipient()); break;
+      case SERVER_MESSAGE:          handleServerMessage(event);            break;
+      case NO_SUCH_USER:            handleNoSuchUser(event);               break;
+      case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable(event);     break;
+      case INCOMING_CALL:           handleIncomingCall(event);             break;
+      case OUTGOING_CALL:           handleOutgoingCall(event);             break;
+      case CALL_BUSY:               handleCallBusy(event);                 break;
+      case LOGIN_FAILED:            handleLoginFailed(event);              break;
+      case CLIENT_FAILURE:			    handleClientFailure(event);            break;
     }
   }
 
@@ -369,7 +309,11 @@ public class RedPhone extends Activity {
       intent.setAction(RedPhoneService.ACTION_HANGUP_CALL);
       startService(intent);
 
-      RedPhone.this.handleTerminate(LOCAL_TERMINATE);
+      RedPhoneEvent event = EventBus.getDefault().getStickyEvent(RedPhoneEvent.class);
+
+      if (event != null) {
+        RedPhone.this.handleTerminate(event.getRecipient());
+      }
     }
   }
 
@@ -418,30 +362,11 @@ public class RedPhone extends Activity {
     public void onAcceptClick() {
       RedPhone.this.handleAnswerCall();
     }
+
     @Override
     public void onDenyClick() {
       RedPhone.this.handleDenyCall();
     }
   }
 
-  private ServiceConnection serviceConnection = new ServiceConnection() {
-    public void onServiceConnected(ComponentName className, IBinder service) {
-      RedPhone.this.redPhoneService  = ((RedPhoneService.RedPhoneServiceBinder)service).getService();
-      redPhoneService.setCallStateHandler(callStateHandler);
-
-      Recipient recipient = redPhoneService.getRecipient();
-
-      switch (redPhoneService.getState()) {
-      case STATE_IDLE:      callScreen.reset();                                       break;
-      case STATE_RINGING:   handleIncomingCall(recipient);                            break;
-      case STATE_DIALING:   handleOutgoingCall(recipient);                            break;
-      case STATE_ANSWERING: handleAnswerCall();                                       break;
-      case STATE_CONNECTED: handleCallConnected(redPhoneService.getCurrentCallSAS()); break;
-      }
-    }
-
-    public void onServiceDisconnected(ComponentName name) {
-      redPhoneService.setCallStateHandler(null);
-    }
-  };
 }

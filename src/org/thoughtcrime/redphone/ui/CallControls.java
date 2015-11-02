@@ -23,6 +23,7 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,9 +105,9 @@ public class CallControls extends RelativeLayout {
     sasTextView.setVisibility(View.GONE);
   }
 
-  public void setActiveCall(SASInfo sas) {
+  public void setActiveCall(@Nullable String sas) {
     setActiveCall();
-    sasTextView.setText(sas.getSasText());
+    sasTextView.setText(sas);
     sasTextView.setVisibility(View.VISIBLE);
   }
 

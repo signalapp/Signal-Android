@@ -43,10 +43,8 @@ public interface CallStateListener {
   public void notifyRecipientUnavailable();
   public void notifyBusy();
   public void notifyLoginFailed();
-  public void notifyDebugInfo(String info);
   public void notifyCallStale();
   public void notifyCallFresh();
-  public void notifyClientError(int msgId);
   public void notifyClientError(String message);
   public void notifyCallConnecting();
 }
