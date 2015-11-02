@@ -313,23 +313,26 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 CallLog.Calls.TYPE + " = " + CallLog.Calls.OUTGOING_TYPE +" OR " + CallLog.Calls.TYPE + " = " + CallLog.Calls.INCOMING_TYPE
                 , null,
                 strOrder);
-        mCallCursor.moveToFirst();
-        do {
-            if (i>LAST_XX_CALLS)
-                break;
-            mobileNumber = mCallCursor.getString(mCallCursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER));
-            recCalledRec = RecipientFactory.getRecipientsFromString(getApplicationContext(), mobileNumber, false);
 
-            if (recCalledRec.getPrimaryRecipient() != null && recCalledRec.getPrimaryRecipient().getName() != null && !recCalledRec.getPrimaryRecipient().getName().equals("")) {
-                if(!new GDataPreferences(getApplicationContext()).isPrivacyActivated() || !GService.shallBeBlockedByPrivacy(recCalledRec.getPrimaryRecipient().getNumber())) {
-                    recentlyRecipients.add(recCalledRec);
+        if(mCallCursor.moveToFirst()) {
+            do {
+                if (i > LAST_XX_CALLS)
+                    break;
+                if(mCallCursor != null) {
+                    mobileNumber = mCallCursor.getString(mCallCursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER));
+                    recCalledRec = RecipientFactory.getRecipientsFromString(getApplicationContext(), mobileNumber, false);
+
+                    if (recCalledRec.getPrimaryRecipient() != null && recCalledRec.getPrimaryRecipient().getName() != null && !recCalledRec.getPrimaryRecipient().getName().equals("")) {
+                        if (!new GDataPreferences(getApplicationContext()).isPrivacyActivated() || !GService.shallBeBlockedByPrivacy(recCalledRec.getPrimaryRecipient().getNumber())) {
+                            recentlyRecipients.add(recCalledRec);
+                        }
+                        recCalledRec = null;
+                    }
                 }
-                recCalledRec = null;
+                i++;
             }
-            i++;
+            while (mCallCursor.moveToNext());
         }
-        while (mCallCursor.moveToNext());
-
         recentlyRecipients = getFrequentContact(recentlyRecipients);
 
         ArrayList<Boolean> hadImages = new ArrayList<>(3);
