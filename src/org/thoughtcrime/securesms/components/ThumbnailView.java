@@ -97,6 +97,12 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public void setImageResource(@NonNull MasterSecret masterSecret, @NonNull Slide slide, boolean showControls) {
+    if (showControls) {
+      getTransferControls().setSlide(slide);
+      getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
+    } else if (transferControls.isPresent()) {
+      getTransferControls().setVisibility(View.GONE);
+    }
 
     if (Util.equals(slide, this.slide)) {
       Log.w(TAG, "Not re-loading slide " + slide.asAttachment().getDataUri());
@@ -106,13 +112,6 @@ public class ThumbnailView extends FrameLayout {
     if (!isContextValid()) {
       Log.w(TAG, "Not loading slide, context is invalid");
       return;
-    }
-
-    if (showControls) {
-      getTransferControls().setSlide(slide);
-      getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
-    } else if (transferControls.isPresent()) {
-      getTransferControls().setVisibility(View.GONE);
     }
 
     Log.w(TAG, "loading part with id " + slide.asAttachment().getDataUri()
