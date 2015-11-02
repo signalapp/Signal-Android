@@ -127,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:visibility="gone"
                     android:background="@drawable/textview_border">
 
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -161,16 +162,15 @@
                                 android:layout_gravity="center"
                                 android:max="100"
                                 android:progressDrawable="@drawable/custom_progress"
-                                android:thumb="@drawable/textview_rounded_corners"
-                                android:thumbOffset="10dp"
                                 android:progress="50"></SeekBar>
+
                             <android.support.design.widget.FloatingActionButton
                                 android:id="@+id/fab_new_color"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="0dp"
                                 android:scaleType="fitXY"
                                 android:visibility="visible"
+                                android:layout_margin="5dp"
                                 app:backgroundTint="@color/holo_orange_dark"
                                 app:borderWidth="0dp"
                                 app:elevation="5dp"
