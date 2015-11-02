@@ -161,6 +161,7 @@ public class ProfileFragment extends Fragment {
     private ViewTreeObserver.OnScrollChangedListener onScrollChangeListener;
     private SeekBar seekBarFont;
     private FloatingActionButton floatingActionColorButton;
+    private RelativeLayout layoutColor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -215,6 +216,7 @@ public class ProfileFragment extends Fragment {
         attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
         scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
         seekBarFont = (SeekBar)getView().findViewById(R.id.seekbar_font);
+        layoutColor = (RelativeLayout)getView().findViewById(R.id.layout_color);
         floatingActionColorButton = (FloatingActionButton) getView().findViewById(R.id.fab_new_color);
         final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
 
@@ -598,6 +600,7 @@ public class ProfileFragment extends Fragment {
         }
     }
     private void initColorSeekbar() {
+        layoutColor.setVisibility(View.VISIBLE);
         seekBarFont.setMax(256*5-1);
         seekBarFont.setProgress(gDataPreferences.getCurrentColorHex()-510);
         floatingActionColorButton.setRippleColor(gDataPreferences.getCurrentColorHex());

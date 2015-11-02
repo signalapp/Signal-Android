@@ -281,8 +281,7 @@ public class ConversationItem extends LinearLayout {
     return openedMessageId.equals("");
   }
   private void setConversationBackgroundDrawables(MessageRecord messageRecord) {
-    if (conversationParent != null && backgroundDrawables != null) {
-      if (messageRecord.isOutgoing()) {
+    if (conversationParent != null && backgroundDrawables != null && messageRecord.isOutgoing()) {
         final int background;
         final int triangleBackground;
         if (messageRecord.isPending() && pushDestination && !messageRecord.isForcedSms()) {
@@ -301,12 +300,21 @@ public class ConversationItem extends LinearLayout {
 
         setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
         setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
-        if(messageRecord.isOutgoing()) {
+        if (messageRecord.isOutgoing()) {
           int color = mPreferences.getCurrentColorHex();
           triangleTick.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
           conversationParent.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
         }
-      }
+    }
+    if(conversationParent != null && !messageRecord.isOutgoing()) {
+        try {
+          int color = Integer.parseInt(ProfileAccessor.getProfileColorForId(getContext(), GUtil.numberToLong(messageRecord.getIndividualRecipient().getNumber()) + ""));
+          triangleTick.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
+          conversationParent.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
+          triangleTick.setBackgroundColor(color);
+        } catch (Exception e) {
+          //If for unknown reasons the parsing fails
+        }
     }
   }
 

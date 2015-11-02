@@ -227,6 +227,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             currentConversationType = ConversationItem.SINGLE_CONVERSATION;
         }
         gDataPref = new GDataPreferences(this);
+
     }
 
     @Override
@@ -761,6 +762,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         ((RelativeLayout) mCustomView.findViewById(R.id.drawerall).getParent()).setBackgroundColor(color);
 
         profileId = GUtil.numberToLong(recipient.getNumber()) + "" ;
+
+        if(getSupportActionBar()!= null) {
+            try {
+                color = Integer.parseInt(ProfileAccessor.getProfileColorForId(getApplicationContext(), profileId));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+                ((RelativeLayout) mCustomView.findViewById(R.id.drawerall).getParent()).setBackgroundColor(color);
+            } catch (Exception e) {
+                //If for unknown reasons the parsing fails
+            }
+        }
         mCustomView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -820,7 +831,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         getSupportActionBar().setSubtitle(subtitle);
 
         getWindow().getDecorView().setContentDescription(getString(R.string.conversation_activity__window_description, title));
-
         this.supportInvalidateOptionsMenu();
     }
 

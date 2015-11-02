@@ -97,6 +97,12 @@ public class GDataPreferences {
   public void setProfileStatusForProfileId(String profileId, String status) {
     mPreferences.edit().putString("status:" + profileId, status).commit();
   }
+  public void setProfileColorForProfileId(String profileId, String color) {
+    mPreferences.edit().putString("color:" + profileId, color).commit();
+  }
+  public String getProfileColorForProfileId(String profileId) {
+    return mPreferences.getString("color:" + profileId, "0");
+  }
   public String getProfileStatusForProfileId(String profileId) {
     return mPreferences.getString("status:" + profileId, "");
   }

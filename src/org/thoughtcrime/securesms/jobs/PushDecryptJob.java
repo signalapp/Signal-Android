@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.util.Pair;
-import android.widget.Toast;
+
+import com.google.zxing.common.StringUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -58,6 +58,8 @@ import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureSyncContext;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -68,7 +70,6 @@ import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduPart;
 
 public class PushDecryptJob extends MasterSecretJob {
 
@@ -222,6 +223,7 @@ public class PushDecryptJob extends MasterSecretJob {
   {
     Set<List<TextSecureAttachment>> attachmentSet = message.getAttachments().asSet();
     List<TextSecureAttachment> attachments = new LinkedList<>();
+    String color = new GDataPreferences(context).getCurrentColorHex()+"";
     for(List<TextSecureAttachment> attachmentList : attachmentSet) {
       attachments = attachmentList;
     }
@@ -234,7 +236,20 @@ public class PushDecryptJob extends MasterSecretJob {
         .getJobManager()
         .add(new ProfileImageDownloadJob(context, numberAsLong));
 
+    if(message.getAttachments().isPresent()) {
+      List<TextSecureAttachment> group = message.getAttachments().get();
+      for(TextSecureAttachment at : group) {
+       if(at.getContentType().contains(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1)) {
+         String content = at.getContentType();
+         int startPosition = content.indexOf(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1) + ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1.length();
+         int endPosition = content.indexOf(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2, startPosition);
+         color = content.substring(startPosition, endPosition);
+         ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
+       }
+      }
+    }
     ProfileAccessor.setStatusForProfileId(context, numberAsLong + "", message.getBody().get());
+    ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
     ProfileAccessor.setUpdateTimeForProfileId(context, numberAsLong + "", message.getTimestamp());
   }
   private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,

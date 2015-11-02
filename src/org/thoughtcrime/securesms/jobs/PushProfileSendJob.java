@@ -19,21 +19,26 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
 
@@ -106,13 +111,16 @@ public class PushProfileSendJob extends PushSendJob implements InjectableType {
       TextSecureAddress          address      = getPushAddress(destination);
       List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);
       String                     body         = PartParser.getMessageText(message.getBody());
+      TextSecureAttachment at = TextSecureAttachment.newStreamBuilder().withLength(10)
+              .withStream(new ByteArrayInputStream(("").getBytes("UTF-8")))
+              .withContentType(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1 + new GDataPreferences(context).getCurrentColorHex()+ ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2).build();
+      attachments.add(0, at);
       TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()
               .withBody(body)
               .withAttachments(attachments)
               .withTimestamp(message.getSentTimestamp())
               .asProfileUpdate(asProfileUpdate)
               .build();
-
       messageSender.sendMessage(address, mediaMessage);
     } catch (InvalidNumberException | UnregisteredUserException e) {
       Log.w(TAG, e);
