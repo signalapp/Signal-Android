@@ -127,7 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:background="@drawable/textview_border">
 
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
