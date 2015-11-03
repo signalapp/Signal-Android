@@ -23,14 +23,15 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String TAG = RecipientPreferenceDatabase.class.getSimpleName();
   private static final String RECIPIENT_PREFERENCES_URI = "content://textsecure/recipients/";
 
-  private static final String TABLE_NAME    = "recipient_preferences";
-  private static final String ID            = "_id";
-  private static final String RECIPIENT_IDS = "recipient_ids";
-  private static final String BLOCK         = "block";
-  private static final String NOTIFICATION  = "notification";
-  private static final String VIBRATE       = "vibrate";
-  private static final String MUTE_UNTIL    = "mute_until";
-  private static final String COLOR         = "color";
+  private static final String TABLE_NAME           = "recipient_preferences";
+  private static final String ID                   = "_id";
+  private static final String RECIPIENT_IDS        = "recipient_ids";
+  private static final String BLOCK                = "block";
+  private static final String NOTIFICATION         = "notification";
+  private static final String VIBRATE              = "vibrate";
+  private static final String MUTE_UNTIL           = "mute_until";
+  private static final String COLOR                = "color";
+  private static final String SEEN_INVITE_REMINDER = "seen_invite_reminder";
 
   public enum VibrateState {
     DEFAULT(0), ENABLED(1), DISABLED(2);
@@ -58,7 +59,8 @@ public class RecipientPreferenceDatabase extends Database {
           NOTIFICATION + " TEXT DEFAULT NULL, " +
           VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
           MUTE_UNTIL + " INTEGER DEFAULT 0, " +
-          COLOR + " TEXT DEFAULT NULL);";
+          COLOR + " TEXT DEFAULT NULL, " +
+          SEEN_INVITE_REMINDER + " INTEGER DEFAULT 0);";
 
   public RecipientPreferenceDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -86,12 +88,13 @@ public class RecipientPreferenceDatabase extends Database {
                               null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        boolean blocked         = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK)) == 1;
-        String  notification    = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
-        int     vibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
-        long    muteUntil       = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
-        String  serializedColor = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
-        Uri     notificationUri = notification == null ? null : Uri.parse(notification);
+        boolean blocked            = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK)) == 1;
+        String  notification       = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
+        int     vibrateState       = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
+        long    muteUntil          = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
+        String  serializedColor    = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
+        Uri     notificationUri    = notification == null ? null : Uri.parse(notification);
+        boolean seenInviteReminder = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
 
         MaterialColor color;
 
@@ -106,7 +109,7 @@ public class RecipientPreferenceDatabase extends Database {
 
         return Optional.of(new RecipientsPreferences(blocked, muteUntil,
                                                      VibrateState.fromId(vibrateState),
-                                                     notificationUri, color));
+                                                     notificationUri, color, seenInviteReminder));
       }
 
       return Optional.absent();
@@ -146,6 +149,12 @@ public class RecipientPreferenceDatabase extends Database {
     updateOrInsert(recipients, values);
   }
 
+  public void setSeenInviteReminder(Recipients recipients, boolean seen) {
+    ContentValues values = new ContentValues(1);
+    values.put(SEEN_INVITE_REMINDER, seen ? 1 : 0);
+    updateOrInsert(recipients, values);
+  }
+
   private void updateOrInsert(Recipients recipients, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
@@ -171,17 +180,20 @@ public class RecipientPreferenceDatabase extends Database {
     private final VibrateState  vibrateState;
     private final Uri           notification;
     private final MaterialColor color;
+    private final boolean       seenInviteReminder;
 
     public RecipientsPreferences(boolean blocked, long muteUntil,
                                  @NonNull VibrateState vibrateState,
                                  @Nullable Uri notification,
-                                 @Nullable MaterialColor color)
+                                 @Nullable MaterialColor color,
+                                 boolean seenInviteReminder)
     {
-      this.blocked      = blocked;
-      this.muteUntil    = muteUntil;
-      this.vibrateState = vibrateState;
-      this.notification = notification;
-      this.color        = color;
+      this.blocked            = blocked;
+      this.muteUntil          = muteUntil;
+      this.vibrateState       = vibrateState;
+      this.notification       = notification;
+      this.color              = color;
+      this.seenInviteReminder = seenInviteReminder;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -202,6 +214,10 @@ public class RecipientPreferenceDatabase extends Database {
 
     public @Nullable Uri getRingtone() {
       return notification;
+    }
+
+    public boolean hasSeenInviteReminder() {
+      return seenInviteReminder;
     }
   }
 }

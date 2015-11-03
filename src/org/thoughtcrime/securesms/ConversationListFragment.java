@@ -33,8 +33,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.RecyclerListener;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -48,17 +46,19 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
-import org.thoughtcrime.securesms.components.DefaultSmsReminder;
-import org.thoughtcrime.securesms.components.ExpiredBuildReminder;
-import org.thoughtcrime.securesms.components.PushRegistrationReminder;
-import org.thoughtcrime.securesms.components.Reminder;
-import org.thoughtcrime.securesms.components.ReminderView;
-import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
+import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
+import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
+import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
+import org.thoughtcrime.securesms.components.reminder.Reminder;
+import org.thoughtcrime.securesms.components.reminder.ReminderView;
+import org.thoughtcrime.securesms.components.reminder.ReminderView.OnDismissListener;
+import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Locale;
@@ -89,6 +89,11 @@ public class ConversationListFragment extends Fragment
     reminderView = (ReminderView) view.findViewById(R.id.reminder);
     list         = (RecyclerView) view.findViewById(R.id.list);
     fab          = (FloatingActionButton) view.findViewById(R.id.fab);
+    reminderView.setOnDismissListener(new OnDismissListener() {
+      @Override public void onDismiss() {
+        updateReminders();
+      }
+    });
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
     return view;
@@ -112,7 +117,7 @@ public class ConversationListFragment extends Fragment
   public void onResume() {
     super.onResume();
 
-    initializeReminders();
+    updateReminders();
     list.getAdapter().notifyDataSetChanged();
   }
 
@@ -131,16 +136,16 @@ public class ConversationListFragment extends Fragment
     }
   }
 
-  private void initializeReminders() {
+  private void updateReminders() {
     reminderView.hide();
     new AsyncTask<Context, Void, Optional<? extends Reminder>>() {
       @Override protected Optional<? extends Reminder> doInBackground(Context... params) {
         final Context context = params[0];
         if (ExpiredBuildReminder.isEligible(context)) {
-          return Optional.of(new ExpiredBuildReminder());
+          return Optional.of(new ExpiredBuildReminder(context));
         } else if (DefaultSmsReminder.isEligible(context)) {
           return Optional.of(new DefaultSmsReminder(context));
-        } else if (SystemSmsImportReminder.isEligible(context)) {
+        } else if (Util.isDefaultSmsProvider(context) && SystemSmsImportReminder.isEligible(context)) {
           return Optional.of((new SystemSmsImportReminder(context, masterSecret)));
         } else if (PushRegistrationReminder.isEligible(context)) {
           return Optional.of((new PushRegistrationReminder(context, masterSecret)));

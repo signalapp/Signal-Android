@@ -199,7 +199,6 @@ public abstract class LegacyMmsConnection {
 
   protected List<Header> getBaseHeaders() {
     final String                number    = TelephonyUtil.getManager(context).getLine1Number(); ;
-    final Optional<BasicHeader> mdnHeader = getVerizonMdnHeader(number);
 
     return new LinkedList<Header>() {{
       add(new BasicHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic"));
@@ -209,26 +208,8 @@ public abstract class LegacyMmsConnection {
       if (!TextUtils.isEmpty(number)) {
         add(new BasicHeader("x-up-calling-line-id", number));
         add(new BasicHeader("X-MDN", number));
-        if (mdnHeader.isPresent()) add(mdnHeader.get());
       }
     }};
-  }
-
-  private Optional<BasicHeader> getVerizonMdnHeader(@Nullable String number) {
-    if (TextUtils.isEmpty(number)) return Optional.absent();
-
-    try {
-      PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
-      PhoneNumber     phoneNumber     = phoneNumberUtil.parse(number, null);
-      String          mdnNumber       = phoneNumberUtil.getNationalSignificantNumber(phoneNumber);
-
-      return Optional.of(new BasicHeader("x-vzw-mdn", mdnNumber));
-    } catch (NumberParseException e) {
-      Log.w(TAG, e);
-      return Optional.absent();
-    }
-
-
   }
 
   public static class Apn {

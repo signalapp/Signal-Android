@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationItem
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/conversation_item"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@drawable/conversation_item_background">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/conversation_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/conversation_item_background">
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -66,6 +67,13 @@
                     android:visibility="gone"
                     tools:src="@drawable/ic_video_light"
                     tools:visibility="visible" />
+
+            <org.thoughtcrime.securesms.components.AudioView
+                    android:id="@+id/audio_view"
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    app:tintColor="@color/grey_500"
+                    android:visibility="gone"/>
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/conversation_item_body"

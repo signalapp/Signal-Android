@@ -73,8 +73,6 @@ preveriti ta stik.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker prejemnik ni več uporabnik aplikacije Signal.\n\nPošljem nešifrirano?</string>
   <string name="ConversationItem_unable_to_open_media">Ne najdem aplikacije za odpiranje te vrste datotek.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Začnem varno sejo?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Začnem varno sejo z %s?</string>
   <string name="ConversationActivity_reset_secure_session_confirmation">Potrdilo o ponastavitvi varne seje</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Ste prepričani, da želite ponastaviti to varno sejo?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potrditev brisanja pogovora</string>
@@ -281,7 +279,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="RatingManager_later">Kasneje</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiram ta stik?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Sporočil tega stika ne boste več videli.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Od tega uporabnika ne boste več prejemali sporočil in klicev.</string>
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokiram ta stik?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Ste prepričani, da želite odblokirati ta stik?</string>
@@ -371,6 +369,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="ThreadRecord_called">Klicali ste</string>
   <string name="ThreadRecord_called_you">Imeli ste klic</string>
   <string name="ThreadRecord_missed_call">Neodgovorjen klic</string>
+  <string name="ThreadRecord_media_message">Multimedijsko sporočilo</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nimate identifikacijskega ključa.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Prejemnik nima identifikacijskega ključa.</string>
@@ -393,7 +392,6 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="ViewIdentityActivity_my_identity_fingerprint">Moja identifikacija</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Začnem kljub že poslani zahtevi?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Prejemniku ste že poslali zahtevo za inicijacijo, ste prepričani, da želite poslati še eno?    To bo razveljavilo prvo zahtevo.</string>
   <string name="KeyExchangeInitiator_send">Pošlji</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Okvarjeno šifrirano sporočilo...</string>
@@ -520,6 +518,8 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
 Obnovi podatke iz predhodno ustvarjene šifrirane varnostne kopije Signal.</string>
   <string name="import_fragment__import_plaintext_backup">Uvoz iz nešifrirane varnostne kopije</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Uvozi iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami sporočil SMS.</string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Celoten pogovor</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Brez slik</string>
   <!--message_recipients_list_item-->
@@ -799,7 +799,6 @@ Brezplačno zasebno sporočanje in klici za uporabnike storitve Signal</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Povabi</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Začni varno sejo</string>
   <string name="conversation_insecure__security">Varnost</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Izbriši označeno</string>
@@ -848,12 +847,20 @@ Brezplačno zasebno sporočanje in klici za uporabnike storitve Signal</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Vaša različica aplikacije Signal je potekla!</string>
   <string name="reminder_header_expired_build_details">Pošiljanje sporočil ni več mogoče. Prosimo, posodobite aplikacijo na zadnjo različico.</string>
-  <string name="reminder_header_sms_default_title">Uporabljam kot privzeto aplikacijo SMS?</string>
+  <string name="reminder_header_expired_build_button">NADGRADI</string>
+  <string name="reminder_header_sms_default_title">Uporabljaj kot privzeto aplikacijo SMS</string>
   <string name="reminder_header_sms_default_text">Z dotikom nastavite Signal za privzeto aplikacijo SMS</string>
-  <string name="reminder_header_sms_import_title">Uvozim iz sistemske zbirke sporočil SMS?</string>
+  <string name="reminder_header_sms_default_button">NASTAVI</string>
+  <string name="reminder_header_sms_import_title">Uvoz iz sistemske zbirke sporočil SMS</string>
   <string name="reminder_header_sms_import_text">Tapnite za prenos sporočil SMS iz vašega telefona v šifrirano zbirko.</string>
-  <string name="reminder_header_push_title">Vklopim sporočila Signal?</string>
-  <string name="reminder_header_push_text">Takojšnja dostava in večja zasebnost, brez dodatnih stroškov za sporočila SMS.</string>
+  <string name="reminder_header_sms_import_button">UVOZI</string>
+  <string name="reminder_header_push_title">Vklopi Signal</string>
+  <string name="reminder_header_push_text">Nadgradite izkušnjo svoje komunikacije.</string>
+  <string name="reminder_header_push_button">OMOGOČI</string>
+  <string name="reminder_header_invite_title">Povabi k uporabi aplikacije Signal</string>
+  <string name="reminder_header_invite_text">Prenesite svojo komunikacijo z osebo %1$s na novo raven.</string>
+  <string name="reminder_header_invite_button">POVABI</string>
+  <string name="reminder_header_close_button">ZAPRI</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_cant_display">Predogled te slike ni mogoč</string>

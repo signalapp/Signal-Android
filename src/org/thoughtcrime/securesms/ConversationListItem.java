@@ -25,12 +25,16 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
+import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -64,6 +68,7 @@ public class ConversationListItem extends RelativeLayout
   private TextView        dateView;
   private boolean         read;
   private AvatarImageView contactPhotoImage;
+  private ThumbnailView   thumbnailView;
 
   private final @DrawableRes int readBackground;
   private final @DrawableRes int unreadBackround;
@@ -88,9 +93,19 @@ public class ConversationListItem extends RelativeLayout
     this.fromView          = (FromTextView)    findViewById(R.id.from);
     this.dateView          = (TextView)        findViewById(R.id.date);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
+    this.thumbnailView     = (ThumbnailView)   findViewById(R.id.thumbnail);
+
+    this.thumbnailView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        ConversationListItem.this.performClick();
+      }
+    });
   }
 
-  public void set(ThreadRecord thread, Locale locale, Set<Long> selectedThreads, boolean batchMode) {
+  public void set(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
+                  @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode)
+  {
     this.selectedThreads  = selectedThreads;
     this.recipients       = thread.getRecipients();
     this.threadId         = thread.getThreadId();
@@ -109,6 +124,7 @@ public class ConversationListItem extends RelativeLayout
       dateView.setTypeface(read ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
     }
 
+    setThumbnailSnippet(masterSecret, thread);
     setBatchState(batchMode);
     setBackground(thread);
     setRippleColor(recipients);
@@ -134,6 +150,23 @@ public class ConversationListItem extends RelativeLayout
 
   public int getDistributionType() {
     return distributionType;
+  }
+
+  private void setThumbnailSnippet(MasterSecret masterSecret, ThreadRecord thread) {
+    if (thread.getSnippetUri() != null) {
+      this.thumbnailView.setVisibility(View.VISIBLE);
+      this.thumbnailView.setImageResource(masterSecret, thread.getSnippetUri());
+
+      LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
+      subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.thumbnail);
+      this.subjectView.setLayoutParams(subjectParams);
+    } else {
+      this.thumbnailView.setVisibility(View.GONE);
+
+      LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
+      subjectParams.addRule(RelativeLayout.LEFT_OF, 0);
+      this.subjectView.setLayoutParams(subjectParams);
+    }
   }
 
   private void setBackground(ThreadRecord thread) {

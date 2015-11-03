@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.components.reminder;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 public class PushRegistrationReminder extends Reminder {
 
   public PushRegistrationReminder(final Context context, final MasterSecret masterSecret) {
-    super(R.drawable.ic_push_registration_reminder,
-          R.string.reminder_header_push_title,
-          R.string.reminder_header_push_text);
+    super(context.getString(R.string.reminder_header_push_title),
+          context.getString(R.string.reminder_header_push_text));
 
     final OnClickListener okListener = new OnClickListener() {
       @Override
