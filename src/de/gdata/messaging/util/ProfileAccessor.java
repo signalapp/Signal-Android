@@ -278,7 +278,7 @@ public class ProfileAccessor {
   }
   public static String getProfileColorForId(Context context, String profileId) {
     String profileColor = getPreferences(context).getProfileColorForProfileId(profileId);
-    if(profileColor.equals("0")) {
+    if(profileColor.equals("0") || !getPreferences(context).getChatPartnersColorEnabled()) {
       profileColor = getPreferences(context).getCurrentColorHex()+"";
     }
     return profileColor;

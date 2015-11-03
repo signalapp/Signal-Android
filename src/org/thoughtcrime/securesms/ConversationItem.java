@@ -302,22 +302,28 @@ public class ConversationItem extends LinearLayout {
         setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
         if (messageRecord.isOutgoing()) {
           int color = mPreferences.getCurrentColorHex();
-          triangleTick.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
-          conversationParent.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
+          triangleTick.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+          conversationParent.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }
     }
     if(conversationParent != null && !messageRecord.isOutgoing()) {
         try {
           int color = Integer.parseInt(ProfileAccessor.getProfileColorForId(getContext(), GUtil.numberToLong(messageRecord.getIndividualRecipient().getNumber()) + ""));
-          triangleTick.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
-          conversationParent.getBackground().setColorFilter(color, PorterDuff.Mode.OVERLAY);
-          triangleTick.setBackgroundColor(color);
+
+          conversationParent.getBackground().setColorFilter(adjustAlpha(color, 0.1f), PorterDuff.Mode.SRC_ATOP);
+          triangleTick.getBackground().setColorFilter(adjustAlpha(color, 0.1f), PorterDuff.Mode.SRC_ATOP);
         } catch (Exception e) {
           //If for unknown reasons the parsing fails
         }
     }
   }
-
+  public int adjustAlpha(int color, float factor) {
+    int alpha = Math.round(Color.alpha(color) * factor);
+    int red = Color.red(color);
+    int green = Color.green(color);
+    int blue = Color.blue(color);
+    return Color.argb(alpha, red, green, blue);
+  }
   private void setSelectionBackgroundDrawables(MessageRecord messageRecord) {
     int[] attributes = new int[]{R.attr.conversation_list_item_background_selected,
         R.attr.conversation_item_background};

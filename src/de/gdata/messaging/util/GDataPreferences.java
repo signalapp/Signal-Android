@@ -33,11 +33,13 @@ public class GDataPreferences {
   private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTS";
   private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
   private static final String COLOR_HEX = "COLOR_HEX";
+  private static final String COLOR_PROGRESS = "COLOR_PROGRESS";
 
   private static final String PROFILE_PICTURE_URI = "PROFILE_PICTURE_URI";
   private static final String PROFILE_STATUS = "PROFILE_STATUS";
   private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
   private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
+  private static final String CP_COLOR_ACTIVATED = "CP_COLOR_ACTIVATED";
 
 
   private final SharedPreferences mPreferences;
@@ -130,6 +132,9 @@ public class GDataPreferences {
   public void saveCurrentColorValue(int colorHex) {
     mPreferences.edit().putInt(COLOR_HEX, colorHex).commit();
   }
+  public void saveCurrentSeekBarColorProgress(int progress) {
+    mPreferences.edit().putInt(COLOR_PROGRESS, progress).commit();
+  }
   public boolean saveActiveContacts(String[] array) {
     mPreferences.edit().putInt(ACTIVE_CONTACTS + "_size", array.length).commit();
     for(int i=0;i<array.length;i++) {
@@ -186,7 +191,9 @@ public class GDataPreferences {
   public int getCurrentColorHex() {
     return mPreferences.getInt(COLOR_HEX, Color.RED);
   }
-
+  public int getColorProgress() {
+    return mPreferences.getInt(COLOR_PROGRESS, 0);
+  }
   public void saveE164Number(String e164number) {
     mPreferences.edit().putString(SAVE_E164_NUMBER, e164number).commit();
   }
@@ -261,6 +268,13 @@ public class GDataPreferences {
 
     lastImageNumber = getLastImageIndicator();
     return lastImageNumber;
+  }
+
+  public void saveChatPartnersColorEnabled(boolean b) {
+    mPreferences.edit().putBoolean(CP_COLOR_ACTIVATED, b).commit();
+  }
+  public boolean getChatPartnersColorEnabled() {
+    return mPreferences.getBoolean(CP_COLOR_ACTIVATED, true);
   }
 }
 

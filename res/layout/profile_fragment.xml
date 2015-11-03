@@ -160,9 +160,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10px"
                                 android:layout_gravity="center"
-                                android:max="100"
-                                android:progressDrawable="@drawable/custom_progress"
-                                android:progress="50"></SeekBar>
+                                android:max="510"
+                                android:thumb="@drawable/seekbar_scrubber_control_selector_holo_light"></SeekBar>
 
                             <android.support.design.widget.FloatingActionButton
                                 android:id="@+id/fab_new_color"
@@ -176,7 +175,14 @@
                                 app:elevation="5dp"
                                 app:fabSize="mini"
                                 app:pressedTranslationZ="2dp" />
+
                         </LinearLayout>
+
+                        <CheckBox
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/enabled_chat_partners_color"
+                            android:text="@string/profile_color_recipient"/>
                     </LinearLayout>
                 </RelativeLayout>
 

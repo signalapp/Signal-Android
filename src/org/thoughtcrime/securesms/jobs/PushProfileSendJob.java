@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -25,6 +26,7 @@ import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
@@ -33,6 +35,7 @@ import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -111,16 +114,24 @@ public class PushProfileSendJob extends PushSendJob implements InjectableType {
       TextSecureAddress          address      = getPushAddress(destination);
       List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);
       String                     body         = PartParser.getMessageText(message.getBody());
-      TextSecureAttachment at = TextSecureAttachment.newStreamBuilder().withLength(10)
-              .withStream(new ByteArrayInputStream(("").getBytes("UTF-8")))
-              .withContentType(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1 + new GDataPreferences(context).getCurrentColorHex()+ ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2).build();
-      attachments.add(0, at);
+
+      ByteArrayInputStream inputStream = new ByteArrayInputStream(("COLOR_TAGS").getBytes("UTF-8"));
+
+      int size = inputStream.available();
+      byte[] buf = new byte[size];
+      int len = inputStream.read(buf, 0, size);
+
+      attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1
+              + new GDataPreferences(context).getCurrentColorHex()
+              + ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2, len));
+
       TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()
               .withBody(body)
               .withAttachments(attachments)
               .withTimestamp(message.getSentTimestamp())
               .asProfileUpdate(asProfileUpdate)
               .build();
+
       messageSender.sendMessage(address, mediaMessage);
     } catch (InvalidNumberException | UnregisteredUserException e) {
       Log.w(TAG, e);

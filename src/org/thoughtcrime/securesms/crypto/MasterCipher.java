@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.util.Log;
 
+import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libaxolotl.InvalidMessageException;
@@ -157,7 +158,7 @@ public class MasterCipher {
     try {
       byte[] workaround = new byte[encryptedAndMac.length - hmac.getMacLength()];
     } catch(NegativeArraySizeException ex) {
-      throw new InvalidMessageException("MAC NegativeArraySizeException");
+     Log.w("G Data", "MAC NegativeArraySizeException");
     }
     byte[] encrypted = new byte[encryptedAndMac.length - hmac.getMacLength()];
     System.arraycopy(encryptedAndMac, 0, encrypted, 0, encrypted.length);

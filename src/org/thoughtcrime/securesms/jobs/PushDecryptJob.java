@@ -221,36 +221,42 @@ public class PushDecryptJob extends MasterSecretJob {
   private void handleProfileUpdate(TextSecureMessage message, MasterSecret masterSecret, TextSecureEnvelope envelope)
       throws MmsException
   {
-    Set<List<TextSecureAttachment>> attachmentSet = message.getAttachments().asSet();
-    List<TextSecureAttachment> attachments = new LinkedList<>();
     String color = new GDataPreferences(context).getCurrentColorHex()+"";
-    for(List<TextSecureAttachment> attachmentList : attachmentSet) {
-      attachments = attachmentList;
-    }
-    PduBody parts = OutgoingMediaMessage.pduBodyFor(masterSecret, attachments);
+
     Long numberAsLong = GUtil.numberToLong(RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false).getPrimaryRecipient().getNumber());
-    PartDatabase database = DatabaseFactory.getPartDatabase(context);;
-    database.insertParts(masterSecret, numberAsLong, parts);
-
-    ApplicationContext.getInstance(context)
-        .getJobManager()
-        .add(new ProfileImageDownloadJob(context, numberAsLong));
-
     if(message.getAttachments().isPresent()) {
+      int colorPosition = -1;
       List<TextSecureAttachment> group = message.getAttachments().get();
-      for(TextSecureAttachment at : group) {
-       if(at.getContentType().contains(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1)) {
-         String content = at.getContentType();
-         int startPosition = content.indexOf(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1) + ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1.length();
-         int endPosition = content.indexOf(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2, startPosition);
-         color = content.substring(startPosition, endPosition);
-         ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
-       }
+      for (int i=0; i<group.size(); i++) {
+        if (group.get(i).getContentType().contains(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1)) {
+          String content = group.get(i).getContentType();
+          int startPosition = content.indexOf(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1) + ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1.length();
+          int endPosition = content.indexOf(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2, startPosition);
+          color = content.substring(startPosition, endPosition);
+
+          colorPosition = i;
+        }
       }
+      //If a color has been extracted from the attachments, it can be removed before initiating the downloads
+      if(colorPosition>=0) {
+        group.remove(colorPosition);
+      }
+
+      PduBody parts = OutgoingMediaMessage.pduBodyFor(masterSecret, group);
+      PartDatabase database = DatabaseFactory.getPartDatabase(context);
+
+      database.deleteParts(numberAsLong); // Only the last ProfileImage needs to be downloaded
+      database.insertParts(masterSecret, numberAsLong, parts);
+
+      ApplicationContext.getInstance(context)
+              .getJobManager()
+              .add(new ProfileImageDownloadJob(context, numberAsLong));
     }
     ProfileAccessor.setStatusForProfileId(context, numberAsLong + "", message.getBody().get());
     ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
     ProfileAccessor.setUpdateTimeForProfileId(context, numberAsLong + "", message.getTimestamp());
+    ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
+
   }
   private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
                                  TextSecureMessage message, Optional<Long> smsMessageId)

@@ -54,6 +54,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -162,6 +163,7 @@ public class ProfileFragment extends Fragment {
     private SeekBar seekBarFont;
     private FloatingActionButton floatingActionColorButton;
     private RelativeLayout layoutColor;
+    private CheckBox chatPartnersColor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -216,6 +218,7 @@ public class ProfileFragment extends Fragment {
         attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
         scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
         seekBarFont = (SeekBar)getView().findViewById(R.id.seekbar_font);
+        chatPartnersColor = (CheckBox) getView().findViewById(R.id.enabled_chat_partners_color);
         layoutColor = (RelativeLayout)getView().findViewById(R.id.layout_color);
         floatingActionColorButton = (FloatingActionButton) getView().findViewById(R.id.fab_new_color);
         final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
@@ -601,9 +604,18 @@ public class ProfileFragment extends Fragment {
     }
     private void initColorSeekbar() {
         layoutColor.setVisibility(View.VISIBLE);
-        seekBarFont.setMax(256*5-1);
-        seekBarFont.setProgress(gDataPreferences.getCurrentColorHex()-510);
-        floatingActionColorButton.setRippleColor(gDataPreferences.getCurrentColorHex());
+        chatPartnersColor.setChecked(gDataPreferences.getChatPartnersColorEnabled());
+        chatPartnersColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gDataPreferences.saveChatPartnersColorEnabled(chatPartnersColor.isChecked());
+            }
+        });
+
+        seekBarFont.setMax(256 * 5 - 2);
+        int oldColor = gDataPreferences.getCurrentColorHex();
+        seekBarFont.setProgress(gDataPreferences.getColorProgress());
+        floatingActionColorButton.setRippleColor(oldColor);
         seekBarFont.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             int color = Color.BLUE;
@@ -652,6 +664,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 gDataPreferences.saveCurrentColorValue(color);
+                gDataPreferences.saveCurrentSeekBarColorProgress(seekBar.getProgress());
+                hasChanged = true;
             }
         });
     }
