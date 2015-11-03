@@ -221,7 +221,7 @@ public class PushDecryptJob extends MasterSecretJob {
   private void handleProfileUpdate(TextSecureMessage message, MasterSecret masterSecret, TextSecureEnvelope envelope)
       throws MmsException
   {
-    String color = new GDataPreferences(context).getCurrentColorHex()+"";
+    String color = new GDataPreferences(context).getCurrentColorHex(context)+"";
 
     Long numberAsLong = GUtil.numberToLong(RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false).getPrimaryRecipient().getNumber());
     if(message.getAttachments().isPresent()) {

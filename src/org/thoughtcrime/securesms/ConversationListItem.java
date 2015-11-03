@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Handler;
@@ -93,6 +95,12 @@ public class ConversationListItem extends RelativeLayout
         this.fromView = (TextView) findViewById(R.id.from);
         this.dateView = (TextView) findViewById(R.id.date);
         this.unreadCountView = (TextView) findViewById(R.id.tab_layout_count);
+
+        int color = new GDataPreferences(getContext()).getCurrentColorHex(context);
+        if(getContext().getResources().getColor(R.color.gdata_primary_color) == color) {
+            color = getContext().getResources().getColor(R.color.gdata_red);
+        }
+        unreadCountView.getBackground().setColorFilter(GUtil.adjustAlpha(color, 0.2f), PorterDuff.Mode.SRC_ATOP);
 
         this.contactPhotoImage = (CircledImageView) findViewById(R.id.contact_photo_image);
 

@@ -52,6 +52,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -758,7 +760,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
         TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
         CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
-        int color = gDataPref.getCurrentColorHex();
+        int color = gDataPref.getCurrentColorHex(getApplicationContext());
         ((RelativeLayout) mCustomView.findViewById(R.id.drawerall).getParent()).setBackgroundColor(color);
 
         profileId = GUtil.numberToLong(recipient.getNumber()) + "" ;
@@ -768,6 +770,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 color = Integer.parseInt(ProfileAccessor.getProfileColorForId(getApplicationContext(), profileId));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
                 ((RelativeLayout) mCustomView.findViewById(R.id.drawerall).getParent()).setBackgroundColor(color);
+
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Window window = getWindow();
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    window.setStatusBarColor(GUtil.adjustAlpha(color, 0.8f));
+                }
             } catch (Exception e) {
                 //If for unknown reasons the parsing fails
             }

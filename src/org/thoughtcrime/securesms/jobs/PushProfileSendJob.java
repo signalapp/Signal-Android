@@ -122,7 +122,7 @@ public class PushProfileSendJob extends PushSendJob implements InjectableType {
       int len = inputStream.read(buf, 0, size);
 
       attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1
-              + new GDataPreferences(context).getCurrentColorHex()
+              + new GDataPreferences(context).getCurrentColorHex(context)
               + ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2, len));
 
       TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()

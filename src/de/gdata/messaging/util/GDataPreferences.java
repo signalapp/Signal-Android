@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.JsonUtils;
@@ -188,8 +189,8 @@ public class GDataPreferences {
   public String getApplicationFont() {
     return mPreferences.getString(APPLICATION_FONT, "");
   }
-  public int getCurrentColorHex() {
-    return mPreferences.getInt(COLOR_HEX, Color.RED);
+  public int getCurrentColorHex(Context context) {
+    return mPreferences.getInt(COLOR_HEX, context.getResources().getColor(R.color.gdata_primary_color));
   }
   public int getColorProgress() {
     return mPreferences.getInt(COLOR_PROGRESS, 0);

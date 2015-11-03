@@ -58,6 +58,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -260,17 +262,23 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         refreshProfile();
         setActionFloatMenuIcons();
         setColorBar();
-
     }
 
     private void setColorBar() {
-        //int color = Color.parseColor(GUtil.generateRandomColor(getApplicationContext()));
-        int color = gDataPreferences.getCurrentColorHex();
+        int color = gDataPreferences.getCurrentColorHex(getApplicationContext());
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
         toolbar.setBackgroundColor(color);
         toolbar.setDrawingCacheBackgroundColor(color);
         mSlidingTabLayout.setBackgroundColor(color);
-        fab.setRippleColor(color);
+        if(getApplicationContext().getResources().getColor(R.color.gdata_primary_color) != color) {
+            fab.setRippleColor(color);
+        }
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(getApplicationContext()), 0.8f));
+        }
     }
 
     public void toggleActionFloatMenu(boolean toggleMenu, boolean toggleButton, boolean fastClose) {

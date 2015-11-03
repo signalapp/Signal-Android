@@ -4,12 +4,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
 
 
 public class PassphraseRequiredActionBarActivity extends ActionBarActivity implements PassphraseRequiredActivity {
@@ -21,12 +23,12 @@ public class PassphraseRequiredActionBarActivity extends ActionBarActivity imple
     super.onCreate(savedInstanceState);
     delegate.onCreate(this);
     if(getSupportActionBar()!= null) {
-      getSupportActionBar().setBackgroundDrawable(new ColorDrawable(new GDataPreferences(this).getCurrentColorHex()));
-      if (BuildConfig.VERSION_CODE >= Build.VERSION_CODES.LOLLIPOP) {
+      getSupportActionBar().setBackgroundDrawable(new ColorDrawable(new GDataPreferences(this).getCurrentColorHex(getApplicationContext())));
+      if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(new GDataPreferences(this).getCurrentColorHex());
+        window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(getApplicationContext()), 0.8f));
       }
     }
   }
