@@ -21,6 +21,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
 import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
+import org.thoughtcrime.redphone.signaling.UnauthorizedException;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.LogSubmitActivity;
@@ -184,13 +185,20 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
                                                                                        TextSecurePreferences.getLocalNumber(context),
                                                                                        TextSecurePreferences.getPushServerPassword(context));
 
-          accountManager.setGcmId(Optional.<String>absent());
-          redPhoneAccountManager.setGcmId(Optional.<String>absent());
+          try {
+            accountManager.setGcmId(Optional.<String>absent());
+          } catch (AuthorizationFailedException e) {
+            Log.w(TAG, e);
+          }
+
+          try {
+            redPhoneAccountManager.setGcmId(Optional.<String>absent());
+          } catch (UnauthorizedException e) {
+            Log.w(TAG, e);
+          }
+
           GoogleCloudMessaging.getInstance(context).unregister();
 
-          return SUCCESS;
-        } catch (AuthorizationFailedException afe) {
-          Log.w(TAG, afe);
           return SUCCESS;
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
