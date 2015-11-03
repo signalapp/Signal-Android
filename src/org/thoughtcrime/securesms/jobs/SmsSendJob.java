@@ -174,6 +174,7 @@ public class SmsSendJob extends SendJob {
     JobParameters.Builder builder = JobParameters.newBuilder()
                                                  .withPersistence()
                                                  .withRequirement(new MasterSecretRequirement(context))
+                                                 .withRetryCount(15)
                                                  .withGroupId(name);
 
     if (TextSecurePreferences.isWifiSmsEnabled(context)) {
