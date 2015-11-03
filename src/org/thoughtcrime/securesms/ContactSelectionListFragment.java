@@ -24,23 +24,26 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
+import org.thoughtcrime.securesms.components.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
+import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
  * Fragment for selecting a one or more contacts from a list.
@@ -65,9 +68,10 @@ public class ContactSelectionListFragment extends    Fragment
 
   private Map<Long, String>         selectedContacts;
   private OnContactSelectedListener onContactSelectedListener;
-  private StickyListHeadersListView listView;
   private SwipeRefreshLayout        swipeRefresh;
   private String                    cursorFilter;
+  private RecyclerView              recyclerView;
+  private RecyclerViewFastScroller  fastScroller;
 
   @Override
   public void onActivityCreated(Bundle icicle) {
@@ -89,13 +93,12 @@ public class ContactSelectionListFragment extends    Fragment
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.contact_selection_list_fragment, container, false);
 
-    emptyText      = (TextView)                  view.findViewById(android.R.id.empty);
-    swipeRefresh   = (SwipeRefreshLayout)        view.findViewById(R.id.swipe_refresh);
-    listView       = (StickyListHeadersListView) view.findViewById(android.R.id.list);
-    listView.setFocusable(true);
-    listView.setFastScrollEnabled(true);
-    listView.setDrawingListUnderStickyHeader(false);
-    listView.setOnItemClickListener(new ListClickListener());
+    emptyText    = ViewUtil.findById(view, android.R.id.empty);
+    recyclerView = ViewUtil.findById(view, R.id.recycler_view);
+    swipeRefresh = ViewUtil.findById(view, R.id.swipe_refresh);
+    fastScroller = ViewUtil.findById(view, R.id.fast_scroller);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    fastScroller.setRecyclerView(recyclerView);
 
     swipeRefresh.setEnabled(getActivity().getIntent().getBooleanExtra(REFRESHABLE, true) &&
                             Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
@@ -117,9 +120,13 @@ public class ContactSelectionListFragment extends    Fragment
   }
 
   private void initializeCursor() {
-    ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(getActivity(), null, isMulti());
+    ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(getActivity(),
+                                                                          null,
+                                                                          new ListClickListener(),
+                                                                          isMulti());
     selectedContacts = adapter.getSelectedContacts();
-    listView.setAdapter(adapter);
+    recyclerView.setAdapter(adapter);
+    recyclerView.addItemDecoration(new StickyHeaderDecoration(adapter, true));
     this.getLoaderManager().initLoader(0, null, this);
   }
 
@@ -147,19 +154,18 @@ public class ContactSelectionListFragment extends    Fragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-    ((CursorAdapter) listView.getAdapter()).changeCursor(data);
+    ((CursorRecyclerViewAdapter) recyclerView.getAdapter()).changeCursor(data);
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> loader) {
-    ((CursorAdapter) listView.getAdapter()).changeCursor(null);
+    ((CursorRecyclerViewAdapter) recyclerView.getAdapter()).changeCursor(null);
   }
 
-  private class ListClickListener implements AdapterView.OnItemClickListener {
+  private class ListClickListener implements ContactSelectionListAdapter.ItemClickListener {
     @Override
-    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-      ContactSelectionListItem contact = (ContactSelectionListItem)v;
+    public void onItemClick(ContactSelectionListItem contact) {
 
       if (!isMulti() || !selectedContacts.containsKey(contact.getContactId())) {
         selectedContacts.put(contact.getContactId(), contact.getNumber());

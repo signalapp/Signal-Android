@@ -24,6 +24,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
@@ -33,6 +34,7 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 public class ViewUtil {
@@ -42,6 +44,42 @@ public class ViewUtil {
       v.setBackground(drawable);
     } else {
       v.setBackgroundDrawable(drawable);
+    }
+  }
+
+  public static void setY(final @NonNull View v, final int y) {
+    if (VERSION.SDK_INT >= 11) {
+      ViewCompat.setY(v, y);
+    } else {
+      ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)v.getLayoutParams();
+      params.topMargin = y;
+      v.setLayoutParams(params);
+    }
+  }
+
+  public static float getY(final @NonNull View v) {
+    if (VERSION.SDK_INT >= 11) {
+      return ViewCompat.getY(v);
+    } else {
+      return ((ViewGroup.MarginLayoutParams)v.getLayoutParams()).topMargin;
+    }
+  }
+
+  public static void setX(final @NonNull View v, final int x) {
+    if (VERSION.SDK_INT >= 11) {
+      ViewCompat.setX(v, x);
+    } else {
+      ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)v.getLayoutParams();
+      params.leftMargin = x;
+      v.setLayoutParams(params);
+    }
+  }
+
+  public static float getX(final @NonNull View v) {
+    if (VERSION.SDK_INT >= 11) {
+      return ViewCompat.getX(v);
+    } else {
+      return ((LayoutParams)v.getLayoutParams()).leftMargin;
     }
   }
 
