@@ -611,8 +611,9 @@ public class ProfileFragment extends Fragment {
                 gDataPreferences.saveChatPartnersColorEnabled(chatPartnersColor.isChecked());
             }
         });
-
-        seekBarFont.setMax(256 * 5 - 2);
+        final int maxValueColorMOne = 255;
+        final int maxValueColor = 256;
+        seekBarFont.setMax(maxValueColor * 5 - 2);
         int oldColor = gDataPreferences.getCurrentColorHex();
         seekBarFont.setProgress(gDataPreferences.getColorProgress());
         floatingActionColorButton.setRippleColor(oldColor);
@@ -626,32 +627,32 @@ public class ProfileFragment extends Fragment {
                     int g = 0;
                     int b = 0;
 
-                    if(progress < 256){
+                    if(progress < maxValueColor){
                         b = progress;
-                    } else if(progress < 256*2) {
-                        g = progress%256;
-                        b = 256 - progress%256;
-                    } else if(progress < 256*3) {
-                        g = 255;
-                        b = progress%256;
-                    } else if(progress < 256*4) {
-                        r = progress%256;
-                        g = 256 - progress%256;
-                        b = 256 - progress%256;
-                    } else if(progress < 256*5) {
-                        r = 255;
+                    } else if(progress < maxValueColor*2) {
+                        g = progress%maxValueColor;
+                        b = maxValueColor - progress%maxValueColor;
+                    } else if(progress < maxValueColor*3) {
+                        g = maxValueColorMOne;
+                        b = progress%maxValueColor;
+                    } else if(progress < maxValueColor*4) {
+                        r = progress%maxValueColor;
+                        g = maxValueColor - progress%maxValueColor;
+                        b = maxValueColor - progress%maxValueColor;
+                    } else if(progress < maxValueColor*5) {
+                        r = maxValueColorMOne;
                         g = 0;
-                        b = progress%256;
-                    } else if(progress < 256*6) {
-                        r = 255;
-                        g = progress%256;
-                        b = 256 - progress%256;
-                    } else if(progress < 256*7) {
-                        r = 255;
-                        g = 255;
-                        b = progress%256;
+                        b = progress%maxValueColor;
+                    } else if(progress < maxValueColor*6) {
+                        r = maxValueColorMOne;
+                        g = progress%maxValueColor;
+                        b = maxValueColor - progress%maxValueColor;
+                    } else if(progress < maxValueColor*7) {
+                        r = maxValueColorMOne;
+                        g = maxValueColorMOne;
+                        b = progress%maxValueColor;
                     }
-                    color = Color.argb(255, r, g, b);
+                    color = Color.argb(maxValueColorMOne, r, g, b);
                     floatingActionColorButton.setRippleColor(color);
                 }
             }
