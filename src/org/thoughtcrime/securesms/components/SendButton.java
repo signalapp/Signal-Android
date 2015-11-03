@@ -12,6 +12,8 @@ import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 
+import de.gdata.messaging.util.GUtil;
+
 public class SendButton extends ImageButton {
   private TransportOptions transportOptions;
   private EditText         composeText;
@@ -71,7 +73,7 @@ public class SendButton extends ImageButton {
       this.composeText.setHint(null);
     } else {
       SpannableString span = new SpannableString(hint);
-      span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+      span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
       this.composeText.setHint(span);
     }
   }

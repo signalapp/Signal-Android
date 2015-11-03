@@ -265,7 +265,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
 
     private void setColorBar() {
-        int color = gDataPreferences.getCurrentColorHex(getApplicationContext());
+        int color = gDataPreferences.getCurrentColorHex();
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
         toolbar.setBackgroundColor(color);
         toolbar.setDrawingCacheBackgroundColor(color);
@@ -277,7 +277,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(getApplicationContext()), 0.8f));
+            window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(), GUtil.ALPHA_80_PERCENT));
         }
     }
 

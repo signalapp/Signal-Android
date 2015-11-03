@@ -301,7 +301,7 @@ public class ConversationItem extends LinearLayout {
         setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
         setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
         if (messageRecord.isOutgoing()) {
-          int color = mPreferences.getCurrentColorHex(context);
+          int color = mPreferences.getCurrentColorHex();
           triangleTick.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
           conversationParent.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }
@@ -310,8 +310,8 @@ public class ConversationItem extends LinearLayout {
         try {
           int color = Integer.parseInt(ProfileAccessor.getProfileColorForId(getContext(), GUtil.numberToLong(messageRecord.getIndividualRecipient().getNumber()) + ""));
 
-          conversationParent.getBackground().setColorFilter(GUtil.adjustAlpha(color, 0.1f), PorterDuff.Mode.SRC_ATOP);
-          triangleTick.getBackground().setColorFilter(GUtil.adjustAlpha(color, 0.1f), PorterDuff.Mode.SRC_ATOP);
+          conversationParent.getBackground().setColorFilter(GUtil.adjustAlpha(color, GUtil.ALPHA_10_PERCENT), PorterDuff.Mode.SRC_ATOP);
+          triangleTick.getBackground().setColorFilter(GUtil.adjustAlpha(color, GUtil.ALPHA_10_PERCENT), PorterDuff.Mode.SRC_ATOP);
         } catch (Exception e) {
           //If for unknown reasons the parsing fails
         }

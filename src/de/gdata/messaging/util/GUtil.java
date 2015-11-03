@@ -50,6 +50,10 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class GUtil {
 
 
+    public static final float ALPHA_80_PERCENT = 0.8f;
+    public static final float ALPHA_20_PERCENT = 0.2f;
+    public static final float ALPHA_10_PERCENT = 0.1f;
+
     public static String DESTROY_FLAG = "delete:";
 
     public static final View setFontForFragment(Context context, View root) {

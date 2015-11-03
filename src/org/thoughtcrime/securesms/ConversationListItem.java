@@ -96,11 +96,11 @@ public class ConversationListItem extends RelativeLayout
         this.dateView = (TextView) findViewById(R.id.date);
         this.unreadCountView = (TextView) findViewById(R.id.tab_layout_count);
 
-        int color = new GDataPreferences(getContext()).getCurrentColorHex(context);
+        int color = new GDataPreferences(getContext()).getCurrentColorHex();
         if(getContext().getResources().getColor(R.color.gdata_primary_color) == color) {
             color = getContext().getResources().getColor(R.color.gdata_red);
         }
-        unreadCountView.getBackground().setColorFilter(GUtil.adjustAlpha(color, 0.2f), PorterDuff.Mode.SRC_ATOP);
+        unreadCountView.getBackground().setColorFilter(GUtil.adjustAlpha(color, GUtil.ALPHA_20_PERCENT), PorterDuff.Mode.SRC_ATOP);
 
         this.contactPhotoImage = (CircledImageView) findViewById(R.id.contact_photo_image);
 

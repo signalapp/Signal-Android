@@ -613,7 +613,7 @@ public class ProfileFragment extends Fragment {
         });
 
         seekBarFont.setMax(256 * 5 - 2);
-        int oldColor = gDataPreferences.getCurrentColorHex(getActivity());
+        int oldColor = gDataPreferences.getCurrentColorHex();
         seekBarFont.setProgress(gDataPreferences.getColorProgress());
         floatingActionColorButton.setRippleColor(oldColor);
         seekBarFont.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

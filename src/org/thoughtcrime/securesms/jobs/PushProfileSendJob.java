@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -20,14 +19,12 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
-import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
@@ -35,7 +32,6 @@ import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -121,9 +117,9 @@ public class PushProfileSendJob extends PushSendJob implements InjectableType {
       byte[] buf = new byte[size];
       int len = inputStream.read(buf, 0, size);
 
-      attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1
-              + new GDataPreferences(context).getCurrentColorHex(context)
-              + ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2, len));
+      attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
+              + new GDataPreferences(context).getCurrentColorHex()
+              + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len));
 
       TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()
               .withBody(body)

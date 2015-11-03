@@ -6,8 +6,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.util.Pair;
 
-import com.google.zxing.common.StringUtils;
-
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -58,11 +56,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureSyncContext;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GService;
@@ -221,17 +215,17 @@ public class PushDecryptJob extends MasterSecretJob {
   private void handleProfileUpdate(TextSecureMessage message, MasterSecret masterSecret, TextSecureEnvelope envelope)
       throws MmsException
   {
-    String color = new GDataPreferences(context).getCurrentColorHex(context)+"";
+    String color = new GDataPreferences(context).getCurrentColorHex()+"";
 
     Long numberAsLong = GUtil.numberToLong(RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false).getPrimaryRecipient().getNumber());
     if(message.getAttachments().isPresent()) {
       int colorPosition = -1;
       List<TextSecureAttachment> group = message.getAttachments().get();
       for (int i=0; i<group.size(); i++) {
-        if (group.get(i).getContentType().contains(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1)) {
+        if (group.get(i).getContentType().contains(ProfileAccessor.TAG_OPEN_PROFILE_COLOR)) {
           String content = group.get(i).getContentType();
-          int startPosition = content.indexOf(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1) + ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_1.length();
-          int endPosition = content.indexOf(ProfileAccessor.PROFILE_FIELD_TYPE_COLOR_2, startPosition);
+          int startPosition = content.indexOf(ProfileAccessor.TAG_OPEN_PROFILE_COLOR) + ProfileAccessor.TAG_OPEN_PROFILE_COLOR.length();
+          int endPosition = content.indexOf(ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, startPosition);
           color = content.substring(startPosition, endPosition);
 
           colorPosition = i;

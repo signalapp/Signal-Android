@@ -23,12 +23,12 @@ public class PassphraseRequiredActionBarActivity extends ActionBarActivity imple
     super.onCreate(savedInstanceState);
     delegate.onCreate(this);
     if(getSupportActionBar()!= null) {
-      getSupportActionBar().setBackgroundDrawable(new ColorDrawable(new GDataPreferences(this).getCurrentColorHex(getApplicationContext())));
+      getSupportActionBar().setBackgroundDrawable(new ColorDrawable(new GDataPreferences(this).getCurrentColorHex()));
       if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(getApplicationContext()), 0.8f));
+        window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(), GUtil.ALPHA_80_PERCENT));
       }
     }
   }

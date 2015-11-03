@@ -189,8 +189,8 @@ public class GDataPreferences {
   public String getApplicationFont() {
     return mPreferences.getString(APPLICATION_FONT, "");
   }
-  public int getCurrentColorHex(Context context) {
-    return mPreferences.getInt(COLOR_HEX, context.getResources().getColor(R.color.gdata_primary_color));
+  public int getCurrentColorHex() {
+    return mPreferences.getInt(COLOR_HEX, mContext.getResources().getColor(R.color.gdata_primary_color));
   }
   public int getColorProgress() {
     return mPreferences.getInt(COLOR_PROGRESS, 0);
