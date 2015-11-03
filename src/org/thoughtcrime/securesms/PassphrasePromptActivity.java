@@ -46,6 +46,8 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
 
+import de.gdata.messaging.util.GUtil;
+
 /**
  * Activity that prompts for a user's passphrase.
  *
