@@ -157,7 +157,7 @@ public class ResponderCallManager extends CallManager {
                                                  masterSecret.getInitiatorMacKey(),
                                                  masterSecret.getInitiatorSrtpSalt());
     this.callAudioManager.setMute(muteEnabled);
-    this.callAudioManager.start();
+    this.callAudioManager.start(context);
   }
 
 }
