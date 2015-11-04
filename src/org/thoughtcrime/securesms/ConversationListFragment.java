@@ -174,12 +174,10 @@ public class ConversationListFragment extends Fragment
     int conversationsCount = getListAdapter().getBatchSelections().size();
     AlertDialogWrapper.Builder alert = new AlertDialogWrapper.Builder(getActivity());
     alert.setIconAttribute(R.attr.dialog_alert_icon);
-    alert.setTitle(getContext().getResources().getQuantityString(
-            R.plurals.ConversationListFragment_delete_selected_conversations,
-            conversationsCount, conversationsCount));
-    alert.setMessage(getContext().getResources().getQuantityString(
-            R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations,
-            conversationsCount, conversationsCount));
+    alert.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
+                                                                  conversationsCount, conversationsCount));
+    alert.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations,
+                                                                    conversationsCount, conversationsCount));
     alert.setCancelable(true);
 
     alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
