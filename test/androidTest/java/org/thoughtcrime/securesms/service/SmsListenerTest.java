@@ -38,13 +38,14 @@ import static org.mockito.Mockito.when;
 public class SmsListenerTest extends TextSecureTestCase {
 
   private static final String CHALLENGE_SMS_3_3         = "Your TextSecure verification code: 337-337";
+  private static final String CHALLENGE_SMS_3_3_PREPEND = "XXX\nYour TextSecure verification code: 1337-1337";
   private static final String CHALLENGE_SMS_3_4         = "Your TextSecure verification code: 337-1337";
   private static final String CHALLENGE_SMS_4_3         = "Your TextSecure verification code: 1337-337";
   private static final String CHALLENGE_SMS_4_4         = "Your TextSecure verification code: 1337-1337";
   private static final String CHALLENGE_SMS_4_4_PREPEND = "XXXYour TextSecure verification code: 1337-1337";
   private static final String CHALLENGE_SMS_4_4_APPEND  = "Your TextSecure verification code: 1337-1337XXX";
   private static final String[] CHALLENGE_SMS = {
-      CHALLENGE_SMS_3_3, CHALLENGE_SMS_3_4,         CHALLENGE_SMS_4_3,
+      CHALLENGE_SMS_3_3, CHALLENGE_SMS_3_3_PREPEND, CHALLENGE_SMS_3_4, CHALLENGE_SMS_4_3,
       CHALLENGE_SMS_4_4, CHALLENGE_SMS_4_4_PREPEND, CHALLENGE_SMS_4_4_APPEND
   };
 
@@ -53,7 +54,7 @@ public class SmsListenerTest extends TextSecureTestCase {
   private static final String CHALLENGE_4_3 = "1337337";
   private static final String CHALLENGE_4_4 = "13371337";
   private static final String[] CHALLENGES = {
-      CHALLENGE_3_3, CHALLENGE_3_4, CHALLENGE_4_3,
+      CHALLENGE_3_3, CHALLENGE_3_3, CHALLENGE_3_4, CHALLENGE_4_3,
       CHALLENGE_4_4, CHALLENGE_4_4, CHALLENGE_4_4,
   };
 
