@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -33,6 +34,7 @@ import android.view.MenuItem;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -46,6 +48,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     implements ConversationListFragment.ConversationSelectedListener
 {
   private static final String TAG = ConversationListActivity.class.getSimpleName();
+  private static boolean recentGroupCreate = false;
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -58,6 +61,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+    removeEmptyThreads();
   }
 
   @Override
@@ -79,6 +83,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    removeEmptyThreads();
   }
 
   @Override
@@ -226,4 +231,28 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI,
                                                  true, observer);
   }
+
+  public static void notifyOfGroupCreate() { recentGroupCreate = true; }
+
+  private void removeEmptyThreads() {
+    if (recentGroupCreate) {
+      Log.i(TAG, "Removing empty threads");
+      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(this);
+      Cursor cursor         = null;
+
+      try {
+        cursor = threadDatabase.getConversationList();
+        while (cursor != null && cursor.moveToNext()) {
+          long threadId = cursor.getLong(cursor.getColumnIndex(ThreadDatabase.MESSAGE_COUNT));
+          threadDatabase.update(threadId);
+        }
+      } catch (Exception _) {
+      } finally {
+        if (cursor != null) try { cursor.close(); } catch (Exception _) {}
+      }
+
+      recentGroupCreate = false;
+    }
+  }
+
 }
