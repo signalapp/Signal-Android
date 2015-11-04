@@ -53,6 +53,8 @@ public class ProfileAccessor {
   private static GDataPreferences preferences;
   private static MasterSecret mMasterSecret;
 
+  public static String TAG_OPEN_PROFILE_COLOR = "[COLOR]";
+  public static String TAG_CLOSE_PROFILE_COLOR = "[/COLOR]";
 
   public static GDataPreferences getPreferences(Context context) {
     if (preferences == null) {
@@ -148,6 +150,7 @@ public class ProfileAccessor {
 
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
       outgoingMessage.setProfileUpdateMessage(true);
+
       new AsyncTask<OutgoingMediaMessage, Void, Long>() {
         @Override
         protected Long doInBackground(OutgoingMediaMessage... messages) {
@@ -271,5 +274,16 @@ public class ProfileAccessor {
   }
   public static MasterSecret getMasterSecred() {
     return mMasterSecret;
+  }
+
+  public static void setColorForProfileId(Context context, String profileId, String color) {
+    getPreferences(context).setProfileColorForProfileId(profileId, color);
+  }
+  public static String getProfileColorForId(Context context, String profileId) {
+    String profileColor = getPreferences(context).getProfileColorForProfileId(profileId);
+    if(profileColor.equals("0") || !getPreferences(context).getChatPartnersColorEnabled()) {
+      profileColor = getPreferences(context).getCurrentColorHex()+"";
+    }
+    return profileColor;
   }
 }

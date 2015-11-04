@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.R;
 
 import de.gdata.messaging.selfdestruction.DestroyOption;
 import de.gdata.messaging.selfdestruction.SelfDestOptions;
+import de.gdata.messaging.util.GUtil;
 
 public class SelfDestructionButton extends ImageButton {
     private SelfDestOptions SelfDestOptions;
@@ -93,7 +94,7 @@ public class SelfDestructionButton extends ImageButton {
             this.composeText.setHint(null);
         } else {
             SpannableString span = new SpannableString(hint);
-            span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             this.composeText.setHint(span);
         }
     }

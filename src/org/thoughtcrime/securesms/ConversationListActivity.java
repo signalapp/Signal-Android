@@ -29,6 +29,7 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -57,6 +58,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -137,6 +140,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     private CircledImageView fabImageBackgroundThree;
     private CircledImageView fabImageBackgroundOne;
     private CircledImageView fabImageBackgroundTwo;
+    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -145,7 +149,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         super.onCreate(icicle);
         gDataPreferences = new GDataPreferences(getBaseContext());
         setContentView(R.layout.gdata_conversation_list_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        TextView txtView = new TextView(getApplicationContext());
+        txtView.setText(R.string.app_name);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
         navLabels = getResources().getStringArray(R.array.array_nav_labels);
@@ -177,6 +185,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setElevation(0);
+
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
@@ -253,6 +262,24 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_to_right);
         refreshProfile();
         setActionFloatMenuIcons();
+        setColorBar();
+    }
+
+    private void setColorBar() {
+        int color = gDataPreferences.getCurrentColorHex();
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+        toolbar.setBackgroundColor(color);
+        toolbar.setDrawingCacheBackgroundColor(color);
+        mSlidingTabLayout.setBackgroundColor(color);
+        if(getApplicationContext().getResources().getColor(R.color.gdata_primary_color) != color) {
+            fab.setRippleColor(color);
+        }
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(), GUtil.ALPHA_80_PERCENT));
+        }
     }
 
     public void toggleActionFloatMenu(boolean toggleMenu, boolean toggleButton, boolean fastClose) {
@@ -606,6 +633,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         refreshProfile();
         mSlidingTabLayout.refreshTabTitle();
         setActionFloatMenuIcons();
+        setColorBar();
     }
 
     @Override

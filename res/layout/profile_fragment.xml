@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/transparent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ScrollView
@@ -120,6 +121,84 @@
                         android:padding="4dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_menu_remove_holo_light" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:visibility="gone"
+                    android:background="@drawable/textview_border">
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/profile_color_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:id="@+id/profile_color_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/color_header"
+                                android:layout_width="match_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_weight="0.9"
+                                android:gravity="center_vertical|left"
+                                android:hint=""
+                                android:paddingLeft="6dp"
+                                android:text="@string/profile_color_label"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="18sp"
+                                android:visibility="visible" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+                            <SeekBar
+                                android:id="@+id/seekbar_font"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:max="510"
+                                android:layout_marginLeft="3dp"
+                                android:thumb="@drawable/seekbar_scrubber_control_selector_holo_light"></SeekBar>
+                            </LinearLayout>
+                            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:orientation="horizontal">
+                            <android.support.design.widget.FloatingActionButton
+                                android:id="@+id/fab_new_color"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scaleType="fitXY"
+                                android:visibility="visible"
+                                android:layout_margin="5dp"
+                                app:backgroundTint="@color/holo_orange_dark"
+                                app:borderWidth="0dp"
+                                app:elevation="5dp"
+                                app:fabSize="mini"
+                                app:pressedTranslationZ="2dp" />
+                        </LinearLayout>
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/enabled_chat_partners_color"
+                            android:text="@string/profile_color_recipient"/>
+                    </LinearLayout>
                 </RelativeLayout>
 
                 <RelativeLayout

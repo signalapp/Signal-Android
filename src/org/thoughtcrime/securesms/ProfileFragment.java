@@ -32,6 +32,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.Pair;
@@ -47,12 +48,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+
+import android.widget.CheckBox;
+import android.widget.EditText;
+
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -150,6 +156,10 @@ public class ProfileFragment extends Fragment {
     private int heightMemberList = 0;
 
     private ViewTreeObserver.OnScrollChangedListener onScrollChangeListener;
+    private SeekBar seekBarFont;
+    private FloatingActionButton floatingActionColorButton;
+    private RelativeLayout layoutColor;
+    private CheckBox chatPartnersColor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -203,6 +213,10 @@ public class ProfileFragment extends Fragment {
         recipient = recipients.getPrimaryRecipient();
         attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
         scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
+        seekBarFont = (SeekBar)getView().findViewById(R.id.seekbar_font);
+        chatPartnersColor = (CheckBox) getView().findViewById(R.id.enabled_chat_partners_color);
+        layoutColor = (RelativeLayout)getView().findViewById(R.id.layout_color);
+        floatingActionColorButton = (FloatingActionButton) getView().findViewById(R.id.fab_new_color);
         final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
 
         if (!isGroup) {
@@ -233,6 +247,7 @@ public class ProfileFragment extends Fragment {
             } else if (ProfileAccessor.getMyProfilePicture(getActivity()).hasImage() && isMyProfile) {
                 profileStatus.setText(ProfileAccessor.getProfileStatus(getActivity()), TextView.BufferType.EDITABLE);
                 imageText.setText(getString(R.string.MediaPreviewActivity_you));
+                initColorSeekbar();
                 profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
                 if ((ProfileAccessor.getMyProfilePicture(getActivity()).getUri() + "").equals("")) {
                     profilePicture.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getActivity()));
@@ -593,6 +608,74 @@ public class ProfileFragment extends Fragment {
                 syncAdapterWithSelectedContacts();
                 break;
         }
+    }
+    private void initColorSeekbar() {
+        layoutColor.setVisibility(View.VISIBLE);
+        chatPartnersColor.setChecked(gDataPreferences.getChatPartnersColorEnabled());
+        chatPartnersColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gDataPreferences.saveChatPartnersColorEnabled(chatPartnersColor.isChecked());
+            }
+        });
+        final int maxValueColorMOne = 255;
+        final int maxValueColor = 256;
+        seekBarFont.setMax(maxValueColor * 5 - 2);
+        int oldColor = gDataPreferences.getCurrentColorHex();
+        seekBarFont.setProgress(gDataPreferences.getColorProgress());
+        floatingActionColorButton.setRippleColor(oldColor);
+        seekBarFont.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            int color = Color.BLUE;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(fromUser){
+                    int r = 0;
+                    int g = 0;
+                    int b = 0;
+
+                    if(progress < maxValueColor){
+                        b = progress;
+                    } else if(progress < maxValueColor*2) {
+                        g = progress%maxValueColor;
+                        b = maxValueColor - progress%maxValueColor;
+                    } else if(progress < maxValueColor*3) {
+                        g = maxValueColorMOne;
+                        b = progress%maxValueColor;
+                    } else if(progress < maxValueColor*4) {
+                        r = progress%maxValueColor;
+                        g = maxValueColor - progress%maxValueColor;
+                        b = maxValueColor - progress%maxValueColor;
+                    } else if(progress < maxValueColor*5) {
+                        r = maxValueColorMOne;
+                        g = 0;
+                        b = progress%maxValueColor;
+                    } else if(progress < maxValueColor*6) {
+                        r = maxValueColorMOne;
+                        g = progress%maxValueColor;
+                        b = maxValueColor - progress%maxValueColor;
+                    } else if(progress < maxValueColor*7) {
+                        r = maxValueColorMOne;
+                        g = maxValueColorMOne;
+                        b = progress%maxValueColor;
+                    }
+                    color = Color.argb(maxValueColorMOne, r, g, b);
+                    floatingActionColorButton.setRippleColor(color);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                gDataPreferences.saveCurrentColorValue(color);
+                gDataPreferences.saveCurrentSeekBarColorProgress(seekBar.getProgress());
+                hasChanged = true;
+            }
+        });
     }
     private void setMediaHistoryImages() {
         String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(GUtil.numberToLong(recipient.getNumber()));

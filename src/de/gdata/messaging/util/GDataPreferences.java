@@ -2,11 +2,13 @@ package de.gdata.messaging.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.JsonUtils;
@@ -31,11 +33,14 @@ public class GDataPreferences {
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
   private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTS";
   private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
+  private static final String COLOR_HEX = "COLOR_HEX";
+  private static final String COLOR_PROGRESS = "COLOR_PROGRESS";
 
   private static final String PROFILE_PICTURE_URI = "PROFILE_PICTURE_URI";
   private static final String PROFILE_STATUS = "PROFILE_STATUS";
   private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
   private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
+  private static final String CP_COLOR_ACTIVATED = "CP_COLOR_ACTIVATED";
 
 
   private final SharedPreferences mPreferences;
@@ -95,6 +100,12 @@ public class GDataPreferences {
   public void setProfileStatusForProfileId(String profileId, String status) {
     mPreferences.edit().putString("status:" + profileId, status).commit();
   }
+  public void setProfileColorForProfileId(String profileId, String color) {
+    mPreferences.edit().putString("color:" + profileId, color).commit();
+  }
+  public String getProfileColorForProfileId(String profileId) {
+    return mPreferences.getString("color:" + profileId, "0");
+  }
   public String getProfileStatusForProfileId(String profileId) {
     return mPreferences.getString("status:" + profileId, "");
   }
@@ -118,6 +129,12 @@ public class GDataPreferences {
   }
   public void saveFilterGroupIdForContact(String phoneNo, long filterGroupId) {
     mPreferences.edit().putLong(phoneNo, filterGroupId).commit();
+  }
+  public void saveCurrentColorValue(int colorHex) {
+    mPreferences.edit().putInt(COLOR_HEX, colorHex).commit();
+  }
+  public void saveCurrentSeekBarColorProgress(int progress) {
+    mPreferences.edit().putInt(COLOR_PROGRESS, progress).commit();
   }
   public boolean saveActiveContacts(String[] array) {
     mPreferences.edit().putInt(ACTIVE_CONTACTS + "_size", array.length).commit();
@@ -172,7 +189,12 @@ public class GDataPreferences {
   public String getApplicationFont() {
     return mPreferences.getString(APPLICATION_FONT, "");
   }
-
+  public int getCurrentColorHex() {
+    return mPreferences.getInt(COLOR_HEX, mContext.getResources().getColor(R.color.gdata_primary_color));
+  }
+  public int getColorProgress() {
+    return mPreferences.getInt(COLOR_PROGRESS, 0);
+  }
   public void saveE164Number(String e164number) {
     mPreferences.edit().putString(SAVE_E164_NUMBER, e164number).commit();
   }
@@ -250,6 +272,13 @@ public class GDataPreferences {
 
     lastImageNumber = getLastImageIndicator();
     return lastImageNumber;
+  }
+
+  public void saveChatPartnersColorEnabled(boolean b) {
+    mPreferences.edit().putBoolean(CP_COLOR_ACTIVATED, b).commit();
+  }
+  public boolean getChatPartnersColorEnabled() {
+    return mPreferences.getBoolean(CP_COLOR_ACTIVATED, true);
   }
 }
 

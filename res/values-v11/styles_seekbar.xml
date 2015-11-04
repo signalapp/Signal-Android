@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="SeekBarseekbar" parent="android:Widget.Holo.Light.SeekBar">
+      <item name="android:progressDrawable">@drawable/seekbar_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/seekbar_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:thumb">@drawable/seekbar_scrubber_control_selector_holo_light</item>
+  </style>
+
+</resources>
