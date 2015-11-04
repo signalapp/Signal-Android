@@ -87,7 +87,7 @@ public class RegistrationActivity extends BaseActionBarActivity {
     this.createButton.setOnClickListener(new CreateButtonListener());
     this.skipButton.setOnClickListener(new CancelButtonListener());
 
-    if (getIntent().getBooleanExtra("cancel_button", false)) {
+    if (getIntent().getBooleanExtra("cancel_button", true)) { // FIXME
       this.skipButton.setVisibility(View.VISIBLE);
     } else {
       this.skipButton.setVisibility(View.INVISIBLE);

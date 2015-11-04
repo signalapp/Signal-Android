@@ -12,9 +12,14 @@ import org.thoughtcrime.securesms.ConversationPopupActivity;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 import java.util.Set;
 
 public class NotificationState {
@@ -70,7 +75,62 @@ public class NotificationState {
     return notifications;
   }
 
-  public PendingIntent getMarkAsReadIntent(Context context) {
+  public OrderedThreadNotifications orderedThreadNotifications() {
+    LinkedHashSet<Long> orderedThreads = new LinkedHashSet<>();
+
+    ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
+
+    while(iterator.hasPrevious()) {
+      Long threadId = iterator.previous().getThreadId();
+      orderedThreads.remove(threadId);
+      orderedThreads.add(threadId);
+    }
+
+    return new OrderedThreadNotifications(orderedThreads, getNotificationStates());
+  }
+
+  private Map<Long, List<NotificationItem>> getNotificationItems() {
+    Map<Long, List<NotificationItem>> map = new HashMap<>();
+
+    ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
+
+    while(iterator.hasPrevious()) {
+      NotificationItem item = iterator.previous();
+      Long threadId = item.getThreadId();
+
+      List<NotificationItem> items;
+      if(map.containsKey(threadId)) {
+        items = map.get(threadId);
+      } else {
+        items = new ArrayList<>();
+      }
+
+      items.add(item);
+      map.put(threadId, items);
+    }
+
+    return map;
+  }
+
+  private Map<Long, NotificationState> getNotificationStates() {
+    Map<Long, NotificationState> map = new HashMap<>();
+
+
+    Map<Long, List<NotificationItem>> notificationItems = getNotificationItems();
+    for(Long threadId : notificationItems.keySet()) {
+      NotificationState notificationState = new NotificationState();
+
+      for(NotificationItem item : notificationItems.get(threadId)) {
+        notificationState.addNotification(item);
+      }
+
+      map.put(threadId, notificationState);
+    }
+
+    return map;
+  }
+
+  public PendingIntent getMarkAsReadIntent(Context context, Integer threadId) {
     long[] threadArray = new long[threads.size()];
     int    index       = 0;
 
@@ -89,7 +149,11 @@ public class NotificationState {
     Log.w("NotificationState", "Pending array off intent length: " +
         intent.getLongArrayExtra("thread_ids").length);
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    return PendingIntent.getBroadcast(context, threadId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
+  public PendingIntent getMarkAllAsReadIntent(Context context) {
+    return getMarkAsReadIntent(context, 0);
   }
 
   public PendingIntent getWearableReplyIntent(Context context, Recipients recipients) {
@@ -108,10 +172,13 @@ public class NotificationState {
     Intent     intent           = new Intent(context, ConversationPopupActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
-    intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+    intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
     return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
 
+  public Set<Long> getThreads() {
+    return threads;
+  }
 }

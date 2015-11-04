@@ -19,6 +19,8 @@ import java.util.List;
 
 public class MultipleRecipientNotificationBuilder extends AbstractNotificationBuilder {
 
+  public static final String NOTIFICATION_GROUP_KEY_MESSAGES = "group_key_messages";
+
   private final List<CharSequence> messageBodies = new LinkedList<>();
 
   public MultipleRecipientNotificationBuilder(Context context, NotificationPrivacyPreference privacy) {
@@ -31,6 +33,8 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
     setPriority(NotificationCompat.PRIORITY_HIGH);
     setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(MessageNotifier.DeleteReceiver.DELETE_REMINDER_ACTION), 0));
+    setGroup(NOTIFICATION_GROUP_KEY_MESSAGES);
+    setGroupSummary(true);
   }
 
   public void setMessageCount(int messageCount, int threadCount) {
