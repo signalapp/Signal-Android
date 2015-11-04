@@ -18,7 +18,7 @@
           android:id="@+id/menu_import_export"
           android:icon="@android:drawable/ic_menu_upload" />
 
-    <item android:title="@string/arrays__my_identity_key"
+    <item android:title="@string/arrays__your_identity_key"
           android:id="@+id/menu_my_identity"
           android:icon="@android:drawable/ic_menu_view" />
 
