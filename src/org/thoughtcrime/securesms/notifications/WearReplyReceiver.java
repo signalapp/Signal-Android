@@ -35,8 +35,6 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 
 import java.util.LinkedList;
 
-import ws.com.google.android.mms.pdu.PduBody;
-
 /**
  * Get the response text from the Wearable Device and sends an message as a reply
  */
@@ -75,7 +73,7 @@ public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
           }
 
           DatabaseFactory.getThreadDatabase(context).setRead(threadId);
-          MessageNotifier.updateNotification(context, masterSecret);
+          MessageNotifier.updateNotificationCancelRead(context, masterSecret, threadId);
 
           return null;
         }

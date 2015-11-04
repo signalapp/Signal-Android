@@ -273,8 +273,10 @@ public class ConversationListFragment extends Fragment
 
             @Override
             protected Void doInBackground(Void... params) {
+              Set<Long> unreadThreadIds = MessageNotifier.unreadThreadIds(getActivity(), masterSecret);
+
               DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-              MessageNotifier.updateNotification(getActivity(), masterSecret);
+              MessageNotifier.updateNotificationCancelRead(getActivity(), masterSecret, unreadThreadIds);
               return null;
             }
 

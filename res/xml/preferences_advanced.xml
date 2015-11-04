@@ -18,6 +18,12 @@
                         android:title="@string/preferences_advanced__use_system_emoji"
                         android:summary="@string/preferences_advanced__disable_signal_built_in_emoji_support" />
 
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_bug_130689_notification_fix"
+        android:summary="@string/preferences_advanced__suppress_heads-up_notification_on_handheld"
+        android:title="@string/preferences_advanced__android_wear_notification_workaround"/>
+
     <Preference android:key="pref_choose_identity"
                 android:title="@string/preferences__choose_identity"
                 android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>

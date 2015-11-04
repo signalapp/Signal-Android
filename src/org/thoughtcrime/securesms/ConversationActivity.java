@@ -1211,8 +1211,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Long, Void, Void>() {
       @Override
       protected Void doInBackground(Long... params) {
-        DatabaseFactory.getThreadDatabase(ConversationActivity.this).setRead(params[0]);
-        MessageNotifier.updateNotification(ConversationActivity.this, masterSecret);
+        Long threadId = params[0];
+        DatabaseFactory.getThreadDatabase(ConversationActivity.this).setRead(threadId);
+        MessageNotifier.updateNotificationCancelRead(ConversationActivity.this, masterSecret, threadId);
         return null;
       }
     }.execute(threadId);

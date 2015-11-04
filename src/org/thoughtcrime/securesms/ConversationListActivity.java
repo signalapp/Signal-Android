@@ -43,6 +43,8 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.util.Set;
+
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity
     implements ConversationListFragment.ConversationSelectedListener
 {
@@ -200,8 +202,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
+        Set<Long> unreadThreadIds = MessageNotifier.unreadThreadIds(ConversationListActivity.this, masterSecret);
+
         DatabaseFactory.getThreadDatabase(ConversationListActivity.this).setAllThreadsRead();
-        MessageNotifier.updateNotification(ConversationListActivity.this, masterSecret);
+        MessageNotifier.updateNotificationCancelRead(ConversationListActivity.this, masterSecret, unreadThreadIds);
         return null;
       }
     }.execute();

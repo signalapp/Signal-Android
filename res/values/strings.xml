@@ -1026,6 +1026,8 @@
     <string name="preferences_chats__message_trimming">Message trimming</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
+    <string name="preferences_advanced__android_wear_notification_workaround">Android Wear notification workaround</string>
+    <string name="preferences_advanced__suppress_heads-up_notification_on_handheld">Suppress heads-up notification on handheld (affects Android 5.0, 5.1)</string>
 
     <!-- **************************************** -->
     <!-- menus -->

@@ -12,9 +12,14 @@ import org.thoughtcrime.securesms.ConversationPopupActivity;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 import java.util.Set;
 
 public class NotificationState {
@@ -70,7 +75,31 @@ public class NotificationState {
     return notifications;
   }
 
-  public PendingIntent getMarkAsReadIntent(Context context) {
+  public OrderedThreadNotifications orderedThreadNotifications() {
+    LinkedHashSet<Long> orderedThreads = new LinkedHashSet<>();
+    Map<Long, NotificationState> threadNotificationMapping = new HashMap<>();
+
+    ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
+
+    while(iterator.hasPrevious()) {
+      NotificationItem item = iterator.previous();
+      Long threadId = item.getThreadId();
+
+      orderedThreads.remove(threadId);
+      orderedThreads.add(threadId);
+
+      if(!threadNotificationMapping.containsKey(threadId)) {
+        threadNotificationMapping.put(threadId, new NotificationState());
+      }
+
+      NotificationState notificationState = threadNotificationMapping.get(threadId);
+      notificationState.addNotification(item);
+    }
+
+    return new OrderedThreadNotifications(orderedThreads, threadNotificationMapping);
+  }
+
+  public PendingIntent getMarkAsReadIntent(Context context, Integer threadId) {
     long[] threadArray = new long[threads.size()];
     int    index       = 0;
 
@@ -89,7 +118,11 @@ public class NotificationState {
     Log.w("NotificationState", "Pending array off intent length: " +
         intent.getLongArrayExtra("thread_ids").length);
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    return PendingIntent.getBroadcast(context, threadId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
+  public PendingIntent getMarkAllAsReadIntent(Context context) {
+    return getMarkAsReadIntent(context, 0);
   }
 
   public PendingIntent getWearableReplyIntent(Context context, Recipients recipients) {
@@ -114,4 +147,7 @@ public class NotificationState {
   }
 
 
+  public Set<Long> getThreads() {
+    return threads;
+  }
 }

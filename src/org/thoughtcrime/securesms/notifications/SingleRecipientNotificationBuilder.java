@@ -53,6 +53,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     setPriority(NotificationCompat.PRIORITY_HIGH);
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
     setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(MessageNotifier.DeleteReceiver.DELETE_REMINDER_ACTION), 0));
+    setGroup(MultipleRecipientNotificationBuilder.NOTIFICATION_GROUP_KEY_MESSAGES);
   }
 
   public void setThread(@NonNull Recipients recipients) {
