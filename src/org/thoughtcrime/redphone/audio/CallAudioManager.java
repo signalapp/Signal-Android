@@ -1,7 +1,12 @@
 package org.thoughtcrime.redphone.audio;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.Log;
+
+import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.io.FileDescriptor;
 import java.lang.reflect.Field;
@@ -38,7 +43,13 @@ public class CallAudioManager {
     setMute(handle, enabled);
   }
 
-  public void start() throws AudioException {
+  public void start(@NonNull Context context) throws AudioException {
+    if (Build.VERSION.SDK_INT >= 11) {
+      ServiceUtil.getAudioManager(context).setMode(AudioManager.MODE_IN_COMMUNICATION);
+    } else {
+      ServiceUtil.getAudioManager(context).setMode(AudioManager.MODE_IN_CALL);
+    }
+
     try {
       start(handle);
     } catch (NativeAudioException | NoSuchMethodError e) {
