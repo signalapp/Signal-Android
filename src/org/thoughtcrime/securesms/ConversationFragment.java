@@ -236,15 +236,12 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
-    int messagesCount = messageRecords.size();
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+    int                        messagesCount = messageRecords.size();
+    AlertDialogWrapper.Builder builder       = new AlertDialogWrapper.Builder(getActivity());
+
     builder.setIconAttribute(R.attr.dialog_alert_icon);
-    builder.setTitle(getContext().getResources().getQuantityString(
-            R.plurals.ConversationFragment_delete_selected_messages,
-            messagesCount, messagesCount));
-    builder.setMessage(getContext().getResources().getQuantityString(
-            R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages,
-            messagesCount, messagesCount));
+    builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
+    builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -353,7 +350,8 @@ public class ConversationFragment extends Fragment
 
   private class ConversationFragmentItemClickListener implements ItemClickListener {
 
-    @Override public void onItemClick(ConversationItem item) {
+    @Override
+    public void onItemClick(ConversationItem item) {
       if (actionMode != null) {
         MessageRecord messageRecord = item.getMessageRecord();
         ((ConversationAdapter) list.getAdapter()).toggleSelection(messageRecord);
@@ -363,7 +361,8 @@ public class ConversationFragment extends Fragment
       }
     }
 
-    @Override public void onItemLongClick(ConversationItem item) {
+    @Override
+    public void onItemLongClick(ConversationItem item) {
       if (actionMode == null) {
         ((ConversationAdapter) list.getAdapter()).toggleSelection(item.getMessageRecord());
         list.getAdapter().notifyDataSetChanged();
