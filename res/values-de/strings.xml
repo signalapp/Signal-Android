@@ -18,10 +18,9 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Signal-Registrierung wird gelöscht …</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal-Nachrichten deaktivieren?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal-Kommunikation deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-Deaktiviert Signal-Nachrichten, indem Ihre Registrierung vom Server gelöscht wird.
-Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zukünftig wieder nutzen zu können.</string>
+Signal-Kommunikation durch Löschen Ihrer Registrierung vom Server deaktivieren. Sie werden Ihre Rufnummer erneut registrieren müssen, um die Signal-Kommunikation zukünftig wieder nutzen zu können.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden zum Server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiviert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Standard-SMS-App ändern</string>
@@ -200,7 +199,7 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um Signal-Nachrichten zuk
   <string name="ImportExportActivity_import">Importieren</string>
   <string name="ImportExportActivity_export">Exportieren</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">System-SMS importieren?</string>
+  <string name="ImportFragment_import_system_sms_database">System-SMS-Datenbank importieren?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Nachrichten aus der Standard-SMS-Datenbank in Signal importieren. Falls Sie dies schon einmal gemacht haben, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_import">Importieren</string>
   <string name="ImportFragment_cancel">Abbruch</string>
@@ -499,7 +498,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="log_submit_activity__posting_logs">Diagnoseprotokoll wird übermittelt …</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Möchten Sie Ihre vorhandenen Nachrichten in Signals verschlüsselte Datenbank importieren?</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Die System-Datenbank des Geräts wird in keiner Weise verändert.</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Die Standard-Systemdatenbank wird in keiner Weise modifiziert oder verändert.</string>
   <string name="database_migration_activity__skip">Überspringen</string>
   <string name="database_migration_activity__import">Importieren</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dies kann eine Weile dauern, bitte haben Sie etwas Geduld. Sie werden benachrichtigt, sobald der Import abgeschlossen ist.</string>
@@ -509,7 +508,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="export_fragment__export_plaintext_backup">Klartextsicherung exportieren</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
 Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung exportieren</string>
-  <string name="import_fragment__import_system_sms_database">System-SMS importieren</string>
+  <string name="import_fragment__import_system_sms_database">System-SMS-Datenbank importieren</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Datenbank aus der Standard-SMS-App importieren</string>
   <string name="import_fragment__import_encrypted_backup">Verschlüsselte Sicherung wiederherstellen</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
@@ -518,7 +517,7 @@ Eine zuvor exportierte, verschlüsselte Signal-Datensicherung wiederherstellen</
   <string name="import_fragment__import_a_plaintext_backup_file">
 Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung importieren</string>
   <!--load_more_header-->
-  <string name="load_more_header__see_full_conversation">Ganze Unterhaltung anzeigen</string>
+  <string name="load_more_header__see_full_conversation">Gesamte Unterhaltung anzeigen</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Keine Bilder</string>
   <!--message_recipients_list_item-->
@@ -838,14 +837,14 @@ Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und tele
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ihre Version von Signal ist veraltet!</string>
   <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte Signal auf die neueste Version aktualisieren.</string>
-  <string name="reminder_header_expired_build_button">UPGRADEN</string>
+  <string name="reminder_header_expired_build_button">AKTUALISIEREN</string>
   <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden</string>
   <string name="reminder_header_sms_default_text">Antippen, um Signal als Standard-SMS-App zu verwenden.</string>
   <string name="reminder_header_sms_default_button">FESTLEGEN</string>
-  <string name="reminder_header_sms_import_title">SMS des Telefons importieren</string>
+  <string name="reminder_header_sms_import_title">System-SMS importieren</string>
   <string name="reminder_header_sms_import_text">Antippen, um auf dem Telefon gespeicherte SMS-Nachrichten in die verschlüsselte Datenbank zu importieren.</string>
   <string name="reminder_header_sms_import_button">IMPORTIEREN</string>
-  <string name="reminder_header_push_title">Signal-Kommunikation ermöglichen</string>
+  <string name="reminder_header_push_title">Signal-Kommunikation aktivieren</string>
   <string name="reminder_header_push_text">Verbessern Sie Ihr Kommunikationserlebnis.</string>
   <string name="reminder_header_push_button">AKTIVIEREN</string>
   <string name="reminder_header_invite_title">Zu Signal einladen</string>

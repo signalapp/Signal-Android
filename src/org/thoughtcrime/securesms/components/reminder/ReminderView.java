@@ -18,10 +18,11 @@ import org.thoughtcrime.securesms.util.ViewUtil;
  * View to display actionable reminders to the user
  */
 public class ReminderView extends LinearLayout {
-  private ViewGroup   container;
-  private ImageButton closeButton;
-  private TextView    title;
-  private TextView    text;
+  private ViewGroup         container;
+  private ImageButton       closeButton;
+  private TextView          title;
+  private TextView          text;
+  private OnDismissListener dismissListener;
 
   public ReminderView(Context context) {
     super(context);
@@ -59,6 +60,7 @@ public class ReminderView extends LinearLayout {
         public void onClick(View v) {
           hide();
           if (reminder.getDismissListener() != null) reminder.getDismissListener().onClick(v);
+          if (dismissListener != null) dismissListener.onDismiss();
         }
       });
     } else {
@@ -68,11 +70,19 @@ public class ReminderView extends LinearLayout {
     container.setVisibility(View.VISIBLE);
   }
 
+  public void setOnDismissListener(OnDismissListener dismissListener) {
+    this.dismissListener = dismissListener;
+  }
+
   public void requestDismiss() {
     closeButton.performClick();
   }
 
   public void hide() {
     container.setVisibility(View.GONE);
+  }
+
+  public interface OnDismissListener {
+    void onDismiss();
   }
 }

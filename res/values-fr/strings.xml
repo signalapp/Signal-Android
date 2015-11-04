@@ -378,6 +378,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="ThreadRecord_called">Vous avez appelé</string>
   <string name="ThreadRecord_called_you">Vous a appelé</string>
   <string name="ThreadRecord_missed_call">Appel manqué</string>
+  <string name="ThreadRecord_media_message">Message média</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Vous n’avez pas de clé d’identité.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Le destinataire n’a pas de clé d’identité.</string>
@@ -529,6 +530,7 @@ Restaurer une sauvegarde précédemment chiffrée à l\'aide de Signal.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importer un fichier de sauvegarde en texte clair. Compatible avec «SMSBackup And Restore».</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Voir la conversation complète</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Pas d’images</string>
   <!--message_recipients_list_item-->
@@ -861,8 +863,18 @@ Appels et messages privés et gratuits vers les utilisateurs de Signal</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Votre version de Signal a expiré !</string>
   <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>
+  <string name="reminder_header_expired_build_button">METTRE À JOUR</string>
+  <string name="reminder_header_sms_default_title">Utiliser comme application SMS par défaut</string>
   <string name="reminder_header_sms_default_text">Appuyez pour faire de Signal votre application SMS par défaut.</string>
+  <string name="reminder_header_sms_import_title">Importer les SMS du système</string>
   <string name="reminder_header_sms_import_text">Appuyez pour copier les SMS de votre téléphone dans sa base chiffrée.</string>
+  <string name="reminder_header_sms_import_button">IMPORTER</string>
+  <string name="reminder_header_push_title">Activer Signal</string>
+  <string name="reminder_header_push_text">Améliorez votre expérience de messagerie.</string>
+  <string name="reminder_header_push_button">ACTIVER</string>
+  <string name="reminder_header_invite_title">Inviter sur Signal</string>
+  <string name="reminder_header_invite_button">INVITER</string>
+  <string name="reminder_header_close_button">FERMER</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vous</string>
   <string name="MediaPreviewActivity_cant_display">La prévisualisation de l\'image a échouée</string>
