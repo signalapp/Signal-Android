@@ -1120,7 +1120,7 @@
     <!-- reminder_header -->
     <string name="reminder_header_outdated_build">Your version of Signal is outdated!</string>
     <plurals name="reminder_header_outdated_build_details">
-        <item quantity="one">Your version of Signal will expire in one day. Please update to the most recent version.</item>
+        <item quantity="one">Your version of Signal will expire tomorrow. Please update to the most recent version.</item>
         <item quantity="other">Your version of Signal will expire in %d days. Please update to the most recent version.</item>
     </plurals>
     <string name="reminder_header_expired_build">Your version of Signal has expired!</string>
