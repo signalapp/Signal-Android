@@ -46,6 +46,7 @@ import org.thoughtcrime.redphone.signaling.SessionDescriptor;
 import org.thoughtcrime.redphone.signaling.SignalingException;
 import org.thoughtcrime.redphone.signaling.SignalingSocket;
 import org.thoughtcrime.redphone.ui.NotificationBarManager;
+import org.thoughtcrime.redphone.util.AudioUtils;
 import org.thoughtcrime.redphone.util.UncaughtExceptionHandlerManager;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.RedPhoneEvent;
@@ -55,6 +56,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
@@ -174,6 +176,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   /// Intent Handlers
 
   private void handleIncomingCall(Intent intent) {
+    initializeAudio();
+
     String            localNumber = TextSecurePreferences.getLocalNumber(this);
     String            password    = TextSecurePreferences.getPushServerPassword(this);
     SessionDescriptor session     = intent.getParcelableExtra(EXTRA_SESSION_DESCRIPTOR);
@@ -188,6 +192,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleOutgoingCall(Intent intent) {
+    initializeAudio();
+
     String localNumber = TextSecurePreferences.getLocalNumber(this);
     String password    = TextSecurePreferences.getPushServerPassword(this);
 
@@ -280,9 +286,18 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     return state == STATE_IDLE;
   }
 
+  private void initializeAudio() {
+    AudioManager audioManager = ServiceUtil.getAudioManager(this);
+    AudioUtils.resetConfiguration(this);
+
+    audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL,
+                                   AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+  }
+
   private void shutdownAudio() {
     AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
     am.setMode(AudioManager.MODE_NORMAL);
+    am.abandonAudioFocus(null);
   }
 
   public int getState() {
