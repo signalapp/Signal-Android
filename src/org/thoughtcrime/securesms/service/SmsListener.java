@@ -38,7 +38,7 @@ public class SmsListener extends BroadcastReceiver {
   private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
   private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
 
-  private static final Pattern CHALLENGE_PATTERN = Pattern.compile(".*Your TextSecure verification code: ([0-9]{3,4})-([0-9]{3,4}).*");
+  private static final Pattern CHALLENGE_PATTERN = Pattern.compile(".*\\s*Your TextSecure verification code: ([0-9]{3,4})-([0-9]{3,4}).*");
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
