@@ -19,15 +19,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/indicator"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_width="fill_parent"
-        android:layout_marginBottom="25dp"
-        android:clickable="false"
-        android:focusable="false"
-        android:layout_height="40dp" />
-
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
