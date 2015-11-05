@@ -189,6 +189,10 @@ public abstract class LegacyMmsConnection {
       if (response.getStatusLine().getStatusCode() == 200) {
         return parseResponse(response.getEntity().getContent());
       }
+    } catch (NullPointerException npe) {
+      // TODO determine root cause
+      // see: https://github.com/WhisperSystems/Signal-Android/issues/4379
+      throw new IOException(npe);
     } finally {
       if (response != null) response.close();
       if (client != null)   client.close();
