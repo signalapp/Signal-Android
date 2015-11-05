@@ -43,6 +43,7 @@ public class AttachmentTypeSelector extends PopupWindow {
   private final @NonNull ImageView   videoButton;
   private final @NonNull ImageView   contactButton;
   private final @NonNull ImageView   cameraButton;
+  private final @NonNull ImageView   closeButton;
 
   private @Nullable View                      currentAnchor;
   private @Nullable AttachmentClickedListener listener;
@@ -59,12 +60,14 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.videoButton   = ViewUtil.findById(layout, R.id.video_button);
     this.contactButton = ViewUtil.findById(layout, R.id.contact_button);
     this.cameraButton  = ViewUtil.findById(layout, R.id.camera_button);
+    this.closeButton   = ViewUtil.findById(layout, R.id.close_button);
 
     this.imageButton.setOnClickListener(new PropagatingClickListener(ADD_IMAGE));
     this.audioButton.setOnClickListener(new PropagatingClickListener(ADD_SOUND));
     this.videoButton.setOnClickListener(new PropagatingClickListener(ADD_VIDEO));
     this.contactButton.setOnClickListener(new PropagatingClickListener(ADD_CONTACT_INFO));
     this.cameraButton.setOnClickListener(new PropagatingClickListener(TAKE_PHOTO));
+    this.closeButton.setOnClickListener(new CloseClickListener());
 
     setContentView(layout);
     setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
@@ -102,6 +105,7 @@ public class AttachmentTypeSelector extends PopupWindow {
       animateButtonIn(audioButton, ANIMATION_DURATION / 3);
       animateButtonIn(videoButton, ANIMATION_DURATION / 4);
       animateButtonIn(contactButton, 0);
+      animateButtonIn(closeButton, 0);
     }
   }
 
@@ -234,6 +238,13 @@ public class AttachmentTypeSelector extends PopupWindow {
       if (listener != null) listener.onClick(type);
     }
 
+  }
+
+  private class CloseClickListener implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+      dismiss();
+    }
   }
 
   public interface AttachmentClickedListener {
