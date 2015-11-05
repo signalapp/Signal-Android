@@ -46,6 +46,7 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.ConversationListAdapter.ItemSwipeListener;
 import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
@@ -66,7 +67,8 @@ import java.util.Set;
 
 
 public class ConversationListFragment extends Fragment
-  implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback, ItemClickListener
+  implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback,
+             ItemClickListener, ItemSwipeListener
 {
   private MasterSecret         masterSecret;
   private ActionMode           actionMode;
@@ -90,7 +92,8 @@ public class ConversationListFragment extends Fragment
     list         = (RecyclerView) view.findViewById(R.id.list);
     fab          = (FloatingActionButton) view.findViewById(R.id.fab);
     reminderView.setOnDismissListener(new OnDismissListener() {
-      @Override public void onDismiss() {
+      @Override
+      public void onDismiss() {
         updateReminders();
       }
     });
@@ -163,8 +166,14 @@ public class ConversationListFragment extends Fragment
   }
 
   private void initializeListAdapter() {
-    list.setAdapter(new ConversationListAdapter(getActivity(), masterSecret, locale, null, this));
+    list.setAdapter(new ConversationListAdapter(getActivity(), masterSecret,
+            locale, null, this, this));
     getLoaderManager().restartLoader(0, null, this);
+  }
+
+  private void handleDeleteSelectedThread(long threadId) {
+    DatabaseFactory.getThreadDatabase(getActivity()).deleteConversation(threadId);
+    MessageNotifier.updateNotification(getActivity(), masterSecret);
   }
 
   private void handleDeleteAllSelected() {
@@ -268,6 +277,15 @@ public class ConversationListFragment extends Fragment
     getListAdapter().initializeBatchMode(true);
     getListAdapter().toggleThreadInBatchSet(item.getThreadId());
     getListAdapter().notifyDataSetChanged();
+  }
+
+  @Override
+  public void onItemSwipeLeft(ConversationListItem item) {
+  }
+
+  @Override
+  public void onItemSwipeRight(ConversationListItem item) {
+    handleDeleteSelectedThread(item.getThreadId());
   }
 
   public interface ConversationSelectedListener {

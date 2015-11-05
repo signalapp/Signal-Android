@@ -21,7 +21,9 @@ import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -52,13 +54,61 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   private final Locale            locale;
   private final LayoutInflater    inflater;
   private final ItemClickListener clickListener;
+  private final ItemSwipeListener swipeListener;
 
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
 
+  /**
+   * Detects left and right swipes across a view.
+   */
+  protected static abstract class OnSwipeTouchListener implements View.OnTouchListener {
+
+    private final GestureDetector gestureDetector;
+
+    public OnSwipeTouchListener(Context context) {
+      gestureDetector = new GestureDetector(context, new GestureListener());
+    }
+
+    public abstract void onSwipeLeft();
+
+    public abstract void onSwipeRight();
+
+    public boolean onTouch(View v, MotionEvent event) {
+      return gestureDetector.onTouchEvent(event);
+    }
+
+    private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
+
+      private static final int SWIPE_DISTANCE_THRESHOLD = 100;
+      private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+
+      @Override
+      public boolean onDown(MotionEvent e) {
+        return true;
+      }
+
+      @Override
+      public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        float distanceX = e2.getX() - e1.getX();
+        float distanceY = e2.getY() - e1.getY();
+        if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > SWIPE_DISTANCE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+          if (distanceX > 0)
+            onSwipeRight();
+          else
+            onSwipeLeft();
+          return true;
+        }
+        return false;
+      }
+    }
+  }
+
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public ViewHolder(final @NonNull ConversationListItem itemView,
-                      final @Nullable ItemClickListener clickListener) {
+                      final @Nullable ItemClickListener clickListener,
+                      final @Nullable ItemSwipeListener swipeListener,
+                      final Context context) {
       super(itemView);
       itemView.setOnClickListener(new OnClickListener() {
         @Override
@@ -73,6 +123,18 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
           return true;
         }
       });
+
+      itemView.setOnTouchListener(new OnSwipeTouchListener(context) {
+        @Override
+        public void onSwipeLeft() {
+          if (swipeListener != null) swipeListener.onItemSwipeLeft(itemView);
+        }
+
+        @Override
+        public void onSwipeRight() {
+          if (swipeListener != null) swipeListener.onItemSwipeRight(itemView);
+        }
+      });
     }
 
     public ConversationListItem getItem() {
@@ -84,7 +146,8 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
                                  @NonNull MasterSecret masterSecret,
                                  @NonNull Locale locale,
                                  @Nullable Cursor cursor,
-                                 @Nullable ItemClickListener clickListener) {
+                                 @Nullable ItemClickListener clickListener,
+                                 @Nullable ItemSwipeListener swipeListener) {
     super(context, cursor);
     this.masterSecret   = masterSecret;
     this.masterCipher   = new MasterCipher(masterSecret);
@@ -92,12 +155,14 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     this.locale         = locale;
     this.inflater       = LayoutInflater.from(context);
     this.clickListener  = clickListener;
+    this.swipeListener  = swipeListener;
   }
 
   @Override
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     return new ViewHolder((ConversationListItem)inflater.inflate(R.layout.conversation_list_item_view,
-                                                                 parent, false), clickListener);
+                                                                 parent, false),
+                          clickListener, swipeListener, getContext());
   }
 
   @Override public void onItemViewRecycled(ViewHolder holder) {
@@ -144,5 +209,10 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   public interface ItemClickListener {
     void onItemClick(ConversationListItem item);
     void onItemLongClick(ConversationListItem item);
+  }
+
+  public interface ItemSwipeListener {
+    void onItemSwipeLeft(ConversationListItem item);
+    void onItemSwipeRight(ConversationListItem item);
   }
 }
