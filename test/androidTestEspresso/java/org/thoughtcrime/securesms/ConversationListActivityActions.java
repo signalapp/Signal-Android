@@ -58,7 +58,7 @@ public class ConversationListActivityActions {
 
   public static void clickMyIdentity(Context context) throws Exception {
     openActionBarOverflowOrOptionsMenu(context);
-    onView(withText(R.string.arrays__my_identity_key)).perform(click());
+    onView(withText(R.string.arrays__your_identity_key)).perform(click());
   }
 
   public static void clickSettings(Context context) throws Exception {
