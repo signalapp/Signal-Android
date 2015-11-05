@@ -17,11 +17,9 @@
 Изключи заключен екран за съобщения?</string>
   <string name="ApplicationPreferencesActivity_disable">Изключи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отписване</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Дерегистриране от Singal съобщения...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Деактивирай Signal съобщения?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-Това ще деактивира Signal съобщенията като те дерегистрира от сървъра.
-Ще трябва да се регистриаш отново със своя номер, за да използваш Singal съобщения в бъдеще.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Дерегистриране от Singal съобщения и обаждания...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Деактивирай Signal съобщения и обаждания?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Деактивирайте Signal съобщения и обаждания като се дерегистрирате от сървъра. Ще трябва да регистрирате своят номер отново, за да ползвате услугите в бъдеще.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при свързване със сървъра!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS разрешени</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Натисни, за да зададеш SMS програма по подразбиране</string>
@@ -100,8 +98,8 @@
   <string name="ConversationActivity_transport_insecure_sms">Некриптиран SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Некриптиран MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Започвай: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Нека да го използваме за: %s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Да преминем към Signal %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Да използваме следното за чатене: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка при напускането на група...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не се поддържа</string>
   <string name="ConversationActivity_mms_not_supported_message">Това съобщение не може да бъде изпратезо, защото мобилния Ви оператор не поддържа MMS.</string>
@@ -115,8 +113,14 @@
   <string name="ConversationFragment_message_details">Информация за съобщението</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nИзпратени/Получени: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Изпращач: %1$s\nТранспорт: %2$s\nИзпратено: %3$s\nПолучено:%4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Потвърди изтриване на съобщението</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Сигурни ли сте, че искате да изтриете перманентно всички избрани съобщения?</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Изтриване на избраното съобщение?</item>
+    <item quantity="other">Изтриване на избраните съобщения?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Това ще изтрие невъзращаемо избраното съобщение.</item>
+    <item quantity="other">Това ще изтрие невъзвращаемо всичките  %1$d избрани съобщения.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Запази на SD картата?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Запазване на този файл на SD картата ще разреши на всички други приложения да го виждат и променят.\n\nПродължи?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка при запазване на прикачения файл на SD карта!</string>
@@ -133,8 +137,14 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Търсене...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Изтрий разговорите?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Сигурен ли си, че искаш да изтриеш ВСИЧКИ избрани разговори?</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Изтриване на избрания разговор?</item>
+    <item quantity="other">Изтриване на избраните разговори?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Това ще изтрие невъзвращаемо избрания разговор.</item>
+    <item quantity="other">Това ще изтрие невъзвращаемо всичките  %1$d избрани разговори.</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Изтриване</string>
   <string name="ConversationListFragment_deleting_selected_threads">Изтриване на избраните разговори...</string>
   <!--ConversationListItem-->
@@ -226,6 +236,19 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ImportFragment_restoring_encrypted_backup">Възстановяване на шифрования архив...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Не е намерен шифрован архив!</string>
   <string name="ImportFragment_restore_complete">Възстановяването приключи!</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">Сподели</string>
+  <string name="InviteActivity_send_sms">Изпрати SMS</string>
+  <string name="InviteActivity_cancel">Откажи</string>
+  <string name="InviteActivity_sending">Изпращане...</string>
+  <string name="InviteActivity_heart_content_description">Сърце</string>
+  <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
+  <string name="InviteActivity_invite_to_signal">Покани в Signal</string>
+  <string name="InviteActivity_send_to_friends">ИЗПРАТИ ДО %1$s ПРИЯТЕЛ(Я)</string>
+  <string name="InviteActivity_send_sms_invites">Изпрати %1$s SMS покана(и)?</string>
+  <string name="InviteActivity_lets_switch_to_signal">Да преминем към Signal %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да споделите.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Приятелите не дават на приятелите си да чатят без криптиране.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Не е намерен сканиран ключ!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Инсталирай скенер за баркодове?</string>
@@ -244,12 +267,13 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедийно съобщение</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получено е съобщение криптирано със стара версия на Signal, която вече не е подържана. Моля, помолете изпращачя да обнови своята версия до текущата и да изпрати съобщението повторно.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получихте съобщение криптирано със стара версия на Signal, която вече не се поддържа. Моля помолете изпращача да обнови версията си и да препрати съобщението.</string>
   <string name="MessageRecord_left_group">Напуснахте групата.</string>
   <string name="MessageRecord_updated_group">Групата е обновена.</string>
   <string name="MessageRecord_s_called_you">%s ти се обади</string>
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal, кажи им здрасти!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Грешна стара парола!</string>
@@ -285,7 +309,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="RatingManager_later">По-късно</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирай този контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Повече няма да получавате разговори или съобщения от този потребител.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Повече няма да получавате съобщения или обаждания от този потребител.</string>
   <string name="RecipientPreferenceActivity_block">Блокирай</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокирай този контакт?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Сигурен ли си, че искаш да отблокираш този контакт?</string>
@@ -382,6 +406,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ThreadRecord_called_you">Ви се обади</string>
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Signal, кажи му здрасти!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма ключ за самоличност.</string>
@@ -453,6 +478,12 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Ново Signal съобщение</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Съдържанието е скрито</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Изображение</string>
+  <string name="attachment_type_selector__audio">Аудио</string>
+  <string name="attachment_type_selector__video">Видео</string>
+  <string name="attachment_type_selector__contact">Контакт</string>
+  <string name="attachment_type_selector__camera">Камера</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ПАРОЛА: </string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ПАРОЛА: </string>
@@ -561,7 +592,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Сложи чатът в тих режим</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Забрани известия за този чат</string>
-  <string name="recipient_preferences__notification_tone">Мелодия за известия</string>
+  <string name="recipient_preferences__notification_sound">Мелодия за известия</string>
   <string name="recipient_preferences__vibrate">Вибрирация</string>
   <string name="recipient_preferences__block">Блокирай</string>
   <string name="recipient_preferences__color">Цвят</string>
@@ -664,6 +695,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest__media_overview_named">Всички изображения с %1$s</string>
   <string name="AndroidManifest__message_details">Информаця за съобщението</string>
   <string name="AndroidManifest_manage_linked_devices">Управление на свързани устройства</string>
+  <string name="AndroidManifest__invite_friends">Поканете приятели</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__my_identity_key">Моят ключ за самоличност</string>
@@ -778,9 +810,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="preferences__default">По подразбиране</string>
   <string name="preferences__language">Език</string>
   <string name="preferences__language_summary">Език %s</string>
-  <string name="preferences__signal">Signal</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-Безплатни, лични съобщения и разговори до Signal потребители</string>
+  <string name="preferences__signal_messages_and_calls">Signal съобщения и обаждания</string>
+  <string name="preferences__free_private_messages_and_calls">Безплатни, лични съобщения и обаждания до Signal потребители</string>
   <string name="preferences__submit_debug_log">Изпрати доклад</string>
   <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включи ако устройството ти използва WiFi за SMS/MMS(само ако \'Wifi Calling\' е включен на устройството ти)</string>
@@ -864,6 +895,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="text_secure_normal__menu_settings">Настройки</string>
   <string name="text_secure_normal__menu_clear_passphrase">Заключи</string>
   <string name="text_secure_normal__mark_all_as_read">Маркирай всички като прочетени</string>
+  <string name="text_secure_normal__invite_friends">Поканете приятели</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Вдашата Signal версия е изтекла!</string>
   <string name="reminder_header_expired_build_details">Съобщенията няма повече да бъдат успешно доставени, моля, обновете до най-новата версия.</string>
@@ -874,12 +906,15 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="reminder_header_sms_import_title">Внеси системните SMS-и</string>
   <string name="reminder_header_sms_import_text">Натисните, за да копирате своите SMS съобщения в шифрованата база данни.</string>
   <string name="reminder_header_sms_import_button">ВНЕСИ</string>
-  <string name="reminder_header_push_title">Активирай Signal</string>
-  <string name="reminder_header_push_text">Обнови програмата.</string>
+  <string name="reminder_header_push_title">Активирай Singal съобщения и обаждания</string>
+  <string name="reminder_header_push_text">Обнови комуникацията си.</string>
   <string name="reminder_header_push_button">АКТИВИРАЙ</string>
   <string name="reminder_header_invite_title">Покани в Signal</string>
   <string name="reminder_header_invite_text">Издигни разговора си с %1$s до ново ниво.</string>
   <string name="reminder_header_invite_button">ПОКАНИ</string>
+  <string name="reminder_header_share_title">Поканете приятелите си!</string>
+  <string name="reminder_header_share_text">Колкото повече приятели използват Signal, толкова по-добър става той.</string>
+  <string name="reminder_header_share_button">СПОДЕЛИ</string>
   <string name="reminder_header_close_button">ЗАТВОРИ</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ти</string>

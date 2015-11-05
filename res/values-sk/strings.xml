@@ -87,8 +87,6 @@ identitu tohto kontaktu.
   <string name="ConversationActivity_transport_insecure_sms">Nezašifrovaná SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezašifrovaná MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Prijať s tým: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Použiť tento chat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba pri opúšťaní skupiny...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nie sú podporované</string>
   <string name="ConversationActivity_mms_not_supported_message">Táto správa nemohla byť odoslaná keďže váš operátor nepodporuje MMS.</string>
@@ -101,8 +99,6 @@ identitu tohto kontaktu.
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odosielateľ: %1$s\nPrenos: %2$s\nOdoslané: %3$s\nPrijaté: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Potvrďťe zmazanie správy</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Ste si naozaj istý, že chcete natrvalo zmazať vybrané správy?</string>
   <string name="ConversationFragment_save_to_sd_card">Vytvoriť súbor?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Súbory zapísané na dátovom úložisku zariadenia budú prístupne pre všetky ostatné aplikácie vo vašom telefóne\n\nPrajete si pokračovať?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Nastala chyba pri ukladaní prílohy na dátové úložisko zariadenia!</string>
@@ -118,8 +114,6 @@ identitu tohto kontaktu.
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Hľadaj...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Zmazať vlákna?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ste si istí, že chcete naozaj zmazať VŠETKY označené vlákna konverzácií?</string>
   <string name="ConversationListFragment_deleting">Vymazanie</string>
   <string name="ConversationListFragment_deleting_selected_threads">Mažú sa vybrané konverzácie...</string>
   <!--ConversationListItem-->
@@ -183,6 +177,7 @@ opätovným importom zduplikujete správy.
   <string name="ImportFragment_restoring_encrypted_backup">Obnovujem šifrovanú zálohu...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nenašiel som šifrovanú zálohu!</string>
   <string name="ImportFragment_restore_complete">Obnova dokončená!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nenašiel som skenovaný kľúč!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Nainštalovať čítačku čiarových kódov?</string>
@@ -352,6 +347,7 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staré heslo:</string>
   <string name="change_passphrase_activity__new_passphrase">Nové heslo:</string>
@@ -612,7 +608,6 @@ zlyhalo.
   <string name="preferences__default">Štandardné nastavenie</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__language_summary">Jazyk %s</string>
-  <string name="preferences__signal">Signal</string>
   <string name="preferences__submit_debug_log">Odošli ladiaci log</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>

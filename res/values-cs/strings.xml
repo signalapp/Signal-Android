@@ -17,9 +17,9 @@
 Zakázat uzamčení obrazovky zpráv?</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Odregistrace Signal zpráv...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Zakázat Signal zprávy?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">Tímto zakážete Signal zprávy odregistrací ze serveru. Abyste mohli používat Signal zprávy v budoucnosti, budete muset znovu registrovat svoje telefonní číslo.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odregistrace Signal zpráv a volání</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Zakázat Signal zprávy a volání?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tímto zakážete Signal zprávy a volání odregistrací ze serveru. Abyste mohli používat Signal zprávy v budoucnosti, budete muset znovu registrovat svoje telefonní číslo.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba při připojování k serveru!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS povoleny</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykem nastavte výchozí aplikaci pro SMS</string>
@@ -99,8 +99,8 @@ kontakt</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezabezpečená SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Získat s ním: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Použít pro rozhovor: %s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Pojďme přepnout na Signal: %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Pojďme použít na chat: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba při opouštění skupiny.</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nejsou podporovány</string>
   <string name="ConversationActivity_mms_not_supported_message">Zpráva nemůže být odeslána, protože váš operátor nepodporuje MMS.</string>
@@ -114,8 +114,16 @@ kontakt</string>
   <string name="ConversationFragment_message_details">Podrobnosti zprávy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Přenos: %1$s\nOdesláno/Přijato: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odesílatel: %1$s\nPřenos: %2$s\nOdesláno: %3$s\nPřijato: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Potvrďte smazání zpráv</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Opravdu chcete trvale smazat všechny vybrané zprávy?</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Smazat označenou zprávu?</item>
+    <item quantity="few">Smazat označené zprávy?</item>
+    <item quantity="other">Smazat označené zprávy?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Tímto trvale smažete označenou zprávu.</item>
+    <item quantity="few">Tímto trvale smažete všechny %1$d označené zprávy.</item>
+    <item quantity="other">Tímto trvale smažete všech %1$d označených zpráv.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Uložit do paměti?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Uložením dat do paměti k nim umožníte přístup kterékoliv aplikaci ve svém telefonu.\n\nPokračovat?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Chyba při ukládání přílohy!</string>
@@ -132,8 +140,16 @@ kontakt</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Vyhledávám...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Smazat konverzace?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Opravdu chcete smazat VŠECHNY označené konverzace?</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Smazat vybranou konverzaci?</item>
+    <item quantity="few">Smazat vybrané konverzace?</item>
+    <item quantity="other">Smazat vybrané konverzace?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Tímto trvale smažete označenou konverzaci.</item>
+    <item quantity="few">Tímto trvale smažete všechny %1$d označené konverzace.</item>
+    <item quantity="other">Tímto trvale smažete všech %1$d označených konverzací.</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Mažu</string>
   <string name="ConversationListFragment_deleting_selected_threads">Mažu označené konverzace...</string>
   <!--ConversationListItem-->
@@ -222,6 +238,19 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="ImportFragment_restoring_encrypted_backup">Obnovování zašifrované zálohy...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Žádná zašifrovaná záloha nebyla nalezena!</string>
   <string name="ImportFragment_restore_complete">Obnova dokončena!</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">Sdílet</string>
+  <string name="InviteActivity_send_sms">Poslat SMS</string>
+  <string name="InviteActivity_cancel">Storno</string>
+  <string name="InviteActivity_sending">Odesílám...</string>
+  <string name="InviteActivity_heart_content_description">Srdíčko</string>
+  <string name="InviteActivity_invitations_sent">Povnání odesláno!</string>
+  <string name="InviteActivity_invite_to_signal">Pozvat do Signalu</string>
+  <string name="InviteActivity_send_to_friends">POSLAT %1$s příteli(přátelům)</string>
+  <string name="InviteActivity_send_sms_invites">Poslat %1$s SMS pozvánku(ek)</string>
+  <string name="InviteActivity_lets_switch_to_signal">Pojďme přepnout na Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Zdá se že nemáte žádnou aplikaci pro sdílení.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Přátelé nenechávají přátele komunikovat nešifrovaně.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Klíč při snímání nebyl nalezen!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalovat Barcode Scanner?</string>
@@ -240,12 +269,13 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediální zpráva</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou verzí aplikace Signal, která již není podporována. Prosím požádejte odesílatele, aby si aktualizoval aplikaci Signal na nejnovější verzi a pak poslal zprávu znovu.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou a verzí Singal, který již není podporována. Porsímpožádejte odesílatele aby si zaktulizoval aplikaci na ne novější veriz a poté poslal zprávu znovu.</string>
   <string name="MessageRecord_left_group">Opustil(a) jste skupinu</string>
   <string name="MessageRecord_updated_group">Upravena skupina</string>
   <string name="MessageRecord_s_called_you">%s vám volal</string>
   <string name="MessageRecord_called_s">Volán %s</string>
   <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s je na Signalu, řekni ahoj!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nejsou stejná</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Chybné staré heslo!</string>
@@ -281,7 +311,7 @@ Poslat zprávy Vaším jménem.</string>
   <string name="RatingManager_later">Později</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokovat tento kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Už nebudete přijímat volání nebo zprávy od tohoto uživatele</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Už nebudete přijímat zprávy nbo volání od tohoto uživatele</string>
   <string name="RecipientPreferenceActivity_block">Blokovat</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokovat tento kontakt?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Opravdu chcete odblokovat tento kontakt?</string>
@@ -372,6 +402,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="ThreadRecord_called_you">Volal vás</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediální zpráva</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s zapnul Signal, řekni ahoj!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Příjemce nemá identifikační klíč.</string>
@@ -443,6 +474,12 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Nová Signal zpráva</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Obsah skrytý</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Obrázek</string>
+  <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__contact">Kontakt</string>
+  <string name="attachment_type_selector__camera">Kamera</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARÉ HESLO</string>
   <string name="change_passphrase_activity__new_passphrase">NOVÉ HESLO</string>
@@ -551,7 +588,7 @@ Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</str
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Ztišit konverzaci</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Zakázat upozornění pro tuto konverzaci</string>
-  <string name="recipient_preferences__notification_tone">Zvuk upozornění</string>
+  <string name="recipient_preferences__notification_sound">Zvuk upozornění</string>
   <string name="recipient_preferences__vibrate">Vibrace</string>
   <string name="recipient_preferences__block">Blokovat</string>
   <string name="recipient_preferences__color">Barva</string>
@@ -654,6 +691,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__media_overview_named">Všechny obrázky s %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
   <string name="AndroidManifest_manage_linked_devices">Spravovat propojená zařízení</string>
+  <string name="AndroidManifest__invite_friends">Pozvat přátele</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__my_identity_key">Můj identifikační klíč</string>
@@ -769,9 +807,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__language_summary">Jazyk %s</string>
-  <string name="preferences__signal">Signal</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-Svobodné šifrované zprávy a volání uživatelům Signal</string>
+  <string name="preferences__signal_messages_and_calls">Signal zpravy a volání</string>
+  <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladící log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
@@ -855,22 +892,26 @@ Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="text_secure_normal__menu_settings">Nastavení</string>
   <string name="text_secure_normal__menu_clear_passphrase">Uzamknout</string>
   <string name="text_secure_normal__mark_all_as_read">Označit vše jako přečtené</string>
+  <string name="text_secure_normal__invite_friends">Pozvat přátele</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal skončila!</string>
   <string name="reminder_header_expired_build_details">Zprávy již nemohou být odesílány, prosím aktualizujte na nejnovější verzi.</string>
-  <string name="reminder_header_expired_build_button">AKTUALIZACE</string>
+  <string name="reminder_header_expired_build_button">AKTUALIZOVAT</string>
   <string name="reminder_header_sms_default_title">Nastavit jako výchozí aplikaci pro SMS</string>
   <string name="reminder_header_sms_default_text">Dotykem nastavíte Signal jako výchozí SMS aplikaci</string>
   <string name="reminder_header_sms_default_button">NASTAVIT</string>
   <string name="reminder_header_sms_import_title">Importovat SMS ze systému</string>
   <string name="reminder_header_sms_import_text">Poklepejte ke zkopírování SMS zpráv ve Vašem telefonu do šifrované databáze.</string>
   <string name="reminder_header_sms_import_button">IMPORTOVAT</string>
-  <string name="reminder_header_push_title">Povolit Signal</string>
-  <string name="reminder_header_push_text">Aktualizujte si zasílání zpráv.</string>
+  <string name="reminder_header_push_title">Povolit Signal zprávy a volání</string>
+  <string name="reminder_header_push_text">Lepší zážitky z komunikace.</string>
   <string name="reminder_header_push_button">POVOLIT</string>
   <string name="reminder_header_invite_title">Pozvat do Signalu</string>
   <string name="reminder_header_invite_text">Posuňte vaši konverzaci s %1$s na vyšší úroveň.</string>
   <string name="reminder_header_invite_button">POZVAT</string>
+  <string name="reminder_header_share_title">Pozvěte vaše přátele!</string>
+  <string name="reminder_header_share_text">Čím víc bude uživatelů Signal, tím bude lepší.</string>
+  <string name="reminder_header_share_button">SDÍLET</string>
   <string name="reminder_header_close_button">ZAVŘÍT</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>

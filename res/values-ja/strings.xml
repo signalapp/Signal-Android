@@ -88,8 +88,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを本当に抜けますか？</string>
   <string name="ConversationActivity_transport_insecure_sms">暗号化されていないSMS</string>
   <string name="ConversationActivity_transport_insecure_mms">暗号化されていないMMS</string>
-  <string name="ConversationActivity_get_with_it">一緒に取得: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">チャットするのに使います: %s</string>
   <string name="ConversationActivity_error_leaving_group">グループ離脱でエラー...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS はサポートされていません</string>
   <string name="ConversationActivity_mms_not_supported_message">あなたのキャリアがMMSをサポートしていないので、このメッセージは送信できません。</string>
@@ -101,8 +99,6 @@
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n送信方法: %2$s\n送信: %3$s\n受信: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">メッセージ削除の確認</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">あなたは、選択したメッセージの永久的な削除を希望してますが、よいのですね?</string>
   <string name="ConversationFragment_save_to_sd_card">メモリに保存しますか？</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">このファイルを保存すれば、別のアプリもこのファイルをアクセスできます。\n\nよろしいですか？</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">保存中にエラーが発生しました。</string>
@@ -118,8 +114,6 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">検索...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">スレッドを削除しますか？</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">選択したすべての会話スレッドを、本当に削除してもよろしいですか？</string>
   <string name="ConversationListFragment_deleting">削除</string>
   <string name="ConversationListFragment_deleting_selected_threads">選択したスレッドを削除中…</string>
   <!--ConversationListItem-->
@@ -191,6 +185,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">暗号化されたバックアップ・ファイルをインポート中…</string>
   <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップ・ファイルは見つかりませんでした。</string>
   <string name="ImportFragment_restore_complete">復元完了！</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">バーコードスキャナをインストールする?</string>
@@ -365,6 +360,7 @@
   <string name="QuickResponseService_problem_sending_message">送信メッセージでの問題!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_contents_hidden">非表示コンテンツ</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
   <string name="change_passphrase_activity__new_passphrase">新規のパスワード：</string>

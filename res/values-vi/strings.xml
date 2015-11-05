@@ -18,12 +18,10 @@ Tắt khóa màn hình cho tin nhắn?
     </string>
   <string name="ApplicationPreferencesActivity_disable">Tắt</string>
   <string name="ApplicationPreferencesActivity_unregistering">Tháo gỡ đăng ký</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Huỷ đăng ký với tin nhắn Signal...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Tắt tin nhắn Signal?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-Thao tác này sẽ tắt tin nhắn Signal bằng cách huỷ đăng ký từ máy chủ.
-Bạn sẽ phải đăng ký lại số điện thoại để dùng tin nhắn Signal trong tương lai.
-</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Đang huỷ đăng ký với tin nhắn và cuộc gọi Signal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Tắt tin nhắn và cuộc gọi Signal?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tắt tin nhắn và cuộc gọi Signal bằng cách huỷ đăng ký từ máy chủ.
+Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal trong tương lai.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Có lỗi kết nối vào máy chủ!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Đã mở SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
@@ -107,8 +105,8 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Làm đi: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Có lỗi khi rời nhóm</string>
   <string name="ConversationActivity_mms_not_supported_title">Không hỗ trợ MMS</string>
   <string name="ConversationActivity_mms_not_supported_message">Tin nhắn không gửi được vì hãng điện thoại không hỗ trợ MMS.</string>
@@ -122,8 +120,12 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Chuyển tải: %1$s\nGửi/Nhận: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Người gửi: %1$s\nChuyển tải: %2$s\nGửi: %3$s\nNhận: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Xác nhận xóa tin nhắn</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Bạn có chắc là muốn xóa vĩnh viễn các tin nhắn được chọn?</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="other">Xóa các tin nhắn đã chọn?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn?</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Lưu tập tin này vào thẻ nhớ sẽ cho phép các ứng dụng khác trong điện thoại truy cập nó.\n\nTiếp tục?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Có lỗi khi lưu tập tin đính kèm vào thẻ nhớ!</string>
@@ -140,8 +142,12 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Tìm...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Xóa các chuỗi chuyện trò?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Bạn có chắc là muốn xóa TẤT CẢ các chuỗi chuyện trò đã chọn?</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="other">Xoá các cuộc hội thoại đã chọn?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d cuộc hội thoại đã chọn?</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Đang xóa</string>
   <string name="ConversationListFragment_deleting_selected_threads">Xóa các chuỗi đã chọn...</string>
   <!--ConversationListItem-->
@@ -235,6 +241,19 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="ImportFragment_restoring_encrypted_backup">Phục hồi sao lưu có mã hóa...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Không tìm thấy sao lưu có mã hóa!</string>
   <string name="ImportFragment_restore_complete">Phục hồi hoàn tất!</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">Chia sẻ</string>
+  <string name="InviteActivity_send_sms">Gửi SMS</string>
+  <string name="InviteActivity_cancel">Hủy bỏ</string>
+  <string name="InviteActivity_sending">Đang gửi..</string>
+  <string name="InviteActivity_heart_content_description">Thích</string>
+  <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
+  <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
+  <string name="InviteActivity_send_to_friends">GỬI ĐẾN %1$s NGƯỜI BẠN</string>
+  <string name="InviteActivity_send_sms_invites">Gửi %1$s lời mời qua SMS?</string>
+  <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Bạn bè không để bạn mình tán gẫu không có mã khoá.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Không dò tìm thấy chìa khóa nào!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Cài đặt Ứng Dụng Quét Mã Vạch?</string>
@@ -253,12 +272,13 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Tin nhắn đa phương tiện</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá với phiên bản Signal cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi nâng cấp phiên bản mới nhất và gửi lại tin nhắn.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá bởi phiên bản Signal cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
   <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
   <string name="MessageRecord_updated_group">Cập nhật nhóm.</string>
   <string name="MessageRecord_s_called_you">%s đã gọi cho bạn</string>
   <string name="MessageRecord_called_s">Đã gọi cho %s</string>
   <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s đang dùng Signal, hãy chào hỏi một tiếng!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Cụm từ mật khẩu không khớp nhau!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Cụm từ mật khẩu cũ không đúng!</string>
@@ -295,6 +315,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="RatingManager_later">Sau này</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Chặn liên lạc này?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Bạn sẽ không còn nhận được cuộc gọi hay tin nhắn từ người dùng này nữa.</string>
   <string name="RecipientPreferenceActivity_block">Chặn</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Không chặn liên lạc này?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Bạn có chắc là không chặn liên lạc này?</string>
@@ -391,6 +412,8 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="ThreadRecord_called">Bạn đã gọi</string>
   <string name="ThreadRecord_called_you">Đã gọi cho bạn</string>
   <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
+  <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s đang dùng Signal, hãy chào hỏi một tiếng!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Bạn không có chìa khóa danh tính.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Người nhận không có chìa khóa danh tính.</string>
@@ -462,6 +485,12 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Thông điệp Signal mới</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Nội dung được ẩn</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Hình ảnh</string>
+  <string name="attachment_type_selector__audio">Âm thanh</string>
+  <string name="attachment_type_selector__video">Đoạn phim</string>
+  <string name="attachment_type_selector__contact">Liên lạc</string>
+  <string name="attachment_type_selector__camera">Máy ảnh</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">CỤM TỪ MẬT KHẨU CŨ:</string>
   <string name="change_passphrase_activity__new_passphrase">CỤM TỪ MẬT KHẨU MỚI:</string>
@@ -544,6 +573,7 @@ Khôi phục bản sao lưu Signal được mã khoá đã xuất từ trước.
   <string name="import_fragment__import_a_plaintext_backup_file">
 Nhập tập tin sao lưu thường-không mã hóa. Tương thích với ứng dụng \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Xem cuộc hội thoại đầy đủ</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Không hình ảnh</string>
   <!--message_recipients_list_item-->
@@ -570,7 +600,7 @@ Nhập tập tin sao lưu thường-không mã hóa. Tương thích với ứng 
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Tạm im chuyện trò</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Tắt thông báo cho cuộc chuyện trò này</string>
-  <string name="recipient_preferences__notification_tone">Âm báo</string>
+  <string name="recipient_preferences__notification_sound">Âm báo</string>
   <string name="recipient_preferences__vibrate">Rung</string>
   <string name="recipient_preferences__block">Chặn</string>
   <string name="recipient_preferences__color">Màu</string>
@@ -683,6 +713,7 @@ SMS thất bại.
   <string name="AndroidManifest__media_overview_named">Tất cả hình ảnh với %1$s</string>
   <string name="AndroidManifest__message_details">Chi tiết Tin Nhắn</string>
   <string name="AndroidManifest_manage_linked_devices">Quản trị các thiết bị liên kết</string>
+  <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Xuất / nhập</string>
   <string name="arrays__my_identity_key">Chìa khóa danh tính của tôi</string>
@@ -796,9 +827,9 @@ SMS thất bại.
   <string name="preferences__default">Mặc định</string>
   <string name="preferences__language">Ngôn ngữ</string>
   <string name="preferences__language_summary">Ngôn ngữ %s</string>
-  <string name="preferences__signal">Signal</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-Miễn phí nhắn tin và gọi điện riêng tư đến người dùng Signal
+  <string name="preferences__signal_messages_and_calls">Tin nhắn và cuộc gọi Signal</string>
+  <string name="preferences__free_private_messages_and_calls">
+Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Signal
 </string>
   <string name="preferences__submit_debug_log">Nộp ký sự dò lỗi</string>
   <string name="preferences__support_wifi_calling">Dạng tương thích \"Gọi qua WiFi\"</string>
@@ -883,11 +914,27 @@ Miễn phí nhắn tin và gọi điện riêng tư đến người dùng Signal
   <string name="text_secure_normal__menu_settings">Thiết Đặt</string>
   <string name="text_secure_normal__menu_clear_passphrase">Khóa</string>
   <string name="text_secure_normal__mark_all_as_read">Đánh dấu tất cả đã đọc</string>
+  <string name="text_secure_normal__invite_friends">Mời bạn bè</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Bản dựng Signal này đã hết hạn!</string>
   <string name="reminder_header_expired_build_details">Tin nhắn không còn gửi đi được nữa, xin vui lòng cập nhật lên phiên bản mới nhất.</string>
+  <string name="reminder_header_expired_build_button">CẬP NHẬT</string>
+  <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định</string>
   <string name="reminder_header_sms_default_text">Chạm để đặt Signal làm ứng dụng SMS mặc định.</string>
+  <string name="reminder_header_sms_default_button">THIẾT LẬP</string>
+  <string name="reminder_header_sms_import_title">Nhập SMS hệ thống</string>
   <string name="reminder_header_sms_import_text">Nhấn để sao chép tin nhắn SMS trong điện thoại vào cơ sở dữ liệu mã hóa.</string>
+  <string name="reminder_header_sms_import_button">NHẬP</string>
+  <string name="reminder_header_push_title">Bật tin nhắn và cuộc gọi Signal?</string>
+  <string name="reminder_header_push_text">Nâng tầm trải nghiệm giao tiếp.</string>
+  <string name="reminder_header_push_button">BẬT</string>
+  <string name="reminder_header_invite_title">Mời dùng Signal</string>
+  <string name="reminder_header_invite_text"> Hãy nâng cuộc hội thoại của bạn với %1$s lên tầm cao mới.</string>
+  <string name="reminder_header_invite_button">MỜI</string>
+  <string name="reminder_header_share_title">Hãy mời bạn bè!</string>
+  <string name="reminder_header_share_text">Càng đông bạn dùng Signal càng vui.</string>
+  <string name="reminder_header_share_button">CHIA SẺ</string>
+  <string name="reminder_header_close_button">ĐÓNG</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Bạn</string>
   <string name="MediaPreviewActivity_cant_display">Không xem trước hình được</string>

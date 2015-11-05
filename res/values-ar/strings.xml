@@ -17,10 +17,6 @@
 إزالة قفل الشاشة للرسائل؟</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">جارٍ إلغاء التسجيل من رسائل سيجنال..</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">تعطيل رسائل سيجنال؟</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
- سوف يتم تعطيل رسائل سيجنال بإلغاء تسجيلك من الخدمة. سوف يتعين عليك إعادة تسجيل رقم هاتفك لمعاودة استخدام رسائل سيجنال في المستقبل.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال بالخادم!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">الرسائل النصية مفعلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">المس لتغيير التطبيق الافتراضي للرسائل</string>
@@ -98,8 +94,6 @@
   <string name="ConversationActivity_transport_insecure_sms">رسالة نصية غير آمنة</string>
   <string name="ConversationActivity_transport_insecure_mms">رسالة وسائط متعددة غير آمنة</string>
   <string name="ConversationActivity_transport_signal">سيجنال</string>
-  <string name="ConversationActivity_get_with_it">احصل معها: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">دعنا نستخدم هذا للمحادثة: %s</string>
   <string name="ConversationActivity_error_leaving_group">خطأ أثناء ترك المجموعة...</string>
   <string name="ConversationActivity_mms_not_supported_title">رسائل الوسائط المتعددة غير مدعمة</string>
   <string name="ConversationActivity_mms_not_supported_message">لا يمكن الإرسال لأن شبكة الجوال التي تستخدمها لا تدعم رسائل الوسائط المتعددة.</string>
@@ -113,8 +107,6 @@
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_transport_s_sent_received_s">نقل: %1$s\nSent/Received: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">الراسل: %1$s\nنقل: %2$s\nمرسل: %3$s\nوارد: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">تاكيد حذف الرسال</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">هل أنت متأكد من حذف كل الرسائل المختارة بشكل دائم؟</string>
   <string name="ConversationFragment_save_to_sd_card">أحفظ في الذاكرة؟</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">حفظ الملف في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">خطأ أثناء حفظ المرفق إلى الذاكرة!</string>
@@ -131,8 +123,6 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">بحث...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">حذف رسائل المحادثة؟</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">هل تريد حذف كل المحادثات المختارة نهائياَ؟</string>
   <string name="ConversationListFragment_deleting">حذف</string>
   <string name="ConversationListFragment_deleting_selected_threads">حذف المحادثات المختارة</string>
   <!--ConversationListItem-->
@@ -218,6 +208,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">استعادة النسخ الاحتياطية المشفرة جارٍ..</string>
   <string name="ImportFragment_no_encrypted_backup_found">لم يتم العثور على نسخة احتياطية مشفرة!</string>
   <string name="ImportFragment_restore_complete">تمت الاستعادة!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">لم يتم العثور على مفتاح!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">تثبيت ماسح Barcode؟</string>
@@ -236,7 +227,6 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط متعددة</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مشفرة من إصدارة سيجنال قديمة وتوقف دعمها. من فضلك اطلب من الراسل الترقية إلي أحدث إصدار وإعادة إرسال الرسالة.</string>
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
   <string name="MessageRecord_updated_group">تم تحديث المجموعة.</string>
   <string name="MessageRecord_s_called_you">%s قام بالاتصال</string>
@@ -277,7 +267,6 @@
   <string name="RatingManager_later">فيما بعد</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">حظر جهة الاتصال؟</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">لن تتلقى مكالمات أو رسائل من هذا المستخدم مستقبلا.</string>
   <string name="RecipientPreferenceActivity_block">حظر</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">إلغاء حظر جهة الاتصال؟</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">تأكيد إلغاء حظر جهة الاتصال؟</string>
@@ -439,6 +428,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">رسالة سيجنال جديدة.</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">المحتويات مخفية</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة:</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة:</string>
@@ -547,7 +537,6 @@
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">كتم المحادثة</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">تعطيل الإشعارات لهذه المحادثة</string>
-  <string name="recipient_preferences__notification_tone">صوت التنبيه</string>
   <string name="recipient_preferences__vibrate">الاهتزاز</string>
   <string name="recipient_preferences__block">حظر</string>
   <string name="recipient_preferences__color">اللون</string>
@@ -755,9 +744,6 @@
   <string name="preferences__default">افتراضي</string>
   <string name="preferences__language">اللغة</string>
   <string name="preferences__language_summary">اللغة %s</string>
-  <string name="preferences__signal">سيجنال</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
- رسائل ومكالمات مجانية وآمنة مع مستخدمي سيجنال</string>
   <string name="preferences__submit_debug_log">إرسال سجل التصحيح</string>
   <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم خاصية WiFi Calling لتسليم الرسائل النصية والوسائط المتعددة ( قم بالتفعيل فقط في حال تفعيل WiFi Calling بهاتفك)</string>
@@ -844,15 +830,12 @@
   <!--reminder_header-->
   <string name="reminder_header_expired_build">لقد انتهت صلاحية هذه النسخة من سيجنال!</string>
   <string name="reminder_header_expired_build_details">رجاء التحديث لآخر إصداره من التطبيق. لن ترسل الرسائل بنجاح بعد الآن.</string>
-  <string name="reminder_header_expired_build_button">ترقية</string>
   <string name="reminder_header_sms_default_title">اجعله تطبيق المراسلة الافتراضي</string>
   <string name="reminder_header_sms_default_text">المس لجعل سيجنال التطبيق الافتراضي للرسائل.</string>
   <string name="reminder_header_sms_default_button">تعيين</string>
   <string name="reminder_header_sms_import_title">استيراد رسائل النظام</string>
   <string name="reminder_header_sms_import_text">أضغط لنسخ الرسائل النصية القصيرة على الهاتف إلى قاعدة البيانات المشفرة.</string>
   <string name="reminder_header_sms_import_button">استيراد</string>
-  <string name="reminder_header_push_title">تفعيل سيجنال</string>
-  <string name="reminder_header_push_text">ترقية تجربتك في التراسلات.</string>
   <string name="reminder_header_push_button">تفعيل</string>
   <string name="reminder_header_invite_title">دعوة إلى سيجنال</string>
   <string name="reminder_header_invite_button">دعوة</string>

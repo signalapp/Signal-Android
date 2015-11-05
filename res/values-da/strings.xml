@@ -87,7 +87,6 @@ denne kontakt.</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker, du vil forlade denne gruppe?</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikker (ikke krypteret) SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikker (ikke krypteret) MMS</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Lad os anvende denne til chat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Kunne ikke forlade gruppe...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS ikke understøttet</string>
   <string name="ConversationActivity_mms_not_supported_message">Denne besked kan ikke sendes, da din teleudbyder ikke understøtter MMS.</string>
@@ -100,8 +99,6 @@ denne kontakt.</string>
   <string name="ConversationFragment_message_details">Beskeddetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overførsel: %1$s\nSendt/Modtaget: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nOverførsel: %2$s\nSendt: %3$s\nModtaget: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Bekræft sletning af besked</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Er du sikker på, du vil slette ALLE valgte beskeder permanent?</string>
   <string name="ConversationFragment_save_to_sd_card">Gem på lager?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Gemmer du denne fil på lageret, kan andre apps på telefonen tilgå den.\n\nFortsæt?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Kunne ikke gemme vedhæftet fil på lageret!</string>
@@ -117,8 +114,6 @@ denne kontakt.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Søg...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Slet tråde?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Er du sikker på, du vil slette ALLE valgte samtaletråde?</string>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_threads">Sletter valgte tråde...</string>
   <!--ConversationListItem-->
@@ -192,6 +187,7 @@ vil det resultere i dupletter.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Gendanner krypteret backup...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Der blev ikke fundet en krypteret backup!</string>
   <string name="ImportFragment_restore_complete">Gendannelse fuldført!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannet nøgle fundet!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Installér Barcode Scanner?</string>
@@ -383,6 +379,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Indhold skjult</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">NUVÆRENDE KODEORD:</string>
   <string name="change_passphrase_activity__new_passphrase">NYT KODEORD:</string>

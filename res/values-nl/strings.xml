@@ -18,10 +18,9 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Af aan het melden</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Aan het afmelden voor Signal berichten...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal berichten uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-Dit zal Signal berichten uitzetten door je registratie bij de server ongedaan te maken. Je zal je telefoonnummer opnieuw moeten registreren als je Signal berichten weer wilt gebruiken.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Aan het afmelden voor Signal berichten en gesprekken...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal berichten en gesprekken uitschakelen?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal Signal berichten en gesprekken uitzetten door je te deregistreren bij de server. Je zal je telefoonnummer opnieuw moeten registreren als je deze functies weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS ingeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Aanraken om je standaard SMS-applicatie te veranderen</string>
@@ -99,8 +98,8 @@ Dit zal Signal berichten uitzetten door je registratie bij de server ongedaan te
   <string name="ConversationActivity_transport_insecure_sms">Onveilige SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Onveilige MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Kom erbij: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten via: %s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Laten we wisselen naar Signal %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS niet ondersteund</string>
   <string name="ConversationActivity_mms_not_supported_message">Dit bericht kan niet verzonden worden omdat je provider MMS niet ondersteund.</string>
@@ -114,8 +113,14 @@ Dit zal Signal berichten uitzetten door je registratie bij de server ongedaan te
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd%3$s\n/Ontvangen:%4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Verwijderen bericht bevestigen</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Weet je zeker dat je de geselecteerde berichten permanent wilt verwijderen?</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Geselecteerd bericht verwijderen?</item>
+    <item quantity="other">Geselecteerde berichten verwijderen?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Dit zal het geselecteerde bericht permanent verwijderen.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde berichten permanent verwijderen.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Opslaan?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Het opslaan van dit mediabestand maakt het toegankelijke voor alle apps op je telefoon.t.\n\nDoorgaan?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fout tijdens het opslaan van de bijlage!</string>
@@ -132,8 +137,14 @@ Dit zal Signal berichten uitzetten door je registratie bij de server ongedaan te
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Zoeken...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Gesprekken verwijderen?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Weet je zeker dat je ALLE geselecteerde gesprekken wilt verwijderen?</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Geselecteerd gesprek verwijderen?</item>
+    <item quantity="other">Geselecteerde gesprekken verwijderen?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Dit zal het geselecteerde gesprek permanent verwijderen.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken permanent verwijderen.</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Geselecteerde gesprekken aan het verwijderen...</string>
   <!--ConversationListItem-->
@@ -219,6 +230,19 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="ImportFragment_restoring_encrypted_backup">Versleutelde back-up herstellen...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Geen versleutelde back-up gevonden!</string>
   <string name="ImportFragment_restore_complete">Herstellen voltooid!</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">Delen</string>
+  <string name="InviteActivity_send_sms">SMS versturen</string>
+  <string name="InviteActivity_cancel">Annuleren</string>
+  <string name="InviteActivity_sending">Aan het versturen...</string>
+  <string name="InviteActivity_heart_content_description">Hartje</string>
+  <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
+  <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
+  <string name="InviteActivity_send_to_friends">VERSTUUR NAAR %1$s VRIEND(EN)</string>
+  <string name="InviteActivity_send_sms_invites">%1$s SMS uitnodiging(en) versturen?</string>
+  <string name="InviteActivity_lets_switch_to_signal">Laten we wisselen naar Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Geen gescande sleutel gevonden!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Installeer Barcode Scanner?</string>
@@ -237,12 +261,13 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling die niet meer ondersteund wordt. Vraag de afzender om Signal te updaten naar de meest recente versie en het bericht opnieuw te verzenden.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal versie die niet meer ondersteund wordt. Vraag de afzender om te updaten naar de meest recente versie en het bericht opnieuw te versturen.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_updated_group">Groep bijgewerkt.</string>
   <string name="MessageRecord_s_called_you">%s heeft je gebeld</string>
   <string name="MessageRecord_called_s">%s gebeld</string>
   <string name="MessageRecord_missed_call_from">Gemist gesprek van %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
@@ -279,7 +304,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RatingManager_later">Later</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Contact blokkeren?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Je zal geen berichten of gesprekken meer ontvangen van deze gebruiker.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Je zal geen berichten of gesprekken meer krijgen van deze gebruiker.</string>
   <string name="RecipientPreferenceActivity_block">Blokkeren</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Contact ontblokken?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Weet je zeker dat je dit contact wilt ontblokken?</string>
@@ -374,6 +399,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="ThreadRecord_called_you">Heeft je gebeld</string>
   <string name="ThreadRecord_missed_call">Gemist gesprek</string>
   <string name="ThreadRecord_media_message">Media bericht</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Je hebt geen identiteitssleutel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">De ontvanger heeft geen identiteitssleutel.</string>
@@ -445,6 +471,12 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Nieuw Signal bericht</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Inhoud verborgen</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Afbeelding</string>
+  <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__contact">Contactpersoon</string>
+  <string name="attachment_type_selector__camera">Camera</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord:</string>
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord:</string>
@@ -552,7 +584,7 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Demp conversatie</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Notificaties uitschakelen voor dit gesprek</string>
-  <string name="recipient_preferences__notification_tone">Notificatie toon</string>
+  <string name="recipient_preferences__notification_sound">Notificatiegeluid</string>
   <string name="recipient_preferences__vibrate">Vibreren</string>
   <string name="recipient_preferences__block">Blokkeren</string>
   <string name="recipient_preferences__color">Kleur</string>
@@ -648,6 +680,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__media_overview_named">Alle afbeeldingen met %1$s</string>
   <string name="AndroidManifest__message_details">Bericht Details</string>
   <string name="AndroidManifest_manage_linked_devices">Beheer gekoppelde apparaten</string>
+  <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__my_identity_key">Mijn identiteitssleutel</string>
@@ -762,9 +795,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__default">Standaard</string>
   <string name="preferences__language">Taal</string>
   <string name="preferences__language_summary">Taal %s</string>
-  <string name="preferences__signal">Signal</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-Gratis privéberichten versturen aan Signal gebruikers</string>
+  <string name="preferences__signal_messages_and_calls">Signal berichten en gesprekken</string>
+  <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal gebruikers</string>
   <string name="preferences__submit_debug_log">Dien debug log in</string>
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Inschakelen als je toestel SMS/MMS over WiFi gebruikt (alleen inschakelen als \'WiFi Bellen\' is ingeschakeld op je toestel)</string>
@@ -848,22 +880,26 @@ Gratis privéberichten versturen aan Signal gebruikers</string>
   <string name="text_secure_normal__menu_settings">Instellingen</string>
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendelen</string>
   <string name="text_secure_normal__mark_all_as_read">Alles als gelezen markeren</string>
+  <string name="text_secure_normal__invite_friends">Vrienden uitnodigen</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Je versie van Signal is verouderd!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
-  <string name="reminder_header_expired_build_button">UPGRADEN</string>
+  <string name="reminder_header_expired_build_button">UPDATE</string>
   <string name="reminder_header_sms_default_title">Gebruiken als standaard SMS-app</string>
   <string name="reminder_header_sms_default_text">Aanraken om Signal je standaard SMS-applicatie te maken.</string>
   <string name="reminder_header_sms_default_button">SET</string>
   <string name="reminder_header_sms_import_title">SMS uit systeem importeren</string>
   <string name="reminder_header_sms_import_text">Aanraken om de SMS berichten in je telefoon te kopiëren naar een versleutelde database.</string>
   <string name="reminder_header_sms_import_button">IMPORTEREN</string>
-  <string name="reminder_header_push_title">Signal inschakelen</string>
-  <string name="reminder_header_push_text">Uw gesprekservaringervarig verbeteren.</string>
+  <string name="reminder_header_push_title">Signal berichten en gesprekken inschakelen</string>
+  <string name="reminder_header_push_text">Update je communicatie-ervaring.</string>
   <string name="reminder_header_push_button">AANZETTEN</string>
   <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
   <string name="reminder_header_invite_text">Haal uw gesprek met %1$s naar het volgende niveau.</string>
   <string name="reminder_header_invite_button">UITNODIGEN</string>
+  <string name="reminder_header_share_title">Nodig je vrienden uit!</string>
+  <string name="reminder_header_share_text">Hoe meer vrienden Signal gebruiken, hoe fijner het wordt.</string>
+  <string name="reminder_header_share_button">DELEN</string>
   <string name="reminder_header_close_button">SLUITEN</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jij</string>

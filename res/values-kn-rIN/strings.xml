@@ -83,8 +83,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ಈ ಸಮೂಹ ಬಿಡವ ಬಯಕೆಯನ್ನು ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ?</string>
   <string name="ConversationActivity_transport_insecure_sms">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ </string>
   <string name="ConversationActivity_transport_insecure_mms">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ </string>
-  <string name="ConversationActivity_get_with_it">ಇದನ್ನು ಪಡೆಯಿರಿ:: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">ಈ ಸಂಭಾಷಣೆಯನ್ನು ಬಳಸೊಣ:  %s</string>
   <string name="ConversationActivity_error_leaving_group">ಗುಂಪು ಬಿಡುವಾಗ ದೋಷ ...</string>
   <string name="ConversationActivity_mms_not_supported_title">ಎಂಎಂಎಸ್ ಬೆಂಬಲವಿಲ್ಲ</string>
   <string name="ConversationActivity_mms_not_supported_message">ನಿಮ್ಮ ವಾಹಕ ಎಂಎಂಎಸ್ ನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಅದುದರಿಂದ ಈ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
@@ -93,8 +91,6 @@
   <string name="ConversationFragment_message_details">ಸಂದೇಶದ ವಿವರಗಳು</string>
   <string name="ConversationFragment_transport_s_sent_received_s">ರವಾನೆ: %1$s \nಕಳುಹಿಸಲಾಗಿದೆ/ಸ್ವೀಕರಿಸಲಾಗಿದೆ:%2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ಕಳುಹಿಸುವವನು: %1$s\nರವಾನೆ: %2$s\nಕಳುಹಿಸಲಾಗಿದೆ: %3$s\nಸ್ವೀಕರಿಸಿದ್ದೇವೆ:%4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">ಸಂದೇಶವನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತದೆ, ಖಚಿತಪಡಿಸಿ</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">ನೀವು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <string name="ConversationFragment_save_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಉಳಿಸಲೆ?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">ಈ ಮಾಧ್ಯಮವನ್ನು ಸಂಗ್ರಹಕ್ಕೆ ಉಳಿಸಲಾಗುತ್ತಿದೆ. ನಿಮ್ಮ ಫೋನಿನ  ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ಗಳು ಇದನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳುವ ಅವಕಾಶವಿದೆ \n \ n ಮುಂದುವರಿಯುಲೆ?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸುವಾಗ ತೊಡಕಾಗಿದೆ!</string>
@@ -110,8 +106,6 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">ಹುಡುಕಿ...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">ಸಂವಾದದ ಎಳೆಗಳನ್ನು ಅಳಿಸು?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ನೀವು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ ಸಂವಾದವನ್ನು ಎಳೆಗಳನ್ನು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <string name="ConversationListFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="ConversationListFragment_deleting_selected_threads">ಆಯ್ದ ವಾದಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <!--ConversationListItem-->
@@ -173,6 +167,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಬ್ಯಾಕಪ್ ಅನ್ನು ಪುನಃಸ್ಥಾಪಿಸಿ...</string>
   <string name="ImportFragment_no_encrypted_backup_found">ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಬ್ಯಾಕ್ಅಪ್ ಕಂಡುಬಂದಿಲ್ಲ!</string>
   <string name="ImportFragment_restore_complete">ಪುನಃಸ್ಥಾಪನೆ ಪೂರ್ಣಗೊಂಡಿದೆ!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಕಂಡುಬಂದಿಲ್ಲ!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">ಬಾರ್ ಕೋಡ್ ಸ್ಕ್ಯಾನರ್ ಸ್ಥಾಪಿಸಲೆ?</string>
@@ -337,6 +332,7 @@
   <string name="MessageNotifier_media_message">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ಹಳೆಯ ಗುಪ್ತಪದ:</string>
   <string name="change_passphrase_activity__new_passphrase">ಹೊಸ ಗುಪ್ತಪದ:</string>

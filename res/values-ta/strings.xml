@@ -74,14 +74,11 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">நீங்கள் குழுவை விட்டு நிச்சயமாக விலகவேண்டுமா?</string>
   <string name="ConversationActivity_transport_insecure_sms">பாதுகாப்பற்ற SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
-  <string name="ConversationActivity_get_with_it">இதனுடன் பெறவும் : %s</string>
   <string name="ConversationActivity_error_leaving_group">குழுவை விட்டு விலகுவதில் பிழை...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">செய்தி விவரங்கள்</string>
   <string name="ConversationFragment_transport_s_sent_received_s">போக்குவரத்து: %1$s\nஅனுப்பியது/பெற்றது: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">அனுப்புநர்: %1$s\nபோக்குவரத்து: %2$s\nஅனுப்பியது: %3$s\nபெற்றது: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">செய்தியை நீக்க உறுதிப்படுத்த</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">நீங்கள் தேர்ந்தெடுக்கப்பட்ட  அனைத்து செய்திகளையும் நிரந்தரமாக நீக்கவதற்கு உறுதி செய்கிறீர்களா?</string>
   <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">சேமிப்பில் சேர்த்தால், தொலைபேசியில் உள்ள மற்ற மென்பொருட்களாலும் இதை அணுக முடியும்.\n\nதொடரலாமா?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">சேமிப்பில் சேர்கும்போது பிழையேர்ப்பட்டது!</string>
@@ -95,8 +92,6 @@
   <string name="ConversationFragment_deleting_messages">செய்திகள் நீக்கப்படுகிறது...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">செய்திநூல்கள் நீக்கப்படலாமா?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">நீங்கள் தேர்ந்தெடுத்த எல்லா உரையாடல்நூல்களையும்  நீக்க விரும்புகிறீர்களா?</string>
   <string name="ConversationListFragment_deleting">நீக்கப்படுகிறது</string>
   <string name="ConversationListFragment_deleting_selected_threads">தேர்ந்தெடுக்கப்பட்ட செய்திநூல்கள் நீக்கப்படுகிறது...</string>
   <!--ConversationListItem-->
@@ -158,6 +153,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">முன்சேமித்த மறையாக்கப்பட்ட கோப்பிலிருந்து மீட்கபடுகிறது...</string>
   <string name="ImportFragment_no_encrypted_backup_found">முன்சேமித்த  மறையாக்கப்பட்ட கோப்பு காணப்படவில்லை!</string>
   <string name="ImportFragment_restore_complete">மீட்கபடுதல் முடிந்தது!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ஸ்கேன் செய்யப்பட்ட விசை காணப்படவில்லை!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">பார்கோடு ஸ்கேனர் நிறுவலாமா?</string>
@@ -313,6 +309,7 @@
   <string name="MessageNotifier_media_message">மீடியா செய்தி</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">பழைய கடவுச்சொல்:</string>
   <string name="change_passphrase_activity__new_passphrase">புதிய கடவுச்சொல்:</string>

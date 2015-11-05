@@ -15,7 +15,6 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">عبارت عبور غیر فعال کنم؟</string>
   <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
   <string name="ApplicationPreferencesActivity_unregistering">لغو ثبت نام</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">غیر فعال کردن پیام سیگنال؟</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">اس ام اس فعال</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">لمس کنید تا برنامه پیش فرض SMS را تغییر دهید</string>
@@ -83,7 +82,6 @@
   <string name="ConversationActivity_transport_insecure_sms">پیامک نا امن</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS نا امن</string>
   <string name="ConversationActivity_transport_signal">سیگنال</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">بیایید از این برای گفت‌وگو استفاده کنیم: %s</string>
   <string name="ConversationActivity_error_leaving_group">خطا ترک گروه ...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS پشتیبانی نمی شود</string>
   <string name="ConversationActivity_specify_recipient">لطفا یک تماس را انتخاب کنید</string>
@@ -93,8 +91,6 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">جزییات پیام</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">فرستنده: %1$s\nنوع انتقال: %2$s\nزمان ارسال: %3$s\nزمان دریافت: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">تایید حذف پیام</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">آیا از حذف دایم تمام پیام های انتخاب شده اطمینان دارید؟</string>
   <string name="ConversationFragment_save_to_sd_card">ذخیره در ذخیره سازی؟</string>
   <string name="ConversationFragment_success_exclamation">موفقیت!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر نیست به ارسال به ذخیره سازی!</string>
@@ -109,8 +105,6 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">جستجو...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">حذف گفتگو ها؟</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">آیا مطمئن هستید که می خواهید همه موضوعات مکالمات انتخاب شده را حذف کنید؟</string>
   <string name="ConversationListFragment_deleting">حذف</string>
   <string name="ConversationListFragment_deleting_selected_threads">حذف موضوعات انتخاب شده...</string>
   <!--ConversationListItem-->
@@ -176,6 +170,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">بازگرداندن نسخه پشتیبان رمزگذاری ...</string>
   <string name="ImportFragment_no_encrypted_backup_found">پشتیبان رمزگذاری شده پیدا نشد!</string>
   <string name="ImportFragment_restore_complete">بازیابی کامل شد!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">کلید اسکن شده پیدا نشد!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">نصب اسکنر بارکد؟</string>
@@ -367,6 +362,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">پیام جدید سیگنال</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">محتوای مخفی</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">رمز قبلی:</string>
   <string name="change_passphrase_activity__new_passphrase">رمز جدید:</string>
@@ -454,7 +450,6 @@
   <string name="recipient_preference_activity__blocked">مسدود</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">مکالمه صامت</string>
-  <string name="recipient_preferences__notification_tone">تن اطلاع رسانی</string>
   <string name="recipient_preferences__vibrate">لرزش</string>
   <string name="recipient_preferences__block">بلوک</string>
   <string name="recipient_preferences__color">رنگ</string>
@@ -632,7 +627,6 @@
   <string name="preferences__default">پیش فرض</string>
   <string name="preferences__language">زبان</string>
   <string name="preferences__language_summary">زبان %s</string>
-  <string name="preferences__signal">سیگنال</string>
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
   <string name="preferences__support_wifi_calling">\'وای فای تلفن\' حالت سازگاری</string>
   <string name="preferences_app_protection__blocked_contacts">اطلاعات تماس مسدود</string>
@@ -715,7 +709,6 @@
   <string name="text_secure_normal__mark_all_as_read">علامت همه به عنوان خوانده شده</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">نسخه سیگنال شما منقضی شده است!</string>
-  <string name="reminder_header_expired_build_button">آپگرید</string>
   <string name="reminder_header_sms_default_button">تنظیم</string>
   <string name="reminder_header_push_button">فعال کردن</string>
   <string name="reminder_header_invite_button">دعوت كردن</string>

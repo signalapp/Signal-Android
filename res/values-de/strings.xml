@@ -17,10 +17,9 @@
 Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Signal-Registrierung wird gelöscht …</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal-Kommunikation deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-Signal-Kommunikation durch Löschen Ihrer Registrierung vom Server deaktivieren. Sie werden Ihre Rufnummer erneut registrieren müssen, um die Signal-Kommunikation zukünftig wieder nutzen zu können.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal-Registrierung wird gelöscht …</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und -Telefonie deaktivieren?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und -Telefonie durch Löschen Ihrer Registrierung vom Server deaktivieren. Sie werden Ihre Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden zum Server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiviert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Standard-SMS-App ändern</string>
@@ -98,8 +97,8 @@ Signal-Kommunikation durch Löschen Ihrer Registrierung vom Server deaktivieren.
   <string name="ConversationActivity_transport_insecure_sms">Unsichere SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Unsichere MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Sicher kommunizieren: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Lassen Sie uns diese App zum Unterhalten verwenden: %s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Wechseln wir zu Signal %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Unterhalten wir uns hiermit: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe …</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nicht unterstützt</string>
   <string name="ConversationActivity_mms_not_supported_message">Diese Nachricht kann nicht gesendet werden, da Ihr Mobilfunkanbieter MMS nicht unterstützt.</string>
@@ -113,8 +112,14 @@ Signal-Kommunikation durch Löschen Ihrer Registrierung vom Server deaktivieren.
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Übertragung: %1$s\nGesendet/Empfangen: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Absender: %1$s\nÜbertragung: %2$s\nGesendet: %3$s\nEmpfangen: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Nachrichten löschen?</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Alle ausgewählten Nachrichten unwiderruflich löschen.</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Ausgewählte Nachricht löschen?</item>
+    <item quantity="other">Ausgewählte Nachrichten löschen?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Unwiderruflich die ausgewählte Nachricht löschen.</item>
+    <item quantity="other">Unwiderruflich alle %1$d ausgewählten Nachrichten löschen.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Das Speichern der Datei im Gerätespeicher ermöglicht allen anderen installierten Apps darauf Zugriff.\n\nTrotzdem fortfahren?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs im Gerätespeicher!</string>
@@ -131,8 +136,14 @@ Signal-Kommunikation durch Löschen Ihrer Registrierung vom Server deaktivieren.
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Suchen …</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Unterhaltungen löschen?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ALLE ausgewählten Unterhaltungen unwiderruflich löschen.</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Ausgewählte Unterhaltung löschen?</item>
+    <item quantity="other">Ausgewählte Unterhaltungen löschen?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Unwiderruflich die ausgewählte Unterhaltung löschen.</item>
+    <item quantity="other">Unwiderruflich alle %1$d ausgewählten Unterhaltungen löschen.</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Ausgewählte Unterhaltungen werden gelöscht …</string>
   <!--ConversationListItem-->
@@ -217,6 +228,19 @@ Signal-Kommunikation durch Löschen Ihrer Registrierung vom Server deaktivieren.
   <string name="ImportFragment_restoring_encrypted_backup">Verschlüsselte Datensicherung wird wiederhergestellt …</string>
   <string name="ImportFragment_no_encrypted_backup_found">Keine verschlüsselte Datensicherung gefunden!</string>
   <string name="ImportFragment_restore_complete">Wiederherstellung abgeschlossen!</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">Teilen</string>
+  <string name="InviteActivity_send_sms">SMS senden</string>
+  <string name="InviteActivity_cancel">Abbrechen</string>
+  <string name="InviteActivity_sending">Sendevorgang …</string>
+  <string name="InviteActivity_heart_content_description">Herz</string>
+  <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
+  <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
+  <string name="InviteActivity_send_to_friends">AN %1$s FREUND(E) SENDEN</string>
+  <string name="InviteActivity_send_sms_invites">%1$s SMS-Einladung(en) senden?</string>
+  <string name="InviteActivity_lets_switch_to_signal">Wechseln wir zu Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hätten Sie keine zum Teilen geeignete Apps installiert.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Keinen scanbaren Schlüssel gefunden!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">App „Barcode Scanner“ installieren?</string>
@@ -241,6 +265,7 @@ Signal-Kommunikation durch Löschen Ihrer Registrierung vom Server deaktivieren.
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
   <string name="MessageRecord_called_s">Ausgegangener Anruf an %s</string>
   <string name="MessageRecord_missed_call_from">Verpasster Anruf von %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal, Zeit Hallo zu sagen! </string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -276,7 +301,7 @@ Signal-Kommunikation durch Löschen Ihrer Registrierung vom Server deaktivieren.
   <string name="RatingManager_later">Später</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Sie werden keine Anrufe oder Nachrichten mehr von diesem Kontakt erhalten.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Sie werden keine Nachrichten oder Anrufe mehr von diesem Kontakt erhalten.</string>
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Nicht mehr blockieren?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Diesen Kontakt nicht mehr blockieren.</string>
@@ -366,6 +391,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
   <string name="ThreadRecord_missed_call">Verpasster Anruf</string>
   <string name="ThreadRecord_media_message">Multimedianachricht</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal, Zeit Hallo zu sagen!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Kontakt hat keinen Schlüssel.</string>
@@ -437,6 +463,12 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Neue Signal-Nachricht</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Inhalt verborgen</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Bild</string>
+  <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__contact">Kontakt</string>
+  <string name="attachment_type_selector__camera">Kamera</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ALTES PASSWORT:</string>
   <string name="change_passphrase_activity__new_passphrase">NEUES PASSWORT:</string>
@@ -544,7 +576,7 @@ Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung importieren
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Unterhaltung stummschalten</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Benachrichtigungen für diese Unterhaltung deaktivieren</string>
-  <string name="recipient_preferences__notification_tone"> Benachrichtigungston</string>
+  <string name="recipient_preferences__notification_sound">Benachrichtigungston</string>
   <string name="recipient_preferences__vibrate">Vibration</string>
   <string name="recipient_preferences__block">Kontakt blockieren</string>
   <string name="recipient_preferences__color">Farbe</string>
@@ -634,6 +666,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__media_overview_named">Alle Bilder mit %1$s</string>
   <string name="AndroidManifest__message_details">Nachrichtendetails</string>
   <string name="AndroidManifest_manage_linked_devices">Verknüpfte Geräte verwalten</string>
+  <string name="AndroidManifest__invite_friends">Freunde einladen</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Datensicherung</string>
   <string name="arrays__my_identity_key">Ihr Schlüssel</string>
@@ -748,9 +781,8 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprache</string>
   <string name="preferences__language_summary">Sprache %s</string>
-  <string name="preferences__signal">Signal</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und telefonieren</string>
+  <string name="preferences__signal_messages_and_calls">Signal-Nachrichten und -Telefonie</string>
+  <string name="preferences__free_private_messages_and_calls">Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und telefonieren</string>
   <string name="preferences__submit_debug_log">Diagnoseprotokoll übermitteln</string>
   <string name="preferences__support_wifi_calling">Kompatibilität WLAN-Telefonie</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
@@ -834,6 +866,7 @@ Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und tele
   <string name="text_secure_normal__menu_settings">Einstellungen</string>
   <string name="text_secure_normal__menu_clear_passphrase">Signal sperren</string>
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
+  <string name="text_secure_normal__invite_friends">Freunde einladen</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ihre Version von Signal ist veraltet!</string>
   <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte Signal auf die neueste Version aktualisieren.</string>
@@ -844,12 +877,15 @@ Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und tele
   <string name="reminder_header_sms_import_title">System-SMS importieren</string>
   <string name="reminder_header_sms_import_text">Antippen, um auf dem Telefon gespeicherte SMS-Nachrichten in die verschlüsselte Datenbank zu importieren.</string>
   <string name="reminder_header_sms_import_button">IMPORTIEREN</string>
-  <string name="reminder_header_push_title">Signal-Kommunikation aktivieren</string>
+  <string name="reminder_header_push_title">Signal-Nachrichten und -Telefonie aktivieren</string>
   <string name="reminder_header_push_text">Verbessern Sie Ihr Kommunikationserlebnis.</string>
   <string name="reminder_header_push_button">AKTIVIEREN</string>
   <string name="reminder_header_invite_title">Zu Signal einladen</string>
   <string name="reminder_header_invite_text">Heben Sie Ihre Kommunikation mit %1$s auf die nächste Stufe.</string>
   <string name="reminder_header_invite_button">EINLADEN</string>
+  <string name="reminder_header_share_title">Laden Sie Ihre Freunde ein!</string>
+  <string name="reminder_header_share_text">Je mehr Freunde Signal nutzen, desto besser wird es.</string>
+  <string name="reminder_header_share_button">TEILEN</string>
   <string name="reminder_header_close_button">SCHLIESSEN</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sie</string>

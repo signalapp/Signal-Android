@@ -18,12 +18,8 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Descadastrando de mensagens Signal...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Desabilitar mensagens Signal?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-        Isto irá desabilitar mensagens do Signal, descadastrando-o do servidor.
-        Você precisará recadastrar seu número de telefone para usar o Signal novamente no futuro.
-    </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Signal?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitado</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para mudar seu app padrão de SMS</string>
@@ -99,8 +95,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Baixar com: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS não suportado</string>
   <string name="ConversationActivity_mms_not_supported_message">Esta mensagem não pode ser enviada pois sua operadora não tem suporte a MMS.</string>
@@ -114,8 +108,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s\nEnviadas/Recebidas: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Remetente: %1$s\nTransporte: %2$s\nEnviadas: %3$s\nRecebidas: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Confirmação de exclusão de mensagem</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Tem certeza que deseja excluir permanentemente todas as mensagens selecionadas?</string>
   <string name="ConversationFragment_save_to_sd_card">Salvar no cartão SD?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Salvar esta mídia no armazenamento permitirá que quaisquer outros aplicativos em seu telefone possam acessá-la.\n\nContinuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o cartão SD!</string>
@@ -132,8 +124,6 @@ Tem certeza que deseja fazer isto?</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Procurar</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Excluir conversas?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Tem certeza que deseja excluir TODAS as conversas selecionadas?</string>
   <string name="ConversationListFragment_deleting">Deletando</string>
   <string name="ConversationListFragment_deleting_selected_threads">Excluindo conversas selecionadas...</string>
   <!--ConversationListItem-->
@@ -217,6 +207,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ImportFragment_restoring_encrypted_backup">Restaurando backup criptografado...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nenhum backup criptografado encontrado!</string>
   <string name="ImportFragment_restore_complete">Restauração finalizada!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Não foi encontrada nenhuma chave lida!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalar scanner de código de barras?</string>
@@ -408,6 +399,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdo escondido</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
@@ -698,7 +690,6 @@ falhou.</string>
   <string name="preferences__default">Padrão</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__language_summary">Idioma %s</string>
-  <string name="preferences__signal">Signal</string>
   <string name="preferences__submit_debug_log">Enviar log de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>

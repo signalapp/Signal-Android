@@ -17,12 +17,6 @@
 Képernyő zárolásának tiltása az üzeneteknél?</string>
   <string name="ApplicationPreferencesActivity_disable">Tiltás</string>
   <string name="ApplicationPreferencesActivity_unregistering">Regisztráció megszüntetése...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Regisztráció törlése a Signal üzenetekről...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal üzenetek letiltása?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-        Ez letiltja a Signal üzeneteket a kiszolgálóról való leregisztrálásoddal.
-        A telefonszámod újra regisztrálása szükséges a Signal üzenetek jövőbeni ismételt használatához.
-    </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba a kiszolgálóhoz való kapcsolódáskor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS engedélyezett</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Érintsd meg az alapértelmezett SMS alkalmazás megváltoztatásához</string>
@@ -106,8 +100,6 @@ ezt a névjegyet.
   <string name="ConversationActivity_transport_insecure_sms">Nem biztonságos SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nem biztonságos MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Szerezd be itt: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Használd ezt a csevegéshez: %s</string>
   <string name="ConversationActivity_error_leaving_group">Hiba a csoport elhagyásakor...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nem támogatott</string>
   <string name="ConversationActivity_mms_not_supported_message">Ezt az üzenetet nem lehet elküldeni, mivel a szolgáltatód nem támogatja az MMS-t.</string>
@@ -121,8 +113,6 @@ ezt a névjegyet.
   <string name="ConversationFragment_message_details">Üzenet részletek</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Átviteli mód: %1$s\nKüldött/Fogadott: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Küldő: %1$s\nÁtvitel: %2$s\nKüldött: %3$s\nFogadott: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Üzenettörlés megerősítése</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Biztosan véglegesen törölni szeretnéd a kiválasztott üzeneteket?</string>
   <string name="ConversationFragment_save_to_sd_card">Mentsük a tárolóra?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Ennek a médiának az elmentése más alkalmazások számára lehetővé teszi azok hozzáférését.\n\n Folytassuk?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Hiba történt a melléklet mentése közben!</string>
@@ -139,8 +129,6 @@ ezt a névjegyet.
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Keresés...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Töröljük az üzenetfolyamot?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Biztosan törölni szeretnéd az összes kiválasztott üzenetváltást?</string>
   <string name="ConversationListFragment_deleting">Törlés</string>
   <string name="ConversationListFragment_deleting_selected_threads">Kiválasztott beszélgetésfolyamok törlése...</string>
   <!--ConversationListItem-->
@@ -236,6 +224,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Kódolt biztonsági mentés visszaállítása...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nem található titkosított biztonsági mentés!</string>
   <string name="ImportFragment_restore_complete">Visszaállítás befejezve!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nem található szkennelt kulcs!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Telepítsük a Barcode Scanner -vonalkód olvasó- alkalmazást?</string>
@@ -254,7 +243,6 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimédia üzenet</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Érkezett egy üzenet a Signal régebbi verziójával titkosítva, ami már nem támogatott. Kérlek kérd meg a küldőt, hogy frissítsen a legutóbbi verzióra és küldje újra az üzenetet.</string>
   <string name="MessageRecord_left_group">Elhagytad a csoportot.</string>
   <string name="MessageRecord_updated_group">A csoport frissítése megtörtént.</string>
   <string name="MessageRecord_s_called_you">%s hívott téged</string>
@@ -296,7 +284,6 @@ Kérlek telepíts újra a Google Play Szolgáltatásokat és próbálkozz újra!
   <string name="RatingManager_later">Később</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Letiltod ezt a névjegyet?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_calls_or_messages_from_this_user">Többé nem kapsz ettől a felhasználótól hívásokat vagy üzeneteket.</string>
   <string name="RecipientPreferenceActivity_block">Letiltás</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Feloldod ezt a névjegyet?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan fel akarod oldani ezt a névjegyet?</string>
@@ -471,6 +458,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Új Signal üzenet</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Tartalmak rejtve</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">RÉGI JELSZÓ:</string>
   <string name="change_passphrase_activity__new_passphrase">ÚJ JELSZÓ:</string>
@@ -554,6 +542,7 @@ az alapértelmezett rendszer üzenetküldő alkalmazásból.
   <string name="import_fragment__import_a_plaintext_backup_file">
 Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági mentés és visszaállítás\" kompatibilis.</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Teljes beszélgetés megnézése</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Nincs fénykép</string>
   <!--message_recipients_list_item-->
@@ -580,7 +569,6 @@ Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági me
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Beszélgetés némítása</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Értesítések tiltása ehhez a beszélgetéshez</string>
-  <string name="recipient_preferences__notification_tone">Értesítési hang</string>
   <string name="recipient_preferences__vibrate">Rezgés</string>
   <string name="recipient_preferences__block">Letiltás</string>
   <string name="recipient_preferences__color">Szín</string>
@@ -816,10 +804,6 @@ sikertelen.
   <string name="preferences__default">Alapértelmezett</string>
   <string name="preferences__language">Nyelv</string>
   <string name="preferences__language_summary">Nyelv %s</string>
-  <string name="preferences__signal">Signal</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-        Ingyenes privát üzenetküldés és hívás a Signal felhasználóknak
-    </string>
   <string name="preferences__submit_debug_log">Hibakeresési napló küldése</string>
   <string name="preferences__support_wifi_calling">\'WiFi hívás\' kompatibilitási mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Engedélyezd, ha az eszközöd az SMS/MMS-t WiFi-n keresztül kézbesíti (csak akkor engedélyezd, ha a \'WiFi hívás\' engedélyezve van az eszközödön)</string>
@@ -906,13 +890,14 @@ sikertelen.
   <!--reminder_header-->
   <string name="reminder_header_expired_build">A Signal-od buildje lejárt!</string>
   <string name="reminder_header_expired_build_details">Az üzenetek küldése nem lesz sikeres, kérlek frissíts a legújabb verzióra!</string>
-  <string name="reminder_header_expired_build_button">FRISSÍTÉS</string>
+  <string name="reminder_header_sms_default_title">Használat alapértelmezett SMS alkalmazásként</string>
   <string name="reminder_header_sms_default_text">Koppints a Signal alapértelmezett SMS alkalmazássá tételéhez.</string>
   <string name="reminder_header_sms_default_button">BEÁLLÍTÁS</string>
+  <string name="reminder_header_sms_import_title">Rendszer SMS importálása</string>
   <string name="reminder_header_sms_import_text">Koppints a telefon SMS üzeneteinek titkosított adatbázisba másolásához.</string>
   <string name="reminder_header_sms_import_button">IMPORTÁLÁS</string>
-  <string name="reminder_header_push_text">Frissítse fel az üzenetküldési élményét.</string>
   <string name="reminder_header_push_button">ENGEDÉLYEZÉS</string>
+  <string name="reminder_header_invite_title">Meghívás Signal-ba</string>
   <string name="reminder_header_invite_text">Vigye a beszélgetését a következő szintre vele: %1$s.</string>
   <string name="reminder_header_invite_button">MEGHÍVÁS</string>
   <string name="reminder_header_close_button">BEZÁRÁS</string>

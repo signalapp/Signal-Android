@@ -80,8 +80,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Дали сте сигурни дека сакате да ја напуштите групата?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незаштитена SMS порака</string>
   <string name="ConversationActivity_transport_insecure_mms">Незаштитена MMS порака</string>
-  <string name="ConversationActivity_get_with_it">Комуницирај заштитено: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Користете го ова за разговор: %s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка при напуштање на групата...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не е поддржан</string>
   <string name="ConversationActivity_mms_not_supported_message">Оваа порака не може да се испрати, бидејќи вашиот провајдер не поддржува MMS.</string>
@@ -93,8 +91,6 @@
   <string name="ConversationFragment_message_details">Детали за пораката</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Трансфер: %1$s\nИспратено/Примено: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Испраќач: %1$s\nТрансфер: %2$s\nИспратено: %3$s\nПримено: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Потврдете за бришење на пораката</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Дали сте сигурни за трајно бришење на сите избрани пораки?</string>
   <string name="ConversationFragment_save_to_sd_card">Сними на диск?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Со снимање на оваа датотека на диск ќе и се овозможи на која била апликација пристап до неа.\n\nПродолжи?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка при снимање на додатокот на диск!</string>
@@ -110,8 +106,6 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Барај...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Избриши теми на разговор?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Дали сте сигурни дека сакате да се избришат СИТЕ избрани теми?</string>
   <string name="ConversationListFragment_deleting">Бришење</string>
   <string name="ConversationListFragment_deleting_selected_threads">Бришење на избраните теми...</string>
   <!--ConversationListItem-->
@@ -176,6 +170,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Враќање на шифрирана копија...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Не е најдена шифрирана копија!</string>
   <string name="ImportFragment_restore_complete">Враќањето е завршено!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Не е пронајден скениран клуч!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Инсталирај баркод скенер?</string>
@@ -347,6 +342,7 @@
   <string name="MessageNotifier_media_message">Медиа порака</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ЛОЗИНКА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>

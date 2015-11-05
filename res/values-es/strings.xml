@@ -17,11 +17,6 @@
 ¿Deshabilitar pantalla de bloqueo para mensajes?</string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Desregistrándose</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Desregistrándose de los mensajes de Signal...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">¿Deshabilitar los mensajes de Signal?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-Esto deshabilitará los mensajes de Signal desregistrándole del servidor.
-Necesitará volver a registrar su número de teléfono para usar mensajes de Signal de nuevo en el futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Error conectando al servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitados</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>
@@ -104,8 +99,6 @@ este contacto.
   <string name="ConversationActivity_transport_insecure_sms">SMS no seguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS no seguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Hágase con él: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Usemos esto para chatear: %s</string>
   <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS no admitidos</string>
   <string name="ConversationActivity_mms_not_supported_message">Este mensaje no se puede enviar debido a que su proveedor no admite MMS.</string>
@@ -123,8 +116,6 @@ Enviado/Recibido: %2$s</string>
 Transporte: %2$s
 Enviado: %3$s
 Recibido:%4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Confirmar borrado de mensaje</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">¿Está seguro/a de que quiere borrar permanentemente todos los mensajes seleccionados?</string>
   <string name="ConversationFragment_save_to_sd_card">¿Guardar en el almacenamiento?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Guardar este contenido en el almacenamiento permitirá  a cualquier otra aplicación de su teléfono acceder a él.\n\n¿Continuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">¡Error al guardar adjunto en el almacenamiento!</string>
@@ -141,8 +132,6 @@ Recibido:%4$s</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Buscar...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">¿Borrar conversaciones?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">¿Está seguro de que quiere borrar TODAS las conversaciones seleccionadas?</string>
   <string name="ConversationListFragment_deleting">Eliminando</string>
   <string name="ConversationListFragment_deleting_selected_threads">Eliminando conversaciones seleccionadas...</string>
   <!--ConversationListItem-->
@@ -238,6 +227,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Restaurando copia de seguridad cifrada...</string>
   <string name="ImportFragment_no_encrypted_backup_found">¡No se encontró la copia de seguridad cifrada!</string>
   <string name="ImportFragment_restore_complete">¡Restauración completada!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">¿Instalar Barcode Scanner?</string>
@@ -256,7 +246,6 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensaje multimedia</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Se recibió un mensaje cifrado con una versión antigua de Signal que ya no está soportada. Por favor, pida al remitente que actualice a la versión más reciente y reenvíe el mensaje.</string>
   <string name="MessageRecord_left_group">Ha dejado el grupo.</string>
   <string name="MessageRecord_updated_group">Grupo actualizado.</string>
   <string name="MessageRecord_s_called_you">%s le llamó</string>
@@ -473,6 +462,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Nuevo mensaje de Signal</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenidos ocultos</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">CLAVE DE ACCESO ANTERIOR:</string>
   <string name="change_passphrase_activity__new_passphrase">CLAVE DE ACCESO NUEVA:</string>
@@ -555,6 +545,7 @@ Restaurar una copia de seguridad cifrada de Signal previamente exportada.</strin
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importar una copia de seguridad en texto plano. Compatible con \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Ver conversación completa</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">No hay imágenes</string>
   <!--message_recipients_list_item-->
@@ -581,7 +572,6 @@ Importar una copia de seguridad en texto plano. Compatible con \'SMSBackup And R
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silenciar conversación</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Deshabilitar notificaciones para esta conversación</string>
-  <string name="recipient_preferences__notification_tone">Tono de notificación</string>
   <string name="recipient_preferences__vibrate">Vibración</string>
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Color</string>
@@ -808,9 +798,6 @@ por SMS.
   <string name="preferences__default">Por defecto</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__language_summary">Idioma %s</string>
-  <string name="preferences__signal">Signal</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-Mensajería y llamadas privadas y gratuitas a usuarios de Signal</string>
   <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidad \'Llamada por WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilítelo si su dispositivo utiliza entrega de SMS/MMS vía WiFi (actívelo sólo cuando \'Llamada por WiFi\' esté activada en su dispositivo)</string>
@@ -897,14 +884,15 @@ Mensajería y llamadas privadas y gratuitas a usuarios de Signal</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">¡Su versión de Signal ha caducado!</string>
   <string name="reminder_header_expired_build_details">Los mensajes ya no se enviarán con éxito, por favor, actualice a la versión más reciente.</string>
-  <string name="reminder_header_expired_build_button">ACTUALIZAR</string>
+  <string name="reminder_header_sms_default_title">Usar como aplicación de SMS predeterminada</string>
   <string name="reminder_header_sms_default_text">Pulse para hacer de Signal su aplicación de SMS predeterminada.</string>
   <string name="reminder_header_sms_default_button">AJUSTAR</string>
+  <string name="reminder_header_sms_import_title">Importar SMS del sistema</string>
   <string name="reminder_header_sms_import_text">Pulse para copiar los mensajes SMS de su teléfono en su base de datos cifrada.</string>
   <string name="reminder_header_sms_import_button">IMPORTAR</string>
-  <string name="reminder_header_push_text">Actualiza tu experiencia de mensajería.</string>
   <string name="reminder_header_push_button">HABILITAR</string>
-  <string name="reminder_header_invite_text">Llevar tu conversación con %1$s al siguiente nivel.</string>
+  <string name="reminder_header_invite_title">Invitar a Signal</string>
+  <string name="reminder_header_invite_text">Lleva su conversación con %1$s al siguiente nivel.</string>
   <string name="reminder_header_invite_button">INVITAR</string>
   <string name="reminder_header_close_button">CERRAR</string>
   <!--MediaPreviewActivity-->

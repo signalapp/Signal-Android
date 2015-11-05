@@ -17,8 +17,6 @@
 Απενεργοποίηση οθόνης κλειδώματος για τα μηνύματα;</string>
   <string name="ApplicationPreferencesActivity_disable">Απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_unregistering">Απεγγραφή</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Απεγγραφή από τα μηνύματα Signal...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Απενεργοποίηση των μηνυμάτων Signal;</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Σφάλμα κατά τη σύνδεση με τον διακομιστή!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Ενεργοποίηση SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Πατήστε για να αλλάξετε την προεπιλεγμένη εφαρμογή για SMS</string>
@@ -96,8 +94,6 @@
   <string name="ConversationActivity_transport_insecure_sms">Μη ασφαλές SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">Αποκτήστε το με αυτό: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό το chat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Σφάλμα κατα την αποχώρηση από την ομάδα...</string>
   <string name="ConversationActivity_mms_not_supported_title">Τα MMS δεν υποστηρίζονται</string>
   <string name="ConversationActivity_mms_not_supported_message">Αυτό το μήνυμα δεν μπορεί να αποσταλεί δεδομένου ότι φορέας σας δεν υποστηρίζει MMS.</string>
@@ -115,8 +111,6 @@
 Μέσο μεταφοράς: %2$s
 Απεστάλησαν: %3$s
 Παραλήφθηκαν:%4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Επιβεβαίωση διαγραφής μηνύματος</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Είστε σίγουροι πως θέλετε να διαγράψετε αυτά τα μήνυματα για πάντα;</string>
   <string name="ConversationFragment_save_to_sd_card">Να αποθηκευτεί στην μνήμη;</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Αποθηκευντας αυτό το μέσο θα επιτρέψει σε άλλες εφαρμογές στο τηλέφωνό σας να έχουν πρόσβαση σε αυτο.\n\nΘέλετε να συνεχίσετε;</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Σφάλμα κατά την αποθήκευση συνημμένου στην αποθήκευση!</string>
@@ -133,8 +127,6 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Αναζήτηση...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Διαγραφή συζητήσεων;</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Είστε σίγουροι πως θέλετε να διαγράψετε ΟΛΕΣ τις επιλεγμένες συζητήσεις;</string>
   <string name="ConversationListFragment_deleting">Διαγραφή</string>
   <string name="ConversationListFragment_deleting_selected_threads">Διαγραφή επιλεγμένων συζητήσεων...</string>
   <!--ConversationListItem-->
@@ -215,6 +207,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Επαναφορά κρυπτογραφημένου αντιγράφου ασφαλείας...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Δε βρέθηκε κρυπτογραφημένο αντίγραφο ασφαλείας!</string>
   <string name="ImportFragment_restore_complete">Η επαναφορά ολοκληρώθηκε!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Δε βρέθηκε σαρωμένο κλειδί!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Θέλετε να εγκαταστήσετε το Barcode Scanner;</string>
@@ -233,7 +226,6 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Μήνυμα Πολυμέσων</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Λήφθηκε ένα μήνυμα που είναι κρυπτογραφημένο με μια παλιά έκδοση του Signal που δεν υποστηρίζεται πια. Παρακαλώ ζήτα από τον αποστολέα να αναβαθμίσει στην πιο πρόσφατη έκδοση και να ξαναστείλει το μήνυμα</string>
   <string name="MessageRecord_left_group">Αποχωρήσατε από την ομάδα.</string>
   <string name="MessageRecord_updated_group">Η ομάδα ενημερώθηκε.</string>
   <string name="MessageRecord_s_called_you">O/H %s σε κάλεσε</string>
@@ -426,6 +418,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Νέο μήνυμα Signal</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Κρυμμένα περιεχόμενα</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ΠΑΛΙΟ ΣΥΝΘΗΜΑΤΙΚΟ</string>
   <string name="change_passphrase_activity__new_passphrase">ΝΕΟ ΣΥΝΘΗΜΑΤΙΚΟ:</string>
@@ -528,7 +521,6 @@
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Σίγαση συζήτησης</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Απενεργοποίηση ειδοποιήσεων για αυτή την συζήτηση</string>
-  <string name="recipient_preferences__notification_tone">Ήχος ειδοποιήσεων</string>
   <string name="recipient_preferences__vibrate">Δόνηση</string>
   <string name="recipient_preferences__block">Μπλοκάρισμα</string>
   <string name="recipient_preferences__color">Χρώμα</string>
@@ -723,7 +715,6 @@
   <string name="preferences__default">Προκαθορισμένη</string>
   <string name="preferences__language">Γλώσσα</string>
   <string name="preferences__language_summary">Γλώσσα %s</string>
-  <string name="preferences__signal">Signal</string>
   <string name="preferences__submit_debug_log">Αποστολή αρχείων καταγραφής αποσφαλμάτωσης</string>
   <string name="preferences__support_wifi_calling">Λειτουργία συμβατότητας \"WiFi Calling\' </string>
   <string name="preferences_app_protection__blocked_contacts">Μπλοκαρισμένες επαφές</string>

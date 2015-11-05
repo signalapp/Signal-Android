@@ -77,8 +77,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы ўпэўнены, што хочаце пакінуць групу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Небяспечная SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Небяспечная MMS</string>
-  <string name="ConversationActivity_get_with_it">Атрымай з гэтым: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Выкарыстайце гэта, каб пачаць гутарку: %s</string>
   <string name="ConversationActivity_error_leaving_group">Памылка выхаду з групы...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не падтрымліваюцца</string>
   <string name="ConversationActivity_mms_not_supported_message">Гэтае паведамленне ня можа быць даслана, бо ваша мабільны аператар не падтрымлівае MMS</string>
@@ -86,8 +84,6 @@
   <string name="ConversationFragment_message_details">Дэталі паведамлення</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Адпраўшчык: %1$s\nТранспарт: %2$s\nДаслана: %3$s\nАтрымана: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Пацверджанне выдалення паведамлення</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Вы ўпэўнены, што хочаце пастаянна выдаляць усе абраныя паведамленні?</string>
   <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Захаваўшы гэты кантэнт на дыск, вы дазваляеце ўсім іншым праграмам на вашым смартфоне атрымаць да яго доступ.\n\nПрацягнуць?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Памылка пры захаванні дадатку на дыск!</string>
@@ -101,8 +97,6 @@
   <string name="ConversationFragment_deleting_messages">Выдаленне паведамлення...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Выдаліць гутарку?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Вы ўпэўнены, што хочаце выдаліць УСЕ абраныя гутаркі?</string>
   <string name="ConversationListFragment_deleting">Выдаленне</string>
   <string name="ConversationListFragment_deleting_selected_threads">Выдаленне абраных гутарак...</string>
   <!--ConversationListItem-->
@@ -163,6 +157,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Аднаўленне зашыфраванай рэзервнай копіі...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ня знойдзена зашыфраваных рэзервных копій!</string>
   <string name="ImportFragment_restore_complete">Аднаўленне выканана!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ня знойдзена адсканаваных ключоў!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Усталяваць сканэр штрыхкодаў?</string>
@@ -310,6 +305,7 @@
   <string name="MessageNotifier_media_message">Мультымедыя паведамленне</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРЫ ПАРОЛЬ:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВЫ ПАРОЛЬ:</string>

@@ -80,8 +80,6 @@ isteyebilirsiniz.</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bu gruptan ayrılmak istediğinize emin misiniz?</string>
   <string name="ConversationActivity_transport_insecure_sms">Güvensiz SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Güvensiz MMS</string>
-  <string name="ConversationActivity_get_with_it">%s ile alın</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Bunu sohbet için kullan: %s</string>
   <string name="ConversationActivity_error_leaving_group">Gruptan ayrılma hatası...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS desteklenmiyor</string>
   <string name="ConversationActivity_mms_not_supported_message">Taşıyıcınız MMS desteklemediği için bu mesaj gönderilemez.</string>
@@ -90,8 +88,6 @@ isteyebilirsiniz.</string>
   <string name="ConversationFragment_message_details">Mesaj detayları</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Taşıma: %1$s\nGönderme/Alma: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Gönderici: %1$s\nTaşıma: %2$s\nGönderildi: %3$s\nAlındı: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Mesaj silinmesini onayla</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Tüm mesajların geri dönülemez şekilde silinmesini istediğinizden emin misiniz?</string>
   <string name="ConversationFragment_save_to_sd_card">Depolama alanına kaydedilsin mi?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Bu medyayı depolama alanına kaydetmekle, telefondaki diğer uygulamaların erişmesine izin vereceksiniz.\n\nDevam etmek istiyor musunuz?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Depolama alanına ek kaydedilirken hata!</string>
@@ -107,8 +103,6 @@ isteyebilirsiniz.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Ara...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Başlıkları sil?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Seçili bütün konuşmaları silmek istediğinizden emin misiniz?</string>
   <string name="ConversationListFragment_deleting">Siliniyor</string>
   <string name="ConversationListFragment_deleting_selected_threads">Seçilmiş başlıklar siliniyor...</string>
   <!--ConversationListItem-->
@@ -169,6 +163,7 @@ isteyebilirsiniz.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Şifrelenmiş yedek yeniden yükleniyor...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Şifrelenmiş yedek bulunamadı!</string>
   <string name="ImportFragment_restore_complete">Yeniden yükleme tamamlandı!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Taralı anahtar bulunamadı!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Barcode Scanner kurulsun mu?</string>
@@ -332,6 +327,7 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="MessageNotifier_media_message">Medya mesajı</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ESKİ PAROLA:</string>
   <string name="change_passphrase_activity__new_passphrase">YENİ PAROLA:</string>
