@@ -18,6 +18,10 @@ private:
   webrtc::NetEq *neteq;
   WebRtcCodec webRtcCodec;
 
+  pthread_t stats;
+  pthread_mutex_t lock;
+  pthread_cond_t condition;
+
 public:
   WebRtcJitterBuffer(AudioCodec &codec);
   ~WebRtcJitterBuffer();

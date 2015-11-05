@@ -15,7 +15,7 @@ class CallAudioManager {
 
 private:
   volatile int       running;
-  int                finished;
+  volatile int       finished;
   SLObjectItf        engineObject;
   SLEngineItf        engineEngine;
   AudioCodec         audioCodec;
