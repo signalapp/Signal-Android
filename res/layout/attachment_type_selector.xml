@@ -141,8 +141,7 @@
                       android:layout_height="wrap_content"
                       android:layout_weight="1"
                       android:gravity="center"
-                      android:orientation="vertical"
-                      android:layout_marginLeft="16dp">
+                      android:orientation="vertical">
 
         </LinearLayout>
 
@@ -151,8 +150,7 @@
                       android:layout_height="wrap_content"
                       android:layout_weight="1"
                       android:gravity="center"
-                      android:orientation="vertical"
-                      android:layout_marginLeft="16dp">
+                      android:orientation="vertical">
 
         </LinearLayout>
 
@@ -160,8 +158,22 @@
                       android:layout_height="wrap_content"
                       android:layout_weight="1"
                       android:gravity="center"
-                      android:orientation="vertical"
-                      android:layout_marginLeft="16dp">
+                      android:orientation="vertical">
+
+            <org.thoughtcrime.securesms.components.CircleColorImageView
+                    android:id="@+id/close_button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_keyboard_arrow_down_white_36dp"
+                    android:scaleType="center"
+                    android:elevation="4dp"
+                    app:circleColor="@color/gray50"/>
+
+            <TextView android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      style="@style/AttachmentTypeLabel"
+                      android:text=" "/>
 
         </LinearLayout>
 
