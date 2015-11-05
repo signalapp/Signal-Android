@@ -282,8 +282,14 @@
     <string name="InviteActivity_heart_content_description">Heart</string>
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
-    <string name="InviteActivity_send_to_friends">SEND TO %1$s FRIEND(S)</string>
-    <string name="InviteActivity_send_sms_invites">Send %1$s SMS invite(s)?</string>
+    <plurals name="InviteActivity_send_to_friends">
+        <item quantity="one">SEND TO ONE FRIEND</item>
+        <item quantity="other">SEND TO %d FRIENDS</item>
+    </plurals>
+    <plurals name="InviteActivity_send_sms_invites">
+        <item quantity="one">Send one SMS invite?</item>
+        <item quantity="other">Send %d SMS invites?</item>
+    </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
     <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
     <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
