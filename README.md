@@ -1,4 +1,4 @@
-# Signal Android [![Build Status](https://travis-ci.org/WhisperSystems/TextSecure.svg?branch=master)](https://travis-ci.org/WhisperSystems/TextSecure)
+# Signal Android 
 
 Signal is a messaging app for simple private communication with friends.
 
