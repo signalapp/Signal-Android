@@ -41,6 +41,8 @@ import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
 
+import org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
+
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
@@ -65,6 +67,7 @@ import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.internal.push.TextSecureProtos;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -78,7 +81,6 @@ import java.util.Set;
 import ws.com.google.android.mms.MmsException;
 
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
  * Activity to create and update groups
@@ -453,7 +455,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     String     groupRecipientId = GroupUtil.getEncodedId(groupId);
     Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
 
-    GroupContext context = GroupContext.newBuilder()
+    TextSecureProtos.GroupContext context = GroupContext.newBuilder()
                                        .setId(ByteString.copyFrom(groupId))
                                        .setType(GroupContext.Type.UPDATE)
                                        .setName(groupName)
@@ -679,7 +681,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         final byte[] existingAvatar = group.getAvatar();
         if (existingAvatar != null) {
           existingAvatarBmp = BitmapUtil.getCircleBitmap(
-              BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length));
+                  BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length));
         }
       }
       return null;

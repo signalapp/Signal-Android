@@ -25,7 +25,7 @@ import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
-import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -119,9 +119,14 @@ public class PushProfileSendJob extends PushSendJob implements InjectableType {
 
       attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
               + new GDataPreferences(context).getCurrentColorHex()
-              + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len));
+              + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len, new TextSecureAttachment.ProgressListener() {
+        @Override
+        public void onAttachmentProgress(long total, long progress) {
+          //Hopefully useful for later use
+        }
+      }));
 
-      TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()
+      TextSecureDataMessage          mediaMessage = TextSecureDataMessage.newBuilder()
               .withBody(body)
               .withAttachments(attachments)
               .withTimestamp(message.getSentTimestamp())

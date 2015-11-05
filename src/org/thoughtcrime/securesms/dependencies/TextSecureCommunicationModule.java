@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.Release;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -47,21 +47,22 @@ public class TextSecureCommunicationModule {
   }
 
   @Provides TextSecureAccountManager provideTextSecureAccountManager() {
-    return new TextSecureAccountManager(Release.PUSH_URL,
-                                        new TextSecurePushTrustStore(context),
-                                        TextSecurePreferences.getLocalNumber(context),
-                                        TextSecurePreferences.getPushServerPassword(context));
+      return new TextSecureAccountManager(BuildConfig.SECURECHAT_PUSH_URL,
+              new TextSecurePushTrustStore(context),
+              TextSecurePreferences.getLocalNumber(context),
+              TextSecurePreferences.getPushServerPassword(context),
+              BuildConfig.USER_AGENT);
   }
 
   @Provides TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
     return new TextSecureMessageSenderFactory() {
       @Override
       public TextSecureMessageSender create(MasterSecret masterSecret) {
-        return new TextSecureMessageSender(Release.PUSH_URL,
+        return new TextSecureMessageSender(BuildConfig.SECURECHAT_PUSH_URL,
                                            new TextSecurePushTrustStore(context),
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
-                                           new TextSecureAxolotlStore(context, masterSecret),
+                                           new TextSecureAxolotlStore(context, masterSecret),  BuildConfig.USER_AGENT,
                                            Optional.of((TextSecureMessageSender.EventListener)
                                                            new SecurityEventListener(context)));
       }
@@ -69,9 +70,9 @@ public class TextSecureCommunicationModule {
   }
 
   @Provides TextSecureMessageReceiver provideTextSecureMessageReceiver() {
-    return new TextSecureMessageReceiver(Release.PUSH_URL,
+    return new TextSecureMessageReceiver(BuildConfig.SECURECHAT_PUSH_URL,
                                         new TextSecurePushTrustStore(context),
-                                        new DynamicCredentialsProvider(context));
+                                        new DynamicCredentialsProvider(context),   BuildConfig.USER_AGENT);
   }
 
   public static interface TextSecureMessageSenderFactory {

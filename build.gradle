@@ -125,6 +125,8 @@ android {
         targetSdkVersion 22
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+        buildConfigField "String", "USER_AGENT", "\"GDATA SecureChat " + verName+ "\""
+        buildConfigField "String", "SECURECHAT_PUSH_URL", "\"https://scsrv.secure.gd:8080\""
 
         versionCode verNumber
         versionName verName + gitRevision.substring(0, 8)
@@ -135,6 +137,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
     signingConfigs {
         release

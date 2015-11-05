@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.common.eventbus.EventBus;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
@@ -99,7 +101,12 @@ public abstract class PushSendJob extends SendJob {
 
         try {
           InputStream is = PartAuthority.getPartStream(context, masterSecret, part.getDataUri());
-          attachments.add(new TextSecureAttachmentStream(is, contentType, part.getDataSize()));
+          attachments.add(new TextSecureAttachmentStream(is, contentType, part.getDataSize(),new TextSecureAttachment.ProgressListener() {
+            @Override
+            public void onAttachmentProgress(long total, long progress) {
+            //Does not work yet
+            }
+          }));
         } catch (IOException ioe) {
           Log.w(TAG, "Couldn't open attachment", ioe);
         }
