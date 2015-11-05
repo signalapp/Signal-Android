@@ -60,7 +60,7 @@ public class ConversationListActivityTest extends TextSecureEspressoTestCase<Con
     onView(withText(R.string.text_secure_normal__menu_new_group)).check(matches(isDisplayed()));
     onView(withText(R.string.text_secure_normal__mark_all_as_read)).check(matches(isDisplayed()));
     onView(withText(R.string.arrays__import_export)).check(matches(isDisplayed()));
-    onView(withText(R.string.arrays__my_identity_key)).check(matches(isDisplayed()));
+    onView(withText(R.string.arrays__your_identity_key)).check(matches(isDisplayed()));
     onView(withText(R.string.text_secure_normal__menu_settings)).check(matches(isDisplayed()));
 
     if (!TextSecurePreferences.isPasswordDisabled(getContext())) {

@@ -9,7 +9,7 @@
 
     <Preference android:key="pref_change_passphrase"
                 android:title="@string/preferences__change_passphrase"
-                android:summary="@string/preferences__change_my_passphrase"
+                android:summary="@string/preferences__change_your_passphrase"
                 android:dependency="pref_enable_passphrase_temporary"/>
 
     <CheckBoxPreference android:defaultValue="false"
