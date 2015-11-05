@@ -115,7 +115,9 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   private void updateSmsButtonText() {
-    smsSendButton.setText(getString(R.string.InviteActivity_send_to_friends, contactsFragment.getSelectedContacts().size()));
+    smsSendButton.setText(getResources().getQuantityString(R.plurals.InviteActivity_send_to_friends,
+                                                           contactsFragment.getSelectedContacts().size(),
+                                                           contactsFragment.getSelectedContacts().size()));
     smsSendButton.setEnabled(!contactsFragment.getSelectedContacts().isEmpty());
   }
 
@@ -166,7 +168,9 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     @Override
     public void onClick(View v) {
       new AlertDialog.Builder(InviteActivity.this)
-          .setTitle(getString(R.string.InviteActivity_send_sms_invites, contactsFragment.getSelectedContacts().size()))
+          .setTitle(getResources().getQuantityString(R.plurals.InviteActivity_send_sms_invites,
+                                                     contactsFragment.getSelectedContacts().size(),
+                                                     contactsFragment.getSelectedContacts().size()))
           .setMessage(inviteText.getText().toString())
           .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override public void onClick(DialogInterface dialog, int which) {
