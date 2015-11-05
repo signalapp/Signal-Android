@@ -29,7 +29,7 @@ int WebRtcJitterBuffer::init() {
     return -1;
   }
 
-  pthread_create(&stats, NULL, &WebRtcJitterBuffer::collectStats, this);
+//  pthread_create(&stats, NULL, &WebRtcJitterBuffer::collectStats, this);
 
   return 0;
 }
@@ -67,12 +67,12 @@ int WebRtcJitterBuffer::getAudio(short *rawData, int maxRawData) {
 }
 
 void WebRtcJitterBuffer::stop() {
-  pthread_mutex_lock(&lock);
+//  pthread_mutex_lock(&lock);
   running = 0;
-  pthread_cond_signal(&condition);
-  pthread_mutex_unlock(&lock);
+//  pthread_cond_signal(&condition);
+//  pthread_mutex_unlock(&lock);
 
-  pthread_join(stats, NULL);
+//  pthread_join(stats, NULL);
 }
 
 void WebRtcJitterBuffer::collectStats() {

@@ -121,6 +121,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   @Override
   public void onStart(Intent intent, int startId) {
+    Log.w(TAG, "onStart(): " + intent);
     if (intent == null) return;
     new Thread(new IntentRunnable(intent)).start();
   }
@@ -148,6 +149,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     else if (intent.getAction().equals(ACTION_DENY_CALL))                 handleDenyCall(intent);
     else if (intent.getAction().equals(ACTION_HANGUP_CALL))               handleHangupCall(intent);
     else if (intent.getAction().equals(ACTION_SET_MUTE))                  handleSetMute(intent);
+    else Log.w(TAG, "Unhandled intent: " + intent.getAction() + ", state: " + state);
   }
 
   ///// Initializers

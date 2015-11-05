@@ -166,6 +166,7 @@ public class RedPhone extends Activity {
     Log.w(TAG, "Termination Stack:", new Exception());
 
     callScreen.setActiveCall(recipient, getString(R.string.RedPhone_ending_call));
+    EventBus.getDefault().removeStickyEvent(RedPhoneEvent.class);
 
     delayedFinish();
   }
