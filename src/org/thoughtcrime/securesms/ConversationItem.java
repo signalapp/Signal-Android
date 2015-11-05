@@ -543,6 +543,7 @@ public class ConversationItem extends LinearLayout
         intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
         intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, messageRecord.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
         intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, groupThread && messageRecord.isPush());
+        intent.putExtra(MessageDetailsActivity.RECIPIENTS_IDS_EXTRA, messageRecord.getRecipients().getIds());
         context.startActivity(intent);
       } else if (!messageRecord.isOutgoing() && messageRecord.isIdentityMismatchFailure()) {
         handleApproveIdentity();
