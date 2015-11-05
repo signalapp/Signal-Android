@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database;
 
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -67,7 +70,8 @@ public class GroupDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public GroupRecord getGroup(byte[] groupId) {
+  public @Nullable GroupRecord getGroup(byte[] groupId) {
+    @SuppressLint("Recycle")
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
                                                                new String[] {GroupUtil.getEncodedId(groupId)},
                                                                null, null, null);
@@ -92,7 +96,7 @@ public class GroupDatabase extends Database {
     return new Reader(cursor);
   }
 
-  public Recipients getGroupMembers(byte[] groupId, boolean includeSelf) {
+  public @NonNull Recipients getGroupMembers(byte[] groupId, boolean includeSelf) {
     String          localNumber = TextSecurePreferences.getLocalNumber(context);
     List<String>    members     = getCurrentMembers(groupId);
     List<Recipient> recipients  = new LinkedList<>();
@@ -248,7 +252,7 @@ public class GroupDatabase extends Database {
       this.cursor = cursor;
     }
 
-    public GroupRecord getNext() {
+    public @Nullable GroupRecord getNext() {
       if (cursor == null || !cursor.moveToNext()) {
         return null;
       }
