@@ -39,7 +39,7 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
     getIntent().putExtra(ViewIdentityActivity.IDENTITY_KEY,
                          new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
     getIntent().putExtra(ViewIdentityActivity.TITLE,
-                         getString(R.string.ViewIdentityActivity_my_identity_fingerprint));
+                         getString(R.string.ViewIdentityActivity_your_identity_fingerprint));
     super.onCreate(icicle, masterSecret);
   }
 
