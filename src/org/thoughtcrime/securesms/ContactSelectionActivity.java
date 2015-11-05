@@ -17,28 +17,21 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.TouchDelegate;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
-import org.thoughtcrime.securesms.components.AnimatingToggle;
+import org.thoughtcrime.securesms.components.ContactFilterToolbar;
+import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -53,22 +46,15 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
                                                implements SwipeRefreshLayout.OnRefreshListener,
                                                           ContactSelectionListFragment.OnContactSelectedListener
 {
-  private static final String TAG             = ContactSelectionActivity.class.getSimpleName();
-  public  final static String PUSH_ONLY_EXTRA = "push_only";
+  private static final String TAG = ContactSelectionActivity.class.getSimpleName();
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   protected ContactSelectionListFragment contactsFragment;
 
-  private   Toolbar         toolbar;
-  private   EditText        searchText;
-  private   AnimatingToggle toggle;
-  protected ImageView       action;
-  private   ImageView       keyboardToggle;
-  private   ImageView       dialpadToggle;
-  private   ImageView       clearToggle;
-  private   LinearLayout    toggleContainer;
+  private   MasterSecret         masterSecret;
+  private   ContactFilterToolbar toolbar;
 
   @Override
   protected void onPreCreate() {
@@ -77,7 +63,15 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   }
 
   @Override
-  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
+  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
+    if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
+      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE,
+                           TextSecurePreferences.isSmsEnabled(this)
+                           ? ContactSelectionListFragment.DISPLAY_MODE_ALL
+                           : ContactSelectionListFragment.DISPLAY_MODE_PUSH_ONLY);
+    }
+
     setContentView(R.layout.contact_selection_activity);
 
     initializeToolbar();
@@ -92,8 +86,12 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
     dynamicLanguage.onResume(this);
   }
 
+  protected ContactFilterToolbar getToolbar() {
+    return toolbar;
+  }
+
   private void initializeToolbar() {
-    this.toolbar = (Toolbar) findViewById(R.id.toolbar);
+    this.toolbar = ViewUtil.findById(this, R.id.toolbar);
     setSupportActionBar(toolbar);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -101,69 +99,15 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   }
 
   private void initializeResources() {
-    this.action          = (ImageView) findViewById(R.id.action_icon);
-    this.searchText      = (EditText) findViewById(R.id.search_view);
-    this.toggle          = (AnimatingToggle) findViewById(R.id.button_toggle);
-    this.keyboardToggle  = (ImageView) findViewById(R.id.search_keyboard);
-    this.dialpadToggle   = (ImageView) findViewById(R.id.search_dialpad);
-    this.clearToggle     = (ImageView) findViewById(R.id.search_clear);
-    this.toggleContainer = (LinearLayout) findViewById(R.id.toggle_container);
-
     contactsFragment = (ContactSelectionListFragment) getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
     contactsFragment.setOnContactSelectedListener(this);
     contactsFragment.setOnRefreshListener(this);
-
-    this.keyboardToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
-        ServiceUtil.getInputMethodManager(ContactSelectionActivity.this).showSoftInput(searchText, 0);
-        displayTogglingView(dialpadToggle);
-      }
-    });
-
-    this.dialpadToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setInputType(InputType.TYPE_CLASS_PHONE);
-        ServiceUtil.getInputMethodManager(ContactSelectionActivity.this).showSoftInput(searchText, 0);
-        displayTogglingView(keyboardToggle);
-      }
-    });
-
-    this.clearToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setText("");
-
-        if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
-        else                                    displayTogglingView(keyboardToggle);
-      }
-    });
-
-    expandTapArea(toolbar, action, 500);
-    expandTapArea(toggleContainer, dialpadToggle, 500);
   }
 
   private void initializeSearch() {
-    this.searchText.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-      }
-
-      @Override
-      public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-      }
-
-      @Override
-      public void afterTextChanged(Editable s) {
-        if      (!SearchUtil.isEmpty(searchText))     displayTogglingView(clearToggle);
-        else if (SearchUtil.isTextInput(searchText))  displayTogglingView(dialpadToggle);
-        else if (SearchUtil.isPhoneInput(searchText)) displayTogglingView(keyboardToggle);
-
-        contactsFragment.setQueryFilter(searchText.getText().toString());
+    toolbar.setOnFilterChangedListener(new OnFilterChangedListener() {
+      @Override public void onFilterChanged(String filter) {
+        contactsFragment.setQueryFilter(filter);
       }
     });
   }
@@ -176,56 +120,25 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   @Override
   public void onContactSelected(String number) {}
 
-  private void displayTogglingView(View view) {
-    toggle.display(view);
-    expandTapArea(toggleContainer, view, 500);
-  }
-
-  private void expandTapArea(final View container, final View child, final int padding) {
-    container.post(new Runnable() {
-      @Override
-      public void run() {
-        Rect rect = new Rect();
-        child.getHitRect(rect);
-
-        rect.top    -= padding;
-        rect.left   -= padding;
-        rect.right  += padding;
-        rect.bottom += padding;
-
-        container.setTouchDelegate(new TouchDelegate(rect, child));
-      }
-    });
-  }
-
-  private static class SearchUtil {
-
-    public static boolean isTextInput(EditText editText) {
-      return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_TEXT;
-    }
-
-    public static boolean isPhoneInput(EditText editText) {
-      return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_PHONE;
-    }
-
-    public static boolean isEmpty(EditText editText) {
-      return editText.getText().length() <= 0;
-    }
-  }
+  @Override
+  public void onContactDeselected(String number) {}
 
   private static class RefreshDirectoryTask extends AsyncTask<Context, Void, Void> {
 
     private final WeakReference<ContactSelectionActivity> activity;
+    private final MasterSecret masterSecret;
 
     private RefreshDirectoryTask(ContactSelectionActivity activity) {
-      this.activity = new WeakReference<>(activity);
+      this.activity     = new WeakReference<>(activity);
+      this.masterSecret = activity.masterSecret;
     }
 
 
     @Override
     protected Void doInBackground(Context... params) {
+
       try {
-        DirectoryHelper.refreshDirectory(params[0]);
+        DirectoryHelper.refreshDirectory(params[0], masterSecret);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -238,7 +151,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
       ContactSelectionActivity activity = this.activity.get();
 
       if (activity != null && !activity.isFinishing()) {
-        activity.searchText.setText("");
+        activity.toolbar.clear();
         activity.contactsFragment.resetQueryFilter();
       }
     }

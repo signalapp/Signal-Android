@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ReminderView.OnDismissListener;
+import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -149,6 +150,8 @@ public class ConversationListFragment extends Fragment
           return Optional.of((new SystemSmsImportReminder(context, masterSecret)));
         } else if (PushRegistrationReminder.isEligible(context)) {
           return Optional.of((new PushRegistrationReminder(context, masterSecret)));
+        } else if (ShareReminder.isEligible(context)) {
+          return Optional.of(new ShareReminder(context));
         } else {
           return Optional.absent();
         }
@@ -168,10 +171,13 @@ public class ConversationListFragment extends Fragment
   }
 
   private void handleDeleteAllSelected() {
+    int conversationsCount = getListAdapter().getBatchSelections().size();
     AlertDialogWrapper.Builder alert = new AlertDialogWrapper.Builder(getActivity());
     alert.setIconAttribute(R.attr.dialog_alert_icon);
-    alert.setTitle(R.string.ConversationListFragment_delete_threads_question);
-    alert.setMessage(R.string.ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads);
+    alert.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
+                                                                  conversationsCount, conversationsCount));
+    alert.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations,
+                                                                    conversationsCount, conversationsCount));
     alert.setCancelable(true);
 
     alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {

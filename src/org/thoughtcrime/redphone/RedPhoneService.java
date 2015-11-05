@@ -22,12 +22,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
-import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.redphone.audio.IncomingRinger;
@@ -45,20 +46,24 @@ import org.thoughtcrime.redphone.signaling.SessionDescriptor;
 import org.thoughtcrime.redphone.signaling.SignalingException;
 import org.thoughtcrime.redphone.signaling.SignalingSocket;
 import org.thoughtcrime.redphone.ui.NotificationBarManager;
-import org.thoughtcrime.redphone.util.Base64;
+import org.thoughtcrime.redphone.util.AudioUtils;
 import org.thoughtcrime.redphone.util.UncaughtExceptionHandlerManager;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.events.RedPhoneEvent;
+import org.thoughtcrime.securesms.events.RedPhoneEvent.Type;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.LinkedList;
-import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * The major entry point for all of the heavy lifting associated with
@@ -73,6 +78,12 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   private static final String TAG = RedPhoneService.class.getSimpleName();
 
+  private static final int STATE_IDLE      = 0;
+  private static final int STATE_RINGING   = 2;
+  private static final int STATE_DIALING   = 3;
+  private static final int STATE_ANSWERING = 4;
+  private static final int STATE_CONNECTED = 5;
+
   public static final String EXTRA_REMOTE_NUMBER      = "remote_number";
   public static final String EXTRA_SESSION_DESCRIPTOR = "session_descriptor";
   public static final String EXTRA_MUTE               = "mute_value";
@@ -84,8 +95,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   public static final String ACTION_HANGUP_CALL   = "org.thoughtcrime.redphone.RedPhoneService.HANGUP";
   public static final String ACTION_SET_MUTE      = "org.thoughtcrime.redphone.RedPhoneService.SET_MUTE";
 
-  private final List<Message> bufferedEvents = new LinkedList<>();
-  private final IBinder binder               = new RedPhoneServiceBinder();
   private final Handler serviceHandler       = new Handler();
 
   private OutgoingRinger outgoingRinger;
@@ -98,7 +107,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   private LockManager                     lockManager;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
 
-  private Handler                  handler;
   private IncomingPstnCallListener pstnCallListener;
 
   @Override
@@ -119,7 +127,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   @Override
   public IBinder onBind(Intent intent) {
-    return binder;
+    return null;
   }
 
   @Override
@@ -155,7 +163,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void initializeResources() {
-    this.state            = RedPhone.STATE_IDLE;
+    this.state            = STATE_IDLE;
     this.zid              = getZID();
     this.lockManager      = new LockManager(this);
   }
@@ -168,12 +176,14 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   /// Intent Handlers
 
   private void handleIncomingCall(Intent intent) {
+    initializeAudio();
+
     String            localNumber = TextSecurePreferences.getLocalNumber(this);
     String            password    = TextSecurePreferences.getPushServerPassword(this);
     SessionDescriptor session     = intent.getParcelableExtra(EXTRA_SESSION_DESCRIPTOR);
 
     remoteNumber = intent.getStringExtra(EXTRA_REMOTE_NUMBER);
-    state        = RedPhone.STATE_RINGING;
+    state        = STATE_RINGING;
 
     lockManager.updatePhoneState(LockManager.PhoneState.PROCESSING);
     this.currentCallManager = new ResponderCallManager(this, this, remoteNumber, localNumber,
@@ -182,6 +192,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleOutgoingCall(Intent intent) {
+    initializeAudio();
+
     String localNumber = TextSecurePreferences.getLocalNumber(this);
     String password    = TextSecurePreferences.getPushServerPassword(this);
 
@@ -190,9 +202,9 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     if (remoteNumber == null || remoteNumber.length() == 0)
       return;
 
-    sendMessage(RedPhone.HANDLE_OUTGOING_CALL, getRecipient());
+    sendMessage(Type.OUTGOING_CALL, getRecipient(), null);
 
-    state = RedPhone.STATE_DIALING;
+    state = STATE_DIALING;
     lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
     this.currentCallManager = new InitiatingCallManager(this, this, localNumber, password,
                                                         remoteNumber, zid);
@@ -234,7 +246,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleAnswerCall(Intent intent) {
-    state = RedPhone.STATE_ANSWERING;
+    state = STATE_ANSWERING;
     incomingRinger.stop();
     DatabaseFactory.getSmsDatabase(this).insertReceivedCall(remoteNumber);
     if (currentCallManager != null) {
@@ -243,7 +255,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleDenyCall(Intent intent) {
-    state = RedPhone.STATE_IDLE;
+    state = STATE_IDLE;
     incomingRinger.stop();
     DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
     if(currentCallManager != null) {
@@ -266,32 +278,35 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   private boolean isBusy() {
     TelephonyManager telephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-    return ((currentCallManager != null && state != RedPhone.STATE_IDLE) ||
+    return ((currentCallManager != null && state != STATE_IDLE) ||
              telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE);
   }
 
   private boolean isIdle() {
-    return state == RedPhone.STATE_IDLE;
+    return state == STATE_IDLE;
+  }
+
+  private void initializeAudio() {
+    AudioManager audioManager = ServiceUtil.getAudioManager(this);
+    AudioUtils.resetConfiguration(this);
+
+    audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL,
+                                   AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
   }
 
   private void shutdownAudio() {
     AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
     am.setMode(AudioManager.MODE_NORMAL);
+    am.abandonAudioFocus(null);
   }
 
   public int getState() {
     return state;
   }
 
-  public SASInfo getCurrentCallSAS() {
-    if (currentCallManager != null)
-      return currentCallManager.getSasInfo();
-    else
-      return null;
-  }
-
-  public Recipient getRecipient() {
-    if (remoteNumber != null) {
+  public @NonNull Recipient getRecipient() {
+    if (!TextUtils.isEmpty(remoteNumber)) {
+      //noinspection ConstantConditions
       return RecipientFactory.getRecipientsFromString(this, remoteNumber, true)
                              .getPrimaryRecipient();
     } else {
@@ -351,20 +366,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
     shutdownAudio();
 
-    state = RedPhone.STATE_IDLE;
+    state = STATE_IDLE;
     lockManager.updatePhoneState(LockManager.PhoneState.IDLE);
-  }
-
-  public void setCallStateHandler(Handler handler) {
-    this.handler = handler;
-
-    if (handler != null) {
-      for (Message message : bufferedEvents) {
-        handler.sendMessage(message);
-      }
-
-      bufferedEvents.clear();
-    }
   }
 
   ///////// CallStateListener Implementation
@@ -377,7 +380,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyCallFresh() {
     Log.w(TAG, "Good call, time to ring and display call card...");
-    sendMessage(RedPhone.HANDLE_INCOMING_CALL, getRecipient());
+    sendMessage(Type.INCOMING_CALL, getRecipient(), null);
 
     lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
 
@@ -389,7 +392,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyBusy() {
     Log.w("RedPhoneService", "Got busy signal from responder!");
-    sendMessage(RedPhone.HANDLE_CALL_BUSY, null);
+    sendMessage(Type.CALL_BUSY, getRecipient(), null);
+
     outgoingRinger.playBusy();
     serviceHandler.postDelayed(new Runnable() {
       @Override
@@ -401,109 +405,90 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyCallRinging() {
     outgoingRinger.playRing();
-    sendMessage(RedPhone.HANDLE_CALL_RINGING, null);
+    sendMessage(Type.CALL_RINGING, getRecipient(), null);
   }
 
   public void notifyCallConnected(SASInfo sas) {
     outgoingRinger.playComplete();
     lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
-    state = RedPhone.STATE_CONNECTED;
-    synchronized( this ) {
-      sendMessage(RedPhone.HANDLE_CALL_CONNECTED, sas);
-      try {
-        wait();
-      } catch (InterruptedException e) {
-        throw new AssertionError( "Wait interrupted in RedPhoneService" );
-      }
-    }
-  }
-  public void notifyCallConnectionUIUpdateComplete() {
-    synchronized( this ) {
-      this.notify();
-    }
-  }
-  public void notifyDebugInfo(String info) {
-    sendMessage(RedPhone.HANDLE_DEBUG_INFO, info);
+    state = STATE_CONNECTED;
+    sendMessage(Type.CALL_CONNECTED, getRecipient(), sas.getSasText());
   }
 
   public void notifyConnectingtoInitiator() {
-    sendMessage(RedPhone.HANDLE_CONNECTING_TO_INITIATOR, null);
+    sendMessage(Type.CONNECTING_TO_INITIATOR, getRecipient(), null);
   }
 
   public void notifyCallDisconnected() {
-    if (state == RedPhone.STATE_RINGING)
+    if (state == STATE_RINGING)
       handleMissedCall(remoteNumber);
 
-    sendMessage(RedPhone.HANDLE_CALL_DISCONNECTED, null);
+    sendMessage(Type.CALL_DISCONNECTED, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyHandshakeFailed() {
-    state = RedPhone.STATE_IDLE;
+    state = STATE_IDLE;
     outgoingRinger.playFailure();
-    sendMessage(RedPhone.HANDLE_HANDSHAKE_FAILED, null);
+    sendMessage(Type.HANDSHAKE_FAILED, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyRecipientUnavailable() {
-    state = RedPhone.STATE_IDLE;
+    state = STATE_IDLE;
     outgoingRinger.playFailure();
-    sendMessage(RedPhone.HANDLE_RECIPIENT_UNAVAILABLE, null);
+    sendMessage(Type.RECIPIENT_UNAVAILABLE, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyPerformingHandshake() {
     outgoingRinger.playHandshake();
-    sendMessage(RedPhone.HANDLE_PERFORMING_HANDSHAKE, null);
+    sendMessage(Type.PERFORMING_HANDSHAKE, getRecipient(), null);
   }
 
   public void notifyServerFailure() {
-    if (state == RedPhone.STATE_RINGING)
+    if (state == STATE_RINGING)
       handleMissedCall(remoteNumber);
 
-    state = RedPhone.STATE_IDLE;
+    state = STATE_IDLE;
     outgoingRinger.playFailure();
-    sendMessage(RedPhone.HANDLE_SERVER_FAILURE, null);
+    sendMessage(Type.SERVER_FAILURE, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyClientFailure() {
-    if (state == RedPhone.STATE_RINGING)
+    if (state == STATE_RINGING)
       handleMissedCall(remoteNumber);
 
-    state = RedPhone.STATE_IDLE;
+    state = STATE_IDLE;
     outgoingRinger.playFailure();
-    sendMessage(RedPhone.HANDLE_CLIENT_FAILURE, null);
+    sendMessage(Type.CLIENT_FAILURE, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyLoginFailed() {
-    if (state == RedPhone.STATE_RINGING)
+    if (state == STATE_RINGING)
       handleMissedCall(remoteNumber);
 
-    state = RedPhone.STATE_IDLE;
+    state = STATE_IDLE;
     outgoingRinger.playFailure();
-    sendMessage(RedPhone.HANDLE_LOGIN_FAILED, null);
+    sendMessage(Type.LOGIN_FAILED, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyNoSuchUser() {
-    sendMessage(RedPhone.HANDLE_NO_SUCH_USER, getRecipient());
+    sendMessage(Type.NO_SUCH_USER, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyServerMessage(String message) {
-    sendMessage(RedPhone.HANDLE_SERVER_MESSAGE, message);
+    sendMessage(Type.SERVER_MESSAGE, getRecipient(), message);
     this.terminate();
   }
 
   public void notifyClientError(String msg) {
-    sendMessage(RedPhone.HANDLE_CLIENT_FAILURE,msg);
+    sendMessage(Type.CLIENT_FAILURE, getRecipient(), msg);
     this.terminate();
-  }
-
-  public void notifyClientError(int messageId) {
-    notifyClientError(getString(messageId));
   }
 
   public void notifyCallConnecting() {
@@ -512,13 +497,11 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyWaitingForResponder() {}
 
-  private void sendMessage(int code, Object extra) {
-    Message message = Message.obtain();
-    message.what    = code;
-    message.obj     = extra;
-
-    if (handler != null) handler.sendMessage(message);
-    else    			       bufferedEvents.add(message);
+  private void sendMessage(@NonNull Type type,
+                           @NonNull Recipient recipient,
+                           @Nullable String error)
+  {
+    EventBus.getDefault().postSticky(new RedPhoneEvent(type, recipient, error));
   }
 
   private class IntentRunnable implements Runnable {
@@ -533,21 +516,15 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     }
   }
 
-  public class RedPhoneServiceBinder extends Binder {
-    public RedPhoneService getService() {
-      return RedPhoneService.this;
-    }
-  }
-
   @Override
   public boolean isInCall() {
     switch(state) {
-      case RedPhone.STATE_IDLE:
+      case STATE_IDLE:
         return false;
-      case RedPhone.STATE_DIALING:
-      case RedPhone.STATE_RINGING:
-      case RedPhone.STATE_ANSWERING:
-      case RedPhone.STATE_CONNECTED:
+      case STATE_DIALING:
+      case STATE_RINGING:
+      case STATE_ANSWERING:
+      case STATE_CONNECTED:
         return true;
       default:
         Log.e(TAG, "Unhandled call state: " + state);

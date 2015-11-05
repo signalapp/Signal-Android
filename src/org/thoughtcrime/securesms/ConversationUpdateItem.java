@@ -70,7 +70,8 @@ public class ConversationUpdateItem extends LinearLayout
 
     if      (messageRecord.isGroupAction()) setGroupRecord(messageRecord);
     else if (messageRecord.isCallLog())     setCallRecord(messageRecord);
-    else                                    throw new AssertionError("Neither group no log.");
+    else if (messageRecord.isJoined())      setJoinedRecord(messageRecord);
+    else                                    throw new AssertionError("Neither group nor log nor joined.");
   }
 
   private void setCallRecord(MessageRecord messageRecord) {
@@ -96,6 +97,12 @@ public class ConversationUpdateItem extends LinearLayout
       body.setText(description.toString());
     }
 
+    date.setVisibility(View.GONE);
+  }
+
+  private void setJoinedRecord(MessageRecord messageRecord) {
+    icon.setImageResource(R.drawable.ic_favorite_grey600_24dp);
+    body.setText(messageRecord.getDisplayBody());
     date.setVisibility(View.GONE);
   }
 

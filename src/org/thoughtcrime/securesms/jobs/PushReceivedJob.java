@@ -31,8 +31,13 @@ public abstract class PushReceivedJob extends ContextJob {
       directory.setNumber(contactTokenDetails, true);
     }
 
-    if (envelope.isReceipt()) handleReceipt(envelope);
-    else                      handleMessage(envelope, sendExplicitReceipt);
+    if (envelope.isReceipt()) {
+      handleReceipt(envelope);
+    } else if (envelope.isPreKeyWhisperMessage() || envelope.isWhisperMessage()) {
+      handleMessage(envelope, sendExplicitReceipt);
+    } else {
+      Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
+    }
   }
 
   private void handleMessage(TextSecureEnvelope envelope, boolean sendExplicitReceipt) {

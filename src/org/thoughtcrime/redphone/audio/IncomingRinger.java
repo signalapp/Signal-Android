@@ -18,6 +18,7 @@
 package org.thoughtcrime.redphone.audio;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -94,7 +95,6 @@ public class IncomingRinger {
     }
 
     if (player != null && ringerMode == AudioManager.RINGER_MODE_NORMAL ) {
-      audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
       audioManager.setMode(AudioManager.MODE_RINGTONE);
       try {
         if(!player.isPlaying()) {
@@ -104,10 +104,7 @@ public class IncomingRinger {
         } else {
           Log.d(TAG, "Ringtone is already playing, declining to restart.");
         }
-      } catch (IllegalStateException e) {
-        Log.w(TAG, e);
-        player = null;
-      } catch (IOException e) {
+      } catch (IllegalStateException | IOException e) {
         Log.w(TAG, e);
         player = null;
       }
@@ -136,7 +133,7 @@ public class IncomingRinger {
     return shouldVibrateOld(context);
   }
 
-  @SuppressLint("NewApi")
+  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   private boolean shouldVibrateNew(Context context) {
     AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);

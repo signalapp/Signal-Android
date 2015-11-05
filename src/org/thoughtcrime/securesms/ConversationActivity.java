@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -55,7 +54,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
-import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.redphone.RedPhone;
@@ -64,6 +62,7 @@ import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
+import org.thoughtcrime.securesms.components.AttachmentTypeSelector;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
@@ -99,7 +98,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.providers.CaptureProvider;
+import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -183,14 +182,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   View                  composeBubble;
   private   ReminderView          reminderView;
 
-  private   AttachmentTypeSelectorAdapter attachmentAdapter;
-  private   AttachmentManager             attachmentManager;
-  private   BroadcastReceiver             securityUpdateReceiver;
-  private   BroadcastReceiver             groupUpdateReceiver;
-  private   EmojiDrawer                   emojiDrawer;
-  private   EmojiToggle                   emojiToggle;
-  protected HidingImageButton             quickAttachmentToggle;
-  private   QuickAttachmentDrawer         quickAttachmentDrawer;
+  private   AttachmentTypeSelector attachmentTypeSelector;
+  private   AttachmentManager      attachmentManager;
+  private   BroadcastReceiver      securityUpdateReceiver;
+  private   BroadcastReceiver      groupUpdateReceiver;
+  private   EmojiDrawer            emojiDrawer;
+  private   EmojiToggle            emojiToggle;
+  protected HidingImageButton      quickAttachmentToggle;
+  private   QuickAttachmentDrawer  quickAttachmentDrawer;
 
   private Recipients recipients;
   private long       threadId;
@@ -202,7 +201,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private DynamicTheme    dynamicTheme    = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  @TargetApi(Build.VERSION_CODES.KITKAT)
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -211,6 +209,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
+    Log.w(TAG, "onCreate()");
     this.masterSecret = masterSecret;
 
     supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
@@ -312,13 +311,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     switch (reqCode) {
     case PICK_IMAGE:
       boolean isGif = MediaUtil.isGif(MediaUtil.getMimeType(this, data.getData()));
-      setMedia(data.getData(), isGif ? MediaType.GIF : MediaType.IMAGE, false);
+      setMedia(data.getData(), isGif ? MediaType.GIF : MediaType.IMAGE);
       break;
     case PICK_VIDEO:
-      setMedia(data.getData(), MediaType.VIDEO, false);
+      setMedia(data.getData(), MediaType.VIDEO);
       break;
     case PICK_AUDIO:
-      setMedia(data.getData(), MediaType.AUDIO, false);
+      setMedia(data.getData(), MediaType.AUDIO);
       break;
     case PICK_CONTACT_INFO:
       addAttachmentContactInfo(data.getData());
@@ -332,7 +331,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case TAKE_PHOTO:
       if (attachmentManager.getCaptureUri() != null) {
-        setMedia(attachmentManager.getCaptureUri(), MediaType.IMAGE, true);
+        setMedia(attachmentManager.getCaptureUri(), MediaType.IMAGE);
       }
       break;
     }
@@ -489,8 +488,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleInviteLink() {
     try {
       boolean a = SecureRandom.getInstance("SHA1PRNG").nextBoolean();
-      if (a) composeText.appendInvite(getString(R.string.ConversationActivity_get_with_it, "http://sgnl.link/1IvurmD"));
-      else   composeText.appendInvite(getString(R.string.ConversationActivity_lets_use_this_to_chat, "http://sgnl.link/1CYCQQN"));
+      if (a) composeText.appendInvite(getString(R.string.ConversationActivity_lets_switch_to_signal, "http://sgnl.link/1LoIMUl"));
+      else   composeText.appendInvite(getString(R.string.ConversationActivity_lets_use_this_to_chat, "http://sgnl.link/1MF56H1"));
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
@@ -675,8 +674,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleAddAttachment() {
     if (this.isMmsEnabled || isSecureText) {
-      new AlertDialogWrapper.Builder(this).setAdapter(attachmentAdapter, new AttachmentTypeListener())
-                                          .show();
+      attachmentTypeSelector.show(this, attachButton);
     } else {
       handleManualMmsRequired();
     }
@@ -718,9 +716,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (draftText != null)  composeText.setText(draftText);
 
-    if      (draftImage != null) setMedia(draftImage, MediaType.IMAGE, false);
-    else if (draftAudio != null) setMedia(draftAudio, MediaType.AUDIO, false);
-    else if (draftVideo != null) setMedia(draftVideo, MediaType.VIDEO, false);
+    if      (draftImage != null) setMedia(draftImage, MediaType.IMAGE);
+    else if (draftAudio != null) setMedia(draftAudio, MediaType.AUDIO);
+    else if (draftVideo != null) setMedia(draftVideo, MediaType.VIDEO);
 
     if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
       initializeDraftFromDatabase();
@@ -754,11 +752,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           if (draft.getType().equals(Draft.TEXT)) {
             composeText.setText(draft.getValue());
           } else if (draft.getType().equals(Draft.IMAGE)) {
-            setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE, false);
+            setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE);
           } else if (draft.getType().equals(Draft.AUDIO)) {
-            setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO, false);
+            setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO);
           } else if (draft.getType().equals(Draft.VIDEO)) {
-            setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO, false);
+            setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO);
           }
         }
 
@@ -867,8 +865,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
     colors.recycle();
 
-    attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
-    attachmentManager = new AttachmentManager(this, this);
+    attachmentTypeSelector = new AttachmentTypeSelector(this, new AttachmentTypeListener());
+    attachmentManager      = new AttachmentManager(this, this);
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -1013,8 +1011,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void setMedia(Uri uri, MediaType mediaType, boolean isCapture) {
-    attachmentManager.setMedia(masterSecret, uri, mediaType, getCurrentMediaConstraints(), isCapture);
+  private void setMedia(Uri uri, MediaType mediaType) {
+    attachmentManager.setMedia(masterSecret, uri, mediaType, getCurrentMediaConstraints());
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
@@ -1054,7 +1052,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       drafts.add(new Draft(Draft.TEXT, composeText.getText().toString()));
     }
 
-    for (Slide slide : attachmentManager.getSlideDeck().getSlides()) {
+    for (Slide slide : attachmentManager.buildSlideDeck().getSlides()) {
       if      (slide.hasAudio()) drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
       else if (slide.hasVideo()) drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
       else if (slide.hasImage()) drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
@@ -1109,10 +1107,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void setActionBarColor(MaterialColor color) {
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(color.toStatusBarColor(this));
-    }
+    setStatusBarColor(color.toStatusBarColor(this));
   }
 
   private void setBlockedUserState(Recipients recipients) {
@@ -1224,6 +1219,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (refreshFragment) {
       fragment.reload(recipients, threadId);
+      MessageNotifier.setVisibleThread(threadId);
     }
 
     fragment.scrollToBottom();
@@ -1266,7 +1262,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   {
     final Context context                = getApplicationContext();
     OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(recipients,
-                                                                    attachmentManager.getSlideDeck(),
+                                                                    attachmentManager.buildSlideDeck(),
                                                                     getMessage(),
                                                                     System.currentTimeMillis(),
                                                                     distributionType);
@@ -1339,12 +1335,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onImageCapture(@NonNull final byte[] imageBytes) {
-    setMedia(CaptureProvider.getInstance(this).create(masterSecret, recipients, imageBytes), MediaType.IMAGE, true);
+    setMedia(PersistentBlobProvider.getInstance(this).create(masterSecret, recipients, imageBytes), MediaType.IMAGE);
     quickAttachmentDrawer.hide(false);
   }
 
   @Override
-  public void onCameraFail(FailureReason reason) {
+  public void onCameraFail() {
     Toast.makeText(this, R.string.ConversationActivity_quick_camera_unavailable, Toast.LENGTH_SHORT).show();
     quickAttachmentDrawer.hide(false);
     quickAttachmentToggle.disable();
@@ -1352,11 +1348,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   // Listeners
 
-  private class AttachmentTypeListener implements DialogInterface.OnClickListener {
+  private class AttachmentTypeListener implements AttachmentTypeSelector.AttachmentClickedListener {
     @Override
-    public void onClick(DialogInterface dialog, int which) {
-      addAttachment(attachmentAdapter.buttonToCommand(which));
-      dialog.dismiss();
+    public void onClick(int type) {
+      addAttachment(type);
     }
   }
 

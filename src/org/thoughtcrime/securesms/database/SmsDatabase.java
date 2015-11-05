@@ -384,7 +384,9 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   protected Pair<Long, Long> insertMessageInbox(IncomingTextMessage message, long type) {
-    if (message.isPreKeyBundle()) {
+    if (message.isJoined()) {
+      type = (type & (Types.TOTAL_MASK - Types.BASE_TYPE_MASK)) | Types.JOINED_TYPE;
+    } else if (message.isPreKeyBundle()) {
       type |= Types.KEY_EXCHANGE_BIT | Types.KEY_EXCHANGE_BUNDLE_BIT;
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
