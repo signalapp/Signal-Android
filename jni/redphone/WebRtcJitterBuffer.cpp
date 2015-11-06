@@ -1,5 +1,5 @@
 #include "WebRtcJitterBuffer.h"
-#include <time.h>
+//#include <time.h>
 
 #define TAG "WebRtcJitterBuffer"
 
@@ -15,9 +15,7 @@ int WebRtcJitterBuffer::init() {
   webrtc::NetEq::Config config;
   config.sample_rate_hz = 8000;
 
-  pthread_mutex_lock(&lock);
   neteq = webrtc::NetEq::Create(config);
-  pthread_mutex_unlock(&lock);
 
   if (neteq == NULL) {
     __android_log_print(ANDROID_LOG_WARN, TAG, "Failed to construct NetEq!");
@@ -29,7 +27,8 @@ int WebRtcJitterBuffer::init() {
     return -1;
   }
 
-//  pthread_create(&stats, NULL, &WebRtcJitterBuffer::collectStats, this);
+//  pthread_t thread;
+//  pthread_create(&thread, NULL, &WebRtcJitterBuffer::collectStats, this);
 
   return 0;
 }
@@ -67,21 +66,13 @@ int WebRtcJitterBuffer::getAudio(short *rawData, int maxRawData) {
 }
 
 void WebRtcJitterBuffer::stop() {
-//  pthread_mutex_lock(&lock);
   running = 0;
-//  pthread_cond_signal(&condition);
-//  pthread_mutex_unlock(&lock);
-
-//  pthread_join(stats, NULL);
 }
 
 void WebRtcJitterBuffer::collectStats() {
   while (running) {
     webrtc::NetEqNetworkStatistics stats;
-
-    pthread_mutex_lock(&lock);
     neteq->NetworkStatistics(&stats);
-    pthread_mutex_unlock(&lock);
 
     __android_log_print(ANDROID_LOG_WARN, "WebRtcJitterBuffer",
                         "Jitter Stats:\n{\n" \
@@ -107,21 +98,22 @@ void WebRtcJitterBuffer::collectStats() {
                         stats.clockdrift_ppm,
                         stats.added_zero_samples);
 
-    struct timespec timeToWait;
-    struct timeval  now;
-    gettimeofday(&now, NULL);
-
-    timeToWait.tv_sec  = now.tv_sec;
-    timeToWait.tv_nsec = now.tv_usec * 1000;
-    timeToWait.tv_sec += 30;
-
-    pthread_mutex_lock(&lock);
-
-    if (running) {
-      pthread_cond_timedwait(&condition, &lock, &timeToWait);
-    }
-
-    pthread_mutex_unlock(&lock);
+//    struct timespec timeToWait;
+//    struct timeval  now;
+//    gettimeofday(&now, NULL);
+//
+//    timeToWait.tv_sec  = now.tv_sec;
+//    timeToWait.tv_nsec = now.tv_usec * 1000;
+//    timeToWait.tv_sec += 30;
+//
+//    pthread_mutex_lock(&lock);
+//
+//    if (running) {
+//      pthread_cond_timedwait(&condition, &lock, &timeToWait);
+//    }
+//
+//    pthread_mutex_unlock(&lock);
+    sleep(30);
   }
 }
 

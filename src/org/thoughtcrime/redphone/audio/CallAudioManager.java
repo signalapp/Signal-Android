@@ -47,7 +47,7 @@ public class CallAudioManager {
     if (Build.VERSION.SDK_INT >= 11) {
       ServiceUtil.getAudioManager(context).setMode(AudioManager.MODE_IN_COMMUNICATION);
     } else {
-      ServiceUtil.getAudioManager(context).setMode(AudioManager.MODE_IN_CALL);
+//      ServiceUtil.getAudioManager(context).setMode(AudioManager.MODE_IN_CALL);
     }
 
     try {
