@@ -23,13 +23,11 @@ import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.MatrixCursor;
-import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,10 +36,6 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
@@ -119,9 +113,10 @@ public class ContactsDatabase {
 
     for (String number : e164numbers) {
       if (!currentContacts.containsKey(number)) {
-        Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(number);
+        Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(number, localNumber);
 
         if (systemContactInfo.isPresent()) {
+          Log.w(TAG, "Adding number: " + number);
           addedNumbers.add(number);
           addTextSecureRawContact(operations, account, systemContactInfo.get().number, systemContactInfo.get().id);
         }
@@ -280,7 +275,9 @@ public class ContactsDatabase {
     return newNumberCursor;
   }
 
-  private Optional<SystemContactInfo> getSystemContactInfo(String e164number) {
+  private Optional<SystemContactInfo> getSystemContactInfo(@NonNull String e164number,
+                                                           @NonNull String localNumber)
+  {
     Uri      uri          = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(e164number));
     String[] projection   = {ContactsContract.PhoneLookup.NUMBER,
                              ContactsContract.PhoneLookup._ID,
@@ -291,17 +288,26 @@ public class ContactsDatabase {
     try {
       numberCursor = context.getContentResolver().query(uri, projection, null, null, null);
 
-      if (numberCursor != null && numberCursor.moveToNext()) {
-        idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
-                                                      new String[] {RawContacts._ID},
-                                                      RawContacts.CONTACT_ID + " = ? ",
-                                                      new String[] {String.valueOf(numberCursor.getLong(1))},
-                                                      null);
+      while (numberCursor != null && numberCursor.moveToNext()) {
+        try {
+          String systemNumber              = numberCursor.getString(0);
+          String canonicalizedSystemNumber = PhoneNumberFormatter.formatNumber(systemNumber, localNumber);
 
-        if (idCursor != null && idCursor.moveToNext()) {
-          return Optional.of(new SystemContactInfo(numberCursor.getString(2),
-                                                   numberCursor.getString(0),
-                                                   idCursor.getLong(0)));
+          if (canonicalizedSystemNumber.equals(e164number)) {
+            idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
+                                                          new String[] {RawContacts._ID},
+                                                          RawContacts.CONTACT_ID + " = ? ",
+                                                          new String[] {String.valueOf(numberCursor.getLong(1))},
+                                                          null);
+
+            if (idCursor != null && idCursor.moveToNext()) {
+              return Optional.of(new SystemContactInfo(numberCursor.getString(2),
+                                                       numberCursor.getString(0),
+                                                       idCursor.getLong(0)));
+            }
+          }
+        } catch (InvalidNumberException e) {
+          Log.w(TAG, e);
         }
       }
     } finally {

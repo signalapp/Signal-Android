@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.os.PowerManager;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -26,6 +27,7 @@ public class DirectoryRefreshJob extends ContextJob {
 
   @Override
   public void onRun() throws IOException {
+    Log.w("DirectoryRefreshJob", "DirectoryRefreshJob.onRun()");
     PowerManager          powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
     PowerManager.WakeLock wakeLock     = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Directory Refresh");
 
