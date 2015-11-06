@@ -59,6 +59,22 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
 
+  private final Set<Long> pendingSwipeActions  = Collections.synchronizedSet(new HashSet<Long>());
+  private       boolean   swipeEnabled = true;
+
+  public void disableSwiping() {
+    swipeEnabled = false;
+  }
+
+  public void enableSwiping() {
+    swipeEnabled = true;
+  }
+
+  public void undoPendingActions() {
+    // TODO animate to normal view
+    pendingSwipeActions.clear();
+  }
+
   /**
    * Detects left and right swipes across a view.
    */

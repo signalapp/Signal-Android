@@ -99,6 +99,23 @@ public class ConversationListFragment extends Fragment
     });
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+    // Ensure no accidental swiping under scrolling.
+    // Undo as a default if the user scrolls?
+    list.setOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        super.onScrollStateChanged(recyclerView, newState);
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+          getListAdapter().undoPendingActions();
+          getListAdapter().disableSwiping();
+        }
+        else {
+          getListAdapter().enableSwiping();
+        }
+      }
+    });
+
     return view;
   }
 
