@@ -56,8 +56,7 @@ public class SmsSendJob extends SendJob {
     } catch (UndeliverableMessageException ude) {
       Log.w(TAG, ude);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
-      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(),
-                                                  record.getThreadId(), record.getId());
+      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
     }
   }
 
@@ -73,7 +72,7 @@ public class SmsSendJob extends SendJob {
     Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
 
     DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
-    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId, messageId);
+    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
   }
 
   private void deliver(SmsMessageRecord message)

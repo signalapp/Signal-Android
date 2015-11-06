@@ -68,12 +68,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   public final static String MASTER_SECRET_EXTRA  = "master_secret";
   public final static String MESSAGE_ID_EXTRA     = "message_id";
+  public final static String THREAD_ID_EXTRA      = "thread_id";
   public final static String IS_PUSH_GROUP_EXTRA  = "is_push_group";
   public final static String TYPE_EXTRA           = "type";
   public final static String RECIPIENTS_IDS_EXTRA = "recipients_ids";
 
   private MasterSecret     masterSecret;
-  private long             messageId;
+  private long             threadId;
   private boolean          isPushGroup;
   private ConversationItem conversationItem;
   private ViewGroup        itemParent;
@@ -112,13 +113,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
 
-    MessageNotifier.setVisibleMessage(messageId);
+    MessageNotifier.setVisibleThread(threadId);
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    MessageNotifier.setVisibleMessage(-1L);
+    MessageNotifier.setVisibleThread(-1L);
   }
 
   private void initializeActionBar() {
@@ -153,7 +154,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     View header = inflater.inflate(R.layout.message_details_header, recipientsList, false);
 
     masterSecret      = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-    messageId         = getIntent().getLongExtra(MESSAGE_ID_EXTRA, -1);
+    threadId          = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
     itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
     recipientsList    = (ListView ) findViewById(R.id.recipients_list);

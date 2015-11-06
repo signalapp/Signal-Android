@@ -75,8 +75,7 @@ public class MessageNotifier {
 
   public static final int NOTIFICATION_ID = 1338;
 
-  private volatile static long visibleThread  = -1;
-  private volatile static long visibleMessage = -1;
+  private volatile static long visibleThread = -1;
 
   public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
 
@@ -84,14 +83,8 @@ public class MessageNotifier {
     visibleThread = threadId;
   }
 
-  public static void setVisibleMessage(long messageId) {
-    visibleMessage = messageId;
-  }
-
-  public static void notifyMessageDeliveryFailed(Context context, Recipients recipients,
-                                                 long threadId, long messageId)
-  {
-    if (visibleThread == threadId || visibleMessage == messageId) {
+  public static void notifyMessageDeliveryFailed(Context context, Recipients recipients, long threadId) {
+    if (visibleThread == threadId) {
       sendInThreadNotification(context, recipients);
     } else {
       Intent intent = new Intent(context, ConversationActivity.class);

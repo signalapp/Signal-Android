@@ -67,8 +67,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     } catch (InsecureFallbackApprovalException e) {
       Log.w(TAG, e);
       database.markAsPendingInsecureSmsFallback(record.getId());
-      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(),
-                                                  record.getThreadId(), record.getId());
+      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
       ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context));
     } catch (UntrustedIdentityException e) {
       Log.w(TAG, e);
@@ -96,7 +95,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
 
     if (threadId != -1 && recipients != null) {
-      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId, messageId);
+      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
     }
   }
 

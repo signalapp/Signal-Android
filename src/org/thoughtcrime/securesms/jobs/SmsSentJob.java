@@ -89,8 +89,7 @@ public class SmsSentJob extends MasterSecretJob {
           break;
         default:
           database.markAsSentFailed(messageId);
-          MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(),
-                                                      record.getThreadId(), record.getId());
+          MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
       }
     } catch (NoSuchMessageException e) {
       Log.w(TAG, e);
