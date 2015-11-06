@@ -34,7 +34,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   public static final String IDENTITY_KEY = "identity_key";
   public static final String TITLE        = "title";
 
-  private TextView    identityFingerprint;
+  protected TextView  identityFingerprint;
   private IdentityKey identityKey;
 
   @Override
