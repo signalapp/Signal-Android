@@ -273,13 +273,21 @@ public class CameraView extends FrameLayout {
 
   private void startPreview() {
     if (camera.isPresent()) {
-      camera.get().startPreview();
+      try {
+        camera.get().startPreview();
+      } catch (RuntimeException re) {
+        Log.w(TAG, re);
+      }
     }
   }
 
   private void stopPreview() {
     if (camera.isPresent()) {
-      camera.get().stopPreview();
+      try {
+        camera.get().stopPreview();
+      } catch (RuntimeException re) {
+        Log.w(TAG, re);
+      }
     }
   }
 
