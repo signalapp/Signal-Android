@@ -90,12 +90,9 @@ public class CameraView extends FrameLayout {
       @Override
       protected @Nullable Camera onRunBackground() {
         try {
-          if (cameraId >= 0) {
-            return Camera.open(cameraId);
-          } else {
-            return null;
-          }
+          return Camera.open(cameraId);
         } catch (Exception e) {
+          Log.w(TAG, e);
           return null;
         }
       }
@@ -103,6 +100,7 @@ public class CameraView extends FrameLayout {
       @Override
       protected void onPostMain(@Nullable Camera camera) {
         if (camera == null) {
+          Log.w(TAG, "tried to open camera but got null");
           if (listener != null) listener.onCameraFail();
           return;
         }
@@ -132,17 +130,23 @@ public class CameraView extends FrameLayout {
     if (!started) return;
     started = false;
     Log.w(TAG, "onPause() queued");
-    final Optional<Camera> cameraToDestroy = camera;
 
     enqueueTask(new SerialAsyncTask<Void>() {
+      private Optional<Camera> cameraToDestroy;
       @Override protected void onPreMain() {
+        cameraToDestroy = camera;
         camera = Optional.absent();
       }
 
       @Override protected Void onRunBackground() {
         if (cameraToDestroy.isPresent()) {
-          stopPreview();
-          cameraToDestroy.get().release();
+          try {
+            stopPreview();
+            cameraToDestroy.get().release();
+            Log.w(TAG, "released old camera instance");
+          } catch (Exception e) {
+            Log.w(TAG, e);
+          }
         }
         return null;
       }
@@ -171,6 +175,7 @@ public class CameraView extends FrameLayout {
                                                                             camera.get());
       final Parameters parameters = camera.get().getParameters();
       if (preferredPreviewSize != null && !parameters.getPreviewSize().equals(preferredPreviewSize)) {
+        Log.w(TAG, "setting preview size to " + preferredPreviewSize.width + "x" + preferredPreviewSize.height);
         stopPreview();
         parameters.setPreviewSize(preferredPreviewSize.width, preferredPreviewSize.height);
         camera.get().setParameters(parameters);
@@ -239,7 +244,6 @@ public class CameraView extends FrameLayout {
     }
   }
 
-
   @TargetApi(14)
   private void onCameraReady() {
     if (!camera.isPresent()) return;
@@ -262,8 +266,8 @@ public class CameraView extends FrameLayout {
         if (camera.isPresent()) {
           try {
             camera.get().setPreviewDisplay(surface.getHolder());
-            startPreview();
-          } catch (IOException e) {
+            requestLayout();
+          } catch (Exception e) {
             Log.w(TAG, e);
           }
         }
@@ -273,13 +277,21 @@ public class CameraView extends FrameLayout {
 
   private void startPreview() {
     if (camera.isPresent()) {
-      camera.get().startPreview();
+      try {
+        camera.get().startPreview();
+      } catch (Exception e) {
+        Log.w(TAG, e);
+      }
     }
   }
 
   private void stopPreview() {
     if (camera.isPresent()) {
-      camera.get().stopPreview();
+      try {
+        camera.get().stopPreview();
+      } catch (Exception e) {
+        Log.w(TAG, e);
+      }
     }
   }
 
@@ -304,8 +316,7 @@ public class CameraView extends FrameLayout {
     if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
       displayOrientation = (info.orientation + degrees           ) % 360;
       displayOrientation = (360              - displayOrientation) % 360;
-    }
-    else {
+    } else {
       displayOrientation = (info.orientation - degrees + 360) % 360;
     }
 
@@ -401,7 +412,7 @@ public class CameraView extends FrameLayout {
         Log.w(TAG, "previewFormat: " + camera.getParameters().getPreviewFormat());
         Log.w(TAG, "croppingRect: " + croppingRect.toString());
         Log.w(TAG, "rotation: " + rotation);
-        new RotatePreviewAsyncTask(previewSize, rotation, croppingRect).execute(data);
+        new CaptureTask(previewSize, rotation, croppingRect).execute(data);
       }
     });
   }
@@ -429,7 +440,6 @@ public class CameraView extends FrameLayout {
     if (rotation % 180 > 0) rotateRect(visibleRect);
     return visibleRect;
   }
-
 
   @SuppressWarnings("SuspiciousNameCombination")
   private void rotateRect(Rect rect) {
@@ -495,12 +505,12 @@ public class CameraView extends FrameLayout {
     }
   }
 
-  private class RotatePreviewAsyncTask extends AsyncTask<byte[], Void, byte[]> {
+  private class CaptureTask extends AsyncTask<byte[], Void, byte[]> {
     private final Size previewSize;
     private final int  rotation;
     private final Rect croppingRect;
 
-    public RotatePreviewAsyncTask(Size previewSize, int rotation, Rect croppingRect) {
+    public CaptureTask(Size previewSize, int rotation, Rect croppingRect) {
       this.previewSize  = previewSize;
       this.rotation     = rotation;
       this.croppingRect = croppingRect;
@@ -516,6 +526,7 @@ public class CameraView extends FrameLayout {
                                          rotation,
                                          croppingRect);
       } catch (IOException e) {
+        Log.w(TAG, e);
         return null;
       }
     }
