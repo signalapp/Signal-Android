@@ -59,7 +59,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
       String value = (String) newValue;
 
       if (TextUtils.isEmpty(value)) {
-        preference.setSummary(R.string.preferences__default);
+        preference.setSummary(R.string.preferences__silent);
       } else {
         Ringtone tone = RingtoneManager.getRingtone(getActivity(), Uri.parse(value));
         if (tone != null) {
