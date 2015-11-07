@@ -36,7 +36,6 @@
                 android:layout_gravity="center_vertical"
                 android:padding="10dp"
                 android:lines="1"
-                android:maxLength="30"
                 android:inputType="textAutoCorrect"
                 android:hint="@string/GroupCreateActivity_group_name_hint" />
             </LinearLayout>
