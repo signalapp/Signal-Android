@@ -63,6 +63,8 @@ import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashSet;
@@ -231,7 +233,12 @@ public class ConversationItem extends LinearLayout
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
       mediaThumbnail.setBackgroundColorHint(defaultBubbleColor);
-      audioView.setTint(conversationRecipients.getColor().toConversationColor(context));
+
+      if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
+        audioView.setTint(conversationRecipients.getColor().toConversationColor(context));
+      } else {
+        audioView.setTint(Color.WHITE);
+      }
     } else {
       int color = recipient.getColor().toConversationColor(context);
       bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);

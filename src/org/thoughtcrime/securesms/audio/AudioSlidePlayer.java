@@ -95,8 +95,11 @@ public class AudioSlidePlayer {
         Log.w(TAG, "onComplete");
         synchronized (AudioSlidePlayer.this) {
           mediaPlayer = null;
-          audioAttachmentServer.stop();
-          audioAttachmentServer = null;
+
+          if (audioAttachmentServer != null) {
+            audioAttachmentServer.stop();
+            audioAttachmentServer = null;
+          }
         }
 
         notifyOnStop();
