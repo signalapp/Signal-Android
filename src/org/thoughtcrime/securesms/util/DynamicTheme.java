@@ -7,6 +7,9 @@ import org.thoughtcrime.securesms.R;
 
 public class DynamicTheme {
 
+  public static final String DARK  = "dark";
+  public static final String LIGHT = "light";
+
   private int currentTheme;
 
   public void onCreate(Activity activity) {
@@ -27,7 +30,7 @@ public class DynamicTheme {
   protected int getSelectedTheme(Activity activity) {
     String theme = TextSecurePreferences.getTheme(activity);
 
-    if (theme.equals("dark")) return R.style.TextSecure_DarkTheme;
+    if (theme.equals(DARK)) return R.style.TextSecure_DarkTheme;
 
     return R.style.TextSecure_LightTheme;
   }
