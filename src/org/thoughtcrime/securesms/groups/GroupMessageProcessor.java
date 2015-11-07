@@ -36,6 +36,8 @@ public class GroupMessageProcessor {
 
   private static final String TAG = GroupMessageProcessor.class.getSimpleName();
 
+  private static final int MAX_GROUP_NAME_SIZE = 255;
+
   public static void process(Context context,
                              MasterSecret masterSecret,
                              TextSecureEnvelope envelope,
@@ -73,8 +75,11 @@ public class GroupMessageProcessor {
     builder.setType(GroupContext.Type.UPDATE);
 
     TextSecureAttachment avatar = group.getAvatar().orNull();
+    String               groupName = group.getName().orNull();
 
-    database.create(id, group.getName().orNull(), group.getMembers().orNull(),
+    if ( (groupName != null) && (groupName.length() > MAX_GROUP_NAME_SIZE) )  groupName = groupName.substring(0, MAX_GROUP_NAME_SIZE );
+
+    database.create(id, groupName, group.getMembers().orNull(),
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null,
                     envelope.getRelay());
 
@@ -90,6 +95,7 @@ public class GroupMessageProcessor {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     byte[]        id       = group.getGroupId();
+    String        groupName = group.getName().orNull();
 
     Set<String> recordMembers = new HashSet<>(groupRecord.getMembers());
     Set<String> messageMembers = new HashSet<>(group.getMembers().get());
@@ -102,6 +108,8 @@ public class GroupMessageProcessor {
 
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
+
+    if ( (groupName != null) && (groupName.length() > MAX_GROUP_NAME_SIZE) )  groupName = groupName.substring(0, MAX_GROUP_NAME_SIZE );
 
     if (addedMembers.size() > 0) {
       Set<String> unionMembers = new HashSet<>(recordMembers);
@@ -119,7 +127,8 @@ public class GroupMessageProcessor {
 
     if (group.getName().isPresent() || group.getAvatar().isPresent()) {
       TextSecureAttachment avatar = group.getAvatar().orNull();
-      database.update(id, group.getName().orNull(), avatar != null ? avatar.asPointer() : null);
+
+      database.update(id, groupName, avatar != null ? avatar.asPointer() : null);
     }
 
     if (group.getName().isPresent() && group.getName().get().equals(groupRecord.getTitle())) {
@@ -182,7 +191,10 @@ public class GroupMessageProcessor {
     }
 
     if (group.getName().isPresent()) {
-      builder.setName(group.getName().get());
+      String groupName = group.getName().get();
+
+      if ( groupName.length() > MAX_GROUP_NAME_SIZE ) groupName = groupName.substring(0, MAX_GROUP_NAME_SIZE );
+      builder.setName(groupName);
     }
 
     if (group.getMembers().isPresent()) {
