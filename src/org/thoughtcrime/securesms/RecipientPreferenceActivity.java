@@ -18,7 +18,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -114,7 +113,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private void setHeader(Recipients recipients) {
     this.avatar.setAvatar(recipients.getPrimaryRecipient(), true);
     this.title.setText(recipients.toShortString());
-    this.title.setMovementMethod(new ScrollingMovementMethod());
 
     if (recipients.isBlocked()) this.blockedIndicator.setVisibility(View.VISIBLE);
     else                        this.blockedIndicator.setVisibility(View.GONE);

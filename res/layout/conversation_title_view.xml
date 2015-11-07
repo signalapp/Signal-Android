@@ -15,6 +15,7 @@
               android:drawablePadding="5dp"
               android:gravity="center_vertical"
               android:layout_gravity="center_vertical"
+              android:scrollHorizontally="true"
               style="@style/TextSecure.TitleTextStyle"/>
 
     <TextView android:id="@+id/subtitle"
