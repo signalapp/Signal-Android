@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.hardware.Camera.CameraInfo;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -92,6 +93,16 @@ public class TextSecurePreferences {
 
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
+  public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
+
+  public static void setDirectCaptureCameraId(Context context, int value) {
+    setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value);
+  }
+
+  @SuppressWarnings("deprecation")
+  public static int getDirectCaptureCameraId(Context context) {
+    return getIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, CameraInfo.CAMERA_FACING_FRONT);
+  }
 
   public static void setMultiDevice(Context context, boolean value) {
     setBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, value);

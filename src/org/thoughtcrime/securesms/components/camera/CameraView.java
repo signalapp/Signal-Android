@@ -42,6 +42,7 @@ import java.util.List;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.Job;
 import org.whispersystems.jobqueue.JobParameters;
@@ -74,7 +75,7 @@ public class CameraView extends FrameLayout {
     super(context, attrs, defStyle);
     setBackgroundColor(Color.BLACK);
 
-    if (isMultiCamera()) cameraId = CameraInfo.CAMERA_FACING_FRONT;
+    if (isMultiCamera()) cameraId = TextSecurePreferences.getDirectCaptureCameraId(context);
 
     surface             = new CameraSurfaceView(getContext());
     onOrientationChange = new OnOrientationChange(context.getApplicationContext());
@@ -241,6 +242,7 @@ public class CameraView extends FrameLayout {
                  : CameraInfo.CAMERA_FACING_BACK;
       onPause();
       onResume();
+      TextSecurePreferences.setDirectCaptureCameraId(getContext(), cameraId);
     }
   }
 
