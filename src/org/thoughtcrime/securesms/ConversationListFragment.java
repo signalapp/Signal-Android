@@ -26,6 +26,8 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -34,6 +36,7 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,7 +65,10 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -77,6 +83,10 @@ public class ConversationListFragment extends Fragment
   private FloatingActionButton fab;
   private Locale               locale;
   private String               queryFilter  = "";
+
+  private final Handler        deleteHandler = new Handler(Looper.getMainLooper());
+  private final Map<ConversationListItem.UndoToken, Runnable> pendingDeletes =
+          Collections.synchronizedMap(new HashMap<ConversationListItem.UndoToken, Runnable>());
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -99,23 +109,6 @@ public class ConversationListFragment extends Fragment
     });
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-    // Ensure no accidental swiping under scrolling.
-    // Undo as a default if the user scrolls?
-    list.setOnScrollListener(new RecyclerView.OnScrollListener() {
-      @Override
-      public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-        super.onScrollStateChanged(recyclerView, newState);
-        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-          getListAdapter().undoPendingActions();
-          getListAdapter().disableSwiping();
-        }
-        else {
-          getListAdapter().enableSwiping();
-        }
-      }
-    });
-
     return view;
   }
 
@@ -188,11 +181,6 @@ public class ConversationListFragment extends Fragment
     getLoaderManager().restartLoader(0, null, this);
   }
 
-  private void handleDeleteSelectedThread(long threadId) {
-    DatabaseFactory.getThreadDatabase(getActivity()).deleteConversation(threadId);
-    MessageNotifier.updateNotification(getActivity(), masterSecret);
-  }
-
   private void handleDeleteAllSelected() {
     AlertDialogWrapper.Builder alert = new AlertDialogWrapper.Builder(getActivity());
     alert.setIconAttribute(R.attr.dialog_alert_icon);
@@ -245,7 +233,7 @@ public class ConversationListFragment extends Fragment
   private void handleSelectAllThreads() {
     getListAdapter().selectAllThreads();
     actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                           ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
+            this.getListAdapter().getBatchSelections().size()));
   }
 
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
@@ -302,7 +290,27 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onItemSwipeRight(ConversationListItem item) {
-    handleDeleteSelectedThread(item.getThreadId());
+    final ConversationListItem.UndoToken token = item.getUndoToken();
+    Runnable deleteAction = new Runnable() {
+      @Override
+      public void run() {
+        if (!token.isCancelled()) {
+          Log.d("Swiping", "Deleting item!");
+          DatabaseFactory.getThreadDatabase(getActivity()).deleteConversation(token.threadId);
+          MessageNotifier.updateNotification(getActivity(), masterSecret);
+        }
+      }
+    };
+    pendingDeletes.put(token, deleteAction);
+    deleteHandler.postDelayed(deleteAction, 5000);
+  }
+
+  @Override
+  public void onItemSwipeUndo(ConversationListItem itemView, ConversationListItem.UndoToken undoToken) {
+    if (pendingDeletes.containsKey(undoToken)) {
+      deleteHandler.removeCallbacks(pendingDeletes.get(undoToken));
+      pendingDeletes.remove(undoToken);
+    }
   }
 
   public interface ConversationSelectedListener {

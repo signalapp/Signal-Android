@@ -21,12 +21,7 @@ import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -59,96 +54,33 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
 
-  private final Set<Long> pendingSwipeActions  = Collections.synchronizedSet(new HashSet<Long>());
-  private       boolean   swipeEnabled = true;
-
-  public void disableSwiping() {
-    swipeEnabled = false;
-  }
-
-  public void enableSwiping() {
-    swipeEnabled = true;
-  }
-
-  public void undoPendingActions() {
-    // TODO animate to normal view
-    pendingSwipeActions.clear();
-  }
-
-  /**
-   * Detects left and right swipes across a view.
-   */
-  protected static abstract class OnSwipeTouchListener implements View.OnTouchListener {
-
-    private final GestureDetector gestureDetector;
-
-    public OnSwipeTouchListener(Context context) {
-      gestureDetector = new GestureDetector(context, new GestureListener());
-    }
-
-    public abstract void onSwipeLeft();
-
-    public abstract void onSwipeRight();
-
-    public boolean onTouch(View v, MotionEvent event) {
-      return gestureDetector.onTouchEvent(event);
-    }
-
-    private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
-
-      private static final int SWIPE_DISTANCE_THRESHOLD = 100;
-      private static final int SWIPE_VELOCITY_THRESHOLD = 100;
-
-      @Override
-      public boolean onDown(MotionEvent e) {
-        return true;
-      }
-
-      @Override
-      public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        float distanceX = e2.getX() - e1.getX();
-        float distanceY = e2.getY() - e1.getY();
-        if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > SWIPE_DISTANCE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-          if (distanceX > 0)
-            onSwipeRight();
-          else
-            onSwipeLeft();
-          return true;
-        }
-        return false;
-      }
-    }
-  }
-
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public ViewHolder(final @NonNull ConversationListItem itemView,
                       final @Nullable ItemClickListener clickListener,
-                      final @Nullable ItemSwipeListener swipeListener,
-                      final Context context) {
+                      final @Nullable ItemSwipeListener swipeListener) {
       super(itemView);
-      itemView.setOnClickListener(new OnClickListener() {
+
+      itemView.setGestureListener(new ConversationListItem.GestureListener() {
         @Override
-        public void onClick(View view) {
+        public void onClick() {
           if (clickListener != null) clickListener.onItemClick(itemView);
         }
-      });
-      itemView.setOnLongClickListener(new OnLongClickListener() {
         @Override
-        public boolean onLongClick(View view) {
+        public boolean onLongClick() {
           if (clickListener != null) clickListener.onItemLongClick(itemView);
           return true;
         }
-      });
-
-      itemView.setOnTouchListener(new OnSwipeTouchListener(context) {
         @Override
-        public void onSwipeLeft() {
+        public void onSwipeLeft(float distanceX) {
           if (swipeListener != null) swipeListener.onItemSwipeLeft(itemView);
         }
-
         @Override
-        public void onSwipeRight() {
+        public void onSwipeRight(float distanceX) {
           if (swipeListener != null) swipeListener.onItemSwipeRight(itemView);
+        }
+        @Override
+        public void onUndo(ConversationListItem.UndoToken undoToken) {
+          if (swipeListener != null) swipeListener.onItemSwipeUndo(itemView, undoToken);
         }
       });
     }
@@ -178,7 +110,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     return new ViewHolder((ConversationListItem)inflater.inflate(R.layout.conversation_list_item_view,
                                                                  parent, false),
-                          clickListener, swipeListener, getContext());
+                          clickListener, swipeListener);
   }
 
   @Override public void onItemViewRecycled(ViewHolder holder) {
@@ -230,5 +162,6 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   public interface ItemSwipeListener {
     void onItemSwipeLeft(ConversationListItem item);
     void onItemSwipeRight(ConversationListItem item);
+    void onItemSwipeUndo(ConversationListItem itemView, ConversationListItem.UndoToken undoToken);
   }
 }

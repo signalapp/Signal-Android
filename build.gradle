@@ -211,6 +211,7 @@ android {
                           'proguard-shortcutbadger.pro',
                           'proguard-retrofit.pro',
                           'proguard.cfg'
+            applicationIdSuffix ".debug"
         }
         release {
             minifyEnabled true

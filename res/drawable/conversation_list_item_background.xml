@@ -2,4 +2,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/textsecure_primary_alpha33" android:state_selected="true" />
     <item android:drawable="@color/textsecure_primary_alpha33" android:state_pressed="true" />
+    <item android:drawable="?android:colorBackground" />
 </selector>
