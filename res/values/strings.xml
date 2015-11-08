@@ -840,6 +840,7 @@
     <string name="arrays__mute_for_two_hours">Mute for 2 hours</string>
     <string name="arrays__mute_for_one_day">Mute for 1 day</string>
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
+    <string name="arrays__mute_for_one_year">Mute for 1 year</string>
 
     <string name="arrays__settings_default">Settings default</string>
     <string name="arrays__enabled">Enabled</string>
