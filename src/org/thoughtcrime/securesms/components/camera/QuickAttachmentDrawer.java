@@ -125,6 +125,8 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
     fullScreenButton = (ImageButton) controls.findViewById(R.id.fullscreen_button);
     if (cameraView.isMultiCamera()) {
       swapCameraButton.setVisibility(View.VISIBLE);
+      swapCameraButton.setImageResource(cameraView.isRearCamera() ? R.drawable.quick_camera_front
+                                                                  : R.drawable.quick_camera_rear);
       swapCameraButton.setOnClickListener(new CameraFlipClickListener());
     }
     shutterButton.setOnClickListener(new ShutterClickListener());
