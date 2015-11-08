@@ -158,6 +158,7 @@
       <item>@string/arrays__mute_for_two_hours</item>
       <item>@string/arrays__mute_for_one_day</item>
       <item>@string/arrays__mute_for_seven_days</item>
+      <item>@string/arrays__mute_for_one_year</item>
   </string-array>
 
   <string-array name="recipient_vibrate_entries">
