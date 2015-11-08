@@ -67,8 +67,13 @@ public class TransportOptions {
 
   public void disableTransport(Type type) {
     Optional<TransportOption> option = find(type);
+
     if (option.isPresent()) {
       enabledTransports.remove(option.get());
+
+      if (manuallySelected && type == selectedType) {
+        manuallySelected = false;
+      }
     }
   }
 

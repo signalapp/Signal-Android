@@ -50,8 +50,14 @@ CallAudioManager::~CallAudioManager() {
   __android_log_print(ANDROID_LOG_WARN, TAG, "Shutting down...");
 
   microphoneReader.stop();
+
+  __android_log_print(ANDROID_LOG_WARN, TAG, "Stopping audio player...");
   audioPlayer.stop();
+
+  __android_log_print(ANDROID_LOG_WARN, TAG, "Stopping jitter buffer...");
   webRtcJitterBuffer.stop();
+
+  __android_log_print(ANDROID_LOG_WARN, TAG, "Freeing resources...");
 
   if (sockAddr != NULL) {
     free(sockAddr);

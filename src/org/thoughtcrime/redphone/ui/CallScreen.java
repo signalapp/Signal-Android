@@ -18,6 +18,8 @@
 package org.thoughtcrime.redphone.ui;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -53,7 +55,7 @@ public class CallScreen extends FrameLayout {
     initialize();
   }
 
-  public void setActiveCall(Recipient personInfo, String message, SASInfo sas) {
+  public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message, @Nullable String sas) {
     callCard.setCard(personInfo, message);
     callControls.setActiveCall(sas);
   }
@@ -64,7 +66,7 @@ public class CallScreen extends FrameLayout {
   }
 
   public void setIncomingCall(Recipient personInfo) {
-    callCard.setCard(personInfo, "Incoming call");
+    callCard.setCard(personInfo, getContext().getString(R.string.CallScreen_Incoming_call));
     callControls.setIncomingCall();
   }
 

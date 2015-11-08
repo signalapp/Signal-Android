@@ -99,6 +99,10 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isCallLog(type);
   }
 
+  public boolean isJoined() {
+    return SmsDatabase.Types.isJoinedType(type);
+  }
+
   public boolean isIncomingCall() {
     return SmsDatabase.Types.isIncomingCall(type);
   }

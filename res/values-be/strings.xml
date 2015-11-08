@@ -35,6 +35,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">Аўдыё</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Кантактная інфармацыя</string>
   <!--BlockedContactsActivity-->
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Магчыма Вы жадаеце верыфікаваць гэты кантакт?</string>
   <!--ContactsDatabase-->
@@ -53,10 +54,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Паўтарыць у небяспечным MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Немагчыма знайсці праграму, якая б адкрывала гэты кантэнт.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Пачаць бяспечную сэсію?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Пачаць бяспечную сэсію з %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Пацверджанне заканчэння бяспечнай сэсіі</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Вы ўпэўнены, што хочаце скончыць гэтую бяспечную сэсію?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Пацверджанне выдалення гутаркі</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Вы ўпэўнены, што хочаце пастаянна выдаляць гэтую гутарку?</string>
   <string name="ConversationActivity_add_attachment">Прыкласці дадатак</string>
@@ -80,8 +77,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы ўпэўнены, што хочаце пакінуць групу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Небяспечная SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Небяспечная MMS</string>
-  <string name="ConversationActivity_get_with_it">Атрымай з гэтым: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Выкарыстайце гэта, каб пачаць гутарку: %s</string>
   <string name="ConversationActivity_error_leaving_group">Памылка выхаду з групы...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не падтрымліваюцца</string>
   <string name="ConversationActivity_mms_not_supported_message">Гэтае паведамленне ня можа быць даслана, бо ваша мабільны аператар не падтрымлівае MMS</string>
@@ -89,8 +84,6 @@
   <string name="ConversationFragment_message_details">Дэталі паведамлення</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Адпраўшчык: %1$s\nТранспарт: %2$s\nДаслана: %3$s\nАтрымана: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Пацверджанне выдалення паведамлення</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Вы ўпэўнены, што хочаце пастаянна выдаляць усе абраныя паведамленні?</string>
   <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Захаваўшы гэты кантэнт на дыск, вы дазваляеце ўсім іншым праграмам на вашым смартфоне атрымаць да яго доступ.\n\nПрацягнуць?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Памылка пры захаванні дадатку на дыск!</string>
@@ -104,8 +97,6 @@
   <string name="ConversationFragment_deleting_messages">Выдаленне паведамлення...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Выдаліць гутарку?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Вы ўпэўнены, што хочаце выдаліць УСЕ абраныя гутаркі?</string>
   <string name="ConversationListFragment_deleting">Выдаленне</string>
   <string name="ConversationListFragment_deleting_selected_threads">Выдаленне абраных гутарак...</string>
   <!--ConversationListItem-->
@@ -166,6 +157,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Аднаўленне зашыфраванай рэзервнай копіі...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ня знойдзена зашыфраваных рэзервных копій!</string>
   <string name="ImportFragment_restore_complete">Аднаўленне выканана!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ня знойдзена адсканаваных ключоў!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Усталяваць сканэр штрыхкодаў?</string>
@@ -251,11 +243,9 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Атрыманае паведамленне з невядомым ідэнтыфікацыйным ключом. Націсніце працягнуць.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Атрыманая інфармацыя абноўленая, але мае невядомую інфармацыю індэнтыфікацыі. Націсніце каб валідзіраваць ідэнтыфікацыю.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Бяспечная сэсія скончана.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат паведамлення.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Пакінуць групу...</string>
-  <string name="TheadRecord_secure_session_ended">Бяспечная сэсія скончаная.</string>
   <string name="ThreadRecord_draft">Чарнавік:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас няма індэнтыфікацыйнага ключа.</string>
@@ -279,7 +269,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">Адбітак майго ідэнтыфікатара</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Ініцыяваць нягледзячы на існуючы запыт?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Вы ўжо даслалі запыт на пачатак сэсіі гэтаму атрымальніку. Ці хочаце Вы даслаць яго ізноў? Гэта анулюе першы запыт.</string>
   <string name="KeyExchangeInitiator_send">Даслаць</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Няправільна зашыфраванае паведамленне...</string>
@@ -316,6 +305,7 @@
   <string name="MessageNotifier_media_message">Мультымедыя паведамленне</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРЫ ПАРОЛЬ:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВЫ ПАРОЛЬ:</string>
@@ -386,6 +376,7 @@
   <string name="import_fragment__import_plaintext_backup">Імпартаваць рэзервную копію простым тэкстам</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Імпартаваць простым тэкстам рэзервную копію з файла. Сумяшчальна з \'SMSBackup And Restore.\'</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Няма выявы</string>
   <!--message_recipients_list_item-->
@@ -590,7 +581,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Запрасіць</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Пачаць бяспечную сэсію</string>
   <string name="conversation_insecure__security">Бяспека</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Выдаліць абранае</string>
@@ -633,10 +623,7 @@
   <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Паведамленні больш ня будуць высылацца. Калі ласка абнавіцеся да больш новай версіі.</string>
-  <string name="reminder_header_sms_default_title">Выкарыстоўваць як стандартную аплікацыю для SMS?</string>
-  <string name="reminder_header_sms_import_title">Імпартаваць сістэмныя SMS?</string>
   <string name="reminder_header_sms_import_text">Націсніце каб скапіраваць вашыя SMS з тэлефона ў зашыфраваную базу.</string>
-  <string name="reminder_header_push_text">Націсніце для імгненнай дастаўкі, якаснай прыватнасці, і адсутнасці збораў за SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
   <string name="MediaPreviewActivity_cant_display">Не атрымліваецца папярэдне праглядзець выяву</string>

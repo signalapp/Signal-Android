@@ -89,7 +89,7 @@ public class SmsMessageRecord extends MessageRecord {
     } else if (!getBody().isPlaintext()) {
       return emphasisAdded(context.getString(R.string.MessageNotifier_locked_message));
     } else if (SmsDatabase.Types.isEndSessionType(type)) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_ended));
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
     } else {
       return super.getDisplayBody();
     }

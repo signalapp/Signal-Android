@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -46,16 +47,21 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.protobuf.ByteString;
 import com.soundcloud.android.crop.Crop;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.RoundedCorners;
+import org.thoughtcrime.securesms.providers.SingleUseBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -80,6 +86,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
 
 
@@ -416,7 +423,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     @Override
     public void onClick(View v) {
       Intent intent = new Intent(GroupCreateActivity.this, PushContactSelectionActivity.class);
-      if (existingContacts != null) intent.putExtra(PushContactSelectionActivity.PUSH_ONLY_EXTRA, true);
+      if (existingContacts != null) intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE,
+                                                    ContactSelectionListFragment.DISPLAY_MODE_PUSH_ONLY);
       startActivityForResult(intent, PICK_CONTACT);
     }
   }
@@ -455,10 +463,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     return handlePushOperation(groupId, groupName, avatar, memberE164Numbers);
   }
 
-  private Pair<Long, Recipients> handlePushOperation(byte[] groupId, String groupName, byte[] avatar,
+  private Pair<Long, Recipients> handlePushOperation(byte[] groupId, String groupName,
+                                                     @Nullable byte[] avatar,
                                                      Set<String> e164numbers)
       throws InvalidNumberException
   {
+    Attachment avatarAttachment = null;
     String     groupRecipientId = GroupUtil.getEncodedId(groupId);
     Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
 
@@ -469,8 +479,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
                                        .addAllMembers(e164numbers)
                                        .build();
 
-    OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
-    long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
+    if (avatar != null) {
+      Uri avatarUri = SingleUseBlobProvider.getInstance().createUri(avatar);
+      avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_JPEG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
+    }
+
+    OutgoingGroupMediaMessage outgoingMessage  = new OutgoingGroupMediaMessage(groupRecipient, context, avatarAttachment, System.currentTimeMillis());
+    long                      threadId         = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 
     return new Pair<>(threadId, groupRecipient);
   }

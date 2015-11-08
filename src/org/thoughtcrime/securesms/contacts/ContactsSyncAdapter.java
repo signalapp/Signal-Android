@@ -8,6 +8,7 @@ import android.content.SyncResult;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 
 import java.io.IOException;
@@ -24,8 +25,10 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
   public void onPerformSync(Account account, Bundle extras, String authority,
                             ContentProviderClient provider, SyncResult syncResult)
   {
+    Log.w(TAG, "onPerformSync(" + authority +")");
+
     try {
-      DirectoryHelper.refreshDirectory(getContext());
+      DirectoryHelper.refreshDirectory(getContext(), KeyCachingService.getMasterSecret(getContext()));
     } catch (IOException e) {
       Log.w(TAG, e);
     }

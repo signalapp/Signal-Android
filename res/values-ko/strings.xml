@@ -16,9 +16,6 @@
   <string name="ApplicationPreferencesActivity_disable_lock_screen">메시지 화면 잠금을 사용 중지하시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_disable">사용 중지</string>
   <string name="ApplicationPreferencesActivity_unregistering">Signal 메시지 서비스 탈퇴</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Signal 메시지 서비스를 탈퇴 중…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Signal 메시지를 사용 중지하시겠습니까?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">서버에 탈퇴하여 Signal 메시지를 사용 중지합니다. 다시 사용하려면 전화번호를 재가입해야 합니다.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없음</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS 사용</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">기본 SMS 앱을 변경하려면 터치하세요</string>
@@ -45,6 +42,8 @@
   <string name="AttachmentTypeSelectorAdapter_contact">연락처</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">차단된 사용자</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">수신통화</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s님의 인증 키가 변경되었습니다. 이 경우 누군가 통신을 가로채려고 하거나 %2$s님께서 Signal을 다시 설치하여 새 인증 키가 되었습니다.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">인증 키를 확인할 것을 권장합니다.</string>
@@ -67,10 +66,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자는 이젠 Signal 사용자가 아니어서 이 메시지는 <b>암호화되지 않습니다</b>.\n\n보안 해제된 메시지를 보내시겠습니까?</string>
   <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없음</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">암호화된 세션 시작하시겠습니까?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">%s님와 암호화된 세션을 시작하시겠습니까?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">암호화된 세션 종료</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">암호화된 세션을 종료하시겠습니까?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">암호화된 세션 초기화</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">암호화된 세션을 초기화하시겠습니까?</string>
   <string name="ConversationActivity_delete_thread_confirmation">대화 삭제</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">이 대화를 영구 삭제하시겠습니까?</string>
   <string name="ConversationActivity_add_attachment">첨부</string>
@@ -96,8 +93,6 @@
   <string name="ConversationActivity_transport_insecure_sms">보안 해제된 SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">보안 해제된 MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_get_with_it">안 불편해요? %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">이 앱으로 우리 같이 채팅해요~ %s</string>
   <string name="ConversationActivity_error_leaving_group">그룹에서 나가기 오류</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS 전송 안됨</string>
   <string name="ConversationActivity_mms_not_supported_message">이동통신사는 MMS를 지원하지 않아서 이 메시지를 보낼 수 없습니다.</string>
@@ -111,8 +106,6 @@
   <string name="ConversationFragment_message_details">메시지 세부정보</string>
   <string name="ConversationFragment_transport_s_sent_received_s">전송: %1$s\n송수신: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">송신자: %1$s\n전송: %2$s\n송신: %3$s\n수신: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">메시지 삭제</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">선택된 메시지를 영구 삭제하시겠습니까?</string>
   <string name="ConversationFragment_save_to_sd_card">저장소에 저장하시겠습니까?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">이 미디어를 저장소에 저장하게 되면, 기기에 설치된 다른 앱이 접근할 수 있습니다.\n\n저장하시겠습니까?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">첨부파일 저장 오류</string>
@@ -129,8 +122,6 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">메시지 검색</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">대화를 삭제하시겠습니까?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">선택된 모든 대화를 삭제하시겠습니까?</string>
   <string name="ConversationListFragment_deleting">대화 삭제</string>
   <string name="ConversationListFragment_deleting_selected_threads">선택된 대화를 삭제 중…</string>
   <!--ConversationListItem-->
@@ -157,6 +148,11 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
   <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal에 오신 것을 환영합니다.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">이제부터 TextSecure와 RedPhone이 새 다목적 보안 메신저 앱 Signal로 통합되었습니다.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal에 오신 것을 환영합니다~!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">이제부터 TextSecure가 Signal로 바뀌었습니다.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">이제부터 TextSecure와 RedPhone이 새 앱 Signal로 통합되었습니다. 탐색하려면 터치하세요.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">내보내기</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">암호화되지 않은 대화를 SD 카드로 내보내시겠습니까?</string>
@@ -210,6 +206,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">암호화된 백업을 복원 중…</string>
   <string name="ImportFragment_no_encrypted_backup_found">암호화된 백업 없음</string>
   <string name="ImportFragment_restore_complete">복원 완료</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">스캔된 키 없음</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">바코드 스캐너를 설치하시겠습니까?</string>
@@ -228,10 +225,11 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">멀티미디어 메시지</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 Signal 하위 버전으로 암호화된 메시지를 받았습니다. 발신자에게 최신 버전으로 업그레이드를 요청해 주세요.</string>
   <string name="MessageRecord_left_group">그룹에서 퇴장했습니다.</string>
   <string name="MessageRecord_updated_group">그룹이 업데이트되었습니다.</string>
-  <string name="MessageRecord_missed_call_from">%s님의 부재중 Signal 통화</string>
+  <string name="MessageRecord_s_called_you">%s님으로 부터의 수신통화</string>
+  <string name="MessageRecord_called_s">%s님에게 발신통화</string>
+  <string name="MessageRecord_missed_call_from">%s님의 부재중 통화</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않음</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못됨</string>
@@ -266,7 +264,6 @@
   <string name="RatingManager_later">나중에</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">사용자를 차단하시겠습니까?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">차단한 사용자가 보내는 메시지를 볼 수 없습니다.</string>
   <string name="RecipientPreferenceActivity_block">차단</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">사용자를 차단 해제하시겠습니까?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">이 사용자를 차단 해제하시겠습니까?</string>
@@ -274,17 +271,26 @@
   <string name="RecipientPreferenceActivity_enabled">사용</string>
   <string name="RecipientPreferenceActivity_disabled">사용 안함</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">응답 </string>
+  <string name="RedPhone_answering">응답</string>
   <string name="RedPhone_ending_call">통화 종료 중</string>
   <string name="RedPhone_dialing">전화 거는 중</string>
-  <string name="RedPhone_canceling_call">통화 해제 중</string>
+  <string name="RedPhone_canceling_call">통화 취소 중</string>
   <string name="RedPhone_call_rejected">통화 거부됨</string>
+  <string name="RedPhone_ringing">대기 중</string>
   <string name="RedPhone_busy">통화 중</string>
   <string name="RedPhone_connected">연결됨</string>
   <string name="RedPhone_connecting">연결 중</string>
+  <string name="RedPhone_handshake_failed">핸드셰이크 되지 않음</string>
   <string name="RedPhone_recipient_unavailable">응답 없음</string>
-  <string name="RedPhone_network_failed">서버 실패</string>
-  <string name="RedPhone_client_failed">클라이언트 실패</string>
+  <string name="RedPhone_performing_handshake">핸드셰이크 중</string>
+  <string name="RedPhone_network_failed">네트워크에 연결되지 않음</string>
+  <string name="RedPhone_client_failed">내부 오류</string>
+  <string name="RedPhone_fatal_error">치명적인 오류</string>
+  <string name="RedPhone_login_failed">로그인 되지 않음</string>
+  <string name="RedPhone_message_from_the_server">서버로 부터의 메시지</string>
+  <string name="RedPhone_number_not_registered">전화번호 등록되지 않음</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">지금 거신 전화번호가 보안 통화를 지원하지 않습니다.</string>
+  <string name="RedPhone_got_it">확인</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">Signal로 연결</string>
   <string name="RegistrationActivity_select_your_country">국가 선택</string>
@@ -293,7 +299,7 @@
   <string name="RegistrationActivity_invalid_number">전화번호가 잘못됨</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">입력한 전화번호가 (%s) 잘못되었습니다.</string>
   <string name="RegistrationActivity_unsupported">지원하지 않는 기기</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">죄송합니다. 해당 기기에서 인터넷 메시지를 지원하지 않습니다. 안드로이드 4.0 이하 버전을 실행하는 기기들은 Google 계정이 필요합니다. 안드로이드 4.0이나 상위 버전을 실행하는 기기들은 Google 계정이 필요하지 않지만 Google Play 스토어 앱이 설치돼야 합니다.</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">죄송합니다. 해당 기기가 인터넷 메시지를 지원하지 않습니다. 안드로이드 4.0 이하 버전을 실행하는 기기들은 Google 계정이 필요합니다. 안드로이드 4.0이나 상위 버전을 실행하는 기기들은 Google 계정이 필요하지 않지만 Google Play 스토어 앱이 설치돼야 합니다.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">인증메시지를 SMS으로 보냅니다. 전화번호가 정확한지 확인하세요.</string>
   <string name="RegistrationActivity_continue">확인</string>
   <string name="RegistrationActivity_edit">수정</string>
@@ -334,12 +340,16 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">받은 키 교환 메시지에 프로토콜 버전이 잘못되었습니다.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">받은 메시지는 알 수 없는 인증 키가 있습니다 . 메시지를 처리하고 보려면 터치하세요.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">받은 키 교환 메시지는 업데이트된 알 수 없는 인증 키가 있습니다. 인증 키를 확인하려면 터치하세요.</string>
-  <string name="SmsMessageRecord_secure_session_ended">암호화된 세션이 종료되었습니다.</string>
+  <string name="SmsMessageRecord_secure_session_reset">암호화된 세션이 초기화되었습니다.</string>
   <string name="SmsMessageRecord_duplicate_message">중복된 메시지</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">그룹에서 나갔습니다.</string>
-  <string name="TheadRecord_secure_session_ended">암호화된 세션이 종료되었습니다.</string>
+  <string name="ThreadRecord_secure_session_reset">암호화된 세션이 초기화되었습니다.</string>
   <string name="ThreadRecord_draft">임시보관:</string>
+  <string name="ThreadRecord_called">발신통화</string>
+  <string name="ThreadRecord_called_you">수신통화</string>
+  <string name="ThreadRecord_missed_call">부재중 통화</string>
+  <string name="ThreadRecord_media_message">미디어 메시지</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">내 인증 키가 없습니다.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">수신자는 인증 키가 없습니다.</string>
@@ -362,7 +372,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">내 인증 키 지문</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">이미 요청을 보냈어도 다시 보내시겠습니까?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">이미 이 수신자에게 세션 개시 요청을 보냈습니다. 다시 보내면  첫 번째 요청이 취소됩니다.</string>
   <string name="KeyExchangeInitiator_send">보내기</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">암호화된 메시지가 잘못되었습니다.</string>
@@ -412,6 +421,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">새 Signal 메시지</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">콘텐츠 숨겨짐</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">기존 암호:</string>
   <string name="change_passphrase_activity__new_passphrase">새 암호:</string>
@@ -457,7 +467,7 @@
   <string name="conversation_item_received__contact_photo_description">연락처 사진</string>
   <string name="conversation_item_received__downloading">다운로드 중</string>
   <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">여러 메시지 선택</string>
+  <string name="conversation_fragment_cab__batch_selection_mode">여러 대화 선택</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s개 선택됨</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
@@ -465,6 +475,7 @@
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">연결된 기기 없음</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">계속</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
@@ -487,6 +498,8 @@
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">내보낸 암호화된 Signal 백업을 복원합니다.</string>
   <string name="import_fragment__import_plaintext_backup">암호화되지 않은 백업 가져오기</string>
   <string name="import_fragment__import_a_plaintext_backup_file">\'SMS Backup And Restore\'라는 앱에 호환된 암호화되지 않은 백업을 가져옵니다.</string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">대화 전체 보기</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">이미지 없음</string>
   <!--message_recipients_list_item-->
@@ -513,7 +526,6 @@
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">대화 알림 끄기</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">이 대화 알림 끄기</string>
-  <string name="recipient_preferences__notification_tone">알림 벨소리</string>
   <string name="recipient_preferences__vibrate">진동</string>
   <string name="recipient_preferences__block">차단</string>
   <string name="recipient_preferences__color">색상</string>
@@ -706,8 +718,6 @@
   <string name="preferences__default">기본</string>
   <string name="preferences__language">언어</string>
   <string name="preferences__language_summary">언어 %s</string>
-  <string name="preferences__signal">Signal</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">Signal의 사용자에게 무료 보안 메시지와 통화</string>
   <string name="preferences__submit_debug_log">디버그 로그 보내기</string>
   <string name="preferences__support_wifi_calling">\'Wi-Fi 통화\' 호환 모드</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">\'Wi-Fi 통화\' 사용 과 SMS/MMS Wi-Fi로 전송 설정되면 사용</string>
@@ -746,7 +756,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">초대</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">암호화된 세션 시작</string>
   <string name="conversation_insecure__security">보안</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">선택된 대화 삭제</string>
@@ -795,12 +804,17 @@
   <!--reminder_header-->
   <string name="reminder_header_expired_build">설치된 Signal 버전 만료</string>
   <string name="reminder_header_expired_build_details">메시지를 전송할 수 없으므로 최신 버전으로 업그레이드 해주세요.</string>
-  <string name="reminder_header_sms_default_title">기본 SMS앱으로 사용하시겠습니까?</string>
+  <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string>
   <string name="reminder_header_sms_default_text">Signal을 기본 SMS 앱으로 설정하려면 터치하세요.</string>
-  <string name="reminder_header_sms_import_title">시스템 SMS를 가져오시겠습니까?</string>
+  <string name="reminder_header_sms_default_button">기본 SMS 앱으로 설정</string>
+  <string name="reminder_header_sms_import_title">시스템 SMS 가져오기</string>
   <string name="reminder_header_sms_import_text">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오려면 터치하세요.</string>
-  <string name="reminder_header_push_title">Signal 메시지를 사용하시겠습니까?</string>
-  <string name="reminder_header_push_text">빠른 전송, 강화된 개인정보 보호, SMS 요금이 부과되지 않은 서비스로 메시지를 보내려면 터치하세요.</string>
+  <string name="reminder_header_sms_import_button">가져오기</string>
+  <string name="reminder_header_push_button">사용</string>
+  <string name="reminder_header_invite_title">Signal로 초대</string>
+  <string name="reminder_header_invite_text">%1$s님과 대화를 다음 단계로 끌어올립니다.</string>
+  <string name="reminder_header_invite_button">초대</string>
+  <string name="reminder_header_close_button">닫기</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">나</string>
   <string name="MediaPreviewActivity_cant_display">이미지 미리보기 실패</string>

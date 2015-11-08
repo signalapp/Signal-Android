@@ -34,33 +34,41 @@ import android.view.animation.Animation;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.AudioView;
+import org.thoughtcrime.securesms.components.RemovableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.providers.CaptureProvider;
+import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;
 
 public class AttachmentManager {
+
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
-  private final Context            context;
-  private final View               attachmentView;
-  private final ThumbnailView      thumbnail;
-  private final SlideDeck          slideDeck;
-  private final AttachmentListener attachmentListener;
+  private final @NonNull Context            context;
+  private final @NonNull View               attachmentView;
+  private final @NonNull RemovableMediaView removableMediaView;
+  private final @NonNull ThumbnailView      thumbnail;
+  private final @NonNull AudioView          audioView;
+  private final @NonNull AttachmentListener attachmentListener;
 
-  private Uri captureUri;
+  private @NonNull  Optional<Slide> slide = Optional.absent();
+  private @Nullable Uri             captureUri;
 
-  public AttachmentManager(Activity view, AttachmentListener listener) {
-    this.attachmentView     = view.findViewById(R.id.attachment_editor);
-    this.thumbnail          = (ThumbnailView) view.findViewById(R.id.attachment_thumbnail);
-    this.slideDeck          = new SlideDeck();
-    this.context            = view;
+  public AttachmentManager(@NonNull Activity activity, @NonNull AttachmentListener listener) {
+    this.attachmentView     = ViewUtil.findById(activity, R.id.attachment_editor);
+    this.thumbnail          = ViewUtil.findById(activity, R.id.attachment_thumbnail);
+    this.audioView          = ViewUtil.findById(activity, R.id.attachment_audio);
+    this.removableMediaView = ViewUtil.findById(activity, R.id.removable_media_view);
+    this.context            = activity;
     this.attachmentListener = listener;
 
-    thumbnail.setRemoveClickListener(new RemoveButtonListener());
+    removableMediaView.setRemoveClickListener(new RemoveButtonListener());
   }
 
   public void clear() {
@@ -69,11 +77,13 @@ public class AttachmentManager {
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override
       public void onAnimationStart(Animation animation) {}
+
       @Override
       public void onAnimationRepeat(Animation animation) {}
+
       @Override
       public void onAnimationEnd(Animation animation) {
-        slideDeck.clear();
+        slide = Optional.absent();
         thumbnail.clear();
         attachmentView.setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
@@ -81,29 +91,43 @@ public class AttachmentManager {
     });
 
     attachmentView.startAnimation(animation);
+    audioView.cleanup();
   }
 
   public void cleanup() {
-    if (captureUri != null) CaptureProvider.getInstance(context).delete(captureUri);
+    cleanup(captureUri);
+    cleanup(getSlideUri());
+
     captureUri = null;
+    slide      = Optional.absent();
   }
 
-  public void setMedia(@NonNull final MasterSecret     masterSecret,
-                       @NonNull final Uri              uri,
-                       @NonNull final MediaType        mediaType,
-                       @NonNull final MediaConstraints constraints,
-                                final boolean          isCapture)
+  private void cleanup(final @Nullable Uri uri) {
+    if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
+      Log.w(TAG, "cleaning up " + uri);
+      PersistentBlobProvider.getInstance(context).delete(uri);
+    }
+  }
+
+  private void setSlide(@NonNull Slide slide) {
+    if (getSlideUri() != null)                              cleanup(getSlideUri());
+    if (captureUri != null && slide.getUri() != captureUri) cleanup(captureUri);
+
+    this.captureUri = null;
+    this.slide      = Optional.of(slide);
+  }
+
+  public void setMedia(@NonNull final MasterSecret masterSecret,
+                       @NonNull final Uri uri,
+                       @NonNull final MediaType mediaType,
+                       @NonNull final MediaConstraints constraints)
   {
     new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
-        slideDeck.clear();
         thumbnail.clear();
         thumbnail.showProgressSpinner();
         attachmentView.setVisibility(View.VISIBLE);
-
-        if (isCapture)               captureUri = uri;
-        if (!uri.equals(captureUri)) cleanup();
       }
 
       @Override
@@ -133,9 +157,17 @@ public class AttachmentManager {
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
                          Toast.LENGTH_SHORT).show();
         } else {
-          slideDeck.addSlide(slide);
+          setSlide(slide);
           attachmentView.setVisibility(View.VISIBLE);
-          thumbnail.setImageResource(slide, masterSecret);
+
+          if (slide.hasAudio()) {
+            audioView.setAudio(masterSecret, (AudioSlide)slide, false);
+            removableMediaView.display(audioView);
+          } else {
+            thumbnail.setImageResource(masterSecret, slide, false);
+            removableMediaView.display(thumbnail);
+          }
+
           attachmentListener.onAttachmentChanged();
         }
       }
@@ -146,9 +178,10 @@ public class AttachmentManager {
     return attachmentView.getVisibility() == View.VISIBLE;
   }
 
-
-  public @NonNull SlideDeck getSlideDeck() {
-    return slideDeck;
+  public @NonNull SlideDeck buildSlideDeck() {
+    SlideDeck deck = new SlideDeck();
+    if (slide.isPresent()) deck.addSlide(slide.get());
+    return deck;
   }
 
   public static void selectVideo(Activity activity, int requestCode) {
@@ -168,7 +201,11 @@ public class AttachmentManager {
     activity.startActivityForResult(intent, requestCode);
   }
 
-  public Uri getCaptureUri() {
+  private @Nullable Uri getSlideUri() {
+    return slide.isPresent() ? slide.get().getUri() : null;
+  }
+
+  public @Nullable Uri getCaptureUri() {
     return captureUri;
   }
 
@@ -176,7 +213,10 @@ public class AttachmentManager {
     try {
       Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
       if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-        captureUri = CaptureProvider.getInstance(context).createForExternal(recipients);
+        if (captureUri == null) {
+          captureUri = PersistentBlobProvider.getInstance(context).createForExternal(recipients);
+        }
+        Log.w(TAG, "captureUri path is " + captureUri.getPath());
         captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
         activity.startActivityForResult(captureIntent, requestCode);
       }
@@ -213,16 +253,16 @@ public class AttachmentManager {
                                           final @Nullable Slide slide,
                                           final @NonNull  MediaConstraints constraints)
   {
-   return slide == null                                                   ||
-          constraints.isSatisfied(context, masterSecret, slide.getPart()) ||
-          constraints.canResize(slide.getPart());
+   return slide == null                                                        ||
+          constraints.isSatisfied(context, masterSecret, slide.asAttachment()) ||
+          constraints.canResize(slide.asAttachment());
   }
 
   private class RemoveButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
-      clear();
       cleanup();
+      clear();
     }
   }
 

@@ -101,17 +101,19 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private void sendUpdate(TextSecureMessageSender messageSender, File contactsFile)
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    FileInputStream            contactsFileStream = new FileInputStream(contactsFile);
-    TextSecureAttachmentStream attachmentStream   = TextSecureAttachment.newStreamBuilder()
-                                                                        .withStream(contactsFileStream)
-                                                                        .withContentType("application/octet-stream")
-                                                                        .withLength(contactsFile.length())
-                                                                        .build();
+    if (contactsFile.length() > 0) {
+      FileInputStream            contactsFileStream = new FileInputStream(contactsFile);
+      TextSecureAttachmentStream attachmentStream   = TextSecureAttachment.newStreamBuilder()
+                                                                          .withStream(contactsFileStream)
+                                                                          .withContentType("application/octet-stream")
+                                                                          .withLength(contactsFile.length())
+                                                                          .build();
 
-    try {
-      messageSender.sendMessage(TextSecureSyncMessage.forContacts(attachmentStream));
-    } catch (IOException ioe) {
-      throw new NetworkException(ioe);
+      try {
+        messageSender.sendMessage(TextSecureSyncMessage.forContacts(attachmentStream));
+      } catch (IOException ioe) {
+        throw new NetworkException(ioe);
+      }
     }
   }
 

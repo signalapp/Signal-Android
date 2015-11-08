@@ -3,9 +3,11 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -16,7 +18,6 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment.ProgressListener;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
@@ -27,8 +28,6 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduPart;
-import ws.com.google.android.mms.pdu.SendReq;
 
 public abstract class PushSendJob extends SendJob {
 
@@ -55,25 +54,25 @@ public abstract class PushSendJob extends SendJob {
     return new TextSecureAddress(e164number, Optional.fromNullable(relay));
   }
 
-  protected List<TextSecureAttachment> getAttachments(final MasterSecret masterSecret, final SendReq message) {
+  protected List<TextSecureAttachment> getAttachmentsFor(MasterSecret masterSecret, List<Attachment> parts) {
     List<TextSecureAttachment> attachments = new LinkedList<>();
 
-    for (int i=0;i<message.getBody().getPartsNum();i++) {
-      final PduPart part        = message.getBody().getPart(i);
-      final String  contentType = Util.toIsoString(part.getContentType());
-      if (ContentType.isImageType(contentType) ||
-          ContentType.isAudioType(contentType) ||
-          ContentType.isVideoType(contentType))
+    for (final Attachment attachment : parts) {
+      if (ContentType.isImageType(attachment.getContentType()) ||
+          ContentType.isAudioType(attachment.getContentType()) ||
+          ContentType.isVideoType(attachment.getContentType()))
       {
         try {
-          InputStream is = PartAuthority.getPartStream(context, masterSecret, part.getDataUri());
+          if (attachment.getDataUri() == null) throw new IOException("Assertion failed, outgoing attachment has no data!");
+          InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
           attachments.add(TextSecureAttachment.newStreamBuilder()
                                               .withStream(is)
-                                              .withContentType(contentType)
-                                              .withLength(part.getDataSize())
+                                              .withContentType(attachment.getContentType())
+                                              .withLength(attachment.getSize())
                                               .withListener(new ProgressListener() {
-                                                @Override public void onAttachmentProgress(long total, long progress) {
-                                                  EventBus.getDefault().postSticky(new PartProgressEvent(part.getPartId(), total, progress));
+                                                @Override
+                                                public void onAttachmentProgress(long total, long progress) {
+                                                  EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
                                                 }
                                               })
                                               .build());

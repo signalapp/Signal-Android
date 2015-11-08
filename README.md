@@ -1,46 +1,48 @@
-#WebSocket Support#
-
-This branch adds rudimentary WebSocket support to TextSecure.
-In order to build a modified version of libtextsecure is needed, for that [checkout](https://github.com/JavaJens/libtextsecure-java/tree/fix/maven_local) my fork
-
-and run: ````./gradlew tasks installArchives```` to install in local maven directory.
-
 # TextSecure [![Build Status](https://travis-ci.org/WhisperSystems/TextSecure.svg?branch=master)](https://travis-ci.org/WhisperSystems/TextSecure)
+=======
+# Signal Android 
 
-TextSecure is a messaging app for simple private communication with friends.
+Signal is a messaging app for simple private communication with friends.
 
-TextSecure uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
+Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
 
 Currently available on the Play store.
 
 *[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms)*
 
+#WebSocket Support#
+
+This branch adds rudimentary WebSocket-ONLY support to Signal Private Messenger.
+In order to build a modified version of libtextsecure is needed, for that [checkout](https://github.com/JavaJens/libtextsecure-java/tree/fix/maven_local) my fork
+
+and run: ````./gradlew tasks installArchives```` to install in local maven directory.
+
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
-https://github.com/WhisperSystems/TextSecure/issues
+https://github.com/WhisperSystems/Signal-Android/issues
 
 ## Joining the Beta
 Want to live life on the bleeding edge and help out with testing?
 
-You can subscribe to TextSecure Beta releases here:
+You can subscribe to Signal Android Beta releases here:
 https://play.google.com/apps/testing/org.thoughtcrime.securesms
  
 If you're interested in a life of peace and tranquility, stick with the standard releases.
 
 ## Contributing Translations
-Interested in helping to translate TextSecure? Contribute here:
+Interested in helping to translate Signal? Contribute here:
 
 https://www.transifex.com/projects/p/textsecure-official/
 
 ## Contributing Code
-Instructions on how to setup your development environment and build TextSecure can be found in  [BUILDING.md](https://github.com/WhisperSystems/TextSecure/blob/master/BUILDING.md).
+Instructions on how to setup your development environment and build Signal can be found in  [BUILDING.md](https://github.com/WhisperSystems/Signal-Android/blob/master/BUILDING.md).
 
-If you're new to the TextSecure codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar.
+If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar.
 
 For larger changes and feature ideas, we ask that you propose it on the mailing list for a high-level discussion before implementation.
 
-This repository is set up with [BitHub](https://whispersystems.org/blog/bithub/), so you can make money for committing to TextSecure. The current BitHub price for an accepted pull request is:
+This repository is set up with [BitHub](https://whispersystems.org/blog/bithub/), so you can make money for committing to Signal. The current BitHub price for an accepted pull request is:
 
 [![Current BitHub Price](https://bithub.herokuapp.com/v1/status/payment/commit/)](https://whispersystems.org/blog/bithub/)
 
@@ -66,7 +68,7 @@ http://support.whispersystems.org/
 ## Documentation
 Looking for documentation? Check out the wiki!
 
-https://github.com/WhisperSystems/TextSecure/wiki
+https://github.com/WhisperSystems/Signal-Android/wiki
 
 # Legal things
 ## Cryptography Notice

@@ -32,14 +32,18 @@ import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -51,7 +55,9 @@ import java.util.Set;
  */
 public class ContactsDatabase {
 
-  private static final String TAG = ContactsDatabase.class.getSimpleName();
+  private static final String TAG  = ContactsDatabase.class.getSimpleName();
+  private static final String MIME = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact";
+  private static final String SYNC = "__TS";
 
   public static final String ID_COLUMN           = "_id";
   public static final String NAME_COLUMN         = "name";
@@ -70,11 +76,14 @@ public class ContactsDatabase {
     this.context  = context;
   }
 
-  public synchronized void setRegisteredUsers(Account account, List<String> e164numbers)
+  public synchronized @NonNull List<String> setRegisteredUsers(@NonNull Account account,
+                                                               @NonNull String localNumber,
+                                                               @NonNull List<String> e164numbers)
       throws RemoteException, OperationApplicationException
   {
     Map<String, Long>                   currentContacts    = new HashMap<>();
     Set<String>                         registeredNumbers  = new HashSet<>(e164numbers);
+    List<String>                        addedNumbers       = new LinkedList<>();
     ArrayList<ContentProviderOperation> operations         = new ArrayList<>();
     Uri                                 currentContactsUri = RawContacts.CONTENT_URI.buildUpon()
                                                                                     .appendQueryParameter(RawContacts.ACCOUNT_NAME, account.name)
@@ -86,7 +95,16 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(currentContactsUri, new String[] {BaseColumns._ID, RawContacts.SYNC1}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        currentContacts.put(cursor.getString(1), cursor.getLong(0));
+        String currentNumber;
+
+        try {
+          currentNumber = PhoneNumberFormatter.formatNumber(cursor.getString(1), localNumber);
+        } catch (InvalidNumberException e) {
+          Log.w(TAG, e);
+          currentNumber = cursor.getString(1);
+        }
+
+        currentContacts.put(currentNumber, cursor.getLong(0));
       }
     } finally {
       if (cursor != null)
@@ -95,10 +113,12 @@ public class ContactsDatabase {
 
     for (String number : e164numbers) {
       if (!currentContacts.containsKey(number)) {
-        Optional<Pair<String, Long>> systemContactInfo = getSystemContactInfo(number);
+        Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(number, localNumber);
 
         if (systemContactInfo.isPresent()) {
-          addTextSecureRawContact(operations, account, systemContactInfo.get().first, systemContactInfo.get().second);
+          Log.w(TAG, "Adding number: " + number);
+          addedNumbers.add(number);
+          addTextSecureRawContact(operations, account, systemContactInfo.get().number, systemContactInfo.get().id);
         }
       }
     }
@@ -112,10 +132,14 @@ public class ContactsDatabase {
     if (!operations.isEmpty()) {
       context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
     }
+
+    return addedNumbers;
   }
 
   private void addTextSecureRawContact(List<ContentProviderOperation> operations,
-                                       Account account, String e164number, long aggregateId)
+                                       Account account,
+                                       String e164number,
+                                       long aggregateId)
   {
     int index   = operations.size();
     Uri dataUri = ContactsContract.Data.CONTENT_URI.buildUpon()
@@ -133,12 +157,12 @@ public class ContactsDatabase {
                                            .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
                                            .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, e164number)
                                            .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_OTHER)
-                                           .withValue(ContactsContract.Data.SYNC2, "__TS")
+                                           .withValue(ContactsContract.Data.SYNC2, SYNC)
                                            .build());
 
     operations.add(ContentProviderOperation.newInsert(dataUri)
                                            .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, index)
-                                           .withValue(ContactsContract.Data.MIMETYPE, "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact")
+                                           .withValue(ContactsContract.Data.MIMETYPE, MIME)
                                            .withValue(ContactsContract.Data.DATA1, e164number)
                                            .withValue(ContactsContract.Data.DATA2, context.getString(R.string.app_name))
                                            .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_message_s, e164number))
@@ -198,7 +222,7 @@ public class ContactsDatabase {
     Cursor cursor = context.getContentResolver().query(uri, projection,
                                                        ContactsContract.Data.SYNC2 + " IS NULL OR " +
                                                        ContactsContract.Data.SYNC2 + " != ?",
-                                                       new String[] {"__TS"},
+                                                       new String[] {SYNC},
                                                        sort);
 
     return new ProjectionMappingCursor(cursor, projectionMap,
@@ -224,13 +248,13 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
                                                   projection,
                                                   ContactsContract.Data.MIMETYPE + " = ?",
-                                                  new String[] {"vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact"},
+                                                  new String[] {MIME},
                                                   sort);
     } else {
       cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
                                                   projection,
                                                   ContactsContract.Data.MIMETYPE + " = ? AND (" + ContactsContract.Contacts.DISPLAY_NAME + " LIKE ? OR " + ContactsContract.Data.DATA1 + " LIKE ?)",
-                                                  new String[] {"vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact",
+                                                  new String[] {MIME,
                                                                 "%" + filter + "%", "%" + filter + "%"},
                                                   sort);
     }
@@ -251,25 +275,39 @@ public class ContactsDatabase {
     return newNumberCursor;
   }
 
-  private Optional<Pair<String, Long>> getSystemContactInfo(String e164number) {
+  private Optional<SystemContactInfo> getSystemContactInfo(@NonNull String e164number,
+                                                           @NonNull String localNumber)
+  {
     Uri      uri          = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(e164number));
     String[] projection   = {ContactsContract.PhoneLookup.NUMBER,
-                             ContactsContract.PhoneLookup._ID};
+                             ContactsContract.PhoneLookup._ID,
+                             ContactsContract.PhoneLookup.DISPLAY_NAME};
     Cursor   numberCursor = null;
     Cursor   idCursor     = null;
 
     try {
       numberCursor = context.getContentResolver().query(uri, projection, null, null, null);
 
-      if (numberCursor != null && numberCursor.moveToNext()) {
-        idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
-                                                      new String[] {RawContacts._ID},
-                                                      RawContacts.CONTACT_ID + " = ? ",
-                                                      new String[] {String.valueOf(numberCursor.getLong(1))},
-                                                      null);
+      while (numberCursor != null && numberCursor.moveToNext()) {
+        try {
+          String systemNumber              = numberCursor.getString(0);
+          String canonicalizedSystemNumber = PhoneNumberFormatter.formatNumber(systemNumber, localNumber);
 
-        if (idCursor != null && idCursor.moveToNext()) {
-          return Optional.of(new Pair<>(numberCursor.getString(0), idCursor.getLong(0)));
+          if (canonicalizedSystemNumber.equals(e164number)) {
+            idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
+                                                          new String[] {RawContacts._ID},
+                                                          RawContacts.CONTACT_ID + " = ? ",
+                                                          new String[] {String.valueOf(numberCursor.getLong(1))},
+                                                          null);
+
+            if (idCursor != null && idCursor.moveToNext()) {
+              return Optional.of(new SystemContactInfo(numberCursor.getString(2),
+                                                       numberCursor.getString(0),
+                                                       idCursor.getLong(0)));
+            }
+          }
+        } catch (InvalidNumberException e) {
+          Log.w(TAG, e);
         }
       }
     } finally {
@@ -376,6 +414,18 @@ public class ContactsDatabase {
       }
 
       return null;
+    }
+  }
+
+  private static class SystemContactInfo {
+    private final String name;
+    private final String number;
+    private final long   id;
+
+    private SystemContactInfo(String name, String number, long id) {
+      this.name   = name;
+      this.number = number;
+      this.id     = id;
     }
   }
 }

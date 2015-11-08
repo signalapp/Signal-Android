@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
 import android.net.Uri;
 import android.util.Log;
@@ -32,6 +33,8 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import java.util.StringTokenizer;
 
 public class SmsMigrator {
+
+  private static final String TAG = SmsMigrator.class.getSimpleName();
 
   private static void addEncryptedStringToStatement(Context context, SQLiteStatement statement,
                                                     Cursor cursor, MasterSecret masterSecret,
@@ -169,8 +172,16 @@ public class SmsMigrator {
     Cursor cursor              = null;
 
     try {
-      Uri uri                    = Uri.parse("content://sms/conversations/" + theirThreadId);
-      cursor                     = context.getContentResolver().query(uri, null, null, null, null);
+      Uri uri = Uri.parse("content://sms/conversations/" + theirThreadId);
+
+      try {
+        cursor = context.getContentResolver().query(uri, null, null, null, null);
+      } catch (SQLiteException e) {
+        /// Work around for weird sony-specific (?) bug: #4309
+        Log.w(TAG, e);
+        return;
+      }
+
       SQLiteDatabase transaction = ourSmsDatabase.beginTransaction();
       SQLiteStatement statement  = ourSmsDatabase.createInsertStatement(transaction);
 

@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Signal</string>
   <string name="yes">Tak</string>
   <string name="no">Nie</string>
   <string name="delete">Usuń</string>
@@ -42,6 +43,8 @@ Wyłączyć blokadę ekranu dla wiadomości?
   <string name="AttachmentTypeSelectorAdapter_contact">Informacje kontaktowe</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Zablokowane kontakty</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Może chcesz zweryfikować 
 ten kontakt.
@@ -64,10 +67,8 @@ ten kontakt.
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć te media.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Rozpocząć bezpieczną sesję?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Rozpocząć bezpieczną sesję z %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Potwierdzenie zakończenia bezpiecznej sesji</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Czy na pewno chcesz zakończyć bezpieczną sesję?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Potwierdzenie zresetowania bezpiecznej sesji</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Czy na pewno chcesz zresetować bezpieczną sesję?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potwierdzenie usunięcia wątku</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Czy na pewno chcesz permanentnie skasować tą konwersację?</string>
   <string name="ConversationActivity_add_attachment">Dodaj załącznik</string>
@@ -92,8 +93,7 @@ ten kontakt.
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Czy na pewno chcesz opuścić grupę?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nieszyfrowany SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
-  <string name="ConversationActivity_get_with_it">Weź z: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Użyjmy tego do rozmowy: %s</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_error_leaving_group">Błąd opuszczenia grupy...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nie są wspomagane</string>
   <string name="ConversationActivity_mms_not_supported_message">Wiadomość nie może zostać wysłana, ponieważ Twój operator nie obsługuje usługi MMS.</string>
@@ -102,12 +102,11 @@ ten kontakt.
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Czy jesteś pewny, że chcesz odblokować ten kontakt?</string>
   <string name="ConversationActivity_unblock">Odblokuj</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Rozmiar tego załącznika przekracza limit wiadomości.</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Kamera jest niedostępna</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nWysłano/Otrzymano: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Nadawca: %1$s\nTransport: %2$s\nWysłano: %3$s\nOtrzymano: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Potwierdź usunięcie wiadomości</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Czy jesteś pewien, że chcesz usunąć wszystkie zaznaczone wiadomości?</string>
   <string name="ConversationFragment_save_to_sd_card">Zapisać na dysk?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Zapisanie tych plików na dysku pozwoli innym aplikacjom na Twoim telefonie na dostęp do tych plików.\n\nKontynuować?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Błąd podczas zapisywania załącznika na dysk!</string>
@@ -116,6 +115,7 @@ ten kontakt.
   <string name="ConversationFragment_saving_attachment">Zapisywanie załącznika</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Zapisywanie załącznika na dysku...</string>
   <string name="ConversationFragment_pending">Oczekiwanie...</string>
+  <string name="ConversationFragment_push">Dane (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Usuwanie</string>
@@ -123,8 +123,6 @@ ten kontakt.
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Szukaj...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Usunąć wątki?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Usunąć wybrane wątki? </string>
   <string name="ConversationListFragment_deleting">Usuwanie...</string>
   <string name="ConversationListFragment_deleting_selected_threads">Usuwanie zaznaczonych wątków..</string>
   <!--ConversationListItem-->
@@ -151,6 +149,11 @@ ten kontakt.
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
   <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Witamy w Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone są teraz jedną aplikacją: Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Witamy w Signal!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure nazywa się teraz Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone są teraz jedną aplikacją: Signal. Dotknij, aby dowiedzieć się więcej.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Wyeksportować nieszyfrowaną kopię na kartę SD?</string>
@@ -196,6 +199,7 @@ ten kontakt.
   <string name="ImportFragment_restoring_encrypted_backup">Przywracanie szyfrowanej kopii zapasowej...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nie odnaleziono szyfrowanej kopii zapasowej!</string>
   <string name="ImportFragment_restore_complete">Przywracanie zakończone!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nie znaleziono żadnego zeskanowanego klucza!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Zainstalować Barcode Scanner?</string>
@@ -248,7 +252,6 @@ ten kontakt.
   <string name="RatingManager_later">Później</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokować ten kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Już więcej nie będziesz otrzymywać wiadomości od tego użytkownika.</string>
   <string name="RecipientPreferenceActivity_block">Blokuj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokować ten kontakt?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Czy jesteś pewny, że chcesz odblokować ten kontakt?</string>
@@ -308,11 +311,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć i wyświetlić.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Otrzymał zaktualizowany, ale z nieznaną informacją tożsamości. Dotknij aby potwierdzić tożsamość.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Bezpieczna sesja zakończona.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opuścił grupę...</string>
-  <string name="TheadRecord_secure_session_ended">Bezpieczna sesja zakończona.</string>
   <string name="ThreadRecord_draft">Szkic:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>
@@ -336,7 +337,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="ViewIdentityActivity_my_identity_fingerprint">Mój odcisk klucza</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Rozpocząć pomimo istniejącego żądania?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Już wysłałeś żądanie o rozpoczęcie sesji do tego odbiorcy, czy na pewno chcesz wysłać jeszcze jedno żądanie? Spowoduje to utratę pierwszego żądania.</string>
   <string name="KeyExchangeInitiator_send">Wyślij</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Źle zaszyfrowana wiadomość...</string>
@@ -381,6 +381,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Zawartość ukryta</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARE HASŁO:</string>
   <string name="change_passphrase_activity__new_passphrase">NOWE HASŁO:</string>
@@ -456,6 +457,7 @@ z domyślnej systemowej aplikacji SMS.</string>
   <string name="import_fragment__import_plaintext_backup">Importuj nieszyfrowaną kopię zapasową</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Restore\'.</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Brak obrazów</string>
   <!--message_recipients_list_item-->
@@ -695,7 +697,6 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Zaproś</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Rozpocznij bezpieczną sesję</string>
   <string name="conversation_insecure__security">Bezpieczeństwo</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Usuń zaznaczone</string>
@@ -742,10 +743,7 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Wiadomości nie będą już pomylnie wysyłane, prosimy o aktualizację do najnowszej wersji.</string>
-  <string name="reminder_header_sms_default_title">Użyć jako domyślnej aplikacji SMS?</string>
-  <string name="reminder_header_sms_import_title">Importować SMS?</string>
   <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS na tym telefonie do szyfrowanej bazy danych.</string>
-  <string name="reminder_header_push_text">Dotknij dla natychmiastowego dostarczania, mocnej prywatności i ominięcia płatności za SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ty</string>
   <string name="MediaPreviewActivity_cant_display">Podgląd tego obrazu nie udał się</string>

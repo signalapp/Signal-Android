@@ -35,8 +35,8 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
   public SaveAttachmentTask(Context context, MasterSecret masterSecret) {
     super(context, R.string.ConversationFragment_saving_attachment, R.string.ConversationFragment_saving_attachment_to_sd_card);
-    this.contextReference      = new WeakReference<Context>(context);
-    this.masterSecretReference = new WeakReference<MasterSecret>(masterSecret);
+    this.contextReference      = new WeakReference<>(context);
+    this.masterSecretReference = new WeakReference<>(masterSecret);
   }
 
   @Override
@@ -59,7 +59,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       }
 
       File        mediaFile   = constructOutputFile(attachment.contentType, attachment.date);
-      InputStream inputStream = PartAuthority.getPartStream(context, masterSecret, attachment.uri);
+      InputStream inputStream = PartAuthority.getAttachmentStream(context, masterSecret, attachment.uri);
 
       if (inputStream == null) {
         return FAILURE;

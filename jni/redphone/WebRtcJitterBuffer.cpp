@@ -1,4 +1,5 @@
 #include "WebRtcJitterBuffer.h"
+//#include <time.h>
 
 #define TAG "WebRtcJitterBuffer"
 
@@ -26,8 +27,8 @@ int WebRtcJitterBuffer::init() {
     return -1;
   }
 
-  pthread_t thread;
-  pthread_create(&thread, NULL, &WebRtcJitterBuffer::collectStats, this);
+//  pthread_t thread;
+//  pthread_create(&thread, NULL, &WebRtcJitterBuffer::collectStats, this);
 
   return 0;
 }
@@ -96,6 +97,22 @@ void WebRtcJitterBuffer::collectStats() {
                         stats.accelerate_rate,
                         stats.clockdrift_ppm,
                         stats.added_zero_samples);
+
+//    struct timespec timeToWait;
+//    struct timeval  now;
+//    gettimeofday(&now, NULL);
+//
+//    timeToWait.tv_sec  = now.tv_sec;
+//    timeToWait.tv_nsec = now.tv_usec * 1000;
+//    timeToWait.tv_sec += 30;
+//
+//    pthread_mutex_lock(&lock);
+//
+//    if (running) {
+//      pthread_cond_timedwait(&condition, &lock, &timeToWait);
+//    }
+//
+//    pthread_mutex_unlock(&lock);
     sleep(30);
   }
 }
