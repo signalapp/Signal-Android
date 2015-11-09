@@ -106,15 +106,9 @@ public class DirectoryHelper {
       directory.setNumbers(activeTokens, eligibleContactNumbers);
 
       if (account.isPresent()) {
-        List<String> e164numbers = new LinkedList<>();
-
-        for (ContactTokenDetails contactTokenDetails : activeTokens) {
-          e164numbers.add(contactTokenDetails.getNumber());
-        }
-
         try {
           return  DatabaseFactory.getContactsDatabase(context)
-                                 .setRegisteredUsers(account.get(), localNumber, e164numbers);
+                                 .setRegisteredUsers(account.get(), localNumber, activeTokens);
         } catch (RemoteException | OperationApplicationException e) {
           Log.w(TAG, e);
         }
