@@ -75,7 +75,7 @@ public class ExportFragment extends Fragment {
   private void handleExportPlaintextBackup() {
     AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
     builder.setIconAttribute(R.attr.dialog_alert_icon);
-    builder.setTitle(getActivity().getString(R.string.ExportFragment_export_plaintext_to_sd_card));
+    builder.setTitle(getActivity().getString(R.string.ExportFragment_export_plaintext_to_storage));
     builder.setMessage(getActivity().getString(R.string.ExportFragment_warning_this_will_export_the_plaintext_contents));
     builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
       @Override
@@ -94,7 +94,7 @@ public class ExportFragment extends Fragment {
     protected void onPreExecute() {
       dialog = ProgressDialog.show(getActivity(), 
                                    getActivity().getString(R.string.ExportFragment_exporting), 
-                                   getActivity().getString(R.string.ExportFragment_exporting_plaintext_to_sd_card),
+                                   getActivity().getString(R.string.ExportFragment_exporting_plaintext_to_storage),
                                    true, false);
     }
 
@@ -125,12 +125,12 @@ public class ExportFragment extends Fragment {
       switch (result) {
         case NO_SD_CARD:
           Toast.makeText(context,
-                         context.getString(R.string.ExportFragment_error_unable_to_write_to_sd_card),
+                         context.getString(R.string.ExportFragment_error_unable_to_write_to_storage),
                          Toast.LENGTH_LONG).show();
           break;
         case IO_ERROR:
           Toast.makeText(context,
-                         context.getString(R.string.ExportFragment_error_while_writing_to_sd_card),
+                         context.getString(R.string.ExportFragment_error_while_writing_to_storage),
                          Toast.LENGTH_LONG).show();
           break;
         case SUCCESS:
@@ -164,12 +164,12 @@ public class ExportFragment extends Fragment {
 //      switch (result) {
 //        case NO_SD_CARD:
 //          Toast.makeText(context,
-//                         context.getString(R.string.ExportFragment_error_unable_to_write_to_sd_card),
+//                         context.getString(R.string.ExportFragment_error_unable_to_write_to_storage),
 //                         Toast.LENGTH_LONG).show();
 //          break;
 //        case IO_ERROR:
 //          Toast.makeText(context,
-//                         context.getString(R.string.ExportFragment_error_while_writing_to_sd_card),
+//                         context.getString(R.string.ExportFragment_error_while_writing_to_storage),
 //                         Toast.LENGTH_LONG).show();
 //          break;
 //        case SUCCESS:
