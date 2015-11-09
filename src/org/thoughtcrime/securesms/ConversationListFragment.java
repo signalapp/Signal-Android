@@ -233,7 +233,7 @@ public class ConversationListFragment extends Fragment
   private void handleSelectAllThreads() {
     getListAdapter().selectAllThreads();
     actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-            this.getListAdapter().getBatchSelections().size()));
+                                     this.getListAdapter().getBatchSelections().size()));
   }
 
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
@@ -286,10 +286,21 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onItemSwipeLeft(ConversationListItem item) {
+    handleDelayedDeleteItem(item);
   }
 
   @Override
   public void onItemSwipeRight(ConversationListItem item) {
+    handleDelayedDeleteItem(item);
+  }
+
+  private void handleDelayedDeleteItem(ConversationListItem item) {
+    // Use an undo-token to track the undo-status on this item;
+    // the Handler should run inside the UI thread, so there should be
+    // no concurrency issue (user presses UNDO -> callback is removed), but
+    // checking is safer in case a deleteAction is run after UNDO is pressed
+    // (and more flexible, as it leaves the door open to a multi-thread approach; just
+    // synchronize UndoToken getter/setters)
     final ConversationListItem.UndoToken token = item.getUndoToken();
     Runnable deleteAction = new Runnable() {
       @Override
@@ -301,6 +312,8 @@ public class ConversationListFragment extends Fragment
         }
       }
     };
+
+    // Save this callback in a map, for retrieval (and cancellation)
     pendingDeletes.put(token, deleteAction);
     deleteHandler.postDelayed(deleteAction, 5000);
   }
