@@ -30,7 +30,6 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -67,8 +66,6 @@ import org.thoughtcrime.securesms.components.AttachmentTypeSelector;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
-import org.thoughtcrime.securesms.components.reminder.InviteReminder;
-import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.camera.HidingImageButton;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
@@ -77,6 +74,8 @@ import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.Drawer
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
+import org.thoughtcrime.securesms.components.reminder.InviteReminder;
+import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -110,7 +109,6 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
@@ -123,6 +121,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
@@ -785,7 +784,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           if (capabilities.getTextCapability() == Capability.UNKNOWN ||
               capabilities.getVoiceCapability() == Capability.UNKNOWN)
           {
-            capabilities = DirectoryHelper.refreshDirectoryFor(context, recipients);
+            capabilities = DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients,
+                                                               TextSecurePreferences.getLocalNumber(context));
           }
 
           return new Pair<>(capabilities.getTextCapability() == Capability.SUPPORTED,
