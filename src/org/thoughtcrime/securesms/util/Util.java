@@ -49,11 +49,13 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -63,6 +65,10 @@ import ws.com.google.android.mms.pdu.EncodedStringValue;
 
 public class Util {
   public static Handler handler = new Handler(Looper.getMainLooper());
+
+  public static String join(String[] list, String delimiter) {
+    return join(Arrays.asList(list), delimiter);
+  }
 
   public static String join(Collection<String> list, String delimiter) {
     StringBuilder result = new StringBuilder();
@@ -159,7 +165,7 @@ public class Util {
     return PhoneNumberFormatter.formatNumber(number, localNumber);
   }
 
-  public static String canonicalizeNumberOrGroup(Context context, String number)
+  public static String canonicalizeNumberOrGroup(@NonNull Context context, @NonNull String number)
       throws InvalidNumberException
   {
     if (GroupUtil.isEncodedGroup(number)) return number;
@@ -325,9 +331,31 @@ public class Util {
     }
   }
 
-  public static void runOnMain(Runnable runnable) {
+  public static void runOnMain(final @NonNull Runnable runnable) {
     if (isMainThread()) runnable.run();
     else                handler.post(runnable);
+  }
+
+  public static void runOnMainSync(final @NonNull Runnable runnable) {
+    if (isMainThread()) {
+      runnable.run();
+    } else {
+      final CountDownLatch sync = new CountDownLatch(1);
+      runOnMain(new Runnable() {
+        @Override public void run() {
+          try {
+            runnable.run();
+          } finally {
+            sync.countDown();
+          }
+        }
+      });
+      try {
+        sync.await();
+      } catch (InterruptedException ie) {
+        throw new AssertionError(ie);
+      }
+    }
   }
 
   public static boolean equals(@Nullable Object a, @Nullable Object b) {

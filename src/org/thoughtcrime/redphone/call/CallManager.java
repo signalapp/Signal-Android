@@ -75,8 +75,6 @@ public abstract class CallManager extends Thread {
     this.callStateListener = callStateListener;
     this.terminated        = false;
     this.context           = context;
-
-    AudioUtils.resetConfiguration(context);
   }
 
   @Override

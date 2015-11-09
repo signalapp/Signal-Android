@@ -19,12 +19,9 @@
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Unregistering from Signal messages...</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages">Disable Signal messages?</string>
-    <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-        This will disable Signal messages by unregistering you from the server.
-        You will need to re-register your phone number to use Signal messages again in the future.
-    </string>
+    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Unregistering from Signal messages and calls...</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disable Signal messages and calls?</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disable Signal messages and calls by unregistering from the server. You will need to re-register your phone number to use them again in the future.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
@@ -57,6 +54,9 @@
     <!-- BlockedContactsActivity -->
     <string name="BlockedContactsActivity_blocked_contacts">Blocked contacts</string>
 
+    <!-- CallScreen -->
+    <string name="CallScreen_Incoming_call">Incoming call</string>
+
     <!-- ConfirmIdentityDialog -->
     <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The
         identifying key material for %1$s has changed. This could either mean that someone is trying to
@@ -88,10 +88,8 @@
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
 
     <!-- ConversationActivity -->
-    <string name="ConversationActivity_initiate_secure_session_question">Initiate secure session?</string>
-    <string name="ConversationActivity_initiate_secure_session_with_s_question">Initiate secure session with %s?</string>
-    <string name="ConversationActivity_abort_secure_session_confirmation">End secure session confirmation</string>
-    <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Are you sure that you want to end this secure session?</string>
+    <string name="ConversationActivity_reset_secure_session_confirmation">Reset secure session confirmation</string>
+    <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Are you sure that you want to reset this secure session?</string>
     <string name="ConversationActivity_delete_thread_confirmation">Delete thread confirmation</string>
     <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Are you sure that you want to permanently delete this conversation?</string>
     <string name="ConversationActivity_add_attachment">Add attachment</string>
@@ -117,8 +115,8 @@
     <string name="ConversationActivity_transport_insecure_sms">Insecure SMS</string>
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
     <string name="ConversationActivity_transport_signal">Signal</string>
-    <string name="ConversationActivity_get_with_it">Get with it: %s</string>
-    <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal %1$s</string>
+    <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %1$s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
     <string name="ConversationActivity_mms_not_supported_title">MMS not supported</string>
     <string name="ConversationActivity_mms_not_supported_message">This message cannot be sent since your carrier doesn\'t support MMS.</string>
@@ -133,8 +131,14 @@
     <string name="ConversationFragment_message_details">Message details</string>
     <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSent/Received: %2$s</string>
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
-    <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
-    <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Are you sure that you want to permanently delete all selected messages?</string>
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Delete selected message?</item>
+        <item quantity="other">Delete selected messages?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">This will permanently delete the selected message.</item>
+        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+    </plurals>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
     <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Saving this media to storage will allow any other apps on your phone to access it.\n\nContinue?</string>
     <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to storage!</string>
@@ -153,8 +157,14 @@
     <string name="ConversationListActivity_search">Search...</string>
 
     <!-- ConversationListFragment -->
-    <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
-    <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Are you sure you wish to delete ALL selected conversation threads?</string>
+    <plurals name="ConversationListFragment_delete_selected_conversations">
+        <item quantity="one">Delete selected conversation?</item>
+        <item quantity="other">Delete selected conversations?</item>
+    </plurals>
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+        <item quantity="one">This will permanently delete the selected conversation.</item>
+        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+    </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
     <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads...</string>
 
@@ -264,6 +274,20 @@
     <string name="ImportFragment_no_encrypted_backup_found">No encrypted backup found!</string>
     <string name="ImportFragment_restore_complete">Restore complete!</string>
 
+    <!-- InviteActivity -->
+    <string name="InviteActivity_share">Share</string>
+    <string name="InviteActivity_send_sms">Send SMS</string>
+    <string name="InviteActivity_cancel">Cancel</string>
+    <string name="InviteActivity_sending">Sending...</string>
+    <string name="InviteActivity_heart_content_description">Heart</string>
+    <string name="InviteActivity_invitations_sent">Invitations sent!</string>
+    <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
+    <string name="InviteActivity_send_to_friends">SEND TO %1$s FRIEND(S)</string>
+    <string name="InviteActivity_send_sms_invites">Send %1$s SMS invite(s)?</string>
+    <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
+    <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
+    <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
+
     <!-- KeyScanningActivity -->
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
     <string name="KeyScanningActivity_install_barcode_Scanner">Install Barcode Scanner?</string>
@@ -287,12 +311,13 @@
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
 
     <!-- MessageRecord -->
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_updated_group">Updated the group.</string>
     <string name="MessageRecord_s_called_you">%s called you</string>
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
+    <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
 
 
     <!-- PassphraseChangeActivity -->
@@ -336,7 +361,7 @@
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
-    <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">You will no longer see messages sent from this user.</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">You will no longer receive messages or calls from this user.</string>
     <string name="RecipientPreferenceActivity_block">Block</string>
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Unblock this contact?</string>
     <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Are you sure you want to unblock this contact?</string>
@@ -438,16 +463,18 @@
         Received message with unknown identity key. Click to process and display.
     </string>
     <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
-    <string name="SmsMessageRecord_secure_session_ended">Secure session ended.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Secure session reset.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_left_the_group">Left the group...</string>
-    <string name="TheadRecord_secure_session_ended">Secure session ended.</string>
+    <string name="ThreadRecord_secure_session_reset">Secure session reset.</string>
     <string name="ThreadRecord_draft">Draft:</string>
     <string name="ThreadRecord_called">You called</string>
     <string name="ThreadRecord_called_you">Called you</string>
     <string name="ThreadRecord_missed_call">Missed call</string>
+    <string name="ThreadRecord_media_message">Media message</string>
+    <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
@@ -473,7 +500,6 @@
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
-    <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">You\'ve already sent a session initiation request to this recipient, are you sure you\'d like to send another?  This will invalidate the first request.</string>
     <string name="KeyExchangeInitiator_send">Send</string>
 
     <!-- MessageDisplayHelper -->
@@ -534,6 +560,13 @@
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_new_signal_message">New Signal message</string>
     <string name="SingleRecipientNotificationBuilder_contents_hidden">Contents hidden</string>
+
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__image">Image</string>
+    <string name="attachment_type_selector__audio">Audio</string>
+    <string name="attachment_type_selector__video">Video</string>
+    <string name="attachment_type_selector__contact">Contact</string>
+    <string name="attachment_type_selector__camera">Camera</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
@@ -637,6 +670,9 @@
     <string name="import_fragment__import_a_plaintext_backup_file">
         Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
 
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">See full conversation</string>
+
     <!-- media_overview_activity -->
     <string name="media_overview_activity__no_images">No images</string>
 
@@ -670,7 +706,7 @@
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
     <string name="recipient_preferences__disable_notifications_for_this_conversation">Disable notifications for this conversation</string>
-    <string name="recipient_preferences__notification_tone">Notification tone</string>
+    <string name="recipient_preferences__notification_sound">Notification sound</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
@@ -800,6 +836,7 @@
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
     <string name="AndroidManifest__message_details">Message Details</string>
     <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
+    <string name="AndroidManifest__invite_friends">Invite friends</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
@@ -921,10 +958,8 @@
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__language_summary">Language %s</string>
-    <string name="preferences__signal">Signal</string>
-    <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-        Free private messaging and calling to Signal users
-    </string>
+    <string name="preferences__signal_messages_and_calls">Signal messages and calls</string>
+    <string name="preferences__free_private_messages_and_calls">Free private messages and calls to Signal users</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
@@ -972,7 +1007,6 @@
     <string name="conversation_insecure__invite">Invite</string>
 
     <!-- conversation_insecure_no_push -->
-    <string name="conversation_insecure__menu_start_secure_session">Start secure session</string>
     <string name="conversation_insecure__security">Security</string>
 
     <!-- conversation_list_batch -->
@@ -1031,16 +1065,28 @@
     <string name="text_secure_normal__menu_settings">Settings</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
+    <string name="text_secure_normal__invite_friends">Invite friends</string>
 
     <!-- reminder_header -->
     <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
     <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
-    <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
+    <string name="reminder_header_expired_build_button">UPDATE</string>
+    <string name="reminder_header_sms_default_title">Use as default SMS app</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
-    <string name="reminder_header_sms_import_title">Import system SMS?</string>
+    <string name="reminder_header_sms_default_button">SET</string>
+    <string name="reminder_header_sms_import_title">Import system SMS</string>
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
-    <string name="reminder_header_push_title">Enable Signal messages?</string>
-    <string name="reminder_header_push_text">Tap for instant delivery, stronger privacy, and no SMS fees.</string>
+    <string name="reminder_header_sms_import_button">IMPORT</string>
+    <string name="reminder_header_push_title">Enable Signal messages and calls</string>
+    <string name="reminder_header_push_text">Upgrade your communication experience.</string>
+    <string name="reminder_header_push_button">ENABLE</string>
+    <string name="reminder_header_invite_title">Invite to Signal</string>
+    <string name="reminder_header_invite_text">Take your conversation with %1$s to the next level.</string>
+    <string name="reminder_header_invite_button">INVITE</string>
+    <string name="reminder_header_share_title">Invite your friends!</string>
+    <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
+    <string name="reminder_header_share_button">SHARE</string>
+    <string name="reminder_header_close_button">CLOSE</string>
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>

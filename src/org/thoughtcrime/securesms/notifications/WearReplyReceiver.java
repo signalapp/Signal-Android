@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.RemoteInput;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -31,6 +32,8 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+
+import java.util.LinkedList;
 
 import ws.com.google.android.mms.pdu.PduBody;
 
@@ -64,7 +67,7 @@ public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
           long threadId;
 
           if (recipients.isGroupRecipient()) {
-            OutgoingMediaMessage reply = new OutgoingMediaMessage(context, recipients, new PduBody(), responseText.toString(), 0);
+            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipients, responseText.toString(), new LinkedList<Attachment>(), System.currentTimeMillis(), 0);
             threadId = MessageSender.send(context, masterSecret, reply, -1, false);
           } else {
             OutgoingTextMessage reply = new OutgoingTextMessage(recipients, responseText.toString());

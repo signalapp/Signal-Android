@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">سیگنال</string>
   <string name="yes">بله</string>
   <string name="no">خیر</string>
   <string name="delete">حذف</string>
@@ -39,6 +40,8 @@
   <string name="AttachmentTypeSelectorAdapter_contact">اطلاعات مخاطب</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">اطلاعات تماس مسدود</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">تماس های دریافتی</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">شما ممکن است مایل به منظور بررسی
 تماس با ما</string>
@@ -57,10 +60,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">مجدد به تکه تکه کردن MMS؟</string>
   <string name="ConversationItem_unable_to_open_media">برنامه ای برای بازکردن این رسانه وجود ندارد.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">گفتگوی امن آغاز شود؟</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">گفتگوی امن با %s آغاز شود؟</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">تأیید پایان گفتگوی امن</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">آیا مطمئنید که می‌خواهید ارتباط امن را خاتمه دهید؟</string>
   <string name="ConversationActivity_delete_thread_confirmation">حذف تاییدیه موضوع</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">آیا مطمئن هستید که می خواهید این مکالمه به طور دائم حذف کنید؟</string>
   <string name="ConversationActivity_add_attachment">پیوست فایل</string>
@@ -82,23 +81,23 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">آیا شما مطمئن هستید که میخواهید این گروه را ترک کنید؟</string>
   <string name="ConversationActivity_transport_insecure_sms">پیامک نا امن</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS نا امن</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">بیایید از این برای گفت‌وگو استفاده کنیم: %s</string>
+  <string name="ConversationActivity_transport_signal">سیگنال</string>
   <string name="ConversationActivity_error_leaving_group">خطا ترک گروه ...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS پشتیبانی نمی شود</string>
   <string name="ConversationActivity_specify_recipient">لطفا یک تماس را انتخاب کنید</string>
   <string name="ConversationActivity_unblock_question">رفع انسداد؟</string>
   <string name="ConversationActivity_unblock">رفع انسداد</string>
+  <string name="ConversationActivity_quick_camera_unavailable">دوربین در دسترس نیست</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">جزییات پیام</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">فرستنده: %1$s\nنوع انتقال: %2$s\nزمان ارسال: %3$s\nزمان دریافت: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">تایید حذف پیام</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">آیا از حذف دایم تمام پیام های انتخاب شده اطمینان دارید؟</string>
   <string name="ConversationFragment_save_to_sd_card">ذخیره در ذخیره سازی؟</string>
   <string name="ConversationFragment_success_exclamation">موفقیت!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر نیست به ارسال به ذخیره سازی!</string>
   <string name="ConversationFragment_saving_attachment">ذخیره کردن فایل پیوست</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">ذخیره کردن فایل پیوست در ذخیره سازی</string>
   <string name="ConversationFragment_pending">در انتظار ...</string>
+  <string name="ConversationFragment_push">داده ها (سیگنال)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">پیامک</string>
   <string name="ConversationFragment_deleting">در حال حذف کردن</string>
@@ -106,8 +105,6 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">جستجو...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">حذف گفتگو ها؟</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">آیا مطمئن هستید که می خواهید همه موضوعات مکالمات انتخاب شده را حذف کنید؟</string>
   <string name="ConversationListFragment_deleting">حذف</string>
   <string name="ConversationListFragment_deleting_selected_threads">حذف موضوعات انتخاب شده...</string>
   <!--ConversationListItem-->
@@ -127,9 +124,13 @@
   <string name="DeviceListActivity_network_failed">شکست خوردن در شبکه!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">دستگاهی که نامش ذکر نشده</string>
+  <string name="DeviceListItem_linked_s">مرتبط از %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">به اشتراک گذاشتن با</string>
   <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">به سیگنال خوش آمدید.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">به سیگنال خوش آمدید!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">تکست سکیور حالا هست سیگنال.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">خروجی</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">خروجی گرفتن متنی به کارت SD؟</string>
@@ -169,6 +170,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">بازگرداندن نسخه پشتیبان رمزگذاری ...</string>
   <string name="ImportFragment_no_encrypted_backup_found">پشتیبان رمزگذاری شده پیدا نشد!</string>
   <string name="ImportFragment_restore_complete">بازیابی کامل شد!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">کلید اسکن شده پیدا نشد!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">نصب اسکنر بارکد؟</string>
@@ -180,6 +182,8 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">خطا در اتصال به ارائه دهنده MMS ...</string>
   <string name="MmsDownloader_error_reading_mms_settings">خطا در خواندن بی سیم تنظیمات MMS ارائه دهنده ...</string>
   <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">پاسخ سیگنال در حال انجام</string>
+  <string name="NotificationBarManager_missed_signal_call">تماس از دست رفته سیگنال</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">پیام های چند رسانه ای</string>
   <!--MessageRecord-->
@@ -202,6 +206,7 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">کد QR نامعتبر است.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">رمز را وارد کنید</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">آیکون سیگنال</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ثبت کردن عبارت عبور</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">رمز معتبر نیست!</string>
   <!--PlayServicesProblemFragment-->
@@ -218,7 +223,26 @@
   <string name="RecipientPreferenceActivity_enabled">فعال</string>
   <string name="RecipientPreferenceActivity_disabled">غیر فعال</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">پاسخ دادن</string>
+  <string name="RedPhone_ending_call">پایان دادن به پاسخ</string>
+  <string name="RedPhone_dialing">شماره گیری</string>
+  <string name="RedPhone_canceling_call">لغو پاسخ</string>
+  <string name="RedPhone_call_rejected">رد کردن تماس</string>
+  <string name="RedPhone_ringing">در حال زنگ خوردن</string>
+  <string name="RedPhone_busy">مشغول</string>
+  <string name="RedPhone_connected">متصل</string>
+  <string name="RedPhone_connecting">اتصال</string>
+  <string name="RedPhone_handshake_failed">دست دادن شکست خورده!</string>
+  <string name="RedPhone_recipient_unavailable">گیرنده در دسترس نیست</string>
+  <string name="RedPhone_network_failed">شکست خوردن در شبکه!</string>
+  <string name="RedPhone_client_failed">مشتری شکست خورده</string>
+  <string name="RedPhone_fatal_error">خطای مهلک</string>
+  <string name="RedPhone_login_failed">ورود ناموفق!</string>
+  <string name="RedPhone_message_from_the_server">پیام از سرور</string>
+  <string name="RedPhone_number_not_registered">شماره ثبت نام نکرده!</string>
+  <string name="RedPhone_got_it">فهمیدم</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">ارتباط با سیگنال</string>
   <string name="RegistrationActivity_select_your_country">کشور خود را انتخاب کنید</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">شما باید کد کشور خود را
 مشخص کنید
@@ -261,12 +285,16 @@
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">دریافت کلید خراب
 تبادل پیام!</string>
-  <string name="SmsMessageRecord_secure_session_ended">جلسه امن به پایان رسید.</string>
+  <string name="SmsMessageRecord_secure_session_reset">تنظیم مجدد جلسه امن.</string>
   <string name="SmsMessageRecord_duplicate_message">تکثیر پیام.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترک گروه ...</string>
-  <string name="TheadRecord_secure_session_ended">جلسه امن به پایان رسید.</string>
+  <string name="ThreadRecord_secure_session_reset">تنظیم مجدد جلسه امن.</string>
   <string name="ThreadRecord_draft">پیش نویس:</string>
+  <string name="ThreadRecord_called">تو تلفن زدی</string>
+  <string name="ThreadRecord_called_you">با شما تماس گرفت</string>
+  <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
+  <string name="ThreadRecord_media_message">پیام رسانه</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">شما یک کلید هویت ندارد.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">شما یک کلید هویت ندارید.</string>
@@ -289,7 +317,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">اثر انگشت هویت من</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">آغاز با وجود درخواست های موجود؟</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">شما در حال حاضر یک درخواست شروع جلسه به این دریافت کننده فرستاده اید، آیا شما مطمئن به ارسال دیگر هستید؟ این کار باعث ساقط شدن اولین درخواست از درجه اعتبار می شود.</string>
   <string name="KeyExchangeInitiator_send">ارسال</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">پیام رمزنگاری شده بد...</string>
@@ -316,6 +343,8 @@
   <string name="ApplicationMigrationService_import_in_progress">واردکردن در حال پیشرفت</string>
   <string name="ApplicationMigrationService_importing_text_messages">واردکردن پیام های متنی</string>
   <!--KeyCachingService-->
+  <string name="KeyCachingService_signal_passphrase_cached">برای باز کردن لمس کنید.</string>
+  <string name="KeyCachingService_passphrase_cached">سیگنال قفل شده است</string>
   <string name="KeyCachingService_lock">قفل با عبارت عبور</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_locked_message">پیام قفل شده ...</string>
@@ -331,7 +360,9 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">پیام جدید سیگنال</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">محتوای مخفی</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">رمز قبلی:</string>
   <string name="change_passphrase_activity__new_passphrase">رمز جدید:</string>
@@ -352,6 +383,7 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">مکالمه خاموش</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">ارسال پیام سیگنال</string>
   <string name="conversation_activity__type_message_sms_insecure">ارسال نا امن SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">ارسال نا امن MMS</string>
   <string name="conversation_activity__send">ارسال</string>
@@ -381,7 +413,9 @@
   <string name="country_selection_fragment__loading_countries">کشورهای در حال بارگذاری ...</string>
   <string name="country_selection_fragment__search">جستجو</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">هیچ دستگاه های مرتبط ...</string>
   <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">ادامه</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">تشکر از کمک شما!</string>
   <string name="log_submit_activity__submitting">ارسال</string>
@@ -395,6 +429,7 @@
   <string name="import_fragment__import_system_sms_database">واردکردن پایگاه داده سیستم SMS</string>
   <string name="import_fragment__import_encrypted_backup">واردکردن پشتیبان رمزگذاری شده</string>
   <string name="import_fragment__import_plaintext_backup">وارد کردن پشتیبان ساده</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">بدون تصاویر</string>
   <!--message_recipients_list_item-->
@@ -419,7 +454,13 @@
   <string name="recipient_preferences__block">بلوک</string>
   <string name="recipient_preferences__color">رنگ</string>
   <string name="recipient_preferences__color_for_this_contact">رنگ برای این مخاطب</string>
+  <string name="recipient_preferences__verify_identity">تشخیص هویت</string>
   <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">تماس سیگنال</string>
+  <string name="redphone_call_controls__end_call">پایان تماس</string>
+  <string name="redphone_call_controls__audio">صدا</string>
+  <string name="redphone_call_controls__mute">لال</string>
+  <string name="redphone_call_controls__signal_call">تماس سیگنال</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">کشور شما</string>
   <string name="registration_activity__your_country_code_and_phone_number">کد کشور شما و
@@ -470,6 +511,7 @@
   <string name="AndroidManifest__create_passphrase">ایجاد کلمه عبور</string>
   <string name="AndroidManifest__enter_passphrase">رمز را وارد کنید</string>
   <string name="AndroidManifest__select_contacts">انتخاب مخاطب‌ها</string>
+  <string name="AndroidManifest__signal_detected">شناسایی سیگنال</string>
   <string name="AndroidManifest__public_identity_key">کلید هویت عمومی</string>
   <string name="AndroidManifest__change_passphrase">تغییر رمز</string>
   <string name="AndroidManifest__verify_identity">تشخیص هویت</string>
@@ -526,6 +568,7 @@
   <string name="preferences__pref_timeout_interval_title">فاصله ایست</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">برنامه پس از چه مدت به طور خودکار رمز وارد شده را فراموش کند و قفل شود</string>
   <string name="preferences__notifications">اطلاعیه‌ها</string>
+  <string name="preferences__enable_message_notifications">فعال کردن اعلان های پیام</string>
   <string name="preferences__led_color">رنگ چراغ ال‌ای‌دی</string>
   <string name="preferences__led_color_unknown">ناشناخته</string>
   <string name="preferences__pref_led_blink_title">الگوی چشمک زدن</string>
@@ -587,6 +630,7 @@
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
   <string name="preferences__support_wifi_calling">\'وای فای تلفن\' حالت سازگاری</string>
   <string name="preferences_app_protection__blocked_contacts">اطلاعات تماس مسدود</string>
+  <string name="preferences_notifications__display_in_notifications">نمایش در اعلان ها</string>
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده های تلفن همراه</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
   <string name="preferences_chats__when_roaming">در هنگام رومینگ</string>
@@ -598,6 +642,7 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">انتخاب همه</string>
   <string name="contact_selection_list__menu_unselect_all">عدم انتخاب همه</string>
+  <string name="contact_selection_list__header_signal_users">کاربران سیگنال</string>
   <string name="contact_selection_list__header_other">همه مخاطب‌ها</string>
   <string name="contact_selection_list__unknown_contact">پیام جدید به ...</string>
   <!--contact_selection-->
@@ -617,7 +662,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">دعوت کردن</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">آغاز گفتگوی امن</string>
   <string name="conversation_insecure__security">امنیت</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">حذف انتخاب شده ها</string>
@@ -632,6 +676,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">امنیت</string>
   <string name="conversation_secure_verified__menu_verify_identity">تشخیص هویت</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">تنظیم مجدد جلسه امن</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">وصل نمودن صدای مکالمه</string>
   <!--conversation_unmuted-->
@@ -663,8 +708,11 @@
   <string name="text_secure_normal__menu_clear_passphrase">قفل</string>
   <string name="text_secure_normal__mark_all_as_read">علامت همه به عنوان خوانده شده</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">استفاده به عنوان برنامه پیش فرض SMS؟</string>
-  <string name="reminder_header_sms_import_title">سیستم وارد کردن SMS؟</string>
+  <string name="reminder_header_expired_build">نسخه سیگنال شما منقضی شده است!</string>
+  <string name="reminder_header_sms_default_button">تنظیم</string>
+  <string name="reminder_header_push_button">فعال کردن</string>
+  <string name="reminder_header_invite_button">دعوت كردن</string>
+  <string name="reminder_header_close_button">بستن</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">شما</string>
   <string name="MediaPreviewActivity_cant_display">ناموفق برای پیش نمایش این تصویر</string>
@@ -674,6 +722,9 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">پیش‌نمایش تصویر</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">گوشی</string>
+  <string name="redphone_audio_popup_menu__headset">گوشی</string>
+  <string name="redphone_audio_popup_menu__speaker">بلندگو</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">در حال حذف</string>
   <string name="trimmer__deleting_old_messages">در حال حذف پیام‌های قدیمی...</string>

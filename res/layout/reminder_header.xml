@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content">
@@ -8,14 +9,11 @@
                   android:orientation="horizontal"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:visibility="gone"
+                  tools:visibility="visible"
+                  android:padding="2dp"
                   android:gravity="center_vertical"
                   android:background="?reminder_header_background">
-
-        <ImageView android:id="@+id/icon"
-                   android:layout_width="50dp"
-                   android:layout_height="50dp"
-                   android:src="@drawable/sms_selection_icon"
-                   android:padding="5dp"/>
 
         <LinearLayout android:id="@+id/reminder"
                       android:layout_width="0dp"
@@ -28,12 +26,14 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:layout_marginBottom="5dp"
+                      tools:text="Invite to Signal"
                       android:textColor="@color/white"
                       android:textSize="18sp"/>
 
             <TextView android:id="@+id/reminder_text"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
+                      tools:text="Take your conversation with Jules Bonnot to the next level."
                       android:fontFamily="sans-serif-light"
                       android:textColor="@color/white"
                       android:textSize="16sp"/>
@@ -42,17 +42,22 @@
 
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="match_parent"
-                      android:gravity="right|top"
+                      android:gravity="right"
                       android:layout_marginLeft="15dp"
                       android:orientation="vertical">
 
-            <ImageButton android:id="@+id/cancel"
-                         android:layout_width="40dp"
-                         android:layout_height="40dp"
-                         android:padding="10dp"
-                         android:background="@drawable/touch_highlight_background"
-                         android:src="@drawable/ic_cancel_white_24dp"/>
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="0dp"
+                          android:layout_weight="1"
+                          android:gravity="top">
 
+                <ImageButton android:id="@+id/cancel"
+                             android:layout_width="40dp"
+                             android:layout_height="40dp"
+                             android:padding="10dp"
+                             android:background="@drawable/touch_highlight_background"
+                             android:src="@drawable/ic_close_white_24dp"/>
+            </LinearLayout>
           </LinearLayout>
 
     </LinearLayout>

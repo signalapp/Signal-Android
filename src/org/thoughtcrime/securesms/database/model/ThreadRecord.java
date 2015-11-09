@@ -17,6 +17,9 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -36,20 +39,26 @@ import org.thoughtcrime.securesms.util.GroupUtil;
  */
 public class ThreadRecord extends DisplayRecord {
 
-  private final Context context;
-  private final long count;
-  private final boolean read;
-  private final int distributionType;
+  private @NonNull  final Context context;
+  private @Nullable final Uri     snippetUri;
+  private           final long    count;
+  private           final boolean read;
+  private           final int     distributionType;
 
-  public ThreadRecord(Context context, Body body, Recipients recipients, long date,
-                      long count, boolean read, long threadId, long snippetType,
-                      int distributionType)
+  public ThreadRecord(@NonNull Context context, @NonNull Body body, @Nullable Uri snippetUri,
+                      @NonNull Recipients recipients, long date, long count, boolean read,
+                      long threadId, long snippetType, int distributionType)
   {
     super(context, body, recipients, date, date, threadId, snippetType);
     this.context          = context.getApplicationContext();
+    this.snippetUri       = snippetUri;
     this.count            = count;
     this.read             = read;
     this.distributionType = distributionType;
+  }
+
+  public @Nullable Uri getSnippetUri() {
+    return snippetUri;
   }
 
   @Override
@@ -69,7 +78,7 @@ public class ThreadRecord extends DisplayRecord {
     } else if (!getBody().isPlaintext()) {
       return emphasisAdded(context.getString(R.string.MessageNotifier_locked_message));
     } else if (SmsDatabase.Types.isEndSessionType(type)) {
-      return emphasisAdded(context.getString(R.string.TheadRecord_secure_session_ended));
+      return emphasisAdded(context.getString(R.string.ThreadRecord_secure_session_reset));
     } else if (MmsSmsColumns.Types.isLegacyType(type)) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (MmsSmsColumns.Types.isDraftMessageType(type)) {
@@ -81,9 +90,11 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_called_you));
     } else if (SmsDatabase.Types.isMissedCall(type)) {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
+    } else if (SmsDatabase.Types.isJoinedType(type)) {
+      return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal_say_hey, getRecipients().getPrimaryRecipient().toShortString()));
     } else {
       if (TextUtils.isEmpty(getBody().getBody())) {
-        return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));
+        return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
       } else {
         return new SpannableString(getBody().getBody());
       }

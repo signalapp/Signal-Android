@@ -69,6 +69,7 @@ public class TextSecurePreferences {
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_DEFAULT_SMS_PREF        = "pref_prompted_default_sms";
+  private static final String PROMPTED_SHARE_PREF              = "pref_prompted_share";
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
@@ -91,6 +92,15 @@ public class TextSecurePreferences {
   public  static final String MEDIA_DOWNLOAD_ROAMING_PREF      = "pref_media_download_roaming";
 
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
+  private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
+
+  public static void setMultiDevice(Context context, boolean value) {
+    setBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, value);
+  }
+
+  public static boolean isMultiDevice(Context context) {
+    return getBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, false);
+  }
 
   public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {
     return new NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"));
@@ -422,6 +432,14 @@ public class TextSecurePreferences {
 
   public static void setPromptedDefaultSmsProvider(Context context, boolean value) {
     setBooleanPreference(context, PROMPTED_DEFAULT_SMS_PREF, value);
+  }
+
+  public static boolean hasPromptedShare(Context context) {
+    return getBooleanPreference(context, PROMPTED_SHARE_PREF, false);
+  }
+
+  public static void setPromptedShare(Context context, boolean value) {
+    setBooleanPreference(context, PROMPTED_SHARE_PREF, value);
   }
 
   public static boolean isInterceptAllMmsEnabled(Context context) {

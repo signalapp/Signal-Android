@@ -17,7 +17,7 @@
 
 package org.thoughtcrime.redphone.crypto;
 
-import org.thoughtcrime.redphone.util.Base64;
+import org.thoughtcrime.securesms.util.Base64;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

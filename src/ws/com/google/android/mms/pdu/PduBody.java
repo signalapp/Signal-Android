@@ -41,16 +41,6 @@ public class PduBody {
         mPartMapByFileName = new HashMap<String, PduPart>();
     }
 
-    public boolean containsPushInProgress() {
-      for (int i=0;i<getPartsNum();i++) {
-        if (getPart(i).isInProgress()) {
-          return true;
-        }
-      }
-
-      return false;
-    }
-
     private void putPartToMaps(PduPart part) {
         // Put part to mPartMapByContentId.
         byte[] contentId = part.getContentId();

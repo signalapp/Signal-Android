@@ -38,6 +38,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
+    Log.w(TAG, "onCreate(" + savedInstanceState + ")");
     onPreCreate();
     final MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
     routeApplicationState(masterSecret);
@@ -53,8 +54,8 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onResume() {
+    Log.w(TAG, "onResume()");
     super.onResume();
-    initializeScreenshotSecurity();
     KeyCachingService.registerPassphraseActivityStarted(this);
     MessageRetrievalService.registerActivityStarted(this);
     isVisible = true;
@@ -62,6 +63,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onPause() {
+    Log.w(TAG, "onPause()");
     super.onPause();
     KeyCachingService.registerPassphraseActivityStopped(this);
     MessageRetrievalService.registerActivityStopped(this);
@@ -70,6 +72,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onDestroy() {
+    Log.w(TAG, "onDestroy()");
     super.onDestroy();
     removeClearKeyReceiver(this);
   }
@@ -187,16 +190,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   private Intent getConversationListIntent() {
     return new Intent(this, ConversationListActivity.class);
-  }
-
-  private void initializeScreenshotSecurity() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
-        TextSecurePreferences.isScreenSecurityEnabled(this))
-    {
-      getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-    } else {
-      getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
-    }
   }
 
   private void initializeClearKeyReceiver() {

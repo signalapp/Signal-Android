@@ -12,24 +12,23 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Обрисати старе поруке сада?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Желите ли заиста одмах да скратите све нити преписки на %s најскоријих порука?</string>
   <string name="ApplicationPreferencesActivity_delete">Обриши</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Да онемогућим лозинку</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Да искључим лозинку?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
 Да искључим екран закључавања за поруке?</string>
-  <string name="ApplicationPreferencesActivity_disable">Онемогући</string>
+  <string name="ApplicationPreferencesActivity_disable">Искључи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Одјављујем</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages">Одјављујем подршку за Сигналове поруке...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages">Онемогућити Сигналове поруке?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_signal_messages">
-Ово ће да онемогући Сигналове поруке одјављујући вас са сервера.
-Мораћете поново да пријавите ваш број телефона да бисте опет користили Сигналове поруке.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Одјављујем се са порука и позива преко Сигнала...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Онемогућити поруке и позиве преко Сигнала?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Онемогућите поруке и позиве преко СИгнала одјавом са сервера.
+Мораћете поново да пријавите ваш број телефона да бисте опет их користили убудуће.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка повезивања на сервер!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">СМС омогућен</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Додирните да бисте променили подразумевану апликацију за СМС</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">СМС онемогућен</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Тапните да поставите Сигнал за подразумевану апликацију за СМС</string>
-  <string name="ApplicationPreferencesActivity_on">укључена</string>
+  <string name="ApplicationPreferencesActivity_on">укључено</string>
   <string name="ApplicationPreferencesActivity_On">Укључено</string>
-  <string name="ApplicationPreferencesActivity_off">искључена</string>
+  <string name="ApplicationPreferencesActivity_off">искључено</string>
   <string name="ApplicationPreferencesActivity_Off">Искључено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">СМС %1$s, ММС %2$s</string>
   <!--AppProtectionPreferenceFragment-->
@@ -48,6 +47,8 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Подаци о контакту</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Долазни позив</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Кључ
 за идентификацију за %1$s је промењен. Ово може да значи или да неко покушава да пресретне вашу комуникацију
@@ -68,16 +69,14 @@
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Примљена порука размене кључева, додирните за обраду.</string>
   <string name="ConversationItem_group_action_left">%1$s напусти групу.</string>
   <string name="ConversationItem_click_for_details">Тапните за детаље</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Тапни за необезбеђену одступницу</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Тапните за необезбеђену одступницу</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Да спаднем на нешифровани СМС?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да спаднем на нешифровани ММС?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ова порука <b>неће</b> бити шифрована јер корисник више није пријављен на Сигнал.\n\nДа пошаљем необезбеђену поруку?</string>
   <string name="ConversationItem_unable_to_open_media">Нема апликације која може да отвори овај медијум.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Започети безбедну сесију?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Започети безбедну сесију са %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Потврда окончања безбедне сесије</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Желите ли заиста да окончате ову безбедну сесију?</string>
+  <string name="ConversationActivity_reset_secure_session_confirmation">Потврда ресетовања безбедне сесије</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Желите ли заиста да ресетујете ову безбедну сесију?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Потврда брисања нити</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Желите ли заиста трајно да обришете ову преписку?</string>
   <string name="ConversationActivity_add_attachment">Додај прилог</string>
@@ -103,10 +102,10 @@
   <string name="ConversationActivity_transport_insecure_sms">Необезбеђени СМС</string>
   <string name="ConversationActivity_transport_insecure_mms">Необезбеђени ММС</string>
   <string name="ConversationActivity_transport_signal">Сигнал</string>
-  <string name="ConversationActivity_get_with_it">Набавите је са: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Хајде да користимо ово за ћаскање: %s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Пребацимо се на Сигнал %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Хајде да користимо ово за ћаскање: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка напуштања групе...</string>
-  <string name="ConversationActivity_mms_not_supported_title">МММ није подржан</string>
+  <string name="ConversationActivity_mms_not_supported_title">ММС није подржан</string>
   <string name="ConversationActivity_mms_not_supported_message">Порука није послата јер ваш оператер не подржава ММС.</string>
   <string name="ConversationActivity_specify_recipient">Одредите примаоца</string>
   <string name="ConversationActivity_unblock_question">Одблокирати?</string>
@@ -118,8 +117,16 @@
   <string name="ConversationFragment_message_details">Детаљи поруке</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Пренос: %1$s\nПослата/примљена: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Пошиљалац: %1$s\nПренос: %2$s\nПослата: %3$s\nПримљена: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Потврда брисања порука</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Желите ли заиста да трајно обришете све изабране поруке?</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Обрисати изабрану поруку?</item>
+    <item quantity="few">Обрисати изабране поруке?</item>
+    <item quantity="other">Обрисати изабране поруке?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Ово ће трајно да обрише изабрану поруку.</item>
+    <item quantity="few">Ово ће трајно да обрише све %1$d изабране поруке.</item>
+    <item quantity="other">Ово ће трајно да обрише свих %1$d изабраних порука.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Сачувати у складиште?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Упис овог медијума у складиште ће омогућити било којој апликацији на вашем телефону да му приступи.\n\nДа наставим?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка уписа прилога у складиште!</string>
@@ -128,17 +135,25 @@
   <string name="ConversationFragment_saving_attachment">Уписивање прилога</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Уписујем прилог у складиште...</string>
   <string name="ConversationFragment_pending">На чекању...</string>
-  <string name="ConversationFragment_push">Подаци (Сигнал)</string>
+  <string name="ConversationFragment_push">интернета (Сигнал)</string>
   <string name="ConversationFragment_mms">ММС</string>
   <string name="ConversationFragment_sms">СМС</string>
-  <string name="ConversationFragment_deleting">Бришем</string>
+  <string name="ConversationFragment_deleting">Брисање</string>
   <string name="ConversationFragment_deleting_messages">Бришем поруке...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Тражи...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Обрисати нити?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Желите ли заиста да обришете СВЕ изабране нити преписки?</string>
-  <string name="ConversationListFragment_deleting">Бришем</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Обрисати изабрану преписку?</item>
+    <item quantity="few">Обрисати изабране преписке?</item>
+    <item quantity="other">Обрисати изабране преписке?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Ово ће трајно да обрише изабрану преписку.</item>
+    <item quantity="few">Ово ће трајно да обрише све %1$d изабране преписке.</item>
+    <item quantity="other">Ово ће трајно да обрише свих %1$d изабраних преписки.</item>
+  </plurals>
+  <string name="ConversationListFragment_deleting">Брисање</string>
   <string name="ConversationListFragment_deleting_selected_threads">Бришем изабране нити...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порука размене кључева...</string>
@@ -219,8 +234,9 @@
   <string name="ImportFragment_restore">Врати</string>
   <string name="ImportFragment_import_plaintext_backup">Увести текстуалну резерву?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Ово ће да увезе
-поруке из обичне текстуалне резерве. Ако сте претходно увезли
-ову резерву, поновним увозом имаћете дупле поруке.</string>
+поруке из обичне текстуалне резерве. Ако сте већ увезли
+ову резерву,
+поновним увозом имаћете дупле поруке.</string>
   <string name="ImportFragment_importing">Увоз</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Увозим текстуалну резерву...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Обична текстуална резерва није нађена!</string>
@@ -230,10 +246,23 @@
   <string name="ImportFragment_restoring_encrypted_backup">Враћам шифровану резерву...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Шифрована резерва није нађена!</string>
   <string name="ImportFragment_restore_complete">Враћање завршено!</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">Дели</string>
+  <string name="InviteActivity_send_sms">Пошаљи СМС</string>
+  <string name="InviteActivity_cancel">Одустани</string>
+  <string name="InviteActivity_sending">Шаљем...</string>
+  <string name="InviteActivity_heart_content_description">Срце</string>
+  <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
+  <string name="InviteActivity_invite_to_signal">Позови у Сигнал</string>
+  <string name="InviteActivity_send_to_friends">ПОШАЉИ %1$s ПРИЈАТЕЉУ(А)</string>
+  <string name="InviteActivity_send_sms_invites">Послати %1$s позивницу(а) СМС-ом?</string>
+  <string name="InviteActivity_lets_switch_to_signal">Пребацимо се на Сигнал: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатељи не допуштају пријатељима да ћаскају небезбедно.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Нема очитаног кључа!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Инсталирати Скенер бар-кôда?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Сигнал треба Скенер бар-кôда за читање бар-кôдова.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Сигналу је потребан Скенер бар-кôда за читање бар-кôдова.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Неуспех слања</string>
   <string name="MessageDetailsRecipient_new_identity">Нови идентитет</string>
@@ -252,7 +281,9 @@
   <string name="MessageRecord_left_group">Напустили сте групу.</string>
   <string name="MessageRecord_updated_group">Група ажурирана.</string>
   <string name="MessageRecord_s_called_you">%s вас је позвао/ла</string>
+  <string name="MessageRecord_called_s">Позвали сте %s</string>
   <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s је на Сигналу, кажите здраво!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Лозинке се не поклапају!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
@@ -288,7 +319,7 @@
   <string name="RatingManager_later">Касније</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирати овај контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Више нећете видети поруке од овог корисника.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Више нећете примати поруке или позиве од овог корисника.</string>
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одлокирати овај контакт?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Желите ли заиста да одблокирате овај контакт?</string>
@@ -308,7 +339,7 @@
   <string name="RedPhone_handshake_failed">Руковање није успело!</string>
   <string name="RedPhone_recipient_unavailable">Прималац није доступан</string>
   <string name="RedPhone_performing_handshake">Извршавам руковање</string>
-  <string name="RedPhone_network_failed">Неуспех сервера!</string>
+  <string name="RedPhone_network_failed">Неуспех мреже!</string>
   <string name="RedPhone_client_failed">Неуспех клијента</string>
   <string name="RedPhone_fatal_error">Кобна грешка</string>
   <string name="RedPhone_login_failed">Пријава није успела!</string>
@@ -375,14 +406,17 @@
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Примљена је порука непознатог кључа идентификације. Кликните за обраду и приказ.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Примљени су ажурирани али непознати подаци идентитета. Додирните за оверу идентитета.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Безбедна сесија је окончана.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Безбедна сесија је ресетована.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусти групу...</string>
-  <string name="TheadRecord_secure_session_ended">Безбедна сесија је окончана.</string>
+  <string name="ThreadRecord_secure_session_reset">Безбедна сесија је ресетована.</string>
   <string name="ThreadRecord_draft">Нацрт:</string>
   <string name="ThreadRecord_called">Позвали сте</string>
+  <string name="ThreadRecord_called_you">Позвали вас</string>
   <string name="ThreadRecord_missed_call">Пропуштен позив</string>
+  <string name="ThreadRecord_media_message">Мултимедијална порука</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s је на Сигналу, пошаљите поздрав!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немате кључ идентитета.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Прималац нема кључ идентитета.</string>
@@ -405,7 +439,6 @@
   <string name="ViewIdentityActivity_my_identity_fingerprint">Отисак мог идентитета</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Започети унаточ постојећем захтеву?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Већ сте послали захтев за покретање сесије овом примаоцу, желите ли заиста да пошаљете још један?  Ово ће учинити неважећим први захтев.</string>
   <string name="KeyExchangeInitiator_send">Пошаљи</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Лоше шифрована порука...</string>
@@ -455,6 +488,12 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Нова порука на Сигналу</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Садржај сакривен</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Слика</string>
+  <string name="attachment_type_selector__audio">Звук</string>
+  <string name="attachment_type_selector__video">Видео</string>
+  <string name="attachment_type_selector__contact">Контакт</string>
+  <string name="attachment_type_selector__camera">Камера</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ЛОЗИНКА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>
@@ -488,7 +527,7 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Преузимање мултимедијалне поруке</string>
   <string name="conversation_item__mms_image_description">Мултимедијална порука</string>
-  <string name="conversation_item__secure_message_description">Сигурна порука</string>
+  <string name="conversation_item__secure_message_description">Обезбеђена порука</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Преузимање</string>
   <string name="conversation_item_sent__downloading">Преузимам</string>
@@ -535,6 +574,8 @@
   <string name="import_fragment__import_plaintext_backup">Увези текстуалну резерву</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Увези обични текстуални фајл резерве. Компатибилно са апликацијом „SMSBackup And Restore“.</string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Погледај читаву преписку</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Нема слика</string>
   <!--message_recipients_list_item-->
@@ -561,8 +602,8 @@
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Утишај преписку</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Искључи обавештења за ову преписку</string>
-  <string name="recipient_preferences__notification_tone">Звук обавештења</string>
-  <string name="recipient_preferences__vibrate">Вибрирање</string>
+  <string name="recipient_preferences__notification_sound">Звук обавештења</string>
+  <string name="recipient_preferences__vibrate">Режим вибрирања</string>
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__color_for_this_contact">Боја за контакт</string>
@@ -664,6 +705,7 @@
   <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
   <string name="AndroidManifest_manage_linked_devices">Управљај повезаним уређајима</string>
+  <string name="AndroidManifest__invite_friends">Позовите пријатеље</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__my_identity_key">Мој кључ идентитета</string>
@@ -672,13 +714,13 @@
   <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
   <string name="arrays__mute_for_two_hours">Утишај 2 сата</string>
   <string name="arrays__mute_for_one_day">Утишај 1 дан</string>
-  <string name="arrays__mute_for_seven_days">Утишај 7 сата</string>
+  <string name="arrays__mute_for_seven_days">Утишај 7 сати</string>
   <string name="arrays__settings_default">Подразумевана поставка</string>
-  <string name="arrays__enabled">Омогућена</string>
-  <string name="arrays__disabled">Онемогућена</string>
-  <string name="arrays__name_and_message">Име и порука</string>
-  <string name="arrays__name_only">Само име</string>
-  <string name="arrays__neither">Ниједно</string>
+  <string name="arrays__enabled">Укључи</string>
+  <string name="arrays__disabled">Искључи</string>
+  <string name="arrays__name_and_message">име и поруку</string>
+  <string name="arrays__name_only">само име</string>
+  <string name="arrays__neither">ништа</string>
   <string name="arrays__images">Слике</string>
   <string name="arrays__audio">Звук</string>
   <string name="arrays__video">Видео</string>
@@ -706,17 +748,17 @@
   <string name="preferences__change_passphrase">Измени лозинку</string>
   <string name="preferences__change_my_passphrase">Измени моју лозинку</string>
   <string name="preferences__enable_passphrase">Омогући лозинку</string>
-  <string name="preferences__passphrase_summary">Лозинка %s</string>
+  <string name="preferences__passphrase_summary">Закључавање лозинком %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Укључи екран закључавања за поруке</string>
   <string name="preferences__screen_security">Безбедност екрана</string>
-  <string name="preferences__screen_security_summary">обезбеђења екрана %s</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокирај снимке екрана у списку недавних апликација и унутар апликације</string>
+  <string name="preferences__screen_security_summary">обезбеђење екрана %s</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Уклони лозинку из меморије након неког интервала</string>
   <string name="preferences__timeout_passphrase">Истек лозинке</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Интервал истека лозинке</string>
   <string name="preferences__pref_timeout_interval_title">Интервал истека</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Време чекања пре уклањања лозинке из меморије</string>
-  <string name="preferences__notifications">Обавештења</string>
+  <string name="preferences__notifications">Обавештавање</string>
   <string name="preferences__enable_message_notifications">Обавештења о порукама</string>
   <string name="preferences__led_color">Боја ЛЕД светла</string>
   <string name="preferences__led_color_unknown">Непозната</string>
@@ -728,30 +770,30 @@
   <string name="preferences__sound">Звук</string>
   <string name="preferences__change_notification_sound">Промени звук обавештења</string>
   <string name="preferences__inthread_notifications">Обавештења унутар нити</string>
-  <string name="preferences__play_inthread_notifications">Пусти звук обавештења на приказу активне преписке</string>
+  <string name="preferences__play_inthread_notifications">Звук обавештења на приказу активне преписке</string>
   <string name="preferences__repeat_alerts">Понављај обавештења</string>
-  <string name="preferences__never">Никад</string>
-  <string name="preferences__one_time">Једном</string>
-  <string name="preferences__two_times">Два пута</string>
-  <string name="preferences__three_times">Три пута</string>
-  <string name="preferences__five_times">5 пута</string>
-  <string name="preferences__ten_times">Десет пута</string>
+  <string name="preferences__never">никад</string>
+  <string name="preferences__one_time">једном</string>
+  <string name="preferences__two_times">два пута</string>
+  <string name="preferences__three_times">три пута</string>
+  <string name="preferences__five_times">пет пута</string>
+  <string name="preferences__ten_times">десет пута</string>
   <string name="preferences__vibrate">Вибрирање</string>
   <string name="preferences__also_vibrate_when_notified">Вибрирање при обавештењу</string>
   <string name="preferences__minutes">минута</string>
   <string name="preferences__hours">сати</string>
-  <string name="preferences__green">Зелена</string>
-  <string name="preferences__red">Црвена</string>
-  <string name="preferences__blue">Плава</string>
-  <string name="preferences__orange">Наранџаста</string>
-  <string name="preferences__cyan">Цијан</string>
-  <string name="preferences__magenta">Магента</string>
-  <string name="preferences__white">Бела</string>
-  <string name="preferences__none">Ништа</string>
-  <string name="preferences__fast">Брзо</string>
-  <string name="preferences__normal">Нормално</string>
-  <string name="preferences__slow">Споро</string>
-  <string name="preferences__custom">Посебно</string>
+  <string name="preferences__green">зелена</string>
+  <string name="preferences__red">црвена</string>
+  <string name="preferences__blue">плава</string>
+  <string name="preferences__orange">наранџаста</string>
+  <string name="preferences__cyan">цијан</string>
+  <string name="preferences__magenta">магента</string>
+  <string name="preferences__white">бела</string>
+  <string name="preferences__none">ниједна</string>
+  <string name="preferences__fast">брзо</string>
+  <string name="preferences__normal">нормално</string>
+  <string name="preferences__slow">споро</string>
+  <string name="preferences__custom">посебно</string>
   <string name="preferences__advanced">Напредно</string>
   <string name="preferences__privacy">Приватност</string>
   <string name="preferences__mms_user_agent">ММС кориснички агент</string>
@@ -765,23 +807,22 @@
   <string name="preferences__mmsc_password">ММСЦ лозинка</string>
   <string name="preferences__sms_delivery_reports">Извештаји о испоруци СМС-а</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Захтевај извештај о испоруци за сваку послату СМС поруку</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Аутоматски обриши старе поруке када нит преписке пређе наведену дужину</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Аутоматско брисање старих порука када нит преписке пређе наведену дужину</string>
   <string name="preferences__delete_old_messages">Бриши старе поруке</string>
   <string name="preferences__chats">Ћаскања и медији</string>
   <string name="preferences__conversation_length_limit">Ограничење дужине преписке</string>
   <string name="preferences__trim_all_threads_now">Скрати све нити сада</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Претражи све нити преписки и наметни ограничења дужине</string>
-  <string name="preferences__light_theme">Светла</string>
-  <string name="preferences__dark_theme">Тамна</string>
+  <string name="preferences__light_theme">светла</string>
+  <string name="preferences__dark_theme">тамна</string>
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Тема</string>
   <string name="preferences__theme_summary">Тема %s</string>
-  <string name="preferences__default">Подразумевано</string>
+  <string name="preferences__default">подразумеван</string>
   <string name="preferences__language">Језик</string>
   <string name="preferences__language_summary">Језик %s</string>
-  <string name="preferences__signal">Сигнал</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_signal_users">
-Бесплатне приватне поруке и позиви корисницима Сигнала</string>
+  <string name="preferences__signal_messages_and_calls">Поруке и позиви преко Сигнала</string>
+  <string name="preferences__free_private_messages_and_calls">Бесплатне приватне поруке и позиви корисницима Сигнала</string>
   <string name="preferences__submit_debug_log">Пошаљи дневник исправљања грешака</string>
   <string name="preferences__support_wifi_calling">Компатибилност са „бежичним позивањем“</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Омогућите ако ваш уређај доставља СМС/ММС преко бежичне мреже (омогућите само ако је „WiFi Calling“ омогућено на вашем уређају)</string>
@@ -820,7 +861,6 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Позови</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Започни безбедну сесију</string>
   <string name="conversation_insecure__security">Безбедност</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Обриши изабрано</string>
@@ -866,15 +906,27 @@
   <string name="text_secure_normal__menu_settings">Поставке</string>
   <string name="text_secure_normal__menu_clear_passphrase">Закључај</string>
   <string name="text_secure_normal__mark_all_as_read">Означи све прочитаним</string>
+  <string name="text_secure_normal__invite_friends">Позовите пријатеље</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ваше издање Сигнала је истекло!</string>
   <string name="reminder_header_expired_build_details">Више нећете моћи да шаљете поруке успешно, надоградите на најскорије издање.</string>
-  <string name="reminder_header_sms_default_title">Користити као подразумевану СМС апликацију?</string>
+  <string name="reminder_header_expired_build_button">НАДОГРАДИ</string>
+  <string name="reminder_header_sms_default_title">Користи као подразумевану апл. за СМС</string>
   <string name="reminder_header_sms_default_text">Тапните да поставите Сигнал за подразумевану апликацију за СМС.</string>
-  <string name="reminder_header_sms_import_title">Увести СМС поруке са система?</string>
+  <string name="reminder_header_sms_default_button">ПОСТАВИ</string>
+  <string name="reminder_header_sms_import_title">Увези системске СМС</string>
   <string name="reminder_header_sms_import_text">Тапните да копирате СМС поруке са вашег телефона у шифровану базу.</string>
-  <string name="reminder_header_push_title">Омогућити Сигналове поруке?</string>
-  <string name="reminder_header_push_text">Тапните за тренутну испоруку, јачу приватност и без накнада за СМС.</string>
+  <string name="reminder_header_sms_import_button">УВЕЗИ</string>
+  <string name="reminder_header_push_title">Омогућите поруке и позиве преко Сигнала</string>
+  <string name="reminder_header_push_text">Побољшајте комуникацију.</string>
+  <string name="reminder_header_push_button">ОМОГУЋИ</string>
+  <string name="reminder_header_invite_title">Позови у Сигнал</string>
+  <string name="reminder_header_invite_text">Подигните комуникацију са %1$s на идући ниво.</string>
+  <string name="reminder_header_invite_button">ПОЗОВИ</string>
+  <string name="reminder_header_share_title">Позовите ваше пријатеље!</string>
+  <string name="reminder_header_share_text">Што га више пријатеља користи, Сигнал је бољи.</string>
+  <string name="reminder_header_share_button">ДЕЛИ</string>
+  <string name="reminder_header_close_button">ЗАТВОРИ</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ви</string>
   <string name="MediaPreviewActivity_cant_display">Неуспех приказа ове слике</string>
@@ -884,10 +936,11 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Приказ слике</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Телефон</string>
   <string name="redphone_audio_popup_menu__headset">Слушалице са мик.</string>
   <string name="redphone_audio_popup_menu__speaker">Звучник</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">Бришем</string>
+  <string name="trimmer__deleting">Брисање</string>
   <string name="trimmer__deleting_old_messages">Бришем старе поруке...</string>
   <string name="trimmer__old_messages_successfully_deleted">Старе поруке успешно обрисане</string>
   <!--transport_selection_list_item-->

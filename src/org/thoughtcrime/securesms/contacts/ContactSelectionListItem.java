@@ -58,7 +58,9 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
     } else if (!TextUtils.isEmpty(number)) {
       this.recipients = RecipientFactory.getRecipientsFromString(getContext(), number, true);
 
-      if (this.recipients.getPrimaryRecipient().getName() != null) {
+      if (this.recipients.getPrimaryRecipient() != null &&
+          this.recipients.getPrimaryRecipient().getName() != null)
+      {
         name = this.recipients.getPrimaryRecipient().getName();
       }
 

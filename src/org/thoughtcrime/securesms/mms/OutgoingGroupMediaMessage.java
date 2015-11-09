@@ -1,36 +1,45 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduPart;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 
   private final GroupContext group;
 
-  public OutgoingGroupMediaMessage(Context context, Recipients recipients,
-                                   GroupContext group, byte[] avatar)
+  public OutgoingGroupMediaMessage(@NonNull Recipients recipients,
+                                   @NonNull String encodedGroupContext,
+                                   @NonNull List<Attachment> avatar,
+                                   long sentTimeMillis)
+      throws IOException
   {
-    super(context, recipients, new PduBody(), Base64.encodeBytes(group.toByteArray()),
+    super(recipients, encodedGroupContext, avatar, sentTimeMillis,
+          ThreadDatabase.DistributionTypes.CONVERSATION);
+
+    this.group = GroupContext.parseFrom(Base64.decode(encodedGroupContext));
+  }
+
+  public OutgoingGroupMediaMessage(@NonNull Recipients recipients,
+                                   @NonNull GroupContext group,
+                                   @Nullable final Attachment avatar,
+                                   long sentTimeMillis)
+  {
+    super(recipients, Base64.encodeBytes(group.toByteArray()),
+          new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
+          System.currentTimeMillis(),
           ThreadDatabase.DistributionTypes.CONVERSATION);
 
     this.group = group;
-
-    if (avatar != null) {
-      PduPart part = new PduPart();
-      part.setData(avatar);
-      part.setContentType(ContentType.IMAGE_PNG.getBytes());
-      part.setContentId((System.currentTimeMillis()+"").getBytes());
-      part.setName(("Image" + System.currentTimeMillis()).getBytes());
-      body.addPart(part);
-    }
   }
 
   @Override
@@ -44,5 +53,9 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 
   public boolean isGroupQuit() {
     return group.getType().getNumber() == GroupContext.Type.QUIT_VALUE;
+  }
+
+  public GroupContext getGroupContext() {
+    return group;
   }
 }

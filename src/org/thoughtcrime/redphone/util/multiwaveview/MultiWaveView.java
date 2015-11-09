@@ -49,6 +49,9 @@ import java.util.ArrayList;
  * causes an event that can be caught by implementing OnTriggerListener.
  */
 public class MultiWaveView extends View {
+
+    private static final int ANIMATION_VERSION = Build.VERSION_CODES.JELLY_BEAN;
+
     private static final String TAG = "MultiWaveView";
     private static final boolean DEBUG = false;
 
@@ -160,7 +163,7 @@ public class MultiWaveView extends View {
         this.mContext = context.getApplicationContext();
         Resources res = context.getResources();
 
-        if (Build.VERSION.SDK_INT >= 11) {
+        if (Build.VERSION.SDK_INT >= ANIMATION_VERSION) {
           animationsWrapper = new AnimationsWrapper();
         }
 
@@ -308,7 +311,7 @@ public class MultiWaveView extends View {
      * mFeedbackCount items in the order: left, right, top, bottom.
      */
     private void startChevronAnimation() {
-      if (Build.VERSION.SDK_INT < 11) return;
+      if (Build.VERSION.SDK_INT < ANIMATION_VERSION) return;
 
         final float r = mHandleDrawable.getWidth() * 0.4f;
         final float chevronAnimationDistance = mOuterRadius * 0.9f;
@@ -347,7 +350,7 @@ public class MultiWaveView extends View {
     }
 
     private void stopChevronAnimation() {
-      if (Build.VERSION.SDK_INT < 11) return;
+      if (Build.VERSION.SDK_INT < ANIMATION_VERSION) return;
 
         for (Tweener anim : mChevronAnimations) {
             anim.animator.end();
@@ -356,7 +359,7 @@ public class MultiWaveView extends View {
     }
 
     private void stopHandleAnimation() {
-      if (Build.VERSION.SDK_INT < 11) return;
+      if (Build.VERSION.SDK_INT < ANIMATION_VERSION) return;
 
         if (mHandleAnimation != null) {
             mHandleAnimation.animator.end();
@@ -422,7 +425,7 @@ public class MultiWaveView extends View {
             // Inform listener of any active targets.  Typically only one will be active.
             if (DEBUG) Log.v(TAG, "Finish with target hit = " + targetHit);
             dispatchTriggerEvent(mActiveTarget);
-            if (Build.VERSION.SDK_INT >= 11) {
+            if (Build.VERSION.SDK_INT >= ANIMATION_VERSION) {
               mHandleAnimation = Tweener.to(mHandleDrawable, 0,
                       "ease", Ease.Quart.easeOut,
                       "delay", RETURN_TO_HOME_DELAY,
@@ -438,7 +441,7 @@ public class MultiWaveView extends View {
             }
         } else {
             // Animate finger outline back to home position
-          if (Build.VERSION.SDK_INT >= 11) {
+          if (Build.VERSION.SDK_INT >= ANIMATION_VERSION) {
             mHandleAnimation = Tweener.to(mHandleDrawable, RETURN_TO_HOME_DURATION,
                     "ease", Ease.Quart.easeOut,
                     "delay", 0,
@@ -473,7 +476,7 @@ public class MultiWaveView extends View {
         // Note: these animations should complete at the same time so that we can swap out
         // the target assets asynchronously from the setTargetResources() call.
         mAnimatingTargets = animate;
-        if (animate && Build.VERSION.SDK_INT >= 11) {
+        if (animate && Build.VERSION.SDK_INT >= ANIMATION_VERSION) {
             final int duration = animate ? HIDE_ANIMATION_DURATION : 0;
             for (TargetDrawable target : mTargetDrawables) {
                 target.setState(TargetDrawable.STATE_INACTIVE);
@@ -501,7 +504,7 @@ public class MultiWaveView extends View {
             stopTargetAnimation();
         }
         mAnimatingTargets = animate;
-        if (animate && Build.VERSION.SDK_INT >= 11) {
+        if (animate && Build.VERSION.SDK_INT >= ANIMATION_VERSION) {
             for (TargetDrawable target : mTargetDrawables) {
                 target.setState(TargetDrawable.STATE_INACTIVE);
                 mTargetAnimations.add(Tweener.to(target, SHOW_ANIMATION_DURATION,
@@ -524,7 +527,7 @@ public class MultiWaveView extends View {
     }
 
     private void stopTargetAnimation() {
-      if (Build.VERSION.SDK_INT < 11) return;
+      if (Build.VERSION.SDK_INT < ANIMATION_VERSION) return;
 
         for (Tweener anim : mTargetAnimations) {
             anim.animator.end();
@@ -632,7 +635,7 @@ public class MultiWaveView extends View {
      *
      */
     public void ping() {
-      if (Build.VERSION.SDK_INT >= 11) {
+      if (Build.VERSION.SDK_INT >= ANIMATION_VERSION) {
         stopChevronAnimation();
         startChevronAnimation();
       }
@@ -654,7 +657,7 @@ public class MultiWaveView extends View {
         mHandleDrawable.setY(mWaveCenterY);
         mHandleDrawable.setState(TargetDrawable.STATE_INACTIVE);
 
-        if (Build.VERSION.SDK_INT >= 11)
+        if (Build.VERSION.SDK_INT >= ANIMATION_VERSION)
           Tweener.reset();
     }
 

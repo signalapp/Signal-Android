@@ -47,9 +47,9 @@ import java.util.Set;
 public class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationListAdapter.ViewHolder> {
 
   private final ThreadDatabase    threadDatabase;
+  private final MasterSecret      masterSecret;
   private final MasterCipher      masterCipher;
   private final Locale            locale;
-  private final Context           context;
   private final LayoutInflater    inflater;
   private final ItemClickListener clickListener;
 
@@ -86,8 +86,8 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
                                  @Nullable Cursor cursor,
                                  @Nullable ItemClickListener clickListener) {
     super(context, cursor);
+    this.masterSecret   = masterSecret;
     this.masterCipher   = new MasterCipher(masterSecret);
-    this.context        = context;
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
     this.locale         = locale;
     this.inflater       = LayoutInflater.from(context);
@@ -95,21 +95,21 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   }
 
   @Override
-  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     return new ViewHolder((ConversationListItem)inflater.inflate(R.layout.conversation_list_item_view,
                                                                  parent, false), clickListener);
   }
 
-  @Override public void onViewRecycled(ViewHolder holder) {
+  @Override public void onItemViewRecycled(ViewHolder holder) {
     holder.getItem().unbind();
   }
 
   @Override
-  public void onBindViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
+  public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
     ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
     ThreadRecord          record = reader.getCurrent();
 
-    viewHolder.getItem().set(record, locale, batchSet, batchMode);
+    viewHolder.getItem().set(masterSecret, record, locale, batchSet, batchMode);
   }
 
   public void toggleThreadInBatchSet(long threadId) {

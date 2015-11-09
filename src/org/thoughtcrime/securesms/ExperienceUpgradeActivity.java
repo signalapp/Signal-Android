@@ -31,8 +31,6 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import java.util.Collections;
 import java.util.List;
 
-import me.relex.circleindicator.CircleIndicator;
-
 public class ExperienceUpgradeActivity extends BaseActionBarActivity {
   private static final String TAG             = ExperienceUpgradeActivity.class.getSimpleName();
   private static final int    NOTIFICATION_ID = 1339;
@@ -112,18 +110,10 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
     }
 
     setContentView(R.layout.experience_upgrade_activity);
-    final ViewPager            pager     = ViewUtil.findById(this, R.id.pager);
-    final CircleIndicator      indicator = ViewUtil.findById(this, R.id.indicator);
-    final FloatingActionButton fab       = ViewUtil.findById(this, R.id.fab);
+    final ViewPager            pager = ViewUtil.findById(this, R.id.pager);
+    final FloatingActionButton fab   = ViewUtil.findById(this, R.id.fab);
 
     pager.setAdapter(new IntroPagerAdapter(getSupportFragmentManager(), upgrade.get().getPages()));
-
-    if (upgrade.get().getPages().size() > 1) {
-      indicator.setViewPager(pager);
-      indicator.setOnPageChangeListener(new OnPageChangeListener(upgrade.get()));
-    } else {
-      indicator.setVisibility(View.GONE);
-    }
 
     fab.setOnClickListener(new OnClickListener() {
       @Override
@@ -134,13 +124,6 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
 
     getWindow().setBackgroundDrawable(new ColorDrawable(upgrade.get().getPage(0).backgroundColor));
     ServiceUtil.getNotificationManager(this).cancel(NOTIFICATION_ID);
-  }
-
-  @TargetApi(VERSION_CODES.LOLLIPOP)
-  private void setStatusBarColor(int color) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(color);
-    }
   }
 
   private void onContinue(Optional<ExperienceUpgrade> seenUpgrade) {

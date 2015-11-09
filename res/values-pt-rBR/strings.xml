@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Signal</string>
   <string name="yes">Sim</string>
   <string name="no">Não</string>
   <string name="delete">Excluir</string>
@@ -17,10 +18,13 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Signal?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitado</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para mudar seu app padrão de SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS desabilitado</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Signal o seu app padrão de SMS</string>
   <string name="ApplicationPreferencesActivity_on">ligado</string>
   <string name="ApplicationPreferencesActivity_On">Ligado</string>
   <string name="ApplicationPreferencesActivity_off">desligado</string>
@@ -42,6 +46,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">Informações de contato</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contatos bloqueados</string>
+  <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Talvez você queira verificar
         este contato.
@@ -65,10 +70,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Contingenciar para MMS não criptografado?</string>
   <string name="ConversationItem_unable_to_open_media">Não localizei um aplicativo para abrir o arquivo.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniciar sessão segura com %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Confirmação de término de sessão segura</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Tem certeza que deseja encerrar esta sessão segura?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Confirmação de exclusão da conversa</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Tem certeza que deseja excluir permanentemente esta conversa?</string>
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
@@ -93,8 +94,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
-  <string name="ConversationActivity_get_with_it">Baixar com: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %s</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS não suportado</string>
   <string name="ConversationActivity_mms_not_supported_message">Esta mensagem não pode ser enviada pois sua operadora não tem suporte a MMS.</string>
@@ -103,12 +103,11 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Tem certeza que deseja desbloquear este contato?</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede os limites de tamanho para o tipo de mensagem sendo enviada.</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Câmera indisponível</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s\nEnviadas/Recebidas: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Remetente: %1$s\nTransporte: %2$s\nEnviadas: %3$s\nRecebidas: %4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Confirmação de exclusão de mensagem</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Tem certeza que deseja excluir permanentemente todas as mensagens selecionadas?</string>
   <string name="ConversationFragment_save_to_sd_card">Salvar no cartão SD?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Salvar esta mídia no armazenamento permitirá que quaisquer outros aplicativos em seu telefone possam acessá-la.\n\nContinuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o cartão SD!</string>
@@ -117,6 +116,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationFragment_saving_attachment">Salvando anexo</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Salvando anexo no cartão SD...</string>
   <string name="ConversationFragment_pending">Pendente...</string>
+  <string name="ConversationFragment_push">Dados (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Excluindo</string>
@@ -124,8 +124,6 @@ Tem certeza que deseja fazer isto?</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Procurar</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Excluir conversas?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Tem certeza que deseja excluir TODAS as conversas selecionadas?</string>
   <string name="ConversationListFragment_deleting">Deletando</string>
   <string name="ConversationListFragment_deleting_selected_threads">Excluindo conversas selecionadas...</string>
   <!--ConversationListItem-->
@@ -152,9 +150,17 @@ Tem certeza que deseja fazer isto?</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartilhar com</string>
   <!--ExperienceUpgradeActivity-->
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bem vindo ao Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um mensageiro privado, para todas as situações: Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bem vindo ao Signal!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure agora é Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são um app: Signal. Clique para explorar.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportar</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportar texto claro para cartão SD?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Aviso, isto irá
+        exportar os conteúdos em texto claro das suas mensagens Signal para o cartão SD.
+    </string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportando</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando texto claro para cartão SD...</string>
@@ -162,6 +168,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Erro durante escrita no cartão SD.</string>
   <string name="ExportFragment_success">Sucesso!</string>
   <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Novo grupo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Atualizar grupo</string>
@@ -200,6 +207,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ImportFragment_restoring_encrypted_backup">Restaurando backup criptografado...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nenhum backup criptografado encontrado!</string>
   <string name="ImportFragment_restore_complete">Restauração finalizada!</string>
+  <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Não foi encontrada nenhuma chave lida!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalar scanner de código de barras?</string>
@@ -251,7 +259,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="RatingManager_later">Mais tarde</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear esta contato?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Você não verá mais mensagens enviadas por este usuário.</string>
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Desbloquear este contato?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Tem certeza que deseja desbloquear este contato?</string>
@@ -322,11 +329,9 @@ Tem certeza que deseja fazer isto?</string>
         Mensagem recebida com chave de identidade desconhecida. Clique para processar e exibir.
     </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Foi recebida atualização mas com informação de identidade desconhecida. Clique para validar a identidade.</string>
-  <string name="SmsMessageRecord_secure_session_ended">Sessão segura terminada.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Saiu do grupo...</string>
-  <string name="TheadRecord_secure_session_ended">Sessão segura terminada.</string>
   <string name="ThreadRecord_draft">Rascunho:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>
@@ -350,7 +355,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">Minha fingerprint</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Já enviou um pedido de início de sessão para este destinatário, tem a certeza que pretende enviar outro? Isto invalidará o pedido anterior.</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem cifrada corrompida...</string>
@@ -395,6 +399,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdo escondido</string>
+  <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
@@ -471,6 +476,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="import_fragment__import_plaintext_backup">Importar backup de texto claro</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
         Importar um backup de texto claro. Compatível com \'SMSBackup And Restore.\'</string>
+  <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Nenhuma imagem</string>
   <!--message_recipients_list_item-->
@@ -720,7 +726,6 @@ falhou.</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convidar</string>
   <!--conversation_insecure_no_push-->
-  <string name="conversation_insecure__menu_start_secure_session">Iniciar sessão segura</string>
   <string name="conversation_insecure__security">Segurança</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Excluir selecionadas</string>
@@ -767,10 +772,7 @@ falhou.</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">As mensagens não serão enviadas com sucesso, favor atualizar para a versão mais recente.</string>
-  <string name="reminder_header_sms_default_title">Usar como app SMS padrão?</string>
-  <string name="reminder_header_sms_import_title">Importar mensagens SMS do sistema?</string>
   <string name="reminder_header_sms_import_text">Clique para copiar as mensagens SMS do seu telefone para a base de dados criptografada.</string>
-  <string name="reminder_header_push_text">Clique para ter entrega imediata, forte privacidade, e sem cobranças de SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_cant_display">Falha ao pré-visualizar esta imagem</string>

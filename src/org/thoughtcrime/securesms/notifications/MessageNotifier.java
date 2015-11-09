@@ -50,10 +50,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
 import java.io.IOException;
@@ -120,8 +118,15 @@ public class MessageNotifier {
                                         boolean   includePushDatabase,
                                         long      threadId)
   {
-    Recipients recipients = DatabaseFactory.getThreadDatabase(context)
-                                           .getRecipientsForThreadId(threadId);
+    boolean    isVisible  = visibleThread == threadId;
+
+    ThreadDatabase threads    = DatabaseFactory.getThreadDatabase(context);
+    Recipients     recipients = DatabaseFactory.getThreadDatabase(context)
+                                               .getRecipientsForThreadId(threadId);
+
+    if (isVisible) {
+      threads.setRead(threadId);
+    }
 
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||
         (recipients != null && recipients.isMuted()))
@@ -129,9 +134,7 @@ public class MessageNotifier {
       return;
     }
 
-    if (visibleThread == threadId) {
-      ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
-      threads.setRead(threadId);
+    if (isVisible) {
       sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
     } else {
       updateNotification(context, masterSecret, true, includePushDatabase, 0);
@@ -347,13 +350,13 @@ public class MessageNotifier {
     else                      reader = DatabaseFactory.getMmsSmsDatabase(context).readerFor(cursor, masterSecret);
 
     while ((record = reader.getNext()) != null) {
-      Recipient                       recipient        = record.getIndividualRecipient();
-      Recipients                      recipients       = record.getRecipients();
-      long                            threadId         = record.getThreadId();
-      CharSequence                    body             = record.getDisplayBody();
-      Recipients                      threadRecipients = null;
-      ListenableFutureTask<SlideDeck> slideDeck        = null;
-      long            timestamp;
+      Recipient    recipient        = record.getIndividualRecipient();
+      Recipients   recipients       = record.getRecipients();
+      long         threadId         = record.getThreadId();
+      CharSequence body             = record.getDisplayBody();
+      Recipients   threadRecipients = null;
+      SlideDeck    slideDeck        = null;
+      long         timestamp;
 
       if (record.isPush()) timestamp = record.getDateSent();
       else                 timestamp = record.getDateReceived();
@@ -366,12 +369,12 @@ public class MessageNotifier {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
       } else if (record.isMms() && TextUtils.isEmpty(body)) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
-        slideDeck = ((MediaMmsMessageRecord)record).getSlideDeckFuture();
+        slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
       } else if (record.isMms() && !record.isMmsNotification()) {
         String message      = context.getString(R.string.MessageNotifier_media_message_with_text, body);
         int    italicLength = message.length() - body.length();
         body = SpanUtil.italic(message, italicLength);
-        slideDeck = ((MediaMmsMessageRecord)record).getSlideDeckFuture();
+        slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {

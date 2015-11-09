@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.lang.ref.SoftReference;
@@ -68,12 +69,12 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
-  private final ItemClickListener      clickListener;
-  private final MasterSecret           masterSecret;
-  private final Locale                 locale;
-  private final boolean                groupThread;
-  private final MmsSmsDatabase         db;
-  private final LayoutInflater         inflater;
+  private final ItemClickListener clickListener;
+  private final MasterSecret      masterSecret;
+  private final Locale            locale;
+  private final Recipients        recipients;
+  private final MmsSmsDatabase    db;
+  private final LayoutInflater    inflater;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -96,15 +97,15 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
                              @NonNull Locale locale,
                              @Nullable ItemClickListener clickListener,
                              @Nullable Cursor cursor,
-                             boolean groupThread)
+                             @NonNull Recipients recipients)
   {
     super(context, cursor);
-    this.masterSecret    = masterSecret;
-    this.locale          = locale;
-    this.clickListener   = clickListener;
-    this.groupThread     = groupThread;
-    this.inflater        = LayoutInflater.from(context);
-    this.db              = DatabaseFactory.getMmsSmsDatabase(context);
+    this.masterSecret  = masterSecret;
+    this.locale        = locale;
+    this.clickListener = clickListener;
+    this.recipients    = recipients;
+    this.inflater      = LayoutInflater.from(context);
+    this.db            = DatabaseFactory.getMmsSmsDatabase(context);
   }
 
   @Override
@@ -113,15 +114,15 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     super.changeCursor(cursor);
   }
 
-  @Override public void onBindViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
+  @Override public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
     long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
     String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, groupThread);
+    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipients);
   }
 
-  @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  @Override public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     final V itemView = ViewUtil.inflate(inflater, parent, getLayoutForViewType(viewType));
     if (viewType == MESSAGE_TYPE_INCOMING || viewType == MESSAGE_TYPE_OUTGOING) {
       itemView.setOnClickListener(new OnClickListener() {
@@ -142,7 +143,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     return new ViewHolder(itemView);
   }
 
-  @Override public void onViewRecycled(ViewHolder holder) {
+  @Override public void onItemViewRecycled(ViewHolder holder) {
     holder.getView().unbind();
   }
 
@@ -157,13 +158,17 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public int getItemViewType(@NonNull Cursor cursor) {
-    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
-    String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+    long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
+    String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    if      (messageRecord.isGroupAction() || messageRecord.isCallLog()) return MESSAGE_TYPE_UPDATE;
-    else if (messageRecord.isOutgoing())                                 return MESSAGE_TYPE_OUTGOING;
-    else                                                                 return MESSAGE_TYPE_INCOMING;
+    if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined()) {
+      return MESSAGE_TYPE_UPDATE;
+    } else if (messageRecord.isOutgoing()) {
+      return MESSAGE_TYPE_OUTGOING;
+    } else {
+      return MESSAGE_TYPE_INCOMING;
+    }
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {

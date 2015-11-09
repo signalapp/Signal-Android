@@ -21,6 +21,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
 import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
+import org.thoughtcrime.redphone.signaling.UnauthorizedException;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.LogSubmitActivity;
@@ -154,7 +155,7 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       private final CheckBoxPreference checkBoxPreference;
 
       public DisablePushMessagesTask(final CheckBoxPreference checkBoxPreference) {
-        super(getActivity(), R.string.ApplicationPreferencesActivity_unregistering, R.string.ApplicationPreferencesActivity_unregistering_from_signal_messages);
+        super(getActivity(), R.string.ApplicationPreferencesActivity_unregistering, R.string.ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls);
         this.checkBoxPreference = checkBoxPreference;
       }
 
@@ -184,16 +185,22 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
                                                                                        TextSecurePreferences.getLocalNumber(context),
                                                                                        TextSecurePreferences.getPushServerPassword(context));
 
-          accountManager.setGcmId(Optional.<String>absent());
-
           if (TextSecurePreferences.isGcmRegistered(context)) {
-            redPhoneAccountManager.setGcmId(Optional.<String>absent());
+            try {
+              accountManager.setGcmId(Optional.<String>absent());
+            } catch (AuthorizationFailedException e) {
+              Log.w(TAG, e);
+            }
+
+            try {
+              redPhoneAccountManager.setGcmId(Optional.<String>absent());
+            } catch (UnauthorizedException e) {
+              Log.w(TAG, e);
+            }
+
             GoogleCloudMessaging.getInstance(context).unregister();
           }
 
-          return SUCCESS;
-        } catch (AuthorizationFailedException afe) {
-          Log.w(TAG, afe);
           return SUCCESS;
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
@@ -207,8 +214,8 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       if (((CheckBoxPreference)preference).isChecked()) {
         AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
         builder.setIconAttribute(R.attr.dialog_info_icon);
-        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_signal_messages);
-        builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_signal_messages);
+        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_signal_messages_and_calls);
+        builder.setMessage(R.string.ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering);
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
           @Override

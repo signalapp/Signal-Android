@@ -70,7 +70,7 @@ public class RecipientProvider {
                                        ContactColors.UNKNOWN_COLOR));
   }};
 
-  Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
+  @NonNull Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(recipientId);
     if (cachedRecipient != null && !cachedRecipient.isStale()) return cachedRecipient;
 
@@ -86,7 +86,7 @@ public class RecipientProvider {
     return cachedRecipient;
   }
 
-  Recipients getRecipients(Context context, long[] recipientIds, boolean asynchronous) {
+  @NonNull Recipients getRecipients(Context context, long[] recipientIds, boolean asynchronous) {
     Recipients cachedRecipients = recipientsCache.get(new RecipientIds(recipientIds));
     if (cachedRecipients != null && !cachedRecipients.isStale()) return cachedRecipients;
 
