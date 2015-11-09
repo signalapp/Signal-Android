@@ -317,6 +317,19 @@
         </intent-filter>
     </activity>
 
+    <activity android:name="org.thoughtcrime.redphone.RedPhoneShare"
+              android:theme="@style/NoAnimation.Theme.BlackScreen"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call" />
+        </intent-filter>
+
+    </activity>
+
     <activity android:name=".RecipientPreferenceActivity"
               android:theme="@style/TextSecure.LightNoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
