@@ -14,7 +14,7 @@ The following steps should help you (re)build TextSecure from the command line.
 
 1. Checkout the source somewhere on your filesystem with 
 
-        git clone https://github.com/WhisperSystems/TextSecure.git
+        git clone https://github.com/WhisperSystems/Signal-Android.git
 
 2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed somewhere on your system.
 3. Ensure that the following packages are installed from the Android SDK manager:
@@ -48,10 +48,11 @@ Setting up a development environment
 [Android Studio](https://developer.android.com/sdk/installing/studio.html) is the recommended development environment.
 
 1. Install Android Studio.
-2. Make sure the "Android Support Repository" is installed in the Android Studio SDK.
-3. Make sure the latest "Android SDK build-tools" is installed in the Android Studio SDK.
-4. Create a new Android Studio project. from the Quickstart pannel (use File > Close Project to see it), choose "Checkout from Version Control" then "git".
-5. Paste the URL for the TextSecure project when prompted (https://github.com/WhisperSystems/TextSecure.git).
+2. Open Android Studio. On a new installation, the Quickstart panel will appear. If you have open projects, close them using "File > Close Project" to see the Quickstart panel.
+3. From the Quickstart panel, choose "Configure" then "SDK Manager".
+4. In the SDK Tools tab of the SDK Manager, make sure that the "Android Support Repository" is installed, and that the latest "Android SDK build-tools" are installed. Click "OK" to return to the Quickstart panel.
+5. From the Quickstart panel, choose "Checkout from Version Control" then "git".
+5. Paste the URL for the TextSecure project when prompted (https://github.com/WhisperSystems/Signal-Android.git).
 6. Android studio should detect the presence of a project file and ask you whether to open it. Click "yes".
 7. Default config options should be good enough.
 8. Project initialisation and build should proceed.
@@ -67,3 +68,4 @@ Mailing list
 Development discussion happens on the whispersystems mailing list.
 [To join](https://lists.riseup.net/www/info/whispersystems)
 Send emails to whispersystems@lists.riseup.net
+
