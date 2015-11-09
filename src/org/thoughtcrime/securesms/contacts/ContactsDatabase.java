@@ -77,7 +77,8 @@ public class ContactsDatabase {
 
   public synchronized @NonNull List<String> setRegisteredUsers(@NonNull Account account,
                                                                @NonNull String localNumber,
-                                                               @NonNull List<ContactTokenDetails> registeredContacts)
+                                                               @NonNull List<ContactTokenDetails> registeredContacts,
+                                                               boolean remove)
       throws RemoteException, OperationApplicationException
   {
 
@@ -107,8 +108,10 @@ public class ContactsDatabase {
       ContactTokenDetails tokenDetails = registeredNumbers.get(currentContactEntry.getKey());
 
       if (tokenDetails == null) {
-        Log.w(TAG, "Removing number: " + currentContactEntry.getKey());
-        removeTextSecureRawContact(operations, account, currentContactEntry.getValue().getId());
+        if (remove) {
+          Log.w(TAG, "Removing number: " + currentContactEntry.getKey());
+          removeTextSecureRawContact(operations, account, currentContactEntry.getValue().getId());
+        }
       } else if (tokenDetails.isVoice() && !currentContactEntry.getValue().isVoiceSupported()) {
         Log.w(TAG, "Adding voice support: " + currentContactEntry.getKey());
         addContactVoiceSupport(operations, currentContactEntry.getKey(), currentContactEntry.getValue().getId());
@@ -298,7 +301,9 @@ public class ContactsDatabase {
                                            .build());
   }
 
-  private @NonNull Map<String, SignalContact> getSignalRawContacts(Account account, String localNumber) {
+  private @NonNull Map<String, SignalContact> getSignalRawContacts(@NonNull Account account,
+                                                                   @NonNull String localNumber)
+  {
     Uri currentContactsUri = RawContacts.CONTENT_URI.buildUpon()
                                                     .appendQueryParameter(RawContacts.ACCOUNT_NAME, account.name)
                                                     .appendQueryParameter(RawContacts.ACCOUNT_TYPE, account.type).build();
