@@ -41,6 +41,7 @@ public class GDataPreferences {
   private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
   private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
   private static final String CP_COLOR_ACTIVATED = "CP_COLOR_ACTIVATED";
+  private static final String COLOR_DEFAULT = "COLOR_DEFAULT";
 
 
   private final SharedPreferences mPreferences;
@@ -279,6 +280,12 @@ public class GDataPreferences {
   }
   public boolean getChatPartnersColorEnabled() {
     return mPreferences.getBoolean(CP_COLOR_ACTIVATED, true);
+  }
+  public boolean getColorDefaultEnabled() {
+    return mPreferences.getBoolean(COLOR_DEFAULT, true);
+  }
+  public void setColorDefaultEnabled(boolean b) {
+    mPreferences.edit().putBoolean(COLOR_DEFAULT, b).commit();
   }
 }
 

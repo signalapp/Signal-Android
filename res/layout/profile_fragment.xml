@@ -193,11 +193,24 @@
                         </LinearLayout>
                         </LinearLayout>
 
+                        <View
+                            android:id="@+id/devider_nine"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:background="?android:attr/listDivider" />
                         <CheckBox
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/enabled_chat_partners_color"
                             android:text="@string/profile_color_recipient"/>
+                        <CheckBox
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/color_default"
+                            android:text="@string/preferences__default"
+                            android:checked="false"/>
                     </LinearLayout>
                 </RelativeLayout>
 
