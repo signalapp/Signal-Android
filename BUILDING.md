@@ -1,22 +1,22 @@
-Building TextSecure
-=====================
+Building Signal
+===============
 
 Basics
 ------
 
-TextSecure uses [Gradle](http://gradle.org) to build the project and to maintain
+Signal uses [Gradle](http://gradle.org) to build the project and to maintain
 dependencies.
 
-Building TextSecure
--------------------
+Building Signal
+---------------
 
-The following steps should help you (re)build TextSecure from the command line.
+The following steps should help you (re)build Signal from the command line.
 
-1. Checkout the source somewhere on your filesystem with 
+1. Checkout the Signal-Android project source with the command:
 
         git clone https://github.com/WhisperSystems/Signal-Android.git
 
-2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed somewhere on your system.
+2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed.
 3. Ensure that the following packages are installed from the Android SDK manager:
     * Android SDK Build Tools
     * SDK Platform
@@ -38,8 +38,8 @@ Source assets tend to be large binary blobs, which are best stored outside of gi
 Sample command for generating our audio placeholder image:
 
 ```bash
-pngs_from_svg.py ic_audio.svg /path/to/TextSecure/res/ 150 --color #000 --opacity 0.54 --suffix _light
-pngs_from_svg.py ic_audio.svg /path/to/TextSecure/res/ 150 --color #fff --opacity 1.00 --suffix _light
+pngs_from_svg.py ic_audio.svg /path/to/Signal/res/ 150 --color #000 --opacity 0.54 --suffix _light
+pngs_from_svg.py ic_audio.svg /path/to/Signal/res/ 150 --color #fff --opacity 1.00 --suffix _light
 ```
 
 Setting up a development environment
@@ -52,10 +52,10 @@ Setting up a development environment
 3. From the Quickstart panel, choose "Configure" then "SDK Manager".
 4. In the SDK Tools tab of the SDK Manager, make sure that the "Android Support Repository" is installed, and that the latest "Android SDK build-tools" are installed. Click "OK" to return to the Quickstart panel.
 5. From the Quickstart panel, choose "Checkout from Version Control" then "git".
-5. Paste the URL for the TextSecure project when prompted (https://github.com/WhisperSystems/Signal-Android.git).
-6. Android studio should detect the presence of a project file and ask you whether to open it. Click "yes".
-7. Default config options should be good enough.
-8. Project initialisation and build should proceed.
+6. Paste the URL for the Signal-Android project when prompted (https://github.com/WhisperSystems/Signal-Android.git).
+7. Android studio should detect the presence of a project file and ask you whether to open it. Click "yes".
+9. Default config options should be good enough.
+9. Project initialisation and build should proceed.
 
 Contributing code
 -----------------
