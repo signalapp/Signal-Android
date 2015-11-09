@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.LightingColorFilter;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -125,6 +127,20 @@ public class GUtil {
         int green = Color.green(color);
         int blue = Color.blue(color);
         return Color.argb(alpha, red, green, blue);
+    }
+    public static int darken(int color, double fraction) {
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        red = darkenColor(red, fraction);
+        green = darkenColor(green, fraction);
+        blue = darkenColor(blue, fraction);
+        int alpha = Color.alpha(color);
+
+        return Color.argb(alpha, red, green, blue);
+    }
+    private static int darkenColor(int color, double fraction) {
+        return (int)Math.max(color - (color * fraction), 0);
     }
     /**
      * Sets the Typeface e.g. Roboto-Thin.tff for an Activity
