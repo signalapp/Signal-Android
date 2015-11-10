@@ -74,4 +74,6 @@
     <string name="preferences__versnr">版本</string>
     <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">发送收费短信/彩信之前请询问</string>
     <string name="profile_select_picture">选择个人头像</string>
+    <string name="profile_color_label">膚色</string>
+    <string name="profile_color_recipient">显示您聊天对象的颜色</string>
 </resources>
