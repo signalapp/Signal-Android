@@ -61,6 +61,11 @@ signing {
     sign configurations.archives
 }
 
+
+def sonatypeRepo            = sonatypeRepo != null ? sonatypeRepo : ""
+def whisperSonatypeUsername = whisperSonatypeUsername != null ? whisperSonatypeUsername : ""
+def whisperSonatypePassword = whisperSonatypePassword != null ? whisperSonatypePassword : ""
+
 uploadArchives {
     configuration = configurations.archives
     repositories.mavenDeployer {
