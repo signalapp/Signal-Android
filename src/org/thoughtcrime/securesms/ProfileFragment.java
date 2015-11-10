@@ -627,13 +627,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 gDataPreferences.setColorDefaultEnabled(colorDefault.isChecked());
                 seekBarFont.setEnabled(!gDataPreferences.getColorDefaultEnabled());
-                if(gDataPreferences.getColorDefaultEnabled()) {
-                    int color = getActivity().getResources().getColor(R.color.gdata_primary_color);
-                    floatingActionColorButton.setRippleColor(color);
-                    gDataPreferences.saveCurrentColorValue(color);
-                } else {
-                    floatingActionColorButton.setRippleColor(gDataPreferences.getCurrentColorHex());
-                }
+                floatingActionColorButton.setRippleColor(gDataPreferences.getCurrentColorHex());
             }
         });
         final int maxValueColorMOne = 255;
