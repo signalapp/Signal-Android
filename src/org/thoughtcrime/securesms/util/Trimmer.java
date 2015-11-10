@@ -8,6 +8,9 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
+
+import java.util.Set;
 
 public class Trimmer {
 
@@ -37,7 +40,10 @@ public class Trimmer {
 
     @Override
     protected Void doInBackground(Integer... params) {
+      Set<Long> unreadThreadIds = MessageNotifier.unreadThreadIds(context, null);
+
       DatabaseFactory.getThreadDatabase(context).trimAllThreads(params[0], this);
+      MessageNotifier.updateNotificationCancelRead(context, null, unreadThreadIds); // TODO update notifications here?
       return null;
     }
 

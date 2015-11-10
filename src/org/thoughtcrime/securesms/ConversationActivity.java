@@ -30,7 +30,6 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -654,6 +653,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(DialogInterface dialog, int which) {
         if (threadId > 0) {
           DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
+          MessageNotifier.updateNotificationCancelRead(ConversationActivity.this, masterSecret, threadId); // TODO necessary?
         }
         composeText.getText().clear();
         threadId = -1;
@@ -1202,8 +1202,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Long, Void, Void>() {
       @Override
       protected Void doInBackground(Long... params) {
-        DatabaseFactory.getThreadDatabase(ConversationActivity.this).setRead(params[0]);
-        MessageNotifier.updateNotification(ConversationActivity.this, masterSecret);
+        Long threadId = params[0];
+        DatabaseFactory.getThreadDatabase(ConversationActivity.this).setRead(threadId);
+        MessageNotifier.updateNotificationCancelRead(ConversationActivity.this, masterSecret, threadId);
         return null;
       }
     }.execute(threadId);
