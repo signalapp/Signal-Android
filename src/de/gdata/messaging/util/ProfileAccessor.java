@@ -228,7 +228,6 @@ public class ProfileAccessor {
     if(isPushDestination && isSecureDestination) {
       try {
         ProfileAccessor.sendProfileUpdate(GService.appContext, mMasterSecret, recipients);
-        Log.d("MYLOG", "MYLOG SEND IDENTY updateProfileInformations");
       } catch (InvalidMessageException e) {
         Log.w("GDATA", e);
       }
