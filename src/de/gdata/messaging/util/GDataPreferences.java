@@ -41,6 +41,7 @@ public class GDataPreferences {
   private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
   private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
   private static final String CP_COLOR_ACTIVATED = "CP_COLOR_ACTIVATED";
+  private static final long ONE_SECOND = 1000;
 
 
   private final SharedPreferences mPreferences;
@@ -88,7 +89,7 @@ public class GDataPreferences {
     return mPreferences.getLong("id:" +profileId, -1L);
   }
   public Long getProfilePartRow(String profileId) {
-    return mPreferences.getLong("row:"+profileId, -1L);
+    return mPreferences.getLong("row:" + profileId, -1L);
   }
   public void setProfileStatus(String profileStatus) {
     mPreferences.edit().putString(PROFILE_STATUS, profileStatus).commit();
@@ -279,6 +280,15 @@ public class GDataPreferences {
   }
   public boolean getChatPartnersColorEnabled() {
     return mPreferences.getBoolean(CP_COLOR_ACTIVATED, true);
+  }
+
+  public boolean isSoonAfterLastExchange(String id, long timestamp) {
+    boolean isSoonAfterLastExchange = false;
+    if(timestamp - mPreferences.getLong("lastExchange: "+id, 0) <= ONE_SECOND) {
+      isSoonAfterLastExchange = true;
+    }
+    mPreferences.edit().putLong("lastExchange: "+id,timestamp).commit();
+    return isSoonAfterLastExchange;
   }
 }
 

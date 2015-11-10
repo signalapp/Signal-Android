@@ -142,7 +142,9 @@ public class PushDecryptJob extends MasterSecretJob {
       handleDuplicateMessage(masterSecret, envelope, smsMessageId);
     } catch (UntrustedIdentityException e) {
       Log.w(TAG, e);
-      handleUntrustedIdentityMessage(masterSecret, envelope, smsMessageId);
+      if(!new GDataPreferences(context).isSoonAfterLastExchange(envelope.getSourceDevice()+"", envelope.getTimestamp())) {
+        handleUntrustedIdentityMessage(masterSecret, envelope, smsMessageId);
+      }
     }
     GUtil.reloadUnreadHeaderCounter();
   }
