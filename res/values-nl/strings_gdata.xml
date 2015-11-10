@@ -74,4 +74,6 @@
     <string name="preferences__versnr">Versie</string>
     <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Toestemming vragen vóór het verzenden van een factureerbare sms/mms</string>
     <string name="profile_select_picture">Profielfoto selecteren</string>
+    <string name="profile_color_label">kleur</string>
+    <string name="profile_color_recipient">Kleuren van jouw chatpartners weergeven</string>
 </resources>
