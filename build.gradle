@@ -81,7 +81,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.6'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:textsecure-android:1.8.1'
+    compile 'org.whispersystems:textsecure-android:1.8.2'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
 
     testCompile 'junit:junit:4.12'
@@ -132,14 +132,14 @@ dependencyVerification {
             'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
             'org.whispersystems:libpastelog:550d33c565380d90f4c671e7b8ed5f3a6da55a9fda468373177106b2eb5220b2',
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
-            'org.whispersystems:textsecure-android:66ef91b93a08f0a290ef14c5e66af21113cd4b2c814c231855011ba4763f41cc',
+            'org.whispersystems:textsecure-android:83634e792157e41a6eb2aef2a4cf5db5a13f0a8ce4e9917334200fe2d37f2401',
             'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
-            'org.whispersystems:textsecure-java:728a549830266cc1472054f400391cd946b25ea03ad76ac4839dd1cab626a247',
+            'org.whispersystems:textsecure-java:16adc2803623febce408189cd8a05ee57e3641cdd73be3e741211e6161aaf045',
             'org.whispersystems:axolotl-android:40d3db5004a84749a73f68d2f0d01b2ae35a73c54df96d8c6c6723b96efb6fc0',
-            'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
+            'com.googlecode.libphonenumber:libphonenumber:9625de9d2270e9a280ff4e6d9ef3106573fb4828773fd32c9b7614f4e17d2811',
             'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
             'com.squareup.okhttp:okhttp:89b7f63e2e5b6c410266abc14f50fe52ea8d2d8a57260829e499b1cd9f0e61af',
             'com.fasterxml.jackson.core:jackson-databind:835097bcdd11f5bc8a08378c70d4c8054dfa4b911691cc2752063c75534d198d',
