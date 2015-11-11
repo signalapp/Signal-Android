@@ -212,7 +212,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
                                                         remoteNumber, zid);
     this.currentCallManager.start();
 
-    NotificationBarManager.setCallInProgress(this, false);
+    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_OUTGOING_RINGING);
     DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(remoteNumber);
 
   }
@@ -389,7 +389,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     startCallCardActivity();
     incomingRinger.start();
 
-    NotificationBarManager.setCallInProgress(this, false);
+    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_INCOMING_RINGING);
   }
 
   public void notifyBusy() {
@@ -416,7 +416,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     state = STATE_CONNECTED;
     sendMessage(Type.CALL_CONNECTED, getRecipient(), sas.getSasText());
 
-    NotificationBarManager.setCallInProgress(this, true);
+    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_ESTABLISHED);
   }
 
   public void notifyConnectingtoInitiator() {

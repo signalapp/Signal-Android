@@ -310,6 +310,7 @@
     <string name="NotificationBarManager__deny_call">Deny call</string>
     <string name="NotificationBarManager__answer_call">Answer call</string>
     <string name="NotificationBarManager__end_call">End call</string>
+    <string name="NotificationBarManager__cancel_call">Cancel call</string>
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>

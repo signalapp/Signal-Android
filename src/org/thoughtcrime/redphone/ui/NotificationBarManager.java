@@ -38,6 +38,10 @@ public class NotificationBarManager {
   private static final int RED_PHONE_NOTIFICATION   = 313388;
   private static final int MISSED_CALL_NOTIFICATION = 313389;
 
+  public static final int TYPE_INCOMING_RINGING = 1;
+  public static final int TYPE_OUTGOING_RINGING = 2;
+  public static final int TYPE_ESTABLISHED      = 3;
+
   public static void setCallEnded(Context context) {
     NotificationManager notificationManager = (NotificationManager)context
         .getSystemService(Context.NOTIFICATION_SERVICE);
@@ -45,7 +49,7 @@ public class NotificationBarManager {
     notificationManager.cancel(RED_PHONE_NOTIFICATION);
   }
 
-  public static void setCallInProgress(Context context, boolean connected) {
+  public static void setCallInProgress(Context context, int type) {
     NotificationManager notificationManager = (NotificationManager)context
         .getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -58,15 +62,19 @@ public class NotificationBarManager {
                                                                .setContentIntent(pendingIntent)
                                                                .setOngoing(true);
 
-    if (connected) {
-      builder.setContentTitle(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
-      builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
-      builder.addAction(getEndCallAction(context));
-    } else {
+    if (type == TYPE_INCOMING_RINGING) {
       builder.setContentTitle(context.getString(R.string.NotificationBarManager__incoming_signal_call));
       builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call));
       builder.addAction(getDenyAction(context));
       builder.addAction(getAnswerAction(context));
+    } else if (type == TYPE_OUTGOING_RINGING) {
+      builder.setContentTitle(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.addAction(getCancelCallAction(context));
+    } else {
+      builder.setContentTitle(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.addAction(getEndCallAction(context));
     }
 
     notificationManager.notify(RED_PHONE_NOTIFICATION, builder.build());
@@ -79,6 +87,16 @@ public class NotificationBarManager {
     PendingIntent endCallPendingIntent = PendingIntent.getActivity(context, 0, endCallIntent, 0);
     return new NotificationCompat.Action(R.drawable.ic_call_end,
                                          context.getString(R.string.NotificationBarManager__end_call),
+                                         endCallPendingIntent);
+  }
+
+  private static NotificationCompat.Action getCancelCallAction(Context context) {
+    Intent endCallIntent = new Intent(context, RedPhone.class);
+    endCallIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    endCallIntent.setAction(RedPhone.END_CALL_ACTION);
+    PendingIntent endCallPendingIntent = PendingIntent.getActivity(context, 0, endCallIntent, 0);
+    return new NotificationCompat.Action(R.drawable.ic_call_end,
+                                         context.getString(R.string.NotificationBarManager__cancel_call),
                                          endCallPendingIntent);
   }
 
