@@ -93,12 +93,14 @@ public class AvatarImageView extends ImageView {
       this.context = context;
     }
 
-    @Override protected Pair<Recipients, Boolean> doInBackground(Recipients... recipients) {
+    @Override
+    protected Pair<Recipients, Boolean> doInBackground(Recipients... recipients) {
       Capability textCapability = DirectoryHelper.getUserCapabilities(context, recipients[0]).getTextCapability();
       return new Pair<>(recipients[0], textCapability == Capability.SUPPORTED);
     }
 
-    @Override protected void onPostExecute(Pair<Recipients, Boolean> result) {
+    @Override
+    protected void onPostExecute(Pair<Recipients, Boolean> result) {
       if (getTag() == result.first && result.second) {
         final Drawable badged = new LayerDrawable(new Drawable[] {
             getDrawable(),
