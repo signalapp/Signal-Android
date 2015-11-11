@@ -63,6 +63,10 @@ public class RedPhone extends Activity {
   private static final int STANDARD_DELAY_FINISH    = 1000;
   public  static final int BUSY_SIGNAL_DELAY_FINISH = 5500;
 
+  public static final String ANSWER_ACTION   = RedPhone.class.getName() + ".ANSWER_ACTION";
+  public static final String DENY_ACTION     = RedPhone.class.getName() + ".DENY_ACTION";
+  public static final String END_CALL_ACTION = RedPhone.class.getName() + ".END_CALL_ACTION";
+
   private CallScreen        callScreen;
   private BroadcastReceiver bluetoothStateReceiver;
 
@@ -89,6 +93,16 @@ public class RedPhone extends Activity {
     registerBluetoothReceiver();
   }
 
+  @Override
+  public void onNewIntent(Intent intent){
+    if (ANSWER_ACTION.equals(intent.getAction())) {
+      handleAnswerCall();
+    } else if (DENY_ACTION.equals(intent.getAction())) {
+      handleDenyCall();
+    } else if (END_CALL_ACTION.equals(intent.getAction())) {
+      handleEndCall();
+    }
+  }
 
   @Override
   public void onPause() {
@@ -150,6 +164,19 @@ public class RedPhone extends Activity {
 
       callScreen.setActiveCall(event.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_ending_call));
       delayedFinish();
+    }
+  }
+
+  private void handleEndCall() {
+    Log.w(TAG, "Hangup pressed, handling termination now...");
+    Intent intent = new Intent(RedPhone.this, RedPhoneService.class);
+    intent.setAction(RedPhoneService.ACTION_HANGUP_CALL);
+    startService(intent);
+
+    RedPhoneEvent event = EventBus.getDefault().getStickyEvent(RedPhoneEvent.class);
+
+    if (event != null) {
+      RedPhone.this.handleTerminate(event.getRecipient());
     }
   }
 
@@ -305,16 +332,7 @@ public class RedPhone extends Activity {
 
   private class HangupButtonListener implements CallControls.HangupButtonListener {
     public void onClick() {
-      Log.w(TAG, "Hangup pressed, handling termination now...");
-      Intent intent = new Intent(RedPhone.this, RedPhoneService.class);
-      intent.setAction(RedPhoneService.ACTION_HANGUP_CALL);
-      startService(intent);
-
-      RedPhoneEvent event = EventBus.getDefault().getStickyEvent(RedPhoneEvent.class);
-
-      if (event != null) {
-        RedPhone.this.handleTerminate(event.getRecipient());
-      }
+      handleEndCall();
     }
   }
 
