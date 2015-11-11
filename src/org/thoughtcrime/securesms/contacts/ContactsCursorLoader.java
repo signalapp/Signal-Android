@@ -20,11 +20,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.content.CursorLoader;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -73,7 +75,18 @@ public class ContactsCursorLoader extends CursorLoader {
     }
 
     if (!TextUtils.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
-      cursorList.add(contactsDatabase.getNewNumberCursor(filter));
+      MatrixCursor newNumberCursor = new MatrixCursor(new String[] {ContactsDatabase.ID_COLUMN,
+                                                                    ContactsDatabase.NAME_COLUMN,
+                                                                    ContactsDatabase.NUMBER_COLUMN,
+                                                                    ContactsDatabase.NUMBER_TYPE_COLUMN,
+                                                                    ContactsDatabase.LABEL_COLUMN,
+                                                                    ContactsDatabase.CONTACT_TYPE_COLUMN}, 1);
+
+      newNumberCursor.addRow(new Object[] {-1L, getContext().getString(R.string.contact_selection_list__unknown_contact),
+                                           filter, ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
+                                           "\u21e2", ContactsDatabase.NEW_TYPE});
+
+      cursorList.add(newNumberCursor);
     }
 
     return new MergeCursor(cursorList.toArray(new Cursor[0]));
