@@ -628,6 +628,7 @@ public class ProfileFragment extends Fragment {
                 gDataPreferences.setColorDefaultEnabled(colorDefault.isChecked());
                 seekBarFont.setEnabled(!gDataPreferences.getColorDefaultEnabled());
                 floatingActionColorButton.setRippleColor(gDataPreferences.getCurrentColorHex());
+                hasChanged = true;
             }
         });
         final int maxValueColorMOne = 255;
