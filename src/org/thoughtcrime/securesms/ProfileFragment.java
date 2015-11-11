@@ -633,7 +633,7 @@ public class ProfileFragment extends Fragment {
         });
         final int maxValueColorMOne = 255;
         final int maxValueColor = 256;
-        seekBarFont.setMax(maxValueColor * 5 - 2);
+        seekBarFont.setMax(maxValueColor * 6 - (maxValueColor/6));
         int oldColor = gDataPreferences.getCurrentColorHex();
         seekBarFont.setProgress(gDataPreferences.getColorProgress());
         floatingActionColorButton.setRippleColor(oldColor);
@@ -822,6 +822,7 @@ public class ProfileFragment extends Fragment {
             if(isGroup) {
                 new UpdateWhisperGroupAsyncTask().execute();
             } else {
+                Log.d("MYLOG","MYLOG HAS CHANGED "+hasChanged);
                 ProfileAccessor.sendProfileUpdateToAllContacts(getActivity(), masterSecret);
             }
             hasChanged = false;
