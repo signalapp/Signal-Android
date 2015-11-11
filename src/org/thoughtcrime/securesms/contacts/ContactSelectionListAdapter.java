@@ -164,7 +164,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     Cursor cursor = getCursorAtPositionOrThrow(position);
 
     if (cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN)) == ContactsDatabase.PUSH_TYPE) {
-      return "Signal";
+      return getContext().getString(R.string.app_name);
     } else {
       String letter = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN))
                             .trim()
