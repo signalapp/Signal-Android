@@ -65,58 +65,26 @@ public class NotificationBarManager {
     if (type == TYPE_INCOMING_RINGING) {
       builder.setContentTitle(context.getString(R.string.NotificationBarManager__incoming_signal_call));
       builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call));
-      builder.addAction(getDenyAction(context));
-      builder.addAction(getAnswerAction(context));
+      builder.addAction(getNotificationAction(context, RedPhone.DENY_ACTION, R.drawable.ic_close,   R.string.NotificationBarManager__deny_call));
+      builder.addAction(getNotificationAction(context, RedPhone.ANSWER_ACTION, R.drawable.ic_phone, R.string.NotificationBarManager__answer_call));
     } else if (type == TYPE_OUTGOING_RINGING) {
       builder.setContentTitle(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
       builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
-      builder.addAction(getCancelCallAction(context));
+      builder.addAction(getNotificationAction(context, RedPhone.END_CALL_ACTION, R.drawable.ic_call_end, R.string.NotificationBarManager__cancel_call));
     } else {
       builder.setContentTitle(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
       builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
-      builder.addAction(getEndCallAction(context));
+      builder.addAction(getNotificationAction(context, RedPhone.END_CALL_ACTION, R.drawable.ic_call_end, R.string.NotificationBarManager__end_call));
     }
 
     notificationManager.notify(RED_PHONE_NOTIFICATION, builder.build());
   }
 
-  private static NotificationCompat.Action getEndCallAction(Context context) {
-    Intent endCallIntent = new Intent(context, RedPhone.class);
-    endCallIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    endCallIntent.setAction(RedPhone.END_CALL_ACTION);
-    PendingIntent endCallPendingIntent = PendingIntent.getActivity(context, 0, endCallIntent, 0);
-    return new NotificationCompat.Action(R.drawable.ic_call_end,
-                                         context.getString(R.string.NotificationBarManager__end_call),
-                                         endCallPendingIntent);
-  }
-
-  private static NotificationCompat.Action getCancelCallAction(Context context) {
-    Intent endCallIntent = new Intent(context, RedPhone.class);
-    endCallIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    endCallIntent.setAction(RedPhone.END_CALL_ACTION);
-    PendingIntent endCallPendingIntent = PendingIntent.getActivity(context, 0, endCallIntent, 0);
-    return new NotificationCompat.Action(R.drawable.ic_call_end,
-                                         context.getString(R.string.NotificationBarManager__cancel_call),
-                                         endCallPendingIntent);
-  }
-
-  private static NotificationCompat.Action getDenyAction(Context context) {
-    Intent denyIntent = new Intent(context, RedPhone.class);
-    denyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    denyIntent.setAction(RedPhone.DENY_ACTION);
-    PendingIntent denyPendingIntent = PendingIntent.getActivity(context, 0, denyIntent, 0);
-    return new NotificationCompat.Action(R.drawable.ic_close,
-                                         context.getString(R.string.NotificationBarManager__deny_call),
-                                         denyPendingIntent);
-  }
-
-  private static NotificationCompat.Action getAnswerAction(Context context) {
-    Intent answerIntent = new Intent(context, RedPhone.class);
-    answerIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    answerIntent.setAction(RedPhone.ANSWER_ACTION);
-    PendingIntent answerPendingIntent = PendingIntent.getActivity(context, 0, answerIntent, 0);
-    return new NotificationCompat.Action(R.drawable.ic_phone,
-                                         context.getString(R.string.NotificationBarManager__answer_call),
-                                         answerPendingIntent);
+  private static NotificationCompat.Action getNotificationAction(Context context, String action, int iconResId, int titleResId) {
+    Intent intent = new Intent(context, RedPhone.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    intent.setAction(action);
+    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+    return new NotificationCompat.Action(iconResId, context.getString(titleResId), pendingIntent);
   }
 }
