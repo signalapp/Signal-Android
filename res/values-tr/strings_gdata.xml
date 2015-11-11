@@ -76,6 +76,6 @@
     <string name="preferences__versnr">Sürüm</string>
     <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Ücretli SMS/MMS göndermeden önce sor</string>
     <string name="profile_select_picture">Profil resmi seç</string>
-    <string name="profile_color_label">ранг</string>
+    <string name="profile_color_label">Renk</string>
     <string name="profile_color_recipient">Chat arkadaşlarının renklerini göster</string>
 </resources>
