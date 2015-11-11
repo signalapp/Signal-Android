@@ -17,11 +17,14 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
@@ -40,7 +43,20 @@ public class ViewLocalIdentityActivity extends ViewIdentityActivity {
                          new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
     getIntent().putExtra(ViewIdentityActivity.TITLE,
                          getString(R.string.ViewIdentityActivity_my_identity_fingerprint));
+
     super.onCreate(icicle, masterSecret);
+
+    /* Make the key on the screen do something when tapped. Since it's our key, the
+    obvious choice is to share it with someone or something. */
+    identityFingerprint.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, ((TextView) v).getText());
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+      }
+    });
   }
 
   @Override
