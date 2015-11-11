@@ -822,7 +822,6 @@ public class ProfileFragment extends Fragment {
             if(isGroup) {
                 new UpdateWhisperGroupAsyncTask().execute();
             } else {
-                Log.d("MYLOG","MYLOG HAS CHANGED "+hasChanged);
                 ProfileAccessor.sendProfileUpdateToAllContacts(getActivity(), masterSecret);
             }
             hasChanged = false;
