@@ -25,6 +25,7 @@ import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -127,6 +128,9 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     } catch (InvalidNumberException | UnregisteredUserException e) {
       Log.w(TAG, e);
       throw new InsecureFallbackApprovalException(e);
+    } catch (FileNotFoundException e) {
+      Log.w(TAG, e);
+      throw new UndeliverableMessageException(e);
     } catch (IOException e) {
       Log.w(TAG, e);
       throw new RetryLaterException(e);
