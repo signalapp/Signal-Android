@@ -73,4 +73,6 @@
     <string name="preferences__versnr">Version</string>
     <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Demander avant l’envoi d’un SMS/MMS payant</string>
     <string name="profile_select_picture">Sélectionner la photo du profil</string>
+    <string name="profile_color_label">Couleur</string>
+    <string name="profile_color_recipient">Montrer la couleur des contacts</string>
 </resources>

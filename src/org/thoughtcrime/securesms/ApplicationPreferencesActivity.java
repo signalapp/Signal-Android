@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -93,7 +94,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     fragmentTransaction.replace(android.R.id.content, fragment);
     fragmentTransaction.commit();
   }
-
   @Override
   public void onResume() {
     super.onResume();

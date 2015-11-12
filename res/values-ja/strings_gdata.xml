@@ -74,4 +74,6 @@
     <string name="preferences__versnr">バージョン</string>
     <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">有料のSMS/MMSを送信する前に確認</string>
     <string name="profile_select_picture">プロフィール画像を選択</string>
+    <string name="profile_color_label">色</string>
+    <string name="profile_color_recipient">連絡先の色を表示</string>
 </resources>

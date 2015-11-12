@@ -23,6 +23,8 @@ import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
+import de.gdata.messaging.util.GUtil;
+
 public class SelectTransportButton extends ImageButton {
     private TransportOptions transportOptions;
     private EditText composeText;
@@ -128,7 +130,7 @@ public class SelectTransportButton extends ImageButton {
         } else {
             setComposeText("");
             SpannableString span = new SpannableString(hint);
-            span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             this.composeText.setHint(span);
         }
     }
@@ -137,7 +139,7 @@ public class SelectTransportButton extends ImageButton {
             this.composeText.setHint(null);
         } else {
             SpannableString span = new SpannableString(text);
-            span.setSpan(new RelativeSizeSpan(0.8f), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             this.composeText.setText(span);
         }
     }

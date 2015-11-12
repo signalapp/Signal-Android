@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
@@ -53,6 +54,8 @@ public class ProfileAccessor {
   private static GDataPreferences preferences;
   private static MasterSecret mMasterSecret;
 
+  public static String TAG_OPEN_PROFILE_COLOR = "[COLOR]";
+  public static String TAG_CLOSE_PROFILE_COLOR = "[/COLOR]";
 
   public static GDataPreferences getPreferences(Context context) {
     if (preferences == null) {
@@ -148,6 +151,7 @@ public class ProfileAccessor {
 
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
       outgoingMessage.setProfileUpdateMessage(true);
+
       new AsyncTask<OutgoingMediaMessage, Void, Long>() {
         @Override
         protected Long doInBackground(OutgoingMediaMessage... messages) {
@@ -190,7 +194,7 @@ public class ProfileAccessor {
     String[] activeContacts = new String[activeTokens.size()];
     int i = 0;
     for (ContactTokenDetails token : activeTokens) {
-      activeContacts[i] = GUtil.numberToLong(token.getNumber() + "") + "";
+      activeContacts[i] = token.getNumber() + "";
       i++;
     }
     getPreferences(context).saveActiveContacts(activeContacts);
@@ -271,5 +275,16 @@ public class ProfileAccessor {
   }
   public static MasterSecret getMasterSecred() {
     return mMasterSecret;
+  }
+
+  public static void setColorForProfileId(Context context, String profileId, String color) {
+    getPreferences(context).setProfileColorForProfileId(profileId, color);
+  }
+  public static String getProfileColorForId(Context context, String profileId) {
+    String profileColor = getPreferences(context).getProfileColorForProfileId(profileId);
+    if(profileColor.equals("0") || !getPreferences(context).getChatPartnersColorEnabled()) {
+      profileColor = getPreferences(context).getCurrentColorHex()+"";
+    }
+    return profileColor;
   }
 }

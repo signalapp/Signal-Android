@@ -76,4 +76,6 @@
     <string name="dialog_compressing_header">Please wait...</string>
     <string name="preferences__versnr">Version</string>
     <string name="profile_select_picture">Select profile picture</string>
+    <string name="profile_color_label">Color</string>
+    <string name="profile_color_recipient">Show your chat partners color</string>
 </resources>
