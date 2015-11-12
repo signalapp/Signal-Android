@@ -19,7 +19,7 @@ The following steps should help you (re)build Signal from the command line.
 2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed.
 3. Ensure that the following packages are installed from the Android SDK manager:
     * Android SDK Build Tools
-    * SDK Platform
+    * SDK Platform (API level 22)
     * Android Support Repository
     * Google Repository
 4. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.  For example:
