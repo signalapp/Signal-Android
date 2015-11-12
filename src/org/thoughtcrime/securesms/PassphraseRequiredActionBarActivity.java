@@ -28,7 +28,7 @@ public class PassphraseRequiredActionBarActivity extends ActionBarActivity imple
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(), GUtil.ALPHA_80_PERCENT));
+        window.setStatusBarColor(GUtil.darken(new GDataPreferences(this).getCurrentColorHex(), GUtil.ALPHA_10_PERCENT));
       }
     }
   }

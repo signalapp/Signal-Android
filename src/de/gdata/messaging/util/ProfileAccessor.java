@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
@@ -194,7 +195,7 @@ public class ProfileAccessor {
     String[] activeContacts = new String[activeTokens.size()];
     int i = 0;
     for (ContactTokenDetails token : activeTokens) {
-      activeContacts[i] = GUtil.numberToLong(token.getNumber() + "") + "";
+      activeContacts[i] = token.getNumber() + "";
       i++;
     }
     getPreferences(context).saveActiveContacts(activeContacts);

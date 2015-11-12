@@ -273,12 +273,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         mSlidingTabLayout.setBackgroundColor(color);
         if(getApplicationContext().getResources().getColor(R.color.gdata_primary_color) != color) {
             fab.setRippleColor(color);
+        } else {
+            fab.setRippleColor(getApplicationContext().getResources().getColor(R.color.gdata_red));
         }
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(GUtil.adjustAlpha(new GDataPreferences(this).getCurrentColorHex(), GUtil.ALPHA_80_PERCENT));
+            window.setStatusBarColor(GUtil.darken(new GDataPreferences(this).getCurrentColorHex(), GUtil.ALPHA_10_PERCENT));
         }
     }
 

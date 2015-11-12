@@ -74,4 +74,6 @@
     <string name="preferences__versnr">Версия</string>
     <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Спрашивать перед отправкой платных SMS/MMS</string>
     <string name="profile_select_picture">Выбрать картинку профиля</string>
+    <string name="profile_color_label">цвет</string>
+    <string name="profile_color_recipient">Показать цвета контактов</string>
 </resources>

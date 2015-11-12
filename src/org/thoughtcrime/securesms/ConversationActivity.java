@@ -876,7 +876,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                     Window window = getWindow();
                     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                     window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                    window.setStatusBarColor(GUtil.adjustAlpha(color, GUtil.ALPHA_80_PERCENT));
+                    window.setStatusBarColor(GUtil.darken(color, GUtil.ALPHA_10_PERCENT));
                 }
             } catch (Exception e) {
                 //If for unknown reasons the parsing fails

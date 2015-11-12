@@ -74,4 +74,6 @@
     <string name="preferences__versnr">Versione</string>
     <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Chiedi prima di inviare un SMS/MMS da addebitare</string>
     <string name="profile_select_picture">Seleziona la foto del profilo</string>
+    <string name="profile_color_label">Colore</string>
+    <string name="profile_color_recipient">Mostra i colori dei tuoi contatti</string>
 </resources>

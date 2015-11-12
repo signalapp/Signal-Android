@@ -160,6 +160,7 @@ public class ProfileFragment extends Fragment {
     private FloatingActionButton floatingActionColorButton;
     private RelativeLayout layoutColor;
     private CheckBox chatPartnersColor;
+    private CheckBox colorDefault;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -215,6 +216,7 @@ public class ProfileFragment extends Fragment {
         scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
         seekBarFont = (SeekBar)getView().findViewById(R.id.seekbar_font);
         chatPartnersColor = (CheckBox) getView().findViewById(R.id.enabled_chat_partners_color);
+        colorDefault = (CheckBox) getView().findViewById(R.id.color_default);
         layoutColor = (RelativeLayout)getView().findViewById(R.id.layout_color);
         floatingActionColorButton = (FloatingActionButton) getView().findViewById(R.id.fab_new_color);
         final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
@@ -618,9 +620,20 @@ public class ProfileFragment extends Fragment {
                 gDataPreferences.saveChatPartnersColorEnabled(chatPartnersColor.isChecked());
             }
         });
+        colorDefault.setChecked(gDataPreferences.getColorDefaultEnabled());
+        seekBarFont.setEnabled(!gDataPreferences.getColorDefaultEnabled());
+        colorDefault.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gDataPreferences.setColorDefaultEnabled(colorDefault.isChecked());
+                seekBarFont.setEnabled(!gDataPreferences.getColorDefaultEnabled());
+                floatingActionColorButton.setRippleColor(gDataPreferences.getCurrentColorHex());
+                hasChanged = true;
+            }
+        });
         final int maxValueColorMOne = 255;
         final int maxValueColor = 256;
-        seekBarFont.setMax(maxValueColor * 5 - 2);
+        seekBarFont.setMax(maxValueColor * 6 - (maxValueColor/6));
         int oldColor = gDataPreferences.getCurrentColorHex();
         seekBarFont.setProgress(gDataPreferences.getColorProgress());
         floatingActionColorButton.setRippleColor(oldColor);

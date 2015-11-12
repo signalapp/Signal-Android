@@ -41,8 +41,10 @@ public class GDataPreferences {
   private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
   private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
   private static final String CP_COLOR_ACTIVATED = "CP_COLOR_ACTIVATED";
+
   private static final long ONE_SECOND = 1000;
 
+  private static final String COLOR_DEFAULT = "COLOR_DEFAULT";
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
@@ -191,7 +193,7 @@ public class GDataPreferences {
     return mPreferences.getString(APPLICATION_FONT, "");
   }
   public int getCurrentColorHex() {
-    return mPreferences.getInt(COLOR_HEX, mContext.getResources().getColor(R.color.gdata_primary_color));
+    return getColorDefaultEnabled() ? mContext.getResources().getColor(R.color.gdata_primary_color) : mPreferences.getInt(COLOR_HEX, mContext.getResources().getColor(R.color.gdata_primary_color));
   }
   public int getColorProgress() {
     return mPreferences.getInt(COLOR_PROGRESS, 0);
@@ -281,14 +283,19 @@ public class GDataPreferences {
   public boolean getChatPartnersColorEnabled() {
     return mPreferences.getBoolean(CP_COLOR_ACTIVATED, true);
   }
-
   public boolean isSoonAfterLastExchange(String id, long timestamp) {
     boolean isSoonAfterLastExchange = false;
-    if(timestamp - mPreferences.getLong("lastExchange: "+id, 0) <= ONE_SECOND) {
+    if (timestamp - mPreferences.getLong("lastExchange: " + id, 0) <= ONE_SECOND) {
       isSoonAfterLastExchange = true;
     }
-    mPreferences.edit().putLong("lastExchange: "+id,timestamp).commit();
+    mPreferences.edit().putLong("lastExchange: " + id, timestamp).commit();
     return isSoonAfterLastExchange;
+  }
+  public boolean getColorDefaultEnabled() {
+    return mPreferences.getBoolean(COLOR_DEFAULT, true);
+  }
+  public void setColorDefaultEnabled(boolean b) {
+    mPreferences.edit().putBoolean(COLOR_DEFAULT, b).commit();
   }
 }
 
