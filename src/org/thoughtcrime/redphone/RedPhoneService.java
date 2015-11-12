@@ -204,7 +204,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     if (remoteNumber == null || remoteNumber.length() == 0)
       return;
 
-    sendMessage(Type.OUTGOING_CALL, getRecipient(), null);
+    Recipient recipient = getRecipient();
+    sendMessage(Type.OUTGOING_CALL, recipient, null);
 
     state = STATE_DIALING;
     lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
@@ -212,7 +213,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
                                                         remoteNumber, zid);
     this.currentCallManager.start();
 
-    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_OUTGOING_RINGING);
+    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_OUTGOING_RINGING, recipient);
     DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(remoteNumber);
 
   }
@@ -389,7 +390,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     startCallCardActivity();
     incomingRinger.start();
 
-    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_INCOMING_RINGING);
+    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_INCOMING_RINGING, getRecipient());
   }
 
   public void notifyBusy() {
@@ -414,9 +415,10 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     outgoingRinger.playComplete();
     lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
     state = STATE_CONNECTED;
-    sendMessage(Type.CALL_CONNECTED, getRecipient(), sas.getSasText());
+    Recipient recipient = getRecipient();
+    sendMessage(Type.CALL_CONNECTED, recipient, sas.getSasText());
 
-    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_ESTABLISHED);
+    NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_ESTABLISHED, recipient);
   }
 
   public void notifyConnectingtoInitiator() {
