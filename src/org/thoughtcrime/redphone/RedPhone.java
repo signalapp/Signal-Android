@@ -63,9 +63,9 @@ public class RedPhone extends Activity {
   private static final int STANDARD_DELAY_FINISH    = 1000;
   public  static final int BUSY_SIGNAL_DELAY_FINISH = 5500;
 
-  public static final String ANSWER_ACTION   = RedPhone.class.getName() + ".ANSWER_ACTION";
-  public static final String DENY_ACTION     = RedPhone.class.getName() + ".DENY_ACTION";
-  public static final String END_CALL_ACTION = RedPhone.class.getName() + ".END_CALL_ACTION";
+  public static final String ANSWER_ACTION   = RedPhone.class.getCanonicalName() + ".ANSWER_ACTION";
+  public static final String DENY_ACTION     = RedPhone.class.getCanonicalName() + ".DENY_ACTION";
+  public static final String END_CALL_ACTION = RedPhone.class.getCanonicalName() + ".END_CALL_ACTION";
 
   private CallScreen        callScreen;
   private BroadcastReceiver bluetoothStateReceiver;
