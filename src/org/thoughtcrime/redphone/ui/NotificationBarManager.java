@@ -58,7 +58,7 @@ public class NotificationBarManager {
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
 
     NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                                                               .setSmallIcon(R.drawable.redphone_stat_sys_phone_call)
+                                                               .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
                                                                .setContentIntent(pendingIntent)
                                                                .setOngoing(true);
 
