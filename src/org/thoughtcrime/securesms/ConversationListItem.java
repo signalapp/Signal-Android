@@ -94,13 +94,7 @@ public class ConversationListItem extends RelativeLayout
     this.dateView          = (TextView)        findViewById(R.id.date);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
     this.thumbnailView     = (ThumbnailView)   findViewById(R.id.thumbnail);
-
-    this.thumbnailView.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        ConversationListItem.this.performClick();
-      }
-    });
+    thumbnailView.setClickable(false);
   }
 
   public void set(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
