@@ -22,9 +22,9 @@ The following steps should help you (re)build Signal from the command line.
     * SDK Platform
     * Android Support Repository
     * Google Repository
-4. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.
+4. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.  For example:
 
-        sdk.dir=\<path to your sdk installation\>
+        sdk.dir=/Application/android-sdk-macosx
 
 5. Execute Gradle:
 
