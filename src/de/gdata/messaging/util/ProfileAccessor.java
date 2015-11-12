@@ -146,7 +146,6 @@ public class ProfileAccessor {
     mMasterSecret = masterSecret;
     SlideDeck slideDeck = new SlideDeck();
     slideDeck.addSlide(ProfileAccessor.getMyProfilePicture(context));
-    Log.d("GDATA", "MYLOG SEND TO " + recipients.getPrimaryRecipient().getNumber()+ " - " + recipients.getPrimaryRecipient().getName());
       OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(context, recipients, slideDeck,
           getProfileStatus(context), ThreadDatabase.DistributionTypes.BROADCAST);
 

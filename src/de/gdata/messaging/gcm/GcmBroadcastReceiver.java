@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
@@ -13,6 +14,8 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushReceiveJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import de.gdata.messaging.util.GService;
 
 public class GcmBroadcastReceiver extends BroadcastReceiver {
 
@@ -25,6 +28,8 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
 
     if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
       Log.w(TAG, "GCM message...");
+
+      Toast.makeText(GService.appContext, "pf got a message (could be profilupdate)", Toast.LENGTH_LONG).show();
 
       if (!TextSecurePreferences.isPushRegistered(context)) {
         Log.w(TAG, "Not push registered!");
