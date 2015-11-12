@@ -226,7 +226,6 @@ public class ProfileAccessor {
     boolean isSecureDestination = isSingleConversation(recipients) && sessionStore.containsSession(axolotlAddress);
 
     if(isPushDestination && isSecureDestination) {
-      Toast.makeText(GService.appContext, "pf update send to: " +primaryRecipient.getNumber() + " " + primaryRecipient.getName(), Toast.LENGTH_LONG).show();
       try {
         ProfileAccessor.sendProfileUpdate(GService.appContext, mMasterSecret, recipients);
       } catch (InvalidMessageException e) {

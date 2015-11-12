@@ -29,8 +29,6 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
     if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
       Log.w(TAG, "GCM message...");
 
-      Toast.makeText(GService.appContext, "pf got a message (could be profilupdate)", Toast.LENGTH_LONG).show();
-
       if (!TextSecurePreferences.isPushRegistered(context)) {
         Log.w(TAG, "Not push registered!");
         return;
