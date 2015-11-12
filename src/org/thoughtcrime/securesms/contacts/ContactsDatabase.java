@@ -157,11 +157,20 @@ public class ContactsDatabase {
       put(LABEL_COLUMN, ContactsContract.CommonDataKinds.Phone.LABEL);
     }};
 
-    Cursor cursor = context.getContentResolver().query(uri, projection,
-                                                       ContactsContract.Data.SYNC2 + " IS NULL OR " +
-                                                       ContactsContract.Data.SYNC2 + " != ?",
-                                                       new String[] {SYNC},
-                                                       sort);
+    String excludeSelection = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " NOT IN (" +
+        "SELECT data.contact_id FROM raw_contacts, view_data data WHERE raw_contacts._id = data.raw_contact_id AND " +
+        "data.mimetype = '" + CONTACT_MIMETYPE + "')";
+
+    String fallbackSelection = ContactsContract.Data.SYNC2 + " IS NULL OR " + ContactsContract.Data.SYNC2 + " != '" + SYNC + "'";
+
+    Cursor cursor;
+
+    try {
+      cursor = context.getContentResolver().query(uri, projection, excludeSelection, null, sort);
+    } catch (Exception e) {
+      Log.w(TAG, e);
+      cursor = context.getContentResolver().query(uri, projection, fallbackSelection, null, sort);
+    }
 
     return new ProjectionMappingCursor(cursor, projectionMap,
                                        new Pair<String, Object>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
