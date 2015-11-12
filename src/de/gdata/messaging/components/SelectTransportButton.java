@@ -128,7 +128,6 @@ public class SelectTransportButton extends ImageButton {
         if (hint == null) {
             this.composeText.setHint(null);
         } else {
-            setComposeText("");
             SpannableString span = new SpannableString(hint);
             span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             this.composeText.setHint(span);
