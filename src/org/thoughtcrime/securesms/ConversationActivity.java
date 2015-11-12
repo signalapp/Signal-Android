@@ -1351,7 +1351,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private void calculateCharactersRemaining() {
         int charactersSpent = composeText.getText().toString().length();
         CharacterCalculator.CharacterState characterState = characterCalculator.calculateCharacters(charactersSpent);
-        if (characterState.charactersRemaining <= 15 && charactersLeft.getVisibility() != View.VISIBLE && isCharactersLeftViewEnabled) {
+        if ((characterState.charactersRemaining <= 15 || characterState.messagesSpent>1) && isCharactersLeftViewEnabled) {
             charactersLeft.setVisibility(View.VISIBLE);
         } else if (characterState.charactersRemaining > 15 && charactersLeft.getVisibility() != View.GONE) {
             charactersLeft.setVisibility(View.GONE);

@@ -77,7 +77,7 @@ public class SelectTransportButton extends ImageButton {
                     destroyButtonReference.setEnabled(true);
                 }
                 if(newTransport.key.contains("invite")) {
-                    setComposeText(handleInviteLink());
+                    setComposeTextHint(handleInviteLink());
                 }
                 if (newTransport.isForcedSms()) {
                     if (newTransport.isForcedPlaintext()) {
@@ -131,15 +131,6 @@ public class SelectTransportButton extends ImageButton {
             SpannableString span = new SpannableString(hint);
             span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             this.composeText.setHint(span);
-        }
-    }
-    private void setComposeText(String text) {
-        if (text == null) {
-            this.composeText.setHint(null);
-        } else {
-            SpannableString span = new SpannableString(text);
-            span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            this.composeText.setText(span);
         }
     }
     public void setDestroyButtonReference(SelfDestructionButton pDestroyButtonReference) {
