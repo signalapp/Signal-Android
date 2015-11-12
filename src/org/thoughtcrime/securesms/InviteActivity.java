@@ -34,6 +34,9 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
+
+import java.util.concurrent.ExecutionException;
 
 public class InviteActivity extends PassphraseRequiredActionBarActivity implements ContactSelectionListFragment.OnContactSelectedListener {
 
@@ -241,7 +244,15 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       final Context context = getContext();
       if (context == null) return;
 
-      ViewUtil.animateOut(smsSendFrame, slideOutAnimation);
+      ViewUtil.animateOut(smsSendFrame, slideOutAnimation).addListener(new Listener<Boolean>() {
+        @Override
+        public void onSuccess(Boolean result) {
+          contactsFragment.reset();
+        }
+
+        @Override
+        public void onFailure(ExecutionException e) {}
+      });
       Toast.makeText(context, R.string.InviteActivity_invitations_sent, Toast.LENGTH_LONG).show();
     }
   }
