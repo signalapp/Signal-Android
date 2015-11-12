@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
@@ -145,6 +146,7 @@ public class ProfileAccessor {
     mMasterSecret = masterSecret;
     SlideDeck slideDeck = new SlideDeck();
     slideDeck.addSlide(ProfileAccessor.getMyProfilePicture(context));
+    Log.d("GDATA", "MYLOG SEND TO " + recipients.getPrimaryRecipient().getNumber()+ " - " + recipients.getPrimaryRecipient().getName());
       OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(context, recipients, slideDeck,
           getProfileStatus(context), ThreadDatabase.DistributionTypes.BROADCAST);
 
@@ -193,7 +195,7 @@ public class ProfileAccessor {
     String[] activeContacts = new String[activeTokens.size()];
     int i = 0;
     for (ContactTokenDetails token : activeTokens) {
-      activeContacts[i] = GUtil.numberToLong(token.getNumber() + "") + "";
+      activeContacts[i] = token.getNumber() + "";
       i++;
     }
     getPreferences(context).saveActiveContacts(activeContacts);
@@ -225,6 +227,7 @@ public class ProfileAccessor {
     boolean isSecureDestination = isSingleConversation(recipients) && sessionStore.containsSession(axolotlAddress);
 
     if(isPushDestination && isSecureDestination) {
+      Toast.makeText(GService.appContext, "pf update send to: " +primaryRecipient.getNumber() + " " + primaryRecipient.getName(), Toast.LENGTH_LONG).show();
       try {
         ProfileAccessor.sendProfileUpdate(GService.appContext, mMasterSecret, recipients);
       } catch (InvalidMessageException e) {
