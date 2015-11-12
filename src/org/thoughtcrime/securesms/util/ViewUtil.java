@@ -37,6 +37,9 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+
 public class ViewUtil {
   @SuppressWarnings("deprecation")
   public static void setBackground(final @NonNull View v, final @Nullable Drawable drawable) {
@@ -130,21 +133,30 @@ public class ViewUtil {
     animateOut(view, getAlphaAnimation(1f, 0f, duration));
   }
 
-  public static void animateOut(final @NonNull View view, final @NonNull Animation animation) {
-    if (view.getVisibility() == View.GONE) return;
+  public static ListenableFuture<Boolean> animateOut(final @NonNull View view, final @NonNull Animation animation) {
+    final SettableFuture future = new SettableFuture();
+    if (view.getVisibility() == View.GONE) {
+      future.set(true);
+    } else {
+      view.clearAnimation();
+      animation.reset();
+      animation.setStartTime(0);
+      animation.setAnimationListener(new Animation.AnimationListener() {
+        @Override
+        public void onAnimationStart(Animation animation) {}
 
-    view.clearAnimation();
-    animation.reset();
-    animation.setStartTime(0);
-    animation.setAnimationListener(new Animation.AnimationListener() {
-      @Override public void onAnimationStart(Animation animation) {}
-      @Override public void onAnimationRepeat(Animation animation) {}
-      @Override public void onAnimationEnd(Animation animation) {
-        view.setVisibility(View.GONE);
-      }
-    });
+        @Override
+        public void onAnimationRepeat(Animation animation) {}
 
-    view.startAnimation(animation);
+        @Override
+        public void onAnimationEnd(Animation animation) {
+          view.setVisibility(View.GONE);
+          future.set(true);
+        }
+      });
+      view.startAnimation(animation);
+    }
+    return future;
   }
 
   public static void animateIn(final @NonNull View view, final @NonNull Animation animation) {
