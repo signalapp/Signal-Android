@@ -233,8 +233,9 @@
     <string name="GroupCreateActivity_menu_create_title">Create group</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
-    <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-Signal contacts to an existing Signal group</string>
+    <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Couldn\'t add %1$s because they\'re not a Signal user.</string>
     <string name="GroupCreateActivity_loading_group_details">Loading group details...</string>
+    <string name="GroupCreateActivity_youre_already_in_the_group">You\'re already in the group.</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>

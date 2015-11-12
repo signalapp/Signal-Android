@@ -26,6 +26,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,6 +76,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -161,7 +163,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
     } else {
       enableSignalGroupViews();
-      getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
+      getSupportActionBar().setTitle(groupToUpdate.isPresent()
+                                     ? R.string.GroupCreateActivity_actionbar_update_title
+                                     : R.string.GroupCreateActivity_actionbar_title);
     }
   }
 
@@ -174,21 +178,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void addSelectedContact(@NonNull Recipient contact) {
-    final boolean isPushUser = isActiveInDirectory(this, contact);
-    if (groupToUpdate.isPresent() && !isPushUser) {
-      Toast.makeText(this, R.string.GroupCreateActivity_cannot_add_non_push_to_existing_group, Toast.LENGTH_LONG).show();
-      return;
-    }
-
-    getAdapter().add(contact, isPushUser);
-    updateViewState();
+  private void addSelectedContacts(@NonNull Recipient... recipients) {
+    new AddMembersTask(this).execute(recipients);
   }
 
-  private void addAllSelectedContacts(Collection<Recipient> contacts) {
-    for (Recipient contact : contacts) {
-      addSelectedContact(contact);
-    }
+  private void addSelectedContacts(@NonNull Collection<Recipient> recipients) {
+    addSelectedContacts(recipients.toArray(new Recipient[recipients.size()]));
   }
 
   private void initializeResources() {
@@ -261,7 +256,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRecipientsPanelUpdate(Recipients recipients) {
-    if (recipients != null) addAllSelectedContacts(recipients.getRecipientsList());
+    if (recipients != null) addSelectedContacts(recipients.getRecipientsList());
   }
 
   private void handleGroupCreate() {
@@ -312,7 +307,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         List<String> selected = data.getStringArrayListExtra("contacts");
         for (String contact : selected) {
           final Recipient recipient = RecipientFactory.getRecipientsFromString(this, contact, false).getPrimaryRecipient();
-          if (recipient != null) addSelectedContact(recipient);
+          if (recipient != null) addSelectedContacts(recipient);
         }
         break;
 
@@ -485,6 +480,65 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private static class AddMembersTask extends AsyncTask<Recipient,Void,List<AddMembersTask.Result>> {
+    static class Result {
+      Optional<Recipient> recipient;
+      boolean             isPush;
+      String              reason;
+
+      public Result(@Nullable Recipient recipient, boolean isPush, @Nullable String reason) {
+        this.recipient = Optional.fromNullable(recipient);
+        this.isPush    = isPush;
+        this.reason    = reason;
+      }
+    }
+
+    private GroupCreateActivity activity;
+    private boolean             failIfNotPush;
+
+    public AddMembersTask(@NonNull GroupCreateActivity activity) {
+      this.activity      = activity;
+      this.failIfNotPush = activity.groupToUpdate.isPresent();
+    }
+
+    @Override
+    protected List<Result> doInBackground(Recipient... recipients) {
+      final List<Result> results = new LinkedList<>();
+
+      for (Recipient recipient : recipients) {
+        boolean isPush        = isActiveInDirectory(activity, recipient);
+        String  recipientE164 = null;
+        try {
+          recipientE164 = Util.canonicalizeNumber(activity, recipient.getNumber());
+        } catch (InvalidNumberException ine) { /* do nothing */ }
+
+        if (failIfNotPush && !isPush) {
+          results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_cannot_add_non_push_to_existing_group,
+                                                                 recipient.getNumber())));
+        } else if (TextUtils.equals(TextSecurePreferences.getLocalNumber(activity), recipientE164)) {
+          results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_youre_already_in_the_group)));
+        } else {
+          results.add(new Result(recipient, isPush, null));
+        }
+      }
+      return results;
+    }
+
+    @Override
+    protected void onPostExecute(List<Result> results) {
+      if (activity.isFinishing()) return;
+
+      for (Result result : results) {
+        if (result.recipient.isPresent()) {
+          activity.getAdapter().add(result.recipient.get(), result.isPush);
+        } else {
+          Toast.makeText(activity, result.reason, Toast.LENGTH_SHORT).show();
+        }
+      }
+      activity.updateViewState();
+    }
+  }
+
   private static class FillExistingGroupInfoAsyncTask extends ProgressDialogAsyncTask<byte[],Void,Optional<GroupData>> {
     private GroupCreateActivity activity;
 
@@ -525,6 +579,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(activity, group.get().recipients);
         adapter.setOnRecipientDeletedListener(activity);
         activity.lv.setAdapter(adapter);
+        activity.updateViewState();
       }
     }
   }
