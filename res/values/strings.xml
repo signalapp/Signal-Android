@@ -306,6 +306,7 @@
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
     <string name="NotificationBarManager_missed_call_from_s">Missed call from %s</string>
     <string name="NotificationBarManager_missed_signal_call">Missed Signal call</string>
+    <string name="NotificationBarManager__establishing_signal_call">Establishing Signal call</string>
     <string name="NotificationBarManager__incoming_signal_call">Incoming Signal call</string>
     <string name="NotificationBarManager__deny_call">Deny call</string>
     <string name="NotificationBarManager__answer_call">Answer call</string>

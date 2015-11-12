@@ -68,8 +68,8 @@ public class NotificationBarManager {
       builder.addAction(getNotificationAction(context, RedPhone.DENY_ACTION, R.drawable.ic_close_grey600_32dp,   R.string.NotificationBarManager__deny_call));
       builder.addAction(getNotificationAction(context, RedPhone.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, R.string.NotificationBarManager__answer_call));
     } else if (type == TYPE_OUTGOING_RINGING) {
-      builder.setContentTitle(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
-      builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.setContentTitle(context.getString(R.string.NotificationBarManager__establishing_signal_call));
+      builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
       builder.addAction(getNotificationAction(context, RedPhone.END_CALL_ACTION, R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
     } else {
       builder.setContentTitle(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
