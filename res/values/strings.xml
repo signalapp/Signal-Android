@@ -283,11 +283,11 @@
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
     <plurals name="InviteActivity_send_to_friends">
-        <item quantity="one">SEND TO ONE FRIEND</item>
+        <item quantity="one">SEND TO 1 FRIEND</item>
         <item quantity="other">SEND TO %d FRIENDS</item>
     </plurals>
     <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="one">Send one SMS invite?</item>
+        <item quantity="one">Send 1 SMS invite?</item>
         <item quantity="other">Send %d SMS invites?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
