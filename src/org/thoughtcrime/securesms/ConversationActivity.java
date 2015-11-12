@@ -126,6 +126,7 @@ import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
+import org.whispersystems.textsecure.internal.push.TextSecureProtos;
 
 import java.io.File;
 import java.io.IOException;
@@ -146,7 +147,6 @@ import ws.com.google.android.mms.ContentType;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
-import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -724,9 +724,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                     byte[] groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
                     DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
 
-                    GroupContext context = GroupContext.newBuilder()
+                    TextSecureProtos.GroupContext context = TextSecureProtos.GroupContext.newBuilder()
                             .setId(ByteString.copyFrom(groupId))
-                            .setType(GroupContext.Type.QUIT)
+                            .setType(TextSecureProtos.GroupContext.Type.QUIT)
                             .build();
 
                     OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, getRecipients(),
@@ -814,7 +814,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             public void onClick(DialogInterface dialog, int which) {
                 if (threadId > 0) {
                     GDataPreferences pref = new GDataPreferences(getApplicationContext());
-                        pref.saveReadCount(threadId+"", 0L);
+                    pref.saveReadCount(threadId + "", 0L);
                     DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
                     finish();
                 }

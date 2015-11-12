@@ -92,7 +92,7 @@ import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
-import org.whispersystems.textsecure.internal.push.PushMessageProtos;
+import org.whispersystems.textsecure.internal.push.TextSecureProtos;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -520,7 +520,7 @@ public class ProfileFragment extends Fragment {
         builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
         builder.setCancelable(true);
         builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder1 = builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Context self = getActivity();
@@ -528,9 +528,10 @@ public class ProfileFragment extends Fragment {
                     byte[] groupId = GroupUtil.getDecodedId(recipients.getPrimaryRecipient().getNumber());
                     DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
 
-                    PushMessageProtos.PushMessageContent.GroupContext context = PushMessageProtos.PushMessageContent.GroupContext.newBuilder()
+                    TextSecureProtos.GroupContext context = TextSecureProtos.GroupContext.newBuilder()
                             .setId(ByteString.copyFrom(groupId))
-                            .setType(PushMessageProtos.PushMessageContent.GroupContext.Type.QUIT)
+                            .setType(
+                                    TextSecureProtos.GroupContext.Type.QUIT)
                             .build();
 
                     OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, recipients,
@@ -1014,9 +1015,9 @@ public class ProfileFragment extends Fragment {
         String     groupRecipientId = GroupUtil.getEncodedId(groupId);
         Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(GService.appContext, groupRecipientId, false);
 
-        PushMessageProtos.PushMessageContent.GroupContext context = PushMessageProtos.PushMessageContent.GroupContext.newBuilder()
+        TextSecureProtos.GroupContext context =  TextSecureProtos.GroupContext.newBuilder()
                 .setId(ByteString.copyFrom(groupId))
-                .setType(PushMessageProtos.PushMessageContent.GroupContext.Type.UPDATE)
+                .setType(TextSecureProtos.GroupContext.Type.UPDATE)
                 .setName(groupName)
                 .addAllMembers(e164numbers)
                 .build();

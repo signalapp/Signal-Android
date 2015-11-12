@@ -235,7 +235,7 @@ public class ReceiveKeyActivity extends Activity {
                   byte[]             body     = Base64.decode(message.getMessageBody());
                   TextSecureEnvelope envelope = new TextSecureEnvelope(3, message.getSender(),
                           message.getSenderDeviceId(), "",
-                          message.getSentTimestampMillis(),
+                          message.getSentTimestampMillis(),null,
                           body);
 
                   long pushId = pushDatabase.insert(envelope);
