@@ -5,7 +5,8 @@ Basics
 ------
 
 Signal uses [Gradle](http://gradle.org) to build the project and to maintain
-dependencies.
+dependencies.  However, you needn't install it yourself; the
+"gradle wrapper" `gradlew`, mentioned below, will do that for you.
 
 Building Signal
 ---------------
