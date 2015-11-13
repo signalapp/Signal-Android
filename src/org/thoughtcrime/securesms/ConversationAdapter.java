@@ -22,12 +22,14 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
+import org.thoughtcrime.redphone.util.Conversions;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -39,6 +41,8 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.lang.ref.SoftReference;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
@@ -46,6 +50,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.VisibleForTesting;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
@@ -69,12 +74,13 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
-  private final ItemClickListener clickListener;
-  private final MasterSecret      masterSecret;
-  private final Locale            locale;
-  private final Recipients        recipients;
-  private final MmsSmsDatabase    db;
-  private final LayoutInflater    inflater;
+  private final @Nullable ItemClickListener clickListener;
+  private final @NonNull  MasterSecret      masterSecret;
+  private final @NonNull  Locale            locale;
+  private final @NonNull  Recipients        recipients;
+  private final @NonNull  MmsSmsDatabase    db;
+  private final @NonNull  LayoutInflater    inflater;
+  private final @NonNull  MessageDigest     digest;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -92,6 +98,23 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     void onItemLongClick(ConversationItem item);
   }
 
+  @SuppressWarnings("ConstantConditions")
+  @VisibleForTesting
+  ConversationAdapter(Context context, Cursor cursor) {
+    super(context, cursor);
+    this.masterSecret  = null;
+    this.locale        = null;
+    this.clickListener = null;
+    this.recipients    = null;
+    this.inflater      = null;
+    this.db            = null;
+    try {
+      digest = MessageDigest.getInstance("SHA1");
+    } catch (NoSuchAlgorithmException nsae) {
+      throw new AssertionError("SHA-1 isn't supported!");
+    }
+  }
+
   public ConversationAdapter(@NonNull Context context,
                              @NonNull MasterSecret masterSecret,
                              @NonNull Locale locale,
@@ -106,6 +129,12 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     this.recipients    = recipients;
     this.inflater      = LayoutInflater.from(context);
     this.db            = DatabaseFactory.getMmsSmsDatabase(context);
+    try {
+      digest = MessageDigest.getInstance("SHA-1");
+    } catch (NoSuchAlgorithmException nsae) {
+      throw new IllegalStateException("SHA-1 isn't supported!");
+    }
+    setHasStableIds(true);
   }
 
   @Override
@@ -169,6 +198,13 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     } else {
       return MESSAGE_TYPE_INCOMING;
     }
+  }
+
+  @Override
+  public long getItemId(@NonNull Cursor cursor) {
+    final String unique = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
+    final byte[] bytes  = digest.digest(unique.getBytes());
+    return Conversions.byteArrayToLong(bytes);
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
