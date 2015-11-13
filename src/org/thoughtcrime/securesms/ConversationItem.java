@@ -689,7 +689,6 @@ public class ConversationItem extends LinearLayout {
           mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
               messageRecord.getDateReceived(),
               messageRecord.getSlideDeckFuture());
-
         } else {
           mmsThumbnail.setVisibility(View.GONE);
           mmsContainer.setVisibility(View.GONE);

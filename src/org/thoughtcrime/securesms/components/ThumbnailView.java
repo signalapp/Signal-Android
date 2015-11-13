@@ -37,6 +37,7 @@ public class ThumbnailView extends ForegroundImageView {
   private SlideDeckListener slideDeckListener = null;
   private ThumbnailClickListener thumbnailClickListener = null;
   private String slideId = null;
+  private Slide videoSlide;
 
   public Slide getSlide() {
     return slide;
@@ -174,6 +175,7 @@ public class ThumbnailView extends ForegroundImageView {
       if (slideDeck == null) return;
 
       final Slide slide = slideDeck.getThumbnailSlide();
+      videoSlide = slideDeck.getVideoSlide();
       if (slide != null) {
         handler.post(new Runnable() {
           @Override
@@ -226,7 +228,11 @@ public class ThumbnailView extends ForegroundImageView {
     @Override
     public void onClick(View view) {
       if (listener != null) {
-        listener.onClick(view, slide);
+        if(videoSlide != null) {
+          listener.onClick(view, videoSlide);
+        } else {
+          listener.onClick(view, slide);
+        }
       } else {
         Log.w(TAG, "onClick, but no thumbnail click listener attached.");
       }
