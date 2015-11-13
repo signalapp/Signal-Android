@@ -92,6 +92,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     this.locale         = locale;
     this.inflater       = LayoutInflater.from(context);
     this.clickListener  = clickListener;
+    setHasStableIds(true);
   }
 
   @Override
