@@ -17,6 +17,9 @@
 ¿Deshabilitar pantalla de bloqueo para mensajes?</string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Desregistrándose</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Anular registro de mensajes y llamadas de Signal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Anular mensajes y llamadas de Signal?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deshabilitar los mensajes de Signal desregistrándole del servidor. Necesitará volver a registrar su número de teléfono para usar mensajes de Signal de nuevo en el futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Error conectando al servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitados</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>
@@ -99,6 +102,7 @@ este contacto.
   <string name="ConversationActivity_transport_insecure_sms">SMS no seguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS no seguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Pasemonos a Signal: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS no admitidos</string>
   <string name="ConversationActivity_mms_not_supported_message">Este mensaje no se puede enviar debido a que su proveedor no admite MMS.</string>
@@ -117,7 +121,6 @@ Transporte: %2$s
 Enviado: %3$s
 Recibido:%4$s</string>
   <string name="ConversationFragment_save_to_sd_card">¿Guardar en el almacenamiento?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Guardar este contenido en el almacenamiento permitirá  a cualquier otra aplicación de su teléfono acceder a él.\n\n¿Continuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">¡Error al guardar adjunto en el almacenamiento!</string>
   <string name="ConversationFragment_success_exclamation">¡Completado!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">¡No se pudo escribir en el almacenamiento!</string>
@@ -165,17 +168,8 @@ Recibido:%4$s</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure y RedPhone son ahora una sola aplicación: Signal. Pulse para explorar.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportar</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">¿Exportar texto plano a la tarjeta SD?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atención, esto
-exportará los contenidos de texto sin cifrar de sus mensajes de Signal a la tarjeta SD.</string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportando</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando el texto plano a la tarjeta SD...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, ¡no se pudo escribir en la tarjeta SD!
-     
-    </string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Se produjo un error al escribir en la tarjeta SD.
-    </string>
   <string name="ExportFragment_success">¡Éxito!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Fallo permanente de comunicación de Signal!</string>
@@ -194,7 +188,6 @@ exportará los contenidos de texto sin cifrar de sus mensajes de Signal a la tar
   <string name="GroupCreateActivity_menu_create_title">Crear grupo</string>
   <string name="GroupCreateActivity_creating_group">Creando %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Actualizando %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No se pueden añadir contactos no-de-Signal a un grupo de Signal existente</string>
   <string name="GroupCreateActivity_loading_group_details">Cargando detalles del grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Yo</string>
@@ -396,7 +389,6 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">El destinatario no tiene clave de identidad.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">¡El destinatario no tiene clave de identidad!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Escanear la clave de ellos, para comparar</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Escanear mi clave</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVERTENCIA: la clave escaneada NO coincide. Por favor, verifique el texto de la huella digital cuidadosamente.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">¡NO verificado!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La clave de ellos es correcta. También es necesario verificar su clave con ellos.</string>
@@ -410,7 +402,6 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="ViewIdentityActivity_not_verified_exclamation">¡NO verificada!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">¡La clave escaneada coincide!</string>
   <string name="ViewIdentityActivity_verified_exclamation">¡Verificado!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Mi huella digital</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la solicitud existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -532,18 +523,8 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Actualizando base de datos...</string>
   <string name="export_fragment__export_plaintext_backup">Exportar copia de seguridad en texto plano</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Exportar a la tarjeta SD una copia de seguridad en texto plano compatible con \'SMSBackup And Restore\'</string>
   <string name="import_fragment__import_system_sms_database">Importar base de datos de SMS del sistema</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importar la base de datos
-        desde la aplicación de mensajería por defecto del sistema.
-    </string>
-  <string name="import_fragment__import_encrypted_backup">Importar copia de seguridad cifrada</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Restaurar una copia de seguridad cifrada de Signal previamente exportada.</string>
   <string name="import_fragment__import_plaintext_backup">Importar copia de seguridad en texto plano</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Importar una copia de seguridad en texto plano. Compatible con \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversación completa</string>
   <!--media_overview_activity-->
@@ -686,7 +667,6 @@ por SMS.
   <string name="AndroidManifest_manage_linked_devices">Administrar dispositivos vinculados</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar/exportar</string>
-  <string name="arrays__my_identity_key">Mi clave de identidad</string>
   <string name="arrays__use_default">Usar el predeterminado</string>
   <string name="arrays__use_custom">Usar el personalizado</string>
   <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
@@ -723,7 +703,6 @@ por SMS.
   <string name="preferences__choose_identity">Elegir identidad</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elija su propio contacto de la lista de contactos.</string>
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
-  <string name="preferences__change_my_passphrase">Cambiar mi clave de acceso</string>
   <string name="preferences__enable_passphrase">Habilitar clave de acceso</string>
   <string name="preferences__passphrase_summary">Clave de acceso %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Habilitar pantalla de bloqueo para mensajes</string>

@@ -80,7 +80,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">போக்குவரத்து: %1$s\nஅனுப்பியது/பெற்றது: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">அனுப்புநர்: %1$s\nபோக்குவரத்து: %2$s\nஅனுப்பியது: %3$s\nபெற்றது: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">சேமிப்பில் சேர்த்தால், தொலைபேசியில் உள்ள மற்ற மென்பொருட்களாலும் இதை அணுக முடியும்.\n\nதொடரலாமா?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">சேமிப்பில் சேர்கும்போது பிழையேர்ப்பட்டது!</string>
   <string name="ConversationFragment_success_exclamation">வெற்றி!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">சேமிப்பில் சேர்க இயலவில்லை!</string>
@@ -109,12 +108,8 @@
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">ஏற்றுமதி செய்</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">மறையாக்கபடாத இயல்புஉரையாக SD அட்டைக்கு ஏற்றுமதி செய்யலாமா?</string>
   <string name="ExportFragment_cancel">ரத்து</string>
   <string name="ExportFragment_exporting">ஏற்றுமதி செய்யப்படுகிறது</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">மறையாக்கபடாத இயல்புஉரையாக SD அட்டைக்கு ஏற்றுமதி செய்யப்படுகிறது...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">பிழை, SD அட்டையில் எழுத முடியவில்லை!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">SD அட்டையில் எழுதும்போது பிழை ஏற்பட்டது.</string>
   <string name="ExportFragment_success">வெற்றி!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -256,7 +251,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">பெறுநரிடம் ஒரு அடையாளச்சாவி இல்லை.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">பெறுநரிடம்  ஒரு அடையாளச்சாவி  இல்லை!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare"> அவர்களின் சாவியை  ஸ்கேன் செய்து ஒப்பிடவும்</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">என்னுடைய சாவியை ஸ்கேன் செய்யப்பெறவும் </string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">எச்சரிக்கை, ஸ்கேன் செய்யப்பட்ட சாவி பொருந்தவில்லை! கவனமாக டிஜிட்டல் கைரேகையை சரிபார்க்கவும்.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">சரிபார்க்கப்படவில்லை!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">அவர்களின் சாவி சரியாக இருக்கிறது. அதுபோல அவர்களும் உங்கள் சாவியை சரிபார்ப்பது அவசியம்.</string>
@@ -270,7 +264,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">சரிபார்க்கப்படவில்லை! </string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">ஸ்கேன் செய்யப்பட்ட சாவி பொருந்திய்து!</string>
   <string name="ViewIdentityActivity_verified_exclamation">சரிபார்க்கப்பட்டது!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">என் டிஜிட்டல் கைரேகை அடையாளம் </string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">பழைய கோரிக்கை இருப்பினும் தொடங்கலாமா?</string>
   <string name="KeyExchangeInitiator_send">அனுப்பு</string>
@@ -371,16 +364,9 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">தகவல் கோப்பு புதுப்பிக்கப்படுகிறது...</string>
   <string name="export_fragment__export_plaintext_backup">மறையாக்கபடாத வெற்றுரையாக ஏற்றுமதிசெய்</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-\'SMSBackup and Restore\" மென்பொருளில் செயல்பட ஏற்றவாறு, மறையாக்கப்படாத வெற்றுரையாக SD அட்டையில் ஏற்றுமதி செய்க. </string>
   <string name="import_fragment__import_system_sms_database">தொலைபேசியிலுள்ள SMS-களை இறக்குமதி செய்ய</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">இயல்பான Messenger மென்பொருளிலிருந்து 
-குறுஞ்செய்தி கோப்பை இறக்குமதிசெய்</string>
-  <string name="import_fragment__import_encrypted_backup">முன்சேமித்த மறையாக்கப்பட்ட கோப்பிலிருந்து இறக்குமதிசெய்</string>
   <string name="import_fragment__import_plaintext_backup">முன்சேமித்த இயல்புஉரை கோப்பிலிருந்து இறக்குமதிசெய்
 </string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-\'SMSBackup and Restore\' மென்பொருளில் செயல்பட ஏற்றவாறுள்ள, மறையாக்கப்படாத வெற்றுரை கோப்பிடம் இருந்து மீட்க.</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">படங்கள் இல்லை</string>
@@ -472,7 +458,6 @@
   <string name="AndroidManifest__media_overview_named">%1$s உடன் உள்ள அனைத்து படங்கள்</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">இறக்குமதி / ஏற்றுமதி</string>
-  <string name="arrays__my_identity_key">என் அடையாளச் சாவி</string>
   <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
   <string name="arrays__use_custom">விருப்பம் பயன்படுத்தவும்</string>
   <!--plurals.xml-->
@@ -495,7 +480,6 @@
  </string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">தொடர்பு பட்டியலில் இருந்து உங்கள் தொடர்பை  தேர்வுசெய்க.</string>
   <string name="preferences__change_passphrase">கடவுச்சொல்லை மாற்று</string>
-  <string name="preferences__change_my_passphrase">என் கடவுச்சொல்லை மாற்று</string>
   <string name="preferences__enable_passphrase">கடவுச்சொல்லை செயல்படுத்து</string>
   <string name="preferences__passphrase_summary">கடவுச்சொல் %s</string>
   <string name="preferences__screen_security">திரை பாதுகாப்பு</string>

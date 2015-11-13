@@ -111,7 +111,6 @@ ovaj kontakt.</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nPoslano/Primljeno: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nTransport: %2$s\nPoslano: %3$s\nPrimljeno: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Spremi na disk?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Spremanje ovog medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem telefonu.\n\nNastavi?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Greška prilikom spremanja privitka na disk!</string>
   <string name="ConversationFragment_success_exclamation">Uspješno!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pisati na disk!</string>
@@ -159,14 +158,8 @@ ovaj kontakt.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Signal. Pritisnite za pregled.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Izvoz</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Izvezi nekriptirano na SD karticu?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozorenje, ovo
-će izvesti sadržaj Signal poruka na SD karticu u obliku običnog teksta.</string>
   <string name="ExportFragment_cancel">Odustani</string>
   <string name="ExportFragment_exporting">Izvoz</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvoz običnog teksta na SD karticu...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Greška, nije moguće pisati na SD karticu!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Greška prilikom pisanja na SD karticu.</string>
   <string name="ExportFragment_success">Uspješno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>
@@ -185,7 +178,6 @@ ovaj kontakt.</string>
   <string name="GroupCreateActivity_menu_create_title">Stvori grupu</string>
   <string name="GroupCreateActivity_creating_group">Stvaranje %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Ažuriranje %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nije moguće dodati ne-Signal kontakte u postojeću Signal grupu</string>
   <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
@@ -378,7 +370,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Primatelj nema ključ identiteta.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Primatelj nema ključ identiteta!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skenirajte njihov ključ za usporedbu</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Skeniraj moj ključ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UPOZORENJE, skenirani ključ NE ODGOVARA! Provjerite pažljivo tekst otiska prsta.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NIJE potvrđeno!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Njihov ključ je ispravan. Također je potrebno potvrditi vaš ključ sa njima.</string>
@@ -392,7 +383,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="ViewIdentityActivity_not_verified_exclamation">NIJE potvrđeno!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Skenirani ključ odgovara!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Potvrđeno!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Otisak prsta mog identiteta</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
   <string name="KeyExchangeInitiator_send">Pošalji</string>
@@ -514,17 +504,8 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Ažuriranje baze podataka...</string>
   <string name="export_fragment__export_plaintext_backup">Izvezi nekriptiranu kopiju</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Izvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\' na SD karticu.</string>
   <string name="import_fragment__import_system_sms_database">Uvezi SMS bazu podataka sustava</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Uvezi bazu podataka
-iz zadane aplikacije za poruke sustava.</string>
-  <string name="import_fragment__import_encrypted_backup">Uvezi kriptiranu kopiju</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Vrati prethodno izvezenu kriptiranu Signal kopiju.</string>
   <string name="import_fragment__import_plaintext_backup">Uvezi nekriptiranu kopiju</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Prikaži cijeli razgovor</string>
   <!--media_overview_activity-->
@@ -656,7 +637,6 @@ neuspješno.</string>
   <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanim uređajima</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
-  <string name="arrays__my_identity_key">Moj ključ identiteta</string>
   <string name="arrays__use_default">Koristi zadano</string>
   <string name="arrays__use_custom">Koristi prilagođeno</string>
   <string name="arrays__mute_for_one_hour">Utišaj na 1 sat</string>
@@ -694,7 +674,6 @@ neuspješno.</string>
   <string name="preferences__choose_identity">Odaberite identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Odaberite unos kontakta sa popisa kontakata.</string>
   <string name="preferences__change_passphrase">Izmjeni lozinku</string>
-  <string name="preferences__change_my_passphrase">Izmjeni moju lozinku</string>
   <string name="preferences__enable_passphrase">Omogući lozinku</string>
   <string name="preferences__passphrase_summary">Lozinka %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Omogući zaključani ekran za poruke</string>

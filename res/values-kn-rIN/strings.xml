@@ -92,7 +92,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">ರವಾನೆ: %1$s \nಕಳುಹಿಸಲಾಗಿದೆ/ಸ್ವೀಕರಿಸಲಾಗಿದೆ:%2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ಕಳುಹಿಸುವವನು: %1$s\nರವಾನೆ: %2$s\nಕಳುಹಿಸಲಾಗಿದೆ: %3$s\nಸ್ವೀಕರಿಸಿದ್ದೇವೆ:%4$s</string>
   <string name="ConversationFragment_save_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಉಳಿಸಲೆ?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">ಈ ಮಾಧ್ಯಮವನ್ನು ಸಂಗ್ರಹಕ್ಕೆ ಉಳಿಸಲಾಗುತ್ತಿದೆ. ನಿಮ್ಮ ಫೋನಿನ  ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ಗಳು ಇದನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳುವ ಅವಕಾಶವಿದೆ \n \ n ಮುಂದುವರಿಯುಲೆ?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸುವಾಗ ತೊಡಕಾಗಿದೆ!</string>
   <string name="ConversationFragment_success_exclamation">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ಸಂಗ್ರಹಕ್ಕೆ ಬರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ!</string>
@@ -125,12 +124,8 @@
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">ರಫ್ತು ಮಾಡಿ</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">ಎಸ್ ಡಿ ಕಾರ್ಡ್ಗೆ ಸರಳಪಠ್ಯ ರಫ್ತು ಮಾಡಿ?</string>
   <string name="ExportFragment_cancel">ರದ್ದುಮಾಡು</string>
   <string name="ExportFragment_exporting">ರಫ್ತು ಮಾಡುತ್ತಿದ್ದೇವೆ</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">ಎಸ್ ಡಿ ಕಾರ್ಡ್ಗೆ ಸರಳಪಠ್ಯವನ್ನು ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ... </string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">ದೋಷ, ಎಸ್ ಡಿ ಕಾರ್ಡ್ಗೆ ಬರೆಯಲು ಸಾಧ್ಯವಾಗುವುತ್ತಿಲ್ಲ! </string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">ಎಸ್.ಡಿ ಕಾರ್ಡ್ಗೆ ಬರೆಯುವಾಗ ದೋಷವಾಗಿದೆ. </string>
   <string name="ExportFragment_success">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -277,7 +272,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">ಸ್ವೀಕರಿಸುವವರ ಯಾವುದೇ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">ಸ್ವೀಕರಿಸುವವರ ಯಾವುದೇ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">ಅವರ ಕೀಲಿಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಹೋಲಿಸಿ ನೋಡಿ</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">ನನ್ನ ಕೀಲಿಯ ಸ್ಕ್ಯಾನ್ ಪಡೆಯಿರಿ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ಎಚ್ಚರಿಕೆ, ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ! ಬೆರಳಚ್ಚುಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">ಪರಿಶೀಲಿಸಿಲ್ಲ!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">ಅವರ ಕೀಲಿ ಸರಿಯಾಗಿದೆ. ಅವರು ನಿಮ್ಮ ಕೀಲಿಯನ್ನು ಪರಿಶೀಲಿಸುವುದು ಸಹ ಅವಶ್ಯಕ.</string>
@@ -291,7 +285,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">ಪರಿಶೀಲಿಸಿಲ್ಲ!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿಗಳು ಸಮಾನವಾಗಿವೆ!</string>
   <string name="ViewIdentityActivity_verified_exclamation">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">ನನ್ನ ಗುರುತಿನ ಬೆರಳಚ್ಚು</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ವಿನಂತಿ ಹೊರತಾಗಿಯೂ ಸಹ ಪುನಃ ಪ್ರಾರಂಭಿಸಿ?</string>
   <string name="KeyExchangeInitiator_send">ಕಳುಹಿಸು</string>
@@ -394,14 +387,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">ದತ್ತಾಂಶ ಆಧುನಿಕಗೊಳಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="export_fragment__export_plaintext_backup">ಸರಳಪಠ್ಯದ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಫ್ತು ಮಾಡಿ</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-ಏಸ್ ಡಿ  ಕಾರ್ಡ್ಗೆ \'SMSBackup And Restore\' ಹೊಂದಬಲ್ಲ ಒಂದು ಸರಳಪಠ್ಯ ಬ್ಯಾಕ್ಅಪ್ ಅನ್ನು ರಫ್ತು ಮಾಡಿ.</string>
   <string name="import_fragment__import_system_sms_database">ವ್ಯವಸ್ಥೆಯ ಎಸ್.ಎಮ್.ಎಸ್ ದತ್ತಾಂಶವನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">ಪೂರ್ವನಿಯೋಜಿತ ವ್ಯವಸ್ಥೆಯ ಸಂದೇಶವಾಹಕ ಅಪ್ಲಿಕೇಶನ್ನಿಂದ ದತ್ತಾಂಶವನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ.</string>
-  <string name="import_fragment__import_encrypted_backup">ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
   <string name="import_fragment__import_plaintext_backup">ಸರಳಪಠ್ಯದ  ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-ಒಂದು ಸರಳಪಠ್ಯ ಬ್ಯಾಕಪ್ ಕಡತವನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ . \'SMSBackup And Restore\' ಜೋತೆ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ.</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">ಯಾವುದೇ ಚಿತ್ರಗಳಿಲ್ಲ</string>
@@ -492,7 +479,6 @@
   <string name="AndroidManifest__message_details">ಸಂದೇಶ ವಿವರಗಳು</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
-  <string name="arrays__my_identity_key">ನನ್ನ ಗುರುತಿನ ಕೀಲಿ</string>
   <string name="arrays__enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
   <string name="arrays__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>
   <!--plurals.xml-->
@@ -513,7 +499,6 @@
   <string name="preferences__choose_identity">ಗುರುತನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯಿಂದ ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ.</string>
   <string name="preferences__change_passphrase">ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಿ</string>
-  <string name="preferences__change_my_passphrase">ನನ್ನ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸು</string>
   <string name="preferences__enable_passphrase">ಗುಪ್ತಪದವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__screen_security">ತೆರೆಯ ಸುರಕ್ಷತೆ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">ಇತ್ತೀಚಿನ ಪಟ್ಟಿಯಲ್ಲಿ ಮತ್ತು ಅಪ್ಲಿಕೇಶನ್ ಒಳಗೆ  ಸ್ಕ್ರೀನ್ ಶಾಟ್ ಬ್ಲಾಕ್ ಮಾಡಿ</string>

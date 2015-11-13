@@ -100,7 +100,6 @@ denne kontakt.</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overførsel: %1$s\nSendt/Modtaget: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nOverførsel: %2$s\nSendt: %3$s\nModtaget: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Gem på lager?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Gemmer du denne fil på lageret, kan andre apps på telefonen tilgå den.\n\nFortsæt?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Kunne ikke gemme vedhæftet fil på lageret!</string>
   <string name="ConversationFragment_success_exclamation">Fuldført!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lageret!</string>
@@ -142,12 +141,8 @@ denne kontakt.</string>
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksportér</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Eksportér klartekst til SD-kort?</string>
   <string name="ExportFragment_cancel">Afbryd</string>
   <string name="ExportFragment_exporting">Eksporterer</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksporterer klartekst til SD-kort...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Fejl, kan ikke skrive til SD-kort!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Fejl, kunne ikke skrive til SD-kort.</string>
   <string name="ExportFragment_success">Fuldført!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -318,7 +313,6 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Modtageren har ingen identitetsnøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Modtageren har ingen identiitetsnøgle!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skan deres nøgle for at sammenligne</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Skan min nøgle</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøgle matcher IKKE! Tjek fingeraftryksteksten nøje.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Modpartens nøgle er korrekt. Det er også nødvendigt at bekræfte din nøgle med modparten.</string>
@@ -332,7 +326,6 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøgle matcher!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Bekræftet!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Mit identitetsfingeraftryk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initialisér til trods for eksisterende forespørgsel?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
@@ -446,15 +439,8 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Opdaterer databasen...</string>
   <string name="export_fragment__export_plaintext_backup">Eksportér klartekst-backup</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Eksportér en klartekst-backup kompatibel med \"SMSBackup And Restore\" til SD-kortet.</string>
   <string name="import_fragment__import_system_sms_database">Importér enhedens SMS database</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importér databasen
-fra systemets standard SMS-app.</string>
-  <string name="import_fragment__import_encrypted_backup">Importér krypteret backup</string>
   <string name="import_fragment__import_plaintext_backup">Importér klartekst-backup</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Importér en klartekst-backupfil. Kompatibel med \"SMSBackup And Restore\".</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Ingen billeder</string>
@@ -549,7 +535,6 @@ mislykkedes.</string>
   <string name="AndroidManifest_manage_linked_devices">Håndtér tilkoblede enheder</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importér / eksportér</string>
-  <string name="arrays__my_identity_key">Min identitetsnøgle</string>
   <string name="arrays__use_default">Anvend standard</string>
   <string name="arrays__use_custom">Anvend tilpasset</string>
   <string name="arrays__mute_for_one_hour">Dæmp 1 time</string>
@@ -584,7 +569,6 @@ mislykkedes.</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten.</string>
   <string name="preferences__change_passphrase">Ændr kodeord</string>
-  <string name="preferences__change_my_passphrase">Ændr mit kodeord</string>
   <string name="preferences__enable_passphrase">Aktivér kodeord</string>
   <string name="preferences__passphrase_summary">Kodeord %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Aktivér låseskærm for beskeder</string>

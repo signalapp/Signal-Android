@@ -125,7 +125,6 @@ kontakt</string>
     <item quantity="other">Tímto trvale smažete všech %1$d označených zpráv.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Uložit do paměti?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Uložením dat do paměti k nim umožníte přístup kterékoliv aplikaci ve svém telefonu.\n\nPokračovat?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Chyba při ukládání přílohy!</string>
   <string name="ConversationFragment_success_exclamation">Úspěšně dokončeno!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nelze uložit data do paměti.</string>
@@ -183,14 +182,8 @@ kontakt</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure a RedPhone jsou nyní jednou aplikací: Signal. Dotkněte se a prozkoumejte.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Export</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Exportovat nešifrovaný text na SD kartu?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varování, toto exportuje
-dešifrované obsah vašich Signal zpráv na SD kartu.</string>
   <string name="ExportFragment_cancel">Storno</string>
   <string name="ExportFragment_exporting">Exportuji</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportuji nešifrovaný text na SD kartu...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Chyba: Nelze zapisovat na SD kartu!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Chyba při zápisu na SD kartu.</string>
   <string name="ExportFragment_success">Úspěšně dokončeno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
@@ -209,7 +202,6 @@ dešifrované obsah vašich Signal zpráv na SD kartu.</string>
   <string name="GroupCreateActivity_menu_create_title">Vytvořit skupinu</string>
   <string name="GroupCreateActivity_creating_group">Vytvářím %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizuji %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nemohu přidat kontakty které nejsou v systému Signal do existující skupiny Signal</string>
   <string name="GroupCreateActivity_loading_group_details">Načítám detaily skupiny...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Já</string>
@@ -246,8 +238,6 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="InviteActivity_heart_content_description">Srdíčko</string>
   <string name="InviteActivity_invitations_sent">Povnání odesláno!</string>
   <string name="InviteActivity_invite_to_signal">Pozvat do Signalu</string>
-  <string name="InviteActivity_send_to_friends">POSLAT %1$s příteli(přátelům)</string>
-  <string name="InviteActivity_send_sms_invites">Poslat %1$s SMS pozvánku(ek)</string>
   <string name="InviteActivity_lets_switch_to_signal">Pojďme přepnout na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Zdá se že nemáte žádnou aplikaci pro sdílení.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Přátelé nenechávají přátele komunikovat nešifrovaně.</string>
@@ -408,7 +398,6 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Příjemce nemá identifikační klíč.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Příjemce nemá identifikační klíč!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Nasnímat cizí klíč pro srovnání</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Klíč byl nasnímán</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">VAROVÁNÍ, nasnímaný klíč NENÍ SPRÁVNÝ! Zkontrolujte prosím textový otisk.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NEověřeno!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Klíč protistrany je správný. Protistrana by měla ještě ověřit váš vlastní klíč.</string>
@@ -422,7 +411,6 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="ViewIdentityActivity_not_verified_exclamation">NEověřeno!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Nasnímaný klíč souhlasí!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Ověřeno!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Můj identifikační otisk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Zahájit i přes probíhající požadavek?</string>
   <string name="KeyExchangeInitiator_send">Odeslat</string>
@@ -549,17 +537,8 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aktualizuji databázi...</string>
   <string name="export_fragment__export_plaintext_backup">Exportovat nešifrovanou zálohu</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Exportovat nezašifrovanou zálohu kompatibilní s \"SMSBackup And Restore\" na SD kartu</string>
   <string name="import_fragment__import_system_sms_database">Import systémové databáze SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importovat databázi
-z výchozí aplikace pro SMS a MMS.</string>
-  <string name="import_fragment__import_encrypted_backup">Obnovit ze zašifrované zálohy</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Obnovit dříve exportovanou šifrovanou zálohu Signal</string>
   <string name="import_fragment__import_plaintext_backup">Obnovit nešifrovanou zálohu</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Prohlédnout si celou konverzaci</string>
   <!--media_overview_activity-->
@@ -694,7 +673,6 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__invite_friends">Pozvat přátele</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
-  <string name="arrays__my_identity_key">Můj identifikační klíč</string>
   <string name="arrays__use_default">Použít výchozí</string>
   <string name="arrays__use_custom">Použít vlastní</string>
   <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
@@ -732,7 +710,6 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__choose_identity">Zvolit identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zvolte osobu ze svého adresáře</string>
   <string name="preferences__change_passphrase">Změnit heslo</string>
-  <string name="preferences__change_my_passphrase">Změnit své heslo</string>
   <string name="preferences__enable_passphrase">Povolit přístupové heslo</string>
   <string name="preferences__passphrase_summary">Heslo %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Povolit uzamčení obrazovky zpráv</string>

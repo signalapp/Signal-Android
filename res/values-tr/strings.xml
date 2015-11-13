@@ -89,7 +89,6 @@ isteyebilirsiniz.</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Taşıma: %1$s\nGönderme/Alma: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Gönderici: %1$s\nTaşıma: %2$s\nGönderildi: %3$s\nAlındı: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Depolama alanına kaydedilsin mi?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Bu medyayı depolama alanına kaydetmekle, telefondaki diğer uygulamaların erişmesine izin vereceksiniz.\n\nDevam etmek istiyor musunuz?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Depolama alanına ek kaydedilirken hata!</string>
   <string name="ConversationFragment_success_exclamation">Başarılı!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Depolama alanına yazılamıyor!</string>
@@ -121,12 +120,8 @@ isteyebilirsiniz.</string>
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Dışarı Aktar</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Açık metni SD karta dışa aktar?</string>
   <string name="ExportFragment_cancel">İptal</string>
   <string name="ExportFragment_exporting">Dışarı aktarılıyor</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Açık metin SD karta dışa aktarılıyor...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Hata, açık metin SD karta dışa aktarılamıyor!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">SD karta kaydelilirken hata.</string>
   <string name="ExportFragment_success">Başarılı!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -273,7 +268,6 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Alıcının kimlik anahtarı yok.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Alıcının kimlik anahtarı yok!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Karşılaştırmak için anahtarını tarayın</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Anahtarımı tarat</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UYARI, taranan anahtar EŞLEŞMİYOR! Parmak izi metnini dikkatlice inceleyin.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">Doğrulanmadı!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Onun anahtarı doğru. Anahtarınızı onunla da doğrulamanız gerekiyor.</string>
@@ -287,7 +281,6 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="ViewIdentityActivity_not_verified_exclamation">Doğrulanamadı!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Taranan anahtar eşleşiyor!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Doğrulandı!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Kimlik parmakizim</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Varolan isteğe rağmen başlat?</string>
   <string name="KeyExchangeInitiator_send">Gönder</string>
@@ -389,15 +382,8 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Veritabanı güncelleniyor...</string>
   <string name="export_fragment__export_plaintext_backup">Şifrelenmemiş açık metin yedeği dışa aktar</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-\'SMSBackup And Restore\' ile uyumlu şifrelenmemiş metin yedeğini SD karta kaydet.  </string>
   <string name="import_fragment__import_system_sms_database">Sistem SMS veritabanını içe aktar</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Öntanımlı sistem mesaj uygulamasından
-veritabanı içe aktarımı</string>
-  <string name="import_fragment__import_encrypted_backup">Şifrelenmiş yedeği içe aktar</string>
   <string name="import_fragment__import_plaintext_backup">Şifrelenmemiş açık metin yedeği içe aktar</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-\'SMSBackup And Restore\' ile uyumlu bir şifrelenmemiş metin yedeğini içe aktar.</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Resim yok</string>
@@ -492,7 +478,6 @@ başarısız.</string>
   <string name="AndroidManifest__message_details">Mesaj Detayları</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçeri / Dışarı Aktar</string>
-  <string name="arrays__my_identity_key">Kimlik anahtarım</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
   <string name="arrays__use_custom">Özelleştirilmiş kullan</string>
   <string name="arrays__settings_default">Ayarlar varsayılan</string>
@@ -516,7 +501,6 @@ başarısız.</string>
   <string name="preferences__choose_identity">Kimlik seç</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
   <string name="preferences__change_passphrase">Parola değiştir</string>
-  <string name="preferences__change_my_passphrase">Parolamı değiştir</string>
   <string name="preferences__enable_passphrase">Parola etkinleştir</string>
   <string name="preferences__passphrase_summary">Parola %s</string>
   <string name="preferences__screen_security">Ekran güvenliği</string>

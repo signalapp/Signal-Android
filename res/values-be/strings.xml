@@ -85,7 +85,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Адпраўшчык: %1$s\nТранспарт: %2$s\nДаслана: %3$s\nАтрымана: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Захаваўшы гэты кантэнт на дыск, вы дазваляеце ўсім іншым праграмам на вашым смартфоне атрымаць да яго доступ.\n\nПрацягнуць?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Памылка пры захаванні дадатку на дыск!</string>
   <string name="ConversationFragment_success_exclamation">Паспяхова!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Немагчыма запісаць на дыск!</string>
@@ -114,12 +113,8 @@
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспарт</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Экспартаваць простым тэкстам на SD картку?</string>
   <string name="ExportFragment_cancel">Адмена</string>
   <string name="ExportFragment_exporting">Экспарт</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Экспарт простым тэкстам на SD картку...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Памылка, немагчыма запісаць на SD картку!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Памылк падчас запісу на SD картку.</string>
   <string name="ExportFragment_success">Паспяхова!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -252,7 +247,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Атрымальнік ня мае ідэнтыфікацыйнага ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Атрымальнік ня мае ідэнтыфікацыйнага ключа!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Адскануйце гэты ключ, каб параўнаць</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Атрымаць мой сканаваны ключ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УВАГА, адсканаваныя ключы не супадаюць! Калі ласка ўважліва праверце адбіткі.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ верыфікавана!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Іх ключ правільны. Таксама не забудзься верыфікаваць свой ключ з імі.</string>
@@ -266,7 +260,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">Не верыфікавана!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Адсканаваныя ключ супадае!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Верыфікавана!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Адбітак майго ідэнтыфікатара</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Ініцыяваць нягледзячы на існуючы запыт?</string>
   <string name="KeyExchangeInitiator_send">Даслаць</string>
@@ -367,15 +360,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Абнаўленне базы дадзеных...</string>
   <string name="export_fragment__export_plaintext_backup">Экспарт рэзервнай копіі простым тэкстам</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Экспарт простым тэкстам рэзервнай копіі сумяшчальны з \'SMSBackup And Restore\' на SD картку.</string>
   <string name="import_fragment__import_system_sms_database">Імпартаваць сістэмную базу SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Імпарт базы дадзеных
-са стандартнай сістэмнай праграмы для SMS.</string>
-  <string name="import_fragment__import_encrypted_backup">Імпарт зашыфраванай рэзервнай копіі</string>
   <string name="import_fragment__import_plaintext_backup">Імпартаваць рэзервную копію простым тэкстам</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Імпартаваць простым тэкстам рэзервную копію з файла. Сумяшчальна з \'SMSBackup And Restore.\'</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Няма выявы</string>
@@ -460,7 +446,6 @@
   <string name="AndroidManifest__media_overview_named">Усе выявы з %1$s</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Імпарт / экспарт</string>
-  <string name="arrays__my_identity_key">Мой ідэнтыфікацыйны ключ</string>
   <string name="arrays__use_default">Выкарыстоўваць стандартны</string>
   <string name="arrays__use_custom">Выкарыстоўваць кастамны</string>
   <!--plurals.xml-->
@@ -484,7 +469,6 @@
   <string name="preferences__choose_identity">Абярыце ідэнтыфікатар</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Абярыце кантакт са спісу.</string>
   <string name="preferences__change_passphrase">Змяніць пароль.</string>
-  <string name="preferences__change_my_passphrase">Змяніць мой пароль</string>
   <string name="preferences__enable_passphrase">Уключыць пароль</string>
   <string name="preferences__passphrase_summary">Пароль %s</string>
   <string name="preferences__screen_security">Бяспека экрана</string>

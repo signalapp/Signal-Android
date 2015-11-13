@@ -38,7 +38,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(звук)</string>
   <string name="DraftDatabase_Draft_video_snippet">(видео)</string>
   <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Не могу да нађем апликацију за избор медијума.</string>
+  <string name="AttachmentManager_cant_open_media_selection">Нема апликације за избор медијума.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_camera">Камера</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Слика</string>
@@ -59,6 +59,7 @@
   <string name="ConfirmIdentityDialog_accept">Прихвати</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Порука %s</string>
+  <string name="ContactsDatabase_signal_call_s">Позови %s Сигналом</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Величина поруке: %d KB</string>
   <string name="ConversationItem_expires_s">Истиче: %s</string>
@@ -128,7 +129,7 @@
     <item quantity="other">Ово ће трајно да обрише свих %1$d изабраних порука.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Сачувати у складиште?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Упис овог медијума у складиште ће омогућити било којој апликацији на вашем телефону да му приступи.\n\nДа наставим?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Упис овог медијума у складиште ће омогућити било којој апликацији на вашем уређају да му приступи.\n\nДа наставим?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка уписа прилога у складиште!</string>
   <string name="ConversationFragment_success_exclamation">Успех!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не могу да упишем у складиште!</string>
@@ -186,15 +187,13 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Сигурне поруке и Црвени телефон су сада једна апликација: Сигнал. Тапните да истражите.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Извези</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Извести обични текст на СД картицу?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Упозорење, ово ће
-да извезе обичан текстуални садржај ваших порука на СД картицу.</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Извести обични текст у складиште?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Упозорење, ово ће да извезе обичан текстуални садржај ваших порука у складиште.</string>
   <string name="ExportFragment_cancel">Одустани</string>
   <string name="ExportFragment_exporting">Извозим</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Извозим обични текст на СД картицу...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Грешка, нисам могао да упишем на СД картицу!
-    </string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Грешка уписа на СД картицу.</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Извозим обични текст у складиште...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Грешка, не могу да уписујем у складиште.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Грешка при упису у складиште.</string>
   <string name="ExportFragment_success">Успех!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајни неуспех комуникације Сигнала!</string>
@@ -213,8 +212,9 @@
   <string name="GroupCreateActivity_menu_create_title">Направи групу</string>
   <string name="GroupCreateActivity_creating_group">Правим %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Ажурирам %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не могу да додам остале контакте у постојећу Сигналову групу</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не могу да додам %1$s јер нису корисници Сигнала.</string>
   <string name="GroupCreateActivity_loading_group_details">Учитавам детаље групе...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Већ сте у групи.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ја</string>
   <!--ImportExportActivity-->
@@ -254,8 +254,16 @@
   <string name="InviteActivity_heart_content_description">Срце</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
   <string name="InviteActivity_invite_to_signal">Позови у Сигнал</string>
-  <string name="InviteActivity_send_to_friends">ПОШАЉИ %1$s ПРИЈАТЕЉУ(А)</string>
-  <string name="InviteActivity_send_sms_invites">Послати %1$s позивницу(а) СМС-ом?</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">ПОШАЉИ 1 ПРИЈАТЕЉУ</item>
+    <item quantity="few">ПОШАЉИ %d ПРИЈАТЕЉА</item>
+    <item quantity="other">ПОШАЉИ %d ПРИЈАТЕЉА</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Послати 1 СМС позивницу?</item>
+    <item quantity="few">Послати %d СМС позивнице?</item>
+    <item quantity="other">Послати %d СМС позивница?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Пребацимо се на Сигнал: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатељи не допуштају пријатељима да ћаскају небезбедно.</string>
@@ -422,7 +430,7 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Прималац нема кључ идентитета.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Прималац нема кључ идентитета!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Очитај њихов кључ за поређење</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Очитај мој кључ</string>
+  <string name="VerifyIdentityActivity_get_your_key_scanned">Очитајте ваш кључ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УПОЗОРЕЊЕ, очитани кључ се НЕ поклапа! Проверите текст отиска пажљиво.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НИЈЕ оверен!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Њихов кључ је тачан. Потребно је такође да оверите ваш кључ са њима.</string>
@@ -436,7 +444,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">НИЈЕ оверен!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Очитани кључ се поклапа!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Оверен!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Отисак мог идентитета</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Отисак вашег идентитета</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Започети унаточ постојећем захтеву?</string>
   <string name="KeyExchangeInitiator_send">Пошаљи</string>
@@ -476,7 +484,7 @@
   <string name="MessageNotifier_media_message_with_text">Мултимедијална порука: %s</string>
   <string name="MessageNotifier_no_subject">(Без предмета)</string>
   <string name="MessageNotifier_message_delivery_failed">Испорука поруке није успела.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Нисам успео да испоручим поруку.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Не успех да испоручим поруку.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при испоруци поруке.</string>
   <string name="MessageNotifier_mark_all_as_read">Означи све прочитаним</string>
   <string name="MessageNotifier_mark_read">Означи прочитаним</string>
@@ -563,17 +571,13 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Ажурирам базу података...</string>
   <string name="export_fragment__export_plaintext_backup">Извези текстуалну резерву</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Извези обичну текстуалну резерву компатибилну са апликацијом „SMSBackup And Restore“ на СД картицу.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Извоз обичне текстуалне резерву компатибилне са апликацијом „SMS Backup &amp; Restore“ у складиште.</string>
   <string name="import_fragment__import_system_sms_database">Увези системску СМС базу података</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Увези базу података
-из подразумеване системске апликације за размену порука.</string>
-  <string name="import_fragment__import_encrypted_backup">Увези шифровану резерву</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Врати претходно извезену шифровану резерву Сигналових порука.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Увоз базе података из подразумеване системске апликације за размену порука</string>
+  <string name="import_fragment__restore_encrypted_backup">Врати шифровану резерву</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Враћање претходно извезене шифроване резерве Сигналових порука</string>
   <string name="import_fragment__import_plaintext_backup">Увези текстуалну резерву</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Увези обични текстуални фајл резерве. Компатибилно са апликацијом „SMSBackup And Restore“.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Увоз обичне текстуалне резерве. Компатибилно са апликацијом „SMS Backup &amp; Restore“.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Погледај читаву преписку</string>
   <!--media_overview_activity-->
@@ -708,13 +712,14 @@
   <string name="AndroidManifest__invite_friends">Позовите пријатеље</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
-  <string name="arrays__my_identity_key">Мој кључ идентитета</string>
+  <string name="arrays__your_identity_key">Ваш кључ идентитета</string>
   <string name="arrays__use_default">Користи подразумевано</string>
   <string name="arrays__use_custom">Користи посебно</string>
   <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
   <string name="arrays__mute_for_two_hours">Утишај 2 сата</string>
   <string name="arrays__mute_for_one_day">Утишај 1 дан</string>
   <string name="arrays__mute_for_seven_days">Утишај 7 сати</string>
+  <string name="arrays__mute_for_one_year">Утишај 1 годину</string>
   <string name="arrays__settings_default">Подразумевана поставка</string>
   <string name="arrays__enabled">Укључи</string>
   <string name="arrays__disabled">Искључи</string>
@@ -746,7 +751,7 @@
   <string name="preferences__choose_identity">Изаберите идентитет</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изаберите унос вашег контакта са списка контаката.</string>
   <string name="preferences__change_passphrase">Измени лозинку</string>
-  <string name="preferences__change_my_passphrase">Измени моју лозинку</string>
+  <string name="preferences__change_your_passphrase">Измените вашу лозинку</string>
   <string name="preferences__enable_passphrase">Омогући лозинку</string>
   <string name="preferences__passphrase_summary">Закључавање лозинком %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Укључи екран закључавања за поруке</string>

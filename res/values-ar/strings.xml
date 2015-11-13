@@ -108,7 +108,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">نقل: %1$s\nSent/Received: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">الراسل: %1$s\nنقل: %2$s\nمرسل: %3$s\nوارد: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">أحفظ في الذاكرة؟</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">حفظ الملف في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">خطأ أثناء حفظ المرفق إلى الذاكرة!</string>
   <string name="ConversationFragment_success_exclamation">تم بنجاح!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
@@ -156,13 +155,8 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">تم دمج تيكست سيكيور وريدفون في تطبيق واحد الآن: سيجنال</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">تصدير</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">تصدير نص غير مشفر إلي بطاقة الذاكرة الخارجية؟</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">تحذير: سيتم تصدير محتوى رسائل سيجنال إلى بطاقة الذاكرة بدون تشفير.</string>
   <string name="ExportFragment_cancel">إلغاء</string>
   <string name="ExportFragment_exporting">التصدير جارٍ...</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">جارٍ تصدير غير مشفر إلى بطاقة الذاكرة...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">خطأ. تعذر الكتابة على بطاقة الذاكرة!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">خطأ أثناء الكتابة على بطاقة الذاكرة.</string>
   <string name="ExportFragment_success">تم بنجاح!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال سيجنال!</string>
@@ -181,7 +175,6 @@
   <string name="GroupCreateActivity_menu_create_title">إنشاء مجموعة</string>
   <string name="GroupCreateActivity_creating_group">الإنشاء جارٍ %1$s…</string>
   <string name="GroupCreateActivity_updating_group">التحديث جارٍ %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">لا يمكن إضافة غير المستخدمين لسيجنال إلي مجموعة سيجنال حالية.</string>
   <string name="GroupCreateActivity_loading_group_details">تحميل بيانات المجموعة...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">أنا</string>
@@ -362,7 +355,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">لا يوجد لدى الطرف الاخر مفتاح تعريفي.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">لا يوجد لدى الطرف الاخر مفتاح تعريفي!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">قم بالمسح الضوئي لمفتاحهم للمقارنة</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">قم بالمسح الضوئي لمفتاحي</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">تحذير: المفتاح الذي تم مسحه ضوئياً لا يتطابق! تأكد من بصمة المفتاح بحذر.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">مفتاحهم صحيح. يجب أيضاً أن تقوم بالتحقق من مفتاحك لديهم أيضاً.</string>
@@ -376,7 +368,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">المفتاح الذي تم مسحه ضوئياً متطابق!</string>
   <string name="ViewIdentityActivity_verified_exclamation">تم التحقق!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">بصمة هويتي</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ابدأ على الرغم من الطلب الحالي؟</string>
   <string name="KeyExchangeInitiator_send">أرسل</string>
@@ -498,17 +489,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">تحديث قاعدة البيانات...</string>
   <string name="export_fragment__export_plaintext_backup">تصدير نسخة احتياطية غير مشفرة</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-تصدير نسخة غير مشفرة لبطاقة الذاكرة الخارجية بصيغة متوافقة مع \"SMSBackup And Restore\".</string>
   <string name="import_fragment__import_system_sms_database">استيراد قاعدة بيانات الرسائل بالنظام</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">استيراد قاعدة البيانات
-من تطبيق الرسائل الافتراضي لنظام التشغيل</string>
-  <string name="import_fragment__import_encrypted_backup">استيراد نسخة احتياطية مشفرة</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
- استعادة نسخة احتياطية مشفرة من سيجنال.</string>
   <string name="import_fragment__import_plaintext_backup">استيراد نسخة احتياطية غير مشفرة</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-استيراد نسخة احتياطية غير مشفرة، متوافقة مع \"SMSBackup And Restore\".</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">مطالعة المحادثة بالكامل</string>
   <!--media_overview_activity-->
@@ -628,7 +610,6 @@
   <string name="AndroidManifest_manage_linked_devices">إدارة الأجهزة المقترنة</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد / تصدير</string>
-  <string name="arrays__my_identity_key">مفتاح هويتي</string>
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
   <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
@@ -669,7 +650,6 @@
   <string name="preferences__choose_identity">اختيار الهوية</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">اختر جهة الاتصال من القائمة</string>
   <string name="preferences__change_passphrase">غير العبارة السرية</string>
-  <string name="preferences__change_my_passphrase">غير عبارتي السرية</string>
   <string name="preferences__enable_passphrase">تفعيل العبارة السرية</string>
   <string name="preferences__passphrase_summary">عبارة سرية %s</string>
   <string name="preferences__enable_lock_screen_for_messages">تفعيل قفل الشاشة للرسائل</string>

@@ -121,7 +121,6 @@ questo contatto.</string>
     <item quantity="other">Così cancellerai per sempre i %1$d messaggi selezionati.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Salvare quest\'immagine sulla memoria consentirà a qualunque applicazione sul tuo telefono di accedervi.\n\nContinuare?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Errore nel salvare l\'allegato in memoria!</string>
   <string name="ConversationFragment_success_exclamation">Completato!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossibile scrivere sulla memoria!</string>
@@ -177,14 +176,8 @@ questo contatto.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e Redphone ora sono un\'unica app: Signal. Tocca per esplorare.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Esporta</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Esportare copia in chiaro su scheda SD?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Attenzione, questo
-esporterà i messaggi in chiaro di Signal sulla tua scheda SD.</string>
   <string name="ExportFragment_cancel">Annulla</string>
   <string name="ExportFragment_exporting">In esportazione</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Esportazione in chiaro sulla scheda SD...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Errore, impossibile scrivere sulla scheda SD</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Errore durante la scrittura su scheda SD.</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
@@ -203,7 +196,6 @@ esporterà i messaggi in chiaro di Signal sulla tua scheda SD.</string>
   <string name="GroupCreateActivity_menu_create_title">Crea gruppo</string>
   <string name="GroupCreateActivity_creating_group">Creo %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aggiornamento %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossibile aggiungere a un gruppo di Signal un contatto che non usa Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Caricamennto dettagli del gruppo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Io</string>
@@ -239,7 +231,6 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="InviteActivity_sending">Invio...</string>
   <string name="InviteActivity_invitations_sent">Inviti mandati!</string>
   <string name="InviteActivity_invite_to_signal">Invita su Signal</string>
-  <string name="InviteActivity_send_to_friends">INVIA A %1$s AMICO/I</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nessuna chiave scansionata trovata!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Installare Barcode Scanner?</string>
@@ -401,7 +392,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Il destinatario non ha una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Il destinatario non ha una chiave di identità.</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Scansiona la chiave per controllare</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Scansione la mia chiave</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATTENZIONE, la chiave scansionata non corrisponde! Controlla il testo della chiave con attenzione.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NON verificata!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La chiave è corretta. È anche necessario verificare la tua chiave.</string>
@@ -415,7 +405,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="ViewIdentityActivity_not_verified_exclamation">NON verificato!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">La chiave scansionata corrisponde!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verificata!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Impronta della mia identità</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniziare nonostante la richiesta esistente?</string>
   <string name="KeyExchangeInitiator_send">Inviata</string>
@@ -536,17 +525,8 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aggiornando il database...</string>
   <string name="export_fragment__export_plaintext_backup">Esportare copia in chiaro</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Esporto una copia in chiaro compatibile con \"SMSBackup And Restore\" sulla SD card.</string>
   <string name="import_fragment__import_system_sms_database">Importa gli SMS dal database criptato</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importa il database
-dall\'app SMS di default.</string>
-  <string name="import_fragment__import_encrypted_backup">Importa copia cifrata</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Ripristina un backup criptato con Signal precedentemente esportato.</string>
   <string name="import_fragment__import_plaintext_backup">Importare copia in chiaro</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vedi tutta la conversazione</string>
   <!--media_overview_activity-->
@@ -683,7 +663,6 @@ non riuscita.
   <string name="AndroidManifest_manage_linked_devices">Gestisci dispositivi collegati</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
-  <string name="arrays__my_identity_key">La chiave della mia identità</string>
   <string name="arrays__use_default">Usa predefinito</string>
   <string name="arrays__use_custom">Usa personalizzato</string>
   <string name="arrays__mute_for_one_hour">Silenzia per 1 ora</string>
@@ -720,7 +699,6 @@ non riuscita.
   <string name="preferences__choose_identity">Scegli identità</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
   <string name="preferences__change_passphrase">Cambia passphrase</string>
-  <string name="preferences__change_my_passphrase">Cambia la mia password</string>
   <string name="preferences__enable_passphrase">Usa password</string>
   <string name="preferences__passphrase_summary">Password %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Attiva schermata di blocco per i messaggi</string>

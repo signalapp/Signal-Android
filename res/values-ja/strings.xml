@@ -100,7 +100,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n送信方法: %2$s\n送信: %3$s\n受信: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">メモリに保存しますか？</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">このファイルを保存すれば、別のアプリもこのファイルをアクセスできます。\n\nよろしいですか？</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">保存中にエラーが発生しました。</string>
   <string name="ConversationFragment_success_exclamation">成功しました。</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">メモリに書き込めませんでした。</string>
@@ -142,12 +141,8 @@
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">エクスポート</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">SDカードへエクスポートしますか？</string>
   <string name="ExportFragment_cancel">中止</string>
   <string name="ExportFragment_exporting">エクスポート中…</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">暗号化されてないテキストをSDカードにエクスポート中…</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">SDカードに書き込めまないエラーです!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">SDカードに書き込む途中でエラーが発生しました。</string>
   <string name="ExportFragment_success">成功しました。</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -299,7 +294,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">受信者は認証キーがありません。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">受信者は認証キーがありません！</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">鍵をスキャンして比較</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">自分の鍵をスキャンしてもらう</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告、スキャンした鍵が正しくありません！フィンガープリントのテキストを慎重にチェックしてください。</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">鍵が一致しました。これらの鍵と一緒に、自分の鍵も確認する必要があります。</string>
@@ -313,7 +307,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">スキャンした鍵が一致しました！</string>
   <string name="ViewIdentityActivity_verified_exclamation">照合できました。</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">自分の認証フィンガープリント</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
   <string name="KeyExchangeInitiator_send">送信</string>
@@ -427,15 +420,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
   <string name="export_fragment__export_plaintext_backup">非暗号テキストのバックアップ・ファイルをエクスポート</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
   <string name="import_fragment__import_system_sms_database">システムのSMSデータベースをインポート</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">端末既定のメッセンジャー・アプリから
-データベースをインポート</string>
-  <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">画像なし</string>
@@ -529,7 +515,6 @@
   <string name="AndroidManifest_manage_linked_devices">リンク済みデバイスの管理</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>
-  <string name="arrays__my_identity_key">自分の認証キー</string>
   <string name="arrays__use_default">デフォルトを利用する</string>
   <string name="arrays__use_custom">カスタムを利用する</string>
   <string name="arrays__mute_for_one_hour">1時間消音</string>
@@ -563,7 +548,6 @@
   <string name="preferences__choose_identity">認証を選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
-  <string name="preferences__change_my_passphrase">パスワードの変更</string>
   <string name="preferences__enable_passphrase">パスフレーズが有効</string>
   <string name="preferences__passphrase_summary">パスフレーズ %s</string>
   <string name="preferences__enable_lock_screen_for_messages">ロックスクリーンでのメッセージを有効化</string>

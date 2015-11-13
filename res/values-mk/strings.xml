@@ -92,7 +92,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Трансфер: %1$s\nИспратено/Примено: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Испраќач: %1$s\nТрансфер: %2$s\nИспратено: %3$s\nПримено: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Сними на диск?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Со снимање на оваа датотека на диск ќе и се овозможи на која била апликација пристап до неа.\n\nПродолжи?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка при снимање на додатокот на диск!</string>
   <string name="ConversationFragment_success_exclamation">Успешно!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не може да се запишува на дискот!</string>
@@ -124,12 +123,8 @@
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Експортирај</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Експортирај нешифрирано на SD картичка?</string>
   <string name="ExportFragment_cancel">Откажи</string>
   <string name="ExportFragment_exporting">Се експортира</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Се експортира нешифрирано на SD картичката...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Грешка, не може да се запише на SD картичката!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Грешка при запишување на SD картичката.</string>
   <string name="ExportFragment_success">Успешно!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -287,7 +282,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Примателот нема клуч за идентификација.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Примателот нема клуч за идентификација!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Скенирајте го нивниот клуч за споредба</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Скенирај го мојот клуч</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, скенираниот клуч НЕ Е ИДЕНТИЧЕН! Проверете го внимателно текстот на отисокот од прстот.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ Е потврдено!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Нивниот клуч е исправен. Истотака е потребна верификација на вашиот клуч со нив.</string>
@@ -301,7 +295,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">НЕ Е верификуван!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Скенираниот клуч е идентичен!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Потврдено!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Мојот отисок за идентификација</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Иницирај и покрај постоечкото барање?</string>
   <string name="KeyExchangeInitiator_send">Испратено</string>
@@ -406,15 +399,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Ажурирање на базата на податоци...</string>
   <string name="export_fragment__export_plaintext_backup">Експортирајте нешифрирана копија</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Експортирајте нешифрирана копија компатибилна со \'SMSBackup And Restore\' на SD картичката.</string>
   <string name="import_fragment__import_system_sms_database">Импортирај системска SMS база на податоци</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Импортирајте ја базата
-од стандардната системска апликација за пораки.</string>
-  <string name="import_fragment__import_encrypted_backup">Импортирајте шифрирана копија</string>
   <string name="import_fragment__import_plaintext_backup">Импортирајте нешифрирана копија</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-        Импортирајте нешифрирана копија. Компатибилна со \'SMSBackup And Restore.\'</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Нема слики</string>
@@ -510,7 +496,6 @@
   <string name="AndroidManifest__message_details">Детали за пораката</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Импортирај / експортирај</string>
-  <string name="arrays__my_identity_key">Мој клуч за идентификација</string>
   <string name="arrays__use_default">Користете стандардно</string>
   <string name="arrays__use_custom">Користете прилагодено</string>
   <string name="arrays__mute_for_one_hour">Безгласен 1 час</string>
@@ -539,7 +524,6 @@
   <string name="preferences__choose_identity">Изберете идентитет</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт од вашата листа на контакти</string>
   <string name="preferences__change_passphrase">Променете лозинка</string>
-  <string name="preferences__change_my_passphrase">Променете ја вашата лозинка</string>
   <string name="preferences__enable_passphrase">Овозможете лозинка</string>
   <string name="preferences__passphrase_summary">Лозинка %s</string>
   <string name="preferences__screen_security">Сигурност на екранот</string>

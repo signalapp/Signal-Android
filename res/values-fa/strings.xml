@@ -66,6 +66,7 @@
   <string name="ConversationActivity_select_contact_info">انتخاب اطلاعات تماس</string>
   <string name="ConversationActivity_compose_message">نوشتن پیام</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">متأسفم، خطا در تنظیم فایل پیوست شما وجود دارد.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">فایل تصویری که انتخاب نموده اید بزرگتر از حد مجاز است</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">دریافت کننده یک پیام کوتاه یا آدرس ایمیل معتبر نیست!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">پیام خالی است!</string>
   <string name="ConversationActivity_group_members">اعضای گروه</string>
@@ -84,14 +85,19 @@
   <string name="ConversationActivity_transport_signal">سیگنال</string>
   <string name="ConversationActivity_error_leaving_group">خطا ترک گروه ...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS پشتیبانی نمی شود</string>
+  <string name="ConversationActivity_mms_not_supported_message">از آنجایی که اپراتور شما MMS را پشتیبانی نمی کند، این پیام قابل ارسال نمی باشد.</string>
   <string name="ConversationActivity_specify_recipient">لطفا یک تماس را انتخاب کنید</string>
-  <string name="ConversationActivity_unblock_question">رفع انسداد؟</string>
+  <string name="ConversationActivity_unblock_question">رفع مسدودی؟</string>
   <string name="ConversationActivity_unblock">رفع انسداد</string>
   <string name="ConversationActivity_quick_camera_unavailable">دوربین در دسترس نیست</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">جزییات پیام</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">فرستنده: %1$s\nنوع انتقال: %2$s\nزمان ارسال: %3$s\nزمان دریافت: %4$s</string>
-  <string name="ConversationFragment_save_to_sd_card">ذخیره در ذخیره سازی؟</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="other">پیام های انتخاب شده حدف شوند؟</item>
+  </plurals>
+  <string name="ConversationFragment_save_to_sd_card">ذخیره درحافظه؟</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">خطا در هنگام ذخیره سازی فایل ضمیمه</string>
   <string name="ConversationFragment_success_exclamation">موفقیت!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر نیست به ارسال به ذخیره سازی!</string>
   <string name="ConversationFragment_saving_attachment">ذخیره کردن فایل پیوست</string>
@@ -105,6 +111,9 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">جستجو...</string>
   <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="other">مکالمات انتخاب شده حذف شوند؟</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">حذف</string>
   <string name="ConversationListFragment_deleting_selected_threads">حذف موضوعات انتخاب شده...</string>
   <!--ConversationListItem-->
@@ -118,6 +127,7 @@
   <string name="DateUtils_minutes_ago">%d دقیقه</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">قطع ارتباط \'%s\'؟</string>
+  <string name="DeviceListActivity_network_connection_failed">قطع ارتباط شبکه ...</string>
   <string name="DeviceListActivity_try_again">دوباره تلاش کن</string>
   <string name="DeviceListActivity_unlinking_device">لغو پیوند دستگاه ...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">لغو پیوند دستگاه</string>
@@ -131,14 +141,11 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">به سیگنال خوش آمدید.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">به سیگنال خوش آمدید!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">تکست سکیور حالا هست سیگنال.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">تکست سکیور و ردفون ادغام شدند: سیگنال. اطلاعات بیشتر</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">خروجی</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">خروجی گرفتن متنی به کارت SD؟</string>
   <string name="ExportFragment_cancel">لغو</string>
   <string name="ExportFragment_exporting">خروجی گرفتن</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">خروجی گرفتن متنی به کارت SD ...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">خطا، قادر نیست به نوشتن در کارت SD!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">خطا هنگام نوشتن در کارت SD.</string>
   <string name="ExportFragment_success">موفقیت!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -171,6 +178,11 @@
   <string name="ImportFragment_no_encrypted_backup_found">پشتیبان رمزگذاری شده پیدا نشد!</string>
   <string name="ImportFragment_restore_complete">بازیابی کامل شد!</string>
   <!--InviteActivity-->
+  <string name="InviteActivity_share">اشتراک گذاری</string>
+  <string name="InviteActivity_send_sms">ارسال SMS</string>
+  <string name="InviteActivity_cancel">لغو</string>
+  <string name="InviteActivity_sending">در حال ارسال</string>
+  <string name="InviteActivity_heart_content_description">فلب</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">کلید اسکن شده پیدا نشد!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">نصب اسکنر بارکد؟</string>
@@ -300,7 +312,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">شما یک کلید هویت ندارید.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">گیرنده هیچ کلید هویتی ندارد!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">کلید آن ها را برای مقایسه اسکن کنید.</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">بدست آوردن کلید اسکن شده من</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">هشدار، کلید اسکن شده مطابقت نمی کند! لطفا متن اثر انگشت را با دقت بررسی کنید.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">تایید نشده!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">کلید آنها درست است. همچنین لازم است کلید خود را با آنها بررسی کنید.</string>
@@ -314,7 +325,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">تایید نشده!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">کلید اسکن شده مطابقت می کند!</string>
   <string name="ViewIdentityActivity_verified_exclamation">تایید شده!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">اثر انگشت هویت من</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">آغاز با وجود درخواست های موجود؟</string>
   <string name="KeyExchangeInitiator_send">ارسال</string>
@@ -427,7 +437,6 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">به روز رسانی پایگاه داده ...</string>
   <string name="import_fragment__import_system_sms_database">واردکردن پایگاه داده سیستم SMS</string>
-  <string name="import_fragment__import_encrypted_backup">واردکردن پشتیبان رمزگذاری شده</string>
   <string name="import_fragment__import_plaintext_backup">وارد کردن پشتیبان ساده</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
@@ -523,7 +532,6 @@
   <string name="AndroidManifest_manage_linked_devices">مدیریت دستگاه های مرتبط</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">وارد کردن / خروجی گرفتن</string>
-  <string name="arrays__my_identity_key">کلید هویت من</string>
   <string name="arrays__use_default">استفاده از پیش فرض</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
   <string name="arrays__mute_for_one_hour">بی صدا به مدت 1 ساعت</string>
@@ -557,7 +565,6 @@
   <string name="preferences__choose_identity">انتخاب هویت</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">انتخاب کنید ورود تماس با خود را از لیست مخاطبین.</string>
   <string name="preferences__change_passphrase">تغییر رمز</string>
-  <string name="preferences__change_my_passphrase">تغییر رمز من</string>
   <string name="preferences__enable_passphrase">فعال‌سازی رمز</string>
   <string name="preferences__passphrase_summary">رمز %s</string>
   <string name="preferences__screen_security">امنیت صفحه نمایش</string>

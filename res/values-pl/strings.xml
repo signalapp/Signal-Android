@@ -108,7 +108,6 @@ ten kontakt.
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nWysłano/Otrzymano: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Nadawca: %1$s\nTransport: %2$s\nWysłano: %3$s\nOtrzymano: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Zapisać na dysk?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Zapisanie tych plików na dysku pozwoli innym aplikacjom na Twoim telefonie na dostęp do tych plików.\n\nKontynuować?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Błąd podczas zapisywania załącznika na dysk!</string>
   <string name="ConversationFragment_success_exclamation">Sukces!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
@@ -156,12 +155,8 @@ ten kontakt.
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone są teraz jedną aplikacją: Signal. Dotknij, aby dowiedzieć się więcej.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Wyeksportować nieszyfrowaną kopię na kartę SD?</string>
   <string name="ExportFragment_cancel">Anuluj</string>
   <string name="ExportFragment_exporting">Eksportowanie</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksportowanie nieszyfrowanych danych na kartę SD</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Błąd, nie udało się zapisać na kartę SD!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Wystąpił błąd w czasie zapisu na kartę SD.</string>
   <string name="ExportFragment_success">Sukces!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -320,7 +315,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Odbiorca nie posiada klucza tożsamości.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Odbiorca nie posiada klucza tożsamości!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skanuj ich klucz aby porównać</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Przeskanuj mój klucz</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UWAGA, zeskanowane klucze NIE ZGADZAJĄ się! Proszę sprawdź klucz ostrożnie!</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NIE zweryfikowany!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ich klucz jest poprawny. Niezbędna będzie także weryfikacja Twojego klucza z odbiorcami.</string>
@@ -334,7 +328,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="ViewIdentityActivity_not_verified_exclamation">Niezweryfikowany!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Zeskanowane klucze zgadzają się!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Zweryfikowano!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Mój odcisk klucza</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Rozpocząć pomimo istniejącego żądania?</string>
   <string name="KeyExchangeInitiator_send">Wyślij</string>
@@ -448,15 +441,8 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aktualizowanie bazy danych...</string>
   <string name="export_fragment__export_plaintext_backup">Eksport nieszyfrowanej kopi zapasowej</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Eksportuj niezaszyfrowaną kopię zapasową kompatybilną z \'SMSBackup And Restore\' na kartę SD.</string>
   <string name="import_fragment__import_system_sms_database">Importuj systemową bazę danych SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importuj bazę danych 
-z domyślnej systemowej aplikacji SMS.</string>
-  <string name="import_fragment__import_encrypted_backup">Importuj szyfrowaną kopię zapasową</string>
   <string name="import_fragment__import_plaintext_backup">Importuj nieszyfrowaną kopię zapasową</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Brak obrazów</string>
@@ -550,7 +536,6 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <string name="AndroidManifest_manage_linked_devices">Zarządzaj zarejestrowanymi urządzeniami</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
-  <string name="arrays__my_identity_key">Mój klucz tożsamości</string>
   <string name="arrays__use_default">Użyj domyślnych</string>
   <string name="arrays__use_custom">Użyj własnych</string>
   <string name="arrays__mute_for_one_hour">Wycisz na 1 godzinę</string>
@@ -586,7 +571,6 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <string name="preferences__choose_identity">Wybierz tożsamość</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wybierz swój kontakt z listy kontaktów.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>
-  <string name="preferences__change_my_passphrase">Zmień moje hasło</string>
   <string name="preferences__enable_passphrase">Włącz hasło</string>
   <string name="preferences__passphrase_summary">Hasło %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Włącz blokadę ekranu dla wiadomości</string>

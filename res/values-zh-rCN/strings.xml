@@ -122,7 +122,6 @@
     <item quantity="other">这将会永久的删除所有 %1$d 已选择的信息。</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">保存到存储？</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">保存该媒体到存储将会允许您手机上的其他应用访问到该媒体。\n\n继续？</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">保存媒体到存储时遇到一个错误！</string>
   <string name="ConversationFragment_success_exclamation">成功！</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">存储无法写入！</string>
@@ -176,14 +175,8 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">从现在起， TextSecure 和 RedPhone 将是同一个信息平台：暗号。点击以开始探索。</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">导出</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">导出明文到SD卡？</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">警告，这将会
-从您的暗号中导出明文信息到您的存储卡。</string>
   <string name="ExportFragment_cancel">取消</string>
   <string name="ExportFragment_exporting">正在导出</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">正在导出明文到 SD 卡…</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">错误，无法写入 SD 卡！</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">在写入 SD 卡时遇到错误。</string>
   <string name="ExportFragment_success">成功！</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">暗号持续连接失效！</string>
@@ -202,7 +195,6 @@
   <string name="GroupCreateActivity_menu_create_title">创建群组</string>
   <string name="GroupCreateActivity_creating_group">正在创建群组 %1$s…</string>
   <string name="GroupCreateActivity_updating_group">更新中… %1$s</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">无法在已存在的暗号群组中添加非暗号联系人。</string>
   <string name="GroupCreateActivity_loading_group_details">读取群组详情…</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">我</string>
@@ -242,8 +234,6 @@
   <string name="InviteActivity_heart_content_description">心</string>
   <string name="InviteActivity_invitations_sent">邀请已发送！</string>
   <string name="InviteActivity_invite_to_signal">邀请至暗号</string>
-  <string name="InviteActivity_send_to_friends">发送至 %1$s 位朋友</string>
-  <string name="InviteActivity_send_sms_invites">发送 %1$s 短信邀请？</string>
   <string name="InviteActivity_lets_switch_to_signal">让我们切换到暗号： %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">看起来您没有任何可以共享的应用。</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">您的朋友不想让朋友之间的聊天未经加密。</string>
@@ -409,7 +399,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">收件人没有身份密钥。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">收件人没有身份密钥！</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">扫描他们的密钥以进行比较</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">扫描我的密钥</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告：扫描的密钥不匹配！ 请仔细检查指纹文本。</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">未验证！</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">他们的密钥正确。 还需要他们验证您的密钥。</string>
@@ -423,7 +412,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">没有经过验证！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">扫描的密钥匹配！</string>
   <string name="ViewIdentityActivity_verified_exclamation">已验证！</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">我的身份指纹</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">发起一个已经存在的请求？</string>
   <string name="KeyExchangeInitiator_send">发送</string>
@@ -550,16 +538,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">更新数据库…</string>
   <string name="export_fragment__export_plaintext_backup">导出明文备份</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-导出与SMSBackup And Restore软件兼容的明文备份到SD卡。</string>
   <string name="import_fragment__import_system_sms_database">导入系统短信数据库</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">从系统默认的短信应用中导入数据库。</string>
-  <string name="import_fragment__import_encrypted_backup">导入已加密的备份</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-恢复之前导出的加密暗号数据库。</string>
   <string name="import_fragment__import_plaintext_backup">导入明文备份</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-导入明文备份文件，与\"SMSBackup And Restore\"软件兼容。</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">查看完整会话</string>
   <!--media_overview_activity-->
@@ -695,7 +675,6 @@
   <string name="AndroidManifest__invite_friends">邀请好友</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
-  <string name="arrays__my_identity_key">我的身份密钥</string>
   <string name="arrays__use_default">使用默认</string>
   <string name="arrays__use_custom">使用定制</string>
   <string name="arrays__mute_for_one_hour">静音 1 小时</string>
@@ -731,7 +710,6 @@
   <string name="preferences__choose_identity">选择身份</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择您的联系人条目。</string>
   <string name="preferences__change_passphrase"> 修改密码</string>
-  <string name="preferences__change_my_passphrase">更改我的密码</string>
   <string name="preferences__enable_passphrase">启用密码</string>
   <string name="preferences__passphrase_summary">密码 %s</string>
   <string name="preferences__enable_lock_screen_for_messages">为信息启用锁屏</string>

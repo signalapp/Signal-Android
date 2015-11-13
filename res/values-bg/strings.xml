@@ -122,7 +122,6 @@
     <item quantity="other">Това ще изтрие невъзвращаемо всичките  %1$d избрани съобщения.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Запази на SD картата?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Запазване на този файл на SD картата ще разреши на всички други приложения да го виждат и променят.\n\nПродължи?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка при запазване на прикачения файл на SD карта!</string>
   <string name="ConversationFragment_success_exclamation">Успех!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Неуспеше запис на SD карта!</string>
@@ -178,14 +177,8 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и Redphone вече са една програма: Signal. Натисни за да разгледаш.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Изнасяне</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Разшифрован запис на SD карта?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание. Това
-ще изнесе вашите ключове, настройки и съобщения в некриптиран текст на SD картата.</string>
   <string name="ExportFragment_cancel">Отказ</string>
   <string name="ExportFragment_exporting">Изнасяне</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Експортиране в разшифрован формат на SD карта..</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Грешка, неуспешен опит за запис на SD карта!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Грешка при записване на SD карта</string>
   <string name="ExportFragment_success">Успех!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>
@@ -204,7 +197,6 @@
   <string name="GroupCreateActivity_menu_create_title">Създай група</string>
   <string name="GroupCreateActivity_creating_group">Създаване на %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Обновяване %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Неможе да бъдат добавянi потребители не ползващи Signal в Signal група</string>
   <string name="GroupCreateActivity_loading_group_details">Зареждане на информация за групата...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Аз</string>
@@ -244,8 +236,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="InviteActivity_heart_content_description">Сърце</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
   <string name="InviteActivity_invite_to_signal">Покани в Signal</string>
-  <string name="InviteActivity_send_to_friends">ИЗПРАТИ ДО %1$s ПРИЯТЕЛ(Я)</string>
-  <string name="InviteActivity_send_sms_invites">Изпрати %1$s SMS покана(и)?</string>
   <string name="InviteActivity_lets_switch_to_signal">Да преминем към Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да споделите.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Приятелите не дават на приятелите си да чатят без криптиране.</string>
@@ -412,7 +402,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Получателят няма ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Сканирай ключа им за сравнение</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Позволи да сканират ключа ми</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, сканираният ключ НЕ Е същият! Моля, провери текстовия отпечатък внимателно.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ Е Проверен!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Техният ключ е правилен. Необходимо е да се провери и твоят ключ от тях.</string>
@@ -426,7 +415,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ViewIdentityActivity_not_verified_exclamation">Не потвърдено!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Сканираният ключ е същия!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Проверен!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Моят ключ за самоличност</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
   <string name="KeyExchangeInitiator_send">Изпрати</string>
@@ -553,17 +541,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Обновяване на базата данни...</string>
   <string name="export_fragment__export_plaintext_backup">Запази разшифрован архив</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Изнеси разшифрован архив съвместим с \"SMSBackup и Restore\" на  SD карта.</string>
   <string name="import_fragment__import_system_sms_database">Внеси всички съществуващи SMS-и</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Внасяне на базата
-от програмата за съобщения по подразбиране.</string>
-  <string name="import_fragment__import_encrypted_backup">Внеси шифрован архив </string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Възстанови шифрован Signal архив, който си изнесъл преди.</string>
   <string name="import_fragment__import_plaintext_backup">Внеси разшифрован архив </string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Внасяне на разшифрован архив. Съвместимо с \'SMSBackup And Restore.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Разгледай целия разговор</string>
   <!--media_overview_activity-->
@@ -698,7 +677,6 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest__invite_friends">Поканете приятели</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
-  <string name="arrays__my_identity_key">Моят ключ за самоличност</string>
   <string name="arrays__use_default">Използвай подразбиращ се</string>
   <string name="arrays__use_custom">Използвай специален</string>
   <string name="arrays__mute_for_one_hour">Тих режим за 1 час</string>
@@ -735,7 +713,6 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="preferences__choose_identity">Избери самоличност</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Избери вашия контакт от списъка с контакти.</string>
   <string name="preferences__change_passphrase">Смени паролата</string>
-  <string name="preferences__change_my_passphrase">Смени паролата ми</string>
   <string name="preferences__enable_passphrase">Включи парола</string>
   <string name="preferences__passphrase_summary">Парола %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Включи заключен екран за съобщения</string>

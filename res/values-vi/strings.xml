@@ -62,6 +62,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConfirmIdentityDialog_accept">Chấp nhận</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Tin nhắn %s</string>
+  <string name="ContactsDatabase_signal_call_s">Cuộc gọi Signal %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Kích thước tin nhắn: %d KB</string>
   <string name="ConversationItem_expires_s">Hết hạn: %s</string>
@@ -127,7 +128,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
     <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn?</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Lưu tập tin này vào thẻ nhớ sẽ cho phép các ứng dụng khác trong điện thoại truy cập nó.\n\nTiếp tục?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Lưu tập tin đa phương tiện này vào ổ lưu trữ sẽ cho phép bất kỳ ứng dụng nào khác trên thiết bị truy cập nó.\n\nTiếp tục chứ?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Có lỗi khi lưu tập tin đính kèm vào thẻ nhớ!</string>
   <string name="ConversationFragment_success_exclamation">Thành công!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Không thể viết vào thẻ nhớ!</string>
@@ -181,14 +182,13 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Signal. Chạm để khám phá.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Xuất</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Xuất văn bản thường ra thẻ nhớ?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ
-xuất nội dung tin nhắn Signal của bạn vào thẻ SD dưới dạng không được mã khoá.</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Xuất văn bản không mã hóa ra ổ lưu trữ?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ xuất nội dung tin nhắn Signal của bạn vào ổ lưu trữ dưới dạng không được mã khoá.</string>
   <string name="ExportFragment_cancel">Hủy</string>
   <string name="ExportFragment_exporting">Đang xuất</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Đang xuất văn bản thường ra thẻ nhớ...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Có lỗi, không thể viết ra thẻ nhớ!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Có lỗi trong lúc viết ra thẻ nhớ.</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Đang xuất văn bản không mã hóa ra ổ lưu trữ...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Có lỗi, không thể chép vào ổ lưu trữ!</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Lỗi khi chép vào ổ lưu trữ!</string>
   <string name="ExportFragment_success">Thành công!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal!</string>
@@ -207,8 +207,9 @@ xuất nội dung tin nhắn Signal của bạn vào thẻ SD dưới dạng kh�
   <string name="GroupCreateActivity_menu_create_title">Tạo nhóm</string>
   <string name="GroupCreateActivity_creating_group">Tạo %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Cập nhật %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm liên hệ ngoài Signal vào nhóm Signal hiện tại</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Nạp chi tiết nhóm...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Bạn đã gia nhập nhóm này rồi.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Tôi</string>
   <!--ImportExportActivity-->
@@ -249,8 +250,9 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="InviteActivity_heart_content_description">Thích</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
   <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
-  <string name="InviteActivity_send_to_friends">GỬI ĐẾN %1$s NGƯỜI BẠN</string>
-  <string name="InviteActivity_send_sms_invites">Gửi %1$s lời mời qua SMS?</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="other">GỬI ĐẾN %d NGƯỜI BẠN</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Bạn bè không để bạn mình tán gẫu không có mã khoá.</string>
@@ -419,7 +421,6 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Người nhận không có chìa khóa danh tính.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Người nhận không có chìa khóa danh tính!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Quét chìa khóa của họ để so sánh</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Quét chìa khóa của tôi</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">CẢNH BÁO, chìa khóa được quét KHÔNG trùng hợp! Xin xem lại cho kỹ càng văn bản dấu tay.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">CHƯA Kiểm Chứng!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Chìa khóa của họ đúng. Cũng cần phải kiểm chứng chìa khóa của bạn với họ luôn.</string>
@@ -433,7 +434,6 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="ViewIdentityActivity_not_verified_exclamation">CHƯA kiểm chứng!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Chìa khóa được quét trùng hợp!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Đã kiểm chứng!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Dấu vân tay danh tính của tôi</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Khởi tạo mặc dầu đã có yêu cầu rồi?</string>
   <string name="KeyExchangeInitiator_send">Gửi</string>
@@ -560,18 +560,8 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Cập nhật cơ sở dữ liệu...</string>
   <string name="export_fragment__export_plaintext_backup">Xuất sao lưu văn bản thường</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Xuất sao lưu văn bản thường tương thích với ứng dụng \'SMSBackup And Restore\' ra thẻ nhớ SD.</string>
   <string name="import_fragment__import_system_sms_database">Nhập cơ sở dữ liệu SMS của hệ thống</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Nhập cơ sở dữ liệu
-của ứng dụng tin nhắn mặc định của hệ thống.</string>
-  <string name="import_fragment__import_encrypted_backup">Nhập sao lưu có mã hóa</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Khôi phục bản sao lưu Signal được mã khoá đã xuất từ trước.
-</string>
   <string name="import_fragment__import_plaintext_backup">Nhập sao lưu văn bản thường</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Nhập tập tin sao lưu thường-không mã hóa. Tương thích với ứng dụng \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Xem cuộc hội thoại đầy đủ</string>
   <!--media_overview_activity-->
@@ -716,7 +706,6 @@ SMS thất bại.
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Xuất / nhập</string>
-  <string name="arrays__my_identity_key">Chìa khóa danh tính của tôi</string>
   <string name="arrays__use_default">Dùng mặc định</string>
   <string name="arrays__use_custom">Dùng tùy chỉnh</string>
   <string name="arrays__mute_for_one_hour">Tạm im 1 tiếng</string>
@@ -752,7 +741,6 @@ SMS thất bại.
   <string name="preferences__choose_identity">Chọn danh tính</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
   <string name="preferences__change_passphrase">Đổi cụm từ mật khẩu</string>
-  <string name="preferences__change_my_passphrase">Đổi cụm từ mật khẩu của tôi</string>
   <string name="preferences__enable_passphrase">Mở cụm từ mật khẩu</string>
   <string name="preferences__passphrase_summary">Cụm từ mật khẩu %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Mở khóa màn hình cho tin nhắn</string>

@@ -54,6 +54,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ConfirmIdentityDialog_accept">OK</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal-Anruf %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Nachrichtengröße: %d kB</string>
   <string name="ConversationItem_expires_s">Läuft ab in: %s</string>
@@ -121,7 +122,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
     <item quantity="other">Unwiderruflich alle %1$d ausgewählten Nachrichten löschen.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Das Speichern der Datei im Gerätespeicher ermöglicht allen anderen installierten Apps darauf Zugriff.\n\nTrotzdem fortfahren?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Das Speichern der Datei im Gerätespeicher ermöglicht allen anderen Apps Ihres Geräts darauf Zugriff.\n\nTrotzdem fortfahren?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs im Gerätespeicher!</string>
   <string name="ConversationFragment_success_exclamation">Erfolgreich!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kein Schreibzugriff auf Gerätespeicher!</string>
@@ -177,13 +178,13 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure und RedPhone sind jetzt eine gemeinsame App: Signal. Antippen, um mehr zu erfahren.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportieren</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Klartextsicherung exportieren?</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Klartextsicherung exportieren?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung: Exportiert Ihre Signal-Nachrichten unverschlüsselt in den Gerätespeicher.</string>
   <string name="ExportFragment_cancel">Abbruch</string>
   <string name="ExportFragment_exporting">Exportieren</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Klartext wird in Gerätespeicher exportiert …</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Fehler: Kein Schreibzugriff auf Gerätespeicher!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Fehler beim Schreiben auf Gerätespeicher.</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Klartext wird in Gerätespeicher exportiert …</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Kein Schreibzugriff auf Gerätespeicher.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Fehler beim Schreiben auf Gerätespeicher.</string>
   <string name="ExportFragment_success">Erfolgreich!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
@@ -202,8 +203,9 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="GroupCreateActivity_menu_create_title">Gruppe erstellen</string>
   <string name="GroupCreateActivity_creating_group">%1$s wird erstellt …</string>
   <string name="GroupCreateActivity_updating_group">%1$s wird aktualisiert …</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Es können keine Kontakte ohne Signal-Registrierung zu einer existierenden Signal-Gruppe hinzugefügt werden</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s konnte nicht hinzugefügt werden, da kein Signal-Kontakt.</string>
   <string name="GroupCreateActivity_loading_group_details">Gruppendetails werden geladen …</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Sie sind bereits in der Gruppe.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ich</string>
   <!--ImportExportActivity-->
@@ -236,8 +238,14 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
-  <string name="InviteActivity_send_to_friends">AN %1$s FREUND(E) SENDEN</string>
-  <string name="InviteActivity_send_sms_invites">%1$s SMS-Einladung(en) senden?</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">AN 1 FREUND SENDEN</item>
+    <item quantity="other">AN %d FREUNDE SENDEN</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">1 SMS-Einladung senden?</item>
+    <item quantity="other">%d SMS-Einladungen senden?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Wechseln wir zu Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hätten Sie keine zum Teilen geeignete Apps installiert.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
@@ -397,7 +405,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Kontakt hat keinen Schlüssel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Kontakt hat keinen Schlüssel!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">QR-Code einscannen</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Ihren QR-Code anzeigen</string>
+  <string name="VerifyIdentityActivity_get_your_key_scanned">Ihren QR-Code anzeigen</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ACHTUNG: Der eingescannte Schlüssel stimmt NICHT überein! Bitte überprüfen Sie den Text des Schlüssels sorgfältig.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NICHT überprüft!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Der Schlüssel des Kontakts ist korrekt. Lassen Sie ihn auch Ihren eigenen Schlüssel überprüfen.</string>
@@ -411,7 +419,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NICHT überprüft!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Der eingescannte Schlüssel stimmt überein!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Überprüft!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Ihr Schlüssel</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Ihr Schlüssel</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz bestehender Anfrage starten?</string>
   <string name="KeyExchangeInitiator_send">Senden</string>
@@ -538,16 +546,13 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert …</string>
   <string name="export_fragment__export_plaintext_backup">Klartextsicherung exportieren</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung exportieren</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung exportieren</string>
   <string name="import_fragment__import_system_sms_database">System-SMS-Datenbank importieren</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Datenbank aus der Standard-SMS-App importieren</string>
-  <string name="import_fragment__import_encrypted_backup">Verschlüsselte Sicherung wiederherstellen</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Eine zuvor exportierte, verschlüsselte Signal-Datensicherung wiederherstellen</string>
+  <string name="import_fragment__restore_encrypted_backup">Verschlüsselte Sicherung wiederherstellen?</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Eine zuvor exportierte, verschlüsselte Signal-Datensicherung wiederherstellen</string>
   <string name="import_fragment__import_plaintext_backup">Klartextsicherung importieren</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung importieren</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung importieren</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Gesamte Unterhaltung anzeigen</string>
   <!--media_overview_activity-->
@@ -669,13 +674,14 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__invite_friends">Freunde einladen</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Datensicherung</string>
-  <string name="arrays__my_identity_key">Ihr Schlüssel</string>
+  <string name="arrays__your_identity_key">Ihr Schlüssel</string>
   <string name="arrays__use_default">Standard verwenden</string>
   <string name="arrays__use_custom">Benutzerdefiniert verwenden</string>
   <string name="arrays__mute_for_one_hour">Für 1 Stunde</string>
   <string name="arrays__mute_for_two_hours">Für 2 Stunden</string>
   <string name="arrays__mute_for_one_day">Für 1 Tag</string>
   <string name="arrays__mute_for_seven_days">Für 7 Tage</string>
+  <string name="arrays__mute_for_one_year">Für 1 Jahr</string>
   <string name="arrays__settings_default">Standard</string>
   <string name="arrays__enabled">Aktiviert</string>
   <string name="arrays__disabled">Deaktiviert</string>
@@ -706,7 +712,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wählen Sie den Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passwort ändern</string>
-  <string name="preferences__change_my_passphrase">Ihr Passwort ändern</string>
+  <string name="preferences__change_your_passphrase">Ihr Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
   <string name="preferences__passphrase_summary">Passwort %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Signal und Benachrichtigungen mit Passwort sperren</string>
