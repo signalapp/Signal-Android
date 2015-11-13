@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.Telephony.MmsSms;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -106,6 +107,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     this.recipients    = recipients;
     this.inflater      = LayoutInflater.from(context);
     this.db            = DatabaseFactory.getMmsSmsDatabase(context);
+    setHasStableIds(true);
   }
 
   @Override
@@ -169,6 +171,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     } else {
       return MESSAGE_TYPE_INCOMING;
     }
+  }
+
+  @Override
+  public long getItemId(@NonNull Cursor cursor) {
+    return cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID)).hashCode();
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
