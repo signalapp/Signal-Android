@@ -72,6 +72,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   public final static String RECIPIENTS_IDS_EXTRA = "recipients_ids";
 
   private MasterSecret     masterSecret;
+  private Recipients       recipients;
   private boolean          isPushGroup;
   private ConversationItem conversationItem;
   private ViewGroup        itemParent;
@@ -114,7 +115,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private void initializeActionBar() {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    Recipients recipients = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_IDS_EXTRA), true);
+    recipients = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_IDS_EXTRA), true);
     recipients.addListener(this);
 
     setActionBarColor(recipients.getColor());
@@ -136,6 +137,12 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         setActionBarColor(recipients.getColor());
       }
     });
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    if (recipients != null) recipients.removeListener(this);
   }
 
   private void initializeResources() {
