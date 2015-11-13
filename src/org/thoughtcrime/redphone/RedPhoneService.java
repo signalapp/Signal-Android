@@ -208,7 +208,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     sendMessage(Type.OUTGOING_CALL, recipient, null);
 
     state = STATE_DIALING;
-    lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
+    lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
     this.currentCallManager = new InitiatingCallManager(this, this, localNumber, password,
                                                         remoteNumber, zid);
     this.currentCallManager.start();
