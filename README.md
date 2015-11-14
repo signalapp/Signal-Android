@@ -1,5 +1,7 @@
 # Signal Android 
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/WhisperSystems/Signal-Android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 Signal is a messaging app for simple private communication with friends.
 
 Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
