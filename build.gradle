@@ -29,9 +29,6 @@ repositories {
     maven { // textdrawable
         url 'https://dl.bintray.com/amulyakhare/maven'
     }
-    maven { // cwac-camera
-      url 'https://repo.commonsware.com.s3.amazonaws.com'
-    }
     jcenter()
     mavenLocal()
 }
@@ -66,7 +63,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
     }
     compile 'com.madgag.spongycastle:prov:1.51.0.0'
-    compile 'com.commonsware.cwac:camera:0.6.12'
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
     compile 'org.whispersystems:jobmanager:1.0.2'
@@ -118,7 +114,6 @@ dependencyVerification {
             'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
             'com.doomonafireball.betterpickers:library:132ecd685c95a99e7377c4e27bfadbb2d7ed0bea995944060cd62d4369fdaf3d',
             'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
-            'com.commonsware.cwac:camera:dcc93ddbb2f0393114fa1f31a13fe9e6edfcf5dbe96b22bc4b66c7b15e179054',
             'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
             'org.whispersystems:libpastelog:550d33c565380d90f4c671e7b8ed5f3a6da55a9fda468373177106b2eb5220b2',
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
