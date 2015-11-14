@@ -74,7 +74,8 @@ public class GroupUtil {
       String        title       = groupContext.getName();
 
       if (members != null) {
-        description.append(context.getString(R.string.GroupUtil_joined_the_group, members.toShortString()));
+        description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_joined_the_group,
+                members.getRecipientsList().size(), members.toShortString()));
       }
 
       if (title != null && !title.trim().isEmpty()) {

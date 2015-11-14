@@ -690,7 +690,10 @@
     <string name="MmsPreferencesFragment__invalid_host">The text entered was not a valid host</string>
 
     <!-- GroupUtil -->
-    <string name="GroupUtil_joined_the_group">%1$s joined the group.</string>
+    <plurals name="GroupUtil_joined_the_group">
+        <item quantity="one">%1$s joined the group.</item>
+        <item quantity="other">%1$s joined the group.</item>
+    </plurals>
     <string name="GroupUtil_group_updated">Group updated.</string>
     <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
 
