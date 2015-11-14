@@ -18,10 +18,13 @@ Wyłączyć blokadę ekranu dla wiadomości?
 </string>
   <string name="ApplicationPreferencesActivity_disable">Wyłącz</string>
   <string name="ApplicationPreferencesActivity_unregistering">Wyrejestrowanie </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Trwa wyrejestrowanie od używania wiadomości i dzwonienia Signal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Wyłączyć wiadomości i dzwonienie Signal?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Błąd połączenia z serwerem!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Włączone</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotknij aby zmienić swoją domyślną aplikację SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Wyłączone</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotknij aby Signal był Twoją domyślną aplikacją SMS</string>
   <string name="ApplicationPreferencesActivity_on">włączone</string>
   <string name="ApplicationPreferencesActivity_On">Włączone</string>
   <string name="ApplicationPreferencesActivity_off">wyłączone</string>
@@ -172,6 +175,7 @@ ten kontakt.
   <string name="GroupCreateActivity_creating_group">Trwa tworzenie %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizowanie %1$s...</string>
   <string name="GroupCreateActivity_loading_group_details">Wczytywanie szczegółów grupy...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Już jesteś w tej grupie.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
   <!--ImportExportActivity-->
@@ -534,6 +538,7 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <string name="AndroidManifest__media_overview_named">Wszystkie obrazy z %1$s</string>
   <string name="AndroidManifest__message_details">Szczegóły wiadomości</string>
   <string name="AndroidManifest_manage_linked_devices">Zarządzaj zarejestrowanymi urządzeniami</string>
+  <string name="AndroidManifest__invite_friends">Zaproś znajomych</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
   <string name="arrays__use_default">Użyj domyślnych</string>
@@ -645,6 +650,8 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <string name="preferences__default">Domyślne</string>
   <string name="preferences__language">Język</string>
   <string name="preferences__language_summary">Język %s</string>
+  <string name="preferences__signal_messages_and_calls">Wiadomości i dzwonienie przez Signal</string>
+  <string name="preferences__free_private_messages_and_calls">Darmowe i prywatne wiadomości i dzwonienie do użytkowników Signal</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
   <string name="preferences__support_wifi_calling">Tryb zgodności \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \'Połączenia WiFi\' jest włączone na Twoim urządzeniu)</string>
@@ -725,9 +732,12 @@ Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu je
   <string name="text_secure_normal__menu_settings">Ustawienia</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zablokuj</string>
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
+  <string name="text_secure_normal__invite_friends">Zaproś znajomych</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build_details">Wiadomości nie będą już pomylnie wysyłane, prosimy o aktualizację do najnowszej wersji.</string>
   <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS na tym telefonie do szyfrowanej bazy danych.</string>
+  <string name="reminder_header_share_title">Zaproś swoich znajomych!</string>
+  <string name="reminder_header_share_text">Im więcej twoich znajomych używa Signal, tym bardziej staje się użyteczny.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ty</string>
   <string name="MediaPreviewActivity_cant_display">Podgląd tego obrazu nie udał się</string>

@@ -50,7 +50,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inkomend gesprek</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identiteitssleutel van %1$s is gewijzigd. Dit kan betekenen dat iemand probeert uw communicatie the onderscheppen, of dat %2$s gewoon Signal opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identiteitssleutel van %1$s is gewijzigd. Dit kan betekenen dat iemand probeert jouw communicatie te onderscheppen, of dat %2$s gewoon Signal opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
   <string name="ConfirmIdentityDialog_accept">Accepteren</string>
   <!--ContactsDatabase-->
@@ -123,7 +123,7 @@
     <item quantity="other">Dit zal alle %1$d geselecteerde berichten permanent verwijderen.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Opslaan?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Als u deze gegevens opslaat in de mediaopslag kunnen alle andere apps op uw apparaat deze gegevens benaderen.\n\nDoorgaan?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Als je deze gegevens opslaat in de mediaopslag kunnen alle andere apps op je apparaat deze gegevens benaderen.\n\nDoorgaan?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fout tijdens het opslaan van de bijlage!</string>
   <string name="ConversationFragment_success_exclamation">Succesvol!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Opslag niet beschrijfbaar!</string>
@@ -180,7 +180,7 @@
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporteer</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exporteer tekst naar opslag?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Waarschuwing, dit zal de tekst van uw Signal berichten exporteren naar de opslag.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Pas op, dit exporteert al je onversleutelde Signal berichten naar de opslag.</string>
   <string name="ExportFragment_cancel">Annuleren</string>
   <string name="ExportFragment_exporting">Aan het exporteren</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Exporteren tekst naar opslag...</string>
@@ -199,14 +199,14 @@
   <string name="GroupCreateActivity_you_dont_support_push">Je bent niet geregistreerd om het datakanaal te gebruiken, dus Signal groepen zijn uitgeschakeld.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Er is een onverwachte fout opgetreden waardoor het aanmaken van een groep is mislukt.</string>
   <string name="GroupCreateActivity_contacts_no_members">Je groep moet ten minste één persoon bevatten.</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Het nummer van een van de leden van uw groep kan niet goed worden gelezen. Corrigeer dit of verwijder deze persoon, en probeer het opnieuw.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Het nummer van een van de leden van je groep kan niet goed worden gelezen. Corrigeer dit of verwijder deze persoon, en probeer het opnieuw.</string>
   <string name="GroupCreateActivity_avatar_content_description">Groepsafbeelding</string>
   <string name="GroupCreateActivity_menu_create_title">Groep aanmaken</string>
   <string name="GroupCreateActivity_creating_group">%1$s maken...</string>
   <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kon  %1$s niet toevoegen omdat het geen Signal gebrikers zijn</string>
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails laden...</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">U bent al lid van deze groep.</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Je bent al lid van deze groep.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">IK</string>
   <!--ImportExportActivity-->
@@ -423,7 +423,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="ViewIdentityActivity_not_verified_exclamation">NIET geverifieerd!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">De gescande sleutel komt overeen!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Geverifieerd!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Uw identiteitsvingerafdruk</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Jouw identiteitsvingerafdruk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Ondanks bestaand verzoek initiëren?</string>
   <string name="KeyExchangeInitiator_send">Verstuur</string>
@@ -684,7 +684,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
-  <string name="arrays__your_identity_key">Uw identiteitssleutel</string>
+  <string name="arrays__your_identity_key">Jouw identiteitssleutel</string>
   <string name="arrays__use_default">Gebruik standaard</string>
   <string name="arrays__use_custom">Gebruik handmatig</string>
   <string name="arrays__mute_for_one_hour">Demp voor 1 uur</string>
@@ -722,7 +722,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de contactpersonenlijst.</string>
   <string name="preferences__change_passphrase">Wachtwoord veranderen</string>
-  <string name="preferences__change_your_passphrase">Verander uw wachtwoord</string>
+  <string name="preferences__change_your_passphrase">Verander je wachtwoord</string>
   <string name="preferences__enable_passphrase">Wachtwoord inschakelen</string>
   <string name="preferences__passphrase_summary">Wachtwoord %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Vergrendeling inschakelen voor berichten</string>

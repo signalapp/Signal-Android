@@ -52,6 +52,7 @@
   <string name="ConfirmIdentityDialog_accept">Acceptă</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaj %s</string>
+  <string name="ContactsDatabase_signal_call_s">Apel Signal %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Marimea mesajului: %d KB</string>
   <string name="ConversationItem_expires_s">Expira in: %s</string>
@@ -178,6 +179,7 @@
   <string name="GroupCreateActivity_creating_group">Se creează %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Se actualizează %1$s...</string>
   <string name="GroupCreateActivity_loading_group_details">Se încarcă detaliile grupului...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Ești deja în grup.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
   <!--ImportExportActivity-->
@@ -208,8 +210,18 @@
   <string name="InviteActivity_heart_content_description">Inimă</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
   <string name="InviteActivity_invite_to_signal">Invită la Signal</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">TRIMITE LA 1 PRIETEN</item>
+    <item quantity="few">TRIMITE LA %d PRIETENI</item>
+    <item quantity="other">TRIMITE LA %d PRIETENI</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Trimit o invitație prin SMS?</item>
+    <item quantity="few">Trimit %d invitații prin SMS?</item>
+    <item quantity="other">Trimit %d invitații prin SMS?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hai să trecem pe Signal: %1$s</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prieteni să comunice necriptat.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să comunice necriptat.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nu a fost găsită nici o cheie scanată!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalez scannerul de coduri de bare?</string>
@@ -373,6 +385,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="ViewIdentityActivity_not_verified_exclamation">NU E VERIFICAT!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Cheia scanată se potrivește!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verificat!</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Amprenta ta de identitate</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniţializeaz deşi există o cerere?</string>
   <string name="KeyExchangeInitiator_send">Trimite</string>
@@ -611,12 +624,14 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="AndroidManifest__invite_friends">Invită prieteni</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importă / Exportă</string>
+  <string name="arrays__your_identity_key">Cheia ta de identitate</string>
   <string name="arrays__use_default">Implicit</string>
   <string name="arrays__use_custom">Specific</string>
   <string name="arrays__mute_for_one_hour">Silenţios pentru o oră</string>
   <string name="arrays__mute_for_two_hours">Silenţios pentru 2 ore</string>
   <string name="arrays__mute_for_one_day">Silenţios pentru o zi</string>
   <string name="arrays__mute_for_seven_days">Silenţios pentru 7 zile</string>
+  <string name="arrays__mute_for_one_year">Silenţios pentru 1 an</string>
   <string name="arrays__settings_default">Setări implicite</string>
   <string name="arrays__enabled">Activat</string>
   <string name="arrays__disabled">Dezactivat</string>
@@ -648,6 +663,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__choose_identity">Selectează identitatea</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selectează persoana din lista de contacte.</string>
   <string name="preferences__change_passphrase">Schimbă parola</string>
+  <string name="preferences__change_your_passphrase">Schimbă-ți parola</string>
   <string name="preferences__enable_passphrase">Activează parola</string>
   <string name="preferences__passphrase_summary">Parola %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Activează ecran de blocare pentru mesaje</string>

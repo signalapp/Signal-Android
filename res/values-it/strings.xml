@@ -54,6 +54,7 @@ questo contatto.</string>
   <string name="ConfirmIdentityDialog_accept">Accetta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
+  <string name="ContactsDatabase_signal_call_s">Chiamata Signal %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Dimensione Messaggio: %d KB</string>
   <string name="ConversationItem_expires_s">Scadenza: %s</string>
@@ -121,6 +122,7 @@ questo contatto.</string>
     <item quantity="other">Così cancellerai per sempre i %1$d messaggi selezionati.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Salvare i file sulla memoria consentirà a qualunque applicazione sul tuo telefono di accedervi.\n\nContinuare?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Errore nel salvare l\'allegato in memoria!</string>
   <string name="ConversationFragment_success_exclamation">Completato!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossibile scrivere sulla memoria!</string>
@@ -176,8 +178,13 @@ questo contatto.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e Redphone ora sono un\'unica app: Signal. Tocca per esplorare.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Esporta</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Esportare messaggi in chiaro sulla memoria?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Attenzione, così esporterai i messaggi di Signal in chiaro sulla memoria.</string>
   <string name="ExportFragment_cancel">Annulla</string>
   <string name="ExportFragment_exporting">In esportazione</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Esportazione messaggi in memoria...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Errore, impossibile scrivere sulla memoria.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Errore durante la scrittura in memoria.</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
@@ -196,7 +203,9 @@ questo contatto.</string>
   <string name="GroupCreateActivity_menu_create_title">Crea gruppo</string>
   <string name="GroupCreateActivity_creating_group">Creo %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aggiornamento %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossibile aggiungere %1$s perchè non è un utente di Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Caricamennto dettagli del gruppo...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Sei già nel gruppo.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Io</string>
   <!--ImportExportActivity-->
@@ -229,8 +238,20 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="InviteActivity_send_sms">Invia SMS</string>
   <string name="InviteActivity_cancel">Annulla</string>
   <string name="InviteActivity_sending">Invio...</string>
+  <string name="InviteActivity_heart_content_description">Cuore</string>
   <string name="InviteActivity_invitations_sent">Inviti mandati!</string>
   <string name="InviteActivity_invite_to_signal">Invita su Signal</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">INVIA A 1 AMICO</item>
+    <item quantity="other">INVIA A %d AMICI</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Inviare 1 invito?</item>
+    <item quantity="other">Inviare %d SMS di invito?</item>
+  </plurals>
+  <string name="InviteActivity_lets_switch_to_signal">Passiamo a Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Sembra che tu non abbia alcune applicazioni per condividere.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Gli amici non lasciano che gli amici chattino senza crittografia.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nessuna chiave scansionata trovata!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Installare Barcode Scanner?</string>
@@ -249,11 +270,13 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio multimediale</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di Signal che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
   <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
   <string name="MessageRecord_updated_group">Gruppo aggiornato.</string>
   <string name="MessageRecord_s_called_you">%s ti ha chiamato</string>
   <string name="MessageRecord_called_s">Hai chiamato %s</string>
   <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
@@ -289,6 +312,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="RatingManager_later">Più tardi</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloccare questo contatto?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Non riceverai più messaggi nè chiamate da questo utente.</string>
   <string name="RecipientPreferenceActivity_block">Blocca</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Sbloccare questo contatto?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Vuoi davvero sbloccare questo contatto?</string>
@@ -387,11 +411,13 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="ThreadRecord_called_you">Ti ha chiamato</string>
   <string name="ThreadRecord_missed_call">Chiamata persa</string>
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Il destinatario non ha una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Il destinatario non ha una chiave di identità.</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Scansiona la chiave per controllare</string>
+  <string name="VerifyIdentityActivity_get_your_key_scanned">Fai scansionare la tua chiave</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATTENZIONE, la chiave scansionata non corrisponde! Controlla il testo della chiave con attenzione.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NON verificata!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La chiave è corretta. È anche necessario verificare la tua chiave.</string>
@@ -405,6 +431,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="ViewIdentityActivity_not_verified_exclamation">NON verificato!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">La chiave scansionata corrisponde!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verificata!</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Impronta della tua identità</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniziare nonostante la richiesta esistente?</string>
   <string name="KeyExchangeInitiator_send">Inviata</string>
@@ -457,6 +484,11 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Nuovo messaggio Signal</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenuto nascosto</string>
   <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Immagine</string>
+  <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__contact">Contatto</string>
+  <string name="attachment_type_selector__camera">Fotocamera</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vecchia password:</string>
   <string name="change_passphrase_activity__new_passphrase">Nuova password:</string>
@@ -526,6 +558,9 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="database_upgrade_activity__updating_database">Aggiornando il database...</string>
   <string name="export_fragment__export_plaintext_backup">Esportare copia in chiaro</string>
   <string name="import_fragment__import_system_sms_database">Importa gli SMS dal database criptato</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importa i messaggi dall\'app di sistema per gli SMS</string>
+  <string name="import_fragment__restore_encrypted_backup">Ripristina backup criptato</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Ripristina un backup cifrato di Signal precedentemente esportato.</string>
   <string name="import_fragment__import_plaintext_backup">Importare copia in chiaro</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vedi tutta la conversazione</string>
@@ -555,6 +590,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silenzia conversazione</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Disattiva le notifiche per questa conversazione</string>
+  <string name="recipient_preferences__notification_sound">Suono di notifica</string>
   <string name="recipient_preferences__vibrate">Vibra</string>
   <string name="recipient_preferences__block">Blocca</string>
   <string name="recipient_preferences__color">Colore</string>
@@ -661,14 +697,17 @@ non riuscita.
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
   <string name="AndroidManifest_manage_linked_devices">Gestisci dispositivi collegati</string>
+  <string name="AndroidManifest__invite_friends">Invita amici</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
+  <string name="arrays__your_identity_key">Chiave della tua identità</string>
   <string name="arrays__use_default">Usa predefinito</string>
   <string name="arrays__use_custom">Usa personalizzato</string>
   <string name="arrays__mute_for_one_hour">Silenzia per 1 ora</string>
   <string name="arrays__mute_for_two_hours">Silenzia per 2 ore</string>
   <string name="arrays__mute_for_one_day">Silenzia per 1 giorno</string>
   <string name="arrays__mute_for_seven_days">Silenzia per 7 giorni</string>
+  <string name="arrays__mute_for_one_year">Silenzia per 1 anno</string>
   <string name="arrays__settings_default">Impostazioni di default</string>
   <string name="arrays__enabled">Attivato</string>
   <string name="arrays__disabled">Disattivato</string>
@@ -699,6 +738,7 @@ non riuscita.
   <string name="preferences__choose_identity">Scegli identità</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
   <string name="preferences__change_passphrase">Cambia passphrase</string>
+  <string name="preferences__change_your_passphrase">Cambia la tua password</string>
   <string name="preferences__enable_passphrase">Usa password</string>
   <string name="preferences__passphrase_summary">Password %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Attiva schermata di blocco per i messaggi</string>
@@ -773,6 +813,8 @@ non riuscita.
   <string name="preferences__default">Predefinito</string>
   <string name="preferences__language">Lingua</string>
   <string name="preferences__language_summary">Lingua %s</string>
+  <string name="preferences__signal_messages_and_calls">Messaggi e chiamate Signal</string>
+  <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS  via WiFi ( abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo )</string>
@@ -856,19 +898,25 @@ non riuscita.
   <string name="text_secure_normal__menu_settings">Impostazioni</string>
   <string name="text_secure_normal__menu_clear_passphrase">Blocca</string>
   <string name="text_secure_normal__mark_all_as_read">Segnala tutto come già letto</string>
+  <string name="text_secure_normal__invite_friends">Invita amici</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">La tua versione di Signal è scaduta!</string>
   <string name="reminder_header_expired_build_details">Non riesci più a mandare messaggi, per piacere aggiorna all\'ultima versione.</string>
+  <string name="reminder_header_expired_build_button">AGGIORNA</string>
   <string name="reminder_header_sms_default_title">Usa come app per tutti gli SMS</string>
   <string name="reminder_header_sms_default_text">Tocca per usare Signal come applicazione di default per gli SMS.</string>
   <string name="reminder_header_sms_default_button">IMPOSTA</string>
   <string name="reminder_header_sms_import_title">Importa gli SMS di sistema</string>
   <string name="reminder_header_sms_import_text">Tocca per copiare gli SMS del telefono nel database criptato.</string>
   <string name="reminder_header_sms_import_button">IMPORTA</string>
+  <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Signal</string>
   <string name="reminder_header_push_button">ATTIVA</string>
   <string name="reminder_header_invite_title">Invita su Signal</string>
   <string name="reminder_header_invite_text">Porta la tua conversazione con %1$s ad un nuovo livello.</string>
   <string name="reminder_header_invite_button">INVITA</string>
+  <string name="reminder_header_share_title">Invita i tuoi amici!</string>
+  <string name="reminder_header_share_text">Più amici usano Signal, più migliora.</string>
+  <string name="reminder_header_share_button">CONDIVIDI</string>
   <string name="reminder_header_close_button">CHIUDI</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>

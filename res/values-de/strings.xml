@@ -568,7 +568,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="MmsPreferencesFragment__invalid_uri">Der eingegebene Text ist kein gültiger URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Der eingegebene Text ist kein gültiger Host</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s ist der Gruppe beigetreten.</string>
+  <string name="GroupUtil_joined_the_group">Der Gruppe beigetreten: %1$s</string>
   <string name="GroupUtil_group_updated">Gruppe aktualisiert.</string>
   <string name="GroupUtil_title_is_now">Der Gruppenname lautet jetzt „%1$s“.</string>
   <!--prompt_passphrase_activity-->

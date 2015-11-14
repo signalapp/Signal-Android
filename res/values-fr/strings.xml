@@ -235,6 +235,10 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="InviteActivity_heart_content_description">Cœur</string>
   <string name="InviteActivity_invitations_sent">Invitation envoyée !</string>
   <string name="InviteActivity_invite_to_signal">Inviter sur Signal</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">ENVOYER À 1 AMI</item>
+    <item quantity="other">ENVOYER À %d AMI(E)(S)</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Passons à Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">On dirait que vous n\'avez aucune appli vers laquelle partager.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les vrais amis ne laissent pas leur amis chatter sans chiffrement.</string>
@@ -681,12 +685,14 @@ par SMS.</string>
   <string name="AndroidManifest__invite_friends">Inviter des amis</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / exporter</string>
+  <string name="arrays__your_identity_key">Votre clé d\'identité</string>
   <string name="arrays__use_default">Par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
   <string name="arrays__mute_for_one_hour">Pendant 1 heure</string>
   <string name="arrays__mute_for_two_hours">Pendant 2 heures</string>
   <string name="arrays__mute_for_one_day">Pendant 1 jour</string>
   <string name="arrays__mute_for_seven_days">Pendant 7 jours</string>
+  <string name="arrays__mute_for_one_year">Mettre en silence pendant 1 an</string>
   <string name="arrays__settings_default">Paramètres par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
