@@ -242,8 +242,9 @@ public class CanonicalAddressDatabase {
       PhoneNumberUtil         util              = PhoneNumberUtil.getInstance();
       Phonenumber.PhoneNumber localNumberObject = util.parse(localNumber, null);
       String                  localCountryCode  = util.getRegionCodeForNumber(localNumberObject);
+      Phonenumber.PhoneNumber shortCode         = util.parse(number, localCountryCode);
 
-      return ShortNumberInfo.getInstance().isValidShortNumberForRegion(number, localCountryCode);
+      return ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(shortCode, localCountryCode);
     } catch (NumberParseException e) {
       Log.w(TAG, e);
       return false;
