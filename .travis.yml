@@ -1,7 +1,0 @@
-language: android
-android:
-  components:
-    - platform-tools
-    - build-tools-19.1.0
-    - android-19
-    - extra-android-m2repository
