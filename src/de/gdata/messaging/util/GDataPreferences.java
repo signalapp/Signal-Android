@@ -247,11 +247,14 @@ public class GDataPreferences {
     }
     return arrayUri;
   }
-  public String[] getMediaTypeHistoryForId(long recipientId) {
+  public String[] getMediaMessageIdHistoryForContactId(long recipientId) {
     int size = mPreferences.getInt(MEDIA_HISTORY + "_size_" + recipientId, 0);
     String arrayType[] = new String[size];
     for(int i=0;i<size;i++) {
       arrayType[i] = mPreferences.getString(MEDIA_HISTORY + "_type_" + recipientId + "_" + i, "");
+    }
+    if(size > 0) {
+      arrayType = GUtil.reverseOrder(arrayType);
     }
     return arrayType;
   }

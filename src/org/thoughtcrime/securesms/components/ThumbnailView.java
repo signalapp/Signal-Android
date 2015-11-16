@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.ThumbnailTransform;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
@@ -46,7 +47,9 @@ public class ThumbnailView extends ForegroundImageView {
   public void setSlide(Slide slide) {
     this.slide = slide;
   }
-
+  public void setVideoSlide(VideoSlide slide) {
+    this.videoSlide = slide;
+  }
   private Slide slide = null;
   private Handler handler = new Handler();
   private boolean isLoadingDone = false;
@@ -161,6 +164,10 @@ public class ThumbnailView extends ForegroundImageView {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
         .fitCenter()
         .crossFade();
+  }
+
+  public Slide getVideoSlide() {
+    return videoSlide;
   }
 
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {

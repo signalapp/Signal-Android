@@ -476,9 +476,9 @@ public class GUtil {
         return totalHeight;
     }
 
-    public static void saveInMediaHistory(Context context, PduPart part, String recId) {
+    public static void saveInMediaHistory(Context context, PduPart part, String recId, String mesId) {
         if (part != null && part.getDataUri() != null) {
-            new GDataPreferences(context).saveMediaForHistory(part.getDataUri(), "", GUtil.numberToLong(recId));
+            new GDataPreferences(context).saveMediaForHistory(part.getDataUri(), mesId , GUtil.numberToLong(recId));
             ProfileAccessor.savePartIdForUri(context, part.getDataUri().toString(), part.getPartId().getUniqueId());
             ProfileAccessor.savePartRowForUri(context, part.getDataUri().toString(), part.getPartId().getRowId());
         }

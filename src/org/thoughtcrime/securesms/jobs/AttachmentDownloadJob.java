@@ -115,31 +115,21 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         attachmentFile.delete();
     }
   }
-  public MessageRecord getMessage(MasterSecret masterSecret, long messageId) throws NoSuchMessageException {
-    MmsDatabase mmsDatabase      = DatabaseFactory.getMmsDatabase(context);
-    Cursor cursor = mmsDatabase.getMessage(messageId);
-    MmsDatabase.Reader reader = mmsDatabase.readerFor(masterSecret, cursor);
-    MessageRecord record = reader.getNext();
-
-    reader.close();
-
-    if (record == null) throw new NoSuchMessageException("No message for ID: " + messageId);
-    else                return record;
-  }
   private void saveSlideToMediaHistory(long messageId, PduPart part, MasterSecret masterSecret) {
     MmsDatabase smsDatabase      = DatabaseFactory.getMmsDatabase(context);
+    MmsSmsDatabase MmsSmsDatabase      = DatabaseFactory.getMmsSmsDatabase(context);
     ThreadDatabase threadDb      = DatabaseFactory.getThreadDatabase(context);
     long threadId = smsDatabase.getThreadIdForMessage(messageId);
     Recipients sender = threadDb.getRecipientsForThreadId(threadId);
 
     MessageRecord   messageRecord       = null;
     try {
-      messageRecord = getMessage(masterSecret, messageId);
+      messageRecord = MmsSmsDatabase.getMessage(masterSecret, messageId);
     } catch (NoSuchMessageException e) {
       e.printStackTrace();
     }
     if (sender != null && messageRecord != null && !messageRecord.getBody().isSelfDestruction()) {
-        GUtil.saveInMediaHistory(context, part, sender.getPrimaryRecipient().getNumber());
+        GUtil.saveInMediaHistory(context, part, sender.getPrimaryRecipient().getNumber(), messageId+"");
       }
     }
   private TextSecureAttachmentPointer createAttachmentPointer(MasterSecret masterSecret, PduPart part)

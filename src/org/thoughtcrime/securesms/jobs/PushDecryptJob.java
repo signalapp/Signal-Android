@@ -352,6 +352,8 @@ public class PushDecryptJob extends MasterSecretJob {
       }
     } catch (InvalidMessageException | InvalidVersionException e) {
       throw new AssertionError(e);
+    } catch(ArrayIndexOutOfBoundsException e) {
+      Log.d("G DATA", "Empty Key Message");
     }
   }
 

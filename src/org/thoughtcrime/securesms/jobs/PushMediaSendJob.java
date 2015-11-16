@@ -124,7 +124,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       for (int i=0;i<message.getBody().getPartsNum();i++) {
         PduPart part = message.getBody().getPart(i);
         String number = RecipientFactory.getRecipientsFromString(context,destination,false).getPrimaryRecipient().getNumber();
-        GUtil.saveInMediaHistory(context, part, number);
+        GUtil.saveInMediaHistory(context, part, number, message.getDatabaseMessageId()+"");
       }
     } catch (InvalidNumberException | UnregisteredUserException e) {
       Log.w(TAG, e);

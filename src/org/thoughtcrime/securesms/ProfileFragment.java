@@ -48,10 +48,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-
 import android.widget.CheckBox;
-import android.widget.EditText;
-
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -81,6 +78,7 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.ProfileImageTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -214,10 +212,10 @@ public class ProfileFragment extends Fragment {
         recipient = recipients.getPrimaryRecipient();
         attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
         scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
-        seekBarFont = (SeekBar)getView().findViewById(R.id.seekbar_font);
+        seekBarFont = (SeekBar) getView().findViewById(R.id.seekbar_font);
         chatPartnersColor = (CheckBox) getView().findViewById(R.id.enabled_chat_partners_color);
         colorDefault = (CheckBox) getView().findViewById(R.id.color_default);
-        layoutColor = (RelativeLayout)getView().findViewById(R.id.layout_color);
+        layoutColor = (RelativeLayout) getView().findViewById(R.id.layout_color);
         floatingActionColorButton = (FloatingActionButton) getView().findViewById(R.id.fab_new_color);
         final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
 
@@ -326,7 +324,7 @@ public class ProfileFragment extends Fragment {
                 scaleImage((ImageView) getView().findViewById(R.id.profile_picture_group), avatar);
             }
             imageText.setText(groupName);
-            if(profileStatusString.equals("")) {
+            if (profileStatusString.equals("")) {
                 profileStatus.setText(groupName);
             }
             layout_phone.setVisibility(View.GONE);
@@ -334,14 +332,14 @@ public class ProfileFragment extends Fragment {
             leaveGroup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(isActiveGroup()) {
+                    if (isActiveGroup()) {
                         handleLeavePushGroup();
                     } else {
                         handleDeleteThread();
                     }
                 }
             });
-            if(!isActiveGroup()) {
+            if (!isActiveGroup()) {
                 leaveGroup.setText(getString(R.string.conversation__menu_delete_thread));
             }
 
@@ -691,18 +689,42 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * An incoming video media has an attached second image attachment used as preview for the encrypted video file.
+     * To detect whether is is a video, we check the next attachment for the same message id and use this as the preview for the encrypted video.
+     * To detect whether it is just the second of a video, we check for the same message id as the previous attachment. If yes, we hide it.
+     * Not beautiful, but working...
+     */
     private void setMediaHistoryImages() {
         String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(GUtil.numberToLong(recipient.getNumber()));
-
-        if(mediaHistoryUris.length > 0) {
-
+        String[] mediaHistoryIds = gDataPreferences.getMediaMessageIdHistoryForContactId(GUtil.numberToLong(recipient.getNumber()));
+        String lastMessageId = "noLastMessageId";
+        String nextMessageId = "nonextMessageId";
+        String currentMessageId = "nocurrentMessageId";
+        if (mediaHistoryUris.length > 0) {
             while (historyLayout.getChildCount() >= 1) {
                 historyLayout.removeView(historyLayout.getChildAt(0));
             }
-
             for (int i = 0; i < mediaHistoryUris.length; i++) {
-                Slide mediaHistorySlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i]);
-                if (mediaHistorySlide != null && masterSecret != null && !(mediaHistorySlide.getUri() + "").equals("")) {
+                boolean isVideo = false;
+                boolean wasVideo = false;
+                nextMessageId = mediaHistoryIds.length > i + 1 ? mediaHistoryIds[i + 1] : "nonextMessageId";
+                currentMessageId = mediaHistoryIds.length > i ? mediaHistoryIds[i] : "nocurrentMessageId";
+                lastMessageId = i - 1 >= 0 ? mediaHistoryIds[i - 1] : "noLastMessageId";
+                if (nextMessageId.equals(currentMessageId)) {
+                    isVideo = true;
+                }
+                if (currentMessageId.equals(lastMessageId)) {
+                    wasVideo = true;
+                }
+                Slide mediaHistorySlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i], false);
+                VideoSlide videoSlide = null;
+                if (mediaHistoryIds.length > i + 1 && isVideo && !wasVideo) {
+                    Slide nextSlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i + 1], true);
+                    videoSlide = nextSlide instanceof VideoSlide ? (VideoSlide) nextSlide : null;
+                }
+                if (mediaHistorySlide != null && masterSecret != null && !(mediaHistorySlide.getUri() + "").equals("") && !wasVideo) {
                     ThumbnailView historyMedia = new ThumbnailView(getActivity());
 
                     android.widget.LinearLayout.LayoutParams layoutParams = new android.widget.LinearLayout.LayoutParams(
@@ -711,9 +733,10 @@ public class ProfileFragment extends Fragment {
                     layoutParams.setMargins(5, 0, 5, 0);
 
                     historyMedia.setLayoutParams(layoutParams);
+                    historyMedia.setSlide(mediaHistorySlide);
+                    historyMedia.setVideoSlide(videoSlide);
                     ProfileAccessor.buildEncryptedPartGlideRequest(mediaHistorySlide, masterSecret, getActivity()).into(historyMedia);
                     historyLayout.addView(historyMedia);
-                    historyMedia.setSlide(mediaHistorySlide);
                 }
             }
             LinearLayout ll = ((LinearLayout) historyScrollView.getChildAt(0));
@@ -729,7 +752,8 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onClick(View view) {
             final Slide slide = ((ThumbnailView) view).getSlide();
-            if (slide != null && MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+            final VideoSlide vidSlide = (VideoSlide) ((ThumbnailView) view).getVideoSlide();
+            if (slide != null && MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && vidSlide == null) {
                 Intent intent = new Intent(getActivity(), MediaPreviewActivity.class);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 intent.setDataAndType(slide.getUri(), slide.getContentType());
@@ -745,7 +769,7 @@ public class ProfileFragment extends Fragment {
                 builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        fireIntent(slide);
+                        fireIntent(vidSlide);
                     }
                 });
                 builder.setNegativeButton(R.string.no, null);
