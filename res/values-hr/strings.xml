@@ -432,8 +432,8 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Signal zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nova Signal poruka</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Sadržaj je skriven</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Nova Signal poruka</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Sadržaj je skriven</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARA LOZINKA:</string>

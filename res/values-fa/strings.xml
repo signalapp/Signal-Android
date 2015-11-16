@@ -370,8 +370,8 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">پیام جدید سیگنال</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">محتوای مخفی</string>
+  <string name="SingleRecipientNotificationBuilder_signal">پیام جدید سیگنال</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">محتوای مخفی</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">رمز قبلی:</string>

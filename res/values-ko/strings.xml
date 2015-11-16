@@ -458,8 +458,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">새 Signal 메시지</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">콘텐츠 숨겨짐</string>
+  <string name="SingleRecipientNotificationBuilder_signal">새 Signal 메시지</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">콘텐츠 숨겨짐</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">이미지</string>
   <string name="attachment_type_selector__audio">오디오</string>

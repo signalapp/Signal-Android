@@ -475,8 +475,8 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Pesan Signal baru</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Konten disembunyikan</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Pesan Signal baru</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Konten disembunyikan</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Gambar</string>
   <string name="attachment_type_selector__audio">Audio</string>

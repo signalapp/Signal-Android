@@ -65,7 +65,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                             .asDrawable(context, recipient.getColor()
                                                           .toConversationColor(context)));
     } else {
-      setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_new_signal_message));
+      setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
       setLargeIcon(Recipient.getUnknownRecipient()
                             .getContactPhoto()
                             .asDrawable(context, Recipient.getUnknownRecipient()
@@ -84,7 +84,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       setContentText(message);
       this.slideDeck = slideDeck;
     } else {
-      setContentText(context.getString(R.string.SingleRecipientNotificationBuilder_contents_hidden));
+      setContentText(context.getString(R.string.SingleRecipientNotificationBuilder_new_message));
     }
   }
 
@@ -131,9 +131,9 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     if (privacy.isDisplayMessage()) {
       setTicker(getStyledMessage(recipient, message));
     } else if (privacy.isDisplayContact()) {
-      setTicker(getStyledMessage(recipient, context.getString(R.string.SingleRecipientNotificationBuilder_new_signal_message)));
+      setTicker(getStyledMessage(recipient, context.getString(R.string.SingleRecipientNotificationBuilder_signal)));
     } else {
-      setTicker(context.getString(R.string.SingleRecipientNotificationBuilder_new_signal_message));
+      setTicker(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
     }
   }
 

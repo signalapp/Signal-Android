@@ -481,8 +481,8 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Risposta veloce non disponibile quando Signal è bloccato!</string>
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nuovo messaggio Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenuto nascosto</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Nuovo messaggio Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Contenuto nascosto</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Immagine</string>
   <string name="attachment_type_selector__audio">Audio</string>

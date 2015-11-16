@@ -463,8 +463,8 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är ej tillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nytt Signal-meddelande</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Innehållet dolt</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Nytt Signal-meddelande</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Innehållet dolt</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__audio">Ljud</string>

@@ -490,8 +490,8 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Uusi Signal-viesti</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Sisältö piilotettu</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Uusi Signal-viesti</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Sisältö piilotettu</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kuva</string>
   <string name="attachment_type_selector__audio">Äänitallenne</string>

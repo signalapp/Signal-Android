@@ -480,8 +480,8 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Gyors válasz nem elérhető, amikor a Signal zárolva van!</string>
   <string name="QuickResponseService_problem_sending_message">Probléma az üzenetküldésben!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Új Signal üzenet</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Tartalmak rejtve</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Új Signal üzenet</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Tartalmak rejtve</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kép</string>
   <string name="attachment_type_selector__audio">Hang</string>

@@ -461,8 +461,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">当暗号处于锁定状态时，快速回复不可用！</string>
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">新暗号信息</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">内容隐藏</string>
+  <string name="SingleRecipientNotificationBuilder_signal">新暗号信息</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">内容隐藏</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">图片</string>
   <string name="attachment_type_selector__audio">音频</string>

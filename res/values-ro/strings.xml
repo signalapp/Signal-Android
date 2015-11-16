@@ -432,8 +432,8 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Mesaj nou Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Conţinut ascuns</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Mesaj nou Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Conţinut ascuns</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagine</string>
   <string name="attachment_type_selector__audio">Audio</string>

@@ -421,8 +421,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда SIgnal заблокирован!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Новое сообщение в Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Содержимое скрыто</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Новое сообщение в Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Содержимое скрыто</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
