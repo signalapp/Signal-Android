@@ -19,7 +19,10 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -71,10 +74,24 @@ public class NewConversationActivity extends ContactSelectionActivity {
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-      case android.R.id.home: super.onBackPressed(); return true;
+    case android.R.id.home: super.onBackPressed(); return true;
+    case R.id.menu_refresh: handleManualRefresh(); return true;
     }
 
     return false;
   }
 
+  private void handleManualRefresh() {
+    contactsFragment.setRefreshing(true);
+    onRefresh();
+  }
+
+  @Override
+  protected boolean onPrepareOptionsPanel(View view, Menu menu) {
+    MenuInflater inflater = this.getMenuInflater();
+    menu.clear();
+    inflater.inflate(R.menu.new_conversation_activity, menu);
+    super.onPrepareOptionsMenu(menu);
+    return true;
+  }
 }

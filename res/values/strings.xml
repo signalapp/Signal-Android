@@ -1100,6 +1100,8 @@
     <!-- media_preview_activity -->
     <string name="media_preview_activity__image_content_description">Image Preview</string>
 
+    <!-- new_conversation_activity -->
+    <string name="new_conversation_activity__refresh">Refresh</string>
     <!-- redphone_audio_popup_menu -->
     <string name="redphone_audio_popup_menu__handset">Handset</string>
     <string name="redphone_audio_popup_menu__headset">Headset</string>

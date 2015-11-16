@@ -143,6 +143,10 @@ public class ContactSelectionListFragment extends    Fragment
     swipeRefresh.setRefreshing(false);
   }
 
+  public void setRefreshing(boolean refreshing) {
+    swipeRefresh.setRefreshing(refreshing);
+  }
+
   public void reset() {
     selectedContacts.clear();
     getLoaderManager().restartLoader(0, null, this);
