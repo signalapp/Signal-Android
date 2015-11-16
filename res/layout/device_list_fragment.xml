@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingLeft="16dip"
-              android:paddingRight="16dip">
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:fab="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
 
     <LinearLayout android:id="@+id/progress_container"
                   android:layout_width="fill_parent"
@@ -27,13 +27,32 @@
               android:gravity="center|center_vertical"
               android:textSize="20sp"
               android:visibility="gone"
-              android:text="@string/device_list_fragment__no_devices_linked"/>
+              android:text="@string/device_list_fragment__no_devices_linked"
+              android:paddingLeft="16dip"
+              android:paddingRight="16dip"
+              android:layout_weight="1"
+              tools:visibility="visible"/>
 
     <ListView android:id="@id/android:list"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:layout_weight="1"
-              android:drawSelectorOnTop="false"/>
+              android:drawSelectorOnTop="false"
+              android:paddingLeft="16dip"
+              android:paddingRight="16dip"
+              tools:visibility="gone"/>
 
+    <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/add_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_add_white_original_24dp"
+            android:focusable="true"
+            android:contentDescription="@string/device_list_fragment__link_new_device"
+            fab:fab_colorNormal="?fab_color"
+            fab:fab_colorPressed="@color/textsecure_primary_dark"
+            fab:fab_colorRipple="@color/textsecure_primary_dark" />
 
 </LinearLayout>

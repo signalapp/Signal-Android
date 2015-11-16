@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.DeviceListActivity;
+import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
@@ -43,7 +43,7 @@ import dagger.Provides;
                                      PushNotificationReceiveJob.class,
                                      MultiDeviceContactUpdateJob.class,
                                      MultiDeviceGroupUpdateJob.class,
-                                     DeviceListActivity.DeviceListFragment.class,
+                                     DeviceListFragment.class,
                                      RefreshAttributesJob.class,
                                      GcmRefreshJob.class})
 public class TextSecureCommunicationModule {
