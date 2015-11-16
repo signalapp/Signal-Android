@@ -27,13 +27,20 @@ public class ShortCodeUtil {
       PhoneNumberUtil         util              = PhoneNumberUtil.getInstance();
       Phonenumber.PhoneNumber localNumberObject = util.parse(localNumber, null);
       String                  localCountryCode  = util.getRegionCodeForNumber(localNumberObject);
+      String                  bareNumber        = number.replaceAll("[^0-9+]", "");
 
-      if (number.replaceAll("[^0-9+]", "").length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {
+      // libphonenumber doesn't seem to be correct for Germany
+      if (bareNumber.length() <= 6 && "DE".equals(localCountryCode)) {
         return true;
-      } else {
-        Phonenumber.PhoneNumber shortCode = util.parse(number, localCountryCode);
-        return ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(shortCode, localCountryCode);
       }
+
+      // libphonenumber seems incorrect for Russia and a few other countries with 4 digit short codes.
+      if (bareNumber.length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {
+        return true;
+      }
+
+      Phonenumber.PhoneNumber shortCode = util.parse(number, localCountryCode);
+      return ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(shortCode, localCountryCode);
     } catch (NumberParseException e) {
       Log.w(TAG, e);
       return false;
