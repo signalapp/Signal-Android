@@ -45,6 +45,7 @@
         <item name="elevation">2dp</item>
         <item name="logo">@drawable/actionbar_icon_holo_dark</item>
         <item name="icon">@drawable/actionbar_icon_holo_dark</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="android:textColorPrimary">@color/white</item>
