@@ -89,12 +89,12 @@ public class CameraView extends FrameLayout {
     addView(previewStrategy.getWidget());
   }
 
-  @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void onResume() {
     Log.w(TAG, "onResume() queued");
     final CameraHost host = getHost();
     submitTask(new SerializedAsyncTask<FailureReason>() {
-      @Override protected FailureReason onRunBackground() {
+      @Override
+      protected FailureReason onRunBackground() {
         try {
           cameraId = host.getCameraId();
           if (cameraId >= 0) {
@@ -109,7 +109,8 @@ public class CameraView extends FrameLayout {
         return null;
       }
 
-      @Override protected void onPostMain(FailureReason result) {
+      @Override
+      protected void onPostMain(FailureReason result) {
         if (result != null) {
           host.onCameraFail(result);
           return;
@@ -143,16 +144,19 @@ public class CameraView extends FrameLayout {
   public void onPause() {
     Log.w(TAG, "onPause() queued");
     submitTask(new SerializedAsyncTask<Void>() {
-      @Override protected void onPreMain() {
+      @Override
+      protected void onPreMain() {
         cameraReady = false;
       }
 
-      @Override protected Void onRunBackground() {
+      @Override
+      protected Void onRunBackground() {
         previewDestroyed();
         return null;
       }
 
-      @Override protected void onPostMain(Void avoid) {
+      @Override
+      protected void onPostMain(Void avoid) {
         onOrientationChange.disable();
         previewSize = null;
         displayOrientation = -1;
@@ -257,6 +261,16 @@ public class CameraView extends FrameLayout {
 
   public void setOneShotPreviewCallback(PreviewCallback callback) {
     if (camera != null) camera.setOneShotPreviewCallback(callback);
+  }
+
+  public void setPreviewCallback(final PreviewCallback callback) {
+    submitTask(new PostInitializationTask() {
+      @Override
+      protected void onPostMain(Object o) {
+        if (camera != null) camera.setPreviewCallback(callback);
+      }
+    });
+
   }
 
   public @Nullable Camera.Parameters getCameraParameters() {

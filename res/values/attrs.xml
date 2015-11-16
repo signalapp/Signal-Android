@@ -145,4 +145,9 @@
         <attr name="circleColor" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="ShapeScrim">
+        <attr name="shape" format="string"/>
+        <attr name="radius" format="float"/>
+    </declare-styleable>
+
 </resources>
