@@ -99,7 +99,9 @@
                         android:layout_weight="1"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
-                        tools:hint="Send TextSecure message" />
+                        tools:hint="Send TextSecure message">
+                    <requestFocus />
+                </org.thoughtcrime.securesms.components.ComposeText>
 
                 <org.thoughtcrime.securesms.components.camera.HidingImageButton
                         android:id="@+id/quick_attachment_toggle"
