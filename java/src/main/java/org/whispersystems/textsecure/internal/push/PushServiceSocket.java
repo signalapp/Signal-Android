@@ -18,6 +18,11 @@ package org.whispersystems.textsecure.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.libaxolotl.IdentityKey;
@@ -100,8 +105,6 @@ public class PushServiceSocket {
   private static final String ACKNOWLEDGE_MESSAGE_PATH  = "/v1/messages/%s/%d";
   private static final String RECEIPT_PATH              = "/v1/receipt/%s/%d";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
-
-  private static final boolean ENFORCE_SSL = true;
 
   private final String              serviceUrl;
   private final TrustManager[]      trustManagers;
@@ -486,50 +489,33 @@ public class PushServiceSocket {
   private String makeRequest(String urlFragment, String method, String body)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    HttpURLConnection connection = makeBaseRequest(urlFragment, method, body);
+    Response response = getConnection(urlFragment, method, body);
+
+    int    responseCode;
+    String responseMessage;
+    String responseBody;
 
     try {
-      String response = Util.readFully(connection.getInputStream());
-      connection.disconnect();
-
-      return response;
-    } catch (IOException ioe) {
-      throw new PushNetworkException(ioe);
-    }
-  }
-
-  private HttpURLConnection makeBaseRequest(String urlFragment, String method, String body)
-      throws NonSuccessfulResponseCodeException, PushNetworkException
-  {
-    HttpURLConnection connection = getConnection(urlFragment, method, body);
-    int               responseCode;
-    String            responseMessage;
-    String            response;
-
-    try {
-      responseCode    = connection.getResponseCode();
-      responseMessage = connection.getResponseMessage();
+      responseCode    = response.code();
+      responseMessage = response.message();
+      responseBody    = response.body().string();
     } catch (IOException ioe) {
       throw new PushNetworkException(ioe);
     }
 
     switch (responseCode) {
       case 413:
-        connection.disconnect();
         throw new RateLimitException("Rate limit exceeded: " + responseCode);
       case 401:
       case 403:
-        connection.disconnect();
         throw new AuthorizationFailedException("Authorization failed!");
       case 404:
-        connection.disconnect();
         throw new NotFoundException("Not found");
       case 409:
         MismatchedDevices mismatchedDevices;
 
         try {
-          response          = Util.readFully(connection.getErrorStream());
-          mismatchedDevices = JsonUtil.fromJson(response, MismatchedDevices.class);
+          mismatchedDevices = JsonUtil.fromJson(responseBody, MismatchedDevices.class);
         } catch (JsonProcessingException e) {
           Log.w(TAG, e);
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
@@ -542,8 +528,7 @@ public class PushServiceSocket {
         StaleDevices staleDevices;
 
         try {
-          response     = Util.readFully(connection.getErrorStream());
-          staleDevices = JsonUtil.fromJson(response, StaleDevices.class);
+          staleDevices = JsonUtil.fromJson(responseBody, StaleDevices.class);
         } catch (JsonProcessingException e) {
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
@@ -555,8 +540,7 @@ public class PushServiceSocket {
         DeviceLimit deviceLimit;
 
         try {
-          response    = Util.readFully(connection.getErrorStream());
-          deviceLimit = JsonUtil.fromJson(response, DeviceLimit.class);
+          deviceLimit = JsonUtil.fromJson(responseBody, DeviceLimit.class);
         } catch (JsonProcessingException e) {
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
@@ -573,52 +557,41 @@ public class PushServiceSocket {
                                                      responseMessage);
     }
 
-    return connection;
+    return responseBody;
   }
 
-  private HttpURLConnection getConnection(String urlFragment, String method, String body)
+  private Response getConnection(String urlFragment, String method, String body)
       throws PushNetworkException
   {
     try {
+      Log.w(TAG, "Push service URL: " + serviceUrl);
+      Log.w(TAG, "Opening URL: " + String.format("%s%s", serviceUrl, urlFragment));
+
       SSLContext context = SSLContext.getInstance("TLS");
       context.init(null, trustManagers, null);
 
-      URL url = new URL(String.format("%s%s", serviceUrl, urlFragment));
-      Log.w(TAG, "Push service URL: " + serviceUrl);
-      Log.w(TAG, "Opening URL: " + url);
+      OkHttpClient okHttpClient = new OkHttpClient();
+      okHttpClient.setSslSocketFactory(context.getSocketFactory());
+      okHttpClient.setHostnameVerifier(new StrictHostnameVerifier());
 
-      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+      Request.Builder request = new Request.Builder();
+      request.url(String.format("%s%s", serviceUrl, urlFragment));
 
-      if (ENFORCE_SSL) {
-        ((HttpsURLConnection) connection).setSSLSocketFactory(context.getSocketFactory());
-        ((HttpsURLConnection) connection).setHostnameVerifier(new StrictHostnameVerifier());
+      if (body != null) {
+        request.method(method, RequestBody.create(MediaType.parse("application/json"), body));
+      } else {
+        request.method(method, null);
       }
 
-      connection.setRequestMethod(method);
-      connection.setRequestProperty("Content-Type", "application/json");
-
       if (credentialsProvider.getPassword() != null) {
-        connection.setRequestProperty("Authorization", getAuthorizationHeader());
+        request.addHeader("Authorization", getAuthorizationHeader());
       }
 
       if (userAgent != null) {
-        connection.setRequestProperty("X-Signal-Agent", userAgent);
+        request.addHeader("X-Signal-Agent", userAgent);
       }
 
-      if (body != null) {
-        connection.setDoOutput(true);
-      }
-
-      connection.connect();
-
-      if (body != null) {
-        Log.w(TAG, method + "  --  " + body);
-        OutputStream out = connection.getOutputStream();
-        out.write(body.getBytes());
-        out.close();
-      }
-
-      return connection;
+      return okHttpClient.newCall(request.build()).execute();
     } catch (IOException e) {
       throw new PushNetworkException(e);
     } catch (NoSuchAlgorithmException | KeyManagementException e) {
