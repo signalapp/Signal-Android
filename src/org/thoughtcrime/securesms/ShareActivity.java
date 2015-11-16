@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.io.IOException;
@@ -188,7 +189,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final String type        = streamExtra != null ? getMimeType(streamExtra) : getIntent().getType();
 
     if (resolvedExtra != null) {
-      if (ContentType.isImageType(type)) {
+      if (MediaUtil.isGif(type)) {
+        intent.putExtra(ConversationActivity.DRAFT_GIF_EXTRA, resolvedExtra);
+      } else if (ContentType.isImageType(type)) {
         intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, resolvedExtra);
       } else if (ContentType.isAudioType(type)) {
         intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, resolvedExtra);
