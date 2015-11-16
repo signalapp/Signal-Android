@@ -51,7 +51,7 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.1.0'
     compile 'com.pnikosis:materialish-progress:1.5'
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile ('com.afollestad:material-dialogs:0.7.3.1') {
+    compile ('com.afollestad:material-dialogs:0.7.9.1') {
         exclude module: 'appcompat-v7'
         exclude module: 'recyclerview-v7'
         exclude module: 'support-annotations'
