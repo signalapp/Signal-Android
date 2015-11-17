@@ -1335,6 +1335,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       getSupportActionBar().show();
     }
+
+    if (drawerState == DrawerState.COLLAPSED) {
+      container.hideAttachedInput(true);
+    }
   }
 
   @Override
