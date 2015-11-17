@@ -494,8 +494,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Сигнал закључан!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Нова порука на Сигналу</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Садржај сакривен</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Нова порука на Сигналу</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Садржај сакривен</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Слика</string>
   <string name="attachment_type_selector__audio">Звук</string>

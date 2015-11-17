@@ -471,8 +471,8 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n\'est pas disponible lorsque Signal est verrouillé !</string>
   <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Nouveau message Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Contenus cachés</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nouveau message Signal</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenus cachés</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Image</string>
   <string name="attachment_type_selector__audio">Audio</string>

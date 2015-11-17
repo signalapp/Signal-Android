@@ -451,8 +451,8 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">¡La respuesta rápida no está disponible cuando Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Nuevo mensaje de Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Contenidos ocultos</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nuevo mensaje de Signal</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenidos ocultos</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">CLAVE DE ACCESO ANTERIOR:</string>

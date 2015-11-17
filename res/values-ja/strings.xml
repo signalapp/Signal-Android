@@ -352,7 +352,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">送信メッセージでの問題!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_message">非表示コンテンツ</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">非表示コンテンツ</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>

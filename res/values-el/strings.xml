@@ -492,8 +492,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Νέο μήνυμα Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Κρυμμένα περιεχόμενα</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Νέο μήνυμα Signal</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Κρυμμένα περιεχόμενα</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Εικόνα</string>
   <string name="attachment_type_selector__audio">Ήχος</string>

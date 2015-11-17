@@ -483,8 +483,8 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal bị khoá!</string>
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Thông điệp Signal mới</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Nội dung được ẩn</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Thông điệp Signal mới</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Nội dung được ẩn</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Hình ảnh</string>
   <string name="attachment_type_selector__audio">Âm thanh</string>

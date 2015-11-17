@@ -453,7 +453,7 @@ Tem certeza que deseja fazer isto?</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_message">Conteúdo escondido</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdo escondido</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>

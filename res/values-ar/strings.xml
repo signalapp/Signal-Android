@@ -464,8 +464,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">رسالة سيجنال جديدة.</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">المحتويات مخفية</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">رسالة سيجنال جديدة.</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">المحتويات مخفية</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">صورة</string>
   <string name="attachment_type_selector__audio">صوت</string>

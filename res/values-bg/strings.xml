@@ -464,8 +464,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Signal е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Ново Signal съобщение</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Съдържанието е скрито</string>
+  <string name="SingleRecipientNotificationBuilder_new_signal_message">Ново Signal съобщение</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Съдържанието е скрито</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Изображение</string>
   <string name="attachment_type_selector__audio">Аудио</string>
