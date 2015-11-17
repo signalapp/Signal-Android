@@ -132,7 +132,6 @@
 
     <declare-styleable name="AvatarImageView">
         <attr name="inverted" format="boolean" />
-        <attr name="showBadge" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ThumbnailView">
