@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
@@ -49,7 +48,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   private EditText originalPassphrase;
   private EditText newPassphrase;
   private EditText repeatPassphrase;
-  private TextView originalPassphraseLabel;
   private Button   okButton;
   private Button   cancelButton;
 
@@ -72,7 +70,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    this.originalPassphraseLabel = (TextView) findViewById(R.id.old_passphrase_label);
     this.originalPassphrase      = (EditText) findViewById(R.id.old_passphrase      );
     this.newPassphrase           = (EditText) findViewById(R.id.new_passphrase      );
     this.repeatPassphrase        = (EditText) findViewById(R.id.repeat_passphrase   );
@@ -85,10 +82,8 @@ public class PassphraseChangeActivity extends PassphraseActivity {
 
     if (TextSecurePreferences.isPasswordDisabled(this)) {
       this.originalPassphrase.setVisibility(View.GONE);
-      this.originalPassphraseLabel.setVisibility(View.GONE);
     } else {
       this.originalPassphrase.setVisibility(View.VISIBLE);
-      this.originalPassphraseLabel.setVisibility(View.VISIBLE);
     }
   }
 
