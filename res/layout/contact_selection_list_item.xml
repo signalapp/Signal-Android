@@ -18,7 +18,6 @@
             android:layout_height="40dp"
             android:foreground="@drawable/contact_photo_background"
             android:cropToPadding="true"
-            app:showBadge="true"
             tools:src="@color/md_material_blue_600"
             android:layout_marginRight="10dp"
             android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
