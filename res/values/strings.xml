@@ -576,9 +576,9 @@
     <string name="attachment_type_selector__camera">Camera</string>
 
     <!-- change_passphrase_activity -->
-    <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
-    <string name="change_passphrase_activity__new_passphrase">NEW PASSPHRASE:</string>
-    <string name="change_passphrase_activity__repeat_new_passphrase">REPEAT NEW PASSPHRASE:</string>
+    <string name="change_passphrase_activity__old_passphrase">Old passphrase</string>
+    <string name="change_passphrase_activity__new_passphrase">New passphrase</string>
+    <string name="change_passphrase_activity__repeat_new_passphrase">Repeaet new passhprase</string>
 
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__enter_name_or_number">Enter name or number</string>
