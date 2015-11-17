@@ -129,8 +129,8 @@ public class ViewUtil {
     animateIn(view, getAlphaAnimation(0f, 1f, duration));
   }
 
-  public static void fadeOut(final @NonNull View view, final int duration) {
-    animateOut(view, getAlphaAnimation(1f, 0f, duration));
+  public static ListenableFuture<Boolean> fadeOut(final @NonNull View view, final int duration) {
+    return animateOut(view, getAlphaAnimation(1f, 0f, duration));
   }
 
   public static ListenableFuture<Boolean> animateOut(final @NonNull View view, final @NonNull Animation animation) {
