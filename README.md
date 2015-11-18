@@ -24,7 +24,7 @@ If you're interested in a life of peace and tranquility, stick with the standard
 ## Contributing Translations
 Interested in helping to translate Signal? Contribute here:
 
-https://www.transifex.com/projects/p/textsecure-official/
+https://www.transifex.com/projects/p/signal-android/
 
 ## Contributing Code
 Instructions on how to setup your development environment and build Signal can be found in  [BUILDING.md](https://github.com/WhisperSystems/Signal-Android/blob/master/BUILDING.md).
