@@ -31,8 +31,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -58,15 +60,17 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.redphone.RedPhone;
 import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.audio.AudioRecorder;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.AttachmentTypeSelector;
 import org.thoughtcrime.securesms.components.ComposeText;
+import org.thoughtcrime.securesms.components.HidingLinearLayout;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
+import org.thoughtcrime.securesms.components.InputPanel;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
-import org.thoughtcrime.securesms.components.camera.HidingImageButton;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.AttachmentDrawerListener;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
@@ -91,11 +95,13 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
+import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -131,6 +137,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -148,7 +155,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                AttachmentManager.AttachmentListener,
                RecipientsModifiedListener,
                OnKeyboardShownListener,
-               AttachmentDrawerListener
+               AttachmentDrawerListener,
+               InputPanel.Listener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -175,17 +183,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Button                unblockButton;
   private   InputAwareLayout      container;
   private   View                  composePanel;
-  private   View                  composeBubble;
   protected ReminderView          reminderView;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
+  private   AudioRecorder          audioRecorder;
   private   BroadcastReceiver      securityUpdateReceiver;
   private   BroadcastReceiver      groupUpdateReceiver;
   private   EmojiDrawer            emojiDrawer;
   private   EmojiToggle            emojiToggle;
-  protected HidingImageButton      quickAttachmentToggle;
+  protected HidingLinearLayout     quickAttachmentToggle;
   private   QuickAttachmentDrawer  quickAttachmentDrawer;
+  private   InputPanel             inputPanel;
 
   private Recipients recipients;
   private long       threadId;
@@ -276,6 +285,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MessageNotifier.setVisibleThread(-1L);
     if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
     quickAttachmentDrawer.onPause();
+    inputPanel.onPause();
+
     AudioSlidePlayer.stopAll();
   }
 
@@ -844,13 +855,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiDrawer           = ViewUtil.findById(this, R.id.emoji_drawer);
     unblockButton         = ViewUtil.findById(this, R.id.unblock_button);
     composePanel          = ViewUtil.findById(this, R.id.bottom_panel);
-    composeBubble         = ViewUtil.findById(this, R.id.compose_bubble);
     container             = ViewUtil.findById(this, R.id.layout_container);
     reminderView          = ViewUtil.findById(this, R.id.reminder);
     quickAttachmentDrawer = ViewUtil.findById(this, R.id.quick_attachment_drawer);
     quickAttachmentToggle = ViewUtil.findById(this, R.id.quick_attachment_toggle);
+    inputPanel            = ViewUtil.findById(this, R.id.bottom_panel);
+
+    ImageButton quickCameraToggle = ViewUtil.findById(this, R.id.quick_camera_toggle);
+    View        composeBubble     = ViewUtil.findById(this, R.id.compose_bubble);
 
     container.addOnKeyboardShownListener(this);
+    inputPanel.setListener(this);
 
     int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
     TypedArray colors       = obtainStyledAttributes(attributes);
@@ -860,6 +875,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     attachmentTypeSelector = new AttachmentTypeSelector(this, new AttachmentTypeListener());
     attachmentManager      = new AttachmentManager(this, this);
+    audioRecorder          = new AudioRecorder(this, masterSecret);
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -920,9 +936,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (QuickAttachmentDrawer.isDeviceSupported(this)) {
       quickAttachmentDrawer.setListener(this);
-      quickAttachmentToggle.setOnClickListener(new QuickAttachmentToggleListener());
+      quickCameraToggle.setOnClickListener(new QuickCameraToggleListener());
     } else {
-      quickAttachmentToggle.disable();
+      quickCameraToggle.setVisibility(View.GONE);
+      quickCameraToggle.setEnabled(false);
     }
   }
 
@@ -1254,12 +1271,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendMediaMessage(final boolean forceSms)
       throws InvalidMessageException
   {
-    final Context context                = getApplicationContext();
-    OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(recipients,
-                                                                    attachmentManager.buildSlideDeck(),
-                                                                    getMessage(),
-                                                                    System.currentTimeMillis(),
-                                                                    distributionType);
+    sendMediaMessage(forceSms, getMessage(), attachmentManager.buildSlideDeck());
+  }
+
+  private ListenableFuture<Void> sendMediaMessage(final boolean forceSms, String body, SlideDeck slideDeck)
+      throws InvalidMessageException
+  {
+    final SettableFuture<Void> future          = new SettableFuture<>();
+    final Context              context         = getApplicationContext();
+          OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(recipients,
+                                                                          slideDeck,
+                                                                          body,
+                                                                          System.currentTimeMillis(),
+                                                                          distributionType);
 
     if (isSecureText && !forceSms) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
@@ -1277,8 +1301,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected void onPostExecute(Long result) {
         sendComplete(result);
+        future.set(null);
       }
     }.execute(outgoingMessage);
+
+    return future;
   }
 
   private void sendTextMessage(final boolean forceSms)
@@ -1344,6 +1371,81 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     quickAttachmentToggle.disable();
   }
 
+  @Override
+  public void onRecorderStarted() {
+    try {
+      Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+      vibrator.vibrate(20);
+
+      audioRecorder.startRecording();
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  @Override
+  public void onRecorderFinished() {
+    Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    vibrator.vibrate(20);
+
+    ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
+    future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
+      @Override
+      public void onSuccess(final @NonNull Pair<Uri, Long> result) {
+        try {
+          boolean    forceSms   = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
+          AudioSlide audioSlide = new AudioSlide(ConversationActivity.this, result.first, result.second);
+          SlideDeck  slideDeck  = new SlideDeck();
+          slideDeck.addSlide(audioSlide);
+
+          sendMediaMessage(forceSms, "", slideDeck).addListener(new AssertedSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void nothing) {
+              new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                  PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
+                  return null;
+                }
+              }.execute();
+            }
+          });
+        } catch (IOException | InvalidMessageException e) {
+          Log.w(TAG, e);
+          Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_sending_voice_note, Toast.LENGTH_LONG).show();
+        }
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show();
+      }
+    });
+  }
+
+  @Override
+  public void onRecorderCanceled() {
+    Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    vibrator.vibrate(50);
+
+    ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
+    future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
+      @Override
+      public void onSuccess(final Pair<Uri, Long> result) {
+        new AsyncTask<Void, Void, Void>() {
+          @Override
+          protected Void doInBackground(Void... params) {
+            PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
+            return null;
+          }
+        }.execute();
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {}
+    });
+  }
+
   // Listeners
 
   private class AttachmentTypeListener implements AttachmentTypeSelector.AttachmentClickedListener {
@@ -1361,7 +1463,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private class QuickAttachmentToggleListener implements OnClickListener {
+  private class QuickCameraToggleListener implements OnClickListener {
     @Override
     public void onClick(View v) {
       if (!quickAttachmentDrawer.isShowing()) {

@@ -135,7 +135,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   private void cancelSmsSelection() {
     contactsFragment.reset();
     updateSmsButtonText();
-    ViewUtil.animateOut(smsSendFrame, slideOutAnimation);
+    ViewUtil.animateOut(smsSendFrame, slideOutAnimation, View.GONE);
   }
 
   private class ShareClickListener implements OnClickListener {
@@ -244,7 +244,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       final Context context = getContext();
       if (context == null) return;
 
-      ViewUtil.animateOut(smsSendFrame, slideOutAnimation).addListener(new Listener<Boolean>() {
+      ViewUtil.animateOut(smsSendFrame, slideOutAnimation, View.GONE).addListener(new Listener<Boolean>() {
         @Override
         public void onSuccess(Boolean result) {
           contactsFragment.reset();
