@@ -12,13 +12,17 @@
         android:id="@+id/quick_attachment_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:clipToPadding="false"
+        android:clipChildren="false">
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical"
                   android:paddingTop="?attr/actionBarSize"
-                  android:gravity="bottom">
+                  android:gravity="bottom"
+                  android:clipToPadding="false"
+                  android:clipChildren="false">
 
         <org.thoughtcrime.securesms.components.reminder.ReminderView
             android:id="@+id/reminder"
@@ -66,82 +70,7 @@
 
         </FrameLayout>
 
-        <LinearLayout android:id="@+id/bottom_panel"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:gravity="center_vertical"
-                      android:orientation="horizontal"
-                      android:clickable="true"
-                      android:background="?android:windowBackground"
-                      android:padding="5dp">
-
-            <LinearLayout android:id="@+id/compose_bubble"
-                          android:layout_width="0dp"
-                          android:layout_height="wrap_content"
-                          android:layout_weight="1"
-                          android:background="@drawable/sent_bubble">
-
-                <org.thoughtcrime.securesms.components.emoji.EmojiToggle
-                        android:id="@+id/emoji_toggle"
-                        android:layout_width="37dp"
-                        android:layout_height="37dp"
-                        android:layout_gravity="bottom"
-                        android:background="@drawable/touch_highlight_background"
-                        android:contentDescription="@string/conversation_activity__emoji_toggle_description" />
-
-                <org.thoughtcrime.securesms.components.ComposeText
-                        style="@style/ComposeEditText"
-                        android:id="@+id/embedded_text_editor"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:minHeight="37dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:nextFocusForward="@+id/send_button"
-                        android:nextFocusRight="@+id/send_button"
-                        tools:hint="Send TextSecure message">
-                    <requestFocus />
-                </org.thoughtcrime.securesms.components.ComposeText>
-
-                <org.thoughtcrime.securesms.components.camera.HidingImageButton
-                        android:id="@+id/quick_attachment_toggle"
-                        android:layout_width="37dp"
-                        android:layout_height="37dp"
-                        android:layout_gravity="bottom"
-                        android:src="?quick_camera_icon"
-                        android:background="@drawable/touch_highlight_background"
-                        android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
-                        android:padding="10dp" />
-            </LinearLayout>
-
-            <org.thoughtcrime.securesms.components.AnimatingToggle
-                    android:id="@+id/button_toggle"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/circle_tintable"
-                    android:layout_gravity="bottom">
-
-                <ImageButton android:id="@+id/attach_button"
-                             android:layout_width="match_parent"
-                             android:layout_height="match_parent"
-                             android:layout_gravity="center"
-                             android:background="@drawable/circle_touch_highlight_background"
-                             android:src="@drawable/ic_attach_white_24dp"
-                             android:contentDescription="@string/ConversationActivity_add_attachment"
-                             android:nextFocusLeft="@+id/embedded_text_editor" />
-
-                <org.thoughtcrime.securesms.components.SendButton
-                        android:id="@+id/send_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/conversation_activity__send"
-                        android:nextFocusLeft="@+id/embedded_text_editor"
-                        android:src="?conversation_transport_sms_indicator"
-                        android:background="@drawable/circle_touch_highlight_background" />
-
-            </org.thoughtcrime.securesms.components.AnimatingToggle>
-
-        </LinearLayout>
+        <include layout="@layout/conversation_input_panel"/>
 
         <Button android:id="@+id/unblock_button"
                 android:layout_width="fill_parent"
