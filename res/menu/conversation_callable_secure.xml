@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/conversation_callable__menu_call"
+    <item android:title="@string/conversation_callable_secure__menu_call"
           android:id="@+id/menu_call_secure"
           android:icon="@drawable/ic_call_secure_white_24dp"
           app:showAsAction="ifRoom" />
