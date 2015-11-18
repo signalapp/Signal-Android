@@ -145,6 +145,7 @@
         <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_light</item>
+        <item name="quick_mic_icon">@drawable/ic_mic_grey600_24dp</item>
 
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
 
@@ -268,6 +269,7 @@
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_dark</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_dark</item>
+        <item name="quick_mic_icon">@drawable/ic_mic_white_24dp</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>

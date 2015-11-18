@@ -51,6 +51,9 @@
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
     <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
 
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
+
     <!-- BlockedContactsActivity -->
     <string name="BlockedContactsActivity_blocked_contacts">Blocked contacts</string>
 
@@ -273,6 +276,9 @@
     <string name="ImportFragment_restoring_encrypted_backup">Restoring encrypted backup...</string>
     <string name="ImportFragment_no_encrypted_backup_found">No encrypted backup found!</string>
     <string name="ImportFragment_restore_complete">Restore complete!</string>
+
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_note_release_to_send">Tap and hold to record a voice note, release to send</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
@@ -612,6 +618,9 @@
     <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
     <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_description">Toggle attachment drawer</string>
+
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">SLIDE TO CANCEL</string>
 
     <!-- conversation_item -->
     <string name="conversation_item__mms_downloading_description">Media message downloading</string>
@@ -1112,7 +1121,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-
 
     <!-- EOF -->
 
