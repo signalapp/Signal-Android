@@ -76,4 +76,16 @@ public class PartAuthority {
     Uri uri = Uri.withAppendedPath(THUMB_CONTENT_URI, String.valueOf(attachmentId.getUniqueId()));
     return ContentUris.withAppendedId(uri, attachmentId.getRowId());
   }
+
+  public static boolean isLocalUri(final @NonNull Uri uri) {
+    int match = uriMatcher.match(uri);
+    switch (match) {
+    case PART_ROW:
+    case THUMB_ROW:
+    case PERSISTENT_ROW:
+    case SINGLE_USE_ROW:
+      return true;
+    }
+    return false;
+  }
 }

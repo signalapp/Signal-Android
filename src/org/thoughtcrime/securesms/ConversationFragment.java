@@ -105,7 +105,8 @@ public class ConversationFragment extends Fragment
 
     loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
     loadMoreView.setOnClickListener(new OnClickListener() {
-      @Override public void onClick(View v) {
+      @Override
+      public void onClick(View v) {
         Bundle args = new Bundle();
         args.putLong("limit", 0);
         getLoaderManager().restartLoader(0, args, ConversationFragment.this);
@@ -305,6 +306,14 @@ public class ConversationFragment extends Fragment
   private void handleForwardMessage(MessageRecord message) {
     Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
     composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
+    if (message.isMms()) {
+      MediaMmsMessageRecord mediaMessage = (MediaMmsMessageRecord) message;
+      if (mediaMessage.containsMediaSlide()) {
+        Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
+        composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
+        composeIntent.setType(slide.getContentType());
+      }
+    }
     startActivity(composeIntent);
   }
 
