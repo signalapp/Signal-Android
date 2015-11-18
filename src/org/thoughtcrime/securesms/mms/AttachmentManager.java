@@ -27,6 +27,7 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -45,6 +46,8 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
+
+import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {
 
@@ -278,6 +281,15 @@ public class AttachmentManager {
       case VIDEO: return new VideoSlide(context, uri, dataSize);
       default:    throw  new AssertionError("unrecognized enum");
       }
+    }
+
+    public static @Nullable MediaType from(final @Nullable String mimeType) {
+      if (TextUtils.isEmpty(mimeType))       return null;
+      if (MediaUtil.isGif(mimeType))         return GIF;
+      if (ContentType.isImageType(mimeType)) return IMAGE;
+      if (ContentType.isAudioType(mimeType)) return AUDIO;
+      if (ContentType.isVideoType(mimeType)) return VIDEO;
+      return null;
     }
   }
 }
