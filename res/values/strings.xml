@@ -992,7 +992,10 @@
     <string name="push_directory__menu_refresh">Refresh contact list</string>
 
     <!-- conversation_callable_insecure -->
-    <string name="conversation_callable__menu_call">Call</string>
+    <string name="conversation_callable_insecure__menu_call">Call</string>
+
+    <!-- conversation_callable_secure -->
+    <string name="conversation_callable_secure__menu_call">Signal call</string>
 
     <!-- conversation_context -->
     <string name="conversation_context__menu_message_details">Message details</string>
