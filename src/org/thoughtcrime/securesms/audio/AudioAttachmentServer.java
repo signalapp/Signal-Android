@@ -171,8 +171,8 @@ public class AudioAttachmentServer implements Runnable {
         Log.i(TAG, "range found!! " + cbSkip);
       }
 
-      if(!request.get("method").equals("GET")) {
-        Log.e(TAG, "Only GET is supported");
+      if (!"GET".equals(request.get("method"))) {
+        Log.e(TAG, "Only GET is supported: " + request.get("method"));
         return false;
       }
 
