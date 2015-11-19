@@ -56,6 +56,7 @@
     <attr name="emoji_category_symbol" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="quick_camera_icon" format="reference"/>
+    <attr name="quick_mic_icon" format="reference"/>
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_bubble_background" format="reference|color"/>
