@@ -26,6 +26,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -160,22 +161,19 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     }
   }
 
-  private String getHeaderString(int position) {
+  private @NonNull String getHeaderString(int position) {
     Cursor cursor = getCursorAtPositionOrThrow(position);
-
+    String letter = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN));
     if (cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN)) == ContactsDatabase.PUSH_TYPE) {
       return getContext().getString(R.string.app_name);
-    } else {
-      String letter = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN))
-                            .trim()
-                            .substring(0,1)
-                            .toUpperCase();
-      if (Character.isLetterOrDigit(letter.codePointAt(0))) {
-        return letter;
-      } else {
-        return "#";
+    } else if (!TextUtils.isEmpty(letter)) {
+      String firstChar = letter.trim().substring(0, 1).toUpperCase();
+      if (Character.isLetterOrDigit(firstChar.codePointAt(0))) {
+        return firstChar;
       }
     }
+
+    return "#";
   }
 
   private Cursor getCursorAtPositionOrThrow(int position) {
