@@ -498,11 +498,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleResetSecureSession() {
     AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this);
-    builder.setTitle(R.string.ConversationActivity_reset_secure_session_confirmation);
+    builder.setTitle(R.string.ConversationActivity_reset_secure_session_question);
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question);
-    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+    builder.setMessage(R.string.ConversationActivity_this_may_help_if_youre_having_encryption_problems);
+    builder.setPositiveButton(R.string.ConversationActivity_reset, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         if (isSingleConversation()) {
@@ -525,7 +525,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
       }
     });
-    builder.setNegativeButton(R.string.no, null);
+    builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
   }
 
@@ -646,11 +646,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleDeleteThread() {
     AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this);
-    builder.setTitle(R.string.ConversationActivity_delete_thread_confirmation);
+    builder.setTitle(R.string.ConversationActivity_delete_thread_question);
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question);
-    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+    builder.setMessage(R.string.ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation);
+    builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         if (threadId > 0) {
@@ -662,7 +662,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     });
 
-    builder.setNegativeButton(R.string.no, null);
+    builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
   }
 
