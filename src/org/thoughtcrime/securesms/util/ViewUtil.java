@@ -130,12 +130,16 @@ public class ViewUtil {
   }
 
   public static ListenableFuture<Boolean> fadeOut(final @NonNull View view, final int duration) {
-    return animateOut(view, getAlphaAnimation(1f, 0f, duration));
+    return fadeOut(view, duration, View.GONE);
   }
 
-  public static ListenableFuture<Boolean> animateOut(final @NonNull View view, final @NonNull Animation animation) {
+  public static ListenableFuture<Boolean> fadeOut(@NonNull View view, int duration, int visibility) {
+    return animateOut(view, getAlphaAnimation(1f, 0f, duration), visibility);
+  }
+
+  public static ListenableFuture<Boolean> animateOut(final @NonNull View view, final @NonNull Animation animation, final int visibility) {
     final SettableFuture future = new SettableFuture();
-    if (view.getVisibility() == View.GONE) {
+    if (view.getVisibility() == visibility) {
       future.set(true);
     } else {
       view.clearAnimation();
@@ -150,7 +154,7 @@ public class ViewUtil {
 
         @Override
         public void onAnimationEnd(Animation animation) {
-          view.setVisibility(View.GONE);
+          view.setVisibility(visibility);
           future.set(true);
         }
       });

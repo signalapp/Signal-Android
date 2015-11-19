@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.AnimationUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -89,11 +88,11 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
     recordTime.display();
     slideToCancel.display(startPositionX);
 
-    AnimationUtil.fadeOut(emojiToggle, FADE_TIME);
-    AnimationUtil.fadeOut(composeText, FADE_TIME);
-    AnimationUtil.fadeOut(quickCameraToggle, FADE_TIME);
-    AnimationUtil.fadeOut(quickAudioToggle, FADE_TIME);
-    AnimationUtil.fadeOut(buttonToggle, FADE_TIME);
+    ViewUtil.fadeOut(emojiToggle, FADE_TIME, View.INVISIBLE);
+    ViewUtil.fadeOut(composeText, FADE_TIME, View.INVISIBLE);
+    ViewUtil.fadeOut(quickCameraToggle, FADE_TIME, View.INVISIBLE);
+    ViewUtil.fadeOut(quickAudioToggle, FADE_TIME, View.INVISIBLE);
+    ViewUtil.fadeOut(buttonToggle, FADE_TIME, View.INVISIBLE);
   }
 
   @Override
@@ -135,11 +134,11 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
     future.addListener(new AssertedSuccessListener<Void>() {
       @Override
       public void onSuccess(Void result) {
-        AnimationUtil.fadeIn(emojiToggle, FADE_TIME);
-        AnimationUtil.fadeIn(composeText, FADE_TIME);
-        AnimationUtil.fadeIn(quickCameraToggle, FADE_TIME);
-        AnimationUtil.fadeIn(quickAudioToggle, FADE_TIME);
-        AnimationUtil.fadeIn(buttonToggle, FADE_TIME);
+        ViewUtil.fadeIn(emojiToggle, FADE_TIME);
+        ViewUtil.fadeIn(composeText, FADE_TIME);
+        ViewUtil.fadeIn(quickCameraToggle, FADE_TIME);
+        ViewUtil.fadeIn(quickAudioToggle, FADE_TIME);
+        ViewUtil.fadeIn(buttonToggle, FADE_TIME);
 
         recordTime.hide();
       }
@@ -164,7 +163,7 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
 
     public void display(float startPositionX) {
       this.startPositionX = startPositionX;
-      AnimationUtil.fadeIn(this.slideToCancelView, FADE_TIME);
+      ViewUtil.fadeIn(this.slideToCancelView, FADE_TIME);
     }
 
     public ListenableFuture<Void> hide(float x) {
@@ -228,13 +227,13 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
     public void display() {
       this.startTime.set(System.currentTimeMillis());
       this.recordTimeView.setText("00:00");
-      AnimationUtil.fadeIn(this.recordTimeView, FADE_TIME);
+      ViewUtil.fadeIn(this.recordTimeView, FADE_TIME);
       handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
     }
 
     public void hide() {
       this.startTime.set(0);
-      AnimationUtil.fadeOut(this.recordTimeView, FADE_TIME);
+      ViewUtil.fadeOut(this.recordTimeView, FADE_TIME, View.INVISIBLE);
     }
 
     public long getElapsedTimeMillis() {

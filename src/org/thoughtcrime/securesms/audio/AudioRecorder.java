@@ -78,7 +78,7 @@ public class AudioRecorder {
     @Override
     public void onRun() {
       if (mediaRecorder == null) {
-        sendToFuture(null);
+        sendToFuture(new IOException("MediaRecorder was never initialized successfully!"));
         return;
       }
 
@@ -102,7 +102,7 @@ public class AudioRecorder {
         sendToFuture(new Pair<>(captureUri, size));
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
-        sendToFuture(null);
+        sendToFuture(ioe);
       }
 
       captureUri = null;
@@ -117,11 +117,20 @@ public class AudioRecorder {
     @Override
     public void onCanceled() {}
 
-    private void sendToFuture(final Pair<Uri, Long> result) {
+    private void sendToFuture(final @NonNull Pair<Uri, Long> result) {
       Util.runOnMain(new Runnable() {
         @Override
         public void run() {
           future.set(result);
+        }
+      });
+    }
+
+    private void sendToFuture(final @NonNull Exception exception) {
+      Util.runOnMain(new Runnable() {
+        @Override
+        public void run() {
+          future.setException(exception);
         }
       });
     }

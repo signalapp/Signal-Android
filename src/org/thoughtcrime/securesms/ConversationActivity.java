@@ -137,6 +137,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -1388,14 +1389,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     vibrator.vibrate(20);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
-    future.addListener(new AssertedSuccessListener<Pair<Uri, Long>>() {
+    future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
       @Override
-      public void onSuccess(@Nullable final Pair<Uri, Long> result) {
-        if (result == null) {
-          Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show();
-          return;
-        }
-
+      public void onSuccess(final @NonNull Pair<Uri, Long> result) {
         try {
           boolean    forceSms   = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
           AudioSlide audioSlide = new AudioSlide(ConversationActivity.this, result.first, result.second);
@@ -1405,13 +1401,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           sendMediaMessage(forceSms, "", slideDeck).addListener(new AssertedSuccessListener<Void>() {
             @Override
             public void onSuccess(Void nothing) {
-              PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
+              new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                  PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
+                  return null;
+                }
+              }.execute();
             }
           });
         } catch (IOException | InvalidMessageException e) {
           Log.w(TAG, e);
           Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_sending_voice_note, Toast.LENGTH_LONG).show();
         }
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show();
       }
     });
   }
@@ -1422,12 +1429,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     vibrator.vibrate(50);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
-
-    future.addListener(new AssertedSuccessListener<Pair<Uri, Long>>() {
+    future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
       @Override
-      public void onSuccess(@Nullable Pair<Uri, Long> result) {
-        if (result != null) PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
+      public void onSuccess(final Pair<Uri, Long> result) {
+        new AsyncTask<Void, Void, Void>() {
+          @Override
+          protected Void doInBackground(Void... params) {
+            PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
+            return null;
+          }
+        }.execute();
       }
+
+      @Override
+      public void onFailure(ExecutionException e) {}
     });
   }
 
