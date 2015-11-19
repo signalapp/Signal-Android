@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -29,6 +31,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VisibleForTesting;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -104,7 +107,7 @@ public class SmsListener extends BroadcastReceiver {
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
 
-    if (isChallenge(context, intent))
+    if (isChallenge(context, messageBody))
       return false;
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
@@ -123,9 +126,7 @@ public class SmsListener extends BroadcastReceiver {
     return false;
   }
 
-  private boolean isChallenge(Context context, Intent intent) {
-    String messageBody = getSmsMessageBodyFromIntent(intent);
-
+  @VisibleForTesting boolean isChallenge(@NonNull Context context, @Nullable String messageBody) {
     if (messageBody == null)
       return false;
 
@@ -138,8 +139,7 @@ public class SmsListener extends BroadcastReceiver {
     return false;
   }
 
-  private String parseChallenge(Context context, Intent intent) {
-    String  messageBody      = getSmsMessageBodyFromIntent(intent);
+  @VisibleForTesting String parseChallenge(String messageBody) {
     Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
 
     if (!challengeMatcher.matches()) {
@@ -153,10 +153,11 @@ public class SmsListener extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     Log.w("SMSListener", "Got SMS broadcast...");
 
-    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, intent)) {
+    String messageBody = getSmsMessageBodyFromIntent(intent);
+    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, messageBody)) {
       Log.w("SmsListener", "Got challenge!");
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
-      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(context, intent));
+      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(messageBody));
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();

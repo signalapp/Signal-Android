@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
-import org.thoughtcrime.securesms.TextSecureTestCase;
+import org.junit.Test;
+import org.thoughtcrime.securesms.BaseUnitTest;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.whispersystems.libaxolotl.ecc.Curve;
@@ -18,6 +19,7 @@ import dagger.Module;
 import dagger.ObjectGraph;
 import dagger.Provides;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -27,15 +29,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class CleanPreKeysJobTest extends TextSecureTestCase {
-
+public class CleanPreKeysJobTest extends BaseUnitTest {
+  @Test
   public void testSignedPreKeyRotationNotRegistered() throws IOException, MasterSecretJob.RequirementNotMetException {
     TextSecureAccountManager accountManager    = mock(TextSecureAccountManager.class);
     SignedPreKeyStore        signedPreKeyStore = mock(SignedPreKeyStore.class);
     MasterSecret             masterSecret      = mock(MasterSecret.class);
     when(accountManager.getSignedPreKey()).thenReturn(null);
 
-    CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(getContext());
+    CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(context);
 
     ObjectGraph objectGraph = ObjectGraph.create(new TestModule(accountManager, signedPreKeyStore));
     objectGraph.inject(cleanPreKeysJob);
@@ -46,6 +48,7 @@ public class CleanPreKeysJobTest extends TextSecureTestCase {
     verifyNoMoreInteractions(signedPreKeyStore);
   }
 
+  @Test
   public void testSignedPreKeyEviction() throws Exception {
     SignedPreKeyStore        signedPreKeyStore         = mock(SignedPreKeyStore.class);
     TextSecureAccountManager accountManager            = mock(TextSecureAccountManager.class);
@@ -68,7 +71,7 @@ public class CleanPreKeysJobTest extends TextSecureTestCase {
     when(signedPreKeyStore.loadSignedPreKeys()).thenReturn(records);
     when(signedPreKeyStore.loadSignedPreKey(eq(3133))).thenReturn(currentRecord);
 
-    CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(getContext());
+    CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(context);
 
     ObjectGraph objectGraph = ObjectGraph.create(new TestModule(accountManager, signedPreKeyStore));
     objectGraph.inject(cleanPreKeysJob);
@@ -79,6 +82,7 @@ public class CleanPreKeysJobTest extends TextSecureTestCase {
     verify(signedPreKeyStore, times(1)).removeSignedPreKey(anyInt());
   }
 
+  @Test
   public void testSignedPreKeyNoEviction() throws Exception {
     SignedPreKeyStore        signedPreKeyStore         = mock(SignedPreKeyStore.class);
     TextSecureAccountManager accountManager            = mock(TextSecureAccountManager.class);
@@ -96,7 +100,7 @@ public class CleanPreKeysJobTest extends TextSecureTestCase {
     when(signedPreKeyStore.loadSignedPreKeys()).thenReturn(records);
     when(signedPreKeyStore.loadSignedPreKey(eq(3133))).thenReturn(currentRecord);
 
-    CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(getContext());
+    CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(context);
 
     ObjectGraph objectGraph = ObjectGraph.create(new TestModule(accountManager, signedPreKeyStore));
     objectGraph.inject(cleanPreKeysJob);
@@ -104,6 +108,7 @@ public class CleanPreKeysJobTest extends TextSecureTestCase {
     verify(signedPreKeyStore, never()).removeSignedPreKey(anyInt());
   }
 
+  @Test
   public void testConnectionError() throws Exception {
     SignedPreKeyStore        signedPreKeyStore = mock(SignedPreKeyStore.class);
     TextSecureAccountManager accountManager    = mock(TextSecureAccountManager.class);
@@ -111,7 +116,7 @@ public class CleanPreKeysJobTest extends TextSecureTestCase {
 
     when(accountManager.getSignedPreKey()).thenThrow(new PushNetworkException("Connectivity error!"));
 
-    CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(getContext());
+    CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(context);
 
     ObjectGraph objectGraph = ObjectGraph.create(new TestModule(accountManager, signedPreKeyStore));
     objectGraph.inject(cleanPreKeysJob);
@@ -148,5 +153,4 @@ public class CleanPreKeysJobTest extends TextSecureTestCase {
       };
     }
   }
-
 }
