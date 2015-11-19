@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.os.Build;
 import android.text.format.DateFormat;
 
 import java.text.SimpleDateFormat;
@@ -41,7 +42,7 @@ public class DateUtils extends android.text.format.DateUtils {
   }
 
   private static String getFormattedDateTime(long time, String template, Locale locale) {
-    String localizedPattern = new SimpleDateFormat(template, locale).toLocalizedPattern();
+    final String localizedPattern = getLocalizedPattern(template, locale);
     return new SimpleDateFormat(localizedPattern, locale).format(new Date(time));
   }
 
@@ -86,12 +87,19 @@ public class DateUtils extends android.text.format.DateUtils {
     String dateFormatPattern;
 
     if (DateFormat.is24HourFormat(context)) {
-      dateFormatPattern = "MMM d, yyyy HH:mm:ss zzz";
+      dateFormatPattern = getLocalizedPattern("MMM d, yyyy HH:mm:ss zzz", locale);
     } else {
-      dateFormatPattern = "MMM d, yyyy hh:mm:ss a zzz";
+      dateFormatPattern = getLocalizedPattern("MMM d, yyyy hh:mm:ss a zzz", locale);
     }
 
     return new SimpleDateFormat(dateFormatPattern, locale);
   }
 
+  private static String getLocalizedPattern(String template, Locale locale) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+      return DateFormat.getBestDateTimePattern(locale, template);
+    } else {
+      return new SimpleDateFormat(template, locale).toLocalizedPattern();
+    }
+  }
 }
