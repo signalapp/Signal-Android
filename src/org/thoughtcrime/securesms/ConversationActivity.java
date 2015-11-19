@@ -176,7 +176,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   InputAwareLayout      container;
   private   View                  composePanel;
   private   View                  composeBubble;
-  private   ReminderView          reminderView;
+  protected ReminderView          reminderView;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
@@ -806,7 +806,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateInviteReminder();
   }
 
-  private void updateInviteReminder() {
+  protected void updateInviteReminder() {
     if (TextSecurePreferences.isPushRegistered(this) &&
         !isSecureText                                &&
         recipients.isSingleRecipient()               &&
