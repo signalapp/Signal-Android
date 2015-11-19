@@ -33,6 +33,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Toast;
 
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.RemovableMediaView;
@@ -55,6 +57,7 @@ public class AttachmentManager {
   private final @NonNull RemovableMediaView removableMediaView;
   private final @NonNull ThumbnailView      thumbnail;
   private final @NonNull AudioView          audioView;
+
   private final @NonNull AttachmentListener attachmentListener;
 
   private @NonNull  Optional<Slide> slide = Optional.absent();
@@ -76,10 +79,12 @@ public class AttachmentManager {
     animation.setDuration(200);
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override
-      public void onAnimationStart(Animation animation) {}
+      public void onAnimationStart(Animation animation) {
+      }
 
       @Override
-      public void onAnimationRepeat(Animation animation) {}
+      public void onAnimationRepeat(Animation animation) {
+      }
 
       @Override
       public void onAnimationEnd(Animation animation) {
@@ -207,6 +212,18 @@ public class AttachmentManager {
 
   public @Nullable Uri getCaptureUri() {
     return captureUri;
+  }
+
+  public void captureLocation(Activity activity, int requestCode){
+    Log.w(TAG, "Capture location button was clicked");
+    // https://developers.google.com/places/android-api/placepicker
+    try {
+      PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+      activity.startActivityForResult(builder.build(activity), requestCode);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+
   }
 
   public void capturePhoto(Activity activity, Recipients recipients, int requestCode) {

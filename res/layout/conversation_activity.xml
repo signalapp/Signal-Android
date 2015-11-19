@@ -37,6 +37,7 @@
                      android:background="?android:windowBackground"
                      android:visibility="gone">
 
+
             <org.thoughtcrime.securesms.components.RemovableMediaView
                     android:id="@+id/removable_media_view"
                     android:layout_width="wrap_content"
@@ -61,6 +62,8 @@
                         android:paddingTop="15dp"
                         android:paddingBottom="15dp"
                         app:tintColor="@color/grey_500"/>
+
+
 
             </org.thoughtcrime.securesms.components.RemovableMediaView>
 

@@ -50,6 +50,7 @@
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
     <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
+    <string name="AttachmentTypeSelectorAdapter_location">Location</string>
 
     <!-- BlockedContactsActivity -->
     <string name="BlockedContactsActivity_blocked_contacts">Blocked contacts</string>
@@ -573,6 +574,8 @@
     <string name="attachment_type_selector__video">Video</string>
     <string name="attachment_type_selector__contact">Contact</string>
     <string name="attachment_type_selector__camera">Camera</string>
+    <string name="attachment_type_selector__location">Location</string>
+
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
@@ -1112,6 +1115,11 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
+
+    <!-- LocationChooserActivity -->
+    <string name="title_activity_location_chooser">Map</string>
+
 
 
     <!-- EOF -->

@@ -54,6 +54,9 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.commonsware.cwac.camera.CameraHost.FailureReason;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.redphone.RedPhone;
@@ -168,6 +171,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_CONTACT_INFO = 4;
   private static final int GROUP_EDIT        = 5;
   private static final int TAKE_PHOTO        = 6;
+  private static final int GET_LOCATION      = 7;
 
   private   MasterSecret          masterSecret;
   protected ComposeText           composeText;
@@ -334,6 +338,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (attachmentManager.getCaptureUri() != null) {
         setMedia(attachmentManager.getCaptureUri(), MediaType.IMAGE);
       }
+      break;
+    case GET_LOCATION:
+        Place place = PlacePicker.getPlace(data, this);
+        LatLng coords = place.getLatLng();
+        String placeDescription = String.format("http://maps.google.com/?q=loc:%s,%s", coords.latitude, coords.longitude);
+        String placeName = place.getName().toString();
+        if(!placeName.equals("")){
+            placeDescription += " " + placeName;
+        }
+        composeText.setText(placeDescription);
       break;
     }
   }
@@ -1012,6 +1026,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO); break;
     case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, recipients, TAKE_PHOTO); break;
+    case AttachmentTypeSelectorAdapter.ADD_LOCATION:
+      attachmentManager.captureLocation(this, GET_LOCATION);
     }
   }
 
