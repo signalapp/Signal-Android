@@ -20,13 +20,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.provider.ContactsContract;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.style.ImageSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +38,7 @@ import org.thoughtcrime.securesms.ContactSelectionListFragment.StickyHeaderAdapt
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -102,7 +102,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public long getHeaderId(int i) {
-    return getHeaderString(i).hashCode();
+    return Util.hashCode(getHeaderString(i), isPush(i));
   }
 
   @Override
@@ -136,46 +136,45 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
-    ((TextView)viewHolder.itemView).setText(getSpannedHeaderString(position, R.drawable.ic_signal_grey_24dp));
+    ((TextView)viewHolder.itemView).setText(getSpannedHeaderString(position));
   }
 
   @Override
   public CharSequence getBubbleText(int position) {
-    return getSpannedHeaderString(position, R.drawable.ic_signal_white_48dp);
+    return getHeaderString(position);
   }
 
   public Map<Long, String> getSelectedContacts() {
     return selectedContacts;
   }
 
-  private CharSequence getSpannedHeaderString(int position, @DrawableRes int drawable) {
-    Cursor cursor = getCursorAtPositionOrThrow(position);
-
-    if (cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN)) == ContactsDatabase.PUSH_TYPE) {
-      SpannableString spannable = new SpannableString(" ");
-      spannable.setSpan(new ImageSpan(getContext(), drawable, ImageSpan.ALIGN_BOTTOM), 0, spannable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+  private CharSequence getSpannedHeaderString(int position) {
+    final String headerString = getHeaderString(position);
+    if (isPush(position)) {
+      SpannableString spannable = new SpannableString(headerString);
+      spannable.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.signal_primary)), 0, headerString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       return spannable;
     } else {
-      return getHeaderString(position);
+      return headerString;
     }
   }
 
   private String getHeaderString(int position) {
     Cursor cursor = getCursorAtPositionOrThrow(position);
-
-    if (cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN)) == ContactsDatabase.PUSH_TYPE) {
-      return getContext().getString(R.string.app_name);
+    String letter = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN))
+                          .trim()
+                          .substring(0, 1)
+                          .toUpperCase();
+    if (Character.isLetterOrDigit(letter.codePointAt(0))) {
+      return letter;
     } else {
-      String letter = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN))
-                            .trim()
-                            .substring(0,1)
-                            .toUpperCase();
-      if (Character.isLetterOrDigit(letter.codePointAt(0))) {
-        return letter;
-      } else {
-        return "#";
-      }
+      return "#";
     }
+  }
+
+  private boolean isPush(int position) {
+    final Cursor cursor = getCursorAtPositionOrThrow(position);
+    return cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN)) == ContactsDatabase.PUSH_TYPE;
   }
 
   private Cursor getCursorAtPositionOrThrow(int position) {
@@ -183,7 +182,9 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     if (cursor == null) {
       throw new IllegalStateException("Cursor should not be null here.");
     }
-    if (!cursor.moveToPosition(position));
+    if (!cursor.moveToPosition(position)) {
+      throw new IllegalStateException("Cursor couldn't be moved to position.");
+    }
     return cursor;
   }
 
