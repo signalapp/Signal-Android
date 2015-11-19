@@ -34,7 +34,8 @@
 
         <TableLayout android:id="@+id/metadata_container"
                      android:layout_width="match_parent"
-                     android:layout_height="match_parent">
+                     android:layout_height="match_parent"
+                     android:shrinkColumns="1">
 
             <TableRow android:id="@+id/sent_container"
                       android:layout_width="match_parent"
@@ -51,7 +52,7 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="@dimen/message_details_table_row_pad"
-                          tools:text="Jan 18, 9:29AM" />
+                          tools:text="Jan 18, 2015, 12:29:37 AM GMT-08:00" />
 
             </TableRow>
 
@@ -70,7 +71,7 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="@dimen/message_details_table_row_pad"
-                          tools:text="Jan 18, 9:31AM" />
+                          tools:text="Jan 18, 2015, 12:31:15 AM GMT-08:00" />
 
             </TableRow>
 
