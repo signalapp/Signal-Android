@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.jobs;
 
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-import org.thoughtcrime.securesms.TextSecureTestCase;
+import org.thoughtcrime.securesms.BaseUnitTest;
+import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.NotFoundException;
@@ -14,19 +16,20 @@ import dagger.Module;
 import dagger.ObjectGraph;
 import dagger.Provides;
 
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 
-public class DeliveryReceiptJobTest extends TextSecureTestCase {
-
+public class DeliveryReceiptJobTest extends BaseUnitTest {
+  @Test
   public void testDelivery() throws IOException {
     TextSecureMessageSender textSecureMessageSender = mock(TextSecureMessageSender.class);
     long                    timestamp               = System.currentTimeMillis();
 
-    DeliveryReceiptJob deliveryReceiptJob = new DeliveryReceiptJob(getContext(),
+    DeliveryReceiptJob deliveryReceiptJob = new DeliveryReceiptJob(context,
                                                                    "+14152222222",
                                                                    timestamp, "foo");
 
@@ -51,7 +54,7 @@ public class DeliveryReceiptJobTest extends TextSecureTestCase {
            .sendDeliveryReceipt(any(TextSecureAddress.class), eq(timestamp));
 
 
-    DeliveryReceiptJob deliveryReceiptJob = new DeliveryReceiptJob(getContext(),
+    DeliveryReceiptJob deliveryReceiptJob = new DeliveryReceiptJob(context,
                                                                    "+14152222222",
                                                                    timestamp, "foo");
 
@@ -86,7 +89,8 @@ public class DeliveryReceiptJobTest extends TextSecureTestCase {
       this.textSecureMessageSender = textSecureMessageSender;
     }
 
-    @Provides TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
+    @Provides
+    TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
       return new TextSecureMessageSenderFactory() {
         @Override
         public TextSecureMessageSender create() {
