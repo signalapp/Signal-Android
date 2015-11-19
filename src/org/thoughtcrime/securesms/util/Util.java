@@ -37,6 +37,8 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.widget.EditText;
 
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -49,7 +51,6 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -207,18 +208,19 @@ public class Util {
   }
 
   public static String getDeviceE164Number(Context context) {
-    String localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE))
-        .getLine1Number();
+    final String  countryIso  = getSimCountryIso(context);
+    final String  localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+    final Integer countryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(countryIso);
 
-    if (!TextUtils.isEmpty(localNumber) && !localNumber.startsWith("+"))
-    {
-      if (localNumber.length() == 10) localNumber = "+1" + localNumber;
-      else                            localNumber = "+"  + localNumber;
-
-      return localNumber;
+    if (!TextUtils.isEmpty(localNumber)) {
+      return PhoneNumberFormatter.formatE164(String.valueOf(countryCode), localNumber);
     }
 
     return null;
+  }
+
+  public static String getSimCountryIso(Context context) {
+    return ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getSimCountryIso().toUpperCase();
   }
 
   public static <T> List<List<T>> partition(List<T> list, int partitionSize) {

@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -137,10 +135,10 @@ public class RegistrationActivity extends BaseActionBarActivity {
           this.number.setText(localNumberObject.getNationalNumber()+"");
         }
       } else {
-        String simCountryIso = ((TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE)).getSimCountryIso();
+        String simCountryIso = Util.getSimCountryIso(this);
 
         if (!TextUtils.isEmpty(simCountryIso)) {
-          this.countryCode.setText(numberUtil.getCountryCodeForRegion(simCountryIso.toUpperCase())+"");
+          this.countryCode.setText(numberUtil.getCountryCodeForRegion(simCountryIso)+"");
         }
       }
     } catch (NumberParseException npe) {
