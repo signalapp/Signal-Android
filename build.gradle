@@ -49,6 +49,7 @@ dependencies {
     compile 'com.soundcloud.android:android-crop:0.9.10@aar'
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'com.google.zxing:android-integration:3.1.0'
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
@@ -107,6 +108,7 @@ dependencyVerification {
             'com.soundcloud.android:android-crop:ffd4b973cf6e97f7d64118a0dc088df50e9066fd5634fe6911dd0c0c5d346177',
             'com.android.support:appcompat-v7:4b5ccba8c4557ef04f99aa0a80f8aa7d50f05f926a709010a54afd5c878d3618',
             'com.android.support:recyclerview-v7:b0f530a5b14334d56ce0de85527ffe93ac419bc928e2884287ce1dddfedfb505',
+            'com.android.support:design:58be3ca6a73789615f7ece0937d2f683b98b594bb90aa10565fa760fb10b07ee',
             'com.melnykov:floatingactionbutton:15d58d4fac0f7a288d0e5301bbaf501a146f5b3f5921277811bf99bd3b397263',
             'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
