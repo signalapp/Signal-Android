@@ -7,6 +7,7 @@ import android.hardware.Camera.Size;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Surface;
 
 import java.util.Collections;
@@ -22,6 +23,7 @@ public class CameraUtils {
                                                        int width,
                                                        int height,
                                                        @NonNull Camera camera) {
+    Log.w("CameraUtils", String.format("getPreferredPreviewSize(%d, %d, %d)", displayOrientation, width, height));
     double targetRatio = (double)width / height;
     Size   optimalSize = null;
     double minDiff     = Double.MAX_VALUE;

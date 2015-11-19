@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,12 +11,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,17 +29,19 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 
 import org.thoughtcrime.securesms.components.camera.CameraView;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.components.camera.CameraView.PreviewCallback;
+import org.thoughtcrime.securesms.components.camera.CameraView.PreviewFrame;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class DeviceAddFragment extends Fragment implements Camera.PreviewCallback {
+public class DeviceAddFragment extends Fragment implements PreviewCallback {
 
   private static final String TAG = DeviceAddFragment.class.getSimpleName();
 
   private final QRCodeReader reader = new QRCodeReader();
 
-  private LinearLayout   container;
+  private ViewGroup      container;
+  private LinearLayout   overlay;
   private ImageView      devicesImage;
   private CameraView     scannerView;
   private PreviewFrame   previewFrame;
@@ -51,16 +50,17 @@ public class DeviceAddFragment extends Fragment implements Camera.PreviewCallbac
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
-    this.container    = (LinearLayout) inflater.inflate(R.layout.device_add_fragment, container, false);
+    this.container    = ViewUtil.inflate(inflater, viewGroup, R.layout.device_add_fragment);
+    this.overlay      = ViewUtil.findById(this.container, R.id.overlay);
     this.scannerView  = ViewUtil.findById(this.container, R.id.scanner);
     this.devicesImage = ViewUtil.findById(this.container, R.id.devices);
     this.scannerView.onResume();
     this.scannerView.setPreviewCallback(this);
 
     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-      this.container.setOrientation(LinearLayout.HORIZONTAL);
+      this.overlay.setOrientation(LinearLayout.HORIZONTAL);
     } else {
-      this.container.setOrientation(LinearLayout.VERTICAL);
+      this.overlay.setOrientation(LinearLayout.VERTICAL);
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -107,9 +107,9 @@ public class DeviceAddFragment extends Fragment implements Camera.PreviewCallbac
     this.scannerView.onPause();
 
     if (newConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-      container.setOrientation(LinearLayout.HORIZONTAL);
+      overlay.setOrientation(LinearLayout.HORIZONTAL);
     } else {
-      container.setOrientation(LinearLayout.VERTICAL);
+      overlay.setOrientation(LinearLayout.VERTICAL);
     }
 
     this.scannerView.onResume();
@@ -117,15 +117,11 @@ public class DeviceAddFragment extends Fragment implements Camera.PreviewCallbac
   }
 
   @Override
-  public void onPreviewFrame(byte[] data, Camera camera) {
+  public void onPreviewFrame(@NonNull PreviewFrame previewFrame) {
     Context context = getActivity();
 
     try {
       if (context != null) {
-        Camera.Size  size         = camera.getParameters().getPreviewSize();
-        int          orientation  = getScreenOrientation(context);
-        PreviewFrame previewFrame = new PreviewFrame(data, size.width, size.height, orientation);
-
         synchronized (this) {
           this.previewFrame = previewFrame;
           this.notify();
@@ -142,15 +138,6 @@ public class DeviceAddFragment extends Fragment implements Camera.PreviewCallbac
 
   public void setScanListener(ScanListener scanListener) {
     this.scanListener = scanListener;
-  }
-
-  private int getScreenOrientation(@NonNull Context context) {
-    WindowManager windowManager = ServiceUtil.getWindowManager(context);
-    Display       display       = windowManager.getDefaultDisplay();
-
-    if      (display.getWidth() == display.getHeight()) return Configuration.ORIENTATION_SQUARE;
-    else if (display.getWidth() < display.getHeight())  return Configuration.ORIENTATION_PORTRAIT;
-    else                                                return Configuration.ORIENTATION_LANDSCAPE;
   }
 
   private class ScanningThread extends Thread {
@@ -173,7 +160,7 @@ public class DeviceAddFragment extends Fragment implements Camera.PreviewCallbac
           previewFrame = null;
         }
 
-        String url = getUrl(ourFrame.data, ourFrame.width, ourFrame.height, ourFrame.orientation);
+        String url = getUrl(ourFrame.getData(), ourFrame.getWidth(), ourFrame.getHeight(), ourFrame.getOrientation());
 
         if (url != null && scanListener != null) {
           Uri uri = Uri.parse(url);
@@ -224,20 +211,6 @@ public class DeviceAddFragment extends Fragment implements Camera.PreviewCallbac
       }
 
       return null;
-    }
-  }
-
-  private static class PreviewFrame {
-    private final byte[] data;
-    private final int    width;
-    private final int    height;
-    private final int    orientation;
-
-    private PreviewFrame(byte[] data, int width, int height, int orientation) {
-      this.data        = data;
-      this.width       = width;
-      this.height      = height;
-      this.orientation = orientation;
     }
   }
 

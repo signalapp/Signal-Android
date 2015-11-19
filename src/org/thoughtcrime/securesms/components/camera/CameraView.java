@@ -240,12 +240,25 @@ public class CameraView extends FrameLayout {
     this.listener = listener;
   }
 
-  public void setPreviewCallback(final Camera.PreviewCallback previewCallback) {
+  public void setPreviewCallback(final PreviewCallback previewCallback) {
     enqueueTask(new PostInitializationTask<Void>() {
       @Override
       protected void onPostMain(Void avoid) {
         if (camera.isPresent()) {
-          camera.get().setPreviewCallback(previewCallback);
+          camera.get().setPreviewCallback(new Camera.PreviewCallback() {
+            @Override
+            public void onPreviewFrame(byte[] data, Camera camera) {
+              if (!CameraView.this.camera.isPresent()) {
+                return;
+              }
+
+              final int  rotation     = getCameraPictureOrientation();
+              final Size previewSize  = camera.getParameters().getPreviewSize();
+              if (data != null) {
+                previewCallback.onPreviewFrame(new PreviewFrame(data, previewSize.width, previewSize.height, rotation));
+              }
+            }
+          });
         }
       }
     });
@@ -541,5 +554,39 @@ public class CameraView extends FrameLayout {
   public interface CameraViewListener {
     void onImageCapture(@NonNull final byte[] imageBytes);
     void onCameraFail();
+  }
+
+  public interface PreviewCallback {
+    void onPreviewFrame(@NonNull PreviewFrame frame);
+  }
+
+  public static class PreviewFrame {
+    private final @NonNull byte[] data;
+    private final          int    width;
+    private final          int    height;
+    private final          int    orientation;
+
+    private PreviewFrame(@NonNull byte[] data, int width, int height, int orientation) {
+      this.data        = data;
+      this.width       = width;
+      this.height      = height;
+      this.orientation = orientation;
+    }
+
+    public @NonNull byte[] getData() {
+      return data;
+    }
+
+    public int getWidth() {
+      return width;
+    }
+
+    public int getHeight() {
+      return height;
+    }
+
+    public int getOrientation() {
+      return orientation;
+    }
   }
 }
