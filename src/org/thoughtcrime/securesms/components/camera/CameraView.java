@@ -19,6 +19,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.hardware.Camera;
@@ -39,6 +40,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -73,7 +75,15 @@ public class CameraView extends FrameLayout {
     super(context, attrs, defStyle);
     setBackgroundColor(Color.BLACK);
 
-    if (isMultiCamera()) cameraId = TextSecurePreferences.getDirectCaptureCameraId(context);
+    if (attrs != null) {
+      TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CameraView);
+      int        camera     = typedArray.getInt(R.styleable.CameraView_camera, -1);
+
+      if      (camera != -1)    cameraId = camera;
+      else if (isMultiCamera()) cameraId = TextSecurePreferences.getDirectCaptureCameraId(context);
+
+      typedArray.recycle();
+    }
 
     surface             = new CameraSurfaceView(getContext());
     onOrientationChange = new OnOrientationChange(context.getApplicationContext());
@@ -87,7 +97,9 @@ public class CameraView extends FrameLayout {
     Log.w(TAG, "onResume() queued");
     enqueueTask(new SerialAsyncTask<Camera>() {
       @Override
-      protected @Nullable Camera onRunBackground() {
+      protected
+      @Nullable
+      Camera onRunBackground() {
         try {
           return Camera.open(cameraId);
         } catch (Exception e) {
@@ -131,15 +143,19 @@ public class CameraView extends FrameLayout {
 
     enqueueTask(new SerialAsyncTask<Void>() {
       private Optional<Camera> cameraToDestroy;
-      @Override protected void onPreMain() {
+
+      @Override
+      protected void onPreMain() {
         cameraToDestroy = camera;
         camera = Optional.absent();
       }
 
-      @Override protected Void onRunBackground() {
+      @Override
+      protected Void onRunBackground() {
         if (cameraToDestroy.isPresent()) {
           try {
             stopPreview();
+            cameraToDestroy.get().setPreviewCallback(null);
             cameraToDestroy.get().release();
             Log.w(TAG, "released old camera instance");
           } catch (Exception e) {
@@ -222,6 +238,17 @@ public class CameraView extends FrameLayout {
 
   public void setListener(@Nullable CameraViewListener listener) {
     this.listener = listener;
+  }
+
+  public void setPreviewCallback(final Camera.PreviewCallback previewCallback) {
+    enqueueTask(new PostInitializationTask<Void>() {
+      @Override
+      protected void onPostMain(Void avoid) {
+        if (camera.isPresent()) {
+          camera.get().setPreviewCallback(previewCallback);
+        }
+      }
+    });
   }
 
   public boolean isMultiCamera() {

@@ -49,6 +49,7 @@ dependencies {
     compile 'com.soundcloud.android:android-crop:0.9.10@aar'
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:cardview-v7:22.2.1'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'com.google.zxing:android-integration:3.1.0'
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
@@ -70,6 +71,7 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'org.whispersystems:textsecure-android:1.8.3'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
+    compile 'com.google.zxing:core:3.2.1'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:1.7.1'
@@ -107,6 +109,7 @@ dependencyVerification {
             'com.soundcloud.android:android-crop:ffd4b973cf6e97f7d64118a0dc088df50e9066fd5634fe6911dd0c0c5d346177',
             'com.android.support:appcompat-v7:4b5ccba8c4557ef04f99aa0a80f8aa7d50f05f926a709010a54afd5c878d3618',
             'com.android.support:recyclerview-v7:b0f530a5b14334d56ce0de85527ffe93ac419bc928e2884287ce1dddfedfb505',
+            'com.android.support:cardview-v7:2c2354761a4e20ba451ae903ab808f15c9acc8343b1e74001869c2d0a672c1fc',
             'com.melnykov:floatingactionbutton:15d58d4fac0f7a288d0e5301bbaf501a146f5b3f5921277811bf99bd3b397263',
             'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
@@ -119,6 +122,7 @@ dependencyVerification {
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
             'org.whispersystems:textsecure-android:a08cdd73aaaca6d3e868a93522c02d6a159551735f7048b1f3a53582e10c8ec2',
             'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
+            'com.google.zxing:core:b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259',
             'com.android.support:support-annotations:104f353b53d5dd8d64b2f77eece4b37f6b961de9732eb6b706395e91033ec70a',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
