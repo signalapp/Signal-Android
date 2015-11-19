@@ -102,6 +102,12 @@
     <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
                android:value="GlideModule" />
 
+
+
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="@string/google_location_key" />
+
     <activity android:name="org.thoughtcrime.redphone.RedPhone"
               android:screenOrientation="portrait"
               android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
