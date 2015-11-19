@@ -89,10 +89,11 @@
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
 
     <!-- ConversationActivity -->
-    <string name="ConversationActivity_reset_secure_session_confirmation">Reset secure session confirmation</string>
-    <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Are you sure that you want to reset this secure session?</string>
-    <string name="ConversationActivity_delete_thread_confirmation">Delete thread confirmation</string>
-    <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Are you sure that you want to permanently delete this conversation?</string>
+    <string name="ConversationActivity_reset_secure_session_question">Reset secure session?</string>
+    <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">This may help if you\'re having encryption problems in this conversation. Your messages will be kept.</string>
+    <string name="ConversationActivity_reset">Reset</string>
+    <string name="ConversationActivity_delete_thread_question">Delete conversation?</string>
+    <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">This will permanently delete all messages in this conversation.</string>
     <string name="ConversationActivity_add_attachment">Add attachment</string>
     <string name="ConversationActivity_select_contact_info">Select contact info</string>
     <string name="ConversationActivity_compose_message">Compose message</string>
@@ -1039,7 +1040,7 @@
     <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_update_group">Update group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
-    <string name="conversation__menu_delete_thread">Delete thread</string>
+    <string name="conversation__menu_delete_thread">Delete conversation</string>
     <string name="conversation__menu_view_media">All images</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
 
