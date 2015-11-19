@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -1388,43 +1389,32 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(20);
 
-    final Uri uri = audioRecorder.stopRecording();
-
-    Log.w(TAG, "Stopped recording: " + uri);
-
-    if (uri != null) {
-      new AsyncTask<Void, Void, Long>() {
-        @Override
-        protected Long doInBackground(Void... input) {
-          try {
-            return MediaUtil.getMediaSize(ConversationActivity.this, masterSecret, uri);
-          } catch (IOException e) {
-            Log.w(TAG, e);
-            return null;
-          }
+    ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
+    future.addListener(new AssertedSuccessListener<Pair<Uri, Long>>() {
+      @Override
+      public void onSuccess(@Nullable final Pair<Uri, Long> result) {
+        if (result == null) {
+          Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show();
+          return;
         }
 
-        protected void onPostExecute(Long size) {
-          try {
-            if (size != null) {
-              AudioSlide audioSlide = new AudioSlide(ConversationActivity.this, uri, size);
-              SlideDeck  slideDeck  = new SlideDeck();
-              slideDeck.addSlide(audioSlide);
+        try {
+          AudioSlide audioSlide = new AudioSlide(ConversationActivity.this, result.first, result.second);
+          SlideDeck slideDeck = new SlideDeck();
+          slideDeck.addSlide(audioSlide);
 
-              sendMediaMessage(false, "", slideDeck).addListener(new AssertedSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void result) {
-                  PersistentBlobProvider.getInstance(ConversationActivity.this).delete(uri);
-                }
-              });
+          sendMediaMessage(false, "", slideDeck).addListener(new AssertedSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void nothing) {
+              PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
             }
-          } catch (IOException | InvalidMessageException e) {
-            Log.w(TAG, e);
-            Toast.makeText(ConversationActivity.this, "Error sending voice note...", Toast.LENGTH_LONG).show();
-          }
+          });
+        } catch (IOException | InvalidMessageException e) {
+          Log.w(TAG, e);
+          Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_sending_voice_note, Toast.LENGTH_LONG).show();
         }
-      }.execute();
-    }
+      }
+    });
   }
 
   @Override
@@ -1432,11 +1422,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
     vibrator.vibrate(50);
 
-    Uri uri = audioRecorder.stopRecording();
+    ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
 
-    if (uri != null) {
-      PersistentBlobProvider.getInstance(this).delete(uri);
-    }
+    future.addListener(new AssertedSuccessListener<Pair<Uri, Long>>() {
+      @Override
+      public void onSuccess(@Nullable Pair<Uri, Long> result) {
+        if (result != null) PersistentBlobProvider.getInstance(ConversationActivity.this).delete(result.first);
+      }
+    });
   }
 
   // Listeners

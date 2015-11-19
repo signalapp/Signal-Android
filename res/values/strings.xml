@@ -130,6 +130,8 @@
     <string name="ConversationActivity_unblock">Unblock</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
+    <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
+    <string name="ConversationActivity_error_sending_voice_note">Error sending voice note...</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>

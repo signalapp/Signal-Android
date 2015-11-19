@@ -72,6 +72,11 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
     this.slideToCancel          = new SlideToCancel(ViewUtil.findById(this, R.id.slide_to_cancel));
     this.microphoneRecorderView = ViewUtil.findById(this, R.id.recorder_view);
     this.microphoneRecorderView.setListener(this);
+
+    if (Build.VERSION.SDK_INT < 14) {
+      this.microphoneRecorderView.setVisibility(View.GONE);
+      this.microphoneRecorderView.setClickable(false);
+    }
   }
 
   public void setListener(@Nullable Listener listener) {
