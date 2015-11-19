@@ -16,13 +16,11 @@
  */
 package org.thoughtcrime.securesms.database;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -42,7 +40,8 @@ public class MmsSmsDatabase extends Database {
   public static final String MMS_TRANSPORT = "mms";
   public static final String SMS_TRANSPORT = "sms";
 
-  private static final String[] PROJECTION = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
+  private static final String[] PROJECTION = {MmsSmsColumns.ID, MmsSmsColumns.UNIQUE_ROW_ID,
+                                              SmsDatabase.BODY, SmsDatabase.TYPE,
                                               MmsSmsColumns.THREAD_ID,
                                               SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
                                               MmsSmsColumns.NORMALIZED_DATE_SENT,
@@ -123,6 +122,9 @@ public class MmsSmsDatabase extends Database {
     String[] mmsProjection = {MmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " AS " + MmsSmsColumns.ID,
+                              "'MMS::' || " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID
+                                  + " || '::' || " + MmsDatabase.DATE_SENT
+                                  + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
                               AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
@@ -143,7 +145,11 @@ public class MmsSmsDatabase extends Database {
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
-                              MmsSmsColumns.ID,  "NULL AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
+                              MmsSmsColumns.ID,
+                              "'SMS::' || " + MmsSmsColumns.ID
+                                  + " || '::' || " + SmsDatabase.DATE_SENT
+                                  + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
+                              "NULL AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
@@ -222,8 +228,10 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.DATE_RECEIVED);
     smsColumnsPresent.add(SmsDatabase.STATUS);
 
-    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 3, MMS_TRANSPORT, selection, null, null, null);
-    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery(TRANSPORT, smsProjection, smsColumnsPresent, 3, SMS_TRANSPORT, selection, null, null, null);
+    @SuppressWarnings("deprecation")
+    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, null, null);
+    @SuppressWarnings("deprecation")
+    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery(TRANSPORT, smsProjection, smsColumnsPresent, 4, SMS_TRANSPORT, selection, null, null, null);
 
     SQLiteQueryBuilder unionQueryBuilder = new SQLiteQueryBuilder();
     String unionQuery = unionQueryBuilder.buildUnionQuery(new String[] {smsSubQuery, mmsSubQuery}, order, limit);
@@ -231,6 +239,7 @@ public class MmsSmsDatabase extends Database {
     SQLiteQueryBuilder outerQueryBuilder = new SQLiteQueryBuilder();
     outerQueryBuilder.setTables("(" + unionQuery + ")");
 
+    @SuppressWarnings("deprecation")
     String query      = outerQueryBuilder.buildQuery(projection, null, null, null, null, null, null);
 
     Log.w("MmsSmsDatabase", "Executing query: " + query);
