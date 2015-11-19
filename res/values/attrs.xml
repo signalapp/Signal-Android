@@ -147,4 +147,13 @@
         <attr name="circleColor" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="ShapeScrim">
+        <attr name="shape" format="string"/>
+        <attr name="radius" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="CameraView">
+        <attr name="camera" format="integer"/>
+    </declare-styleable>
+
 </resources>
