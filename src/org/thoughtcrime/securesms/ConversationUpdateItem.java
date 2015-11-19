@@ -87,15 +87,8 @@ public class ConversationUpdateItem extends LinearLayout
   private void setGroupRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_group_grey600_24dp);
 
-    if (messageRecord.isGroupQuit() && messageRecord.isOutgoing()) {
-      body.setText(R.string.MessageRecord_left_group);
-    } else if (messageRecord.isGroupQuit()) {
-      body.setText(getContext().getString(R.string.ConversationItem_group_action_left, sender.toShortString()));
-    } else {
-      GroupUtil.GroupDescription description = GroupUtil.getDescription(getContext(), messageRecord.getBody().getBody());
-      description.addListener(this);
-      body.setText(description.toString());
-    }
+    GroupUtil.getDescription(getContext(), messageRecord.getBody().getBody()).addListener(this);
+    body.setText(messageRecord.getDisplayBody());
 
     date.setVisibility(View.GONE);
   }
