@@ -28,4 +28,4 @@ Truths which we believe to be self-evident:
 1. **There is no such thing as time.** Protocol ideas that require synchronized
    clocks are doomed to failure. 
 
-Before you submit a pull request, please check if your code follows the [Code style Guidelines](https://github.com/WhisperSystems/RedPhone/wiki/Code-style-Guidelines).
+Before you submit a pull request, please check if your code follows the [Code style Guidelines](https://github.com/WhisperSystems/Signal-Android/wiki/Code-Style-Guidelines).
