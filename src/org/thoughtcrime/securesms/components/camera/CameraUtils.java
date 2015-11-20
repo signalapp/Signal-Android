@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.camera;
 import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
+import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,40 +13,46 @@ import android.view.Surface;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class CameraUtils {
+  private static final String TAG = CameraUtils.class.getSimpleName();
   /*
    * modified from: https://github.com/commonsguy/cwac-camera/blob/master/camera/src/com/commonsware/cwac/camera/CameraUtils.java
    */
   public static @Nullable Size getPreferredPreviewSize(int displayOrientation,
                                                        int width,
                                                        int height,
-                                                       @NonNull Camera camera) {
-    Log.w("CameraUtils", String.format("getPreferredPreviewSize(%d, %d, %d)", displayOrientation, width, height));
-    double targetRatio = (double)width / height;
-    Size   optimalSize = null;
-    double minDiff     = Double.MAX_VALUE;
+                                                       @NonNull Parameters parameters) {
+    final int    targetWidth  = displayOrientation % 180 == 90 ? height : width;
+    final int    targetHeight = displayOrientation % 180 == 90 ? width  : height;
+    final double targetRatio  = (double) targetWidth / targetHeight;
 
-    if (displayOrientation == 90 || displayOrientation == 270) {
-      targetRatio = (double)height / width;
-    }
+    Log.w(TAG, String.format("getPreferredPreviewSize(%d, %d, %d) -> target %dx%d, AR %.02f",
+                             displayOrientation, width, height,
+                             targetWidth, targetHeight, targetRatio));
 
-    List<Size> sizes = camera.getParameters().getSupportedPreviewSizes();
-
-    Collections.sort(sizes, Collections.reverseOrder(new SizeComparator()));
+    List<Size> sizes     = parameters.getSupportedPreviewSizes();
+    List<Size> ideals    = new LinkedList<>();
+    List<Size> bigEnough = new LinkedList<>();
 
     for (Size size : sizes) {
-      double ratio = (double)size.width / size.height;
+      Log.w(TAG, String.format("  %dx%d (%.02f)", size.width, size.height, (float)size.width / size.height));
 
-      if (Math.abs(ratio - targetRatio) < minDiff) {
-        optimalSize = size;
-        minDiff     = Math.abs(ratio - targetRatio);
+      if (size.height == size.width * targetRatio && size.height >= targetHeight && size.width >= targetWidth) {
+        ideals.add(size);
+        Log.w(TAG, "    (ideal ratio)");
+      } else if (size.width >= targetWidth && size.height >= targetHeight) {
+        bigEnough.add(size);
+        Log.w(TAG, "    (good size, suboptimal ratio)");
       }
     }
 
-    return optimalSize;
+    if      (!ideals.isEmpty())    return Collections.min(ideals, new AreaComparator());
+    else if (!bigEnough.isEmpty()) return Collections.min(bigEnough, new AspectRatioComparator(targetRatio));
+    else                           return Collections.max(sizes, new AreaComparator());
   }
 
   // based on
@@ -74,15 +81,26 @@ public class CameraUtils {
     }
   }
 
-  private static class SizeComparator implements Comparator<Size> {
+  private static class AreaComparator implements Comparator<Size> {
     @Override
     public int compare(Size lhs, Size rhs) {
-      int left  = lhs.width * lhs.height;
-      int right = rhs.width * rhs.height;
+      return Long.signum(lhs.width * lhs.height - rhs.width * rhs.height);
+    }
+  }
 
-      if (left < right) return -1;
-      if (left > right) return 1;
-      else              return 0;
+  private static class AspectRatioComparator extends AreaComparator {
+    private final double target;
+    public AspectRatioComparator(double target) {
+      this.target = target;
+    }
+
+    @Override
+    public int compare(Size lhs, Size rhs) {
+      final double lhsDiff = Math.abs(target - (double) lhs.width / lhs.height);
+      final double rhsDiff = Math.abs(target - (double) rhs.width / rhs.height);
+      if      (lhsDiff < rhsDiff)  return -1;
+      else if (lhsDiff > rhsDiff)  return 1;
+      else                         return super.compare(lhs, rhs);
     }
   }
 }
