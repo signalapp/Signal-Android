@@ -34,7 +34,7 @@ public class ImageSlide extends Slide {
   private static final String TAG = ImageSlide.class.getSimpleName();
 
   public ImageSlide(@NonNull Context context, @NonNull Attachment attachment) {
-    super(context, attachment);
+    super(context, attachment, true, false, false);
   }
 
   public ImageSlide(Context context, Uri uri, long size) throws IOException {
@@ -44,11 +44,6 @@ public class ImageSlide extends Slide {
   @Override
   public @DrawableRes int getPlaceholderRes(Theme theme) {
     return 0;
-  }
-
-  @Override
-  public boolean hasImage() {
-    return true;
   }
 
   @NonNull @Override public String getContentDescription() {
