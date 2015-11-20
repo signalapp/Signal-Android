@@ -541,7 +541,8 @@ public class CameraView extends FrameLayout {
                                          previewSize.width,
                                          previewSize.height,
                                          rotation,
-                                         croppingRect);
+                                         croppingRect,
+                                         cameraId == CameraInfo.CAMERA_FACING_FRONT);
       } catch (IOException e) {
         Log.w(TAG, e);
         return null;
