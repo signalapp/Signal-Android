@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:theme="@style/TextSecure.LightActionBar" />
+            android:theme="?attr/actionBarStyle" />
 
         <fragment android:id="@+id/contact_selection_list_fragment"
                   android:layout_width="match_parent"
