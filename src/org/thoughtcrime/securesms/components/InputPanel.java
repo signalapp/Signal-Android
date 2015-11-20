@@ -97,11 +97,11 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
 
   @Override
   public void onRecordReleased(float x) {
-    onRecordHideEvent(x);
+    long elapsedTime = onRecordHideEvent(x);
 
     if (listener != null) {
-      Log.w(TAG, "Elapsed time: " + recordTime.getElapsedTimeMillis());
-      if (recordTime.getElapsedTimeMillis() > 1000) {
+      Log.w(TAG, "Elapsed time: " + elapsedTime);
+      if (elapsedTime > 1000) {
         listener.onRecorderFinished();
       } else {
         Toast.makeText(getContext(), R.string.InputPanel_tap_and_hold_to_record_a_voice_note_release_to_send, Toast.LENGTH_LONG).show();
@@ -129,8 +129,10 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
     this.microphoneRecorderView.cancelAction();
   }
 
-  private void onRecordHideEvent(float x) {
-    ListenableFuture<Void> future = slideToCancel.hide(x);
+  private long onRecordHideEvent(float x) {
+    ListenableFuture<Void> future      = slideToCancel.hide(x);
+    long                   elapsedTime = recordTime.hide();
+
     future.addListener(new AssertedSuccessListener<Void>() {
       @Override
       public void onSuccess(Void result) {
@@ -139,10 +141,10 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
         ViewUtil.fadeIn(quickCameraToggle, FADE_TIME);
         ViewUtil.fadeIn(quickAudioToggle, FADE_TIME);
         ViewUtil.fadeIn(buttonToggle, FADE_TIME);
-
-        recordTime.hide();
       }
     });
+
+    return elapsedTime;
   }
 
   public interface Listener {
@@ -231,15 +233,13 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
       handler.postDelayed(this, TimeUnit.SECONDS.toMillis(1));
     }
 
-    public void hide() {
+    public long hide() {
+      long elapsedtime = System.currentTimeMillis() - startTime.get();
       this.startTime.set(0);
       ViewUtil.fadeOut(this.recordTimeView, FADE_TIME, View.INVISIBLE);
+      return elapsedtime;
     }
-
-    public long getElapsedTimeMillis() {
-      return System.currentTimeMillis() - startTime.get();
-    }
-
+    
     @Override
     public void run() {
       long localStartTime = startTime.get();
