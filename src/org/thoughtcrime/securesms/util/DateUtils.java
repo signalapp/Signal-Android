@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.text.format.DateFormat;
 
 import java.text.SimpleDateFormat;
@@ -32,13 +33,16 @@ import java.util.concurrent.TimeUnit;
  * Utility methods to help display dates in a nice, easily readable way.
  */
 public class DateUtils extends android.text.format.DateUtils {
-
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);
   }
 
+  private static boolean isYesterday(final long when) {
+    return DateUtils.isToday(when + TimeUnit.DAYS.toMillis(1));
+  }
+
   private static int convertDelta(final long millis, TimeUnit to) {
-    return (int) to.convert(System.currentTimeMillis() - millis, TimeUnit.MILLISECONDS);
+    return (int)to.convert(System.currentTimeMillis() - millis, TimeUnit.MILLISECONDS);
   }
 
   private static String getFormattedDateTime(long time, String template, Locale locale) {
@@ -46,7 +50,24 @@ public class DateUtils extends android.text.format.DateUtils {
     return new SimpleDateFormat(localizedPattern, locale).format(new Date(time));
   }
 
-  public static String getBriefRelativeTimeSpanString(final Context c, final Locale locale, final long timestamp) {
+  public static String getRelativeTime(final Context c, final Locale locale,
+                                       final long timestamp)
+  {
+    if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
+      return c.getString(R.string.DateUtils_now);
+    } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
+      int mins = convertDelta(timestamp, TimeUnit.MINUTES);
+      return c.getResources().getString(R.string.DateUtils_minutes_ago, mins);
+    } else if (isWithin(timestamp, 1, TimeUnit.DAYS)) {
+      int hours = convertDelta(timestamp, TimeUnit.HOURS);
+      return c.getResources().getQuantityString(R.plurals.hours_ago, hours, hours);
+    } else {
+      if (DateFormat.is24HourFormat(c)) return getFormattedDateTime(timestamp, "HH:mm", locale);
+      else                              return getFormattedDateTime(timestamp, "hh:mm a", locale);
+    }
+  }
+
+  public static String getRelativeDatetime(final Context c, final Locale locale, final long timestamp) {
     if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
       return c.getString(R.string.DateUtils_now);
     } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
@@ -64,22 +85,16 @@ public class DateUtils extends android.text.format.DateUtils {
     }
   }
 
-  public static String getExtendedRelativeTimeSpanString(final Context c, final Locale locale, final long timestamp) {
-    if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
-      return c.getString(R.string.DateUtils_now);
-    } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
-      int mins = (int)TimeUnit.MINUTES.convert(System.currentTimeMillis() - timestamp, TimeUnit.MILLISECONDS);
-      return c.getResources().getString(R.string.DateUtils_minutes_ago, mins);
+  public static String getRelativeDate(@NonNull Context context,
+                                       @NonNull Locale locale,
+                                       long timestamp)
+  {
+    if (isToday(timestamp)) {
+      return context.getString(R.string.DateUtils_today);
+    } else if (isYesterday(timestamp)) {
+      return context.getString(R.string.DateUtils_yesterday);
     } else {
-      StringBuilder format = new StringBuilder();
-      if      (isWithin(timestamp,   6, TimeUnit.DAYS)) format.append("EEE ");
-      else if (isWithin(timestamp, 365, TimeUnit.DAYS)) format.append("MMM d, ");
-      else                                              format.append("MMM d, yyyy, ");
-
-      if (DateFormat.is24HourFormat(c)) format.append("HH:mm");
-      else                              format.append("hh:mm a");
-
-      return getFormattedDateTime(timestamp, format.toString(), locale);
+      return getFormattedDateTime(timestamp, "EEE, MMM d, yyyy", locale);
     }
   }
 

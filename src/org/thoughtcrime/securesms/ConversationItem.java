@@ -332,7 +332,7 @@ public class ConversationItem extends LinearLayout
     if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
     else                        timestamp = messageRecord.getDateReceived();
 
-    dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, timestamp));
+    dateText.setText(DateUtils.getRelativeTime(getContext(), locale, timestamp));
 
     if      (messageRecord.isFailed())                     setFailedStatusIcons();
     else if (messageRecord.isPendingInsecureSmsFallback()) setFallbackStatusIcons();

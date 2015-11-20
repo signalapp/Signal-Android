@@ -39,14 +39,14 @@ public class DeviceListItem extends LinearLayout {
     else                                         this.name.setText(deviceInfo.getName());
 
     this.created.setText(getContext().getString(R.string.DeviceListItem_linked_s,
-                                                DateUtils.getExtendedRelativeTimeSpanString(getContext(),
-                                                                                            Locale.getDefault(),
-                                                                                            deviceInfo.getCreated())));
+                                                DateUtils.getRelativeDatetime(getContext(),
+                                                                              Locale.getDefault(),
+                                                                              deviceInfo.getCreated())));
 
     this.lastActive.setText(getContext().getString(R.string.DeviceListItem_last_active_s,
-                                                   DateUtils.getExtendedRelativeTimeSpanString(getContext(),
-                                                                                               Locale.getDefault(),
-                                                                                               deviceInfo.getLastSeen())));
+                                                   DateUtils.getRelativeDatetime(getContext(),
+                                                                                 Locale.getDefault(),
+                                                                                 deviceInfo.getLastSeen())));
 
     this.deviceId = deviceInfo.getId();
   }
