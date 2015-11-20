@@ -49,7 +49,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.VisibleForTesting;
 
@@ -65,7 +64,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     extends CursorRecyclerViewAdapter<ConversationAdapter.ViewHolder>
 {
 
-  private final Map<String,SoftReference<MessageRecord>> messageRecordCache = new LRUCache<>(40);
+  private static final int MAX_CACHE_SIZE = 40;
+  private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
+      Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
 
   public static final int MESSAGE_TYPE_OUTGOING = 0;
   public static final int MESSAGE_TYPE_INCOMING = 1;

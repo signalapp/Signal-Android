@@ -34,16 +34,12 @@ import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.Util;
 
-import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -52,8 +48,6 @@ import java.util.Set;
  * @author Moxie Marlinspike
  */
 public class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationListAdapter.ViewHolder> {
-
-  private final Map<Long, SoftReference<ThreadRecord>> threadRecordCache = new LRUCache<>(40);
 
   private final          ThreadDatabase    threadDatabase;
   private final          MasterSecret      masterSecret;
@@ -129,12 +123,6 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   }
 
   @Override
-  public void changeCursor(Cursor cursor) {
-    threadRecordCache.clear();
-    super.changeCursor(cursor);
-  }
-
-  @Override
   public void onItemViewRecycled(ViewHolder holder) {
     holder.getItem().unbind();
   }
@@ -145,17 +133,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   }
 
   private ThreadRecord getThreadRecord(@NonNull Cursor cursor) {
-    long id = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
-
-    final SoftReference<ThreadRecord> reference = threadRecordCache.get(id);
-    if (reference != null) {
-      final ThreadRecord record = reference.get();
-      if (record != null) return record;
-    }
-
-    ThreadRecord record = threadDatabase.readerFor(cursor, masterCipher).getCurrent();
-    threadRecordCache.put(id, new SoftReference<>(record));
-    return record;
+    return threadDatabase.readerFor(cursor, masterCipher).getCurrent();
   }
 
   public void toggleThreadInBatchSet(long threadId) {
