@@ -55,13 +55,13 @@ public class CameraView extends FrameLayout {
   private final CameraSurfaceView   surface;
   private final OnOrientationChange onOrientationChange;
 
-  private @NonNull volatile Optional<Camera> camera   = Optional.absent();
-  private          volatile int              cameraId = CameraInfo.CAMERA_FACING_BACK;
+  private volatile Optional<Camera> camera             = Optional.absent();
+  private volatile int              cameraId           = CameraInfo.CAMERA_FACING_BACK;
+  private volatile int              displayOrientation = -1;
 
   private @NonNull  State              state = State.PAUSED;
   private @Nullable Size               previewSize;
   private @Nullable CameraViewListener listener;
-  private           int                displayOrientation = -1;
   private           int                outputOrientation  = -1;
 
   public CameraView(Context context) {
@@ -96,41 +96,35 @@ public class CameraView extends FrameLayout {
     if (state != State.PAUSED) return;
     state = State.RESUMED;
     Log.w(TAG, "onResume() queued");
-    enqueueTask(new SerialAsyncTask<Camera>() {
+    enqueueTask(new SerialAsyncTask<Void>() {
       @Override
       protected
       @Nullable
-      Camera onRunBackground() {
+      Void onRunBackground() {
         try {
-          return Camera.open(cameraId);
+          camera = Optional.fromNullable(Camera.open(cameraId));
+          synchronized (CameraView.this) {
+            CameraView.this.notifyAll();
+          }
+          if (camera.isPresent()) onCameraReady(camera.get());
         } catch (Exception e) {
           Log.w(TAG, e);
-          return null;
         }
+        return null;
       }
 
       @Override
-      protected void onPostMain(@Nullable Camera camera) {
-        if (camera == null) {
+      protected void onPostMain(Void avoid) {
+        if (!camera.isPresent()) {
           Log.w(TAG, "tried to open camera but got null");
           if (listener != null) listener.onCameraFail();
           return;
         }
 
-        CameraView.this.camera = Optional.of(camera);
-        try {
-          if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
-            onOrientationChange.enable();
-          }
-          onCameraReady();
-          synchronized (CameraView.this) {
-            CameraView.this.notifyAll();
-          }
-          Log.w(TAG, "onResume() completed");
-        } catch (RuntimeException e) {
-          Log.w(TAG, "exception when starting camera preview", e);
-          onPause();
+        if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
+          onOrientationChange.enable();
         }
+        Log.w(TAG, "onResume() completed");
       }
     });
   }
@@ -267,10 +261,8 @@ public class CameraView extends FrameLayout {
   }
 
   @TargetApi(14)
-  private void onCameraReady() {
-    if (!camera.isPresent()) return;
-
-    final Parameters parameters = camera.get().getParameters();
+  private void onCameraReady(final @NonNull Camera camera) {
+    final Parameters parameters = camera.getParameters();
 
     if (VERSION.SDK_INT >= 14) {
       parameters.setRecordingHint(true);
@@ -283,20 +275,18 @@ public class CameraView extends FrameLayout {
     }
 
     displayOrientation = CameraUtils.getCameraDisplayOrientation(getActivity(), getCameraInfo());
-    camera.get().setDisplayOrientation(displayOrientation);
-    camera.get().setParameters(parameters);
-
+    camera.setDisplayOrientation(displayOrientation);
+    camera.setParameters(parameters);
     enqueueTask(new PostInitializationTask<Void>() {
-      @Override protected void onPostMain(Void avoid) {
-        if (camera.isPresent()) {
-          try {
-            camera.get().setPreviewDisplay(surface.getHolder());
-            startPreview(parameters);
-            requestLayout();
-          } catch (Exception e) {
-            Log.w(TAG, e);
-          }
+      @Override
+      protected Void onRunBackground() {
+        try {
+          camera.setPreviewDisplay(surface.getHolder());
+          startPreview(parameters);
+        } catch (Exception e) {
+          Log.w(TAG, "couldn't set preview display");
         }
+        return null;
       }
     });
   }
@@ -317,7 +307,7 @@ public class CameraView extends FrameLayout {
           previewSize = parameters.getPreviewSize();
         }
         camera.startPreview();
-        requestLayout();
+        postRequestLayout();
         state = State.ACTIVE;
       } catch (Exception e) {
         Log.w(TAG, e);
@@ -355,6 +345,15 @@ public class CameraView extends FrameLayout {
     }
 
     return outputOrientation;
+  }
+
+  private void postRequestLayout() {
+    post(new Runnable() {
+      @Override
+      public void run() {
+        requestLayout();
+      }
+    });
   }
 
   private @NonNull CameraInfo getCameraInfo() {
