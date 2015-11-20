@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,6 +47,9 @@ import com.soundcloud.android.crop.Crop;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel.RecipientsPanelChangedListener;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -199,6 +203,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     recipientsEditor.setHint(R.string.recipients_panel__add_member);
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
+    avatar.setImageDrawable(ContactPhotoFactory.getDefaultGroupPhoto()
+                                               .asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
     avatar.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {

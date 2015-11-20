@@ -26,7 +26,6 @@
                 android:layout_height="70dp"
                 position="bottom_right"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_group_photo"
                 android:contentDescription="@string/GroupCreateActivity_avatar_content_description" />
 
             <EditText android:id="@+id/group_name"
