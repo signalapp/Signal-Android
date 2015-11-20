@@ -4,7 +4,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -61,10 +60,9 @@ public class PersistentBlobProvider {
   }
 
   public Uri create(@NonNull MasterSecret masterSecret,
-                    @NonNull Recipients recipients,
                     @NonNull byte[] imageBytes)
   {
-    final long id = generateId(recipients);
+    final long id = System.currentTimeMillis();
     cache.put(id, imageBytes);
     return create(masterSecret, new ByteArrayInputStream(imageBytes), id);
   }
@@ -108,8 +106,12 @@ public class PersistentBlobProvider {
 
   public boolean delete(@NonNull Uri uri) {
     switch (MATCHER.match(uri)) {
-    case MATCH: return getFile(ContentUris.parseId(uri)).delete();
-    default:    return new File(uri.getPath()).delete();
+    case MATCH:
+      long id = ContentUris.parseId(uri);
+      cache.remove(id);
+      return getFile(ContentUris.parseId(uri)).delete();
+    default:
+      return new File(uri.getPath()).delete();
     }
   }
 
