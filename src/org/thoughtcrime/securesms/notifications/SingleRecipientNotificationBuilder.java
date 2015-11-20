@@ -131,9 +131,9 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     if (privacy.isDisplayMessage()) {
       setTicker(getStyledMessage(recipient, message));
     } else if (privacy.isDisplayContact()) {
-      setTicker(getStyledMessage(recipient, context.getString(R.string.SingleRecipientNotificationBuilder_signal)));
+      setTicker(getStyledMessage(recipient, context.getString(R.string.SingleRecipientNotificationBuilder_new_message)));
     } else {
-      setTicker(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
+      setTicker(context.getString(R.string.SingleRecipientNotificationBuilder_new_message));
     }
   }
 
