@@ -58,7 +58,8 @@ public class CameraView extends FrameLayout {
   private @NonNull volatile Optional<Camera> camera   = Optional.absent();
   private          volatile int              cameraId = CameraInfo.CAMERA_FACING_BACK;
 
-  private           State              state = State.PAUSED;
+  private @NonNull  State              state = State.PAUSED;
+  private @Nullable Size               previewSize;
   private @Nullable CameraViewListener listener;
   private           int                displayOrientation = -1;
   private           int                outputOrientation  = -1;
@@ -184,8 +185,7 @@ public class CameraView extends FrameLayout {
     final int  previewWidth;
     final int  previewHeight;
 
-    if (camera.isPresent()) {
-      final Size previewSize = camera.get().getParameters().getPreviewSize();
+    if (camera.isPresent() && previewSize != null) {
       if (displayOrientation == 90 || displayOrientation == 270) {
         previewWidth  = previewSize.height;
         previewHeight = previewSize.width;
@@ -216,7 +216,7 @@ public class CameraView extends FrameLayout {
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     Log.w(TAG, "onSizeChanged(" + oldw + "x" + oldh + " -> " + w + "x" + h + ")");
     super.onSizeChanged(w, h, oldw, oldh);
-    startPreview();
+    if (camera.isPresent()) startPreview(camera.get().getParameters());
   }
 
   public void setListener(@Nullable CameraViewListener listener) {
@@ -291,7 +291,7 @@ public class CameraView extends FrameLayout {
         if (camera.isPresent()) {
           try {
             camera.get().setPreviewDisplay(surface.getHolder());
-            startPreview();
+            startPreview(parameters);
             requestLayout();
           } catch (Exception e) {
             Log.w(TAG, e);
@@ -301,18 +301,20 @@ public class CameraView extends FrameLayout {
     });
   }
 
-  private void startPreview() {
+  private void startPreview(final @NonNull Parameters parameters) {
     if (this.camera.isPresent()) {
       try {
         final Camera     camera               = this.camera.get();
-        final Size       preferredPreviewSize = getPreferredPreviewSize(camera);
-        final Parameters parameters           = camera.getParameters();
+        final Size       preferredPreviewSize = getPreferredPreviewSize(parameters);
 
         if (preferredPreviewSize != null && !parameters.getPreviewSize().equals(preferredPreviewSize)) {
           Log.w(TAG, "starting preview with size " + preferredPreviewSize.width + "x" + preferredPreviewSize.height);
           if (state == State.ACTIVE) stopPreview();
+          previewSize = preferredPreviewSize;
           parameters.setPreviewSize(preferredPreviewSize.width, preferredPreviewSize.height);
           camera.setParameters(parameters);
+        } else {
+          previewSize = parameters.getPreviewSize();
         }
         camera.startPreview();
         requestLayout();
@@ -334,11 +336,11 @@ public class CameraView extends FrameLayout {
     }
   }
 
-  private Size getPreferredPreviewSize(@NonNull Camera camera) {
+  private Size getPreferredPreviewSize(@NonNull Parameters parameters) {
     return CameraUtils.getPreferredPreviewSize(displayOrientation,
                                                getMeasuredWidth(),
                                                getMeasuredHeight(),
-                                               camera);
+                                               parameters);
   }
 
   private int getCameraPictureOrientation() {

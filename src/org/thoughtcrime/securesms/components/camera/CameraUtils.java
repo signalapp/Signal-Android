@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.camera;
 import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
+import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,7 +25,7 @@ public class CameraUtils {
   public static @Nullable Size getPreferredPreviewSize(int displayOrientation,
                                                        int width,
                                                        int height,
-                                                       @NonNull Camera camera) {
+                                                       @NonNull Parameters parameters) {
     final int    targetWidth  = displayOrientation % 180 == 90 ? height : width;
     final int    targetHeight = displayOrientation % 180 == 90 ? width  : height;
     final double targetRatio  = (double) targetWidth / targetHeight;
@@ -33,7 +34,7 @@ public class CameraUtils {
                              displayOrientation, width, height,
                              targetWidth, targetHeight, targetRatio));
 
-    List<Size> sizes     = camera.getParameters().getSupportedPreviewSizes();
+    List<Size> sizes     = parameters.getSupportedPreviewSizes();
     List<Size> ideals    = new LinkedList<>();
     List<Size> bigEnough = new LinkedList<>();
 
@@ -52,7 +53,6 @@ public class CameraUtils {
     if      (!ideals.isEmpty())    return Collections.min(ideals, new AreaComparator());
     else if (!bigEnough.isEmpty()) return Collections.min(bigEnough, new AspectRatioComparator(targetRatio));
     else                           return Collections.max(sizes, new AreaComparator());
-
   }
 
   // based on
