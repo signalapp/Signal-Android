@@ -34,7 +34,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -1412,7 +1411,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           });
         } catch (IOException | InvalidMessageException e) {
           Log.w(TAG, e);
-          Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_sending_voice_note, Toast.LENGTH_LONG).show();
+          Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_sending_voice_message, Toast.LENGTH_LONG).show();
         }
       }
 

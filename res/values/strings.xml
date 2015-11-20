@@ -132,7 +132,7 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
-    <string name="ConversationActivity_error_sending_voice_note">Error sending voice note...</string>
+    <string name="ConversationActivity_error_sending_voice_message">Error sending voice message...</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -281,7 +281,7 @@
     <string name="ImportFragment_restore_complete">Restore complete!</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_note_release_to_send">Tap and hold to record a voice note, release to send</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>

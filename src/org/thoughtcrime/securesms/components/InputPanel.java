@@ -104,7 +104,7 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
       if (elapsedTime > 1000) {
         listener.onRecorderFinished();
       } else {
-        Toast.makeText(getContext(), R.string.InputPanel_tap_and_hold_to_record_a_voice_note_release_to_send, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), R.string.InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send, Toast.LENGTH_LONG).show();
         listener.onRecorderCanceled();
       }
     }
@@ -239,7 +239,7 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
       ViewUtil.fadeOut(this.recordTimeView, FADE_TIME, View.INVISIBLE);
       return elapsedtime;
     }
-    
+
     @Override
     public void run() {
       long localStartTime = startTime.get();
