@@ -16,18 +16,19 @@
  */
 package org.thoughtcrime.securesms.util;
 
-import org.thoughtcrime.securesms.sms.SmsTransportDetails;
-
 public class SmsCharacterCalculator extends CharacterCalculator {
+
+  public static final int SMS_SIZE           = 160;
+  public static final int MULTIPART_SMS_SIZE = 153;
 
   @Override
   public CharacterState calculateCharacters(int charactersSpent) {
     int maxMessageSize;
 
-    if (charactersSpent <= SmsTransportDetails.SMS_SIZE) {
-      maxMessageSize = SmsTransportDetails.SMS_SIZE;
+    if (charactersSpent <= SMS_SIZE) {
+      maxMessageSize = SMS_SIZE;
     } else {
-      maxMessageSize = SmsTransportDetails.MULTIPART_SMS_SIZE;
+      maxMessageSize = MULTIPART_SMS_SIZE;
     }
 
     int messagesSpent = charactersSpent / maxMessageSize;
