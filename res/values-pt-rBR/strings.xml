@@ -45,6 +45,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Áudio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Informações de contato</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contatos bloqueados</string>
   <!--CallScreen-->
@@ -78,10 +79,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois o destinatário não é mais um usuário Signal.\n\nEnviar mensagem não segura?</string>
   <string name="ConversationItem_unable_to_open_media">Não localizei um aplicativo para abrir o arquivo.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Confirmação de reinício de sessão segura</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Tem certeza que deseja reiniciar esta sessão segura?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Confirmação de exclusão da conversa</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Tem certeza que deseja excluir permanentemente esta conversa?</string>
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contato</string>
   <string name="ConversationActivity_compose_message">Escrever mensagem</string>
@@ -239,6 +236,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ImportFragment_restoring_encrypted_backup">Restaurando backup criptografado...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nenhum backup criptografado encontrado!</string>
   <string name="ImportFragment_restore_complete">Restauração finalizada!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartilhar</string>
   <string name="InviteActivity_send_sms">Enviar SMS</string>
@@ -285,13 +283,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
   <string name="DeviceProvisioningActivity_title">Conectar este dispositivo?</string>
   <string name="DeviceProvisioningActivity_content_intro">Ele será capaz de</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - Ler todas as suas mensagens
-        \n- Enviar mensagens em seu nome
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Vinculando dispositivo</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Vinculando novo dispositivo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo vinculado!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
@@ -456,9 +449,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdo escondido</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
-  <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Repetir a frase-chave nova:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Digite o nome ou número</string>
   <!--contact_selection_group_activity-->
@@ -484,6 +474,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="conversation_activity__emoji_toggle_description">Alternar teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura do anexo</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Trocar guardador de anexos</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Baixando mensagem multimídia</string>
   <string name="conversation_item__mms_image_description">Mensagem multimídia</string>
@@ -537,9 +528,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="MmsPreferencesFragment__invalid_uri">O texto digitado não era um URI válido</string>
   <string name="MmsPreferencesFragment__invalid_host">O texto digitado não era um host válido</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s entrou no  grupo.</string>
   <string name="GroupUtil_group_updated">Grupo atualizado.</string>
-  <string name="GroupUtil_title_is_now">O título agora é \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Destrancar</string>
   <!--prompt_mms_activity-->
@@ -638,7 +627,6 @@ falhou.</string>
   <string name="arrays__disabled">Desabilitado</string>
   <string name="arrays__name_and_message">Nome e mensagem</string>
   <string name="arrays__name_only">Apenas nome</string>
-  <string name="arrays__neither">Nenhum</string>
   <string name="arrays__images">Imagens</string>
   <string name="arrays__audio">Áudio</string>
   <string name="arrays__video">Vídeo</string>
@@ -759,7 +747,8 @@ falhou.</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Atualizar lista de contatos</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Chamar</string>
+  <string name="conversation_callable_insecure__menu_call">Chamar</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalhes da mensagem</string>
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
@@ -793,7 +782,6 @@ falhou.</string>
   <string name="conversation__menu_add_attachment">Adicionar anexo</string>
   <string name="conversation__menu_update_group">Atualizar grupo</string>
   <string name="conversation__menu_leave_group">Sair do grupo</string>
-  <string name="conversation__menu_delete_thread">Excluir conversa</string>
   <string name="conversation__menu_view_media">Todas as imagens</string>
   <string name="conversation__menu_conversation_settings">Configurações de conversa</string>
   <!--conversation_popup-->
@@ -827,6 +815,7 @@ falhou.</string>
   <string name="media_preview__save_title">Salvar</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Visualização rápida.</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Excluindo</string>

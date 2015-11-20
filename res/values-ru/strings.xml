@@ -41,6 +41,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Контактная информация</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Заблокированные контакты</string>
   <!--CallScreen-->
@@ -68,10 +69,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal.\n\nОтправить незащищённое сообщение?</string>
   <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Подтверждение сброса</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Вы уверены, что хотите сбросить этот защищённый сеанс?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Подтвердите удаление разговора</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Вы уверены, что хотите навсегда удалить этот разговор?</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
   <string name="ConversationActivity_select_contact_info">Выбрать контакт</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
@@ -202,6 +199,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Восстановление из зашифрованной резервной копии...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Зашифрованная резервная копия не найдена!</string>
   <string name="ImportFragment_restore_complete">Восстановление завершено.</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">При сканировании ключ не обнаружен!</string>
@@ -236,12 +234,8 @@
   <string name="DeviceProvisioningActivity_continue">ПРОДОЛЖИТЬ</string>
   <string name="DeviceProvisioningActivity_title">Привязать это устройство?</string>
   <string name="DeviceProvisioningActivity_content_intro">Оно сможет:</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- читать все ваши сообщения
-\n - отправлять сообщения от вашего имени</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Привязка устройства</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Привязываем новое устройство...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Устройство привязано!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Устройство не найдено.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Ошибка сети.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Неверный QR-код.</string>
@@ -425,9 +419,6 @@
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Содержимое скрыто</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">СТАРАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
-  <string name="change_passphrase_activity__new_passphrase">НОВАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРИТЕ НОВУЮ ПАРОЛЬНУЮ ФРАЗУ:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Введите имя или номер</string>
   <!--contact_selection_group_activity-->
@@ -454,6 +445,7 @@
   <string name="conversation_activity__emoji_toggle_description">Клавиатура смайликов</string>
   <string name="conversation_activity__attachment_thumbnail">Миниатюра вложения</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Вкл/выкл ящик вложений</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">MMS-сообщение загружается</string>
   <string name="conversation_item__mms_image_description">MMS-сообщение</string>
@@ -510,9 +502,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">Введён неверный адрес</string>
   <string name="MmsPreferencesFragment__invalid_host">Введён неверный адрес хоста</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s присоединился к группе.</string>
   <string name="GroupUtil_group_updated">Группа обновлена.</string>
-  <string name="GroupUtil_title_is_now">Заголовок изменён на \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Открыть</string>
   <!--prompt_mms_activity-->
@@ -637,7 +627,6 @@ SMS-подтверждения...
   <string name="arrays__disabled">Отключено</string>
   <string name="arrays__name_and_message">Имя и сообщение</string>
   <string name="arrays__name_only">Только имя</string>
-  <string name="arrays__neither">Ничего</string>
   <string name="arrays__images">Изображения</string>
   <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
@@ -764,7 +753,8 @@ SMS-подтверждения...
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Обновить контакты</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Звонок</string>
+  <string name="conversation_callable_insecure__menu_call">Звонок</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Подробности</string>
   <string name="conversation_context__menu_copy_text">Копировать текст</string>
@@ -799,7 +789,6 @@ SMS-подтверждения...
   <string name="conversation__menu_add_attachment">Добавить вложение</string>
   <string name="conversation__menu_update_group">Обновить группу</string>
   <string name="conversation__menu_leave_group">Покинуть группу</string>
-  <string name="conversation__menu_delete_thread">Удалить разговор</string>
   <string name="conversation__menu_view_media">Все изображения</string>
   <string name="conversation__menu_conversation_settings">Настройки разговора</string>
   <!--conversation_popup-->
@@ -843,6 +832,7 @@ SMS-подтверждения...
   <string name="media_preview__save_title">Сохранить</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Предпросмотр</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Динамик</string>
   <string name="redphone_audio_popup_menu__headset">Гарнитура</string>

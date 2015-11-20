@@ -40,6 +40,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>
   <string name="AttachmentTypeSelectorAdapter_contact">連絡先情報</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">ブロックした連絡先</string>
   <!--CallScreen-->
@@ -64,8 +65,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
   <string name="ConversationItem_unable_to_open_media">このメディアを開くことができるアプリが見つかりません。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">スレッド削除確認</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">この会話を完全に削除してもよろしいですか？</string>
   <string name="ConversationActivity_add_attachment">添付</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
   <string name="ConversationActivity_compose_message">メッセージ作成</string>
@@ -180,6 +179,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">暗号化されたバックアップ・ファイルをインポート中…</string>
   <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップ・ファイルは見つかりませんでした。</string>
   <string name="ImportFragment_restore_complete">復元完了！</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>
@@ -207,13 +207,8 @@
   <string name="DeviceProvisioningActivity_continue">継続</string>
   <string name="DeviceProvisioningActivity_title">このデバイスとリンクする?</string>
   <string name="DeviceProvisioningActivity_content_intro">それができるようになります</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - あなたへのすべてのメッセージを読むこと
-        \n- あなたの名前でメッセージを送ること
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">デバイスのリンク</string>
   <string name="DeviceProvisioningActivity_content_progress_content">新しいデバイスのリンク...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">デバイスとリンクした!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">デバイスがありません。</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ネットワークエラー。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QRコードが無効。</string>
@@ -355,9 +350,6 @@
   <string name="SingleRecipientNotificationBuilder_contents_hidden">非表示コンテンツ</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
-  <string name="change_passphrase_activity__new_passphrase">新規のパスワード：</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">新規のパスワードを再入力：</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">名前もしくは番号を入力</string>
   <!--contact_selection_group_activity-->
@@ -383,6 +375,7 @@
   <string name="conversation_activity__emoji_toggle_description">絵文字キーボードを切り替え</string>
   <string name="conversation_activity__attachment_thumbnail">添付のサムネイル</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">添付ドロワーのトグル</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">メディアメッセージダウンロード</string>
   <string name="conversation_item__mms_image_description">メディアーメッセージ</string>
@@ -436,9 +429,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">入力されたテキストは妥当なURIではありません</string>
   <string name="MmsPreferencesFragment__invalid_host">入力されたテキストは妥当なホストではありません</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s グループに参加。</string>
   <string name="GroupUtil_group_updated">グループ更新。</string>
-  <string name="GroupUtil_title_is_now">現在のタイトルは \'%1$s\'。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
@@ -526,7 +517,6 @@
   <string name="arrays__disabled">無効</string>
   <string name="arrays__name_and_message">名前とメッセージ</string>
   <string name="arrays__name_only">名前のみ</string>
-  <string name="arrays__neither">もしくは</string>
   <string name="arrays__images">画像</string>
   <string name="arrays__audio">音声</string>
   <string name="arrays__video">動画</string>
@@ -646,7 +636,8 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">連絡先リストを更新</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">通話</string>
+  <string name="conversation_callable_insecure__menu_call">通話</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">メッセージの詳細</string>
   <string name="conversation_context__menu_copy_text">テキストをコピー</string>
@@ -680,7 +671,6 @@
   <string name="conversation__menu_add_attachment">添付</string>
   <string name="conversation__menu_update_group">グループを更新する</string>
   <string name="conversation__menu_leave_group">グループを抜ける</string>
-  <string name="conversation__menu_delete_thread">スレッドを削除</string>
   <string name="conversation__menu_view_media">すべての画像</string>
   <string name="conversation__menu_conversation_settings">会話設定</string>
   <!--conversation_popup-->
@@ -713,6 +703,7 @@
   <string name="media_preview__save_title">保存</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">画像プレビュー表示</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">削除</string>

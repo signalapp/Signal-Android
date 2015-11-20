@@ -46,6 +46,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Âm thanh</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Chi tiết liên lạc</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Chặn các liên lạc</string>
   <!--CallScreen-->
@@ -79,10 +80,6 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã khoá bởi vì người nhận không còn sử dụng Signal.\n\ngSẽ gửi tin nhắn không bảo mật chứ?</string>
   <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở dữ liệu truyền thông này.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Tái thiết lập việc xác nhận phiên bảo mật</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Có chắc là bạn muốn tái thiết lập phiên bảo mật này?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Xác nhận xóa chuỗi</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Bạn có chắc là muốn xóa vĩnh viễn cuộc chuyện trò này?</string>
   <string name="ConversationActivity_add_attachment">Thêm tập tin đính kèm</string>
   <string name="ConversationActivity_select_contact_info">Chọn thông tin liên lạc</string>
   <string name="ConversationActivity_compose_message">Soạn nội dung</string>
@@ -242,6 +239,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="ImportFragment_restoring_encrypted_backup">Phục hồi sao lưu có mã hóa...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Không tìm thấy sao lưu có mã hóa!</string>
   <string name="ImportFragment_restore_complete">Phục hồi hoàn tất!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Chia sẻ</string>
   <string name="InviteActivity_send_sms">Gửi SMS</string>
@@ -291,13 +289,8 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="DeviceProvisioningActivity_continue">TIẾP TỤC</string>
   <string name="DeviceProvisioningActivity_title">Liên kết thiết bị này?</string>
   <string name="DeviceProvisioningActivity_content_intro">Nó sẽ có thể </string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - Đọc tất cả tin nhắn
-        \n- Gửi tin nhắn dưới tên bạn
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Liên kết thiết bị</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Liên kết thiết bị mới...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Thiết bị được liên kết!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Không tìm thấy thiết bị nào.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Lỗi mạng.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Mã QR không đúng.</string>
@@ -492,9 +485,6 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="attachment_type_selector__contact">Liên lạc</string>
   <string name="attachment_type_selector__camera">Máy ảnh</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">CỤM TỪ MẬT KHẨU CŨ:</string>
-  <string name="change_passphrase_activity__new_passphrase">CỤM TỪ MẬT KHẨU MỚI:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">LẬP LẠI CỤM TỪ MẬT KHẨU MỚI:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Điền vào tên hoặc số</string>
   <!--contact_selection_group_activity-->
@@ -521,6 +511,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="conversation_activity__emoji_toggle_description">Chuyển bàn phím biểu tượng cảm xúc</string>
   <string name="conversation_activity__attachment_thumbnail">Ảnh nhỏ tập tin đính kèm</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Chuyển ngăn kéo tập tin đính kèm</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Tải xuống tin nhắn đa phương tiện</string>
   <string name="conversation_item__mms_image_description">Tin nhắn đa phương tiện</string>
@@ -577,9 +568,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="MmsPreferencesFragment__invalid_uri">Văn bản điền vào không phải là đường dẫn hợp lệ</string>
   <string name="MmsPreferencesFragment__invalid_host">Văn bản điền vào không phải là máy chủ hợp lệ</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s tham gia vào nhóm.</string>
   <string name="GroupUtil_group_updated">Nhóm được cập nhật.</string>
-  <string name="GroupUtil_title_is_now">Tựa đề bây giờ là \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
   <!--prompt_mms_activity-->
@@ -717,7 +706,6 @@ SMS thất bại.
   <string name="arrays__disabled">Tắt</string>
   <string name="arrays__name_and_message">Tên và tin nhắn</string>
   <string name="arrays__name_only">Tên thôi</string>
-  <string name="arrays__neither">Không cái nào cả</string>
   <string name="arrays__images">Hình ảnh</string>
   <string name="arrays__audio">Nhạc</string>
   <string name="arrays__video">Đoạn phim</string>
@@ -845,7 +833,8 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Làm tươi danh sách liên lạc</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Gọi</string>
+  <string name="conversation_callable_insecure__menu_call">Gọi</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Chi tiết tin nhắn</string>
   <string name="conversation_context__menu_copy_text">Sao chép văn bản</string>
@@ -880,7 +869,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="conversation__menu_add_attachment">Thêm tập tin đính kèm</string>
   <string name="conversation__menu_update_group">Cập nhật nhóm</string>
   <string name="conversation__menu_leave_group">Rời nhóm</string>
-  <string name="conversation__menu_delete_thread">Xóa chuỗi</string>
   <string name="conversation__menu_view_media">Tất cả hình ảnh</string>
   <string name="conversation__menu_conversation_settings">Thiết đặt chuyện trò</string>
   <!--conversation_popup-->
@@ -931,6 +919,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="media_preview__save_title">Lưu</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Xem trước Hình</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Thiết bị cầm tay</string>
   <string name="redphone_audio_popup_menu__headset">Bộ tai nghe</string>

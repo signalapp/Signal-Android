@@ -31,6 +31,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">வீடியோ</string>
   <string name="AttachmentTypeSelectorAdapter_audio">ஆடியோ</string>
   <string name="AttachmentTypeSelectorAdapter_contact">தொடர்பின் தகவல்</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
@@ -52,8 +53,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">மறையாக்கபடாத MMS-ஆக அனுப்பலாமா?</string>
   <string name="ConversationItem_unable_to_open_media">இந்த ஊடகத்தை திறக்க முடியும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">உரையாடல்நூலை நீக்க உறுதிப்படுத்தல்</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">நீங்கள் இந்த உரையாடலை நிரந்தரமாக நீக்க உறுதிசெய்கிறீர்களா? </string>
   <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
   <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
   <string name="ConversationActivity_compose_message">செய்தியை இயற்று</string>
@@ -148,6 +147,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">முன்சேமித்த மறையாக்கப்பட்ட கோப்பிலிருந்து மீட்கபடுகிறது...</string>
   <string name="ImportFragment_no_encrypted_backup_found">முன்சேமித்த  மறையாக்கப்பட்ட கோப்பு காணப்படவில்லை!</string>
   <string name="ImportFragment_restore_complete">மீட்கபடுதல் முடிந்தது!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ஸ்கேன் செய்யப்பட்ட விசை காணப்படவில்லை!</string>
@@ -174,9 +174,6 @@
   <string name="DeviceProvisioningActivity_continue">தொடர்</string>
   <string name="DeviceProvisioningActivity_title">இந்த சாதனத்தை இணைக்களாமா? </string>
   <string name="DeviceProvisioningActivity_content_intro">இதனால் முடியும் </string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- அனைத்த்து குறுஞ்செய்திகளை படிக்கமுடியும்
-\n- உங்கள் பெயர்கொண்டு செய்திகளை அனுப்பமுடியும்</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">எந்த சாதனமும் காணப்படவில்லை.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">இணையத்தில் பிழை.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR குறியீடு செல்லாது.</string>
@@ -304,9 +301,6 @@
   <!--SingleRecipientNotificationBuilder-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">பழைய கடவுச்சொல்:</string>
-  <string name="change_passphrase_activity__new_passphrase">புதிய கடவுச்சொல்:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">மீண்டும் புதிய கடவுச்சொல்:</string>
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">தொடர்புகள் இல்லை.</string>
@@ -328,6 +322,7 @@
   <string name="conversation_activity__compose_description">செய்தி தொகுப்பு</string>
   <string name="conversation_activity__emoji_toggle_description">உணர்ச்சித்திர விசைப்பலகைக்கு மாற்று</string>
   <string name="conversation_activity__attachment_thumbnail">இணைப்பின் சிறுபடம்</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">மீடியா செய்தி பதிவிறக்கப்படுகிறது</string>
   <string name="conversation_item__mms_image_description">மீடியா செய்தி</string>
@@ -381,9 +376,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">உள்ளிட்ட உரை ஒரு செல்லுபடியாகும் URI அல்ல</string>
   <string name="MmsPreferencesFragment__invalid_host">உள்ளிட்ட உரை ஒரு செல்லுபடியாகும் Host அல்ல</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s குழுவில் சேர்ந்தார்</string>
   <string name="GroupUtil_group_updated">குழு மேம்படுத்தப்பட்டது.</string>
-  <string name="GroupUtil_title_is_now">இப்போது தலைப்பு \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">திற</string>
   <!--prompt_mms_activity-->
@@ -563,7 +556,8 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">தொடர்பு பட்டியலை புதுப்பி</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">அழை</string>
+  <string name="conversation_callable_insecure__menu_call">அழை</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">செய்தி விவரங்கள்</string>
   <string name="conversation_context__menu_copy_text">உரை நகலெடு</string>
@@ -595,7 +589,6 @@
   <string name="conversation__menu_add_attachment">இணைப்பு சேர்க்க</string>
   <string name="conversation__menu_update_group">குழுவை மேம்படுத்து</string>
   <string name="conversation__menu_leave_group">குழுவிலுருந்து விலகு</string>
-  <string name="conversation__menu_delete_thread">உரையாடல்நூலை நீக்கு</string>
   <string name="conversation__menu_view_media">அனைத்து படங்கள்</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
@@ -626,6 +619,7 @@
   <string name="media_preview__save_title">சேமி</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">பட முன்னோட்டம்</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting_old_messages">நான் பழையசெய்திகள் நீக்கப்படுகிறது...</string>

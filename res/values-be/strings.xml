@@ -34,6 +34,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Відэа</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аўдыё</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Кантактная інфармацыя</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
@@ -54,8 +55,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Паўтарыць у небяспечным MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Немагчыма знайсці праграму, якая б адкрывала гэты кантэнт.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">Пацверджанне выдалення гутаркі</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Вы ўпэўнены, што хочаце пастаянна выдаляць гэтую гутарку?</string>
   <string name="ConversationActivity_add_attachment">Прыкласці дадатак</string>
   <string name="ConversationActivity_select_contact_info">Абярыце кантактную інфармацыю</string>
   <string name="ConversationActivity_compose_message">Напісаць паведамленне</string>
@@ -152,6 +151,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Аднаўленне зашыфраванай рэзервнай копіі...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ня знойдзена зашыфраваных рэзервных копій!</string>
   <string name="ImportFragment_restore_complete">Аднаўленне выканана!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ня знойдзена адсканаваных ключоў!</string>
@@ -179,10 +179,6 @@
   <string name="DeviceProvisioningActivity_continue">ПРАЦЯГНУЦЬ</string>
   <string name="DeviceProvisioningActivity_title">Прывязаць гэты дэвайс?</string>
   <string name="DeviceProvisioningActivity_content_intro">Гэта будзе магчыма</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - Прачытаць усе вашыя паведамленні
-        \n- Даслаць паведамленне на Ваша імя
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ня знойдзена дэвайсаў.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Памылка сеткі.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Няправільны QR код.</string>
@@ -300,9 +296,6 @@
   <!--SingleRecipientNotificationBuilder-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">СТАРЫ ПАРОЛЬ:</string>
-  <string name="change_passphrase_activity__new_passphrase">НОВЫ ПАРОЛЬ:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ПАЎТАРЫЦЕ НОВЫ ПАРОЛЬ:</string>
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма кантактаў.</string>
@@ -324,6 +317,7 @@
   <string name="conversation_activity__compose_description">Скласці паведамленне</string>
   <string name="conversation_activity__emoji_toggle_description">Пераключыць emoji клавіятуру</string>
   <string name="conversation_activity__attachment_thumbnail">Дадатак мініяцюры</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Запампоўка медыя паведамлення</string>
   <string name="conversation_item__mms_image_description">Медыя паведамленне</string>
@@ -376,9 +370,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">Уведзены тэкст ня быў сапраўдным URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Уведзены тэкст ня быў сапраўдным хастом</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s далучыўся да групы.</string>
   <string name="GroupUtil_group_updated">Група абноўлена.</string>
-  <string name="GroupUtil_title_is_now">Зараз назва заменена на \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Разблакіраваць</string>
   <!--prompt_mms_activity-->
@@ -553,7 +545,8 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Абнавіць спіс кантактаў</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Набраць</string>
+  <string name="conversation_callable_insecure__menu_call">Набраць</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Дэталі паведамлення</string>
   <string name="conversation_context__menu_copy_text">Капіраваць тэкст</string>
@@ -585,7 +578,6 @@
   <string name="conversation__menu_add_attachment">Прыкласці дадатак</string>
   <string name="conversation__menu_update_group">Абнавіць групу</string>
   <string name="conversation__menu_leave_group">Пакінуць групу</string>
-  <string name="conversation__menu_delete_thread">Выдаліць ланцужок</string>
   <string name="conversation__menu_view_media">Усе выявы</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
@@ -616,6 +608,7 @@
   <string name="media_preview__save_title">Захаваць</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Перадпрагляд выявы</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting_old_messages">Выдаленне старых паведамленняў...</string>

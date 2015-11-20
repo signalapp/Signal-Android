@@ -43,6 +43,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Informații contact</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacte blocate</string>
   <!--CallScreen-->
@@ -69,8 +70,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Signal.\n\nTrimit mesaj nesecurizat?</string>
   <string name="ConversationItem_unable_to_open_media">Nu a fost găsită o aplicație pentru a deschide acest tip media.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">Confirmă ștergerea conversației</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Ești sigur că dorești să ștergi permanent această conversație?</string>
   <string name="ConversationActivity_add_attachment">Adauga atasament</string>
   <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
   <string name="ConversationActivity_compose_message">Compune mesaj</string>
@@ -202,6 +201,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Se restaurează backup-ul criptat...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nu a fost găsit nici un backup criptat!</string>
   <string name="ImportFragment_restore_complete">Restaurare completa!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partajează</string>
   <string name="InviteActivity_send_sms">Trimite SMS</string>
@@ -253,10 +253,6 @@
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_cancel">ANULEAZĂ</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUĂ</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - Citirea tuturor mesajelor
-        \n- Trimiterea mesajelor în numele tău
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nu a fost gasit niciun dispozitiv.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Eroare reţea.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Cod QR invalid.</string>
@@ -441,9 +437,6 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="attachment_type_selector__contact">Contact</string>
   <string name="attachment_type_selector__camera">Camera</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">PAROLA VECHE:</string>
-  <string name="change_passphrase_activity__new_passphrase">NOUA PAROLĂ:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">REPETĂ NOUA PAROLĂ:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Introduceţi un nume sau un număr</string>
   <!--contact_selection_group_activity-->
@@ -468,6 +461,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="conversation_activity__compose_description">Compunere mesaj</string>
   <string name="conversation_activity__emoji_toggle_description">Comutare tastatură emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Pictogramă atașament</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Mesajul media se descarcă</string>
   <string name="conversation_item__mms_image_description">Mesaj media</string>
@@ -522,9 +516,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="MmsPreferencesFragment__invalid_uri">Textul introdus nu este un URI valid</string>
   <string name="MmsPreferencesFragment__invalid_host">Textul introdus nu este o gazdă validă</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s s-a alăturat grupului.</string>
   <string name="GroupUtil_group_updated">Grupul a fost actualizat.</string>
-  <string name="GroupUtil_title_is_now">Titlul este acum \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Deblochează</string>
   <!--prompt_mms_activity-->
@@ -637,7 +629,6 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="arrays__disabled">Dezactivat</string>
   <string name="arrays__name_and_message">Nume şi mesaj</string>
   <string name="arrays__name_only">Numai numele</string>
-  <string name="arrays__neither">Niciunul</string>
   <string name="arrays__images">Imagini</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
@@ -767,7 +758,8 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Actualizează lista de contacte</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Sună</string>
+  <string name="conversation_callable_insecure__menu_call">Sună</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalii mesaj</string>
   <string name="conversation_context__menu_copy_text">Copiază textul</string>
@@ -799,7 +791,6 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="conversation__menu_add_attachment">Adaugă atașament</string>
   <string name="conversation__menu_update_group">Actualizează grup</string>
   <string name="conversation__menu_leave_group">Părăseşte grupul</string>
-  <string name="conversation__menu_delete_thread">Șterge conversația</string>
   <string name="conversation__menu_view_media">Toate imaginile</string>
   <string name="conversation__menu_conversation_settings">Setări conversaţie</string>
   <!--conversation_popup-->
@@ -846,6 +837,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="media_preview__save_title">Salvează</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Previzualizare imagine</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Mobil</string>
   <string name="redphone_audio_popup_menu__headset">Căști</string>

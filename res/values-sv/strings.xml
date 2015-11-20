@@ -44,6 +44,7 @@ Stäng av låsskärm för meddelanden?</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ljud</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformation</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blockerade kontakter</string>
   <!--CallScreen-->
@@ -73,10 +74,6 @@ verifiera denna kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denna meddelande kommer <b>inte</b> krypterades eftersom mottagaren inte längre är en Signal-användare. \n\nSkicka osäkert meddelande?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ej hitta app som kan öppna denna media.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Bekräftelse för återställande av säker session</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Är du säker att du vill återställa denna säkra session?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Bekräfta radering av tråd</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Är du säker att du vill permanent radera denna konversation?</string>
   <string name="ConversationActivity_add_attachment">Bifoga fil</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Skriv meddelande</string>
@@ -233,6 +230,7 @@ som inte finns i säkerhetskopian.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Återställer krypterad säkerhetskopia...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ingen krypterad säkerhetskopia kunde hittas!</string>
   <string name="ImportFragment_restore_complete">Återställningen lyckades!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dela</string>
   <string name="InviteActivity_send_sms">Skicka SMS</string>
@@ -279,12 +277,8 @@ som inte finns i säkerhetskopian.</string>
   <string name="DeviceProvisioningActivity_continue">FORTSÄTT</string>
   <string name="DeviceProvisioningActivity_title">Länka den här enheten?</string>
   <string name="DeviceProvisioningActivity_content_intro">Den kommer att kunna</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- Läsa alla dina meddelanden
-\n- Skicka meddelanden i ditt namn</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Länkar enhet</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Länkar ny enhet...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Enhet länkad</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet hittades.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nätverksfel.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ogiltig QR-kod.</string>
@@ -472,9 +466,6 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">GAMMALT LÖSENORD:</string>
-  <string name="change_passphrase_activity__new_passphrase">NYTT LÖSENORD:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">UPPREPA NYTT LÖSENORD:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Skriv in namn eller nummer</string>
   <!--contact_selection_group_activity-->
@@ -501,6 +492,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="conversation_activity__emoji_toggle_description">Växla till emoji-tangentbord</string>
   <string name="conversation_activity__attachment_thumbnail">Bifogad miniatyrbild</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Dölj/visa bilagor</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Laddar ner mediameddelande</string>
   <string name="conversation_item__mms_image_description">Mediameddelande</string>
@@ -558,9 +550,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="MmsPreferencesFragment__invalid_uri">Texten var inte en giltig URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Texten var inte ett giltigt värdnamn</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s gick med i gruppen.</string>
   <string name="GroupUtil_group_updated">Grupp uppdaterad.</string>
-  <string name="GroupUtil_title_is_now">Titeln är nu \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
   <!--prompt_mms_activity-->
@@ -682,7 +672,6 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__disabled">Inaktiverad</string>
   <string name="arrays__name_and_message">Namn och meddelande</string>
   <string name="arrays__name_only">Endast namn</string>
-  <string name="arrays__neither">Varken eller</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Ljud</string>
   <string name="arrays__video">Video</string>
@@ -810,7 +799,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Uppdaterar kontaktlistan</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Ring</string>
+  <string name="conversation_callable_insecure__menu_call">Ring</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Meddelandedetaljer</string>
   <string name="conversation_context__menu_copy_text">Kopiera text</string>
@@ -845,7 +835,6 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="conversation__menu_add_attachment">Bifoga fil</string>
   <string name="conversation__menu_update_group">Uppdatera grupp</string>
   <string name="conversation__menu_leave_group">Lämna grupp</string>
-  <string name="conversation__menu_delete_thread">Radera tråd</string>
   <string name="conversation__menu_view_media">Alla bilder</string>
   <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>
   <!--conversation_popup-->
@@ -896,6 +885,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="media_preview__save_title">Spara</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Förhandsvisning av bild</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Mobiltelefon</string>
   <string name="redphone_audio_popup_menu__headset">Hörlurar</string>

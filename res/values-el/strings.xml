@@ -44,6 +44,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Βίντεο</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ήχος</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Επαφή</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Μπλοκαρισμένες επαφές</string>
   <!--CallScreen-->
@@ -76,10 +77,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δεν</b> θα κρυπτογραφηθεί, επειδή ο παραλήπτης δεν είναι πλέον χρήστης του Signal.\n\nΝα σταλεί το μήνυμα μη κρυπτογραφημένο;</string>
   <string name="ConversationItem_unable_to_open_media">Δεν μπορεί να βρεθεί κατάλληλη εφαρμογή για το άνοιγμα αυτού του πολυμέσου.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Επιβεβαίωση επαναφοράς ασφαλούς συνεδρίας</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Είσαι σίγουρος/η πως θέλεις να επαναφέρεις αυτή την ασφαλή συνεδρία;</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Επιβεβαίωση διαγραφής συζήτησης</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Είσαι σίγουρος/η πως θέλεις να διαγράψεις οριστικά αυτήν τη συζήτηση;</string>
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
   <string name="ConversationActivity_select_contact_info">Επιλογή πληροφοριών επαφής</string>
   <string name="ConversationActivity_compose_message">Νέο μήνυμα</string>
@@ -247,6 +244,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Επαναφορά κρυπτογραφημένου αντίγραφου ασφαλείας...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Δε βρέθηκε κρυπτογραφημένο αντίγραφο ασφαλείας!</string>
   <string name="ImportFragment_restore_complete">Η επαναφορά ολοκληρώθηκε!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Διαμοιρασμός</string>
   <string name="InviteActivity_send_sms">Αποστολή SMS</string>
@@ -301,12 +299,8 @@
   <string name="DeviceProvisioningActivity_continue">ΣΥΝΕΧΕΙΑ</string>
   <string name="DeviceProvisioningActivity_title">Σύνδεση αυτής της συσκευής;</string>
   <string name="DeviceProvisioningActivity_content_intro">Θα είναι σε θέση να</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-Διαβάσει όλα τα μηνύματά σου
-\n- Στείλει μηνύματα με το όνομά σου</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Σύνδεση συσκευής</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Σύνδεση νέας συσκευής...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Η συσκευή συνδέθηκε!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Δεν βρέθηκε συσκευή.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Σφάλμα δικτύου</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Άκυρος QR κωδικός.</string>
@@ -501,9 +495,6 @@
   <string name="attachment_type_selector__contact">Επαφή</string>
   <string name="attachment_type_selector__camera">Κάμερα</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">ΠΑΛΙΟ ΣΥΝΘΗΜΑΤΙΚΟ</string>
-  <string name="change_passphrase_activity__new_passphrase">ΝΕΟ ΣΥΝΘΗΜΑΤΙΚΟ:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ΕΠΑΝΑΛΗΨΗ ΝΕΟΥ ΣΥΝΘΗΜΑΤΙΚΟΥ:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Εισαγωγή ονόματος ή αριθμού</string>
   <!--contact_selection_group_activity-->
@@ -530,6 +521,7 @@
   <string name="conversation_activity__emoji_toggle_description">Εναλλαγή πληκτρολογίου emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Μικρογραφία συνημμένου</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Εναλλαγή συρταριού συννημένων</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Το μήνυμα πολυμέσων κατεβαίνει</string>
   <string name="conversation_item__mms_image_description">Μήνυμα πολυμέσων</string>
@@ -591,9 +583,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">Το κείμενο που εισάχθηκε δεν ήταν έγκυρο URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Το κείμενο που εισάχθηκε δεν ήταν έγκυρο υποδοχής</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">Οι %1$s μπήκαν στην ομάδα.</string>
   <string name="GroupUtil_group_updated">Η Ομάδα ενημερώθηκε.</string>
-  <string name="GroupUtil_title_is_now">Ο τίτλος είναι \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ξεκλείδωμα</string>
   <!--prompt_mms_activity-->
@@ -730,7 +720,6 @@
   <string name="arrays__disabled">Απενεργοποιημένο</string>
   <string name="arrays__name_and_message">Όνομα και μήνυμα</string>
   <string name="arrays__name_only">Μόνο όνομα</string>
-  <string name="arrays__neither">Κανένα από τα δύο</string>
   <string name="arrays__images">Εικόνες</string>
   <string name="arrays__audio">Ήχος</string>
   <string name="arrays__video">Βίντεο</string>
@@ -858,7 +847,8 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Ανανέωση της λίστας επαφών</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Κλήση</string>
+  <string name="conversation_callable_insecure__menu_call">Κλήση</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Στοιχεία μηνύματος</string>
   <string name="conversation_context__menu_copy_text">Αντιγραφή κειμένου</string>
@@ -893,7 +883,6 @@
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>
   <string name="conversation__menu_update_group">Ενημέρωση ομάδας</string>
   <string name="conversation__menu_leave_group">Αποχώρηση από την ομάδα</string>
-  <string name="conversation__menu_delete_thread">Διαγραφή συζήτησης</string>
   <string name="conversation__menu_view_media">Όλες οι εικόνες</string>
   <string name="conversation__menu_conversation_settings">Επιλογές συζήτησης</string>
   <!--conversation_popup-->
@@ -944,6 +933,7 @@
   <string name="media_preview__save_title">Αποθήκευση</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Προεπισκόπηση εικόνας</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Ηχείο συσκευής</string>
   <string name="redphone_audio_popup_menu__headset">Ακουστικά</string>

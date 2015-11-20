@@ -44,6 +44,8 @@ Izklopim zaklep zaslona za sporočila?</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Zvok</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Podatki o stiku</string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Napaka pri predvajanju zvoka!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokirani stiki</string>
   <!--CallScreen-->
@@ -72,10 +74,11 @@ preveriti ta stik.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker prejemnik ni več uporabnik aplikacije Signal.\n\nPošljem nešifrirano?</string>
   <string name="ConversationItem_unable_to_open_media">Ne najdem aplikacije za odpiranje te vrste datotek.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Potrdilo o ponastavitvi varne seje</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Ste prepričani, da želite ponastaviti to varno sejo?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Potrditev brisanja pogovora</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Ste prepričani, da želite trajno izbrisati pogovor?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
+  <string name="ConversationActivity_reset">Ponastavi</string>
+  <string name="ConversationActivity_delete_thread_question">Izbrišem pogovor?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">To bo nepovratno izbrisalo vsa sporočila tega pogovora.</string>
   <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
   <string name="ConversationActivity_select_contact_info">Izberi podatke o stiku</string>
   <string name="ConversationActivity_compose_message">Sestavi sporočilo</string>
@@ -110,6 +113,7 @@ preveriti ta stik.</string>
   <string name="ConversationActivity_unblock">Odblokiraj</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ni na voljo</string>
+  <string name="ConversationActivity_unable_to_record_audio">Snemanje zvoka ni mogoče!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti sporočila</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Način prenosa: %1$s\nPoslano/Prejeto: %2$s</string>
@@ -240,6 +244,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="ImportFragment_restoring_encrypted_backup">Obnavljam iz šifrirane varnostne kopije...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ne najdem nobene šifrirane varnostne kopije!</string>
   <string name="ImportFragment_restore_complete">Obnova dokončana!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deli</string>
   <string name="InviteActivity_send_sms">Pošlji SMS</string>
@@ -278,6 +283,12 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
   <string name="NotificationBarManager_missed_call_from_s">Neodgovorjen klic od %s</string>
   <string name="NotificationBarManager_missed_signal_call">Neodgovorjen klic Signal</string>
+  <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Dohodni klic Signal</string>
+  <string name="NotificationBarManager__deny_call">Zavrni klic</string>
+  <string name="NotificationBarManager__answer_call">Odgovori</string>
+  <string name="NotificationBarManager__end_call">Zaključi klic</string>
+  <string name="NotificationBarManager__cancel_call">Prekini klic</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Večpredstavno sporočilo</string>
   <!--MessageRecord-->
@@ -299,11 +310,11 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="DeviceProvisioningActivity_title">Povežem napravo?</string>
   <string name="DeviceProvisioningActivity_content_intro">Lahko bo</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-- prebirala vsa vaša sporočila
-\n- pošiljala sporočila v vašem imenu</string>
+• Branje vseh vaših sporočil
+\n• Pošiljanje sporočil v vašem imenu</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Povezujem napravo</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Povezujem novo napravo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Naprava povezana!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Naprava je potrjena!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nobena naprava ni bila najdena.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Napaka omrežja.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neveljavna koda QR.</string>
@@ -493,9 +504,9 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="attachment_type_selector__contact">Stik</string>
   <string name="attachment_type_selector__camera">Kamera</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Staro geslo:</string>
-  <string name="change_passphrase_activity__new_passphrase">Novo geslo:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Ponovi novo geslo:</string>
+  <string name="change_passphrase_activity__old_passphrase">Staro geslo</string>
+  <string name="change_passphrase_activity__new_passphrase">Novo geslo</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Ponovno vnesite novo geslo</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Vnesite ime ali številko...</string>
   <!--contact_selection_group_activity-->
@@ -522,6 +533,8 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="conversation_activity__emoji_toggle_description">Vklop tipkovnice emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Predogledna sličica priponke</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Vklopi poteznik za priponke</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">ZA PREKINITEV PODRSAJTE</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Nalagam multimedijsko sporočilo</string>
   <string name="conversation_item__mms_image_description">Multiedijsko sporočilo</string>
@@ -583,9 +596,14 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="MmsPreferencesFragment__invalid_uri">Vnesli ste neveljaven URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Vnesli ste neveljaven naslov gostitelja</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">Oseba %1$s se je pridružila skupini.</string>
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s stik se je priključil skupini.</item>
+    <item quantity="two">%1$s stika sta se priključila skupini.</item>
+    <item quantity="few">%1$s stiki so se priključili skupini.</item>
+    <item quantity="other">%1$s stikov se je priključilo skupini.</item>
+  </plurals>
   <string name="GroupUtil_group_updated">Skupina je bila posodobljena.</string>
-  <string name="GroupUtil_title_is_now">Naslov je zdaj: \'%1$s\'.</string>
+  <string name="GroupUtil_group_name_is_now">Ime skupine je zdaj \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odkleni</string>
   <!--prompt_mms_activity-->
@@ -708,7 +726,7 @@ bila uspešna.</string>
   <string name="arrays__disabled">Izklopljeno</string>
   <string name="arrays__name_and_message">Pošiljatelj in sporočilo</string>
   <string name="arrays__name_only">Samo pošiljatelj</string>
-  <string name="arrays__neither">Brez</string>
+  <string name="arrays__no_name_or_message">Ne pošiljatelj ne sporočilo</string>
   <string name="arrays__images">Slike</string>
   <string name="arrays__audio">Zvok</string>
   <string name="arrays__video">Video</string>
@@ -758,6 +776,7 @@ bila uspešna.</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Utripenje LED je nastavljeno!</string>
   <string name="preferences__sound">Zvok</string>
   <string name="preferences__change_notification_sound">Spremeni zvok za obvestila</string>
+  <string name="preferences__silent">Tiho</string>
   <string name="preferences__inthread_notifications">Notranja obvestila</string>
   <string name="preferences__play_inthread_notifications">Ob ogledu aktivnega pogovora predvajaj zvok za obvestila</string>
   <string name="preferences__repeat_alerts">Ponavljanje alarma</string>
@@ -802,6 +821,7 @@ bila uspešna.</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
   <string name="preferences__trim_all_threads_now">Obreži vse pogovore zdaj</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Preišči vse pogovore in uveljavi omejitve njihove dolžine</string>
+  <string name="preferences__devices">Naprave</string>
   <string name="preferences__light_theme">Svetla</string>
   <string name="preferences__dark_theme">Temna</string>
   <string name="preferences__appearance">Izgled</string>
@@ -838,7 +858,9 @@ bila uspešna.</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Osveži seznam stikov</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Kliči</string>
+  <string name="conversation_callable_insecure__menu_call">Kliči</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Klic Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Podrobnosti sporočila</string>
   <string name="conversation_context__menu_copy_text">Kopiraj besedilo</string>
@@ -924,6 +946,8 @@ bila uspešna.</string>
   <string name="media_preview__save_title">Shrani</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Ogled slike</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Osveži</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Prostoročni komplet</string>
   <string name="redphone_audio_popup_menu__headset">Slušalke</string>
@@ -934,5 +958,8 @@ bila uspešna.</string>
   <string name="trimmer__old_messages_successfully_deleted">Stara sporočila so bila uspešno izbrisana</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Za povezavo skeniraj kodo QR na napravi</string>
+  <string name="device_link_fragment__link_device">Poveži z napravo</string>
+  <string name="device_list_fragment__link_new_device">Poveži z novo napravo</string>
   <!--EOF-->
 </resources>

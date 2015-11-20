@@ -44,6 +44,7 @@ Képernyő zárolásának tiltása az üzeneteknél?</string>
   <string name="AttachmentTypeSelectorAdapter_video">Videó</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Hang</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Névjegy infó</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Tiltott névjegyek</string>
   <!--CallScreen-->
@@ -54,12 +55,13 @@ Képernyő zárolásának tiltása az üzeneteknél?</string>
         lehallgatni a kommunikációdat, vagy hogy %2$s egyszerűen újratelepítette a Signal-t és most új 
         azonosító kulcsa van.
     </string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Talán érdemes ellenőrizni
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Talán érdemes ellenőrizned
 ezt a névjegyet.
  </string>
   <string name="ConfirmIdentityDialog_accept">Elfogad</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Üzenet %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal Hívás %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Üzenet mérete: %d kB</string>
   <string name="ConversationItem_expires_s">Lejár: %s</string>
@@ -76,10 +78,6 @@ ezt a névjegyet.
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet <b>nem</b> lesz titkosítva, mert a fogadó már nem Signal felhasználó.\n\nTitkosítatlan üzenet küldése?</string>
   <string name="ConversationItem_unable_to_open_media">Nem található alkalmazás ezen médiafájl megnyitásához.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Biztonságos munkamenet alaphelyzetbe állítása megerősítés</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Biztosan alaphelyzetbe akarod állítani ezt a biztonságos munkamenetet?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Üzenetfolyam törlésének megerősítése</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Biztosan teljesen törölni szeretnéd ezt a beszélgetést?</string>
   <string name="ConversationActivity_add_attachment">Melléklet hozzáadása</string>
   <string name="ConversationActivity_select_contact_info">Válassz névjegy infót!</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
@@ -126,10 +124,11 @@ ezt a névjegyet.
     <item quantity="one">Ez azonnal törölni fogja a kiválasztott üzenetet.</item>
     <item quantity="other">Ez azonnal törölni fogja mind a(z) %1$d kiválasztott üzenetet.</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Mentsük a tárolóra?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Hiba történt a melléklet mentése közben!</string>
+  <string name="ConversationFragment_save_to_sd_card">Mentés tárolóra?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Ez a média mentése a tárolóra lehetővé teszi bármelyik másik alkalmazásnak a készülékeden, hogy hozzáférjen.\n\nFolytatod?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Hiba történt a melléklet tárolóra mentése közben!</string>
   <string name="ConversationFragment_success_exclamation">Sikerült!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet a tárolóra írni!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet írni a tárolóra!</string>
   <string name="ConversationFragment_saving_attachment">Melléklet mentése</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Melléklet mentése a tárolóra...</string>
   <string name="ConversationFragment_pending">Függőben...</string>
@@ -182,8 +181,13 @@ ezt a névjegyet.
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">A TextSecure és a RedPhone most egy alkalmazás: Signal. Koppints a felfedezéshez.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportálás</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Nyílt szöveg exportálása tárolóra?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Figyelem, ez exportálni fogja a Signal üzeneteid nyílt szöveg tartalmait a tárolóra.</string>
   <string name="ExportFragment_cancel">Mégse</string>
   <string name="ExportFragment_exporting">Exportálás</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Nyílt szöveg exportálása tárolóra...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Hiba, nem lehet írni a tárolóra.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Hiba a tárolóra írás közben.</string>
   <string name="ExportFragment_success">Sikerült!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
@@ -202,7 +206,9 @@ ezt a névjegyet.
   <string name="GroupCreateActivity_menu_create_title">Csoport létrehozása</string>
   <string name="GroupCreateActivity_creating_group">Létrehozás %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Frissítés %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s-t nem lehet hozzáadni, mert nem egy Signal felhasználó.</string>
   <string name="GroupCreateActivity_loading_group_details">A csoport részleteinek betöltése...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Már a csoportban vagy.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Én</string>
   <!--ImportExportActivity-->
@@ -223,19 +229,20 @@ ezt a névjegyet.
         a biztonsági mentésben.
     </string>
   <string name="ImportFragment_restore">Visszaállítás</string>
-  <string name="ImportFragment_import_plaintext_backup">Titkosítatlan biztonsági mentés importálása?</string>
+  <string name="ImportFragment_import_plaintext_backup">Nyílt szöveg biztonsági mentés importálása?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Ez importálni fogja
-az üzeneteket egy titkosítatlan biztonsági mentésből. Ha már korábban importáltad ezt a biztonsági mentést,
+az üzeneteket egy nyílt szöveg biztonsági mentésből. Ha már korábban importáltad ezt a biztonsági mentést,
 akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="ImportFragment_importing">Importálás</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Titkosítatlan biztonsági mentés importálása...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">Nem található kódolatlan biztonsági mentés!</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Nyílt szöveg biztonsági mentés importálása...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Nem található nyílt szöveg biztonsági mentés!</string>
   <string name="ImportFragment_error_importing_backup">Hiba a biztonsági mentés importálásakor!</string>
   <string name="ImportFragment_import_complete">Importálás befejezve!</string>
   <string name="ImportFragment_restoring">Visszaállítás</string>
   <string name="ImportFragment_restoring_encrypted_backup">Kódolt biztonsági mentés visszaállítása...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nem található titkosított biztonsági mentés!</string>
   <string name="ImportFragment_restore_complete">Visszaállítás befejezve!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Megosztás</string>
   <string name="InviteActivity_send_sms">SMS küldése</string>
@@ -244,6 +251,14 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="InviteActivity_heart_content_description">Szív</string>
   <string name="InviteActivity_invitations_sent">Meghívók elküldve!</string>
   <string name="InviteActivity_invite_to_signal">Meghívás Signal-ba</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">KÜLDÉS 1 BARÁTNAK</item>
+    <item quantity="other">KÜLDÉS %d BARÁTNAK</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">1 SMS meghívó küldése?</item>
+    <item quantity="other">%d SMS meghívó küldése?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Válts Signal-ra: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Úgy néz ki, hogy nincs egy alkalmazásod se a megosztáshoz.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">A barátok nem hagyják a barátoknak, hogy titkosítatlanul csevegjenek.</string>
@@ -282,12 +297,8 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="DeviceProvisioningActivity_continue">FOLYTATÁS</string>
   <string name="DeviceProvisioningActivity_title">Társítod ezt az eszközt?</string>
   <string name="DeviceProvisioningActivity_content_intro">Képes lesz</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- Az összes üzenet olvasása
-\n- Üzenetek küldése a nevedben</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Eszköz társítása</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Új eszköz társítása</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Eszköz társítva!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nem található eszköz</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Hálózati hiba</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Érvénytelen QR kód</string>
@@ -418,6 +429,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">A címzettnek nincs azonosító kulcsa.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">A címzettnek nincs azonosító kulcsa!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Kulcs szkennelése összehasonlításhoz</string>
+  <string name="VerifyIdentityActivity_get_your_key_scanned">Szkenneld be a kulcsod</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">FIGYELEM! A szkennelt kulcs NEM EGYEZIK! Ellenőrizd figyelmesen az ujjlenyomat-szöveget.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NEM ellenőrzött!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">A kulcsok helyesek. Szükséges továbbá, hogy mások is ellenőrizzék a kulcsodat.</string>
@@ -429,8 +441,9 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="ViewIdentityActivity_get_scanned_to_compare">Szkennelés elvégzése összehasonlításhoz</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">FIGYELEM! A szkennelt kulcs NEM EGYEZIK!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NEM ellenőrzött!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Az átvizsgált kulcs egyezik!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">A szkennelt kulcs egyezik!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Ellenőrzött!</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Azonosító ujjlenyomatod</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Kezdeményezed a létező kérés ellenére?</string>
   <string name="KeyExchangeInitiator_send">Küldés</string>
@@ -489,9 +502,6 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="attachment_type_selector__contact">Névjegy</string>
   <string name="attachment_type_selector__camera">Kamera</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">RÉGI JELSZÓ:</string>
-  <string name="change_passphrase_activity__new_passphrase">ÚJ JELSZÓ:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ISMÉTELD MEG AZ ÚJ JELSZÓT:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Írj be egy nevet vagy egy számot</string>
   <!--contact_selection_group_activity-->
@@ -518,6 +528,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="conversation_activity__emoji_toggle_description">Váltás a hangulatjelek beviteléhez</string>
   <string name="conversation_activity__attachment_thumbnail">Melléklet előnézet</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Közvetlen mellékletfelvétel</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Média üzenet letöltése</string>
   <string name="conversation_item__mms_image_description">Média üzenet</string>
@@ -556,9 +567,14 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="database_migration_activity__importing">IMPORTÁLÁS</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Adatbázis frissítés...</string>
-  <string name="export_fragment__export_plaintext_backup">Titkosítatlan biztonsági mentés exportálása</string>
+  <string name="export_fragment__export_plaintext_backup">Nyílt szöveg biztonsági mentés exportálása</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Az \'SMS Backup &amp; Restore\'-ral kompatibilis nyílt szöveg biztonsági mentés exportálása tárolóra</string>
   <string name="import_fragment__import_system_sms_database">Rendszer SMS adatbázis importálása</string>
-  <string name="import_fragment__import_plaintext_backup">Titkosítatlan biztonsági mentés importálása</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Adatbázis importálása az alapértelmezett rendszer üzenetküldő alkalmazásból</string>
+  <string name="import_fragment__restore_encrypted_backup">Titkosított biztonsági mentés visszaállítása</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Egy korábban exportált titkosított Signal biztonsági mentés visszaállítása</string>
+  <string name="import_fragment__import_plaintext_backup">Nyílt szöveg biztonsági mentés importálása</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Nyílt szöveg biztonsági mentés fájl importálása. Kompatibilis az \'SMS Backup &amp; Restore\'-ral.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Teljes beszélgetés megnézése</string>
   <!--media_overview_activity-->
@@ -574,9 +590,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="MmsPreferencesFragment__invalid_uri">A megadott szöveg nem érvényes -URI- azonosító</string>
   <string name="MmsPreferencesFragment__invalid_host">A megadott szöveg nem érvényes kiszolgáló</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s csatlakozott a csoporthoz.</string>
   <string name="GroupUtil_group_updated">A csoport frissítése megtörtént.</string>
-  <string name="GroupUtil_title_is_now">A felirat mostantól \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Feloldás</string>
   <!--prompt_mms_activity-->
@@ -712,18 +726,19 @@ sikertelen.
   <string name="AndroidManifest__invite_friends">Barátok meghívása</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás / Exportálás</string>
+  <string name="arrays__your_identity_key">Azonosító kulcsod</string>
   <string name="arrays__use_default">Alapértelmezett</string>
   <string name="arrays__use_custom">Egyéni</string>
   <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
   <string name="arrays__mute_for_two_hours">Némítás 2 órára</string>
   <string name="arrays__mute_for_one_day">Némítás 1 napra</string>
   <string name="arrays__mute_for_seven_days">Némítás 7 napra</string>
+  <string name="arrays__mute_for_one_year">Némítás 1 évre</string>
   <string name="arrays__settings_default">Alapértelmezett beállítások</string>
   <string name="arrays__enabled">Engedélyezett</string>
   <string name="arrays__disabled">Letiltott</string>
   <string name="arrays__name_and_message">Név és üzenet</string>
   <string name="arrays__name_only">Csak név</string>
-  <string name="arrays__neither">Egyik sem</string>
   <string name="arrays__images">Képek</string>
   <string name="arrays__audio">Hang</string>
   <string name="arrays__video">Videó</string>
@@ -748,6 +763,7 @@ sikertelen.
   <string name="preferences__choose_identity">Azonosító választása</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Bejegyzés választása a névjegyzékből.</string>
   <string name="preferences__change_passphrase">Jelszó megváltoztatása</string>
+  <string name="preferences__change_your_passphrase">Változtasd meg a jelmondatod</string>
   <string name="preferences__enable_passphrase">Jelszó engedélyezése</string>
   <string name="preferences__passphrase_summary">Jelszó %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Zárolt képernyő engedélyezése az üzeneteknek</string>
@@ -850,7 +866,8 @@ sikertelen.
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Névjegyzék frissítése</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Hívás</string>
+  <string name="conversation_callable_insecure__menu_call">Hívás</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Üzenet részletei</string>
   <string name="conversation_context__menu_copy_text">Szöveg másolása</string>
@@ -885,7 +902,6 @@ sikertelen.
   <string name="conversation__menu_add_attachment">Melléklet hozzáadása</string>
   <string name="conversation__menu_update_group">Csoport frissítése</string>
   <string name="conversation__menu_leave_group">Csoport elhagyása</string>
-  <string name="conversation__menu_delete_thread">Beszélgetésfolyam törlése</string>
   <string name="conversation__menu_view_media">Összes fénykép</string>
   <string name="conversation__menu_conversation_settings">Beszélgetés beállítások</string>
   <!--conversation_popup-->
@@ -936,6 +952,7 @@ sikertelen.
   <string name="media_preview__save_title">Mentés</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Kép előnézet</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Kézibeszélő</string>
   <string name="redphone_audio_popup_menu__headset">Fejhallgató</string>

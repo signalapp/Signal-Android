@@ -40,6 +40,7 @@ Deaktivér låseskærm for beskeder?
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Lyd</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformation</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokerede kontakter</string>
   <!--CallScreen-->
@@ -63,8 +64,6 @@ denne kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Godkend ukrypteret MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ikke finde en app, der kan åbne denne fil.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">Bekræft sletning af tråd</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Er du sikker på, du vil slette denne samtale permanent?</string>
   <string name="ConversationActivity_add_attachment">Vedhæft fil</string>
   <string name="ConversationActivity_select_contact_info">Vælg kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Opret besked</string>
@@ -182,6 +181,7 @@ vil det resultere i dupletter.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Gendanner krypteret backup...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Der blev ikke fundet en krypteret backup!</string>
   <string name="ImportFragment_restore_complete">Gendannelse fuldført!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannet nøgle fundet!</string>
@@ -209,13 +209,8 @@ vil det resultere i dupletter.</string>
   <string name="DeviceProvisioningActivity_continue">FORTSÆT</string>
   <string name="DeviceProvisioningActivity_title">Tilkobl denne enhed?</string>
   <string name="DeviceProvisioningActivity_content_intro">Den vil være i stand til at</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- Læse alle dine beskeder
-\n- Sende beskeder i dit navn
-</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Tilkobler enhed</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Tilkobler ny enhed...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Enhed tilkoblet!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhed fundet.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netværksfejl.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
@@ -373,10 +368,8 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Indhold skjult</string>
   <!--attachment_type_selector-->
+  <string name="attachment_type_selector__audio">Lyd</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">NUVÆRENDE KODEORD:</string>
-  <string name="change_passphrase_activity__new_passphrase">NYT KODEORD:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">GENTAG NYT KODEORD:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Indtast navn eller nummer</string>
   <!--contact_selection_group_activity-->
@@ -402,6 +395,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="conversation_activity__emoji_toggle_description">Slå Emoji-tastatur til/fra</string>
   <string name="conversation_activity__attachment_thumbnail">Vedhæftet fil-miniature</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Slå vedhæftet fil-skuffe til/fra</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">MMS hentes</string>
   <string name="conversation_item__mms_image_description">Multimediebesked</string>
@@ -455,9 +449,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="MmsPreferencesFragment__invalid_uri">Den indtastede tekst er ikke en gyldig URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Den indtastede tekst er ikke en gyldig værtsmaskine</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s tilsluttede sig gruppen.</string>
   <string name="GroupUtil_group_updated">Gruppe opdateret.</string>
-  <string name="GroupUtil_title_is_now">Titel er nu \"%1$s\".</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås op</string>
   <!--prompt_mms_activity-->
@@ -472,6 +464,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="recipient_preferences__color">Farve</string>
   <string name="recipient_preferences__color_for_this_contact">Denne kontakts farve</string>
   <!--- redphone_call_controls-->
+  <string name="redphone_call_controls__audio">Lyd</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">DIT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDEKODE OG DIT
@@ -546,7 +539,6 @@ mislykkedes.</string>
   <string name="arrays__disabled">Deaktiveret</string>
   <string name="arrays__name_and_message">Navn og besked</string>
   <string name="arrays__name_only">Kun navn</string>
-  <string name="arrays__neither">Ingen af dem</string>
   <string name="arrays__images">Billeder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
@@ -667,7 +659,8 @@ mislykkedes.</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Opdatér kontaktliste</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Opkald</string>
+  <string name="conversation_callable_insecure__menu_call">Opkald</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Beskeddetaljer</string>
   <string name="conversation_context__menu_copy_text">Kopiér tekst</string>
@@ -701,7 +694,6 @@ mislykkedes.</string>
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
   <string name="conversation__menu_update_group">Opdatér gruppe</string>
   <string name="conversation__menu_leave_group">Forlad gruppe</string>
-  <string name="conversation__menu_delete_thread">Slet tråd</string>
   <string name="conversation__menu_view_media">Alle billeder</string>
   <string name="conversation__menu_conversation_settings">Samtaleindstillinger</string>
   <!--conversation_popup-->
@@ -734,6 +726,7 @@ mislykkedes.</string>
   <string name="media_preview__save_title">Gem</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Forhåndsvisning af billede</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Sletter</string>

@@ -42,6 +42,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Görüntü</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ses</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kişi bilgisi</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Engellenmiş kişiler</string>
   <!--CallScreen-->
@@ -66,10 +67,6 @@ isteyebilirsiniz.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrelenmemiş MMS geri düşülmesi?</string>
   <string name="ConversationItem_unable_to_open_media">Bu medyayı açabilen bir uygulama bulunamadı.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Güvenli oturumu sıfırlama onayı</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Bu güvenli oturumu sıfırlamak istediğinizden emin misiniz?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Başlık silmeyi onayla</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Bu konuşmayı kalıcı olarak silmek istediğinizden emin misiniz?</string>
   <string name="ConversationActivity_add_attachment">Ek ekle</string>
   <string name="ConversationActivity_select_contact_info">Kişi bilgisi seç</string>
   <string name="ConversationActivity_compose_message">Mesaj Yaz</string>
@@ -101,12 +98,16 @@ isteyebilirsiniz.</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Bu kişinin engelini kaldırmak istediğinizden emin misiniz?</string>
   <string name="ConversationActivity_unblock">Engeli kaldır</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Dosya ekiniz gönderdiğiniz mesaj türü için olan boyut limitini aşıyor.</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Kamera açılamıyor</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Mesaj detayları</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Taşıma: %1$s\nGönderme/Alma: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Gönderici: %1$s\nTaşıma: %2$s\nGönderildi: %3$s\nAlındı: %4$s</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">Seçilen mesajları sil?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="other">Bu işlem seçtiğiniz %1$d mesajın hepsini kalıcı olarak silecek.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Depolama alanına kaydedilsin mi?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Depolama alanına ek kaydedilirken hata!</string>
@@ -143,6 +144,7 @@ isteyebilirsiniz.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_network_connection_failed">Ağa bağlanılamadı....</string>
   <string name="DeviceListActivity_try_again">Tekrar dene</string>
+  <string name="DeviceListActivity_network_failed">Ağ hatası!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">İsimsiz cihaz</string>
   <!--ShareActivity-->
@@ -194,6 +196,7 @@ isteyebilirsiniz.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Şifrelenmiş yedek yeniden yükleniyor...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Şifrelenmiş yedek bulunamadı!</string>
   <string name="ImportFragment_restore_complete">Yeniden yükleme tamamlandı!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Paylaş</string>
   <string name="InviteActivity_send_sms">SMS Gönder</string>
@@ -229,9 +232,6 @@ isteyebilirsiniz.</string>
   <string name="DeviceProvisioningActivity_continue">DEVAM ET</string>
   <string name="DeviceProvisioningActivity_title">Bu cihazı bağla?</string>
   <string name="DeviceProvisioningActivity_content_intro">mümkün olacak</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- Tüm mesajlarınızı okuyunuz
-\n-Mesajları adınızla gönderiniz</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Hiç cihaz bulanamadı.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Ağ hatası.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Geçersiz QR kodu.</string>
@@ -264,6 +264,7 @@ isteyebilirsiniz.</string>
   <string name="RedPhone_busy">Meşgul</string>
   <string name="RedPhone_connected">Bağlanıldı</string>
   <string name="RedPhone_connecting">Bağlanılıyor</string>
+  <string name="RedPhone_network_failed">Ağ hatası!</string>
   <string name="RedPhone_login_failed">Giriş yapılamadı!</string>
   <string name="RedPhone_number_not_registered">Numara kayıtlı değil!</string>
   <!--RegistrationActivity-->
@@ -383,9 +384,6 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__camera">Kamera</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">ESKİ PAROLA:</string>
-  <string name="change_passphrase_activity__new_passphrase">YENİ PAROLA:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">YENİ PAROLA TEKRAR:</string>
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
@@ -407,6 +405,7 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="conversation_activity__compose_description">Mesaj yazma</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji klavyesini göster/gizle</string>
   <string name="conversation_activity__attachment_thumbnail">Ek Küçük Resmi</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Medya mesajı indiriliyor</string>
   <string name="conversation_item__mms_image_description">Medya mesajı</string>
@@ -459,9 +458,7 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="MmsPreferencesFragment__invalid_uri">Girilen metin geçerli bir URI değil</string>
   <string name="MmsPreferencesFragment__invalid_host">Girilen metin geçerli bir sunucu değil</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s gruba katıldı.</string>
   <string name="GroupUtil_group_updated">Grup güncellendi.</string>
-  <string name="GroupUtil_title_is_now">Başlık şimdi  \'%1$s\' oldu.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>
   <!--prompt_mms_activity-->
@@ -648,7 +645,8 @@ başarısız.</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Kişi listesini tazele</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Arama</string>
+  <string name="conversation_callable_insecure__menu_call">Arama</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Mesaj detayları</string>
   <string name="conversation_context__menu_copy_text">Metin kopyala</string>
@@ -680,7 +678,6 @@ başarısız.</string>
   <string name="conversation__menu_add_attachment">Ek ekle</string>
   <string name="conversation__menu_update_group">Grubu güncelle</string>
   <string name="conversation__menu_leave_group">Grubtan ayrıl</string>
-  <string name="conversation__menu_delete_thread">Başlığı sil</string>
   <string name="conversation__menu_view_media">Tüm resimler</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
@@ -712,6 +709,7 @@ başarısız.</string>
   <string name="media_preview__save_title">Kaydet</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Resim Önizleme</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Siliniyor</string>

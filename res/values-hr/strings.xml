@@ -41,6 +41,7 @@ Onemogući zaključani ekran za poruke?</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontakt informacije</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokirani kontakti</string>
   <!--CallScreen-->
@@ -70,10 +71,6 @@ ovaj kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj nije više Signal korisnik.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Resetiraj potvrdu sigurne sesije</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Jeste li sigurni da želite resetirati ovu sigurnu sesiju?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Potvrda brisanja teme</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Jeste li sigurni da želite trajno obrisati ovaj razgovor?</string>
   <string name="ConversationActivity_add_attachment">Dodaj privitak</string>
   <string name="ConversationActivity_select_contact_info">Odaberite informacije kontakta</string>
   <string name="ConversationActivity_compose_message">Sastavi poruku</string>
@@ -210,6 +207,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Vraćanje kriptirane kopije...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nije pronađena kriptirana kopija!</string>
   <string name="ImportFragment_restore_complete">Vraćanje završeno!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Skenirani ključ nije pronađen!</string>
@@ -244,12 +242,8 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
   <string name="DeviceProvisioningActivity_title">Poveži ovaj uređaj?</string>
   <string name="DeviceProvisioningActivity_content_intro">Moći će</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- Čitati sve vaše poruke
-\n- Slati poruke u vaše ime</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Povezivanje uređaja</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Povezivanje novog uređaja...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Uređaj povezan!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Uređaj nije pronađen.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Mrežna greška.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neispravan QR kod.</string>
@@ -436,9 +430,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Sadržaj je skriven</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">STARA LOZINKA:</string>
-  <string name="change_passphrase_activity__new_passphrase">NOVA LOZINKA:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">PONOVITE NOVU LOZINKU:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Unesite ime ili broj</string>
   <!--contact_selection_group_activity-->
@@ -465,6 +456,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="conversation_activity__emoji_toggle_description">Uključi/isključi emoji tipkovnicu</string>
   <string name="conversation_activity__attachment_thumbnail">Priložena sličica</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Uključi/isključi ladicu dodataka</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Preuzimanje media poruke</string>
   <string name="conversation_item__mms_image_description">Multimedijalna poruka</string>
@@ -521,9 +513,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="MmsPreferencesFragment__invalid_uri">Uneseni tekst nije ispravan URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Uneseni tekst nije ispravan poslužitelj</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s se pridružio grupi.</string>
   <string name="GroupUtil_group_updated">Grupa je ažurirana.</string>
-  <string name="GroupUtil_title_is_now">Naslov je sada \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Otključaj</string>
   <!--prompt_mms_activity-->
@@ -648,7 +638,6 @@ neuspješno.</string>
   <string name="arrays__disabled">Onemogućeno</string>
   <string name="arrays__name_and_message">Ime i poruka</string>
   <string name="arrays__name_only">Samo ime</string>
-  <string name="arrays__neither">Niti jedno</string>
   <string name="arrays__images">Slike</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
@@ -774,7 +763,8 @@ neuspješno.</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Osvježi popis kontakata</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Nazovi</string>
+  <string name="conversation_callable_insecure__menu_call">Nazovi</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalji poruke</string>
   <string name="conversation_context__menu_copy_text">Kopiraj tekst</string>
@@ -809,7 +799,6 @@ neuspješno.</string>
   <string name="conversation__menu_add_attachment">Dodaj privitak</string>
   <string name="conversation__menu_update_group">Ažuriraj grupu</string>
   <string name="conversation__menu_leave_group">Napusti grupu</string>
-  <string name="conversation__menu_delete_thread">Obriši temu</string>
   <string name="conversation__menu_view_media">Sve slike</string>
   <string name="conversation__menu_conversation_settings">Postavke razgovora</string>
   <!--conversation_popup-->
@@ -853,6 +842,7 @@ neuspješno.</string>
   <string name="media_preview__save_title">Spremi</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Prikaz slike</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Slušalica</string>
   <string name="redphone_audio_popup_menu__headset">Slušalice</string>

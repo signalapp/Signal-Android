@@ -37,6 +37,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">ದೃಶ್ಯ</string>
   <string name="AttachmentTypeSelectorAdapter_audio">ಶ್ರಾವ್ಯ</string>
   <string name="AttachmentTypeSelectorAdapter_contact">ಸಂಪರ್ಕದ ವಿವರಗಳು</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
@@ -60,8 +61,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ಅಸುರಕ್ಶಿತ ಎಮ್.ಎಮ್.ಎಸ್ ಹಿಮ್ಮರಳಿ ?</string>
   <string name="ConversationItem_unable_to_open_media">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">ಈ ಎಳೆಯ ದೃಢೀಕರಣನ್ನು ಅಳಿಸಿ</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">ನೀವು ಶಾಶ್ವತವಾಗಿ ಈ ಸಂಭಾಷಣೆ ಅಳಿಸಲು ಖಚಿತವಾಗಿ ನಿರ್ಧರಿಸಿರುವಿರಾ?</string>
   <string name="ConversationActivity_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
   <string name="ConversationActivity_select_contact_info">ಸಂಪರ್ಕದ ಮಾಹಿತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="ConversationActivity_compose_message">ಸಂದೇಶ ರಚಿಸಿ</string>
@@ -162,6 +161,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಬ್ಯಾಕಪ್ ಅನ್ನು ಪುನಃಸ್ಥಾಪಿಸಿ...</string>
   <string name="ImportFragment_no_encrypted_backup_found">ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಬ್ಯಾಕ್ಅಪ್ ಕಂಡುಬಂದಿಲ್ಲ!</string>
   <string name="ImportFragment_restore_complete">ಪುನಃಸ್ಥಾಪನೆ ಪೂರ್ಣಗೊಂಡಿದೆ!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಕಂಡುಬಂದಿಲ್ಲ!</string>
@@ -189,10 +189,6 @@
   <string name="DeviceProvisioningActivity_continue">ಮುಂದುವರಿಸು</string>
   <string name="DeviceProvisioningActivity_title">ಈ ಸಾಧನವನ್ನು ಸಂಪರ್ಕಗೊಳಿಸಿ?</string>
   <string name="DeviceProvisioningActivity_content_intro">ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - ನಿಮ್ಮ ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನು ಓದಿ
-        \n- ನಿಮ್ಮ ಹೆಸರಿನಲ್ಲಿ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಿ
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ಯಾವುದೇ ಸಾಧನವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ನೆಟ್ವರ್ಕ್ ದೋಷ.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">ಮಾನ್ಯವಲ್ಲದ QR ಕೋಡ್.</string>
@@ -327,9 +323,6 @@
   <!--SingleRecipientNotificationBuilder-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">ಹಳೆಯ ಗುಪ್ತಪದ:</string>
-  <string name="change_passphrase_activity__new_passphrase">ಹೊಸ ಗುಪ್ತಪದ:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ಹೊಸ ಗುಪ್ತಪದವನ್ನು ಪುನರಾವರ್ತಿಸಿ:</string>
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ಸಂಪರ್ಕಗಳಿಲ್ಲ.</string>
@@ -351,6 +344,7 @@
   <string name="conversation_activity__compose_description">ಸಂದೇಶ ಸಂಯೋಜನೆ</string>
   <string name="conversation_activity__emoji_toggle_description">ಎಮೊಜಿಯ ಕೀಲಿಮಣೆಗೆ ಟಾಗಲ್ ಮಾಡಿ</string>
   <string name="conversation_activity__attachment_thumbnail"> ಚಿಕ್ಕಚಿತ್ರದ ಲಗತ್ತು</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">ಮಾಧ್ಯಮ ಸಂದೇಶವನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
   <string name="conversation_item__mms_image_description">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
@@ -403,9 +397,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">ನಮೂದಿಸಿದ ಪಠ್ಯ ಮಾನ್ಯ URI ಅಲ್ಲ</string>
   <string name="MmsPreferencesFragment__invalid_host">ನಮೂದಿಸಿದ ಪಠ್ಯ ಮಾನ್ಯ ಹೋಸ್ಟ್ ಅಲ್ಲ</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s ಗುಂಪನ್ನು ಸೇರಿಕೊಂಡರು.</string>
   <string name="GroupUtil_group_updated">ಗುಂಪನ್ನು ನವೀಕರಿಸಿ</string>
-  <string name="GroupUtil_title_is_now">ಶೀರ್ಷಿಕೆ ಈಗ \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ಅನ್ಲಾಕ್</string>
   <!--prompt_mms_activity-->
@@ -575,7 +567,8 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯನ್ನು ತಾಜಗೊಳಿಸಿ</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">ಕರೆ</string>
+  <string name="conversation_callable_insecure__menu_call">ಕರೆ</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">ಸಂದೇಶದ ವಿವರಗಳು</string>
   <string name="conversation_context__menu_copy_text">ಪಠ್ಯ ನಕಲಿಸು</string>
@@ -607,7 +600,6 @@
   <string name="conversation__menu_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
   <string name="conversation__menu_update_group">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
   <string name="conversation__menu_leave_group">ಸಮೂಹವನ್ನು ಬಿಟ್ಟುಬಿಡಿ </string>
-  <string name="conversation__menu_delete_thread">ಸಂವಾದದ ಎಳೆಗಳನ್ನು ಅಳಿಸಿ </string>
   <string name="conversation__menu_view_media">ಎಲ್ಲಾ ಚಿತ್ರಗಳು</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
@@ -638,6 +630,7 @@
   <string name="media_preview__save_title">ಉಳಿಸಿ</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">ಚಿತ್ರ ಮುನ್ನೋಟ</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>

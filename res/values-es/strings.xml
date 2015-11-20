@@ -44,6 +44,8 @@
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Información de contacto</string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">¡Error en la reproducción del audio!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contactos bloqueados</string>
   <!--CallScreen-->
@@ -59,6 +61,7 @@ este contacto.
   <string name="ConfirmIdentityDialog_accept">Aceptar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensaje %s</string>
+  <string name="ContactsDatabase_signal_call_s">Llamar con Signal %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Tamaño del mensaje: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
@@ -75,10 +78,11 @@ este contacto.
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Este mensaje <b>no</b> se cifrará porque el destinatario ya no es un usuario de Signal.\n\n¿Enviar mensaje no asegurado?</string>
   <string name="ConversationItem_unable_to_open_media">No se pudo encontrar una aplicación capaz de abrir este contenido.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Confirmación de reinicio de sesión segura</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">¿Está seguro de que quiere reiniciar esta sesión segura?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Confirmación de borrado del hilo</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">¿Está seguro de que desea borrar esta conversación permanentemente?</string>
+  <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar la sesión segura?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto te puede ayudar si estas teniendo problemas de cifrado en esta conversación. Tus mensajes se mantendrán.</string>
+  <string name="ConversationActivity_reset">Reiniciar</string>
+  <string name="ConversationActivity_delete_thread_question">¿Eliminar la conversación?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Esto eliminará permanentemente todos los mensajes de esta conversación.</string>
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Componer mensaje</string>
@@ -103,6 +107,7 @@ este contacto.
   <string name="ConversationActivity_transport_insecure_mms">MMS no seguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pasemonos a Signal: %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Usemos esto para hablar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS no admitidos</string>
   <string name="ConversationActivity_mms_not_supported_message">Este mensaje no se puede enviar debido a que su proveedor no admite MMS.</string>
@@ -112,6 +117,7 @@ este contacto.
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">El adjunto excede los límites de tamaño para el tipo de mensaje que está enviando.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cámara no disponible</string>
+  <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar el audio!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s
@@ -120,7 +126,16 @@ Enviado/Recibido: %2$s</string>
 Transporte: %2$s
 Enviado: %3$s
 Recibido:%4$s</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">¿Eliminar este mensaje?</item>
+    <item quantity="other">¿Eliminar los mensajes seleccionads?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Esto eliminará de forma permanente el mensaje seleccionado.</item>
+    <item quantity="other">Esto eliminará de forma permanente los %1$d mensajes seleccionados.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">¿Guardar en el almacenamiento?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Guardar este contenido multimedia en la memoria permitira que cualquier otra aplicación en tu  dispositivo acceda a el.\n\n¿Continuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">¡Error al guardar adjunto en el almacenamiento!</string>
   <string name="ConversationFragment_success_exclamation">¡Completado!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">¡No se pudo escribir en el almacenamiento!</string>
@@ -135,6 +150,14 @@ Recibido:%4$s</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Buscar...</string>
   <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">¿Eliminar la conversación seleccionada?</item>
+    <item quantity="other">¿Eliminar las conversaciones seleccionadas?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Esto eliminará permanentemente la conversación seleccionada.</item>
+    <item quantity="other">Esto eliminará permanentemente las %1$d conversaciones seleccionadas.</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Eliminando</string>
   <string name="ConversationListFragment_deleting_selected_threads">Eliminando conversaciones seleccionadas...</string>
   <!--ConversationListItem-->
@@ -168,8 +191,13 @@ Recibido:%4$s</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure y RedPhone son ahora una sola aplicación: Signal. Pulse para explorar.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportar</string>
+  <string name="ExportFragment_export_plaintext_to_storage">¿Exportar texto plano al almacenamiento?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atención, esto exportará el texto plano contenido en tu almacenamiento de menssajes de Signal.</string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportando</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Exportando texto plano a almacenamiento...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Error, imposible escribir en almacenamiento.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Error mientras se escribía en almacenamiento.</string>
   <string name="ExportFragment_success">¡Éxito!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Fallo permanente de comunicación de Signal!</string>
@@ -188,7 +216,9 @@ Recibido:%4$s</string>
   <string name="GroupCreateActivity_menu_create_title">Crear grupo</string>
   <string name="GroupCreateActivity_creating_group">Creando %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Actualizando %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No se pudo añadir a %1$s porque no son usuarios de Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Cargando detalles del grupo...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Ya estás en el grupo.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Yo</string>
   <!--ImportExportActivity-->
@@ -220,7 +250,26 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Restaurando copia de seguridad cifrada...</string>
   <string name="ImportFragment_no_encrypted_backup_found">¡No se encontró la copia de seguridad cifrada!</string>
   <string name="ImportFragment_restore_complete">¡Restauración completada!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
+  <string name="InviteActivity_share">Compartir</string>
+  <string name="InviteActivity_send_sms">Enviar SMS</string>
+  <string name="InviteActivity_cancel">Cancelar</string>
+  <string name="InviteActivity_sending">Enviando...</string>
+  <string name="InviteActivity_heart_content_description">Corazón</string>
+  <string name="InviteActivity_invitations_sent">¡Invitaciones enviadas!</string>
+  <string name="InviteActivity_invite_to_signal">Invitar a Signal</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">ENVIAR A 1 AMIGO</item>
+    <item quantity="other">ENVIAR A %d AMIGOS</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">¿Enviar 1 invitación SMS?</item>
+    <item quantity="other">¿Enviar %d invitaciones SMS?</item>
+  </plurals>
+  <string name="InviteActivity_lets_switch_to_signal">Pasemonos a Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Parece que no tienes ninguna app para compartir.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Los verdaderos amigos no dejan que sus amigos hablen sin encriptar.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">¿Instalar Barcode Scanner?</string>
@@ -236,14 +285,22 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="NotificationBarManager_signal_call_in_progress">Llamada de Signal en curso</string>
   <string name="NotificationBarManager_missed_call_from_s">Llamada perdida de %s</string>
   <string name="NotificationBarManager_missed_signal_call">Llamada perdida de Signal</string>
+  <string name="NotificationBarManager__establishing_signal_call">Estableciendo llamadas de Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Llamada de Signal entrante</string>
+  <string name="NotificationBarManager__deny_call">Denegar llamada</string>
+  <string name="NotificationBarManager__answer_call">Contestar llamada</string>
+  <string name="NotificationBarManager__end_call">Finalizar llamada</string>
+  <string name="NotificationBarManager__cancel_call">Cancelar llamada</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensaje multimedia</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Se ha recibido un mensaje encriptado usando una versión de Signal antigua que ya no está soportada. Por favor, avisa al quien te lo ha enviado para que actualice a la versión más reciente y reenvíe el mensaje.</string>
   <string name="MessageRecord_left_group">Ha dejado el grupo.</string>
   <string name="MessageRecord_updated_group">Grupo actualizado.</string>
   <string name="MessageRecord_s_called_you">%s le llamó</string>
   <string name="MessageRecord_called_s">Llamó a %s</string>
   <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">¡ %s esta en Signal, salúdale!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves de acceso no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
@@ -255,12 +312,12 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="DeviceProvisioningActivity_title">¿Enlazar este dispositivo?</string>
   <string name="DeviceProvisioningActivity_content_intro">Será capaz de</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-        - Leer todos sus mensajes
-        \n- Enviar mensajes en su nombre
+        • Leer todos tus mensajes
+        \n• Enviar mensajes en tu nombre
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Vinculando dispositivo</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Vinculando nuevo dispositivo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">¡Dispositivo vinculado!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">¡Dispositivo aprobado!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">No se encontró ningun dispositivo.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Error de red.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR no válido.</string>
@@ -280,6 +337,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="RatingManager_later">Más tarde</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">¿Bloquear este contacto?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">No volverás a recibir mensajes ni llamadas de ese usuario.</string>
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">¿Desbloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">¿Está seguro de que desea desbloquear este contacto?</string>
@@ -384,11 +442,13 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="ThreadRecord_called_you">Le llamaron</string>
   <string name="ThreadRecord_missed_call">Llamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">¡ %s esta en Signal, salúdale!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">No tiene ninguna clave de identidad.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">El destinatario no tiene clave de identidad.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">¡El destinatario no tiene clave de identidad!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Escanear la clave de ellos, para comparar</string>
+  <string name="VerifyIdentityActivity_get_your_key_scanned">Obten tu clave escaneada.</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVERTENCIA: la clave escaneada NO coincide. Por favor, verifique el texto de la huella digital cuidadosamente.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">¡NO verificado!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La clave de ellos es correcta. También es necesario verificar su clave con ellos.</string>
@@ -402,6 +462,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="ViewIdentityActivity_not_verified_exclamation">¡NO verificada!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">¡La clave escaneada coincide!</string>
   <string name="ViewIdentityActivity_verified_exclamation">¡Verificado!</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Tu huella digital</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la solicitud existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -454,10 +515,15 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Nuevo mensaje de Signal</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenidos ocultos</string>
   <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Imagen</string>
+  <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__video">Vídeo</string>
+  <string name="attachment_type_selector__contact">Contacto</string>
+  <string name="attachment_type_selector__camera">Cámara</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">CLAVE DE ACCESO ANTERIOR:</string>
-  <string name="change_passphrase_activity__new_passphrase">CLAVE DE ACCESO NUEVA:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">REPITA LA NUEVA CLAVE DE ACCESO:</string>
+  <string name="change_passphrase_activity__old_passphrase">Clave de acceso antigua</string>
+  <string name="change_passphrase_activity__new_passphrase">Nueva clave de acceso</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Repetir nueva clave de acceso</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Introduzca un nombre o número</string>
   <!--contact_selection_group_activity-->
@@ -484,6 +550,8 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="conversation_activity__emoji_toggle_description">Cambiar a teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura del adjunto</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Accionar bandeja desplegable de adjunto</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">DESLIZA PARA CANCELAR</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Descargando mensaje multimedia</string>
   <string name="conversation_item__mms_image_description">Mensaje multimedia</string>
@@ -523,8 +591,13 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Actualizando base de datos...</string>
   <string name="export_fragment__export_plaintext_backup">Exportar copia de seguridad en texto plano</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exportar una copia de seguridad en texto plano compatible con \'SMS Backup And Restore\' al almacenamiento.</string>
   <string name="import_fragment__import_system_sms_database">Importar base de datos de SMS del sistema</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Imporar la base de datos desde la app de mensajería por defecto del sistema.</string>
+  <string name="import_fragment__restore_encrypted_backup">Restaurar copia de seguridad encriptada</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Recuperar una copia de seguridad ecriptada de Signal, previamente exportada.</string>
   <string name="import_fragment__import_plaintext_backup">Importar copia de seguridad en texto plano</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importar una copia de seguridad en texto plano. Compatible con \'SMSBackup And Restore\'.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversación completa</string>
   <!--media_overview_activity-->
@@ -540,9 +613,12 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="MmsPreferencesFragment__invalid_uri">El texto introducido no era una URI válida</string>
   <string name="MmsPreferencesFragment__invalid_host">El texto introducido no era un servidor válido</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s se ha unido al grupo.</string>
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s se unió al grupo.</item>
+    <item quantity="other">%1$s se unieron al grupo.</item>
+  </plurals>
   <string name="GroupUtil_group_updated">Grupo actualizado.</string>
-  <string name="GroupUtil_title_is_now">El título ahora es \'%1$s\'.</string>
+  <string name="GroupUtil_group_name_is_now">Ahora el nombre del grupo es \'%1$s\'</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->
@@ -553,6 +629,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silenciar conversación</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Deshabilitar notificaciones para esta conversación</string>
+  <string name="recipient_preferences__notification_sound">Sonido de notificaciones</string>
   <string name="recipient_preferences__vibrate">Vibración</string>
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Color</string>
@@ -665,20 +742,23 @@ por SMS.
   <string name="AndroidManifest__media_overview_named">Todas la imágenes con %1$s</string>
   <string name="AndroidManifest__message_details">Detalles del mensaje</string>
   <string name="AndroidManifest_manage_linked_devices">Administrar dispositivos vinculados</string>
+  <string name="AndroidManifest__invite_friends">Invitar amigos</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar/exportar</string>
+  <string name="arrays__your_identity_key">Tu clave de identidad</string>
   <string name="arrays__use_default">Usar el predeterminado</string>
   <string name="arrays__use_custom">Usar el personalizado</string>
   <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
   <string name="arrays__mute_for_two_hours">Silenciar durante 2 horas</string>
   <string name="arrays__mute_for_one_day">Silenciar durante 1 día</string>
   <string name="arrays__mute_for_seven_days">Silenciar durante 7 días</string>
+  <string name="arrays__mute_for_one_year">Silencnciar por 1 año</string>
   <string name="arrays__settings_default">Configuración predeterminada</string>
   <string name="arrays__enabled">Habilitado</string>
   <string name="arrays__disabled">Deshabilitado</string>
   <string name="arrays__name_and_message">Nombre y mensaje</string>
   <string name="arrays__name_only">Sólo nombre</string>
-  <string name="arrays__neither">Ninguno de los dos</string>
+  <string name="arrays__no_name_or_message">No hay nombre o mensaje</string>
   <string name="arrays__images">Imágenes</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vídeo</string>
@@ -703,6 +783,7 @@ por SMS.
   <string name="preferences__choose_identity">Elegir identidad</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elija su propio contacto de la lista de contactos.</string>
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
+  <string name="preferences__change_your_passphrase">Cambiar tu frase de contraseña</string>
   <string name="preferences__enable_passphrase">Habilitar clave de acceso</string>
   <string name="preferences__passphrase_summary">Clave de acceso %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Habilitar pantalla de bloqueo para mensajes</string>
@@ -725,6 +806,7 @@ por SMS.
   <string name="preferences__pref_led_blink_custom_pattern_set">¡Se ha establecido el patrón personalizado de parpadeo del LED!</string>
   <string name="preferences__sound">Sonido</string>
   <string name="preferences__change_notification_sound">Cambiar sonido de notificación</string>
+  <string name="preferences__silent">Silenciar</string>
   <string name="preferences__inthread_notifications">Notificaciones dentro de conversación</string>
   <string name="preferences__play_inthread_notifications">Reproducir sonido de notificación al pasar a ver una conversación activa</string>
   <string name="preferences__repeat_alerts">Repetir alertas</string>
@@ -769,6 +851,7 @@ por SMS.
   <string name="preferences__conversation_length_limit">Límite de longitud de la conversación</string>
   <string name="preferences__trim_all_threads_now">Recortar todos los hilos ahora</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Escanear todas las conversaciones y forzar los límites de tamaño de conversación</string>
+  <string name="preferences__devices">Dispositivos</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Oscuro</string>
   <string name="preferences__appearance">Apariencia</string>
@@ -777,6 +860,8 @@ por SMS.
   <string name="preferences__default">Por defecto</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__language_summary">Idioma %s</string>
+  <string name="preferences__signal_messages_and_calls">Signal mensajes y llamadas</string>
+  <string name="preferences__free_private_messages_and_calls">Llamadas y mensajes privados gratuitos para los usuarios de Signal</string>
   <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidad \'Llamada por WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilítelo si su dispositivo utiliza entrega de SMS/MMS vía WiFi (actívelo sólo cuando \'Llamada por WiFi\' esté activada en su dispositivo)</string>
@@ -803,7 +888,9 @@ por SMS.
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Actualizar lista de contactos</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Llamar</string>
+  <string name="conversation_callable_insecure__menu_call">Llamar</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Llamada de Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalles del mensaje</string>
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
@@ -838,7 +925,7 @@ por SMS.
   <string name="conversation__menu_add_attachment">Añadir archivo adjunto</string>
   <string name="conversation__menu_update_group">Actualizar grupo</string>
   <string name="conversation__menu_leave_group">Abandonar grupo</string>
-  <string name="conversation__menu_delete_thread">Borrar conversación</string>
+  <string name="conversation__menu_delete_thread">Eliminar conversación</string>
   <string name="conversation__menu_view_media">Todas las imágenes</string>
   <string name="conversation__menu_conversation_settings">Opciones de conversación</string>
   <!--conversation_popup-->
@@ -860,19 +947,26 @@ por SMS.
   <string name="text_secure_normal__menu_settings">Parámetros</string>
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
+  <string name="text_secure_normal__invite_friends">Invitar amigos</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">¡Su versión de Signal ha caducado!</string>
   <string name="reminder_header_expired_build_details">Los mensajes ya no se enviarán con éxito, por favor, actualice a la versión más reciente.</string>
+  <string name="reminder_header_expired_build_button">ACTUALIZAR</string>
   <string name="reminder_header_sms_default_title">Usar como aplicación de SMS predeterminada</string>
   <string name="reminder_header_sms_default_text">Pulse para hacer de Signal su aplicación de SMS predeterminada.</string>
   <string name="reminder_header_sms_default_button">AJUSTAR</string>
   <string name="reminder_header_sms_import_title">Importar SMS del sistema</string>
   <string name="reminder_header_sms_import_text">Pulse para copiar los mensajes SMS de su teléfono en su base de datos cifrada.</string>
   <string name="reminder_header_sms_import_button">IMPORTAR</string>
+  <string name="reminder_header_push_title">Activar Signal mensajes y llamadas</string>
+  <string name="reminder_header_push_text">Actualiza tu experiencia comunicativa</string>
   <string name="reminder_header_push_button">HABILITAR</string>
   <string name="reminder_header_invite_title">Invitar a Signal</string>
   <string name="reminder_header_invite_text">Lleva su conversación con %1$s al siguiente nivel.</string>
   <string name="reminder_header_invite_button">INVITAR</string>
+  <string name="reminder_header_share_title">¡Invita a tus amigos!</string>
+  <string name="reminder_header_share_text">Cuanto mas amigos usen Signal, mejor sera esta app.</string>
+  <string name="reminder_header_share_button">COMPARTE</string>
   <string name="reminder_header_close_button">CERRAR</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Usted</string>
@@ -882,6 +976,8 @@ por SMS.
   <string name="media_preview__save_title">Guardar</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Previsualización de la imagen</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Recargar</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Teléfono</string>
   <string name="redphone_audio_popup_menu__headset">Auriculares</string>
@@ -892,5 +988,8 @@ por SMS.
   <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos borrados con éxito</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scanear el codigo QR mostrado en el dispositivo para acceder al enlace</string>
+  <string name="device_link_fragment__link_device">Enlazar dispositivo</string>
+  <string name="device_list_fragment__link_new_device">Enlazar nuevo dispositivo</string>
   <!--EOF-->
 </resources>

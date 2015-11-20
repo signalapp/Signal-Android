@@ -44,6 +44,8 @@
   <string name="AttachmentTypeSelectorAdapter_video">فيديو</string>
   <string name="AttachmentTypeSelectorAdapter_audio">صوت</string>
   <string name="AttachmentTypeSelectorAdapter_contact">بيانات الاتصال</string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">خطأ في تشغيل الصوت!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">جهات الاتصال المحظورة</string>
   <!--CallScreen-->
@@ -71,10 +73,11 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة <b>لن تكون</b> مشفرة لأن المستلم لم يعد مستخدم سيجنال. .\n\nهل ترغب في إرسالها غير مشفرة؟</string>
   <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">تأكيد إعادة ضبط الجلسة الآمنة</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">هل أنت متأكد من إعادة ضبط هذه الجلسة الآمنة؟</string>
-  <string name="ConversationActivity_delete_thread_confirmation">تأكيد حذف المحادثة</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">هل تريد حقاَ حذف هذه المحادثة نهائياً؟</string>
+  <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سوف يتم الاحتفاظ برسائلك. هذا قد يساعد في حال وجود مشاكل في التشفير بهذه المحادثة.</string>
+  <string name="ConversationActivity_reset">إعادة ضبط</string>
+  <string name="ConversationActivity_delete_thread_question">حذف المحادثه?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">سوف يتم حذف جميع الرسائل في هذه المحادثة نهائيا.</string>
   <string name="ConversationActivity_add_attachment">إضافة مرفقات</string>
   <string name="ConversationActivity_select_contact_info">أختر بيانات جهة الاتصال</string>
   <string name="ConversationActivity_compose_message">إنشاء رسالة</string>
@@ -109,6 +112,7 @@
   <string name="ConversationActivity_unblock">إلغاء الحظر</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
   <string name="ConversationActivity_quick_camera_unavailable">الكاميرا غير موجودة</string>
+  <string name="ConversationActivity_unable_to_record_audio">لا يمكن تسجيل الصوت!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_transport_s_sent_received_s">نقل: %1$s\nSent/Received: %2$s</string>
@@ -144,6 +148,14 @@
     <item quantity="few">حذف المحادثات المختارة؟</item>
     <item quantity="many">حذف كل المحادثات المختارة؟</item>
     <item quantity="other">حذف المحادثات المختارة؟</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="zero">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
+    <item quantity="one">سوف يتم حذف الرسالة المختارة بشكل نهائي.</item>
+    <item quantity="two">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
+    <item quantity="few">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
+    <item quantity="many">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
+    <item quantity="other">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">حذف</string>
   <string name="ConversationListFragment_deleting_selected_threads">حذف المحادثات المختارة</string>
@@ -232,6 +244,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">استعادة النسخ الاحتياطية المشفرة جارٍ..</string>
   <string name="ImportFragment_no_encrypted_backup_found">لم يتم العثور على نسخة احتياطية مشفرة!</string>
   <string name="ImportFragment_restore_complete">تمت الاستعادة!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">شارك</string>
   <string name="InviteActivity_send_sms">أرسل رسالة</string>
@@ -240,6 +253,14 @@
   <string name="InviteActivity_heart_content_description">قلب</string>
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
   <string name="InviteActivity_invite_to_signal">الدعوة إلى سيجنال</string>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="zero">ارسل %d دعوة برسالة نصية؟</item>
+    <item quantity="one">ارسل دعوة واحدة عبر رسالة؟</item>
+    <item quantity="two">ارسل %d دعوتان برسالة نصية؟</item>
+    <item quantity="few">ارسل %d دعوة برسالة نصية؟</item>
+    <item quantity="many">ارسل %d دعوة برسالة نصية؟</item>
+    <item quantity="other">ارسل %d دعوة برسالة نصية؟</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">هيا ننتقل إلى سيجنال %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">الأصدقاء لا يتركون بعضهم يجرون محادثات غير مشفرة.</string>
@@ -258,6 +279,12 @@
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة سيجنال</string>
   <string name="NotificationBarManager_missed_call_from_s">مكالمة فائتة من %s</string>
   <string name="NotificationBarManager_missed_signal_call">مكالمة سيجنال فائتة</string>
+  <string name="NotificationBarManager__establishing_signal_call">بدء مكالمة سيجنال</string>
+  <string name="NotificationBarManager__incoming_signal_call">مكالمة سيجنال واردة</string>
+  <string name="NotificationBarManager__deny_call">رفض المكالمة</string>
+  <string name="NotificationBarManager__answer_call">الرد على المكالمة</string>
+  <string name="NotificationBarManager__end_call">إنهاء المكالمة</string>
+  <string name="NotificationBarManager__cancel_call">إلغاء المكالمة</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط متعددة</string>
   <!--MessageRecord-->
@@ -279,11 +306,11 @@
   <string name="DeviceProvisioningActivity_title">ربط هذا الجهاز؟</string>
   <string name="DeviceProvisioningActivity_content_intro">سوف يتمكن من </string>
   <string name="DeviceProvisioningActivity_content_bullets">
-قراءة كل رسائلك.
-\n- استخدام أسمك للإرسال</string>
+• قراءة جميع الرسائل
+\n• أرسل رسائل باسمك</string>
   <string name="DeviceProvisioningActivity_content_progress_title">ربط الجهاز</string>
   <string name="DeviceProvisioningActivity_content_progress_content">جارٍ ربط الجهاز...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">الجهاز مقترن!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">تم التصديق على الجهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
@@ -473,9 +500,9 @@
   <string name="attachment_type_selector__contact">جهة اتصال</string>
   <string name="attachment_type_selector__camera">كاميرا</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة:</string>
-  <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">تكرار العبارة السرية الجديدة:</string>
+  <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة</string>
+  <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">إعادة العبارة السرية الجديدة</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">أدخل أسم أو رقم</string>
   <!--contact_selection_group_activity-->
@@ -502,6 +529,8 @@
   <string name="conversation_activity__emoji_toggle_description">تبديل لوحة مفاتيح الرموز التعبيرية</string>
   <string name="conversation_activity__attachment_thumbnail">المصغّرة للمرفق</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">فتح درج المرفقات</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">سحب للإلغاء</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">جارٍ تنزيل رسالة الوسائط</string>
   <string name="conversation_item__mms_image_description">رسالة وسائط متعددة</string>
@@ -563,9 +592,16 @@
   <string name="MmsPreferencesFragment__invalid_uri">النص  ليس وفقا لصيغة معرّف موارد صحيحة</string>
   <string name="MmsPreferencesFragment__invalid_host">النص ليس وفقا لصيغة خادم صحيحة</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s أنضم إلى المجموعة.</string>
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="zero">%1$s انضموا إلى المجموعة.</item>
+    <item quantity="one">%1$s انضم إلى المجموعة.</item>
+    <item quantity="two">%1$s انضموا إلى المجموعة.</item>
+    <item quantity="few">%1$s انضموا إلى المجموعة.</item>
+    <item quantity="many">%1$s انضموا إلى المجموعة.</item>
+    <item quantity="other">%1$s انضموا إلى المجموعة.</item>
+  </plurals>
   <string name="GroupUtil_group_updated">تم تحديث المجموعة.</string>
-  <string name="GroupUtil_title_is_now">العنوان الآن \'%1$s\'.</string>
+  <string name="GroupUtil_group_name_is_now">أسم المجموعة الآن \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">فتح القفل</string>
   <!--prompt_mms_activity-->
@@ -682,7 +718,7 @@
   <string name="arrays__disabled">معطل</string>
   <string name="arrays__name_and_message">الاسم والرسالة</string>
   <string name="arrays__name_only">الاسم فقط</string>
-  <string name="arrays__neither">لا هذا ولا ذاك</string>
+  <string name="arrays__no_name_or_message">لا يوجد أسم أو رسالة</string>
   <string name="arrays__images">صور</string>
   <string name="arrays__audio">صوت</string>
   <string name="arrays__video">فيديو</string>
@@ -734,6 +770,7 @@
   <string name="preferences__pref_led_blink_custom_pattern_set">تم إعداد أسولب وميض LED!</string>
   <string name="preferences__sound">صوت</string>
   <string name="preferences__change_notification_sound">تغيير صوت التنبيه</string>
+  <string name="preferences__silent">صامت</string>
   <string name="preferences__inthread_notifications">إشعارات داخل المحادثة</string>
   <string name="preferences__play_inthread_notifications">تفعيل تنبيه صوتي أثناء مطالعة محادثة نشطة</string>
   <string name="preferences__repeat_alerts">تكرار التنبيهات</string>
@@ -778,6 +815,7 @@
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__trim_all_threads_now">تقليم كل المحادثات الآن</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">افحص كل المحادثات وافرض حد الطول لكل محادثة</string>
+  <string name="preferences__devices">الأجهزة</string>
   <string name="preferences__light_theme">فاتح</string>
   <string name="preferences__dark_theme">داكن</string>
   <string name="preferences__appearance">المظهر</string>
@@ -814,7 +852,9 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">تحيدث قائمة الاتصال</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">أتصل</string>
+  <string name="conversation_callable_insecure__menu_call">أتصل</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">مكالمة سيجنال</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">تفاصيل الرسالة</string>
   <string name="conversation_context__menu_copy_text">نسخ النص</string>
@@ -886,9 +926,10 @@
   <string name="reminder_header_push_text">ترقية تجربتك في التواصل.</string>
   <string name="reminder_header_push_button">تفعيل</string>
   <string name="reminder_header_invite_title">دعوة إلى سيجنال</string>
+  <string name="reminder_header_invite_text">انتقل بالمحادثة مع %1$s  للمستوى التالي.</string>
   <string name="reminder_header_invite_button">دعوة</string>
   <string name="reminder_header_share_title">قم بدعوة أصدقائك!</string>
-  <string name="reminder_header_share_text">زيادة الأصدقاء المستخدمي لسيجنال يجعله أفضل بكثير.</string>
+  <string name="reminder_header_share_text">زيادة عدد الأصدقاء المستخدمي لسيجنال يجعله أفضل بكثير.</string>
   <string name="reminder_header_share_button">شارك</string>
   <string name="reminder_header_close_button">إغلاق</string>
   <!--MediaPreviewActivity-->
@@ -899,6 +940,8 @@
   <string name="media_preview__save_title">أحفظ</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">معاينة الصورة</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">إنعاش</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">سماعة هاتف</string>
   <string name="redphone_audio_popup_menu__headset">سماعة رأس</string>
@@ -909,5 +952,8 @@
   <string name="trimmer__old_messages_successfully_deleted">تم حذف الرسائل القديمة بنجاح</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">مسح رمز الاستجابة السريع المبين على الجهاز لربطه.</string>
+  <string name="device_link_fragment__link_device">ربط الجهاز</string>
+  <string name="device_list_fragment__link_new_device">ربط جهاز جديد</string>
   <!--EOF-->
 </resources>

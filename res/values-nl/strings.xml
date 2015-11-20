@@ -18,9 +18,9 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Af aan het melden</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Aan het afmelden voor Signal berichten en gesprekken...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal berichten en gesprekken uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal Signal berichten en gesprekken uitzetten door je te deregistreren bij de server. Je zal je telefoonnummer opnieuw moeten registreren als je deze functies weer wilt gebruiken.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Aan het afmelden voor Signal berichten en oproepen...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal berichten en oproepen uitschakelen?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal Signal berichten en oproepen uitzetten door je te deregistreren bij de server. Je zal je telefoonnummer opnieuw moeten registreren als je deze functies weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS ingeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Aanraken om je standaard SMS-applicatie te veranderen</string>
@@ -45,10 +45,12 @@
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Fout bij afspelen audio!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Geblokkeerde contacten</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Inkomend gesprek</string>
+  <string name="CallScreen_Incoming_call">Inkomende oproep</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identiteitssleutel van %1$s is gewijzigd. Dit kan betekenen dat iemand probeert jouw communicatie te onderscheppen, of dat %2$s gewoon Signal opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
@@ -72,10 +74,11 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden om de ontvanger geen Signal meer gebruikt.\n\nOnbeveiligd bericht verzenden?</string>
   <string name="ConversationItem_unable_to_open_media">Geen app gevonden om dit bestand te openen.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Beveiligde sessie reset bevestigen</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Weet je zeker dat je deze beveiligde sessie wilt resetten?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Verwijderen gesprek bevestigen</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Weet je zeker dat je dit gesprek permanent wilt verwijderen?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Beveiligde sessie resetten?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dit kan mogelijk helpen wanneer je versleutelingsproblemen hebt met dit gesprek. Je berichten blijven behouden.</string>
+  <string name="ConversationActivity_reset">Resetten</string>
+  <string name="ConversationActivity_delete_thread_question">Gesprek verwijderen?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Dit zal alle berichten in dit gesprek permanent verwijderen.</string>
   <string name="ConversationActivity_add_attachment">Voeg bijlage toe</string>
   <string name="ConversationActivity_select_contact_info">Selecteer contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
@@ -110,6 +113,7 @@
   <string name="ConversationActivity_unblock">Ontblokken</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wilt versturen.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Camera niet beschikbaar</string>
+  <string name="ConversationActivity_unable_to_record_audio">Fout bij opnemen audio!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
@@ -232,6 +236,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="ImportFragment_restoring_encrypted_backup">Versleutelde back-up herstellen...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Geen versleutelde back-up gevonden!</string>
   <string name="ImportFragment_restore_complete">Herstellen voltooid!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Delen</string>
   <string name="InviteActivity_send_sms">SMS versturen</string>
@@ -262,6 +267,12 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="NotificationBarManager_signal_call_in_progress">Signal gesprek aan de gang</string>
   <string name="NotificationBarManager_missed_call_from_s">Gemist gesprek van %s</string>
   <string name="NotificationBarManager_missed_signal_call">Gemist Signal gesprek</string>
+  <string name="NotificationBarManager__establishing_signal_call">Opzetten van Signal gesprek</string>
+  <string name="NotificationBarManager__incoming_signal_call">Inkomende Signal oproep</string>
+  <string name="NotificationBarManager__deny_call">Oproep afwijzen</string>
+  <string name="NotificationBarManager__answer_call">Oproep beantwoorden</string>
+  <string name="NotificationBarManager__end_call">Oproep beëindigen</string>
+  <string name="NotificationBarManager__cancel_call">Oproep annuleren</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
   <!--MessageRecord-->
@@ -270,7 +281,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageRecord_updated_group">Groep bijgewerkt.</string>
   <string name="MessageRecord_s_called_you">%s heeft je gebeld</string>
   <string name="MessageRecord_called_s">%s gebeld</string>
-  <string name="MessageRecord_missed_call_from">Gemist gesprek van %s</string>
+  <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
@@ -283,12 +294,12 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceProvisioningActivity_title">Dit apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_content_intro">Het kan</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-        - Al je berichten lezen
-        \n- Berichten versturen namens jou
+        • Al je berichten lezen
+        \n• Berichten onder jouw naam versturen
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Apparaat koppelen</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Koppelen nieuw apparaat...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Apparaat gekoppeld!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Apparaat goedgekeurd!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Geen apparaat gevonden.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netwerkfout!</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ongeldige QR code.</string>
@@ -308,7 +319,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RatingManager_later">Later</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Contact blokkeren?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Je zal geen berichten of gesprekken meer ontvangen van deze gebruiker.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Je zal geen berichten of oproepen meer ontvangen van deze gebruiker.</string>
   <string name="RecipientPreferenceActivity_block">Blokkeren</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Contact ontblokken?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Weet je zeker dat je dit contact wilt ontblokken?</string>
@@ -317,10 +328,10 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RecipientPreferenceActivity_disabled">Uitgeschakeld</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Beantwoorden</string>
-  <string name="RedPhone_ending_call">Gesprek aan het beëindigen</string>
+  <string name="RedPhone_ending_call">Oproep aan het beëindigen</string>
   <string name="RedPhone_dialing">Kiezende</string>
-  <string name="RedPhone_canceling_call">Gesprek aan het annuleren</string>
-  <string name="RedPhone_call_rejected">Gesprek geweigerd</string>
+  <string name="RedPhone_canceling_call">Oproep aan het annuleren</string>
+  <string name="RedPhone_call_rejected">Oproep geweigerd</string>
   <string name="RedPhone_ringing">Bellende</string>
   <string name="RedPhone_busy">Bezig</string>
   <string name="RedPhone_connected">Verbonden</string>
@@ -401,7 +412,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="ThreadRecord_draft">Concept:</string>
   <string name="ThreadRecord_called">Jij hebt gebeld</string>
   <string name="ThreadRecord_called_you">Heeft je gebeld</string>
-  <string name="ThreadRecord_missed_call">Gemist gesprek</string>
+  <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Media bericht</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
   <!--VerifyIdentityActivity-->
@@ -482,9 +493,9 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="attachment_type_selector__contact">Contactpersoon</string>
   <string name="attachment_type_selector__camera">Camera</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord:</string>
-  <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Herhaal nieuw wachtwoord:</string>
+  <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord</string>
+  <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Herhaal nieuw wachtwoord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Typ naam of nummer</string>
   <!--contact_selection_group_activity-->
@@ -497,7 +508,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contacten...</string>
   <!--contact_selection_recent_activity-->
-  <string name="contact_selection_recent_activity__no_recent_calls">Geen recente gesprekken.</string>
+  <string name="contact_selection_recent_activity__no_recent_calls">Geen recente oproepen.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversatie gedempt</string>
   <!--conversation_activity-->
@@ -511,6 +522,8 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="conversation_activity__emoji_toggle_description">Wissel emoji toetsenbord</string>
   <string name="conversation_activity__attachment_thumbnail">Bijlage Miniatuur</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Bijlageoverzicht tonen/verbergen</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">SCHUIF OM TE ANNULEREN</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Mediabericht aan het downloaden</string>
   <string name="conversation_item__mms_image_description">Mediabericht</string>
@@ -572,9 +585,12 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="MmsPreferencesFragment__invalid_uri">De ingevoerde tekst is geen geldige URI</string>
   <string name="MmsPreferencesFragment__invalid_host">De ingevoerde tekst is geen geldige host</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s is toegetreden tot de groep.</string>
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s is toegevoegd aan de groep.</item>
+    <item quantity="other">%1$s zijn toegevoegd aan de groep.</item>
+  </plurals>
   <string name="GroupUtil_group_updated">Groep bijgewerkt.</string>
-  <string name="GroupUtil_title_is_now">Titel is nu \'%1$s\'.</string>
+  <string name="GroupUtil_group_name_is_now">De groepsnaam is nu \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ontgrendel</string>
   <!--prompt_mms_activity-->
@@ -592,11 +608,11 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="recipient_preferences__color_for_this_contact">Kleur voor dit contact</string>
   <string name="recipient_preferences__verify_identity">Identiteit verifiëren</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal Gesprek</string>
-  <string name="redphone_call_controls__end_call">Gesprek beëindigen</string>
+  <string name="redphone_call_card__signal_call">Signal Oproep</string>
+  <string name="redphone_call_controls__end_call">Oproep beëindigen</string>
   <string name="redphone_call_controls__audio">Audio</string>
   <string name="redphone_call_controls__mute">Dempen</string>
-  <string name="redphone_call_controls__signal_call">Signal Gesprek</string>
+  <string name="redphone_call_controls__signal_call">Signal Oproep</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
 Verifieer je telefoonnummer om met Signal verbinding te maken.
@@ -697,7 +713,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="arrays__disabled">Uitgeschakeld</string>
   <string name="arrays__name_and_message">Naam en bericht</string>
   <string name="arrays__name_only">Alleen naam</string>
-  <string name="arrays__neither">Geen van alle</string>
+  <string name="arrays__no_name_or_message">Geen naam of bericht</string>
   <string name="arrays__images">Afbeeldingen</string>
   <string name="arrays__audio">Geluid</string>
   <string name="arrays__video">Video</string>
@@ -745,6 +761,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__pref_led_blink_custom_pattern_set">Aangepast LED knipper patroon ingesteld.</string>
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__change_notification_sound">Verander notificatiegeluid</string>
+  <string name="preferences__silent">Stil</string>
   <string name="preferences__inthread_notifications">Notificaties in een gesprek</string>
   <string name="preferences__play_inthread_notifications">Notificatiegeluid afspelen tijdens het bekijken van een actief gesprek</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
@@ -789,6 +806,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__conversation_length_limit">Gesprekslengte limiet</string>
   <string name="preferences__trim_all_threads_now">Oude berichten nu verwijderen</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Alle gesprekken scannen en de maximale gesprekslengte toepassen</string>
+  <string name="preferences__devices">Apparaten</string>
   <string name="preferences__light_theme">Licht</string>
   <string name="preferences__dark_theme">Donker</string>
   <string name="preferences__appearance">Uiterlijk</string>
@@ -797,7 +815,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__default">Standaard</string>
   <string name="preferences__language">Taal</string>
   <string name="preferences__language_summary">Taal %s</string>
-  <string name="preferences__signal_messages_and_calls">Signal berichten en gesprekken</string>
+  <string name="preferences__signal_messages_and_calls">Signal berichten en oproepen</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal gebruikers</string>
   <string name="preferences__submit_debug_log">Dien debug log in</string>
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
@@ -825,7 +843,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Contactenlijst verversen</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Bel</string>
+  <string name="conversation_callable_insecure__menu_call">Bel</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Signal oproep</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Berichtdetails</string>
   <string name="conversation_context__menu_copy_text">Tekst kopiëren</string>
@@ -860,7 +880,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="conversation__menu_add_attachment">Bijlage toevoegen</string>
   <string name="conversation__menu_update_group">Groep bijwerken</string>
   <string name="conversation__menu_leave_group">Groep verlaten</string>
-  <string name="conversation__menu_delete_thread">Gehele gesprek verwijderen</string>
+  <string name="conversation__menu_delete_thread">Gesprek verwijderen</string>
   <string name="conversation__menu_view_media">Alle afbeeldingen</string>
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
   <!--conversation_popup-->
@@ -893,7 +913,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="reminder_header_sms_import_title">SMS uit systeem importeren</string>
   <string name="reminder_header_sms_import_text">Aanraken om de SMS berichten in je telefoon te kopiëren naar een versleutelde database.</string>
   <string name="reminder_header_sms_import_button">IMPORTEREN</string>
-  <string name="reminder_header_push_title">Signal berichten en gesprekken inschakelen</string>
+  <string name="reminder_header_push_title">Signal berichten en oproepen inschakelen</string>
   <string name="reminder_header_push_text">Update je communicatie-ervaring.</string>
   <string name="reminder_header_push_button">AANZETTEN</string>
   <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
@@ -911,6 +931,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="media_preview__save_title">Opslaan</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Afbeelding Voorvertoning</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Verversen</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Toestel</string>
   <string name="redphone_audio_popup_menu__headset">Koptelefoon</string>
@@ -921,5 +943,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportkanaal icoon</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de weergegeven QR code op het te koppelen apparaat</string>
+  <string name="device_link_fragment__link_device">Apparaat koppelen</string>
+  <string name="device_list_fragment__link_new_device">Nieuw apparaat koppelen</string>
   <!--EOF-->
 </resources>

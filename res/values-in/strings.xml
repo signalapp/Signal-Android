@@ -42,6 +42,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Info kontak</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Kontak yang diblokir</string>
   <!--CallScreen-->
@@ -72,10 +73,6 @@ kontak ini.
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Signal.\n\nTetap kirim pesan tidak aman?</string>
   <string name="ConversationItem_unable_to_open_media">Tidak bisa menemukan aplikasi untuk membuka media ini.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Konfirmasi penyetelan ulang sesi aman</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Apakah Anda yakin ingin menyetel ulang sesi aman ini?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Konfirmasi penghapusan percakapan</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Apa anda yakin ingin menghapus percakapan ini secara permanen?</string>
   <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pilih info kontak</string>
   <string name="ConversationActivity_compose_message">Tulis pesan</string>
@@ -231,6 +228,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="ImportFragment_restoring_encrypted_backup">Memulihkan daru cadangan yang dienkripsi...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Tidak menemukan adanya cadangan yang dienkripsi!</string>
   <string name="ImportFragment_restore_complete">Pemulihan selesai!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">Berbagi</string>
   <string name="InviteActivity_send_sms">Kirim SMS</string>
@@ -282,13 +280,8 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="DeviceProvisioningActivity_cancel">BATAL</string>
   <string name="DeviceProvisioningActivity_continue">LANJUTKAN</string>
   <string name="DeviceProvisioningActivity_title">Kaitkan perangkat ini?</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - Membaca semua pesan Anda
-        \n- Mengirim pesan atas nama Anda
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Mengaitkan perangkat</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Mengaitkan perangkat baru...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Perangkat terkait!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Perangkat tidak ditemukan.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Galat jaringan.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Kode QR tidak valid.</string>
@@ -484,9 +477,6 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="attachment_type_selector__contact">Kontak</string>
   <string name="attachment_type_selector__camera">Kamera</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">KATA KUNCI LAMA</string>
-  <string name="change_passphrase_activity__new_passphrase">KATA KUNCI BARU</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ULANG KATA KUNCI BARU</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Masukkan nama atau nomor</string>
   <!--contact_selection_group_activity-->
@@ -513,6 +503,7 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="conversation_activity__emoji_toggle_description">Jungkit kibor emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Gambar Mini Lampiran</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Jungkit laci lampiran</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Pengunduhan pesan media</string>
   <string name="conversation_item__mms_image_description">Pesan media</string>
@@ -570,9 +561,7 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="MmsPreferencesFragment__invalid_uri">Teks yang dimasukkan bukan URI yang valid</string>
   <string name="MmsPreferencesFragment__invalid_host">Teks yang dimasukkan bukan host yang valid</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s bergabung di grup.</string>
   <string name="GroupUtil_group_updated">Grup diperbarui.</string>
-  <string name="GroupUtil_title_is_now">Judul sekarang adalah \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Buka Kunci</string>
   <!--prompt_mms_activity-->
@@ -845,7 +834,8 @@ Telah gagal
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Segarkan daftar kontak</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Panggil</string>
+  <string name="conversation_callable_insecure__menu_call">Panggil</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Rincian pesan</string>
   <string name="conversation_context__menu_copy_text">Salin teks</string>
@@ -880,7 +870,6 @@ Telah gagal
   <string name="conversation__menu_add_attachment">Tambahkan lampiran</string>
   <string name="conversation__menu_update_group">Perbarui grup</string>
   <string name="conversation__menu_leave_group">Keluar grup</string>
-  <string name="conversation__menu_delete_thread">Hapus Percakapan</string>
   <string name="conversation__menu_view_media">Semua gambar</string>
   <string name="conversation__menu_conversation_settings">Pengaturan percakapan</string>
   <!--conversation_popup-->
@@ -931,6 +920,7 @@ Telah gagal
   <string name="media_preview__save_title">Simpan</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Pratinjau Gambar</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Menghapus</string>
