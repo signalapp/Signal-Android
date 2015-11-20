@@ -246,7 +246,6 @@ public class PushDecryptJob extends MasterSecretJob {
     ProfileAccessor.setStatusForProfileId(context, numberAsLong + "", message.getBody().get());
     ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
     ProfileAccessor.setUpdateTimeForProfileId(context, numberAsLong + "", message.getTimestamp());
-    ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
 
   }
   private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
