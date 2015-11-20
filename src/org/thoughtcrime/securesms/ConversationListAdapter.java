@@ -27,16 +27,23 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
+import org.thoughtcrime.redphone.util.Conversions;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.util.LRUCache;
+import org.thoughtcrime.securesms.util.Util;
 
+import java.lang.ref.SoftReference;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -46,19 +53,23 @@ import java.util.Set;
  */
 public class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationListAdapter.ViewHolder> {
 
-  private final ThreadDatabase    threadDatabase;
-  private final MasterSecret      masterSecret;
-  private final MasterCipher      masterCipher;
-  private final Locale            locale;
-  private final LayoutInflater    inflater;
-  private final ItemClickListener clickListener;
+  private final Map<Long, SoftReference<ThreadRecord>> threadRecordCache = new LRUCache<>(40);
+
+  private final          ThreadDatabase    threadDatabase;
+  private final          MasterSecret      masterSecret;
+  private final          MasterCipher      masterCipher;
+  private final          Locale            locale;
+  private final          LayoutInflater    inflater;
+  private final          ItemClickListener clickListener;
+  private final @NonNull MessageDigest     digest;
 
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public ViewHolder(final @NonNull ConversationListItem itemView,
-                      final @Nullable ItemClickListener clickListener) {
+                      final @Nullable ItemClickListener clickListener)
+    {
       super(itemView);
       itemView.setOnClickListener(new OnClickListener() {
         @Override
@@ -76,23 +87,39 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     }
 
     public ConversationListItem getItem() {
-      return (ConversationListItem) itemView;
+      return (ConversationListItem)itemView;
     }
+  }
+
+  @Override
+  public long getItemId(@NonNull Cursor cursor) {
+    ThreadRecord record = getThreadRecord(cursor);
+    StringBuilder builder = new StringBuilder(""+record.getThreadId());
+    for (long recipientId : record.getRecipients().getIds()) {
+      builder.append("::").append(recipientId);
+    }
+    return Conversions.byteArrayToLong(digest.digest(builder.toString().getBytes()));
   }
 
   public ConversationListAdapter(@NonNull Context context,
                                  @NonNull MasterSecret masterSecret,
                                  @NonNull Locale locale,
                                  @Nullable Cursor cursor,
-                                 @Nullable ItemClickListener clickListener) {
+                                 @Nullable ItemClickListener clickListener)
+  {
     super(context, cursor);
-    this.masterSecret   = masterSecret;
-    this.masterCipher   = new MasterCipher(masterSecret);
-    this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    this.locale         = locale;
-    this.inflater       = LayoutInflater.from(context);
-    this.clickListener  = clickListener;
-    setHasStableIds(true);
+    try {
+      this.masterSecret   = masterSecret;
+      this.masterCipher   = new MasterCipher(masterSecret);
+      this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
+      this.locale         = locale;
+      this.inflater       = LayoutInflater.from(context);
+      this.clickListener  = clickListener;
+      this.digest         = MessageDigest.getInstance("SHA1");
+      setHasStableIds(true);
+    } catch (NoSuchAlgorithmException nsae) {
+      throw new AssertionError("SHA-1 missing");
+    }
   }
 
   @Override
@@ -101,16 +128,34 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
                                                                  parent, false), clickListener);
   }
 
-  @Override public void onItemViewRecycled(ViewHolder holder) {
+  @Override
+  public void changeCursor(Cursor cursor) {
+    threadRecordCache.clear();
+    super.changeCursor(cursor);
+  }
+
+  @Override
+  public void onItemViewRecycled(ViewHolder holder) {
     holder.getItem().unbind();
   }
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
-    ThreadRecord          record = reader.getCurrent();
+    viewHolder.getItem().set(masterSecret, getThreadRecord(cursor), locale, batchSet, batchMode);
+  }
 
-    viewHolder.getItem().set(masterSecret, record, locale, batchSet, batchMode);
+  private ThreadRecord getThreadRecord(@NonNull Cursor cursor) {
+    long id = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
+
+    final SoftReference<ThreadRecord> reference = threadRecordCache.get(id);
+    if (reference != null) {
+      final ThreadRecord record = reference.get();
+      if (record != null) return record;
+    }
+
+    ThreadRecord record = threadDatabase.readerFor(cursor, masterCipher).getCurrent();
+    threadRecordCache.put(id, new SoftReference<>(record));
+    return record;
   }
 
   public void toggleThreadInBatchSet(long threadId) {
