@@ -88,7 +88,7 @@ public class DraftDatabase extends Database {
           String encryptedType  = cursor.getString(cursor.getColumnIndexOrThrow(DRAFT_TYPE));
           String encryptedValue = cursor.getString(cursor.getColumnIndexOrThrow(DRAFT_VALUE));
 
-          results.add(new Draft(masterCipher.decryptBody(encryptedType),
+          results.add(DraftFactory.getInstance().getDraft(masterCipher.decryptBody(encryptedType),
                                 masterCipher.decryptBody(encryptedValue)));
         } catch (InvalidMessageException ime) {
           Log.w("DraftDatabase", ime);
@@ -102,38 +102,7 @@ public class DraftDatabase extends Database {
     }
   }
 
-  public static class Draft {
-    public static final String TEXT  = "text";
-    public static final String IMAGE = "image";
-    public static final String VIDEO = "video";
-    public static final String AUDIO = "audio";
 
-    private final String type;
-    private final String value;
-
-    public Draft(String type, String value) {
-      this.type  = type;
-      this.value = value;
-    }
-
-    public String getType() {
-      return type;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    public String getSnippet(Context context) {
-      switch (type) {
-      case TEXT:  return value;
-      case IMAGE: return context.getString(R.string.DraftDatabase_Draft_image_snippet);
-      case VIDEO: return context.getString(R.string.DraftDatabase_Draft_video_snippet);
-      case AUDIO: return context.getString(R.string.DraftDatabase_Draft_audio_snippet);
-      default:    return null;
-      }
-    }
-  }
 
   public static class Drafts extends LinkedList<Draft> {
     private Draft getDraftOfType(String type) {
