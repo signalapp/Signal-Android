@@ -973,6 +973,7 @@
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__trim_all_threads_now">Trim all threads now</string>
     <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Scan through all conversation threads and enforce conversation length limits</string>
+    <string name="preferences__devices">Devices</string>
     <string name="preferences__light_theme">Light</string>
     <string name="preferences__dark_theme">Dark</string>
     <string name="preferences__appearance">Appearance</string>
