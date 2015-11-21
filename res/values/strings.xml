@@ -916,7 +916,7 @@
     <string name="preferences__timeout_passphrase">Timeout passphrase</string>
     <string name="preferences__pref_timeout_interval_dialogtitle">Select passphrase timeout</string>
     <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
-    <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">The amount of time to wait before forgetting passphrase from memory</string>
+    <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">The amount of time to wait before forgetting the passphrase</string>
     <string name="preferences__notifications">Notifications</string>
     <string name="preferences__enable_message_notifications">Enable message notifications</string>
     <string name="preferences__led_color">LED color</string>
