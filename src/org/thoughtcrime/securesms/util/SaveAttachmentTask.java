@@ -58,7 +58,8 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
         return FAILURE;
       }
 
-      File        mediaFile   = constructOutputFile(attachment.contentType, attachment.date);
+      String      contentType = MediaUtil.getCorrectedMimeType(attachment.contentType);
+      File        mediaFile   = constructOutputFile(contentType, attachment.date);
       InputStream inputStream = PartAuthority.getAttachmentStream(context, masterSecret, attachment.uri);
 
       if (inputStream == null) {
@@ -69,7 +70,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       Util.copy(inputStream, outputStream);
 
       MediaScannerConnection.scanFile(context, new String[]{mediaFile.getAbsolutePath()},
-                                      new String[]{attachment.contentType}, null);
+                                      new String[]{contentType}, null);
 
       return SUCCESS;
     } catch (IOException ioe) {
@@ -121,8 +122,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     SimpleDateFormat  dateFormatter = new SimpleDateFormat("yyyy-MM-dd-HHmmss");
     String            base          = "signal-" + dateFormatter.format(timestamp);
 
-    if (extension == null)
-      extension = "attach";
+    if (extension == null) extension = "attach";
 
     int i = 0;
     File file = new File(outputDirectory, base + "." + extension);
