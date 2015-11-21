@@ -410,11 +410,14 @@
         than 4.0 must have a registered Google Account. Devices running Android 4.0 or newer do not
         require a Google account, but must have the Play Store app installed.
     </string>
+    <string name="RegistrationActivity_websockets_only_unsupported">"This device setup is not officially supported, and if you experience bugs you will have to resolve them yourself."
+    </string>
     <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
         Double-check that this is your number! We\'re about to verify it with an SMS.
     </string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="RegistrationActivity_edit">Edit</string>
+    <string name="RegistrationActivity_I_understand">I Understand</string>
 
     <!-- RegistrationProblemsActivity -->
     <string name="RegistrationProblemsActivity_possible_problems">Possible problems</string>

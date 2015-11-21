@@ -26,6 +26,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -198,31 +199,49 @@ public class RegistrationActivity extends BaseActionBarActivity {
       int gcmStatus = GooglePlayServicesUtil.isGooglePlayServicesAvailable(self);
 
       if (gcmStatus != ConnectionResult.SUCCESS) {
-        if (GooglePlayServicesUtil.isUserRecoverableError(gcmStatus)) {
+        if(BuildConfig.FORCE_WEBSOCKETS) {
+          AlertDialogWrapper.Builder unsupportedDialog = new AlertDialogWrapper.Builder(self);
+          unsupportedDialog.setTitle(getString(R.string.RegistrationActivity_unsupported));
+          unsupportedDialog.setMessage(getString(R.string.RegistrationActivity_websockets_only_unsupported));
+          unsupportedDialog.setPositiveButton(getString(R.string.RegistrationActivity_I_understand),
+                                              new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                  showDoubleCheckDialog(self,e164number);
+                                                }
+                                              });
+          unsupportedDialog.show();
+        } else if (GooglePlayServicesUtil.isUserRecoverableError(gcmStatus)) {
           GooglePlayServicesUtil.getErrorDialog(gcmStatus, self, 9000).show();
+          return;
         } else {
           Dialogs.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
                                   getString(R.string.RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging));
+          return;
         }
+      } else {
+        showDoubleCheckDialog(self,e164number);
       }
-
-      AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(self);
-      dialog.setTitle(PhoneNumberFormatter.getInternationalFormatFromE164(e164number));
-      dialog.setMessage(R.string.RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s);
-      dialog.setPositiveButton(getString(R.string.RegistrationActivity_continue),
-                               new DialogInterface.OnClickListener() {
-                                 @Override
-                                 public void onClick(DialogInterface dialog, int which) {
-                                   Intent intent = new Intent(self, RegistrationProgressActivity.class);
-                                   intent.putExtra("e164number", e164number);
-                                   intent.putExtra("master_secret", masterSecret);
-                                   startActivity(intent);
-                                   finish();
-                                 }
-                               });
-      dialog.setNegativeButton(getString(R.string.RegistrationActivity_edit), null);
-      dialog.show();
     }
+  }
+
+  private void showDoubleCheckDialog(final RegistrationActivity self, final String e164number){
+    AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(self);
+    dialog.setTitle(PhoneNumberFormatter.getInternationalFormatFromE164(e164number));
+    dialog.setMessage(R.string.RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s);
+    dialog.setPositiveButton(getString(R.string.RegistrationActivity_continue),
+                             new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialog, int which) {
+                                 Intent intent = new Intent(self, RegistrationProgressActivity.class);
+                                 intent.putExtra("e164number", e164number);
+                                 intent.putExtra("master_secret", masterSecret);
+                                 startActivity(intent);
+                                 finish();
+                               }
+                             });
+    dialog.setNegativeButton(getString(R.string.RegistrationActivity_edit), null);
+    dialog.show();
   }
 
   private class CountryCodeChangedListener implements TextWatcher {
