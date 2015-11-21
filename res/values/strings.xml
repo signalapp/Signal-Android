@@ -1118,13 +1118,14 @@
     <string name="text_secure_normal__help">Help</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_outdated_build">Your version of Signal is outdated!</string>
+    <string name="reminder_header_outdated_build">Your version of Signal is outdated</string>
     <plurals name="reminder_header_outdated_build_details">
-        <item quantity="one">Your version of Signal will expire tomorrow. Please update to the most recent version.</item>
-        <item quantity="other">Your version of Signal will expire in %d days. Please update to the most recent version.</item>
+        <item quantity="one">Your version of Signal will expire in 1 day. Tap to update to the most recent version.</item>
+        <item quantity="other">Your version of Signal will expire in %d days. Tap to update to the most recent version.</item>
     </plurals>
+    <string name="reminder_header_outdated_build_details_today">Your version of Signal will expire today. Tap to update to the most recent version.</string>
     <string name="reminder_header_expired_build">Your version of Signal has expired!</string>
-    <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
+    <string name="reminder_header_expired_build_details">Messages will no longer send successfully. Tap to update to the most recent version.</string>
     <string name="reminder_header_expired_build_button">UPDATE</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>

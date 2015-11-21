@@ -26,7 +26,10 @@ public class OutdatedBuildReminder extends Reminder {
   }
 
   private static CharSequence getPluralsText(final Context context) {
-    int days = Util.getDaysTillBuildExpiry();
+    int days = Util.getDaysTillBuildExpiry() - 1;
+    if (days == 0) {
+      return context.getString(R.string.reminder_header_outdated_build_details_today);
+    }
     return context.getResources().getQuantityString(R.plurals.reminder_header_outdated_build_details, days, days);
   }
 
