@@ -1,16 +1,18 @@
 package org.thoughtcrime.securesms.providers;
 
+import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -18,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,12 +30,14 @@ public class PersistentBlobProvider {
 
   private static final String TAG = PersistentBlobProvider.class.getSimpleName();
 
-  private static final String     URI_STRING    = "content://org.thoughtcrime.securesms/capture";
-  public  static final Uri        CONTENT_URI   = Uri.parse(URI_STRING);
-  public  static final String     AUTHORITY     = "org.thoughtcrime.securesms";
-  public  static final String     EXPECTED_PATH = "capture/*/#";
-  private static final int        MATCH         = 1;
-  private static final UriMatcher MATCHER       = new UriMatcher(UriMatcher.NO_MATCH) {{
+  private static final String     URI_STRING            = "content://org.thoughtcrime.securesms/capture";
+  public  static final Uri        CONTENT_URI           = Uri.parse(URI_STRING);
+  public  static final String     AUTHORITY             = "org.thoughtcrime.securesms";
+  public  static final String     EXPECTED_PATH         = "capture/*/*/#";
+  private static final int        MIMETYPE_PATH_SEGMENT = 1;
+  private static final String     BLOB_EXTENSION        = "blob";
+  private static final int        MATCH                 = 1;
+  private static final UriMatcher MATCHER               = new UriMatcher(UriMatcher.NO_MATCH) {{
     addURI(AUTHORITY, EXPECTED_PATH, MATCH);
   }};
 
@@ -51,7 +54,8 @@ public class PersistentBlobProvider {
     return instance;
   }
 
-  private final Context context;
+  private final Context           context;
+  @SuppressLint("UseSparseArrays")
   private final Map<Long, byte[]> cache    = Collections.synchronizedMap(new HashMap<Long, byte[]>());
   private final ExecutorService   executor = Executors.newCachedThreadPool();
 
@@ -60,22 +64,27 @@ public class PersistentBlobProvider {
   }
 
   public Uri create(@NonNull MasterSecret masterSecret,
-                    @NonNull byte[] imageBytes)
+                    @NonNull byte[] blobBytes,
+                    @NonNull String mimeType)
   {
     final long id = System.currentTimeMillis();
-    cache.put(id, imageBytes);
-    return create(masterSecret, new ByteArrayInputStream(imageBytes), id);
+    cache.put(id, blobBytes);
+    return create(masterSecret, new ByteArrayInputStream(blobBytes), id, mimeType);
   }
 
   public Uri create(@NonNull MasterSecret masterSecret,
-                    @NonNull InputStream input)
+                    @NonNull InputStream input,
+                    @NonNull String mimeType)
   {
-    return create(masterSecret, input, System.currentTimeMillis());
+    return create(masterSecret, input, System.currentTimeMillis(), mimeType);
   }
 
-  private Uri create(MasterSecret masterSecret, InputStream input, long id) {
+  private Uri create(MasterSecret masterSecret, InputStream input, long id, String mimeType) {
     persistToDisk(masterSecret, id, input);
-    final Uri uniqueUri = Uri.withAppendedPath(CONTENT_URI, String.valueOf(System.currentTimeMillis()));
+    final Uri uniqueUri = CONTENT_URI.buildUpon()
+                                     .appendPath(mimeType)
+                                     .appendEncodedPath(String.valueOf(System.currentTimeMillis()))
+                                     .build();
     return ContentUris.withAppendedId(uniqueUri, id);
   }
 
@@ -97,10 +106,9 @@ public class PersistentBlobProvider {
     });
   }
 
-  public Uri createForExternal() throws IOException {
-    return Uri.fromFile(new File(getExternalDir(context), String.valueOf(System.currentTimeMillis()) + ".jpg"))
-              .buildUpon()
-              .build();
+  public Uri createForExternal(@NonNull String mimeType) throws IOException {
+    return Uri.fromFile(new File(getExternalDir(context),
+                        String.valueOf(System.currentTimeMillis()) + "." + getExtensionFromMimeType(mimeType)));
   }
 
   public boolean delete(@NonNull Uri uri) {
@@ -121,7 +129,17 @@ public class PersistentBlobProvider {
   }
 
   private File getFile(long id) {
-    return new File(context.getDir("captures", Context.MODE_PRIVATE), id + ".jpg");
+    return new File(context.getDir("captures", Context.MODE_PRIVATE), id + "." + BLOB_EXTENSION);
+  }
+
+  public static @Nullable String getMimeType(@NonNull Context context, @NonNull Uri persistentBlobUri) {
+    if (!isAuthority(context, persistentBlobUri)) return null;
+    return persistentBlobUri.getPathSegments().get(MIMETYPE_PATH_SEGMENT);
+  }
+
+  private static @NonNull String getExtensionFromMimeType(String mimeType) {
+    final String extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType);
+    return extension != null ? extension : BLOB_EXTENSION;
   }
 
   private static @NonNull File getExternalDir(Context context) throws IOException {

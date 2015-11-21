@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,6 +60,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private ViewGroup    fragmentContainer;
   private View         progressWheel;
   private Uri          resolvedExtra;
+  private String       mimeType;
   private boolean      isPassingAlongMedia;
 
   @Override
@@ -110,6 +112,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     isPassingAlongMedia = false;
 
     Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
+    mimeType        = getMimeType(streamExtra);
     if (streamExtra != null && PartAuthority.isLocalUri(streamExtra)) {
       isPassingAlongMedia = true;
       resolvedExtra       = streamExtra;
@@ -166,19 +169,18 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
     final Intent intent      = new Intent(this, target);
     final String textExtra   = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    final Uri    streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-    final String type        = streamExtra != null ? getMimeType(streamExtra)
-                                                   : MediaUtil.getCorrectedMimeType(getIntent().getType());
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
-    if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, type);
+    if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 
     return intent;
   }
 
-  private String getMimeType(Uri uri) {
-    final String type = MediaUtil.getMimeType(getApplicationContext(), uri);
-    return type == null ? MediaUtil.getCorrectedMimeType(getIntent().getType())
-                        : type;
+  private String getMimeType(@Nullable Uri uri) {
+    if (uri != null) {
+      final String mimeType = MediaUtil.getMimeType(getApplicationContext(), uri);
+      if (mimeType != null) return mimeType;
+    }
+    return MediaUtil.getCorrectedMimeType(getIntent().getType());
   }
 
   private class ResolveMediaTask extends AsyncTask<Uri, Void, Uri> {
@@ -200,7 +202,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
           return null;
         }
 
-        return PersistentBlobProvider.getInstance(context).create(masterSecret, input);
+        return PersistentBlobProvider.getInstance(context).create(masterSecret, input, mimeType);
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;
