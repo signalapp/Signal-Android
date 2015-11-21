@@ -273,7 +273,8 @@ public class AttachmentManager {
       Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
       if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
         if (captureUri == null) {
-          captureUri = PersistentBlobProvider.getInstance(context).createForExternal();
+          captureUri = PersistentBlobProvider.getInstance(context)
+                                             .createForExternal(ContentType.IMAGE_JPEG);
         }
         Log.w(TAG, "captureUri path is " + captureUri.getPath());
         captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
