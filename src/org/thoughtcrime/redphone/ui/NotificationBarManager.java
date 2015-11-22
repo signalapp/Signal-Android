@@ -17,20 +17,15 @@
 
 package org.thoughtcrime.redphone.ui;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import org.thoughtcrime.redphone.RedPhone;
-import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
  * Manages the state of the RedPhone items in the Android notification bar.
@@ -44,6 +39,10 @@ public class NotificationBarManager {
   private static final int RED_PHONE_NOTIFICATION   = 313388;
   private static final int MISSED_CALL_NOTIFICATION = 313389;
 
+  public static final int TYPE_INCOMING_RINGING = 1;
+  public static final int TYPE_OUTGOING_RINGING = 2;
+  public static final int TYPE_ESTABLISHED      = 3;
+
   public static void setCallEnded(Context context) {
     NotificationManager notificationManager = (NotificationManager)context
         .getSystemService(Context.NOTIFICATION_SERVICE);
@@ -51,20 +50,40 @@ public class NotificationBarManager {
     notificationManager.cancel(RED_PHONE_NOTIFICATION);
   }
 
-  public static void setCallInProgress(Context context) {
+  public static void setCallInProgress(Context context, int type, Recipient recipient) {
     NotificationManager notificationManager = (NotificationManager)context
         .getSystemService(Context.NOTIFICATION_SERVICE);
 
     Intent contentIntent        = new Intent(context, RedPhone.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
-    String notificationText     = context.getString(R.string.NotificationBarManager_signal_call_in_progress);
-    Notification notification   = new Notification(R.drawable.redphone_stat_sys_phone_call, null,
-                                                   System.currentTimeMillis());
 
-    notification.setLatestEventInfo(context, notificationText, notificationText, pendingIntent);
-    notification.flags = Notification.FLAG_NO_CLEAR;
-    notificationManager.notify(RED_PHONE_NOTIFICATION, notification);
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                                                               .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
+                                                               .setContentIntent(pendingIntent)
+                                                               .setOngoing(true)
+                                                               .setContentTitle(recipient.getName());
+
+    if (type == TYPE_INCOMING_RINGING) {
+      builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call));
+      builder.addAction(getNotificationAction(context, RedPhone.DENY_ACTION, R.drawable.ic_close_grey600_32dp,   R.string.NotificationBarManager__deny_call));
+      builder.addAction(getNotificationAction(context, RedPhone.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, R.string.NotificationBarManager__answer_call));
+    } else if (type == TYPE_OUTGOING_RINGING) {
+      builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
+      builder.addAction(getNotificationAction(context, RedPhone.END_CALL_ACTION, R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
+    } else {
+      builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.addAction(getNotificationAction(context, RedPhone.END_CALL_ACTION, R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__end_call));
+    }
+
+    notificationManager.notify(RED_PHONE_NOTIFICATION, builder.build());
   }
-  
+
+  private static NotificationCompat.Action getNotificationAction(Context context, String action, int iconResId, int titleResId) {
+    Intent intent = new Intent(context, RedPhone.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    intent.setAction(action);
+    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+    return new NotificationCompat.Action(iconResId, context.getString(titleResId), pendingIntent);
+  }
 }

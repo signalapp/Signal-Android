@@ -83,7 +83,7 @@
                 app:backgroundColorHint="?conversation_background"
                 android:visibility="gone"
                 tools:src="@drawable/ic_video_light"
-                tools:visibility="visible"                />
+                tools:visibility="visible" />
 
         <TextView android:id="@id/date"
                   android:layout_marginLeft="3dip"

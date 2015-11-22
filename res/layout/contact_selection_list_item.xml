@@ -1,72 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <org.thoughtcrime.securesms.contacts.ContactSelectionListItem
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/listPreferredItemHeight"
-                android:paddingRight="50dp">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/conversation_list_item_background"
+        android:paddingLeft="48dp"
+        android:paddingRight="20dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
-            android:layout_width="@dimen/contact_selection_photo_size"
-            android:layout_height="@dimen/contact_selection_photo_size"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:foreground="@drawable/contact_photo_background"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:cropToPadding="true"
+            tools:src="@color/md_material_blue_600"
+            android:layout_marginRight="10dp"
             android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
 
-    <LinearLayout
-            android:id="@+id/number_container"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dip"
-            android:layout_marginLeft="14dip"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/contact_photo_image">
-
-        <TextView android:id="@+id/number"
-                  android:layout_width="wrap_content"
+    <LinearLayout android:layout_width="0dp"
                   android:layout_height="wrap_content"
-                  android:singleLine="true"
-                  android:ellipsize="marquee"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:fontFamily="sans-serif-light" />
+                  android:layout_weight="1"
+                  android:orientation="vertical">
 
-        <TextView android:id="@+id/label"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:paddingLeft="10dip"
-                  android:ellipsize="end"
-                  android:singleLine="true"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:fontFamily="sans-serif-light"/>
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp"
+                tools:text="Frieeeeeeedrich Nieeeeeeeeeetzsche" />
+
+        <LinearLayout android:id="@+id/number_container"
+                      android:orientation="horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/number"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:singleLine="true"
+                      android:ellipsize="marquee"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:textSize="14sp"
+                      android:fontFamily="sans-serif-light"
+                      tools:text="+1 (555) 555-5555" />
+
+            <TextView android:id="@+id/label"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:paddingLeft="10dip"
+                      android:ellipsize="end"
+                      android:singleLine="true"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:fontFamily="sans-serif-light"
+                      tools:text="Mobile" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/number_container"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="1dip"
-        android:layout_marginLeft="14dip"
-	    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:layout_toRightOf="@id/contact_photo_image"
-        android:gravity="center_vertical|left"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <CheckBox android:id="@+id/check_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="13dp"
-        android:focusable="false"
-        android:clickable="false" />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:focusable="false"
+              android:clickable="false" />
 
 </org.thoughtcrime.securesms.contacts.ContactSelectionListItem>

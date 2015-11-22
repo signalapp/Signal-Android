@@ -41,6 +41,7 @@ Onemogući zaključani ekran za poruke?</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontakt informacije</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokirani kontakti</string>
   <!--CallScreen-->
@@ -70,10 +71,6 @@ ovaj kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj nije više Signal korisnik.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Resetiraj potvrdu sigurne sesije</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Jeste li sigurni da želite resetirati ovu sigurnu sesiju?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Potvrda brisanja teme</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Jeste li sigurni da želite trajno obrisati ovaj razgovor?</string>
   <string name="ConversationActivity_add_attachment">Dodaj privitak</string>
   <string name="ConversationActivity_select_contact_info">Odaberite informacije kontakta</string>
   <string name="ConversationActivity_compose_message">Sastavi poruku</string>
@@ -111,7 +108,6 @@ ovaj kontakt.</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nPoslano/Primljeno: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nTransport: %2$s\nPoslano: %3$s\nPrimljeno: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Spremi na disk?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Spremanje ovog medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem telefonu.\n\nNastavi?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Greška prilikom spremanja privitka na disk!</string>
   <string name="ConversationFragment_success_exclamation">Uspješno!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pisati na disk!</string>
@@ -159,14 +155,8 @@ ovaj kontakt.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Signal. Pritisnite za pregled.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Izvoz</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Izvezi nekriptirano na SD karticu?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozorenje, ovo
-će izvesti sadržaj Signal poruka na SD karticu u obliku običnog teksta.</string>
   <string name="ExportFragment_cancel">Odustani</string>
   <string name="ExportFragment_exporting">Izvoz</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvoz običnog teksta na SD karticu...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Greška, nije moguće pisati na SD karticu!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Greška prilikom pisanja na SD karticu.</string>
   <string name="ExportFragment_success">Uspješno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>
@@ -185,7 +175,6 @@ ovaj kontakt.</string>
   <string name="GroupCreateActivity_menu_create_title">Stvori grupu</string>
   <string name="GroupCreateActivity_creating_group">Stvaranje %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Ažuriranje %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nije moguće dodati ne-Signal kontakte u postojeću Signal grupu</string>
   <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
@@ -218,6 +207,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="ImportFragment_restoring_encrypted_backup">Vraćanje kriptirane kopije...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nije pronađena kriptirana kopija!</string>
   <string name="ImportFragment_restore_complete">Vraćanje završeno!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Skenirani ključ nije pronađen!</string>
@@ -252,12 +242,8 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
   <string name="DeviceProvisioningActivity_title">Poveži ovaj uređaj?</string>
   <string name="DeviceProvisioningActivity_content_intro">Moći će</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- Čitati sve vaše poruke
-\n- Slati poruke u vaše ime</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Povezivanje uređaja</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Povezivanje novog uređaja...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Uređaj povezan!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Uređaj nije pronađen.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Mrežna greška.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neispravan QR kod.</string>
@@ -378,7 +364,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Primatelj nema ključ identiteta.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Primatelj nema ključ identiteta!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skenirajte njihov ključ za usporedbu</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Skeniraj moj ključ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UPOZORENJE, skenirani ključ NE ODGOVARA! Provjerite pažljivo tekst otiska prsta.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NIJE potvrđeno!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Njihov ključ je ispravan. Također je potrebno potvrditi vaš ključ sa njima.</string>
@@ -392,7 +377,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="ViewIdentityActivity_not_verified_exclamation">NIJE potvrđeno!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Skenirani ključ odgovara!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Potvrđeno!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Otisak prsta mog identiteta</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
   <string name="KeyExchangeInitiator_send">Pošalji</string>
@@ -446,9 +430,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Sadržaj je skriven</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">STARA LOZINKA:</string>
-  <string name="change_passphrase_activity__new_passphrase">NOVA LOZINKA:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">PONOVITE NOVU LOZINKU:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Unesite ime ili broj</string>
   <!--contact_selection_group_activity-->
@@ -475,6 +456,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="conversation_activity__emoji_toggle_description">Uključi/isključi emoji tipkovnicu</string>
   <string name="conversation_activity__attachment_thumbnail">Priložena sličica</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Uključi/isključi ladicu dodataka</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Preuzimanje media poruke</string>
   <string name="conversation_item__mms_image_description">Multimedijalna poruka</string>
@@ -514,17 +496,8 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Ažuriranje baze podataka...</string>
   <string name="export_fragment__export_plaintext_backup">Izvezi nekriptiranu kopiju</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Izvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\' na SD karticu.</string>
   <string name="import_fragment__import_system_sms_database">Uvezi SMS bazu podataka sustava</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Uvezi bazu podataka
-iz zadane aplikacije za poruke sustava.</string>
-  <string name="import_fragment__import_encrypted_backup">Uvezi kriptiranu kopiju</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Vrati prethodno izvezenu kriptiranu Signal kopiju.</string>
   <string name="import_fragment__import_plaintext_backup">Uvezi nekriptiranu kopiju</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Prikaži cijeli razgovor</string>
   <!--media_overview_activity-->
@@ -540,9 +513,7 @@ Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <string name="MmsPreferencesFragment__invalid_uri">Uneseni tekst nije ispravan URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Uneseni tekst nije ispravan poslužitelj</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s se pridružio grupi.</string>
   <string name="GroupUtil_group_updated">Grupa je ažurirana.</string>
-  <string name="GroupUtil_title_is_now">Naslov je sada \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Otključaj</string>
   <!--prompt_mms_activity-->
@@ -656,7 +627,6 @@ neuspješno.</string>
   <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanim uređajima</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
-  <string name="arrays__my_identity_key">Moj ključ identiteta</string>
   <string name="arrays__use_default">Koristi zadano</string>
   <string name="arrays__use_custom">Koristi prilagođeno</string>
   <string name="arrays__mute_for_one_hour">Utišaj na 1 sat</string>
@@ -668,7 +638,6 @@ neuspješno.</string>
   <string name="arrays__disabled">Onemogućeno</string>
   <string name="arrays__name_and_message">Ime i poruka</string>
   <string name="arrays__name_only">Samo ime</string>
-  <string name="arrays__neither">Niti jedno</string>
   <string name="arrays__images">Slike</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
@@ -694,7 +663,6 @@ neuspješno.</string>
   <string name="preferences__choose_identity">Odaberite identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Odaberite unos kontakta sa popisa kontakata.</string>
   <string name="preferences__change_passphrase">Izmjeni lozinku</string>
-  <string name="preferences__change_my_passphrase">Izmjeni moju lozinku</string>
   <string name="preferences__enable_passphrase">Omogući lozinku</string>
   <string name="preferences__passphrase_summary">Lozinka %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Omogući zaključani ekran za poruke</string>
@@ -795,7 +763,8 @@ neuspješno.</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Osvježi popis kontakata</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Nazovi</string>
+  <string name="conversation_callable_insecure__menu_call">Nazovi</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalji poruke</string>
   <string name="conversation_context__menu_copy_text">Kopiraj tekst</string>
@@ -830,7 +799,6 @@ neuspješno.</string>
   <string name="conversation__menu_add_attachment">Dodaj privitak</string>
   <string name="conversation__menu_update_group">Ažuriraj grupu</string>
   <string name="conversation__menu_leave_group">Napusti grupu</string>
-  <string name="conversation__menu_delete_thread">Obriši temu</string>
   <string name="conversation__menu_view_media">Sve slike</string>
   <string name="conversation__menu_conversation_settings">Postavke razgovora</string>
   <!--conversation_popup-->
@@ -874,6 +842,7 @@ neuspješno.</string>
   <string name="media_preview__save_title">Spremi</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Prikaz slike</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Slušalica</string>
   <string name="redphone_audio_popup_menu__headset">Slušalice</string>

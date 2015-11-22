@@ -9,7 +9,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.Toast;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.util.Util;
@@ -95,8 +97,11 @@ public class AudioSlidePlayer {
         Log.w(TAG, "onComplete");
         synchronized (AudioSlidePlayer.this) {
           mediaPlayer = null;
-          audioAttachmentServer.stop();
-          audioAttachmentServer = null;
+
+          if (audioAttachmentServer != null) {
+            audioAttachmentServer.stop();
+            audioAttachmentServer = null;
+          }
         }
 
         notifyOnStop();
@@ -108,7 +113,20 @@ public class AudioSlidePlayer {
       @Override
       public boolean onError(MediaPlayer mp, int what, int extra) {
         Log.w(TAG, "MediaPlayer Error: " + what + " , " + extra);
+
+        Toast.makeText(context, R.string.AudioSlidePlayer_error_playing_audio, Toast.LENGTH_SHORT).show();
+
+        synchronized (AudioSlidePlayer.this) {
+          mediaPlayer = null;
+
+          if (audioAttachmentServer != null) {
+            audioAttachmentServer.stop();
+            audioAttachmentServer = null;
+          }
+        }
+
         notifyOnStop();
+        progressEventHandler.removeMessages(0);
         return true;
       }
     });

@@ -23,6 +23,8 @@
 
     <attr name="centered_app_title_color" format="reference|color" />
     <attr name="ic_arrow_forward" format="reference" />
+    <attr name="ic_visibility" format="reference" />
+    <attr name="ic_visibility_off" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference|color"/>
@@ -54,6 +56,7 @@
     <attr name="emoji_category_symbol" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="quick_camera_icon" format="reference"/>
+    <attr name="quick_mic_icon" format="reference"/>
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_bubble_background" format="reference|color"/>
@@ -129,7 +132,7 @@
     </declare-styleable>
 
     <declare-styleable name="AvatarImageView">
-        <attr name="inverted" format="boolean"/>
+        <attr name="inverted" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ThumbnailView">
@@ -142,6 +145,15 @@
 
     <declare-styleable name="CircleColorImageView">
         <attr name="circleColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShapeScrim">
+        <attr name="shape" format="string"/>
+        <attr name="radius" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="CameraView">
+        <attr name="camera" format="integer"/>
     </declare-styleable>
 
 </resources>

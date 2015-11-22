@@ -19,7 +19,6 @@
 package org.thoughtcrime.redphone;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,11 +30,10 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.redphone.ui.CallControls;
 import org.thoughtcrime.redphone.ui.CallScreen;
@@ -63,6 +61,10 @@ public class RedPhone extends Activity {
   private static final int STANDARD_DELAY_FINISH    = 1000;
   public  static final int BUSY_SIGNAL_DELAY_FINISH = 5500;
 
+  public static final String ANSWER_ACTION   = RedPhone.class.getCanonicalName() + ".ANSWER_ACTION";
+  public static final String DENY_ACTION     = RedPhone.class.getCanonicalName() + ".DENY_ACTION";
+  public static final String END_CALL_ACTION = RedPhone.class.getCanonicalName() + ".END_CALL_ACTION";
+
   private CallScreen        callScreen;
   private BroadcastReceiver bluetoothStateReceiver;
 
@@ -89,6 +91,16 @@ public class RedPhone extends Activity {
     registerBluetoothReceiver();
   }
 
+  @Override
+  public void onNewIntent(Intent intent){
+    if (ANSWER_ACTION.equals(intent.getAction())) {
+      handleAnswerCall();
+    } else if (DENY_ACTION.equals(intent.getAction())) {
+      handleDenyCall();
+    } else if (END_CALL_ACTION.equals(intent.getAction())) {
+      handleEndCall();
+    }
+  }
 
   @Override
   public void onPause() {
@@ -150,6 +162,19 @@ public class RedPhone extends Activity {
 
       callScreen.setActiveCall(event.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_ending_call));
       delayedFinish();
+    }
+  }
+
+  private void handleEndCall() {
+    Log.w(TAG, "Hangup pressed, handling termination now...");
+    Intent intent = new Intent(RedPhone.this, RedPhoneService.class);
+    intent.setAction(RedPhoneService.ACTION_HANGUP_CALL);
+    startService(intent);
+
+    RedPhoneEvent event = EventBus.getDefault().getStickyEvent(RedPhoneEvent.class);
+
+    if (event != null) {
+      RedPhone.this.handleTerminate(event.getRecipient());
     }
   }
 
@@ -248,7 +273,7 @@ public class RedPhone extends Activity {
 
   private void handleNoSuchUser(final @NonNull RedPhoneEvent event) {
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
-    AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(this);
+    AlertDialog.Builder dialog = new AlertDialog.Builder(this);
     dialog.setTitle(R.string.RedPhone_number_not_registered);
     dialog.setIconAttribute(R.attr.dialog_alert_icon);
     dialog.setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice);
@@ -305,16 +330,7 @@ public class RedPhone extends Activity {
 
   private class HangupButtonListener implements CallControls.HangupButtonListener {
     public void onClick() {
-      Log.w(TAG, "Hangup pressed, handling termination now...");
-      Intent intent = new Intent(RedPhone.this, RedPhoneService.class);
-      intent.setAction(RedPhoneService.ACTION_HANGUP_CALL);
-      startService(intent);
-
-      RedPhoneEvent event = EventBus.getDefault().getStickyEvent(RedPhoneEvent.class);
-
-      if (event != null) {
-        RedPhone.this.handleTerminate(event.getRecipient());
-      }
+      handleEndCall();
     }
   }
 

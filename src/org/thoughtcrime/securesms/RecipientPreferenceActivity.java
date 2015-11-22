@@ -16,13 +16,12 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
@@ -220,16 +219,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         vibratePreference.setValueIndex(2);
       }
 
-      colorPreference.setEnabled(recipients.isSingleRecipient() && !recipients.isGroupRecipient());
-      colorPreference.setChoices(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
-      colorPreference.setValue(recipients.getColor().toActionBarColor(getActivity()));
-
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
-        blockPreference.setEnabled(false);
-        identityPreference.setEnabled(false);
+        this.getPreferenceScreen().removePreference(colorPreference);
+        this.getPreferenceScreen().removePreference(blockPreference);
+        this.getPreferenceScreen().removePreference(identityPreference);
       } else {
-        blockPreference.setEnabled(true);
-        identityPreference.setEnabled(true);
+        colorPreference.setChoices(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
+        colorPreference.setValue(recipients.getColor().toActionBarColor(getActivity()));
 
         if (recipients.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
         else                        blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
@@ -380,7 +376,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       private void handleBlock() {
-        new AlertDialogWrapper.Builder(getActivity())
+        new AlertDialog.Builder(getActivity())
             .setTitle(R.string.RecipientPreferenceActivity_block_this_contact_question)
             .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user)
             .setCancelable(true)
@@ -394,7 +390,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       private void handleUnblock() {
-        new AlertDialogWrapper.Builder(getActivity())
+        new AlertDialog.Builder(getActivity())
             .setTitle(R.string.RecipientPreferenceActivity_unblock_this_contact_question)
             .setMessage(R.string.RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact)
             .setCancelable(true)

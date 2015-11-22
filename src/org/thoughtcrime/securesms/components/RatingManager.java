@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
-
-import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -34,34 +34,30 @@ public class RatingManager {
   }
 
   private static void showRatingDialog(final Context context) {
-    new MaterialDialog.Builder(context)
-        .title(context.getString(R.string.RatingManager_rate_this_app))
-        .content(context.getString(R.string.RatingManager_if_you_enjoy_using_this_app_please_take_a_moment))
-        .positiveText(context.getString(R.string.RatingManager_rate_now))
-        .negativeText(context.getString(R.string.RatingManager_no_thanks))
-        .neutralText(context.getString(R.string.RatingManager_later))
-        .callback(new MaterialDialog.ButtonCallback() {
+    new AlertDialog.Builder(context)
+        .setTitle(R.string.RatingManager_rate_this_app)
+        .setMessage(R.string.RatingManager_if_you_enjoy_using_this_app_please_take_a_moment)
+        .setPositiveButton(R.string.RatingManager_rate_now, new DialogInterface.OnClickListener() {
           @Override
-          public void onPositive(MaterialDialog dialog) {
+          public void onClick(DialogInterface dialog, int which) {
             TextSecurePreferences.setRatingEnabled(context, false);
             startPlayStore(context);
-            super.onPositive(dialog);
-          }
-
-          @Override
-          public void onNegative(MaterialDialog dialog) {
-            TextSecurePreferences.setRatingEnabled(context, false);
-            super.onNegative(dialog);
-          }
-
-          @Override
-          public void onNeutral(MaterialDialog dialog) {
-            long waitUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(DAYS_UNTIL_REPROMPT_THRESHOLD);
-            TextSecurePreferences.setRatingLaterTimestamp(context, waitUntil);
-            super.onNeutral(dialog);
-          }
-        })
-        .show();
+         }
+       })
+       .setNegativeButton(R.string.RatingManager_no_thanks, new DialogInterface.OnClickListener() {
+         @Override
+         public void onClick(DialogInterface dialog, int which) {
+           TextSecurePreferences.setRatingEnabled(context, false);
+         }
+       })
+       .setNeutralButton(R.string.RatingManager_later, new DialogInterface.OnClickListener() {
+         @Override
+         public void onClick(DialogInterface dialog, int which) {
+           long waitUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(DAYS_UNTIL_REPROMPT_THRESHOLD);
+           TextSecurePreferences.setRatingLaterTimestamp(context, waitUntil);
+         }
+       })
+       .show();
   }
 
   private static void startPlayStore(Context context) {

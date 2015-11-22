@@ -11,6 +11,7 @@ import android.graphics.YuvImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 
@@ -140,10 +141,16 @@ public class BitmapUtil {
     return new ByteArrayInputStream(thumbnailBytes.toByteArray());
   }
 
-  public static byte[] toByteArray(Bitmap bitmap) {
+  public static @Nullable byte[] toByteArray(@Nullable Bitmap bitmap) {
+    if (bitmap == null) return null;
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
     return stream.toByteArray();
+  }
+
+  public static @Nullable Bitmap fromByteArray(@Nullable byte[] bytes) {
+    if (bytes == null) return null;
+    return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
   }
 
   public static byte[] createFromNV21(@NonNull final byte[] data,

@@ -51,6 +51,9 @@
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
     <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
 
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
+
     <!-- BlockedContactsActivity -->
     <string name="BlockedContactsActivity_blocked_contacts">Blocked contacts</string>
 
@@ -70,6 +73,7 @@
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>
+    <string name="ContactsDatabase_signal_call_s">Signal Call %s</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
@@ -88,10 +92,11 @@
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
 
     <!-- ConversationActivity -->
-    <string name="ConversationActivity_reset_secure_session_confirmation">Reset secure session confirmation</string>
-    <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Are you sure that you want to reset this secure session?</string>
-    <string name="ConversationActivity_delete_thread_confirmation">Delete thread confirmation</string>
-    <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Are you sure that you want to permanently delete this conversation?</string>
+    <string name="ConversationActivity_reset_secure_session_question">Reset secure session?</string>
+    <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">This may help if you\'re having encryption problems in this conversation. Your messages will be kept.</string>
+    <string name="ConversationActivity_reset">Reset</string>
+    <string name="ConversationActivity_delete_thread_question">Delete conversation?</string>
+    <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">This will permanently delete all messages in this conversation.</string>
     <string name="ConversationActivity_add_attachment">Add attachment</string>
     <string name="ConversationActivity_select_contact_info">Select contact info</string>
     <string name="ConversationActivity_compose_message">Compose message</string>
@@ -126,6 +131,8 @@
     <string name="ConversationActivity_unblock">Unblock</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
+    <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
+    <string name="ConversationActivity_error_sending_voice_message">Error sending voice message...</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -140,7 +147,7 @@
         <item quantity="other">This will permanently delete all %1$d selected messages.</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
-    <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Saving this media to storage will allow any other apps on your phone to access it.\n\nContinue?</string>
+    <string name="ConversationFragment_saving_this_media_to_storage_warning">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</string>
     <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to storage!</string>
     <string name="ConversationFragment_success_exclamation">Success!</string>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
@@ -205,15 +212,13 @@
     <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure and RedPhone are now one app: Signal. Tap to explore.</string>
     <!-- ExportFragment -->
     <string name="ExportFragment_export">Export</string>
-    <string name="ExportFragment_export_plaintext_to_sd_card">Export plaintext to SD card?</string>
-    <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Warning, this will
-        export the plaintext contents of your Signal messages to the SD card.
-    </string>
+    <string name="ExportFragment_export_plaintext_to_storage">Export plaintext to storage?</string>
+    <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Warning, this will export the plaintext contents of your Signal messages to storage.</string>
     <string name="ExportFragment_cancel">Cancel</string>
     <string name="ExportFragment_exporting">Exporting</string>
-    <string name="ExportFragment_exporting_plaintext_to_sd_card">Exporting plaintext to SD card...</string>
-    <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, unable to write to SD card!</string>
-    <string name="ExportFragment_error_while_writing_to_sd_card">Error while writing to SD card.</string>
+    <string name="ExportFragment_exporting_plaintext_to_storage">Exporting plaintext to storage...</string>
+    <string name="ExportFragment_error_unable_to_write_to_storage">Error, unable to write to storage.</string>
+    <string name="ExportFragment_error_while_writing_to_storage">Error while writing to storage.</string>
     <string name="ExportFragment_success">Success!</string>
 
     <!-- GcmRefreshJob -->
@@ -234,8 +239,9 @@
     <string name="GroupCreateActivity_menu_create_title">Create group</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
-    <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-Signal contacts to an existing Signal group</string>
+    <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Couldn\'t add %1$s because they\'re not a Signal user.</string>
     <string name="GroupCreateActivity_loading_group_details">Loading group details...</string>
+    <string name="GroupCreateActivity_youre_already_in_the_group">You\'re already in the group.</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
@@ -274,6 +280,9 @@
     <string name="ImportFragment_no_encrypted_backup_found">No encrypted backup found!</string>
     <string name="ImportFragment_restore_complete">Restore complete!</string>
 
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
+
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
     <string name="InviteActivity_send_sms">Send SMS</string>
@@ -282,8 +291,14 @@
     <string name="InviteActivity_heart_content_description">Heart</string>
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
-    <string name="InviteActivity_send_to_friends">SEND TO %1$s FRIEND(S)</string>
-    <string name="InviteActivity_send_sms_invites">Send %1$s SMS invite(s)?</string>
+    <plurals name="InviteActivity_send_to_friends">
+        <item quantity="one">SEND TO 1 FRIEND</item>
+        <item quantity="other">SEND TO %d FRIENDS</item>
+    </plurals>
+    <plurals name="InviteActivity_send_sms_invites">
+        <item quantity="one">Send 1 SMS invite?</item>
+        <item quantity="other">Send %d SMS invites?</item>
+    </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
     <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
     <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
@@ -306,6 +321,12 @@
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
     <string name="NotificationBarManager_missed_call_from_s">Missed call from %s</string>
     <string name="NotificationBarManager_missed_signal_call">Missed Signal call</string>
+    <string name="NotificationBarManager__establishing_signal_call">Establishing Signal call</string>
+    <string name="NotificationBarManager__incoming_signal_call">Incoming Signal call</string>
+    <string name="NotificationBarManager__deny_call">Deny call</string>
+    <string name="NotificationBarManager__answer_call">Answer call</string>
+    <string name="NotificationBarManager__end_call">End call</string>
+    <string name="NotificationBarManager__cancel_call">Cancel call</string>
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
@@ -332,12 +353,12 @@
     <string name="DeviceProvisioningActivity_title">Link this device?</string>
     <string name="DeviceProvisioningActivity_content_intro">It will be able to</string>
     <string name="DeviceProvisioningActivity_content_bullets">
-        - Read all your messages
-        \n- Send messages in your name
+        • Read all your messages
+        \n• Send messages in your name
     </string>
     <string name="DeviceProvisioningActivity_content_progress_title">Linking device</string>
     <string name="DeviceProvisioningActivity_content_progress_content">Linking new device...</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">Device linked!</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">Device approved!</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">No device found.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
@@ -484,7 +505,7 @@
     <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Recipient has no identity key.</string>
     <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Recipient has no identity key!</string>
     <string name="VerifyIdentityActivity_scan_their_key_to_compare">Scan their key to compare</string>
-    <string name="VerifyIdentityActivity_get_my_key_scanned">Get my key scanned</string>
+    <string name="VerifyIdentityActivity_get_your_key_scanned">Get your key scanned</string>
     <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.</string>
     <string name="VerifyIdentityActivity_not_verified_exclamation">NOT Verified!</string>
     <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Their key is correct. It is also necessary to verify your key with them as well.</string>
@@ -499,7 +520,7 @@
     <string name="ViewIdentityActivity_not_verified_exclamation">NOT verified!</string>
     <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">The scanned key matches!</string>
     <string name="ViewIdentityActivity_verified_exclamation">Verified!</string>
-    <string name="ViewIdentityActivity_my_identity_fingerprint">My identity fingerprint</string>
+    <string name="ViewIdentityActivity_your_identity_fingerprint">Your identity fingerprint</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
@@ -572,9 +593,9 @@
     <string name="attachment_type_selector__camera">Camera</string>
 
     <!-- change_passphrase_activity -->
-    <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
-    <string name="change_passphrase_activity__new_passphrase">NEW PASSPHRASE:</string>
-    <string name="change_passphrase_activity__repeat_new_passphrase">REPEAT NEW PASSPHRASE:</string>
+    <string name="change_passphrase_activity__old_passphrase">Old passphrase</string>
+    <string name="change_passphrase_activity__new_passphrase">New passphrase</string>
+    <string name="change_passphrase_activity__repeat_new_passphrase">Repeat new passphrase</string>
 
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__enter_name_or_number">Enter name or number</string>
@@ -609,6 +630,9 @@
     <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
     <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_description">Toggle attachment drawer</string>
+
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">SLIDE TO CANCEL</string>
 
     <!-- conversation_item -->
     <string name="conversation_item__mms_downloading_description">Media message downloading</string>
@@ -659,19 +683,13 @@
     <string name="database_upgrade_activity__updating_database">Updating database...</string>
 
     <string name="export_fragment__export_plaintext_backup">Export plaintext backup</string>
-    <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Export a plaintext backup compatible with \'SMSBackup And Restore\' to the SD card.</string>
+    <string name="export_fragment__export_a_plaintext_backup_compatible_with">Export a plaintext backup compatible with \'SMS Backup &amp; Restore\' to storage</string>
     <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
-    <string name="import_fragment__import_the_database_from_the_default_system">Import the database
-        from the default system messenger app.
-    </string>
-    <string name="import_fragment__import_encrypted_backup">Import encrypted backup</string>
-    <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-        Restore a previously exported encrypted Signal backup.
-    </string>
+    <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the default system messenger app</string>
+    <string name="import_fragment__restore_encrypted_backup">Restore encrypted backup</string>
+    <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Restore a previously exported encrypted Signal backup</string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
-    <string name="import_fragment__import_a_plaintext_backup_file">
-        Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
+    <string name="import_fragment__import_a_plaintext_backup_file">Import a plaintext backup file. Compatible with \'SMS Backup &amp; Restore.\'</string>
 
     <!-- load_more_header -->
     <string name="load_more_header__see_full_conversation">See full conversation</string>
@@ -692,9 +710,12 @@
     <string name="MmsPreferencesFragment__invalid_host">The text entered was not a valid host</string>
 
     <!-- GroupUtil -->
-    <string name="GroupUtil_joined_the_group">%1$s joined the group.</string>
+    <plurals name="GroupUtil_joined_the_group">
+        <item quantity="one">%1$s joined the group.</item>
+        <item quantity="other">%1$s joined the group.</item>
+    </plurals>
     <string name="GroupUtil_group_updated">Group updated.</string>
-    <string name="GroupUtil_title_is_now">Title is now \'%1$s\'.</string>
+    <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Unlock</string>
@@ -843,7 +864,7 @@
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
-    <string name="arrays__my_identity_key">My identity key</string>
+    <string name="arrays__your_identity_key">Your identity key</string>
     <string name="arrays__use_default">Use default</string>
     <string name="arrays__use_custom">Use custom</string>
 
@@ -851,6 +872,7 @@
     <string name="arrays__mute_for_two_hours">Mute for 2 hours</string>
     <string name="arrays__mute_for_one_day">Mute for 1 day</string>
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
+    <string name="arrays__mute_for_one_year">Mute for 1 year</string>
 
     <string name="arrays__settings_default">Settings default</string>
     <string name="arrays__enabled">Enabled</string>
@@ -858,7 +880,7 @@
 
     <string name="arrays__name_and_message">Name and message</string>
     <string name="arrays__name_only">Name only</string>
-    <string name="arrays__neither">Neither</string>
+    <string name="arrays__no_name_or_message">No name or message</string>
 
     <string name="arrays__images">Images</string>
     <string name="arrays__audio">Audio</string>
@@ -886,7 +908,7 @@
     <string name="preferences__choose_identity">Choose identity</string>
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>
-    <string name="preferences__change_my_passphrase">Change my passphrase</string>
+    <string name="preferences__change_your_passphrase">Change your passphrase</string>
     <string name="preferences__enable_passphrase">Enable passphrase</string>
     <string name="preferences__passphrase_summary">Passphrase %s</string>
     <string name="preferences__enable_lock_screen_for_messages">Enable lock screen for messages</string>
@@ -909,6 +931,7 @@
     <string name="preferences__pref_led_blink_custom_pattern_set">Custom LED blink pattern set!</string>
     <string name="preferences__sound">Sound</string>
     <string name="preferences__change_notification_sound">Change notification sound</string>
+    <string name="preferences__silent">Silent</string>
     <string name="preferences__inthread_notifications">In-thread notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation</string>
     <string name="preferences__repeat_alerts">Repeat alerts</string>
@@ -953,6 +976,7 @@
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__trim_all_threads_now">Trim all threads now</string>
     <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Scan through all conversation threads and enforce conversation length limits</string>
+    <string name="preferences__devices">Devices</string>
     <string name="preferences__light_theme">Light</string>
     <string name="preferences__dark_theme">Dark</string>
     <string name="preferences__appearance">Appearance</string>
@@ -994,7 +1018,10 @@
     <string name="push_directory__menu_refresh">Refresh contact list</string>
 
     <!-- conversation_callable_insecure -->
-    <string name="conversation_callable__menu_call">Call</string>
+    <string name="conversation_callable_insecure__menu_call">Call</string>
+
+    <!-- conversation_callable_secure -->
+    <string name="conversation_callable_secure__menu_call">Signal call</string>
 
     <!-- conversation_context -->
     <string name="conversation_context__menu_message_details">Message details</string>
@@ -1041,7 +1068,7 @@
     <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_update_group">Update group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
-    <string name="conversation__menu_delete_thread">Delete thread</string>
+    <string name="conversation__menu_delete_thread">Delete conversation</string>
     <string name="conversation__menu_view_media">All images</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
 
@@ -1102,6 +1129,8 @@
     <!-- media_preview_activity -->
     <string name="media_preview_activity__image_content_description">Image Preview</string>
 
+    <!-- new_conversation_activity -->
+    <string name="new_conversation_activity__refresh">Refresh</string>
     <!-- redphone_audio_popup_menu -->
     <string name="redphone_audio_popup_menu__handset">Handset</string>
     <string name="redphone_audio_popup_menu__headset">Headset</string>
@@ -1114,7 +1143,9 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-
+    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on the device to link</string>
+    <string name="device_link_fragment__link_device">Link device</string>
+    <string name="device_list_fragment__link_new_device">Link new device</string>
 
     <!-- EOF -->
 

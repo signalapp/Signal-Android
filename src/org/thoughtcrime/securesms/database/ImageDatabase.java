@@ -26,7 +26,8 @@ public class ImageDatabase extends Database {
         + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
         + " FROM " + MmsDatabase.TABLE_NAME
         + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND "
-        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' "
+        + AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' AND "
+        + AttachmentDatabase.DATA + " IS NOT NULL "
         + "ORDER BY " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC";
 
   public ImageDatabase(Context context, SQLiteOpenHelper databaseHelper) {

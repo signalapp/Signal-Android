@@ -46,6 +46,8 @@
         <item name="centered_app_title_color">#55000000</item>
         <item name="ic_arrow_forward">@drawable/ic_arrow_forward_light</item>
         <item name="lockscreen_watermark">@drawable/lockscreen_watermark_light</item>
+        <item name="ic_visibility">@drawable/ic_visibility_grey600_24dp</item>
+        <item name="ic_visibility_off">@drawable/ic_visibility_off_grey600_24dp</item>
     </style>
 
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
@@ -57,6 +59,8 @@
         <item name="ic_arrow_forward">@drawable/ic_arrow_forward_dark</item>
         <item name="lockscreen_watermark">@drawable/lockscreen_watermark_dark</item>
         <item name="android:windowBackground">@color/black</item>
+        <item name="ic_visibility">@drawable/ic_visibility_white_24dp</item>
+        <item name="ic_visibility_off">@drawable/ic_visibility_off_white_24dp</item>
     </style>
 
     <style name="PopupAnimation" parent="@android:style/Animation">
@@ -83,7 +87,10 @@
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
+        <item name="colorControlActivated">@color/signal_primary</item>
+        <item name="colorControlHighlight">@color/signal_primary</item>
         <item name="android:windowBackground">@color/gray5</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyle</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
         <item name="attachment_type_selector_background">@color/white</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
@@ -140,6 +147,7 @@
         <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_light</item>
+        <item name="quick_mic_icon">@drawable/ic_mic_grey600_24dp</item>
 
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
 
@@ -181,7 +189,7 @@
         <item name="pref_ic_app_protection">@drawable/ic_app_protection_black</item>
         <item name="pref_ic_appearance">@drawable/ic_brightness_6_black</item>
         <item name="pref_ic_chats">@drawable/ic_forum_black_32dp</item>
-        <item name="pref_ic_devices">@drawable/ic_devices_black_48dp</item>
+        <item name="pref_ic_devices">@drawable/ic_laptop_black_32dp</item>
         <item name="pref_ic_advanced">@drawable/ic_advanced_black</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
@@ -197,8 +205,9 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
+        <item name="colorControlActivated">@color/signal_primary_dark</item>
+        <item name="colorControlHighlight">@color/signal_primary_dark</item>
         <item name="android:windowBackground">@color/black</item>
-        <item name="md_dark_theme">true</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark</item>
         <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_unread_background_dark</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background</item>
@@ -264,6 +273,7 @@
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_dark</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_dark</item>
+        <item name="quick_mic_icon">@drawable/ic_mic_white_24dp</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
@@ -293,7 +303,7 @@
         <item name="pref_ic_app_protection">@drawable/ic_app_protection_gray</item>
         <item name="pref_ic_appearance">@drawable/ic_brightness_6_gray</item>
         <item name="pref_ic_chats">@drawable/ic_forum_grey_32dp</item>
-        <item name="pref_ic_devices">@drawable/ic_devices_grey600_48dp</item>
+        <item name="pref_ic_devices">@drawable/ic_laptop_light_32dp</item>
         <item name="pref_ic_advanced">@drawable/ic_advanced_gray</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>

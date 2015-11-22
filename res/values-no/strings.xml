@@ -45,6 +45,8 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformasjon</string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">En feil oppstod ved avspilling av lyd!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokkerte kontakter</string>
   <!--CallScreen-->
@@ -56,6 +58,7 @@ denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal anrop %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meldingsstørrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Utløper: %s</string>
@@ -72,10 +75,11 @@ denne kontakten.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen vil <b>ikke</b> bli kryptert fordi mottakeren ikke lenger er en Signal bruker.\n\nSend meldingen ukryptert?</string>
   <string name="ConversationItem_unable_to_open_media">Finner ikke en applikasjon som kan åpne dette mediet.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Bekreft nullstilling av sikker sesjon</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Er du sikker på at du ønsker å nullstille denne sikre sesjonen?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Bekreft sletting av tråd</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Er du sikker på at du ønsker å slette denne samtalen?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Nullstill sikker sesjon?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe dersom du har krypteringsproblemer i denne samtalen. Meldingene dine vil bli lagret. </string>
+  <string name="ConversationActivity_reset">Nullstill</string>
+  <string name="ConversationActivity_delete_thread_question">Slett samtale?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Dette vil slette alle meldingene i denne samtalen.</string>
   <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
   <string name="ConversationActivity_select_contact_info">Velg kontaktinformasjon</string>
   <string name="ConversationActivity_compose_message">Skriv melding</string>
@@ -110,12 +114,21 @@ denne kontakten.</string>
   <string name="ConversationActivity_unblock">Opphev blokkering</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegget overstiger størrelsesbegrensningen for den typen melding du sender.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
+  <string name="ConversationActivity_unable_to_record_audio">Kunne ikke ta opp lyd!</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsender: %1$s\nTransport: %2$s\nSendt: %3$s\nMottatt:%4$s</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Slett valgt melding?</item>
+    <item quantity="other">Slett valgte meldinger?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Dette vil permanent slette den valgte meldingen.</item>
+    <item quantity="other">Dette vil permanent slette alle de %1$d valgte meldingene.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Lagre?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Lagring av dette mediet vil la andre applikasjoner på enheten din få tilgang til det.\n\nFortsett?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Lagring av dette vil gi andre apper på enheten din tilgang til det.\n\nFortsett?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Feil ved lagring av vedlegg!</string>
   <string name="ConversationFragment_success_exclamation">Suksess!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lagringsenheten!</string>
@@ -130,6 +143,14 @@ denne kontakten.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Søk...</string>
   <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Slett valgt samtale?</item>
+    <item quantity="other">Slett valgte samtaler?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Dette vil permanent slette den valgte samtalen.</item>
+    <item quantity="other">Dette vil permanent slette alle de %1$d valgte samtalene.</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_threads">Sletter utvalgte tråder...</string>
   <!--ConversationListItem-->
@@ -163,14 +184,13 @@ denne kontakten.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nå en app: Signal. Trykk for å utforske.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksporter</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Eksportere klartekst til SD-kort?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Advarsel, dette vil
-eksportere klartekstinnholdet av Signal meldingene dine til SD kortet.</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Eksportere klartekst til enheten sitt minne?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Advarsel, dette vil eksportere innholdet av klarteksten i Signal meldinger til enheten sitt minne.</string>
   <string name="ExportFragment_cancel">Avbryt</string>
   <string name="ExportFragment_exporting">Eksporterer</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksporterer klartekst til SD-kort...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Feil, kan ikke skrive til SD-kort!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">En feil oppstod under lagring til SD-kort.</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Eksporterer klartekst til enheten sitt minne...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Feil, ute av stand til å skrive til enheten sitt minne.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Feil oppstod under skriving til enheten sitt minne.</string>
   <string name="ExportFragment_success">Suksess!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonsfeil!</string>
@@ -189,8 +209,9 @@ eksportere klartekstinnholdet av Signal meldingene dine til SD kortet.</string>
   <string name="GroupCreateActivity_menu_create_title">Opprett gruppe</string>
   <string name="GroupCreateActivity_creating_group">Oppretter %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Oppdaterer %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Det er ikke mulig å legge til ikke-Signal brukere til en eksisterende Signal gruppe.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kunne ikke legge til %1$s på grunn av at de ikke er Signal-brukere.</string>
   <string name="GroupCreateActivity_loading_group_details">Laster gruppedetaljer...</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Du er allerede i gruppen.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Meg</string>
   <!--ImportExportActivity-->
@@ -216,7 +237,26 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="ImportFragment_restoring_encrypted_backup">Gjenoppretter kryptert backup...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ingen kryptert backup funnet!</string>
   <string name="ImportFragment_restore_complete">Gjenoppretting fullført!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
+  <string name="InviteActivity_share">Del</string>
+  <string name="InviteActivity_send_sms">Send SMS</string>
+  <string name="InviteActivity_cancel">Avbryt</string>
+  <string name="InviteActivity_sending">Sender...</string>
+  <string name="InviteActivity_heart_content_description">Hjerte</string>
+  <string name="InviteActivity_invitations_sent">Invitasjoner sendt!</string>
+  <string name="InviteActivity_invite_to_signal">Inviter til Signal</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">SEND TIL 1 VENN</item>
+    <item quantity="other">SEND TIL %d VENNER</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Send 1 invitasjon på SMS?</item>
+    <item quantity="other">Send %d invitasjoner på SMS?</item>
+  </plurals>
+  <string name="InviteActivity_lets_switch_to_signal">La oss bytte til Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Det ser ut som du ikke har noen apper å dele til.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner lar ikke venner chatte ukryptert.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannet nøkkel funnet!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Installere Barcode Scanner?</string>
@@ -232,14 +272,22 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="NotificationBarManager_signal_call_in_progress">Signal anrop pågår</string>
   <string name="NotificationBarManager_missed_call_from_s">Ubesvart anrop fra %s</string>
   <string name="NotificationBarManager_missed_signal_call">Ubesvart Signal anrop</string>
+  <string name="NotificationBarManager__establishing_signal_call">Etablerer Signal anrop</string>
+  <string name="NotificationBarManager__incoming_signal_call">Innkommende Signal anrop</string>
+  <string name="NotificationBarManager__deny_call">Avvis anrop</string>
+  <string name="NotificationBarManager__answer_call">Besvar anrop</string>
+  <string name="NotificationBarManager__end_call">Avslutt samtale</string>
+  <string name="NotificationBarManager__cancel_call">Avbryt anrop</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediamelding</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding kryptert med en gammel versjon av Signal som ikke lenger støttes. Vennligst be avsenderen om å oppdatere til den nyeste versjonen og sende meldingen på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppen.</string>
   <string name="MessageRecord_updated_group">Gruppen er oppdatert.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Ubesvart anrop fra %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -251,12 +299,11 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="DeviceProvisioningActivity_title">Koble denne enheten?</string>
   <string name="DeviceProvisioningActivity_content_intro">Den vil ha muligheten til å</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-- Lese alle meldingene dine
-\n- Sende meldinger i ditt navn
- </string>
+• Les alle meldingene dine
+\n• Send meldinger i ditt navn</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Kobler enhet</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Kobler til ny enhet...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Enhet tilkoblet!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Enhet godkjent!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet funnet.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nettverksfeil.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
@@ -276,6 +323,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="RatingManager_later">Senere</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokker denne kontakten?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Du vil ikke lenger motta meldinger eller anrop fra denne brukeren.</string>
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Opphev blokkering av denne kontakten?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Er du sikker på at du ønsker å oppheve blokkeringen av denne kontakten?</string>
@@ -369,12 +417,13 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="ThreadRecord_called_you">Ringte deg</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <string name="ThreadRecord_media_message">Media melding</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Mottakeren har ingen ID-nøkkel!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skann deres nøkkel for å sammenligne</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Få min nøkkel skannet</string>
+  <string name="VerifyIdentityActivity_get_your_key_scanned">Få din nøkkel skannet</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME! Vær vennlig å sjekke fingeravtrykkets tekst nøye.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">IKKE bekreftet!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Nøkkelen deres er korrekt. Det er også nødvendig å bekrefte nøkkelen din med dem også.</string>
@@ -388,7 +437,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekreftet!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøkkelen stemmer overens!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Bekreftet!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Mitt ID-fingeravtrykk</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Ditt ID-fingeravtrykk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
@@ -441,10 +490,15 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="SingleRecipientNotificationBuilder_new_signal_message">Ny Signal melding</string>
   <string name="SingleRecipientNotificationBuilder_contents_hidden">Innhold skjult</string>
   <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Bilde</string>
+  <string name="attachment_type_selector__audio">Lyd</string>
+  <string name="attachment_type_selector__video">Video</string>
+  <string name="attachment_type_selector__contact">Kontakt</string>
+  <string name="attachment_type_selector__camera">Kamera</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Gammelt passord:</string>
-  <string name="change_passphrase_activity__new_passphrase">Nytt passord:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Gjenta nytt passord:</string>
+  <string name="change_passphrase_activity__old_passphrase">Gammelt passord</string>
+  <string name="change_passphrase_activity__new_passphrase">Nytt passord</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Gjenta nytt passord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Tast inn et navn eller nummer</string>
   <!--contact_selection_group_activity-->
@@ -471,6 +525,8 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji tastatur av/på</string>
   <string name="conversation_activity__attachment_thumbnail">Vedleggsikon</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Vedleggsskuff av/på</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">SKYV FOR Å AVBRYTE</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Media melding lastes ned</string>
   <string name="conversation_item__mms_image_description">Multimediamelding</string>
@@ -510,15 +566,13 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Oppdaterer databasen...</string>
   <string name="export_fragment__export_plaintext_backup">Eksporter klartekst backup</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksporter en klartekst backup kompatibel med \'SMSBackup And Restore\' til SD-kortet.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksporter en klartekst sikkerhetskopi kompatibel med \'SMS Backup &amp; Restore\' til enheten sitt minne</string>
   <string name="import_fragment__import_system_sms_database">Importer systemets SMS database</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importer databasen fra systemets standard SMS applikasjon.</string>
-  <string name="import_fragment__import_encrypted_backup">Importer kryptert backup</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Gjenopprett en tidligere eksportert kryptert Signal backup.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importer databasen fra systemet sin standard app for meldinger</string>
+  <string name="import_fragment__restore_encrypted_backup">Gjenopprett kryptert sikkerhetskopi</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Gjenopprett en tidligere eksportert og kryptert Signal sikkerhetskopi</string>
   <string name="import_fragment__import_plaintext_backup">Importer klartekst backup</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importer en klartekst sikkerhetskopi. Kompatibel med \'SMS Backup &amp; Restore\'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Se hele samtalen</string>
   <!--media_overview_activity-->
@@ -534,9 +588,12 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <string name="MmsPreferencesFragment__invalid_uri">Teksten som ble tastet inn var ikke en gyldig URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Teksten som ble tastet inn var ikke en gyldig vert</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s sluttet seg til gruppen.</string>
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s ble med i gruppen.</item>
+    <item quantity="other">%1$s ble med i gruppen.</item>
+  </plurals>
   <string name="GroupUtil_group_updated">Gruppen er oppdatert.</string>
-  <string name="GroupUtil_title_is_now">Tittelen er nå «%1$s».</string>
+  <string name="GroupUtil_group_name_is_now">Gruppenavnet er nå \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--prompt_mms_activity-->
@@ -547,6 +604,7 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Mute samtale</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Deaktiver varslinger for denne samtalen</string>
+  <string name="recipient_preferences__notification_sound">Varslingslyd</string>
   <string name="recipient_preferences__vibrate">Vibrer</string>
   <string name="recipient_preferences__block">Blokker</string>
   <string name="recipient_preferences__color">Farge</string>
@@ -641,21 +699,23 @@ feilet.</string>
   <string name="AndroidManifest__media_overview_named">Alle bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Administrer tilkoblede enheter</string>
+  <string name="AndroidManifest__invite_friends">Inviter venner</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importere / eksportere</string>
-  <string name="arrays__my_identity_key">Min ID-nøkkel</string>
+  <string name="arrays__your_identity_key">Din ID-nøkkel</string>
   <string name="arrays__use_default">Benytt standard</string>
   <string name="arrays__use_custom">Benytt egendefinert</string>
   <string name="arrays__mute_for_one_hour">Mute i 1 time</string>
   <string name="arrays__mute_for_two_hours">Mute i 2 timer</string>
   <string name="arrays__mute_for_one_day">Mute i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Mute i 7 dager</string>
+  <string name="arrays__mute_for_one_year">Mute i 1 år</string>
   <string name="arrays__settings_default">Standardinstillinger</string>
   <string name="arrays__enabled">Aktivert</string>
   <string name="arrays__disabled">Deaktivert</string>
   <string name="arrays__name_and_message">Navn og melding</string>
   <string name="arrays__name_only">Kun navn</string>
-  <string name="arrays__neither">Ingen</string>
+  <string name="arrays__no_name_or_message">Ingen navn eller melding</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
@@ -680,7 +740,7 @@ feilet.</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg din kontakt fra kontaktlisten.</string>
   <string name="preferences__change_passphrase">Passordbytte</string>
-  <string name="preferences__change_my_passphrase">Velg et nytt passord</string>
+  <string name="preferences__change_your_passphrase">Endre ditt passord</string>
   <string name="preferences__enable_passphrase">Aktiver passord</string>
   <string name="preferences__passphrase_summary">Passord %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Aktiver skjermlås for meldinger</string>
@@ -703,6 +763,7 @@ feilet.</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Tilpasset LED blinkemønster satt!</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__change_notification_sound">Endre lyd på meldingsvarsling</string>
+  <string name="preferences__silent">Stille</string>
   <string name="preferences__inthread_notifications">Varsling i aktiv tråd</string>
   <string name="preferences__play_inthread_notifications">Spill av varlingslyd når du ser på en aktiv samtale</string>
   <string name="preferences__repeat_alerts">Gjenta varsling</string>
@@ -747,6 +808,7 @@ feilet.</string>
   <string name="preferences__conversation_length_limit">Grense på samtalelengde</string>
   <string name="preferences__trim_all_threads_now">Trimme alle samtaletråder nå</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Gjennomgå alle samtaletrådene og håndhev grensen på samtalelengde </string>
+  <string name="preferences__devices">Enheter</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utseende</string>
@@ -755,6 +817,8 @@ feilet.</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__language_summary">Språk %s</string>
+  <string name="preferences__signal_messages_and_calls">Signal meldinger og anrop</string>
+  <string name="preferences__free_private_messages_and_calls">Gratis og private meldinger til andre brukere av Signal</string>
   <string name="preferences__submit_debug_log">Send debug logg</string>
   <string name="preferences__support_wifi_calling">\'WiFi anrop\' kompatibilititetsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver dersom enheten din bruker WiFi for å sende SMS/MMS (brukes bare hvis \'WiFi anrop\' er aktivert på enheten din)</string>
@@ -781,7 +845,9 @@ feilet.</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Oppdater kontaktliste</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Ring</string>
+  <string name="conversation_callable_insecure__menu_call">Ring</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Signal anrop</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Meldingsdetaljer</string>
   <string name="conversation_context__menu_copy_text">Kopier tekst</string>
@@ -816,7 +882,7 @@ feilet.</string>
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
   <string name="conversation__menu_update_group">Oppdater gruppe</string>
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
-  <string name="conversation__menu_delete_thread">Slett tråd</string>
+  <string name="conversation__menu_delete_thread">Slett samtale</string>
   <string name="conversation__menu_view_media">Alle bilder</string>
   <string name="conversation__menu_conversation_settings">Samtaleinstillinger</string>
   <!--conversation_popup-->
@@ -838,19 +904,26 @@ feilet.</string>
   <string name="text_secure_normal__menu_settings">Innstillinger</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Marker alle som lest</string>
+  <string name="text_secure_normal__invite_friends">Inviter venner</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Din versjon av Signal er foreldet!</string>
   <string name="reminder_header_expired_build_details">Det vil ikke lenger være mulig å sende meldinger. Vær vennlig å oppdatere til siste versjon.</string>
+  <string name="reminder_header_expired_build_button">OPPGRADER</string>
   <string name="reminder_header_sms_default_title">Bruk som standard SMS applikasjon</string>
   <string name="reminder_header_sms_default_text">Klikk for å la Signal være din standard SMS applikasjon.</string>
   <string name="reminder_header_sms_default_button">SETT</string>
   <string name="reminder_header_sms_import_title">Importer systemets SMS</string>
   <string name="reminder_header_sms_import_text">Klikk for å kopiere telefonens SMS meldinger til sin krypterte database.</string>
   <string name="reminder_header_sms_import_button">IMPORTER</string>
+  <string name="reminder_header_push_title">Aktiver Signal meldinger og anrop</string>
+  <string name="reminder_header_push_text">Oppgrader din opplevelse av kommunikasjonen.</string>
   <string name="reminder_header_push_button">AKTIVER</string>
   <string name="reminder_header_invite_title">Inviter til Signal</string>
   <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>
   <string name="reminder_header_invite_button">INVITER</string>
+  <string name="reminder_header_share_title">Inviter dine venner!</string>
+  <string name="reminder_header_share_text">Jo flere venner som bruker Signal, jo bedre blir det.</string>
+  <string name="reminder_header_share_button">DEL</string>
   <string name="reminder_header_close_button">LUKK</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
@@ -860,6 +933,8 @@ feilet.</string>
   <string name="media_preview__save_title">Lagre</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Forhåndsvisning av bilde</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Refresh</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Håndsett</string>
   <string name="redphone_audio_popup_menu__headset">Headset</string>
@@ -870,5 +945,8 @@ feilet.</string>
   <string name="trimmer__old_messages_successfully_deleted">Sletting av gamle meldinger vellykket</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR koden vist på enheten for å koble</string>
+  <string name="device_link_fragment__link_device">Koble enhet</string>
+  <string name="device_list_fragment__link_new_device">Koble ny enhet</string>
   <!--EOF-->
 </resources>

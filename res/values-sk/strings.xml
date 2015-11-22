@@ -37,6 +37,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktné informácie</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string>
   <!--CallScreen-->
@@ -62,8 +63,6 @@ identitu tohto kontaktu.
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Prepnúť na nezabezpečené MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Nepodarilo sa nájst aplikáciu schopnú otvoriť tento typ súboru.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">Potvrdenie zmazania vlákna</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Ste si naozaj istí, že chcete natrvalo zmazať túto konveráciu?</string>
   <string name="ConversationActivity_add_attachment">Pridať prílohu</string>
   <string name="ConversationActivity_select_contact_info">Vyberte kontaktné informácie </string>
   <string name="ConversationActivity_compose_message">Vytvoriť správu</string>
@@ -100,7 +99,6 @@ identitu tohto kontaktu.
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odosielateľ: %1$s\nPrenos: %2$s\nOdoslané: %3$s\nPrijaté: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Vytvoriť súbor?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Súbory zapísané na dátovom úložisku zariadenia budú prístupne pre všetky ostatné aplikácie vo vašom telefóne\n\nPrajete si pokračovať?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Nastala chyba pri ukladaní prílohy na dátové úložisko zariadenia!</string>
   <string name="ConversationFragment_success_exclamation">Operácia úspešne dokončená!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Aplikácia nedokázala zapísať informácie na dátové úložisko zariadenia!</string>
@@ -132,12 +130,8 @@ identitu tohto kontaktu.
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Export</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Exportuj čistý text na SD kartu?</string>
   <string name="ExportFragment_cancel">Zrušiť</string>
   <string name="ExportFragment_exporting">Export</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportujem čistý text na SD kartu...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Chyba, nepodarilo sa zapísať dáta na SD kartu!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Nastala chyba pri zápise údajov na SD kartu.</string>
   <string name="ExportFragment_success">Úspech!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -177,6 +171,7 @@ opätovným importom zduplikujete správy.
   <string name="ImportFragment_restoring_encrypted_backup">Obnovujem šifrovanú zálohu...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nenašiel som šifrovanú zálohu!</string>
   <string name="ImportFragment_restore_complete">Obnova dokončená!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nenašiel som skenovaný kľúč!</string>
@@ -204,10 +199,6 @@ opätovným importom zduplikujete správy.
   <string name="DeviceProvisioningActivity_continue">POKRAČOVAŤ</string>
   <string name="DeviceProvisioningActivity_title">Pridať toto zariadenie?</string>
   <string name="DeviceProvisioningActivity_content_intro">Bude môcť </string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- Čítať všetky Vaše správy\n
-- Odosielať správy vo Vašom mene
-</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nebolo nájdené žiadne zariadenie!</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Chyba siete.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
@@ -292,7 +283,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Príjemca nemá kľúč totožnosti.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Príjemca nemá kľúč totožnosti!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Pre porovnanie scannuj ich kľúč</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Daj scannovať môj kľúč</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">POZOR, scannovaný kľúč sa NEZHODUJE! Dôsledne skontrolujte text odtlačku.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NIE JE verifikované!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ich kľúč je v poriadku. Je tiež potrebné dať druhej strane verifikovať váš kľúč.</string>
@@ -306,7 +296,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="ViewIdentityActivity_not_verified_exclamation">NIE JE overené!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Scannovaný kľúč sa zhoduje!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verifikované!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Môj identifikačný fingerprint</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Začať aj napriek existujúcemu požiadavku?</string>
   <string name="KeyExchangeInitiator_send">Odošli</string>
@@ -349,9 +338,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--SingleRecipientNotificationBuilder-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Staré heslo:</string>
-  <string name="change_passphrase_activity__new_passphrase">Nové heslo:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Zopakujte nové heslo:</string>
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žiadne kontakty.</string>
@@ -373,6 +359,7 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="conversation_activity__compose_description">Písanie správy</string>
   <string name="conversation_activity__emoji_toggle_description">Prepínanie klávesnice emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Ikona prílohy</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Sťahovanie multimediálnej správy</string>
   <string name="conversation_item__mms_image_description">Multimediálna správa</string>
@@ -409,15 +396,8 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aktualizujem databázu...</string>
   <string name="export_fragment__export_plaintext_backup">Exportovať nezakryptovanú zálohu</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Exportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na SD kartu.</string>
   <string name="import_fragment__import_system_sms_database">Importovať systémovú databázu SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importovať databázu
-štandardnej systémovej aplikácie na správy.</string>
-  <string name="import_fragment__import_encrypted_backup">Importovať zakryptovanú zálohu</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Žiadne obrázky</string>
@@ -432,9 +412,7 @@ Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.
   <string name="MmsPreferencesFragment__invalid_uri">Vložený text nie je platná adresa URL</string>
   <string name="MmsPreferencesFragment__invalid_host">Vložený text nie je platná adresa počítača</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s sa pridal do skupiny.</string>
   <string name="GroupUtil_group_updated">Skupina aktualizovaná.</string>
-  <string name="GroupUtil_title_is_now">Názov je teraz \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->
@@ -515,7 +493,6 @@ zlyhalo.
   <string name="AndroidManifest__message_details">Detaily správy</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
-  <string name="arrays__my_identity_key">Môj kľúč totožnosti</string>
   <string name="arrays__use_default">Použiť predvolené</string>
   <string name="arrays__use_custom">Použiť vlastné</string>
   <!--plurals.xml-->
@@ -538,7 +515,6 @@ zlyhalo.
   <string name="preferences__choose_identity">Vyberte totožnosť</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__change_passphrase">Zmeniť heslo</string>
-  <string name="preferences__change_my_passphrase">Zmeniť moje heslo</string>
   <string name="preferences__enable_passphrase">Použiť heslo</string>
   <string name="preferences__passphrase_summary">Heslo %s</string>
   <string name="preferences__screen_security">Zabezpečenie obrazovky</string>
@@ -625,7 +601,8 @@ zlyhalo.
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Obnov kontakty</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Volaj</string>
+  <string name="conversation_callable_insecure__menu_call">Volaj</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Podrobnosti správy</string>
   <string name="conversation_context__menu_copy_text">Kopíruj text</string>
@@ -660,7 +637,6 @@ zlyhalo.
   <string name="conversation__menu_add_attachment">Pridaj prílohu</string>
   <string name="conversation__menu_update_group">Aktualizuj skupinu</string>
   <string name="conversation__menu_leave_group">Opusti skupinu</string>
-  <string name="conversation__menu_delete_thread">Zmaž vlákno</string>
   <string name="conversation__menu_view_media">Všetky obrázky</string>
   <string name="conversation__menu_conversation_settings">Nastavenia konverzácií</string>
   <!--conversation_popup-->
@@ -695,6 +671,7 @@ zlyhalo.
   <string name="media_preview__save_title">Uložiť</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Náhľad obrázku</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Slúchadlo</string>
   <string name="redphone_audio_popup_menu__headset">Slúchadlo</string>

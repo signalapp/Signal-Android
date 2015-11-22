@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
@@ -29,6 +30,9 @@ public abstract class PushReceivedJob extends ContextJob {
       contactTokenDetails.setNumber(envelope.getSource());
 
       directory.setNumber(contactTokenDetails, true);
+
+      Recipients recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
+      ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, KeyCachingService.getMasterSecret(context), recipients));
     }
 
     if (envelope.isReceipt()) {

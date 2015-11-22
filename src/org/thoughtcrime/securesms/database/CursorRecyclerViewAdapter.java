@@ -128,7 +128,8 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   public void onItemViewRecycled(VH holder) {}
 
-  @Override public final ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  @Override
+  public final ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     switch (viewType) {
     case HEADER_TYPE: return new HeaderFooterViewHolder(header);
     case FOOTER_TYPE: return new HeaderFooterViewHolder(footer);
@@ -149,7 +150,8 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   public abstract void onBindItemViewHolder(VH viewHolder, @NonNull Cursor cursor);
 
-  @Override public int getItemViewType(int position) {
+  @Override
+  public final int getItemViewType(int position) {
     if (isHeaderPosition(position)) return HEADER_TYPE;
     if (isFooterPosition(position)) return FOOTER_TYPE;
     moveToPositionOrThrow(getCursorPosition(position));
@@ -158,6 +160,16 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   public int getItemViewType(@NonNull Cursor cursor) {
     return 0;
+  }
+
+  @Override
+  public final long getItemId(int position) {
+    moveToPositionOrThrow(getCursorPosition(position));
+    return getItemId(cursor);
+  }
+
+  public long getItemId(@NonNull Cursor cursor) {
+    return cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
   }
 
   private void assertActiveCursor() {
