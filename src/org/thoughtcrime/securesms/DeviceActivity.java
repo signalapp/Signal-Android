@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.MenuItem;
@@ -132,6 +133,7 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
       private static final int NETWORK_ERROR  = 2;
       private static final int KEY_ERROR      = 3;
       private static final int LIMIT_EXCEEDED = 4;
+      private static final int BAD_CODE       = 5;
 
       @Override
       protected Integer doInBackground(Void... params) {
@@ -141,6 +143,12 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
           String                   verificationCode = accountManager.getNewDeviceVerificationCode();
           String                   ephemeralId      = uri.getQueryParameter("uuid");
           String                   publicKeyEncoded = uri.getQueryParameter("pub_key");
+
+          if (TextUtils.isEmpty(ephemeralId) || TextUtils.isEmpty(publicKeyEncoded)) {
+            Log.w(TAG, "UUID or Key is empty!");
+            return BAD_CODE;
+          }
+
           ECPublicKey              publicKey        = Curve.decodePoint(Base64.decode(publicKeyEncoded), 0);
           IdentityKeyPair          identityKeyPair  = IdentityKeyUtil.getIdentityKeyPair(context);
 
@@ -184,6 +192,9 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
             break;
           case LIMIT_EXCEEDED:
             Toast.makeText(context, R.string.DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already, Toast.LENGTH_LONG).show();
+            break;
+          case BAD_CODE:
+            Toast.makeText(context, R.string.DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code, Toast.LENGTH_LONG).show();
             break;
         }
 
