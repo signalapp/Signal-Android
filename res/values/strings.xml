@@ -14,9 +14,7 @@
     <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Are you sure you would like to immediately trim all conversation threads to the %s most recent messages?</string>
     <string name="ApplicationPreferencesActivity_delete">Delete</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
-    <string name="ApplicationPreferencesActivity_disable_lock_screen">
-        Disable lock screen for messages?
-    </string>
+    <string name="ApplicationPreferencesActivity_disable_lock_screen">Disable lock screen for messages?</string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>
     <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Unregistering from Signal messages and calls...</string>
@@ -61,14 +59,8 @@
     <string name="CallScreen_Incoming_call">Incoming call</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The
-        identifying key material for %1$s has changed. This could either mean that someone is trying to
-        intercept your communication, or that %2$s simply re-installed Signal and now has a new
-        identity key.
-    </string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">You may wish to verify
-        this contact.
-    </string>
+    <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The identifying key material for %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply re-installed Signal and now has a new identity key.</string>
+    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">You may wish to verify this contact.</string>
     <string name="ConfirmIdentityDialog_accept">Accept</string>
 
     <!-- ContactsDatabase -->
@@ -252,24 +244,14 @@
 
     <!-- ImportFragment -->
     <string name="ImportFragment_import_system_sms_database">Import system SMS database?</string>
-    <string name="ImportFragment_this_will_import_messages_from_the_system">This will import
-        messages from the system\'s default SMS database to Signal. If you\'ve previously
-        imported the system\'s SMS database, importing again will result in duplicated messages.
-    </string>
+    <string name="ImportFragment_this_will_import_messages_from_the_system">This will import messages from the system\'s default SMS database to Signal. If you\'ve previously imported the system\'s SMS database, importing again will result in duplicated messages.</string>
     <string name="ImportFragment_import">Import</string>
     <string name="ImportFragment_cancel">Cancel</string>
     <string name="ImportFragment_restore_encrypted_backup">Restore encrypted backup?</string>
-    <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-        Restoring an encrypted backup will completely replace your existing keys, preferences, and
-        messages. You will lose any information that\'s in your current Signal install but not
-        in the backup.
-    </string>
+    <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Restoring an encrypted backup will completely replace your existing keys, preferences, and messages. You will lose any information that\'s in your current Signal install but not in the backup.</string>
     <string name="ImportFragment_restore">Restore</string>
     <string name="ImportFragment_import_plaintext_backup">Import plaintext backup?</string>
-    <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">This will import
-        messages from a plaintext backup. If you\'ve previously imported this backup,
-        importing again will result in duplicated messages.
-    </string>
+    <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">This will import messages from a plaintext backup. If you\'ve previously imported this backup, importing again will result in duplicated messages.</string>
     <string name="ImportFragment_importing">Importing</string>
     <string name="ImportFragment_import_plaintext_backup_elipse">Importing plaintext backup...</string>
     <string name="ImportFragment_no_plaintext_backup_found">No plaintext backup found!</string>
@@ -352,10 +334,7 @@
     <string name="DeviceProvisioningActivity_continue">CONTINUE</string>
     <string name="DeviceProvisioningActivity_title">Link this device?</string>
     <string name="DeviceProvisioningActivity_content_intro">It will be able to</string>
-    <string name="DeviceProvisioningActivity_content_bullets">
-        • Read all your messages
-        \n• Send messages in your name
-    </string>
+    <string name="DeviceProvisioningActivity_content_bullets">• Read all your messages\n• Send messages in your name</string>
     <string name="DeviceProvisioningActivity_content_progress_title">Linking device</string>
     <string name="DeviceProvisioningActivity_content_progress_content">Linking new device...</string>
     <string name="DeviceProvisioningActivity_content_progress_success">Device approved!</string>
@@ -415,25 +394,13 @@
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_connect_with_signal">Connect With Signal</string>
     <string name="RegistrationActivity_select_your_country">Select your country</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your
-        country code
-    </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">You must specify your
-        phone number
-    </string>
+    <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your country code</string>
+    <string name="RegistrationActivity_you_must_specify_your_phone_number">You must specify your phone number</string>
     <string name="RegistrationActivity_invalid_number">Invalid number</string>
-    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">The number you
-        specified (%s) is invalid.
-    </string>
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">The number you specified (%s) is invalid.</string>
     <string name="RegistrationActivity_unsupported">Unsupported</string>
-    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sorry,
-        this device is not supported for data messaging. Devices running versions of Android older
-        than 4.0 must have a registered Google Account. Devices running Android 4.0 or newer do not
-        require a Google account, but must have the Play Store app installed.
-    </string>
-    <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-        Double-check that this is your number! We\'re about to verify it with an SMS.
-    </string>
+    <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sorry, this device is not supported for data messaging. Devices running versions of Android older than 4.0 must have a registered Google Account. Devices running Android 4.0 or newer do not require a Google account, but must have the Play Store app installed.</string>
+    <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Double-check that this is your number! We\'re about to verify it with an SMS.</string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="RegistrationActivity_edit">Edit</string>
 
@@ -474,15 +441,9 @@
     <string name="Slide_video">Video</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Received corrupted key
-        exchange message!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        Received key exchange message for invalid protocol version.
-    </string>
-    <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-        Received message with unknown identity key. Click to process and display.
-    </string>
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Received corrupted key exchange message!</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Received key exchange message for invalid protocol version.</string>
+    <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">Received message with unknown identity key. Click to process and display.</string>
     <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
     <string name="SmsMessageRecord_secure_session_reset">Secure session reset.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
@@ -742,85 +703,43 @@
     <string name="redphone_call_controls__signal_call">Signal Call</string>
 
     <!-- registration_activity -->
-    <string name="registration_activity__verify_your_number_to_connect_with_signal">
-        Verify your phone number to connect with Signal.
-    </string>
+    <string name="registration_activity__verify_your_number_to_connect_with_signal">Verify your phone number to connect with Signal.</string>
     <string name="registration_activity__your_country">YOUR COUNTRY</string>
-    <string name="registration_activity__your_country_code_and_phone_number">YOUR COUNTRY CODE AND
-        PHONE NUMBER
-    </string>
+    <string name="registration_activity__your_country_code_and_phone_number">YOUR COUNTRY CODE AND PHONE NUMBER</string>
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
     <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration transmits some contact information to the server. It is not stored.</string>
     <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
 
     <!-- registration_problems -->
-    <string name="registration_problems__some_possible_problems_include">Some possible problems
-        include:
-    </string>
+    <string name="registration_problems__some_possible_problems_include">Some possible problems include:</string>
     <string name="registration_problems__sms_interceptors">SMS interceptors.</string>
-    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-        Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and
-        intercept all incoming SMS messages. Check to see if you received a text message that starts
-        with \'Your Signal verification code:\', in which case you\'ll need to configure your
-        third party text messaging app to let text messages through.
-    </string>
+    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and intercept all incoming SMS messages. Check to see if you received a text message that starts with \'Your Signal verification code:\', in which case you\'ll need to configure your third party text messaging app to let text messages through.</string>
     <string name="registration_problems__incorrect_number">Incorrect number.</string>
-    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-        Please check to make sure you entered your number correctly, and that it is formatted correctly for
-        your region.
-    </string>
+    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Please check to make sure you entered your number correctly, and that it is formatted correctly for your region.</string>
     <string name="registration_problems__google_voice">Google Voice.</string>
-    <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-        Signal will not work with Google Voice numbers.
-    </string>
+    <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">Signal will not work with Google Voice numbers.</string>
 
     <!-- registration_progress_activity -->
     <string name="registration_progress_activity__voice_verification">Voice verification</string>
-    <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-        Signal can also call you to verify your number. Tap \'Call Me\' and enter the six digit
-        code that you hear below.
-    </string>
+    <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">Signal can also call you to verify your number. Tap \'Call Me\' and enter the six digit code that you hear below.</string>
     <string name="registration_progress_activity__verify">Verify</string>
     <string name="registration_progress_activity__call_me">Call me</string>
     <string name="registration_progress_activity__edit_number">Edit number</string>
     <string name="registration_progress_activity__connectivity_error">Connectivity error.</string>
-    <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-        Signal was unable to connect to the push service.
-    </string>
-    <string name="registration_progress_activity__some_possible_problems_include">Some possible
-        problems include:
-    </string>
-    <string name="registration_progress_activity__no_network_connectivity">No network
-        connectivity.
-    </string>
-    <string name="registration_progress_activity__your_device_needs_network_connectivity">Your
-        device needs network connectivity in order to use this Signal feature. Check to ensure
-        that it is connected to 3G or Wi-Fi.
-    </string>
-    <string name="registration_progress_activity__restrictive_firewall">Restrictive firewall.
-    </string>
-    <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-        If you are connected via Wi-Fi, it\'s possible that there is a firewall blocking access to
-        the Signal server. Try another network or mobile data.
-    </string>
-    <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-        Signal will now automatically verify your number with a confirmation SMS message.
-    </string>
+    <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">Signal was unable to connect to the push service.</string>
+    <string name="registration_progress_activity__some_possible_problems_include">Some possible problems include:</string>
+    <string name="registration_progress_activity__no_network_connectivity">No network connectivity.</string>
+    <string name="registration_progress_activity__your_device_needs_network_connectivity">Your device needs network connectivity in order to use this Signal feature. Check to ensure that it is connected to 3G or Wi-Fi.</string>
+    <string name="registration_progress_activity__restrictive_firewall">Restrictive firewall.</string>
+    <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">If you are connected via Wi-Fi, it\'s possible that there is a firewall blocking access to the Signal server. Try another network or mobile data.</string>
+    <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">Signal will now automatically verify your number with a confirmation SMS message.</string>
     <string name="registration_progress_activity__connecting">Connecting...</string>
-    <string name="registration_progress_activity__waiting_for_sms_verification">Waiting for SMS
-        verification...
-    </string>
+    <string name="registration_progress_activity__waiting_for_sms_verification">Waiting for SMS verification...</string>
     <string name="registration_progress_activity__registering_with_server">Registering with server...</string>
-    <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">This
-        could take a moment. Please be patient, we\'ll notify you when verification is complete.
-    </string>
-    <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-        Signal timed out while waiting for a verification SMS message.
-    </string>
-    <string name="registration_progress_activity__sms_verification_failed">SMS verification
-        failed.
-    </string>
+    <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">This could take a moment. Please be patient, we\'ll notify you when verification is complete.</string>
+    <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">Signal timed out while waiting for a verification SMS message.</string>
+    <string name="registration_progress_activity__sms_verification_failed">SMS verification failed.</string>
     <string name="registration_progress_activity__generating_keys">Generating keys...</string>
     <string name="registration_progress_activity__alert">Alert</string>
     <string name="registration_progress_activity__telephone">Telephone</string>
