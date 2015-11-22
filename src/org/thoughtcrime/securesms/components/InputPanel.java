@@ -153,6 +153,13 @@ public class InputPanel extends LinearLayout
     this.microphoneRecorderView.cancelAction();
   }
 
+  public void setEnabled(boolean enabled) {
+    composeText.setEnabled(enabled);
+    emojiToggle.setEnabled(enabled);
+    quickAudioToggle.setEnabled(enabled);
+    quickCameraToggle.setEnabled(enabled);
+  }
+
   private long onRecordHideEvent(float x) {
     ListenableFuture<Void> future      = slideToCancel.hide(x);
     long                   elapsedTime = recordTime.hide();

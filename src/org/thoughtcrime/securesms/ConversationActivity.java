@@ -730,8 +730,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeEnabledCheck() {
     boolean enabled = !(isPushGroupConversation() && !isActiveGroup());
-    composeText.setEnabled(enabled);
+    inputPanel.setEnabled(enabled);
     sendButton.setEnabled(enabled);
+    attachButton.setEnabled(enabled);
   }
 
   private void initializeDraftFromDatabase() {
