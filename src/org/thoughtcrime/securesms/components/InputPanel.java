@@ -72,7 +72,7 @@ public class InputPanel extends LinearLayout implements MicrophoneRecorderView.L
     this.microphoneRecorderView = ViewUtil.findById(this, R.id.recorder_view);
     this.microphoneRecorderView.setListener(this);
 
-    if (Build.VERSION.SDK_INT < 14) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
       this.microphoneRecorderView.setVisibility(View.GONE);
       this.microphoneRecorderView.setClickable(false);
     }

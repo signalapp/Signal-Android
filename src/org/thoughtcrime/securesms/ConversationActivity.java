@@ -59,6 +59,7 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.redphone.RedPhone;
 import org.thoughtcrime.redphone.RedPhoneService;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.audio.AudioCodec;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -137,6 +138,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import ws.com.google.android.mms.ContentType;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -1372,14 +1375,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRecorderStarted() {
-    try {
-      Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-      vibrator.vibrate(20);
+    Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+    vibrator.vibrate(20);
 
-      audioRecorder.startRecording();
-    } catch (IOException e) {
-      Log.w(TAG, e);
-    }
+    audioRecorder.startRecording();
   }
 
   @Override
@@ -1393,7 +1392,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onSuccess(final @NonNull Pair<Uri, Long> result) {
         try {
           boolean    forceSms   = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
-          AudioSlide audioSlide = new AudioSlide(ConversationActivity.this, result.first, result.second);
+          AudioSlide audioSlide = new AudioSlide(ConversationActivity.this, result.first, result.second, ContentType.AUDIO_AAC);
           SlideDeck  slideDeck  = new SlideDeck();
           slideDeck.addSlide(audioSlide);
 
@@ -1409,7 +1408,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
               }.execute();
             }
           });
-        } catch (IOException | InvalidMessageException e) {
+        } catch (InvalidMessageException e) {
           Log.w(TAG, e);
           Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_sending_voice_message, Toast.LENGTH_LONG).show();
         }

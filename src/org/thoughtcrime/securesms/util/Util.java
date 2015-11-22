@@ -35,6 +35,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.widget.EditText;
 
 import org.thoughtcrime.securesms.BuildConfig;
@@ -64,6 +65,8 @@ import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 
 public class Util {
+  private static final String TAG = Util.class.getSimpleName();
+
   public static Handler handler = new Handler(Looper.getMainLooper());
 
   public static String join(String[] list, String delimiter) {
@@ -155,6 +158,14 @@ public class Util {
       lock.wait(timeout);
     } catch (InterruptedException ie) {
       throw new AssertionError(ie);
+    }
+  }
+
+  public static void close(OutputStream out) {
+    try {
+      out.close();
+    } catch (IOException e) {
+      Log.w(TAG, e);
     }
   }
 

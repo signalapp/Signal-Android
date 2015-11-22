@@ -25,6 +25,8 @@ import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.UriAttachment;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.io.IOException;
@@ -36,6 +38,10 @@ public class AudioSlide extends Slide {
 
   public AudioSlide(Context context, Uri uri, long dataSize) throws IOException {
     super(context, constructAttachmentFromUri(context, uri, ContentType.AUDIO_UNSPECIFIED, dataSize));
+  }
+
+  public AudioSlide(Context context, Uri uri, long dataSize, String contentType) {
+    super(context,  new UriAttachment(uri, contentType, AttachmentDatabase.TRANSFER_PROGRESS_STARTED, dataSize));
   }
 
   public AudioSlide(Context context, Attachment attachment) {
