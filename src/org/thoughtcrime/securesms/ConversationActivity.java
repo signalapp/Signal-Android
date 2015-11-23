@@ -1371,6 +1371,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
+  public void onCameraStart() {}
+
+  @Override
+  public void onCameraStop() {}
+
+  @Override
   public void onRecorderStarted() {
     try {
       Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);

@@ -37,6 +37,8 @@ import android.view.OrientationEventListener;
 import android.view.ViewGroup;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -59,10 +61,10 @@ public class CameraView extends ViewGroup {
   private volatile int              cameraId           = CameraInfo.CAMERA_FACING_BACK;
   private volatile int              displayOrientation = -1;
 
-  private @NonNull  State              state = State.PAUSED;
-  private @Nullable Size               previewSize;
-  private @Nullable CameraViewListener listener;
-  private           int                outputOrientation  = -1;
+  private @NonNull  State                    state = State.PAUSED;
+  private @Nullable Size                     previewSize;
+  private @NonNull  List<CameraViewListener> listeners = Collections.synchronizedList(new LinkedList<CameraViewListener>());
+  private           int                      outputOrientation  = -1;
 
   public CameraView(Context context) {
     this(context, null);
@@ -102,7 +104,9 @@ public class CameraView extends ViewGroup {
       @Nullable
       Void onRunBackground() {
         try {
+          long openStartMillis = System.currentTimeMillis();
           camera = Optional.fromNullable(Camera.open(cameraId));
+          Log.w(TAG, "camera.open() -> " + (System.currentTimeMillis() - openStartMillis) + "ms");
           synchronized (CameraView.this) {
             CameraView.this.notifyAll();
           }
@@ -117,7 +121,9 @@ public class CameraView extends ViewGroup {
       protected void onPostMain(Void avoid) {
         if (!camera.isPresent()) {
           Log.w(TAG, "tried to open camera but got null");
-          if (listener != null) listener.onCameraFail();
+          for (CameraViewListener listener : listeners) {
+            listener.onCameraFail();
+          }
           return;
         }
 
@@ -167,6 +173,10 @@ public class CameraView extends ViewGroup {
         Log.w(TAG, "onPause() completed");
       }
     });
+
+    for (CameraViewListener listener : listeners) {
+      listener.onCameraStop();
+    }
   }
 
   public boolean isStarted() {
@@ -215,8 +225,8 @@ public class CameraView extends ViewGroup {
     if (camera.isPresent()) startPreview(camera.get().getParameters());
   }
 
-  public void setListener(@Nullable CameraViewListener listener) {
-    this.listener = listener;
+  public void addListener(@NonNull CameraViewListener listener) {
+    listeners.add(listener);
   }
 
   public void setPreviewCallback(final @NonNull PreviewCallback previewCallback) {
@@ -308,9 +318,19 @@ public class CameraView extends ViewGroup {
         } else {
           previewSize = parameters.getPreviewSize();
         }
+        long previewStartMillis = System.currentTimeMillis();
         camera.startPreview();
-        postRequestLayout();
+        Log.w(TAG, "camera.startPreview() -> " + (System.currentTimeMillis() - previewStartMillis) + "ms");
         state = State.ACTIVE;
+        Util.runOnMain(new Runnable() {
+          @Override
+          public void run() {
+            requestLayout();
+            for (CameraViewListener listener : listeners) {
+              listener.onCameraStart();
+            }
+          }
+        });
       } catch (Exception e) {
         Log.w(TAG, e);
       }
@@ -327,6 +347,7 @@ public class CameraView extends ViewGroup {
       }
     }
   }
+
 
   private Size getPreferredPreviewSize(@NonNull Parameters parameters) {
     return CameraUtils.getPreferredPreviewSize(displayOrientation,
@@ -347,15 +368,6 @@ public class CameraView extends ViewGroup {
     }
 
     return outputOrientation;
-  }
-
-  private void postRequestLayout() {
-    post(new Runnable() {
-      @Override
-      public void run() {
-        requestLayout();
-      }
-    });
   }
 
   private @NonNull CameraInfo getCameraInfo() {
@@ -553,7 +565,11 @@ public class CameraView extends ViewGroup {
 
     @Override
     protected void onPostExecute(byte[] imageBytes) {
-      if (imageBytes != null && listener != null) listener.onImageCapture(imageBytes);
+      if (imageBytes != null) {
+        for (CameraViewListener listener : listeners) {
+          listener.onImageCapture(imageBytes);
+        }
+      }
     }
   }
 
@@ -562,6 +578,8 @@ public class CameraView extends ViewGroup {
   public interface CameraViewListener {
     void onImageCapture(@NonNull final byte[] imageBytes);
     void onCameraFail();
+    void onCameraStart();
+    void onCameraStop();
   }
 
   public interface PreviewCallback {
