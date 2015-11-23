@@ -34,7 +34,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.OrientationEventListener;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 
 import java.io.IOException;
 import java.util.List;
@@ -49,7 +49,7 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 @SuppressWarnings("deprecation")
-public class CameraView extends FrameLayout {
+public class CameraView extends ViewGroup {
   private static final String TAG = CameraView.class.getSimpleName();
 
   private final CameraSurfaceView   surface;
@@ -162,6 +162,8 @@ public class CameraView extends FrameLayout {
         onOrientationChange.disable();
         displayOrientation = -1;
         outputOrientation = -1;
+        removeView(surface);
+        addView(surface);
         Log.w(TAG, "onPause() completed");
       }
     });
@@ -284,7 +286,7 @@ public class CameraView extends FrameLayout {
           camera.setPreviewDisplay(surface.getHolder());
           startPreview(parameters);
         } catch (Exception e) {
-          Log.w(TAG, "couldn't set preview display");
+          Log.w(TAG, "couldn't set preview display", e);
         }
         return null;
       }
