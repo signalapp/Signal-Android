@@ -561,6 +561,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         return Optional.of(new GroupData(groupIds[0],
                                          existingContacts,
                                          BitmapUtil.fromByteArray(group.getAvatar()),
+                                         group.getAvatar(),
                                          group.getTitle()));
       } else {
         return Optional.absent();
@@ -575,9 +576,11 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         activity.groupToUpdate = group;
 
         activity.groupName.setText(group.get().name);
-        if (group.get().avatar != null) {
-          activity.avatarBmp = group.get().avatar;
-          activity.avatar.setImageBitmap(group.get().avatar);
+        if (group.get().avatarBmp != null) {
+          activity.avatarBmp = group.get().avatarBmp;
+          Glide.with(activity).load(group.get().avatar)
+               .transform(new RoundedCorners(activity, activity.avatar.getWidth() / 2))
+               .into(activity.avatar);
         }
         SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(activity, group.get().recipients);
         adapter.setOnRecipientDeletedListener(activity);
@@ -590,12 +593,14 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   private static class GroupData {
     byte[]         id;
     Set<Recipient> recipients;
-    Bitmap         avatar;
+    Bitmap         avatarBmp;
+    byte[]         avatar;
     String         name;
 
-    public GroupData(byte[] id, Set<Recipient> recipients, Bitmap avatar, String name) {
+    public GroupData(byte[] id, Set<Recipient> recipients, Bitmap avatarBmp, byte[] avatar, String name) {
       this.id         = id;
       this.recipients = recipients;
+      this.avatarBmp  = avatarBmp;
       this.avatar     = avatar;
       this.name       = name;
     }
