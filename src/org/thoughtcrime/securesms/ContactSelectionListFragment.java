@@ -101,7 +101,6 @@ public class ContactSelectionListFragment extends    Fragment
     swipeRefresh = ViewUtil.findById(view, R.id.swipe_refresh);
     fastScroller = ViewUtil.findById(view, R.id.fast_scroller);
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    fastScroller.setRecyclerView(recyclerView);
 
     swipeRefresh.setEnabled(getActivity().getIntent().getBooleanExtra(REFRESHABLE, true) &&
                             Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
@@ -163,11 +162,16 @@ public class ContactSelectionListFragment extends    Fragment
   public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
     ((CursorRecyclerViewAdapter) recyclerView.getAdapter()).changeCursor(data);
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
+    if (recyclerView.getAdapter().getItemCount() > 20) {
+      fastScroller.setVisibility(View.VISIBLE);
+      fastScroller.setRecyclerView(recyclerView);
+    }
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> loader) {
     ((CursorRecyclerViewAdapter) recyclerView.getAdapter()).changeCursor(null);
+    fastScroller.setVisibility(View.GONE);
   }
 
   private class ListClickListener implements ContactSelectionListAdapter.ItemClickListener {
