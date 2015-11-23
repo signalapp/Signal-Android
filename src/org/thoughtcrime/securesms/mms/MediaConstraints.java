@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
 
+import ws.com.google.android.mms.ContentType;
+
 public abstract class MediaConstraints {
   private static final String TAG = MediaConstraints.class.getSimpleName();
 
@@ -58,7 +60,7 @@ public abstract class MediaConstraints {
     return attachment != null && MediaUtil.isImage(attachment) && !MediaUtil.isGif(attachment);
   }
 
-  public InputStream getResizedMedia(@NonNull Context context,
+  public MediaStream getResizedMedia(@NonNull Context context,
                                      @NonNull MasterSecret masterSecret,
                                      @NonNull Attachment attachment)
       throws IOException
@@ -69,7 +71,8 @@ public abstract class MediaConstraints {
 
     try {
       // XXX - This is loading everything into memory! We want the send path to be stream-like.
-      return new ByteArrayInputStream(BitmapUtil.createScaledBytes(context, new DecryptableUri(masterSecret, attachment.getDataUri()), this));
+      return new MediaStream(new ByteArrayInputStream(BitmapUtil.createScaledBytes(context, new DecryptableUri(masterSecret, attachment.getDataUri()), this)),
+                             ContentType.IMAGE_JPEG);
     } catch (ExecutionException ee) {
       throw new IOException(ee);
     }
