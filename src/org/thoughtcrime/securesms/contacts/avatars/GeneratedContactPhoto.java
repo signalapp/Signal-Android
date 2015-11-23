@@ -33,7 +33,17 @@ public class GeneratedContactPhoto implements ContactPhoto {
                        .height(targetSize)
                        .textColor(inverted ? color : Color.WHITE)
                        .endConfig()
-                       .buildRound(String.valueOf(name.charAt(0)), inverted ? Color.WHITE : color);
+                       .buildRound(getCharacter(name), inverted ? Color.WHITE : color);
+  }
+
+  private String getCharacter(String name) {
+    String cleanedName = name.replaceAll("[^\\p{L}\\p{Nd}]+", "");
+
+    if (cleanedName.isEmpty()) {
+      return "#";
+    } else {
+      return String.valueOf(cleanedName.charAt(0));
+    }
   }
 
   @Override
