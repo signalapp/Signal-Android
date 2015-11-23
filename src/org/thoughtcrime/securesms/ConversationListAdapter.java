@@ -160,7 +160,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
 
   public void selectAllThreads() {
     for (int i = 0; i < getItemCount(); i++) {
-      batchSet.add(getItemId(i));
+      batchSet.add(getThreadRecord(getCursorAtPositionOrThrow(i)).getThreadId());
     }
     this.notifyDataSetChanged();
   }
