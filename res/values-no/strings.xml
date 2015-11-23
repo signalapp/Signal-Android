@@ -115,6 +115,7 @@ denne kontakten.</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegget overstiger størrelsesbegrensningen for den typen melding du sender.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
   <string name="ConversationActivity_unable_to_record_audio">Kunne ikke ta opp lyd!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Feil ved sending av talemelding...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
@@ -238,6 +239,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="ImportFragment_no_encrypted_backup_found">Ingen kryptert backup funnet!</string>
   <string name="ImportFragment_restore_complete">Gjenoppretting fullført!</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å ta opp en talemelding, slipp for å sende.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_send_sms">Send SMS</string>
@@ -308,6 +310,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nettverksfeil.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager, du har for mange enheter koblet til allerede, forsøk å fjerne noen...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager, dette er ikke en gyldig QR kode for kobling av enheter.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Tast inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>

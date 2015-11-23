@@ -286,7 +286,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
   <string name="MessageRecord_called_s">Ausgegangener Anruf an %s</string>
   <string name="MessageRecord_missed_call_from">Verpasster Anruf von %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal, Zeit Hallo zu sagen! </string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen! </string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -300,11 +300,12 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="DeviceProvisioningActivity_content_bullets">• Alle Nachrichten lesen\n• Nachrichten in Ihrem Namen senden</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Gerät verknüpfen</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Neues Gerät wird verknüpft …</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Gerät zugelassen!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Gerät freigeschaltet!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Kein Gerät gefunden.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netzwerkfehler.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ungültiger QR-Code.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Es sind bereits zu viele Geräte verknüpft. Versuchen Sie, mindestens eines zu entfernen …</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dies ist leider kein gültiger QR-Code zur Geräteverknüpfung.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-Symbol</string>
@@ -410,7 +411,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
   <string name="ThreadRecord_missed_call">Verpasster Anruf</string>
   <string name="ThreadRecord_media_message">Multimedianachricht</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal, Zeit Hallo zu sagen!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Kontakt hat keinen Schlüssel.</string>
@@ -493,7 +494,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="change_passphrase_activity__new_passphrase">Neues Passwort</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Neues Passwort wiederholen</string>
   <!--contact_selection_activity-->
-  <string name="contact_selection_activity__enter_name_or_number">Name/Rufnummer eingeben</string>
+  <string name="contact_selection_activity__enter_name_or_number">Name/Nummer eingeben</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Keine Kontakte.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kontakte werden geladen …</string>
@@ -519,7 +520,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="conversation_activity__attachment_thumbnail">Anhangsvorschaubild</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Direktaufnahme</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ZUM ABBRECHEN EINSCHIEBEN</string>
+  <string name="conversation_input_panel__slide_to_cancel">ZUM ABBRECHEN WEGWISCHEN</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Mediennachricht wird heruntergeladen</string>
   <string name="conversation_item__mms_image_description">Mediennachricht</string>
@@ -933,7 +934,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="trimmer__old_messages_successfully_deleted">Alte Nachrichten wurden erfolgreich gelöscht</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Zum Verküpfen den auf dem Gerät angezeigten QR-Code einscannen</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Zum Verknüpfen den auf dem Gerät angezeigten QR-Code einscannen</string>
   <string name="device_link_fragment__link_device">Gerät verknüpfen</string>
   <string name="device_list_fragment__link_new_device">Neues Gerät verknüpfen</string>
   <!--EOF-->

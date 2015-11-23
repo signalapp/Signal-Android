@@ -116,6 +116,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">当前信息的附件类型已经已经超过大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">摄像头不可用</string>
   <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
+  <string name="ConversationActivity_error_sending_voice_message">发送语音信息时遇到错误…</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">信息详情</string>
   <string name="ConversationFragment_transport_s_sent_received_s">传输：%1$s\n 发送/接收：%2$s</string>
@@ -240,6 +241,7 @@
   <string name="ImportFragment_no_encrypted_backup_found">未找到加密的备份！</string>
   <string name="ImportFragment_restore_complete">还原完成！</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住并保持以录制语音信息，松开即发送</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">共享</string>
   <string name="InviteActivity_send_sms">发送短信</string>
@@ -308,6 +310,7 @@
   <string name="DeviceProvisioningActivity_content_progress_network_error">网络错误。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">无效的二维码。</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">抱歉，您已经连接了太多的设备，请先移除一些…</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，这不是有效的设备连接二维码。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密钥</string>
   <string name="PassphrasePromptActivity_watermark_content_description">暗号图标</string>

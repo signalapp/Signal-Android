@@ -118,6 +118,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Прилог прекорачује ограничење величине за тип поруке коју шаљете.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера није доступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не могу да снимим звук!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Грешка слања гласовне поруке...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Детаљи поруке</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Пренос: %1$s\nПослата/примљена: %2$s</string>
@@ -251,6 +252,7 @@
   <string name="ImportFragment_no_encrypted_backup_found">Шифрована резерва није нађена!</string>
   <string name="ImportFragment_restore_complete">Враћање завршено!</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Тапните и држите за снимање гласовне поруке, пустите за слање</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Дели</string>
   <string name="InviteActivity_send_sms">Пошаљи СМС</string>
@@ -258,7 +260,7 @@
   <string name="InviteActivity_sending">Шаљем...</string>
   <string name="InviteActivity_heart_content_description">Срце</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
-  <string name="InviteActivity_invite_to_signal">Позови у Сигнал</string>
+  <string name="InviteActivity_invite_to_signal">Слање позивнице за Сигнал</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">ПОШАЉИ 1 ПРИЈАТЕЉУ</item>
     <item quantity="few">ПОШАЉИ %d ПРИЈАТЕЉА</item>
@@ -324,6 +326,7 @@
   <string name="DeviceProvisioningActivity_content_progress_network_error">Грешка мреже.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Неисправан бар-кôд.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Већ имате превише повезаних уређаја, уклоните неке од њих...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Нажалост, ово није исправан бар-кôд везе уређаја.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Унесите лозинку</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигнала</string>
@@ -727,7 +730,7 @@
   <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
   <string name="AndroidManifest_manage_linked_devices">Управљај повезаним уређајима</string>
-  <string name="AndroidManifest__invite_friends">Позовите пријатеље</string>
+  <string name="AndroidManifest__invite_friends">Позивница пријатељима</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__your_identity_key">Ваш кључ идентитета</string>
@@ -886,7 +889,7 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Сачувај прилог</string>
   <!--conversation_insecure-->
-  <string name="conversation_insecure__invite">Позови</string>
+  <string name="conversation_insecure__invite">Пошаљи позивницу</string>
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__security">Безбедност</string>
   <!--conversation_list_batch-->
@@ -947,9 +950,9 @@
   <string name="reminder_header_push_title">Омогућите поруке и позиве преко Сигнала</string>
   <string name="reminder_header_push_text">Побољшајте комуникацију.</string>
   <string name="reminder_header_push_button">ОМОГУЋИ</string>
-  <string name="reminder_header_invite_title">Позови у Сигнал</string>
+  <string name="reminder_header_invite_title">Позивница за Сигнал</string>
   <string name="reminder_header_invite_text">Подигните комуникацију са %1$s на идући ниво.</string>
-  <string name="reminder_header_invite_button">ПОЗОВИ</string>
+  <string name="reminder_header_invite_button">ПОЗИВНИЦА</string>
   <string name="reminder_header_share_title">Позовите ваше пријатеље!</string>
   <string name="reminder_header_share_text">Што га више пријатеља користи, Сигнал је бољи.</string>
   <string name="reminder_header_share_button">ДЕЛИ</string>

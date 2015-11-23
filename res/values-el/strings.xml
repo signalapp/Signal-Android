@@ -45,6 +45,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">Ήχος</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Επαφή</string>
   <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Σφάλμα κατά την αναπαραγωγή ήχου!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Μπλοκαρισμένες επαφές</string>
   <!--CallScreen-->
@@ -77,6 +78,11 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δεν</b> θα κρυπτογραφηθεί, επειδή ο παραλήπτης δεν είναι πλέον χρήστης του Signal.\n\nΝα σταλεί το μήνυμα μη κρυπτογραφημένο;</string>
   <string name="ConversationItem_unable_to_open_media">Δεν μπορεί να βρεθεί κατάλληλη εφαρμογή για το άνοιγμα αυτού του πολυμέσου.</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">Επαναφορά ασφαλούς συνεδρίας;</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή την συζήτηση. Τα μηνύματα δεν θα σβηστούν.</string>
+  <string name="ConversationActivity_reset">Επαναφορά</string>
+  <string name="ConversationActivity_delete_thread_question">Διαγραφή συζήτησης;</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Αυτό θα διαγράψει μόνιμα όλα τα μηνύματα αυτής της συζήτησης.</string>
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
   <string name="ConversationActivity_select_contact_info">Επιλογή πληροφοριών επαφής</string>
   <string name="ConversationActivity_compose_message">Νέο μήνυμα</string>
@@ -111,6 +117,8 @@
   <string name="ConversationActivity_unblock">Ξεμπλοκάρισμα</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Το συννημένο υπερβαίνει τα όρια μεγέους για το είδος μηνύματος που στέλνεις.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Κάμερα μη διαθέσιμη</string>
+  <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Σφάλμα κατά την αποστολή μηνύματος φωνής...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
   <string name="ConversationFragment_transport_s_sent_received_s"> Μέσο μεταφοράς:  %1$s
@@ -161,7 +169,7 @@
   <string name="CustomDefaultPreference_none">Κανένα</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Τώρα</string>
-  <string name="DateUtils_minutes_ago">%d λεπτό</string>
+  <string name="DateUtils_minutes_ago">%d λεπ</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Αποσύνδεση του \'%s\';</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Αποσυνδέοντας αυτή την συσκευή, αυτή δεν θα μπορεί να λάβει ή να στείλει μηνύματα πια.</string>
@@ -245,6 +253,7 @@
   <string name="ImportFragment_no_encrypted_backup_found">Δε βρέθηκε κρυπτογραφημένο αντίγραφο ασφαλείας!</string>
   <string name="ImportFragment_restore_complete">Η επαναφορά ολοκληρώθηκε!</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα μήνυμα φωνής, άφησε το κουμπί για αποστολή</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Διαμοιρασμός</string>
   <string name="InviteActivity_send_sms">Αποστολή SMS</string>
@@ -279,6 +288,12 @@
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal εν εξελίξει</string>
   <string name="NotificationBarManager_missed_call_from_s">Αναπάντητη κλήση από τον/την %s</string>
   <string name="NotificationBarManager_missed_signal_call">Αναπάντητη κλήση Signal</string>
+  <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
+  <string name="NotificationBarManager__deny_call">Απόρριψη κλήσης</string>
+  <string name="NotificationBarManager__answer_call">Απάντηση</string>
+  <string name="NotificationBarManager__end_call">Τερματισμός κλήσης</string>
+  <string name="NotificationBarManager__cancel_call">Ακύρωση κλήσης</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Μήνυμα Πολυμέσων</string>
   <!--MessageRecord-->
@@ -299,12 +314,17 @@
   <string name="DeviceProvisioningActivity_continue">ΣΥΝΕΧΕΙΑ</string>
   <string name="DeviceProvisioningActivity_title">Σύνδεση αυτής της συσκευής;</string>
   <string name="DeviceProvisioningActivity_content_intro">Θα είναι σε θέση να</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+• Να διαβάζει όλα τα μηνύματά σου
+\n• Να στέλνει μηνύματα σαν εσένα</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Σύνδεση συσκευής</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Σύνδεση νέας συσκευής...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Η συσκευή εγκρίθηκε!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Δεν βρέθηκε συσκευή.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Σφάλμα δικτύου</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Άκυρος QR κωδικός.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Συγγνώμη, έχεις πάρα πολλές συσκευές ήδη συνδεδεμένες, προσπάθησε να αφαιρέσεις κάποιες...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Συγγνώμη, αυτός δεν είναι ένας έγκυρος κωδικός QR για σύνδεση συσκευών.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Εισαγωγή συνθηματικό</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο Signal</string>
@@ -409,10 +429,10 @@
   <string name="SmsMessageRecord_secure_session_reset">Επαναφορά ασφαλούς συνεδρίας.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_left_the_group">Έφυγε από την ομάδα...</string>
+  <string name="ThreadRecord_left_the_group">Έχεις φύγει από την ομάδα...</string>
   <string name="ThreadRecord_secure_session_reset">Επαναφορά ασφαλούς συνεδρίας.</string>
   <string name="ThreadRecord_draft">Πρόχειρο:</string>
-  <string name="ThreadRecord_called">Κάλεσες</string>
+  <string name="ThreadRecord_called">Τον/την κάλεσες</string>
   <string name="ThreadRecord_called_you">Σε κάλεσε</string>
   <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
@@ -495,6 +515,9 @@
   <string name="attachment_type_selector__contact">Επαφή</string>
   <string name="attachment_type_selector__camera">Κάμερα</string>
   <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">Παλιό συνθηματικό</string>
+  <string name="change_passphrase_activity__new_passphrase">Νέο συνθηματικό</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Νέο συνθηματικό (ξανά)</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Εισαγωγή ονόματος ή αριθμού</string>
   <!--contact_selection_group_activity-->
@@ -522,6 +545,7 @@
   <string name="conversation_activity__attachment_thumbnail">Μικρογραφία συνημμένου</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Εναλλαγή συρταριού συννημένων</string>
   <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">ΣΥΡΕ ΓΙΑ ΑΚΥΡΩΣΗ</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Το μήνυμα πολυμέσων κατεβαίνει</string>
   <string name="conversation_item__mms_image_description">Μήνυμα πολυμέσων</string>
@@ -583,7 +607,12 @@
   <string name="MmsPreferencesFragment__invalid_uri">Το κείμενο που εισάχθηκε δεν ήταν έγκυρο URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Το κείμενο που εισάχθηκε δεν ήταν έγκυρο υποδοχής</string>
   <!--GroupUtil-->
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">Ο/Η %1$s μπήκε στην ομάδα.</item>
+    <item quantity="other">Οι %1$s μπήκαν στην ομάδα.</item>
+  </plurals>
   <string name="GroupUtil_group_updated">Η Ομάδα ενημερώθηκε.</string>
+  <string name="GroupUtil_group_name_is_now">Η ομάδα λέγεται πλέον \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ξεκλείδωμα</string>
   <!--prompt_mms_activity-->
@@ -701,7 +730,7 @@
   <string name="AndroidManifest__log_submit">Υποβολή διαγνωστικού αρχείου.</string>
   <string name="AndroidManifest__media_preview">Προεπισκόπηση  Πολυμέσων</string>
   <string name="AndroidManifest__media_overview">Όλες οι εικόνες</string>
-  <string name="AndroidManifest__media_overview_named">Όλες οι εικόνες με  %1$s</string>
+  <string name="AndroidManifest__media_overview_named">Όλες οι εικόνες με τον/την %1$s</string>
   <string name="AndroidManifest__message_details">Στοιχεία μηνύματος</string>
   <string name="AndroidManifest_manage_linked_devices">Διαχείριση συνδεδεμένων συσκευών</string>
   <string name="AndroidManifest__invite_friends">Πρόσκληση φίλων</string>
@@ -720,6 +749,7 @@
   <string name="arrays__disabled">Απενεργοποιημένο</string>
   <string name="arrays__name_and_message">Όνομα και μήνυμα</string>
   <string name="arrays__name_only">Μόνο όνομα</string>
+  <string name="arrays__no_name_or_message">Χωρίς όνομα ή μήνυμα</string>
   <string name="arrays__images">Εικόνες</string>
   <string name="arrays__audio">Ήχος</string>
   <string name="arrays__video">Βίντεο</string>
@@ -767,6 +797,7 @@
   <string name="preferences__pref_led_blink_custom_pattern_set">Ορίστηκε το προσαρμοσμένο μοτίβο αναβοσβησίματος του LED!</string>
   <string name="preferences__sound">Ήχος</string>
   <string name="preferences__change_notification_sound">Αλλαγή ήχου ειδοποίησης</string>
+  <string name="preferences__silent">Σε σίγαση</string>
   <string name="preferences__inthread_notifications">Ειδοποιήσεις εντός συζητήσεων</string>
   <string name="preferences__play_inthread_notifications">Αναπαραγωγή ήχου ειδοποίησης όταν βλέπεις μια ενεργή συνομιλία</string>
   <string name="preferences__repeat_alerts">Επανάληψη ειδοποιήσεων</string>
@@ -811,6 +842,7 @@
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συζήτησης</string>
   <string name="preferences__trim_all_threads_now">Περικοπή όλων των συζητήσεων τώρα</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Ανάλυση όλων των συζητήσεων και επιβολή ορίου μεγέθους</string>
+  <string name="preferences__devices">Συσκευές</string>
   <string name="preferences__light_theme">Φως</string>
   <string name="preferences__dark_theme">Σκοτάδι</string>
   <string name="preferences__appearance">Εμφάνιση</string>
@@ -849,6 +881,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Κλήση</string>
   <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Κλήση Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Στοιχεία μηνύματος</string>
   <string name="conversation_context__menu_copy_text">Αντιγραφή κειμένου</string>
@@ -883,6 +916,7 @@
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>
   <string name="conversation__menu_update_group">Ενημέρωση ομάδας</string>
   <string name="conversation__menu_leave_group">Αποχώρηση από την ομάδα</string>
+  <string name="conversation__menu_delete_thread">Διαγραφή συζήτησης</string>
   <string name="conversation__menu_view_media">Όλες οι εικόνες</string>
   <string name="conversation__menu_conversation_settings">Επιλογές συζήτησης</string>
   <!--conversation_popup-->
@@ -934,6 +968,7 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Προεπισκόπηση εικόνας</string>
   <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Ανανέωση</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Ηχείο συσκευής</string>
   <string name="redphone_audio_popup_menu__headset">Ακουστικά</string>
@@ -944,5 +979,8 @@
   <string name="trimmer__old_messages_successfully_deleted">Τα παλιά μηνύματα διαγράφτηκαν επιτυχώς</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Σκάναρε το QR code που εμφανίζεται στην συσκευή για να γίνει η σύνδεση</string>
+  <string name="device_link_fragment__link_device">Σύνδεση συσκευής</string>
+  <string name="device_list_fragment__link_new_device">Σύνδεση νέας συσκευής</string>
   <!--EOF-->
 </resources>

@@ -315,6 +315,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="DeviceProvisioningActivity_content_progress_network_error">Проблем с мобилната мрежа.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Невалиден QR код.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имаш твърде много регистрирани устройства, опитай да премахнеш някои от тях...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление това не е валидна QR връзка.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведи паролата</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal икона</string>

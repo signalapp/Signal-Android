@@ -46,6 +46,7 @@ Désactiver l\'écran de protection des messages ?
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Informations de contact</string>
   <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Erreur lors de la lecture du son !</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacts bloqués</string>
   <!--CallScreen-->
@@ -74,6 +75,11 @@ vérifier ce contact.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le récepteur n\'a plus Signal. \n\nEnvoyer un message non sécurisé?</string>
   <string name="ConversationItem_unable_to_open_media">Impossible de trouver une application pour ouvrir le média.</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous avez des problèmes de chiffrement dans cette conversation. Vos messages seront sauvegardés.</string>
+  <string name="ConversationActivity_reset">Réinitialiser</string>
+  <string name="ConversationActivity_delete_thread_question">Supprimer la conversation ?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Cela supprimera définitivement tous les messages dans cette conversation.</string>
   <string name="ConversationActivity_add_attachment">Ajouter une pièce jointe</string>
   <string name="ConversationActivity_select_contact_info">Sélectionner les informations du contact</string>
   <string name="ConversationActivity_compose_message">Rédiger un message</string>
@@ -108,6 +114,8 @@ vérifier ce contact.</string>
   <string name="ConversationActivity_unblock">Débloquer</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier dépasse la limite de taille pour le type de message que vous avez sélectionné.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Appareil photo non disponible</string>
+  <string name="ConversationActivity_unable_to_record_audio">Impossible d\'enregistrer l\'audio !</string>
+  <string name="ConversationActivity_error_sending_voice_message">Erreur lors de l\'envoi d\'un message vocal...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Détails du message</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nEnvoyé/Reçu: %2$s</string>
@@ -232,6 +240,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="ImportFragment_no_encrypted_backup_found">Aucune sauvegarde chiffrée trouvée!</string>
   <string name="ImportFragment_restore_complete">Restauration terminée !</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Appuyez et tenez pour enregistrer un message vocal, relâchez pour envoyer.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partager</string>
   <string name="InviteActivity_send_sms">Envoyer un SMS</string>
@@ -266,6 +275,12 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
   <string name="NotificationBarManager_missed_call_from_s">Appel manqué de %s</string>
   <string name="NotificationBarManager_missed_signal_call">Appel Signal manqué</string>
+  <string name="NotificationBarManager__establishing_signal_call">Établissement de l\'appel Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Appel Signal entrant</string>
+  <string name="NotificationBarManager__deny_call">Refuser l\'appel</string>
+  <string name="NotificationBarManager__answer_call">Répondre à l\'appel</string>
+  <string name="NotificationBarManager__end_call">Arrêter l\'appel</string>
+  <string name="NotificationBarManager__cancel_call">Annuler l\'appel</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Message multimédia</string>
   <!--MessageRecord-->
@@ -286,12 +301,17 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUER</string>
   <string name="DeviceProvisioningActivity_title">Lier cet appareil ?</string>
   <string name="DeviceProvisioningActivity_content_intro">Il sera capable de</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+• Lire tous vos messages
+\n• Envoyer des messages en votre nom</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Association de l\'appareil</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Association du nouvel appareil...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Appareil approuvé !</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Pas d\'appareil trouvé.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erreur réseau.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR code invalide.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Désolé, vous avez associé trop d\'appareils, essayez d\'en enlever quelques-uns...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Désolé, ceci n\'est pas un QR code valide pour lier son appareil.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Entrez la phrase de passe</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icône Signal</string>
@@ -484,6 +504,9 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="attachment_type_selector__contact">Contact</string>
   <string name="attachment_type_selector__camera">Appareil photo</string>
   <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe</string>
+  <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Répétez la nouvelle phrase de passe</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Entrez un nom ou numéro</string>
   <!--contact_selection_group_activity-->
@@ -511,6 +534,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="conversation_activity__attachment_thumbnail">Vignette de pièce jointe</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Afficher/cacher la grille des pièces jointes</string>
   <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">GLISSEZ POUR ANNULER</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Téléchargement du message média</string>
   <string name="conversation_item__mms_image_description">Message média</string>
@@ -572,7 +596,12 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="MmsPreferencesFragment__invalid_uri">Le texte entré n\'était pas une URI valide</string>
   <string name="MmsPreferencesFragment__invalid_host">Le texte entré n\'était pas un hôte valide.</string>
   <!--GroupUtil-->
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s a rejoint le groupe.</item>
+    <item quantity="other">%1$s ont rejoint le groupe.</item>
+  </plurals>
   <string name="GroupUtil_group_updated">Groupe mis à jour.</string>
+  <string name="GroupUtil_group_name_is_now">Le nom du groupe est maintenant \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
   <!--prompt_mms_activity-->
@@ -702,6 +731,7 @@ par SMS.</string>
   <string name="arrays__disabled">Désactivé</string>
   <string name="arrays__name_and_message">Nom et message</string>
   <string name="arrays__name_only">Nom seulement</string>
+  <string name="arrays__no_name_or_message">Aucun nom ou message</string>
   <string name="arrays__images">Images</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Vidéo</string>
@@ -749,6 +779,7 @@ par SMS.</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Rythme de clignotement de la LED personnalisée défini !</string>
   <string name="preferences__sound">Son</string>
   <string name="preferences__change_notification_sound">Modifier le son de notification</string>
+  <string name="preferences__silent">Silencieux</string>
   <string name="preferences__inthread_notifications">Notifications dans la discussion</string>
   <string name="preferences__play_inthread_notifications">Émettre une notification sonore lors de la lecture d\'une discussion active.</string>
   <string name="preferences__repeat_alerts">Répéter les alertes</string>
@@ -793,6 +824,7 @@ par SMS.</string>
   <string name="preferences__conversation_length_limit">Limite de taille de la conversation</string>
   <string name="preferences__trim_all_threads_now">Réduire toutes les conversations maintenant</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Parcourir toutes les conversations et appliquer la limite de taille de conversation</string>
+  <string name="preferences__devices">Appareils</string>
   <string name="preferences__light_theme">Clair</string>
   <string name="preferences__dark_theme">Sombre</string>
   <string name="preferences__appearance">Apparence</string>
@@ -831,6 +863,7 @@ par SMS.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Appeler</string>
   <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Appel Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Détails du message</string>
   <string name="conversation_context__menu_copy_text">Copier le texte</string>
@@ -865,6 +898,7 @@ par SMS.</string>
   <string name="conversation__menu_add_attachment">Ajouter une pièce jointe</string>
   <string name="conversation__menu_update_group">Mettre à jour le groupe</string>
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
+  <string name="conversation__menu_delete_thread">Supprimer la conversation</string>
   <string name="conversation__menu_view_media">Toutes les images</string>
   <string name="conversation__menu_conversation_settings">Préférences de conversation</string>
   <!--conversation_popup-->
@@ -916,6 +950,7 @@ par SMS.</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Prévisualisation de l’image.</string>
   <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Rafraîchir</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Casque</string>
   <string name="redphone_audio_popup_menu__headset">Casque</string>
@@ -926,5 +961,8 @@ par SMS.</string>
   <string name="trimmer__old_messages_successfully_deleted">Anciens messages supprimés avec succès</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scannez le QR code affiché sur l\'appareil pour les lier</string>
+  <string name="device_link_fragment__link_device">Lier l\'appareil</string>
+  <string name="device_list_fragment__link_new_device">Lier le nouvel appareil</string>
   <!--EOF-->
 </resources>

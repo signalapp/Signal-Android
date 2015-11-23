@@ -76,7 +76,7 @@
   <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سوف يتم الاحتفاظ برسائلك. هذا قد يساعد في حال وجود مشاكل في التشفير بهذه المحادثة.</string>
   <string name="ConversationActivity_reset">إعادة ضبط</string>
-  <string name="ConversationActivity_delete_thread_question">حذف المحادثه?</string>
+  <string name="ConversationActivity_delete_thread_question">حذف المحادثه؟</string>
   <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">سوف يتم حذف جميع الرسائل في هذه المحادثة نهائيا.</string>
   <string name="ConversationActivity_add_attachment">إضافة مرفقات</string>
   <string name="ConversationActivity_select_contact_info">أختر بيانات جهة الاتصال</string>
@@ -112,7 +112,8 @@
   <string name="ConversationActivity_unblock">إلغاء الحظر</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
   <string name="ConversationActivity_quick_camera_unavailable">الكاميرا غير موجودة</string>
-  <string name="ConversationActivity_unable_to_record_audio">لا يمكن تسجيل الصوت!</string>
+  <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
+  <string name="ConversationActivity_error_sending_voice_message">خطأ في إرسال الرسالة الصوتية...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_transport_s_sent_received_s">نقل: %1$s\nSent/Received: %2$s</string>
@@ -124,6 +125,14 @@
     <item quantity="few">حذف الرسائل المختارة؟</item>
     <item quantity="many">حذف الرسائل المختارة؟</item>
     <item quantity="other">حذف الرسائل المختارة؟</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="zero">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
+    <item quantity="one">هذه العملية سوف تؤدي إلى حذف نهائي للرسالة الختارة.</item>
+    <item quantity="two">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
+    <item quantity="few">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
+    <item quantity="many">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
+    <item quantity="other">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">أحفظ في الذاكرة؟</string>
   <string name="ConversationFragment_saving_this_media_to_storage_warning">حفظ الملف في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</string>
@@ -245,6 +254,7 @@
   <string name="ImportFragment_no_encrypted_backup_found">لم يتم العثور على نسخة احتياطية مشفرة!</string>
   <string name="ImportFragment_restore_complete">تمت الاستعادة!</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ألمس وأضغط لتسجيل رسالة صوتية. اسحب إصبعك للإرسال</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">شارك</string>
   <string name="InviteActivity_send_sms">أرسل رسالة</string>
@@ -253,6 +263,14 @@
   <string name="InviteActivity_heart_content_description">قلب</string>
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
   <string name="InviteActivity_invite_to_signal">الدعوة إلى سيجنال</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="zero">أرسل إلى %d صديق</item>
+    <item quantity="one">أرسل إلى صديق واحد.</item>
+    <item quantity="two">أرسل إلى %d صديق</item>
+    <item quantity="few">أرسل إلى %d صديق</item>
+    <item quantity="many">أرسل إلى %d صديق</item>
+    <item quantity="other">أرسل إلى %d صديق</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="zero">ارسل %d دعوة برسالة نصية؟</item>
     <item quantity="one">ارسل دعوة واحدة عبر رسالة؟</item>
