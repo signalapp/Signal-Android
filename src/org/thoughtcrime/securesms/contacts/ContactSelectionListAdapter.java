@@ -178,17 +178,6 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     return cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN)) == ContactsDatabase.PUSH_TYPE;
   }
 
-  private Cursor getCursorAtPositionOrThrow(int position) {
-    Cursor cursor = getCursor();
-    if (cursor == null) {
-      throw new IllegalStateException("Cursor should not be null here.");
-    }
-    if (!cursor.moveToPosition(position)) {
-      throw new IllegalStateException("Cursor couldn't be moved to position.");
-    }
-    return cursor;
-  }
-
   public interface ItemClickListener {
     void onItemClick(ContactSelectionListItem item);
   }
