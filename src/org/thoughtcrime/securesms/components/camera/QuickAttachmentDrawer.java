@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class QuickAttachmentDrawer extends ViewGroup implements InputView {
+public class QuickAttachmentDrawer extends ViewGroup implements InputView, CameraViewListener {
   private static final String TAG = QuickAttachmentDrawer.class.getSimpleName();
 
   private final ViewDragHelper dragHelper;
@@ -80,6 +80,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
     coverViewPosition = getChildCount();
     controls.setVisibility(GONE);
     cameraView.setVisibility(GONE);
+    cameraView.addListener(this);
   }
 
   public static boolean isDeviceSupported(Context context) {
@@ -337,7 +338,28 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
 
   public void setListener(AttachmentDrawerListener listener) {
     this.listener = listener;
-    if (cameraView != null) cameraView.setListener(listener);
+    cameraView.addListener(listener);
+  }
+
+  @Override
+  public void onImageCapture(@NonNull byte[] imageBytes) {}
+
+  @Override
+  public void onCameraFail() {
+    swapCameraButton.setEnabled(false);
+    shutterButton.setEnabled(false);
+  }
+
+  @Override
+  public void onCameraStart() {
+    swapCameraButton.setEnabled(true);
+    shutterButton.setEnabled(true);
+  }
+
+  @Override
+  public void onCameraStop() {
+    swapCameraButton.setEnabled(false);
+    shutterButton.setEnabled(false);
   }
 
   public interface AttachmentDrawerListener extends CameraViewListener {
