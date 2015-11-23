@@ -161,15 +161,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   public void onCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    createConversation(threadId, recipients, distributionType);
-  }
-
-  private void createGroup() {
-    Intent intent = new Intent(this, GroupCreateActivity.class);
-    startActivity(intent);
-  }
-
-  private void createConversation(long threadId, Recipients recipients, int distributionType) {
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
@@ -177,6 +168,17 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     startActivity(intent);
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
+  }
+
+  @Override
+  public void onSwitchToArchive() {
+    Intent intent = new Intent(this, ConversationListArchiveActivity.class);
+    startActivity(intent);
+  }
+
+  private void createGroup() {
+    Intent intent = new Intent(this, GroupCreateActivity.class);
+    startActivity(intent);
   }
 
   private void handleDisplaySettings() {

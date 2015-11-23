@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ResUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Locale;
 import java.util.Set;
@@ -53,7 +54,8 @@ import static org.thoughtcrime.securesms.util.SpanUtil.color;
  */
 
 public class ConversationListItem extends RelativeLayout
-                                  implements Recipients.RecipientsModifiedListener, Unbindable
+                                  implements Recipients.RecipientsModifiedListener,
+                                             BindableConversationListItem, Unbindable
 {
   private final static String TAG = ConversationListItem.class.getSimpleName();
 
@@ -66,6 +68,7 @@ public class ConversationListItem extends RelativeLayout
   private TextView        subjectView;
   private FromTextView    fromView;
   private TextView        dateView;
+  private TextView        archivedView;
   private boolean         read;
   private AvatarImageView contactPhotoImage;
   private ThumbnailView   thumbnailView;
@@ -94,11 +97,12 @@ public class ConversationListItem extends RelativeLayout
     this.dateView          = (TextView)        findViewById(R.id.date);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
     this.thumbnailView     = (ThumbnailView)   findViewById(R.id.thumbnail);
+    this.archivedView      = ViewUtil.findById(this, R.id.archived);
     thumbnailView.setClickable(false);
   }
 
-  public void set(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
-                  @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode)
+  public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
+                   @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode)
   {
     this.selectedThreads  = selectedThreads;
     this.recipients       = thread.getRecipients();
@@ -116,6 +120,12 @@ public class ConversationListItem extends RelativeLayout
       CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
       dateView.setText(read ? date : color(getResources().getColor(R.color.textsecure_primary), date));
       dateView.setTypeface(read ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
+    }
+
+    if (thread.isArchived()) {
+      this.archivedView.setVisibility(View.VISIBLE);
+    } else {
+      this.archivedView.setVisibility(View.GONE);
     }
 
     setThumbnailSnippet(masterSecret, thread);
@@ -158,7 +168,7 @@ public class ConversationListItem extends RelativeLayout
       this.thumbnailView.setVisibility(View.GONE);
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
-      subjectParams.addRule(RelativeLayout.LEFT_OF, 0);
+      subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.archived);
       this.subjectView.setLayoutParams(subjectParams);
     }
   }
@@ -187,4 +197,5 @@ public class ConversationListItem extends RelativeLayout
       }
     });
   }
+
 }

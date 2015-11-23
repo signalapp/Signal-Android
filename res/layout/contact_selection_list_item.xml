@@ -8,7 +8,6 @@
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="@drawable/conversation_list_item_background"
         android:paddingLeft="48dp"
         android:paddingRight="20dp">
 
@@ -18,7 +17,7 @@
             android:layout_height="40dp"
             android:foreground="@drawable/contact_photo_background"
             android:cropToPadding="true"
-            tools:src="@color/md_material_blue_600"
+            tools:src="@color/blue_600"
             android:layout_marginRight="10dp"
             android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
 
