@@ -575,7 +575,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         activity.groupToUpdate = group;
 
         activity.groupName.setText(group.get().name);
-        if (group.get().avatar != null) activity.avatar.setImageBitmap(group.get().avatar);
+        if (group.get().avatar != null) {
+          activity.avatarBmp = group.get().avatar;
+          activity.avatar.setImageBitmap(group.get().avatar);
+        }
         SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(activity, group.get().recipients);
         adapter.setOnRecipientDeletedListener(activity);
         activity.lv.setAdapter(adapter);
