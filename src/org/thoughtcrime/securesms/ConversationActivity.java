@@ -1081,9 +1081,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           draftDatabase.insertDrafts(new MasterCipher(thisMasterSecret), threadId, drafts);
           threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this),
                                        drafts.getUriSnippet(ConversationActivity.this),
-                                       System.currentTimeMillis(), Types.BASE_DRAFT_TYPE);
+                                       System.currentTimeMillis(), Types.BASE_DRAFT_TYPE, true);
         } else if (threadId > 0) {
-          threadDatabase.update(threadId);
+          threadDatabase.update(threadId, false);
         }
 
         return threadId;

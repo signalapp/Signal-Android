@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,21 +20,30 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,7 +52,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
@@ -60,6 +68,7 @@ import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Locale;
@@ -69,6 +78,9 @@ import java.util.Set;
 public class ConversationListFragment extends Fragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback, ItemClickListener
 {
+
+  public static final String ARCHIVE = "archive";
+
   private MasterSecret         masterSecret;
   private ActionMode           actionMode;
   private RecyclerView         list;
@@ -76,28 +88,46 @@ public class ConversationListFragment extends Fragment
   private FloatingActionButton fab;
   private Locale               locale;
   private String               queryFilter  = "";
+  private boolean              archive;
 
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
     masterSecret = getArguments().getParcelable("master_secret");
     locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
+    archive      = getArguments().getBoolean(ARCHIVE, false);
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
-    reminderView = (ReminderView) view.findViewById(R.id.reminder);
-    list         = (RecyclerView) view.findViewById(R.id.list);
-    fab          = (FloatingActionButton) view.findViewById(R.id.fab);
+
+    reminderView = ViewUtil.findById(view, R.id.reminder);
+    list         = ViewUtil.findById(view, R.id.list);
+    fab          = ViewUtil.findById(view, R.id.fab);
+
+    if (archive) fab.setVisibility(View.GONE);
+    else         fab.setVisibility(View.VISIBLE);
+
     reminderView.setOnDismissListener(new OnDismissListener() {
-      @Override public void onDismiss() {
+      @Override
+      public void onDismiss() {
         updateReminders();
       }
     });
+
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+    new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
+
     return view;
+  }
+
+  public static float convertDpToPixel(float dp){
+    DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+    float px = dp * (metrics.densityDpi / 160f);
+    return Math.round(px);
   }
 
   @Override
@@ -234,7 +264,7 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationListLoader(getActivity(), queryFilter);
+    return new ConversationListLoader(getActivity(), queryFilter, archive);
   }
 
   @Override
@@ -276,8 +306,14 @@ public class ConversationListFragment extends Fragment
     getListAdapter().notifyDataSetChanged();
   }
 
+  @Override
+  public void onSwitchToArchive() {
+    ((ConversationSelectedListener)getActivity()).onSwitchToArchive();
+  }
+
   public interface ConversationSelectedListener {
     void onCreateConversation(long threadId, Recipients recipients, int distributionType);
+    void onSwitchToArchive();
 }
 
   @Override
@@ -323,6 +359,89 @@ public class ConversationListFragment extends Fragment
     }
 
     actionMode = null;
+  }
+
+  private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
+
+    public ArchiveListenerCallback() {
+      super(0, ItemTouchHelper.RIGHT);
+    }
+
+    @Override
+    public boolean onMove(RecyclerView recyclerView,
+                          RecyclerView.ViewHolder viewHolder,
+                          RecyclerView.ViewHolder target)
+    {
+      return false;
+    }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+      final long threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
+
+      if (archive) {
+        DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+        Snackbar.make(getView(), R.string.ConversationListFragment_moved_conversation_to_inbox, Snackbar.LENGTH_SHORT)
+                .setAction("UNDO", new OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                    DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+                  }
+                })
+                .setActionTextColor(getResources().getColor(R.color.amber_500))
+                .show();
+      } else {
+        DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+        Snackbar.make(getView(), R.string.ConversationListFragment_archived_conversation, Snackbar.LENGTH_SHORT)
+                .setAction("UNDO", new OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                    DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+                  }
+                })
+                .setActionTextColor(getResources().getColor(R.color.amber_500))
+                .show();
+      }
+    }
+
+    @Override
+    public void onChildDraw(Canvas c, RecyclerView recyclerView,
+                            RecyclerView.ViewHolder viewHolder,
+                            float dX, float dY, int actionState,
+                            boolean isCurrentlyActive)
+    {
+
+      if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+        View  itemView = viewHolder.itemView;
+        Paint p        = new Paint();
+
+        if (dX > 0) {
+          Bitmap icon;
+
+          if (archive) icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_unarchive_white_36dp);
+          else         icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_archive_white_36dp);
+
+          p.setARGB(255, 76, 175, 80);
+
+          c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
+                     (float) itemView.getBottom(), p);
+
+          c.drawBitmap(icon,
+                       (float) itemView.getLeft() + convertDpToPixel(16),
+                       (float) itemView.getTop() + ((float) itemView.getBottom() - (float) itemView.getTop() - icon.getHeight())/2,
+                       p);
+        }
+
+        if (Build.VERSION.SDK_INT >= 11) {
+          float alpha = 1.0f - Math.abs(dX) / (float) viewHolder.itemView.getWidth();
+          viewHolder.itemView.setAlpha(alpha);
+          viewHolder.itemView.setTranslationX(dX);
+        }
+
+      } else {
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+      }
+    }
   }
 
 }
