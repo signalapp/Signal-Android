@@ -128,6 +128,12 @@ public class ConversationListItem extends RelativeLayout
     this.statusManager = new StatusManager(pendingIndicator, sentIndicator, deliveredIndicator,
                                            failedIndicator, pendingApprovalIndicator);
 
+    sentIndicator     .setPadding(0, sentIndicator.getPaddingTop(), sentIndicator.getPaddingLeft(),
+                                  sentIndicator.getPaddingBottom());
+    deliveredIndicator.setPadding(0, deliveredIndicator.getPaddingTop(),
+                                  deliveredIndicator.getPaddingLeft(),
+                                  deliveredIndicator.getPaddingBottom());
+
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
     this.thumbnailView     = (ThumbnailView)   findViewById(R.id.thumbnail);
     this.archivedView      = ViewUtil.findById(this, R.id.archived);
