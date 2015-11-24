@@ -21,6 +21,7 @@ import android.support.annotation.NonNull;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
@@ -47,16 +48,15 @@ public class MediaMmsMessageRecord extends MessageRecord {
 
   public MediaMmsMessageRecord(Context context, long id, Recipients recipients,
                                Recipient individualRecipient, int recipientDeviceId,
-                               long dateSent, long dateReceived, int deliveredCount,
+                               long dateSent, long dateReceived, int receiptCount,
                                long threadId, Body body,
                                @NonNull SlideDeck slideDeck,
                                int partCount, long mailbox,
                                List<IdentityKeyMismatch> mismatches,
                                List<NetworkFailure> failures)
   {
-    super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, deliveredCount, mailbox,
-          mismatches, failures);
+    super(context, id, body, recipients, individualRecipient, recipientDeviceId, dateSent,
+          dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox, mismatches, failures);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;
