@@ -31,6 +31,7 @@ import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -69,8 +70,10 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
@@ -200,6 +203,42 @@ public class ConversationListFragment extends Fragment
     getLoaderManager().restartLoader(0, null, this);
   }
 
+  private void handleArchiveAllSelected() {
+    final Set<Long> selectedConversations = new HashSet<>(getListAdapter().getBatchSelections());
+
+    new SnackbarAsyncTask<Void>(getView(),
+                                getString(R.string.ConversationListFragment_archived_conversations),
+                                getString(R.string.ConversationListFragment_undo),
+                                getResources().getColor(R.color.amber_500),
+                                Snackbar.LENGTH_LONG)
+    {
+
+      @Override
+      protected void onPostExecute(Void result) {
+        super.onPostExecute(result);
+
+        if (actionMode != null) {
+          actionMode.finish();
+          actionMode = null;
+        }
+      }
+
+      @Override
+      protected void executeAction(@Nullable Void parameter) {
+        for (long threadId : selectedConversations) {
+          DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+        }
+      }
+
+      @Override
+      protected void reverseAction(@Nullable Void parameter) {
+        for (long threadId : selectedConversations) {
+          DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+        }
+      }
+    }.execute();
+  }
+
   private void handleDeleteAllSelected() {
     int                 conversationsCount = getListAdapter().getBatchSelections().size();
     AlertDialog.Builder alert              = new AlertDialog.Builder(getActivity());
@@ -255,7 +294,7 @@ public class ConversationListFragment extends Fragment
   private void handleSelectAllThreads() {
     getListAdapter().selectAllThreads();
     actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                           getListAdapter().getBatchSelections().size()));
+                                     getListAdapter().getBatchSelections().size()));
   }
 
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
@@ -325,8 +364,7 @@ public class ConversationListFragment extends Fragment
     mode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount, 1));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getActivity().getWindow()
-        .setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+      getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
     }
 
     return true;
@@ -340,8 +378,9 @@ public class ConversationListFragment extends Fragment
   @Override
   public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
     switch (item.getItemId()) {
-    case R.id.menu_select_all:      handleSelectAllThreads(); return true;
-    case R.id.menu_delete_selected: handleDeleteAllSelected(); return true;
+    case R.id.menu_select_all:       handleSelectAllThreads();   return true;
+    case R.id.menu_delete_selected:  handleDeleteAllSelected();  return true;
+    case R.id.menu_archive_selected: handleArchiveAllSelected(); return true;
     }
 
     return false;
@@ -352,8 +391,7 @@ public class ConversationListFragment extends Fragment
     getListAdapter().initializeBatchMode(false);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      TypedArray color = getActivity().getTheme()
-        .obtainStyledAttributes(new int[] { android.R.attr.statusBarColor });
+      TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
       getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
       color.recycle();
     }
@@ -380,27 +418,39 @@ public class ConversationListFragment extends Fragment
       final long threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
 
       if (archive) {
-        DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
-        Snackbar.make(getView(), R.string.ConversationListFragment_moved_conversation_to_inbox, Snackbar.LENGTH_SHORT)
-                .setAction("UNDO", new OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                    DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
-                  }
-                })
-                .setActionTextColor(getResources().getColor(R.color.amber_500))
-                .show();
+        new SnackbarAsyncTask<Long>(getView(),
+                                    getString(R.string.ConversationListFragment_moved_conversation_to_inbox),
+                                    getString(R.string.ConversationListFragment_undo),
+                                    getResources().getColor(R.color.amber_500),
+                                    Snackbar.LENGTH_SHORT)
+        {
+          @Override
+          protected void executeAction(@Nullable Long parameter) {
+            DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+          }
+
+          @Override
+          protected void reverseAction(@Nullable Long parameter) {
+            DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+          }
+        }.execute(threadId);
       } else {
-        DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
-        Snackbar.make(getView(), R.string.ConversationListFragment_archived_conversation, Snackbar.LENGTH_SHORT)
-                .setAction("UNDO", new OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                    DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
-                  }
-                })
-                .setActionTextColor(getResources().getColor(R.color.amber_500))
-                .show();
+        new SnackbarAsyncTask<Long>(getView(),
+                                    getString(R.string.ConversationListFragment_archived_conversation),
+                                    getString(R.string.ConversationListFragment_undo),
+                                    getResources().getColor(R.color.amber_500),
+                                    Snackbar.LENGTH_SHORT)
+        {
+          @Override
+          protected void executeAction(@Nullable Long parameter) {
+            DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+          }
+
+          @Override
+          protected void reverseAction(@Nullable Long parameter) {
+            DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+          }
+        }.execute(threadId);
       }
     }
 

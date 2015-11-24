@@ -174,9 +174,16 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
     <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads...</string>
+    <string name="ConversationListFragment_archived_conversations">Archived conversations</string>
+    <string name="ConversationListFragment_undo">UNDO</string>
+    <string name="ConversationListFragment_moved_conversation_to_inbox">Moved conversation to inbox</string>
+    <string name="ConversationListFragment_archived_conversation">Moved conversation to inbox</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
+
+    <!-- ConversationListItemAction -->
+    <string name="ConversationListItemAction_archived_conversations_d">Archived conversations (%d)</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
@@ -657,8 +664,16 @@
     <string name="country_selection_fragment__loading_countries">Loading countries...</string>
     <string name="country_selection_fragment__search">Search</string>
 
+    <!-- device_add_fragment -->
+    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on the device to link</string>
+
+    <!-- device_link_fragment -->
+    <string name="device_link_fragment__link_device">Link device</string>
+
     <!-- device_list_fragment -->
     <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
+    <string name="device_list_fragment__link_new_device">Link new device</string>
+
 
     <!-- experience_upgrade_activity -->
     <string name="experience_upgrade_activity__continue">continue</string>
@@ -1040,6 +1055,7 @@
     <!-- conversation_list_batch -->
     <string name="conversation_list_batch__menu_delete_selected">Delete selected</string>
     <string name="conversation_list_batch__menu_select_all">Select all</string>
+    <string name="conversation_list_batch__archive_selected">Archive selected</string>
 
     <!-- conversation_list -->
     <string name="conversation_list__menu_search">Search</string>
@@ -1047,6 +1063,7 @@
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
     <string name="conversation_list_item_view__error_alert">Error alert</string>
+    <string name="conversation_list_item_view__archived">Archived</string>
 
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>
@@ -1094,6 +1111,7 @@
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
     <string name="text_secure_normal__invite_friends">Invite friends</string>
+    <string name="text_secure_normal__help">Help</string>
 
     <!-- reminder_header -->
     <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
@@ -1141,13 +1159,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on the device to link</string>
-    <string name="device_link_fragment__link_device">Link device</string>
-    <string name="device_list_fragment__link_new_device">Link new device</string>
-    <string name="conversation_list_item_view__archived">Archived</string>
-    <string name="ConversationListFragment_moved_conversation_to_inbox">Moved conversation to inbox</string>
-    <string name="ConversationListFragment_archived_conversation">Archived conversation</string>
-    <string name="ConversationListItemAction_archived_conversations_s">Archived conversations (%d)</string>
 
     <!-- EOF -->
 

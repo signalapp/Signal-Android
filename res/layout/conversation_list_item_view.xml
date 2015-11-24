@@ -104,6 +104,7 @@
                   android:layout_below="@id/date"
                   android:layout_alignParentRight="true"
                   android:layout_alignBaseline="@id/subject"
+                  android:layout_marginLeft="5dp"
                   android:text="@string/conversation_list_item_view__archived"
                   android:textColor="#ffbbbbbb"
                   android:background="@drawable/rounded_rectangle"

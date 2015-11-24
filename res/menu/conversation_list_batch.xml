@@ -2,13 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:title="@string/conversation_list_batch__archive_selected"
+          android:id="@+id/menu_archive_selected"
+          android:icon="@drawable/ic_archive_white_24dp"
+          app:showAsAction="always"/>
+
     <item android:title="@string/conversation_list_batch__menu_delete_selected"
           android:id="@+id/menu_delete_selected"
           android:icon="?menu_trash_icon"
-          app:showAsAction="ifRoom" />
+          app:showAsAction="always" />
 
     <item android:title="@string/conversation_list_batch__menu_select_all"
           android:id="@+id/menu_select_all"
-          android:icon="?menu_selectall_icon" />
+          android:icon="?menu_selectall_icon"
+          app:showAsAction="always"/>
 
 </menu>
