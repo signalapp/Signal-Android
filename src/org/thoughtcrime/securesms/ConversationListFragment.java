@@ -127,12 +127,6 @@ public class ConversationListFragment extends Fragment
     return view;
   }
 
-  public static float convertDpToPixel(float dp){
-    DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-    float px = dp * (metrics.densityDpi / 160f);
-    return Math.round(px);
-  }
-
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
@@ -205,6 +199,7 @@ public class ConversationListFragment extends Fragment
 
   private void handleArchiveAllSelected() {
     final Set<Long> selectedConversations = new HashSet<>(getListAdapter().getBatchSelections());
+    final boolean   archive               = this.archive;
 
     new SnackbarAsyncTask<Void>(getView(),
                                 getString(R.string.ConversationListFragment_archived_conversations),
@@ -226,14 +221,16 @@ public class ConversationListFragment extends Fragment
       @Override
       protected void executeAction(@Nullable Void parameter) {
         for (long threadId : selectedConversations) {
-          DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+          if (!archive) DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+          else          DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
         }
       }
 
       @Override
       protected void reverseAction(@Nullable Void parameter) {
         for (long threadId : selectedConversations) {
-          DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+          if (!archive) DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+          else          DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
         }
       }
     }.execute();
@@ -358,6 +355,10 @@ public class ConversationListFragment extends Fragment
   @Override
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
     MenuInflater inflater = getActivity().getMenuInflater();
+
+    if (archive) inflater.inflate(R.menu.conversation_list_batch_unarchive, menu);
+    else         inflater.inflate(R.menu.conversation_list_batch_archive, menu);
+
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
     mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
