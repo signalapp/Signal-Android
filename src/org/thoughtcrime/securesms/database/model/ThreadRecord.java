@@ -48,9 +48,11 @@ public class ThreadRecord extends DisplayRecord {
 
   public ThreadRecord(@NonNull Context context, @NonNull Body body, @Nullable Uri snippetUri,
                       @NonNull Recipients recipients, long date, long count, boolean read,
-                      long threadId, long snippetType, int distributionType, boolean archived)
+                      long threadId, int receiptCount, int deliveryStatus, long snippetType,
+                      int distributionType, boolean archived)
   {
-    super(context, body, recipients, date, date, threadId, snippetType);
+    super(context, body, recipients, date, date, threadId, deliveryStatus, receiptCount,
+            snippetType);
     this.context          = context.getApplicationContext();
     this.snippetUri       = snippetUri;
     this.count            = count;

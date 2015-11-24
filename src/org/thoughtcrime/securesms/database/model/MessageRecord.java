@@ -43,18 +43,11 @@ import java.util.List;
  */
 public abstract class MessageRecord extends DisplayRecord {
 
-  public static final int DELIVERY_STATUS_NONE     = 0;
-  public static final int DELIVERY_STATUS_RECEIVED = 1;
-  public static final int DELIVERY_STATUS_PENDING  = 2;
-  public static final int DELIVERY_STATUS_FAILED   = 3;
-
   private static final int MAX_DISPLAY_LENGTH = 2000;
 
   private final Recipient                 individualRecipient;
   private final int                       recipientDeviceId;
   private final long                      id;
-  private final int                       deliveryStatus;
-  private final int                       receiptCount;
   private final List<IdentityKeyMismatch> mismatches;
   private final List<NetworkFailure>      networkFailures;
 
@@ -65,33 +58,17 @@ public abstract class MessageRecord extends DisplayRecord {
                 List<IdentityKeyMismatch> mismatches,
                 List<NetworkFailure> networkFailures)
   {
-    super(context, body, recipients, dateSent, dateReceived, threadId, type);
+    super(context, body, recipients, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
+            type);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;
-    this.deliveryStatus      = deliveryStatus;
-    this.receiptCount        = receiptCount;
     this.mismatches          = mismatches;
     this.networkFailures     = networkFailures;
   }
 
   public abstract boolean isMms();
   public abstract boolean isMmsNotification();
-
-  public boolean isFailed() {
-    return
-        MmsSmsColumns.Types.isFailedMessageType(type)            ||
-        MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
-        getDeliveryStatus() == DELIVERY_STATUS_FAILED;
-  }
-
-  public boolean isOutgoing() {
-    return MmsSmsColumns.Types.isOutgoingMessageType(type);
-  }
-
-  public boolean isPending() {
-    return MmsSmsColumns.Types.isPendingMessageType(type);
-  }
 
   public boolean isSecure() {
     return MmsSmsColumns.Types.isSecureType(type);
@@ -134,14 +111,6 @@ public abstract class MessageRecord extends DisplayRecord {
     return id;
   }
 
-  public int getDeliveryStatus() {
-    return deliveryStatus;
-  }
-
-  public boolean isDelivered() {
-    return getDeliveryStatus() == DELIVERY_STATUS_RECEIVED || receiptCount > 0;
-  }
-
   public boolean isPush() {
     return SmsDatabase.Types.isPushType(type) && !SmsDatabase.Types.isForcedSms(type);
   }
@@ -156,10 +125,6 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isProcessedKeyExchange() {
     return SmsDatabase.Types.isProcessedKeyExchange(type);
-  }
-
-  public boolean isPendingInsecureSmsFallback() {
-    return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
   }
 
   public boolean isIdentityMismatchFailure() {
