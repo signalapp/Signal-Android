@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -153,6 +154,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     case R.id.menu_import_export:     handleImportExport();    return true;
     case R.id.menu_my_identity:       handleMyIdentity();      return true;
     case R.id.menu_invite:            handleInvite();          return true;
+    case R.id.menu_help:              handleHelp();            return true;
     }
 
     return false;
@@ -210,6 +212,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void handleInvite() {
     startActivity(new Intent(this, InviteActivity.class));
+  }
+
+  private void handleHelp() {
+    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://support.whispersystems.org")));
   }
 
   private void initializeContactUpdatesReceiver() {
