@@ -995,7 +995,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case AttachmentTypeSelectorAdapter.ADD_CONTACT_INFO:
       AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO); break;
     case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
-      attachmentManager.capturePhoto(this, recipients, TAKE_PHOTO); break;
+      attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     }
   }
 
