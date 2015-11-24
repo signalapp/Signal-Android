@@ -77,12 +77,6 @@ public class IncomingRinger {
 
   public void start() {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
-    audioManager.requestAudioFocus(new AudioManager.OnAudioFocusChangeListener() {
-                                     @Override
-                                     public void onAudioFocusChange(int focusChange) {}
-                                   },
-                                   AudioManager.STREAM_MUSIC,
-                                   AudioManager.AUDIOFOCUS_GAIN);
 
     if(player == null) {
       //retry player creation to pick up changed ringtones or audio server restarts
@@ -125,7 +119,6 @@ public class IncomingRinger {
 
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
     audioManager.setMode(AudioManager.MODE_NORMAL);
-    audioManager.abandonAudioFocus(null);
   }
 
   private boolean shouldVibrate() {
