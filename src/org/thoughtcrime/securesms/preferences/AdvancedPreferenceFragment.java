@@ -55,7 +55,6 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     masterSecret = getArguments().getParcelable("master_secret");
     addPreferencesFromResource(R.xml.preferences_advanced);
 
-    initializePushMessagingToggle();
     initializeIdentitySelection();
 
     Preference submitDebugLog = this.findPreference(SUBMIT_DEBUG_LOG_PREF);
@@ -67,6 +66,8 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
   public void onResume() {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__advanced);
+
+    initializePushMessagingToggle();
   }
 
   @Override
@@ -81,7 +82,15 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
 
   private void initializePushMessagingToggle() {
     CheckBoxPreference preference = (CheckBoxPreference)this.findPreference(PUSH_MESSAGING_PREF);
-    preference.setChecked(TextSecurePreferences.isPushRegistered(getActivity()));
+
+    if (TextSecurePreferences.isPushRegistered(getActivity())) {
+      preference.setChecked(true);
+      preference.setSummary(TextSecurePreferences.getLocalNumber(getActivity()));
+    } else {
+      preference.setChecked(false);
+      preference.setSummary(R.string.preferences__free_private_messages_and_calls);
+    }
+
     preference.setOnPreferenceChangeListener(new PushMessagingClickListener());
   }
 
@@ -169,8 +178,8 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
                          Toast.LENGTH_LONG).show();
           break;
         case SUCCESS:
-          checkBoxPreference.setChecked(false);
           TextSecurePreferences.setPushRegistered(getActivity(), false);
+          initializePushMessagingToggle();
           break;
         }
       }
