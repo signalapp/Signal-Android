@@ -205,7 +205,7 @@ public class ConversationListFragment extends Fragment
                                 getString(R.string.ConversationListFragment_archived_conversations),
                                 getString(R.string.ConversationListFragment_undo),
                                 getResources().getColor(R.color.amber_500),
-                                Snackbar.LENGTH_LONG)
+                                Snackbar.LENGTH_LONG, true)
     {
 
       @Override
@@ -432,7 +432,7 @@ public class ConversationListFragment extends Fragment
                                     getString(R.string.ConversationListFragment_moved_conversation_to_inbox),
                                     getString(R.string.ConversationListFragment_undo),
                                     getResources().getColor(R.color.amber_500),
-                                    Snackbar.LENGTH_SHORT)
+                                    Snackbar.LENGTH_SHORT, false)
         {
           @Override
           protected void executeAction(@Nullable Long parameter) {
@@ -449,7 +449,7 @@ public class ConversationListFragment extends Fragment
                                     getString(R.string.ConversationListFragment_archived_conversation),
                                     getString(R.string.ConversationListFragment_undo),
                                     getResources().getColor(R.color.amber_500),
-                                    Snackbar.LENGTH_SHORT)
+                                    Snackbar.LENGTH_SHORT, false)
         {
           @Override
           protected void executeAction(@Nullable Long parameter) {
