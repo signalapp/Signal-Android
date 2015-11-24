@@ -85,8 +85,9 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
-import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
+import org.thoughtcrime.securesms.database.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
+import org.thoughtcrime.securesms.database.DraftFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
@@ -1059,13 +1060,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Drafts drafts = new Drafts();
 
     if (!Util.isEmpty(composeText)) {
-      drafts.add(new Draft(Draft.TEXT, composeText.getText().toString()));
+      drafts.add(DraftFactory.getInstance().getDraft(Draft.TEXT, composeText.getText().toString()));
     }
 
     for (Slide slide : attachmentManager.buildSlideDeck().getSlides()) {
-      if      (slide.hasAudio()) drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
-      else if (slide.hasVideo()) drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
-      else if (slide.hasImage()) drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
+      if      (slide.hasAudio()) drafts.add(DraftFactory.getInstance().getDraft(Draft.AUDIO, slide.getUri().toString()));
+      else if (slide.hasVideo()) drafts.add(DraftFactory.getInstance().getDraft(Draft.VIDEO, slide.getUri().toString()));
+      else if (slide.hasImage()) drafts.add(DraftFactory.getInstance().getDraft(Draft.IMAGE, slide.getUri().toString()));
     }
 
     return drafts;
