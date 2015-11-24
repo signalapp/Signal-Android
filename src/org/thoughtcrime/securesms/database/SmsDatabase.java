@@ -265,12 +265,15 @@ public class SmsDatabase extends MessagingDatabase {
             String ourAddress   = canonicalizeNumber(context, cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
 
             if (ourAddress.equals(theirAddress)) {
+              long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+
               database.execSQL("UPDATE " + TABLE_NAME +
                                " SET " + RECEIPT_COUNT + " = " + RECEIPT_COUNT + " + 1 WHERE " +
                                ID + " = ?",
                                new String[] {String.valueOf(cursor.getLong(cursor.getColumnIndexOrThrow(ID)))});
 
-              notifyConversationListeners(cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID)));
+              DatabaseFactory.getThreadDatabase(context).update(threadId);
+              notifyConversationListeners(threadId);
             }
           } catch (InvalidNumberException e) {
             Log.w("SmsDatabase", e);
