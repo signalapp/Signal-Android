@@ -83,6 +83,22 @@ public class DateUtils extends android.text.format.DateUtils {
     }
   }
 
+  public static String getDayPrecisionTimeSpanString(Context context, Locale locale, long timestamp) {
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+
+    if (simpleDateFormat.format(System.currentTimeMillis()).equals(simpleDateFormat.format(timestamp))) {
+      return "Today";
+    } else {
+      String format;
+
+      if      (isWithin(timestamp, 6, TimeUnit.DAYS))   format = "EEE ";
+      else if (isWithin(timestamp, 365, TimeUnit.DAYS)) format = "MMM d";
+      else                                              format = "MMM d, yyy";
+
+      return getFormattedDateTime(timestamp, format, locale);
+    }
+  }
+
   public static SimpleDateFormat getDetailedDateFormatter(Context context, Locale locale) {
     String dateFormatPattern;
 
