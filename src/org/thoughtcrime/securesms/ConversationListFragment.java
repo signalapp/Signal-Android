@@ -424,6 +424,10 @@ public class ConversationListFragment extends Fragment
         return 0;
       }
 
+      if (actionMode != null) {
+        return 0;
+      }
+
       return super.getSwipeDirs(recyclerView, viewHolder);
     }
 
