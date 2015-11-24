@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -158,7 +159,9 @@ public class ConversationFragment extends Fragment
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients));
+      ConversationAdapter adapter = new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients);
+      list.setAdapter(adapter);
+      list.addItemDecoration(new StickyHeaderDecoration(adapter, false));
       getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
     }
   }

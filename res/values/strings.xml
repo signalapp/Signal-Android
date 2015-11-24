@@ -186,6 +186,8 @@
     <!-- DateUtils -->
     <string name="DateUtils_now">Now</string>
     <string name="DateUtils_minutes_ago">%d min</string>
+    <string name="DateUtils_today">Today</string>
+    <string name="DateUtils_yesterday">Yesterday</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>

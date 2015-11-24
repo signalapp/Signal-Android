@@ -80,7 +80,7 @@ public class ConversationUpdateItem extends LinearLayout
     else                                     icon.setImageResource(R.drawable.ic_call_missed_grey600_24dp);
 
     body.setText(messageRecord.getDisplayBody());
-    date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateReceived()));
+    date.setText(DateUtils.getRelativeTime(getContext(), locale, messageRecord.getDateReceived()));
     date.setVisibility(View.VISIBLE);
   }
 

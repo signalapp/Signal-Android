@@ -40,6 +40,7 @@
     <attr name="conversation_attach_sound" format="reference"/>
     <attr name="conversation_attach_contact_info" format="reference"/>
     <attr name="conversation_attach" format="reference"/>
+    <attr name="conversation_date_header_background" format="reference"/>
 
     <attr name="emoji_tab_strip_background" format="color" />
     <attr name="emoji_tab_indicator" format="color" />

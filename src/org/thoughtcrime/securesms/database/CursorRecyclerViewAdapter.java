@@ -143,8 +143,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   @Override
   public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
     if (!isHeaderPosition(position) && !isFooterPosition(position)) {
-      moveToPositionOrThrow(getCursorPosition(position));
-      onBindItemViewHolder((VH)viewHolder, cursor);
+      onBindItemViewHolder((VH)viewHolder, getCursorAtPositionOrThrow(position));
     }
   }
 
@@ -154,8 +153,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   public final int getItemViewType(int position) {
     if (isHeaderPosition(position)) return HEADER_TYPE;
     if (isFooterPosition(position)) return FOOTER_TYPE;
-    moveToPositionOrThrow(getCursorPosition(position));
-    return getItemViewType(cursor);
+    return getItemViewType(getCursorAtPositionOrThrow(position));
   }
 
   public int getItemViewType(@NonNull Cursor cursor) {
@@ -164,8 +162,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   @Override
   public final long getItemId(int position) {
-    moveToPositionOrThrow(getCursorPosition(position));
-    return getItemId(cursor);
+    return getItemId(getCursorAtPositionOrThrow(position));
   }
 
   public long getItemId(@NonNull Cursor cursor) {
@@ -178,11 +175,12 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
     }
   }
 
-  private void moveToPositionOrThrow(final int position) {
+  protected @NonNull Cursor getCursorAtPositionOrThrow(final int position) {
     assertActiveCursor();
-    if (!cursor.moveToPosition(position)) {
+    if (!cursor.moveToPosition(getCursorPosition(position))) {
       throw new IllegalStateException("couldn't move cursor to position " + position);
     }
+    return cursor;
   }
 
   private boolean isActiveCursor() {

@@ -35,10 +35,10 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScrollAdapter;
-import org.thoughtcrime.securesms.ContactSelectionListFragment.StickyHeaderAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration.StickyHeaderAdapter;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashMap;
@@ -176,17 +176,6 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private boolean isPush(int position) {
     final Cursor cursor = getCursorAtPositionOrThrow(position);
     return cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN)) == ContactsDatabase.PUSH_TYPE;
-  }
-
-  private Cursor getCursorAtPositionOrThrow(int position) {
-    Cursor cursor = getCursor();
-    if (cursor == null) {
-      throw new IllegalStateException("Cursor should not be null here.");
-    }
-    if (!cursor.moveToPosition(position)) {
-      throw new IllegalStateException("Cursor couldn't be moved to position.");
-    }
-    return cursor;
   }
 
   public interface ItemClickListener {

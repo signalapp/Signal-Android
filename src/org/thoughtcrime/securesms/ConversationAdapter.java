@@ -22,14 +22,15 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.thoughtcrime.redphone.util.Conversions;
+import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -38,17 +39,22 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration.StickyHeaderAdapter;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.VisibleForTesting;
 
@@ -62,6 +68,7 @@ import org.thoughtcrime.securesms.util.VisibleForTesting;
  */
 public class ConversationAdapter <V extends View & BindableConversationItem>
     extends CursorRecyclerViewAdapter<ConversationAdapter.ViewHolder>
+    implements StickyHeaderAdapter<HeaderViewHolder>
 {
 
   private static final int MAX_CACHE_SIZE = 40;
@@ -81,6 +88,28 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final @NonNull  MmsSmsDatabase    db;
   private final @NonNull  LayoutInflater    inflater;
   private final @NonNull  MessageDigest     digest;
+  private final @NonNull  Calendar          calendar;
+
+  @Override
+  public long getHeaderId(int position) {
+    Cursor cursor = getCursorAtPositionOrThrow(position);
+    MessageRecord record = getMessageRecord(cursor);
+    calendar.setTime(new Date(record.getDateSent()));
+    return Util.hashCode(calendar.get(Calendar.YEAR), calendar.get(Calendar.DAY_OF_YEAR));
+  }
+
+  @Override
+  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+    return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.conversation_recyclerview_header, parent, false));
+  }
+
+  @Override
+  public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
+    final Cursor cursor = getCursorAtPositionOrThrow(position);
+    viewHolder.setText(DateUtils.getRelativeDate(getContext(),
+                                                 locale,
+                                                 getMessageRecord(cursor).getDateReceived()));
+  }
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -90,6 +119,19 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     @SuppressWarnings("unchecked")
     public <V extends View & BindableConversationItem> V getView() {
       return (V)itemView;
+    }
+  }
+
+  protected static class HeaderViewHolder extends RecyclerView.ViewHolder {
+    private TextView textView;
+
+    public HeaderViewHolder(View itemView) {
+      super(itemView);
+      textView = ViewUtil.findById(itemView, R.id.text);
+    }
+
+    public void setText(CharSequence text) {
+      textView.setText(text);
     }
   }
 
@@ -109,6 +151,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       this.recipients    = null;
       this.inflater      = null;
       this.db            = null;
+      this.calendar      = null;
       this.digest        = MessageDigest.getInstance("SHA1");
     } catch (NoSuchAlgorithmException nsae) {
       throw new AssertionError("SHA1 isn't supported!");
@@ -130,6 +173,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       this.recipients    = recipients;
       this.inflater      = LayoutInflater.from(context);
       this.db            = DatabaseFactory.getMmsSmsDatabase(context);
+      this.calendar      = Calendar.getInstance();
       this.digest        = MessageDigest.getInstance("SHA1");
 
       setHasStableIds(true);
@@ -146,10 +190,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-    String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
-
+    final MessageRecord messageRecord = getMessageRecord(cursor);
     viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipients);
   }
 
@@ -191,9 +232,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public int getItemViewType(@NonNull Cursor cursor) {
-    long          id            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
-    String        type          = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
+    final MessageRecord messageRecord = getMessageRecord(cursor);
 
     if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined()) {
       return MESSAGE_TYPE_UPDATE;
@@ -211,7 +250,10 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     return Conversions.byteArrayToLong(bytes);
   }
 
-  private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
+  private MessageRecord getMessageRecord(Cursor cursor) {
+    long   messageId = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
+    String type      = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+
     final SoftReference<MessageRecord> reference = messageRecordCache.get(type + messageId);
     if (reference != null) {
       final MessageRecord record = reference.get();
