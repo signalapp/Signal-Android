@@ -414,6 +414,15 @@ public class ConversationListFragment extends Fragment
     }
 
     @Override
+    public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+      if (viewHolder.itemView instanceof ConversationListItemAction) {
+        return 0;
+      }
+
+      return super.getSwipeDirs(recyclerView, viewHolder);
+    }
+
+    @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
       final long threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
 
