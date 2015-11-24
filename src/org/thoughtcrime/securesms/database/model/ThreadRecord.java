@@ -49,10 +49,10 @@ public class ThreadRecord extends DisplayRecord {
 
   public ThreadRecord(@NonNull Context context, @NonNull Body body, @Nullable Uri snippetUri,
                       @NonNull Recipients recipients, long date, long count, boolean read,
-                      long threadId, int receiptCount, int status, long snippetType,
+                      long threadId, int receiptCount, int deliveryStatus, long snippetType,
                       int distributionType, boolean archived)
   {
-    super(context, body, recipients, date, date, threadId, getGenericDeliveryStatus(status),
+    super(context, body, recipients, date, date, threadId, translateDeliveryStatus(deliveryStatus),
           receiptCount, snippetType);
     this.context          = context.getApplicationContext();
     this.snippetUri       = snippetUri;
@@ -137,7 +137,7 @@ public class ThreadRecord extends DisplayRecord {
     return distributionType;
   }
 
-  private static int getGenericDeliveryStatus(int status) {
+  private static int translateDeliveryStatus(int status) {
     if (status == ThreadDatabase.Status.STATUS_NONE) {
       return DisplayRecord.DELIVERY_STATUS_NONE;
     } else if (status >= ThreadDatabase.Status.STATUS_FAILED) {

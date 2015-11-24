@@ -488,7 +488,7 @@ public class ThreadDatabase extends Database {
         else                 timestamp = record.getDateReceived();
 
         updateThread(threadId, count, record.getBody().getBody(), getAttachmentUriFor(record),
-                     timestamp, getGenericStatus(record.getDeliveryStatus()),
+                     timestamp, translateDeliveryStatus(record.getDeliveryStatus()),
                      record.getReceiptCount(), record.getType(), unarchive);
         notifyConversationListListeners();
         return false;
@@ -520,12 +520,12 @@ public class ThreadDatabase extends Database {
     return new Reader(cursor, masterCipher);
   }
 
-  private static int getGenericStatus(int deliveryStatus) {
-    if (deliveryStatus == DisplayRecord.DELIVERY_STATUS_NONE) {
+  private static int translateDeliveryStatus(int status) {
+    if (status == DisplayRecord.DELIVERY_STATUS_NONE) {
       return Status.STATUS_NONE;
-    } else if (deliveryStatus == DisplayRecord.DELIVERY_STATUS_FAILED) {
+    } else if (status == DisplayRecord.DELIVERY_STATUS_FAILED) {
       return Status.STATUS_FAILED;
-    } else if (deliveryStatus == DisplayRecord.DELIVERY_STATUS_PENDING) {
+    } else if (status == DisplayRecord.DELIVERY_STATUS_PENDING) {
       return Status.STATUS_PENDING;
     } else {
       return Status.STATUS_RECEIVED;
