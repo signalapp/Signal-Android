@@ -128,7 +128,7 @@ public class ThreadDatabase extends Database {
 
   private void updateThread(long threadId, long count, String body, @Nullable Uri attachment, long date, long type, boolean unarchive)
   {
-    ContentValues contentValues = new ContentValues(4);
+    ContentValues contentValues = new ContentValues(5);
     contentValues.put(DATE, date - date % 1000);
     contentValues.put(MESSAGE_COUNT, count);
     contentValues.put(SNIPPET, body);

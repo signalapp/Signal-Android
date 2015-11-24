@@ -471,13 +471,13 @@ public class ConversationListFragment extends Fragment
           if (archive) icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_unarchive_white_36dp);
           else         icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_archive_white_36dp);
 
-          p.setARGB(255, 76, 175, 80);
+          p.setColor(getResources().getColor(R.color.green_500));
 
           c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
                      (float) itemView.getBottom(), p);
 
           c.drawBitmap(icon,
-                       (float) itemView.getLeft() + convertDpToPixel(16),
+                       (float) itemView.getLeft() + getResources().getDimension(R.dimen.conversation_list_fragment_archive_padding),
                        (float) itemView.getTop() + ((float) itemView.getBottom() - (float) itemView.getTop() - icon.getHeight())/2,
                        p);
         }
