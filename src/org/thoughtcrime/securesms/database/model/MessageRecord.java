@@ -59,7 +59,7 @@ public abstract class MessageRecord extends DisplayRecord {
                 List<NetworkFailure> networkFailures)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
-            type);
+          type);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;

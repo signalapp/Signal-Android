@@ -28,6 +28,7 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 
@@ -48,11 +49,11 @@ public class ThreadRecord extends DisplayRecord {
 
   public ThreadRecord(@NonNull Context context, @NonNull Body body, @Nullable Uri snippetUri,
                       @NonNull Recipients recipients, long date, long count, boolean read,
-                      long threadId, int receiptCount, int deliveryStatus, long snippetType,
+                      long threadId, int receiptCount, int status, long snippetType,
                       int distributionType, boolean archived)
   {
-    super(context, body, recipients, date, date, threadId, deliveryStatus, receiptCount,
-            snippetType);
+    super(context, body, recipients, date, date, threadId, getGenericDeliveryStatus(status),
+          receiptCount, snippetType);
     this.context          = context.getApplicationContext();
     this.snippetUri       = snippetUri;
     this.count            = count;
@@ -134,5 +135,17 @@ public class ThreadRecord extends DisplayRecord {
 
   public int getDistributionType() {
     return distributionType;
+  }
+
+  private static int getGenericDeliveryStatus(int status) {
+    if (status == ThreadDatabase.Status.STATUS_NONE) {
+      return DisplayRecord.DELIVERY_STATUS_NONE;
+    } else if (status >= ThreadDatabase.Status.STATUS_FAILED) {
+      return DisplayRecord.DELIVERY_STATUS_FAILED;
+    } else if (status >= ThreadDatabase.Status.STATUS_PENDING) {
+      return DisplayRecord.DELIVERY_STATUS_PENDING;
+    } else {
+      return DisplayRecord.DELIVERY_STATUS_RECEIVED;
+    }
   }
 }

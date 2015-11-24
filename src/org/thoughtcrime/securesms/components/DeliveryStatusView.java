@@ -44,7 +44,7 @@ public class DeliveryStatusView extends FrameLayout {
       typedArray.recycle();
 
       deliveredIndicator.setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
-      sentIndicator.     setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+      sentIndicator     .setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
     }
 
     if (pendingIndicatorStub != null) {

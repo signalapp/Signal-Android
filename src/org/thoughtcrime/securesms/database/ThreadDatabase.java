@@ -488,8 +488,8 @@ public class ThreadDatabase extends Database {
         else                 timestamp = record.getDateReceived();
 
         updateThread(threadId, count, record.getBody().getBody(), getAttachmentUriFor(record),
-                     timestamp, record.getDeliveryStatus(), record.getReceiptCount(),
-                     record.getType(), unarchive);
+                     timestamp, getGenericStatus(record.getDeliveryStatus()),
+                     record.getReceiptCount(), record.getType(), unarchive);
         notifyConversationListListeners();
         return false;
       } else {
@@ -518,6 +518,25 @@ public class ThreadDatabase extends Database {
 
   public Reader readerFor(Cursor cursor, MasterCipher masterCipher) {
     return new Reader(cursor, masterCipher);
+  }
+
+  private static int getGenericStatus(int deliveryStatus) {
+    if (deliveryStatus == DisplayRecord.DELIVERY_STATUS_NONE) {
+      return Status.STATUS_NONE;
+    } else if (deliveryStatus == DisplayRecord.DELIVERY_STATUS_FAILED) {
+      return Status.STATUS_FAILED;
+    } else if (deliveryStatus == DisplayRecord.DELIVERY_STATUS_PENDING) {
+      return Status.STATUS_PENDING;
+    } else {
+      return Status.STATUS_RECEIVED;
+    }
+  }
+
+  public static class Status {
+    public static final int STATUS_NONE     = 0;
+    public static final int STATUS_RECEIVED = 1;
+    public static final int STATUS_PENDING  = 2;
+    public static final int STATUS_FAILED   = 3;
   }
 
   public static class DistributionTypes {
