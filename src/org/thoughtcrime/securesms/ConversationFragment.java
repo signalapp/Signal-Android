@@ -32,6 +32,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ItemAnimator.ItemAnimatorFinishedListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -160,6 +161,8 @@ public class ConversationFragment extends Fragment
     if (this.recipients != null && this.threadId != -1) {
       list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients));
       getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
+      list.getItemAnimator().setSupportsChangeAnimations(false);
+      list.getItemAnimator().setMoveDuration(120);
     }
   }
 
@@ -211,9 +214,9 @@ public class ConversationFragment extends Fragment
   }
 
   public void scrollToBottom() {
-    list.post(new Runnable() {
+    list.getItemAnimator().isRunning(new ItemAnimatorFinishedListener() {
       @Override
-      public void run() {
+      public void onAnimationsFinished() {
         list.stopScroll();
         list.smoothScrollToPosition(0);
       }
