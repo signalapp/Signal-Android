@@ -44,23 +44,35 @@
                   android:ellipsize="end"
                   android:drawablePadding="5dp"/>
 
-        <ImageView android:id="@+id/error"
+        <ImageView android:id="@+id/sms_failed_indicator"
                    android:layout_height="20dp"
                    android:layout_width="20dp"
-                   android:layout_alignParentLeft="true"
                    android:layout_below="@id/from"
-                   android:paddingBottom="3dp"
+                   android:layout_toLeftOf="@+id/pending_approval_indicator"
+                   android:paddingBottom="2dp"
                    android:visibility="gone"
                    tools:visibility="visible"
                    android:src="@drawable/ic_action_warning_red"
                    android:contentDescription="@string/conversation_list_item_view__error_alert" />
+
+        <ImageView android:id="@+id/pending_approval_indicator"
+                   android:layout_height="20dp"
+                   android:layout_width="20dp"
+                   android:layout_below="@id/from"
+                   android:layout_toLeftOf="@+id/delivery_status"
+                   android:paddingBottom="2dp"
+                   android:visibility="gone"
+                   tools:visibility="visible"
+                   android:tint="?attr/conversation_list_item_subject_color"
+                   android:src="@drawable/ic_action_warning_red"
+                   android:contentDescription="@string/conversation_item_sent__pending_approval_description" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/subject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/from"
-                android:layout_toRightOf="@id/error"
+                android:layout_toRightOf="@id/sms_failed_indicator"
                 android:layout_toLeftOf="@+id/archived"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?attr/conversation_list_item_subject_color"
@@ -111,6 +123,13 @@
                   android:textSize="12sp"
                 />
 
+        <org.thoughtcrime.securesms.components.DeliveryStatusView
+                  android:id="@+id/delivery_status"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/date"
+                  android:layout_alignParentRight="true"
+                  app:iconColor="?attr/conversation_list_item_subject_color"/>
 
     </RelativeLayout>
 </org.thoughtcrime.securesms.ConversationListItem>

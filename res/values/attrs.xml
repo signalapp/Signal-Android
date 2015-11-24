@@ -139,6 +139,10 @@
         <attr name="backgroundColorHint" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="DeliveryStatusView">
+        <attr name="iconColor" format="color" />
+    </declare-styleable>
+
     <declare-styleable name="AudioView">
         <attr name="tintColor" format="color" />
     </declare-styleable>

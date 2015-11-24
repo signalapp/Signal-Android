@@ -21,14 +21,17 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.graphics.drawable.RippleDrawable;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,6 +44,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.StatusManager;
 
 import java.util.Locale;
 import java.util.Set;
@@ -70,14 +74,23 @@ public class ConversationListItem extends RelativeLayout
   private FromTextView    fromView;
   private TextView        dateView;
   private TextView        archivedView;
+  private ImageView       failedIndicator;
+  private ImageView       deliveredIndicator;
+  private ImageView       sentIndicator;
+  private View            pendingIndicator;
+  private ImageView       pendingApprovalIndicator;
+
   private boolean         read;
   private AvatarImageView contactPhotoImage;
   private ThumbnailView   thumbnailView;
+
+  private @NonNull StatusManager statusManager;
 
   private final @DrawableRes int readBackground;
   private final @DrawableRes int unreadBackround;
 
   private final Handler handler = new Handler();
+  private final Context context;
   private int distributionType;
 
   public ConversationListItem(Context context) {
@@ -86,6 +99,7 @@ public class ConversationListItem extends RelativeLayout
 
   public ConversationListItem(Context context, AttributeSet attrs) {
     super(context, attrs);
+    this.context = context;
     readBackground  = ResUtil.getDrawableRes(context, R.attr.conversation_list_item_background_read);
     unreadBackround = ResUtil.getDrawableRes(context, R.attr.conversation_list_item_background_unread);
   }
@@ -93,13 +107,32 @@ public class ConversationListItem extends RelativeLayout
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    this.subjectView       = (TextView)        findViewById(R.id.subject);
-    this.fromView          = (FromTextView)    findViewById(R.id.from);
-    this.dateView          = (TextView)        findViewById(R.id.date);
+
+    ViewGroup pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
+
+    if (pendingIndicatorStub != null) {
+      LayoutInflater inflater = LayoutInflater.from(context);
+      if (Build.VERSION.SDK_INT >= 11) inflater.inflate(R.layout.conversation_item_pending_v11, pendingIndicatorStub, true);
+      else                             inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
+    }
+
+    this.subjectView              = (TextView)        findViewById(R.id.subject);
+    this.fromView                 = (FromTextView)    findViewById(R.id.from);
+    this.dateView                 = (TextView)        findViewById(R.id.date);
+    this.pendingIndicator         =                   findViewById(R.id.pending_indicator);
+    this.pendingApprovalIndicator = (ImageView)       findViewById(R.id.pending_approval_indicator);
+    this.failedIndicator          = (ImageView)       findViewById(R.id.sms_failed_indicator);
+    this.deliveredIndicator       = (ImageView)       findViewById(R.id.delivered_indicator);
+    this.sentIndicator            = (ImageView)       findViewById(R.id.sent_indicator);
+
+    this.statusManager = new StatusManager(pendingIndicator, sentIndicator, deliveredIndicator,
+                                           failedIndicator, pendingApprovalIndicator);
+
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
     this.thumbnailView     = (ThumbnailView)   findViewById(R.id.thumbnail);
     this.archivedView      = ViewUtil.findById(this, R.id.archived);
     thumbnailView.setClickable(false);
+    pendingIndicator.setVisibility(View.VISIBLE);
   }
 
   public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
@@ -129,6 +162,7 @@ public class ConversationListItem extends RelativeLayout
       this.archivedView.setVisibility(View.GONE);
     }
 
+    setStatusIcons(thread);
     setThumbnailSnippet(masterSecret, thread);
     setBatchState(batchMode);
     setBackground(thread);
@@ -173,6 +207,15 @@ public class ConversationListItem extends RelativeLayout
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.archived);
       this.subjectView.setLayoutParams(subjectParams);
     }
+  }
+
+  private void setStatusIcons(ThreadRecord thread) {
+    if      (!thread.isOutgoing())                  statusManager.hideAll();
+    else if (thread.isFailed())                     statusManager.displayFailed();
+    else if (thread.isPendingInsecureSmsFallback()) statusManager.displayPendingApproval();
+    else if (thread.isPending())                    statusManager.displayPending();
+    else if (thread.isDelivered())                  statusManager.displayDelivered();
+    else                                            statusManager.displaySent();
   }
 
   private void setBackground(ThreadRecord thread) {

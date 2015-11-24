@@ -145,33 +145,11 @@
                           android:paddingBottom="2dp"
                           tools:text="30 mins" />
 
-                <FrameLayout android:id="@+id/pending_indicator_stub"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"/>
-
-                <ImageView android:id="@+id/sent_indicator"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical|end"
-                           android:src="@drawable/ic_done_white_18dp"
-                           android:paddingLeft="2dp"
-                           android:paddingBottom="2dp"
-                           android:visibility="gone"
-                           android:tint="?conversation_item_sent_text_secondary_color"
-                           android:tintMode="multiply"
-                           android:contentDescription="@string/conversation_item_sent__delivered_description" />
-
-                <ImageView android:id="@+id/delivered_indicator"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical|end"
-                           android:src="@drawable/ic_done_all_white_18dp"
-                           android:paddingLeft="2dp"
-                           android:paddingBottom="2dp"
-                           android:visibility="gone"
-                           android:tint="?conversation_item_sent_text_secondary_color"
-                           android:tintMode="multiply"
-                           android:contentDescription="@string/conversation_item_sent__delivered_description" />
+                <org.thoughtcrime.securesms.components.DeliveryStatusView
+                        android:id="@+id/delivery_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:iconColor="?conversation_item_sent_text_secondary_color"/>
 
                 <ImageView android:id="@+id/secure_indicator"
                            android:layout_width="wrap_content"
