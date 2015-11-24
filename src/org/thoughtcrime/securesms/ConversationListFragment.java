@@ -201,8 +201,12 @@ public class ConversationListFragment extends Fragment
     final Set<Long> selectedConversations = new HashSet<>(getListAdapter().getBatchSelections());
     final boolean   archive               = this.archive;
 
-    new SnackbarAsyncTask<Void>(getView(),
-                                getString(R.string.ConversationListFragment_archived_conversations),
+    String snackBarTitle;
+
+    if (archive) snackBarTitle = getString(R.string.ConversationListFragment_moved_conversations_to_inbox);
+    else         snackBarTitle = getString(R.string.ConversationListFragment_archived_conversations);
+
+    new SnackbarAsyncTask<Void>(getView(), snackBarTitle,
                                 getString(R.string.ConversationListFragment_undo),
                                 getResources().getColor(R.color.amber_500),
                                 Snackbar.LENGTH_LONG, true)

@@ -178,6 +178,7 @@
     <string name="ConversationListFragment_undo">UNDO</string>
     <string name="ConversationListFragment_moved_conversation_to_inbox">Moved conversation to inbox</string>
     <string name="ConversationListFragment_archived_conversation">Archived conversation</string>
+    <string name="ConversationListFragment_moved_conversations_to_inbox">Moved conversations to inbox</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
