@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="?conversation_item_bubble_background"
-        android:textColor="?conversation_item_sent_text_primary_color"
-        android:text="@string/load_more_header__see_full_conversation" />
-

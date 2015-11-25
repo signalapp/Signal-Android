@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="@string/new_conversation_activity__refresh"
-          android:id="@+id/menu_refresh"
-          app:showAsAction="never" />
-</menu>

@@ -1,3 +1,0 @@
-argparse>=1.2.1
-lxml>=3.3.3
-progressbar-latest>=2.4
