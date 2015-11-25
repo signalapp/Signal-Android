@@ -220,12 +220,19 @@ public class PushDecryptJob extends ContextJob {
                                             @NonNull Optional<Long> smsMessageId)
       throws MmsException
   {
+    Long threadId;
+
     if (message.getMessage().isGroupUpdate()) {
-      GroupMessageProcessor.process(context, masterSecret, envelope, message.getMessage(), true);
+      threadId = GroupMessageProcessor.process(context, masterSecret, envelope, message.getMessage(), true);
     } else if (message.getMessage().getAttachments().isPresent()) {
-      handleSynchronizeSentMediaMessage(masterSecret, message, smsMessageId);
+      threadId = handleSynchronizeSentMediaMessage(masterSecret, message, smsMessageId);
     } else {
-      handleSynchronizeSentTextMessage(masterSecret, message, smsMessageId);
+      threadId = handleSynchronizeSentTextMessage(masterSecret, message, smsMessageId);
+    }
+
+    if (threadId != null) {
+      DatabaseFactory.getThreadDatabase(getContext()).setRead(threadId);
+      MessageNotifier.updateNotification(getContext(), masterSecret.getMasterSecret().orNull());
     }
   }
 
@@ -277,7 +284,7 @@ public class PushDecryptJob extends ContextJob {
     MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
   }
 
-  private void handleSynchronizeSentMediaMessage(@NonNull MasterSecretUnion masterSecret,
+  private long handleSynchronizeSentMediaMessage(@NonNull MasterSecretUnion masterSecret,
                                                  @NonNull SentTranscriptMessage message,
                                                  @NonNull Optional<Long> smsMessageId)
       throws MmsException
@@ -305,6 +312,8 @@ public class PushDecryptJob extends ContextJob {
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
     }
+
+    return threadId;
   }
 
   private void handleTextMessage(@NonNull MasterSecretUnion masterSecret,
@@ -332,7 +341,7 @@ public class PushDecryptJob extends ContextJob {
     MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
   }
 
-  private void handleSynchronizeSentTextMessage(@NonNull MasterSecretUnion masterSecret,
+  private long handleSynchronizeSentTextMessage(@NonNull MasterSecretUnion masterSecret,
                                                 @NonNull SentTranscriptMessage message,
                                                 @NonNull Optional<Long> smsMessageId)
   {
@@ -351,6 +360,8 @@ public class PushDecryptJob extends ContextJob {
     if (smsMessageId.isPresent()) {
       database.deleteMessage(smsMessageId.get());
     }
+
+    return threadId;
   }
 
   private void handleInvalidVersionMessage(@NonNull MasterSecretUnion masterSecret,

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 
@@ -44,15 +45,15 @@ public class GroupMessageProcessor {
 
   private static final String TAG = GroupMessageProcessor.class.getSimpleName();
 
-  public static void process(@NonNull Context context,
-                             @NonNull MasterSecretUnion masterSecret,
-                             @NonNull TextSecureEnvelope envelope,
-                             @NonNull TextSecureDataMessage message,
-                             boolean outgoing)
+  public static @Nullable Long process(@NonNull Context context,
+                                       @NonNull MasterSecretUnion masterSecret,
+                                       @NonNull TextSecureEnvelope envelope,
+                                       @NonNull TextSecureDataMessage message,
+                                       boolean outgoing)
   {
     if (!message.getGroupInfo().isPresent() || message.getGroupInfo().get().getGroupId() == null) {
       Log.w(TAG, "Received group message with no id! Ignoring...");
-      return;
+      return null;
     }
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
@@ -61,21 +62,22 @@ public class GroupMessageProcessor {
     GroupRecord   record   = database.getGroup(id);
 
     if (record != null && group.getType() == TextSecureGroup.Type.UPDATE) {
-      handleGroupUpdate(context, masterSecret, envelope, group, record, outgoing);
+      return handleGroupUpdate(context, masterSecret, envelope, group, record, outgoing);
     } else if (record == null && group.getType() == TextSecureGroup.Type.UPDATE) {
-      handleGroupCreate(context, masterSecret, envelope, group, outgoing);
+      return handleGroupCreate(context, masterSecret, envelope, group, outgoing);
     } else if (record != null && group.getType() == TextSecureGroup.Type.QUIT) {
-      handleGroupLeave(context, masterSecret, envelope, group, record, outgoing);
+      return handleGroupLeave(context, masterSecret, envelope, group, record, outgoing);
     } else {
       Log.w(TAG, "Received unknown type, ignoring...");
+      return null;
     }
   }
 
-  private static void handleGroupCreate(@NonNull Context context,
-                                        @NonNull MasterSecretUnion masterSecret,
-                                        @NonNull TextSecureEnvelope envelope,
-                                        @NonNull TextSecureGroup group,
-                                        boolean outgoing)
+  private static @Nullable Long handleGroupCreate(@NonNull Context context,
+                                                  @NonNull MasterSecretUnion masterSecret,
+                                                  @NonNull TextSecureEnvelope envelope,
+                                                  @NonNull TextSecureGroup group,
+                                                  boolean outgoing)
   {
     GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
     byte[]               id       = group.getGroupId();
@@ -88,15 +90,15 @@ public class GroupMessageProcessor {
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null,
                     envelope.getRelay());
 
-    storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
+    return storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
   }
 
-  private static void handleGroupUpdate(@NonNull Context context,
-                                        @NonNull MasterSecretUnion masterSecret,
-                                        @NonNull TextSecureEnvelope envelope,
-                                        @NonNull TextSecureGroup group,
-                                        @NonNull GroupRecord groupRecord,
-                                        boolean outgoing)
+  private static @Nullable Long handleGroupUpdate(@NonNull Context context,
+                                                  @NonNull MasterSecretUnion masterSecret,
+                                                  @NonNull TextSecureEnvelope envelope,
+                                                  @NonNull TextSecureGroup group,
+                                                  @NonNull GroupRecord groupRecord,
+                                                  boolean outgoing)
   {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
@@ -139,10 +141,10 @@ public class GroupMessageProcessor {
 
     if (!groupRecord.isActive()) database.setActive(id, true);
 
-    storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
+    return storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
   }
 
-  private static void handleGroupLeave(@NonNull Context            context,
+  private static Long handleGroupLeave(@NonNull Context            context,
                                        @NonNull MasterSecretUnion  masterSecret,
                                        @NonNull TextSecureEnvelope envelope,
                                        @NonNull TextSecureGroup    group,
@@ -160,17 +162,19 @@ public class GroupMessageProcessor {
       database.remove(id, envelope.getSource());
       if (outgoing) database.setActive(id, false);
 
-      storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
+      return storeMessage(context, masterSecret, envelope, group, builder.build(), outgoing);
     }
+
+    return null;
   }
 
 
-  private static void storeMessage(@NonNull Context context,
-                                   @NonNull MasterSecretUnion masterSecret,
-                                   @NonNull TextSecureEnvelope envelope,
-                                   @NonNull TextSecureGroup group,
-                                   @NonNull GroupContext storage,
-                                   boolean  outgoing)
+  private static @Nullable Long storeMessage(@NonNull Context context,
+                                             @NonNull MasterSecretUnion masterSecret,
+                                             @NonNull TextSecureEnvelope envelope,
+                                             @NonNull TextSecureGroup group,
+                                             @NonNull GroupContext storage,
+                                             boolean  outgoing)
   {
     if (group.getAvatar().isPresent()) {
       ApplicationContext.getInstance(context).getJobManager()
@@ -186,6 +190,8 @@ public class GroupMessageProcessor {
         long                      messageId       = mmsDatabase.insertMessageOutbox(masterSecret, outgoingMessage, threadId, false);
 
         mmsDatabase.markAsSent(messageId);
+
+        return threadId;
       } else {
         EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(context);
         String                body         = Base64.encodeBytes(storage.toByteArray());
@@ -194,10 +200,14 @@ public class GroupMessageProcessor {
 
         Pair<Long, Long> messageAndThreadId = smsDatabase.insertMessageInbox(masterSecret, groupMessage);
         MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
+
+        return messageAndThreadId.second;
       }
     } catch (MmsException e) {
       Log.w(TAG, e);
     }
+
+    return null;
   }
 
   private static GroupContext.Builder createGroupContext(TextSecureGroup group) {
