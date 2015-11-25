@@ -42,6 +42,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -91,18 +92,16 @@ public class ConversationItem extends LinearLayout
   private boolean       groupThread;
   private Recipient     recipient;
 
-  private View            bodyBubble;
-  private TextView        bodyText;
-  private TextView        dateText;
-  private TextView        indicatorText;
-  private TextView        groupStatusText;
-  private ImageView       secureImage;
-  private AvatarImageView contactPhoto;
-  private ImageView       failedIndicator;
-  private ImageView       deliveredIndicator;
-  private ImageView       sentIndicator;
-  private View            pendingIndicator;
-  private ImageView       pendingApprovalIndicator;
+  private View               bodyBubble;
+  private TextView           bodyText;
+  private TextView           dateText;
+  private TextView           indicatorText;
+  private TextView           groupStatusText;
+  private ImageView          secureImage;
+  private AvatarImageView    contactPhoto;
+  private DeliveryStatusView deliveryStatusIndicator;
+  private ImageView          failedIndicator;
+  private ImageView          pendingApprovalIndicator;
 
   private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
   private @Nullable Recipients          conversationRecipients;
@@ -137,31 +136,23 @@ public class ConversationItem extends LinearLayout
     super.onFinishInflate();
 
     initializeAttributes();
-    ViewGroup pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
 
-    if (pendingIndicatorStub != null) {
-      LayoutInflater inflater = LayoutInflater.from(context);
-      if (Build.VERSION.SDK_INT >= 11) inflater.inflate(R.layout.conversation_item_pending_v11, pendingIndicatorStub, true);
-      else                             inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
-    }
-
-    this.bodyText                 = (TextView)        findViewById(R.id.conversation_item_body);
-    this.dateText                 = (TextView)        findViewById(R.id.conversation_item_date);
-    this.indicatorText            = (TextView)        findViewById(R.id.indicator_text);
-    this.groupStatusText          = (TextView)        findViewById(R.id.group_message_status);
-    this.secureImage              = (ImageView)       findViewById(R.id.secure_indicator);
-    this.failedIndicator          = (ImageView)       findViewById(R.id.sms_failed_indicator);
-    this.mmsDownloadButton        = (Button)          findViewById(R.id.mms_download_button);
-    this.mmsDownloadingLabel      = (TextView)        findViewById(R.id.mms_label_downloading);
-    this.contactPhoto             = (AvatarImageView) findViewById(R.id.contact_photo);
-    this.deliveredIndicator       = (ImageView)       findViewById(R.id.delivered_indicator);
-    this.sentIndicator            = (ImageView)       findViewById(R.id.sent_indicator);
-    this.bodyBubble               =                   findViewById(R.id.body_bubble);
-    this.pendingApprovalIndicator = (ImageView)       findViewById(R.id.pending_approval_indicator);
-    this.pendingIndicator         =                   findViewById(R.id.pending_indicator);
-    this.mediaThumbnail           = (ThumbnailView)   findViewById(R.id.image_view);
-    this.audioView                = (AudioView)       findViewById(R.id.audio_view);
-    this.statusManager            = new StatusManager(pendingIndicator, sentIndicator, deliveredIndicator, failedIndicator, pendingApprovalIndicator);
+    this.bodyText                 = (TextView)           findViewById(R.id.conversation_item_body);
+    this.dateText                 = (TextView)           findViewById(R.id.conversation_item_date);
+    this.indicatorText            = (TextView)           findViewById(R.id.indicator_text);
+    this.groupStatusText          = (TextView)           findViewById(R.id.group_message_status);
+    this.secureImage              = (ImageView)          findViewById(R.id.secure_indicator);
+    this.deliveryStatusIndicator  = (DeliveryStatusView) findViewById(R.id.delivery_status);
+    this.failedIndicator          = (ImageView)          findViewById(R.id.sms_failed_indicator);
+    this.mmsDownloadButton        = (Button)             findViewById(R.id.mms_download_button);
+    this.mmsDownloadingLabel      = (TextView)           findViewById(R.id.mms_label_downloading);
+    this.contactPhoto             = (AvatarImageView)    findViewById(R.id.contact_photo);
+    this.bodyBubble               =                      findViewById(R.id.body_bubble);
+    this.pendingApprovalIndicator = (ImageView)          findViewById(R.id.pending_approval_indicator);
+    this.mediaThumbnail           = (ThumbnailView)      findViewById(R.id.image_view);
+    this.audioView                = (AudioView)          findViewById(R.id.audio_view);
+    this.statusManager            = new StatusManager(deliveryStatusIndicator, failedIndicator,
+                                                      pendingApprovalIndicator);
 
     setOnClickListener(new ClickListener(null));
     PassthroughClickListener        passthroughClickListener = new PassthroughClickListener();

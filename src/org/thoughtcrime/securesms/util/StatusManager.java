@@ -2,75 +2,54 @@ package org.thoughtcrime.securesms.util;
 
 import android.view.View;
 
+import org.thoughtcrime.securesms.components.DeliveryStatusView;
+
 public class StatusManager {
 
-  private final View pendingIndicator;
-  private final View sentIndicator;
-  private final View deliveredIndicator;
+  private final DeliveryStatusView deliveryStatus;
+  private final View               failedIndicator;
+  private final View               approvalIndicator;
 
-  private final View failedIndicator;
-  private final View approvalIndicator;
-
-
-  public StatusManager(View pendingIndicator, View sentIndicator, View deliveredIndicator,
-                       View failedIndicator, View approvalIndicator) {
-    this.pendingIndicator = pendingIndicator;
-    this.sentIndicator = sentIndicator;
-    this.deliveredIndicator = deliveredIndicator;
-    this.failedIndicator = failedIndicator;
+  public StatusManager(DeliveryStatusView deliveryStatus, View failedIndicator,
+                       View approvalIndicator) {
+    this.deliveryStatus    = deliveryStatus;
+    this.failedIndicator   = failedIndicator;
     this.approvalIndicator = approvalIndicator;
   }
 
   public void hideAll() {
-    pendingIndicator.setVisibility(View.GONE);
-    sentIndicator.setVisibility(View.GONE);
-    deliveredIndicator.setVisibility(View.GONE);
+    deliveryStatus   .setNone();
     approvalIndicator.setVisibility(View.GONE);
-    failedIndicator.setVisibility(View.GONE);
+    failedIndicator  .setVisibility(View.GONE);
   }
 
   public void displayFailed() {
-    pendingIndicator.setVisibility(View.GONE);
-    sentIndicator.setVisibility(View.GONE);
-    deliveredIndicator.setVisibility(View.GONE);
+    deliveryStatus   .setNone();
     approvalIndicator.setVisibility(View.GONE);
-
-    failedIndicator.setVisibility(View.VISIBLE);
+    failedIndicator  .setVisibility(View.VISIBLE);
   }
 
   public void displayPendingApproval() {
-    pendingIndicator.setVisibility(View.GONE);
-    sentIndicator.setVisibility(View.GONE);
-    deliveredIndicator.setVisibility(View.GONE);
-    failedIndicator.setVisibility(View.GONE);
-
+    deliveryStatus   .setNone();
     approvalIndicator.setVisibility(View.VISIBLE);
+    failedIndicator  .setVisibility(View.GONE);
   }
 
   public void displayPending() {
-    sentIndicator.setVisibility(View.GONE);
-    deliveredIndicator.setVisibility(View.GONE);
-    failedIndicator.setVisibility(View.GONE);
+    deliveryStatus   .setPending();
     approvalIndicator.setVisibility(View.GONE);
-
-    pendingIndicator.setVisibility(View.VISIBLE);
+    failedIndicator  .setVisibility(View.GONE);
   }
 
   public void displaySent() {
-    pendingIndicator.setVisibility(View.GONE);
-    deliveredIndicator.setVisibility(View.GONE);
-    failedIndicator.setVisibility(View.GONE);
+    deliveryStatus   .setSent();
     approvalIndicator.setVisibility(View.GONE);
-
-    sentIndicator.setVisibility(View.VISIBLE);
+    failedIndicator  .setVisibility(View.GONE);
   }
 
   public void displayDelivered() {
-    pendingIndicator.setVisibility(View.GONE);
-    failedIndicator.setVisibility(View.GONE);
+    deliveryStatus   .setDelivered();
     approvalIndicator.setVisibility(View.GONE);
-    sentIndicator.setVisibility(View.GONE);
-
-    deliveredIndicator.setVisibility(View.VISIBLE);
+    failedIndicator  .setVisibility(View.GONE);
   }
 }

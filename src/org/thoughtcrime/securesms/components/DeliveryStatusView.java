@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,6 +19,10 @@ import pl.tajchert.sample.DotsTextView;
 public class DeliveryStatusView extends FrameLayout {
 
   private static final String TAG = DeliveryStatusView.class.getSimpleName();
+
+  private final ViewGroup pendingIndicatorStub;
+  private final ImageView sentIndicator;
+  private final ImageView deliveredIndicator;
 
   public DeliveryStatusView(Context context) {
     this(context, null);
@@ -32,9 +37,9 @@ public class DeliveryStatusView extends FrameLayout {
 
     inflate(context, R.layout.delivery_status_view, this);
 
-    ImageView deliveredIndicator   = (ImageView) findViewById(R.id.delivered_indicator);
-    ImageView sentIndicator        = (ImageView) findViewById(R.id.sent_indicator);
-    ViewGroup pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
+    this.deliveredIndicator   = (ImageView) findViewById(R.id.delivered_indicator);
+    this.sentIndicator        = (ImageView) findViewById(R.id.sent_indicator);
+    this.pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
 
     int iconColor = Color.GRAY;
 
@@ -47,17 +52,39 @@ public class DeliveryStatusView extends FrameLayout {
       sentIndicator     .setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
     }
 
-    if (pendingIndicatorStub != null) {
-      LayoutInflater inflater = LayoutInflater.from(context);
-      if (Build.VERSION.SDK_INT >= 11) {
-        inflater.inflate(R.layout.conversation_item_pending_v11, pendingIndicatorStub, true);
-        DotsTextView pendingIndicator = (DotsTextView) findViewById(R.id.pending_indicator);
-        pendingIndicator.setDotsColor(iconColor);
-      } else {
-        inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
-        TextView pendingIndicator = (TextView) findViewById(R.id.pending_indicator);
-        pendingIndicator.setTextColor(iconColor);
-      }
+    LayoutInflater inflater = LayoutInflater.from(context);
+    if (Build.VERSION.SDK_INT >= 11) {
+      inflater.inflate(R.layout.conversation_item_pending_v11, pendingIndicatorStub, true);
+      DotsTextView pendingIndicator = (DotsTextView) findViewById(R.id.pending_indicator);
+      pendingIndicator.setDotsColor(iconColor);
+    } else {
+      inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
+      TextView pendingIndicator = (TextView) findViewById(R.id.pending_indicator);
+      pendingIndicator.setTextColor(iconColor);
     }
+  }
+
+  public void setNone() {
+    pendingIndicatorStub.setVisibility(View.GONE);
+    sentIndicator       .setVisibility(View.GONE);
+    deliveredIndicator  .setVisibility(View.GONE);
+  }
+
+  public void setPending() {
+    pendingIndicatorStub.setVisibility(View.VISIBLE);
+    sentIndicator       .setVisibility(View.GONE);
+    deliveredIndicator  .setVisibility(View.GONE);
+  }
+
+  public void setSent() {
+    pendingIndicatorStub.setVisibility(View.GONE);
+    sentIndicator       .setVisibility(View.VISIBLE);
+    deliveredIndicator  .setVisibility(View.GONE);
+  }
+
+  public void setDelivered() {
+    pendingIndicatorStub.setVisibility(View.GONE);
+    sentIndicator       .setVisibility(View.GONE);
+    deliveredIndicator  .setVisibility(View.VISIBLE);
   }
 }

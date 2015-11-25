@@ -131,9 +131,11 @@
                            android:tint="?conversation_item_received_text_secondary_color"
                            android:tintMode="multiply"/>
 
-                <FrameLayout android:id="@+id/pending_indicator_stub"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"/>
+                <org.thoughtcrime.securesms.components.DeliveryStatusView
+                        android:id="@+id/delivery_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
 
                 <TextView android:id="@+id/conversation_item_date"
                           android:layout_width="wrap_content"

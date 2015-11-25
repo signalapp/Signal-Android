@@ -36,6 +36,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -67,18 +68,18 @@ public class ConversationListItem extends RelativeLayout
   private final static Typeface BOLD_TYPEFACE  = Typeface.create("sans-serif", Typeface.BOLD);
   private final static Typeface LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
-  private Set<Long>       selectedThreads;
-  private Recipients      recipients;
-  private long            threadId;
-  private TextView        subjectView;
-  private FromTextView    fromView;
-  private TextView        dateView;
-  private TextView        archivedView;
-  private ImageView       failedIndicator;
-  private ImageView       deliveredIndicator;
-  private ImageView       sentIndicator;
-  private View            pendingIndicator;
-  private ImageView       pendingApprovalIndicator;
+  private Set<Long>          selectedThreads;
+  private Recipients         recipients;
+  private long               threadId;
+  private TextView           subjectView;
+  private FromTextView       fromView;
+  private TextView           dateView;
+  private TextView           archivedView;
+  private ImageView          failedIndicator;
+  private DeliveryStatusView deliveryStatusIndicator;
+  private ImageView          deliveredIndicator;
+  private ImageView          sentIndicator;
+  private ImageView          pendingApprovalIndicator;
 
   private boolean         read;
   private AvatarImageView contactPhotoImage;
@@ -108,37 +109,28 @@ public class ConversationListItem extends RelativeLayout
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    ViewGroup pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
+    this.subjectView              = (TextView)           findViewById(R.id.subject);
+    this.fromView                 = (FromTextView)       findViewById(R.id.from);
+    this.dateView                 = (TextView)           findViewById(R.id.date);
+    this.deliveryStatusIndicator  = (DeliveryStatusView) findViewById(R.id.delivery_status);
+    this.deliveredIndicator       = (ImageView)          findViewById(R.id.delivered_indicator);
+    this.sentIndicator            = (ImageView)          findViewById(R.id.sent_indicator);
+    this.pendingApprovalIndicator = (ImageView)          findViewById(R.id.pending_approval_indicator);
+    this.failedIndicator          = (ImageView)          findViewById(R.id.sms_failed_indicator);
 
-    if (pendingIndicatorStub != null) {
-      LayoutInflater inflater = LayoutInflater.from(context);
-      if (Build.VERSION.SDK_INT >= 11) inflater.inflate(R.layout.conversation_item_pending_v11, pendingIndicatorStub, true);
-      else                             inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
-    }
+    this.statusManager = new StatusManager(deliveryStatusIndicator, failedIndicator,
+                                           pendingApprovalIndicator);
 
-    this.subjectView              = (TextView)        findViewById(R.id.subject);
-    this.fromView                 = (FromTextView)    findViewById(R.id.from);
-    this.dateView                 = (TextView)        findViewById(R.id.date);
-    this.pendingIndicator         =                   findViewById(R.id.pending_indicator);
-    this.pendingApprovalIndicator = (ImageView)       findViewById(R.id.pending_approval_indicator);
-    this.failedIndicator          = (ImageView)       findViewById(R.id.sms_failed_indicator);
-    this.deliveredIndicator       = (ImageView)       findViewById(R.id.delivered_indicator);
-    this.sentIndicator            = (ImageView)       findViewById(R.id.sent_indicator);
-
-    this.statusManager = new StatusManager(pendingIndicator, sentIndicator, deliveredIndicator,
-                                           failedIndicator, pendingApprovalIndicator);
-
-    sentIndicator     .setPadding(0, sentIndicator.getPaddingTop(), sentIndicator.getPaddingLeft(),
-                                  sentIndicator.getPaddingBottom());
+    sentIndicator.setPadding(0, sentIndicator.getPaddingTop(), sentIndicator.getPaddingLeft(),
+                             sentIndicator.getPaddingBottom());
     deliveredIndicator.setPadding(0, deliveredIndicator.getPaddingTop(),
-                                  deliveredIndicator.getPaddingLeft(),
+                                  Math.round(deliveredIndicator.getPaddingLeft() * 1.5f),
                                   deliveredIndicator.getPaddingBottom());
 
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
     this.thumbnailView     = (ThumbnailView)   findViewById(R.id.thumbnail);
     this.archivedView      = ViewUtil.findById(this, R.id.archived);
     thumbnailView.setClickable(false);
-    pendingIndicator.setVisibility(View.VISIBLE);
   }
 
   public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
