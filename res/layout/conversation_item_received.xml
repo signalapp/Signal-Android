@@ -109,16 +109,6 @@
                           android:orientation="horizontal"
                           android:gravity="left">
 
-                <ImageView android:id="@+id/sent_indicator"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:visibility="gone"/>
-
-                <ImageView android:id="@+id/delivered_indicator"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:visibility="gone" />
-
                 <ImageView android:id="@+id/secure_indicator"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
@@ -151,31 +141,13 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/indicators_parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
-
-            <ImageView android:id="@+id/sms_failed_indicator"
+        <org.thoughtcrime.securesms.components.AlertView
+                android:id="@+id/indicators_parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_warning_red"
-                android:contentDescription="@string/conversation_item_sent__send_failed_indicator_description"
-                android:visibility="gone" />
-
-            <ImageView
-                    android:id="@+id/pending_approval_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_info_outline_grey600_24dp"
-                    android:visibility="gone"
-                    android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/conversation_item_sent__pending_approval_description"
-                    tools:visibility="gone" />
-
-        </LinearLayout>
+                android:layout_alignParentRight="true"
+                android:orientation="vertical"
+                android:gravity="center_vertical"/>
 
         <TextView android:id="@+id/indicator_text"
                   android:layout_width="wrap_content"

@@ -16,35 +16,15 @@
                     android:layout_marginBottom="6dp"
                     android:layout_marginRight="0dp">
 
-        <LinearLayout android:id="@+id/indicators_parent"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical"
-                      android:gravity="left|center_vertical"
-                      android:layout_marginLeft="6dp"
-                      android:layout_alignParentLeft="true"
-                      android:layout_centerVertical="true">
-
-            <ImageView
-                android:id="@+id/sms_failed_indicator"
+        <org.thoughtcrime.securesms.components.AlertView
+                android:id="@+id/indicators_parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_error_red_24dp"
-                tools:visibility="visible"
-                android:visibility="gone"
-                android:contentDescription="@string/conversation_item_sent__send_failed_indicator_description" />
-
-            <ImageView
-                android:id="@+id/pending_approval_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_info_outline_grey600_24dp"
-                android:visibility="gone"
-                android:layout_gravity="center_vertical"
-                android:contentDescription="@string/conversation_item_sent__pending_approval_description"
-                tools:visibility="visible" />
-
-        </LinearLayout>
+                android:orientation="vertical"
+                android:gravity="left|center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"/>
 
         <LinearLayout android:id="@+id/body_bubble"
                       android:layout_width="wrap_content"
