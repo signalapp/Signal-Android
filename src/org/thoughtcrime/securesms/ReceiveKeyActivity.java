@@ -116,6 +116,7 @@ public class ReceiveKeyActivity extends Activity {
 
   private void initializeTrustedText() {
     descriptionText.setText(getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but));
+    descriptionText.setTextColor(Color.BLACK);
   }
 
   private void initializeUntrustedText() {
