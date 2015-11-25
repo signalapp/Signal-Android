@@ -121,10 +121,11 @@ public class ConversationListItem extends RelativeLayout
     this.statusManager = new StatusManager(deliveryStatusIndicator, failedIndicator,
                                            pendingApprovalIndicator);
 
-    sentIndicator.setPadding(0, sentIndicator.getPaddingTop(), sentIndicator.getPaddingLeft(),
-                             sentIndicator.getPaddingBottom());
+    sentIndicator     .setPadding(0, sentIndicator.getPaddingTop(),
+                                  Math.round(sentIndicator.getPaddingLeft() * 0.7f),
+                                  sentIndicator.getPaddingBottom());
     deliveredIndicator.setPadding(0, deliveredIndicator.getPaddingTop(),
-                                  Math.round(deliveredIndicator.getPaddingLeft() * 1.5f),
+                                  Math.round(deliveredIndicator.getPaddingLeft() * 1.8f),
                                   deliveredIndicator.getPaddingBottom());
 
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
