@@ -141,6 +141,7 @@
 
     <declare-styleable name="DeliveryStatusView">
         <attr name="iconColor" format="color" />
+        <attr name="variableWidth" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="AudioView">

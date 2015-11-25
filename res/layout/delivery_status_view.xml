@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <FrameLayout android:id="@+id/pending_indicator_stub"
-                 android:layout_width="wrap_content"
+                 android:layout_width="20dp"
                  android:layout_height="wrap_content" />
 
     <ImageView android:id="@+id/sent_indicator"

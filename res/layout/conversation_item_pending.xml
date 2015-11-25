@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView android:id="@+id/pending_indicator"
-              android:layout_width="20dp"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:fontFamily="sans-serif-light"

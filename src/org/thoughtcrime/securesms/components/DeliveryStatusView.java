@@ -41,11 +41,13 @@ public class DeliveryStatusView extends FrameLayout {
     this.sentIndicator        = (ImageView) findViewById(R.id.sent_indicator);
     this.pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
 
-    int iconColor = Color.GRAY;
+    int     iconColor     = Color.GRAY;
+    boolean variableWidth = false;
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.DeliveryStatusView, 0, 0);
-      iconColor = typedArray.getColor(0, Color.GRAY);
+      iconColor     = typedArray.getColor  (R.styleable.DeliveryStatusView_iconColor,     iconColor);
+      variableWidth = typedArray.getBoolean(R.styleable.DeliveryStatusView_variableWidth, variableWidth);
       typedArray.recycle();
 
       deliveredIndicator.setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -61,6 +63,12 @@ public class DeliveryStatusView extends FrameLayout {
       inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
       TextView pendingIndicator = (TextView) findViewById(R.id.pending_indicator);
       pendingIndicator.setTextColor(iconColor);
+    }
+
+    if (variableWidth) {
+      ViewGroup.LayoutParams params = pendingIndicatorStub.getLayoutParams();
+      params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+      pendingIndicatorStub.setLayoutParams(params);
     }
   }
 
