@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item android:title="@string/conversation_popup__menu_expand_popup"
-          android:id="@+id/menu_expand"
-          android:icon="?menu_popup_expand"
-          app:showAsAction="ifRoom" />
-
-</menu>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="@string/text_secure_normal__menu_new_message"
-          android:id="@+id/menu_new_message"
-          android:icon="?attr/menu_new_conversation_icon"
-          app:showAsAction="always" />
-
-</menu>
