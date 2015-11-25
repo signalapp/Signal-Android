@@ -29,7 +29,8 @@
                 android:src="@drawable/ic_group_photo"
                 android:contentDescription="@string/GroupCreateActivity_avatar_content_description" />
 
-            <EditText android:id="@+id/group_name"
+            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                android:id="@+id/group_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -56,7 +57,8 @@
                 style="@android:style/Widget.ProgressBar"
                 android:indeterminate="true" />
 
-            <TextView android:id="@+id/creating_group_text"
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/creating_group_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
