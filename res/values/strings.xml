@@ -864,7 +864,7 @@
     <string name="AndroidManifest__media_preview">Media Preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
-    <string name="AndroidManifest__message_details">Message Details</string>
+    <string name="AndroidManifest__message_details">Message details</string>
     <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
 
