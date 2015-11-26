@@ -118,8 +118,7 @@
                   android:layout_height="wrap_content"
                   android:layout_below="@+id/date"
                   android:layout_alignParentRight="true"
-                  app:iconColor="?attr/conversation_list_item_subject_color"
-                  app:variableWidth="true"/>
+                  app:iconColor="?attr/conversation_list_item_subject_color"/>
 
     </RelativeLayout>
 </org.thoughtcrime.securesms.ConversationListItem>

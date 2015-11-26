@@ -127,7 +127,7 @@
 
                 <org.thoughtcrime.securesms.components.DeliveryStatusView
                         android:id="@+id/delivery_status"
-                        android:layout_width="wrap_content"
+                        android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         app:iconColor="?conversation_item_sent_text_secondary_color"/>
 
