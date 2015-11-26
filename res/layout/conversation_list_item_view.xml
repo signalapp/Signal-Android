@@ -52,6 +52,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/from"
+                app:useSmallIcon="true"
                 android:visibility="gone"
                 tools:visibility="visible"/>
 

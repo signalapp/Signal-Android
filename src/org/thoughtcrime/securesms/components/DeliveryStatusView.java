@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -54,13 +53,12 @@ public class DeliveryStatusView extends FrameLayout {
       sentIndicator.setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
     }
 
-    LayoutInflater inflater = LayoutInflater.from(context);
     if (Build.VERSION.SDK_INT >= 11) {
-      inflater.inflate(R.layout.conversation_item_pending_v11, pendingIndicatorStub, true);
+      inflate(context, R.layout.conversation_item_pending_v11, pendingIndicatorStub);
       DotsTextView pendingIndicator = (DotsTextView) findViewById(R.id.pending_indicator);
       pendingIndicator.setDotsColor(iconColor);
     } else {
-      inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
+      inflate(context, R.layout.conversation_item_pending, pendingIndicatorStub);
       TextView pendingIndicator = (TextView) findViewById(R.id.pending_indicator);
       pendingIndicator.setTextColor(iconColor);
     }

@@ -144,6 +144,10 @@
         <attr name="variableWidth" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="AlertView">
+        <attr name="useSmallIcon" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="AudioView">
         <attr name="tintColor" format="color" />
     </declare-styleable>

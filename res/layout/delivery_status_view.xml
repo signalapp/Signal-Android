@@ -3,6 +3,7 @@
 
     <FrameLayout android:id="@+id/pending_indicator_stub"
                  android:layout_width="20dp"
+                 android:paddingRight="2dp"
                  android:layout_height="wrap_content" />
 
     <ImageView android:id="@+id/sent_indicator"
