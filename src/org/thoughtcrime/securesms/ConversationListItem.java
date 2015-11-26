@@ -82,7 +82,6 @@ public class ConversationListItem extends RelativeLayout
   private final @DrawableRes int unreadBackround;
 
   private final Handler handler = new Handler();
-  private final Context context;
   private int distributionType;
 
   public ConversationListItem(Context context) {
@@ -91,7 +90,6 @@ public class ConversationListItem extends RelativeLayout
 
   public ConversationListItem(Context context, AttributeSet attrs) {
     super(context, attrs);
-    this.context = context;
     readBackground  = ResUtil.getDrawableRes(context, R.attr.conversation_list_item_background_read);
     unreadBackround = ResUtil.getDrawableRes(context, R.attr.conversation_list_item_background_unread);
   }
@@ -99,16 +97,14 @@ public class ConversationListItem extends RelativeLayout
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-
     this.subjectView             = (TextView)           findViewById(R.id.subject);
     this.fromView                = (FromTextView)       findViewById(R.id.from);
     this.dateView                = (TextView)           findViewById(R.id.date);
     this.deliveryStatusIndicator = (DeliveryStatusView) findViewById(R.id.delivery_status);
     this.alertView               = (AlertView)          findViewById(R.id.indicators_parent);
-
-    this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
-    this.thumbnailView     = (ThumbnailView)   findViewById(R.id.thumbnail);
-    this.archivedView      = ViewUtil.findById(this, R.id.archived);
+    this.contactPhotoImage       = (AvatarImageView)    findViewById(R.id.contact_photo_image);
+    this.thumbnailView           = (ThumbnailView)      findViewById(R.id.thumbnail);
+    this.archivedView            = ViewUtil.findById(this, R.id.archived);
     thumbnailView.setClickable(false);
   }
 
@@ -189,13 +185,13 @@ public class ConversationListItem extends RelativeLayout
   private void setStatusIcons(ThreadRecord thread) {
     if (!thread.isOutgoing()) {
       deliveryStatusIndicator.setNone();
-      alertView              .setNone();
+      alertView.setNone();
     } else if (thread.isFailed()) {
       deliveryStatusIndicator.setNone();
-      alertView              .setFailed();
+      alertView.setFailed();
     } else if (thread.isPendingInsecureSmsFallback()) {
       deliveryStatusIndicator.setNone();
-      alertView              .setPendingApproval();
+      alertView.setPendingApproval();
     } else {
       alertView.setNone();
 

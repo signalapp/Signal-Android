@@ -331,9 +331,9 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setFailedStatusIcons() {
-    alertView              .setFailed();
+    alertView.setFailed();
     deliveryStatusIndicator.setNone();
-    dateText               .setText(R.string.ConversationItem_error_not_delivered);
+    dateText.setText(R.string.ConversationItem_error_not_delivered);
 
     if (messageRecord.isOutgoing()) {
       indicatorText.setText(R.string.ConversationItem_click_for_details);
@@ -342,10 +342,10 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setFallbackStatusIcons() {
-    alertView              .setPendingApproval();
+    alertView.setPendingApproval();
     deliveryStatusIndicator.setNone();
-    indicatorText          .setVisibility(View.VISIBLE);
-    indicatorText          .setText(R.string.ConversationItem_click_to_approve_unencrypted);
+    indicatorText.setVisibility(View.VISIBLE);
+    indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
   }
 
   private void setMinimumWidth() {
