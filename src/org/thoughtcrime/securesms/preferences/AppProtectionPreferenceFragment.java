@@ -166,31 +166,23 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     }
   }
 
-  private static CharSequence getPassphraseSummary(Context context) {
-    final int    passphraseResId = R.string.preferences__passphrase_summary;
-    final String onRes           = context.getString(R.string.ApplicationPreferencesActivity_on);
-    final String offRes          = context.getString(R.string.ApplicationPreferencesActivity_off);
-
-    if (TextSecurePreferences.isPasswordDisabled(context)) {
-      return context.getString(passphraseResId, offRes);
-    } else {
-      return context.getString(passphraseResId, onRes);
-    }
-  }
-
-  private static CharSequence getScreenSecuritySummary(Context context) {
-    final int    screenSecurityResId = R.string.preferences__screen_security_summary;
+  public static CharSequence getSummary(Context context) {
+    final int    privacySummaryResId = R.string.ApplicationPreferencesActivity_privacy_summary;
     final String onRes               = context.getString(R.string.ApplicationPreferencesActivity_on);
     final String offRes              = context.getString(R.string.ApplicationPreferencesActivity_off);
 
-    if (TextSecurePreferences.isScreenSecurityEnabled(context)) {
-      return context.getString(screenSecurityResId, onRes);
+    if (TextSecurePreferences.isPasswordDisabled(context)) {
+      if (TextSecurePreferences.isScreenSecurityEnabled(context)) {
+        return context.getString(privacySummaryResId, offRes, onRes);
+      } else {
+        return context.getString(privacySummaryResId, offRes, offRes);
+      }
     } else {
-      return context.getString(screenSecurityResId, offRes);
+      if (TextSecurePreferences.isScreenSecurityEnabled(context)) {
+        return context.getString(privacySummaryResId, onRes, onRes);
+      } else {
+        return context.getString(privacySummaryResId, onRes, offRes);
+      }
     }
-  }
-
-  public static CharSequence getSummary(Context context) {
-    return getPassphraseSummary(context) + ", " + getScreenSecuritySummary(context);
   }
 }

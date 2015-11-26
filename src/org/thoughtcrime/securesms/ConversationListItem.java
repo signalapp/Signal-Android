@@ -106,6 +106,9 @@ public class ConversationListItem extends RelativeLayout
     this.thumbnailView           = (ThumbnailView)      findViewById(R.id.thumbnail);
     this.archivedView            = ViewUtil.findById(this, R.id.archived);
     thumbnailView.setClickable(false);
+
+    ViewUtil.setTextViewGravityStart(this.fromView, getContext());
+    ViewUtil.setTextViewGravityStart(this.subjectView, getContext());
   }
 
   public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,

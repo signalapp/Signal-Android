@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ContactSelectionListItem extends LinearLayout implements Recipients.RecipientsModifiedListener {
 
@@ -42,6 +43,8 @@ public class ContactSelectionListItem extends LinearLayout implements Recipients
     this.labelView         = (TextView)        findViewById(R.id.label);
     this.nameView          = (TextView)        findViewById(R.id.name);
     this.checkBox          = (CheckBox)        findViewById(R.id.check_box);
+
+    ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
 
   public void set(long id, int type, String name, String number, String label, int color, boolean multiSelect) {

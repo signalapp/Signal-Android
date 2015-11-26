@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.TransportOptionsPopup;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 public class SendButton extends ImageButton
@@ -25,18 +26,21 @@ public class SendButton extends ImageButton
   public SendButton(Context context) {
     super(context);
     this.transportOptions = initializeTransportOptions(false);
+    ViewUtil.mirrorIfRtl(this, getContext());
   }
 
   @SuppressWarnings("unused")
   public SendButton(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.transportOptions = initializeTransportOptions(false);
+    ViewUtil.mirrorIfRtl(this, getContext());
   }
 
   @SuppressWarnings("unused")
   public SendButton(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     this.transportOptions = initializeTransportOptions(false);
+    ViewUtil.mirrorIfRtl(this, getContext());
   }
 
   private TransportOptions initializeTransportOptions(boolean media) {
