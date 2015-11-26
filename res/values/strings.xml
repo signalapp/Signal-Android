@@ -805,7 +805,7 @@
     </string>
     <string name="registration_progress_activity__your_device_needs_network_connectivity">Your
         device needs network connectivity in order to use this Signal feature. Check to ensure
-        that it is connected to 3G or Wi-Fi.
+        that it is connected to mobile data or Wi-Fi.
     </string>
     <string name="registration_progress_activity__restrictive_firewall">Restrictive firewall.
     </string>
