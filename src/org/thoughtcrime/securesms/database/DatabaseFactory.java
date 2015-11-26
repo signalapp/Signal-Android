@@ -46,31 +46,31 @@ import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
-  private static final int INTRODUCED_IDENTITIES_VERSION                    = 2;
-  private static final int INTRODUCED_INDEXES_VERSION                       = 3;
-  private static final int INTRODUCED_DATE_SENT_VERSION                     = 4;
-  private static final int INTRODUCED_DRAFTS_VERSION                        = 5;
-  private static final int INTRODUCED_NEW_TYPES_VERSION                     = 6;
-  private static final int INTRODUCED_MMS_BODY_VERSION                      = 7;
-  private static final int INTRODUCED_MMS_FROM_VERSION                      = 8;
-  private static final int INTRODUCED_TOFU_IDENTITY_VERSION                 = 9;
-  private static final int INTRODUCED_PUSH_DATABASE_VERSION                 = 10;
-  private static final int INTRODUCED_GROUP_DATABASE_VERSION                = 11;
-  private static final int INTRODUCED_PUSH_FIX_VERSION                      = 12;
-  private static final int INTRODUCED_DELIVERY_RECEIPTS                     = 13;
-  private static final int INTRODUCED_PART_DATA_SIZE_VERSION                = 14;
-  private static final int INTRODUCED_THUMBNAILS_VERSION                    = 15;
-  private static final int INTRODUCED_IDENTITY_COLUMN_VERSION               = 16;
-  private static final int INTRODUCED_UNIQUE_PART_IDS_VERSION               = 17;
-  private static final int INTRODUCED_RECIPIENT_PREFS_DB                    = 18;
-  private static final int INTRODUCED_ENVELOPE_CONTENT_VERSION              = 19;
-  private static final int INTRODUCED_COLOR_PREFERENCE_VERSION              = 20;
-  private static final int INTRODUCED_DB_OPTIMIZATIONS_VERSION              = 21;
-  private static final int INTRODUCED_INVITE_REMINDERS_VERSION              = 22;
-  private static final int INTRODUCED_CONVERSATION_LIST_THUMBNAILS_VERSION  = 23;
-  private static final int INTRODUCED_ARCHIVE_VERSION                       = 24;
-  private static final int INTRODUCED_CONVERSATION_LIST_SENT_STATUS_VERSION = 25;
-  private static final int DATABASE_VERSION                                 = 25;
+  private static final int INTRODUCED_IDENTITIES_VERSION                   = 2;
+  private static final int INTRODUCED_INDEXES_VERSION                      = 3;
+  private static final int INTRODUCED_DATE_SENT_VERSION                    = 4;
+  private static final int INTRODUCED_DRAFTS_VERSION                       = 5;
+  private static final int INTRODUCED_NEW_TYPES_VERSION                    = 6;
+  private static final int INTRODUCED_MMS_BODY_VERSION                     = 7;
+  private static final int INTRODUCED_MMS_FROM_VERSION                     = 8;
+  private static final int INTRODUCED_TOFU_IDENTITY_VERSION                = 9;
+  private static final int INTRODUCED_PUSH_DATABASE_VERSION                = 10;
+  private static final int INTRODUCED_GROUP_DATABASE_VERSION               = 11;
+  private static final int INTRODUCED_PUSH_FIX_VERSION                     = 12;
+  private static final int INTRODUCED_DELIVERY_RECEIPTS                    = 13;
+  private static final int INTRODUCED_PART_DATA_SIZE_VERSION               = 14;
+  private static final int INTRODUCED_THUMBNAILS_VERSION                   = 15;
+  private static final int INTRODUCED_IDENTITY_COLUMN_VERSION              = 16;
+  private static final int INTRODUCED_UNIQUE_PART_IDS_VERSION              = 17;
+  private static final int INTRODUCED_RECIPIENT_PREFS_DB                   = 18;
+  private static final int INTRODUCED_ENVELOPE_CONTENT_VERSION             = 19;
+  private static final int INTRODUCED_COLOR_PREFERENCE_VERSION             = 20;
+  private static final int INTRODUCED_DB_OPTIMIZATIONS_VERSION             = 21;
+  private static final int INTRODUCED_INVITE_REMINDERS_VERSION             = 22;
+  private static final int INTRODUCED_CONVERSATION_LIST_THUMBNAILS_VERSION = 23;
+  private static final int INTRODUCED_ARCHIVE_VERSION                      = 24;
+  private static final int INTRODUCED_CONVERSATION_LIST_STATUS_VERSION     = 25;
+  private static final int DATABASE_VERSION                                = 25;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -785,8 +785,8 @@ public class DatabaseFactory {
         db.execSQL("CREATE INDEX IF NOT EXISTS archived_index ON thread (archived)");
       }
 
-      if (oldVersion < INTRODUCED_CONVERSATION_LIST_SENT_STATUS_VERSION) {
-        db.execSQL("ALTER TABLE thread ADD COLUMN delivery_status INTEGER DEFAULT 0");
+      if (oldVersion < INTRODUCED_CONVERSATION_LIST_STATUS_VERSION) {
+        db.execSQL("ALTER TABLE thread ADD COLUMN status INTEGER DEFAULT -1");
         db.execSQL("ALTER TABLE thread ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0");
       }
 

@@ -33,10 +33,6 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 
 public abstract class DisplayRecord {
 
-  public static final int DELIVERY_STATUS_NONE     = 0;
-  public static final int DELIVERY_STATUS_RECEIVED = 1;
-  public static final int DELIVERY_STATUS_PENDING  = 2;
-  public static final int DELIVERY_STATUS_FAILED   = 3;
   protected final Context context;
   protected final long type;
 
@@ -70,7 +66,7 @@ public abstract class DisplayRecord {
     return
         MmsSmsColumns.Types.isFailedMessageType(type)            ||
         MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
-        getDeliveryStatus() == DELIVERY_STATUS_FAILED;
+        deliveryStatus >= SmsDatabase.Status.STATUS_FAILED;
   }
 
   public boolean isPending() {
@@ -148,7 +144,8 @@ public abstract class DisplayRecord {
   }
 
   public boolean isDelivered() {
-    return getDeliveryStatus() == DELIVERY_STATUS_RECEIVED || receiptCount > 0;
+    return (deliveryStatus >= SmsDatabase.Status.STATUS_COMPLETE &&
+            deliveryStatus < SmsDatabase.Status.STATUS_PENDING) || receiptCount > 0;
   }
 
   public boolean isPendingInsecureSmsFallback() {

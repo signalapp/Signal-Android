@@ -64,7 +64,7 @@ public class ThreadDatabase extends Database {
   public  static final String SNIPPET_TYPE    = "snippet_type";
   public  static final String SNIPPET_URI     = "snippet_uri";
   public  static final String ARCHIVED        = "archived";
-  private static final String DELIVERY_STATUS = "delivery_status";
+  private static final String STATUS          = "status";
   private static final String RECEIPT_COUNT   = "delivery_receipt_count";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
@@ -73,7 +73,7 @@ public class ThreadDatabase extends Database {
     SNIPPET_CHARSET + " INTEGER DEFAULT 0, " + READ + " INTEGER DEFAULT 1, "                       +
     TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, "                                 +
     SNIPPET_TYPE + " INTEGER DEFAULT 0, " + SNIPPET_URI + " TEXT DEFAULT NULL, "                   +
-    ARCHIVED + " INTEGER DEFAULT 0, " + DELIVERY_STATUS + " INTEGER DEFAULT 0, "                   +
+    ARCHIVED + " INTEGER DEFAULT 0, " + STATUS + " INTEGER DEFAULT 0, "                            +
     RECEIPT_COUNT + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
@@ -132,7 +132,7 @@ public class ThreadDatabase extends Database {
   }
 
   private void updateThread(long threadId, long count, String body, @Nullable Uri attachment,
-                            long date, int deliveryStatus, int receiptCount, long type, boolean unarchive)
+                            long date, int status, int receiptCount, long type, boolean unarchive)
   {
     ContentValues contentValues = new ContentValues(7);
     contentValues.put(DATE, date - date % 1000);
@@ -140,7 +140,7 @@ public class ThreadDatabase extends Database {
     contentValues.put(SNIPPET, body);
     contentValues.put(SNIPPET_URI, attachment == null ? null : attachment.toString());
     contentValues.put(SNIPPET_TYPE, type);
-    contentValues.put(DELIVERY_STATUS, deliveryStatus);
+    contentValues.put(STATUS, status);
     contentValues.put(RECEIPT_COUNT, receiptCount);
 
     if (unarchive) {
@@ -488,8 +488,8 @@ public class ThreadDatabase extends Database {
         else                 timestamp = record.getDateReceived();
 
         updateThread(threadId, count, record.getBody().getBody(), getAttachmentUriFor(record),
-                     timestamp, translateDeliveryStatus(record.getDeliveryStatus()),
-                     record.getReceiptCount(), record.getType(), unarchive);
+                     timestamp, record.getDeliveryStatus(), record.getReceiptCount(),
+                     record.getType(), unarchive);
         notifyConversationListListeners();
         return false;
       } else {
@@ -518,25 +518,6 @@ public class ThreadDatabase extends Database {
 
   public Reader readerFor(Cursor cursor, MasterCipher masterCipher) {
     return new Reader(cursor, masterCipher);
-  }
-
-  private static int translateDeliveryStatus(int status) {
-    if (status == DisplayRecord.DELIVERY_STATUS_NONE) {
-      return Status.STATUS_NONE;
-    } else if (status == DisplayRecord.DELIVERY_STATUS_FAILED) {
-      return Status.STATUS_FAILED;
-    } else if (status == DisplayRecord.DELIVERY_STATUS_PENDING) {
-      return Status.STATUS_PENDING;
-    } else {
-      return Status.STATUS_RECEIVED;
-    }
-  }
-
-  public static class Status {
-    public static final int STATUS_NONE     = 0;
-    public static final int STATUS_RECEIVED = 1;
-    public static final int STATUS_PENDING  = 2;
-    public static final int STATUS_FAILED   = 3;
   }
 
   public static class DistributionTypes {
@@ -575,12 +556,12 @@ public class ThreadDatabase extends Database {
       long type               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
       int distributionType    = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
       boolean archived        = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.ARCHIVED)) != 0;
-      int deliveryStatus      = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.DELIVERY_STATUS));
+      int status              = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
       int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.RECEIPT_COUNT));
       Uri snippetUri          = getSnippetUri(cursor);
 
       return new ThreadRecord(context, body, snippetUri, recipients, date, count, read == 1,
-                              threadId, receiptCount, deliveryStatus, type, distributionType, archived);
+                              threadId, receiptCount, status, type, distributionType, archived);
     }
 
     private DisplayRecord.Body getPlaintextBody(Cursor cursor) {

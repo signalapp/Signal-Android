@@ -50,7 +50,7 @@ public class SmsMessageRecord extends MessageRecord {
                           int status, List<IdentityKeyMismatch> mismatches)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, getGenericDeliveryStatus(status), receiptCount, type,
+          dateSent, dateReceived, threadId, status, receiptCount, type,
           mismatches, new LinkedList<NetworkFailure>());
   }
 
@@ -103,17 +103,5 @@ public class SmsMessageRecord extends MessageRecord {
   @Override
   public boolean isMmsNotification() {
     return false;
-  }
-
-  private static int getGenericDeliveryStatus(int status) {
-    if (status == SmsDatabase.Status.STATUS_NONE) {
-      return DisplayRecord.DELIVERY_STATUS_NONE;
-    } else if (status >= SmsDatabase.Status.STATUS_FAILED) {
-      return DisplayRecord.DELIVERY_STATUS_FAILED;
-    } else if (status >= SmsDatabase.Status.STATUS_PENDING) {
-      return DisplayRecord.DELIVERY_STATUS_PENDING;
-    } else {
-      return DisplayRecord.DELIVERY_STATUS_RECEIVED;
-    }
   }
 }
