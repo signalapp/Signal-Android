@@ -32,7 +32,8 @@
                       android:layout_marginBottom="30dp"
                       android:layout_marginTop="18dp"
                       android:fontFamily="sans-serif-light"
-                      android:paddingLeft="10dp"/>
+                      android:paddingLeft="10dp"
+                      android:paddingStart="10dp"/>
 
             <EditText android:id="@+id/invite_text"
                       android:layout_width="match_parent"
@@ -40,7 +41,10 @@
                       android:minLines="2"
                       tools:text="Let's switch to Signal: http://sgnl.link/asdfdfsa"
                       android:background="@drawable/sent_bubble"
-                      android:padding="10dp"
+                      android:paddingTop="10dp"
+                      android:paddingBottom="10dp"
+                      android:paddingLeft="10dp"
+                      android:paddingRight="20dp"
                       android:gravity="top"
                       android:inputType="textShortMessage|textMultiLine"
                       android:textColor="#ff333333"/>
@@ -54,6 +58,7 @@
                 <Button android:id="@+id/share_button"
                         android:drawablePadding="10dp"
                         android:drawableLeft="@drawable/ic_share_black_18dp"
+                        android:drawableStart="@drawable/ic_share_black_18dp"
                         android:text="@string/InviteActivity_share"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -61,6 +66,7 @@
 
                 <Button android:id="@+id/sms_button"
                         android:drawableLeft="@drawable/ic_message_black_18dp"
+                        android:drawableStart="@drawable/ic_message_black_18dp"
                         android:drawablePadding="10dp"
                         android:text="@string/InviteActivity_send_sms"
                         android:layout_width="wrap_content"
@@ -95,7 +101,7 @@
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:gravity="right"
+                      android:gravity="end"
                       android:padding="10dp"
                       android:orientation="horizontal">
 

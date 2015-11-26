@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ConversationTitleView extends LinearLayout {
 
@@ -33,8 +34,10 @@ public class ConversationTitleView extends LinearLayout {
 
     this.title    = (TextView) findViewById(R.id.title);
     this.subtitle = (TextView) findViewById(R.id.subtitle);
-  }
 
+    ViewUtil.setTextViewGravityStart(this.title, getContext());
+    ViewUtil.setTextViewGravityStart(this.subtitle, getContext());
+  }
 
   public void setTitle(@Nullable Recipients recipients) {
     if      (recipients == null)             setComposeTitle();
