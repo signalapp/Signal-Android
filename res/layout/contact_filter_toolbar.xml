@@ -24,6 +24,7 @@
                       android:layout_width="0px"
                       android:layout_weight="1"
                       android:layout_marginLeft="5dp"
+                      android:layout_marginStart="5dp"
                       android:hint="@string/contact_selection_activity__enter_name_or_number"
                       android:inputType="textPersonName"
                       style="@style/TextSecure.TitleTextStyle"

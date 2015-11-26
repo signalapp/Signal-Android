@@ -16,7 +16,9 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -28,6 +30,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -179,5 +182,23 @@ public class ViewUtil {
                                            @LayoutRes int            layoutResId)
   {
     return (T)(inflater.inflate(layoutResId, parent, false));
+  }
+
+  @SuppressLint("RtlHardcoded")
+  public static void setTextViewGravityStart(final @NonNull TextView textView, @NonNull Context context) {
+    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
+      if (DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
+        textView.setGravity(Gravity.RIGHT);
+      } else {
+        textView.setGravity(Gravity.LEFT);
+      }
+    }
+  }
+
+  public static void mirrorIfRtl(View view, Context context) {
+    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1 &&
+        DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
+      view.setScaleX(-1.0f);
+    }
   }
 }

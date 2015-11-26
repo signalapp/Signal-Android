@@ -26,8 +26,9 @@
               android:layout_height="wrap_content"
               android:singleLine="true"
               android:ellipsize="end"
-              android:layout_gravity="center_vertical"
+              android:layout_gravity="center_vertical|start"
               android:gravity="center_vertical"
+              android:textDirection="ltr"
               style="@style/TextSecure.SubtitleTextStyle"/>
 
 </org.thoughtcrime.securesms.ConversationTitleView>
