@@ -43,14 +43,14 @@ public class AlertView extends LinearLayout {
   }
 
   public void setPendingApproval() {
-    this             .setVisibility(View.VISIBLE);
+    this.setVisibility(View.VISIBLE);
     approvalIndicator.setVisibility(View.VISIBLE);
-    failedIndicator  .setVisibility(View.GONE);
+    failedIndicator.setVisibility(View.GONE);
   }
 
   public void setFailed() {
-    this             .setVisibility(View.VISIBLE);
+    this.setVisibility(View.VISIBLE);
     approvalIndicator.setVisibility(View.GONE);
-    failedIndicator  .setVisibility(View.VISIBLE);
+    failedIndicator.setVisibility(View.VISIBLE);
   }
 }

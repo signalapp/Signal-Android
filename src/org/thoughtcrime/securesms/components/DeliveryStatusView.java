@@ -46,12 +46,12 @@ public class DeliveryStatusView extends FrameLayout {
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.DeliveryStatusView, 0, 0);
-      iconColor     = typedArray.getColor  (R.styleable.DeliveryStatusView_iconColor,     iconColor);
+      iconColor = typedArray.getColor(R.styleable.DeliveryStatusView_iconColor, iconColor);
       variableWidth = typedArray.getBoolean(R.styleable.DeliveryStatusView_variableWidth, variableWidth);
       typedArray.recycle();
 
       deliveredIndicator.setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
-      sentIndicator     .setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+      sentIndicator.setColorFilter(iconColor, android.graphics.PorterDuff.Mode.MULTIPLY);
     }
 
     LayoutInflater inflater = LayoutInflater.from(context);
@@ -74,25 +74,25 @@ public class DeliveryStatusView extends FrameLayout {
 
   public void setNone() {
     pendingIndicatorStub.setVisibility(View.GONE);
-    sentIndicator       .setVisibility(View.GONE);
-    deliveredIndicator  .setVisibility(View.GONE);
+    sentIndicator.setVisibility(View.GONE);
+    deliveredIndicator.setVisibility(View.GONE);
   }
 
   public void setPending() {
     pendingIndicatorStub.setVisibility(View.VISIBLE);
-    sentIndicator       .setVisibility(View.GONE);
-    deliveredIndicator  .setVisibility(View.GONE);
+    sentIndicator.setVisibility(View.GONE);
+    deliveredIndicator.setVisibility(View.GONE);
   }
 
   public void setSent() {
     pendingIndicatorStub.setVisibility(View.GONE);
-    sentIndicator       .setVisibility(View.VISIBLE);
-    deliveredIndicator  .setVisibility(View.GONE);
+    sentIndicator.setVisibility(View.VISIBLE);
+    deliveredIndicator.setVisibility(View.GONE);
   }
 
   public void setDelivered() {
     pendingIndicatorStub.setVisibility(View.GONE);
-    sentIndicator       .setVisibility(View.GONE);
-    deliveredIndicator  .setVisibility(View.VISIBLE);
+    sentIndicator.setVisibility(View.GONE);
+    deliveredIndicator.setVisibility(View.VISIBLE);
   }
 }
