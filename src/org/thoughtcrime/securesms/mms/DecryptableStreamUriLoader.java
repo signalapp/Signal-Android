@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GenericLoaderFactory;
@@ -48,12 +49,28 @@ public class DecryptableStreamUriLoader implements StreamModelLoader<Decryptable
   }
 
   public static class DecryptableUri {
-    public MasterSecret masterSecret;
-    public Uri          uri;
+    public @NonNull MasterSecret masterSecret;
+    public @NonNull Uri          uri;
 
-    public DecryptableUri(MasterSecret masterSecret, Uri uri) {
+    public DecryptableUri(@NonNull MasterSecret masterSecret, @NonNull Uri uri) {
       this.masterSecret = masterSecret;
       this.uri          = uri;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+
+      DecryptableUri that = (DecryptableUri)o;
+
+      return uri.equals(that.uri);
+
+    }
+
+    @Override
+    public int hashCode() {
+      return uri.hashCode();
     }
   }
 }

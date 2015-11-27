@@ -160,9 +160,10 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private GenericRequestBuilder buildThumbnailGlideRequest(@NonNull Slide slide, @NonNull MasterSecret masterSecret) {
+    @SuppressWarnings("ConstantConditions")
     DrawableRequestBuilder<DecryptableUri> builder = Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
-                                                          .crossFade()
-                                                          .transform(new RoundedCorners(getContext(), true, radius, backgroundColorHint));
+                                                                             .crossFade()
+                                                                             .transform(new RoundedCorners(getContext(), true, radius, backgroundColorHint));
 
     if (slide.isInProgress()) return builder;
     else                      return builder.error(R.drawable.ic_missing_thumbnail_picture);
