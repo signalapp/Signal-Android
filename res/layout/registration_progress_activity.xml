@@ -188,7 +188,7 @@
                         android:layout_below="@+id/connectivity_alert"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:text="@string/registration_progress_activity__signal_was_unable_to_connect_to_the_push_service" />
+                        android:text="@string/registration_progress_activity__signal_was_unable_to_connect_to_the_server" />
             </RelativeLayout>
 
             <Button

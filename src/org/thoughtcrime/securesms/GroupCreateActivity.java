@@ -158,7 +158,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   @SuppressWarnings("ConstantConditions")
   private void updateViewState() {
     if (!TextSecurePreferences.isPushRegistered(this)) {
-      disableSignalGroupViews(R.string.GroupCreateActivity_you_dont_support_push);
+      disableSignalGroupViews(R.string.GroupCreateActivity_youre_not_registered_for_signal);
       getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
     } else if (getAdapter().hasNonPushMembers()) {
       disableSignalGroupViews(R.string.GroupCreateActivity_contacts_dont_support_push);
