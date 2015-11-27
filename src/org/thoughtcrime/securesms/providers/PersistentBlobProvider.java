@@ -97,10 +97,9 @@ public class PersistentBlobProvider {
     });
   }
 
-  public Uri createForExternal(@NonNull Recipients recipients) throws IOException {
-    return Uri.fromFile(new File(getExternalDir(context), String.valueOf(generateId(recipients)) + ".jpg"))
+  public Uri createForExternal() throws IOException {
+    return Uri.fromFile(new File(getExternalDir(context), String.valueOf(System.currentTimeMillis()) + ".jpg"))
               .buildUpon()
-              .appendQueryParameter("unique", String.valueOf(System.currentTimeMillis()))
               .build();
   }
 
@@ -119,10 +118,6 @@ public class PersistentBlobProvider {
     final byte[] cached = cache.get(id);
     return cached != null ? new ByteArrayInputStream(cached)
                           : new DecryptingPartInputStream(getFile(id), masterSecret);
-  }
-
-  private int generateId(Recipients recipients) {
-    return Math.abs(Arrays.hashCode(recipients.getIds()));
   }
 
   private File getFile(long id) {

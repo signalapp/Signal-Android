@@ -106,8 +106,8 @@ public class AttachmentManager {
   }
 
   private void setSlide(@NonNull Slide slide) {
-    if (getSlideUri() != null)                              cleanup(getSlideUri());
-    if (captureUri != null && slide.getUri() != captureUri) cleanup(captureUri);
+    if (getSlideUri() != null)                                    cleanup(getSlideUri());
+    if (captureUri != null && !captureUri.equals(slide.getUri())) cleanup(captureUri);
 
     this.captureUri = null;
     this.slide      = Optional.of(slide);
@@ -205,12 +205,12 @@ public class AttachmentManager {
     return captureUri;
   }
 
-  public void capturePhoto(Activity activity, Recipients recipients, int requestCode) {
+  public void capturePhoto(Activity activity, int requestCode) {
     try {
       Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
       if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
         if (captureUri == null) {
-          captureUri = PersistentBlobProvider.getInstance(context).createForExternal(recipients);
+          captureUri = PersistentBlobProvider.getInstance(context).createForExternal();
         }
         Log.w(TAG, "captureUri path is " + captureUri.getPath());
         captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
