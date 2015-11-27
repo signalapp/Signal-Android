@@ -38,6 +38,7 @@
     <dimen name="transfer_controls_expanded_width">150dp</dimen>
     <dimen name="transfer_controls_contracted_width">70dp</dimen>
     <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
+    <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
     <!-- RedPhone -->
     <dimen name="incoming_widget_outer_radius">135dip</dimen>

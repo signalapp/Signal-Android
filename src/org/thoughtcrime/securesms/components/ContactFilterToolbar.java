@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
@@ -97,8 +96,9 @@ public class ContactFilterToolbar extends Toolbar {
         notifyListener();
       }
     });
-    expandTapArea(this, action, 500);
-    expandTapArea(toggleContainer, dialpadToggle, 500);
+
+    expandTapArea(this, action);
+    expandTapArea(toggleContainer, dialpadToggle);
   }
 
   @Override
@@ -131,10 +131,12 @@ public class ContactFilterToolbar extends Toolbar {
 
   private void displayTogglingView(View view) {
     toggle.display(view);
-    expandTapArea(toggleContainer, view, 500);
+    expandTapArea(toggleContainer, view);
   }
 
-  private void expandTapArea(final View container, final View child, final int padding) {
+  private void expandTapArea(final View container, final View child) {
+    final int padding = getResources().getDimensionPixelSize(R.dimen.contact_selection_actions_tap_area);
+
     container.post(new Runnable() {
       @Override
       public void run() {
