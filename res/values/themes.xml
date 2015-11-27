@@ -34,6 +34,7 @@
         <item name="actionBarStyle">@style/TextSecure.FlatLightActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="android:windowBackground">@color/signal_primary</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="colorButtonNormal">@color/white</item>
     </style>
 
