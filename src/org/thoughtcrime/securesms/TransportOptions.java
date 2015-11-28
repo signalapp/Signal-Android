@@ -92,20 +92,20 @@ public class TransportOptions {
       results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
                                       context.getResources().getColor(R.color.grey_600),
                                       context.getString(R.string.ConversationActivity_transport_insecure_mms),
-                                      context.getString(R.string.conversation_activity__type_message_mms_insecure),
+                                      context.getString(R.string.conversation_activity__type_unsecured_mms),
                                       new MmsCharacterCalculator()));
     } else {
       results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
                                       context.getResources().getColor(R.color.grey_600),
                                       context.getString(R.string.ConversationActivity_transport_insecure_sms),
-                                      context.getString(R.string.conversation_activity__type_message_sms_insecure),
+                                      context.getString(R.string.conversation_activity__type_unsecured_sms),
                                       new SmsCharacterCalculator()));
     }
 
     results.add(new TransportOption(Type.TEXTSECURE, R.drawable.ic_send_push_white_24dp,
                                     context.getResources().getColor(R.color.textsecure_primary),
                                     context.getString(R.string.ConversationActivity_transport_signal),
-                                    context.getString(R.string.conversation_activity__type_message_push),
+                                    context.getString(R.string.conversation_activity__type_signal_message),
                                     new PushCharacterCalculator()));
 
     return results;

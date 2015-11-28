@@ -626,9 +626,9 @@
     <string name="conversation_title_view__conversation_muted">Conversation muted</string>
 
     <!-- conversation_activity -->
-    <string name="conversation_activity__type_message_push">Send Signal message</string>
-    <string name="conversation_activity__type_message_sms_insecure">Send unsecured SMS</string>
-    <string name="conversation_activity__type_message_mms_insecure">Send unsecured MMS</string>
+    <string name="conversation_activity__type_signal_message">Type Signal message</string>
+    <string name="conversation_activity__type_unsecured_sms">Type unsecured SMS</string>
+    <string name="conversation_activity__type_unsecured_mms">Type unsecured MMS</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
     <string name="conversation_activity__window_description">Conversation with %1$s</string>
