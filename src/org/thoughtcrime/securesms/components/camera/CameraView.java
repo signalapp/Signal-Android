@@ -370,6 +370,13 @@ public class CameraView extends ViewGroup {
     return outputOrientation;
   }
 
+  // https://github.com/WhisperSystems/Signal-Android/issues/4715
+  private boolean isTroublemaker() {
+    return getCameraInfo().facing == CameraInfo.CAMERA_FACING_FRONT &&
+           "JWR66Y".equals(Build.DISPLAY) &&
+           "yakju".equals(Build.PRODUCT);
+  }
+
   private @NonNull CameraInfo getCameraInfo() {
     final CameraInfo info = new Camera.CameraInfo();
     Camera.getCameraInfo(cameraId, info);
@@ -460,7 +467,7 @@ public class CameraView extends ViewGroup {
     }
     final float newWidth  = visibleRect.width()  * scale;
     final float newHeight = visibleRect.height() * scale;
-    final float centerX   = (VERSION.SDK_INT < 14) ? previewWidth - newWidth / 2 : previewWidth / 2;
+    final float centerX   = (VERSION.SDK_INT < 14 || isTroublemaker()) ? previewWidth - newWidth / 2 : previewWidth / 2;
     final float centerY   = previewHeight / 2;
 
     visibleRect.set((int) (centerX - newWidth  / 2),
