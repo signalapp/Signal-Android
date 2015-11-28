@@ -396,8 +396,6 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">پیام جدید سیگنال</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">محتوای مخفی</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">تصویر</string>
   <string name="attachment_type_selector__audio">صدا</string>
@@ -451,6 +449,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">کشورهای در حال بارگذاری ...</string>
   <string name="country_selection_fragment__search">جستجو</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">هیچ دستگاه های مرتبط ...</string>
   <!--experience_upgrade_activity-->
@@ -559,7 +559,6 @@
   <string name="AndroidManifest__media_preview">پیش نمایش رسانه</string>
   <string name="AndroidManifest__media_overview">همه تصاویر</string>
   <string name="AndroidManifest__media_overview_named">همه عکس ها با %1$s</string>
-  <string name="AndroidManifest__message_details">جزئیات پیام</string>
   <string name="AndroidManifest_manage_linked_devices">مدیریت دستگاه های مرتبط</string>
   <string name="AndroidManifest__invite_friends">دعوت دوستان</string>
   <!--arrays.xml-->

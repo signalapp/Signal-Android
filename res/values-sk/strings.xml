@@ -380,6 +380,8 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín...</string>
   <string name="country_selection_fragment__search">Hľadaj</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
@@ -490,7 +492,6 @@ zlyhalo.
   <string name="AndroidManifest__media_preview">Náhľad</string>
   <string name="AndroidManifest__media_overview">Všetky obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všetky obrázky s %1$s</string>
-  <string name="AndroidManifest__message_details">Detaily správy</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__use_default">Použiť predvolené</string>

@@ -471,8 +471,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">새 Signal 메시지</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">콘텐츠 숨겨짐</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">새 메시지</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">이미지</string>
   <string name="attachment_type_selector__audio">오디오</string>
@@ -531,8 +531,13 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
   <string name="country_selection_fragment__search">검색</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">기기를 연결하려면 기기에 표시된 QR코드를 스캔하세요.</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">기기 연결</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">연결된 기기 없음</string>
+  <string name="device_list_fragment__link_new_device">새 기기 연결</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">계속</string>
   <!--log_submit_activity-->
@@ -872,6 +877,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Signal 잠금</string>
   <string name="text_secure_normal__mark_all_as_read">모두 읽음으로 표시</string>
   <string name="text_secure_normal__invite_friends">친구 초대</string>
+  <string name="text_secure_normal__help">도움말</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">설치된 Signal 버전 만료</string>
   <string name="reminder_header_expired_build_details">메시지를 전송할 수 없으므로 최신 버전으로 업데이트 해주세요.</string>
@@ -912,8 +918,5 @@
   <string name="trimmer__old_messages_successfully_deleted">이전 메시지 삭제됨</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">기기를 연결하려면 기기에 표시된 QR코드를 스캔하세요.</string>
-  <string name="device_link_fragment__link_device">기기 연결</string>
-  <string name="device_list_fragment__link_new_device">새 기기 연결</string>
   <!--EOF-->
 </resources>

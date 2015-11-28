@@ -487,8 +487,8 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar als Signal vergrendeld is!</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij het bericht versturen!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nieuw Signal bericht</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Inhoud verborgen</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Afbeelding</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -547,8 +547,13 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Landen laden...</string>
   <string name="country_selection_fragment__search">Zoeken</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de weergegeven QR code op het te koppelen apparaat</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Apparaat koppelen</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Geen apparaten gekoppeld...</string>
+  <string name="device_list_fragment__link_new_device">Nieuw apparaat koppelen</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">doorgaan</string>
   <!--log_submit_activity-->
@@ -654,7 +659,7 @@ Signal kon geen verbinding maken met de push service.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mogelijke problemen
 zijn:</string>
   <string name="registration_progress_activity__no_network_connectivity">Geen netwerkverbinding.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Je apparaat heeft een netwerkverbinding nodig voor deze Signal functie. Controleer of je verbonden bent met je mobiele internet of WiFi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Je apparaat heeft een netwerkverbinding nodig voor deze Signal functie. Controleer of je verbonden bent met mobiel internet of WiFi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Beperkende firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Als je bent verbonden via WiFi is het mogelijk dat een firewall de verbinding met de Signal-server blokkeert. Probeer een ander- of het mobiele netwerk.</string>
@@ -698,7 +703,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__media_preview">Media Voorvertoning</string>
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
   <string name="AndroidManifest__media_overview_named">Alle afbeeldingen met %1$s</string>
-  <string name="AndroidManifest__message_details">Bericht Details</string>
+  <string name="AndroidManifest__message_details">Berichtdetails</string>
   <string name="AndroidManifest_manage_linked_devices">Beheer gekoppelde apparaten</string>
   <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
   <!--arrays.xml-->
@@ -906,6 +911,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendelen</string>
   <string name="text_secure_normal__mark_all_as_read">Alles als gelezen markeren</string>
   <string name="text_secure_normal__invite_friends">Vrienden uitnodigen</string>
+  <string name="text_secure_normal__help">Hulp</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Je versie van Signal is verouderd!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
@@ -946,8 +952,5 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportkanaal icoon</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de weergegeven QR code op het te koppelen apparaat</string>
-  <string name="device_link_fragment__link_device">Apparaat koppelen</string>
-  <string name="device_list_fragment__link_new_device">Nieuw apparaat koppelen</string>
   <!--EOF-->
 </resources>

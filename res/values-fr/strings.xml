@@ -115,7 +115,7 @@ vérifier ce contact.</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier dépasse la limite de taille pour le type de message que vous avez sélectionné.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Appareil photo non disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">Impossible d\'enregistrer l\'audio !</string>
-  <string name="ConversationActivity_error_sending_voice_message">Erreur lors de l\'envoi d\'un message vocal...</string>
+  <string name="ConversationActivity_error_sending_voice_message">Erreur lors de l\'envoi du message vocal...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Détails du message</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nEnvoyé/Reçu: %2$s</string>
@@ -495,8 +495,6 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n\'est pas disponible lorsque Signal est verrouillé !</string>
   <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nouveau message Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenus cachés</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Image</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -555,8 +553,13 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays...</string>
   <string name="country_selection_fragment__search">Chercher</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scannez le QR code affiché sur l\'appareil pour les lier</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Lier l\'appareil</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Aucun appareil associé...</string>
+  <string name="device_list_fragment__link_new_device">Lier le nouvel appareil</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuer</string>
   <!--log_submit_activity-->
@@ -664,9 +667,6 @@ Signal n\'a pas pu se connecter au service push.</string>
 possibles sont:</string>
   <string name="registration_progress_activity__no_network_connectivity">Pas de connexion
 au réseau.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Votre
-appareil a besoin d\'une connectivité réseau pour pouvoir utiliser cette fonctionnalité Signal. Vérifiez
-qu\'il soit connecté à la 3G ou au Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Pare-feu restrictif.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Si vous êtes connectés au Wi-Fi, Il est possible qu\'un pare-feu bloque l\'accès
@@ -713,7 +713,6 @@ par SMS.</string>
   <string name="AndroidManifest__media_preview">Prévisualisation du média.</string>
   <string name="AndroidManifest__media_overview">Toutes les images</string>
   <string name="AndroidManifest__media_overview_named">Toutes les images avec %1$s</string>
-  <string name="AndroidManifest__message_details">Détails du message</string>
   <string name="AndroidManifest_manage_linked_devices">Gérer les appareils associés</string>
   <string name="AndroidManifest__invite_friends">Inviter des amis</string>
   <!--arrays.xml-->
@@ -961,8 +960,5 @@ par SMS.</string>
   <string name="trimmer__old_messages_successfully_deleted">Anciens messages supprimés avec succès</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scannez le QR code affiché sur l\'appareil pour les lier</string>
-  <string name="device_link_fragment__link_device">Lier l\'appareil</string>
-  <string name="device_list_fragment__link_new_device">Lier le nouvel appareil</string>
   <!--EOF-->
 </resources>

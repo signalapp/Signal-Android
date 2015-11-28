@@ -347,7 +347,6 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">送信メッセージでの問題!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">非表示コンテンツ</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -396,6 +395,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">国名を読み込み中...</string>
   <string name="country_selection_fragment__search">検索</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">リンクしたデバイスはありません...</string>
   <!--experience_upgrade_activity-->
@@ -502,7 +503,6 @@
   <string name="AndroidManifest__media_preview">メディアのプレビュー表示</string>
   <string name="AndroidManifest__media_overview">すべての画像</string>
   <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
-  <string name="AndroidManifest__message_details">メッセージの詳細</string>
   <string name="AndroidManifest_manage_linked_devices">リンク済みデバイスの管理</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>

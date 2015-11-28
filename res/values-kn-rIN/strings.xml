@@ -365,6 +365,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ರಾಷ್ಟ್ರಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ ...</string>
   <string name="country_selection_fragment__search">ಹುಡುಕಿ</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
@@ -468,7 +470,6 @@
   <string name="AndroidManifest__media_preview">ಬಹುಮಾಧ್ಯಮ ಮುನ್ನೋಟ</string>
   <string name="AndroidManifest__media_overview">ಎಲ್ಲಾ ಚಿತ್ರಗಳು</string>
   <string name="AndroidManifest__media_overview_named">ಎಲ್ಲಾ ಚಿತ್ರಗಳು %1$s ಜೊತೆ</string>
-  <string name="AndroidManifest__message_details">ಸಂದೇಶ ವಿವರಗಳು</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
   <string name="arrays__enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>

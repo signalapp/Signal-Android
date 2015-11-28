@@ -503,8 +503,8 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Uusi Signal-viesti</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Sisältö piilotettu</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kuva</string>
   <string name="attachment_type_selector__audio">Äänitallenne</string>
@@ -563,8 +563,13 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ladataan maita...</string>
   <string name="country_selection_fragment__search">Hae</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skannaa yhdistettävän laitteen ruudulla näkyvä QR-koodi</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Yhdistä laite</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Ei yhdistettyjä laitteita...</string>
+  <string name="device_list_fragment__link_new_device">Yhdistä uusi laite</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">jatka</string>
   <!--log_submit_activity-->
@@ -667,7 +672,7 @@ Signal ei saanut yhteyttä pikaviestipalveluun.</string>
 sisältyvät:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ei verkkoyhteyttä.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Laitteesi
-tarvitsee verkkoyhteyttä tämän Signalin ominaisuuden käyttämiseen. Tarkista, että
+tarvitsee verkkoyhteyttä tämän TextSecuren ominaisuuden käyttämiseksi. Tarkista, että
 laitteesi on yhdistettynä mobiilitiedonsiirto- tai WiFi-verkkoon.</string>
   <string name="registration_progress_activity__restrictive_firewall">Rajoittava palomuuri.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -919,6 +924,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lukitse</string>
   <string name="text_secure_normal__mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <string name="text_secure_normal__invite_friends">Kutsu ystäviä</string>
+  <string name="text_secure_normal__help">Tuki </string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Käyttämäsi Signalin versio on vanhentunut!</string>
   <string name="reminder_header_expired_build_details">Viestien lähetys ei enää onnistu. Päivitä sovellus viimeisimpään versioon.</string>
@@ -959,8 +965,5 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="trimmer__old_messages_successfully_deleted">Vanhojen viestien poisto onnistui</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skannaa yhdistettävän laitteen ruudulla näkyvä QR-koodi</string>
-  <string name="device_link_fragment__link_device">Yhdistä laite</string>
-  <string name="device_list_fragment__link_new_device">Yhdistä uusi laite</string>
   <!--EOF-->
 </resources>

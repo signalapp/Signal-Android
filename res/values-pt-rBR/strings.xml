@@ -46,6 +46,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">Áudio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Informações de contato</string>
   <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contatos bloqueados</string>
   <!--CallScreen-->
@@ -62,6 +63,7 @@
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
+  <string name="ContactsDatabase_signal_call_s">Chamada Signal %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Tamanho da mensagem: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
@@ -81,6 +83,8 @@ Tem certeza que deseja fazer isto?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão de segurança?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
+  <string name="ConversationActivity_reset">Reiniciar</string>
+  <string name="ConversationActivity_delete_thread_question">Apagar conversa?</string>
   <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Isto irá apagar permanentemente todas mensagens nesta conversa.</string>
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contato</string>
@@ -131,6 +135,7 @@ Tem certeza que deseja fazer isto?</string>
     <item quantity="other">Isto irá excluir permanentemente todas as %1$d mensagens selecionadas.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvar no cartão SD?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Ao salvar este dado na memória no aparelho outros aplicativos terão acesso a ele.\n\nContinuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o cartão SD!</string>
   <string name="ConversationFragment_success_exclamation">Sucesso!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não foi possível escrever no cartão SD!</string>
@@ -490,8 +495,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nova Mensagem via Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdo escondido</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagem</string>
   <string name="attachment_type_selector__audio">Áudio</string>
@@ -550,6 +553,9 @@ Tem certeza que deseja fazer isto?</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregando países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Escaneie o código QR mostrado no aparelho para conectar</string>
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Nenhum dispositivo vinculado...</string>
   <!--experience_upgrade_activity-->
@@ -675,7 +681,6 @@ falhou.</string>
   <string name="AndroidManifest__media_preview">Visualização rápida</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
-  <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <string name="AndroidManifest_manage_linked_devices">Gerenciar dispositivos vinculados</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / exportar</string>
@@ -899,6 +904,5 @@ falhou.</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas excluídas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Escaneie o código QR mostrado no aparelho para conectar</string>
   <!--EOF-->
 </resources>

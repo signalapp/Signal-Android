@@ -274,6 +274,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager_missed_call_from_s">Chiamata persa da %s</string>
   <string name="NotificationBarManager_missed_signal_call">Chiamata Signal persa</string>
+  <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Chiamata Signal in arrivo</string>
   <string name="NotificationBarManager__deny_call">Rifiuta chiamata</string>
   <string name="NotificationBarManager__answer_call">Rispondi</string>
@@ -494,8 +495,8 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Risposta veloce non disponibile quando Signal è bloccato!</string>
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nuovo messaggio Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenuto nascosto</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Immagine</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -553,8 +554,13 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scansiona il codice QR visualizzato sul dispositivo da collegare</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Collega dispositivo</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Nessun dispositivo collegato...</string>
+  <string name="device_list_fragment__link_new_device">Collega nuovo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continua</string>
   <!--log_submit_activity-->
@@ -663,7 +669,6 @@ Signal non è stato in grado di connettersi al servizio push.</string>
   <string name="registration_progress_activity__no_network_connectivity">Nessuna connessione
 di rete.
 </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Per poter utilizzare questa funzionalità di Signal è richiesta la connettività di rete. Assicurati di essere connesso in 3G o Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall troppo restrittivo.
     </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -921,6 +926,7 @@ non riuscita.
   <string name="text_secure_normal__menu_clear_passphrase">Blocca</string>
   <string name="text_secure_normal__mark_all_as_read">Segnala tutto come già letto</string>
   <string name="text_secure_normal__invite_friends">Invita amici</string>
+  <string name="text_secure_normal__help">Aiuto</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">La tua versione di Signal è scaduta!</string>
   <string name="reminder_header_expired_build_details">Non riesci più a mandare messaggi, per piacere aggiorna all\'ultima versione.</string>
@@ -961,8 +967,5 @@ non riuscita.
   <string name="trimmer__old_messages_successfully_deleted">Vecchi messaggi cancellati con successo</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scansiona il codice QR visualizzato sul dispositivo da collegare</string>
-  <string name="device_link_fragment__link_device">Collega dispositivo</string>
-  <string name="device_list_fragment__link_new_device">Collega nuovo dispositivo</string>
   <!--EOF-->
 </resources>

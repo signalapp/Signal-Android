@@ -481,8 +481,8 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Neue Signal-Nachricht</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Inhalt verborgen</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -541,8 +541,13 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Länder werden geladen …</string>
   <string name="country_selection_fragment__search">Suchen</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Zum Verknüpfen den auf dem Gerät angezeigten QR-Code einscannen</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Gerät verknüpfen</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Keine Geräte verknüpft …</string>
+  <string name="device_list_fragment__link_new_device">Neues Gerät verknüpfen</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">Fortsetzen</string>
   <!--log_submit_activity-->
@@ -643,7 +648,7 @@ Signal kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf �
 Verbindung zum Signal-Dienst konnte nicht hergestellt werden.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Einige der möglichen Probleme beinhalten:</string>
   <string name="registration_progress_activity__no_network_connectivity">Keine Netzwerkverbindung.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Um diese Signal-Funktion nutzen zu können, benötigt Ihr Gerät eine Netzverbindung, Stellen Sie sicher, dass eine 3G- oder WLAN-Verbindung besteht.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Um diese Signal-Funktion nutzen zu können, benötigt Ihr Gerät eine Netzverbindung, Stellen Sie sicher, dass eine mobile Daten- oder WLAN-Verbindung besteht.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktive Firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Bei Verbindung über WLAN blockiert möglicherweise eine Firewall den Zugang zum Signal-Server. Versuchen Sie ein anderes Netzwerk oder die mobile Datenverbindung.</string>
@@ -800,7 +805,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__devices">Geräte</string>
   <string name="preferences__light_theme">Hell</string>
   <string name="preferences__dark_theme">Dunkel</string>
-  <string name="preferences__appearance">Aussehen</string>
+  <string name="preferences__appearance">Darstellung</string>
   <string name="preferences__theme">Design</string>
   <string name="preferences__theme_summary">Design %s</string>
   <string name="preferences__default">Standard</string>
@@ -894,6 +899,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Signal sperren</string>
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <string name="text_secure_normal__invite_friends">Freunde einladen</string>
+  <string name="text_secure_normal__help">Hilfe</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ihre Version von Signal ist veraltet!</string>
   <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte Signal auf die neueste Version aktualisieren.</string>
@@ -934,8 +940,5 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="trimmer__old_messages_successfully_deleted">Alte Nachrichten wurden erfolgreich gelöscht</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Zum Verknüpfen den auf dem Gerät angezeigten QR-Code einscannen</string>
-  <string name="device_link_fragment__link_device">Gerät verknüpfen</string>
-  <string name="device_list_fragment__link_new_device">Neues Gerät verknüpfen</string>
   <!--EOF-->
 </resources>

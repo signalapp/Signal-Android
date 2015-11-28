@@ -490,8 +490,8 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rask tilbakemelding ikke tilgjengelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Kunne ikke sende melding!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Ny Signal melding</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Innhold skjult</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Ny melding!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bilde</string>
   <string name="attachment_type_selector__audio">Lyd</string>
@@ -550,8 +550,13 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Laster land...</string>
   <string name="country_selection_fragment__search">Søk</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR koden vist på enheten for å koble</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Koble enhet</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Ingen enheter tilkoblet...</string>
+  <string name="device_list_fragment__link_new_device">Koble ny enhet</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsett</string>
   <!--log_submit_activity-->
@@ -655,7 +660,7 @@ Signal var ikke i stand til å opprette en forbindelse til \'push\' tjenesten.</
   <string name="registration_progress_activity__some_possible_problems_include">Noen mulige 
 problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen nettverksforbindelse.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Enheten din trenger nettverkskonnektivitet for å kunne benytte denne Signal funksjonen. Sjekk at den er tilknyttet Wi-Fi eller mobil data.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Enheten din trenger en nettverksforbindelse for å kunne bruke denne Signal funksjonen. Sjekk at enheten er tilkoblet mobil data eller Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv brannvegg.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Dersom du er tilkoblet via Wi-Fi kan det være at det er en brannvegg som blokkerer tilgangen til Signal serveren. Prøv et annet nettverk eller mobil data.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
@@ -908,6 +913,7 @@ feilet.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Marker alle som lest</string>
   <string name="text_secure_normal__invite_friends">Inviter venner</string>
+  <string name="text_secure_normal__help">Hjelp</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Din versjon av Signal er foreldet!</string>
   <string name="reminder_header_expired_build_details">Det vil ikke lenger være mulig å sende meldinger. Vær vennlig å oppdatere til siste versjon.</string>
@@ -948,8 +954,5 @@ feilet.</string>
   <string name="trimmer__old_messages_successfully_deleted">Sletting av gamle meldinger vellykket</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR koden vist på enheten for å koble</string>
-  <string name="device_link_fragment__link_device">Koble enhet</string>
-  <string name="device_list_fragment__link_new_device">Koble ny enhet</string>
   <!--EOF-->
 </resources>

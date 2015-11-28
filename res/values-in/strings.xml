@@ -468,8 +468,6 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Pesan Signal baru</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Konten disembunyikan</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Gambar</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -524,6 +522,8 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Memuat daftar negara...</string>
   <string name="country_selection_fragment__search">Cari</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Tidak ada perangkat yang dikaitkan...</string>
   <!--experience_upgrade_activity-->
@@ -634,10 +634,6 @@ termasuk:
   <string name="registration_progress_activity__no_network_connectivity">Tidak ada konektivitas
 jaringan.
 </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Perangkat
-        Anda membutuhkan konektivitas jaringan agar bisa menggunkaan fitur Signal. Periksa untuk memastikan
-        perangkat Anda tersambung ke jaringan 3G tau Wi-Fi.
-    </string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall yang ketat.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -690,7 +686,6 @@ Telah gagal
   <string name="AndroidManifest__media_preview">Pratinjau Media</string>
   <string name="AndroidManifest__media_overview">Semua gambar</string>
   <string name="AndroidManifest__media_overview_named">Semua gambar dengan %1$s</string>
-  <string name="AndroidManifest__message_details">Detail Pesan</string>
   <string name="AndroidManifest_manage_linked_devices">Kelola perangkat terkait</string>
   <string name="AndroidManifest__invite_friends">Undang teman</string>
   <!--arrays.xml-->

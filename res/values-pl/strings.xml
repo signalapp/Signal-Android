@@ -442,8 +442,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Szybka odpowiedź jest niedostępna kiedy Signal jest zablokowany!</string>
   <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nowa wiadomość Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Zawartość ukryta</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Obraz</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -502,8 +500,13 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Wczytywanie krajów...</string>
   <string name="country_selection_fragment__search">Szukaj</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skanuj kod QR wyświetlony na urządzeniu które chcesz dodać</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Dodaj urządzenie</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Brak zarejestrowanych urządzeń...</string>
+  <string name="device_list_fragment__link_new_device">Dodaj nowe urządzenie</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">kontynuuj</string>
   <!--log_submit_activity-->
@@ -643,7 +646,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__media_preview">Podgląd pliku</string>
   <string name="AndroidManifest__media_overview">Wszystkie obrazy</string>
   <string name="AndroidManifest__media_overview_named">Wszystkie obrazy z %1$s</string>
-  <string name="AndroidManifest__message_details">Szczegóły wiadomości</string>
   <string name="AndroidManifest_manage_linked_devices">Zarządzaj zarejestrowanymi urządzeniami</string>
   <string name="AndroidManifest__invite_friends">Zaproś znajomych</string>
   <!--arrays.xml-->
@@ -890,8 +892,5 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare wiadomości zostały pomyślnie usunięte</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skanuj kod QR wyświetlony na urządzeniu które chcesz dodać</string>
-  <string name="device_link_fragment__link_device">Dodaj urządzenie</string>
-  <string name="device_list_fragment__link_new_device">Dodaj nowe urządzenie</string>
   <!--EOF-->
 </resources>

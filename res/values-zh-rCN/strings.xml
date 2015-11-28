@@ -492,8 +492,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">当暗号处于锁定状态时，快速回复不可用！</string>
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">新暗号信息</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">内容隐藏</string>
+  <string name="SingleRecipientNotificationBuilder_signal">暗号</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">新信息！</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">图片</string>
   <string name="attachment_type_selector__audio">音频</string>
@@ -552,8 +552,13 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">正在读取国家列表...</string>
   <string name="country_selection_fragment__search">搜索</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">扫描设备上显示的二维码以便连接</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">连接设备</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">没有连接的设备...</string>
+  <string name="device_list_fragment__link_new_device">连接新的设备</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">继续</string>
   <!--log_submit_activity-->
@@ -662,8 +667,8 @@
   <string name="registration_progress_activity__no_network_connectivity">无网络
 连接。</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">您的
-设备需要活动的网络以便使用暗号的功能。检查设备
-是否已经连接到了3G或Wi-Fi网络。</string>
+设备需要活动的网络来使用暗号的功能。请检查
+并确保已经连接到了移动数据或WiFi网络。</string>
   <string name="registration_progress_activity__restrictive_firewall">受限防火墙。</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 如果您已经连接到了Wi-Fi，可能是有防火墙
@@ -710,7 +715,7 @@
   <string name="AndroidManifest__media_preview">媒体预览</string>
   <string name="AndroidManifest__media_overview">所有图片</string>
   <string name="AndroidManifest__media_overview_named">所有图片和%1$s</string>
-  <string name="AndroidManifest__message_details">消息详情</string>
+  <string name="AndroidManifest__message_details">信息详情</string>
   <string name="AndroidManifest_manage_linked_devices">管理已连接的设备</string>
   <string name="AndroidManifest__invite_friends">邀请好友</string>
   <!--arrays.xml-->
@@ -917,6 +922,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">锁定</string>
   <string name="text_secure_normal__mark_all_as_read">全部标记为已读</string>
   <string name="text_secure_normal__invite_friends">邀请好友</string>
+  <string name="text_secure_normal__help">帮助</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">您的暗号版本已过期！</string>
   <string name="reminder_header_expired_build_details">您的信息已经长时间没有成功发送了，请更新到最新版本。</string>
@@ -957,8 +963,5 @@
   <string name="trimmer__old_messages_successfully_deleted">旧信息已被成功删除。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">扫描设备上显示的二维码以便连接</string>
-  <string name="device_link_fragment__link_device">连接设备</string>
-  <string name="device_list_fragment__link_new_device">连接新的设备</string>
   <!--EOF-->
 </resources>

@@ -271,7 +271,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con qué compartir.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Los amigos no dejan que sus amigos hablen sin encriptar.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Los verdaderos amigos no dejan que sus amigos hablen sin cifrar</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">¿Instalar Barcode Scanner?</string>
@@ -324,6 +324,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Error de red.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR no válido.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lo sentimos, ya tiene demasiados dispositivos vinculados, pruebe a eliminar alguno...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lo sentimos , este código QR no es ​​válido .</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduzca clave de acceso</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de Signal</string>
@@ -514,8 +515,6 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">¡La respuesta rápida no está disponible cuando Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nuevo mensaje de Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Contenidos ocultos</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagen</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -574,8 +573,13 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Cargando países...</string>
   <string name="country_selection_fragment__search">Buscar</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Escanear el código QR mostrado en el dispositivo para vincular</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Vincular dispositivo</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">No hay dispositivos vinculados...</string>
+  <string name="device_list_fragment__link_new_device">Vincular nuevo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
   <!--log_submit_activity-->
@@ -688,9 +692,6 @@ problemas son:
   <string name="registration_progress_activity__no_network_connectivity">Sin conectividad 
 a la red.
     </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Sus
-dispositivos necesitan conectividad de red para usar esta característica de Signal. Compruébela para asegurarse
-de que está conectado mediante 3G o Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Cortafuegos restrictivo.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -742,7 +743,6 @@ por SMS.
   <string name="AndroidManifest__media_preview">Previsualización del contenido</string>
   <string name="AndroidManifest__media_overview">Todas las imágenes</string>
   <string name="AndroidManifest__media_overview_named">Todas la imágenes con %1$s</string>
-  <string name="AndroidManifest__message_details">Detalles del mensaje</string>
   <string name="AndroidManifest_manage_linked_devices">Administrar dispositivos vinculados</string>
   <string name="AndroidManifest__invite_friends">Invitar amigos</string>
   <!--arrays.xml-->
@@ -990,8 +990,5 @@ por SMS.
   <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos borrados con éxito</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Escanear el código QR mostrado en el dispositivo para vincular</string>
-  <string name="device_link_fragment__link_device">Vincular dispositivo</string>
-  <string name="device_list_fragment__link_new_device">Vincular nuevo dispositivo</string>
   <!--EOF-->
 </resources>

@@ -60,7 +60,7 @@
 овај контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Прихвати</string>
   <!--ContactsDatabase-->
-  <string name="ContactsDatabase_message_s">Порука %s</string>
+  <string name="ContactsDatabase_message_s">Порука за %s</string>
   <string name="ContactsDatabase_signal_call_s">Позови %s Сигналом</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Величина поруке: %d KB</string>
@@ -509,8 +509,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Сигнал закључан!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Нова порука на Сигналу</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Садржај сакривен</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Нова порука!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Слика</string>
   <string name="attachment_type_selector__audio">Звук</string>
@@ -569,8 +569,13 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Учитавам државе...</string>
   <string name="country_selection_fragment__search">Тражи</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">За повезивање очитајте бар-кôд приказан на уређају.</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Повежи уређај</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Нема повезаних уређаја...</string>
+  <string name="device_list_fragment__link_new_device">Повежи нови уређај</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">настави</string>
   <!--log_submit_activity-->
@@ -681,9 +686,7 @@
 проблема су:</string>
   <string name="registration_progress_activity__no_network_connectivity">Нема везе
 са мрежом.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Вашем
-уређају је потребна веза са мрежом да бисте користили ову функцију Сигнала.
-Уверите се да је повезан на 3G или бежичну мрежу.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Вашем уређају је потребна веза са мрежом да бисте користили ову функцију Сигнала. Уверите се да је повезан на мобилни интернет или бежичну мрежу.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ограничавајући ватробран.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Ако сте повезани са бежичном мрежом, могуће је да вам ватробран блокира
@@ -937,6 +940,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Закључај</string>
   <string name="text_secure_normal__mark_all_as_read">Означи све прочитаним</string>
   <string name="text_secure_normal__invite_friends">Позовите пријатеље</string>
+  <string name="text_secure_normal__help">Помоћ</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ваше издање Сигнала је истекло!</string>
   <string name="reminder_header_expired_build_details">Више нећете моћи да шаљете поруке успешно, надоградите на најскорије издање.</string>
@@ -977,8 +981,5 @@
   <string name="trimmer__old_messages_successfully_deleted">Старе поруке успешно обрисане</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона преноса</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">За повезивање очитајте бар-кôд приказан на уређају.</string>
-  <string name="device_link_fragment__link_device">Повежи уређај</string>
-  <string name="device_list_fragment__link_new_device">Повежи нови уређај</string>
   <!--EOF-->
 </resources>

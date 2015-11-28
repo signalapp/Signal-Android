@@ -17,6 +17,7 @@
 Отключить пароль на просмотр сообщений?</string>
   <string name="ApplicationPreferencesActivity_disable">Отключить</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Unregistering from Signal messages and calls...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS включены</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора SMS-приложения по умолчанию</string>
@@ -415,8 +416,6 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда SIgnal заблокирован!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Новое сообщение в Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Содержимое скрыто</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -466,6 +465,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загружаем страны...</string>
   <string name="country_selection_fragment__search">Поиск</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Нет привязанных устройств...</string>
   <!--experience_upgrade_activity-->
@@ -563,7 +564,6 @@ Signal не смог соединиться с push-службой.</string>
   <string name="registration_progress_activity__no_network_connectivity">Нет соединения 
 с интернетом.
 </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Для использования этой функции необходимо подключение к интернету. Убедитесь, что ваше устройство подключено к мобильному интернету или Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ограничения брандмауэра.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -612,7 +612,6 @@ SMS-подтверждения...
   <string name="AndroidManifest__media_preview">Предпросмотр</string>
   <string name="AndroidManifest__media_overview">Все изображения</string>
   <string name="AndroidManifest__media_overview_named">Все изображения с %1$s</string>
-  <string name="AndroidManifest__message_details">Подробности</string>
   <string name="AndroidManifest_manage_linked_devices">Управление привязанными устройствами</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Импорт / экспорт</string>

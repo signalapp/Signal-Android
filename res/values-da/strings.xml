@@ -506,8 +506,6 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Ny Signalbesked.</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Indhold skjult</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Billede</string>
   <string name="attachment_type_selector__audio">Lyd</string>
@@ -566,8 +564,13 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Indlæser lande...</string>
   <string name="country_selection_fragment__search">Søg</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skan QR-koden der vises på enheden for at tilkoble.</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Tilkobel enhed</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Ingen enheder tilkoblet</string>
+  <string name="device_list_fragment__link_new_device">Tilkobel ny enhed</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsæt</string>
   <!--log_submit_activity-->
@@ -668,7 +671,6 @@ Signal kan også ringe til dig og verificere dit telefonnummer. Tryk på \'Ring 
 Signal kunne ikke forbinde til push-service.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen netværksforbindelse.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Din enhed kræver en netværksforbindelse for at benytte denne Signal-funktion. Tjek om enheden har forbindelse til Edge, 3G, LTE eller et trådløst netværk.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Hvis du er tilsluttet Internet via et trådløst netværk, er det muligt, at en firewall blokerer adgangen til Signals server. Prøv et andet trådløst netværk eller brug mobildata.</string>
@@ -712,7 +714,6 @@ mislykkedes.</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning af multimedie</string>
   <string name="AndroidManifest__media_overview">Alle billeder</string>
   <string name="AndroidManifest__media_overview_named">Alle billeder med %1$s</string>
-  <string name="AndroidManifest__message_details">Beskeddetaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Håndtér tilkoblede enheder</string>
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
   <!--arrays.xml-->
@@ -960,8 +961,5 @@ mislykkedes.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gennemført sletning af gamle beskeder</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skan QR-koden der vises på enheden for at tilkoble.</string>
-  <string name="device_link_fragment__link_device">Tilkobel enhed</string>
-  <string name="device_list_fragment__link_new_device">Tilkobel ny enhed</string>
   <!--EOF-->
 </resources>

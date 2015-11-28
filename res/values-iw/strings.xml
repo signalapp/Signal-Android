@@ -23,7 +23,7 @@
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">אירעה שגיאה בחיבור לשרת!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS מופעלים</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">נא לגעת כדי לשנות את האפליקציה שלך ל־SMS</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS כבויים</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">התמיכה ב־SMS כבויה</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">נא לגעת כדי להפוך את סיגנל לאפליקציה שלך ל־SMS</string>
   <string name="ApplicationPreferencesActivity_on">מופעל</string>
   <string name="ApplicationPreferencesActivity_On">מופעל</string>
@@ -330,7 +330,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">הגרסה הזאת של שירותי גוגל Play לא עובדת כמו שצריך. נא להתקין את שירותי גוגל Play מחדש ולנסות שוב.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">דירוג האפליקציה הזאת</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">אם נהנית להשתמש האפליקציה הזאת, אולי אפשר לבקש ממך להקדיש רגע לעזור לנו ולדרג אותה.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">אם נהנית להשתמש באפליקציה הזאת, אולי אפשר לבקש ממך להקדיש רגע לעזור לנו ולדרג אותה?</string>
   <string name="RatingManager_rate_now">לדרג עכשיו!</string>
   <string name="RatingManager_no_thanks">לא תודה</string>
   <string name="RatingManager_later">אחר־כך</string>
@@ -503,8 +503,6 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תשובה מהירה אינה זמינה כשסיגנל נעול!</string>
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת מסר!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">מסר חדש בסיגנל</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">התוכן מוסתר</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">תמונה</string>
   <string name="attachment_type_selector__audio">קול</string>
@@ -525,7 +523,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">לבחור עבור</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשים קשר חסומים...</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשי קשר חסומים...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">אין שיחות אחרונות.</string>
   <!--conversation_title_view-->
@@ -563,8 +561,13 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">טעינת מדינות...</string>
   <string name="country_selection_fragment__search">חיפוש</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">נא לסרוק את קוד ה־QR שמוצג במכשיר כדי לקשר</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">קישור מכשיר</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">אין מכשירים מקושרים...</string>
+  <string name="device_list_fragment__link_new_device">קישור מכשיר חדש</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">המשך</string>
   <!--log_submit_activity-->
@@ -672,10 +675,6 @@
 אפשריות:</string>
   <string name="registration_progress_activity__no_network_connectivity">אין קישורית
 רשת.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">המכשיר
-שלך דורש חיבור רשת כדי להשתמש
-ביכולת הזאת של סיגנל.
-נא לבדוק שהמכשיר מחובר לרשת דור שלישי או וייפיי.</string>
   <string name="registration_progress_activity__restrictive_firewall">חומת־אש מגבילה.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 אם התחברת דרך וייפיי, ייתכן שיש חומת־אש שחוסמת את הגישה
@@ -722,7 +721,6 @@
   <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
   <string name="AndroidManifest__media_overview">כל התמונות</string>
   <string name="AndroidManifest__media_overview_named">כל התמונות עם %1$s</string>
-  <string name="AndroidManifest__message_details">פרטי מסר</string>
   <string name="AndroidManifest_manage_linked_devices">ניהול מכשירים מקושרים</string>
   <string name="AndroidManifest__invite_friends">להזמין חברים</string>
   <!--arrays.xml-->
@@ -751,7 +749,7 @@
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__general">כללי</string>
-  <string name="preferences__sms_mms">SMS ו־MMS</string>
+  <string name="preferences__sms_mms">תמיכה ב־SMS ו־MMS</string>
   <string name="preferences__pref_all_sms_title">לקבל כל SMS</string>
   <string name="preferences__pref_all_mms_title">לקבל כל MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">להשתמש בסיגנל לכל המסרים הנכנסים</string>
@@ -826,7 +824,7 @@
   <string name="preferences__mmsc_username">שם משתמש של MMSC</string>
   <string name="preferences__mmsc_password">ססמת MMSC</string>
   <string name="preferences__sms_delivery_reports">דו״חות מסירה של SMS</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">לבקש דו״ח מסירה לכל SMS שאתה שולח</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">לבקש דו״ח מסירה לכל SMS שנשלח</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">למחוק אוטומטית הודעות ישנות יותר כששרשור השיחה עולה על אורך מסוים</string>
   <string name="preferences__delete_old_messages">למחוק הודעות ישנות</string>
   <string name="preferences__chats">התכתבויות ומדיה</string>
@@ -834,14 +832,14 @@
   <string name="preferences__trim_all_threads_now">לקצץ את כל השרשורים כעת</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">לבצע סריקה של כל השרשורים ולאכוף את הגבלות אורך השיחה</string>
   <string name="preferences__devices">מכשירים</string>
-  <string name="preferences__light_theme">בהיר</string>
-  <string name="preferences__dark_theme">חשוך</string>
+  <string name="preferences__light_theme">בהירה</string>
+  <string name="preferences__dark_theme">חשוכה</string>
   <string name="preferences__appearance">מראה</string>
   <string name="preferences__theme">ערכת נושא</string>
   <string name="preferences__theme_summary">ערכת נושא %s</string>
   <string name="preferences__default">רגיל</string>
   <string name="preferences__language">שפה</string>
-  <string name="preferences__language_summary">ב%s</string>
+  <string name="preferences__language_summary">שפה: %s</string>
   <string name="preferences__signal_messages_and_calls">מסרים ושיחות של סיגנל</string>
   <string name="preferences__free_private_messages_and_calls">מסרים ושיחות בחינם ובפרטיות למשתמשי סיגנל</string>
   <string name="preferences__submit_debug_log">שליחת יומן תיקון שגיאות</string>
@@ -970,8 +968,5 @@
   <string name="trimmer__old_messages_successfully_deleted">מסרים ישנים נמחקו</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">סמל תעבורה</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">נא לסרוק את קוד ה־QR שמוצג במכשיר כדי לקשר</string>
-  <string name="device_link_fragment__link_device">קישור מכשיר</string>
-  <string name="device_list_fragment__link_new_device">קישור מכשיר חדש</string>
   <!--EOF-->
 </resources>

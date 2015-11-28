@@ -495,8 +495,8 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá dopověď není dostupná pokud je Signal uzamčen!</string>
   <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nová Signal zpráva</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Obsah skrytý</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Nová zpráva!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Obrázek</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -555,8 +555,13 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítám země...</string>
   <string name="country_selection_fragment__search">Hledat</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scanovat QR kód zobrazný na zařízení pro provázní</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Provázat zařízení</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Žádná zařízení nejsou provázána...</string>
+  <string name="device_list_fragment__link_new_device">Provázat nové zařízení</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">pokračovat</string>
   <!--log_submit_activity-->
@@ -663,9 +668,8 @@ Signal se nemůže připojit ke službe push.</string>
   <string name="registration_progress_activity__no_network_connectivity">Není připojení
         k síti.
     </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaše
-zařízení potřebuje síťové připojení aby moh používat tuto funkci aplikace Signal. Zkontrolujte,
-zda je připojeno k 3G nebo Wifi</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Abyste mohli použít tuto funkci Signal, musíte být připojeni k internetu.
+Zkontrolujte, zda jste připojeni přes obilním data nebo Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Jste-li připojeni přes Wifi, je možné, že existuje firewall který blokuje přístup k Signal serverům. Zkuste jinou síť, nebo mobilní data.</string>
@@ -923,6 +927,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="text_secure_normal__menu_clear_passphrase">Uzamknout</string>
   <string name="text_secure_normal__mark_all_as_read">Označit vše jako přečtené</string>
   <string name="text_secure_normal__invite_friends">Pozvat přátele</string>
+  <string name="text_secure_normal__help">Nápověda</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal skončila!</string>
   <string name="reminder_header_expired_build_details">Zprávy již nemohou být odesílány, prosím aktualizujte na nejnovější verzi.</string>
@@ -963,8 +968,5 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scanovat QR kód zobrazný na zařízení pro provázní</string>
-  <string name="device_link_fragment__link_device">Provázat zařízení</string>
-  <string name="device_list_fragment__link_new_device">Provázat nové zařízení</string>
   <!--EOF-->
 </resources>

@@ -426,8 +426,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Signal zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nova Signal poruka</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Sadržaj je skriven</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -477,6 +475,8 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Učitavanje zemalja...</string>
   <string name="country_selection_fragment__search">Traži</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Nema povezanih uređaja...</string>
   <!--experience_upgrade_activity-->
@@ -574,9 +574,6 @@ Signal se nije mogao povezati na instant uslugu.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Neki mogući
 problemi uključuju:</string>
   <string name="registration_progress_activity__no_network_connectivity">Nema mreže.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaš
-uređaj treba mrežu povezivost kako biste mogli koristiti Signal mogućnosti. Provjerite da li
-je uređaj povezan na 3G ili Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ograničenja vatrozida.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Ukoliko ste povezani preko Wi-Fi, moguće je da postoji vatrozid koji blokira pristup na
@@ -623,7 +620,6 @@ neuspješno.</string>
   <string name="AndroidManifest__media_preview">Prikaz medija</string>
   <string name="AndroidManifest__media_overview">Sve slike</string>
   <string name="AndroidManifest__media_overview_named">Sve slike sa %1$s</string>
-  <string name="AndroidManifest__message_details">Detalji poruke</string>
   <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanim uređajima</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
