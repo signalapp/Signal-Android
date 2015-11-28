@@ -264,7 +264,7 @@ public class ConversationListFragment extends Fragment
             protected void onPreExecute() {
               dialog = ProgressDialog.show(getActivity(),
                                            getActivity().getString(R.string.ConversationListFragment_deleting),
-                                           getActivity().getString(R.string.ConversationListFragment_deleting_selected_threads),
+                                           getActivity().getString(R.string.ConversationListFragment_deleting_selected_conversations),
                                            true, false);
             }
 

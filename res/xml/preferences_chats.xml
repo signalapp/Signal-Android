@@ -31,7 +31,7 @@
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_trim_threads"
-            android:summary="@string/preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length"
+            android:summary="@string/preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length"
             android:title="@string/preferences__delete_old_messages" />
 
         <EditTextPreference android:defaultValue="500"
@@ -41,8 +41,8 @@
                             android:dependency="pref_trim_threads" />
 
         <Preference android:key="pref_trim_now"
-                    android:title="@string/preferences__trim_all_threads_now"
-                    android:summary="@string/preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits"
+                    android:title="@string/preferences__trim_all_conversations_now"
+                    android:summary="@string/preferences__scan_through_all_conversations_and_enforce_conversation_length_limits"
                     android:dependency="pref_trim_threads" />
     </PreferenceCategory>
 </PreferenceScreen>
