@@ -272,7 +272,7 @@ public class SmsDatabase extends MessagingDatabase {
                                ID + " = ?",
                                new String[] {String.valueOf(cursor.getLong(cursor.getColumnIndexOrThrow(ID)))});
 
-              DatabaseFactory.getThreadDatabase(context).update(threadId);
+              DatabaseFactory.getThreadDatabase(context).update(threadId, false);
               notifyConversationListeners(threadId);
             }
           } catch (InvalidNumberException e) {

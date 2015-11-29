@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/from"
                 android:layout_toRightOf="@id/indicators_parent"
-                android:layout_toLeftOf="@+id/archived"
+                android:layout_toLeftOf="@+id/delivery_status"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?attr/conversation_list_item_subject_color"
                 android:fontFamily="sans-serif-light"

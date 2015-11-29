@@ -177,13 +177,13 @@ public class ConversationListItem extends RelativeLayout
       this.thumbnailView.setVisibility(View.GONE);
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
-      subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.archived);
+      subjectParams.addRule(RelativeLayout.LEFT_OF, (thread.isArchived() ? R.id.archived : R.id.delivery_status));
       this.subjectView.setLayoutParams(subjectParams);
     }
   }
 
   private void setStatusIcons(ThreadRecord thread) {
-    if (!thread.isOutgoing()) {
+    if (!thread.isOutgoing() || thread.isArchived()) {
       deliveryStatusIndicator.setNone();
       alertView.setNone();
     } else if (thread.isFailed()) {
