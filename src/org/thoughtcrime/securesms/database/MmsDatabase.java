@@ -340,7 +340,6 @@ public class MmsDatabase extends MessagingDatabase {
                    " WHERE " + ID + " = ?", new String[] {id + ""});
 
     DatabaseFactory.getThreadDatabase(context).update(getThreadIdForMessage(id), false);
-    notifyConversationListListeners();
   }
 
   public void markAsOutbox(long messageId) {

@@ -120,7 +120,6 @@ public class SmsDatabase extends MessagingDatabase {
 
     DatabaseFactory.getThreadDatabase(context).update(threadId, false);
     notifyConversationListeners(threadId);
-    notifyConversationListListeners();
   }
 
   public long getThreadIdForMessage(long id) {
