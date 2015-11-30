@@ -27,6 +27,7 @@ import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -164,6 +165,7 @@ public class ConversationListItem extends RelativeLayout
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.thumbnail);
       this.subjectView.setLayoutParams(subjectParams);
+      this.post(new ThumbnailPositioner(thumbnailView, archivedView, dateView));
     } else {
       this.thumbnailView.setVisibility(View.GONE);
 
@@ -196,6 +198,32 @@ public class ConversationListItem extends RelativeLayout
         setRippleColor(recipients);
       }
     });
+  }
+
+  private static class ThumbnailPositioner implements Runnable {
+
+    private final View thumbnailView;
+    private final View archivedView;
+    private final View dateView;
+
+    public ThumbnailPositioner(View thumbnailView, View archivedView, View dateView) {
+      this.thumbnailView = thumbnailView;
+      this.archivedView  = archivedView;
+      this.dateView      = dateView;
+    }
+
+    @Override
+    public void run() {
+      LayoutParams thumbnailParams = (RelativeLayout.LayoutParams)thumbnailView.getLayoutParams();
+
+      if (archivedView.getVisibility() == View.VISIBLE && archivedView.getWidth() > dateView.getWidth()) {
+        thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.archived);
+      } else {
+        thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.date);
+      }
+
+      thumbnailView.setLayoutParams(thumbnailParams);
+    }
   }
 
 }
