@@ -107,16 +107,6 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     }
   }
 
-  public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, boolean archived) {
-    ConversationListItem listItem = (ConversationListItem)viewHolder.itemView;
-
-    if (!archived) {
-      DatabaseFactory.getThreadDatabase(getContext()).archiveConversation(listItem.getThreadId());
-    } else {
-      DatabaseFactory.getThreadDatabase(getContext()).unarchiveConversation(listItem.getThreadId());
-    }
-  }
-
   @Override
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     if (viewType == MESSAGE_TYPE_SWITCH_ARCHIVE) {
@@ -182,7 +172,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   public void toggleThreadInBatchSet(long threadId) {
     if (batchSet.contains(threadId)) {
       batchSet.remove(threadId);
-    } else {
+    } else if (threadId != -1) {
       batchSet.add(threadId);
     }
   }
@@ -203,7 +193,8 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
 
   public void selectAllThreads() {
     for (int i = 0; i < getItemCount(); i++) {
-      batchSet.add(getThreadRecord(getCursorAtPositionOrThrow(i)).getThreadId());
+      long threadId = getThreadRecord(getCursorAtPositionOrThrow(i)).getThreadId();
+      if (threadId != -1) batchSet.add(threadId);
     }
     this.notifyDataSetChanged();
   }
