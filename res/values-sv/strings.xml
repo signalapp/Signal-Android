@@ -19,7 +19,7 @@ Stäng av låsskärm för meddelanden?</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrering</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerar från Signal-meddelanden och samtal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Inaktivera Signal-meddelanden och samtal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Avaktivera Signalmeddelanden och samtal genom att avregistrera dig från servern. Du kommer behöva återregistrera ditt telefonnummer för att använda dem igen senare.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Avaktivera Signal-meddelanden och samtal genom att avregistrera dig från servern. Du kommer behöva återregistrera ditt telefonnummer för att använda dem igen senare.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fel vid anslutning till server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiverat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din standardapp för SMS</string>
@@ -154,8 +154,15 @@ verifiera denna kontakt.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Raderar</string>
   <string name="ConversationListFragment_deleting_selected_threads">Raderar markerade trådar...</string>
+  <string name="ConversationListFragment_archived_conversations">Arkiverade konversationer</string>
+  <string name="ConversationListFragment_undo">ÅNGRA</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Flyttade konversationen till inkorgen</string>
+  <string name="ConversationListFragment_archived_conversation">Arkiverad konversation</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Flyttade konversationerna till inkorgen</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Meddelande för nyckelutbyte ...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arkiverade konversationer (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
   <string name="CustomDefaultPreference_using_default">Använder standard: %s</string>
@@ -195,14 +202,14 @@ verifiera denna kontakt.</string>
   <string name="ExportFragment_success">Lyckades!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent kommunikationsfel med Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunde inte registrera med Google Play Services. Kommunikation över datakanalen har inaktiverats, vänligen försök att omregistrera från Signals inställningsmeny.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunde inte registrera med Google Play-tjänster. Meddelanden och samtal med Signal har avaktiverats, vänligen försök återregistrera i inställningar &gt; Avancerade.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny grupp</string>
   <string name="GroupCreateActivity_actionbar_update_title">Uppdatera grupp</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppnamn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-grupp</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valt en kontakt som inte har stöd för Signalgrupper, så denna grupp kommer använda MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Du är inte registrerad för mobildatakanalen, vilket stänger av användandet av Signalgrupper.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du är inte registrerad för samtal och meddelanden med Signal, så Signalgrupper är inaktiverat. Försök registrera i Inställningar &gt; Avancerade.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ett oförutsett fel inträffade som gjort att gruppen inte kunde skapas.</string>
   <string name="GroupCreateActivity_contacts_no_members">Du behöver åtminstone en person i din grupp!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av deltagarna i din grupp har ett nummer som inte kan läsas ordentligt. Vänligen åtgärda eller ta bort kontakten och försök igen.</string>
@@ -491,6 +498,8 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är ej tillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__audio">Ljud</string>
@@ -655,10 +664,12 @@ Signal kan också ringa upp dig för att verifiera ditt telefonnummer. Tryck \'R
   <string name="registration_progress_activity__call_me">Ring mig</string>
   <string name="registration_progress_activity__edit_number">Ändra nummer</string>
   <string name="registration_progress_activity__connectivity_error">Anslutningsfel.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal kunde inte ansluta till push-tjänsten.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal kunde inte ansluta till servern.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Några möjliga orsaker:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen nätverksanslutning.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Din
+enhet behöver en nätverksuppkoppling för att använda denna funktion i Signal. Vänligen kolla
+så att du är uppkopplad med mobildata eller Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv brandvägg.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Om du är uppkopplad med Wi-Fi är det möjligt att en brandvägg blockerat tillgång
@@ -702,8 +713,10 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__media_preview">Förhandsvisning av media</string>
   <string name="AndroidManifest__media_overview">Alla bilder</string>
   <string name="AndroidManifest__media_overview_named">Alla bilder med %1$s</string>
+  <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Hantera länkade enheter</string>
   <string name="AndroidManifest__invite_friends">Bjud in vänner</string>
+  <string name="AndroidManifeset_conversations_archive">Konversationsarkiv</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera / exportera</string>
   <string name="arrays__your_identity_key">Din identitetsnyckel</string>
@@ -747,14 +760,14 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__change_your_passphrase">Ändra ditt lösenord</string>
   <string name="preferences__enable_passphrase">Aktivera lösenordsfras</string>
   <string name="preferences__passphrase_summary">Lösenordsfras %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Sätt på låsskärm för meddelanden</string>
+  <string name="preferences__enable_lock_screen_for_messages">Börja använd låsskärm för meddelanden</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__screen_security_summary">Skärmsäkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Glöm lösenord från minnet efter ett intervall</string>
-  <string name="preferences__timeout_passphrase">Timeout lösenord</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Välj lösenordstimeout</string>
-  <string name="preferences__pref_timeout_interval_title">Timeout intervall</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Glöm lösenord från minnet efter en tid</string>
+  <string name="preferences__timeout_passphrase">Tidsbegränsad upplåsning</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">Välj tidsgräns för lösenord</string>
+  <string name="preferences__pref_timeout_interval_title">Fråga om lösenord efter</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Väntetiden innan lösenordet glöms från minnet</string>
   <string name="preferences__notifications">Aviseringar</string>
   <string name="preferences__enable_message_notifications">Slå på meddelandeaviseringar</string>
@@ -867,11 +880,13 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Radera markerade</string>
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
+  <string name="conversation_list_batch__archive_selected">Arkiv valt</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Sök</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__error_alert">Felmeddelande</string>
+  <string name="conversation_list_item_view__archived">Arkiverad</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny konversation</string>
   <!--conversation_secure_verified-->
@@ -909,6 +924,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Markera alla lästa</string>
   <string name="text_secure_normal__invite_friends">Bjud in vänner</string>
+  <string name="text_secure_normal__help">Hjälp</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Din version av Signal har utgått!</string>
   <string name="reminder_header_expired_build_details">Meddelanden kommer inte längre att skickas framgångsrikt, vänligen uppdatera till den senaste versionen.</string>

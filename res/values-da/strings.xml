@@ -159,6 +159,7 @@ denne kontakt.</string>
   <string name="ConversationListFragment_deleting_selected_threads">Sletter valgte tråde...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
   <string name="CustomDefaultPreference_using_default">Anvender standard: %s</string>
@@ -198,14 +199,12 @@ denne kontakt.</string>
   <string name="ExportFragment_success">Fuldført!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl i Signal-kommunikationen!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunne ikke registreres hos Google Play Services. Kommunikation over data-kanalen er deaktiveret. Prøv at genregistrere via indstillingerne i Signal.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny gruppe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Opdatér gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en person der ikke understøtter Signal-grupper. Denne gruppe vil være en MMS-gruppe.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Du er ikke registreret som bruger af datakanalen, så Signal-grupper er deaktiveret.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">En ukendt fejl har medført, at oprettelse af gruppen mislykkedes.</string>
   <string name="GroupCreateActivity_contacts_no_members">Der skal være mindst én person i gruppen!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En kontakt i gruppen har et nummer, der ikke kan læses. Ret nummeret eller fjern kontakten og prøv igen.</string>
@@ -667,8 +666,6 @@ Signal kan også ringe til dig og verificere dit telefonnummer. Tryk på \'Ring 
   <string name="registration_progress_activity__call_me">Ring mig op</string>
   <string name="registration_progress_activity__edit_number">Redigér nummer</string>
   <string name="registration_progress_activity__connectivity_error">Forbindelsesfejl.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal kunne ikke forbinde til push-service.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen netværksforbindelse.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv firewall.</string>

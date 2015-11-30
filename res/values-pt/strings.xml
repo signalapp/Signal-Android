@@ -158,8 +158,15 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   </plurals>
   <string name="ConversationListFragment_deleting">A apagar</string>
   <string name="ConversationListFragment_deleting_selected_threads">A apagar conversas seleccionadas...</string>
+  <string name="ConversationListFragment_archived_conversations">Conversas arquivadas</string>
+  <string name="ConversationListFragment_undo">REVERTER</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Conversa movida para a caixa de entrada</string>
+  <string name="ConversationListFragment_archived_conversation">Conversa arquivada</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversas movidas para a caixa de entrada</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar a opção personalizada: %s</string>
   <string name="CustomDefaultPreference_using_default">Usar a opção por omissão: %s</string>
@@ -199,14 +206,14 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   <string name="ExportFragment_success">Sucesso!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha de comunicação Signal permanente!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal não se conseguiu registar com os Serviços Google Play. A comunicação através do canal de dados foi inactiva, por favor tente registar-se novamente através do menu de configurações Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal não se conseguiu registar com os Serviços Google Play. As mensagens e chamadas Signal estão desabilitadas. Por favor tente registar-se novamente em Definições &gt; Avançadas.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grupo novo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome do grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Novo Grupo MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Seleccionou um contacto que não suporta grupos Signal, pelo que este grupo será um grupo MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Não está registado para usar o canal de dados, pelo que os grupos Signal estão desabilitados.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Não está registado para usar mensagens e chamadas Signal, pelo que os grupos Signal estão desabilitados. Por favor tente registar-se em Definições &gt; Avançadas.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Um irro inesperado ocorreu que impossibilitou a criação do grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">É necessária pelo menos uma pessoa para formar um grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número ilegível. Por favor corrija ou remova esse contacto e tente novamente.</string>
@@ -680,9 +687,7 @@ insira abaixo o código de seis dígitos que irá ouvir.
   <string name="registration_progress_activity__call_me">Ligue-me</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>
   <string name="registration_progress_activity__connectivity_error">Erro de ligação.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal foi impossibilitado de se ligar ao serviço push
-</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal foi impossibilitado de se ligar ao servidor</string>
   <string name="registration_progress_activity__some_possible_problems_include">Alguns problemas
 possíveis incluem:
 </string>
@@ -745,6 +750,7 @@ falhou.
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <string name="AndroidManifest_manage_linked_devices">Gerir dispositivos interligados</string>
   <string name="AndroidManifest__invite_friends">Convidar amigos</string>
+  <string name="AndroidManifeset_conversations_archive">Arquivo de conversas</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__your_identity_key">A sua chave de identidade</string>
@@ -908,11 +914,13 @@ falhou.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Apagar seleccionado</string>
   <string name="conversation_list_batch__menu_select_all">Seleccionar tudo</string>
+  <string name="conversation_list_batch__archive_selected">Arquivo seleccionado</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Procurar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto de Contacto</string>
   <string name="conversation_list_item_view__error_alert">Alerta de erro</string>
+  <string name="conversation_list_item_view__archived">Arquivado</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
   <!--conversation_secure_verified-->

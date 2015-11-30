@@ -156,8 +156,15 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   </plurals>
   <string name="ConversationListFragment_deleting">Đang xóa</string>
   <string name="ConversationListFragment_deleting_selected_threads">Xóa các chuỗi đã chọn...</string>
+  <string name="ConversationListFragment_archived_conversations">Các cuộc hội thoại đã bảo lưu</string>
+  <string name="ConversationListFragment_undo">HOÀN TÁC</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Đã chuyển cuộc hội thoại vào hộp thư đến</string>
+  <string name="ConversationListFragment_archived_conversation">Cuộc hội thoại đã bảo lưu</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Đã chuyển các cuộc hội thoại vào hộp thư đến</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Thông tin trao đổi chìa khóa...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Các cuộc hội thoại đã bảo lưu (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
   <string name="CustomDefaultPreference_using_default">Dùng mặc định: %s</string>
@@ -197,14 +204,14 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ExportFragment_success">Thành công!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể đăng ký với Google Play Services. Giao tiếp thông qua kênh dữ liệu đã ngưng hoạt động, hãy thử đăng ký lại từ trình đơn cài đặt của Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể đăng ký với Google Play Services. Cuộc gọi và tin nhắn Signal đã ngừng hoạt động, hãy thử đăng ký lại từ mục Cài đặt &gt; Nâng cao.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
   <string name="GroupCreateActivity_actionbar_update_title">Cập nhật nhóm</string>
   <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Bạn đã chọn một liên hệ không hỗ trợ nhóm Signal, vậy nên nhóm này sẽ dùng MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Bạn chưa đăng ký để sử dụng kênh dữ liệu, vậy nên nhóm Signal sẽ không hoạt động.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Bạn chưa đăng ký dịch vụ gọi và nhắn tin Signal, vậy nên nhóm Signal không khả dụng. Hãy thử đăng ký từ mục Cài đặt &gt; Nâng cao.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Có lỗi bất ngờ xảy ra do đó không lập nhóm được.</string>
   <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không đọc được. Xin điều chỉnh hoặc xóa đi và thử lại.</string>
@@ -502,6 +509,8 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal bị khoá!</string>
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Hình ảnh</string>
   <string name="attachment_type_selector__audio">Âm thanh</string>
@@ -672,13 +681,15 @@ Signal cũng có thể gọi cho bạn để xác minh số điện thoại. Ch�
   <string name="registration_progress_activity__call_me">Gọi tôi</string>
   <string name="registration_progress_activity__edit_number">Sửa số</string>
   <string name="registration_progress_activity__connectivity_error">Có lỗi kết nối.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal không thể kết nối đến dịch vụ push.
-</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal không thể kết nối đến máy chủ.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Một số vấn đề có
 thể gặp bao gồm:</string>
   <string name="registration_progress_activity__no_network_connectivity">Không có đường
 truyền mạng.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Thiết bị
+của bạn cần kết nối mạng để có thể sử dụng tính năng Signal này. Hãy kiểm tra để chắc
+rằng thiết bị có kết nối 3G hoặc Wi-Fi.
+</string>
   <string name="registration_progress_activity__restrictive_firewall">Tường lửa ngăn chận.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Nếu bạn đang kết nối Wi-Fi, có khả năng là tường lửa đã chặn đường
@@ -729,8 +740,10 @@ SMS thất bại.
   <string name="AndroidManifest__media_preview">Xem Trước Truyền Thông</string>
   <string name="AndroidManifest__media_overview">Tất cả hình ảnh</string>
   <string name="AndroidManifest__media_overview_named">Tất cả hình ảnh với %1$s</string>
+  <string name="AndroidManifest__message_details">Chi tiết tin nhắn</string>
   <string name="AndroidManifest_manage_linked_devices">Quản trị các thiết bị liên kết</string>
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
+  <string name="AndroidManifeset_conversations_archive">Bản lưu các cuộc hội thoại</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Xuất / nhập</string>
   <string name="arrays__your_identity_key">Khóa danh tính</string>
@@ -895,11 +908,13 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Xóa cái chọn</string>
   <string name="conversation_list_batch__menu_select_all">Chọn tất cả</string>
+  <string name="conversation_list_batch__archive_selected">Đã chọn bản lưu</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Tìm kiếm</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Hình Chân Dung Liên Lạc</string>
   <string name="conversation_list_item_view__error_alert">Cảnh báo lỗi</string>
+  <string name="conversation_list_item_view__archived">Đã bảo lưu</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Chuyện trò mới</string>
   <!--conversation_secure_verified-->
@@ -937,6 +952,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="text_secure_normal__menu_clear_passphrase">Khóa</string>
   <string name="text_secure_normal__mark_all_as_read">Đánh dấu tất cả đã đọc</string>
   <string name="text_secure_normal__invite_friends">Mời bạn bè</string>
+  <string name="text_secure_normal__help">Trợ giúp</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Bản dựng Signal này đã hết hạn!</string>
   <string name="reminder_header_expired_build_details">Tin nhắn không còn gửi đi được nữa, xin vui lòng cập nhật lên phiên bản mới nhất.</string>

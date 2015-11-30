@@ -158,8 +158,15 @@ ezt a névjegyet.
   </plurals>
   <string name="ConversationListFragment_deleting">Törlés</string>
   <string name="ConversationListFragment_deleting_selected_threads">Kiválasztott beszélgetésfolyamok törlése...</string>
+  <string name="ConversationListFragment_archived_conversations">Archivált beszélgetések</string>
+  <string name="ConversationListFragment_undo">VISSZAVONÁS</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Beérkezőbe áthelyezett beszélgetés</string>
+  <string name="ConversationListFragment_archived_conversation">Archivált beszélgetés</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Beérkezőbe áthelyezett beszélgetések</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Archivált beszélgetések (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Egyéni: %s</string>
   <string name="CustomDefaultPreference_using_default">Alapértelmezett: %s</string>
@@ -199,14 +206,14 @@ ezt a névjegyet.
   <string name="ExportFragment_success">Sikerült!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal képtelen volt regisztrálni Google Play Szolgáltatásokkal. Az adatcsatornán keresztüli kommunikáció le van tiltva, kérlek próbálj meg újra regisztrálni a Signal beállítások menüből.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal nem tudott regisztrálni a Google Play Szolgáltatásokkal. A Signal üzenetek és hívások le vannak tiltva, kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Új csoport</string>
   <string name="GroupCreateActivity_actionbar_update_title">Csoport frissítése</string>
   <string name="GroupCreateActivity_group_name_hint">Csoport név</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Új MMS csoport</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Kiválasztottál egy névjegyet, aki nem támogatja a Signal csoportokat, így ez a csoport MMS lesz.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Nem vagy regisztrálva adat csatorna használatára, így a Signal csoportok le vannak tiltva.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nem vagy regisztrálva Signal üzenetekre és hívásokra, így a Signal csoportok le vannak tiltva. Kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Egy váratlan hiba történt, ami a csoport létrehozását meghiúsította.</string>
   <string name="GroupCreateActivity_contacts_no_members">A csoporthoz legalább egy emberre szükség van!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">A csoportod egyik tagjának számát nem lehet megfelelően olvasni. Kérlek javítsd ki, vagy távolítsd el a névjegyet és próbáld újra!</string>
@@ -369,7 +376,7 @@ Kérlek telepíts újra a Google Play Szolgáltatásokat és próbálkozz újra!
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Az általad tárcsázott szám nem támogatja a biztonságos hangot!</string>
   <string name="RedPhone_got_it">Megértettem</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Csatlakozás a Signal-lal</string>
+  <string name="RegistrationActivity_connect_with_signal">Kapcsolódás a Signal-lal</string>
   <string name="RegistrationActivity_select_your_country">Saját ország kiválasztása </string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Add meg a saját
 ország kódot!
@@ -514,6 +521,8 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Gyors válasz nem elérhető, amikor a Signal zárolva van!</string>
   <string name="QuickResponseService_problem_sending_message">Probléma az üzenetküldésben!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kép</string>
   <string name="attachment_type_selector__audio">Hang</string>
@@ -688,15 +697,17 @@ az alakja!
   <string name="registration_progress_activity__call_me">Hívj fel</string>
   <string name="registration_progress_activity__edit_number">Szám szerkesztése</string>
   <string name="registration_progress_activity__connectivity_error">Kapcsolati hiba.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-        A Signal képtelen volt kapcsolódni a push szolgáltatáshoz.
-    </string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">A Signal nem tudott kapcsolódni a kiszolgálóhoz.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Néhány lehetséges probléma
 beleértve:
  </string>
   <string name="registration_progress_activity__no_network_connectivity">Nincs hálózati
 kapcsolat!
  </string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">A
+        készülékednek szüksége van hálózati kapcsolatra annak érdekében, hogy használni tudja ezt a Signal funkciót. Győződj meg róla,
+        hogy kapcsolódva van mobil adatokhoz vagy Wi-Fi-hez.
+    </string>
   <string name="registration_progress_activity__restrictive_firewall">Korlátozó tűzfal.
  </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -750,8 +761,10 @@ sikertelen.
   <string name="AndroidManifest__media_preview">Média előnézet</string>
   <string name="AndroidManifest__media_overview">Összes fénykép</string>
   <string name="AndroidManifest__media_overview_named">Összes fénykép vele: %1$s</string>
+  <string name="AndroidManifest__message_details">Üzenet részletek</string>
   <string name="AndroidManifest_manage_linked_devices">Társított készülékek kezelése</string>
   <string name="AndroidManifest__invite_friends">Barátok meghívása</string>
+  <string name="AndroidManifeset_conversations_archive">Beszélgetések archívum</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás / Exportálás</string>
   <string name="arrays__your_identity_key">Azonosító kulcsod</string>
@@ -915,11 +928,13 @@ sikertelen.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">A kijelölt elemek törlése</string>
   <string name="conversation_list_batch__menu_select_all">Összes kijelölése</string>
+  <string name="conversation_list_batch__archive_selected">Archívum kiválasztva</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Keresés</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Névjegyhez tartozó fénykép</string>
   <string name="conversation_list_item_view__error_alert">Hiba figyelmeztetés</string>
+  <string name="conversation_list_item_view__archived">Archivált</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Új beszélgetés</string>
   <!--conversation_secure_verified-->
@@ -957,6 +972,7 @@ sikertelen.
   <string name="text_secure_normal__menu_clear_passphrase">Lezárás</string>
   <string name="text_secure_normal__mark_all_as_read">Összes megjelölése olvasottként</string>
   <string name="text_secure_normal__invite_friends">Barátok meghívása</string>
+  <string name="text_secure_normal__help">Súgó</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">A Signal-od buildje lejárt!</string>
   <string name="reminder_header_expired_build_details">Az üzenetek küldése nem lesz sikeres, kérlek frissíts a legújabb verzióra!</string>

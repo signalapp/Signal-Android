@@ -161,8 +161,15 @@ preveriti ta stik.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_threads">Brišem izbrane pogovore...</string>
+  <string name="ConversationListFragment_archived_conversations">Arhivirani pogovori</string>
+  <string name="ConversationListFragment_undo">RAZVELJAVI</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Premaknjeno v nabiralnik</string>
+  <string name="ConversationListFragment_archived_conversation">Pogovor je bil arhiviran</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Premaknjeno v nabiralnik</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arhivirani pogovori (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uporabljam izbirno: %s</string>
   <string name="CustomDefaultPreference_using_default">Prednastavljeno: %s</string>
@@ -202,14 +209,14 @@ preveriti ta stik.</string>
   <string name="ExportFragment_success">Uspešno opravljeno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija aplikacije Signal z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju nastavive.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Posodobi skupino</string>
   <string name="GroupCreateActivity_group_name_hint">Ime skupine</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nova skupina MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Izbrali ste stik, ki ne podpira skupin Signal, zato bo to skupina MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Ker niste prijavljeni za uporabo podatkovne komunikacije, bodo skupine Signal onemogočene.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Ker niste prijavljeni za uporabo podatkovne komunikacije, so skupine Signal onemogočene. Poskusite se registrirati v meniju: Nastavitve &gt; Napredno.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Prišlo je do nepričakovane napake, zato skupina ni bila ustvarjena.</string>
   <string name="GroupCreateActivity_contacts_no_members">V skupini mora biti vsaj ena oseba!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En izmed članov skupine ima nepravilno zapisano številko. Popravite napako ali odstranite stik iz skupine in poskusite znova.</string>
@@ -665,8 +672,7 @@ in spodaj vnesite šetmestno kodo, ki jo boste zaslišali.</string>
   <string name="registration_progress_activity__call_me">Pokliči me</string>
   <string name="registration_progress_activity__edit_number">Uredi številko</string>
   <string name="registration_progress_activity__connectivity_error">Napaka v povezavi.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Aplikacija Signal se ni mogla povezati s potisno storitvijo.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Aplikacija Signal se ni mogla povezati s strežnikom.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Nekateri možni razlogi
 za težave:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ni povezave
@@ -719,6 +725,7 @@ bila uspešna.</string>
   <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
   <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanih naprav</string>
   <string name="AndroidManifest__invite_friends">Povabi prijatelje</string>
+  <string name="AndroidManifeset_conversations_archive">Arhiv pogovorov</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz/izvoz</string>
   <string name="arrays__your_identity_key">Moj identifikacijski ključ</string>
@@ -884,11 +891,13 @@ bila uspešna.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Izbriši označeno</string>
   <string name="conversation_list_batch__menu_select_all">Označi vse</string>
+  <string name="conversation_list_batch__archive_selected">Izbrani arhiv</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Poišči</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika stika</string>
   <string name="conversation_list_item_view__error_alert">Alarm za napako</string>
+  <string name="conversation_list_item_view__archived">Arhivirano</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nov pogovor</string>
   <!--conversation_secure_verified-->

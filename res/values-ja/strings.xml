@@ -116,6 +116,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">選択したスレッドを削除中…</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタム利用: %s</string>
   <string name="CustomDefaultPreference_using_default">デフォルト利用: %s</string>

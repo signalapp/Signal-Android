@@ -161,8 +161,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Брисање</string>
   <string name="ConversationListFragment_deleting_selected_threads">Бришем изабране нити...</string>
+  <string name="ConversationListFragment_archived_conversations">Архивиране преписке</string>
+  <string name="ConversationListFragment_undo">ВРАТИ</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Преписка померена у пријем</string>
+  <string name="ConversationListFragment_archived_conversation">Архивисана преписка</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Преписке померене у пријем</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порука размене кључева...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Архивисане преписке (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користим посебно: %s</string>
   <string name="CustomDefaultPreference_using_default">Користим подразумевано: %s</string>
@@ -202,14 +209,14 @@
   <string name="ExportFragment_success">Успех!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајни неуспех комуникације Сигнала!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Сигнал није успео да се пријави на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите у поставкама Сигнала.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Сигнал није успео да се пријави на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите преко Поставке &gt; Напредно.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
   <string name="GroupCreateActivity_actionbar_update_title">Ажурирај групу</string>
   <string name="GroupCreateActivity_group_name_hint">Назив групе</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Нова ММС група</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Изабрали сте контакт који не подржава Сигналове групе, па ће ово бити ММС група.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Нисте се пријавили за коришћење мрежног канала, па су Сигналове групе онемогућене.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Нисте се пријавили за Сигналове поруке и позиве, па су Сигналове групе онемогућене. Покушајте поново да се пријавите преко Поставке &gt; Напредно.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Десила се неочекивана грешка која је узроковала неуспех прављења групе.</string>
   <string name="GroupCreateActivity_contacts_no_members">Требате бар једну особу у вашој групи!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Један од чланова ваше групе има број који не може бити исправно очитан. Поправите или уклоните тај контакт и покушајте поново.</string>
@@ -680,8 +687,7 @@
   <string name="registration_progress_activity__call_me">Позови ме</string>
   <string name="registration_progress_activity__edit_number">Уреди број</string>
   <string name="registration_progress_activity__connectivity_error">Грешка везе.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Сигнал није могао да се повеже са „push“ сервисом.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Сигнал није могао да се повеже са сервером.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Неки од могућих
 проблема су:</string>
   <string name="registration_progress_activity__no_network_connectivity">Нема везе
@@ -734,6 +740,7 @@
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
   <string name="AndroidManifest_manage_linked_devices">Управљај повезаним уређајима</string>
   <string name="AndroidManifest__invite_friends">Позивница пријатељима</string>
+  <string name="AndroidManifeset_conversations_archive">Архива преписки</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__your_identity_key">Ваш кључ идентитета</string>
@@ -898,11 +905,13 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Обриши изабрано</string>
   <string name="conversation_list_batch__menu_select_all">Изабери све</string>
+  <string name="conversation_list_batch__archive_selected">Архивирај изабрано</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Тражи</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фотографија контакта</string>
   <string name="conversation_list_item_view__error_alert">Грешка</string>
+  <string name="conversation_list_item_view__archived">Архивисано</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нова преписка</string>
   <!--conversation_secure_verified-->

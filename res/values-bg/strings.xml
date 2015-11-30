@@ -153,8 +153,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Изтриване</string>
   <string name="ConversationListFragment_deleting_selected_threads">Изтриване на избраните разговори...</string>
+  <string name="ConversationListFragment_archived_conversations">Архивирани разговори</string>
+  <string name="ConversationListFragment_undo">ВЪЗСТАНОВИ</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Разговорът е преместен във входящата кутия</string>
+  <string name="ConversationListFragment_archived_conversation">Разговорът е архивиран</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Разговорът е преместен във входящата кутия</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Архивирани разговори (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Използване на специален:  %s</string>
   <string name="CustomDefaultPreference_using_default">Използване на подразбиращ се: %s</string>
@@ -194,14 +201,14 @@
   <string name="ExportFragment_success">Успех!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Комуникация през канала с данни е забранен, моля опитайте да се пререгистрирате през менюто с настройки на Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Signal съообщения и разговори са деактивирани, моля пререгистрирайте през менюто Настройки &gt; Допълнителние.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
   <string name="GroupCreateActivity_actionbar_update_title">Промени група</string>
   <string name="GroupCreateActivity_group_name_hint">Име на групата</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Избрахте контакт, който не поддържа Signal групи, така че групата ще бъде MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Не сте регистриран, за да използвате канала за данни, така че Signal групите ще бъдат за деактивирани.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Не сте регистриран за Signal съобщения и разговори, така че Signal групи са деактивирани. Моля, опитайте да се регистрирате в Настройки &gt; Допълнителни.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Настъпи не очаквана грешка, която доведе до неуспешно създаване на група.</string>
   <string name="GroupCreateActivity_contacts_no_members">Трябва да добавиш поне един човек в групата си!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Един от членовете на групата има номер, който не може да бъде разпознат правилно. Моля, оправи номера на контакта или го премахни.</string>
@@ -665,8 +672,7 @@ Signal може да ти се обади, за да потвърди номер
   <string name="registration_progress_activity__call_me">Обади ми се</string>
   <string name="registration_progress_activity__edit_number">Промени номера</string>
   <string name="registration_progress_activity__connectivity_error">Грешка при свързването.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal не успя да се свъже с пуш интернет услугата.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal не успя да се свърже със сървъра.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Няколко вероятни
 проблема включват:
 </string>
@@ -724,6 +730,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest__message_details">Информация за съобщението</string>
   <string name="AndroidManifest_manage_linked_devices">Управление на свързани устройства</string>
   <string name="AndroidManifest__invite_friends">Поканете приятели</string>
+  <string name="AndroidManifeset_conversations_archive">Разговорите са архивирани</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__your_identity_key">Вашият ключ за самоличност</string>
@@ -887,11 +894,13 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Изтрий избраното</string>
   <string name="conversation_list_batch__menu_select_all">Избери всичко</string>
+  <string name="conversation_list_batch__archive_selected">Архивът е избран</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Търси</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Изображение на контакта</string>
   <string name="conversation_list_item_view__error_alert">Известие за грешка</string>
+  <string name="conversation_list_item_view__archived">Архивиран</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>
   <!--conversation_secure_verified-->

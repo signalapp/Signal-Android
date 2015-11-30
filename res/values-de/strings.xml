@@ -17,9 +17,9 @@
 Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal-Registrierung wird gelöscht …</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und -Telefonie deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und -Telefonie durch Löschen Ihrer Registrierung vom Server deaktivieren. Sie werden Ihre Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Telefonie wird gelöscht …</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und -Anrufe deaktivieren?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und -Anrufe durch Löschen Ihrer Registrierung vom Server deaktivieren. Sie werden Ihre Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden zum Server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiviert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Standard-SMS-App ändern</string>
@@ -152,8 +152,15 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Ausgewählte Unterhaltungen werden gelöscht …</string>
+  <string name="ConversationListFragment_archived_conversations">Archivierte Unterhaltungen</string>
+  <string name="ConversationListFragment_undo">RÜCKGÄNGIG</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Unterhaltung zum Posteingang verschoben</string>
+  <string name="ConversationListFragment_archived_conversation">Archivierte Unterhaltung</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Unterhaltungen zum Posteingang verschoben</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch-Nachricht …</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Archivierte Unterhaltungen (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benutzerdefiniert: %s</string>
   <string name="CustomDefaultPreference_using_default">Standard: %s</string>
@@ -193,14 +200,14 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ExportFragment_success">Erfolgreich!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte keine Verbindung zu den Google Play-Diensten herstellen. Signal-Nachrichten wurden daher deaktiviert. Bitte über das Menü „Einstellungen“ erneut registrieren.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google Play-Dienste registriert werden. Signal-Nachrichten und -Anrufe wurden daher deaktiviert. Bitte registrieren Sie Signal im Menü „Einstellungen“ &gt; „Weitere Einstellungen“ erneut.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Neue Gruppe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Gruppe bearbeiten</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenname</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Neue MMS-Gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Sie haben einen Kontakt ausgewählt, der Signal-Gruppen nicht unterstützt. Daher wird dies eine MMS-Gruppe sein.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Sie sind nicht für Signal-Nachrichten registriert. Signal-Gruppen sind daher deaktiviert.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Sie sind nicht für Signal-Nachrichten und -Anrufe registriert, daher sind Signal-Gruppen deaktiviert. Bitte registrieren Sie Signal im Menü „Einstellungen“ &gt; „Weitere Einstellungen“.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Gruppe konnte aufgrund eines unerwartet aufgetretenen Fehlers nicht erstellt werden.</string>
   <string name="GroupCreateActivity_contacts_no_members">Sie brauchen mindestens eine Person in Ihrer Gruppe!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Eines der Gruppenmitglieder hat eine nicht korrekt lesbare Rufnummer. Bitte beheben oder Kontakt entfernen und erneut versuchen.</string>
@@ -347,7 +354,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="RedPhone_login_failed">Anmeldung fehlgeschlagen!</string>
   <string name="RedPhone_message_from_the_server">Nachricht vom Server</string>
   <string name="RedPhone_number_not_registered">Rufnummer nicht registriert!</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die gewählte Rufnummer unterstützt keine sichere Telefonie!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die gewählte Rufnummer unterstützt keine sicheren Anrufe!</string>
   <string name="RedPhone_got_it">OK</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">Mit Signal verbinden</string>
@@ -509,9 +516,9 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Unterhaltung stummgeschaltet</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal-Nachricht schreiben</string>
-  <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS schreiben</string>
-  <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS schreiben</string>
+  <string name="conversation_activity__type_message_push">Signal-Nachricht senden</string>
+  <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS senden</string>
+  <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS senden</string>
   <string name="conversation_activity__send">Senden</string>
   <string name="conversation_activity__remove">Entfernen</string>
   <string name="conversation_activity__window_description">Unterhaltung mit %1$s</string>
@@ -644,8 +651,7 @@ Signal kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf �
   <string name="registration_progress_activity__call_me">Mich anrufen</string>
   <string name="registration_progress_activity__edit_number">Rufnummer bearbeiten</string>
   <string name="registration_progress_activity__connectivity_error">Verbindungsfehler.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Verbindung zum Signal-Dienst konnte nicht hergestellt werden.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal konnte sich nicht mit dem Server verbinden.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Einige der möglichen Probleme beinhalten:</string>
   <string name="registration_progress_activity__no_network_connectivity">Keine Netzwerkverbindung.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Um diese Signal-Funktion nutzen zu können, benötigt Ihr Gerät eine Netzverbindung, Stellen Sie sicher, dass eine mobile Daten- oder WLAN-Verbindung besteht.</string>
@@ -694,6 +700,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__message_details">Nachrichtendetails</string>
   <string name="AndroidManifest_manage_linked_devices">Verknüpfte Geräte verwalten</string>
   <string name="AndroidManifest__invite_friends">Freunde einladen</string>
+  <string name="AndroidManifeset_conversations_archive">Unterhaltungsarchiv</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Datensicherung</string>
   <string name="arrays__your_identity_key">Ihr Schlüssel</string>
@@ -811,7 +818,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprache</string>
   <string name="preferences__language_summary">Sprache %s</string>
-  <string name="preferences__signal_messages_and_calls">Signal-Nachrichten und -Telefonie</string>
+  <string name="preferences__signal_messages_and_calls">Signal-Nachrichten und -Anrufe</string>
   <string name="preferences__free_private_messages_and_calls">Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und telefonieren</string>
   <string name="preferences__submit_debug_log">Diagnoseprotokoll übermitteln</string>
   <string name="preferences__support_wifi_calling">Kompatibilität WLAN-Telefonie</string>
@@ -857,11 +864,13 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ausgewählte löschen</string>
   <string name="conversation_list_batch__menu_select_all">Alle auswählen</string>
+  <string name="conversation_list_batch__archive_selected">Archiv ausgewählt</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Suchen</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbild</string>
   <string name="conversation_list_item_view__error_alert">Fehlerbenachrichtigung</string>
+  <string name="conversation_list_item_view__archived">Archiviert</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Neue Unterhaltung</string>
   <!--conversation_secure_verified-->
@@ -910,7 +919,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="reminder_header_sms_import_title">System-SMS importieren</string>
   <string name="reminder_header_sms_import_text">Antippen, um auf dem Telefon gespeicherte SMS-Nachrichten in die verschlüsselte Datenbank zu importieren.</string>
   <string name="reminder_header_sms_import_button">IMPORTIEREN</string>
-  <string name="reminder_header_push_title">Signal-Nachrichten und -Telefonie aktivieren</string>
+  <string name="reminder_header_push_title">Signal-Nachrichten und -Anrufe aktivieren</string>
   <string name="reminder_header_push_text">Verbessern Sie Ihr Kommunikationserlebnis.</string>
   <string name="reminder_header_push_button">AKTIVIEREN</string>
   <string name="reminder_header_invite_title">Zu Signal einladen</string>

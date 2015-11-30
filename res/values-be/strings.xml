@@ -99,6 +99,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Выдаленне абраных гутарак...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Паведамленне абмену ключамі...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Выкарыстоўваць кастомны: %s</string>
   <string name="CustomDefaultPreference_using_default">Выкарыстоўваць стандартны: %s</string>

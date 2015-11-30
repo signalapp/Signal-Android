@@ -168,8 +168,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">حذف</string>
   <string name="ConversationListFragment_deleting_selected_threads">حذف المحادثات المختارة</string>
+  <string name="ConversationListFragment_archived_conversations">أرشيف المحادثات</string>
+  <string name="ConversationListFragment_undo">تراجع</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">نقل المحادثة إلى صندوق الوارد</string>
+  <string name="ConversationListFragment_archived_conversation">أرشيف المحادثات</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">نقل المحادثات إلى صندوق الوارد</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">المحادثات المؤرشفة (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
@@ -210,14 +217,14 @@
   <string name="ExportFragment_success">تم بنجاح!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال سيجنال!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">عملية تسجيل سيجنال مع خدمات جوجل بلاي لم تتم. اتصال البيانات عبر شبكة الجوال معطلة، رجاء محاولة إعادة التسجيل من خلال قائمة إعدادات سيجنال.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سيجنال لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات سيجنال. رجاء محاولة إعادة التسجيل بالذهاب إلى متقدم في قائمة إعدادات التطبيق.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
   <string name="GroupCreateActivity_actionbar_update_title">تحديث المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات سيجنال وبالتالي ستكون مجموعة وسائط متعددة.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">أنت غير مسجل لاستخدام بيانات شبكة الجوال لذلك فإن مجموعات سيجنال معطلة.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">أنت غير مسجل في رسائل ومكالمات سيجنال وبالتالية مجموعات سيجنال معطلة. حاول إعادة التسجيل بالذهاب إلى متقدم في قائمة إعدادات التطبيق.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">خطأ غير متوقع تسبب في تعذر إنشاء المجموعة.</string>
   <string name="GroupCreateActivity_contacts_no_members">تحتاج إلى شخص واحد على الأقل في المجموعة!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">لا يمكن قراءة رقم أحد أعضاء المجموعة بشكل صحيح. رجاء تصحيح أو حذف هذا العضو والمحاولة مرة أخرى.</string>
@@ -333,6 +340,7 @@
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرا، لديك أجهزة عديدة مقترنة حاليا. حاول إلغاء إقران بعضهم...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرا، الرابط غير صحيح.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة سيجنال</string>
@@ -509,6 +517,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">صورة</string>
   <string name="attachment_type_selector__audio">صوت</string>
@@ -673,11 +683,11 @@
   <string name="registration_progress_activity__call_me">أتصل بي</string>
   <string name="registration_progress_activity__edit_number">تعديل الرقم</string>
   <string name="registration_progress_activity__connectivity_error">خطأ في الاتصال</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-سيجنال غير قادر على الاتصال بخدمة دفع الوصول إلى الرسائل.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">لم يتمكن سيجنال من الاتصال بالخادم.</string>
   <string name="registration_progress_activity__some_possible_problems_include">بعض المشاكل 
 المحتملة وتتضمن:</string>
   <string name="registration_progress_activity__no_network_connectivity">لا يوجد شبكة اتصال.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">الجهاز في حاجة إلى الاتصال بالإترنت من أجل استخدام هذه الخاصية من سيجنال. تأكد من الاتصال ببيانات شبكة الجوال أو Wi-Fi. </string>
   <string name="registration_progress_activity__restrictive_firewall">تقييد بواسطة جدار ناري.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
  إذا كنت متصل عبر Wi-Fi فإنه من الوارد وجود جدار ناري يمنع النفاذ إلى خادم سيجنال. قم بتجربة شبكة أخرى أو بيانات شبكة الجوال.</string>
@@ -720,8 +730,10 @@
   <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
   <string name="AndroidManifest__media_overview">جميع الصور</string>
   <string name="AndroidManifest__media_overview_named">جميع الصور مع %1$s</string>
+  <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
   <string name="AndroidManifest_manage_linked_devices">إدارة الأجهزة المقترنة</string>
   <string name="AndroidManifest__invite_friends">دعوة الأصدقاء</string>
+  <string name="AndroidManifeset_conversations_archive">أرشيف المحادثات</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد / تصدير</string>
   <string name="arrays__your_identity_key">متفاح الهوية الخاص بك</string>
@@ -889,11 +901,13 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">احذف المختار</string>
   <string name="conversation_list_batch__menu_select_all">اختر الكل</string>
+  <string name="conversation_list_batch__archive_selected">تم اختيار الأرشيف</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">بحث</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>
   <string name="conversation_list_item_view__error_alert">تنبيه بخطأ</string>
+  <string name="conversation_list_item_view__archived">الأرشيف</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">محادثة جديدة</string>
   <!--conversation_secure_verified-->
@@ -931,6 +945,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">أقفل</string>
   <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
   <string name="text_secure_normal__invite_friends">دعوة الأصدقاء</string>
+  <string name="text_secure_normal__help">مساعدة</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">لقد انتهت صلاحية هذه النسخة من سيجنال!</string>
   <string name="reminder_header_expired_build_details">رجاء التحديث لآخر إصداره من التطبيق. لن ترسل الرسائل بنجاح بعد الآن.</string>

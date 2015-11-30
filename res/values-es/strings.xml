@@ -163,6 +163,7 @@ Recibido:%4$s</string>
   <string name="ConversationListFragment_deleting_selected_threads">Eliminando conversaciones seleccionadas...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando predeterminado: %s</string>
@@ -202,14 +203,12 @@ Recibido:%4$s</string>
   <string name="ExportFragment_success">¡Éxito!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Fallo permanente de comunicación de Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal no pudo registrarse con Google Play Services. La comunicación sobre el canal de datos ha sido deshabilitada, por favor, intente volver a registrarse desde el menú de configuración de Signal.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nuevo grupo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nombre del grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nuevo grupo de MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Ha seleccionado un contacto que no soporta grupos de Signal, así que este grupo será de MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">No está registrado para usar el canal de datos, así que los grupos de Signal están deshabilitados.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Un error inesperado hizo fallar la creación del grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">¡Necesita al menos una persona en su grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Uno de los miembros de su grupo tiene un número que no puede ser leído correctamente. Por favor arréglelo o elimine ese contacto, e inténtelo de nuevo.</string>
@@ -683,8 +682,6 @@ Signal también puede llamarle para verificar su número. Pulse \'Llamarme\' e i
   <string name="registration_progress_activity__call_me">Llamarme</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>
   <string name="registration_progress_activity__connectivity_error">Fallo de conectividad.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal no pudo conectar con el servicio de actualización activa (push).</string>
   <string name="registration_progress_activity__some_possible_problems_include">Algunos posibles
 problemas son:
 

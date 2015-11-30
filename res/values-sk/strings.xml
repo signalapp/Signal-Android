@@ -116,6 +116,7 @@ identitu tohto kontaktu.
   <string name="ConversationListFragment_deleting_selected_threads">Mažú sa vybrané konverzácie...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používa sa upravené: %s</string>
   <string name="CustomDefaultPreference_using_default">Používa sa predvolené: %s</string>

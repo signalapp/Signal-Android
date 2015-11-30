@@ -160,8 +160,15 @@ Tem certeza que deseja fazer isto?</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Deletando</string>
   <string name="ConversationListFragment_deleting_selected_threads">Excluindo conversas selecionadas...</string>
+  <string name="ConversationListFragment_archived_conversations">Conversas arquivadas</string>
+  <string name="ConversationListFragment_undo">DESFAZER</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Conversa movida para a caixa de entrada</string>
+  <string name="ConversationListFragment_archived_conversation">Conversa arquivada</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversas movidas para a caixa de entrada</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando padrão: %s</string>
@@ -201,14 +208,14 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ExportFragment_success">Sucesso!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não conseguiu cadastrar-se com o Google Play Services. A comunicação pelo canal de dados foi desabilitada; tente recadastrar através do menu de configurações do Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não conseguiu cadastrar-se com o Google Play Services. Mensagens e chamadas Signal foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Novo grupo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Atualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome do grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Novo grupo MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Você selecionou um contato que não tem suporte a grupos Signal, então este grupo será de MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Você não está cadastrado para usar o canal de dados, então grupos Signal estão desabilitados.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Você não está cadastrado para usar mensagens e chamadas Signal, então grupos Signal estão desabilitados. Tente recadastrar em Configurações &gt; Avançado.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Um erro inesperado ocorreu e fez a criação do grupo falhar.</string>
   <string name="GroupCreateActivity_contacts_no_members">Você precisa de pelo menos uma pessoa no seu grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número que não pôde ser lido. Favor consertar ou remover esse contato e tentar novamente.</string>
@@ -263,6 +270,14 @@ Tem certeza que deseja fazer isto?</string>
   <string name="InviteActivity_heart_content_description">Coração</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">ENVIAR PARA 1 AMIGO</item>
+    <item quantity="other">ENVIAR PARA %d AMIGOS</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Enviar 1 convite SMS?</item>
+    <item quantity="other">Enviar %d convites SMS?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que você não tem apps para onde compartilhar.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amigos não deixam amigos conversar sem criptografia.</string>

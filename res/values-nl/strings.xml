@@ -153,8 +153,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Geselecteerde gesprekken aan het verwijderen...</string>
+  <string name="ConversationListFragment_archived_conversations">Gearchiveerde gesprekken</string>
+  <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Gesprek naar inbox verplaatst</string>
+  <string name="ConversationListFragment_archived_conversation">Gesprek gearchiveerd</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Gesprekken naar inbox verplaatst</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Gesprekken gearchiveerd (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Handmatig gebruiken: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard gebruiken: %s</string>
@@ -194,14 +201,14 @@
   <string name="ExportFragment_success">Succesvol!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanente Signal communicatiefout!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat zich bij Google Play services te registreren. Communicatie over het data kanaal is uitgeschakeld, probeer het opnieuw via het Signal instellingen menu.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat met Google Play services te registreren. Signal berichten en oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Geavanceerd.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
   <string name="GroupCreateActivity_actionbar_update_title">Groep bijwerken</string>
   <string name="GroupCreateActivity_group_name_hint">Groepsnaam</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe MMS-Groep</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Je bent niet geregistreerd om het datakanaal te gebruiken, dus Signal groepen zijn uitgeschakeld.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Je bent niet geregistreerd voor Signal berichten en oproepen, dus Signal groepen zijn uitgeschakeld. Registreren kan via Instellingen &gt; Geavanceerd.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Er is een onverwachte fout opgetreden waardoor het aanmaken van een groep is mislukt.</string>
   <string name="GroupCreateActivity_contacts_no_members">Je groep moet ten minste één persoon bevatten.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Het nummer van een van de leden van je groep kan niet goed worden gelezen. Corrigeer dit of verwijder deze persoon, en probeer het opnieuw.</string>
@@ -654,8 +661,7 @@ Signal kan je ook bellen om je nummer te verifiëren. Raak \'Bel Me\' aan en voe
   <string name="registration_progress_activity__call_me">Bel me</string>
   <string name="registration_progress_activity__edit_number">Nummer bewerken</string>
   <string name="registration_progress_activity__connectivity_error">Verbindingsfout.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal kon geen verbinding maken met de push service.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal kon geen verbinding maken met de server.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mogelijke problemen
 zijn:</string>
   <string name="registration_progress_activity__no_network_connectivity">Geen netwerkverbinding.</string>
@@ -704,8 +710,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
   <string name="AndroidManifest__media_overview_named">Alle afbeeldingen met %1$s</string>
   <string name="AndroidManifest__message_details">Berichtdetails</string>
-  <string name="AndroidManifest_manage_linked_devices">Beheer gekoppelde apparaten</string>
+  <string name="AndroidManifest_manage_linked_devices">Gekoppelde apparaten beheren</string>
   <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
+  <string name="AndroidManifeset_conversations_archive">Gesprekkenarchief</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__your_identity_key">Jouw identiteitssleutel</string>
@@ -869,11 +876,13 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Geselecteerde verwijderen</string>
   <string name="conversation_list_batch__menu_select_all">Alles selecteren</string>
+  <string name="conversation_list_batch__archive_selected">Selectie archiveren</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Zoeken</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto Contact</string>
   <string name="conversation_list_item_view__error_alert">Foutmelding</string>
+  <string name="conversation_list_item_view__archived">Gearchiveerd</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nieuw gesprek</string>
   <!--conversation_secure_verified-->

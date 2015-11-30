@@ -108,6 +108,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Бришење на избраните теми...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користејќи прилагодено: %s</string>
   <string name="CustomDefaultPreference_using_default">Користејќи стандардно: %s</string>

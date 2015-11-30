@@ -154,8 +154,15 @@ vérifier ce contact.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Suppression</string>
   <string name="ConversationListFragment_deleting_selected_threads">Suppression des fils sélectionnés…</string>
+  <string name="ConversationListFragment_archived_conversations">Conversations archivées</string>
+  <string name="ConversationListFragment_undo">ANNULER</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Conversation déplacée dans la boite de réception</string>
+  <string name="ConversationListFragment_archived_conversation">Conversation archivée</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversations déplacées dans la boite de réception</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Message d’échange des clés…</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Conversations déplacées (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé : %s</string>
   <string name="CustomDefaultPreference_using_default">Par défaut : %s</string>
@@ -195,14 +202,14 @@ vérifier ce contact.</string>
   <string name="ExportFragment_success">Réussite !</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec de communication Signal permanent !</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">La communication via le canal de données a été désactivée car Signal n\'a pas pu s\'enregistrer auprès de Google Play Services. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres de Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Les appels et messages Signal ont été désactivés car Signal n\'a pas pu s\'enregistrer auprès de Google Play Services. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres &gt; Avancé.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nouveau groupe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Mettre à jour le groupe</string>
   <string name="GroupCreateActivity_group_name_hint">Nom du groupe</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nouveau groupe MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui n\'a pas Signal, le groupe sera donc converti en groupe MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Vous n’êtes pas enregistré pour utiliser la transmission de données, les groupes Signal sont donc désactivés.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Vous n’êtes pas enregistré pour les appels et messages Signal, les groupes Signal sont donc désactivés. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres &gt; Avancé.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Une erreur inattendue s\'est produite, ce qui a empêché la création du groupe.</string>
   <string name="GroupCreateActivity_contacts_no_members">Il vous faut au moins une personne dans votre groupe !</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Un des membres de votre groupe a un numéro illisible. Veuillez réparer ou enlever ce contact et essayer à nouveau.</string>
@@ -240,7 +247,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="ImportFragment_no_encrypted_backup_found">Aucune sauvegarde chiffrée trouvée!</string>
   <string name="ImportFragment_restore_complete">Restauration terminée !</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Appuyez et tenez pour enregistrer un message vocal, relâchez pour envoyer.</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Appuyez et maintenez pour enregistrer un message vocal, relâchez pour envoyer.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partager</string>
   <string name="InviteActivity_send_sms">Envoyer un SMS</string>
@@ -251,7 +258,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="InviteActivity_invite_to_signal">Inviter sur Signal</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">ENVOYER À 1 AMI</item>
-    <item quantity="other">ENVOYER À %d AMI(E)(S)</item>
+    <item quantity="other">ENVOYER À %d AMIS</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Envoyer 1 invitation par SMS ?</item>
@@ -279,7 +286,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="NotificationBarManager__incoming_signal_call">Appel Signal entrant</string>
   <string name="NotificationBarManager__deny_call">Refuser l\'appel</string>
   <string name="NotificationBarManager__answer_call">Répondre à l\'appel</string>
-  <string name="NotificationBarManager__end_call">Arrêter l\'appel</string>
+  <string name="NotificationBarManager__end_call">Terminer l\'appel</string>
   <string name="NotificationBarManager__cancel_call">Annuler l\'appel</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Message multimédia</string>
@@ -301,8 +308,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUER</string>
   <string name="DeviceProvisioningActivity_title">Lier cet appareil ?</string>
   <string name="DeviceProvisioningActivity_content_intro">Il sera capable de</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-• Lire tous vos messages
+  <string name="DeviceProvisioningActivity_content_bullets">• Lire tous vos messages
 \n• Envoyer des messages en votre nom</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Association de l\'appareil</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Association du nouvel appareil...</string>
@@ -495,6 +501,8 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n\'est pas disponible lorsque Signal est verrouillé !</string>
   <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Nouveau Message!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Image</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -559,7 +567,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="device_link_fragment__link_device">Lier l\'appareil</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Aucun appareil associé...</string>
-  <string name="device_list_fragment__link_new_device">Lier le nouvel appareil</string>
+  <string name="device_list_fragment__link_new_device">Lier un nouvel appareil</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuer</string>
   <!--log_submit_activity-->
@@ -577,13 +585,13 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Mise à jour de la base de donnée...</string>
   <string name="export_fragment__export_plaintext_backup">Exporter une sauvegarde en clair</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter une sauvegarde en texte clair compatible avec «SMSBackup And Restore»</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter une sauvegarde en clair compatible avec «SMS Backup &amp; Restore»</string>
   <string name="import_fragment__import_system_sms_database">Importer la base de données SMS du système</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importer la base de données depuis l\'application SMS par défaut</string>
   <string name="import_fragment__restore_encrypted_backup">Restaurer sauvegarde chiffrée</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Restaurer une sauvegarde chiffrée précédemment avec Signal</string>
   <string name="import_fragment__import_plaintext_backup">Importer la sauvegarde en clair</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importer un fichier de sauvegarde en texte clair. Compatible avec «SMSBackup And Restore»</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importer un fichier de sauvegarde en clair. Compatible avec «SMS Backup &amp; Restore»</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Voir la conversation complète</string>
   <!--media_overview_activity-->
@@ -661,12 +669,12 @@ Signal peut aussi vous appeler pour vérifier votre numéro. Appuyez sur \'Appel
   <string name="registration_progress_activity__call_me">Appelez-Moi</string>
   <string name="registration_progress_activity__edit_number">Modifier le numéro</string>
   <string name="registration_progress_activity__connectivity_error">Erreur de connectivité.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal n\'a pas pu se connecter au service push.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal n\'a pas pu se connecter au serveur.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Certains des problèmes
 possibles sont:</string>
   <string name="registration_progress_activity__no_network_connectivity">Pas de connexion
 au réseau.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Votre appareil a besoin d\'une connectivité réseau pour pouvoir utiliser cette fonctionnalité Signal. Vérifiez qu\'il soit connecté à la 3G ou au Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Pare-feu restrictif.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Si vous êtes connectés au Wi-Fi, Il est possible qu\'un pare-feu bloque l\'accès
@@ -713,8 +721,10 @@ par SMS.</string>
   <string name="AndroidManifest__media_preview">Prévisualisation du média.</string>
   <string name="AndroidManifest__media_overview">Toutes les images</string>
   <string name="AndroidManifest__media_overview_named">Toutes les images avec %1$s</string>
+  <string name="AndroidManifest__message_details">Détails du message</string>
   <string name="AndroidManifest_manage_linked_devices">Gérer les appareils associés</string>
   <string name="AndroidManifest__invite_friends">Inviter des amis</string>
+  <string name="AndroidManifeset_conversations_archive">Archive des conversations</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / exporter</string>
   <string name="arrays__your_identity_key">Votre clé d\'identité</string>
@@ -724,7 +734,7 @@ par SMS.</string>
   <string name="arrays__mute_for_two_hours">Pendant 2 heures</string>
   <string name="arrays__mute_for_one_day">Pendant 1 jour</string>
   <string name="arrays__mute_for_seven_days">Pendant 7 jours</string>
-  <string name="arrays__mute_for_one_year">Mettre en silence pendant 1 an</string>
+  <string name="arrays__mute_for_one_year">Pendant 1 an</string>
   <string name="arrays__settings_default">Paramètres par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
@@ -878,11 +888,13 @@ par SMS.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Supprimer les lots sélectionnés</string>
   <string name="conversation_list_batch__menu_select_all">Tout sélectionner</string>
+  <string name="conversation_list_batch__archive_selected">Archive sélectionnée</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Chercher</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Photo de contact</string>
   <string name="conversation_list_item_view__error_alert">Alerte d\'erreur</string>
+  <string name="conversation_list_item_view__archived">Archivé</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nouvelle conversation</string>
   <!--conversation_secure_verified-->
@@ -920,6 +932,7 @@ par SMS.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Verrouiller</string>
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme lu</string>
   <string name="text_secure_normal__invite_friends">Inviter des amis</string>
+  <string name="text_secure_normal__help">Aide</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Votre version de Signal a expiré !</string>
   <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>

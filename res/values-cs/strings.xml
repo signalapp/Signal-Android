@@ -158,8 +158,15 @@ kontakt</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Mažu</string>
   <string name="ConversationListFragment_deleting_selected_threads">Mažu označené konverzace...</string>
+  <string name="ConversationListFragment_archived_conversations">Archivované konverzace</string>
+  <string name="ConversationListFragment_undo">ZPĚT</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Přesunuta konverzace do složky příchozích zpráv</string>
+  <string name="ConversationListFragment_archived_conversation">Archivovaná konverzace</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Přesunuty konverzace do složky příchozích zpráv</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Předávání klíčů...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Archivované konverzace (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
   <string name="CustomDefaultPreference_using_default">Používá se výchozí: %s</string>
@@ -199,14 +206,14 @@ kontakt</string>
   <string name="ExportFragment_success">Úspěšně dokončeno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nemůže registrovat k službě Google Play. Datová komunikace byla zakázána, prosím zkuste se znovu registrovat v menu nastavení Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Sginal se nemůže registrovat k službě Google Play. Zprávy a volání jsou proto zakázány: Prosím zkuste se znovu registrovat v menu Nastavení &gt; Rozšířené.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Upravit skupinu</string>
   <string name="GroupCreateActivity_group_name_hint">Název skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali jste kontakt</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Nejste zaregistrován k použití datové komunikace, takže jsou skupiny Signal zakázány.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nejste zaregistrován k použití Signalu pro zprávy a volání, takže jsou skupiny Signal zakázány. Prosím registrujte se v Nastavení &gt; Rozšířené</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Došlo k neočekávané chybě, která znemožnila vytvoření skupiny.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ve vaší skupině musí být alespoň jeden kontakt.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členů Vaší skupiny má číslo, které se nedaří správně zpracovat. Prosím opravte jej nebo odstraňte a zkuste znovu.</string>
@@ -662,8 +669,7 @@ Je možné také použít telefonní ověření. Signal vám může zavolat a ov
   <string name="registration_progress_activity__call_me">Zavolej mi</string>
   <string name="registration_progress_activity__edit_number">Upravit číslo</string>
   <string name="registration_progress_activity__connectivity_error">Chyba připojení.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal se nemůže připojit ke službe push.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal se nemůže připojit k serveru.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Příčiny mohou být:</string>
   <string name="registration_progress_activity__no_network_connectivity">Není připojení
         k síti.
@@ -721,6 +727,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
   <string name="AndroidManifest_manage_linked_devices">Spravovat provázaná zařízení</string>
   <string name="AndroidManifest__invite_friends">Pozvat přátele</string>
+  <string name="AndroidManifeset_conversations_archive">Archiv konverzací</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__your_identity_key">Váš identifikační klíč</string>
@@ -756,7 +763,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__input_settings">Nastavení vstupu</string>
   <string name="preferences__enable_enter_key_title">Používat Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Nahradit klávesu smajlík klávesou enter</string>
-  <string name="preferences__pref_enter_sends_title">Klávesa \'Enter\' odesílá</string>
+  <string name="preferences__pref_enter_sends_title">Klávesa Enter odesílá</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka \'enter\' na klávesnici odešle zprávu</string>
   <string name="preferences__display_settings">Nastavení zobrazení</string>
   <string name="preferences__choose_identity">Zvolit identitu</string>
@@ -885,11 +892,13 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Smazat označené</string>
   <string name="conversation_list_batch__menu_select_all">Označit vše</string>
+  <string name="conversation_list_batch__archive_selected">Vybrán archiv</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Hledat</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Fotografie kontaktu</string>
   <string name="conversation_list_item_view__error_alert">Upozornění na chybu</string>
+  <string name="conversation_list_item_view__archived">Archivováno</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzace</string>
   <!--conversation_secure_verified-->

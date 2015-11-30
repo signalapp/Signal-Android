@@ -153,8 +153,15 @@ questo contatto.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Eliminazione</string>
   <string name="ConversationListFragment_deleting_selected_threads">Eliminazione delle conversazioni selezionate...</string>
+  <string name="ConversationListFragment_archived_conversations">Conversazioni archiviate</string>
+  <string name="ConversationListFragment_undo">ANNULLA</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Sposta la conversazione nei messaggi in arrivo</string>
+  <string name="ConversationListFragment_archived_conversation">Conversazione archiviata</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Sposta le conversazioni nei messaggi in arrivo</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Messaggio di scambio della chiave...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Conversazioni archiviate (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Utilizzo di personalizzato: %s</string>
   <string name="CustomDefaultPreference_using_default">Utilizzo di predefinito: %s</string>
@@ -194,14 +201,12 @@ questo contatto.</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal non è stato in grandi di registrarsi con i Google Play Services. La comunicazione via internet è stata disabilitata, ti preghiamo di registrarti nuovamente dal menu delle impostazioni.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nuovo gruppo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aggiorna gruppo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome del gruppo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nuovo gruppo MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Hai selezionato un contatto che non supporta i gruppi di Signal, quindi questo gruppo sarà via MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Non sei registrato per usare i dati internet, quindi i gruppi di Signal sono disabilitati.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Si è verificato un errore inatteso e la creazione del gruppo è fallito.</string>
   <string name="GroupCreateActivity_contacts_no_members">Il tuo gruppo deve contenere almeno una persona!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Uno dei membri del tuo gruppo ha un numero che non può essere letto correttamente. Sistema o rimuovi quel contatto e prova di nuovo.</string>
@@ -240,6 +245,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="ImportFragment_no_encrypted_backup_found">Nessuna copia cifrata trovata!</string>
   <string name="ImportFragment_restore_complete">Ripristino completato!</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tieni premuto per registrare un messaggio vocale, rilascia per inviare</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Condividi</string>
   <string name="InviteActivity_send_sms">Invia SMS</string>
@@ -661,8 +667,7 @@ Signal non funziona con i numeri Google Voice</string>
   <string name="registration_progress_activity__call_me">Chiamami</string>
   <string name="registration_progress_activity__edit_number">Modifica numero</string>
   <string name="registration_progress_activity__connectivity_error">Errore di connessione.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal non è stato in grado di connettersi al servizio push.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal non è in grado di connettersi al server.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Alcuni possibili
         problemi includono:
     </string>
@@ -721,6 +726,7 @@ non riuscita.
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
   <string name="AndroidManifest_manage_linked_devices">Gestisci dispositivi collegati</string>
   <string name="AndroidManifest__invite_friends">Invita amici</string>
+  <string name="AndroidManifeset_conversations_archive">Archivio conversazioni</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__your_identity_key">Chiave della tua identità</string>
@@ -884,11 +890,13 @@ non riuscita.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Elimina selezionati</string>
   <string name="conversation_list_batch__menu_select_all">Seleziona tutto</string>
+  <string name="conversation_list_batch__archive_selected">Archivia queste conversazioni</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cerca</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contatto</string>
   <string name="conversation_list_item_view__error_alert">Messaggio di errore</string>
+  <string name="conversation_list_item_view__archived">Archiviate</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nuova conversazione</string>
   <!--conversation_secure_verified-->

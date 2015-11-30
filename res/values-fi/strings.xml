@@ -160,8 +160,15 @@ Vastaanotettu: %4$s</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Poistetaan</string>
   <string name="ConversationListFragment_deleting_selected_threads">Valittuja keskusteluja poistetaan...</string>
+  <string name="ConversationListFragment_archived_conversations">Arkistoidut keskustelut</string>
+  <string name="ConversationListFragment_undo">KUMOA</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Keskustelu siirretty postilaatikkoon</string>
+  <string name="ConversationListFragment_archived_conversation">Keskustelu arkistoitu</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Keskustelut siirretty postilaatikkoon</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arkistoidut keskustelut (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
   <string name="CustomDefaultPreference_using_default">Käytä oletusta: %s</string>
@@ -201,14 +208,14 @@ Vastaanotettu: %4$s</string>
   <string name="ExportFragment_success">Onnistui!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pysyvä Signal-yhteysvirhe!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei voinut rekisteröityä Google Play Services -palveluun, minkä vuoksi viestintä tietoverkon kautta on nyt otettu pois käytöstä. Kokeile rekisteröityä uudelleen Signalin asetuksista.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei voinut rekisteröityä Google Play Services -palveluun, minkä vuoksi Signal-viestit ja puhelut ovat otettu pois käytöstä. Kokeile rekisteröityä uudelleen Signalin lisäasetuksista.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Uusi ryhmä</string>
   <string name="GroupCreateActivity_actionbar_update_title">Päivitä ryhmää</string>
   <string name="GroupCreateActivity_group_name_hint">Ryhmän nimi</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Uusi MMS-ryhmä</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Olet valinnut yhteystiedon, joka ei tue Signalin ryhmäkeskusteluja. Tämä ryhmä tulee olemaan MMS-pohjainen.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Et ole rekisteröitynyt käyttämään tietoverkkovälitteistä viestintää, joten Signalin ryhmäkeskustelut ovat poissa käytöstä.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Et ole rekisteröitynyt Signal-viesteihin ja -puheluihin, joten Signalin ryhmäkeskustelut eivät ole käytettävissä. Kokeile rekisteröityä Signalin lisäasetuksista.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ryhmän luonti epäonnistui odottamattoman virheen takia.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ryhmässä täytyy olla vähintään yksi henkilö!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Yhdellä ryhmän jäsenistä on puhelinnumero, jota ei voida lukea. Ole hyvä ja korjaa tämän henkilön yhteystiedot tai poista hänet ryhmästä ja yritä uudelleen.</string>
@@ -666,8 +673,7 @@ Signal voi myös soittaa sinulle numerosi vahvistamiseksi. Napsauta \"Soita minu
   <string name="registration_progress_activity__call_me">Soita minulle</string>
   <string name="registration_progress_activity__edit_number">Muokkaa numeroa</string>
   <string name="registration_progress_activity__connectivity_error">Yhteysvirhe.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal ei saanut yhteyttä pikaviestipalveluun.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal ei saanut yhteyttä palvelimeen.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mahdollisiin ongelmiin
 sisältyvät:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ei verkkoyhteyttä.</string>
@@ -719,6 +725,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="AndroidManifest__message_details">Viestin tiedot</string>
   <string name="AndroidManifest_manage_linked_devices">Hallitse yhdistettyjä laitteita</string>
   <string name="AndroidManifest__invite_friends">Kutsu ystäviä</string>
+  <string name="AndroidManifeset_conversations_archive">Keskusteluarkisto</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Varmuuskopiot</string>
   <string name="arrays__your_identity_key">Identiteettiavaimesi</string>
@@ -882,11 +889,13 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Poista valitut</string>
   <string name="conversation_list_batch__menu_select_all">Valitse kaikki</string>
+  <string name="conversation_list_batch__archive_selected">Arkistoi valitut</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Hae</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Yhteystiedon kuva</string>
   <string name="conversation_list_item_view__error_alert">Virheilmoituksen hälytys</string>
+  <string name="conversation_list_item_view__archived">Arkistoitu</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Uusi keskustelu</string>
   <!--conversation_secure_verified-->

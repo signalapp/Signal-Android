@@ -154,8 +154,15 @@ denne kontakten.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_threads">Sletter utvalgte tråder...</string>
+  <string name="ConversationListFragment_archived_conversations">Arkiverte samtaler</string>
+  <string name="ConversationListFragment_undo">Angre</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Samtale flyttet til innboks</string>
+  <string name="ConversationListFragment_archived_conversation">Arkivert samtale</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Samtalene flyttet til innboks</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtaler (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benytter egendefinert: %s</string>
   <string name="CustomDefaultPreference_using_default">Benytter standard: %s</string>
@@ -195,14 +202,14 @@ denne kontakten.</string>
   <string name="ExportFragment_success">Suksess!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonsfeil!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ikke i stand til å registerere hos Google Play Services. Kommunikasjon over datakanalen er skrudd av. Forsøk å registrere på nytt gjennom innstillingsmenyen i Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Sinal kunne ikke registrere seg med Google Play Tjenester. Signal meldinger og anrop er slått av, vennligst prøv å registrere på nytt i Innstillinger &gt; Avansert.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny gruppe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Oppdater gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontakt som ikke støtter Signal grupper, så dette vil bli en MMS gruppe.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Du har ikke registrert for å bruke data kanalen, så Signal grupper er deaktivert.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du er ikke registrert for å kunne bruke Signal meldinger og anrop, dermed er heller ikk Signal grupper tilgjengelig. Vennligst prøv å registrere i Instillinger &gt; Avansert. </string>
   <string name="GroupCreateActivity_contacts_mms_exception">En ukjent feil har ført til at gruppeopprettelsen feilet.</string>
   <string name="GroupCreateActivity_contacts_no_members">Du må ha minst en person i gruppen din!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av gruppemedlemmene har et nummer som ikke kan tolkes. Vær vennlig og korriger eller slett kontakten og prøv igjen. </string>
@@ -655,8 +662,7 @@ Signal kan også ringe deg for å verisifere nummeret ditt. Trykk \'Ring meg\' o
   <string name="registration_progress_activity__call_me">Ring meg</string>
   <string name="registration_progress_activity__edit_number">Endre nummer</string>
   <string name="registration_progress_activity__connectivity_error">Tilkoblingsfeil.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal var ikke i stand til å opprette en forbindelse til \'push\' tjenesten.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal kunne ikke koble seg til serveren.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Noen mulige 
 problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen nettverksforbindelse.</string>
@@ -708,6 +714,7 @@ feilet.</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Administrer tilkoblede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
+  <string name="AndroidManifeset_conversations_archive">Samtale-arkiv</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importere / eksportere</string>
   <string name="arrays__your_identity_key">Din ID-nøkkel</string>
@@ -871,11 +878,13 @@ feilet.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slett merkede</string>
   <string name="conversation_list_batch__menu_select_all">Merk alt</string>
+  <string name="conversation_list_batch__archive_selected">Arkiv valgt</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Søk</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbilde</string>
   <string name="conversation_list_item_view__error_alert">Varsel om feil</string>
+  <string name="conversation_list_item_view__archived">Arkivert</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <!--conversation_secure_verified-->

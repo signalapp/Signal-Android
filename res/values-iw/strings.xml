@@ -157,8 +157,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">מוחק</string>
   <string name="ConversationListFragment_deleting_selected_threads">מוחק שרשורים שנבחרו...</string>
+  <string name="ConversationListFragment_archived_conversations">שיחות גנוזות</string>
+  <string name="ConversationListFragment_undo">ביטול</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">העברת שיחות לדואר נכנס</string>
+  <string name="ConversationListFragment_archived_conversation">שיחה גנוזה</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">הועברו שיחות לדואר נכנס</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">שיחות גנוזות (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">משתמש בהגדרה מותאמת אישית: %s</string>
   <string name="CustomDefaultPreference_using_default">משמש הערך ההתחלתי: %s</string>
@@ -198,14 +205,14 @@
   <string name="ExportFragment_success">זה עבד!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">כישלון קבוע בתקשורת סיגנל!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">סיגנל לא הצליח להירשם עם שירותי Google Play. תקשורת דרך ערוץ נתונים כובתה, נא לנסות להירשם מחדש דרך תפריט ההגדרות של סיגנל.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">סיגנל לא הצליח להירשם בשירותי גוגל Play. מסרים ושיחות של סיגנל כובו, נא לנסות להירשם שוב בהגדרות &lt; מתקדם.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">קבוצה חדשה</string>
   <string name="GroupCreateActivity_actionbar_update_title">עדכון קבוצה</string>
   <string name="GroupCreateActivity_group_name_hint">שם הקבוצה</string>
   <string name="GroupCreateActivity_actionbar_mms_title">קבוצת MMS חדשה</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">בחרת איש קשר שאינו תומך בקבוצות סיגנל, אז הקבוצה הזאת תהיה מסוג MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">לא נרשמת לשימוש בערוץ נתונים, אז קבוצות סיגנל כבויות.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">לא נרשמת למסרים ושיחות של סיגנל, אז קבוצות סיגנל כבויות. נא לנסות להירשם שוב בהגדרות &lt; מתקדם.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">אירעה שגיאה בלתי־צפויה שבגללה יצירת הקבוצה נכשלה.</string>
   <string name="GroupCreateActivity_contacts_no_members">צריך להיות לפחות אדם אחד בקבוצה הזאת!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">לאחד החברים בקבוצה שלך יש מספר שאי־אפשר לקרוא נכון. נא לתקן את זה או להסיר את איש הקשר הזה ולנסות שוב.</string>
@@ -503,6 +510,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תשובה מהירה אינה זמינה כשסיגנל נעול!</string>
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת מסר!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">סיגנל</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">מסר חדש!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">תמונה</string>
   <string name="attachment_type_selector__audio">קול</string>
@@ -643,7 +652,7 @@
 ומספר הטלפון</string>
   <string name="registration_activity__phone_number">מספר הטלפון</string>
   <string name="registration_activity__register">רישום</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">הרישום שולח פרטי קשרמ מסוימים לשרת. הם לא יישמרו.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">הרישום שולח פרטי קשר מסוימים לשרת. הם לא יישמרו.</string>
   <string name="registration_activity__powered_by_twilio">מופעל באמצעות טוויליו</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">בעיות אפשריות
@@ -669,24 +678,24 @@
   <string name="registration_progress_activity__call_me">התקשרו אליי</string>
   <string name="registration_progress_activity__edit_number">עריכת המספר</string>
   <string name="registration_progress_activity__connectivity_error">שגיאת קישוריות.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-סיגנל לא הצליח להתחבר לשירות דחיפה.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">סיגנל לא הצליח להתחבר לשרת.</string>
   <string name="registration_progress_activity__some_possible_problems_include">בעיות
 אפשריות:</string>
   <string name="registration_progress_activity__no_network_connectivity">אין קישורית
 רשת.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">במכשיר שלך צריכה לעבוד קישוריות רשת כדי להשתמש ביכולת הזאת של סיגנל. נא לבדוק שהוא מחובר לנתונים ניידים או לווייפיי.</string>
   <string name="registration_progress_activity__restrictive_firewall">חומת־אש מגבילה.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 אם התחברת דרך וייפיי, ייתכן שיש חומת־אש שחוסמת את הגישה
 לשרת סיגנל. נא לנסות רשת אחרת או להפעיל נתונים ניידים.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-מעכשין סיגנל יאמת את המספר שלך אוטומטית עם SMS.</string>
+סיגנל יאמת עכשיו את המספר שלך אוטומטית באמצעות SMS.</string>
   <string name="registration_progress_activity__connecting">מתחבר...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">ממתין
 לאימות SMS...</string>
   <string name="registration_progress_activity__registering_with_server">נרשם בשרת...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">זה
-יכול לקחת רגע. נא להמתיןם בסבלנות, אנחנו נודיע לך כשהאימות יושלם.</string>
+יכול לקחת רגע. נא להמתין בסבלנות, אנחנו נודיע לך כשהאימות יושלם.</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
 בסיגנל פג הזמן להמתנה לאימות SMS.</string>
   <string name="registration_progress_activity__sms_verification_failed">אימות SMS
@@ -721,8 +730,10 @@
   <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
   <string name="AndroidManifest__media_overview">כל התמונות</string>
   <string name="AndroidManifest__media_overview_named">כל התמונות עם %1$s</string>
+  <string name="AndroidManifest__message_details">פרטי מסר</string>
   <string name="AndroidManifest_manage_linked_devices">ניהול מכשירים מקושרים</string>
   <string name="AndroidManifest__invite_friends">להזמין חברים</string>
+  <string name="AndroidManifeset_conversations_archive">גנזך שיחות</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ייבוא / ייצוא</string>
   <string name="arrays__your_identity_key">מפתח הזהות שלך</string>
@@ -886,11 +897,13 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">מחיקת נבחרים</string>
   <string name="conversation_list_batch__menu_select_all">לבחור הכוללבחור הכול</string>
+  <string name="conversation_list_batch__archive_selected">גנזך נבחר</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">חיפוש</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">צילום איש קשר</string>
   <string name="conversation_list_item_view__error_alert">התרעת על שגיאה</string>
+  <string name="conversation_list_item_view__archived">נגנז</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">שיחה חדשה</string>
   <!--conversation_secure_verified-->
@@ -928,6 +941,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">נעילה</string>
   <string name="text_secure_normal__mark_all_as_read">לסמן שקראתי את הכול</string>
   <string name="text_secure_normal__invite_friends">להזמין חברים</string>
+  <string name="text_secure_normal__help">עזרה</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">גרסת הסיגנל שלך פגה!</string>
   <string name="reminder_header_expired_build_details">מסרים לא יישלחו יותר כמו שצריך, נא לשדרג לגרסה החדשה ביותר.</string>
