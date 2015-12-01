@@ -172,18 +172,18 @@ public class ConversationListItem extends RelativeLayout
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.thumbnail);
       this.subjectView.setLayoutParams(subjectParams);
-      this.post(new ThumbnailPositioner(thumbnailView, archivedView, dateView));
+      this.post(new ThumbnailPositioner(thumbnailView, archivedView, deliveryStatusIndicator, dateView));
     } else {
       this.thumbnailView.setVisibility(View.GONE);
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
-      subjectParams.addRule(RelativeLayout.LEFT_OF, (thread.isArchived() ? R.id.archived : R.id.delivery_status));
+      subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.delivery_status);
       this.subjectView.setLayoutParams(subjectParams);
     }
   }
 
   private void setStatusIcons(ThreadRecord thread) {
-    if (!thread.isOutgoing() || thread.isArchived()) {
+    if (!thread.isOutgoing()) {
       deliveryStatusIndicator.setNone();
       alertView.setNone();
     } else if (thread.isFailed()) {
@@ -230,20 +230,24 @@ public class ConversationListItem extends RelativeLayout
 
     private final View thumbnailView;
     private final View archivedView;
+    private final View deliveryStatusView;
     private final View dateView;
 
-    public ThumbnailPositioner(View thumbnailView, View archivedView, View dateView) {
-      this.thumbnailView = thumbnailView;
-      this.archivedView  = archivedView;
-      this.dateView      = dateView;
+    public ThumbnailPositioner(View thumbnailView, View archivedView, View deliveryStatusView, View dateView) {
+      this.thumbnailView      = thumbnailView;
+      this.archivedView       = archivedView;
+      this.deliveryStatusView = deliveryStatusView;
+      this.dateView           = dateView;
     }
 
     @Override
     public void run() {
       LayoutParams thumbnailParams = (RelativeLayout.LayoutParams)thumbnailView.getLayoutParams();
 
-      if (archivedView.getVisibility() == View.VISIBLE && archivedView.getWidth() > dateView.getWidth()) {
-        thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.archived);
+      if (archivedView.getVisibility() == View.VISIBLE &&
+          (archivedView.getWidth() + deliveryStatusView.getWidth()) > dateView.getWidth())
+      {
+        thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.delivery_status);
       } else {
         thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.date);
       }
