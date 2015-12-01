@@ -319,9 +319,11 @@ public class ConversationItem extends LinearLayout
 
     dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, timestamp));
 
-    if      (messageRecord.isFailed())                     setFailedStatusIcons();
-    else if (messageRecord.isPendingInsecureSmsFallback()) setFallbackStatusIcons();
-    else {
+    if (messageRecord.isFailed()) {
+      setFailedStatusIcons();
+    } else if (messageRecord.isPendingInsecureSmsFallback()) {
+      setFallbackStatusIcons();
+    } else {
       alertView.setNone();
 
       if      (!messageRecord.isOutgoing()) deliveryStatusIndicator.setNone();
