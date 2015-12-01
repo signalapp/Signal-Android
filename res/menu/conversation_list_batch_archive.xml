@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/conversation_list_batch__archive_selected"
+    <item android:title="@string/conversation_list_batch_archive__menu_archive_selected"
           android:id="@+id/menu_archive_selected"
           android:icon="@drawable/ic_archive_white_24dp"
           app:showAsAction="always"/>
