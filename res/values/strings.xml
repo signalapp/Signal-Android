@@ -867,7 +867,7 @@
     <string name="AndroidManifest__change_passphrase">Change passphrase</string>
     <string name="AndroidManifest__verify_identity">Verify identity</string>
     <string name="AndroidManifest__log_submit">Submit debug logs</string>
-    <string name="AndroidManifest__media_preview">Media Preview</string>
+    <string name="AndroidManifest__media_preview">Media preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
     <string name="AndroidManifest__message_details">Message details</string>
@@ -1143,7 +1143,7 @@
     <string name="media_preview__save_title">Save</string>
 
     <!-- media_preview_activity -->
-    <string name="media_preview_activity__image_content_description">Image Preview</string>
+    <string name="media_preview_activity__image_content_description">Image preview</string>
 
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Refresh</string>
