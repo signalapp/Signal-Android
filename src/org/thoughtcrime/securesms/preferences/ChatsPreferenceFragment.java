@@ -77,7 +77,7 @@ public class ChatsPreferenceFragment extends PreferenceFragment {
       final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(getActivity());
       AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
-      builder.setMessage(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages,
+      builder.setMessage(getString(R.string.ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages,
                                    threadLengthLimit));
       builder.setPositiveButton(R.string.ApplicationPreferencesActivity_delete,
         new DialogInterface.OnClickListener() {

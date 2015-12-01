@@ -37,7 +37,7 @@
         android:entryValues="@array/pref_led_blink_pattern_values" />
 
     <CheckBoxPreference android:key="pref_key_inthread_notifications"
-                        android:title="@string/preferences__inthread_notifications"
+                        android:title="@string/preferences__in_conversation_notifications"
                         android:summary="@string/preferences__play_inthread_notifications"
                         android:dependency="pref_key_enable_notifications"
                         android:defaultValue="true" />

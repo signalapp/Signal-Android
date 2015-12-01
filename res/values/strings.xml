@@ -11,7 +11,7 @@
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
     <string name="ApplicationPreferencesActivity_messages_per_conversation">%s messages per conversation</string>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
-    <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Are you sure you would like to immediately trim all conversation threads to the %s most recent messages?</string>
+    <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">This will immediately trim all conversations to the %s most recent messages.</string>
     <string name="ApplicationPreferencesActivity_delete">Delete</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
     <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -173,7 +173,7 @@
         <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
-    <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads...</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected conversations...</string>
     <string name="ConversationListFragment_archived_conversations">Archived conversations</string>
     <string name="ConversationListFragment_undo">UNDO</string>
     <string name="ConversationListFragment_moved_conversation_to_inbox">Moved conversation to inbox</string>
@@ -945,7 +945,7 @@
     <string name="preferences__sound">Sound</string>
     <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__silent">Silent</string>
-    <string name="preferences__inthread_notifications">In-thread notifications</string>
+    <string name="preferences__in_conversation_notifications">In-conversation notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation</string>
     <string name="preferences__repeat_alerts">Repeat alerts</string>
     <string name="preferences__never">Never</string>
@@ -983,12 +983,12 @@
     <string name="preferences__mmsc_password">MMSC Password</string>
     <string name="preferences__sms_delivery_reports">SMS delivery reports</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
-    <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automatically delete older messages once a conversation thread exceeds a specified length</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatically delete older messages once a conversation exceeds a specified length</string>
     <string name="preferences__delete_old_messages">Delete old messages</string>
     <string name="preferences__chats">Chats and media</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
-    <string name="preferences__trim_all_threads_now">Trim all threads now</string>
-    <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Scan through all conversation threads and enforce conversation length limits</string>
+    <string name="preferences__trim_all_conversations_now">Trim all conversations now</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan through all conversations and enforce conversation length limits</string>
     <string name="preferences__devices">Devices</string>
     <string name="preferences__light_theme">Light</string>
     <string name="preferences__dark_theme">Dark</string>
