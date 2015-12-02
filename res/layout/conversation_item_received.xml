@@ -75,7 +75,6 @@
                     android:textColor="?conversation_item_received_text_primary_color"
                     android:textColorLink="?conversation_item_received_text_primary_color"
                     android:textSize="@dimen/conversation_item_body_text_size"
-                    android:autoLink="all"
                     android:linksClickable="true" />
 
             <LinearLayout android:id="@+id/mms_download_controls"
