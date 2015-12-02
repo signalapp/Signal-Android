@@ -511,6 +511,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             intent.putExtra("profile_name", getSupportActionBar().getTitle());
         }
         intent.putExtra("profile_number", gDataPreferences.getE164Number());
+        gDataPreferences.hasProfileImageChanged(false);
         startActivity(intent);
     }
 

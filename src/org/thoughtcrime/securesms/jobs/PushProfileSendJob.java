@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -37,6 +38,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
@@ -117,16 +119,32 @@ public class PushProfileSendJob extends PushSendJob implements InjectableType {
       byte[] buf = new byte[size];
       int len = inputStream.read(buf, 0, size);
 
-      attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
-              + new GDataPreferences(context).getCurrentColorHex()
-              + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len));
+      GDataPreferences pr = new GDataPreferences(context);
+      boolean imageHasChanged = pr.hasProfileImageChanged();
+      boolean oldVersion = pr.getVersionForProfileId(GUtil.numberToLong(destination)+"").equals(ProfileAccessor.OLD_VERSION);
 
-      TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()
-              .withBody(body)
-              .withAttachments(attachments)
-              .withTimestamp(message.getSentTimestamp())
-              .asProfileUpdate(asProfileUpdate)
-              .build();
+      if(!oldVersion) {
+        if (!imageHasChanged) {
+          attachments.clear();
+        }
+        attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
+                + new GDataPreferences(context).getCurrentColorHex()
+                + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len));
+
+        attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_VERSION
+                + GUtil.getAppVersionCode(context)
+                + ProfileAccessor.TAG_CLOSE_PROFILE_VERSION, len));
+      } else {
+        attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
+                + new GDataPreferences(context).getCurrentColorHex()
+                + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len));
+      }
+      TextSecureMessage mediaMessage = TextSecureMessage.newBuilder()
+                .withBody(body)
+                .withAttachments(attachments)
+                .withTimestamp(message.getSentTimestamp())
+                .asProfileUpdate(asProfileUpdate)
+                .build();
 
       messageSender.sendMessage(address, mediaMessage);
     } catch (InvalidNumberException | UnregisteredUserException e) {

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
@@ -71,7 +73,16 @@ public class GUtil {
       Intent intent = new Intent(ACTION_RELOAD_HEADER);
       LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
     }
-  }
+  }public static int getAppVersionCode(Context context) {
+        try {
+            PackageInfo packageInfo = context.getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0);
+            return packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            // should never happen
+            throw new RuntimeException("Could not get package name: " + e);
+        }
+    }
   public static Uri saveBitmapAndGetNewUri(Activity activity, String tag, Uri url)
   {
     File cacheDir;
@@ -644,5 +655,10 @@ public class GUtil {
      */
     public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
+    public static String getValueForTags(String content, String tagOpen, String tagClose) {
+        int startPosition = content.indexOf(tagOpen) + tagOpen.length();
+        int endPosition = content.indexOf(tagClose, startPosition);
+        return content.substring(startPosition, endPosition);
     }
 }

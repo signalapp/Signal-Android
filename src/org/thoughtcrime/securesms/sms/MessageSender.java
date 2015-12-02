@@ -204,7 +204,6 @@ public class MessageSender {
   }
 
   private static void sendMms(Context context, long messageId) {
-    Log.d("MYLOG", "sendMMS");
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     jobManager.add(new MmsSendJob(context, messageId));
   }
