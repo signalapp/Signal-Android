@@ -208,6 +208,7 @@
     <string name="DeviceListItem_unnamed_device">Unnamed device</string>
     <string name="DeviceListItem_linked_s">Linked %s</string>
     <string name="DeviceListItem_last_active_s">Last active %s</string>
+    <string name="DeviceListItem_today">Today</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>

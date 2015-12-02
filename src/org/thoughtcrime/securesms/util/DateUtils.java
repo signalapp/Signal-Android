@@ -87,7 +87,7 @@ public class DateUtils extends android.text.format.DateUtils {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 
     if (simpleDateFormat.format(System.currentTimeMillis()).equals(simpleDateFormat.format(timestamp))) {
-      return "Today";
+      return context.getString(R.string.DeviceListItem_today);
     } else {
       String format;
 
