@@ -30,6 +30,7 @@ import org.whispersystems.textsecure.api.messages.multidevice.DeviceInfo;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -43,10 +44,17 @@ public class DeviceListFragment extends ListFragment
   @Inject
   TextSecureAccountManager accountManager;
 
-  private View empty;
+  private Locale                 locale;
+  private View                   empty;
   private View                   progressContainer;
-  private FloatingActionButton addDeviceButton;
+  private FloatingActionButton   addDeviceButton;
   private Button.OnClickListener addDeviceButtonListener;
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    this.locale = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
+  }
 
   @Override
   public void onAttach(Activity activity) {
@@ -94,7 +102,7 @@ public class DeviceListFragment extends ListFragment
       return;
     }
 
-    setListAdapter(new DeviceListAdapter(getActivity(), R.layout.device_list_item_view, data));
+    setListAdapter(new DeviceListAdapter(getActivity(), R.layout.device_list_item_view, data, locale));
 
     if (data.isEmpty()) {
       empty.setVisibility(View.VISIBLE);
@@ -171,11 +179,13 @@ public class DeviceListFragment extends ListFragment
 
   private static class DeviceListAdapter extends ArrayAdapter<DeviceInfo> {
 
-    private final int resource;
+    private final int    resource;
+    private final Locale locale;
 
-    public DeviceListAdapter(Context context, int resource, List<DeviceInfo> objects) {
+    public DeviceListAdapter(Context context, int resource, List<DeviceInfo> objects, Locale locale) {
       super(context, resource, objects);
       this.resource = resource;
+      this.locale = locale;
     }
 
     @Override
@@ -184,7 +194,7 @@ public class DeviceListFragment extends ListFragment
         convertView = ((Activity)getContext()).getLayoutInflater().inflate(resource, parent, false);
       }
 
-      ((DeviceListItem)convertView).set(getItem(position));
+      ((DeviceListItem)convertView).set(getItem(position), locale);
 
       return convertView;
     }

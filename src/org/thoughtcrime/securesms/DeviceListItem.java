@@ -34,18 +34,18 @@ public class DeviceListItem extends LinearLayout {
     this.lastActive = (TextView) findViewById(R.id.active);
   }
 
-  public void set(DeviceInfo deviceInfo) {
+  public void set(DeviceInfo deviceInfo, Locale locale) {
     if (TextUtils.isEmpty(deviceInfo.getName())) this.name.setText(R.string.DeviceListItem_unnamed_device);
     else                                         this.name.setText(deviceInfo.getName());
 
     this.created.setText(getContext().getString(R.string.DeviceListItem_linked_s,
                                                 DateUtils.getDayPrecisionTimeSpanString(getContext(),
-                                                                                        Locale.getDefault(),
+                                                                                        locale,
                                                                                         deviceInfo.getCreated())));
 
     this.lastActive.setText(getContext().getString(R.string.DeviceListItem_last_active_s,
                                                    DateUtils.getDayPrecisionTimeSpanString(getContext(),
-                                                                                           Locale.getDefault(),
+                                                                                           locale,
                                                                                            deviceInfo.getLastSeen())));
 
     this.deviceId = deviceInfo.getId();
