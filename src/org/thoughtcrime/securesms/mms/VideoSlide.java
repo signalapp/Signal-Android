@@ -39,7 +39,7 @@ public class VideoSlide extends Slide {
   }
 
   public VideoSlide(Context context, Attachment attachment) {
-    super(context, attachment);
+    super(context, attachment, true, false, true);
   }
 
   @Override
@@ -56,16 +56,6 @@ public class VideoSlide extends Slide {
   @Override
   public @DrawableRes int getPlaceholderRes(Theme theme) {
     return ResUtil.getDrawableRes(theme, R.attr.conversation_icon_attach_video);
-  }
-
-  @Override
-  public boolean hasImage() {
-    return true;
-  }
-
-  @Override
-  public boolean hasVideo() {
-    return true;
   }
 
   @NonNull @Override public String getContentDescription() {

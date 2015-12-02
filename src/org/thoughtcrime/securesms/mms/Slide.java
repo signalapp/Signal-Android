@@ -37,10 +37,21 @@ public abstract class Slide {
   protected final Attachment attachment;
   protected final Context    context;
 
+  private boolean hasImage;
+  private boolean hasAudio;
+  private boolean hasVideo;
+
   public Slide(@NonNull Context context, @NonNull Attachment attachment) {
+    this(context, attachment, false, false, false);
+  }
+
+  public Slide(@NonNull Context context, @NonNull Attachment attachment,
+               boolean hasImage, boolean hasAudio, boolean hasVideo) {
     this.context    = context;
     this.attachment = attachment;
-
+    this.hasImage = hasImage;
+    this.hasAudio = hasAudio;
+    this.hasVideo = hasVideo;
   }
 
   public String getContentType() {
@@ -58,15 +69,15 @@ public abstract class Slide {
   }
 
   public boolean hasImage() {
-    return false;
+    return hasImage;
   }
 
   public boolean hasVideo() {
-    return false;
+    return hasVideo;
   }
 
   public boolean hasAudio() {
-    return false;
+    return hasAudio;
   }
 
   public @NonNull String getContentDescription() { return ""; }

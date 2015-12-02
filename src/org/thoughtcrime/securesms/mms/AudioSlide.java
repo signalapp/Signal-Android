@@ -37,7 +37,8 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class AudioSlide extends Slide {
 
   public AudioSlide(Context context, Uri uri, long dataSize) throws IOException {
-    super(context, constructAttachmentFromUri(context, uri, ContentType.AUDIO_UNSPECIFIED, dataSize));
+    super(context, constructAttachmentFromUri(context, uri, ContentType.AUDIO_UNSPECIFIED, dataSize),
+            true, true, false);
   }
 
   public AudioSlide(Context context, Uri uri, long dataSize, String contentType) {
@@ -56,16 +57,6 @@ public class AudioSlide extends Slide {
 
   @Override
   public boolean hasPlaceholder() {
-    return true;
-  }
-
-  @Override
-  public boolean hasImage() {
-    return true;
-  }
-
-  @Override
-  public boolean hasAudio() {
     return true;
   }
 
