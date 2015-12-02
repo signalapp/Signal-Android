@@ -20,6 +20,7 @@ import android.content.Context;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -51,7 +52,7 @@ public class NotificationMmsMessageRecord extends MessageRecord {
                                       long expiry, int status, byte[] transactionId, long mailbox)
   {
     super(context, id, new Body("", true), recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, receiptCount, mailbox,
+          dateSent, dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox,
           new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>());
 
     this.contentLocation = contentLocation;

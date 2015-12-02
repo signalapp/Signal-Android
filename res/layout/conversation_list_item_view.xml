@@ -44,24 +44,25 @@
                   android:ellipsize="end"
                   android:drawablePadding="5dp"/>
 
-        <ImageView android:id="@+id/error"
-                   android:layout_height="20dp"
-                   android:layout_width="20dp"
-                   android:layout_alignParentLeft="true"
-                   android:layout_below="@id/from"
-                   android:paddingBottom="3dp"
-                   android:visibility="gone"
-                   tools:visibility="visible"
-                   android:src="@drawable/ic_action_warning_red"
-                   android:contentDescription="@string/conversation_list_item_view__error_alert" />
+        <org.thoughtcrime.securesms.components.AlertView
+                android:id="@+id/indicators_parent"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:paddingTop="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/from"
+                app:useSmallIcon="true"
+                android:visibility="gone"
+                tools:visibility="visible"/>
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/subject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/from"
-                android:layout_toRightOf="@id/error"
-                android:layout_toLeftOf="@+id/archived"
+                android:layout_toRightOf="@id/indicators_parent"
+                android:layout_toLeftOf="@+id/delivery_status"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?attr/conversation_list_item_subject_color"
                 android:fontFamily="sans-serif-light"
@@ -111,6 +112,14 @@
                   android:textSize="12sp"
                 />
 
+        <org.thoughtcrime.securesms.components.DeliveryStatusView
+                  android:id="@+id/delivery_status"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/date"
+                  android:layout_toLeftOf="@+id/archived"
+                  android:layout_alignWithParentIfMissing="true"
+                  app:iconColor="?attr/conversation_list_item_subject_color"/>
 
     </RelativeLayout>
 </org.thoughtcrime.securesms.ConversationListItem>

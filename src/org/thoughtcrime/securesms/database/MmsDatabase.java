@@ -214,6 +214,7 @@ public class MmsDatabase extends MessagingDatabase {
                                  RECEIPT_COUNT + " = " + RECEIPT_COUNT + " + 1 WHERE " + ID + " = ?",
                                  new String[] {String.valueOf(id)});
 
+                DatabaseFactory.getThreadDatabase(context).update(threadId, false);
                 notifyConversationListeners(threadId);
               }
             } catch (InvalidNumberException e) {
@@ -337,6 +338,8 @@ public class MmsDatabase extends MessagingDatabase {
     db.execSQL("UPDATE " + TABLE_NAME +
                    " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
                    " WHERE " + ID + " = ?", new String[] {id + ""});
+
+    DatabaseFactory.getThreadDatabase(context).update(getThreadIdForMessage(id), false);
   }
 
   public void markAsOutbox(long messageId) {
