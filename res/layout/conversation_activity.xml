@@ -12,11 +12,10 @@
         android:id="@+id/quick_attachment_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:clipToPadding="false"
-        android:clipChildren="false">
+        android:orientation="vertical">
 
-    <LinearLayout android:layout_width="match_parent"
+    <LinearLayout android:id="@+id/conversation_container"
+                  android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical"
                   android:paddingTop="?attr/actionBarSize"

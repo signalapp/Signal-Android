@@ -76,7 +76,20 @@ public class MediaUtil {
       final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
       type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
-    return type;
+    return getCorrectedMimeType(type);
+  }
+
+  public static @Nullable String getCorrectedMimeType(@Nullable String mimeType) {
+    if (mimeType == null) return null;
+
+    switch(mimeType) {
+    case "image/jpg":
+      return MimeTypeMap.getSingleton().hasMimeType(ContentType.IMAGE_JPEG)
+             ? ContentType.IMAGE_JPEG
+             : mimeType;
+    default:
+      return mimeType;
+    }
   }
 
   public static long getMediaSize(Context context, MasterSecret masterSecret, Uri uri) throws IOException {

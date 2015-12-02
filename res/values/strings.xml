@@ -174,9 +174,17 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
     <string name="ConversationListFragment_deleting_selected_threads">Deleting selected threads...</string>
+    <string name="ConversationListFragment_archived_conversations">Archived conversations</string>
+    <string name="ConversationListFragment_undo">UNDO</string>
+    <string name="ConversationListFragment_moved_conversation_to_inbox">Moved conversation to inbox</string>
+    <string name="ConversationListFragment_archived_conversation">Archived conversation</string>
+    <string name="ConversationListFragment_moved_conversations_to_inbox">Moved conversations to inbox</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
+
+    <!-- ConversationListItemAction -->
+    <string name="ConversationListItemAction_archived_conversations_d">Archived conversations (%d)</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
@@ -223,7 +231,7 @@
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with Google Play Services. Communication over the data channel has been disabled, please try re-registering from the Signal settings menu.</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with Google Play Services. Signal messages and calls have been disabled, please try re-registering in Settings &gt; Advanced.</string>
 
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New group</string>
@@ -231,7 +239,7 @@
     <string name="GroupCreateActivity_group_name_hint">Group name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS group</string>
     <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support Signal groups, so this group will be MMS.</string>
-    <string name="GroupCreateActivity_you_dont_support_push">You\'re not registered for using the data channel, so Signal groups are disabled.</string>
+    <string name="GroupCreateActivity_youre_not_registered_for_signal">You\'re not registered for Signal messages and calls, so Signal groups are disabled. Please try registering in Settings &gt; Advanced.</string>
     <string name="GroupCreateActivity_contacts_mms_exception">An unexpected error happened that has made group creation fail.</string>
     <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
     <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
@@ -363,6 +371,7 @@
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, you have too many devices linked already, try removing some...</string>
+    <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, this is not a valid device link QR code.</string>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
@@ -582,8 +591,8 @@
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
 
     <!-- SingleRecipientNotificationBuilder -->
-    <string name="SingleRecipientNotificationBuilder_new_signal_message">New Signal message</string>
-    <string name="SingleRecipientNotificationBuilder_contents_hidden">Contents hidden</string>
+    <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">New Message!</string>
 
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__image">Image</string>
@@ -659,8 +668,16 @@
     <string name="country_selection_fragment__loading_countries">Loading countries...</string>
     <string name="country_selection_fragment__search">Search</string>
 
+    <!-- device_add_fragment -->
+    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on the device to link</string>
+
+    <!-- device_link_fragment -->
+    <string name="device_link_fragment__link_device">Link device</string>
+
     <!-- device_list_fragment -->
     <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
+    <string name="device_list_fragment__link_new_device">Link new device</string>
+
 
     <!-- experience_upgrade_activity -->
     <string name="experience_upgrade_activity__continue">continue</string>
@@ -788,9 +805,7 @@
     <string name="registration_progress_activity__call_me">Call me</string>
     <string name="registration_progress_activity__edit_number">Edit number</string>
     <string name="registration_progress_activity__connectivity_error">Connectivity error.</string>
-    <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-        Signal was unable to connect to the push service.
-    </string>
+    <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal was unable to connect to the server.</string>
     <string name="registration_progress_activity__some_possible_problems_include">Some possible
         problems include:
     </string>
@@ -799,7 +814,7 @@
     </string>
     <string name="registration_progress_activity__your_device_needs_network_connectivity">Your
         device needs network connectivity in order to use this Signal feature. Check to ensure
-        that it is connected to 3G or Wi-Fi.
+        that it is connected to mobile data or Wi-Fi.
     </string>
     <string name="registration_progress_activity__restrictive_firewall">Restrictive firewall.
     </string>
@@ -858,9 +873,10 @@
     <string name="AndroidManifest__media_preview">Media Preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
-    <string name="AndroidManifest__message_details">Message Details</string>
+    <string name="AndroidManifest__message_details">Message details</string>
     <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
+    <string name="AndroidManifeset_conversations_archive">Conversations archive</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
@@ -1042,6 +1058,7 @@
     <!-- conversation_list_batch -->
     <string name="conversation_list_batch__menu_delete_selected">Delete selected</string>
     <string name="conversation_list_batch__menu_select_all">Select all</string>
+    <string name="conversation_list_batch__archive_selected">Archive selected</string>
 
     <!-- conversation_list -->
     <string name="conversation_list__menu_search">Search</string>
@@ -1049,6 +1066,7 @@
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
     <string name="conversation_list_item_view__error_alert">Error alert</string>
+    <string name="conversation_list_item_view__archived">Archived</string>
 
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>
@@ -1096,6 +1114,7 @@
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
     <string name="text_secure_normal__invite_friends">Invite friends</string>
+    <string name="text_secure_normal__help">Help</string>
 
     <!-- reminder_header -->
     <string name="reminder_header_expired_build">Your build of Signal has expired!</string>
@@ -1143,9 +1162,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on the device to link</string>
-    <string name="device_link_fragment__link_device">Link device</string>
-    <string name="device_list_fragment__link_new_device">Link new device</string>
+
 
     <!-- EOF -->
 

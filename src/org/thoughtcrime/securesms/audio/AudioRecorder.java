@@ -1,36 +1,38 @@
 package org.thoughtcrime.securesms.audio;
 
+import android.annotation.TargetApi;
 import android.content.Context;
-import android.media.MediaRecorder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.ThreadUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.whispersystems.jobqueue.Job;
-import org.whispersystems.jobqueue.JobParameters;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
 
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class AudioRecorder {
 
   private static final String TAG = AudioRecorder.class.getSimpleName();
+
+  private static final ExecutorService executor = ThreadUtil.newDynamicSingleThreadedExecutor();
 
   private final Context                context;
   private final MasterSecret           masterSecret;
   private final PersistentBlobProvider blobProvider;
 
-  private MediaRecorder        mediaRecorder;
-  private Uri                  captureUri;
-  private ParcelFileDescriptor fd;
+  private AudioCodec audioCodec;
+  private Uri        captureUri;
 
   public AudioRecorder(@NonNull Context context, @NonNull MasterSecret masterSecret) {
     this.context      = context;
@@ -38,164 +40,77 @@ public class AudioRecorder {
     this.blobProvider = PersistentBlobProvider.getInstance(context.getApplicationContext());
   }
 
-  public void startRecording() throws IOException {
+  public void startRecording() {
     Log.w(TAG, "startRecording()");
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new StartRecordingJob());
+    executor.execute(new Runnable() {
+      @Override
+      public void run() {
+        Log.w(TAG, "Running startRecording() + " + Thread.currentThread().getId());
+        try {
+          if (audioCodec != null) {
+            throw new AssertionError("We can only record once at a time.");
+          }
+
+          ParcelFileDescriptor fds[] = ParcelFileDescriptor.createPipe();
+
+          captureUri  = blobProvider.create(masterSecret, new ParcelFileDescriptor.AutoCloseInputStream(fds[0]));
+          audioCodec  = new AudioCodec();
+
+          audioCodec.start(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
+      }
+    });
   }
 
   public @NonNull ListenableFuture<Pair<Uri, Long>> stopRecording() {
     Log.w(TAG, "stopRecording()");
 
-    StopRecordingJob stopRecordingJob = new StopRecordingJob();
+    final SettableFuture<Pair<Uri, Long>> future = new SettableFuture<>();
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(stopRecordingJob);
+    executor.execute(new Runnable() {
+      @Override
+      public void run() {
+        if (audioCodec == null) {
+          sendToFuture(future, new IOException("MediaRecorder was never initialized successfully!"));
+          return;
+        }
 
-    return stopRecordingJob.getFuture();
+        audioCodec.stop();
+
+        try {
+          long size = MediaUtil.getMediaSize(context, masterSecret, captureUri);
+          sendToFuture(future, new Pair<>(captureUri, size));
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
+          sendToFuture(future, ioe);
+        }
+
+        audioCodec = null;
+        captureUri = null;
+      }
+    });
+
+    return future;
   }
 
-  private class StopRecordingJob extends Job {
-
-    private final SettableFuture<Pair<Uri, Long>> future = new SettableFuture<>();
-
-    public StopRecordingJob() {
-      super(JobParameters.newBuilder()
-                         .withGroupId(AudioRecorder.class.getSimpleName())
-                         .create());
-    }
-
-    public ListenableFuture<Pair<Uri, Long>> getFuture() {
-      return future;
-    }
-
-    @Override
-    public void onAdded() {}
-
-    @Override
-    public void onRun() {
-      if (mediaRecorder == null) {
-        sendToFuture(new IOException("MediaRecorder was never initialized successfully!"));
-        return;
+  private <T> void sendToFuture(final SettableFuture<T> future, final Exception exception) {
+    Util.runOnMain(new Runnable() {
+      @Override
+      public void run() {
+        future.setException(exception);
       }
-
-      try {
-        mediaRecorder.stop();
-      } catch (Exception e) {
-        Log.w(TAG, e);
-      }
-
-      try {
-        fd.close();
-      } catch (IOException e) {
-        Log.w("AudioRecorder", e);
-      }
-
-      mediaRecorder.release();
-      mediaRecorder = null;
-
-      try {
-        long size = MediaUtil.getMediaSize(context, masterSecret, captureUri);
-        sendToFuture(new Pair<>(captureUri, size));
-      } catch (IOException ioe) {
-        Log.w(TAG, ioe);
-        sendToFuture(ioe);
-      }
-
-      captureUri = null;
-      fd         = null;
-    }
-
-    @Override
-    public boolean onShouldRetry(Exception e) {
-      return false;
-    }
-
-    @Override
-    public void onCanceled() {}
-
-    private void sendToFuture(final @NonNull Pair<Uri, Long> result) {
-      Util.runOnMain(new Runnable() {
-        @Override
-        public void run() {
-          future.set(result);
-        }
-      });
-    }
-
-    private void sendToFuture(final @NonNull Exception exception) {
-      Util.runOnMain(new Runnable() {
-        @Override
-        public void run() {
-          future.setException(exception);
-        }
-      });
-    }
+    });
   }
 
-  private class StartRecordingJob extends Job {
-
-    public StartRecordingJob() {
-      super(JobParameters.newBuilder()
-                         .withGroupId(AudioRecorder.class.getSimpleName())
-                         .create());
-    }
-
-    @Override
-    public void onAdded() {}
-
-    @Override
-    public void onRun() throws Exception {
-      if (mediaRecorder != null) {
-        throw new AssertionError("We can only record once at a time.");
+  private <T> void sendToFuture(final SettableFuture<T> future, final T result) {
+    Util.runOnMain(new Runnable() {
+      @Override
+      public void run() {
+        future.set(result);
       }
-
-      ParcelFileDescriptor fds[] = ParcelFileDescriptor.createPipe();
-
-      fd            = fds[1];
-      captureUri    = blobProvider.create(masterSecret, new ParcelFileDescriptor.AutoCloseInputStream(fds[0]));
-      mediaRecorder = new MediaRecorder();
-      mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-      mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);
-      mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-      mediaRecorder.setOutputFile(fds[1].getFileDescriptor());
-
-      mediaRecorder.prepare();
-
-      try {
-        mediaRecorder.start();
-      } catch (Exception e) {
-        Log.w(TAG, e);
-        throw new IOException(e);
-      }
-    }
-
-    @Override
-    public boolean onShouldRetry(Exception e) {
-      return false;
-    }
-
-    @Override
-    public void onCanceled() {
-      try {
-        if (fd != null) {
-          fd.close();
-        }
-
-        if (captureUri != null) {
-          blobProvider.delete(captureUri);
-        }
-
-        fd            = null;
-        mediaRecorder = null;
-        captureUri    = null;
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
-    }
+    });
   }
-
 }

@@ -129,7 +129,7 @@ public class AttachmentDatabase extends Database {
     try {
       InputStream generatedStream = thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, attachmentId)).get();
 
-      if (generatedStream == null) throw new IOException("No thumbnail stream available: " + attachmentId);
+      if (generatedStream == null) throw new FileNotFoundException("No thumbnail stream available: " + attachmentId);
       else                         return generatedStream;
     } catch (InterruptedException ie) {
       throw new AssertionError("interrupted");

@@ -29,6 +29,8 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.ServiceUtil;
+
 import java.io.IOException;
 
 /**
@@ -74,13 +76,7 @@ public class IncomingRinger {
   }
 
   public void start() {
-    AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-    audioManager.requestAudioFocus(new AudioManager.OnAudioFocusChangeListener() {
-                                     @Override
-                                     public void onAudioFocusChange(int focusChange) {}
-                                   },
-                                   AudioManager.STREAM_MUSIC,
-                                   AudioManager.AUDIOFOCUS_GAIN);
+    AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
     if(player == null) {
       //retry player creation to pick up changed ringtones or audio server restarts
@@ -120,6 +116,9 @@ public class IncomingRinger {
     }
     Log.d(TAG, "Cancelling vibrator");
     vibrator.cancel();
+
+    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    audioManager.setMode(AudioManager.MODE_NORMAL);
   }
 
   private boolean shouldVibrate() {

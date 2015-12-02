@@ -34,9 +34,11 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.OrientationEventListener;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -49,7 +51,7 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 @SuppressWarnings("deprecation")
-public class CameraView extends FrameLayout {
+public class CameraView extends ViewGroup {
   private static final String TAG = CameraView.class.getSimpleName();
 
   private final CameraSurfaceView   surface;
@@ -59,10 +61,10 @@ public class CameraView extends FrameLayout {
   private volatile int              cameraId           = CameraInfo.CAMERA_FACING_BACK;
   private volatile int              displayOrientation = -1;
 
-  private @NonNull  State              state = State.PAUSED;
-  private @Nullable Size               previewSize;
-  private @Nullable CameraViewListener listener;
-  private           int                outputOrientation  = -1;
+  private @NonNull  State                    state = State.PAUSED;
+  private @Nullable Size                     previewSize;
+  private @NonNull  List<CameraViewListener> listeners = Collections.synchronizedList(new LinkedList<CameraViewListener>());
+  private           int                      outputOrientation  = -1;
 
   public CameraView(Context context) {
     this(context, null);
@@ -102,7 +104,9 @@ public class CameraView extends FrameLayout {
       @Nullable
       Void onRunBackground() {
         try {
+          long openStartMillis = System.currentTimeMillis();
           camera = Optional.fromNullable(Camera.open(cameraId));
+          Log.w(TAG, "camera.open() -> " + (System.currentTimeMillis() - openStartMillis) + "ms");
           synchronized (CameraView.this) {
             CameraView.this.notifyAll();
           }
@@ -117,7 +121,9 @@ public class CameraView extends FrameLayout {
       protected void onPostMain(Void avoid) {
         if (!camera.isPresent()) {
           Log.w(TAG, "tried to open camera but got null");
-          if (listener != null) listener.onCameraFail();
+          for (CameraViewListener listener : listeners) {
+            listener.onCameraFail();
+          }
           return;
         }
 
@@ -162,9 +168,15 @@ public class CameraView extends FrameLayout {
         onOrientationChange.disable();
         displayOrientation = -1;
         outputOrientation = -1;
+        removeView(surface);
+        addView(surface);
         Log.w(TAG, "onPause() completed");
       }
     });
+
+    for (CameraViewListener listener : listeners) {
+      listener.onCameraStop();
+    }
   }
 
   public boolean isStarted() {
@@ -213,8 +225,8 @@ public class CameraView extends FrameLayout {
     if (camera.isPresent()) startPreview(camera.get().getParameters());
   }
 
-  public void setListener(@Nullable CameraViewListener listener) {
-    this.listener = listener;
+  public void addListener(@NonNull CameraViewListener listener) {
+    listeners.add(listener);
   }
 
   public void setPreviewCallback(final @NonNull PreviewCallback previewCallback) {
@@ -284,7 +296,7 @@ public class CameraView extends FrameLayout {
           camera.setPreviewDisplay(surface.getHolder());
           startPreview(parameters);
         } catch (Exception e) {
-          Log.w(TAG, "couldn't set preview display");
+          Log.w(TAG, "couldn't set preview display", e);
         }
         return null;
       }
@@ -306,9 +318,19 @@ public class CameraView extends FrameLayout {
         } else {
           previewSize = parameters.getPreviewSize();
         }
+        long previewStartMillis = System.currentTimeMillis();
         camera.startPreview();
-        postRequestLayout();
+        Log.w(TAG, "camera.startPreview() -> " + (System.currentTimeMillis() - previewStartMillis) + "ms");
         state = State.ACTIVE;
+        Util.runOnMain(new Runnable() {
+          @Override
+          public void run() {
+            requestLayout();
+            for (CameraViewListener listener : listeners) {
+              listener.onCameraStart();
+            }
+          }
+        });
       } catch (Exception e) {
         Log.w(TAG, e);
       }
@@ -325,6 +347,7 @@ public class CameraView extends FrameLayout {
       }
     }
   }
+
 
   private Size getPreferredPreviewSize(@NonNull Parameters parameters) {
     return CameraUtils.getPreferredPreviewSize(displayOrientation,
@@ -347,13 +370,11 @@ public class CameraView extends FrameLayout {
     return outputOrientation;
   }
 
-  private void postRequestLayout() {
-    post(new Runnable() {
-      @Override
-      public void run() {
-        requestLayout();
-      }
-    });
+  // https://github.com/WhisperSystems/Signal-Android/issues/4715
+  private boolean isTroublemaker() {
+    return getCameraInfo().facing == CameraInfo.CAMERA_FACING_FRONT &&
+           "JWR66Y".equals(Build.DISPLAY) &&
+           "yakju".equals(Build.PRODUCT);
   }
 
   private @NonNull CameraInfo getCameraInfo() {
@@ -446,7 +467,7 @@ public class CameraView extends FrameLayout {
     }
     final float newWidth  = visibleRect.width()  * scale;
     final float newHeight = visibleRect.height() * scale;
-    final float centerX   = (VERSION.SDK_INT < 14) ? previewWidth - newWidth / 2 : previewWidth / 2;
+    final float centerX   = (VERSION.SDK_INT < 14 || isTroublemaker()) ? previewWidth - newWidth / 2 : previewWidth / 2;
     final float centerY   = previewHeight / 2;
 
     visibleRect.set((int) (centerX - newWidth  / 2),
@@ -541,7 +562,8 @@ public class CameraView extends FrameLayout {
                                          previewSize.width,
                                          previewSize.height,
                                          rotation,
-                                         croppingRect);
+                                         croppingRect,
+                                         cameraId == CameraInfo.CAMERA_FACING_FRONT);
       } catch (IOException e) {
         Log.w(TAG, e);
         return null;
@@ -550,7 +572,11 @@ public class CameraView extends FrameLayout {
 
     @Override
     protected void onPostExecute(byte[] imageBytes) {
-      if (imageBytes != null && listener != null) listener.onImageCapture(imageBytes);
+      if (imageBytes != null) {
+        for (CameraViewListener listener : listeners) {
+          listener.onImageCapture(imageBytes);
+        }
+      }
     }
   }
 
@@ -559,6 +585,8 @@ public class CameraView extends FrameLayout {
   public interface CameraViewListener {
     void onImageCapture(@NonNull final byte[] imageBytes);
     void onCameraFail();
+    void onCameraStart();
+    void onCameraStop();
   }
 
   public interface PreviewCallback {

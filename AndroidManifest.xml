@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="170"
-      android:versionName="3.5.0">
+      android:versionCode="174"
+      android:versionName="3.6.1">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat"/>
 
@@ -172,6 +172,16 @@
 
 
     </activity-alias>
+
+    <activity android:name=".ConversationListArchiveActivity"
+              android:label="@string/AndroidManifeset_conversations_archive"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:parentActivityName=".ConversationListActivity">
+        <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.thoughtcrime.securesms.ConversationListActivity" />
+    </activity>
 
     <activity android:name=".ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"

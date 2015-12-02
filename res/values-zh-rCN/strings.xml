@@ -116,6 +116,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">当前信息的附件类型已经已经超过大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">摄像头不可用</string>
   <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
+  <string name="ConversationActivity_error_sending_voice_message">发送语音信息时遇到错误…</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">信息详情</string>
   <string name="ConversationFragment_transport_s_sent_received_s">传输：%1$s\n 发送/接收：%2$s</string>
@@ -150,8 +151,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">正在删除</string>
   <string name="ConversationListFragment_deleting_selected_threads">正在删除选中的对话...</string>
+  <string name="ConversationListFragment_archived_conversations">存档的会话</string>
+  <string name="ConversationListFragment_undo">撤销</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">移动会话到收件箱</string>
+  <string name="ConversationListFragment_archived_conversation">存档的会话</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">已移动会话到收件箱</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">存档的会话 (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定制：%s</string>
   <string name="CustomDefaultPreference_using_default">使用默认：%s</string>
@@ -191,14 +199,14 @@
   <string name="ExportFragment_success">成功！</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">暗号持续连接失效！</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">暗号无法在 Google Play 服务中注册，基于数据通道的通信已经被禁用，请尝试在暗号的设置菜单中重新注册。</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">暗号无法在 Google Play 服务中注册。暗号消息和呼叫已经被金庸。请尝试在设置 &gt; 高级中重新注册。</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新群组</string>
   <string name="GroupCreateActivity_actionbar_update_title">更新群组</string>
   <string name="GroupCreateActivity_group_name_hint">群组名称</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新彩信群组</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">您所选择的联系人并不支持暗号群组，所以此组将以彩信形式存在。</string>
-  <string name="GroupCreateActivity_you_dont_support_push">您还没有注册以使用数据频道，所以暗号群组将会被禁用。</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">您没有注册暗号的信息和呼叫，所以暗号群组已经被急用弄。请尝试在设置 &gt; 高级中重新注册。</string>
   <string name="GroupCreateActivity_contacts_mms_exception">发生不可预料的错误导致创建群组失败。</string>
   <string name="GroupCreateActivity_contacts_no_members">群组中至少要有一个人！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">目前无法正确获取您组内一名成员的信息，请尝试修复或移除这名联系人以重试。</string>
@@ -240,6 +248,7 @@
   <string name="ImportFragment_no_encrypted_backup_found">未找到加密的备份！</string>
   <string name="ImportFragment_restore_complete">还原完成！</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住并保持以录制语音信息，松开即发送</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">共享</string>
   <string name="InviteActivity_send_sms">发送短信</string>
@@ -308,6 +317,7 @@
   <string name="DeviceProvisioningActivity_content_progress_network_error">网络错误。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">无效的二维码。</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">抱歉，您已经连接了太多的设备，请先移除一些…</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，这不是有效的设备连接二维码。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密钥</string>
   <string name="PassphrasePromptActivity_watermark_content_description">暗号图标</string>
@@ -489,8 +499,8 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">当暗号处于锁定状态时，快速回复不可用！</string>
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">新暗号信息</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">内容隐藏</string>
+  <string name="SingleRecipientNotificationBuilder_signal">暗号</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">新信息！</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">图片</string>
   <string name="attachment_type_selector__audio">音频</string>
@@ -549,8 +559,13 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">正在读取国家列表...</string>
   <string name="country_selection_fragment__search">搜索</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">扫描设备上显示的二维码以便连接</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">连接设备</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">没有连接的设备...</string>
+  <string name="device_list_fragment__link_new_device">连接新的设备</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">继续</string>
   <!--log_submit_activity-->
@@ -652,15 +667,14 @@
   <string name="registration_progress_activity__call_me">呼叫我</string>
   <string name="registration_progress_activity__edit_number">编辑号码</string>
   <string name="registration_progress_activity__connectivity_error">连接错误。</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-暗号无法连接推送服务器。</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">暗号无法连接到服务器。</string>
   <string name="registration_progress_activity__some_possible_problems_include">一些可能的问题
 包括：</string>
   <string name="registration_progress_activity__no_network_connectivity">无网络
 连接。</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">您的
-设备需要活动的网络以便使用暗号的功能。检查设备
-是否已经连接到了3G或Wi-Fi网络。</string>
+设备需要活动的网络来使用暗号的功能。请检查
+并确保已经连接到了移动数据或WiFi网络。</string>
   <string name="registration_progress_activity__restrictive_firewall">受限防火墙。</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 如果您已经连接到了Wi-Fi，可能是有防火墙
@@ -707,9 +721,10 @@
   <string name="AndroidManifest__media_preview">媒体预览</string>
   <string name="AndroidManifest__media_overview">所有图片</string>
   <string name="AndroidManifest__media_overview_named">所有图片和%1$s</string>
-  <string name="AndroidManifest__message_details">消息详情</string>
+  <string name="AndroidManifest__message_details">信息详情</string>
   <string name="AndroidManifest_manage_linked_devices">管理已连接的设备</string>
   <string name="AndroidManifest__invite_friends">邀请好友</string>
+  <string name="AndroidManifeset_conversations_archive">会话存档</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
   <string name="arrays__your_identity_key">你的身份密钥</string>
@@ -872,11 +887,13 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">删除已选</string>
   <string name="conversation_list_batch__menu_select_all">选择全部</string>
+  <string name="conversation_list_batch__archive_selected">存档已选择</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">搜索</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">联系人照片</string>
   <string name="conversation_list_item_view__error_alert">错误警报</string>
+  <string name="conversation_list_item_view__archived">存档</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新会话</string>
   <!--conversation_secure_verified-->
@@ -914,6 +931,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">锁定</string>
   <string name="text_secure_normal__mark_all_as_read">全部标记为已读</string>
   <string name="text_secure_normal__invite_friends">邀请好友</string>
+  <string name="text_secure_normal__help">帮助</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">您的暗号版本已过期！</string>
   <string name="reminder_header_expired_build_details">您的信息已经长时间没有成功发送了，请更新到最新版本。</string>
@@ -954,8 +972,5 @@
   <string name="trimmer__old_messages_successfully_deleted">旧信息已被成功删除。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">扫描设备上显示的二维码以便连接</string>
-  <string name="device_link_fragment__link_device">连接设备</string>
-  <string name="device_list_fragment__link_new_device">连接新的设备</string>
   <!--EOF-->
 </resources>

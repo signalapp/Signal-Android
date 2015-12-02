@@ -153,8 +153,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Изтриване</string>
   <string name="ConversationListFragment_deleting_selected_threads">Изтриване на избраните разговори...</string>
+  <string name="ConversationListFragment_archived_conversations">Архивирани разговори</string>
+  <string name="ConversationListFragment_undo">ВЪЗСТАНОВИ</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Разговорът е преместен във входящата кутия</string>
+  <string name="ConversationListFragment_archived_conversation">Разговорът е архивиран</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Разговорът е преместен във входящата кутия</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Архивирани разговори (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Използване на специален:  %s</string>
   <string name="CustomDefaultPreference_using_default">Използване на подразбиращ се: %s</string>
@@ -194,14 +201,14 @@
   <string name="ExportFragment_success">Успех!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Комуникация през канала с данни е забранен, моля опитайте да се пререгистрирате през менюто с настройки на Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Signal съообщения и разговори са деактивирани, моля пререгистрирайте през менюто Настройки &gt; Допълнителние.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
   <string name="GroupCreateActivity_actionbar_update_title">Промени група</string>
   <string name="GroupCreateActivity_group_name_hint">Име на групата</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Нова MMS група</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Избрахте контакт, който не поддържа Signal групи, така че групата ще бъде MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Не сте регистриран, за да използвате канала за данни, така че Signal групите ще бъдат за деактивирани.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Не сте регистриран за Signal съобщения и разговори, така че Signal групи са деактивирани. Моля, опитайте да се регистрирате в Настройки &gt; Допълнителни.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Настъпи не очаквана грешка, която доведе до неуспешно създаване на група.</string>
   <string name="GroupCreateActivity_contacts_no_members">Трябва да добавиш поне един човек в групата си!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Един от членовете на групата има номер, който не може да бъде разпознат правилно. Моля, оправи номера на контакта или го премахни.</string>
@@ -315,6 +322,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="DeviceProvisioningActivity_content_progress_network_error">Проблем с мобилната мрежа.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Невалиден QR код.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имаш твърде много регистрирани устройства, опитай да премахнеш някои от тях...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление това не е валидна QR връзка.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведи паролата</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal икона</string>
@@ -497,8 +505,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Signal е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Ново Signal съобщение</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Съдържанието е скрито</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Изображение</string>
   <string name="attachment_type_selector__audio">Аудио</string>
@@ -557,8 +565,13 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Зареждане на държавите...</string>
   <string name="country_selection_fragment__search">Търси</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Сканирай QR кодът, показан на устройството, за да се свържете</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Свържи устройство</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Няма свързани устройства...</string>
+  <string name="device_list_fragment__link_new_device">Свържи ново устройство</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продължи</string>
   <!--log_submit_activity-->
@@ -659,16 +672,15 @@ Signal може да ти се обади, за да потвърди номер
   <string name="registration_progress_activity__call_me">Обади ми се</string>
   <string name="registration_progress_activity__edit_number">Промени номера</string>
   <string name="registration_progress_activity__connectivity_error">Грешка при свързването.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal не успя да се свъже с пуш интернет услугата.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal не успя да се свърже със сървъра.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Няколко вероятни
 проблема включват:
 </string>
   <string name="registration_progress_activity__no_network_connectivity">Няма интернет
 връзка.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Вашето
-устройство се нуждае от връзка с интернет, за да ползвате Signal функциите.
-Провере, за да се уверите, че сте свързани към 3G или Wi-Fi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Устройствот Ви
+се нуждае от връзка с интернет, за да може да използва тази Signal услуга.
+Проверете и се убедете, че сте свързани с мобилната мрежа или Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall-a e твърде рестриктивен.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Ако сте свързане през Wi-Fi, възможно е да имате firewall, който блокирва достъпа до Signal сървъра. Оптайте друг вид достъп до интернет.</string>
@@ -715,9 +727,10 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest__media_preview">Преглед на файла</string>
   <string name="AndroidManifest__media_overview">Всички изображения</string>
   <string name="AndroidManifest__media_overview_named">Всички изображения с %1$s</string>
-  <string name="AndroidManifest__message_details">Информаця за съобщението</string>
+  <string name="AndroidManifest__message_details">Информация за съобщението</string>
   <string name="AndroidManifest_manage_linked_devices">Управление на свързани устройства</string>
   <string name="AndroidManifest__invite_friends">Поканете приятели</string>
+  <string name="AndroidManifeset_conversations_archive">Разговорите са архивирани</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__your_identity_key">Вашият ключ за самоличност</string>
@@ -881,11 +894,13 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Изтрий избраното</string>
   <string name="conversation_list_batch__menu_select_all">Избери всичко</string>
+  <string name="conversation_list_batch__archive_selected">Архивът е избран</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Търси</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Изображение на контакта</string>
   <string name="conversation_list_item_view__error_alert">Известие за грешка</string>
+  <string name="conversation_list_item_view__archived">Архивиран</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>
   <!--conversation_secure_verified-->
@@ -923,6 +938,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="text_secure_normal__menu_clear_passphrase">Заключи</string>
   <string name="text_secure_normal__mark_all_as_read">Маркирай всички като прочетени</string>
   <string name="text_secure_normal__invite_friends">Поканете приятели</string>
+  <string name="text_secure_normal__help">Помощ</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Вдашата Signal версия е изтекла!</string>
   <string name="reminder_header_expired_build_details">Съобщенията няма повече да бъдат успешно доставени, моля, обновете до най-новата версия.</string>
@@ -963,8 +979,5 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="trimmer__old_messages_successfully_deleted">Старите съобщения бяха успешно изтрити</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Сканирай QR кодът, показан на устройството, за да се свържете</string>
-  <string name="device_link_fragment__link_device">Свържи устройство</string>
-  <string name="device_list_fragment__link_new_device">Свържи ново устройство</string>
   <!--EOF-->
 </resources>

@@ -45,6 +45,9 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import ws.com.google.android.mms.ContentType;
@@ -60,7 +63,8 @@ public class AttachmentManager {
   private final @NonNull AudioView          audioView;
   private final @NonNull AttachmentListener attachmentListener;
 
-  private @NonNull  Optional<Slide> slide = Optional.absent();
+  private @NonNull  List<Uri>       garbage = new LinkedList<>();
+  private @NonNull  Optional<Slide> slide   = Optional.absent();
   private @Nullable Uri             captureUri;
 
   public AttachmentManager(@NonNull Activity activity, @NonNull AttachmentListener listener) {
@@ -86,6 +90,8 @@ public class AttachmentManager {
       @Override
       public void onFailure(ExecutionException e) {}
     });
+
+    markGarbage(getSlideUri());
     slide = Optional.absent();
     audioView.cleanup();
   }
@@ -96,12 +102,26 @@ public class AttachmentManager {
 
     captureUri = null;
     slide      = Optional.absent();
+
+    Iterator<Uri> iterator = garbage.listIterator();
+
+    while (iterator.hasNext()) {
+      cleanup(iterator.next());
+      iterator.remove();
+    }
   }
 
   private void cleanup(final @Nullable Uri uri) {
     if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
       Log.w(TAG, "cleaning up " + uri);
       PersistentBlobProvider.getInstance(context).delete(uri);
+    }
+  }
+
+  private void markGarbage(@Nullable Uri uri) {
+    if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
+      Log.w(TAG, "Marking garbage that needs cleaning: " + uri);
+      garbage.add(uri);
     }
   }
 

@@ -94,6 +94,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">தேர்ந்தெடுக்கப்பட்ட செய்திநூல்கள் நீக்கப்படுகிறது...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">சாவி பரிமாற்றச் செய்தி...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் விருப்பம்: %s</string>
   <string name="CustomDefaultPreference_using_default">பயன்படுத்தப்படும் இயல்புநிலை: %s</string>
@@ -343,6 +344,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">நாடுகள் ஏற்றப்படுகிறது...</string>
   <string name="country_selection_fragment__search">தேடல்</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->

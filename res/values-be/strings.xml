@@ -99,6 +99,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Выдаленне абраных гутарак...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Паведамленне абмену ключамі...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Выкарыстоўваць кастомны: %s</string>
   <string name="CustomDefaultPreference_using_default">Выкарыстоўваць стандартны: %s</string>
@@ -338,6 +339,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загрузка краінаў...</string>
   <string name="country_selection_fragment__search">Пошук</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->

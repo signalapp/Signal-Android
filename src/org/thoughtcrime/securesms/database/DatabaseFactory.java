@@ -68,7 +68,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_DB_OPTIMIZATIONS_VERSION             = 21;
   private static final int INTRODUCED_INVITE_REMINDERS_VERSION             = 22;
   private static final int INTRODUCED_CONVERSATION_LIST_THUMBNAILS_VERSION = 23;
-  private static final int DATABASE_VERSION                                = 23;
+  private static final int INTRODUCED_ARCHIVE_VERSION                      = 24;
+  private static final int DATABASE_VERSION                                = 24;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -776,6 +777,11 @@ public class DatabaseFactory {
 
       if (oldVersion < INTRODUCED_CONVERSATION_LIST_THUMBNAILS_VERSION) {
         db.execSQL("ALTER TABLE thread ADD COLUMN snippet_uri TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < INTRODUCED_ARCHIVE_VERSION) {
+        db.execSQL("ALTER TABLE thread ADD COLUMN archived INTEGER DEFAULT 0");
+        db.execSQL("CREATE INDEX IF NOT EXISTS archived_index ON thread (archived)");
       }
 
       db.setTransactionSuccessful();

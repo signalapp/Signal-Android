@@ -17,6 +17,9 @@
 Onemogući zaključani ekran za poruke?</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogući</string>
   <string name="ApplicationPreferencesActivity_unregistering">Uklanjanje registracije</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Uklanjanje registracije na Signal poruke i pozive...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Onemogući Signal poruke i pozive?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Onemogućite Signal poruke i pozive tako što će ukloniti registraciju s poslužitelja. Trebat ćete ponovno registrirati vaš broj telefona kako biste ih koristili u budućnosti.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Greška prilikom povezivanja na poslužitelj!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS omogućen</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pritisnite za promjenu zadane SMS aplikacije</string>
@@ -42,6 +45,7 @@ Onemogući zaključani ekran za poruke?</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontakt informacije</string>
   <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Greška prilikom reprodukcije zvuka!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokirani kontakti</string>
   <!--CallScreen-->
@@ -55,6 +59,7 @@ ovaj kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Prihvati</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Poruka %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal pozivi %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Veličina poruke: %d KB</string>
   <string name="ConversationItem_expires_s">Ističe: %s</string>
@@ -71,6 +76,11 @@ ovaj kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj nije više Signal korisnik.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">Resetiraj sigurnu sesiju?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Može pomoći ukoliko imate problema s kriptiranjem u ovom razgovoru. Vaše poruke će biti zadržane.</string>
+  <string name="ConversationActivity_reset">Resetiraj</string>
+  <string name="ConversationActivity_delete_thread_question">Obriši razgovor?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Trajno ćete obrisati sve poruke u ovom razgovoru.</string>
   <string name="ConversationActivity_add_attachment">Dodaj privitak</string>
   <string name="ConversationActivity_select_contact_info">Odaberite informacije kontakta</string>
   <string name="ConversationActivity_compose_message">Sastavi poruku</string>
@@ -94,6 +104,8 @@ ovaj kontakt.</string>
   <string name="ConversationActivity_transport_insecure_sms">Nesigurni SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesigurni MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Prebaci se na Signal %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Koristi ovo za razgovor: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Greška prilikom napuštanja grupe...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nije podržan</string>
   <string name="ConversationActivity_mms_not_supported_message">Ovu poruku nije moguće poslati jer vaš operater ne podržava MMS.</string>
@@ -103,11 +115,14 @@ ovaj kontakt.</string>
   <string name="ConversationActivity_unblock">Ukloni blokadu</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Privitak prelazi ograničenje veličine za tip poruke koju šaljete.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nije dostupna</string>
+  <string name="ConversationActivity_unable_to_record_audio">Nije moguće snimati svuk!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Greška prilikom slanja glasovne poruke...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalji poruke</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nPoslano/Primljeno: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nTransport: %2$s\nPoslano: %3$s\nPrimljeno: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Spremi na disk?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Spremanje ovog medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem uređaju.\n\nNastavi?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Greška prilikom spremanja privitka na disk!</string>
   <string name="ConversationFragment_success_exclamation">Uspješno!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pisati na disk!</string>
@@ -126,6 +141,7 @@ ovaj kontakt.</string>
   <string name="ConversationListFragment_deleting_selected_threads">Brisanje odabranih tema...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
   <string name="CustomDefaultPreference_using_default">Koristeći zadano: %s</string>
@@ -160,14 +176,12 @@ ovaj kontakt.</string>
   <string name="ExportFragment_success">Uspješno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nije uspješno registrirao na Google Play Services. Komunikacija preko podatkovnog kanala je onemogućena, pokušajte se ponovno registrirati iz Signal izbornika.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova grupa</string>
   <string name="GroupCreateActivity_actionbar_update_title">Ažuriraj grupu</string>
   <string name="GroupCreateActivity_group_name_hint">Naziv grupe</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nova MMS grupa</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Odabrali ste kontakt koji ne podržava Signal grupe, tako da će ovo biti MMS grupa.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Niste registrirani za korištenje podatkovnog kanala, tako da su Signal grupe onemogućene.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Dogodila se neočekivana greška zbog koje je stvaranje grupe neuspješno.</string>
   <string name="GroupCreateActivity_contacts_no_members">Potrebna je barem jedna osoba u vašoj grupi!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jedan od članova vaše grupe ima broj koji ne može biti ispravno pročitan. Ispravite ili uklonite taj kontakt i pokušajte ponovno.</string>
@@ -426,8 +440,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Signal zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nova Signal poruka</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Sadržaj je skriven</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -477,6 +489,8 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Učitavanje zemalja...</string>
   <string name="country_selection_fragment__search">Traži</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Nema povezanih uređaja...</string>
   <!--experience_upgrade_activity-->
@@ -569,14 +583,9 @@ Signal vas može nazvati kako bi potvrdio vaš broj. Pritisnite \'Nazovi me\' i 
   <string name="registration_progress_activity__call_me">Nazovi me</string>
   <string name="registration_progress_activity__edit_number">Uredi broj</string>
   <string name="registration_progress_activity__connectivity_error">Greška u povezivanju.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal se nije mogao povezati na instant uslugu.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Neki mogući
 problemi uključuju:</string>
   <string name="registration_progress_activity__no_network_connectivity">Nema mreže.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaš
-uređaj treba mrežu povezivost kako biste mogli koristiti Signal mogućnosti. Provjerite da li
-je uređaj povezan na 3G ili Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ograničenja vatrozida.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Ukoliko ste povezani preko Wi-Fi, moguće je da postoji vatrozid koji blokira pristup na
@@ -623,7 +632,6 @@ neuspješno.</string>
   <string name="AndroidManifest__media_preview">Prikaz medija</string>
   <string name="AndroidManifest__media_overview">Sve slike</string>
   <string name="AndroidManifest__media_overview_named">Sve slike sa %1$s</string>
-  <string name="AndroidManifest__message_details">Detalji poruke</string>
   <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanim uređajima</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>

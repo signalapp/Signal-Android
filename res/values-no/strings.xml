@@ -115,6 +115,7 @@ denne kontakten.</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegget overstiger størrelsesbegrensningen for den typen melding du sender.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
   <string name="ConversationActivity_unable_to_record_audio">Kunne ikke ta opp lyd!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Feil ved sending av talemelding...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
@@ -153,8 +154,15 @@ denne kontakten.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_threads">Sletter utvalgte tråder...</string>
+  <string name="ConversationListFragment_archived_conversations">Arkiverte samtaler</string>
+  <string name="ConversationListFragment_undo">Angre</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Samtale flyttet til innboks</string>
+  <string name="ConversationListFragment_archived_conversation">Arkivert samtale</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Samtalene flyttet til innboks</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtaler (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benytter egendefinert: %s</string>
   <string name="CustomDefaultPreference_using_default">Benytter standard: %s</string>
@@ -194,14 +202,14 @@ denne kontakten.</string>
   <string name="ExportFragment_success">Suksess!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonsfeil!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ikke i stand til å registerere hos Google Play Services. Kommunikasjon over datakanalen er skrudd av. Forsøk å registrere på nytt gjennom innstillingsmenyen i Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Sinal kunne ikke registrere seg med Google Play Tjenester. Signal meldinger og anrop er slått av, vennligst prøv å registrere på nytt i Innstillinger &gt; Avansert.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny gruppe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Oppdater gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontakt som ikke støtter Signal grupper, så dette vil bli en MMS gruppe.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Du har ikke registrert for å bruke data kanalen, så Signal grupper er deaktivert.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du er ikke registrert for å kunne bruke Signal meldinger og anrop, dermed er heller ikk Signal grupper tilgjengelig. Vennligst prøv å registrere i Instillinger &gt; Avansert. </string>
   <string name="GroupCreateActivity_contacts_mms_exception">En ukjent feil har ført til at gruppeopprettelsen feilet.</string>
   <string name="GroupCreateActivity_contacts_no_members">Du må ha minst en person i gruppen din!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av gruppemedlemmene har et nummer som ikke kan tolkes. Vær vennlig og korriger eller slett kontakten og prøv igjen. </string>
@@ -238,6 +246,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="ImportFragment_no_encrypted_backup_found">Ingen kryptert backup funnet!</string>
   <string name="ImportFragment_restore_complete">Gjenoppretting fullført!</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å ta opp en talemelding, slipp for å sende.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_send_sms">Send SMS</string>
@@ -308,6 +317,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nettverksfeil.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager, du har for mange enheter koblet til allerede, forsøk å fjerne noen...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager, dette er ikke en gyldig QR kode for kobling av enheter.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Tast inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
@@ -487,8 +497,8 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rask tilbakemelding ikke tilgjengelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Kunne ikke sende melding!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Ny Signal melding</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Innhold skjult</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Ny melding!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bilde</string>
   <string name="attachment_type_selector__audio">Lyd</string>
@@ -547,8 +557,13 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Laster land...</string>
   <string name="country_selection_fragment__search">Søk</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR koden vist på enheten for å koble</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Koble enhet</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Ingen enheter tilkoblet...</string>
+  <string name="device_list_fragment__link_new_device">Koble ny enhet</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsett</string>
   <!--log_submit_activity-->
@@ -647,12 +662,11 @@ Signal kan også ringe deg for å verisifere nummeret ditt. Trykk \'Ring meg\' o
   <string name="registration_progress_activity__call_me">Ring meg</string>
   <string name="registration_progress_activity__edit_number">Endre nummer</string>
   <string name="registration_progress_activity__connectivity_error">Tilkoblingsfeil.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal var ikke i stand til å opprette en forbindelse til \'push\' tjenesten.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal kunne ikke koble seg til serveren.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Noen mulige 
 problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen nettverksforbindelse.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Enheten din trenger nettverkskonnektivitet for å kunne benytte denne Signal funksjonen. Sjekk at den er tilknyttet Wi-Fi eller mobil data.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Enheten din trenger en nettverksforbindelse for å kunne bruke denne Signal funksjonen. Sjekk at enheten er tilkoblet mobil data eller Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv brannvegg.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Dersom du er tilkoblet via Wi-Fi kan det være at det er en brannvegg som blokkerer tilgangen til Signal serveren. Prøv et annet nettverk eller mobil data.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
@@ -700,6 +714,7 @@ feilet.</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Administrer tilkoblede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
+  <string name="AndroidManifeset_conversations_archive">Samtale-arkiv</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importere / eksportere</string>
   <string name="arrays__your_identity_key">Din ID-nøkkel</string>
@@ -863,11 +878,13 @@ feilet.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slett merkede</string>
   <string name="conversation_list_batch__menu_select_all">Merk alt</string>
+  <string name="conversation_list_batch__archive_selected">Arkiv valgt</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Søk</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbilde</string>
   <string name="conversation_list_item_view__error_alert">Varsel om feil</string>
+  <string name="conversation_list_item_view__archived">Arkivert</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <!--conversation_secure_verified-->
@@ -905,6 +922,7 @@ feilet.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Marker alle som lest</string>
   <string name="text_secure_normal__invite_friends">Inviter venner</string>
+  <string name="text_secure_normal__help">Hjelp</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Din versjon av Signal er foreldet!</string>
   <string name="reminder_header_expired_build_details">Det vil ikke lenger være mulig å sende meldinger. Vær vennlig å oppdatere til siste versjon.</string>
@@ -945,8 +963,5 @@ feilet.</string>
   <string name="trimmer__old_messages_successfully_deleted">Sletting av gamle meldinger vellykket</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR koden vist på enheten for å koble</string>
-  <string name="device_link_fragment__link_device">Koble enhet</string>
-  <string name="device_list_fragment__link_new_device">Koble ny enhet</string>
   <!--EOF-->
 </resources>

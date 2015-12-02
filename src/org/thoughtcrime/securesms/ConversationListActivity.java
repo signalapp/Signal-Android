@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -151,8 +152,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     case R.id.menu_clear_passphrase:  handleClearPassphrase(); return true;
     case R.id.menu_mark_all_read:     handleMarkAllRead();     return true;
     case R.id.menu_import_export:     handleImportExport();    return true;
-    case R.id.menu_my_identity:       handleMyIdentity();      return true;
     case R.id.menu_invite:            handleInvite();          return true;
+    case R.id.menu_help:              handleHelp();            return true;
     }
 
     return false;
@@ -160,15 +161,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   public void onCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    createConversation(threadId, recipients, distributionType);
-  }
-
-  private void createGroup() {
-    Intent intent = new Intent(this, GroupCreateActivity.class);
-    startActivity(intent);
-  }
-
-  private void createConversation(long threadId, Recipients recipients, int distributionType) {
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
@@ -176,6 +168,17 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     startActivity(intent);
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
+  }
+
+  @Override
+  public void onSwitchToArchive() {
+    Intent intent = new Intent(this, ConversationListArchiveActivity.class);
+    startActivity(intent);
+  }
+
+  private void createGroup() {
+    Intent intent = new Intent(this, GroupCreateActivity.class);
+    startActivity(intent);
   }
 
   private void handleDisplaySettings() {
@@ -193,10 +196,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     startActivity(new Intent(this, ImportExportActivity.class));
   }
 
-  private void handleMyIdentity() {
-    startActivity(new Intent(this, ViewLocalIdentityActivity.class));
-  }
-
   private void handleMarkAllRead() {
     new AsyncTask<Void, Void, Void>() {
       @Override
@@ -210,6 +209,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void handleInvite() {
     startActivity(new Intent(this, InviteActivity.class));
+  }
+
+  private void handleHelp() {
+    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://support.whispersystems.org")));
   }
 
   private void initializeContactUpdatesReceiver() {

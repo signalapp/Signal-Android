@@ -90,7 +90,7 @@ public class ShareFragment extends ListFragment implements LoaderManager.LoaderC
 
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationListLoader(getActivity(), null);
+    return new ConversationListLoader(getActivity(), null, false);
   }
 
   @Override

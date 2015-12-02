@@ -158,8 +158,15 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   </plurals>
   <string name="ConversationListFragment_deleting">A apagar</string>
   <string name="ConversationListFragment_deleting_selected_threads">A apagar conversas seleccionadas...</string>
+  <string name="ConversationListFragment_archived_conversations">Conversas arquivadas</string>
+  <string name="ConversationListFragment_undo">REVERTER</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Conversa movida para a caixa de entrada</string>
+  <string name="ConversationListFragment_archived_conversation">Conversa arquivada</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversas movidas para a caixa de entrada</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar a opção personalizada: %s</string>
   <string name="CustomDefaultPreference_using_default">Usar a opção por omissão: %s</string>
@@ -199,14 +206,14 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   <string name="ExportFragment_success">Sucesso!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha de comunicação Signal permanente!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal não se conseguiu registar com os Serviços Google Play. A comunicação através do canal de dados foi inactiva, por favor tente registar-se novamente através do menu de configurações Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal não se conseguiu registar com os Serviços Google Play. As mensagens e chamadas Signal estão desabilitadas. Por favor tente registar-se novamente em Definições &gt; Avançadas.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grupo novo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome do grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Novo Grupo MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Seleccionou um contacto que não suporta grupos Signal, pelo que este grupo será um grupo MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Não está registado para usar o canal de dados, pelo que os grupos Signal estão desabilitados.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Não está registado para usar mensagens e chamadas Signal, pelo que os grupos Signal estão desabilitados. Por favor tente registar-se em Definições &gt; Avançadas.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Um irro inesperado ocorreu que impossibilitou a criação do grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">É necessária pelo menos uma pessoa para formar um grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número ilegível. Por favor corrija ou remova esse contacto e tente novamente.</string>
@@ -322,6 +329,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lamentamos mas tem demasiados dispositivos interligados, tente remover alguns...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lamento mas este não é um código QR de ligação de dispositivo válido.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduza palavra-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon Signal</string>
@@ -506,8 +514,8 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A resposta rápida encontra-se indisponível quando o Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nova mensagem Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Conteúdos escondidos</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Mensagem nova!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagem</string>
   <string name="attachment_type_selector__audio">Áudio</string>
@@ -566,8 +574,13 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">A carregar lista de países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Leia o código QR apresentado no dispositivo para o interligar</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Interligar dispositivo</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Nenhum dispositivo interligado...</string>
+  <string name="device_list_fragment__link_new_device">Interligar dispositivo novo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
   <!--log_submit_activity-->
@@ -674,9 +687,7 @@ insira abaixo o código de seis dígitos que irá ouvir.
   <string name="registration_progress_activity__call_me">Ligue-me</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>
   <string name="registration_progress_activity__connectivity_error">Erro de ligação.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal foi impossibilitado de se ligar ao serviço push
-</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal foi impossibilitado de se ligar ao servidor</string>
   <string name="registration_progress_activity__some_possible_problems_include">Alguns problemas
 possíveis incluem:
 </string>
@@ -684,10 +695,9 @@ possíveis incluem:
 de rede.
 </string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">O seu
-dispositivo necessita de conectividade para usar esta funcionalidade Signal.
-Pressione para assegurar
-que está ligado a 3G ou Wi-Fi.
-</string>
+dispositivo necessita de conectividade de rede para usar esta função Signal.
+Certifique-se que 
+está ligado a dados móveis ou Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall restritiva.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -740,6 +750,7 @@ falhou.
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <string name="AndroidManifest_manage_linked_devices">Gerir dispositivos interligados</string>
   <string name="AndroidManifest__invite_friends">Convidar amigos</string>
+  <string name="AndroidManifeset_conversations_archive">Arquivo de conversas</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__your_identity_key">A sua chave de identidade</string>
@@ -903,11 +914,13 @@ falhou.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Apagar seleccionado</string>
   <string name="conversation_list_batch__menu_select_all">Seleccionar tudo</string>
+  <string name="conversation_list_batch__archive_selected">Arquivo seleccionado</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Procurar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto de Contacto</string>
   <string name="conversation_list_item_view__error_alert">Alerta de erro</string>
+  <string name="conversation_list_item_view__archived">Arquivado</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
   <!--conversation_secure_verified-->
@@ -945,6 +958,7 @@ falhou.
   <string name="text_secure_normal__menu_clear_passphrase">Desbloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <string name="text_secure_normal__invite_friends">Convidar amigos</string>
+  <string name="text_secure_normal__help">Ajuda</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>
   <string name="reminder_header_expired_build_details">As mensagens já não poderão ser enviadas correctamente, por favor actualize para a versão mais recente.</string>
@@ -985,8 +999,5 @@ falhou.
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas apagadas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icon de transporte</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Leia o código QR apresentado no dispositivo para o interligar</string>
-  <string name="device_link_fragment__link_device">Interligar dispositivo</string>
-  <string name="device_list_fragment__link_new_device">Interligar dispositivo novo</string>
   <!--EOF-->
 </resources>

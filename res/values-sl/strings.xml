@@ -114,6 +114,7 @@ preveriti ta stik.</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ni na voljo</string>
   <string name="ConversationActivity_unable_to_record_audio">Snemanje zvoka ni mogoče!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Napaka pri pošiljanju glasovnega sporočila...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti sporočila</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Način prenosa: %1$s\nPoslano/Prejeto: %2$s</string>
@@ -160,8 +161,15 @@ preveriti ta stik.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_threads">Brišem izbrane pogovore...</string>
+  <string name="ConversationListFragment_archived_conversations">Arhivirani pogovori</string>
+  <string name="ConversationListFragment_undo">RAZVELJAVI</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Premaknjeno v nabiralnik</string>
+  <string name="ConversationListFragment_archived_conversation">Pogovor je bil arhiviran</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Premaknjeno v nabiralnik</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arhivirani pogovori (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uporabljam izbirno: %s</string>
   <string name="CustomDefaultPreference_using_default">Prednastavljeno: %s</string>
@@ -201,14 +209,14 @@ preveriti ta stik.</string>
   <string name="ExportFragment_success">Uspešno opravljeno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija aplikacije Signal z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju nastavive.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Posodobi skupino</string>
   <string name="GroupCreateActivity_group_name_hint">Ime skupine</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nova skupina MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Izbrali ste stik, ki ne podpira skupin Signal, zato bo to skupina MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Ker niste prijavljeni za uporabo podatkovne komunikacije, bodo skupine Signal onemogočene.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Ker niste prijavljeni za uporabo podatkovne komunikacije, so skupine Signal onemogočene. Poskusite se registrirati v meniju: Nastavitve &gt; Napredno.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Prišlo je do nepričakovane napake, zato skupina ni bila ustvarjena.</string>
   <string name="GroupCreateActivity_contacts_no_members">V skupini mora biti vsaj ena oseba!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En izmed članov skupine ima nepravilno zapisano številko. Popravite napako ali odstranite stik iz skupine in poskusite znova.</string>
@@ -245,6 +253,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="ImportFragment_no_encrypted_backup_found">Ne najdem nobene šifrirane varnostne kopije!</string>
   <string name="ImportFragment_restore_complete">Obnova dokončana!</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Za snemanje glasovnega sporočila se dotaknite in držite, za pošiljanje spustite</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deli</string>
   <string name="InviteActivity_send_sms">Pošlji SMS</string>
@@ -319,6 +328,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="DeviceProvisioningActivity_content_progress_network_error">Napaka omrežja.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neveljavna koda QR.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate preveč povezanih naprav, poskusite kakšno odstraniti...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Koda QR za povezavo naprav ni veljavna.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -495,8 +505,8 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hiter odziv ni mogoč kadar je aplikacija Signal zaklenjena!</string>
   <string name="QuickResponseService_problem_sending_message">Težava pri pošiljanju sporočila</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Novo sporočilo Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Vsebina prikrita</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Novo sporočilo!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Slika</string>
   <string name="attachment_type_selector__audio">Zvok</string>
@@ -555,8 +565,13 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Pripravljam države...</string>
   <string name="country_selection_fragment__search">Poišči</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Za povezavo skeniraj kodo QR na napravi</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Poveži z napravo</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Ni povezanih naprav...</string>
+  <string name="device_list_fragment__link_new_device">Poveži z novo napravo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">nadaljuj</string>
   <!--log_submit_activity-->
@@ -657,13 +672,12 @@ in spodaj vnesite šetmestno kodo, ki jo boste zaslišali.</string>
   <string name="registration_progress_activity__call_me">Pokliči me</string>
   <string name="registration_progress_activity__edit_number">Uredi številko</string>
   <string name="registration_progress_activity__connectivity_error">Napaka v povezavi.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Aplikacija Signal se ni mogla povezati s potisno storitvijo.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Aplikacija Signal se ni mogla povezati s strežnikom.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Nekateri možni razlogi
 za težave:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ni povezave
 z omrežjem.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Za uporabo storitev Signal potrebuje vaša naprava podatkovno povezavo. Preverite, če ste povezani s 3G, LTE ali Wi-Fi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Za delovanje storitve Signal potrebuje vaša naprava omrežno povezanost. Preverite, če ste priključeni na Wi-Fi ali mobilno omrežje.</string>
   <string name="registration_progress_activity__restrictive_firewall">Omejujoč požarni zid.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Če ste povezani z Wi-Fi, je možno, da je vašo povazavo blokira požarni zid. Poskusite z drugim Wi-Fi ali mobilnim omrežjem.</string>
@@ -711,6 +725,7 @@ bila uspešna.</string>
   <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
   <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanih naprav</string>
   <string name="AndroidManifest__invite_friends">Povabi prijatelje</string>
+  <string name="AndroidManifeset_conversations_archive">Arhiv pogovorov</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz/izvoz</string>
   <string name="arrays__your_identity_key">Moj identifikacijski ključ</string>
@@ -876,11 +891,13 @@ bila uspešna.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Izbriši označeno</string>
   <string name="conversation_list_batch__menu_select_all">Označi vse</string>
+  <string name="conversation_list_batch__archive_selected">Izbrani arhiv</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Poišči</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika stika</string>
   <string name="conversation_list_item_view__error_alert">Alarm za napako</string>
+  <string name="conversation_list_item_view__archived">Arhivirano</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nov pogovor</string>
   <!--conversation_secure_verified-->
@@ -918,6 +935,7 @@ bila uspešna.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zakleni</string>
   <string name="text_secure_normal__mark_all_as_read">Označi vse kot prebrano</string>
   <string name="text_secure_normal__invite_friends">Povabi prijatelje</string>
+  <string name="text_secure_normal__help">Ponoč</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Vaša različica aplikacije Signal je potekla!</string>
   <string name="reminder_header_expired_build_details">Pošiljanje sporočil ni več mogoče. Prosimo, posodobite aplikacijo na zadnjo različico.</string>
@@ -958,8 +976,5 @@ bila uspešna.</string>
   <string name="trimmer__old_messages_successfully_deleted">Stara sporočila so bila uspešno izbrisana</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Za povezavo skeniraj kodo QR na napravi</string>
-  <string name="device_link_fragment__link_device">Poveži z napravo</string>
-  <string name="device_list_fragment__link_new_device">Poveži z novo napravo</string>
   <!--EOF-->
 </resources>

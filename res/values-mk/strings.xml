@@ -108,6 +108,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Бришење на избраните теми...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користејќи прилагодено: %s</string>
   <string name="CustomDefaultPreference_using_default">Користејќи стандардно: %s</string>
@@ -377,6 +378,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитување на држави...</string>
   <string name="country_selection_fragment__search">Барај</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
@@ -485,7 +488,6 @@
   <string name="AndroidManifest__media_preview">Приказ на датотека</string>
   <string name="AndroidManifest__media_overview">Сите слики</string>
   <string name="AndroidManifest__media_overview_named">Сите слики со %1$s</string>
-  <string name="AndroidManifest__message_details">Детали за пораката</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Импортирај / експортирај</string>
   <string name="arrays__use_default">Користете стандардно</string>

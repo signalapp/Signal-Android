@@ -32,6 +32,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ItemAnimator.ItemAnimatorFinishedListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -56,7 +57,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -160,6 +161,8 @@ public class ConversationFragment extends Fragment
     if (this.recipients != null && this.threadId != -1) {
       list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients));
       getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
+      list.getItemAnimator().setSupportsChangeAnimations(false);
+      list.getItemAnimator().setMoveDuration(120);
     }
   }
 
@@ -211,9 +214,9 @@ public class ConversationFragment extends Fragment
   }
 
   public void scrollToBottom() {
-    list.post(new Runnable() {
+    list.getItemAnimator().isRunning(new ItemAnimatorFinishedListener() {
       @Override
-      public void run() {
+      public void onAnimationsFinished() {
         list.stopScroll();
         list.smoothScrollToPosition(0);
       }
@@ -260,7 +263,7 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+    builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         new ProgressDialogAsyncTask<MessageRecord, Void, Void>(getActivity(),
@@ -290,7 +293,7 @@ public class ConversationFragment extends Fragment
       }
     });
 
-    builder.setNegativeButton(R.string.no, null);
+    builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
   }
 

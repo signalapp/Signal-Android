@@ -114,6 +114,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wilt versturen.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Camera niet beschikbaar</string>
   <string name="ConversationActivity_unable_to_record_audio">Fout bij opnemen audio!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Fout bij versturen audiobericht...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
@@ -152,8 +153,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Geselecteerde gesprekken aan het verwijderen...</string>
+  <string name="ConversationListFragment_archived_conversations">Gearchiveerde gesprekken</string>
+  <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Gesprek naar inbox verplaatst</string>
+  <string name="ConversationListFragment_archived_conversation">Gesprek gearchiveerd</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Gesprekken naar inbox verplaatst</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Gesprekken gearchiveerd (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Handmatig gebruiken: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard gebruiken: %s</string>
@@ -193,14 +201,14 @@
   <string name="ExportFragment_success">Succesvol!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanente Signal communicatiefout!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat zich bij Google Play services te registreren. Communicatie over het data kanaal is uitgeschakeld, probeer het opnieuw via het Signal instellingen menu.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat met Google Play services te registreren. Signal berichten en oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Geavanceerd.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
   <string name="GroupCreateActivity_actionbar_update_title">Groep bijwerken</string>
   <string name="GroupCreateActivity_group_name_hint">Groepsnaam</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe MMS-Groep</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Je bent niet geregistreerd om het datakanaal te gebruiken, dus Signal groepen zijn uitgeschakeld.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Je bent niet geregistreerd voor Signal berichten en oproepen, dus Signal groepen zijn uitgeschakeld. Registreren kan via Instellingen &gt; Geavanceerd.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Er is een onverwachte fout opgetreden waardoor het aanmaken van een groep is mislukt.</string>
   <string name="GroupCreateActivity_contacts_no_members">Je groep moet ten minste één persoon bevatten.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Het nummer van een van de leden van je groep kan niet goed worden gelezen. Corrigeer dit of verwijder deze persoon, en probeer het opnieuw.</string>
@@ -237,6 +245,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="ImportFragment_no_encrypted_backup_found">Geen versleutelde back-up gevonden!</string>
   <string name="ImportFragment_restore_complete">Herstellen voltooid!</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Aanraken en vasthouden om audio op te nemen, loslaten voor versturen.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Delen</string>
   <string name="InviteActivity_send_sms">SMS versturen</string>
@@ -304,6 +313,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netwerkfout!</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ongeldige QR code.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, u hebt teveel gekoppelde apparaten, probeer er te verwijderen...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, dit is geen geldige QR code voor koppeling van een apparaat.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal icoon</string>
@@ -484,8 +494,8 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar als Signal vergrendeld is!</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij het bericht versturen!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Nieuw Signal bericht</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Inhoud verborgen</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Afbeelding</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -544,8 +554,13 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Landen laden...</string>
   <string name="country_selection_fragment__search">Zoeken</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de weergegeven QR code op het te koppelen apparaat</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Apparaat koppelen</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Geen apparaten gekoppeld...</string>
+  <string name="device_list_fragment__link_new_device">Nieuw apparaat koppelen</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">doorgaan</string>
   <!--log_submit_activity-->
@@ -646,12 +661,11 @@ Signal kan je ook bellen om je nummer te verifiëren. Raak \'Bel Me\' aan en voe
   <string name="registration_progress_activity__call_me">Bel me</string>
   <string name="registration_progress_activity__edit_number">Nummer bewerken</string>
   <string name="registration_progress_activity__connectivity_error">Verbindingsfout.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal kon geen verbinding maken met de push service.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal kon geen verbinding maken met de server.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mogelijke problemen
 zijn:</string>
   <string name="registration_progress_activity__no_network_connectivity">Geen netwerkverbinding.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Je apparaat heeft een netwerkverbinding nodig voor deze Signal functie. Controleer of je verbonden bent met je mobiele internet of WiFi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Je apparaat heeft een netwerkverbinding nodig voor deze Signal functie. Controleer of je verbonden bent met mobiel internet of WiFi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Beperkende firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Als je bent verbonden via WiFi is het mogelijk dat een firewall de verbinding met de Signal-server blokkeert. Probeer een ander- of het mobiele netwerk.</string>
@@ -695,9 +709,10 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__media_preview">Media Voorvertoning</string>
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
   <string name="AndroidManifest__media_overview_named">Alle afbeeldingen met %1$s</string>
-  <string name="AndroidManifest__message_details">Bericht Details</string>
-  <string name="AndroidManifest_manage_linked_devices">Beheer gekoppelde apparaten</string>
+  <string name="AndroidManifest__message_details">Berichtdetails</string>
+  <string name="AndroidManifest_manage_linked_devices">Gekoppelde apparaten beheren</string>
   <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
+  <string name="AndroidManifeset_conversations_archive">Gesprekkenarchief</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__your_identity_key">Jouw identiteitssleutel</string>
@@ -861,11 +876,13 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Geselecteerde verwijderen</string>
   <string name="conversation_list_batch__menu_select_all">Alles selecteren</string>
+  <string name="conversation_list_batch__archive_selected">Selectie archiveren</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Zoeken</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto Contact</string>
   <string name="conversation_list_item_view__error_alert">Foutmelding</string>
+  <string name="conversation_list_item_view__archived">Gearchiveerd</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nieuw gesprek</string>
   <!--conversation_secure_verified-->
@@ -903,6 +920,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendelen</string>
   <string name="text_secure_normal__mark_all_as_read">Alles als gelezen markeren</string>
   <string name="text_secure_normal__invite_friends">Vrienden uitnodigen</string>
+  <string name="text_secure_normal__help">Hulp</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Je versie van Signal is verouderd!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
@@ -943,8 +961,5 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportkanaal icoon</string>
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de weergegeven QR code op het te koppelen apparaat</string>
-  <string name="device_link_fragment__link_device">Apparaat koppelen</string>
-  <string name="device_list_fragment__link_new_device">Nieuw apparaat koppelen</string>
   <!--EOF-->
 </resources>

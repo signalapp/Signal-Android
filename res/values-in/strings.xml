@@ -143,6 +143,7 @@ kontak ini.
   <string name="ConversationListFragment_deleting_selected_threads">Menghapus percakapan yang dipilih ...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Gunakan ubahsuai: %s</string>
   <string name="CustomDefaultPreference_using_default">Gunakan bawaan: %s</string>
@@ -179,14 +180,12 @@ kontak ini.
   <string name="ExportFragment_success">Sukses!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan permanen komunikasi Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak bisa mendaftar dengan Layanan Google Play. Komunikasi melalui saluran data dinonaktifkan, silahkan coba mendaftar ulang dari menu pengaturan Signal.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup baru</string>
   <string name="GroupCreateActivity_actionbar_update_title">Perbarui grup</string>
   <string name="GroupCreateActivity_group_name_hint">Nama grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS baru</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup Signal, maka grup ini akan menjadi grup MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Anda tidak terdaftar untuk menggunakan saluran data, jadi grup Signal dinonaktifkan.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Terjadi kesalahan tidak terduga yang menggagalkan pembuatan grup.</string>
   <string name="GroupCreateActivity_contacts_no_members">Anda butuh minimal satu orang tergabung dalam grup Anda!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Salah satu anggota grup Anda memiliki nomor yang tidak dapat dibaca, silakan perbaiki atau keluarkan kontak tersebut dan coba lagi.</string>
@@ -468,8 +467,6 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Pesan Signal baru</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Konten disembunyikan</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Gambar</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -524,6 +521,8 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Memuat daftar negara...</string>
   <string name="country_selection_fragment__search">Cari</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Tidak ada perangkat yang dikaitkan...</string>
   <!--experience_upgrade_activity-->
@@ -625,19 +624,12 @@ termasuk:
   <string name="registration_progress_activity__call_me">Panggil saya</string>
   <string name="registration_progress_activity__edit_number">Edit nomor</string>
   <string name="registration_progress_activity__connectivity_error">Kesalahan konektivitas</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-        Signal tidak bisa tersambung ke layanan push.
-    </string>
   <string name="registration_progress_activity__some_possible_problems_include">Kemungkinan masalah
 termasuk:
 </string>
   <string name="registration_progress_activity__no_network_connectivity">Tidak ada konektivitas
 jaringan.
 </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Perangkat
-        Anda membutuhkan konektivitas jaringan agar bisa menggunkaan fitur Signal. Periksa untuk memastikan
-        perangkat Anda tersambung ke jaringan 3G tau Wi-Fi.
-    </string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall yang ketat.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -690,7 +682,6 @@ Telah gagal
   <string name="AndroidManifest__media_preview">Pratinjau Media</string>
   <string name="AndroidManifest__media_overview">Semua gambar</string>
   <string name="AndroidManifest__media_overview_named">Semua gambar dengan %1$s</string>
-  <string name="AndroidManifest__message_details">Detail Pesan</string>
   <string name="AndroidManifest_manage_linked_devices">Kelola perangkat terkait</string>
   <string name="AndroidManifest__invite_friends">Undang teman</string>
   <!--arrays.xml-->

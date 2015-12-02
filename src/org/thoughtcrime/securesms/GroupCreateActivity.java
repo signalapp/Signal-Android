@@ -46,6 +46,8 @@ import com.soundcloud.android.crop.Crop;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel.RecipientsPanelChangedListener;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -63,7 +65,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter.OnRecipientDeletedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -156,7 +158,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   @SuppressWarnings("ConstantConditions")
   private void updateViewState() {
     if (!TextSecurePreferences.isPushRegistered(this)) {
-      disableSignalGroupViews(R.string.GroupCreateActivity_you_dont_support_push);
+      disableSignalGroupViews(R.string.GroupCreateActivity_youre_not_registered_for_signal);
       getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
     } else if (getAdapter().hasNonPushMembers()) {
       disableSignalGroupViews(R.string.GroupCreateActivity_contacts_dont_support_push);
@@ -199,6 +201,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     recipientsEditor.setHint(R.string.recipients_panel__add_member);
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
+    avatar.setImageDrawable(ContactPhotoFactory.getDefaultGroupPhoto()
+                                               .asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
     avatar.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -319,13 +323,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
              .centerCrop().override(AVATAR_SIZE, AVATAR_SIZE)
              .into(new SimpleTarget<Bitmap>() {
                @Override
-               public void onResourceReady(Bitmap resource,
-                                                     GlideAnimation<? super Bitmap> glideAnimation)
-               {
-                 avatarBmp = resource;
-                 Glide.with(GroupCreateActivity.this).load(Crop.getOutput(data)).skipMemoryCache(true)
-                      .transform(new RoundedCorners(GroupCreateActivity.this, avatar.getWidth() / 2))
-                      .into(avatar);
+               public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                 setAvatar(Crop.getOutput(data), resource);
                }
              });
     }
@@ -561,6 +560,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         return Optional.of(new GroupData(groupIds[0],
                                          existingContacts,
                                          BitmapUtil.fromByteArray(group.getAvatar()),
+                                         group.getAvatar(),
                                          group.getTitle()));
       } else {
         return Optional.absent();
@@ -575,7 +575,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         activity.groupToUpdate = group;
 
         activity.groupName.setText(group.get().name);
-        if (group.get().avatar != null) activity.avatar.setImageBitmap(group.get().avatar);
+        if (group.get().avatarBmp != null) {
+          activity.setAvatar(group.get().avatarBytes, group.get().avatarBmp);
+        }
         SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(activity, group.get().recipients);
         adapter.setOnRecipientDeletedListener(activity);
         activity.lv.setAdapter(adapter);
@@ -584,17 +586,28 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private <T> void setAvatar(T model, Bitmap bitmap) {
+    avatarBmp = bitmap;
+    Glide.with(this)
+         .load(model)
+         .skipMemoryCache(true)
+         .transform(new RoundedCorners(this, avatar.getWidth() / 2))
+         .into(avatar);
+  }
+
   private static class GroupData {
     byte[]         id;
     Set<Recipient> recipients;
-    Bitmap         avatar;
+    Bitmap         avatarBmp;
+    byte[]         avatarBytes;
     String         name;
 
-    public GroupData(byte[] id, Set<Recipient> recipients, Bitmap avatar, String name) {
-      this.id         = id;
-      this.recipients = recipients;
-      this.avatar     = avatar;
-      this.name       = name;
+    public GroupData(byte[] id, Set<Recipient> recipients, Bitmap avatarBmp, byte[] avatarBytes, String name) {
+      this.id          = id;
+      this.recipients  = recipients;
+      this.avatarBmp   = avatarBmp;
+      this.avatarBytes = avatarBytes;
+      this.name        = name;
     }
   }
 }

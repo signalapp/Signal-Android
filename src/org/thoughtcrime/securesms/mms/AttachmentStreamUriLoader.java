@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GenericLoaderFactory;
@@ -51,12 +52,28 @@ public class AttachmentStreamUriLoader implements StreamModelLoader<AttachmentMo
   }
 
   public static class AttachmentModel {
-    public File   attachment;
-    public byte[] key;
+    public @NonNull File   attachment;
+    public @NonNull byte[] key;
 
-    public AttachmentModel(File attachment, byte[] key) {
+    public AttachmentModel(@NonNull File attachment, @NonNull byte[] key) {
       this.attachment = attachment;
       this.key        = key;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+
+      AttachmentModel that = (AttachmentModel)o;
+
+      return attachment.equals(that.attachment);
+
+    }
+
+    @Override
+    public int hashCode() {
+      return attachment.hashCode();
     }
   }
 }
