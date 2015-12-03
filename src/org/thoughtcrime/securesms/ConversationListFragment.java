@@ -20,7 +20,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -44,7 +43,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -52,7 +50,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
@@ -433,7 +430,8 @@ public class ConversationListFragment extends Fragment
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-      final long threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
+      final long    threadId = ((ConversationListItem)viewHolder.itemView).getThreadId();
+      final boolean read     = ((ConversationListItem)viewHolder.itemView).getRead();
 
       if (archive) {
         new SnackbarAsyncTask<Long>(getView(),
@@ -462,11 +460,21 @@ public class ConversationListFragment extends Fragment
           @Override
           protected void executeAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+
+            if (!read) {
+              DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId);
+              MessageNotifier.updateNotification(getActivity(), masterSecret);
+            }
           }
 
           @Override
           protected void reverseAction(@Nullable Long parameter) {
             DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+
+            if (!read) {
+              DatabaseFactory.getThreadDatabase(getActivity()).setUnread(threadId);
+              MessageNotifier.updateNotification(getActivity(), masterSecret);
+            }
           }
         }.execute(threadId);
       }

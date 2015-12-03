@@ -160,6 +160,10 @@ public class ConversationListItem extends RelativeLayout
     return threadId;
   }
 
+  public boolean getRead() {
+    return read;
+  }
+
   public int getDistributionType() {
     return distributionType;
   }
