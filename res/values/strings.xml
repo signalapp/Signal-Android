@@ -373,6 +373,8 @@
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, you have too many devices linked already, try removing some...</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, this is not a valid device link QR code.</string>
+    <string name="DeviceProvisioningActivity_link_a_signal_device">Link a Signal device?</string>
+    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">It looks like you\'re trying to link a Signal device using a 3rd party scanner.  For your protection, please scan the code again from within Signal.</string>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
