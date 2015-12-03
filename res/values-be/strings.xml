@@ -34,6 +34,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Відэа</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аўдыё</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Кантактная інфармацыя</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
@@ -54,8 +55,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Паўтарыць у небяспечным MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Немагчыма знайсці праграму, якая б адкрывала гэты кантэнт.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">Пацверджанне выдалення гутаркі</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Вы ўпэўнены, што хочаце пастаянна выдаляць гэтую гутарку?</string>
   <string name="ConversationActivity_add_attachment">Прыкласці дадатак</string>
   <string name="ConversationActivity_select_contact_info">Абярыце кантактную інфармацыю</string>
   <string name="ConversationActivity_compose_message">Напісаць паведамленне</string>
@@ -85,7 +84,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Адпраўшчык: %1$s\nТранспарт: %2$s\nДаслана: %3$s\nАтрымана: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Захаваўшы гэты кантэнт на дыск, вы дазваляеце ўсім іншым праграмам на вашым смартфоне атрымаць да яго доступ.\n\nПрацягнуць?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Памылка пры захаванні дадатку на дыск!</string>
   <string name="ConversationFragment_success_exclamation">Паспяхова!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Немагчыма запісаць на дыск!</string>
@@ -101,6 +99,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Выдаленне абраных гутарак...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Паведамленне абмену ключамі...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Выкарыстоўваць кастомны: %s</string>
   <string name="CustomDefaultPreference_using_default">Выкарыстоўваць стандартны: %s</string>
@@ -114,12 +113,8 @@
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспарт</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Экспартаваць простым тэкстам на SD картку?</string>
   <string name="ExportFragment_cancel">Адмена</string>
   <string name="ExportFragment_exporting">Экспарт</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Экспарт простым тэкстам на SD картку...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Памылка, немагчыма запісаць на SD картку!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Памылк падчас запісу на SD картку.</string>
   <string name="ExportFragment_success">Паспяхова!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -157,6 +152,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Аднаўленне зашыфраванай рэзервнай копіі...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Ня знойдзена зашыфраваных рэзервных копій!</string>
   <string name="ImportFragment_restore_complete">Аднаўленне выканана!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ня знойдзена адсканаваных ключоў!</string>
@@ -184,10 +180,6 @@
   <string name="DeviceProvisioningActivity_continue">ПРАЦЯГНУЦЬ</string>
   <string name="DeviceProvisioningActivity_title">Прывязаць гэты дэвайс?</string>
   <string name="DeviceProvisioningActivity_content_intro">Гэта будзе магчыма</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - Прачытаць усе вашыя паведамленні
-        \n- Даслаць паведамленне на Ваша імя
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ня знойдзена дэвайсаў.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Памылка сеткі.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Няправільны QR код.</string>
@@ -252,7 +244,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Атрымальнік ня мае ідэнтыфікацыйнага ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Атрымальнік ня мае ідэнтыфікацыйнага ключа!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Адскануйце гэты ключ, каб параўнаць</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Атрымаць мой сканаваны ключ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УВАГА, адсканаваныя ключы не супадаюць! Калі ласка ўважліва праверце адбіткі.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ верыфікавана!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Іх ключ правільны. Таксама не забудзься верыфікаваць свой ключ з імі.</string>
@@ -266,7 +257,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">Не верыфікавана!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Адсканаваныя ключ супадае!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Верыфікавана!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Адбітак майго ідэнтыфікатара</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Ініцыяваць нягледзячы на існуючы запыт?</string>
   <string name="KeyExchangeInitiator_send">Даслаць</string>
@@ -307,9 +297,6 @@
   <!--SingleRecipientNotificationBuilder-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">СТАРЫ ПАРОЛЬ:</string>
-  <string name="change_passphrase_activity__new_passphrase">НОВЫ ПАРОЛЬ:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ПАЎТАРЫЦЕ НОВЫ ПАРОЛЬ:</string>
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма кантактаў.</string>
@@ -331,6 +318,7 @@
   <string name="conversation_activity__compose_description">Скласці паведамленне</string>
   <string name="conversation_activity__emoji_toggle_description">Пераключыць emoji клавіятуру</string>
   <string name="conversation_activity__attachment_thumbnail">Дадатак мініяцюры</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Запампоўка медыя паведамлення</string>
   <string name="conversation_item__mms_image_description">Медыя паведамленне</string>
@@ -351,6 +339,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загрузка краінаў...</string>
   <string name="country_selection_fragment__search">Пошук</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
@@ -367,15 +357,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Абнаўленне базы дадзеных...</string>
   <string name="export_fragment__export_plaintext_backup">Экспарт рэзервнай копіі простым тэкстам</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Экспарт простым тэкстам рэзервнай копіі сумяшчальны з \'SMSBackup And Restore\' на SD картку.</string>
   <string name="import_fragment__import_system_sms_database">Імпартаваць сістэмную базу SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Імпарт базы дадзеных
-са стандартнай сістэмнай праграмы для SMS.</string>
-  <string name="import_fragment__import_encrypted_backup">Імпарт зашыфраванай рэзервнай копіі</string>
   <string name="import_fragment__import_plaintext_backup">Імпартаваць рэзервную копію простым тэкстам</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Імпартаваць простым тэкстам рэзервную копію з файла. Сумяшчальна з \'SMSBackup And Restore.\'</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Няма выявы</string>
@@ -390,9 +373,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">Уведзены тэкст ня быў сапраўдным URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Уведзены тэкст ня быў сапраўдным хастом</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s далучыўся да групы.</string>
   <string name="GroupUtil_group_updated">Група абноўлена.</string>
-  <string name="GroupUtil_title_is_now">Зараз назва заменена на \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Разблакіраваць</string>
   <!--prompt_mms_activity-->
@@ -460,7 +441,6 @@
   <string name="AndroidManifest__media_overview_named">Усе выявы з %1$s</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Імпарт / экспарт</string>
-  <string name="arrays__my_identity_key">Мой ідэнтыфікацыйны ключ</string>
   <string name="arrays__use_default">Выкарыстоўваць стандартны</string>
   <string name="arrays__use_custom">Выкарыстоўваць кастамны</string>
   <!--plurals.xml-->
@@ -484,7 +464,6 @@
   <string name="preferences__choose_identity">Абярыце ідэнтыфікатар</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Абярыце кантакт са спісу.</string>
   <string name="preferences__change_passphrase">Змяніць пароль.</string>
-  <string name="preferences__change_my_passphrase">Змяніць мой пароль</string>
   <string name="preferences__enable_passphrase">Уключыць пароль</string>
   <string name="preferences__passphrase_summary">Пароль %s</string>
   <string name="preferences__screen_security">Бяспека экрана</string>
@@ -569,7 +548,8 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Абнавіць спіс кантактаў</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Набраць</string>
+  <string name="conversation_callable_insecure__menu_call">Набраць</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Дэталі паведамлення</string>
   <string name="conversation_context__menu_copy_text">Капіраваць тэкст</string>
@@ -601,7 +581,6 @@
   <string name="conversation__menu_add_attachment">Прыкласці дадатак</string>
   <string name="conversation__menu_update_group">Абнавіць групу</string>
   <string name="conversation__menu_leave_group">Пакінуць групу</string>
-  <string name="conversation__menu_delete_thread">Выдаліць ланцужок</string>
   <string name="conversation__menu_view_media">Усе выявы</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
@@ -632,6 +611,7 @@
   <string name="media_preview__save_title">Захаваць</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Перадпрагляд выявы</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting_old_messages">Выдаленне старых паведамленняў...</string>

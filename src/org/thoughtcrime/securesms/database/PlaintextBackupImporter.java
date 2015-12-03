@@ -83,7 +83,7 @@ public class PlaintextBackupImporter {
       }
 
       for (long threadId : modifiedThreads) {
-        threads.update(threadId);
+        threads.update(threadId, true);
       }
 
       Log.w("PlaintextBackupImporter", "Exited loop");

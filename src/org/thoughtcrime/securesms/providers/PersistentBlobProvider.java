@@ -4,7 +4,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -20,11 +19,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PersistentBlobProvider {
-  private static final String     TAG           = PersistentBlobProvider.class.getSimpleName();
+
+  private static final String TAG = PersistentBlobProvider.class.getSimpleName();
+
   private static final String     URI_STRING    = "content://org.thoughtcrime.securesms/capture";
   public  static final Uri        CONTENT_URI   = Uri.parse(URI_STRING);
   public  static final String     AUTHORITY     = "org.thoughtcrime.securesms";
@@ -48,17 +52,17 @@ public class PersistentBlobProvider {
   }
 
   private final Context context;
-  private final Map<Long, byte[]> cache = new HashMap<>();
+  private final Map<Long, byte[]> cache    = Collections.synchronizedMap(new HashMap<Long, byte[]>());
+  private final ExecutorService   executor = Executors.newCachedThreadPool();
 
   private PersistentBlobProvider(Context context) {
     this.context = context.getApplicationContext();
   }
 
   public Uri create(@NonNull MasterSecret masterSecret,
-                    @NonNull Recipients recipients,
                     @NonNull byte[] imageBytes)
   {
-    final long id = generateId(recipients);
+    final long id = System.currentTimeMillis();
     cache.put(id, imageBytes);
     return create(masterSecret, new ByteArrayInputStream(imageBytes), id);
   }
@@ -75,24 +79,22 @@ public class PersistentBlobProvider {
     return ContentUris.withAppendedId(uniqueUri, id);
   }
 
-  private void persistToDisk(final MasterSecret masterSecret, final long id,
-                             final InputStream input)
-  {
-    new AsyncTask<Void, Void, Void>() {
-      @Override protected Void doInBackground(Void... params) {
+  private void persistToDisk(final MasterSecret masterSecret, final long id, final InputStream input) {
+    executor.submit(new Runnable() {
+      @Override
+      public void run() {
         try {
-          final OutputStream output = new EncryptingPartOutputStream(getFile(id), masterSecret);
+          OutputStream output = new EncryptingPartOutputStream(getFile(id), masterSecret);
+          Log.w(TAG, "Starting stream copy....");
           Util.copy(input, output);
+          Log.w(TAG, "Stream copy finished...");
         } catch (IOException e) {
           Log.w(TAG, e);
         }
-        return null;
-      }
 
-      @Override protected void onPostExecute(Void aVoid) {
         cache.remove(id);
       }
-    }.execute();
+    });
   }
 
   public Uri createForExternal(@NonNull Recipients recipients) throws IOException {
@@ -104,8 +106,12 @@ public class PersistentBlobProvider {
 
   public boolean delete(@NonNull Uri uri) {
     switch (MATCHER.match(uri)) {
-    case MATCH: return getFile(ContentUris.parseId(uri)).delete();
-    default:    return new File(uri.getPath()).delete();
+    case MATCH:
+      long id = ContentUris.parseId(uri);
+      cache.remove(id);
+      return getFile(ContentUris.parseId(uri)).delete();
+    default:
+      return new File(uri.getPath()).delete();
     }
   }
 
@@ -136,4 +142,5 @@ public class PersistentBlobProvider {
       return false;
     }
   }
+
 }

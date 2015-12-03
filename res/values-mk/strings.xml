@@ -35,6 +35,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Звук</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Инфо за контакт</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
   <!--CallScreen-->
@@ -57,8 +58,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Враќање на нешифрирани MMS пораки?</string>
   <string name="ConversationItem_unable_to_open_media">Не може да се пронајде апликација за отворање на овој тип на датотека.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">Потврде за бришење на тема на разговор</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Дали сте сигурни дека сакате трајно бришење на овај разговор?</string>
   <string name="ConversationActivity_add_attachment">Прикачи датотека</string>
   <string name="ConversationActivity_select_contact_info">Изберете контакт инфо</string>
   <string name="ConversationActivity_compose_message">Креирајте порака</string>
@@ -92,7 +91,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Трансфер: %1$s\nИспратено/Примено: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Испраќач: %1$s\nТрансфер: %2$s\nИспратено: %3$s\nПримено: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Сними на диск?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Со снимање на оваа датотека на диск ќе и се овозможи на која била апликација пристап до неа.\n\nПродолжи?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка при снимање на додатокот на диск!</string>
   <string name="ConversationFragment_success_exclamation">Успешно!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не може да се запишува на дискот!</string>
@@ -110,6 +108,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">Бришење на избраните теми...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користејќи прилагодено: %s</string>
   <string name="CustomDefaultPreference_using_default">Користејќи стандардно: %s</string>
@@ -124,12 +123,8 @@
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Експортирај</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Експортирај нешифрирано на SD картичка?</string>
   <string name="ExportFragment_cancel">Откажи</string>
   <string name="ExportFragment_exporting">Се експортира</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Се експортира нешифрирано на SD картичката...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Грешка, не може да се запише на SD картичката!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Грешка при запишување на SD картичката.</string>
   <string name="ExportFragment_success">Успешно!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -170,6 +165,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">Враќање на шифрирана копија...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Не е најдена шифрирана копија!</string>
   <string name="ImportFragment_restore_complete">Враќањето е завршено!</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Не е пронајден скениран клуч!</string>
@@ -197,10 +193,6 @@
   <string name="DeviceProvisioningActivity_continue">ПРОДОЛЖИ</string>
   <string name="DeviceProvisioningActivity_title">Поврзете го овај уред?</string>
   <string name="DeviceProvisioningActivity_content_intro">Ќе може</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - Чита сите ваши пораки
-        \n- Праќа пораки во ваше име
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Уредот не е пронајден.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Мрежна грешка.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Погрешен QR код.</string>
@@ -287,7 +279,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Примателот нема клуч за идентификација.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Примателот нема клуч за идентификација!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Скенирајте го нивниот клуч за споредба</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Скенирај го мојот клуч</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, скенираниот клуч НЕ Е ИДЕНТИЧЕН! Проверете го внимателно текстот на отисокот од прстот.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ Е потврдено!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Нивниот клуч е исправен. Истотака е потребна верификација на вашиот клуч со нив.</string>
@@ -301,7 +292,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">НЕ Е верификуван!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Скенираниот клуч е идентичен!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Потврдено!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Мојот отисок за идентификација</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Иницирај и покрај постоечкото барање?</string>
   <string name="KeyExchangeInitiator_send">Испратено</string>
@@ -344,9 +334,6 @@
   <!--SingleRecipientNotificationBuilder-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">СТАРА ЛОЗИНКА:</string>
-  <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРЕТЕ ЈА НОВАТА ЛОЗИНКА:</string>
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нема контакти.</string>
@@ -370,6 +357,7 @@
   <string name="conversation_activity__compose_description">Креирање порака</string>
   <string name="conversation_activity__emoji_toggle_description">Вклучи/исклучи emoji тастатура</string>
   <string name="conversation_activity__attachment_thumbnail">Слика на додатокот</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Преземање на медиа порака</string>
   <string name="conversation_item__mms_image_description">Медиа порака</string>
@@ -390,6 +378,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитување на држави...</string>
   <string name="country_selection_fragment__search">Барај</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
@@ -406,15 +396,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Ажурирање на базата на податоци...</string>
   <string name="export_fragment__export_plaintext_backup">Експортирајте нешифрирана копија</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-        Експортирајте нешифрирана копија компатибилна со \'SMSBackup And Restore\' на SD картичката.</string>
   <string name="import_fragment__import_system_sms_database">Импортирај системска SMS база на податоци</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Импортирајте ја базата
-од стандардната системска апликација за пораки.</string>
-  <string name="import_fragment__import_encrypted_backup">Импортирајте шифрирана копија</string>
   <string name="import_fragment__import_plaintext_backup">Импортирајте нешифрирана копија</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-        Импортирајте нешифрирана копија. Компатибилна со \'SMSBackup And Restore.\'</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Нема слики</string>
@@ -429,9 +412,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">Внесениот текст не е валиден URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Внесениот текст не е валиден хост</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s се придружи на групата.</string>
   <string name="GroupUtil_group_updated">Групата е ажурирана.</string>
-  <string name="GroupUtil_title_is_now">Насловот е сега \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Отклучи</string>
   <!--prompt_mms_activity-->
@@ -507,10 +488,8 @@
   <string name="AndroidManifest__media_preview">Приказ на датотека</string>
   <string name="AndroidManifest__media_overview">Сите слики</string>
   <string name="AndroidManifest__media_overview_named">Сите слики со %1$s</string>
-  <string name="AndroidManifest__message_details">Детали за пораката</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Импортирај / експортирај</string>
-  <string name="arrays__my_identity_key">Мој клуч за идентификација</string>
   <string name="arrays__use_default">Користете стандардно</string>
   <string name="arrays__use_custom">Користете прилагодено</string>
   <string name="arrays__mute_for_one_hour">Безгласен 1 час</string>
@@ -539,7 +518,6 @@
   <string name="preferences__choose_identity">Изберете идентитет</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт од вашата листа на контакти</string>
   <string name="preferences__change_passphrase">Променете лозинка</string>
-  <string name="preferences__change_my_passphrase">Променете ја вашата лозинка</string>
   <string name="preferences__enable_passphrase">Овозможете лозинка</string>
   <string name="preferences__passphrase_summary">Лозинка %s</string>
   <string name="preferences__screen_security">Сигурност на екранот</string>
@@ -628,7 +606,8 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Актуализирај листа на контакти</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Повикај</string>
+  <string name="conversation_callable_insecure__menu_call">Повикај</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Детали за пораката</string>
   <string name="conversation_context__menu_copy_text">Копирај текст</string>
@@ -662,7 +641,6 @@
   <string name="conversation__menu_add_attachment">Прикачи датотека</string>
   <string name="conversation__menu_update_group">Ажурирај група</string>
   <string name="conversation__menu_leave_group">Напушти група</string>
-  <string name="conversation__menu_delete_thread">Избриши тема</string>
   <string name="conversation__menu_view_media">Сите слики</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
@@ -693,6 +671,7 @@
   <string name="media_preview__save_title">Зачувај</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Приказ на слика</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Бришење</string>

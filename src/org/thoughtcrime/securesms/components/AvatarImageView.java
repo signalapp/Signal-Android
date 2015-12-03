@@ -37,7 +37,7 @@ public class AvatarImageView extends ImageView {
     }
   }
 
-  public void setAvatar(@Nullable Recipients recipients, boolean quickContactEnabled) {
+  public void setAvatar(final @Nullable Recipients recipients, boolean quickContactEnabled) {
     if (recipients != null) {
       MaterialColor backgroundColor = recipients.getColor();
       setImageDrawable(recipients.getContactPhoto().asDrawable(getContext(), backgroundColor.toConversationColor(getContext()), inverted));
@@ -73,5 +73,4 @@ public class AvatarImageView extends ImageView {
       setOnClickListener(null);
     }
   }
-
 }

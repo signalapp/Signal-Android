@@ -13,6 +13,7 @@
       <item>Español</item>
       <item>Français</item>
       <item>Greek ελληνικά</item>
+      <item>Hebrew עברית</item>
       <item>Hrvatski</item>
       <item>Indonesia</item>
       <item>Italiano</item>
@@ -49,6 +50,7 @@
       <item>es</item>
       <item>fr</item>
       <item>el</item>
+      <item>iw</item>
       <item>hr</item>
       <item>in</item>
       <item>it</item>
@@ -158,6 +160,7 @@
       <item>@string/arrays__mute_for_two_hours</item>
       <item>@string/arrays__mute_for_one_day</item>
       <item>@string/arrays__mute_for_seven_days</item>
+      <item>@string/arrays__mute_for_one_year</item>
   </string-array>
 
   <string-array name="recipient_vibrate_entries">
@@ -175,7 +178,7 @@
   <string-array name="pref_notification_privacy_entries">
       <item>@string/arrays__name_and_message</item>
       <item>@string/arrays__name_only</item>
-      <item>@string/arrays__neither</item>
+      <item>@string/arrays__no_name_or_message</item>
   </string-array>
 
   <string-array name="pref_notification_privacy_values">

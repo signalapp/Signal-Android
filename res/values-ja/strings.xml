@@ -40,6 +40,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>
   <string name="AttachmentTypeSelectorAdapter_contact">連絡先情報</string>
+  <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">ブロックした連絡先</string>
   <!--CallScreen-->
@@ -64,8 +65,6 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
   <string name="ConversationItem_unable_to_open_media">このメディアを開くことができるアプリが見つかりません。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_delete_thread_confirmation">スレッド削除確認</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">この会話を完全に削除してもよろしいですか？</string>
   <string name="ConversationActivity_add_attachment">添付</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
   <string name="ConversationActivity_compose_message">メッセージ作成</string>
@@ -100,7 +99,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n送信方法: %2$s\n送信: %3$s\n受信: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">メモリに保存しますか？</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">このファイルを保存すれば、別のアプリもこのファイルをアクセスできます。\n\nよろしいですか？</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">保存中にエラーが発生しました。</string>
   <string name="ConversationFragment_success_exclamation">成功しました。</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">メモリに書き込めませんでした。</string>
@@ -118,6 +116,7 @@
   <string name="ConversationListFragment_deleting_selected_threads">選択したスレッドを削除中…</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタム利用: %s</string>
   <string name="CustomDefaultPreference_using_default">デフォルト利用: %s</string>
@@ -142,12 +141,8 @@
   <!--ExperienceUpgradeActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">エクスポート</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">SDカードへエクスポートしますか？</string>
   <string name="ExportFragment_cancel">中止</string>
   <string name="ExportFragment_exporting">エクスポート中…</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">暗号化されてないテキストをSDカードにエクスポート中…</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">SDカードに書き込めまないエラーです!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">SDカードに書き込む途中でエラーが発生しました。</string>
   <string name="ExportFragment_success">成功しました。</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -185,6 +180,7 @@
   <string name="ImportFragment_restoring_encrypted_backup">暗号化されたバックアップ・ファイルをインポート中…</string>
   <string name="ImportFragment_no_encrypted_backup_found">暗号化されたバックアップ・ファイルは見つかりませんでした。</string>
   <string name="ImportFragment_restore_complete">復元完了！</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>
@@ -212,13 +208,8 @@
   <string name="DeviceProvisioningActivity_continue">継続</string>
   <string name="DeviceProvisioningActivity_title">このデバイスとリンクする?</string>
   <string name="DeviceProvisioningActivity_content_intro">それができるようになります</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-        - あなたへのすべてのメッセージを読むこと
-        \n- あなたの名前でメッセージを送ること
-    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">デバイスのリンク</string>
   <string name="DeviceProvisioningActivity_content_progress_content">新しいデバイスのリンク...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">デバイスとリンクした!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">デバイスがありません。</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ネットワークエラー。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QRコードが無効。</string>
@@ -299,7 +290,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">受信者は認証キーがありません。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">受信者は認証キーがありません！</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">鍵をスキャンして比較</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">自分の鍵をスキャンしてもらう</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告、スキャンした鍵が正しくありません！フィンガープリントのテキストを慎重にチェックしてください。</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">鍵が一致しました。これらの鍵と一緒に、自分の鍵も確認する必要があります。</string>
@@ -313,7 +303,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">スキャンした鍵が一致しました！</string>
   <string name="ViewIdentityActivity_verified_exclamation">照合できました。</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">自分の認証フィンガープリント</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
   <string name="KeyExchangeInitiator_send">送信</string>
@@ -359,12 +348,8 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">送信メッセージでの問題!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">非表示コンテンツ</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
-  <string name="change_passphrase_activity__new_passphrase">新規のパスワード：</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">新規のパスワードを再入力：</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">名前もしくは番号を入力</string>
   <!--contact_selection_group_activity-->
@@ -390,6 +375,7 @@
   <string name="conversation_activity__emoji_toggle_description">絵文字キーボードを切り替え</string>
   <string name="conversation_activity__attachment_thumbnail">添付のサムネイル</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">添付ドロワーのトグル</string>
+  <!--conversation_input_panel-->
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">メディアメッセージダウンロード</string>
   <string name="conversation_item__mms_image_description">メディアーメッセージ</string>
@@ -410,6 +396,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">国名を読み込み中...</string>
   <string name="country_selection_fragment__search">検索</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">リンクしたデバイスはありません...</string>
   <!--experience_upgrade_activity-->
@@ -427,15 +415,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
   <string name="export_fragment__export_plaintext_backup">非暗号テキストのバックアップ・ファイルをエクスポート</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
   <string name="import_fragment__import_system_sms_database">システムのSMSデータベースをインポート</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">端末既定のメッセンジャー・アプリから
-データベースをインポート</string>
-  <string name="import_fragment__import_encrypted_backup">暗号化されたバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
   <!--load_more_header-->
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">画像なし</string>
@@ -450,9 +431,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">入力されたテキストは妥当なURIではありません</string>
   <string name="MmsPreferencesFragment__invalid_host">入力されたテキストは妥当なホストではありません</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s グループに参加。</string>
   <string name="GroupUtil_group_updated">グループ更新。</string>
-  <string name="GroupUtil_title_is_now">現在のタイトルは \'%1$s\'。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
@@ -525,11 +504,9 @@
   <string name="AndroidManifest__media_preview">メディアのプレビュー表示</string>
   <string name="AndroidManifest__media_overview">すべての画像</string>
   <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
-  <string name="AndroidManifest__message_details">メッセージの詳細</string>
   <string name="AndroidManifest_manage_linked_devices">リンク済みデバイスの管理</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>
-  <string name="arrays__my_identity_key">自分の認証キー</string>
   <string name="arrays__use_default">デフォルトを利用する</string>
   <string name="arrays__use_custom">カスタムを利用する</string>
   <string name="arrays__mute_for_one_hour">1時間消音</string>
@@ -541,7 +518,6 @@
   <string name="arrays__disabled">無効</string>
   <string name="arrays__name_and_message">名前とメッセージ</string>
   <string name="arrays__name_only">名前のみ</string>
-  <string name="arrays__neither">もしくは</string>
   <string name="arrays__images">画像</string>
   <string name="arrays__audio">音声</string>
   <string name="arrays__video">動画</string>
@@ -563,7 +539,6 @@
   <string name="preferences__choose_identity">認証を選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
-  <string name="preferences__change_my_passphrase">パスワードの変更</string>
   <string name="preferences__enable_passphrase">パスフレーズが有効</string>
   <string name="preferences__passphrase_summary">パスフレーズ %s</string>
   <string name="preferences__enable_lock_screen_for_messages">ロックスクリーンでのメッセージを有効化</string>
@@ -662,7 +637,8 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">連絡先リストを更新</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">通話</string>
+  <string name="conversation_callable_insecure__menu_call">通話</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">メッセージの詳細</string>
   <string name="conversation_context__menu_copy_text">テキストをコピー</string>
@@ -696,7 +672,6 @@
   <string name="conversation__menu_add_attachment">添付</string>
   <string name="conversation__menu_update_group">グループを更新する</string>
   <string name="conversation__menu_leave_group">グループを抜ける</string>
-  <string name="conversation__menu_delete_thread">スレッドを削除</string>
   <string name="conversation__menu_view_media">すべての画像</string>
   <string name="conversation__menu_conversation_settings">会話設定</string>
   <!--conversation_popup-->
@@ -729,6 +704,7 @@
   <string name="media_preview__save_title">保存</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">画像プレビュー表示</string>
+  <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">削除</string>

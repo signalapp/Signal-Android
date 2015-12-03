@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -117,5 +118,10 @@ public class ConversationPopupActivity extends ConversationActivity {
   protected void sendComplete(long threadId) {
     super.sendComplete(threadId);
     finish();
+  }
+
+  @Override
+  protected void updateInviteReminder() {
+    reminderView.setVisibility(View.GONE);
   }
 }

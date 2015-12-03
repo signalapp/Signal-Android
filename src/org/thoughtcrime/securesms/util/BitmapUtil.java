@@ -11,6 +11,7 @@ import android.graphics.YuvImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 
@@ -140,20 +141,27 @@ public class BitmapUtil {
     return new ByteArrayInputStream(thumbnailBytes.toByteArray());
   }
 
-  public static byte[] toByteArray(Bitmap bitmap) {
+  public static @Nullable byte[] toByteArray(@Nullable Bitmap bitmap) {
+    if (bitmap == null) return null;
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
     return stream.toByteArray();
+  }
+
+  public static @Nullable Bitmap fromByteArray(@Nullable byte[] bytes) {
+    if (bytes == null) return null;
+    return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
   }
 
   public static byte[] createFromNV21(@NonNull final byte[] data,
                                       final int width,
                                       final int height,
                                       int rotation,
-                                      final Rect croppingRect)
+                                      final Rect croppingRect,
+                                      final boolean flipHorizontal)
       throws IOException
   {
-    byte[] rotated = rotateNV21(data, width, height, rotation);
+    byte[] rotated = rotateNV21(data, width, height, rotation, flipHorizontal);
     final int rotatedWidth  = rotation % 180 > 0 ? height : width;
     final int rotatedHeight = rotation % 180 > 0 ? width  : height;
     YuvImage previewImage = new YuvImage(rotated, ImageFormat.NV21,
@@ -176,7 +184,8 @@ public class BitmapUtil {
   public static byte[] rotateNV21(@NonNull final byte[] yuv,
                                   final int width,
                                   final int height,
-                                  final int rotation)
+                                  final int rotation,
+                                  final boolean flipHorizontal)
       throws IOException
   {
     if (rotation == 0) return yuv;
@@ -189,7 +198,7 @@ public class BitmapUtil {
     final byte[]  output    = new byte[yuv.length];
     final int     frameSize = width * height;
     final boolean swap      = rotation % 180 != 0;
-    final boolean xflip     = rotation % 270 != 0;
+    final boolean xflip     = flipHorizontal ? rotation % 270 == 0 : rotation % 270 != 0;
     final boolean yflip     = rotation >= 180;
 
     for (int j = 0; j < height; j++) {

@@ -74,12 +74,13 @@ public class GroupUtil {
       String        title       = groupContext.getName();
 
       if (members != null) {
-        description.append(context.getString(R.string.GroupUtil_joined_the_group, members.toShortString()));
+        description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_joined_the_group,
+                members.getRecipientsList().size(), members.toShortString()));
       }
 
       if (title != null && !title.trim().isEmpty()) {
         if (description.length() > 0) description.append(" ");
-        description.append(context.getString(R.string.GroupUtil_title_is_now, title));
+        description.append(context.getString(R.string.GroupUtil_group_name_is_now, title));
       }
 
       if (description.length() > 0) {

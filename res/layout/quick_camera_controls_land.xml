@@ -14,6 +14,7 @@
                  android:layout_centerVertical="true"
                  android:background="@drawable/quick_camera_shutter_ring"
                  android:src="@drawable/quick_shutter_button"
+                 android:enabled="false"
                  android:padding="20dp"/>
 
     <ImageButton android:id="@+id/fullscreen_button"
@@ -21,7 +22,7 @@
                  android:layout_height="wrap_content"
                  android:layout_alignParentBottom="true"
                  android:layout_alignParentRight="true"
-                 android:background="#00000000"
+                 android:background="@drawable/circle_touch_highlight_background"
                  android:src="@drawable/quick_camera_fullscreen"
                  android:padding="20dp"/>
 
@@ -30,8 +31,9 @@
                  android:layout_height="wrap_content"
                  android:layout_alignParentTop="true"
                  android:layout_alignParentRight="true"
-                 android:background="#00000000"
+                 android:background="@drawable/circle_touch_highlight_background"
                  android:src="@drawable/quick_camera_rear"
+                 android:enabled="false"
                  android:padding="20dp"
                  android:visibility="invisible"
                  tools:visibility="visible"/>

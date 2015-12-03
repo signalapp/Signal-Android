@@ -2,11 +2,16 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.os.PowerManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
@@ -15,11 +20,24 @@ import java.io.IOException;
 
 public class DirectoryRefreshJob extends ContextJob {
 
-  public DirectoryRefreshJob(Context context) {
+  @Nullable private transient Recipients   recipients;
+  @Nullable private transient MasterSecret masterSecret;
+
+  public DirectoryRefreshJob(@NonNull Context context) {
+    this(context, null, null);
+  }
+
+  public DirectoryRefreshJob(@NonNull Context context,
+                             @Nullable MasterSecret masterSecret,
+                             @Nullable Recipients recipients)
+  {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(DirectoryRefreshJob.class.getSimpleName())
                                 .withRequirement(new NetworkRequirement(context))
                                 .create());
+
+    this.recipients   = recipients;
+    this.masterSecret = masterSecret;
   }
 
   @Override
@@ -33,7 +51,11 @@ public class DirectoryRefreshJob extends ContextJob {
 
     try {
       wakeLock.acquire();
-      DirectoryHelper.refreshDirectory(context, KeyCachingService.getMasterSecret(context));
+      if (recipients == null) {
+        DirectoryHelper.refreshDirectory(context, KeyCachingService.getMasterSecret(context));
+      } else {
+        DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipients, TextSecurePreferences.getLocalNumber(context));
+      }
       SecurityEvent.broadcastSecurityUpdateEvent(context);
     } finally {
       if (wakeLock.isHeld()) wakeLock.release();

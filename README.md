@@ -33,7 +33,7 @@ If you're interested in a life of peace and tranquility, stick with the standard
 ## Contributing Translations
 Interested in helping to translate Signal? Contribute here:
 
-https://www.transifex.com/projects/p/textsecure-official/
+https://www.transifex.com/projects/p/signal-android/
 
 ## Contributing Code
 Instructions on how to setup your development environment and build Signal can be found in  [BUILDING.md](https://github.com/WhisperSystems/Signal-Android/blob/master/BUILDING.md).
@@ -54,7 +54,7 @@ whispersystems@lists.riseup.net
 https://lists.riseup.net/www/info/whispersystems
 
 ## Contributing Funds
-[![Donate](https://www.coinbase.com/assets/buttons/donation_large-5e1b50d6490970e32b80023f3070b1d77afc621b9e64ac996596a67a4671967b.png)](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b)
+[![Donate](https://cloud.githubusercontent.com/assets/3121306/11278543/d46e03d0-8eeb-11e5-9691-0da1bf643192.png)](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b)
 
 You can add funds to BitHub to directly help further development efforts.
 

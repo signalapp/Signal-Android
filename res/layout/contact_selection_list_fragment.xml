@@ -1,5 +1,5 @@
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -9,8 +9,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
-            android:id="@android:id/list"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -23,4 +23,12 @@
             android:textSize="20sp" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+
+    <org.thoughtcrime.securesms.components.RecyclerViewFastScroller
+        android:id="@+id/fast_scroller"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_gravity="right"/>
+
+</FrameLayout>

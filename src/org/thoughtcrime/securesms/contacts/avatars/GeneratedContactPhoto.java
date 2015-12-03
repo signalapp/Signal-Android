@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 
 import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import org.thoughtcrime.securesms.R;
 
@@ -33,11 +33,21 @@ public class GeneratedContactPhoto implements ContactPhoto {
                        .height(targetSize)
                        .textColor(inverted ? color : Color.WHITE)
                        .endConfig()
-                       .buildRound(String.valueOf(name.charAt(0)), inverted ? Color.WHITE : color);
+                       .buildRound(getCharacter(name), inverted ? Color.WHITE : color);
+  }
+
+  private String getCharacter(String name) {
+    String cleanedName = name.replaceFirst("[^\\p{L}\\p{Nd}\\p{P}\\p{S}]+", "");
+
+    if (cleanedName.isEmpty()) {
+      return "#";
+    } else {
+      return String.valueOf(cleanedName.charAt(0));
+    }
   }
 
   @Override
   public Drawable asCallCard(Context context) {
-    return context.getResources().getDrawable(R.drawable.ic_contact_picture);
+    return ContextCompat.getDrawable(context, R.drawable.ic_contact_picture);
   }
 }

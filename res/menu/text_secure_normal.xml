@@ -16,10 +16,10 @@
     <item android:title="@string/arrays__import_export"
           android:id="@+id/menu_import_export" />
 
-    <item android:title="@string/arrays__my_identity_key"
-          android:id="@+id/menu_my_identity" />
-
     <item android:title="@string/text_secure_normal__menu_settings"
           android:id="@+id/menu_settings" />
+
+    <item android:title="@string/text_secure_normal__help"
+          android:id="@+id/menu_help"/>
 
 </menu>

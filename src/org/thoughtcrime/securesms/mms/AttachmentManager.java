@@ -27,10 +27,9 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
@@ -42,9 +41,16 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {
 
@@ -57,7 +63,8 @@ public class AttachmentManager {
   private final @NonNull AudioView          audioView;
   private final @NonNull AttachmentListener attachmentListener;
 
-  private @NonNull  Optional<Slide> slide = Optional.absent();
+  private @NonNull  List<Uri>       garbage = new LinkedList<>();
+  private @NonNull  Optional<Slide> slide   = Optional.absent();
   private @Nullable Uri             captureUri;
 
   public AttachmentManager(@NonNull Activity activity, @NonNull AttachmentListener listener) {
@@ -72,25 +79,20 @@ public class AttachmentManager {
   }
 
   public void clear() {
-    AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
-    animation.setDuration(200);
-    animation.setAnimationListener(new Animation.AnimationListener() {
+    ViewUtil.fadeOut(attachmentView, 200).addListener(new Listener<Boolean>() {
       @Override
-      public void onAnimationStart(Animation animation) {}
-
-      @Override
-      public void onAnimationRepeat(Animation animation) {}
-
-      @Override
-      public void onAnimationEnd(Animation animation) {
-        slide = Optional.absent();
+      public void onSuccess(Boolean result) {
         thumbnail.clear();
         attachmentView.setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
       }
+
+      @Override
+      public void onFailure(ExecutionException e) {}
     });
 
-    attachmentView.startAnimation(animation);
+    markGarbage(getSlideUri());
+    slide = Optional.absent();
     audioView.cleanup();
   }
 
@@ -100,12 +102,26 @@ public class AttachmentManager {
 
     captureUri = null;
     slide      = Optional.absent();
+
+    Iterator<Uri> iterator = garbage.listIterator();
+
+    while (iterator.hasNext()) {
+      cleanup(iterator.next());
+      iterator.remove();
+    }
   }
 
   private void cleanup(final @Nullable Uri uri) {
     if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
       Log.w(TAG, "cleaning up " + uri);
       PersistentBlobProvider.getInstance(context).delete(uri);
+    }
+  }
+
+  private void markGarbage(@Nullable Uri uri) {
+    if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
+      Log.w(TAG, "Marking garbage that needs cleaning: " + uri);
+      garbage.add(uri);
     }
   }
 
@@ -285,6 +301,15 @@ public class AttachmentManager {
       case VIDEO: return new VideoSlide(context, uri, dataSize);
       default:    throw  new AssertionError("unrecognized enum");
       }
+    }
+
+    public static @Nullable MediaType from(final @Nullable String mimeType) {
+      if (TextUtils.isEmpty(mimeType))       return null;
+      if (MediaUtil.isGif(mimeType))         return GIF;
+      if (ContentType.isImageType(mimeType)) return IMAGE;
+      if (ContentType.isAudioType(mimeType)) return AUDIO;
+      if (ContentType.isVideoType(mimeType)) return VIDEO;
+      return null;
     }
   }
 }

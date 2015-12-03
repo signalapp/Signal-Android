@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="164"
-      android:versionName="3.3.1">
+      android:versionCode="174"
+      android:versionName="3.6.1">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat"/>
 
@@ -19,7 +19,6 @@
     <uses-feature android:name="android.hardware.microphone" android:required="false"/>
     <uses-feature android:name="android.hardware.wifi" android:required="false"/>
     <uses-feature android:name="android.hardware.portrait" android:required="false"/>
-    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
 
     <uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
@@ -132,12 +131,6 @@
 
     <activity android:name=".DeviceProvisioningActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="tsdevice"/>
-        </intent-filter>
     </activity>
 
     <activity android:name=".preferences.MmsPreferencesActivity"
@@ -179,6 +172,16 @@
 
 
     </activity-alias>
+
+    <activity android:name=".ConversationListArchiveActivity"
+              android:label="@string/AndroidManifeset_conversations_archive"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:parentActivityName=".ConversationListActivity">
+        <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.thoughtcrime.securesms.ConversationListActivity" />
+    </activity>
 
     <activity android:name=".ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
@@ -234,6 +237,7 @@
 
     <activity android:name=".NewConversationActivity"
               android:theme="@style/TextSecure.LightNoActionBar"
+              android:windowSoftInputMode="stateAlwaysVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PushContactSelectionActivity"
@@ -266,7 +270,7 @@
     <activity android:name=".RegistrationProgressActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-     <activity android:name=".DeviceListActivity"
+     <activity android:name=".DeviceActivity"
                android:label="@string/AndroidManifest_manage_linked_devices"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -297,7 +301,7 @@
               android:finishOnTaskLaunch="true" />
 
     <activity android:name=".PlayServicesProblemActivity"
-              android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:theme="@style/TextSecure.DialogActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".SmsSendtoActivity">
@@ -316,6 +320,19 @@
             <category android:name="android.intent.category.DEFAULT" />
             <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact" />
         </intent-filter>
+    </activity>
+
+    <activity android:name="org.thoughtcrime.redphone.RedPhoneShare"
+              android:theme="@style/NoAnimation.Theme.BlackScreen"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call" />
+        </intent-filter>
+
     </activity>
 
     <activity android:name=".RecipientPreferenceActivity"

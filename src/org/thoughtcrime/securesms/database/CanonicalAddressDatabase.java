@@ -27,7 +27,13 @@ import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+import com.google.i18n.phonenumbers.ShortNumberInfo;
+
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.ShortCodeUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VisibleForTesting;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -144,7 +150,11 @@ public class CanonicalAddressDatabase {
       long canonicalAddressId;
 
       if (isNumberAddress(address) && TextSecurePreferences.isPushRegistered(context)) {
-        address = PhoneNumberFormatter.formatNumber(address, TextSecurePreferences.getLocalNumber(context));
+        String localNumber = TextSecurePreferences.getLocalNumber(context);
+
+        if (!ShortCodeUtil.isShortCode(localNumber, address)) {
+          address = PhoneNumberFormatter.formatNumber(address, localNumber);
+        }
       }
 
       if ((canonicalAddressId = getCanonicalAddressFromCache(address)) != -1) {

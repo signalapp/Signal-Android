@@ -32,8 +32,11 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
+
+import java.util.concurrent.ExecutionException;
 
 public class InviteActivity extends PassphraseRequiredActionBarActivity implements ContactSelectionListFragment.OnContactSelectedListener {
 
@@ -115,7 +118,9 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   private void updateSmsButtonText() {
-    smsSendButton.setText(getString(R.string.InviteActivity_send_to_friends, contactsFragment.getSelectedContacts().size()));
+    smsSendButton.setText(getResources().getQuantityString(R.plurals.InviteActivity_send_to_friends,
+                                                           contactsFragment.getSelectedContacts().size(),
+                                                           contactsFragment.getSelectedContacts().size()));
     smsSendButton.setEnabled(!contactsFragment.getSelectedContacts().isEmpty());
   }
 
@@ -130,7 +135,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   private void cancelSmsSelection() {
     contactsFragment.reset();
     updateSmsButtonText();
-    ViewUtil.animateOut(smsSendFrame, slideOutAnimation);
+    ViewUtil.animateOut(smsSendFrame, slideOutAnimation, View.GONE);
   }
 
   private class ShareClickListener implements OnClickListener {
@@ -166,7 +171,9 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     @Override
     public void onClick(View v) {
       new AlertDialog.Builder(InviteActivity.this)
-          .setTitle(getString(R.string.InviteActivity_send_sms_invites, contactsFragment.getSelectedContacts().size()))
+          .setTitle(getResources().getQuantityString(R.plurals.InviteActivity_send_sms_invites,
+                                                     contactsFragment.getSelectedContacts().size(),
+                                                     contactsFragment.getSelectedContacts().size()))
           .setMessage(inviteText.getText().toString())
           .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override public void onClick(DialogInterface dialog, int which) {
@@ -237,7 +244,15 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       final Context context = getContext();
       if (context == null) return;
 
-      ViewUtil.animateOut(smsSendFrame, slideOutAnimation);
+      ViewUtil.animateOut(smsSendFrame, slideOutAnimation, View.GONE).addListener(new Listener<Boolean>() {
+        @Override
+        public void onSuccess(Boolean result) {
+          contactsFragment.reset();
+        }
+
+        @Override
+        public void onFailure(ExecutionException e) {}
+      });
       Toast.makeText(context, R.string.InviteActivity_invitations_sent, Toast.LENGTH_LONG).show();
     }
   }

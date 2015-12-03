@@ -17,6 +17,8 @@
 Отключить пароль на просмотр сообщений?</string>
   <string name="ApplicationPreferencesActivity_disable">Отключить</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Отменяем регистрацию в Signal...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Выключить общение через Signal?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS включены</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора SMS-приложения по умолчанию</string>
@@ -41,6 +43,8 @@
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Контактная информация</string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Ошибка при воспроизведении аудио!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Заблокированные контакты</string>
   <!--CallScreen-->
@@ -52,6 +56,7 @@
   <string name="ConfirmIdentityDialog_accept">Принять</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Сообщение %s</string>
+  <string name="ContactsDatabase_signal_call_s">Звонок через Signal %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Размер сообщения: %d Kб</string>
   <string name="ConversationItem_expires_s">Истекает: %s</string>
@@ -68,10 +73,11 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal.\n\nОтправить незащищённое сообщение?</string>
   <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_confirmation">Подтверждение сброса</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_reset_this_secure_session_question">Вы уверены, что хотите сбросить этот защищённый сеанс?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Подтвердите удаление разговора</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Вы уверены, что хотите навсегда удалить этот разговор?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Сбросить защищённый сеанс</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Ваши сообщения будут сохранены.</string>
+  <string name="ConversationActivity_reset">Сброс</string>
+  <string name="ConversationActivity_delete_thread_question">Удалить разговор?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Это удалит все ваши сообщения в этой беседе.</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
   <string name="ConversationActivity_select_contact_info">Выбрать контакт</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
@@ -95,6 +101,8 @@
   <string name="ConversationActivity_transport_insecure_sms">Незащищённое SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдём на Signal %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Давайте использовать Signal для общения: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не поддерживаются</string>
   <string name="ConversationActivity_mms_not_supported_message">Сообщение не может быть отправлено, так как ваш оператор не поддерживает MMS.</string>
@@ -104,12 +112,20 @@
   <string name="ConversationActivity_unblock">Разблокировать</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает допустимый размер для того типа сообщения, которое вы отправляете.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
+  <string name="ConversationActivity_unable_to_record_audio">Невозможно записать аудио!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Ошибка при отправке голосового сообщения...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Подробности</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nОтправлено/Получено: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Отправитель: %1$s\nТранспорт: %2$s\nОтправлено: %3$s\nПолучено: %4$s</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Удалить выбранное сообщение?</item>
+    <item quantity="few">Удалить выбранные сообщения?</item>
+    <item quantity="many">Удалить выбранные сообщения?</item>
+    <item quantity="other">Удалить выбранные сообщения?</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Сохранить на SD-карту?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Если сохранить этот медиа-файл на SD-карту, любое приложение на вашем устройстве сможет иметь к нему доступ.\n\nПродолжить?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Если сохранить этот медиа-файл на SD-карту, любое приложение на вашем устройстве сможет иметь к нему доступ.\n\nПродолжить?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Ошибка при сохранении на SD-карту!</string>
   <string name="ConversationFragment_success_exclamation">Успешно!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Невозможно произвести запись на SD-карту!</string>
@@ -124,10 +140,18 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Поиск...</string>
   <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Удалить выбранный разговор?</item>
+    <item quantity="few">Удалить выбранный разговор?</item>
+    <item quantity="many">Удалить выбранный разговор?</item>
+    <item quantity="other">Удалить выбранные беседы?</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Удаление</string>
   <string name="ConversationListFragment_deleting_selected_threads">Удаляем выбранные разговоры...</string>
+  <string name="ConversationListFragment_undo">ОТМЕНИТЬ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщениe обмена ключами...</string>
+  <!--ConversationListItemAction-->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
   <string name="CustomDefaultPreference_using_default">По умолчанию: %s</string>
@@ -157,25 +181,17 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и RedPhone объединились в одно приложение: Signal. Нажмите, чтобы узнать больше.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспорт</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Экспортировать открытым текстом?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, ваши сообщения
-будут экспортированы на SD-карту в открытом виде.</string>
   <string name="ExportFragment_cancel">Отмена</string>
   <string name="ExportFragment_exporting">Экспорт</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Экспортируем открытым текстом на SD-карту...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Ошибка, невозможно произвести запись на SD-карту!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Ошибка при записи на SD-карту.</string>
   <string name="ExportFragment_success">Успешно!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Неустранимая ошибка соединения!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в службах Google Play. Общение через интернет отключено; пожалуйста, попробуйте зарегистрироваться снова через меню настроек Signal.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Новая группа</string>
   <string name="GroupCreateActivity_actionbar_update_title">Обновить группу</string>
   <string name="GroupCreateActivity_group_name_hint">Название группы</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS-группа</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает Signal-группы, поэтому эта группа будет преобразована в MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Вы не зарегистрированы для общения через интернет, поэтому Signal-группы отключены.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Непредвиденная ошибка не позволила создать группу.</string>
   <string name="GroupCreateActivity_contacts_no_members">Нужен как минимум один участник в группе!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Один из участников имеет неправильный номер. Пожалуйста, исправьте или удалите этот контакт и попробуйте снова.</string>
@@ -183,7 +199,6 @@
   <string name="GroupCreateActivity_menu_create_title">Создать группу</string>
   <string name="GroupCreateActivity_creating_group">Создаём %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Обновляем %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Невозможно добавить в существующую Signal-группу собеседников, у которых Signal не установлен</string>
   <string name="GroupCreateActivity_loading_group_details">Загружаем подробности о группе...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Я</string>
@@ -210,7 +225,13 @@
   <string name="ImportFragment_restoring_encrypted_backup">Восстановление из зашифрованной резервной копии...</string>
   <string name="ImportFragment_no_encrypted_backup_found">Зашифрованная резервная копия не найдена!</string>
   <string name="ImportFragment_restore_complete">Восстановление завершено.</string>
+  <!--InputPanel-->
   <!--InviteActivity-->
+  <string name="InviteActivity_share">Поделиться</string>
+  <string name="InviteActivity_send_sms">Отправить СМС</string>
+  <string name="InviteActivity_cancel">Отмена</string>
+  <string name="InviteActivity_sending">Отправка...</string>
+  <string name="InviteActivity_invite_to_signal">Пригласить в Signal</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">При сканировании ключ не обнаружен!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Установить сканер штрих-кодов?</string>
@@ -226,6 +247,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Выполняется звонок через Signal</string>
   <string name="NotificationBarManager_missed_call_from_s">Пропущен звонок от %s</string>
   <string name="NotificationBarManager_missed_signal_call">Пропущен звонок в Signal</string>
+  <string name="NotificationBarManager__answer_call">Ответить на звонок</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
   <!--MessageRecord-->
@@ -244,12 +266,8 @@
   <string name="DeviceProvisioningActivity_continue">ПРОДОЛЖИТЬ</string>
   <string name="DeviceProvisioningActivity_title">Привязать это устройство?</string>
   <string name="DeviceProvisioningActivity_content_intro">Оно сможет:</string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-- читать все ваши сообщения
-\n - отправлять сообщения от вашего имени</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Привязка устройства</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Привязываем новое устройство...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Устройство привязано!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Устройство не найдено.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Ошибка сети.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Неверный QR-код.</string>
@@ -367,7 +385,6 @@
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У получателя нет личного ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">У получателя нет личного ключа!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Cканировать ключ собеседника</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Дать сканировать мой ключ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, просканированный ключ НЕ СОВПАДАЕТ! Внимательно проверьте текст отпечатка.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ подтверждено!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ключ собеседника верен. Также необходимо, чтобы собеседник подтвердил ваш ключ.</string>
@@ -381,7 +398,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">НЕ подтверждено!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Просканированный ключ совпадает.</string>
   <string name="ViewIdentityActivity_verified_exclamation">Подтверждено!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Мой отпечаток</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Игнорировать предыдущий запрос?</string>
   <string name="KeyExchangeInitiator_send">Отправить</string>
@@ -431,13 +447,15 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда SIgnal заблокирован!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_new_signal_message">Новое сообщение в Signal</string>
-  <string name="SingleRecipientNotificationBuilder_contents_hidden">Содержимое скрыто</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение!</string>
   <!--attachment_type_selector-->
+  <string name="attachment_type_selector__image">Изображение</string>
+  <string name="attachment_type_selector__audio">Аудио</string>
+  <string name="attachment_type_selector__video">Видео</string>
+  <string name="attachment_type_selector__contact">Контакт</string>
+  <string name="attachment_type_selector__camera">Камера</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">СТАРАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
-  <string name="change_passphrase_activity__new_passphrase">НОВАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРИТЕ НОВУЮ ПАРОЛЬНУЮ ФРАЗУ:</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Введите имя или номер</string>
   <!--contact_selection_group_activity-->
@@ -464,6 +482,8 @@
   <string name="conversation_activity__emoji_toggle_description">Клавиатура смайликов</string>
   <string name="conversation_activity__attachment_thumbnail">Миниатюра вложения</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Вкл/выкл ящик вложений</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДИТЕ, ЧТОБЫ ОТМЕНИТЬ</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">MMS-сообщение загружается</string>
   <string name="conversation_item__mms_image_description">MMS-сообщение</string>
@@ -484,6 +504,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загружаем страны...</string>
   <string name="country_selection_fragment__search">Поиск</string>
+  <!--device_add_fragment-->
+  <!--device_link_fragment-->
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Нет привязанных устройств...</string>
   <!--experience_upgrade_activity-->
@@ -503,16 +525,8 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Обновляем базу данных...</string>
   <string name="export_fragment__export_plaintext_backup">Экспорт простой резервной копии.</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Экспортировать на SD-карту простую резервную копию, совместимую с приложением «SMSBackup And Restore».</string>
   <string name="import_fragment__import_system_sms_database">Импорт системной базы SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Импортировать сообщения из базы данных SMS-приложения, которое используется сейчас по умолчанию.</string>
-  <string name="import_fragment__import_encrypted_backup">Импорт зашифрованной резервной копии</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Восстановить из ранее экспортированной зашифрованной резервной копии Signal.</string>
   <string name="import_fragment__import_plaintext_backup">Импорт простой резервной копии</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Импортировать из простой резервной копии. Совместимо с приложением «SMSBackup And Restore».</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Посмотреть весь разговор</string>
   <!--media_overview_activity-->
@@ -528,9 +542,7 @@
   <string name="MmsPreferencesFragment__invalid_uri">Введён неверный адрес</string>
   <string name="MmsPreferencesFragment__invalid_host">Введён неверный адрес хоста</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s присоединился к группе.</string>
   <string name="GroupUtil_group_updated">Группа обновлена.</string>
-  <string name="GroupUtil_title_is_now">Заголовок изменён на \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Открыть</string>
   <!--prompt_mms_activity-->
@@ -541,6 +553,7 @@
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Выключить звуки разговора</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Отключить уведомления для этого разговора</string>
+  <string name="recipient_preferences__notification_sound">Звук уведомления</string>
   <string name="recipient_preferences__vibrate">Вибрация</string>
   <string name="recipient_preferences__block">Заблокировать</string>
   <string name="recipient_preferences__color">Цвет</string>
@@ -583,15 +596,12 @@ Signal не работает с номерами Google Voice.</string>
   <string name="registration_progress_activity__call_me">Позвонить мне</string>
   <string name="registration_progress_activity__edit_number">Изменить номер</string>
   <string name="registration_progress_activity__connectivity_error">Ошибка связи.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_push_service">
-Signal не смог соединиться с push-службой.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Возможные 
 причины:
 </string>
   <string name="registration_progress_activity__no_network_connectivity">Нет соединения 
 с интернетом.
 </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Для использования этой функции необходимо подключение к интернету. Убедитесь, что ваше устройство подключено к мобильному интернету или Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ограничения брандмауэра.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -640,23 +650,26 @@ SMS-подтверждения...
   <string name="AndroidManifest__media_preview">Предпросмотр</string>
   <string name="AndroidManifest__media_overview">Все изображения</string>
   <string name="AndroidManifest__media_overview_named">Все изображения с %1$s</string>
-  <string name="AndroidManifest__message_details">Подробности</string>
+  <string name="AndroidManifest__message_details">Детали сообщений</string>
   <string name="AndroidManifest_manage_linked_devices">Управление привязанными устройствами</string>
+  <string name="AndroidManifest__invite_friends">Пригласить друзей в Signal</string>
+  <string name="AndroidManifeset_conversations_archive">Архив разговоров</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Импорт / экспорт</string>
-  <string name="arrays__my_identity_key">Мой личный ключ</string>
+  <string name="arrays__your_identity_key">Ваш идентификационный ключ</string>
   <string name="arrays__use_default">Использовать настройку по умолчанию</string>
   <string name="arrays__use_custom">Использовать пользовательскую настройку</string>
   <string name="arrays__mute_for_one_hour">Выкл. звук на 1 час</string>
   <string name="arrays__mute_for_two_hours">Выкл. звук на 2 часа</string>
   <string name="arrays__mute_for_one_day">Выкл. звук на 1 день</string>
   <string name="arrays__mute_for_seven_days">Выкл. звук на 7 дней</string>
+  <string name="arrays__mute_for_one_year">Выкл. звук на 1 год</string>
   <string name="arrays__settings_default">Настройки по умолчанию</string>
   <string name="arrays__enabled">Включено</string>
   <string name="arrays__disabled">Отключено</string>
   <string name="arrays__name_and_message">Имя и сообщение</string>
   <string name="arrays__name_only">Только имя</string>
-  <string name="arrays__neither">Ничего</string>
+  <string name="arrays__no_name_or_message">Нет имени или сообщения</string>
   <string name="arrays__images">Изображения</string>
   <string name="arrays__audio">Аудио</string>
   <string name="arrays__video">Видео</string>
@@ -683,7 +696,6 @@ SMS-подтверждения...
   <string name="preferences__choose_identity">Выберите личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>
-  <string name="preferences__change_my_passphrase">Изменить мою парольную фразу</string>
   <string name="preferences__enable_passphrase">Включить парольную фразу</string>
   <string name="preferences__passphrase_summary">Парольная фраза %s</string>
   <string name="preferences__enable_lock_screen_for_messages">Требовать пароль для просмотра сообщений</string>
@@ -706,6 +718,7 @@ SMS-подтверждения...
   <string name="preferences__pref_led_blink_custom_pattern_set">Мигание светодиода настроено!</string>
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__change_notification_sound">Изменить мелодию уведомления</string>
+  <string name="preferences__silent">Тихий</string>
   <string name="preferences__inthread_notifications">Уведомления при разговоре</string>
   <string name="preferences__play_inthread_notifications">Проигрывать звук уведомления, даже когда открыт текущий разговор</string>
   <string name="preferences__repeat_alerts">Повторять сигналы</string>
@@ -750,6 +763,7 @@ SMS-подтверждения...
   <string name="preferences__conversation_length_limit">Ограничение длины разговора</string>
   <string name="preferences__trim_all_threads_now">Обрезать все разговоры</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Привести длину всех разговоров в соответствие с заданной</string>
+  <string name="preferences__devices">Устройства</string>
   <string name="preferences__light_theme">Светлая</string>
   <string name="preferences__dark_theme">Тёмная</string>
   <string name="preferences__appearance">Внешний вид</string>
@@ -784,7 +798,8 @@ SMS-подтверждения...
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Обновить контакты</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable__menu_call">Звонок</string>
+  <string name="conversation_callable_insecure__menu_call">Звонок</string>
+  <!--conversation_callable_secure-->
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Подробности</string>
   <string name="conversation_context__menu_copy_text">Копировать текст</string>
@@ -841,9 +856,12 @@ SMS-подтверждения...
   <string name="text_secure_normal__menu_settings">Настройки</string>
   <string name="text_secure_normal__menu_clear_passphrase">Заблокировать</string>
   <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
+  <string name="text_secure_normal__invite_friends">Пригласить друзей в Signal</string>
+  <string name="text_secure_normal__help">Помощь</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ваша версия Signal устарела!</string>
   <string name="reminder_header_expired_build_details">Сообщения больше не будут отправляться. Пожалуйста, обновитесь до последней версии.</string>
+  <string name="reminder_header_expired_build_button">ОБНОВЛЕНИЕ</string>
   <string name="reminder_header_sms_default_title">SMS-приложение по умолчанию</string>
   <string name="reminder_header_sms_default_text">Нажмите, чтобы использовать Signal для всех SMS.</string>
   <string name="reminder_header_sms_default_button">ОК</string>
@@ -854,6 +872,8 @@ SMS-подтверждения...
   <string name="reminder_header_invite_title">Пригласить в Signal</string>
   <string name="reminder_header_invite_text">Начните общаться с %1$s на новом уровне.</string>
   <string name="reminder_header_invite_button">ПРИГЛАСИТЬ</string>
+  <string name="reminder_header_share_title">Пригласите Ваших друзей в Signal!</string>
+  <string name="reminder_header_share_button">ПОДЕЛИТЬСЯ</string>
   <string name="reminder_header_close_button">ЗАКРЫТЬ</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
@@ -863,6 +883,8 @@ SMS-подтверждения...
   <string name="media_preview__save_title">Сохранить</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Предпросмотр</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Обновить</string>
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Динамик</string>
   <string name="redphone_audio_popup_menu__headset">Гарнитура</string>

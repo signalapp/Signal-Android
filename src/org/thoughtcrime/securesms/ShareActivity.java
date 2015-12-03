@@ -29,19 +29,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import ws.com.google.android.mms.ContentType;
 
 /**
  * An activity to quickly share content with contacts
@@ -109,35 +108,18 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private void initializeMedia() {
     final Context context = this;
     isPassingAlongMedia = false;
-    fragmentContainer.setVisibility(View.GONE);
-    progressWheel.setVisibility(View.VISIBLE);
-    new AsyncTask<Uri, Void, Uri>() {
-      @Override
-      protected Uri doInBackground(Uri... uris) {
-        try {
-          if (uris.length != 1 || uris[0] == null) {
-            return null;
-          }
 
-          InputStream input = context.getContentResolver().openInputStream(uris[0]);
-          if (input == null) {
-            return null;
-          }
-
-          return PersistentBlobProvider.getInstance(context).create(masterSecret, input);
-        } catch (IOException ioe) {
-          Log.w(TAG, ioe);
-          return null;
-        }
-      }
-
-      @Override
-      protected void onPostExecute(Uri uri) {
-        resolvedExtra = uri;
-        ViewUtil.fadeIn(fragmentContainer, 300);
-        ViewUtil.fadeOut(progressWheel, 300);
-      }
-    }.execute(getIntent().<Uri>getParcelableExtra(Intent.EXTRA_STREAM));
+    Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
+    if (streamExtra != null && PartAuthority.isLocalUri(streamExtra)) {
+      isPassingAlongMedia = true;
+      resolvedExtra       = streamExtra;
+      fragmentContainer.setVisibility(View.VISIBLE);
+      progressWheel.setVisibility(View.GONE);
+    } else {
+      fragmentContainer.setVisibility(View.GONE);
+      progressWheel.setVisibility(View.VISIBLE);
+      new ResolveMediaTask(context).execute(streamExtra);
+    }
   }
 
   @Override
@@ -185,30 +167,51 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Intent intent      = new Intent(this, target);
     final String textExtra   = getIntent().getStringExtra(Intent.EXTRA_TEXT);
     final Uri    streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-    final String type        = streamExtra != null ? getMimeType(streamExtra) : getIntent().getType();
-
-    if (resolvedExtra != null) {
-      if (ContentType.isImageType(type)) {
-        intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, resolvedExtra);
-      } else if (ContentType.isAudioType(type)) {
-        intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, resolvedExtra);
-      } else if (ContentType.isVideoType(type)) {
-        intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, resolvedExtra);
-      }
-    }
-    intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, textExtra);
+    final String type        = streamExtra != null ? getMimeType(streamExtra)
+                                                   : MediaUtil.getCorrectedMimeType(getIntent().getType());
+    intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
+    if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, type);
 
     return intent;
   }
 
   private String getMimeType(Uri uri) {
-    String type = getContentResolver().getType(uri);
+    final String type = MediaUtil.getMimeType(getApplicationContext(), uri);
+    return type == null ? MediaUtil.getCorrectedMimeType(getIntent().getType())
+                        : type;
+  }
 
-    if (type == null) {
-      String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
-      type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+  private class ResolveMediaTask extends AsyncTask<Uri, Void, Uri> {
+    private final Context context;
+
+    public ResolveMediaTask(Context context) {
+      this.context = context;
     }
 
-    return type;
+    @Override
+    protected Uri doInBackground(Uri... uris) {
+      try {
+        if (uris.length != 1 || uris[0] == null) {
+          return null;
+        }
+
+        InputStream input = context.getContentResolver().openInputStream(uris[0]);
+        if (input == null) {
+          return null;
+        }
+
+        return PersistentBlobProvider.getInstance(context).create(masterSecret, input);
+      } catch (IOException ioe) {
+        Log.w(TAG, ioe);
+        return null;
+      }
+    }
+
+    @Override
+    protected void onPostExecute(Uri uri) {
+      resolvedExtra = uri;
+      ViewUtil.fadeIn(fragmentContainer, 300);
+      ViewUtil.fadeOut(progressWheel, 300);
+    }
   }
 }
