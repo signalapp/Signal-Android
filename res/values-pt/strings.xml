@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s mensagens por conversa</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Apagar todas as mensagens antigas?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja eliminar as conversas anteriores às %s mensagens mais recentes?</string>
   <string name="ApplicationPreferencesActivity_delete">Apagar</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -157,7 +156,6 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
     <item quantity="other">Isto irá eliminar permanentemente todas as %1$d conversas seleccionadas.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">A apagar</string>
-  <string name="ConversationListFragment_deleting_selected_threads">A apagar conversas seleccionadas...</string>
   <string name="ConversationListFragment_archived_conversations">Conversas arquivadas</string>
   <string name="ConversationListFragment_undo">REVERTER</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Conversa movida para a caixa de entrada</string>
@@ -515,7 +513,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Mensagem nova!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagem</string>
   <string name="attachment_type_selector__audio">Áudio</string>
@@ -744,13 +741,11 @@ falhou.
   <string name="AndroidManifest__change_passphrase">Alterar frase-chave</string>
   <string name="AndroidManifest__verify_identity">Verificar identidade</string>
   <string name="AndroidManifest__log_submit">Submeter registo de depuração</string>
-  <string name="AndroidManifest__media_preview">Antevisão de média</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <string name="AndroidManifest_manage_linked_devices">Gerir dispositivos interligados</string>
   <string name="AndroidManifest__invite_friends">Convidar amigos</string>
-  <string name="AndroidManifeset_conversations_archive">Arquivo de conversas</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__your_identity_key">A sua chave de identidade</string>
@@ -815,7 +810,6 @@ falhou.
   <string name="preferences__sound">Som</string>
   <string name="preferences__change_notification_sound">Alterar som de notificação</string>
   <string name="preferences__silent">Silencioso</string>
-  <string name="preferences__inthread_notifications">Notificações em conversas</string>
   <string name="preferences__play_inthread_notifications">Activar notificações enquanto segue uma conversa activa</string>
   <string name="preferences__repeat_alerts">Alertas repetidos</string>
   <string name="preferences__never">Nunca</string>
@@ -853,12 +847,9 @@ falhou.
   <string name="preferences__mmsc_password">Palavra-chave MMSC</string>
   <string name="preferences__sms_delivery_reports">Avisos de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pedir um aviso de entrega para cada SMS enviado</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Apagar automaticamente as mensagens mais antigas quando uma conversa exceder o tamanho especificado</string>
   <string name="preferences__delete_old_messages">Apagar mensagens antigas</string>
   <string name="preferences__chats">Conversas e media</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
-  <string name="preferences__trim_all_threads_now">Apagar todas conversas agora</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Verificar todas conversas e aplicar tamanho máximo de conversa</string>
   <string name="preferences__devices">Dispositivos</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
@@ -914,7 +905,6 @@ falhou.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Apagar seleccionado</string>
   <string name="conversation_list_batch__menu_select_all">Seleccionar tudo</string>
-  <string name="conversation_list_batch__archive_selected">Arquivo seleccionado</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Procurar</string>
   <!--conversation_list_item_view-->
@@ -986,7 +976,6 @@ falhou.
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Antevisão de imagem</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Recarregar</string>
   <!--redphone_audio_popup_menu-->

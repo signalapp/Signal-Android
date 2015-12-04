@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s správ na rozhovor</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Zmazať všetky staré správy?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ste naozaj si istí, že chcete skrátiť všetky rozhovory na %s najnovších správ?</string>
   <string name="ApplicationPreferencesActivity_delete">Zmazať</string>
   <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba pripojenia na server!</string>
@@ -113,7 +112,6 @@ identitu tohto kontaktu.
   <string name="ConversationListActivity_search">Hľadaj...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">Vymazanie</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Mažú sa vybrané konverzácie...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
   <!--ConversationListItemAction-->
@@ -337,6 +335,7 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_message">Nová správa</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -490,7 +489,6 @@ zlyhalo.
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
   <string name="AndroidManifest__verify_identity">Over totožnosť</string>
   <string name="AndroidManifest__log_submit">Odošli ladiaci log</string>
-  <string name="AndroidManifest__media_preview">Náhľad</string>
   <string name="AndroidManifest__media_overview">Všetky obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všetky obrázky s %1$s</string>
   <!--arrays.xml-->
@@ -537,7 +535,6 @@ zlyhalo.
   <string name="preferences__pref_led_blink_custom_pattern_set">Vlastná sekvencia blikania nastavená!</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__change_notification_sound">Zmeňiť zvuk notifikácie</string>
-  <string name="preferences__inthread_notifications">Notifikácie počas konverzácie</string>
   <string name="preferences__repeat_alerts">Opakovať hlášky</string>
   <string name="preferences__never">Nikdy</string>
   <string name="preferences__one_time">Raz</string>
@@ -573,11 +570,8 @@ zlyhalo.
   <string name="preferences__mmsc_password">MMSC heslo</string>
   <string name="preferences__sms_delivery_reports">Správy o doručení SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadať správu o doručení</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automaticky zmazať najstaršie správy ak dĺžka vlákna presiahne nastavenú hranicu</string>
   <string name="preferences__delete_old_messages">Vymazať staré správy</string>
   <string name="preferences__conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
-  <string name="preferences__trim_all_threads_now">Skráť všetky vlákna</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skontroluj počet správ vo všetkých konverzáciách</string>
   <string name="preferences__light_theme">Svetlá</string>
   <string name="preferences__dark_theme">Tmavá</string>
   <string name="preferences__appearance">Vzhľad</string>
@@ -672,7 +666,6 @@ zlyhalo.
   <!--media_preview-->
   <string name="media_preview__save_title">Uložiť</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Náhľad obrázku</string>
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <string name="redphone_audio_popup_menu__handset">Slúchadlo</string>

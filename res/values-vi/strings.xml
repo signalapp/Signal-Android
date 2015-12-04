@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập cụm từ mật khẩu!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s tin nhắn cho mỗi cuộc chuyện trò</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Bạn có chắc là muốn thu ngắn tức thì các chuỗi chuyện trò xuống còn %s tin nhắn mới nhất?</string>
   <string name="ApplicationPreferencesActivity_delete">Xóa</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Tắt cụm từ mật khẩu?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -155,7 +154,6 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
     <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d cuộc hội thoại đã chọn?</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Đang xóa</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Xóa các chuỗi đã chọn...</string>
   <string name="ConversationListFragment_archived_conversations">Các cuộc hội thoại đã bảo lưu</string>
   <string name="ConversationListFragment_undo">HOÀN TÁC</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Đã chuyển cuộc hội thoại vào hộp thư đến</string>
@@ -510,7 +508,6 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Hình ảnh</string>
   <string name="attachment_type_selector__audio">Âm thanh</string>
@@ -737,13 +734,11 @@ SMS thất bại.
   <string name="AndroidManifest__change_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="AndroidManifest__verify_identity">Kiểm chứng danh tính</string>
   <string name="AndroidManifest__log_submit">Nộp ký sự dò lỗi</string>
-  <string name="AndroidManifest__media_preview">Xem Trước Truyền Thông</string>
   <string name="AndroidManifest__media_overview">Tất cả hình ảnh</string>
   <string name="AndroidManifest__media_overview_named">Tất cả hình ảnh với %1$s</string>
   <string name="AndroidManifest__message_details">Chi tiết tin nhắn</string>
   <string name="AndroidManifest_manage_linked_devices">Quản trị các thiết bị liên kết</string>
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
-  <string name="AndroidManifeset_conversations_archive">Bản lưu các cuộc hội thoại</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Xuất / nhập</string>
   <string name="arrays__your_identity_key">Khóa danh tính</string>
@@ -807,7 +802,6 @@ SMS thất bại.
   <string name="preferences__sound">Âm thanh</string>
   <string name="preferences__change_notification_sound">Đổi âm thanh thông báo</string>
   <string name="preferences__silent">Yên lặng</string>
-  <string name="preferences__inthread_notifications">Thông báo bên trong chuỗi</string>
   <string name="preferences__play_inthread_notifications">Phát âm thanh thông báo khi xem một chuyện trò đang diễn ra</string>
   <string name="preferences__repeat_alerts">Lập lại cảnh báo</string>
   <string name="preferences__never">Không bao giờ</string>
@@ -845,12 +839,9 @@ SMS thất bại.
   <string name="preferences__mmsc_password">Mật khẩu MMSC</string>
   <string name="preferences__sms_delivery_reports">Báo cáo phân phối SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Yêu cầu có báo cáo phân phối cho từng tin nhắn SMS gửi đi</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Tự động xóa các tin nhắn cũ một khi chuỗi chuyện trò vượt quá độ dài đã ấn định</string>
   <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string>
   <string name="preferences__chats">Các cuộc trò chuyện và dữ liệu truyền thông</string>
   <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc chuyện trò</string>
-  <string name="preferences__trim_all_threads_now">Rút ngắn mọi chuỗi ngay bây giờ</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Xem xét các chuỗi chuyện trò và buộc tuân theo giới hạn độ dài</string>
   <string name="preferences__devices">Các thiết bị</string>
   <string name="preferences__light_theme">Lợt</string>
   <string name="preferences__dark_theme">Đậm</string>
@@ -908,7 +899,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Xóa cái chọn</string>
   <string name="conversation_list_batch__menu_select_all">Chọn tất cả</string>
-  <string name="conversation_list_batch__archive_selected">Đã chọn bản lưu</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Tìm kiếm</string>
   <!--conversation_list_item_view-->
@@ -980,7 +970,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <!--media_preview-->
   <string name="media_preview__save_title">Lưu</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Xem trước Hình</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Làm mới</string>
   <!--redphone_audio_popup_menu-->

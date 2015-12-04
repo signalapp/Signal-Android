@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호 설정되지 않음</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">대화당 메시지 %s개</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">지금 모든 이전 메시지를 삭제하시겠습니까?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">지금 모든 대화를 최근 메시지 %s개로 줄이시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_delete">삭제</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">암호 사용 중지</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">메시지 화면 잠금을 사용 중지하시겠습니까?</string>
@@ -146,7 +145,6 @@
     <item quantity="other">선택된 대화 %1$d개가 영구 삭제됩니다.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">대화 삭제</string>
-  <string name="ConversationListFragment_deleting_selected_threads">선택된 대화를 삭제 중…</string>
   <string name="ConversationListFragment_archived_conversations">대화 보관처리됨</string>
   <string name="ConversationListFragment_undo">실행취소</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">보관 취소</string>
@@ -674,13 +672,12 @@
   <string name="AndroidManifest__change_passphrase">암호 변경</string>
   <string name="AndroidManifest__verify_identity">인증 키 확인</string>
   <string name="AndroidManifest__log_submit">디버그 로그 보내기</string>
-  <string name="AndroidManifest__media_preview">미디어 미리 보기</string>
   <string name="AndroidManifest__media_overview">전체 이미지</string>
   <string name="AndroidManifest__media_overview_named">%1$s님이랑 대화의 전체 이미지</string>
   <string name="AndroidManifest__message_details">메시지 세부정보</string>
   <string name="AndroidManifest_manage_linked_devices">연결된 기기 관리</string>
   <string name="AndroidManifest__invite_friends">친구 초대</string>
-  <string name="AndroidManifeset_conversations_archive">보관된 대화</string>
+  <string name="AndroidManifest_conversations_archive">보관된 대화</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">가져오기 / 내보내기</string>
   <string name="arrays__your_identity_key">내 인증 키</string>
@@ -744,7 +741,6 @@
   <string name="preferences__sound">소리</string>
   <string name="preferences__change_notification_sound">알림 벨소리 변경</string>
   <string name="preferences__silent">무음</string>
-  <string name="preferences__inthread_notifications">대화 중 알림</string>
   <string name="preferences__play_inthread_notifications">대화 중에 알림 벨소리 재생</string>
   <string name="preferences__repeat_alerts">알림 반복</string>
   <string name="preferences__never">안함</string>
@@ -782,12 +778,9 @@
   <string name="preferences__mmsc_password">MMSC 비밀번호</string>
   <string name="preferences__sms_delivery_reports">SMS 전송 확인</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지 보낼 때마다 전송 확인 요청</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">대화 메시지 저장한도가 초과되면 이전 메시지 자동 삭제</string>
   <string name="preferences__delete_old_messages">이전 메시지 삭제</string>
   <string name="preferences__chats">대화 및 미디어</string>
   <string name="preferences__conversation_length_limit">대화 메시지 저장한도</string>
-  <string name="preferences__trim_all_threads_now">모든 대화 줄이기</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">모든 대화에 메시지 저장한도 적용</string>
   <string name="preferences__devices">기기</string>
   <string name="preferences__light_theme">밝게</string>
   <string name="preferences__dark_theme">어둡게</string>
@@ -843,7 +836,7 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">선택된 대화 삭제</string>
   <string name="conversation_list_batch__menu_select_all">모두 선택</string>
-  <string name="conversation_list_batch__archive_selected">선택된 대화 보관</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">선택된 대화 보관</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">검색</string>
   <!--conversation_list_item_view-->
@@ -915,7 +908,6 @@
   <!--media_preview-->
   <string name="media_preview__save_title">저장</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">이미지 미리보기</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">새로고침</string>
   <!--redphone_audio_popup_menu-->

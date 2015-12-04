@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har endnu ikke indtastet et kodeord!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s beskeder pr. samtale</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slet alle gamle beskeder?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Er du sikker på, du vil trimme ALLE samtaletråde til de sidste %s beskeder?</string>
   <string name="ApplicationPreferencesActivity_delete">Slet</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktivér kodeord?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -156,7 +155,6 @@ denne kontakt.</string>
     <item quantity="other">Dette vil slette alle %1$d valgte samtaler permanent.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Sletter valgte tråde...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
   <!--ConversationListItemAction-->
@@ -505,6 +503,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Billede</string>
   <string name="attachment_type_selector__audio">Lyd</string>
@@ -708,7 +707,6 @@ mislykkedes.</string>
   <string name="AndroidManifest__change_passphrase">Ændr kodeord</string>
   <string name="AndroidManifest__verify_identity">Verificér identitet</string>
   <string name="AndroidManifest__log_submit">Indsend fejlfindingslogge</string>
-  <string name="AndroidManifest__media_preview">Forhåndsvisning af multimedie</string>
   <string name="AndroidManifest__media_overview">Alle billeder</string>
   <string name="AndroidManifest__media_overview_named">Alle billeder med %1$s</string>
   <string name="AndroidManifest_manage_linked_devices">Håndtér tilkoblede enheder</string>
@@ -777,7 +775,6 @@ mislykkedes.</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__change_notification_sound">Ændr notifikationslyd</string>
   <string name="preferences__silent">Ingen lyd</string>
-  <string name="preferences__inthread_notifications">I beskeder</string>
   <string name="preferences__play_inthread_notifications">Afspil notifikationslyd, når en aktiv samtale vises</string>
   <string name="preferences__repeat_alerts">Gentag notifikationer</string>
   <string name="preferences__never">Aldrig</string>
@@ -815,12 +812,9 @@ mislykkedes.</string>
   <string name="preferences__mmsc_password">MMSC-kodeord</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapport for SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bed om en leveringsrapport for hver SMS-besked, du sender</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Slet gamle beskeder automatisk, når en samtaletråd overskrider en specificeret størrelse</string>
   <string name="preferences__delete_old_messages">Slet gamle beskeder</string>
   <string name="preferences__chats">Chat og medier</string>
   <string name="preferences__conversation_length_limit">Grænse på samtaler</string>
-  <string name="preferences__trim_all_threads_now">Trim alle samtaletråde nu</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skan alle samtaletråde og håndhæv grænsen for størrelsen af samtaler</string>
   <string name="preferences__devices">Enheder</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
@@ -945,7 +939,6 @@ mislykkedes.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Forhåndsvisning af billede</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Opdater</string>
   <!--redphone_audio_popup_menu-->

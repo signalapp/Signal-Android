@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s messaggi per conversazione</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Eliminare tutti i messaggi vecchi ora?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Vuoi davvero ridurre tutte conversazioni ai soli %s messaggi più recenti?</string>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -152,7 +151,6 @@ questo contatto.</string>
     <item quantity="other">Così cancellerai per sempre le %1$d conversazioni selezionate.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Eliminazione</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Eliminazione delle conversazioni selezionate...</string>
   <string name="ConversationListFragment_archived_conversations">Conversazioni archiviate</string>
   <string name="ConversationListFragment_undo">ANNULLA</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Sposta la conversazione nei messaggi in arrivo</string>
@@ -201,12 +199,15 @@ questo contatto.</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal è stato impossibilitato a registrarsi con i sevizi di Google Play.
+I suoi messagi e le chiamate sono state disabilitate, si prega di provare e ri-registrare in Impostazioni &gt; Avanzate.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nuovo gruppo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aggiorna gruppo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome del gruppo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nuovo gruppo MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Hai selezionato un contatto che non supporta i gruppi di Signal, quindi questo gruppo sarà via MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Non sei registrato per i messeggi e le chiamate Signal, pertanto i gruppi sono disabilitati. Si prega di ri-registrarsi in Impostazioni &gt; Avanzate.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Si è verificato un errore inatteso e la creazione del gruppo è fallito.</string>
   <string name="GroupCreateActivity_contacts_no_members">Il tuo gruppo deve contenere almeno una persona!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Uno dei membri del tuo gruppo ha un numero che non può essere letto correttamente. Sistema o rimuovi quel contatto e prova di nuovo.</string>
@@ -502,7 +503,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Immagine</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -584,11 +584,13 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aggiornando il database...</string>
   <string name="export_fragment__export_plaintext_backup">Esportare copia in chiaro</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Esporta in memoria una copia in chiaro compatibile con \'SMS Backup &amp; Restore\'</string>
   <string name="import_fragment__import_system_sms_database">Importa gli SMS dal database criptato</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importa i messaggi dall\'app di sistema per gli SMS</string>
   <string name="import_fragment__restore_encrypted_backup">Ripristina backup criptato</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Ripristina un backup cifrato di Signal precedentemente esportato.</string>
   <string name="import_fragment__import_plaintext_backup">Importare copia in chiaro</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importa un file dalla memoria. Compatibile con \'SMS Backup &amp; Restore\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vedi tutta la conversazione</string>
   <!--media_overview_activity-->
@@ -674,6 +676,7 @@ Signal non funziona con i numeri Google Voice</string>
   <string name="registration_progress_activity__no_network_connectivity">Nessuna connessione
 di rete.
 </string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Per usare questa funzionalità di Signal il tuo dispositivo necessita di connettività. Assicurati che sia connesso alla rete mobile o in Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall troppo restrittivo.
     </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -707,7 +710,7 @@ non riuscita.
   <string name="message_details_header__issues_need_your_attention">Alcuni problemi necessitano della tua attenzione.</string>
   <string name="message_details_header__sent">Inviato</string>
   <string name="message_details_header__received">Ricevuto</string>
-  <string name="message_details_header__via">Attrave</string>
+  <string name="message_details_header__via">Tramite</string>
   <string name="message_details_header__to">A:</string>
   <string name="message_details_header__from">Da:</string>
   <string name="message_details_header__with">Con:</string>
@@ -720,13 +723,11 @@ non riuscita.
   <string name="AndroidManifest__change_passphrase">Cambia passphrase</string>
   <string name="AndroidManifest__verify_identity">Verifica identità</string>
   <string name="AndroidManifest__log_submit">Invia log di debug</string>
-  <string name="AndroidManifest__media_preview">Anteprima media</string>
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
   <string name="AndroidManifest_manage_linked_devices">Gestisci dispositivi collegati</string>
   <string name="AndroidManifest__invite_friends">Invita amici</string>
-  <string name="AndroidManifeset_conversations_archive">Archivio conversazioni</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__your_identity_key">Chiave della tua identità</string>
@@ -791,7 +792,6 @@ non riuscita.
   <string name="preferences__sound">Suono</string>
   <string name="preferences__change_notification_sound">Cambia il suono di notifica</string>
   <string name="preferences__silent">SIlenzioso</string>
-  <string name="preferences__inthread_notifications">Notifiche</string>
   <string name="preferences__play_inthread_notifications">Riproduci il suono di notifica anche all\'interno di una conversazione</string>
   <string name="preferences__repeat_alerts">Ripeti notifiche</string>
   <string name="preferences__never">Mai</string>
@@ -829,12 +829,9 @@ non riuscita.
   <string name="preferences__mmsc_password">MMSC Password</string>
   <string name="preferences__sms_delivery_reports">Rapporti di consegna SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Richiedi un rapporto di consegna per ogni SMS inviato</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Elimina automaticamente i messaggi più vecchi quando un thread di conversazione supera una certa lunghezza</string>
   <string name="preferences__delete_old_messages">Elimina i messaggi vecchi</string>
   <string name="preferences__chats">Chat e download</string>
   <string name="preferences__conversation_length_limit">Limite di lunghezza conversazione</string>
-  <string name="preferences__trim_all_threads_now">Riduci immediatamente tutti i thread</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Analizza tutti i thread e applica il limite di lunghezza delle conversazioni.</string>
   <string name="preferences__devices">Dispositivi</string>
   <string name="preferences__light_theme">Chiaro</string>
   <string name="preferences__dark_theme">Scuro</string>
@@ -890,7 +887,6 @@ non riuscita.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Elimina selezionati</string>
   <string name="conversation_list_batch__menu_select_all">Seleziona tutto</string>
-  <string name="conversation_list_batch__archive_selected">Archivia queste conversazioni</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cerca</string>
   <!--conversation_list_item_view-->
@@ -962,7 +958,6 @@ non riuscita.
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Anteprima Immagine</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Aggiorna</string>
   <!--redphone_audio_popup_menu-->

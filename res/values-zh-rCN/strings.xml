@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">每个会话 %s 个信息</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">删除所有旧信息？</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">你确定处理与%s的最近的对话消息？</string>
   <string name="ApplicationPreferencesActivity_delete">删除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">禁用密码？</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -150,7 +149,6 @@
     <item quantity="other">这将会永久的删除所有 %1$d 已选择的会话。</item>
   </plurals>
   <string name="ConversationListFragment_deleting">正在删除</string>
-  <string name="ConversationListFragment_deleting_selected_threads">正在删除选中的对话...</string>
   <string name="ConversationListFragment_archived_conversations">存档的会话</string>
   <string name="ConversationListFragment_undo">撤销</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">移动会话到收件箱</string>
@@ -500,7 +498,6 @@
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">暗号</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">新信息！</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">图片</string>
   <string name="attachment_type_selector__audio">音频</string>
@@ -718,13 +715,11 @@
   <string name="AndroidManifest__change_passphrase"> 修改密码</string>
   <string name="AndroidManifest__verify_identity">验证身份</string>
   <string name="AndroidManifest__log_submit">发送调试日志</string>
-  <string name="AndroidManifest__media_preview">媒体预览</string>
   <string name="AndroidManifest__media_overview">所有图片</string>
   <string name="AndroidManifest__media_overview_named">所有图片和%1$s</string>
   <string name="AndroidManifest__message_details">信息详情</string>
   <string name="AndroidManifest_manage_linked_devices">管理已连接的设备</string>
   <string name="AndroidManifest__invite_friends">邀请好友</string>
-  <string name="AndroidManifeset_conversations_archive">会话存档</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
   <string name="arrays__your_identity_key">你的身份密钥</string>
@@ -788,7 +783,6 @@
   <string name="preferences__sound">声音</string>
   <string name="preferences__change_notification_sound">改变提示音</string>
   <string name="preferences__silent">静音</string>
-  <string name="preferences__inthread_notifications">线程内通知</string>
   <string name="preferences__play_inthread_notifications">在查看活动的会话时播放提示音</string>
   <string name="preferences__repeat_alerts">重复警报</string>
   <string name="preferences__never">永不</string>
@@ -826,12 +820,9 @@
   <string name="preferences__mmsc_password">MMSC 密码</string>
   <string name="preferences__sms_delivery_reports">短信发送报告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">请求发送报告</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">对话超过指定数量时自动删除旧的信息</string>
   <string name="preferences__delete_old_messages">删除旧信息</string>
   <string name="preferences__chats">聊天与媒体</string>
   <string name="preferences__conversation_length_limit">对话数量限制</string>
-  <string name="preferences__trim_all_threads_now">现在处理所有对话</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">查找并处理所有超过限制的对话</string>
   <string name="preferences__devices">设备</string>
   <string name="preferences__light_theme">明亮</string>
   <string name="preferences__dark_theme">黑暗</string>
@@ -887,7 +878,6 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">删除已选</string>
   <string name="conversation_list_batch__menu_select_all">选择全部</string>
-  <string name="conversation_list_batch__archive_selected">存档已选择</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">搜索</string>
   <!--conversation_list_item_view-->
@@ -959,7 +949,6 @@
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">图片预览</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">刷新</string>
   <!--redphone_audio_popup_menu-->

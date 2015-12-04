@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ai setat inca o parola!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s mesaje per conversație</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Şterge toate mesajele vechi acum?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Eşti sigur că doreşti să scurtezi toate conversaţiile la %s cele mai recente mesaje?</string>
   <string name="ApplicationPreferencesActivity_delete">Şterge</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -153,7 +152,6 @@
     <item quantity="other">Această acțiune va șterge permanent toate cele %1$d conversații selectate.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Se șterge</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Se şterg conversaţiile selectate...</string>
   <string name="ConversationListFragment_archived_conversations">Conversații arhivate</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Mută conversația în inbox</string>
   <string name="ConversationListFragment_archived_conversation">Conversație arhivată</string>
@@ -488,7 +486,6 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagine</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -693,13 +690,11 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="AndroidManifest__change_passphrase">Schimbă parola</string>
   <string name="AndroidManifest__verify_identity">Verifică identitatea</string>
   <string name="AndroidManifest__log_submit">Trimite log-urile de depanare</string>
-  <string name="AndroidManifest__media_preview">Previzualizare media</string>
   <string name="AndroidManifest__media_overview">Toate imaginile</string>
   <string name="AndroidManifest__media_overview_named">Toate imaginile cu %1$s</string>
   <string name="AndroidManifest__message_details">Detalii mesaj</string>
   <string name="AndroidManifest_manage_linked_devices">Administrează dispozitivele conectate</string>
   <string name="AndroidManifest__invite_friends">Invită prieteni</string>
-  <string name="AndroidManifeset_conversations_archive">Arhiva conversațiilor</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importă / Exportă</string>
   <string name="arrays__your_identity_key">Cheia ta de identitate</string>
@@ -765,7 +760,6 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__sound">Sunet</string>
   <string name="preferences__change_notification_sound">Schimbă sunetul de notificare</string>
   <string name="preferences__silent">Silențios</string>
-  <string name="preferences__inthread_notifications">Notificări în conversație</string>
   <string name="preferences__play_inthread_notifications">Redare sunet de notificare în timp ce vizualizați o conversație activă</string>
   <string name="preferences__repeat_alerts">Repetă alerte</string>
   <string name="preferences__never">Niciodată</string>
@@ -803,12 +797,9 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__mmsc_password">Parolă MMSC</string>
   <string name="preferences__sms_delivery_reports">Confirmări de livrare SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Cere o confirmare de livrare pentru fiecare SMS trimis</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Șterge automat mesajele vechi când conversația depășește mărimea specificată</string>
   <string name="preferences__delete_old_messages">Șterge mesajele vechi</string>
   <string name="preferences__chats">Conversaţii şi media</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
-  <string name="preferences__trim_all_threads_now">Scurtează toate conversaţiile acum</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Verifică toate conversațiile și aplică limite de mărime a conversației</string>
   <string name="preferences__devices">Dispozitive</string>
   <string name="preferences__light_theme">Deschisă</string>
   <string name="preferences__dark_theme">Închisă</string>
@@ -865,7 +856,6 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Şterge ce este selectat</string>
   <string name="conversation_list_batch__menu_select_all">Selectează tot</string>
-  <string name="conversation_list_batch__archive_selected">Arhivă selectată</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Caută</string>
   <!--conversation_list_item_view-->
@@ -933,7 +923,6 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Previzualizare imagine</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Reîmprospătează</string>
   <!--redphone_audio_popup_menu-->

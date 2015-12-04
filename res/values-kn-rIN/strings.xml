@@ -9,7 +9,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಗುಪ್ತಪದವನ್ನು ಹೊಂದಿಸಿಲ್ಲ!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">ಪ್ರತಿ ಸಂವಾದಕ್ಕೆ %s ಸಂದೇಶಗಳು</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ಈಗ ಎಲ್ಲಾ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ನೀವು ಈ  ಕ್ಷಣ ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯ ಇತ್ತೀಚಿನ %s ಸಂದೇಶಗಳಿಗೆ ಮಿತಗೊಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <string name="ApplicationPreferencesActivity_delete">ಅಳಿಸಿಹಾಕು</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">ಗುಪ್ತಪದವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
@@ -105,7 +104,6 @@
   <string name="ConversationListActivity_search">ಹುಡುಕಿ...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="ConversationListFragment_deleting_selected_threads">ಆಯ್ದ ವಾದಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶ...</string>
   <!--ConversationListItemAction-->
@@ -322,6 +320,7 @@
   <string name="MessageNotifier_media_message">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_message">ಹೊಸ ಸಂದೇಶ</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -468,7 +467,6 @@
   <string name="AndroidManifest__change_passphrase">ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಿ</string>
   <string name="AndroidManifest__verify_identity">ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="AndroidManifest__log_submit">ಡಿಬಗ್ ಲಾಗ್ಗಳನ್ನು ಸಲ್ಲಿಸಿ</string>
-  <string name="AndroidManifest__media_preview">ಬಹುಮಾಧ್ಯಮ ಮುನ್ನೋಟ</string>
   <string name="AndroidManifest__media_overview">ಎಲ್ಲಾ ಚಿತ್ರಗಳು</string>
   <string name="AndroidManifest__media_overview_named">ಎಲ್ಲಾ ಚಿತ್ರಗಳು %1$s ಜೊತೆ</string>
   <!--arrays.xml-->
@@ -511,7 +509,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_set">ಇಚ್ಛೆಯ ಎಲ್. ಇ. ಡಿ ಮಿಣುಕುವ ಮಾದರಿಯನ್ನು ಹೊಂದಿಸಲಾಗಿದೆ!</string>
   <string name="preferences__sound">ಶಬ್ದ</string>
   <string name="preferences__change_notification_sound">ಸೂಚನೆಯ ಶಬ್ದ ಬದಲಾಯಿಸಿ</string>
-  <string name="preferences__inthread_notifications">ಎಳೆಗಳಲ್ಲಿನ ಸೂಚನೆಗಳು</string>
   <string name="preferences__one_time">ಒಮ್ಮೆ</string>
   <string name="preferences__two_times">ಎರಡು ಬಾರಿ</string>
   <string name="preferences__three_times">ಮೂರು ಬಾರಿ</string>
@@ -541,11 +538,8 @@
   <string name="preferences__mmsc_password">ಎಮ್ ಎಮ್ ಎಸ್ ಸಿ ಪಾಸ್ವರ್ಡ್</string>
   <string name="preferences__sms_delivery_reports">ಎಸ್. ಎಮ್. ಎಸ್ ವಿತರಣಾ ವರದಿಗಳು</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ನೀವು ಕಳುಹಿಸುವ ಪ್ರತಿ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶಕ್ಕೂ ವಿತರಣಾ ವರದಿಯನ್ನು ವಿನಂತಿಸಿ</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">ಒಂದು ಸಂಭಾಷಣೆಯ ಎಳೆ ಒಂದು ನಿಗದಿತ ಮಿತಿಯನ್ನು ಮೀರಿದ ಕೂಡಲೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ</string>
   <string name="preferences__delete_old_messages">ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ</string>
   <string name="preferences__conversation_length_limit">ಸಂವಾದದ ಉದ್ದ ಮಿತಿ</string>
-  <string name="preferences__trim_all_threads_now">ಈಗ ಎಲ್ಲಾ ವಾದಗಳನ್ನು ತೆಗೆದು ಹಾಕಿ</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯ ಎಳೆಗಳನ್ನು ಮೇಲೆ ಸ್ಥೂಲವಾಗಿ ಕಣ್ಣು ಹಾಯಿಸು ಹಾಗು ಸಂಭಾಷಣೆಯ ಉದ್ದ ಮಿತಿಯನ್ನು ಜಾರಿಗೊಳಿಸು</string>
   <string name="preferences__light_theme">ಲಘು ವಿನ್ಯಾಸ </string>
   <string name="preferences__dark_theme">ಗಾಢಬಣ್ಣದ ವಿನ್ಯಾಸ</string>
   <string name="preferences__appearance">ಲಕ್ಷಣ</string>
@@ -631,7 +625,6 @@
   <!--media_preview-->
   <string name="media_preview__save_title">ಉಳಿಸಿ</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">ಚಿತ್ರ ಮುನ್ನೋಟ</string>
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->

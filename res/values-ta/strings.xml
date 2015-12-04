@@ -9,7 +9,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet"> நீங்கள் இன்னும் ஒரு கடவுச்சொல்லை அமைக்கவில்லை!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">ஓர் உரையாடலில் %s செய்திகள்</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">அனைத்து பழைய செய்திகளையும் நீக்கலாமா?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">நீங்கள் உடனடியாக  உரையாடல் நூல்களிலுள்ள மிக சமீபத்திய %s செய்திகளுக்கு முன் உள்ள செய்திகளை நீக்குவதற்கு உறுதி செய்கிறீர்களா?</string>
   <string name="ApplicationPreferencesActivity_delete">நீக்கு</string>
   <string name="ApplicationPreferencesActivity_disable">முடக்கு</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">சர்வருடன் இணைவதில் பிழை!</string>
@@ -91,7 +90,6 @@
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">நீக்கப்படுகிறது</string>
-  <string name="ConversationListFragment_deleting_selected_threads">தேர்ந்தெடுக்கப்பட்ட செய்திநூல்கள் நீக்கப்படுகிறது...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">சாவி பரிமாற்றச் செய்தி...</string>
   <!--ConversationListItemAction-->
@@ -300,6 +298,7 @@
   <string name="MessageNotifier_media_message">மீடியா செய்தி</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -449,7 +448,6 @@
   <string name="AndroidManifest__change_passphrase">கடவுச்சொல்லை மாற்று</string>
   <string name="AndroidManifest__verify_identity">அடையாளத்தை சரிபார்</string>
   <string name="AndroidManifest__log_submit">பிழைத்திருத்த பதிவுகளை சமர்ப்பி</string>
-  <string name="AndroidManifest__media_preview">ஊடகக் கோப்பு முன்னோட்டம்</string>
   <string name="AndroidManifest__media_overview">அனைத்து படங்கள்</string>
   <string name="AndroidManifest__media_overview_named">%1$s உடன் உள்ள அனைத்து படங்கள்</string>
   <!--arrays.xml-->
@@ -496,7 +494,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_set">LED மிளிரும் முறையை சுய விருப்பம் போல் அமைக்கப்பட்டது!</string>
   <string name="preferences__sound">ஒலி</string>
   <string name="preferences__change_notification_sound">அறிவிப்பு ஒலியை மாற்று</string>
-  <string name="preferences__inthread_notifications">உரையாடல்நூலில் உள்ளிருக்கும் போது அறிவிப்புகள்</string>
   <string name="preferences__repeat_alerts">பலமுறை எச்சரிக்கைகள்</string>
   <string name="preferences__never">ஒருபோதுமில்லை</string>
   <string name="preferences__one_time">ஒரு முறை</string>
@@ -531,11 +528,8 @@
   <string name="preferences__mmsc_password">MMSC Password</string>
   <string name="preferences__sms_delivery_reports">SMS விநியோக அறிக்கைகள்</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">நீங்கள் அனுப்பும் அனைத்து SMS-களுக்கும் விநியோக அறிக்கைகளை வேண்டவும்</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">ஒரு உரையாடல் நூல் குறிப்பிட்ட நீளத்தைவிட அதிகமானவுடன் தானாக பழைய செய்திகளை நீக்கவும் </string>
   <string name="preferences__delete_old_messages">பழைய செய்திகளை நீக்க</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
-  <string name="preferences__trim_all_threads_now">அனைத்து உரையாடல்நூல்களையும் இப்போது ஒழுங்கமைக்க </string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">அனைத்து உரையாடல்நூல்களின் உள்ளே சென்று, உரையாடல் நீள வரம்பை செயலாக்கு</string>
   <string name="preferences__light_theme">வெளிச்சமிக்க</string>
   <string name="preferences__dark_theme">இருள்கொண்ட </string>
   <string name="preferences__appearance">தோற்றம்</string>
@@ -621,7 +615,6 @@
   <!--media_preview-->
   <string name="media_preview__save_title">சேமி</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">பட முன்னோட்டம்</string>
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->

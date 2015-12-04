@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Још нисте поставили лозинку!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s порука по преписци</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Обрисати старе поруке сада?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Желите ли заиста одмах да скратите све нити преписки на %s најскоријих порука?</string>
   <string name="ApplicationPreferencesActivity_delete">Обриши</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Да искључим лозинку?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -160,7 +159,6 @@
     <item quantity="other">Ово ће трајно да обрише свих %1$d изабраних преписки.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Брисање</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Бришем изабране нити...</string>
   <string name="ConversationListFragment_archived_conversations">Архивиране преписке</string>
   <string name="ConversationListFragment_undo">ВРАТИ</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Преписка померена у пријем</string>
@@ -517,7 +515,6 @@
   <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Нова порука!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Слика</string>
   <string name="attachment_type_selector__audio">Звук</string>
@@ -734,13 +731,11 @@
   <string name="AndroidManifest__change_passphrase">Измена лозинке</string>
   <string name="AndroidManifest__verify_identity">Овера идентитета</string>
   <string name="AndroidManifest__log_submit">Слање дневника исправљања грешака</string>
-  <string name="AndroidManifest__media_preview">Приказ медијума</string>
   <string name="AndroidManifest__media_overview">Све слике</string>
   <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
   <string name="AndroidManifest_manage_linked_devices">Управљај повезаним уређајима</string>
   <string name="AndroidManifest__invite_friends">Позивница пријатељима</string>
-  <string name="AndroidManifeset_conversations_archive">Архива преписки</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__your_identity_key">Ваш кључ идентитета</string>
@@ -806,7 +801,6 @@
   <string name="preferences__sound">Звук</string>
   <string name="preferences__change_notification_sound">Промени звук обавештења</string>
   <string name="preferences__silent">Без звука</string>
-  <string name="preferences__inthread_notifications">Обавештења унутар нити</string>
   <string name="preferences__play_inthread_notifications">Звук обавештења на приказу активне преписке</string>
   <string name="preferences__repeat_alerts">Понављај обавештења</string>
   <string name="preferences__never">Никад</string>
@@ -844,12 +838,9 @@
   <string name="preferences__mmsc_password">ММСЦ лозинка</string>
   <string name="preferences__sms_delivery_reports">Извештаји о испоруци СМС-а</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Захтевај извештај о испоруци за сваку послату СМС поруку</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Аутоматско брисање старих порука када нит преписке пређе наведену дужину</string>
   <string name="preferences__delete_old_messages">Бриши старе поруке</string>
   <string name="preferences__chats">Ћаскања и медији</string>
   <string name="preferences__conversation_length_limit">Ограничење дужине преписке</string>
-  <string name="preferences__trim_all_threads_now">Скрати све нити сада</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Претражи све нити преписки и наметни ограничења дужине</string>
   <string name="preferences__devices">Уређаји</string>
   <string name="preferences__light_theme">Светла</string>
   <string name="preferences__dark_theme">Тамна</string>
@@ -905,7 +896,6 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Обриши изабрано</string>
   <string name="conversation_list_batch__menu_select_all">Изабери све</string>
-  <string name="conversation_list_batch__archive_selected">Архивирај изабрано</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Тражи</string>
   <!--conversation_list_item_view-->
@@ -977,7 +967,6 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Сачувај</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Приказ слике</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Освежи</string>
   <!--redphone_audio_popup_menu-->

@@ -10,14 +10,13 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sie haben noch kein Passwort festgelegt!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s Nachrichten pro Unterhaltung</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Wollen Sie wirklich alle Nachrichten in sämtlichen Unterhaltungen bis auf die letzten %s Nachrichten löschen?</string>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
 Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Telefonie wird gelöscht …</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und -Anrufe deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und -Anrufe durch Löschen Ihrer Registrierung vom Server deaktivieren. Sie werden Ihre Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden zum Server!</string>
@@ -151,12 +150,11 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
     <item quantity="other">Unwiderruflich alle %1$d ausgewählten Unterhaltungen löschen.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Löschen</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Ausgewählte Unterhaltungen werden gelöscht …</string>
   <string name="ConversationListFragment_archived_conversations">Archivierte Unterhaltungen</string>
   <string name="ConversationListFragment_undo">RÜCKGÄNGIG</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Unterhaltung zum Posteingang verschoben</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Unterhaltung zum Nachrichteneingang verschoben</string>
   <string name="ConversationListFragment_archived_conversation">Archivierte Unterhaltung</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Unterhaltungen zum Posteingang verschoben</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Unterhaltungen zum Nachrichteneingang verschoben</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch-Nachricht …</string>
   <!--ConversationListItemAction-->
@@ -489,7 +487,6 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -651,7 +648,7 @@ Signal kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf �
   <string name="registration_progress_activity__call_me">Mich anrufen</string>
   <string name="registration_progress_activity__edit_number">Rufnummer bearbeiten</string>
   <string name="registration_progress_activity__connectivity_error">Verbindungsfehler.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal konnte sich nicht mit dem Server verbinden.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Verbindung mit Signal-Server konnte nicht hergestellt werden.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Einige der möglichen Probleme beinhalten:</string>
   <string name="registration_progress_activity__no_network_connectivity">Keine Netzwerkverbindung.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Um diese Signal-Funktion nutzen zu können, benötigt Ihr Gerät eine Netzverbindung, Stellen Sie sicher, dass eine mobile Daten- oder WLAN-Verbindung besteht.</string>
@@ -694,13 +691,11 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__change_passphrase">Passwort ändern</string>
   <string name="AndroidManifest__verify_identity">Kontakt überprüfen</string>
   <string name="AndroidManifest__log_submit">Diagnoseprotokoll übermitteln</string>
-  <string name="AndroidManifest__media_preview">Dateivorschau</string>
   <string name="AndroidManifest__media_overview">Alle Bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle Bilder mit %1$s</string>
   <string name="AndroidManifest__message_details">Nachrichtendetails</string>
   <string name="AndroidManifest_manage_linked_devices">Verknüpfte Geräte verwalten</string>
   <string name="AndroidManifest__invite_friends">Freunde einladen</string>
-  <string name="AndroidManifeset_conversations_archive">Unterhaltungsarchiv</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Datensicherung</string>
   <string name="arrays__your_identity_key">Ihr Schlüssel</string>
@@ -765,7 +760,6 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__sound">Benachrichtigungston</string>
   <string name="preferences__change_notification_sound">Benachrichtigungston ändern</string>
   <string name="preferences__silent">Lautlos</string>
-  <string name="preferences__inthread_notifications">Immer benachrichtigen</string>
   <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiver Unterhaltungen wiedergeben</string>
   <string name="preferences__repeat_alerts">Benachrichtigungen wiederholen</string>
   <string name="preferences__never">Nie</string>
@@ -803,12 +797,9 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__mmsc_password">MMSC-Passwort</string>
   <string name="preferences__sms_delivery_reports">SMS-Zustellberichte</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Alte Nachrichten automatisch löschen, sobald die Unterhaltung eine bestimmte Länge überschreitet</string>
   <string name="preferences__delete_old_messages">Alte Nachrichten löschen</string>
   <string name="preferences__chats">Unterhaltungen und Multimedia</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
-  <string name="preferences__trim_all_threads_now">Alle Unterhaltungen jetzt kürzen</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Alle Unterhaltungen prüfen und deren Längenbegrenzung sicherstellen</string>
   <string name="preferences__devices">Geräte</string>
   <string name="preferences__light_theme">Hell</string>
   <string name="preferences__dark_theme">Dunkel</string>
@@ -864,7 +855,6 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ausgewählte löschen</string>
   <string name="conversation_list_batch__menu_select_all">Alle auswählen</string>
-  <string name="conversation_list_batch__archive_selected">Archiv ausgewählt</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Suchen</string>
   <!--conversation_list_item_view-->
@@ -936,7 +926,6 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Speichern</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Bildvorschau</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Aktualisieren</string>
   <!--redphone_audio_popup_menu-->

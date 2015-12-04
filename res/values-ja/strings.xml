@@ -9,7 +9,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">会話あたり %s のメッセージ</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">全ての古いメッセージを今、削除しますか？</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">今すぐ全ての会話スレッドを最新メッセージ%s通にまで縮小（トリム）しますか？</string>
   <string name="ApplicationPreferencesActivity_delete">削除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">パスワードを無効にする?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -113,7 +112,6 @@
   <string name="ConversationListActivity_search">検索...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">削除</string>
-  <string name="ConversationListFragment_deleting_selected_threads">選択したスレッドを削除中…</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
   <!--ConversationListItemAction-->
@@ -348,6 +346,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">送信メッセージでの問題!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_message">新規メッセージ</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
@@ -501,7 +500,6 @@
   <string name="AndroidManifest__change_passphrase">パスワードの変更</string>
   <string name="AndroidManifest__verify_identity">認証検証</string>
   <string name="AndroidManifest__log_submit">デバッグログを提出</string>
-  <string name="AndroidManifest__media_preview">メディアのプレビュー表示</string>
   <string name="AndroidManifest__media_overview">すべての画像</string>
   <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
   <string name="AndroidManifest_manage_linked_devices">リンク済みデバイスの管理</string>
@@ -562,7 +560,6 @@
   <string name="preferences__pref_led_blink_custom_pattern_set">オリジナルのLED点滅パターンが設定されました！</string>
   <string name="preferences__sound">着信音</string>
   <string name="preferences__change_notification_sound">通知音を変更</string>
-  <string name="preferences__inthread_notifications">スレッド内通知</string>
   <string name="preferences__play_inthread_notifications">アクティブな会話を表示している間で通知音を再生</string>
   <string name="preferences__repeat_alerts">アラートの繰り返し</string>
   <string name="preferences__never">なし</string>
@@ -600,12 +597,9 @@
   <string name="preferences__mmsc_password">MMSCパスワード</string>
   <string name="preferences__sms_delivery_reports">SMS配信報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">会話スレッドが一定の長さを超えると、古いメッセージが自動的に削除されます</string>
   <string name="preferences__delete_old_messages">古いメッセージの削除</string>
   <string name="preferences__chats">チャットとメディア</string>
   <string name="preferences__conversation_length_limit">会話の最大の長さ</string>
-  <string name="preferences__trim_all_threads_now">全スレッドを今、トリムする</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">すべての会話スレッドをスキャンして、会話の長さの制限を強制します</string>
   <string name="preferences__light_theme">ライト</string>
   <string name="preferences__dark_theme">ダーク</string>
   <string name="preferences__appearance">デザイン設定</string>
@@ -703,7 +697,6 @@
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">画像プレビュー表示</string>
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->

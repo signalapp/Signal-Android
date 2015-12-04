@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s رسائل في المحادثة</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">احذف جميع الرسائل القديمة الآن؟</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من تقليم جميع الرسائل بالمحادثات وإبقاء أحدث %s الرسائل فقط؟</string>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -167,11 +166,10 @@
     <item quantity="other">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">حذف</string>
-  <string name="ConversationListFragment_deleting_selected_threads">حذف المحادثات المختارة</string>
   <string name="ConversationListFragment_archived_conversations">أرشيف المحادثات</string>
   <string name="ConversationListFragment_undo">تراجع</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">نقل المحادثة إلى صندوق الوارد</string>
-  <string name="ConversationListFragment_archived_conversation">أرشيف المحادثات</string>
+  <string name="ConversationListFragment_archived_conversation">أرشيف المحادثة</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">نقل المحادثات إلى صندوق الوارد</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
@@ -217,14 +215,14 @@
   <string name="ExportFragment_success">تم بنجاح!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال سيجنال!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سيجنال لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات سيجنال. رجاء محاولة إعادة التسجيل بالذهاب إلى متقدم في قائمة إعدادات التطبيق.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سيجنال لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات سيجنال. رجاء محاولة إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
   <string name="GroupCreateActivity_actionbar_update_title">تحديث المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات سيجنال وبالتالي ستكون مجموعة وسائط متعددة.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">أنت غير مسجل في رسائل ومكالمات سيجنال وبالتالية مجموعات سيجنال معطلة. حاول إعادة التسجيل بالذهاب إلى متقدم في قائمة إعدادات التطبيق.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">أنت غير مسجل في رسائل ومكالمات سيجنال وبالتالي فإن مجموعات سيجنال معطلة. حاول إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">خطأ غير متوقع تسبب في تعذر إنشاء المجموعة.</string>
   <string name="GroupCreateActivity_contacts_no_members">تحتاج إلى شخص واحد على الأقل في المجموعة!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">لا يمكن قراءة رقم أحد أعضاء المجموعة بشكل صحيح. رجاء تصحيح أو حذف هذا العضو والمحاولة مرة أخرى.</string>
@@ -518,7 +516,6 @@
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">صورة</string>
   <string name="attachment_type_selector__audio">صوت</string>
@@ -727,13 +724,11 @@
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
   <string name="AndroidManifest__verify_identity">تحقق من الهوية</string>
   <string name="AndroidManifest__log_submit">أرسل سجلات التصحيح</string>
-  <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
   <string name="AndroidManifest__media_overview">جميع الصور</string>
   <string name="AndroidManifest__media_overview_named">جميع الصور مع %1$s</string>
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
   <string name="AndroidManifest_manage_linked_devices">إدارة الأجهزة المقترنة</string>
   <string name="AndroidManifest__invite_friends">دعوة الأصدقاء</string>
-  <string name="AndroidManifeset_conversations_archive">أرشيف المحادثات</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد / تصدير</string>
   <string name="arrays__your_identity_key">متفاح الهوية الخاص بك</string>
@@ -802,7 +797,6 @@
   <string name="preferences__sound">صوت</string>
   <string name="preferences__change_notification_sound">تغيير صوت التنبيه</string>
   <string name="preferences__silent">صامت</string>
-  <string name="preferences__inthread_notifications">إشعارات داخل المحادثة</string>
   <string name="preferences__play_inthread_notifications">تفعيل تنبيه صوتي أثناء مطالعة محادثة نشطة</string>
   <string name="preferences__repeat_alerts">تكرار التنبيهات</string>
   <string name="preferences__never">أبدا</string>
@@ -840,12 +834,9 @@
   <string name="preferences__mmsc_password">كلمة السر MMSC</string>
   <string name="preferences__sms_delivery_reports">تقارير التسليم</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة قصيرة ترسلها</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">حذف الرسائل القديمة آليا عند تجاوز المحادثة الطول المحدد</string>
   <string name="preferences__delete_old_messages">احذف الرسائل القديمة</string>
   <string name="preferences__chats">المحادثات والوسائط</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
-  <string name="preferences__trim_all_threads_now">تقليم كل المحادثات الآن</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">افحص كل المحادثات وافرض حد الطول لكل محادثة</string>
   <string name="preferences__devices">الأجهزة</string>
   <string name="preferences__light_theme">فاتح</string>
   <string name="preferences__dark_theme">داكن</string>
@@ -883,7 +874,7 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">تحيدث قائمة الاتصال</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable_insecure__menu_call">أتصل</string>
+  <string name="conversation_callable_insecure__menu_call">اتصل</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">مكالمة سيجنال</string>
   <!--conversation_context-->
@@ -901,7 +892,6 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">احذف المختار</string>
   <string name="conversation_list_batch__menu_select_all">اختر الكل</string>
-  <string name="conversation_list_batch__archive_selected">تم اختيار الأرشيف</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">بحث</string>
   <!--conversation_list_item_view-->
@@ -957,7 +947,7 @@
   <string name="reminder_header_sms_import_text">أضغط لنسخ الرسائل النصية القصيرة على الهاتف إلى قاعدة البيانات المشفرة.</string>
   <string name="reminder_header_sms_import_button">استيراد</string>
   <string name="reminder_header_push_title">تفعيل رسائل ومكالمات سيجنال</string>
-  <string name="reminder_header_push_text">ترقية تجربتك في التواصل.</string>
+  <string name="reminder_header_push_text">ترقية التطبيق من أجل تواصل أفضل.</string>
   <string name="reminder_header_push_button">تفعيل</string>
   <string name="reminder_header_invite_title">دعوة إلى سيجنال</string>
   <string name="reminder_header_invite_text">انتقل بالمحادثة مع %1$s  للمستوى التالي.</string>
@@ -973,7 +963,6 @@
   <!--media_preview-->
   <string name="media_preview__save_title">أحفظ</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">معاينة الصورة</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">إنعاش</string>
   <!--redphone_audio_popup_menu-->

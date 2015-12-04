@@ -10,7 +10,6 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדיין לא הגדרת משפט סודי!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s מסרים בשיחה</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל המסרים הישנים עכשיו?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">האם באמת לקצץ מיד את כל שרשורי השיחות עד ל־%s המסרים הכי חדשים?</string>
   <string name="ApplicationPreferencesActivity_delete">מחיקה</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">לבטל את המשפט הסודי?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -156,7 +155,6 @@
     <item quantity="other">זה ימחק לצמיתות את כל %1$d השיחות שנבחרו.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">מוחק</string>
-  <string name="ConversationListFragment_deleting_selected_threads">מוחק שרשורים שנבחרו...</string>
   <string name="ConversationListFragment_archived_conversations">שיחות גנוזות</string>
   <string name="ConversationListFragment_undo">ביטול</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">העברת שיחות לדואר נכנס</string>
@@ -511,7 +509,6 @@
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת מסר!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">סיגנל</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">מסר חדש!</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">תמונה</string>
   <string name="attachment_type_selector__audio">קול</string>
@@ -727,13 +724,11 @@
   <string name="AndroidManifest__change_passphrase">שינוי משפט סודי</string>
   <string name="AndroidManifest__verify_identity">אימות זהות</string>
   <string name="AndroidManifest__log_submit">שליחת יומני תיקון שגיאות</string>
-  <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
   <string name="AndroidManifest__media_overview">כל התמונות</string>
   <string name="AndroidManifest__media_overview_named">כל התמונות עם %1$s</string>
   <string name="AndroidManifest__message_details">פרטי מסר</string>
   <string name="AndroidManifest_manage_linked_devices">ניהול מכשירים מקושרים</string>
   <string name="AndroidManifest__invite_friends">להזמין חברים</string>
-  <string name="AndroidManifeset_conversations_archive">גנזך שיחות</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ייבוא / ייצוא</string>
   <string name="arrays__your_identity_key">מפתח הזהות שלך</string>
@@ -798,7 +793,6 @@
   <string name="preferences__sound">קול</string>
   <string name="preferences__change_notification_sound">שינוי צליל ההתראה</string>
   <string name="preferences__silent">שקט</string>
-  <string name="preferences__inthread_notifications">התראות תוך־שרשוריות</string>
   <string name="preferences__play_inthread_notifications">לנגן צליל התראה רק בזמן הצגת שיחה פעילה</string>
   <string name="preferences__repeat_alerts">התראות חוזרות</string>
   <string name="preferences__never">לעולם לא</string>
@@ -836,12 +830,9 @@
   <string name="preferences__mmsc_password">ססמת MMSC</string>
   <string name="preferences__sms_delivery_reports">דו״חות מסירה של SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">לבקש דו״ח מסירה לכל SMS שנשלח</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">למחוק אוטומטית הודעות ישנות יותר כששרשור השיחה עולה על אורך מסוים</string>
   <string name="preferences__delete_old_messages">למחוק הודעות ישנות</string>
   <string name="preferences__chats">התכתבויות ומדיה</string>
   <string name="preferences__conversation_length_limit">הגבלת אורך שיחה</string>
-  <string name="preferences__trim_all_threads_now">לקצץ את כל השרשורים כעת</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">לבצע סריקה של כל השרשורים ולאכוף את הגבלות אורך השיחה</string>
   <string name="preferences__devices">מכשירים</string>
   <string name="preferences__light_theme">בהירה</string>
   <string name="preferences__dark_theme">חשוכה</string>
@@ -897,7 +888,6 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">מחיקת נבחרים</string>
   <string name="conversation_list_batch__menu_select_all">לבחור הכוללבחור הכול</string>
-  <string name="conversation_list_batch__archive_selected">גנזך נבחר</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">חיפוש</string>
   <!--conversation_list_item_view-->
@@ -969,7 +959,6 @@
   <!--media_preview-->
   <string name="media_preview__save_title">שמירה</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">תצוגה מקדימה של תמונה</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">רענון</string>
   <!--redphone_audio_popup_menu-->
