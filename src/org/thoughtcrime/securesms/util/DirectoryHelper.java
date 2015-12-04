@@ -15,6 +15,8 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.SessionUtil;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
@@ -212,9 +214,11 @@ public class DirectoryHelper {
                                      @NonNull  List<String> newUsers)
   {
     for (String newUser : newUsers) {
-      IncomingJoinedMessage message        = new IncomingJoinedMessage(newUser);
-      Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
-      MessageNotifier.updateNotification(context, masterSecret, smsAndThreadId.second);
+      if (!SessionUtil.hasSession(context, masterSecret, newUser)) {
+        IncomingJoinedMessage message        = new IncomingJoinedMessage(newUser);
+        Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
+        MessageNotifier.updateNotification(context, masterSecret, smsAndThreadId.second);
+      }
     }
   }
 
