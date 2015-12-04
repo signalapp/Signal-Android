@@ -174,10 +174,10 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected conversations...</string>
-    <string name="ConversationListFragment_archived_conversations">Archived conversations</string>
+    <string name="ConversationListFragment_conversations_archived">Conversations archived</string>
     <string name="ConversationListFragment_undo">UNDO</string>
     <string name="ConversationListFragment_moved_conversation_to_inbox">Moved conversation to inbox</string>
-    <string name="ConversationListFragment_archived_conversation">Archived conversation</string>
+    <string name="ConversationListFragment_conversation_archived">Conversation archived</string>
     <string name="ConversationListFragment_moved_conversations_to_inbox">Moved conversations to inbox</string>
 
     <!-- ConversationListItem -->
@@ -876,7 +876,7 @@
     <string name="AndroidManifest__message_details">Message details</string>
     <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
-    <string name="AndroidManifest_conversations_archive">Conversations archive</string>
+    <string name="AndroidManifest_archived_conversations">Archived conversations</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
