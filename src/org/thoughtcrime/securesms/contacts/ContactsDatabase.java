@@ -135,12 +135,13 @@ public class ContactsDatabase {
   }
   private Cursor queryAndroidDb(String filter) {
     final Uri baseUri;
+    String filterSelection = "";
+    filter = "%"+ filter + "%";
     if (!TextUtils.isEmpty(filter)) {
-      baseUri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI,
-                                     Uri.encode(filter));
-    } else {
-      baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+      filterSelection = NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "' AND ";
     }
+    baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+
     Cursor cursorD = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
         PrivacyBridge.getContactSelection(context), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
@@ -163,9 +164,9 @@ public class ContactsDatabase {
     }
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
-            !contactSelection.equals("null")
+            filterSelection + (!contactSelection.equals("null")
                     ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
-                    : "" + selection.toString(), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
+                    : "" + selection.toString()), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
     return new TypedCursorWrapper(cursor);
   }
 
