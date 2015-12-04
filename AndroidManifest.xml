@@ -180,7 +180,7 @@
     </activity-alias>
 
     <activity android:name=".ConversationListArchiveActivity"
-              android:label="@string/AndroidManifest_conversations_archive"
+              android:label="@string/AndroidManifest_archived_conversations"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:parentActivityName=".ConversationListActivity">
