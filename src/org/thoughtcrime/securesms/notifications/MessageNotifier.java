@@ -200,10 +200,12 @@ public class MessageNotifier {
 
     SingleRecipientNotificationBuilder builder       = new SingleRecipientNotificationBuilder(context, masterSecret, TextSecurePreferences.getNotificationPrivacy(context));
     List<NotificationItem>             notifications = notificationState.getNotifications();
+    Recipients                         recipients    = notifications.get(0).getRecipients();
 
-    builder.setSender(notifications.get(0).getIndividualRecipient());
+    builder.setThread(notifications.get(0).getRecipients());
     builder.setMessageCount(notificationState.getMessageCount());
-    builder.setPrimaryMessageBody(notifications.get(0).getText(), notifications.get(0).getSlideDeck());
+    builder.setPrimaryMessageBody(recipients, notifications.get(0).getIndividualRecipient(),
+                                  notifications.get(0).getText(), notifications.get(0).getSlideDeck());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
 
     long timestamp = notifications.get(0).getTimestamp();
@@ -217,8 +219,8 @@ public class MessageNotifier {
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
     while(iterator.hasPrevious()) {
-      builder.addMessageBody(iterator.previous().getText());
-
+      NotificationItem item = iterator.previous();
+      builder.addMessageBody(item.getRecipients(), item.getIndividualRecipient(), item.getText());
     }
 
     if (signal) {
