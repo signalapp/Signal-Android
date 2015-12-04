@@ -876,7 +876,7 @@
     <string name="AndroidManifest__message_details">Message details</string>
     <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
-    <string name="AndroidManifest_conversations_archive">Conversations archive</string>
+    <string name="AndroidManifest_archived_conversations">Archived conversations</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
