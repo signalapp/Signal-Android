@@ -4,28 +4,28 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 
 public class NotificationItem {
 
-  private final Recipients                  recipients;
-  private final Recipient                   individualRecipient;
-  private final Recipients                  threadRecipients;
+  private final @NonNull  Recipients        recipients;
+  private final @NonNull  Recipient         individualRecipient;
+  private final @Nullable Recipients        threadRecipients;
   private final long                        threadId;
-  private final CharSequence                text;
+  private final @Nullable CharSequence      text;
   private final long                        timestamp;
   private final @Nullable SlideDeck         slideDeck;
 
-  public NotificationItem(Recipient individualRecipient, Recipients recipients,
-                          Recipients threadRecipients, long threadId,
-                          CharSequence text, long timestamp,
+  public NotificationItem(@NonNull   Recipient individualRecipient,
+                          @NonNull   Recipients recipients,
+                          @Nullable  Recipients threadRecipients,
+                          long threadId, @Nullable CharSequence text, long timestamp,
                           @Nullable SlideDeck slideDeck)
   {
     this.individualRecipient = individualRecipient;
@@ -37,11 +37,11 @@ public class NotificationItem {
     this.slideDeck           = slideDeck;
   }
 
-  public Recipients getRecipients() {
+  public @NonNull  Recipients getRecipients() {
     return threadRecipients == null ? recipients : threadRecipients;
   }
 
-  public Recipient getIndividualRecipient() {
+  public @NonNull  Recipient getIndividualRecipient() {
     return individualRecipient;
   }
 
