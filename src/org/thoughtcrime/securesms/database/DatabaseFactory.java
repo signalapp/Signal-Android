@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
@@ -482,6 +483,17 @@ public class DatabaseFactory {
           if (cursor != null)
             cursor.close();
         }
+      }
+    }
+
+    if (fromVersion < DatabaseUpgradeActivity.INBOX_DELIVERY_STATUS_VERSION) {
+      Cursor                cursor = db.query("thread", null, null, null, null, null, null);
+      ThreadDatabase.Reader reader = thread.readerFor(cursor, new MasterCipher(masterSecret));
+      ThreadRecord          record = reader.getNext();
+
+      while (record != null) {
+        if (record.isOutgoing()) thread.update(record.getThreadId(), false);
+        record = reader.getNext();
       }
     }
 
