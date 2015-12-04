@@ -127,7 +127,7 @@ public class RecipientsAdapter extends ResourceCursorAdapter {
                 view.setClickable(false);
             } else {
                 number.setText("");
-                if(!nameString.matches("[0-9]+")) {
+                if(!usefulAsDigits(nameString)) {
                     view.setClickable(true);
                 } else {
                     view.setClickable(false);
