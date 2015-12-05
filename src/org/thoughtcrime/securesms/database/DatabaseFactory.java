@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
@@ -71,7 +70,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_CONVERSATION_LIST_THUMBNAILS_VERSION = 23;
   private static final int INTRODUCED_ARCHIVE_VERSION                      = 24;
   private static final int INTRODUCED_CONVERSATION_LIST_STATUS_VERSION     = 25;
-  private static final int DATABASE_VERSION                                = 25;
+  private static final int MIGRATED_CONVERSATION_LIST_STATUS_VERSION       = 26;
+  private static final int DATABASE_VERSION                                = 26;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -486,17 +486,6 @@ public class DatabaseFactory {
       }
     }
 
-    if (fromVersion < DatabaseUpgradeActivity.INBOX_DELIVERY_STATUS_VERSION) {
-      Cursor                cursor = db.query("thread", null, null, null, null, null, null);
-      ThreadDatabase.Reader reader = thread.readerFor(cursor, new MasterCipher(masterSecret));
-      ThreadRecord          record = reader.getNext();
-
-      while (record != null) {
-        if (record.isOutgoing()) thread.update(record.getThreadId(), false);
-        record = reader.getNext();
-      }
-    }
-
     db.setTransactionSuccessful();
     db.endTransaction();
 
@@ -800,6 +789,28 @@ public class DatabaseFactory {
       if (oldVersion < INTRODUCED_CONVERSATION_LIST_STATUS_VERSION) {
         db.execSQL("ALTER TABLE thread ADD COLUMN status INTEGER DEFAULT -1");
         db.execSQL("ALTER TABLE thread ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < MIGRATED_CONVERSATION_LIST_STATUS_VERSION) {
+        Cursor threadCursor = db.query("thread", new String[] {"_id"}, null, null, null, null, null);
+
+        while (threadCursor != null && threadCursor.moveToNext()) {
+          long threadId = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("_id"));
+
+          Cursor cursor = db.rawQuery("SELECT DISTINCT date AS date_received, status, " +
+                                      "delivery_receipt_count FROM sms WHERE (thread_id = ?1) " +
+                                      "UNION ALL SELECT DISTINCT date_received, -1 AS status, " +
+                                      "delivery_receipt_count FROM mms WHERE (thread_id = ?1) " +
+                                      "ORDER BY date_received DESC LIMIT 1", new String[]{threadId + ""});
+
+          if (cursor != null && cursor.moveToNext()) {
+            int status       = cursor.getInt(cursor.getColumnIndexOrThrow("status"));
+            int receiptCount = cursor.getInt(cursor.getColumnIndexOrThrow("delivery_receipt_count"));
+
+            db.execSQL("UPDATE thread SET status = ?, delivery_receipt_count = ? WHERE _id = ?",
+                       new String[]{status + "", receiptCount + "", threadId + ""});
+          }
+        }
       }
 
       db.setTransactionSuccessful();
