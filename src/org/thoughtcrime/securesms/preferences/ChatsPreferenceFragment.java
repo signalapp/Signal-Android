@@ -77,8 +77,8 @@ public class ChatsPreferenceFragment extends PreferenceFragment {
       final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(getActivity());
       AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
-      builder.setMessage(getString(R.string.ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages,
-                                   threadLengthLimit));
+      builder.setMessage(getResources().getQuantityString(R.plurals.ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages,
+                                                          threadLengthLimit, threadLengthLimit));
       builder.setPositiveButton(R.string.ApplicationPreferencesActivity_delete,
         new DialogInterface.OnClickListener() {
           @Override
@@ -107,7 +107,7 @@ public class ChatsPreferenceFragment extends PreferenceFragment {
 
     public TrimLengthValidationListener() {
       EditTextPreference preference = (EditTextPreference)findPreference(TextSecurePreferences.THREAD_TRIM_LENGTH);
-      preference.setSummary(getString(R.string.ApplicationPreferencesActivity_messages_per_conversation, preference.getText()));
+      onPreferenceChange(preference, preference.getText());
     }
 
     @Override
@@ -116,18 +116,19 @@ public class ChatsPreferenceFragment extends PreferenceFragment {
         return false;
       }
 
+      int value;
       try {
-        Integer.parseInt((String)newValue);
+        value = Integer.parseInt((String)newValue);
       } catch (NumberFormatException nfe) {
         Log.w(TAG, nfe);
         return false;
       }
 
-      if (Integer.parseInt((String)newValue) < 1) {
+      if (value < 1) {
         return false;
       }
 
-      preference.setSummary(getString(R.string.ApplicationPreferencesActivity_messages_per_conversation, newValue));
+      preference.setSummary(getResources().getQuantityString(R.plurals.ApplicationPreferencesActivity_messages_per_conversation, value, value));
       return true;
     }
   }
