@@ -9,9 +9,15 @@
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <string name="ApplicationPreferencesActivity_messages_per_conversation">%s messages per conversation</string>
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">1 message per conversation</item>
+        <item quantity="other">%d messages per conversation</item>
+    </plurals>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
-    <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">This will immediately trim all conversations to the %s most recent messages.</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will immediately trim all conversations to the most recent message.</item>
+        <item quantity="other">This will immediately trim all conversations to the %d most recent messages.</item>
+    </plurals>
     <string name="ApplicationPreferencesActivity_delete">Delete</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
     <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -34,7 +40,10 @@
     <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
 
     <!-- AppProtectionPreferenceFragment -->
-    <string name="AppProtectionPreferenceFragment_minutes">%d minutes</string>
+    <plurals name="AppProtectionPreferenceFragment_minutes">
+        <item quantity="one">1 minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(image)</string>
@@ -109,8 +118,10 @@
     <string name="ConversationActivity_group_members">Group members</string>
     <string name="ConversationActivity_group_conversation">Group conversation</string>
     <string name="ConversationActivity_unnamed_group">Unnamed group</string>
-    <string name="ConversationActivity_d_recipients_in_group">%d members</string>
-    <string name="ConversationActivity_d_recipients_in_group_singular">1 member</string>
+    <plurals name="ConversationActivity_d_recipients_in_group">
+        <item quantity="one">1 member</item>
+        <item quantity="other">%d members</item>
+    </plurals>
     <string name="ConversationActivity_saved_draft">Saved draft</string>
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
     <string name="ConversationActivity_calls_not_supported">Calls not supported</string>

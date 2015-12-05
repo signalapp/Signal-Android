@@ -76,7 +76,8 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
   private void initializeTimeoutSummary() {
     int timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(getActivity());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF)
-        .setSummary(getString(R.string.AppProtectionPreferenceFragment_minutes, timeoutMinutes));
+        .setSummary(getResources().getQuantityString(
+                R.plurals.AppProtectionPreferenceFragment_minutes, timeoutMinutes, timeoutMinutes));
   }
 
   private class BlockedContactsClickListener implements Preference.OnPreferenceClickListener {
