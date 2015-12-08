@@ -10,6 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">Število sporočil na pogovor: %s</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Izbrišem stara sporočila?</string>
+  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">To bo nemudoma obrezalo vse pogovore na %s nedavnih.</string>
   <string name="ApplicationPreferencesActivity_delete">Izbriši</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Izklopim geslo?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -159,6 +160,7 @@ preveriti ta stik.</string>
     <item quantity="other">To bo nepovratno izbrisalo vseh %1$d izbranih pogovorov.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Brišem izbrane pogovore...</string>
   <string name="ConversationListFragment_archived_conversations">Arhivirani pogovori</string>
   <string name="ConversationListFragment_undo">RAZVELJAVI</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Premaknjeno v nabiralnik</string>
@@ -187,6 +189,7 @@ preveriti ta stik.</string>
   <string name="DeviceListItem_unnamed_device">Nepoimenovana naprava</string>
   <string name="DeviceListItem_linked_s">Povezan z %s</string>
   <string name="DeviceListItem_last_active_s">Zadnja aktivna %s</string>
+  <string name="DeviceListItem_today">Danes</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
   <!--ExperienceUpgradeActivity-->
@@ -327,6 +330,8 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neveljavna koda QR.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate preveč povezanih naprav, poskusite kakšno odstraniti...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Koda QR za povezavo naprav ni veljavna.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Povežem z napravo Signal?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda, da želite za povzavo z napravo Signal uporabiti zunanji optični čitalnik. Prosimo, da storite to znotraj aplikacije Signal, saj je tako najvarneje.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -717,6 +722,7 @@ bila uspešna.</string>
   <string name="AndroidManifest__change_passphrase">Zamenjava gesla</string>
   <string name="AndroidManifest__verify_identity">Overi identiteto</string>
   <string name="AndroidManifest__log_submit">Oddaj sistemsko zabeležbo</string>
+  <string name="AndroidManifest__media_preview">Ogled medija</string>
   <string name="AndroidManifest__media_overview">Vse slike</string>
   <string name="AndroidManifest__media_overview_named">Vse slike z %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
@@ -789,6 +795,7 @@ bila uspešna.</string>
   <string name="preferences__sound">Zvok</string>
   <string name="preferences__change_notification_sound">Spremeni zvok za obvestila</string>
   <string name="preferences__silent">Tiho</string>
+  <string name="preferences__in_conversation_notifications">Obvestila znotraj pogovora</string>
   <string name="preferences__play_inthread_notifications">Ob ogledu aktivnega pogovora predvajaj zvok za obvestila</string>
   <string name="preferences__repeat_alerts">Ponavljanje alarma</string>
   <string name="preferences__never">Nikoli</string>
@@ -826,9 +833,12 @@ bila uspešna.</string>
   <string name="preferences__mmsc_password">Geslo MMSC</string>
   <string name="preferences__sms_delivery_reports">Potrdila o dostavi SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zahtevaj potrdilo o dostavi za vsako poslano sporočilo SMS</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Samodejen izbris starih sporočil, ko pogovor preseže določeno dolžino</string>
   <string name="preferences__delete_old_messages">Samodejen izbris</string>
   <string name="preferences__chats">Pogovori in multimedija</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
+  <string name="preferences__trim_all_conversations_now">Obreži vse pogovore zdaj</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Preišči vse pogovore in uveljavi omejitve njihove dolžine</string>
   <string name="preferences__devices">Naprave</string>
   <string name="preferences__light_theme">Svetla</string>
   <string name="preferences__dark_theme">Temna</string>
@@ -885,6 +895,7 @@ bila uspešna.</string>
   <string name="conversation_list_batch__menu_delete_selected">Izbriši označeno</string>
   <string name="conversation_list_batch__menu_select_all">Označi vse</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Izbrani arhiv</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Poišči</string>
   <!--conversation_list_item_view-->
@@ -956,6 +967,7 @@ bila uspešna.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Shrani</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Ogled slike</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Osveži</string>
   <!--redphone_audio_popup_menu-->

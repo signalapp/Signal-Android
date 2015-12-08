@@ -10,6 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не си сложил парола!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s съобщения на разговор</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Изтрий всички стари съобщения сега?</string>
+  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Това ще скъси всички разговори до %sте най-нови съобщения.</string>
   <string name="ApplicationPreferencesActivity_delete">Изтрий</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Изключи паролата?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -151,6 +152,7 @@
     <item quantity="other">Това ще изтрие невъзвращаемо всичките  %1$d избрани разговори.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Изтриване</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Изтриване на избраните разговори...</string>
   <string name="ConversationListFragment_archived_conversations">Архивирани разговори</string>
   <string name="ConversationListFragment_undo">ВЪЗСТАНОВИ</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Разговорът е преместен във входящата кутия</string>
@@ -179,6 +181,7 @@
   <string name="DeviceListItem_unnamed_device">Некръстено устройство</string>
   <string name="DeviceListItem_linked_s">Свързан с %s</string>
   <string name="DeviceListItem_last_active_s">Последна активност %s</string>
+  <string name="DeviceListItem_today">Днес</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели с</string>
   <!--ExperienceUpgradeActivity-->
@@ -321,6 +324,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="DeviceProvisioningActivity_content_progress_key_error">Невалиден QR код.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имаш твърде много регистрирани устройства, опитай да премахнеш някои от тях...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление това не е валидна QR връзка.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Свържи с Signal устройство?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Signal устройство с 3та скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведи паролата</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal икона</string>
@@ -504,6 +509,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Изображение</string>
   <string name="attachment_type_selector__audio">Аудио</string>
@@ -721,11 +727,13 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest__change_passphrase">Смени паролата</string>
   <string name="AndroidManifest__verify_identity">Провери самоличността</string>
   <string name="AndroidManifest__log_submit">Изпрати доклад</string>
+  <string name="AndroidManifest__media_preview">Преглед на медията</string>
   <string name="AndroidManifest__media_overview">Всички изображения</string>
   <string name="AndroidManifest__media_overview_named">Всички изображения с %1$s</string>
   <string name="AndroidManifest__message_details">Информация за съобщението</string>
   <string name="AndroidManifest_manage_linked_devices">Управление на свързани устройства</string>
   <string name="AndroidManifest__invite_friends">Поканете приятели</string>
+  <string name="AndroidManifest_conversations_archive">Разговорите са архивирани</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__your_identity_key">Вашият ключ за самоличност</string>
@@ -790,6 +798,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__change_notification_sound">Промени звуков сигнал за известие</string>
   <string name="preferences__silent">Тих</string>
+  <string name="preferences__in_conversation_notifications">Известия по време на разговор</string>
   <string name="preferences__play_inthread_notifications">Пускай звук за известие докато гледаш активен чат</string>
   <string name="preferences__repeat_alerts">Повтарящи се аларми</string>
   <string name="preferences__never">Никога</string>
@@ -827,9 +836,12 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="preferences__mmsc_password">MMSC Парола</string>
   <string name="preferences__sms_delivery_reports">SMS потвърждения за получаване</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Поискай потвърждение при получаване за всяко изпратено SMS съобщение</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Автоматично изтрий най-старите съобщения, когато разговорът достигне определена дължина.</string>
   <string name="preferences__delete_old_messages">Изтрий старите съобщения</string>
   <string name="preferences__chats">Чат и мултимедия</string>
   <string name="preferences__conversation_length_limit">Граница за дължина на разговора</string>
+  <string name="preferences__trim_all_conversations_now">Скъси всички разговори сега</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Сканирай всички разговори и приложи ограничението за дължина на разговори</string>
   <string name="preferences__devices">Устройства</string>
   <string name="preferences__light_theme">Светла</string>
   <string name="preferences__dark_theme">Тъмна</string>
@@ -885,6 +897,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Изтрий избраното</string>
   <string name="conversation_list_batch__menu_select_all">Избери всичко</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Архивът е избран</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Деархивирай изрбания</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Търси</string>
   <!--conversation_list_item_view-->
@@ -956,6 +970,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <!--media_preview-->
   <string name="media_preview__save_title">Запази</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Преглед на изображението</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Освежи</string>
   <!--redphone_audio_popup_menu-->

@@ -8,8 +8,9 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momentan: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sie haben noch kein Passwort festgelegt!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s Nachrichten pro Unterhaltung</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s Nachrichten je Unterhaltung</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
+  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Alle Unterhaltungen bis auf die %s letzten Nachrichten kürzen.</string>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -76,7 +77,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung in dieser Unterhaltung. Ihre Nachrichten bleiben erhalten.</string>
   <string name="ConversationActivity_reset">Neu starten</string>
   <string name="ConversationActivity_delete_thread_question">Unterhaltung löschen?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Alle Nachrichten dieser Unterhaltung dauerhaft löschen.</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Alle Nachrichten dieser Unterhaltung unwiderruflich löschen.</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
@@ -150,11 +151,12 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
     <item quantity="other">Unwiderruflich alle %1$d ausgewählten Unterhaltungen löschen.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Löschen</string>
-  <string name="ConversationListFragment_archived_conversations">Archivierte Unterhaltungen</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Ausgewählte Unterhaltungen werden gelöscht …</string>
+  <string name="ConversationListFragment_archived_conversations">Unterhaltungen archiviert</string>
   <string name="ConversationListFragment_undo">RÜCKGÄNGIG</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Unterhaltung zum Nachrichteneingang verschoben</string>
-  <string name="ConversationListFragment_archived_conversation">Archivierte Unterhaltung</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Unterhaltungen zum Nachrichteneingang verschoben</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Unterhaltung zum Eingang verschoben</string>
+  <string name="ConversationListFragment_archived_conversation">Unterhaltung archiviert</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Unterhaltungen zum Eingang verschoben</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch-Nachricht …</string>
   <!--ConversationListItemAction-->
@@ -178,6 +180,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="DeviceListItem_unnamed_device">Unbenanntes Gerät</string>
   <string name="DeviceListItem_linked_s">%s verknüpft</string>
   <string name="DeviceListItem_last_active_s">Zuletzt aktiv %s</string>
+  <string name="DeviceListItem_today">Heute</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Teilen mit</string>
   <!--ExperienceUpgradeActivity-->
@@ -189,7 +192,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportieren</string>
   <string name="ExportFragment_export_plaintext_to_storage">Klartextsicherung exportieren?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung: Exportiert Ihre Signal-Nachrichten unverschlüsselt in den Gerätespeicher.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung: Exportiert Ihre Signal-Inhalte unverschlüsselt in den Gerätespeicher.</string>
   <string name="ExportFragment_cancel">Abbruch</string>
   <string name="ExportFragment_exporting">Exportieren</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Klartext wird in Gerätespeicher exportiert …</string>
@@ -311,6 +314,8 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ungültiger QR-Code.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Es sind bereits zu viele Geräte verknüpft. Versuchen Sie, mindestens eines zu entfernen …</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dies ist leider kein gültiger QR-Code zur Geräteverknüpfung.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Signal-Gerät verknüpfen?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sie versuchen offenbar, ein Signal-Gerät mithilfe einer Scanner-App eines Drittanbieters zu verknüpfen. Scannen Sie den QR-Code zu Ihrem Schutz noch einmal direkt aus Signal ein.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-Symbol</string>
@@ -487,6 +492,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Bild</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -691,11 +697,13 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__change_passphrase">Passwort ändern</string>
   <string name="AndroidManifest__verify_identity">Kontakt überprüfen</string>
   <string name="AndroidManifest__log_submit">Diagnoseprotokoll übermitteln</string>
+  <string name="AndroidManifest__media_preview">Medienvorschau</string>
   <string name="AndroidManifest__media_overview">Alle Bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle Bilder mit %1$s</string>
   <string name="AndroidManifest__message_details">Nachrichtendetails</string>
   <string name="AndroidManifest_manage_linked_devices">Verknüpfte Geräte verwalten</string>
   <string name="AndroidManifest__invite_friends">Freunde einladen</string>
+  <string name="AndroidManifest_conversations_archive">Archivierte Unterhaltungen</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Datensicherung</string>
   <string name="arrays__your_identity_key">Ihr Schlüssel</string>
@@ -757,9 +765,10 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">Aktiviert für:</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Deaktiviert für:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">LED-Blinkmuster eingestellt</string>
-  <string name="preferences__sound">Benachrichtigungston</string>
+  <string name="preferences__sound">Ton</string>
   <string name="preferences__change_notification_sound">Benachrichtigungston ändern</string>
   <string name="preferences__silent">Lautlos</string>
+  <string name="preferences__in_conversation_notifications">Immer benachrichtigen</string>
   <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiver Unterhaltungen wiedergeben</string>
   <string name="preferences__repeat_alerts">Benachrichtigungen wiederholen</string>
   <string name="preferences__never">Nie</string>
@@ -797,9 +806,12 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__mmsc_password">MMSC-Passwort</string>
   <string name="preferences__sms_delivery_reports">SMS-Zustellberichte</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Alte Nachrichten automatisch löschen, sobald eine Unterhaltung die angegebene Länge überschreitet</string>
   <string name="preferences__delete_old_messages">Alte Nachrichten löschen</string>
   <string name="preferences__chats">Unterhaltungen und Multimedia</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
+  <string name="preferences__trim_all_conversations_now">Alle Unterhaltungen jetzt kürzen</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Alle Unterhaltungen prüfen und deren Längenbegrenzung sicherstellen</string>
   <string name="preferences__devices">Geräte</string>
   <string name="preferences__light_theme">Hell</string>
   <string name="preferences__dark_theme">Dunkel</string>
@@ -855,6 +867,8 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ausgewählte löschen</string>
   <string name="conversation_list_batch__menu_select_all">Alle auswählen</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Ausgewählte archivieren</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ausgewählte zum Eingang verschieben</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Suchen</string>
   <!--conversation_list_item_view-->
@@ -926,6 +940,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Speichern</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Bildvorschau</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Aktualisieren</string>
   <!--redphone_audio_popup_menu-->

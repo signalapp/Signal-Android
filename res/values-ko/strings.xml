@@ -10,6 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호 설정되지 않음</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">대화당 메시지 %s개</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">지금 모든 이전 메시지를 삭제하시겠습니까?</string>
+  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">모든 대화를 최근 메시지 %s개로 줄입니다.</string>
   <string name="ApplicationPreferencesActivity_delete">삭제</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">암호 사용 중지</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">메시지 화면 잠금을 사용 중지하시겠습니까?</string>
@@ -145,6 +146,7 @@
     <item quantity="other">선택된 대화 %1$d개가 영구 삭제됩니다.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">대화 삭제</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">선택된 대화를 삭제 중…</string>
   <string name="ConversationListFragment_archived_conversations">대화 보관처리됨</string>
   <string name="ConversationListFragment_undo">실행취소</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">보관 취소</string>
@@ -173,6 +175,7 @@
   <string name="DeviceListItem_unnamed_device">이름이 없는 기기</string>
   <string name="DeviceListItem_linked_s">연결: %s</string>
   <string name="DeviceListItem_last_active_s">최근 사용: %s</string>
+  <string name="DeviceListItem_today">오늘</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
   <!--ExperienceUpgradeActivity-->
@@ -200,7 +203,7 @@
   <string name="GroupCreateActivity_group_name_hint">그룹 이름</string>
   <string name="GroupCreateActivity_actionbar_mms_title">MMS 그룹 만들기</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">선택된 연락처는 Signal 그룹을 지원하지 않아서 이 그룹은 MMS를 사용하게 됩니다.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal 메시지와 대화에 가입되지 않아서 Signal 그룹이 사용 중지되었습니다.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal 메시지와 통화에 가입되지 않아서 Signal 그룹이 사용 중지되었습니다.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">예기치 못한 오류로 인해 그룹 만들 수 없음</string>
   <string name="GroupCreateActivity_contacts_no_members">그룹 멤버 한명 이상 선택 되어야 함</string>
   <string name="GroupCreateActivity_contacts_invalid_number">그룹 멤버 중 한명은 잘못된 전화번호가 있으므로 정확한 전화번호를 입력하거나 그 연락처를 삭제하고 다시 시도해 주세요.</string>
@@ -304,6 +307,8 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR코드가 잘못됨</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">기기 연결 가능 갯수 초과하여 기존 기기 중 하나 연결 해제 필요</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">기기 연결 QR코드 잘못됨</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연결하시겠습니까?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signal 기기를 서드파티 스캐너로 연결해 보는 것 같습니다. 안전한 사용을 위해 Signal에서 다시 스캔해 주세요.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
@@ -672,6 +677,7 @@
   <string name="AndroidManifest__change_passphrase">암호 변경</string>
   <string name="AndroidManifest__verify_identity">인증 키 확인</string>
   <string name="AndroidManifest__log_submit">디버그 로그 보내기</string>
+  <string name="AndroidManifest__media_preview">미디어 미리보기</string>
   <string name="AndroidManifest__media_overview">전체 이미지</string>
   <string name="AndroidManifest__media_overview_named">%1$s님이랑 대화의 전체 이미지</string>
   <string name="AndroidManifest__message_details">메시지 세부정보</string>
@@ -741,6 +747,7 @@
   <string name="preferences__sound">소리</string>
   <string name="preferences__change_notification_sound">알림 벨소리 변경</string>
   <string name="preferences__silent">무음</string>
+  <string name="preferences__in_conversation_notifications">대화 중 알림</string>
   <string name="preferences__play_inthread_notifications">대화 중에 알림 벨소리 재생</string>
   <string name="preferences__repeat_alerts">알림 반복</string>
   <string name="preferences__never">안함</string>
@@ -778,9 +785,12 @@
   <string name="preferences__mmsc_password">MMSC 비밀번호</string>
   <string name="preferences__sms_delivery_reports">SMS 전송 확인</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지 보낼 때마다 전송 확인 요청</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">대화 메시지 저장한도가 초과되면 이전 메시지 자동 삭제</string>
   <string name="preferences__delete_old_messages">이전 메시지 삭제</string>
   <string name="preferences__chats">대화 및 미디어</string>
   <string name="preferences__conversation_length_limit">대화 메시지 저장한도</string>
+  <string name="preferences__trim_all_conversations_now">모든 대화 줄이기</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">모든 대화에 메시지 저장한도 적용</string>
   <string name="preferences__devices">기기</string>
   <string name="preferences__light_theme">밝게</string>
   <string name="preferences__dark_theme">어둡게</string>
@@ -837,6 +847,7 @@
   <string name="conversation_list_batch__menu_delete_selected">선택된 대화 삭제</string>
   <string name="conversation_list_batch__menu_select_all">모두 선택</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">선택된 대화 보관</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">선택된 대화 보관 취소</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">검색</string>
   <!--conversation_list_item_view-->
@@ -908,6 +919,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">저장</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">이미지 미리보기</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">새로고침</string>
   <!--redphone_audio_popup_menu-->

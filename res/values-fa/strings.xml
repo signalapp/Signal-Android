@@ -411,6 +411,7 @@
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سیگنال</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">تصویر</string>
   <string name="attachment_type_selector__audio">صدا</string>
@@ -584,6 +585,7 @@
   <string name="AndroidManifest__message_details">جزییات پیام</string>
   <string name="AndroidManifest_manage_linked_devices">مدیریت دستگاه های مرتبط</string>
   <string name="AndroidManifest__invite_friends">دعوت دوستان</string>
+  <string name="AndroidManifest_conversations_archive">آرشیو گفتگو</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">وارد کردن / خروجی گرفتن</string>
   <string name="arrays__your_identity_key">کلید هویت شما</string>
@@ -734,6 +736,7 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">حذف انتخاب شده ها</string>
   <string name="conversation_list_batch__menu_select_all">انتخاب همه</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی انتخاب شده ها</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">جستجو</string>
   <!--conversation_list_item_view-->

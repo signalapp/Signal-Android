@@ -10,6 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte angivit ett lösenord än!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s meddelanden per konversation</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
+  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Detta kommer att omedelbart trimma alla konversationer till de %s senaste meddelandena.</string>
   <string name="ApplicationPreferencesActivity_delete">Radera</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Ta bort lösenordsfras?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -152,6 +153,7 @@ verifiera denna kontakt.</string>
     <item quantity="other">Detta kommer permanent radera alla %1$d valda konversationer.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Raderar</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Raderar markerade konversationer...</string>
   <string name="ConversationListFragment_archived_conversations">Arkiverade konversationer</string>
   <string name="ConversationListFragment_undo">ÅNGRA</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Flyttade konversationen till inkorgen</string>
@@ -180,6 +182,7 @@ verifiera denna kontakt.</string>
   <string name="DeviceListItem_unnamed_device">Namnlös enhet</string>
   <string name="DeviceListItem_linked_s">Länkade %s</string>
   <string name="DeviceListItem_last_active_s">Senast aktiv %s</string>
+  <string name="DeviceListItem_today">Idag</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
   <!--ExperienceUpgradeActivity-->
@@ -320,6 +323,8 @@ som inte finns i säkerhetskopian.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ogiltig QR-kod.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Tyvärr har du redan för många länkade enheter, försök ta bort några...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tyvärr, det här är ingen giltig QR-kod för enhetslänkning.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Länka en Signal-enhet?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, vänligen skanna koden igen från Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signalikon</string>
@@ -708,6 +713,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__change_passphrase">Ändra lösenord</string>
   <string name="AndroidManifest__verify_identity">Verifiera identiteten</string>
   <string name="AndroidManifest__log_submit">Skicka in loggarna</string>
+  <string name="AndroidManifest__media_preview">Mediaförhandsgranskning</string>
   <string name="AndroidManifest__media_overview">Alla bilder</string>
   <string name="AndroidManifest__media_overview_named">Alla bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
@@ -778,6 +784,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__change_notification_sound">Ändra aviseringsljud</string>
   <string name="preferences__silent">Tyst</string>
+  <string name="preferences__in_conversation_notifications">Inom-konversation notifikationer</string>
   <string name="preferences__play_inthread_notifications">Spela aviseringsljud när du tittar på en aktiv konversation</string>
   <string name="preferences__repeat_alerts">Upprepa aviseringar</string>
   <string name="preferences__never">Aldrig</string>
@@ -815,9 +822,12 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__mmsc_password">MMSC Lösenord</string>
   <string name="preferences__sms_delivery_reports">SMS-leveransrapporter</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Begär en leveransrapport för varje SMS-meddelande du skickar</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Radera automatiskt gamla meddelanden när en konversation överstiger en specificerad längd</string>
   <string name="preferences__delete_old_messages">Radera gamla meddelanden</string>
   <string name="preferences__chats">Konversationer och media</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
+  <string name="preferences__trim_all_conversations_now">Trimma alla konversationer nu</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Sök genom alla konversationer och påtvinga längdbegränsningar på konversationer</string>
   <string name="preferences__devices">Enheter</string>
   <string name="preferences__light_theme">Ljust</string>
   <string name="preferences__dark_theme">Mörkt</string>
@@ -874,6 +884,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="conversation_list_batch__menu_delete_selected">Radera markerade</string>
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiv valt</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Avarkivera markerade</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Sök</string>
   <!--conversation_list_item_view-->
@@ -945,6 +956,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spara</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Bildförhandsgranskning</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Uppdatera</string>
   <!--redphone_audio_popup_menu-->

@@ -520,6 +520,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="QuickResponseService_problem_sending_message">Probléma az üzenetküldésben!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kép</string>
   <string name="attachment_type_selector__audio">Hang</string>
@@ -760,6 +761,7 @@ sikertelen.
   <string name="AndroidManifest__message_details">Üzenet részletek</string>
   <string name="AndroidManifest_manage_linked_devices">Társított készülékek kezelése</string>
   <string name="AndroidManifest__invite_friends">Barátok meghívása</string>
+  <string name="AndroidManifest_conversations_archive">Beszélgetések archívum</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás / Exportálás</string>
   <string name="arrays__your_identity_key">Azonosító kulcsod</string>
@@ -919,6 +921,7 @@ sikertelen.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">A kijelölt elemek törlése</string>
   <string name="conversation_list_batch__menu_select_all">Összes kijelölése</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Archívum kiválasztva</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Keresés</string>
   <!--conversation_list_item_view-->

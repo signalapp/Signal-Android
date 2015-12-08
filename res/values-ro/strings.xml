@@ -152,6 +152,7 @@
     <item quantity="other">Această acțiune va șterge permanent toate cele %1$d conversații selectate.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Se șterge</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Se şterg conversaţiile selectate...</string>
   <string name="ConversationListFragment_archived_conversations">Conversații arhivate</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Mută conversația în inbox</string>
   <string name="ConversationListFragment_archived_conversation">Conversație arhivată</string>
@@ -174,6 +175,7 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispozitiv fără nume</string>
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
+  <string name="DeviceListItem_today">Azi</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partajează cu</string>
   <!--ExperienceUpgradeActivity-->
@@ -306,6 +308,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="DeviceProvisioningActivity_content_progress_key_error">Cod QR invalid.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ne pare rău, ai prea multe dispozitive conectate deja, încearcă să elimini câteva...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ne pare rău. acest cod QR pentru conectarea dispozitivului nu este valid.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Conectez un dispozitiv Signal?</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduceţi parola</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icoană Signal</string>
@@ -486,6 +489,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagine</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -556,6 +560,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="log_submit_activity__submitting">Se trimite</string>
   <string name="log_submit_activity__posting_logs">Se trimit log-urile către gist...</string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vrei să imporţi mesajale tale text existente în baza de date criptată Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza de date a sistemului nu va fi modificată în nici un fel.</string>
   <string name="database_migration_activity__skip">Treci peste</string>
   <string name="database_migration_activity__import">Importă</string>
@@ -690,11 +695,13 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="AndroidManifest__change_passphrase">Schimbă parola</string>
   <string name="AndroidManifest__verify_identity">Verifică identitatea</string>
   <string name="AndroidManifest__log_submit">Trimite log-urile de depanare</string>
+  <string name="AndroidManifest__media_preview">Previzualizare media</string>
   <string name="AndroidManifest__media_overview">Toate imaginile</string>
   <string name="AndroidManifest__media_overview_named">Toate imaginile cu %1$s</string>
   <string name="AndroidManifest__message_details">Detalii mesaj</string>
   <string name="AndroidManifest_manage_linked_devices">Administrează dispozitivele conectate</string>
   <string name="AndroidManifest__invite_friends">Invită prieteni</string>
+  <string name="AndroidManifest_conversations_archive">Arhiva conversațiilor</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importă / Exportă</string>
   <string name="arrays__your_identity_key">Cheia ta de identitate</string>
@@ -760,6 +767,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__sound">Sunet</string>
   <string name="preferences__change_notification_sound">Schimbă sunetul de notificare</string>
   <string name="preferences__silent">Silențios</string>
+  <string name="preferences__in_conversation_notifications">Notificări în conversație</string>
   <string name="preferences__play_inthread_notifications">Redare sunet de notificare în timp ce vizualizați o conversație activă</string>
   <string name="preferences__repeat_alerts">Repetă alerte</string>
   <string name="preferences__never">Niciodată</string>
@@ -797,9 +805,12 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__mmsc_password">Parolă MMSC</string>
   <string name="preferences__sms_delivery_reports">Confirmări de livrare SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Cere o confirmare de livrare pentru fiecare SMS trimis</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Șterge automat mesajele vechi când conversația depășește mărimea specificată</string>
   <string name="preferences__delete_old_messages">Șterge mesajele vechi</string>
   <string name="preferences__chats">Conversaţii şi media</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
+  <string name="preferences__trim_all_conversations_now">Scurtează acum toate conversaţiile </string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Verifică toate conversațiile și aplică limite de mărime a conversației</string>
   <string name="preferences__devices">Dispozitive</string>
   <string name="preferences__light_theme">Deschisă</string>
   <string name="preferences__dark_theme">Închisă</string>
@@ -856,6 +867,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Şterge ce este selectat</string>
   <string name="conversation_list_batch__menu_select_all">Selectează tot</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Arhivă selectată</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Caută</string>
   <!--conversation_list_item_view-->
@@ -923,6 +935,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Previzualizare imagine</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Reîmprospătează</string>
   <!--redphone_audio_popup_menu-->

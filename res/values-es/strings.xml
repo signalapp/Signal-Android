@@ -10,15 +10,16 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Todavía no ha elegido una clave de acceso!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s mensajes por conversación</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes antiguos?</string>
+  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Esto recortará inmediatamente todas las conversaciones a los %s mensajes más recientes.</string>
   <string name="ApplicationPreferencesActivity_delete">Eliminar</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">¿Deshabilitar clave de acceso?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
 ¿Deshabilitar pantalla de bloqueo para mensajes?</string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Desregistrándose</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Desregistrándose de mensajes y llamadas de Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Borrando cuenta Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">¿Deshabilitar mensajes y llamadas de Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deshabilitar los mensajes y llamadas de Signal desregistrándole del servidor. Necesitará volver a registrar su número de teléfono para usarlos de nuevo en el futuro.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Esto deshabilitará los mensajes de Signal eliminándole del servidor. Necesitará volver a registrar su número de teléfono para usar mensajes de Signal de nuevo en el futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Error conectando al servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitados</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>
@@ -159,9 +160,16 @@ Recibido:%4$s</string>
     <item quantity="other">Esto eliminará permanentemente las %1$d conversaciones seleccionadas.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Eliminando</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Borrando conversaciones seleccionadas...</string>
+  <string name="ConversationListFragment_archived_conversations">Conversaciones archivadas</string>
+  <string name="ConversationListFragment_undo">Atrás</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Conversación movida a la bandeja de entrada</string>
+  <string name="ConversationListFragment_archived_conversation">Conversación archivada</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversaciones movidas a la bandeja de entrada</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
   <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Conversaciones archivadas (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando predeterminado: %s</string>
@@ -181,6 +189,7 @@ Recibido:%4$s</string>
   <string name="DeviceListItem_unnamed_device">Dispositivo sin nombre</string>
   <string name="DeviceListItem_linked_s">Se vinculó %s</string>
   <string name="DeviceListItem_last_active_s">Activo por última vez el %s</string>
+  <string name="DeviceListItem_today">Hoy</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
   <!--ExperienceUpgradeActivity-->
@@ -201,12 +210,14 @@ Recibido:%4$s</string>
   <string name="ExportFragment_success">¡Éxito!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Fallo permanente de comunicación de Signal!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal fué incapaz de registrarse con Google Play Services. Los mensajes y llamadas de Signal han sido desactivados, por favor, intenta registrarte otra vez en Configuración &gt; Avanzado.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nuevo grupo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nombre del grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nuevo grupo de MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Ha seleccionado un contacto que no soporta grupos de Signal, así que este grupo será de MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">No estás registrado para los mensajes y llamadas de Signal, así que los grupos de Signal están desactivados, por favor, intenta registrarte otra vez en Configuración &gt; Avanzado.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Un error inesperado hizo fallar la creación del grupo.</string>
   <string name="GroupCreateActivity_contacts_no_members">¡Necesita al menos una persona en su grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Uno de los miembros de su grupo tiene un número que no puede ser leído correctamente. Por favor arréglelo o elimine ese contacto, e inténtelo de nuevo.</string>
@@ -322,6 +333,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR no válido.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lo sentimos, ya tiene demasiados dispositivos vinculados, pruebe a eliminar alguno...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lo sentimos , este código QR no es ​​válido .</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">¿Enlazar un dispositivo Signal?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando enlazar un dispositivo Signal usando un escáner de terceros. Para tu protección, por favor, escanea el código otra vez desde Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduzca clave de acceso</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de Signal</string>
@@ -512,6 +525,8 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">¡La respuesta rápida no está disponible cuando Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagen</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -680,6 +695,7 @@ Signal también puede llamarle para verificar su número. Pulse \'Llamarme\' e i
   <string name="registration_progress_activity__call_me">Llamarme</string>
   <string name="registration_progress_activity__edit_number">Editar número</string>
   <string name="registration_progress_activity__connectivity_error">Fallo de conectividad.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal no pudo conectar con el servidor.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Algunos posibles
 problemas son:
 
@@ -687,6 +703,10 @@ problemas son:
   <string name="registration_progress_activity__no_network_connectivity">Sin conectividad 
 a la red.
     </string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Tu
+dispositivo necesita estar conectado para poder usar esta característica de Signal. Comprueba
+que está conectado a datos móviles o por Wi-Fi.
+ </string>
   <string name="registration_progress_activity__restrictive_firewall">Cortafuegos restrictivo.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -735,10 +755,13 @@ por SMS.
   <string name="AndroidManifest__change_passphrase">Cambiar clave de acceso</string>
   <string name="AndroidManifest__verify_identity">Verificar identidad</string>
   <string name="AndroidManifest__log_submit">Enviar registros de depuración</string>
+  <string name="AndroidManifest__media_preview">Previsualizar multimedia</string>
   <string name="AndroidManifest__media_overview">Todas las imágenes</string>
   <string name="AndroidManifest__media_overview_named">Todas la imágenes con %1$s</string>
+  <string name="AndroidManifest__message_details">Detalles del mensaje</string>
   <string name="AndroidManifest_manage_linked_devices">Administrar dispositivos vinculados</string>
   <string name="AndroidManifest__invite_friends">Invitar amigos</string>
+  <string name="AndroidManifest_conversations_archive">Archivo de conversaciones</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar/exportar</string>
   <string name="arrays__your_identity_key">Su clave de identidad</string>
@@ -803,6 +826,7 @@ por SMS.
   <string name="preferences__sound">Sonido</string>
   <string name="preferences__change_notification_sound">Cambiar sonido de notificación</string>
   <string name="preferences__silent">Silenciar</string>
+  <string name="preferences__in_conversation_notifications">Notificaciones en conversación</string>
   <string name="preferences__play_inthread_notifications">Reproducir sonido de notificación al pasar a ver una conversación activa</string>
   <string name="preferences__repeat_alerts">Repetir alertas</string>
   <string name="preferences__never">Nunca</string>
@@ -840,9 +864,12 @@ por SMS.
   <string name="preferences__mmsc_password">Contraseña de MMSC</string>
   <string name="preferences__sms_delivery_reports">Confirmación de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicita la confirmación de entrega de SMS para todos los SMS que envíe.</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Eliminar automáticamente los mensajes más antiguos cuando la conversación exceda el límite de longitud especificado</string>
   <string name="preferences__delete_old_messages">Eliminar mensajes antiguos</string>
   <string name="preferences__chats">Chats y audiovisuales</string>
   <string name="preferences__conversation_length_limit">Límite de longitud de la conversación</string>
+  <string name="preferences__trim_all_conversations_now">Recortar todas las conversaciones ahora</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todas las conversaciones e imponer los límites de longitud en las conversaciones</string>
   <string name="preferences__devices">Dispositivos</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Oscuro</string>
@@ -898,11 +925,14 @@ por SMS.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Borrar seleccionado</string>
   <string name="conversation_list_batch__menu_select_all">Seleccionar todo</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Archivo seleccionado</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Archivo deseleccionado</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Buscar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contacto</string>
   <string name="conversation_list_item_view__error_alert">Alerta de error</string>
+  <string name="conversation_list_item_view__archived">Archivado</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nueva conversación</string>
   <!--conversation_secure_verified-->
@@ -940,6 +970,7 @@ por SMS.
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
   <string name="text_secure_normal__invite_friends">Invitar amigos</string>
+  <string name="text_secure_normal__help">Ayuda</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">¡Su versión de Signal ha caducado!</string>
   <string name="reminder_header_expired_build_details">Los mensajes ya no se enviarán con éxito, por favor, actualice a la versión más reciente.</string>
@@ -967,6 +998,7 @@ por SMS.
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Previsualización de imagen</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Recargar</string>
   <!--redphone_audio_popup_menu-->

@@ -512,6 +512,7 @@
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Νέο Μήνυμα</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Εικόνα</string>
   <string name="attachment_type_selector__audio">Ήχος</string>
@@ -741,6 +742,7 @@
   <string name="AndroidManifest__message_details">Λεπτομέρειες μηνύματος</string>
   <string name="AndroidManifest_manage_linked_devices">Διαχείριση συνδεδεμένων συσκευών</string>
   <string name="AndroidManifest__invite_friends">Πρόσκληση φίλων</string>
+  <string name="AndroidManifest_conversations_archive">Αρχείο συζητήσεων</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Εισαγωγή / εξαγωγή</string>
   <string name="arrays__your_identity_key">Το κλειδί ταυτότητάς σου</string>
@@ -900,6 +902,7 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Διαγραφή επιλεγμένων</string>
   <string name="conversation_list_batch__menu_select_all">Επιλογή Όλων</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Επιλεγμένο αρχείο</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Αναζήτηση</string>
   <!--conversation_list_item_view-->

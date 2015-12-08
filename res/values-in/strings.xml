@@ -509,6 +509,7 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Gambar</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -746,6 +747,7 @@ gagal
   <string name="AndroidManifest__message_details">Rincian pesan</string>
   <string name="AndroidManifest_manage_linked_devices">Kelola perangkat terkait</string>
   <string name="AndroidManifest__invite_friends">Undang teman</string>
+  <string name="AndroidManifest_conversations_archive">Arsip percakapan</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor / ekspor</string>
   <string name="arrays__your_identity_key">Kunci identitas Anda</string>
@@ -904,6 +906,7 @@ gagal
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Hapus terpilih</string>
   <string name="conversation_list_batch__menu_select_all">Pilih semua</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Arsip terpilih</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cari</string>
   <!--conversation_list_item_view-->

@@ -10,6 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s berichten per gesprek</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
+  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Dit zal direct alle gesprekken inkorten tot de laatste %s berichten.</string>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -151,6 +152,7 @@
     <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken permanent verwijderen.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het verwijderen...</string>
   <string name="ConversationListFragment_archived_conversations">Gearchiveerde gesprekken</string>
   <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Gesprek naar inbox verplaatst</string>
@@ -179,6 +181,7 @@
   <string name="DeviceListItem_unnamed_device">Naamloos apparaat</string>
   <string name="DeviceListItem_linked_s">Gekoppeld %s</string>
   <string name="DeviceListItem_last_active_s">Laatst actief %s</string>
+  <string name="DeviceListItem_today">Vandaag</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Delen met</string>
   <!--ExperienceUpgradeActivity-->
@@ -312,6 +315,8 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ongeldige QR code.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, u hebt teveel gekoppelde apparaten, probeer er te verwijderen...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, dit is geen geldige QR code voor koppeling van een apparaat.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal apparaat koppelen?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt er op dat je een Signal apparaat wil koppelen met een externe scanner. Scan voor de veiligheid alsjeblieft de code opnieuw vanuit Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal icoon</string>
@@ -493,6 +498,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="QuickResponseService_problem_sending_message">Fout bij het bericht versturen!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Afbeelding</string>
   <string name="attachment_type_selector__audio">Audio</string>
@@ -703,11 +709,13 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__change_passphrase">Wachtwoord veranderen</string>
   <string name="AndroidManifest__verify_identity">Identiteit verifiëren</string>
   <string name="AndroidManifest__log_submit">Debug logs indienen</string>
+  <string name="AndroidManifest__media_preview">Media miniatuur</string>
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
   <string name="AndroidManifest__media_overview_named">Alle afbeeldingen met %1$s</string>
   <string name="AndroidManifest__message_details">Berichtdetails</string>
   <string name="AndroidManifest_manage_linked_devices">Gekoppelde apparaten beheren</string>
   <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
+  <string name="AndroidManifest_conversations_archive">Gesprekkenarchief</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__your_identity_key">Jouw identiteitssleutel</string>
@@ -772,6 +780,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__change_notification_sound">Verander notificatiegeluid</string>
   <string name="preferences__silent">Stil</string>
+  <string name="preferences__in_conversation_notifications">Notificaties in een gesprek</string>
   <string name="preferences__play_inthread_notifications">Notificatiegeluid afspelen tijdens het bekijken van een actief gesprek</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
   <string name="preferences__never">Nooit</string>
@@ -809,9 +818,12 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__mmsc_password">MMSC Wachtwoord</string>
   <string name="preferences__sms_delivery_reports">SMS ontvangstbevestigingen</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Verzoeken om een ontvangstbevestiging voor ieder verzonden SMS bericht</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatisch oudere berichten verwijderen wanneer een gesprek meer dan een bepaald aantal berichten bevat</string>
   <string name="preferences__delete_old_messages">Verwijder oude berichten</string>
   <string name="preferences__chats">Gesprekken en media</string>
   <string name="preferences__conversation_length_limit">Gesprekslengte limiet</string>
+  <string name="preferences__trim_all_conversations_now">Oude berichten nu verwijderen</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Alle gesprekken scannen en de maximale gesprekslengte toepassen</string>
   <string name="preferences__devices">Apparaten</string>
   <string name="preferences__light_theme">Licht</string>
   <string name="preferences__dark_theme">Donker</string>
@@ -867,6 +879,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Geselecteerde verwijderen</string>
   <string name="conversation_list_batch__menu_select_all">Alles selecteren</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Selectie archiveren</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Selectie dearchiveren</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Zoeken</string>
   <!--conversation_list_item_view-->
@@ -938,6 +952,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--media_preview-->
   <string name="media_preview__save_title">Opslaan</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Afbeelding miniatuur</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Verversen</string>
   <!--redphone_audio_popup_menu-->

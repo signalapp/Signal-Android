@@ -10,6 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s viestiä per keskustelu</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Poistetaanko kaikki vanhat viestit nyt?</string>
+  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Tämä karsii välittömästi kaikki keskustelut %s viimeisimpään viestiin.</string>
   <string name="ApplicationPreferencesActivity_delete">Poista</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Poista salalause käytöstä?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -18,7 +19,7 @@ Poistetaanko sovelluksen ja viestien lukitus salalauseella käytöstä?</string>
   <string name="ApplicationPreferencesActivity_unregistering">Puretaan rekisteröintiä</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Puretaan rekisteröintiä Signal-viesteistä ja -puheluista...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Otetaanko Signal-viestit ja -puhelut pois käytöstä?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tämä purkaa rekisteröitymisesi palvelimelta ja lopettaa Signalin viesti- ja puhelupalvelut. Jos haluat käyttää niitä jatkossa, täytyy sinun rekisteröityä uudelleen puhelinnumerollasi.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tämä ottaa Signal-viestit ja -puhelut pois käytöstä  purkamalla rekisteröitymisesi palvelimelta. Jos haluat käyttää niitä jatkossa, täytyy sinun rekisteröityä puhelinnumerollasi uudelleen.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Virhe yhdistettäessä palvelimeen!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Tekstiviestit käytössä</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kosketa, jos haluat vaihtaa oletustekstiviestisovellustasi</string>
@@ -158,6 +159,7 @@ Vastaanotettu: %4$s</string>
     <item quantity="other">Tämä poistaa pysyvästi kaikki %1$d valittua keskustelua.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Poistetaan</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Poistetaan valittuja keskusteluja...</string>
   <string name="ConversationListFragment_archived_conversations">Arkistoidut keskustelut</string>
   <string name="ConversationListFragment_undo">KUMOA</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Keskustelu siirretty postilaatikkoon</string>
@@ -186,6 +188,7 @@ Vastaanotettu: %4$s</string>
   <string name="DeviceListItem_unnamed_device">Nimeämätön laite</string>
   <string name="DeviceListItem_linked_s">Yhdistetty %s</string>
   <string name="DeviceListItem_last_active_s">Viimeksi käytetty %s</string>
+  <string name="DeviceListItem_today">Tänään</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
   <!--ExperienceUpgradeActivity-->
@@ -325,6 +328,8 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Virheellinen QR-koodi.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sinulla on liian monta laitetta yhdistettynä. Kokeile poistaa joitakin...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Valitettavasti tämä ei ole laitteen yhdistämiseksi tarkoitettu QR-koodi.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Yhdistetäänkö Signal-laite?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vaikuttaa siltä, että yrität yhdistää laitetta käyttämällä Signalin ulkopuolista skannaussovellusta. Oman turvallisuutesi vuoksi skannaa QR-koodi uudelleen Signalilla itsellään.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-kuvake</string>
@@ -509,6 +514,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Kuva</string>
   <string name="attachment_type_selector__audio">Äänitallenne</string>
@@ -716,11 +722,13 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="AndroidManifest__change_passphrase">Vaihda salalause</string>
   <string name="AndroidManifest__verify_identity">Varmenna identiteetti</string>
   <string name="AndroidManifest__log_submit">Lähetä virheenkorjausloki</string>
+  <string name="AndroidManifest__media_preview">Liitteen esikatselu</string>
   <string name="AndroidManifest__media_overview">Kaikki kuvat</string>
   <string name="AndroidManifest__media_overview_named">%1$s: kaikki kuvat</string>
   <string name="AndroidManifest__message_details">Viestin tiedot</string>
   <string name="AndroidManifest_manage_linked_devices">Hallitse yhdistettyjä laitteita</string>
   <string name="AndroidManifest__invite_friends">Kutsu ystäviä</string>
+  <string name="AndroidManifest_conversations_archive">Arkistoidut keskustelut</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Varmuuskopiot</string>
   <string name="arrays__your_identity_key">Identiteettiavaimesi</string>
@@ -785,6 +793,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences__sound">Ääni</string>
   <string name="preferences__change_notification_sound">Vaihda ilmoitusääni</string>
   <string name="preferences__silent">Ei ääntä</string>
+  <string name="preferences__in_conversation_notifications">Keskustelun sisäiset ilmoitukset</string>
   <string name="preferences__play_inthread_notifications">Käytä ilmoitusääniä myös silloin, kun olen keskustelussa.</string>
   <string name="preferences__repeat_alerts">Hälytysten toisto</string>
   <string name="preferences__never">Älä toista</string>
@@ -822,9 +831,12 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences__mmsc_password">MMSC salasana</string>
   <string name="preferences__sms_delivery_reports">SMS toimitusvahvistukset</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Poista vanhimpia viestejä automaattisesti, kun keskustelu ylittää määritetyn pituusrajan</string>
   <string name="preferences__delete_old_messages">Vanhojen viestien poisto</string>
   <string name="preferences__chats">Keskustelut ja liitetiedostot</string>
   <string name="preferences__conversation_length_limit">Keskustelun pituusraja</string>
+  <string name="preferences__trim_all_conversations_now">Karsi kaikki keskustelut nyt</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Käy läpi kaikki keskustelut ja pakota niihin pituusrajat</string>
   <string name="preferences__devices">Laitteet</string>
   <string name="preferences__light_theme">Vaalea</string>
   <string name="preferences__dark_theme">Tumma</string>
@@ -880,6 +892,8 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Poista valitut</string>
   <string name="conversation_list_batch__menu_select_all">Valitse kaikki</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Arkistoi valitut</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Palauta valitut arkistosta</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Hae</string>
   <!--conversation_list_item_view-->
@@ -951,6 +965,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Tallenna</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Kuvan esikatselu</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Päivitä</string>
   <!--redphone_audio_popup_menu-->
