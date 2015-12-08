@@ -482,10 +482,7 @@ public class ThreadDatabase extends Database {
       MessageRecord record;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        final long timestamp;
-
-        if (record.isPush()) timestamp = record.getDateSent();
-        else                 timestamp = record.getDateReceived();
+        final long timestamp = record.getTimestamp();
 
         updateThread(threadId, count, record.getBody().getBody(), getAttachmentUriFor(record),
                      timestamp, record.getDeliveryStatus(), record.getReceiptCount(),
