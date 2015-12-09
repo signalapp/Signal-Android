@@ -241,7 +241,10 @@ public class SmsDatabase extends MessagingDatabase {
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {id+""});
-    notifyConversationListeners(getThreadIdForMessage(id));
+
+    long threadId = getThreadIdForMessage(id);
+    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    notifyConversationListeners(threadId);
   }
 
   public void markAsSentFailed(long id) {
