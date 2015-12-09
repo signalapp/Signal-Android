@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.LRUCache;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
@@ -97,6 +98,7 @@ public class SmsDatabase extends MessagingDatabase {
       MISMATCHED_IDENTITIES
   };
 
+  private static final EarlyReceiptCache earlyReceiptCache = new EarlyReceiptCache();
   private final JobManager jobManager;
 
   public SmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
@@ -249,8 +251,9 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public void incrementDeliveryReceiptCount(String address, long timestamp) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    Cursor         cursor   = null;
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    Cursor         cursor       = null;
+    boolean        foundMessage = false;
 
     try {
       cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE},
@@ -273,12 +276,22 @@ public class SmsDatabase extends MessagingDatabase {
 
               DatabaseFactory.getThreadDatabase(context).update(threadId, false);
               notifyConversationListeners(threadId);
+              foundMessage = true;
             }
           } catch (InvalidNumberException e) {
-            Log.w("SmsDatabase", e);
+            Log.w(TAG, e);
           }
         }
       }
+
+      if (!foundMessage) {
+        try {
+          earlyReceiptCache.increment(timestamp, canonicalizeNumber(context, address));
+        } catch (InvalidNumberException e) {
+          Log.w(TAG, e);
+        }
+      }
+
     } finally {
       if (cursor != null)
         cursor.close();
@@ -471,14 +484,22 @@ public class SmsDatabase extends MessagingDatabase {
     else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
     if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
 
+    String address = message.getRecipients().getPrimaryRecipient().getNumber();
+
     ContentValues contentValues = new ContentValues(6);
-    contentValues.put(ADDRESS, PhoneNumberUtils.formatNumber(message.getRecipients().getPrimaryRecipient().getNumber()));
+    contentValues.put(ADDRESS, PhoneNumberUtils.formatNumber(address));
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(BODY, message.getMessageBody());
     contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
     contentValues.put(DATE_SENT, date);
     contentValues.put(READ, 1);
     contentValues.put(TYPE, type);
+
+    try {
+      contentValues.put(RECEIPT_COUNT, earlyReceiptCache.remove(date, canonicalizeNumber(context, address)));
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+    }
 
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
