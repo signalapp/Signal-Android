@@ -12,10 +12,15 @@ import java.io.IOException;
 
 public class PlaintextBackupExporter {
 
+  private static final String FILENAME = "TextSecurePlaintextBackup.xml";
+  private static final String FOLDERNAME = "TextSecure";
+  private static final String BACKUPFOLDERNAME = "Backup";
+
   public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
     verifyExternalStorageForPlaintextExport();
+    moveOldPlaintextExportToDirectory();
     exportPlaintext(context, masterSecret);
   }
 
@@ -26,15 +31,33 @@ public class PlaintextBackupExporter {
 
   private static String getPlaintextExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+    return getOldPlaintextExportDirectoryPath() + FOLDERNAME + File.separator + BACKUPFOLDERNAME + File.separator;
+  }
+
+  private static String getOldPlaintextExportDirectoryPath() {
+    File sdDirectory = Environment.getExternalStorageDirectory();
+    return sdDirectory.getAbsolutePath() + File.separator;
+  }
+
+  private static void moveOldPlaintextExportToDirectory(){
+    File oldBackup = new File(getOldPlaintextExportDirectoryPath() + FILENAME);
+    File newBackup = new File(getPlaintextExportDirectoryPath() + FILENAME);
+    File newDirectory = new File(getPlaintextExportDirectoryPath());
+
+    if (! newDirectory.isDirectory())
+      newDirectory.mkdirs();
+
+    if (oldBackup.isFile()) {
+      if (! newBackup.isFile())
+        oldBackup.renameTo(newBackup);
+    }
   }
 
   private static void exportPlaintext(Context context, MasterSecret masterSecret)
-      throws IOException
+    throws IOException
   {
     int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath(), count);
-
+    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath()+ FILENAME, count);
 
     SmsMessageRecord record;
     EncryptingSmsDatabase.Reader reader = null;

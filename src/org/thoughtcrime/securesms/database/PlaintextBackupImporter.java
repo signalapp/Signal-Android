@@ -21,23 +21,48 @@ import java.util.Set;
 
 public class PlaintextBackupImporter {
 
+  private static final String FILENAME = "TextSecurePlaintextBackup.xml";
+  private static final String FOLDERNAME = "TextSecure";
+  private static final String BACKUPFOLDERNAME = "Backup";
+
   public static void importPlaintextFromSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
     Log.w("PlaintextBackupImporter", "Importing plaintext...");
     verifyExternalStorageForPlaintextImport();
+    moveOldPlaintextExportToDirectory();
     importPlaintext(context, masterSecret);
   }
 
   private static void verifyExternalStorageForPlaintextImport() throws NoExternalStorageException {
     if (!Environment.getExternalStorageDirectory().canRead() ||
-        !(new File(getPlaintextExportDirectoryPath()).exists()))
+        !(new File(getPlaintextExportDirectoryPath() + FILENAME).exists() ||
+          new File(getOldPlaintextExportDirectoryPath() + FILENAME).exists()))
       throw new NoExternalStorageException();
   }
 
   private static String getPlaintextExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+    return getOldPlaintextExportDirectoryPath() + FOLDERNAME + File.separator + BACKUPFOLDERNAME + File.separator;
+  }
+
+  private static String getOldPlaintextExportDirectoryPath() {
+    File sdDirectory = Environment.getExternalStorageDirectory();
+    return sdDirectory.getAbsolutePath() + File.separator;
+  }
+
+  private static void moveOldPlaintextExportToDirectory(){
+    File oldBackup = new File(getOldPlaintextExportDirectoryPath() + FILENAME);
+    File newBackup = new File(getPlaintextExportDirectoryPath() + FILENAME);
+    File newDirectory = new File(getPlaintextExportDirectoryPath());
+
+    if (! newDirectory.isDirectory())
+        newDirectory.mkdirs();
+
+    if (oldBackup.isFile()) {
+      if (! newBackup.isFile())
+        oldBackup.renameTo(newBackup);
+    }
   }
 
   private static void importPlaintext(Context context, MasterSecret masterSecret)
@@ -49,7 +74,7 @@ public class PlaintextBackupImporter {
 
     try {
       ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      XmlBackup      backup          = new XmlBackup(getPlaintextExportDirectoryPath());
+      XmlBackup      backup          = new XmlBackup(getPlaintextExportDirectoryPath() + FILENAME);
       MasterCipher   masterCipher    = new MasterCipher(masterSecret);
       Set<Long>      modifiedThreads = new HashSet<Long>();
       XmlBackup.XmlBackupItem item;
