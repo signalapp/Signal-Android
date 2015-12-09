@@ -82,8 +82,7 @@ public class ConversationTitleView extends LinearLayout {
     int size = recipients.getRecipientsList().size();
 
     title.setText(getContext().getString(R.string.ConversationActivity_group_conversation));
-    subtitle.setText(getContext().getResources().getQuantityString(
-            R.plurals.ConversationActivity_d_recipients_in_group, size, size));
+    subtitle.setText(getContext().getResources().getQuantityString(R.plurals.ConversationActivity_d_recipients_in_group, size, size));
     subtitle.setVisibility(View.VISIBLE);
   }
 

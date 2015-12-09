@@ -78,7 +78,7 @@ public class ChatsPreferenceFragment extends PreferenceFragment {
       AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
       builder.setMessage(getResources().getQuantityString(R.plurals.ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages,
-              threadLengthLimit, threadLengthLimit));
+                                                          threadLengthLimit, threadLengthLimit));
       builder.setPositiveButton(R.string.ApplicationPreferencesActivity_delete,
         new DialogInterface.OnClickListener() {
           @Override
@@ -128,8 +128,7 @@ public class ChatsPreferenceFragment extends PreferenceFragment {
         return false;
       }
 
-      preference.setSummary(getResources().getQuantityString(
-              R.plurals.ApplicationPreferencesActivity_messages_per_conversation, value, value));
+      preference.setSummary(getResources().getQuantityString(R.plurals.ApplicationPreferencesActivity_messages_per_conversation, value, value));
       return true;
     }
   }
