@@ -144,6 +144,7 @@ public class MmsDatabase extends MessagingDatabase {
 
   private static final String RAW_ID_WHERE = TABLE_NAME + "._id = ?";
 
+  private final EarlyReceiptCache earlyReceiptCache = new EarlyReceiptCache();
   private final JobManager jobManager;
 
   public MmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
@@ -193,6 +194,7 @@ public class MmsDatabase extends MessagingDatabase {
     MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
     SQLiteDatabase     database        = databaseHelper.getWritableDatabase();
     Cursor             cursor          = null;
+    boolean            found           = false;
 
     try {
       cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX}, DATE_SENT + " = ?", new String[] {String.valueOf(timestamp)}, null, null, null, null);
@@ -210,6 +212,8 @@ public class MmsDatabase extends MessagingDatabase {
                 long id       = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
                 long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
 
+                found = true;
+
                 database.execSQL("UPDATE " + TABLE_NAME + " SET " +
                                  RECEIPT_COUNT + " = " + RECEIPT_COUNT + " + 1 WHERE " + ID + " = ?",
                                  new String[] {String.valueOf(id)});
@@ -221,6 +225,14 @@ public class MmsDatabase extends MessagingDatabase {
               Log.w("MmsDatabase", e);
             }
           }
+        }
+      }
+
+      if (!found) {
+        try {
+          earlyReceiptCache.increment(timestamp, canonicalizeNumber(context, address));
+        } catch (InvalidNumberException e) {
+          Log.w(TAG, e);
         }
       }
     } finally {
@@ -749,6 +761,16 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(READ, 1);
     contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
+
+    if (message.getRecipients().isSingleRecipient()) {
+      try {
+        contentValues.put(RECEIPT_COUNT, earlyReceiptCache.remove(message.getSentTimeMillis(),
+                                                                  canonicalizeNumber(context, message.getRecipients().getPrimaryRecipient().getNumber())));
+      } catch (InvalidNumberException e) {
+        Log.w(TAG, e);
+      }
+    }
+
     contentValues.remove(ADDRESS);
 
     long messageId = insertMediaMessage(masterSecret, addresses, message.getBody(),
