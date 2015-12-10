@@ -326,7 +326,7 @@ public class PushDecryptJob extends ContextJob {
 
     Pair<Long, Long> messageAndThreadId;
 
-    if (smsMessageId.isPresent()) {
+    if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
       messageAndThreadId = database.updateBundleMessageBody(masterSecret, smsMessageId.get(), body);
     } else {
       IncomingTextMessage textMessage = new IncomingTextMessage(envelope.getSource(),
@@ -336,6 +336,8 @@ public class PushDecryptJob extends ContextJob {
 
       textMessage = new IncomingEncryptedMessage(textMessage, body);
       messageAndThreadId = database.insertMessageInbox(masterSecret, textMessage);
+
+      if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
     }
 
     MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
