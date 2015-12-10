@@ -95,7 +95,7 @@ public class SmsSendJob extends SendJob {
     // stripSeparator() to rigid? what will people try to send here? - see discussion on #3099
     //recipient = PhoneNumberUtils.stripSeparators(recipient);
     // minimum required to fix the issue - brackets are no dialable chars...
-    recipient = recipient.replaceAll("[\\(\\)]", "");
+    recipient = recipient.replaceAll("[\\(\\)\\s]", "");
 
     // NOTE 11/04/14 -- There's apparently a bug where for some unknown recipients
     // and messages, this will throw an NPE.  We have no idea why, so we're just
