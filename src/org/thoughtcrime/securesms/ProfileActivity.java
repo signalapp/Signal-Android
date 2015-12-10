@@ -33,10 +33,12 @@ import de.gdata.messaging.util.ProfileAccessor;
 
 public class ProfileActivity extends PassphraseRequiredActionBarActivity {
 
+    private static final int MAX_BYTES = 100000;
     private MasterSecret masterSecret;
     public static final int PICK_IMAGE = 1;
     public static final int TAKE_PHOTO = 2;
     public static final int AVATAR_SIZE = 410;
+    public static final int PROFILE_IMAGE_SIZE = 800;
     private DynamicTheme dynamicTheme = new DynamicTheme();
     private String profileId;
     private static Bitmap avatarBmp;
@@ -119,7 +121,7 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
                                 f.delete();
                             }
                             out = new FileOutputStream(f);
-                            out.write(readBytes(data.getData()));
+                            out.write(BitmapUtil.createScaledBytes(getApplicationContext(), masterSecret, data.getData(), PROFILE_IMAGE_SIZE, PROFILE_IMAGE_SIZE, MAX_BYTES));
                             out.close();
                             if(!isGroup) {
                                 ImageSlide chosenImage = new ImageSlide(this, Uri.fromFile(f));
@@ -145,8 +147,14 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
                             if (image != null) {
                                 Uri fileUri = Uri.fromFile(image);
                                 if(!isGroup) {
-                                    ImageSlide chosenImage = new ImageSlide(this, fileUri);
-                                    ProfileAccessor.setProfilePicture(this, chosenImage);
+                                    ImageSlide chosenImage = new ImageSlide(this, Uri.fromFile(image));
+                                    OutputStream out;
+                                    File scaledFile = AttachmentManager.getOutputMediaFileWithAddition(getApplicationContext(), "_scaled");
+                                    out = new FileOutputStream(scaledFile);
+                                    out.write(BitmapUtil.createScaledBytes(getApplicationContext(), masterSecret, chosenImage.getUri(), PROFILE_IMAGE_SIZE, PROFILE_IMAGE_SIZE, MAX_BYTES));
+                                    out.close();
+                                    ImageSlide scaledImage = new ImageSlide(this, Uri.fromFile(scaledFile));
+                                    ProfileAccessor.setProfilePicture(this, scaledImage);
                                 } else {
                                     new DecodeCropAndSetAsyncTask(fileUri).execute();
                                 }
