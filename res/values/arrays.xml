@@ -8,6 +8,7 @@
       <item>Bulgarian български</item>
       <item>Čeština</item>
       <item>Chinese (Simplified) 中文 (简体)</item>
+      <item>Chinese (Traditional) 中文 (繁體)</item>
       <item>Dansk</item>
       <item>Deutsch</item>
       <item>Español</item>
@@ -45,6 +46,7 @@
       <item>bg</item>
       <item>cs</item>
       <item>zh_CN</item>
+      <item>zh_TW</item>
       <item>da</item>
       <item>de</item>
       <item>es</item>
