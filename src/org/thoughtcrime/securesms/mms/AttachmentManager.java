@@ -32,13 +32,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.RemovableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
@@ -76,6 +76,7 @@ public class AttachmentManager {
     this.attachmentListener = listener;
 
     removableMediaView.setRemoveClickListener(new RemoveButtonListener());
+    thumbnail.setOnClickListener(new ThumbnailClickListener());
   }
 
   public void clear() {
@@ -272,6 +273,23 @@ public class AttachmentManager {
    return slide == null                                                        ||
           constraints.isSatisfied(context, masterSecret, slide.asAttachment()) ||
           constraints.canResize(slide.asAttachment());
+  }
+
+  private void previewImageDraft(final @NonNull Slide slide) {
+    if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getThumbnailUri() != null) {
+      Intent intent = new Intent(context, MediaPreviewActivity.class);
+      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+      intent.setDataAndType(slide.getUri(), slide.getContentType());
+
+      context.startActivity(intent);
+    }
+  }
+
+  private class ThumbnailClickListener implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+      if (slide.isPresent()) previewImageDraft(slide.get());
+    }
   }
 
   private class RemoveButtonListener implements View.OnClickListener {
