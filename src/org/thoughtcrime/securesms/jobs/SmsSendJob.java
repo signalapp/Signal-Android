@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.util.Log;
 
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
-import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -78,26 +78,27 @@ public class SmsSendJob extends SendJob {
   private void deliver(SmsMessageRecord message)
       throws UndeliverableMessageException
   {
-    if (!NumberUtil.isValidSmsOrEmail(message.getIndividualRecipient().getNumber())) {
-      throw new UndeliverableMessageException("Not a valid SMS destination! " + message.getIndividualRecipient().getNumber());
-    }
-
     if (message.isSecure() || message.isKeyExchange() || message.isEndSession()) {
       throw new UndeliverableMessageException("Trying to send a secure SMS?");
+    }
+
+    String recipient = message.getIndividualRecipient().getNumber();
+
+    // See issue #1516 for bug report, and discussion on commits related to #4833 for problems
+    // related to the original fix to #1516. This still may not be a correct fix if networks allow
+    // SMS/MMS sending to alphanumeric recipients other than email addresses, but should also
+    // help to fix issue #3099.
+    if (!NumberUtil.isValidEmail(recipient)) {
+      recipient = PhoneNumberUtils.stripSeparators(PhoneNumberUtils.convertKeypadLettersToDigits(recipient));
+    }
+
+    if (!NumberUtil.isValidSmsOrEmail(recipient)) {
+      throw new UndeliverableMessageException("Not a valid SMS destination! " + recipient);
     }
 
     ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody().getBody());
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, false);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
-    String recipient                          = message.getIndividualRecipient().getNumber();
-
-    // remove characters for visible number formatting - they break sending sms on some phones (issue #1516)
-    // stripSeparator() to rigid? what will people try to send here? - see discussion on #3099
-    //recipient = PhoneNumberUtils.stripSeparators(recipient);
-    // minimum required to fix the issue - brackets are no dialable chars...
-    if (!NumberUtil.isValidEmail(recipient)) {
-      recipient = recipient.replaceAll("[^0-9+]", "");
-    }
 
     // NOTE 11/04/14 -- There's apparently a bug where for some unknown recipients
     // and messages, this will throw an NPE.  We have no idea why, so we're just
