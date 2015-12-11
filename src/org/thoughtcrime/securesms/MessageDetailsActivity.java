@@ -61,8 +61,10 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -398,14 +400,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
             @Override
             public void onClick(View v) {
               resendAllButton.setEnabled(false);
-
-              if (isPushGroup) {
-                for (final NetworkFailure networkFailure : messageRecord.getNetworkFailures()) {
-                  new ResendAsyncTask(getContext(), masterSecret, messageRecord, networkFailure).execute();
-                }
-              } else {
-                new ResendAsyncTask(getContext(), masterSecret, messageRecord, null).execute();
-              }
+              new ResendAsyncTask(getContext(), masterSecret, messageRecord, messageRecord.getNetworkFailures()).execute();
             }
           });
         }
@@ -421,18 +416,18 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   private class ResendAsyncTask extends AsyncTask<Void, Void, Void> {
-    private WeakReference<Context> weakContext;
-    private final MasterSecret     masterSecret;
-    private final MessageRecord    record;
-    private final NetworkFailure   failure;
+    private WeakReference<Context>     weakContext;
+    private final MasterSecret         masterSecret;
+    private final MessageRecord        record;
+    private final List<NetworkFailure> failures;
 
     public ResendAsyncTask(Context context, MasterSecret masterSecret, MessageRecord record,
-                           NetworkFailure failure)
+                           List<NetworkFailure> failures)
     {
       this.weakContext  = new WeakReference<>(context);
       this.masterSecret = masterSecret;
       this.record       = record;
-      this.failure      = failure;
+      this.failures     = failures;
     }
 
     protected Context getContext() {
@@ -442,10 +437,15 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     @Override
     protected Void doInBackground(Void... params) {
       MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
-      mmsDatabase.removeFailure(record.getId(), failure);
+      mmsDatabase.removeFailures(record.getId(), failures);
 
       if (record.getRecipients().isGroupRecipient()) {
-        MessageSender.resendGroupMessage(getContext(), masterSecret, record, failure.getRecipientId());
+        List<Long> filterRecipientIds = new ArrayList<>(failures.size());
+        for (final NetworkFailure networkFailure : failures) {
+          filterRecipientIds.add(networkFailure.getRecipientId());
+        }
+
+        MessageSender.resendGroupMessage(getContext(), record, filterRecipientIds);
       } else {
         MessageSender.resend(getContext(), masterSecret, record);
       }

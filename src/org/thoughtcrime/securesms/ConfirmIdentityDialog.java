@@ -146,7 +146,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
             Recipients recipients = mmsAddressDatabase.getRecipientsForId(messageRecord.getId());
 
-            if (recipients.isGroupRecipient()) MessageSender.resendGroupMessage(getContext(), masterSecret, messageRecord, mismatch.getRecipientId());
+            if (recipients.isGroupRecipient()) MessageSender.resendGroupMessage(getContext(), messageRecord, mismatch.getRecipientId());
             else                               MessageSender.resend(getContext(), masterSecret, messageRecord);
           } else {
             smsDatabase.removeMismatchedIdentity(messageRecord.getId(),

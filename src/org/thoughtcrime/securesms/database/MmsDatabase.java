@@ -179,17 +179,17 @@ public class MmsDatabase extends MessagingDatabase {
     return 0;
   }
 
-  public void addFailures(long messageId, List<NetworkFailure> failure) {
+  public void addFailures(long messageId, List<NetworkFailure> failures) {
     try {
-      addToDocument(messageId, NETWORK_FAILURE, failure, NetworkFailureList.class);
+      addToDocument(messageId, NETWORK_FAILURE, failures, NetworkFailureList.class);
     } catch (IOException e) {
       Log.w(TAG, e);
     }
   }
 
-  public void removeFailure(long messageId, NetworkFailure failure) {
+  public void removeFailures(long messageId, List<NetworkFailure> failures) {
     try {
-      removeFromDocument(messageId, NETWORK_FAILURE, failure, NetworkFailureList.class);
+      removeFromDocument(messageId, NETWORK_FAILURE, failures, NetworkFailureList.class);
     } catch (IOException e) {
       Log.w(TAG, e);
     }

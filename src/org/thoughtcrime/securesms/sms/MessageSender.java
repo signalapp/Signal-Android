@@ -50,6 +50,8 @@ import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import ws.com.google.android.mms.MmsException;
 
@@ -113,11 +115,17 @@ public class MessageSender {
     }
   }
 
-  public static void resendGroupMessage(Context context, MasterSecret masterSecret, MessageRecord messageRecord, long filterRecipientId) {
+  public static void resendGroupMessage(Context context, MessageRecord messageRecord, long filterRecipientId) {
+    List<Long> filterRecipientIds = new LinkedList<>();
+    filterRecipientIds.add(filterRecipientId);
+    resendGroupMessage(context, messageRecord, filterRecipientIds);
+  }
+
+  public static void resendGroupMessage(Context context, MessageRecord messageRecord, List<Long> filterRecipientIds) {
     if (!messageRecord.isMms()) throw new AssertionError("Not Group");
 
     Recipients recipients = DatabaseFactory.getMmsAddressDatabase(context).getRecipientsForId(messageRecord.getId());
-    sendGroupPush(context, recipients, messageRecord.getId(), filterRecipientId);
+    sendGroupPush(context, recipients, messageRecord.getId(), filterRecipientIds);
   }
 
   public static void resend(Context context, MasterSecret masterSecret, MessageRecord messageRecord) {
@@ -147,7 +155,7 @@ public class MessageSender {
     if (!forceSms && isSelfSend(context, recipients)) {
       sendMediaSelf(context, masterSecret, messageId, expiresIn);
     } else if (isGroupPushSend(recipients)) {
-      sendGroupPush(context, recipients, messageId, -1);
+      sendGroupPush(context, recipients, messageId, new LinkedList<Long>());
     } else if (!forceSms && isPushMediaSend(context, recipients)) {
       sendMediaPush(context, recipients, messageId);
     } else {
@@ -210,9 +218,9 @@ public class MessageSender {
     jobManager.add(new PushMediaSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber()));
   }
 
-  private static void sendGroupPush(Context context, Recipients recipients, long messageId, long filterRecipientId) {
+  private static void sendGroupPush(Context context, Recipients recipients, long messageId, List<Long> filterRecipientIds) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new PushGroupSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber(), filterRecipientId));
+    jobManager.add(new PushGroupSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber(), filterRecipientIds));
   }
 
   private static void sendSms(Context context, Recipients recipients, long messageId) {
