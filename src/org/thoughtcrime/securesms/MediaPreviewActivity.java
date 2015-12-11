@@ -138,7 +138,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     mediaUri     = getIntent().getData();
     mediaType    = getIntent().getType();
-    date         = getIntent().getLongExtra(DATE_EXTRA, -1);
+    date         = getIntent().getLongExtra(DATE_EXTRA, System.currentTimeMillis());
 
     if (recipientId > -1) {
       recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
