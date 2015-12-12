@@ -169,7 +169,7 @@
         <item quantity="one">Error while saving attachment to storage!</item>
         <item quantity="other">Error while saving attachments to storage!</item>
     </plurals>
-    <string name="ConversationFragment_success_exclamation">Success!</string>
+    <string name="ConversationFragment_file_saved_successfully">File saved successfully.</string>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Saving attachment</item>
@@ -259,7 +259,7 @@
     <string name="ExportFragment_exporting_plaintext_to_storage">Exporting plaintext to storage...</string>
     <string name="ExportFragment_error_unable_to_write_to_storage">Error, unable to write to storage.</string>
     <string name="ExportFragment_error_while_writing_to_storage">Error while writing to storage.</string>
-    <string name="ExportFragment_success">Success!</string>
+    <string name="ExportFragment_export_successful">Export successful.</string>
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
