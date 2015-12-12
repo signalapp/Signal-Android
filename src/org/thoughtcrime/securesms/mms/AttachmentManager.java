@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -55,6 +54,7 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -174,12 +174,62 @@ public class AttachmentManager {
                        @NonNull final MediaType mediaType,
                        @NonNull final MediaConstraints constraints)
   {
-    new AsyncTask<Void, Void, Slide>() {
+    if (MediaUtil.isPersistent(uri)) setMediaWithPersistentUri(masterSecret, uri, mediaType, constraints, true);
+    else                             setMediaWithNonPersistentUri(masterSecret, uri, mediaType, constraints);
+  }
+
+  private void setMediaWithNonPersistentUri(@NonNull final MasterSecret masterSecret,
+                                            @NonNull final Uri uri,
+                                            @NonNull final MediaType mediaType,
+                                            @NonNull final MediaConstraints constraints)
+  {
+    new AsyncTask<Void, Void, Uri>() {
       @Override
       protected void onPreExecute() {
         thumbnail.clear();
         thumbnail.showProgressSpinner();
         attachmentView.setVisibility(View.VISIBLE);
+      }
+
+      @Override
+      protected @Nullable Uri doInBackground(Void... params) {
+        try {
+          final InputStream input = context.getContentResolver().openInputStream(uri);
+          if (input == null) return null;
+          // TODO: handle null, wrap in getCorrectedMimeType() if needed
+          final String mimeType = MediaUtil.getMimeType(context, uri);
+          return PersistentBlobProvider.getInstance(context).create(masterSecret, input, mimeType);
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
+          return null;
+        }
+      }
+
+      @Override
+      protected void onPostExecute(@Nullable final Uri persistentUri) {
+        if (persistentUri == null) {
+          abortAttachment(context.getString(R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment));
+        } else {
+          setMediaWithPersistentUri(masterSecret, persistentUri, mediaType, constraints, false);
+        }
+      }
+    }.execute();
+  }
+
+  private void setMediaWithPersistentUri(@NonNull final MasterSecret masterSecret,
+                                         @NonNull final Uri uri,
+                                         @NonNull final MediaType mediaType,
+                                         @NonNull final MediaConstraints constraints,
+                                                  final boolean initThumbnail)
+  {
+    new AsyncTask<Void, Void, Slide>() {
+      @Override
+      protected void onPreExecute() {
+        if (initThumbnail) {
+          thumbnail.clear();
+          thumbnail.showProgressSpinner();
+          attachmentView.setVisibility(View.VISIBLE);
+        }
       }
 
       @Override
@@ -199,15 +249,9 @@ public class AttachmentManager {
       @Override
       protected void onPostExecute(@Nullable final Slide slide) {
         if (slide == null) {
-          attachmentView.setVisibility(View.GONE);
-          Toast.makeText(context,
-                         R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                         Toast.LENGTH_SHORT).show();
+          abortAttachment(context.getString(R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment));
         } else if (!areConstraintsSatisfied(context, masterSecret, slide, constraints)) {
-          attachmentView.setVisibility(View.GONE);
-          Toast.makeText(context,
-                         R.string.ConversationActivity_attachment_exceeds_size_limits,
-                         Toast.LENGTH_SHORT).show();
+          abortAttachment(context.getString(R.string.ConversationActivity_attachment_exceeds_size_limits));
         } else {
           setSlide(slide);
           attachmentView.setVisibility(View.VISIBLE);
@@ -224,6 +268,11 @@ public class AttachmentManager {
         }
       }
     }.execute();
+  }
+
+  private void abortAttachment(String message) {
+    attachmentView.setVisibility(View.GONE);
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
   }
 
   public boolean isAttachmentPresent() {
@@ -289,17 +338,6 @@ public class AttachmentManager {
   private static void selectMediaType(Activity activity, String type, int requestCode) {
     final Intent intent = new Intent();
     intent.setType(type);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-      try {
-        activity.startActivityForResult(intent, requestCode);
-        return;
-      } catch (ActivityNotFoundException anfe) {
-        Log.w(TAG, "couldn't complete ACTION_OPEN_DOCUMENT, no activity found. falling back.");
-      }
-    }
-
     intent.setAction(Intent.ACTION_GET_CONTENT);
     try {
       activity.startActivityForResult(intent, requestCode);

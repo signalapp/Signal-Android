@@ -55,6 +55,7 @@ public class PersistentBlobProvider {
   }
 
   private final Context           context;
+
   @SuppressLint("UseSparseArrays")
   private final Map<Long, byte[]> cache    = Collections.synchronizedMap(new HashMap<Long, byte[]>());
   private final ExecutorService   executor = Executors.newCachedThreadPool();

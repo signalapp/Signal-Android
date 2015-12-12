@@ -196,15 +196,7 @@ public class Util {
 
   public static byte[] readFully(InputStream in) throws IOException {
     ByteArrayOutputStream bout = new ByteArrayOutputStream();
-    byte[] buffer              = new byte[4096];
-    int read;
-
-    while ((read = in.read(buffer)) != -1) {
-      bout.write(buffer, 0, read);
-    }
-
-    in.close();
-
+    copy(in, bout);
     return bout.toByteArray();
   }
 
