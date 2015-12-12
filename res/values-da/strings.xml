@@ -8,7 +8,10 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nu: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har endnu ikke indtastet et kodeord!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s beskeder pr. samtale</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 besked pr. samtale</item>
+    <item quantity="other">%d beskeder pr. samtale</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slet alle gamle beskeder?</string>
   <string name="ApplicationPreferencesActivity_delete">Slet</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktivér kodeord?</string>
@@ -31,7 +34,10 @@ Deaktivér låseskærm for beskeder?
   <string name="ApplicationPreferencesActivity_Off">Slukket</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minutter</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minut</item>
+    <item quantity="other">%d minutter</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(billede)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(lyd)</string>
@@ -94,8 +100,10 @@ denne kontakt.</string>
   <string name="ConversationActivity_group_members">Gruppemedlemmer</string>
   <string name="ConversationActivity_group_conversation">Gruppesamtaler</string>
   <string name="ConversationActivity_unnamed_group">Unavngivet gruppe</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d medlemmer</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 medlem</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 medlem</item>
+    <item quantity="other">%d medlemmer</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Gemte kladde</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig modtager!</string>
   <string name="ConversationActivity_calls_not_supported">Opkald er ikke understøttet</string>
@@ -155,9 +163,12 @@ denne kontakt.</string>
     <item quantity="other">Dette vil slette alle %1$d valgte samtaler permanent.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte samtaler...</string>
+  <string name="ConversationListFragment_conversations_archived">Samtaler arkiveret</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
   <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arkiverede samtaler (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
   <string name="CustomDefaultPreference_using_default">Anvender standard: %s</string>
@@ -177,6 +188,7 @@ denne kontakt.</string>
   <string name="DeviceListItem_unnamed_device">Unavngivet enhed</string>
   <string name="DeviceListItem_linked_s">Tilkoblede %s</string>
   <string name="DeviceListItem_last_active_s">Sidste aktive %s</string>
+  <string name="DeviceListItem_today">I dag</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
@@ -274,7 +286,7 @@ vil det resultere i dupletter.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Kunne ikke læse udbyderens MMS-indstillinger...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signalopkald i gang.</string>
-  <string name="NotificationBarManager_missed_call_from_s">Mistet opkal fra %s</string>
+  <string name="NotificationBarManager_missed_call_from_s">Mistet opkald fra %s</string>
   <string name="NotificationBarManager_missed_signal_call">Mistet Signalopkald</string>
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>
   <string name="NotificationBarManager__incoming_signal_call">Indgående Signalopkald.</string>
@@ -290,7 +302,7 @@ vil det resultere i dupletter.</string>
   <string name="MessageRecord_updated_group">Opdaterede gruppen.</string>
   <string name="MessageRecord_s_called_you">%s har ringet til dig</string>
   <string name="MessageRecord_called_s">Ringede til %s</string>
-  <string name="MessageRecord_missed_call_from">Mistet opkal fra %s</string>
+  <string name="MessageRecord_missed_call_from">Mistet opkald fra %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, sig hej!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Kodeord matcher ikke!</string>
@@ -313,6 +325,7 @@ vil det resultere i dupletter.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netværksfejl.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager, du har allerede for mange tilkoblede enheder; prøv at fjern nogle...</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Forbind en Signal enhed?</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Indtast kodeord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
@@ -503,6 +516,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Billede</string>
@@ -665,6 +679,7 @@ Signal kan også ringe til dig og verificere dit telefonnummer. Tryk på \'Ring 
   <string name="registration_progress_activity__call_me">Ring mig op</string>
   <string name="registration_progress_activity__edit_number">Redigér nummer</string>
   <string name="registration_progress_activity__connectivity_error">Forbindelsesfejl.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal var ikke i stand til at forbinde til serveren.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen netværksforbindelse.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv firewall.</string>
@@ -709,8 +724,10 @@ mislykkedes.</string>
   <string name="AndroidManifest__log_submit">Indsend fejlfindingslogge</string>
   <string name="AndroidManifest__media_overview">Alle billeder</string>
   <string name="AndroidManifest__media_overview_named">Alle billeder med %1$s</string>
+  <string name="AndroidManifest__message_details">Besked-detaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Håndtér tilkoblede enheder</string>
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
+  <string name="AndroidManifest_archived_conversations">Arkiverede samtaler</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importér / eksportér</string>
   <string name="arrays__your_identity_key">Din identitetsnøgle</string>
@@ -870,11 +887,13 @@ mislykkedes.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slet markeret</string>
   <string name="conversation_list_batch__menu_select_all">Markér alle</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver valgte</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Søg</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbillede</string>
   <string name="conversation_list_item_view__error_alert">Advarselsfejl</string>
+  <string name="conversation_list_item_view__archived">Arkiveret</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <!--conversation_secure_verified-->
@@ -912,9 +931,8 @@ mislykkedes.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Markér alle som læst</string>
   <string name="text_secure_normal__invite_friends">Invitér venner</string>
+  <string name="text_secure_normal__help">Hjælp</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Din version af Signal er udløbet!</string>
-  <string name="reminder_header_expired_build_details">Beskeder vil ikke længere blive sendt. Opdatér venligst til den nyeste version.</string>
   <string name="reminder_header_expired_build_button">OPDATER</string>
   <string name="reminder_header_sms_default_title">Anvend som standard SMS-app</string>
   <string name="reminder_header_sms_default_text">Tryk for at gøre Signal til din standard SMS-app.</string>

@@ -8,7 +8,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Αυτή τη στιγμή: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Δεν έχεις ορίσει συνθηματικό!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s μηνύματα ανά συζήτηση</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Διαγραφή όλων των παλιών μηνυμάτων τώρα;</string>
   <string name="ApplicationPreferencesActivity_delete">Διαγραφή</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Απενεργοποίηση συνθηματικού;</string>
@@ -30,7 +29,6 @@
   <string name="ApplicationPreferencesActivity_Off">Απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d λεπτά</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(εικόνα)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ήχος)</string>
@@ -94,8 +92,6 @@
   <string name="ConversationActivity_group_members">Μέλη ομάδας</string>
   <string name="ConversationActivity_group_conversation">Ομαδική συζήτηση</string>
   <string name="ConversationActivity_unnamed_group">Ανώνυμη ομάδα</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d μέλη</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 μέλος</string>
   <string name="ConversationActivity_saved_draft">Αποθηκευμένο προσχέδιο</string>
   <string name="ConversationActivity_invalid_recipient">Άκυρος παραλήπτης!</string>
   <string name="ConversationActivity_calls_not_supported">Δεν υποστηρίζονται κλήσεις</string>
@@ -159,10 +155,9 @@
     <item quantity="other">Αυτό θα διαγράψει οριστικά όλες τις %1$d επιλεγμένες συζητήσεις.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Διαγραφή</string>
-  <string name="ConversationListFragment_archived_conversations">Αρχειοθετημένες συζητήσεις</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Διαγραφή επιλεγμένων συζητήσεων...</string>
   <string name="ConversationListFragment_undo">ΑΝΑΙΡΕΣΗ</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Η συζήτηση μετακινήθηκε στα εισερχόμενα</string>
-  <string name="ConversationListFragment_archived_conversation">Η συζήτηση αρχειοθετήθηκε</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Οι συζητήσεις μετακινήθηκαν στα εισερχόμενα</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιών...</string>
@@ -187,6 +182,7 @@
   <string name="DeviceListItem_unnamed_device">Ανώνυμη συσκευή</string>
   <string name="DeviceListItem_linked_s">Συνδεδεμένο %s</string>
   <string name="DeviceListItem_last_active_s">Τελευταία ενεργός/η %s</string>
+  <string name="DeviceListItem_today">Σήμερα</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Διαμοιρασμός με</string>
   <!--ExperienceUpgradeActivity-->
@@ -330,6 +326,8 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Άκυρος QR κωδικός.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Συγγνώμη, έχεις πάρα πολλές συσκευές ήδη συνδεδεμένες, προσπάθησε να αφαιρέσεις κάποιες...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Συγγνώμη, αυτός δεν είναι ένας έγκυρος κωδικός QR για σύνδεση συσκευών.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Σύνδεση μιας συσκευής Signal;</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Φαίνεται πως προσπαθείς να συνδέσεις μια συσκευή Signal χρησιμοποιώντας ένα τρίτο πρόγραμμα σάρωσης. Για την προστασία σου, παρακαλώ ξανασκάνναρε τον κωδικό μέσα από το Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Εισαγωγή συνθηματικό</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο Signal</string>
@@ -737,12 +735,12 @@
   <string name="AndroidManifest__change_passphrase">Αλλαγή συνθηματικού</string>
   <string name="AndroidManifest__verify_identity">Επιβεβαίωση ταυτότητας</string>
   <string name="AndroidManifest__log_submit">Υποβολή διαγνωστικού αρχείου.</string>
+  <string name="AndroidManifest__media_preview">Προεπισκόπιση</string>
   <string name="AndroidManifest__media_overview">Όλες οι εικόνες</string>
   <string name="AndroidManifest__media_overview_named">Όλες οι εικόνες με τον/την %1$s</string>
   <string name="AndroidManifest__message_details">Λεπτομέρειες μηνύματος</string>
   <string name="AndroidManifest_manage_linked_devices">Διαχείριση συνδεδεμένων συσκευών</string>
   <string name="AndroidManifest__invite_friends">Πρόσκληση φίλων</string>
-  <string name="AndroidManifest_conversations_archive">Αρχείο συζητήσεων</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Εισαγωγή / εξαγωγή</string>
   <string name="arrays__your_identity_key">Το κλειδί ταυτότητάς σου</string>
@@ -807,6 +805,7 @@
   <string name="preferences__sound">Ήχος</string>
   <string name="preferences__change_notification_sound">Αλλαγή ήχου ειδοποίησης</string>
   <string name="preferences__silent">Σε σίγαση</string>
+  <string name="preferences__in_conversation_notifications">Ειδοποιήσεις εντός της συζήτησης</string>
   <string name="preferences__play_inthread_notifications">Αναπαραγωγή ήχου ειδοποίησης όταν βλέπεις μια ενεργή συνομιλία</string>
   <string name="preferences__repeat_alerts">Επανάληψη ειδοποιήσεων</string>
   <string name="preferences__never">Ποτέ</string>
@@ -844,9 +843,12 @@
   <string name="preferences__mmsc_password">MMSC Κωδικός`</string>
   <string name="preferences__sms_delivery_reports">Αναφορές παράδοσης SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Αυτόματη διαγραφή παλαιότερων μηνυμάτων όταν μια συνομιλία ξεπεράσει ένα ορισμένο μήκος</string>
   <string name="preferences__delete_old_messages">Διαγραφή παλιών μηνυμάτων</string>
   <string name="preferences__chats">Συζητήσεις και πολυμέσα</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συζήτησης</string>
+  <string name="preferences__trim_all_conversations_now">Κούρεμα όλων των συζητήσεων τώρα</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Σκανάρισμα όλων των συζητήσεων και επιβολή του ορίου μήκους των συζητήσεων</string>
   <string name="preferences__devices">Συσκευές</string>
   <string name="preferences__light_theme">Φως</string>
   <string name="preferences__dark_theme">Σκοτάδι</string>
@@ -903,6 +905,7 @@
   <string name="conversation_list_batch__menu_delete_selected">Διαγραφή επιλεγμένων</string>
   <string name="conversation_list_batch__menu_select_all">Επιλογή Όλων</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Επιλεγμένο αρχείο</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Απαρχειοθέτηση επιλέχθηκε</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Αναζήτηση</string>
   <!--conversation_list_item_view-->
@@ -948,8 +951,6 @@
   <string name="text_secure_normal__invite_friends">Πρόσκληση φίλων</string>
   <string name="text_secure_normal__help">Βοήθεια</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Η έκδοση του Signal σου έχει λήξει!</string>
-  <string name="reminder_header_expired_build_details">Τα μηνύματα δεν θα στείλνονται με επιτυχία, παρακαλώ αναβάθμισε στην πιο πρόσφατη έκδοση.</string>
   <string name="reminder_header_expired_build_button">ΑΝΑΒΑΘΜΙΣΗ</string>
   <string name="reminder_header_sms_default_title">Χρήση ως προκαθορισμένη εφαρμογή για τα SMS</string>
   <string name="reminder_header_sms_default_text">Πάτα για να κάνεις το Signal την προκαθορισμένη εφαρμογή για τα SMS.</string>
@@ -974,6 +975,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Αποθήκευση</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Προεπισκόπηση εικόνας</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Ανανέωση</string>
   <!--redphone_audio_popup_menu-->

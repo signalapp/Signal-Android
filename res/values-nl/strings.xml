@@ -8,9 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s berichten per gesprek</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 bericht per gesprek</item>
+    <item quantity="other">%d berichten per gesprek</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Dit zal direct alle gesprekken inkorten tot de laatste %s berichten.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Dit zal direct alle gesprekken inkorten tot het laatste bericht.</item>
+    <item quantity="other">Dit zal direct alle gesprekken inkorten tot de laatste %d berichten.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -32,7 +38,10 @@
   <string name="ApplicationPreferencesActivity_Off">Uit</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minuten</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minuut</item>
+    <item quantity="other">%d minuten</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(afbeelding)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -91,8 +100,10 @@
   <string name="ConversationActivity_group_members">Groepsleden</string>
   <string name="ConversationActivity_group_conversation">Groepsgesprek</string>
   <string name="ConversationActivity_unnamed_group">Naamloze groep</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d leden</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 lid</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 lid</item>
+    <item quantity="other">%d leden</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Concept opgeslagen</string>
   <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
   <string name="ConversationActivity_calls_not_supported">Bellen niet ondersteund</string>
@@ -153,10 +164,10 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het verwijderen...</string>
-  <string name="ConversationListFragment_archived_conversations">Gearchiveerde gesprekken</string>
+  <string name="ConversationListFragment_conversations_archived">Gesprekken gearchiveerd</string>
   <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Gesprek naar inbox verplaatst</string>
-  <string name="ConversationListFragment_archived_conversation">Gesprek gearchiveerd</string>
+  <string name="ConversationListFragment_conversation_archived">Gesprek gearchiveerd</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Gesprekken naar inbox verplaatst</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
@@ -523,7 +534,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Geen recente oproepen.</string>
   <!--conversation_title_view-->
-  <string name="conversation_title_view__conversation_muted">Conversatie gedempt</string>
+  <string name="conversation_title_view__conversation_muted">Gesprek gedempt</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal bericht versturen</string>
   <string name="conversation_activity__type_message_sms_insecure">Verstuur onbeveiligde SMS</string>
@@ -617,7 +628,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">GEBLOKKEERD</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Demp conversatie</string>
+  <string name="recipient_preferences__mute_conversation">Demp gesprek</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Notificaties uitschakelen voor dit gesprek</string>
   <string name="recipient_preferences__notification_sound">Notificatiegeluid</string>
   <string name="recipient_preferences__vibrate">Vibreren</string>
@@ -715,7 +726,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__message_details">Berichtdetails</string>
   <string name="AndroidManifest_manage_linked_devices">Gekoppelde apparaten beheren</string>
   <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
-  <string name="AndroidManifest_conversations_archive">Gesprekkenarchief</string>
+  <string name="AndroidManifest_archived_conversations">Gearchiveerde gesprekken</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__your_identity_key">Jouw identiteitssleutel</string>
@@ -926,8 +937,14 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="text_secure_normal__invite_friends">Vrienden uitnodigen</string>
   <string name="text_secure_normal__help">Hulp</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Je versie van Signal is verouderd!</string>
-  <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
+  <string name="reminder_header_outdated_build">Je versie van Signal is verouderd</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Je versie van Signal zal binnen één dag verlopen. Raak aan om te updaten naar de meest recente versie.</item>
+    <item quantity="other">Je versie van Signal zal over %d dagen verlopen. Raak aan om te updaten naar de meest recente versie.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Je versie van Signal zal vandaag verlopen. Raak aan om te updaten naar de meest recente versie.</string>
+  <string name="reminder_header_expired_build">Je versie van Signal is verlopen!</string>
+  <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden. Raak aan om te updaten naar de meest recente versie.</string>
   <string name="reminder_header_expired_build_button">UPDATE</string>
   <string name="reminder_header_sms_default_title">Gebruiken als standaard SMS-app</string>
   <string name="reminder_header_sms_default_text">Aanraken om Signal je standaard SMS-applicatie te maken.</string>

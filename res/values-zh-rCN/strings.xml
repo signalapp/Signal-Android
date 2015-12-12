@@ -8,7 +8,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">每个会话 %s 个信息</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">删除所有旧信息？</string>
   <string name="ApplicationPreferencesActivity_delete">删除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">禁用密码？</string>
@@ -30,7 +29,6 @@
   <string name="ApplicationPreferencesActivity_Off">关</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">短信 %1$s，彩信 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d 分钟</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">（图片）</string>
   <string name="DraftDatabase_Draft_audio_snippet">（音频）</string>
@@ -92,8 +90,6 @@
   <string name="ConversationActivity_group_members">群组成员</string>
   <string name="ConversationActivity_group_conversation">群组会话</string>
   <string name="ConversationActivity_unnamed_group">未命名的群组</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d 名成员</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 名成员</string>
   <string name="ConversationActivity_saved_draft">保存草稿</string>
   <string name="ConversationActivity_invalid_recipient">无效收件人！</string>
   <string name="ConversationActivity_calls_not_supported">不支持呼叫</string>
@@ -149,10 +145,8 @@
     <item quantity="other">这将会永久的删除所有 %1$d 已选择的会话。</item>
   </plurals>
   <string name="ConversationListFragment_deleting">正在删除</string>
-  <string name="ConversationListFragment_archived_conversations">存档的会话</string>
   <string name="ConversationListFragment_undo">撤销</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">移动会话到收件箱</string>
-  <string name="ConversationListFragment_archived_conversation">存档的会话</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">已移动会话到收件箱</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息...</string>
@@ -721,7 +715,6 @@
   <string name="AndroidManifest__message_details">信息详情</string>
   <string name="AndroidManifest_manage_linked_devices">管理已连接的设备</string>
   <string name="AndroidManifest__invite_friends">邀请好友</string>
-  <string name="AndroidManifest_conversations_archive">会话存档</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
   <string name="arrays__your_identity_key">你的身份密钥</string>
@@ -926,8 +919,6 @@
   <string name="text_secure_normal__invite_friends">邀请好友</string>
   <string name="text_secure_normal__help">帮助</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">您的暗号版本已过期！</string>
-  <string name="reminder_header_expired_build_details">您的信息已经长时间没有成功发送了，请更新到最新版本。</string>
   <string name="reminder_header_expired_build_button">更新</string>
   <string name="reminder_header_sms_default_title">使用为默认的短信应用</string>
   <string name="reminder_header_sms_default_text">触击以将暗号标记为默认的短信应用</string>

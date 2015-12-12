@@ -8,7 +8,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Jelenleg: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottál be jelmondatot!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s üzenet beszélgetésenként</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Minden régi üzenet törlése most?</string>
   <string name="ApplicationPreferencesActivity_delete">Törlés</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Jelmondat tiltása?</string>
@@ -30,7 +29,6 @@ Képernyő zárolásának tiltása az üzeneteknél?</string>
   <string name="ApplicationPreferencesActivity_Off">Ki</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d perc</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(kép)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(hang)</string>
@@ -95,8 +93,6 @@ ezt a névjegyet.
   <string name="ConversationActivity_group_members">Csoport tagok</string>
   <string name="ConversationActivity_group_conversation">Csoportos beszélgetés</string>
   <string name="ConversationActivity_unnamed_group">Névtelen csoport</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d tag</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 tag</string>
   <string name="ConversationActivity_saved_draft">Mentett piszkozat</string>
   <string name="ConversationActivity_invalid_recipient">Érvénytelen címzett!</string>
   <string name="ConversationActivity_calls_not_supported">A hívások nem támogatottak!</string>
@@ -156,10 +152,9 @@ ezt a névjegyet.
     <item quantity="other">Ez azonnal törölni fogja mind a(z) %1$d kiválasztott beszélgetést.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Törlés</string>
-  <string name="ConversationListFragment_archived_conversations">Archivált beszélgetések</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Kiválasztott beszélgetések törlése...</string>
   <string name="ConversationListFragment_undo">VISSZAVONÁS</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Beérkezőbe áthelyezett beszélgetés</string>
-  <string name="ConversationListFragment_archived_conversation">Archivált beszélgetés</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Beérkezőbe áthelyezett beszélgetések</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet...</string>
@@ -184,6 +179,7 @@ ezt a névjegyet.
   <string name="DeviceListItem_unnamed_device">Megnevezetlen készülék</string>
   <string name="DeviceListItem_linked_s">Társítva: %s</string>
   <string name="DeviceListItem_last_active_s">Utoljára aktív %s</string>
+  <string name="DeviceListItem_today">Ma</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Megosztás...</string>
   <!--ExperienceUpgradeActivity-->
@@ -329,6 +325,8 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Érvénytelen QR kód</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sajnáljuk, túl sok készüléked van társítva jelenleg, próbálj meg néhányat eltávolítani...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sajnáljuk, ez nem egy érvényes készülék társítási QR kód.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Signal készülék társítása?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Úgy tűnik, hogy egy harmadik féltől származó szkennelővel próbálsz társítani egy Signal készüléket. A védelmed érdekében kérlek szkenneld újra a kódot Signal-on belül.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Jelmondat megadása</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
@@ -756,12 +754,12 @@ sikertelen.
   <string name="AndroidManifest__change_passphrase">Jelmondat megváltoztatása</string>
   <string name="AndroidManifest__verify_identity">Azonosító ellenőrzése</string>
   <string name="AndroidManifest__log_submit">Hibakeresési napló küldése</string>
+  <string name="AndroidManifest__media_preview">Média előnézet</string>
   <string name="AndroidManifest__media_overview">Összes fénykép</string>
   <string name="AndroidManifest__media_overview_named">Összes fénykép vele: %1$s</string>
   <string name="AndroidManifest__message_details">Üzenet részletek</string>
   <string name="AndroidManifest_manage_linked_devices">Társított készülékek kezelése</string>
   <string name="AndroidManifest__invite_friends">Barátok meghívása</string>
-  <string name="AndroidManifest_conversations_archive">Beszélgetések archívum</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás / Exportálás</string>
   <string name="arrays__your_identity_key">Azonosító kulcsod</string>
@@ -826,6 +824,7 @@ sikertelen.
   <string name="preferences__sound">Hang</string>
   <string name="preferences__change_notification_sound">Értesítési hang megváltoztatása</string>
   <string name="preferences__silent">Csendes</string>
+  <string name="preferences__in_conversation_notifications">Beszélgetésen belüli értesítések</string>
   <string name="preferences__play_inthread_notifications">Értesítési hang lejátszása, amikor aktív beszélgetést nézel</string>
   <string name="preferences__repeat_alerts">Figyelmeztetések megismétlése</string>
   <string name="preferences__never">Soha</string>
@@ -863,9 +862,12 @@ sikertelen.
   <string name="preferences__mmsc_password">MMSC jelszó</string>
   <string name="preferences__sms_delivery_reports">SMS kézbesítési jelentések</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kézbesítési jelentés kérése minden elküldött SMS esetén</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Régebbi üzenetek automatikus törlése, amint a beszélgetés meghaladja a meghatározott hosszt</string>
   <string name="preferences__delete_old_messages">Régi üzenetek törlése</string>
   <string name="preferences__chats">Csevegések és média</string>
-  <string name="preferences__conversation_length_limit">Beszélgetés hosszának behatárolása</string>
+  <string name="preferences__conversation_length_limit">Beszélgetés hossz korlát</string>
+  <string name="preferences__trim_all_conversations_now">Összes beszélgetés csonkolása most</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Összes beszélgetés átvizsgálása és a beszélgetés hossz korlátok érvényesítése</string>
   <string name="preferences__devices">Készülékek</string>
   <string name="preferences__light_theme">Világos</string>
   <string name="preferences__dark_theme">Sötét</string>
@@ -921,7 +923,8 @@ sikertelen.
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">A kijelölt elemek törlése</string>
   <string name="conversation_list_batch__menu_select_all">Összes kijelölése</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">Archívum kiválasztva</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Archiválás kiválasztva</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Archiválás visszaállítása kiválasztva</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Keresés</string>
   <!--conversation_list_item_view-->
@@ -967,8 +970,6 @@ sikertelen.
   <string name="text_secure_normal__invite_friends">Barátok meghívása</string>
   <string name="text_secure_normal__help">Súgó</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">A Signal-od buildje lejárt!</string>
-  <string name="reminder_header_expired_build_details">Az üzenetek küldése nem lesz sikeres, kérlek frissíts a legújabb verzióra!</string>
   <string name="reminder_header_expired_build_button">FRISSÍTÉS</string>
   <string name="reminder_header_sms_default_title">Használat alapértelmezett SMS alkalmazásként</string>
   <string name="reminder_header_sms_default_text">Érints a Signal alapértelmezett SMS alkalmazássá tételéhez.</string>
@@ -993,6 +994,7 @@ sikertelen.
   <!--media_preview-->
   <string name="media_preview__save_title">Mentés</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Kép előnézet</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Frissítés</string>
   <!--redphone_audio_popup_menu-->

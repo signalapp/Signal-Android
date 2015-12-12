@@ -8,9 +8,19 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">Število sporočil na pogovor: %s</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 sporočilo na pogovor</item>
+    <item quantity="two">%d sporočili na pogovor</item>
+    <item quantity="few">%d sporočila na pogovor</item>
+    <item quantity="other">%d sporočil na pogovor</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Izbrišem stara sporočila?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">To bo nemudoma obrezalo vse pogovore na %s nedavnih.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">To bo nemudoma obrezalo vse pogovore na zadnjega.</item>
+    <item quantity="two">To bo nemudoma obrezalo vse pogovore na %d nedavna.</item>
+    <item quantity="few">To bo nemudoma obrezalo vse pogovore na %d nedavne.</item>
+    <item quantity="other">To bo nemudoma obrezalo vse pogovore na %d nedavnih.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Izbriši</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Izklopim geslo?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +41,12 @@ Izklopim zaklep zaslona za sporočila?</string>
   <string name="ApplicationPreferencesActivity_Off">Izklopljeno</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minut</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minuta</item>
+    <item quantity="two">%d minuti</item>
+    <item quantity="few">%d minute</item>
+    <item quantity="other">%d minut</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(zvok)</string>
@@ -91,8 +106,12 @@ preveriti ta stik.</string>
   <string name="ConversationActivity_group_members">Člani skupine</string>
   <string name="ConversationActivity_group_conversation">Skupinski pogovor</string>
   <string name="ConversationActivity_unnamed_group">Skupina brez imena</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d članov</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 član</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 član</item>
+    <item quantity="two">%d člana</item>
+    <item quantity="few">%d člani</item>
+    <item quantity="other">%d članov</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Shranjen osnutek</string>
   <string name="ConversationActivity_invalid_recipient">Neveljaven prejemnik!</string>
   <string name="ConversationActivity_calls_not_supported">Klici niso podprti</string>
@@ -161,10 +180,10 @@ preveriti ta stik.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Brišem izbrane pogovore...</string>
-  <string name="ConversationListFragment_archived_conversations">Arhivirani pogovori</string>
+  <string name="ConversationListFragment_conversations_archived">Pogovori so bili arhivirani</string>
   <string name="ConversationListFragment_undo">RAZVELJAVI</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Premaknjeno v nabiralnik</string>
-  <string name="ConversationListFragment_archived_conversation">Pogovor je bil arhiviran</string>
+  <string name="ConversationListFragment_conversation_archived">Pogovor je bil arhiviran</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Premaknjeno v nabiralnik</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
@@ -728,7 +747,7 @@ bila uspešna.</string>
   <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
   <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanih naprav</string>
   <string name="AndroidManifest__invite_friends">Povabi prijatelje</string>
-  <string name="AndroidManifest_conversations_archive">Arhiv pogovorov</string>
+  <string name="AndroidManifest_archived_conversations">Arhivirani pogovori</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz/izvoz</string>
   <string name="arrays__your_identity_key">Moj identifikacijski ključ</string>
@@ -941,8 +960,16 @@ bila uspešna.</string>
   <string name="text_secure_normal__invite_friends">Povabi prijatelje</string>
   <string name="text_secure_normal__help">Ponoč</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Vaša različica aplikacije Signal je zastarela</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Vaša različica aplikacije Signal bo jutri potekla. Tapnite za posodobitev na zadnjo različico.</item>
+    <item quantity="two">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
+    <item quantity="few">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
+    <item quantity="other">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Pričujoča različica aplikacije Signal bo danes potekla. Tapnite za nadgradnjo na zadnjo različico.</string>
   <string name="reminder_header_expired_build">Vaša različica aplikacije Signal je potekla!</string>
-  <string name="reminder_header_expired_build_details">Pošiljanje sporočil ni več mogoče. Prosimo, posodobite aplikacijo na zadnjo različico.</string>
+  <string name="reminder_header_expired_build_details">Ne morete več pošiljati sporočil SIgnal. Tapnite za posodobitev na zadnjo različico aplikacije.</string>
   <string name="reminder_header_expired_build_button">POSODOBI</string>
   <string name="reminder_header_sms_default_title">Uporabljaj kot privzeto aplikacijo SMS</string>
   <string name="reminder_header_sms_default_text">Z dotikom nastavite Signal za privzeto aplikacijo SMS</string>

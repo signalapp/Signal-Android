@@ -8,9 +8,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">עכשיו: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדיין לא הגדרת משפט סודי!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s מסרים בשיחה</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל המסרים הישנים עכשיו?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">זה יקצץ מיד את כל השיחות ל־%s השיחות האחרונות.</string>
   <string name="ApplicationPreferencesActivity_delete">מחיקה</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">לבטל את המשפט הסודי?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +29,6 @@
   <string name="ApplicationPreferencesActivity_Off">כבוי</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d דקות</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(תמונה)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(קול)</string>
@@ -95,8 +92,6 @@
   <string name="ConversationActivity_group_members">חברי הקבוצה</string>
   <string name="ConversationActivity_group_conversation">שיחה קבוצתית</string>
   <string name="ConversationActivity_unnamed_group">קבוצה ללא שם</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d חברים</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">חבר אחד</string>
   <string name="ConversationActivity_saved_draft">טיוטה שמורה</string>
   <string name="ConversationActivity_invalid_recipient">נמען שגוי!</string>
   <string name="ConversationActivity_calls_not_supported">שיחות לא נתמכות</string>
@@ -157,10 +152,8 @@
   </plurals>
   <string name="ConversationListFragment_deleting">מוחק</string>
   <string name="ConversationListFragment_deleting_selected_conversations">מחיקת השיחות הנבחרות...</string>
-  <string name="ConversationListFragment_archived_conversations">שיחות גנוזות</string>
   <string name="ConversationListFragment_undo">ביטול</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">העברת שיחות לדואר נכנס</string>
-  <string name="ConversationListFragment_archived_conversation">שיחה גנוזה</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">הועברו שיחות לדואר נכנס</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
@@ -736,7 +729,6 @@
   <string name="AndroidManifest__message_details">פרטי מסר</string>
   <string name="AndroidManifest_manage_linked_devices">ניהול מכשירים מקושרים</string>
   <string name="AndroidManifest__invite_friends">להזמין חברים</string>
-  <string name="AndroidManifest_conversations_archive">גנזך שיחות</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ייבוא / ייצוא</string>
   <string name="arrays__your_identity_key">מפתח הזהות שלך</string>
@@ -947,8 +939,6 @@
   <string name="text_secure_normal__invite_friends">להזמין חברים</string>
   <string name="text_secure_normal__help">עזרה</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">גרסת הסיגנל שלך פגה!</string>
-  <string name="reminder_header_expired_build_details">מסרים לא יישלחו יותר כמו שצריך, נא לשדרג לגרסה החדשה ביותר.</string>
   <string name="reminder_header_expired_build_button">שדרוג</string>
   <string name="reminder_header_sms_default_title">להגדיר בתור האפליקציה לשליחת SMS</string>
   <string name="reminder_header_sms_default_text">נא ללחוץ כדי להגדיל את סיגנל בתור האפליקציה הרגילה שלך לשליחת SMS.</string>

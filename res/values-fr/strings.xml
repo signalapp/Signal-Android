@@ -8,9 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actuellement : %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vous n’avez pas encore défini de phrase de passe !</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s messages par conversation</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 message par conversation</item>
+    <item quantity="other">%d messages par conversation</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Supprimer tous les anciens messages maintenant ?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Cela va immédiatement réduire toutes les conversations pour qu\'il ne reste que les %s messages les plus récents.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Cela va immédiatement réduire toutes les conversations pour qu\'il ne reste que le message le plus récent.</item>
+    <item quantity="other">Cela va immédiatement réduire toutes les conversations pour qu\'il ne reste que les %d messages les plus récents.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Désactiver la phrase de passe ?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -32,7 +38,10 @@ Désactiver l\'écran de protection des messages ?
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minutes</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minute</item>
+    <item quantity="other">%d minutes</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(image)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -92,8 +101,10 @@ vérifier ce contact.</string>
   <string name="ConversationActivity_group_members">Membres du groupe</string>
   <string name="ConversationActivity_group_conversation">Conversation de groupe</string>
   <string name="ConversationActivity_unnamed_group">Groupe sans nom</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d membres</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 membre</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 membre</item>
+    <item quantity="other">%d membres</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Brouillon sauvegardé</string>
   <string name="ConversationActivity_invalid_recipient">Destinataire invalide !</string>
   <string name="ConversationActivity_calls_not_supported">Appels non supportés</string>
@@ -154,10 +165,10 @@ vérifier ce contact.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Suppression</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Suppression des conversations sélectionnées...</string>
-  <string name="ConversationListFragment_archived_conversations">Conversations archivées</string>
+  <string name="ConversationListFragment_conversations_archived">Conversations archivées</string>
   <string name="ConversationListFragment_undo">ANNULER</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Conversation déplacée dans la boite de réception</string>
-  <string name="ConversationListFragment_archived_conversation">Conversation archivée</string>
+  <string name="ConversationListFragment_conversation_archived">Conversation archivée</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Conversations déplacées dans la boite de réception</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Message d’échange des clés…</string>
@@ -727,7 +738,7 @@ par SMS.</string>
   <string name="AndroidManifest__message_details">Détails du message</string>
   <string name="AndroidManifest_manage_linked_devices">Gérer les appareils associés</string>
   <string name="AndroidManifest__invite_friends">Inviter des amis</string>
-  <string name="AndroidManifest_conversations_archive">Archive des conversations</string>
+  <string name="AndroidManifest_archived_conversations">Conversations archivées</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / exporter</string>
   <string name="arrays__your_identity_key">Votre clé d\'identité</string>
@@ -938,7 +949,13 @@ par SMS.</string>
   <string name="text_secure_normal__invite_friends">Inviter des amis</string>
   <string name="text_secure_normal__help">Aide</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Votre version de Signal a expiré !</string>
+  <string name="reminder_header_outdated_build">Votre version de Signal est trop ancienne</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Votre version de Signal va expirer dans 1 jour. Appuyer pour mettre à jour vers la version la plus récente.</item>
+    <item quantity="other">Votre version de Signal va expirer dans %d jours. Appuyer pour mettre à jour vers la version la plus récente.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Votre version de Signal va expirer aujourd\'hui. Appuyer pour mettre à jour vers la version la plus récente.</string>
+  <string name="reminder_header_expired_build">Votre version de Signal a expirée!</string>
   <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>
   <string name="reminder_header_expired_build_button">METTRE À JOUR</string>
   <string name="reminder_header_sms_default_title">Utiliser comme application SMS par défaut</string>

@@ -8,9 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momentan: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sie haben noch kein Passwort festgelegt!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s Nachrichten je Unterhaltung</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 Nachricht je Unterhaltung</item>
+    <item quantity="other">%d Nachrichten je Unterhaltung</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Alle Unterhaltungen bis auf die %s letzten Nachrichten kürzen.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Jetzt alle Unterhaltungen bis auf die letzte Nachricht kürzen.</item>
+    <item quantity="other">Jetzt alle Unterhaltungen bis auf die %d letzten Nachrichten kürzen.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +37,10 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_Off">Aus</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d Minuten</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 Minute</item>
+    <item quantity="other">%d Minuten</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(Bild)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(Audio)</string>
@@ -90,8 +99,10 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ConversationActivity_group_members">Gruppenmitglieder</string>
   <string name="ConversationActivity_group_conversation">Gruppenunterhaltung</string>
   <string name="ConversationActivity_unnamed_group">Unbenannte Gruppe</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d Mitglieder</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 Mitglied</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 Mitglied</item>
+    <item quantity="other">%d Mitglieder</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Entwurf gespeichert</string>
   <string name="ConversationActivity_invalid_recipient">Ungültiger Kontakt!</string>
   <string name="ConversationActivity_calls_not_supported">Anrufe nicht unterstützt</string>
@@ -152,11 +163,11 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Ausgewählte Unterhaltungen werden gelöscht …</string>
-  <string name="ConversationListFragment_archived_conversations">Unterhaltungen archiviert</string>
+  <string name="ConversationListFragment_conversations_archived">Unterhaltungen archiviert</string>
   <string name="ConversationListFragment_undo">RÜCKGÄNGIG</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Unterhaltung zum Eingang verschoben</string>
-  <string name="ConversationListFragment_archived_conversation">Unterhaltung archiviert</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Unterhaltungen zum Eingang verschoben</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Unterhaltung in Eingang verschoben</string>
+  <string name="ConversationListFragment_conversation_archived">Unterhaltung archiviert</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Unterhaltungen in Eingang verschoben</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch-Nachricht …</string>
   <!--ConversationListItemAction-->
@@ -703,7 +714,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__message_details">Nachrichtendetails</string>
   <string name="AndroidManifest_manage_linked_devices">Verknüpfte Geräte verwalten</string>
   <string name="AndroidManifest__invite_friends">Freunde einladen</string>
-  <string name="AndroidManifest_conversations_archive">Archivierte Unterhaltungen</string>
+  <string name="AndroidManifest_archived_conversations">Archivierte Unterhaltungen</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Datensicherung</string>
   <string name="arrays__your_identity_key">Ihr Schlüssel</string>
@@ -868,7 +879,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="conversation_list_batch__menu_delete_selected">Ausgewählte löschen</string>
   <string name="conversation_list_batch__menu_select_all">Alle auswählen</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Ausgewählte archivieren</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ausgewählte zum Eingang verschieben</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ausgewählte in Eingang verschieben</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Suchen</string>
   <!--conversation_list_item_view-->
@@ -914,8 +925,14 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="text_secure_normal__invite_friends">Freunde einladen</string>
   <string name="text_secure_normal__help">Hilfe</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Ihre Version von Signal ist veraltet!</string>
-  <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte Signal auf die neueste Version aktualisieren.</string>
+  <string name="reminder_header_outdated_build">Ihre Version von Signal ist veraltet</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Ihre Version von Signal wird in 1 Tag ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</item>
+    <item quantity="other">Ihre Version von Signal wird in %d Tagen ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Ihre Version von Signal wird heute ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</string>
+  <string name="reminder_header_expired_build">Ihre Version von Signal ist abgelaufen!</string>
+  <string name="reminder_header_expired_build_details">Nachrichten werden nicht mehr erfolgreich versendet werden. Antippen, um auf die neueste Version zu aktualisieren.</string>
   <string name="reminder_header_expired_build_button">AKTUALISIEREN</string>
   <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden</string>
   <string name="reminder_header_sms_default_text">Antippen, um Signal als Standard-SMS-App zu verwenden.</string>

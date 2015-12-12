@@ -8,9 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Tällä hetkellä: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s viestiä per keskustelu</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 viesti per keskustelu</item>
+    <item quantity="other">%d viestiä per keskustelu</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Poistetaanko kaikki vanhat viestit nyt?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Tämä karsii välittömästi kaikki keskustelut %s viimeisimpään viestiin.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Tämä karsii välittömästi kaikki keskustelut viimeisimpään viestiin.</item>
+    <item quantity="other">Tämä karsii välittömästi kaikki keskustelut %d viimeisimpään viestiin.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Poista</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Poista salalause käytöstä?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +37,10 @@ Poistetaanko sovelluksen ja viestien lukitus salalauseella käytöstä?</string>
   <string name="ApplicationPreferencesActivity_Off">Poissa päältä</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minuuttia</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minuutti</item>
+    <item quantity="other">%d minuuttia</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(kuva)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(äänitallenne)</string>
@@ -94,8 +103,10 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_group_members">Ryhmän jäsenet</string>
   <string name="ConversationActivity_group_conversation">Ryhmäkeskustelu</string>
   <string name="ConversationActivity_unnamed_group">Nimeämätön ryhmä</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d jäsentä</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 jäsen</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 jäsen</item>
+    <item quantity="other">%d jäsentä</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Tallennettu luonnos</string>
   <string name="ConversationActivity_invalid_recipient">Virheellinen vastaanottaja!</string>
   <string name="ConversationActivity_calls_not_supported">Puheluita ei tueta</string>
@@ -160,10 +171,10 @@ Vastaanotettu: %4$s</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Poistetaan</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Poistetaan valittuja keskusteluja...</string>
-  <string name="ConversationListFragment_archived_conversations">Arkistoidut keskustelut</string>
+  <string name="ConversationListFragment_conversations_archived">Keskustelut arkistoitu</string>
   <string name="ConversationListFragment_undo">KUMOA</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Keskustelu siirretty postilaatikkoon</string>
-  <string name="ConversationListFragment_archived_conversation">Keskustelu arkistoitu</string>
+  <string name="ConversationListFragment_conversation_archived">Keskustelu arkistoitu</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Keskustelut siirretty postilaatikkoon</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti...</string>
@@ -188,7 +199,7 @@ Vastaanotettu: %4$s</string>
   <string name="DeviceListItem_unnamed_device">Nimeämätön laite</string>
   <string name="DeviceListItem_linked_s">Yhdistetty %s</string>
   <string name="DeviceListItem_last_active_s">Viimeksi käytetty %s</string>
-  <string name="DeviceListItem_today">Tänään</string>
+  <string name="DeviceListItem_today">tänään</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
   <!--ExperienceUpgradeActivity-->
@@ -728,7 +739,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="AndroidManifest__message_details">Viestin tiedot</string>
   <string name="AndroidManifest_manage_linked_devices">Hallitse yhdistettyjä laitteita</string>
   <string name="AndroidManifest__invite_friends">Kutsu ystäviä</string>
-  <string name="AndroidManifest_conversations_archive">Arkistoidut keskustelut</string>
+  <string name="AndroidManifest_archived_conversations">Arkistoidut keskustelut</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Varmuuskopiot</string>
   <string name="arrays__your_identity_key">Identiteettiavaimesi</string>
@@ -859,7 +870,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences_chats__media_auto_download">Liitetiedostojen automaattinen lataus</string>
   <string name="preferences_chats__message_trimming">Keskustelujen karsiminen</string>
   <string name="preferences_advanced__use_system_emoji">Käytä järjestelmän hymiöitä</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Ota Signalin omat hymiöt pois käytöstä</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Ota Signalin oletushymiöt pois käytöstä</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -939,8 +950,14 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="text_secure_normal__invite_friends">Kutsu ystäviä</string>
   <string name="text_secure_normal__help">Tuki </string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Käyttämäsi Signalin versio on vanhentunut!</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Käyttämäsi Signalin versio vanhenee 1 päivässä. Napsauta päivittääksesi viimeisimpään versioon.</item>
+    <item quantity="other">Käyttämäsi Signalin versio vanhenee %d päivässä. Napsauta päivittääksesi viimeisimpään versioon.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Käyttämäsi Signalin versio vanhenee tänään. Napsauta päivittääksesi viimeisimpään versioon.</string>
   <string name="reminder_header_expired_build">Käyttämäsi Signalin versio on vanhentunut!</string>
-  <string name="reminder_header_expired_build_details">Viestien lähetys ei enää onnistu. Päivitä sovellus viimeisimpään versioon.</string>
+  <string name="reminder_header_expired_build_details">Viestien lähetys ei enää onnistu. Napsauta päivittääksesi viimeisimpään versioon.</string>
   <string name="reminder_header_expired_build_button">PÄIVITÄ</string>
   <string name="reminder_header_sms_default_title">Käytä oletuksena tekstiviesteille?</string>
   <string name="reminder_header_sms_default_text">Napsauta, jos haluat tehdä Signalista oletustekstiviestisovelluksesi.</string>

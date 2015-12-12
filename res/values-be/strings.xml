@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Цяпер: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы яшчэ не ўсталявалі пароль</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s паведамленняў у гутарцы</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Выдаліць усе старыя паведамленні зараз?</string>
   <string name="ApplicationPreferencesActivity_delete">Выдаліць</string>
   <string name="ApplicationPreferencesActivity_disable">Выключыць</string>
@@ -21,7 +20,6 @@
   <string name="ApplicationPreferencesActivity_Off">Выкл</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d хвілін</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(малюнак)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(аўдыё)</string>
@@ -65,8 +63,6 @@
   <string name="ConversationActivity_group_members">Удзельнікі групы</string>
   <string name="ConversationActivity_group_conversation">Групавая гутарка</string>
   <string name="ConversationActivity_unnamed_group">Неназваная група</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d удзельнікаў</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 ўдзельнік</string>
   <string name="ConversationActivity_saved_draft">Захаваны чарнавік</string>
   <string name="ConversationActivity_invalid_recipient">Няправільны атрымальнік!</string>
   <string name="ConversationActivity_calls_not_supported">Званкі не падтрымліваюцца</string>
@@ -595,7 +591,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заблакіраваць</string>
   <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build_details">Паведамленні больш ня будуць высылацца. Калі ласка абнавіцеся да больш новай версіі.</string>
   <string name="reminder_header_sms_import_text">Націсніце каб скапіраваць вашыя SMS з тэлефона ў зашыфраваную базу.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>

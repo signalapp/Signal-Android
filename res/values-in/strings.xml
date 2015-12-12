@@ -8,7 +8,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur kata kunci!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s pesan per percakapan</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Hapus seluruh pesan lama?</string>
   <string name="ApplicationPreferencesActivity_delete">Hapus</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Nonaktifkan frasa sandi?</string>
@@ -28,7 +27,6 @@
   <string name="ApplicationPreferencesActivity_Off">Mati</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d menit</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(gambar)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -93,8 +91,6 @@ kontak ini.
   <string name="ConversationActivity_group_members">Anggota grup</string>
   <string name="ConversationActivity_group_conversation">Percakapan grup</string>
   <string name="ConversationActivity_unnamed_group">Grup tak bernama</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d anggota</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 anggota</string>
   <string name="ConversationActivity_saved_draft">Draf tersimpan</string>
   <string name="ConversationActivity_invalid_recipient">Penerima tidak lengkap!</string>
   <string name="ConversationActivity_calls_not_supported">Panggilan tidak didukung</string>
@@ -150,10 +146,8 @@ kontak ini.
     <item quantity="other">Ini akan secara permanen menghapus semua %1$d percakapan terpilih.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Menghapus</string>
-  <string name="ConversationListFragment_archived_conversations">Arsip percakapan</string>
   <string name="ConversationListFragment_undo">ULANG</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Pindah percakapan ke kotak masuk</string>
-  <string name="ConversationListFragment_archived_conversation">Arsip percakapan</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Pindah percakapan ke kotak masuk</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci...</string>
@@ -747,7 +741,6 @@ gagal
   <string name="AndroidManifest__message_details">Rincian pesan</string>
   <string name="AndroidManifest_manage_linked_devices">Kelola perangkat terkait</string>
   <string name="AndroidManifest__invite_friends">Undang teman</string>
-  <string name="AndroidManifest_conversations_archive">Arsip percakapan</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor / ekspor</string>
   <string name="arrays__your_identity_key">Kunci identitas Anda</string>
@@ -952,8 +945,6 @@ gagal
   <string name="text_secure_normal__invite_friends">Undang teman</string>
   <string name="text_secure_normal__help">Batuan</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Versi Signal Anda telah usang!</string>
-  <string name="reminder_header_expired_build_details">Pesan tidak akan bisa lagi terkirim dengan sukses, mohon mutakhirkan ke versi terbaru.</string>
   <string name="reminder_header_expired_build_button">PERBARUI</string>
   <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS baku</string>
   <string name="reminder_header_sms_default_text">Tekan untuk membuat Signal menjadi aplikasi SMS utama Anda.</string>

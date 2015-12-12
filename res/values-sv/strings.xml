@@ -8,9 +8,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nuvarande: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte angivit ett lösenord än!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s meddelanden per konversation</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Detta kommer att omedelbart trimma alla konversationer till de %s senaste meddelandena.</string>
   <string name="ApplicationPreferencesActivity_delete">Radera</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Ta bort lösenordsfras?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +29,6 @@ Stäng av låsskärm för meddelanden?</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minuter</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(bild)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ljud)</string>
@@ -92,8 +89,6 @@ verifiera denna kontakt.</string>
   <string name="ConversationActivity_group_members">Gruppmedlemmar</string>
   <string name="ConversationActivity_group_conversation">Gruppkonversation</string>
   <string name="ConversationActivity_unnamed_group">Namnlös grupp</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d medlemmar</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 medlem</string>
   <string name="ConversationActivity_saved_draft">Sparade utkast</string>
   <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds ej</string>
@@ -129,7 +124,7 @@ verifiera denna kontakt.</string>
     <item quantity="other">Detta kommer permanent radera %1$d valda meddelanden.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Spara till lagring?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Att spara denna media till lagring kommer göra att andra appar på din enhet att får tillgång till den.\n\nFortsätta?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Att spara denna media till lagring kommer göra att andra appar på din enhet får tillgång till den.\n\nFortsätta?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Det blev ett fel när bifogad fil skulle sparas till lagring!</string>
   <string name="ConversationFragment_success_exclamation">Klart!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan inte skriva till lagring!</string>
@@ -154,10 +149,8 @@ verifiera denna kontakt.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Raderar</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Raderar markerade konversationer...</string>
-  <string name="ConversationListFragment_archived_conversations">Arkiverade konversationer</string>
   <string name="ConversationListFragment_undo">ÅNGRA</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Flyttade konversationen till inkorgen</string>
-  <string name="ConversationListFragment_archived_conversation">Arkiverad konversation</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Flyttade konversationerna till inkorgen</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Meddelande för nyckelutbyte ...</string>
@@ -719,7 +712,6 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Hantera länkade enheter</string>
   <string name="AndroidManifest__invite_friends">Bjud in vänner</string>
-  <string name="AndroidManifest_conversations_archive">Konversationsarkiv</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera / exportera</string>
   <string name="arrays__your_identity_key">Din identitetsnyckel</string>
@@ -784,7 +776,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__change_notification_sound">Ändra aviseringsljud</string>
   <string name="preferences__silent">Tyst</string>
-  <string name="preferences__in_conversation_notifications">Inom-konversation notifikationer</string>
+  <string name="preferences__in_conversation_notifications">Inom-konversationsaviseringar</string>
   <string name="preferences__play_inthread_notifications">Spela aviseringsljud när du tittar på en aktiv konversation</string>
   <string name="preferences__repeat_alerts">Upprepa aviseringar</string>
   <string name="preferences__never">Aldrig</string>
@@ -911,7 +903,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandera popup</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_add_to_contacts__menu_add_to_contacts">Lägg till kontakter</string>
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Lägg till som kontakt</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Mottagarlista</string>
   <string name="conversation_group_options__delivery">Leverans</string>
@@ -930,8 +922,6 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="text_secure_normal__invite_friends">Bjud in vänner</string>
   <string name="text_secure_normal__help">Hjälp</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Din version av Signal har utgått!</string>
-  <string name="reminder_header_expired_build_details">Meddelanden kommer inte längre att skickas framgångsrikt, vänligen uppdatera till den senaste versionen.</string>
   <string name="reminder_header_expired_build_button">UPPDATERA</string>
   <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
   <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string>

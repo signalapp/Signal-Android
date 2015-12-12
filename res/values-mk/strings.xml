@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сеуште не сте поставиле лозинка!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s пораки по разговор</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Избришете ги сите стари пораки?</string>
   <string name="ApplicationPreferencesActivity_delete">Избриши</string>
   <string name="ApplicationPreferencesActivity_disable">Оневозможи</string>
@@ -22,7 +21,6 @@
   <string name="ApplicationPreferencesActivity_Off">Исклучи</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d минути</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(слика)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(звук)</string>
@@ -68,8 +66,6 @@
   <string name="ConversationActivity_group_members">Членови на групата</string>
   <string name="ConversationActivity_group_conversation">Групен разговор</string>
   <string name="ConversationActivity_unnamed_group">Неименувана група</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d членови</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 член</string>
   <string name="ConversationActivity_saved_draft">Скицата е снимена.</string>
   <string name="ConversationActivity_invalid_recipient">Погрешен примател!</string>
   <string name="ConversationActivity_calls_not_supported">Неподдржан повик</string>
@@ -655,7 +651,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заклучи</string>
   <string name="text_secure_normal__mark_all_as_read">Обележи ги сите како прочитани</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build_details">Пораките не ќе можат повеќе да се испраќаат, актуализирајте на најновата верзија.</string>
   <string name="reminder_header_sms_import_text">Притиснете за копирање на SMS пораките од вашиот телефон во шифрираната база на податоци.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вие</string>

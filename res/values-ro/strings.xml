@@ -8,7 +8,11 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ai setat inca o parola!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s mesaje per conversație</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 mesaj per conversație</item>
+    <item quantity="few">%d mesaje per conversație</item>
+    <item quantity="other">%d mesaje per conversație</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Şterge toate mesajele vechi acum?</string>
   <string name="ApplicationPreferencesActivity_delete">Şterge</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
@@ -31,7 +35,11 @@
   <string name="ApplicationPreferencesActivity_Off">Dezactivat</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minute</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minut</item>
+    <item quantity="few">%d minute</item>
+    <item quantity="other">%d minute</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(imagine)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -88,8 +96,11 @@
   <string name="ConversationActivity_group_members">Membrii grupului</string>
   <string name="ConversationActivity_group_conversation">Grupează conversaţia</string>
   <string name="ConversationActivity_unnamed_group">Grup nedenumit</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d membrii</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 membru</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 membru</item>
+    <item quantity="few">%d membrii</item>
+    <item quantity="other">%d membrii</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Ciornă salvată</string>
   <string name="ConversationActivity_invalid_recipient">Destinatar invalid!</string>
   <string name="ConversationActivity_calls_not_supported">Nu există suport pentru apeluri</string>
@@ -153,9 +164,9 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Se șterge</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Se şterg conversaţiile selectate...</string>
-  <string name="ConversationListFragment_archived_conversations">Conversații arhivate</string>
+  <string name="ConversationListFragment_conversations_archived">Conversațiile au fost arhivate</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Mută conversația în inbox</string>
-  <string name="ConversationListFragment_archived_conversation">Conversație arhivată</string>
+  <string name="ConversationListFragment_conversation_archived">Conversație arhivată</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Conversațiile au fost mutate în inbox</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimb de chei...</string>
@@ -701,7 +712,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="AndroidManifest__message_details">Detalii mesaj</string>
   <string name="AndroidManifest_manage_linked_devices">Administrează dispozitivele conectate</string>
   <string name="AndroidManifest__invite_friends">Invită prieteni</string>
-  <string name="AndroidManifest_conversations_archive">Arhiva conversațiilor</string>
+  <string name="AndroidManifest_archived_conversations">Conversații arhivate</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importă / Exportă</string>
   <string name="arrays__your_identity_key">Cheia ta de identitate</string>
@@ -909,8 +920,8 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="text_secure_normal__invite_friends">Invită prieteni</string>
   <string name="text_secure_normal__help">Asistență</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Versiunea ta de Signal este veche</string>
   <string name="reminder_header_expired_build">Versiunea ta de Signal a expirat!</string>
-  <string name="reminder_header_expired_build_details">Mesajele nu vor mai putea fi trimise cu succes, vă rog actualizați aplicația la versiunea cea mai recentă.</string>
   <string name="reminder_header_expired_build_button">ACTUALIZEAZĂ</string>
   <string name="reminder_header_sms_default_title">Utilizează ca și aplicație SMS implicită</string>
   <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal ca și aplicație SMS implicită.</string>

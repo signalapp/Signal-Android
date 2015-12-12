@@ -8,7 +8,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Atualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Você ainda não definiu uma frase-chave!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s mensagens por conversa</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Excluir todas as mensagens antigas agora?</string>
   <string name="ApplicationPreferencesActivity_delete">Excluir</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
@@ -31,7 +30,6 @@
   <string name="ApplicationPreferencesActivity_Off">Desligado</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minutos</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(imagem)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(áudio)</string>
@@ -97,8 +95,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_group_members">Membros do grupo</string>
   <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
   <string name="ConversationActivity_unnamed_group">Grupo sem nome</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d membros</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 membro</string>
   <string name="ConversationActivity_saved_draft">Rascunho salvo</string>
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Sem suporte para chamadas</string>
@@ -158,10 +154,8 @@ Tem certeza que deseja fazer isto?</string>
     <item quantity="other">Isto irá excluir permanentemente todas as %1$d conversas selecionadas.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Deletando</string>
-  <string name="ConversationListFragment_archived_conversations">Conversas arquivadas</string>
   <string name="ConversationListFragment_undo">DESFAZER</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Conversa movida para a caixa de entrada</string>
-  <string name="ConversationListFragment_archived_conversation">Conversa arquivada</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Conversas movidas para a caixa de entrada</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
@@ -881,7 +875,6 @@ falhou.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Trancar</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build_details">As mensagens não serão enviadas com sucesso, favor atualizar para a versão mais recente.</string>
   <string name="reminder_header_sms_import_text">Clique para copiar as mensagens SMS do seu telefone para a base de dados criptografada.</string>
   <string name="reminder_header_sms_import_button">IMPORTAR</string>
   <string name="reminder_header_push_title">Habilitar mensagens e ligações pelo Signal</string>

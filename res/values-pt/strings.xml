@@ -8,9 +8,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s mensagens por conversa</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Apagar todas as mensagens antigas?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Isto irá reduzir as conversas anteriores às %s mensagens mais recentes.</string>
   <string name="ApplicationPreferencesActivity_delete">Apagar</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -33,7 +31,6 @@ Vai ser necessário re-registar o seu número de telefone se pretender utilizar 
   <string name="ApplicationPreferencesActivity_Off">Desligado</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minutos</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(imagem)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(áudio)</string>
@@ -96,8 +93,6 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   <string name="ConversationActivity_group_members">Membros do grupo</string>
   <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
   <string name="ConversationActivity_unnamed_group">Grupo sem nome</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d membros</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 membro</string>
   <string name="ConversationActivity_saved_draft">Rascunho guardado</string>
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Chamadas não suportadas</string>
@@ -158,10 +153,8 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   </plurals>
   <string name="ConversationListFragment_deleting">A apagar</string>
   <string name="ConversationListFragment_deleting_selected_conversations">A eliminar conversas seleccionadas...</string>
-  <string name="ConversationListFragment_archived_conversations">Conversas arquivadas</string>
   <string name="ConversationListFragment_undo">REVERTER</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Conversa movida para a caixa de entrada</string>
-  <string name="ConversationListFragment_archived_conversation">Conversa arquivada</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Conversas movidas para a caixa de entrada</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
@@ -753,7 +746,6 @@ falhou.
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <string name="AndroidManifest_manage_linked_devices">Gerir dispositivos interligados</string>
   <string name="AndroidManifest__invite_friends">Convidar amigos</string>
-  <string name="AndroidManifest_conversations_archive">Arquivo de conversas</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__your_identity_key">A sua chave de identidade</string>
@@ -964,8 +956,6 @@ falhou.
   <string name="text_secure_normal__invite_friends">Convidar amigos</string>
   <string name="text_secure_normal__help">Ajuda</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>
-  <string name="reminder_header_expired_build_details">As mensagens já não poderão ser enviadas correctamente, por favor actualize para a versão mais recente.</string>
   <string name="reminder_header_expired_build_button">ACTUALIZAR</string>
   <string name="reminder_header_sms_default_title">Definir como aplicação SMS por omissão</string>
   <string name="reminder_header_sms_default_text">Pressione para tornar Signal a sua applicação SMS por omissão.</string>

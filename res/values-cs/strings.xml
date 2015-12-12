@@ -8,9 +8,17 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s zpráv na konverzaci</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 zpráva na konverzaci</item>
+    <item quantity="few">%d zprávy na konverzaci</item>
+    <item quantity="other">%d zpráv na konverzaci</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Smazat všechny staré zprávy?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Tímto zkrátíte všechny konverzace na posledních %s zpráv.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Tímto zkrátíte všechny konverzace na poslední zprávu.</item>
+    <item quantity="few">Tímto zkrátíte všechny konverzace na posledních %d zprávy.</item>
+    <item quantity="other">Tímto zkrátíte všechny konverzace na posledních %d zpráv.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Smazat</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Zakázat heslo?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +39,11 @@ Zakázat uzamčení obrazovky zpráv?</string>
   <string name="ApplicationPreferencesActivity_Off">Vyp.</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minut</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minuta</item>
+    <item quantity="few">%d minuty</item>
+    <item quantity="other">%d minut</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(obrázek)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -92,8 +104,11 @@ kontakt</string>
   <string name="ConversationActivity_group_members">Členové skupiny</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzace</string>
   <string name="ConversationActivity_unnamed_group">Nepojmenovaná skupina</string>
-  <string name="ConversationActivity_d_recipients_in_group">Počet členů: %d</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 člen</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 člen</item>
+    <item quantity="few">%d členové</item>
+    <item quantity="other">%d členů</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Uložený koncept</string>
   <string name="ConversationActivity_invalid_recipient">Chybný příjemce!</string>
   <string name="ConversationActivity_calls_not_supported">Volání není podporováno</string>
@@ -158,10 +173,10 @@ kontakt</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Mažu</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Mažu označené konverzace...</string>
-  <string name="ConversationListFragment_archived_conversations">Archivované konverzace</string>
+  <string name="ConversationListFragment_conversations_archived">Konverzace archivovány</string>
   <string name="ConversationListFragment_undo">ZPĚT</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Přesunuta konverzace do složky příchozích zpráv</string>
-  <string name="ConversationListFragment_archived_conversation">Archivovaná konverzace</string>
+  <string name="ConversationListFragment_conversation_archived">Konverzace archivována</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Přesunuty konverzace do složky příchozích zpráv</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Předávání klíčů...</string>
@@ -730,7 +745,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
   <string name="AndroidManifest_manage_linked_devices">Spravovat provázaná zařízení</string>
   <string name="AndroidManifest__invite_friends">Pozvat přátele</string>
-  <string name="AndroidManifest_conversations_archive">Archiv konverzací</string>
+  <string name="AndroidManifest_archived_conversations">Archivované konverzace</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__your_identity_key">Váš identifikační klíč</string>
@@ -942,8 +957,15 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="text_secure_normal__invite_friends">Pozvat přátele</string>
   <string name="text_secure_normal__help">Nápověda</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal skončila!</string>
-  <string name="reminder_header_expired_build_details">Zprávy již nemohou být odesílány, prosím aktualizujte na nejnovější verzi.</string>
+  <string name="reminder_header_outdated_build">Vaše verze aplikace Signal je zastaralá</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Platnost vaší verze aplikace Signal skončí za 1 den. Dotykem aktualizujte na nejnovější verzi.</item>
+    <item quantity="few">Platnost vaší verze aplikace Signal skončí za %d dny. Dotykem aktualizujte na nejnovější verzi.</item>
+    <item quantity="other">Platnost vaší verze aplikace Signal skončí za %d dnů. Dotykem aktualizujte na nejnovější verzi.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Platnost vaší verze aplikace Signal skončí dnes. Dotykem aktualizujte na nejnovější verzi.</string>
+  <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal vypršela!</string>
+  <string name="reminder_header_expired_build_details">Zprávy nemohou být úspěšně odesílány. Dotykem aktulizujte na nejnovější verzi.</string>
   <string name="reminder_header_expired_build_button">AKTUALIZOVAT</string>
   <string name="reminder_header_sms_default_title">Nastavit jako výchozí aplikaci pro SMS</string>
   <string name="reminder_header_sms_default_text">Dotykem nastavíte Signal jako výchozí SMS aplikaci</string>

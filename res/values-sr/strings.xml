@@ -8,9 +8,17 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Тренутно: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Још нисте поставили лозинку!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s порука по преписци</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 порука по преписци</item>
+    <item quantity="few">%d поруке по преписци</item>
+    <item quantity="other">%d порука по преписци</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Обрисати старе поруке сада?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Ово ће одмах да скрати све преписке на %s најскоријих порука.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Ово ће одмах да скрати све преписке на најскорију поруку.</item>
+    <item quantity="few">Ово ће одмах да скрати све преписке на %d најскорије поруке.</item>
+    <item quantity="other">Ово ће одмах да скрати све преписке на %d најскоријих порука.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Обриши</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Да искључим лозинку?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -32,7 +40,11 @@
   <string name="ApplicationPreferencesActivity_Off">Искључено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">СМС %1$s, ММС %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d минута</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 минута</item>
+    <item quantity="few">%d минуте</item>
+    <item quantity="other">%d минута</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(слика)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(звук)</string>
@@ -95,8 +107,11 @@
   <string name="ConversationActivity_group_members">Чланови групе</string>
   <string name="ConversationActivity_group_conversation">Групна преписка</string>
   <string name="ConversationActivity_unnamed_group">Неименована група</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d члан(ов)а</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 члан</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 члан</item>
+    <item quantity="few">%d члана</item>
+    <item quantity="other">%d чланова</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Сачуван нацрт</string>
   <string name="ConversationActivity_invalid_recipient">Неисправан прималац!</string>
   <string name="ConversationActivity_calls_not_supported">Позивање није подржано</string>
@@ -161,15 +176,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Брисање</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Бришем изабране преписке...</string>
-  <string name="ConversationListFragment_archived_conversations">Архивиране преписке</string>
+  <string name="ConversationListFragment_conversations_archived">Преписке архивиране</string>
   <string name="ConversationListFragment_undo">ВРАТИ</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Преписка померена у пријем</string>
-  <string name="ConversationListFragment_archived_conversation">Архивисана преписка</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Преписке померене у пријем</string>
+  <string name="ConversationListFragment_moved_conversation_to_inbox">Преписка премештена у пријем</string>
+  <string name="ConversationListFragment_conversation_archived">Преписка архивирана</string>
+  <string name="ConversationListFragment_moved_conversations_to_inbox">Преписке премештене у пријем</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порука размене кључева...</string>
   <!--ConversationListItemAction-->
-  <string name="ConversationListItemAction_archived_conversations_d">Архивисане преписке (%d)</string>
+  <string name="ConversationListItemAction_archived_conversations_d">Архивиране преписке (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користим посебно: %s</string>
   <string name="CustomDefaultPreference_using_default">Користим подразумевано: %s</string>
@@ -603,7 +618,7 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Ажурирам базу података...</string>
   <string name="export_fragment__export_plaintext_backup">Извези текстуалну резерву</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Извоз обичне текстуалне резерву компатибилне са апликацијом „SMS Backup &amp; Restore“ у складиште.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Извоз обичне текстуалне резерве компатибилне са апликацијом „SMS Backup &amp; Restore“ у складиште.</string>
   <string name="import_fragment__import_system_sms_database">Увези системску СМС базу података</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Увоз базе података из подразумеване системске апликације за размену порука</string>
   <string name="import_fragment__restore_encrypted_backup">Врати шифровану резерву</string>
@@ -743,7 +758,7 @@
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
   <string name="AndroidManifest_manage_linked_devices">Управљај повезаним уређајима</string>
   <string name="AndroidManifest__invite_friends">Позивница пријатељима</string>
-  <string name="AndroidManifest_conversations_archive">Архива преписки</string>
+  <string name="AndroidManifest_archived_conversations">Архивиране преписке</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__your_identity_key">Ваш кључ идентитета</string>
@@ -915,7 +930,7 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фотографија контакта</string>
   <string name="conversation_list_item_view__error_alert">Грешка</string>
-  <string name="conversation_list_item_view__archived">Архивисано</string>
+  <string name="conversation_list_item_view__archived">Архивирано</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нова преписка</string>
   <!--conversation_secure_verified-->
@@ -955,8 +970,15 @@
   <string name="text_secure_normal__invite_friends">Позовите пријатеље</string>
   <string name="text_secure_normal__help">Помоћ</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Ваше издање Сигнала је застарело!</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Ваше издање Сигнала истиче за 1 дан. Тапните да надоградите на најскорије издање.</item>
+    <item quantity="few">Ваше издање Сигнала истиче за %d дана. Тапните да надоградите на најскорије издање.</item>
+    <item quantity="other">Ваше издање Сигнала истиче за %d дана. Тапните да надоградите на најскорије издање.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Ваше издање Сигнала истиче данас. Тапните да надоградите на најскорије издање.</string>
   <string name="reminder_header_expired_build">Ваше издање Сигнала је истекло!</string>
-  <string name="reminder_header_expired_build_details">Више нећете моћи да шаљете поруке успешно, надоградите на најскорије издање.</string>
+  <string name="reminder_header_expired_build_details">Више нећете моћи успешно да шаљете поруке. Тапните да надоградите на најскорије издање.</string>
   <string name="reminder_header_expired_build_button">НАДОГРАДИ</string>
   <string name="reminder_header_sms_default_title">Користи као подразумевану апл. за СМС</string>
   <string name="reminder_header_sms_default_text">Тапните да поставите Сигнал за подразумевану апликацију за СМС.</string>

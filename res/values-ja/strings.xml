@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">会話あたり %s のメッセージ</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">全ての古いメッセージを今、削除しますか？</string>
   <string name="ApplicationPreferencesActivity_delete">削除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">パスワードを無効にする?</string>
@@ -26,7 +25,6 @@
   <string name="ApplicationPreferencesActivity_Off">オフ</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d 分</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(画像)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(音声)</string>
@@ -76,8 +74,6 @@
   <string name="ConversationActivity_group_members">グループメンバー</string>
   <string name="ConversationActivity_group_conversation">グループチャット</string>
   <string name="ConversationActivity_unnamed_group">無名グループ</string>
-  <string name="ConversationActivity_d_recipients_in_group">参加者%d人</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">参加者1人</string>
   <string name="ConversationActivity_saved_draft">下書きとして保存しました</string>
   <string name="ConversationActivity_invalid_recipient">受信先が無効です。</string>
   <string name="ConversationActivity_calls_not_supported">通話には対応していません</string>
@@ -688,7 +684,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">ロック</string>
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build_details">もうメッセージの送信が成功することはありません、最新のバージョンへアップデートしてください。</string>
   <string name="reminder_header_sms_import_text">タップして電話のSMSメッセージを暗号化したデータベースにコピーする。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>

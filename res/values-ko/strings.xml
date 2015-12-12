@@ -8,9 +8,13 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">현재: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호 설정되지 않음</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">대화당 메시지 %s개</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="other">대화당 메시지 %d개</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">지금 모든 이전 메시지를 삭제하시겠습니까?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">모든 대화를 최근 메시지 %s개로 줄입니다.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="other">모든 대화를 최근 메시지 %d개로 줄입니다.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">삭제</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">암호 사용 중지</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">메시지 화면 잠금을 사용 중지하시겠습니까?</string>
@@ -30,7 +34,9 @@
   <string name="ApplicationPreferencesActivity_Off">사용 안함</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d분</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="other">%d분</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(이미지)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(오디오)</string>
@@ -89,8 +95,9 @@
   <string name="ConversationActivity_group_members">그룹 멤버</string>
   <string name="ConversationActivity_group_conversation">그룹 대화</string>
   <string name="ConversationActivity_unnamed_group">이름이 없는 그룹</string>
-  <string name="ConversationActivity_d_recipients_in_group">멤버 %d명</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">멤버 1명</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="other">멤버 %d명</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">임시 저장됨</string>
   <string name="ConversationActivity_invalid_recipient">수신자가 잘못됨</string>
   <string name="ConversationActivity_calls_not_supported">전화 걸지 못함</string>
@@ -147,10 +154,10 @@
   </plurals>
   <string name="ConversationListFragment_deleting">대화 삭제</string>
   <string name="ConversationListFragment_deleting_selected_conversations">선택된 대화를 삭제 중…</string>
-  <string name="ConversationListFragment_archived_conversations">대화 보관처리됨</string>
+  <string name="ConversationListFragment_conversations_archived">대화 보관처리됨</string>
   <string name="ConversationListFragment_undo">실행취소</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">보관 취소</string>
-  <string name="ConversationListFragment_archived_conversation">대화 보관처리됨</string>
+  <string name="ConversationListFragment_conversation_archived">대화 보관처리됨</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">보관 취소</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">키 교환 메시지…</string>
@@ -683,7 +690,7 @@
   <string name="AndroidManifest__message_details">메시지 세부정보</string>
   <string name="AndroidManifest_manage_linked_devices">연결된 기기 관리</string>
   <string name="AndroidManifest__invite_friends">친구 초대</string>
-  <string name="AndroidManifest_conversations_archive">보관된 대화</string>
+  <string name="AndroidManifest_archived_conversations">보관된 대화</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">가져오기 / 내보내기</string>
   <string name="arrays__your_identity_key">내 인증 키</string>
@@ -893,8 +900,13 @@
   <string name="text_secure_normal__invite_friends">친구 초대</string>
   <string name="text_secure_normal__help">도움말</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">설치된 Signal 버전 곧 만료</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="other">%d일 후 설치된 Signal 버전은 만료됩니다. 최신 버전으로 업데이트 하려면 터치하세요.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">오늘 설치된 Signal 버전은 만료됩니다. 최신 버전으로 업데이트 하려면 터치하세요.</string>
   <string name="reminder_header_expired_build">설치된 Signal 버전 만료</string>
-  <string name="reminder_header_expired_build_details">메시지를 전송할 수 없으므로 최신 버전으로 업데이트 해주세요.</string>
+  <string name="reminder_header_expired_build_details">메시지가 전송되지 않습니다. 최신 버전으로 업데이트 하려면 터치하세요.</string>
   <string name="reminder_header_expired_build_button">업데이트</string>
   <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string>
   <string name="reminder_header_sms_default_text">Signal을 기본 SMS 앱으로 설정하려면 터치하세요.</string>

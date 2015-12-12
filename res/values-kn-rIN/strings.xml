@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ಪ್ರಸ್ತುತ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಗುಪ್ತಪದವನ್ನು ಹೊಂದಿಸಿಲ್ಲ!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">ಪ್ರತಿ ಸಂವಾದಕ್ಕೆ %s ಸಂದೇಶಗಳು</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ಈಗ ಎಲ್ಲಾ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ?</string>
   <string name="ApplicationPreferencesActivity_delete">ಅಳಿಸಿಹಾಕು</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">ಗುಪ್ತಪದವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
@@ -23,7 +22,6 @@
   <string name="ApplicationPreferencesActivity_Off">ಆಫ಼್</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ಎಸ್.ಎಮ್.ಎಎಸ್ %1$s, ಎಮ್.ಎಮ್.ಎಸ್ %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d ನಿಮಿಷಗಳು</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(ಚಿತ್ರ)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ಶ್ರಾವ್ಯ)</string>
@@ -71,8 +69,6 @@
   <string name="ConversationActivity_group_members">ಸಮೂಹದ ಸದಸ್ಯರು</string>
   <string name="ConversationActivity_group_conversation">ಸಮೂಹ ಸಂವಾದ</string>
   <string name="ConversationActivity_unnamed_group">ಅನಾಮಧೇಯ ಸಮೂಹ</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d ಸದಸ್ಯರು </string>
-  <string name="ConversationActivity_d_recipients_in_group_singular"> 1 ಸದಸ್ಯ</string>
   <string name="ConversationActivity_saved_draft">ಉಳಿಸಿದ ಕರಡು</string>
   <string name="ConversationActivity_invalid_recipient">ಸ್ವೀಕರಿಸುವವರು ಅಮಾನ್ಯ!</string>
   <string name="ConversationActivity_calls_not_supported">ಕರೆಗಳ ಬೆಂಬಲವಿರುವುದಿಲ್ಲ</string>
@@ -616,7 +612,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">ಬೀಗ ಹಾಕಿ</string>
   <string name="text_secure_normal__mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build_details">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ. ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ಅಪ್ಡೇಟ್ ಮಾಡಿ. </string>
   <string name="reminder_header_sms_import_text">ನಿಮ್ಮ ಫೋನಿನ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು  ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ದತ್ತಾಂಶಕ್ಕೆ  ನಕಲು ಮಾಡಿಕೊಳ್ಳಲು ಸ್ಪರ್ಶಿಸಿ.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">ನೀವು</string>

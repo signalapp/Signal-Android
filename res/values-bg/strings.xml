@@ -8,9 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не си сложил парола!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s съобщения на разговор</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 съобщение на разговор</item>
+    <item quantity="other">%d съобщения на разговор</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Изтрий всички стари съобщения сега?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Това ще скъси всички разговори до %sте най-нови съобщения.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Това ще скъси всички разговори до най-новoто съобщение.</item>
+    <item quantity="other">Това ще скъси всички разговори до %dте най-нови съобщения.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Изтрий</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Изключи паролата?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +37,10 @@
   <string name="ApplicationPreferencesActivity_Off">Изключено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d минути</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 минута</item>
+    <item quantity="other">%d минути</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(изображение)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(аудио)</string>
@@ -91,8 +100,10 @@
   <string name="ConversationActivity_group_members">Членове на групата</string>
   <string name="ConversationActivity_group_conversation">Групов разговор</string>
   <string name="ConversationActivity_unnamed_group">Безименна група</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d участника</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 член</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 участник</item>
+    <item quantity="other">%d участника</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Запазена чернова</string>
   <string name="ConversationActivity_invalid_recipient">Невалиден получател!</string>
   <string name="ConversationActivity_calls_not_supported">Функцията за разговори не се подържа</string>
@@ -153,10 +164,10 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Изтриване</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Изтриване на избраните разговори...</string>
-  <string name="ConversationListFragment_archived_conversations">Архивирани разговори</string>
+  <string name="ConversationListFragment_conversations_archived">Разговорите са архивирани</string>
   <string name="ConversationListFragment_undo">ВЪЗСТАНОВИ</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Разговорът е преместен във входящата кутия</string>
-  <string name="ConversationListFragment_archived_conversation">Разговорът е архивиран</string>
+  <string name="ConversationListFragment_conversation_archived">Разговорът е архивиран</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Разговорът е преместен във входящата кутия</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
@@ -733,7 +744,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest__message_details">Информация за съобщението</string>
   <string name="AndroidManifest_manage_linked_devices">Управление на свързани устройства</string>
   <string name="AndroidManifest__invite_friends">Поканете приятели</string>
-  <string name="AndroidManifest_conversations_archive">Разговорите са архивирани</string>
+  <string name="AndroidManifest_archived_conversations">Архивирани разговори</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__your_identity_key">Вашият ключ за самоличност</string>
@@ -944,8 +955,14 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="text_secure_normal__invite_friends">Поканете приятели</string>
   <string name="text_secure_normal__help">Помощ</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Вдашата Signal версия е изтекла!</string>
-  <string name="reminder_header_expired_build_details">Съобщенията няма повече да бъдат успешно доставени, моля, обновете до най-новата версия.</string>
+  <string name="reminder_header_outdated_build">Вашата версия на Signal е стара</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Вашата версия на Signal ще изтече след 1 ден. Натиснете, за да обновите до най-новата версия.</item>
+    <item quantity="other">Вашата версия на Signal ще изтече след %d дена. Натиснете, за да обновите до най-новата версия.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Вашата версия на Signal ще изтече днес. Натиснете, за да обновите до най-новата версия.</string>
+  <string name="reminder_header_expired_build">Вашата версоя ма Signal е изтекла!</string>
+  <string name="reminder_header_expired_build_details">Съобщенията няма да успесно изпращани от сега нататък. Натиснете, за да обновите до най-новата версия.</string>
   <string name="reminder_header_expired_build_button">ОБНОВИ</string>
   <string name="reminder_header_sms_default_title">Използвай като SMS програма по подразбиране</string>
   <string name="reminder_header_sms_default_text">Натисни, за да направиш Signal своята SMS програма по подразбиране.</string>

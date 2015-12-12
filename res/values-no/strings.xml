@@ -8,9 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nå: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke definert et passord ennå!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s meldinger pr samtale</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 melding per samtale</item>
+    <item quantity="other">%d meldinger per samtale</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slette alle gamle meldinger nå?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Dette vil umiddelbart trimme alle samtaletrådene til de siste %s meldinger.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Dette vil umiddelbart trimme alle samtaletrådene til den siste mottatte melding.</item>
+    <item quantity="other">Dette vil umiddelbart trimme alle samtaletrådene til de siste %d meldinger.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Slett</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktivere passord?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -32,7 +38,10 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minutter</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minutt</item>
+    <item quantity="other">%d minutter</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(bilde)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(lyd)</string>
@@ -92,8 +101,10 @@ denne kontakten.</string>
   <string name="ConversationActivity_group_members">Gruppemedlemmer</string>
   <string name="ConversationActivity_group_conversation">Gruppesamtale</string>
   <string name="ConversationActivity_unnamed_group">Navnløs gruppe</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d medlemmer</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 medlem</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 medlem</item>
+    <item quantity="other">%d medlemmer</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Lagret utkast</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig mottaker!</string>
   <string name="ConversationActivity_calls_not_supported">Anrop er ikke støttet</string>
@@ -154,10 +165,10 @@ denne kontakten.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Sletter utvalgte samtaler...</string>
-  <string name="ConversationListFragment_archived_conversations">Arkiverte samtaler</string>
+  <string name="ConversationListFragment_conversations_archived">Samtaler arkivert</string>
   <string name="ConversationListFragment_undo">Angre</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Samtale flyttet til innboks</string>
-  <string name="ConversationListFragment_archived_conversation">Arkivert samtale</string>
+  <string name="ConversationListFragment_conversation_archived">Samtale arkivert</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Samtalene flyttet til innboks</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
@@ -717,7 +728,7 @@ feilet.</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Administrer tilkoblede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
-  <string name="AndroidManifest_conversations_archive">Samtale-arkiv</string>
+  <string name="AndroidManifest_archived_conversations">Arkiverte samtaler</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importere / eksportere</string>
   <string name="arrays__your_identity_key">Din ID-nøkkel</string>
@@ -928,8 +939,14 @@ feilet.</string>
   <string name="text_secure_normal__invite_friends">Inviter venner</string>
   <string name="text_secure_normal__help">Hjelp</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Din versjon av Signal er foreldet!</string>
-  <string name="reminder_header_expired_build_details">Det vil ikke lenger være mulig å sende meldinger. Vær vennlig å oppdatere til siste versjon.</string>
+  <string name="reminder_header_outdated_build">Din versjon av Signal er utdatert</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Din versjon av Signal vil utløpe om 1 dag. Trykk for å oppdatere til siste versjon.</item>
+    <item quantity="other">Din versjon av Signal vil utløpe om %d dager. Trykk for å oppdatere til siste versjon.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Din versjon av Signal vil utløpe i dag. Trykk for å oppdatere til siste versjon.</string>
+  <string name="reminder_header_expired_build">Din versjon av Signal er utdatert!</string>
+  <string name="reminder_header_expired_build_details">Meldinger vil ikke lenger kunne sendes. Trykk for å oppdatere Signal til siste versjon.</string>
   <string name="reminder_header_expired_build_button">OPPGRADER</string>
   <string name="reminder_header_sms_default_title">Bruk som standard SMS applikasjon</string>
   <string name="reminder_header_sms_default_text">Klikk for å la Signal være din standard SMS applikasjon.</string>

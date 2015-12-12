@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">தற்போது: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet"> நீங்கள் இன்னும் ஒரு கடவுச்சொல்லை அமைக்கவில்லை!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">ஓர் உரையாடலில் %s செய்திகள்</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">அனைத்து பழைய செய்திகளையும் நீக்கலாமா?</string>
   <string name="ApplicationPreferencesActivity_delete">நீக்கு</string>
   <string name="ApplicationPreferencesActivity_disable">முடக்கு</string>
@@ -18,7 +17,6 @@
   <string name="ApplicationPreferencesActivity_off">அணை</string>
   <string name="ApplicationPreferencesActivity_Off">அணை</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d நிமிடங்கள்</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(படம்)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ஆடியோ) </string>
@@ -62,8 +60,6 @@
   <string name="ConversationActivity_message_is_empty_exclamation">செய்தி காலியாக உள்ளது!</string>
   <string name="ConversationActivity_group_conversation">குழு உரையாடல்</string>
   <string name="ConversationActivity_unnamed_group">பெயரிடப்படாத குழு</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d உறுப்பினர்கள்</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 உறுப்பினர்</string>
   <string name="ConversationActivity_saved_draft">வரைவு சேமிக்கப்பட்டது</string>
   <string name="ConversationActivity_invalid_recipient">செல்லாத பெறுநர்!</string>
   <string name="ConversationActivity_calls_not_supported">அழைப்புக்களுக்கு ஆதரவில்லை</string>
@@ -606,7 +602,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">பூட்டு</string>
   <string name="text_secure_normal__mark_all_as_read">அனைத்தையும் படித்தாக குறியிடு</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build_details">செய்திகள் இனிமேல் வெற்றிகரமாக அனுப்ப முடியாது. மிக சமீபத்திய பதிப்பிற்கு தயவு செய்து புதுப்பிக்கவும்.</string>
   <string name="reminder_header_sms_import_text">மறையாக்கப்பட்ட கோப்பினுள் உங்கள் தொலைபேசியின் SMS-செய்திகளை நகலெடுக்க, தட்டவும்.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">நீங்கள்</string>

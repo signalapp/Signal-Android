@@ -8,9 +8,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s poruka po razgovoru</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obriši sve stare poruke?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Ovo će trenutno skratiti sve razgovore na %s najnovijih poruka.</string>
   <string name="ApplicationPreferencesActivity_delete">Obriši</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Onemogući lozinku?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +29,6 @@ Onemogući zaključani ekran za poruke?</string>
   <string name="ApplicationPreferencesActivity_Off">Isključeno</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d minuta</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
@@ -93,8 +90,6 @@ ovaj kontakt.</string>
   <string name="ConversationActivity_group_members">Članovi grupe</string>
   <string name="ConversationActivity_group_conversation">Grupni razgovor</string>
   <string name="ConversationActivity_unnamed_group">Neimenovana grupa</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d članova</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 član</string>
   <string name="ConversationActivity_saved_draft">Spremljena skica</string>
   <string name="ConversationActivity_invalid_recipient">Naispravan primatelj!</string>
   <string name="ConversationActivity_calls_not_supported">Pozivi nisu podržani</string>
@@ -144,9 +139,7 @@ ovaj kontakt.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Brisanje odabranih razgovora...</string>
-  <string name="ConversationListFragment_archived_conversations">Arhivirani razgovori</string>
   <string name="ConversationListFragment_undo">VRATI</string>
-  <string name="ConversationListFragment_archived_conversation">Arhivirani razgovor</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa...</string>
   <!--ConversationListItemAction-->
@@ -852,8 +845,6 @@ neuspješno.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zaključaj</string>
   <string name="text_secure_normal__mark_all_as_read">Označi sve pročitano</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Vaša Signal inačica je istekla!</string>
-  <string name="reminder_header_expired_build_details">Poruke više neće biti moguće uspješno poslati, nadogradite na najnoviju dostupnu inačicu.</string>
   <string name="reminder_header_sms_default_title">Koristi kao zadanu SMS aplikaciju</string>
   <string name="reminder_header_sms_default_text">Pritisnite kako biste postavili Signal kao zadanu SMS aplikaciju.</string>
   <string name="reminder_header_sms_default_button">POSTAVI</string>

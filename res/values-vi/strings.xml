@@ -8,9 +8,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập cụm từ mật khẩu!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s tin nhắn cho mỗi cuộc chuyện trò</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Thao tác này sẽ thu ngắn tức thì tất cả các cuộc hội thoại đến %s tin nhắn gần nhất.</string>
   <string name="ApplicationPreferencesActivity_delete">Xóa</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Tắt cụm từ mật khẩu?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -33,7 +31,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ApplicationPreferencesActivity_Off">Tắt</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d phút</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(hình)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(âm thanh)</string>
@@ -98,8 +95,6 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationActivity_group_members">Thành viên trong nhóm</string>
   <string name="ConversationActivity_group_conversation">Chuyện trò nhóm</string>
   <string name="ConversationActivity_unnamed_group">Nhóm chưa đặt tên</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d thành viên</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 thành viên</string>
   <string name="ConversationActivity_saved_draft">Lưu bản nháp</string>
   <string name="ConversationActivity_invalid_recipient">Người nhận không đúng!</string>
   <string name="ConversationActivity_calls_not_supported">Không hỗ trợ tính năng gọi điện</string>
@@ -156,10 +151,8 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   </plurals>
   <string name="ConversationListFragment_deleting">Đang xóa</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Đang xoá các cuộc hội thoại đã chọn...</string>
-  <string name="ConversationListFragment_archived_conversations">Các cuộc hội thoại đã bảo lưu</string>
   <string name="ConversationListFragment_undo">HOÀN TÁC</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Đã chuyển cuộc hội thoại vào hộp thư đến</string>
-  <string name="ConversationListFragment_archived_conversation">Cuộc hội thoại đã bảo lưu</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Đã chuyển các cuộc hội thoại vào hộp thư đến</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Thông tin trao đổi chìa khóa...</string>
@@ -746,7 +739,6 @@ SMS thất bại.
   <string name="AndroidManifest__message_details">Chi tiết tin nhắn</string>
   <string name="AndroidManifest_manage_linked_devices">Quản trị các thiết bị liên kết</string>
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
-  <string name="AndroidManifest_conversations_archive">Bản lưu các cuộc hội thoại</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Xuất / nhập</string>
   <string name="arrays__your_identity_key">Khóa danh tính</string>
@@ -958,8 +950,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="text_secure_normal__invite_friends">Mời bạn bè</string>
   <string name="text_secure_normal__help">Trợ giúp</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Bản dựng Signal này đã hết hạn!</string>
-  <string name="reminder_header_expired_build_details">Tin nhắn không còn gửi đi được nữa, xin vui lòng cập nhật lên phiên bản mới nhất.</string>
   <string name="reminder_header_expired_build_button">CẬP NHẬT</string>
   <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định</string>
   <string name="reminder_header_sms_default_text">Chạm để đặt Signal làm ứng dụng SMS mặc định.</string>

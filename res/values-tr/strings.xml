@@ -8,9 +8,13 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hala bir parola belirlememişsiniz!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">sohbet başına %s mesaj</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="other">sohbet başına %d mesaj</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Tüm eski mesajlar silinsin mi?</string>
-  <string name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_s_most_recent_messages">Bu tüm sohbetleri hemen  %s en son mesaja kadar kırpar.</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="other">Bu işlem tüm sohbetleri %d en son mesaja kadar kırpar.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Sil</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Parolayı etkisizleştir?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -31,7 +35,9 @@ Mesajlar için kilit ekranı devre dışı bırakılsın mı?</string>
   <string name="ApplicationPreferencesActivity_Off">Kapalı</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d dakika</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="other">%d dakika</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(resim)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ses)</string>
@@ -66,8 +72,8 @@ Mesajlar için kilit ekranı devre dışı bırakılsın mı?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Hata, bozuk anahtar takas mesajı alındı.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Anahtar takas mesajı alındı, işlemek için tıklayın.</string>
   <string name="ConversationItem_group_action_left">%1$s gruptan ayrıldı.</string>
-  <string name="ConversationItem_click_for_details">Detaylar için tıklayın</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Güvensize geri dönmek için dokun</string>
+  <string name="ConversationItem_click_for_details">Detaylar için hafifçe dokunun</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Güvensize geri dönmek için hafifçe dokunun</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrelenmemiş SMS\'e geri dönülsün mü?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrelenmemiş MMS\'e geri dönülsün mü?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj alıcının artık Signal kullanıcısı olmaması nedeni ile şifrelenmiş olarak <b>gönderilemez</b>. \n\nGüvensiz mesaj gönderilsin mi?</string>
@@ -90,8 +96,9 @@ Mesajlar için kilit ekranı devre dışı bırakılsın mı?</string>
   <string name="ConversationActivity_group_members">Grup üyeleri</string>
   <string name="ConversationActivity_group_conversation">Grup sohbeti</string>
   <string name="ConversationActivity_unnamed_group">Adlandırılmamış grup</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d üye</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 üye</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="other">%d üye</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Kaydedilmiş taslak</string>
   <string name="ConversationActivity_invalid_recipient">Geçersiz alıcı!</string>
   <string name="ConversationActivity_calls_not_supported">Aramalar desteklenmiyor</string>
@@ -148,10 +155,10 @@ Mesajlar için kilit ekranı devre dışı bırakılsın mı?</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Siliniyor</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Seçilmiş sohbetler siliniyor...</string>
-  <string name="ConversationListFragment_archived_conversations">Arşivlenen sohbetler</string>
+  <string name="ConversationListFragment_conversations_archived">Sohbetler arşivlendi</string>
   <string name="ConversationListFragment_undo">Geri Al</string>
   <string name="ConversationListFragment_moved_conversation_to_inbox">Sohbet gelen kutusuna taşındı</string>
-  <string name="ConversationListFragment_archived_conversation">Arşivlenen sohbetler</string>
+  <string name="ConversationListFragment_conversation_archived">Sohbet arşivlendi</string>
   <string name="ConversationListFragment_moved_conversations_to_inbox">Sohbetler gelen kutusuna taşındı</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas mesajı...</string>
@@ -184,7 +191,7 @@ Mesajlar için kilit ekranı devre dışı bırakılsın mı?</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ve RedPhone artık tek bir özel haberleşme uygulaması \"Signal\"</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal\'e hoşgeldiniz!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure\'un adı artık Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ve RedPhone artık tek bir uygulama \"Signal\" Keşfetmek için dokunun.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ve RedPhone artık tek bir uygulama: \"Signal\". Keşfetmek için hafifçe dokunun.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Dışarı Aktar</string>
   <string name="ExportFragment_export_plaintext_to_storage">Metni dışarı aktar?</string>
@@ -241,7 +248,7 @@ Mesajlar için kilit ekranı devre dışı bırakılsın mı?</string>
   <string name="ImportFragment_no_encrypted_backup_found">Şifrelenmiş yedek bulunamadı!</string>
   <string name="ImportFragment_restore_complete">Yeniden yükleme tamamlandı!</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli mesaj kaydetmek için dokun ve basılı tut, göndermek için bırak</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli mesaj kaydetmek için hafifçe dokun ve basılı tut, göndermek için bırak</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Paylaş</string>
   <string name="InviteActivity_send_sms">SMS Gönder</string>
@@ -413,7 +420,7 @@ mesajı alındı!</string>
 Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntülemek için tıklayın.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Güncellenmiş fakat bilinmeyen bir kimlik bilgisi alındı. Kimlik doğrulaması için haififçe vurun.</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Güncellenmiş fakat bilinmeyen bir kimlik bilgisi alındı. Kimlik doğrulaması için hafifçe dokunun.</string>
   <string name="SmsMessageRecord_secure_session_reset">Güvenli oturumu sıfırla.</string>
   <string name="SmsMessageRecord_duplicate_message">Çifte mesaj.</string>
   <!--ThreadRecord-->
@@ -461,7 +468,7 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="MmsDatabase_downloading_mms">MMS indiriliyor...</string>
   <string name="MmsDatabase_mms_download_failed">MMS indirme hatası!</string>
   <string name="MmsDatabase_downloading">İndiriliyor...</string>
-  <string name="MmsDatabase_mms_pending_download">İndirmeye devam etmek için hafifçe vur ve MMS ayarlarını yapılandırın.</string>
+  <string name="MmsDatabase_mms_pending_download">İndirmeye devam etmek için hafifçe dokunun ve MMS ayarlarını yapılandırın.</string>
   <string name="MmsDatabase_error_decrypting_message">Mesaj şifre çözme hatası.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS şifresi çözülüyor, bekleyin...</string>
@@ -654,7 +661,7 @@ Signal Google Voice numaraları ile çalışmaz.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Ses doğrulama</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal ayrıca numaranızı doğrulamak için sizi arayabilir. \'Beni Ara\' kısmına dokunun ve duyduğunuz altı haneli kodu girin.</string>
+Signal ayrıca numaranızı doğrulamak için sizi arayabilir. \'Beni Ara\' kısmına hafifçe dokunun ve duyduğunuz altı haneli kodu aşağıda girin.</string>
   <string name="registration_progress_activity__verify">Doğrulama</string>
   <string name="registration_progress_activity__call_me">Beni ara</string>
   <string name="registration_progress_activity__edit_number">Numarayı düzenle</string>
@@ -714,7 +721,7 @@ başarısız.</string>
   <string name="AndroidManifest__message_details">Mesaj detayları</string>
   <string name="AndroidManifest_manage_linked_devices">Bağlanmış cihazları yönetin</string>
   <string name="AndroidManifest__invite_friends">Arkadaşlarını davet et!</string>
-  <string name="AndroidManifest_conversations_archive">Sohbet arşivi</string>
+  <string name="AndroidManifest_archived_conversations">Arşivlenmiş sohbetler</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçeri / Dışarı Aktar</string>
   <string name="arrays__your_identity_key">Kimlik anahtarınız</string>
@@ -924,14 +931,19 @@ başarısız.</string>
   <string name="text_secure_normal__invite_friends">Arkadaşlarını davet et!</string>
   <string name="text_secure_normal__help">Yardım</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Signal derlemesinin süresi doldu!</string>
-  <string name="reminder_header_expired_build_details">Mesajlar artık başarılı olarak gönderilemeyecektir, lütfen en yeni sürüme güncelleyiniz. </string>
+  <string name="reminder_header_outdated_build">Signal sürümünüz eski kalmış</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="other">Signal sürümünüz %d günde kullanım dışı kalacak. En yeni sürüme güncellemek için hafifçe dokunun.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Signal sürümünüz bugün kullanım dışı kalacak. En yeni sürüme güncellemek için hafifçe dokunun.</string>
+  <string name="reminder_header_expired_build">Signal sürümünüz kullanım dışı kaldı!</string>
+  <string name="reminder_header_expired_build_details">Mesajlarınız artık başarılı olarak gönderilemez. En yeni sürüme güncellemek için hafifçe dokunun.</string>
   <string name="reminder_header_expired_build_button">GÜNCELLEŞTİR</string>
   <string name="reminder_header_sms_default_title">Varsayılan SMS uygulaması olarak ayarla</string>
-  <string name="reminder_header_sms_default_text">Signal\'i varsayılan SMS uygulaması yapmak için dokun.</string>
+  <string name="reminder_header_sms_default_text">Signal\'i varsayılan SMS uygulaması yapmak için hafifçe dokunun.</string>
   <string name="reminder_header_sms_default_button">Belirle</string>
   <string name="reminder_header_sms_import_title">Sistem SMS\'lerini içe aktar</string>
-  <string name="reminder_header_sms_import_text">Telefonunuzdaki SMS mesajlarınızı, şifrelenmiş veritabanına aktarmak için dokunun.</string>
+  <string name="reminder_header_sms_import_text">Telefonunuzdaki SMS mesajlarınızı, şifrelenmiş veritabanına aktarmak için hafifçe dokunun.</string>
   <string name="reminder_header_sms_import_button">İÇE AKTAR</string>
   <string name="reminder_header_push_title">Signal mesajlarını ve aramalarını etkinleştir</string>
   <string name="reminder_header_push_text">İletişim deneyiminizi yükseltin.</string>
