@@ -658,10 +658,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleAddToContacts() {
-    final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-    intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
-    intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-    startActivityForResult(intent, ADD_CONTACT);
+    try {
+      final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+      intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipients.getPrimaryRecipient().getNumber());
+      intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+      startActivityForResult(intent, ADD_CONTACT);
+    } catch (ActivityNotFoundException e) {
+      Log.w(TAG, e);
+    }
   }
 
   private void handleAddAttachment() {
