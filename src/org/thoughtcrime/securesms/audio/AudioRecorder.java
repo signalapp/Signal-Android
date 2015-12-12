@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
 import ws.com.google.android.mms.ContentType;
@@ -33,8 +34,8 @@ public class AudioRecorder {
   private final MasterSecret           masterSecret;
   private final PersistentBlobProvider blobProvider;
 
-  private AudioCodec audioCodec;
-  private Uri        captureUri;
+  private AudioCodec            audioCodec;
+  private ListenableFuture<Uri> captureUri;
 
   public AudioRecorder(@NonNull Context context, @NonNull MasterSecret masterSecret) {
     this.context      = context;
@@ -84,13 +85,24 @@ public class AudioRecorder {
 
         audioCodec.stop();
 
-        try {
-          long size = MediaUtil.getMediaSize(context, masterSecret, captureUri);
-          sendToFuture(future, new Pair<>(captureUri, size));
-        } catch (IOException ioe) {
-          Log.w(TAG, ioe);
-          sendToFuture(future, ioe);
-        }
+        captureUri.addListener(new ListenableFuture.Listener<Uri>() {
+          @Override
+          public void onSuccess(Uri result) {
+            try {
+              long size = MediaUtil.getMediaSize(context, masterSecret, result);
+              sendToFuture(future, new Pair<>(result, size));
+            } catch (IOException e) {
+              Log.w(TAG, e);
+              onFailure(new ExecutionException(e));
+            }
+          }
+
+          @Override
+          public void onFailure(ExecutionException e) {
+            Log.w(TAG, e);
+            sendToFuture(future, e);
+          }
+        });
 
         audioCodec = null;
         captureUri = null;

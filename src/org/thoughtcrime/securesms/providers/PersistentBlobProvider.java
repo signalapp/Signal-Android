@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -23,6 +25,7 @@ import java.io.OutputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -69,18 +72,34 @@ public class PersistentBlobProvider {
   {
     final long id = System.currentTimeMillis();
     cache.put(id, blobBytes);
-    return create(masterSecret, new ByteArrayInputStream(blobBytes), id, mimeType);
+    persistToDisk(masterSecret, id, new ByteArrayInputStream(blobBytes));
+    return createUri(id, mimeType);
   }
 
-  public Uri create(@NonNull MasterSecret masterSecret,
-                    @NonNull InputStream input,
-                    @NonNull String mimeType)
+  public ListenableFuture<Uri> create(@NonNull MasterSecret masterSecret,
+                                      @NonNull InputStream input,
+                                      @NonNull String mimeType)
   {
-    return create(masterSecret, input, System.currentTimeMillis(), mimeType);
+    final long                id     = System.currentTimeMillis();
+    final Uri                 uri    = createUri(id, mimeType);
+    final SettableFuture<Uri> future = new SettableFuture<>();
+
+    persistToDisk(masterSecret, id, input).addListener(new ListenableFuture.Listener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        future.set(uri);
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        future.setException(e);
+      }
+    });
+
+    return future;
   }
 
-  private Uri create(MasterSecret masterSecret, InputStream input, long id, String mimeType) {
-    persistToDisk(masterSecret, id, input);
+  private Uri createUri(long id, String mimeType) {
     final Uri uniqueUri = CONTENT_URI.buildUpon()
                                      .appendPath(mimeType)
                                      .appendEncodedPath(String.valueOf(System.currentTimeMillis()))
@@ -88,7 +107,9 @@ public class PersistentBlobProvider {
     return ContentUris.withAppendedId(uniqueUri, id);
   }
 
-  private void persistToDisk(final MasterSecret masterSecret, final long id, final InputStream input) {
+  private ListenableFuture<Boolean> persistToDisk(final MasterSecret masterSecret, final long id, final InputStream input) {
+    final SettableFuture<Boolean> future = new SettableFuture<>();
+
     executor.submit(new Runnable() {
       @Override
       public void run() {
@@ -97,13 +118,17 @@ public class PersistentBlobProvider {
           Log.w(TAG, "Starting stream copy....");
           Util.copy(input, output);
           Log.w(TAG, "Stream copy finished...");
+          future.set(true);
         } catch (IOException e) {
           Log.w(TAG, e);
+          future.setException(e);
         }
 
         cache.remove(id);
       }
     });
+
+    return future;
   }
 
   public Uri createForExternal(@NonNull String mimeType) throws IOException {

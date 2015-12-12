@@ -21,15 +21,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
 import android.os.Process;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.system.ErrnoException;
-import android.system.Os;
-import android.system.StructStat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -45,13 +40,14 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.ExecutionException;
 
 /**
  * An activity to quickly share content with contacts
@@ -193,7 +189,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     return MediaUtil.getCorrectedMimeType(getIntent().getType());
   }
 
-  private class ResolveMediaTask extends AsyncTask<Uri, Void, Uri> {
+  private class ResolveMediaTask extends AsyncTask<Uri, Void, ListenableFuture<Uri>> {
     private final Context context;
 
     public ResolveMediaTask(Context context) {
@@ -201,7 +197,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    protected Uri doInBackground(Uri... uris) {
+    protected ListenableFuture<Uri> doInBackground(Uri... uris) {
       try {
         if (uris.length != 1 || uris[0] == null) {
           return null;
@@ -227,10 +223,25 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    protected void onPostExecute(Uri uri) {
-      resolvedExtra = uri;
-      ViewUtil.fadeIn(fragmentContainer, 300);
-      ViewUtil.fadeOut(progressWheel, 300);
+    protected void onPostExecute(ListenableFuture<Uri> uri) {
+      uri.addListener(new ListenableFuture.Listener<Uri>() {
+        @Override
+        public void onSuccess(final Uri result) {
+          Util.runOnMain(new Runnable() {
+            @Override
+            public void run() {
+              resolvedExtra = result;
+              ViewUtil.fadeIn(fragmentContainer, 300);
+              ViewUtil.fadeOut(progressWheel, 300);
+            }
+          });
+        }
+
+        @Override
+        public void onFailure(ExecutionException e) {
+          Log.w(TAG, e);
+        }
+      });
     }
 
     private InputStream openFileUri(Uri uri) throws IOException {

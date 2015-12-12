@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.util;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -23,7 +25,6 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.ExecutionException;
 
 import ws.com.google.android.mms.ContentType;
 
@@ -133,6 +134,12 @@ public class MediaUtil {
 
   public static boolean isVideo(Attachment attachment) {
     return ContentType.isVideoType(attachment.getContentType());
+  }
+
+  public static boolean isPersistent(@NonNull final Uri uri) {
+    return MediaStore.AUTHORITY            .equals(uri.getAuthority()) ||
+           PersistentBlobProvider.AUTHORITY.equals(uri.getAuthority()) ||
+           ContentResolver.SCHEME_FILE     .equals(uri.getScheme());
   }
 
   public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {
