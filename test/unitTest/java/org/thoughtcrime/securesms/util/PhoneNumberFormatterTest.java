@@ -5,6 +5,7 @@ import junit.framework.AssertionFailedError;
 import org.junit.Test;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.TextSecureTestCase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
