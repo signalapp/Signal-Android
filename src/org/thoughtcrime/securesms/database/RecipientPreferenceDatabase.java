@@ -166,10 +166,32 @@ public class RecipientPreferenceDatabase extends Database {
     if (nickname != null && nickname.length() > MAX_NICKNAME_LENGTH) {
       nickname = nickname.substring(0, MAX_NICKNAME_LENGTH);
     }
+    String oldNickname = getNickname(recipients);
+    if (nickname == oldNickname || nickname.equals(oldNickname)) {
+      return;
+    }
     ContentValues values = new ContentValues(1);
     values.put(NICKNAME, nickname);
     updateOrInsert(recipients, values);
     RecipientFactory.clearCache();
+  }
+
+  private String getNickname(Recipients recipients) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, new String[] {NICKNAME}, RECIPIENT_IDS + " = ?",
+                              new String[] {Util.join(recipients.getIds(), " ")},
+                              null, null, null);
+
+      if (cursor != null && cursor.moveToNext()) {
+        return cursor.getString(cursor.getColumnIndexOrThrow(NICKNAME));
+      }
+      return null;
+    } finally {
+      if (cursor != null) cursor.close();
+    }
   }
 
   private void updateOrInsert(Recipients recipients, ContentValues contentValues) {
