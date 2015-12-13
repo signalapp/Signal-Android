@@ -153,7 +153,7 @@ public class ConversationFragment extends Fragment
   }
 
   public void reloadList() {
-    getLoaderManager().restartLoader(0, null, this);
+    getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
   }
 
   private void initializeResources() {
