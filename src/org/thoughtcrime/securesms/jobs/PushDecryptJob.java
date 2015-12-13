@@ -324,6 +324,13 @@ public class PushDecryptJob extends ContextJob {
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
     String                body     = message.getBody().isPresent() ? message.getBody().get() : "";
 
+    if (message.getNickname().isPresent() && envelope.getSource() != null) {
+      Recipients recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), true);
+      String     nickname   = message.getNickname().get();
+
+      DatabaseFactory.getRecipientPreferenceDatabase(context).setNickname(recipients, nickname);
+    }
+
     Pair<Long, Long> messageAndThreadId;
 
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
