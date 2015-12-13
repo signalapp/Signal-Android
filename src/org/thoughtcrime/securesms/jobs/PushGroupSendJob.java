@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
@@ -146,7 +147,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       messageSender.sendMessage(addresses, groupDataMessage);
     } else {
       TextSecureGroup       group        = new TextSecureGroup(groupId);
-      TextSecureDataMessage groupMessage = new TextSecureDataMessage(message.getSentTimeMillis(), group, attachments, message.getBody());
+      TextSecureDataMessage groupMessage = new TextSecureDataMessage(message.getSentTimeMillis(), group, TextSecurePreferences.getNickname(context), attachments, message.getBody(), false);
 
       messageSender.sendMessage(addresses, groupMessage);
     }
