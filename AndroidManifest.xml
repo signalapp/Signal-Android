@@ -6,6 +6,7 @@
       android:versionName="3.7.2">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat"/>
+    <uses-sdk andoid:targetSdkVersion="22" />
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -92,8 +93,6 @@
     <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
-                 tools:replace="android:allowBackup"
-                 android:allowBackup="false"
                  android:theme="@style/TextSecure.LightTheme">
 
     <meta-data android:name="com.google.android.gms.version"
