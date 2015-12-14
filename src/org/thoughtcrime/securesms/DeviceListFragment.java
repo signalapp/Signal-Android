@@ -142,6 +142,7 @@ public class DeviceListFragment extends ListFragment
                               new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
+        getLoaderManager().getLoader(0).forceLoad();
         getLoaderManager().initLoader(0, null, DeviceListFragment.this);
       }
     });
