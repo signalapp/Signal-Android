@@ -145,7 +145,25 @@ public class DeviceListFragment extends ListFragment
         getLoaderManager().initLoader(0, null, DeviceListFragment.this);
       }
     });
-    builder.show();
+
+    builder.setNegativeButton(android.R.string.cancel,
+            new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        DeviceListFragment.this.getActivity().onBackPressed();
+      }
+    });
+    builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+      @Override
+      public void onCancel(DialogInterface dialog) {
+        DeviceListFragment.this.getActivity().onBackPressed();
+      }
+    });
+
+    AlertDialog dialog = builder.create();
+    // This method is not available in the Builder class.
+    dialog.setCanceledOnTouchOutside(false);
+    dialog.show();
   }
 
   private void handleDisconnectDevice(final long deviceId) {
