@@ -211,41 +211,47 @@ public class PushDecryptJob extends MasterSecretJob {
   private void handleProfileUpdate(TextSecureMessage message, MasterSecret masterSecret, TextSecureEnvelope envelope)
       throws MmsException
   {
-    String color = new GDataPreferences(context).getCurrentColorHex()+"";
-
     Long numberAsLong = GUtil.numberToLong(RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false).getPrimaryRecipient().getNumber());
+    String color = new GDataPreferences(context).getCurrentColorHex()+"";
+    String version = ProfileAccessor.getVersionForId(context, numberAsLong+"");
+
     if(message.getAttachments().isPresent()) {
       int colorPosition = -1;
-      List<TextSecureAttachment> group = message.getAttachments().get();
-      for (int i=0; i<group.size(); i++) {
-        if (group.get(i).getContentType().contains(ProfileAccessor.TAG_OPEN_PROFILE_COLOR)) {
-          String content = group.get(i).getContentType();
-          int startPosition = content.indexOf(ProfileAccessor.TAG_OPEN_PROFILE_COLOR) + ProfileAccessor.TAG_OPEN_PROFILE_COLOR.length();
-          int endPosition = content.indexOf(ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, startPosition);
-          color = content.substring(startPosition, endPosition);
-
+      int versionPosition = -1;
+      List<TextSecureAttachment> attachments = message.getAttachments().get();
+      for (int i=0; i<attachments.size(); i++) {
+        String contentTypes = attachments.get(i).getContentType();
+        if (contentTypes.contains(ProfileAccessor.TAG_OPEN_PROFILE_COLOR)) {
+          color = GUtil.getValueForTags(contentTypes, ProfileAccessor.TAG_OPEN_PROFILE_COLOR, ProfileAccessor.TAG_CLOSE_PROFILE_COLOR);
           colorPosition = i;
+        }
+        if (contentTypes.contains(ProfileAccessor.TAG_OPEN_PROFILE_VERSION)) {
+          version = GUtil.getValueForTags(contentTypes, ProfileAccessor.TAG_CLOSE_PROFILE_VERSION, ProfileAccessor.TAG_CLOSE_PROFILE_VERSION);
+          versionPosition = i;
         }
       }
       //If a color has been extracted from the attachments, it can be removed before initiating the downloads
       if(colorPosition>=0) {
-        group.remove(colorPosition);
+        attachments.remove(colorPosition);
+        ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
       }
+      if(versionPosition>=0) {
+        attachments.remove(versionPosition);
+        ProfileAccessor.setVersionForProfileId(context, numberAsLong+"", version);
+      }
+      if(attachments.size()>0) {
+        PduBody parts = OutgoingMediaMessage.pduBodyFor(masterSecret, attachments);
+        PartDatabase database = DatabaseFactory.getPartDatabase(context);
 
-      PduBody parts = OutgoingMediaMessage.pduBodyFor(masterSecret, group);
-      PartDatabase database = DatabaseFactory.getPartDatabase(context);
-
-      database.deleteParts(numberAsLong); // Only the last ProfileImage needs to be downloaded
-      database.insertParts(masterSecret, numberAsLong, parts);
-
-      ApplicationContext.getInstance(context)
-              .getJobManager()
-              .add(new ProfileImageDownloadJob(context, numberAsLong));
+        database.deleteParts(numberAsLong); // Only the last ProfileImage needs to be downloaded
+        database.insertParts(masterSecret, numberAsLong, parts);
+          ApplicationContext.getInstance(context)
+          .getJobManager()
+          .add(new ProfileImageDownloadJob(context, numberAsLong));
+      }
     }
     ProfileAccessor.setStatusForProfileId(context, numberAsLong + "", message.getBody().get());
-    ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
     ProfileAccessor.setUpdateTimeForProfileId(context, numberAsLong + "", message.getTimestamp());
-    ProfileAccessor.setColorForProfileId(context, numberAsLong + "", color);
 
   }
   private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
