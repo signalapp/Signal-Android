@@ -390,11 +390,13 @@ public class ProfileFragment extends Fragment {
                     ProfileAccessor.deleteMyProfilePicture(getActivity());
                     refreshLayout();
                     profileStatus.dismissDropDown();
+                    gDataPreferences.hasProfileImageChanged(true);
                 }
             });
             profileImageEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    gDataPreferences.hasProfileImageChanged(true);
                     hasChanged = true;
                     hasLeft = false;
                     handleAddAttachment();

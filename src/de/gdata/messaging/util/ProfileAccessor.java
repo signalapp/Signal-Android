@@ -57,6 +57,9 @@ public class ProfileAccessor {
 
   public static String TAG_OPEN_PROFILE_COLOR = "[COLOR]";
   public static String TAG_CLOSE_PROFILE_COLOR = "[/COLOR]";
+  public static String TAG_OPEN_PROFILE_VERSION = "[VERSION]";
+  public static String TAG_CLOSE_PROFILE_VERSION = "[/VERSION]";
+  public static String OLD_VERSION = "0";
 
   public static GDataPreferences getPreferences(Context context) {
     if (preferences == null) {
@@ -292,5 +295,12 @@ public class ProfileAccessor {
       profileColor = getPreferences(context).getCurrentColorHex()+"";
     }
     return profileColor;
+  }
+
+  public static String getVersionForId(Context context, String profileId) {
+    return getPreferences(context).getVersionForProfileId(profileId);
+  }
+  public static void setVersionForProfileId(Context context, String profileId, String version) {
+    getPreferences(context).setVersionForProfileId(profileId, version);
   }
 }

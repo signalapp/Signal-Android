@@ -42,9 +42,10 @@ public class GDataPreferences {
   private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
   private static final String CP_COLOR_ACTIVATED = "CP_COLOR_ACTIVATED";
 
-  private static final long ONE_SECOND = 1000;
-
   private static final String COLOR_DEFAULT = "COLOR_DEFAULT";
+  private static final String PROFILE_IMAGE_CHANGED = "PROFILE_IMAGE_CHANGED";
+
+  private static final long ONE_SECOND = 1000;
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
@@ -108,6 +109,12 @@ public class GDataPreferences {
   }
   public String getProfileColorForProfileId(String profileId) {
     return mPreferences.getString("color:" + profileId, "0");
+  }
+  public String getVersionForProfileId(String profileId) {
+    return mPreferences.getString("version:" + profileId, "0");
+  }
+  public void setVersionForProfileId(String profileId, String version) {
+    mPreferences.edit().putString("version:" + profileId, version).commit();
   }
   public String getProfileStatusForProfileId(String profileId) {
     return mPreferences.getString("status:" + profileId, "");
@@ -299,6 +306,15 @@ public class GDataPreferences {
   }
   public void setColorDefaultEnabled(boolean b) {
     mPreferences.edit().putBoolean(COLOR_DEFAULT, b).commit();
+  }
+  public boolean hasProfileImageChanged(boolean b) {
+    boolean hasChanged = mPreferences.getBoolean(PROFILE_IMAGE_CHANGED, true);
+    mPreferences.edit().putBoolean(PROFILE_IMAGE_CHANGED, b).commit();
+    return hasChanged;
+  }
+  public boolean hasProfileImageChanged() {
+    boolean hasChanged = mPreferences.getBoolean(PROFILE_IMAGE_CHANGED, true);
+    return hasChanged;
   }
 }
 

@@ -140,6 +140,21 @@ public class AttachmentManager {
 
     return mediaFile;
   }
+  public static File getOutputMediaFileWithAddition(Context activity, String addition){
+
+    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES), "SecureChat");
+    if (!mediaStorageDir.exists()){
+      if (!mediaStorageDir.mkdirs()){
+        Log.d("SecureChat", "failed to create directory");
+        return null;
+      }
+    }
+    File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+            "prof_image"+ new GDataPreferences(activity).getLastImageIndicator() +addition+" .jpg");
+
+    return mediaFile;
+  }
   public static File getOutputMediaVideo(Context activity){
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES), "SecureChat");
