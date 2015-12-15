@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.TaskStackBuilder;
 
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -69,7 +70,9 @@ public class NotificationItem {
     intent.putExtra("thread_id", threadId);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
-    return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    return TaskStackBuilder.create(context)
+                           .addNextIntentWithParentStack(intent)
+                           .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
 
