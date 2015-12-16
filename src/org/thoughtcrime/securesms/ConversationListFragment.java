@@ -201,10 +201,13 @@ public class ConversationListFragment extends Fragment
     final Set<Long> selectedConversations = new HashSet<>(getListAdapter().getBatchSelections());
     final boolean   archive               = this.archive;
 
-    String snackBarTitle;
+    int snackBarTitleId;
 
-    if (archive) snackBarTitle = getString(R.string.ConversationListFragment_moved_conversations_to_inbox);
-    else         snackBarTitle = getString(R.string.ConversationListFragment_conversations_archived);
+    if (archive) snackBarTitleId = R.plurals.ConversationListFragment_moved_conversations_to_inbox;
+    else         snackBarTitleId = R.plurals.ConversationListFragment_conversations_archived;
+
+    int count            = selectedConversations.size();
+    String snackBarTitle = getResources().getQuantityString(snackBarTitleId, count, count);
 
     new SnackbarAsyncTask<Void>(getView(), snackBarTitle,
                                 getString(R.string.ConversationListFragment_undo),
@@ -438,7 +441,7 @@ public class ConversationListFragment extends Fragment
 
       if (archive) {
         new SnackbarAsyncTask<Long>(getView(),
-                                    getString(R.string.ConversationListFragment_moved_conversation_to_inbox),
+                                    getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
                                     getString(R.string.ConversationListFragment_undo),
                                     getResources().getColor(R.color.amber_500),
                                     Snackbar.LENGTH_LONG, false)
@@ -455,7 +458,7 @@ public class ConversationListFragment extends Fragment
         }.execute(threadId);
       } else {
         new SnackbarAsyncTask<Long>(getView(),
-                                    getString(R.string.ConversationListFragment_conversation_archived),
+                                    getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
                                     getString(R.string.ConversationListFragment_undo),
                                     getResources().getColor(R.color.amber_500),
                                     Snackbar.LENGTH_LONG, false)
