@@ -294,15 +294,16 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     AudioUtils.resetConfiguration(this);
 
     Log.d(TAG, "request STREAM_VOICE_CALL audio focus");
-    audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL,
-                                   AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+    audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN);
   }
 
   private void shutdownAudio() {
     Log.d(TAG, "reset audio mode and abandon focus");
+    AudioUtils.resetConfiguration(this);
     AudioManager am = ServiceUtil.getAudioManager(this);
     am.setMode(AudioManager.MODE_NORMAL);
     am.abandonAudioFocus(null);
+    am.stopBluetoothSco();
   }
 
   public int getState() {
