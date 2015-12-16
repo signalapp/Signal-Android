@@ -17,7 +17,6 @@
 
 package org.thoughtcrime.redphone.audio;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
@@ -91,6 +90,7 @@ public class IncomingRinger {
     }
 
     if (player != null && ringerMode == AudioManager.RINGER_MODE_NORMAL ) {
+      Log.d(TAG, "set MODE_RINGTONE audio mode");
       audioManager.setMode(AudioManager.MODE_RINGTONE);
       try {
         if(!player.isPlaying()) {
@@ -117,6 +117,7 @@ public class IncomingRinger {
     Log.d(TAG, "Cancelling vibrator");
     vibrator.cancel();
 
+    Log.d(TAG, "reset audio mode");
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
     audioManager.setMode(AudioManager.MODE_NORMAL);
   }
@@ -134,7 +135,7 @@ public class IncomingRinger {
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   private boolean shouldVibrateNew(Context context) {
-    AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager audioManager = ServiceUtil.getAudioManager(context);
     Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
     if (vibrator == null || !vibrator.hasVibrator()) {
@@ -151,7 +152,7 @@ public class IncomingRinger {
   }
 
   private boolean shouldVibrateOld(Context context) {
-    AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager audioManager = ServiceUtil.getAudioManager(context);
     return audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
   }
 }
