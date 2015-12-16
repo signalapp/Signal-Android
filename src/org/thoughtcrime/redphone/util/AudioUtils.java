@@ -5,6 +5,8 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.ServiceUtil;
+
 /**
  * Utilities for manipulating device audio configuration
  *
@@ -13,22 +15,23 @@ import android.util.Log;
 public class AudioUtils {
   private static final String TAG = AudioUtils.class.getName();
   public static void enableDefaultRouting(Context context) {
-    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager am = ServiceUtil.getAudioManager(context);
     am.setSpeakerphoneOn(false);
     am.setBluetoothScoOn(false);
     Log.d(TAG, "Set default audio routing");
   }
 
   public static void enableSpeakerphoneRouting(Context context) {
-    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager am = ServiceUtil.getAudioManager(context);
     am.setSpeakerphoneOn(true);
     Log.d(TAG, "Set speakerphone audio routing");
   }
 
   public static void enableBluetoothRouting(Context context) {
-    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager am = ServiceUtil.getAudioManager(context);
     am.startBluetoothSco();
     am.setBluetoothScoOn(true);
+    Log.d(TAG, "Set bluetooth audio routing");
   }
 
   public static void resetConfiguration(Context context) {
@@ -42,7 +45,7 @@ public class AudioUtils {
   }
 
   public static AudioMode getCurrentAudioMode(Context context) {
-    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager am = ServiceUtil.getAudioManager(context);
     if (am.isBluetoothScoOn()) {
       return AudioMode.HEADSET;
     } else if (am.isSpeakerphoneOn()) {

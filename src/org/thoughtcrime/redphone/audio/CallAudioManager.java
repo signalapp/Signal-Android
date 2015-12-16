@@ -45,6 +45,7 @@ public class CallAudioManager {
 
   public void start(@NonNull Context context) throws AudioException {
     if (Build.VERSION.SDK_INT >= 11) {
+      Log.d(TAG, "set MODE_IN_COMMUNICATION audio mode");
       ServiceUtil.getAudioManager(context).setMode(AudioManager.MODE_IN_COMMUNICATION);
     } else {
 //      ServiceUtil.getAudioManager(context).setMode(AudioManager.MODE_IN_CALL);

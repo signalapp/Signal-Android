@@ -293,12 +293,14 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     AudioManager audioManager = ServiceUtil.getAudioManager(this);
     AudioUtils.resetConfiguration(this);
 
+    Log.d(TAG, "request STREAM_VOICE_CALL audio focus");
     audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL,
                                    AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
   }
 
   private void shutdownAudio() {
-    AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+    Log.d(TAG, "reset audio mode and abandon focus");
+    AudioManager am = ServiceUtil.getAudioManager(this);
     am.setMode(AudioManager.MODE_NORMAL);
     am.abandonAudioFocus(null);
   }
