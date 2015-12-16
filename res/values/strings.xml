@@ -185,11 +185,15 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected conversations...</string>
-    <string name="ConversationListFragment_conversations_archived">Conversations archived</string>
+    <plurals name="ConversationListFragment_conversations_archived">
+        <item quantity="one">Conversation archived</item>
+        <item quantity="other">%d conversations archived</item>
+    </plurals>
     <string name="ConversationListFragment_undo">UNDO</string>
-    <string name="ConversationListFragment_moved_conversation_to_inbox">Moved conversation to inbox</string>
-    <string name="ConversationListFragment_conversation_archived">Conversation archived</string>
-    <string name="ConversationListFragment_moved_conversations_to_inbox">Moved conversations to inbox</string>
+    <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+        <item quantity="one">Moved conversation to inbox</item>
+        <item quantity="other">Moved %d conversations to inbox</item>
+    </plurals>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
