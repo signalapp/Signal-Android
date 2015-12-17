@@ -50,6 +50,7 @@ import de.gdata.messaging.util.PrivacyBridge;
  */
 public class ContactsDatabase {
   private static final String TAG = ContactsDatabase.class.getSimpleName();
+  private static final int SQL_QUERY_LIMIT = 950;
   private final DatabaseOpenHelper dbHelper;
   private final Context            context;
 
@@ -156,17 +157,24 @@ public class ContactsDatabase {
     int c = 0;
     for(Integer id : ids) {
       c++;
-      if(c==1) {
-        selection.append(ID_COLUMN + " != '" + id + "'");
-      } else {
-        selection.append(" AND " + ID_COLUMN + " != '" + id + "'");
+      if(c < SQL_QUERY_LIMIT) {
+        if (c == 1) {
+          selection.append(ID_COLUMN + " != '" + id + "'");
+        } else {
+          selection.append(" AND " + ID_COLUMN + " != '" + id + "'");
+        }
       }
     }
+
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
+
+    String selectionString = filterSelection + (!contactSelection.equals("null")
+            ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
+    : "" + selection.toString());
+
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
-            filterSelection + (!contactSelection.equals("null")
-                    ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
-                    : "" + selection.toString()), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
+    selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
+
     return new TypedCursorWrapper(cursor);
   }
 
