@@ -5,7 +5,7 @@
                         android:key="pref_enable_passphrase_temporary"
                         android:defaultValue="true"
                         android:title="@string/preferences__enable_passphrase"
-                        android:summary="@string/preferences__lock_signal_and_message_notifications_with_passphrase"/>
+                        android:summary="@string/preferences__lock_signal_and_message_notifications_with_a_passphrase"/>
 
     <Preference android:key="pref_change_passphrase"
                 android:title="@string/preferences__change_passphrase"

@@ -938,7 +938,7 @@
     <string name="preferences__change_your_passphrase">Change your passphrase</string>
     <string name="preferences__enable_passphrase">Enable passphrase</string>
     <string name="preferences__passphrase_summary">Passphrase %s</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_passphrase">Lock Signal and message notifications with passphrase</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock Signal and message notifications with a passphrase</string>
     <string name="preferences__screen_security">Screen security</string>
     <string name="preferences__screen_security_summary">Screen security %s</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>
