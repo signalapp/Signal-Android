@@ -943,9 +943,8 @@
     <string name="preferences__screen_security_summary">Screen security %s</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
-    <string name="preferences__timeout_passphrase">Timeout passphrase</string>
-    <string name="preferences__pref_timeout_interval_dialogtitle">Select passphrase timeout</string>
-    <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
+    <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
+    <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
     <string name="preferences__notifications">Notifications</string>
     <string name="preferences__enable_message_notifications">Enable message notifications</string>
     <string name="preferences__led_color">LED color</string>

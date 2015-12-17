@@ -14,11 +14,11 @@
 
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_timeout_passphrase"
-                        android:title="@string/preferences__timeout_passphrase"
+                        android:title="@string/preferences__inactivity_timeout_passphrase"
                         android:summary="@string/preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity"
                         android:dependency="pref_enable_passphrase_temporary"/>
 
-    <Preference android:title="@string/preferences__pref_timeout_interval_title"
+    <Preference android:title="@string/preferences__inactivity_timeout_interval"
                 android:key="pref_timeout_interval"
                 android:dependency="pref_timeout_passphrase"/>
 
