@@ -18,6 +18,7 @@ public class XmlBackup {
 
   private static final String PROTOCOL       = "protocol";
   private static final String ADDRESS        = "address";
+  private static final String THREAD_ADDRESS = "thread_address";
   private static final String DATE           = "date";
   private static final String TYPE           = "type";
   private static final String SUBJECT        = "subject";
@@ -62,6 +63,7 @@ public class XmlBackup {
 
         if      (attributeName.equals(PROTOCOL      )) item.protocol      = Integer.parseInt(parser.getAttributeValue(i));
         else if (attributeName.equals(ADDRESS       )) item.address       = parser.getAttributeValue(i);
+        else if (attributeName.equals(THREAD_ADDRESS)) item.threadAddress = parser.getAttributeValue(i);
         else if (attributeName.equals(DATE          )) item.date          = Long.parseLong(parser.getAttributeValue(i));
         else if (attributeName.equals(TYPE          )) item.type          = Integer.parseInt(parser.getAttributeValue(i));
         else if (attributeName.equals(SUBJECT       )) item.subject       = parser.getAttributeValue(i);
@@ -80,6 +82,7 @@ public class XmlBackup {
   public static class XmlBackupItem {
     private int    protocol;
     private String address;
+    private String threadAddress;
     private long   date;
     private int    type;
     private String subject;
@@ -90,11 +93,12 @@ public class XmlBackup {
 
     public XmlBackupItem() {}
 
-    public XmlBackupItem(int protocol, String address, long date, int type, String subject,
+    public XmlBackupItem(int protocol, String address, String threadAddress, long date, int type, String subject,
                          String body, String serviceCenter, int read, int status)
     {
       this.protocol      = protocol;
       this.address       = address;
+      this.threadAddress = threadAddress;
       this.date          = date;
       this.type          = type;
       this.subject       = subject;
@@ -110,6 +114,10 @@ public class XmlBackup {
 
     public String getAddress() {
       return address;
+    }
+
+    public String getThreadAddress() {
+      return threadAddress;
     }
 
     public long getDate() {
@@ -172,6 +180,9 @@ public class XmlBackup {
       stringBuilder.append(OPEN_TAG_SMS);
       appendAttribute(stringBuilder, PROTOCOL, item.getProtocol());
       appendAttribute(stringBuilder, ADDRESS, escapeXML(item.getAddress()));
+      if (item.getThreadAddress() != null && !item.getThreadAddress().equals(item.getAddress())) {
+        appendAttribute(stringBuilder, THREAD_ADDRESS, escapeXML(item.getThreadAddress()));
+      }
       appendAttribute(stringBuilder, DATE, item.getDate());
       appendAttribute(stringBuilder, TYPE, item.getType());
       appendAttribute(stringBuilder, SUBJECT, escapeXML(item.getSubject()));

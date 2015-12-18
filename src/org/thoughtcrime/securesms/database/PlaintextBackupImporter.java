@@ -62,8 +62,14 @@ public class PlaintextBackupImporter {
           continue;
 
         Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
-        long            threadId   = threads.getThreadIdFor(recipients);
+        long            threadId;
         SQLiteStatement statement  = db.createInsertStatement(transaction);
+
+        if (item.getThreadAddress() != null) {
+          threadId = threads.getThreadIdFor(RecipientFactory.getRecipientsFromString(context, item.getThreadAddress(), false));
+        } else {
+          threadId = threads.getThreadIdFor(recipients);
+        }
 
         addStringToStatement(statement, 1, item.getAddress());
         addNullToStatement(statement, 2);

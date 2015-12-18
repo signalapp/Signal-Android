@@ -6,6 +6,7 @@ import android.os.Environment;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class PlaintextBackupExporter {
       throws IOException
   {
     int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
+    ThreadDatabase threads  = DatabaseFactory.getThreadDatabase(context);
     XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath(), count);
 
 
@@ -48,9 +50,14 @@ public class PlaintextBackupExporter {
       reader = DatabaseFactory.getEncryptingSmsDatabase(context).getMessages(masterSecret, skip, ROW_LIMIT);
 
       while ((record = reader.getNext()) != null) {
+        String threadAddress = null;
+        Recipients threadRecipients = threads.getRecipientsForThreadId(record.getThreadId());
+        if (threadRecipients != null && !threadRecipients.isEmpty()) {
+          threadAddress = threadRecipients.getPrimaryRecipient().getNumber();
+        }
         XmlBackup.XmlBackupItem item =
             new XmlBackup.XmlBackupItem(0, record.getIndividualRecipient().getNumber(),
-                                        record.getDateReceived(),
+                                        threadAddress, record.getDateReceived(),
                                         MmsSmsColumns.Types.translateToSystemBaseType(record.getType()),
                                         null, record.getDisplayBody().toString(), null,
                                         1, record.getDeliveryStatus());
