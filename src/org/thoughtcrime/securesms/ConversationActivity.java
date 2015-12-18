@@ -56,6 +56,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.redphone.RedPhone;
@@ -174,6 +176,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int GROUP_EDIT        = 5;
   private static final int TAKE_PHOTO        = 6;
   private static final int ADD_CONTACT       = 7;
+  private static final int PICK_LOCATION     = 8;
 
   private   MasterSecret          masterSecret;
   protected ComposeText           composeText;
@@ -312,7 +315,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onActivityResult(int reqCode, int resultCode, Intent data) {
+  public void onActivityResult(final int reqCode, int resultCode, Intent data) {
     Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
@@ -348,6 +351,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       recipients = RecipientFactory.getRecipientsForIds(ConversationActivity.this, recipients.getIds(), true);
       recipients.addListener(this);
       fragment.reloadList();
+      break;
+    case PICK_LOCATION:
+      attachmentManager.setLocation(masterSecret, PlacePicker.getPlace(data, this), getCurrentMediaConstraints());
       break;
     }
   }
@@ -998,6 +1004,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       AttachmentManager.selectAudio(this, PICK_AUDIO); break;
     case AttachmentTypeSelectorAdapter.ADD_CONTACT_INFO:
       AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO); break;
+    case AttachmentTypeSelector.ADD_LOCATION:
+      AttachmentManager.selectLocation(this, PICK_LOCATION); break;
     case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     }

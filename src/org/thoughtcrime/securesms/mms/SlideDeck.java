@@ -17,10 +17,12 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -48,6 +50,22 @@ public class SlideDeck {
     slides.clear();
   }
 
+  @NonNull
+  public String getBody() {
+    String body = "";
+
+    for (Slide slide : slides) {
+      Optional<String> slideBody = slide.getBody();
+
+      if (slideBody.isPresent()) {
+        body = slideBody.get();
+      }
+    }
+
+    return body;
+  }
+
+  @NonNull
   public List<Attachment> asAttachments() {
     List<Attachment> attachments = new LinkedList<>();
 

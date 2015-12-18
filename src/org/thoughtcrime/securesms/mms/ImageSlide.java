@@ -37,7 +37,7 @@ public class ImageSlide extends Slide {
     super(context, attachment);
   }
 
-  public ImageSlide(Context context, Uri uri, long size) throws IOException {
+  public ImageSlide(Context context, Uri uri, long size) {
     super(context, constructAttachmentFromUri(context, uri, ContentType.IMAGE_JPEG, size));
   }
 

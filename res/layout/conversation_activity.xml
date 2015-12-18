@@ -46,6 +46,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
+                <org.thoughtcrime.securesms.components.location.SignalMapView
+                        android:id="@+id/attachment_location"
+                        android:layout_width="210dp"
+                        android:layout_height="210dp"
+                        android:layout_gravity="center_horizontal"
+                        android:visibility="gone"/>
+
                 <org.thoughtcrime.securesms.components.ThumbnailView
                         android:id="@+id/attachment_thumbnail"
                         android:layout_width="230dp"

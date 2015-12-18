@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -32,15 +33,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.RemovableMediaView;
+import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
@@ -61,6 +72,7 @@ public class AttachmentManager {
   private final @NonNull RemovableMediaView removableMediaView;
   private final @NonNull ThumbnailView      thumbnail;
   private final @NonNull AudioView          audioView;
+  private final @NonNull SignalMapView      mapView;
   private final @NonNull AttachmentListener attachmentListener;
 
   private @NonNull  List<Uri>       garbage = new LinkedList<>();
@@ -71,6 +83,7 @@ public class AttachmentManager {
     this.attachmentView     = ViewUtil.findById(activity, R.id.attachment_editor);
     this.thumbnail          = ViewUtil.findById(activity, R.id.attachment_thumbnail);
     this.audioView          = ViewUtil.findById(activity, R.id.attachment_audio);
+    this.mapView            = ViewUtil.findById(activity, R.id.attachment_location);
     this.removableMediaView = ViewUtil.findById(activity, R.id.removable_media_view);
     this.context            = activity;
     this.attachmentListener = listener;
@@ -132,6 +145,29 @@ public class AttachmentManager {
 
     this.captureUri = null;
     this.slide      = Optional.of(slide);
+  }
+
+  public void setLocation(@NonNull final MasterSecret masterSecret,
+                          @NonNull final Place place,
+                          @NonNull final MediaConstraints constraints)
+  {
+    final SignalPlace              signalPlace = new SignalPlace(place);
+          ListenableFuture<Bitmap> future      = mapView.display(signalPlace);
+
+    attachmentView.setVisibility(View.VISIBLE);
+    removableMediaView.display(mapView);
+
+    future.addListener(new AssertedSuccessListener<Bitmap>() {
+      @Override
+      public void onSuccess(@NonNull Bitmap result) {
+        byte[]        blob          = BitmapUtil.toByteArray(result);
+        Uri           uri           = PersistentBlobProvider.getInstance(context).create(masterSecret, blob);
+        LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, signalPlace.getDescription());
+
+        setSlide(locationSlide);
+        attachmentListener.onAttachmentChanged();
+      }
+    });
   }
 
   public void setMedia(@NonNull final MasterSecret masterSecret,
@@ -216,6 +252,14 @@ public class AttachmentManager {
   public static void selectContactInfo(Activity activity, int requestCode) {
     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
     activity.startActivityForResult(intent, requestCode);
+  }
+
+  public static void selectLocation(Activity activity, int requestCode) {
+    try {
+      activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
+    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+      Log.w(TAG, e);
+    }
   }
 
   private @Nullable Uri getSlideUri() {
@@ -310,7 +354,6 @@ public class AttachmentManager {
     public @NonNull Slide createSlide(@NonNull Context context,
                                       @NonNull Uri     uri,
                                                long    dataSize)
-        throws IOException
     {
       switch (this) {
       case IMAGE: return new ImageSlide(context, uri, dataSize);

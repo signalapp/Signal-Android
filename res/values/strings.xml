@@ -617,6 +617,7 @@
     <string name="attachment_type_selector__video">Video</string>
     <string name="attachment_type_selector__contact">Contact</string>
     <string name="attachment_type_selector__camera">Camera</string>
+    <string name="attachment_type_selector__location">Location</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Old passphrase</string>

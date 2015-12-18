@@ -19,7 +19,7 @@ public class GifSlide extends ImageSlide {
     super(context, attachment);
   }
 
-  public GifSlide(Context context, Uri uri, long size) throws IOException {
+  public GifSlide(Context context, Uri uri, long size) {
     super(context, constructAttachmentFromUri(context, uri, ContentType.IMAGE_GIF, size));
   }
 

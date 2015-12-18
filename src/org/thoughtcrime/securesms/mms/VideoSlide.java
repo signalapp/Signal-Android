@@ -34,7 +34,7 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public class VideoSlide extends Slide {
 
-  public VideoSlide(Context context, Uri uri, long dataSize) throws IOException {
+  public VideoSlide(Context context, Uri uri, long dataSize) {
     super(context, constructAttachmentFromUri(context, uri, ContentType.VIDEO_UNSPECIFIED, dataSize));
   }
 
