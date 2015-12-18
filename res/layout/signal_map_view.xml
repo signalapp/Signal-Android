@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_weight="1">
+        <com.google.android.gms.maps.MapView
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
+
+        <ImageView android:id="@+id/image_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:visibility="gone"
+                   tools:src="@drawable/ic_action_warning_red"
+                   tools:visibility="visible"/>
+    </FrameLayout>
+
+    <TextView android:id="@+id/address_view"
+              android:visibility="visible"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="0"
+              android:ellipsize="end"
+              android:maxLines="1"
+              android:singleLine="true"
+              android:padding="5dp"
+              tools:text="21 Jump St, Atlanta GA 30311"/>
+
+</merge>

@@ -30,8 +30,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
-import java.io.IOException;
-
 public abstract class Slide {
 
   protected final Attachment attachment;
@@ -55,6 +53,11 @@ public abstract class Slide {
   @Nullable
   public Uri getThumbnailUri() {
     return attachment.getThumbnailUri();
+  }
+
+  @NonNull
+  public Optional<String> getBody() {
+    return Optional.absent();
   }
 
   public boolean hasImage() {
@@ -100,7 +103,6 @@ public abstract class Slide {
                                                          @NonNull Uri     uri,
                                                          @NonNull String  defaultMime,
                                                                   long     size)
-    throws IOException
   {
     Optional<String> resolvedType = Optional.fromNullable(MediaUtil.getMimeType(context, uri));
     return new UriAttachment(uri, resolvedType.or(defaultMime), AttachmentDatabase.TRANSFER_PROGRESS_STARTED, size);

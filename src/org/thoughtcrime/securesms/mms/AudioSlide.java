@@ -36,7 +36,7 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public class AudioSlide extends Slide {
 
-  public AudioSlide(Context context, Uri uri, long dataSize) throws IOException {
+  public AudioSlide(Context context, Uri uri, long dataSize) {
     super(context, constructAttachmentFromUri(context, uri, ContentType.AUDIO_UNSPECIFIED, dataSize));
   }
 
