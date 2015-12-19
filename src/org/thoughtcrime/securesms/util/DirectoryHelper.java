@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
@@ -32,6 +31,7 @@ import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -213,11 +213,19 @@ public class DirectoryHelper {
                                      @Nullable MasterSecret masterSecret,
                                      @NonNull  List<String> newUsers)
   {
+    if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) return;
+
     for (String newUser : newUsers) {
       if (!SessionUtil.hasSession(context, masterSecret, newUser)) {
         IncomingJoinedMessage message        = new IncomingJoinedMessage(newUser);
         Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
-        MessageNotifier.updateNotification(context, masterSecret, smsAndThreadId.second);
+
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        if (hour >= 9 && hour < 23) {
+          MessageNotifier.updateNotification(context, masterSecret, false, smsAndThreadId.second, true);
+        } else {
+          MessageNotifier.updateNotification(context, masterSecret, false, smsAndThreadId.second, false);
+        }
       }
     }
   }
