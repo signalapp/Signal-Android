@@ -949,6 +949,8 @@
     <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">The amount of time to wait before forgetting passphrase from memory</string>
     <string name="preferences__notifications">Notifications</string>
     <string name="preferences__enable_message_notifications">Enable message notifications</string>
+    <string name="preferences__new_contacts_notifications">New contacts notifications</string>
+    <string name="preferences__show_a_notification_for_new_signal_contacts">Show a notification for new Signal contacts</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__led_color_unknown">Unknown</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
