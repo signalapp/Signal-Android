@@ -187,12 +187,12 @@ public class XmlBackup {
       appendAttribute(stringBuilder, TYPE, item.getType());
       appendAttribute(stringBuilder, SUBJECT, escapeXML(item.getSubject()));
       appendAttribute(stringBuilder, BODY, escapeXML(item.getBody()));
-      appendAttribute(stringBuilder, TOA, "null");
-      appendAttribute(stringBuilder, SC_TOA, "null");
+      // appendAttribute(stringBuilder, TOA, "null");
+      // appendAttribute(stringBuilder, SC_TOA, "null");
       appendAttribute(stringBuilder, SERVICE_CENTER, item.getServiceCenter());
       appendAttribute(stringBuilder, READ, item.getRead());
       appendAttribute(stringBuilder, STATUS, item.getStatus());
-      appendAttribute(stringBuilder, LOCKED, 0);
+      // appendAttribute(stringBuilder, LOCKED, 0);
       stringBuilder.append(CLOSE_EMPTYTAG);
 
       bufferedWriter.newLine();
