@@ -334,10 +334,22 @@ public class MmsDatabase extends MessagingDatabase {
                              " WHERE " + where, arguments);
   }
 
+  private Cursor rawQuery(int skip, int limit) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    return database.rawQuery("SELECT " + Util.join(MMS_PROJECTION, ",") +
+                             " FROM " + MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME +
+                             " ON (" + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")" +
+                             " LIMIT " + skip + ", " + limit, null);
+  }
+
   public Cursor getMessage(long messageId) {
     Cursor cursor = rawQuery(RAW_ID_WHERE, new String[] {messageId + ""});
     setNotifyConverationListeners(cursor, getThreadIdForMessage(messageId));
     return cursor;
+  }
+
+  public Reader getMessages(MasterSecret masterSecret, int skip, int limit) {
+    return readerFor(masterSecret, rawQuery(skip, limit));
   }
 
   public Reader getDecryptInProgressMessages(MasterSecret masterSecret) {
@@ -993,6 +1005,11 @@ public class MmsDatabase extends MessagingDatabase {
         return null;
 
       return getCurrent();
+    }
+
+    public int getCount() {
+      if (cursor == null) return 0;
+      else                return cursor.getCount();
     }
 
     public MessageRecord getCurrent() {

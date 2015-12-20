@@ -55,15 +55,21 @@ public class PlaintextBackupImporter {
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
-        Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
-        long            threadId   = threads.getThreadIdFor(recipients);
-        SQLiteStatement statement  = db.createInsertStatement(transaction);
-
         if (item.getAddress() == null || item.getAddress().equals("null"))
           continue;
 
         if (!isAppropriateTypeForImport(item.getType()))
           continue;
+
+        Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
+        long            threadId;
+        SQLiteStatement statement  = db.createInsertStatement(transaction);
+
+        if (item.getThreadAddress() != null) {
+          threadId = threads.getThreadIdFor(RecipientFactory.getRecipientsFromString(context, item.getThreadAddress(), false));
+        } else {
+          threadId = threads.getThreadIdFor(recipients);
+        }
 
         addStringToStatement(statement, 1, item.getAddress());
         addNullToStatement(statement, 2);
