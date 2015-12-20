@@ -285,6 +285,7 @@
 
             <TextView
                     style="@style/Registration.Description"
+                    android:gravity="start"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
@@ -480,6 +481,7 @@
 
             <TextView
                     style="@style/Registration.Description"
+                    android:gravity="start"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dip"
@@ -498,6 +500,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:text="1:57"
                         android:textSize="12.0sp" />
 
@@ -506,6 +509,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:text="@string/registration_progress_activity__waiting_for_sms_verification"
                         android:textAllCaps="true"
                         android:textSize="12.0sp"

@@ -122,6 +122,15 @@ public class MessageNotifier {
                                         boolean   includePushDatabase,
                                         long      threadId)
   {
+    updateNotification(context, masterSecret, includePushDatabase, threadId, true);
+  }
+
+  public static void updateNotification(@NonNull  Context context,
+                                        @Nullable MasterSecret masterSecret,
+                                        boolean   includePushDatabase,
+                                        long      threadId,
+                                        boolean   signal)
+  {
     boolean    isVisible  = visibleThread == threadId;
 
     ThreadDatabase threads    = DatabaseFactory.getThreadDatabase(context);
@@ -141,7 +150,7 @@ public class MessageNotifier {
     if (isVisible) {
       sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
     } else {
-      updateNotification(context, masterSecret, true, includePushDatabase, 0);
+      updateNotification(context, masterSecret, signal, includePushDatabase, 0);
     }
   }
 

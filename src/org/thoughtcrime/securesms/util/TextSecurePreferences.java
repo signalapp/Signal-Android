@@ -86,6 +86,7 @@ public class TextSecurePreferences {
 
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
   public  static final String NOTIFICATION_PRIVACY_PREF        = "pref_notification_privacy";
+  public  static final String NEW_CONTACTS_NOTIFICATIONS       = "pref_enable_new_contacts_notifications";
 
   public  static final String MEDIA_DOWNLOAD_MOBILE_PREF       = "pref_media_download_mobile";
   public  static final String MEDIA_DOWNLOAD_WIFI_PREF         = "pref_media_download_wifi";
@@ -114,6 +115,10 @@ public class TextSecurePreferences {
 
   public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {
     return new NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"));
+  }
+
+  public static boolean isNewContactsNotificationEnabled(Context context) {
+    return getBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, true);
   }
 
   public static long getRatingLaterTimestamp(Context context) {

@@ -15,6 +15,7 @@
 
         <TextView style="@style/Registration.Label"
                   android:layout_width="fill_parent"
+                  android:gravity="start"
                   android:textAllCaps="true"
                   android:text="@string/registration_activity__your_country" />
 
@@ -25,10 +26,12 @@
 
         <TextView style="@style/Registration.Label"
                   android:layout_width="fill_parent"
+                  android:gravity="start"
                   android:textAllCaps="true"
                   android:text="@string/registration_activity__your_country_code_and_phone_number" />
 
         <LinearLayout android:orientation="horizontal"
+                      android:layoutDirection="ltr"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content">
 
@@ -62,11 +65,13 @@
                   android:layout_width="fill_parent"
                   android:layout_marginBottom="8dip"
                   android:layout_marginTop="16dip"
+                  android:gravity="start"
                   android:text="@string/registration_activity__verify_your_number_to_connect_with_signal"/>
 
         <TextView style="@style/Registration.Description"
                   android:layout_width="fill_parent"
                   android:layout_marginBottom="16dip"
+                  android:gravity="start"
                   android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
 
         <LinearLayout android:layout_width="wrap_content"
