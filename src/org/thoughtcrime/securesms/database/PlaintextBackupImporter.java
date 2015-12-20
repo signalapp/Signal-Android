@@ -37,12 +37,12 @@ public class PlaintextBackupImporter {
 
   private static String getPlaintextExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
+    File signalBackup = new File(sdDirectory.getAbsolutePath(), "SignalPlaintextBackup.xml");
 
-    File signalBackup = new File(sdDirectory.getAbsolutePath() + File.separator, "SignalPlaintextBackup.xml");
-    if(signalBackup.exists()) {
-        return sdDirectory.getAbsolutePath() + File.separator + "SignalPlaintextBackup.xml";
+    if (signalBackup.exists()) {
+      return sdDirectory.getAbsolutePath() + File.separator + "SignalPlaintextBackup.xml";
     } else {
-        return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+      return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
     }
   }
 
