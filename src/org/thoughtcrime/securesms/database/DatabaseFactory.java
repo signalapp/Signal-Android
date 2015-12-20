@@ -71,7 +71,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_ARCHIVE_VERSION                      = 24;
   private static final int INTRODUCED_CONVERSATION_LIST_STATUS_VERSION     = 25;
   private static final int MIGRATED_CONVERSATION_LIST_STATUS_VERSION       = 26;
-  private static final int DATABASE_VERSION                                = 26;
+  private static final int INTRODUCED_NICKNAME                             = 27;
+  private static final int DATABASE_VERSION                                = 27;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -811,6 +812,10 @@ public class DatabaseFactory {
                        new String[]{status + "", receiptCount + "", threadId + ""});
           }
         }
+      }
+
+      if (oldVersion < INTRODUCED_NICKNAME) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN nickname TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

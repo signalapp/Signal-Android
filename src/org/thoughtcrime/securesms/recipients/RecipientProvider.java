@@ -152,7 +152,11 @@ public class RecipientProvider {
     }
 
     if (STATIC_DETAILS.containsKey(number)) return STATIC_DETAILS.get(number);
-    else                                    return new RecipientDetails(null, number, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
+    else {
+      String nickname = preferences.isPresent() ? preferences.get().getNickname() : null;
+
+      return new RecipientDetails(nickname != null ? number + " (~" + nickname + ")" : null, number, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
+    }
   }
 
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, String groupId) {

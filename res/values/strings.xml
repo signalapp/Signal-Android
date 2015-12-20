@@ -1019,6 +1019,9 @@
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
     <string name="preferences_notifications__display_in_notifications">Display in notifications</string>
+    <string name="preferences_chats__nickname">Nickname</string>
+    <string name="preferences_chats__set_nickname">Set a nickname to be shown to other group members</string>
+    <string name="preferences_chats__current_nickname">Your nickname in groups: %s</string>
     <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
     <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
     <string name="preferences_chats__when_roaming">When roaming</string>

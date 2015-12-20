@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="pref_nickname"
+        android:inputType="textPersonName"
+        android:maxLength="30"
+        android:title="@string/preferences_chats__nickname"
+        android:summary="@string/preferences_chats__set_nickname"/>
+
     <PreferenceCategory android:key="media_download" android:title="@string/preferences_chats__media_auto_download">
         <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
                 android:title="@string/preferences_chats__when_using_mobile_data"

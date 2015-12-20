@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
@@ -20,13 +21,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ChatsPreferenceFragment extends PreferenceFragment {
+public class ChatsPreferenceFragment extends PreferenceFragment
+    implements SharedPreferences.OnSharedPreferenceChangeListener{
   private static final String TAG = ChatsPreferenceFragment.class.getSimpleName();
 
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
     addPreferencesFromResource(R.xml.preferences_chats);
+
+    setNicknameSummary(TextSecurePreferences.getNickname(this.getActivity().getApplicationContext()));
 
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF)
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
@@ -47,6 +51,18 @@ public class ChatsPreferenceFragment extends PreferenceFragment {
     super.onResume();
     ((ApplicationPreferencesActivity)getActivity()).getSupportActionBar().setTitle(R.string.preferences__chats);
     setMediaDownloadSummaries();
+  }
+
+  @Override
+  public void onStart() {
+    super.onStart();
+    getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+  }
+
+  @Override
+  public void onStop() {
+    super.onStop();
+    getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
   }
 
   private void setMediaDownloadSummaries() {
@@ -130,6 +146,31 @@ public class ChatsPreferenceFragment extends PreferenceFragment {
 
       preference.setSummary(getResources().getQuantityString(R.plurals.ApplicationPreferencesActivity_messages_per_conversation, value, value));
       return true;
+    }
+  }
+
+  @Override
+  public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+    switch (s) {
+      case TextSecurePreferences.USER_NICKNAME_PREF:
+        String newValue = sharedPreferences.getString(s, null);
+        if (newValue != null && newValue.trim().length() == 0) {
+          TextSecurePreferences.setNickname(getActivity().getApplicationContext(), null);
+          return;
+        }
+
+        setNicknameSummary(newValue);
+        break;
+    }
+  }
+
+  private void setNicknameSummary(String nickname) {
+    if (nickname == null) {
+      findPreference(TextSecurePreferences.USER_NICKNAME_PREF)
+          .setSummary(R.string.preferences_chats__set_nickname);
+    } else {
+      findPreference(TextSecurePreferences.USER_NICKNAME_PREF)
+          .setSummary(getResources().getString(R.string.preferences_chats__current_nickname, nickname));
     }
   }
 

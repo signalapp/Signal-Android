@@ -57,6 +57,7 @@ public class TextSecurePreferences {
   public  static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   private static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public  static final String SCREEN_SECURITY_PREF             = "pref_screen_security";
+  public  static final String USER_NICKNAME_PREF               = "pref_nickname";
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
@@ -234,6 +235,14 @@ public class TextSecurePreferences {
 
   public static boolean isEnterImeKeyEnabled(Context context) {
     return getBooleanPreference(context, ENTER_PRESENT_PREF, false);
+  }
+
+  public static String getNickname(Context context) {
+    return getStringPreference(context, USER_NICKNAME_PREF, null);
+  }
+
+  public static void setNickname(Context context, String nickname) {
+    setStringPreference(context, USER_NICKNAME_PREF, nickname);
   }
 
   public static boolean isEnterSendsEnabled(Context context) {
