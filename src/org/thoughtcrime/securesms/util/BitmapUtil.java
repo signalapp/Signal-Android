@@ -191,8 +191,11 @@ public class BitmapUtil {
     if (rotation == 0) return yuv;
     if (rotation % 90 != 0 || rotation < 0 || rotation > 270) {
       throw new IllegalArgumentException("0 <= rotation < 360, rotation % 90 == 0");
-    } else if ((width * height * 3) / 2 != yuv.length) {
-      throw new IOException("provided width and height don't jive with the data length");
+    } else {
+      int expectedNumberOfBytes = (width * height * 3) / 2;
+      if (expectedNumberOfBytes != yuv.length) {
+        throw new IOException("provided width and height don't jive with the data length, expected " + expectedNumberOfBytes + " bytes but got " + yuv.length);
+      }
     }
 
     final byte[]  output    = new byte[yuv.length];
