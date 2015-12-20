@@ -183,7 +183,7 @@ public class AttachmentManager {
                                             @NonNull final MediaType mediaType,
                                             @NonNull final MediaConstraints constraints)
   {
-    new AsyncTask<Void, Void, Uri>() {
+    new AsyncTask<Void, Void, InputStream>() {
       @Override
       protected void onPreExecute() {
         thumbnail.clear();
@@ -192,13 +192,9 @@ public class AttachmentManager {
       }
 
       @Override
-      protected @Nullable Uri doInBackground(Void... params) {
+      protected InputStream doInBackground(Void... params) {
         try {
-          final InputStream input = context.getContentResolver().openInputStream(uri);
-          if (input == null) return null;
-          // TODO: handle null, wrap in getCorrectedMimeType() if needed
-          final String mimeType = MediaUtil.getMimeType(context, uri);
-          return PersistentBlobProvider.getInstance(context).create(masterSecret, input, mimeType);
+          return context.getContentResolver().openInputStream(uri);
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
           return null;
@@ -206,12 +202,33 @@ public class AttachmentManager {
       }
 
       @Override
-      protected void onPostExecute(@Nullable final Uri persistentUri) {
-        if (persistentUri == null) {
-          abortAttachment(context.getString(R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment));
-        } else {
-          setMediaWithPersistentUri(masterSecret, persistentUri, mediaType, constraints, false);
+      protected void onPostExecute(InputStream result) {
+        final String mimeType = MediaUtil.getMimeType(context, uri);
+        if (result == null || mimeType == null) {
+          abort();
+          return;
         }
+
+        PersistentBlobProvider.getInstance(context).createFuture(masterSecret, result, mimeType)
+            .addListener(new ListenableFuture.Listener<Uri>() {
+              @Override
+              public void onSuccess(Uri result) {
+                if (result == null) {
+                  abort();
+                } else {
+                  setMediaWithPersistentUri(masterSecret, result, mediaType, constraints, false);
+                }
+              }
+
+              @Override
+              public void onFailure(ExecutionException e) {
+                abort();
+              }
+            });
+      }
+
+      private void abort() {
+        abortAttachment(context.getString(R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment));
       }
     }.execute();
   }
