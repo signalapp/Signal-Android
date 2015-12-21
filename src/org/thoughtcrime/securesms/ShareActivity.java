@@ -60,7 +60,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private ViewGroup    fragmentContainer;
   private View         progressWheel;
   private Uri          resolvedExtra;
-  private String       type;
+  private String       mimeType;
   private boolean      isPassingAlongMedia;
 
   @Override
@@ -112,7 +112,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     isPassingAlongMedia = false;
 
     Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-    type            = getMimeType(streamExtra);
+    mimeType        = getMimeType(streamExtra);
     if (streamExtra != null && PartAuthority.isLocalUri(streamExtra)) {
       isPassingAlongMedia = true;
       resolvedExtra       = streamExtra;
@@ -170,7 +170,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Intent intent      = new Intent(this, target);
     final String textExtra   = getIntent().getStringExtra(Intent.EXTRA_TEXT);
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
-    if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, type);
+    if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 
     return intent;
   }
@@ -202,7 +202,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
           return null;
         }
 
-        return PersistentBlobProvider.getInstance(context).create(masterSecret, input, type);
+        return PersistentBlobProvider.getInstance(context).create(masterSecret, input, mimeType);
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;

@@ -73,7 +73,7 @@ public class MediaUtil {
 
   public static @Nullable String getMimeType(Context context, Uri uri) {
     if (PersistentBlobProvider.isAuthority(context, uri)) {
-      return PersistentBlobProvider.getInstance(context).getMimeType(uri);
+      return PersistentBlobProvider.getMimeType(context, uri);
     }
 
     String type = context.getContentResolver().getType(uri);
