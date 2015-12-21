@@ -192,7 +192,9 @@ public class BitmapUtil {
     if (rotation % 90 != 0 || rotation < 0 || rotation > 270) {
       throw new IllegalArgumentException("0 <= rotation < 360, rotation % 90 == 0");
     } else if ((width * height * 3) / 2 != yuv.length) {
-      throw new IOException("provided width and height don't jive with the data length");
+      throw new IOException("provided width and height don't jive with the data length (" +
+                            yuv.length + "). Width: " + width + " height: " + height +
+                            " = data length: " + (width * height * 3) / 2);
     }
 
     final byte[]  output    = new byte[yuv.length];
