@@ -75,6 +75,6 @@ The form and manner of this distribution makes it eligible for export under the 
 
 Copyright 2011 Whisper Systems
 
-Copyright 2013-2014 Open Whisper Systems
+Copyright 2013-2015 Open Whisper Systems
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
