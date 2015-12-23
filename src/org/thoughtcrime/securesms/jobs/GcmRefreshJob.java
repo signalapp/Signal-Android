@@ -28,6 +28,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
 import org.thoughtcrime.redphone.signaling.UnauthorizedException;
 import org.thoughtcrime.securesms.PlayServicesProblemActivity;
@@ -66,7 +67,7 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
       Log.w(TAG, "GCM registrationId expired, reregistering...");
       int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
 
-      if (result != ConnectionResult.SUCCESS) {
+      if (result != ConnectionResult.SUCCESS || BuildConfig.FORCE_WEBSOCKETS) {
         notifyGcmFailure();
       } else {
         String gcmId = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
@@ -79,8 +80,9 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
         }
 
         TextSecurePreferences.setGcmRegistrationId(context, gcmId);
-        TextSecurePreferences.setWebsocketRegistered(context, true);
+        TextSecurePreferences.setGcmRegistered(context, true);
       }
+      TextSecurePreferences.setWebsocketRegistered(context, true);
     }
   }
 

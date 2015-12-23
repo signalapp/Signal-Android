@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.redphone.signaling.RedPhoneAccountAttributes;
@@ -203,7 +205,7 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, true);
+      accountManager.verifyAccountWithCode(challenge, signalingKey, true, registrationId, true);
 
       handleCommonRegistration(accountManager, number, password, signalingKey);
       markAsVerified(number, password, signalingKey);
@@ -242,23 +244,33 @@ public class RegistrationService extends Service {
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, identityKey);
     accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
 
-    setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
+    if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS &&
+        !BuildConfig.FORCE_WEBSOCKETS)
+    {
+      setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
-    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
-    accountManager.setGcmId(Optional.of(gcmRegistrationId));
+      String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
+      accountManager.setGcmId(Optional.of(gcmRegistrationId));
 
-    TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+      TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+      TextSecurePreferences.setGcmRegistered(this, true);
+    }
     TextSecurePreferences.setWebsocketRegistered(this, true);
 
     DatabaseFactory.getIdentityDatabase(this).saveIdentity(self.getRecipientId(), identityKey.getPublicKey());
     DirectoryHelper.refreshDirectory(this, accountManager, number);
 
-    RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
-                                                                               new RedPhoneTrustStore(this),
-                                                                               number, password);
-
-    String verificationToken = accountManager.getAccountVerificationToken();
-    redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
+    //if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS &&
+    //    !BuildConfig.FORCE_WEBSOCKETS)
+    //{
+    //  RedPhoneAccountManager redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
+    //                                                                           new RedPhoneTrustStore(this),
+    //                                                                           number, password);
+    //  String verificationToken = accountManager.getAccountVerificationToken();
+    //  redPhoneAccountManager.createAccount(verificationToken, new RedPhoneAccountAttributes(signalingKey,
+    //          TextSecurePreferences.getGcmRegistrationId(this)));
+    //}
+    accountManager.getAccountVerificationToken();
 
     DirectoryRefreshListener.schedule(this);
   }
@@ -290,6 +302,7 @@ public class RegistrationService extends Service {
 
     if (verifying) {
       TextSecurePreferences.setPushRegistered(this, false);
+      TextSecurePreferences.setGcmRegistered(this, false);
     }
   }
 

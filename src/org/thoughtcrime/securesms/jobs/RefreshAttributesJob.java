@@ -45,7 +45,7 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
     String token = textSecureAccountManager.getAccountVerificationToken();
 
     redPhoneAccountManager.createAccount(token, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
-    textSecureAccountManager.setAccountAttributes(signalingKey, registrationId, true);
+    textSecureAccountManager.setAccountAttributes(signalingKey,true, registrationId, true);
   }
 
   @Override

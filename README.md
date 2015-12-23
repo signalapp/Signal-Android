@@ -1,3 +1,5 @@
+# TextSecure [![Build Status](https://travis-ci.org/WhisperSystems/TextSecure.svg?branch=master)](https://travis-ci.org/WhisperSystems/TextSecure)
+=======
 # Signal Android 
 
 Signal is a messaging app for simple private communication with friends.
@@ -7,6 +9,13 @@ Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely, o
 Currently available on the Play store.
 
 *[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms)*
+
+#WebSocket Support#
+
+This branch adds rudimentary WebSocket-ONLY support to Signal Private Messenger.
+In order to build a modified version of libtextsecure is needed, for that [checkout](https://github.com/JavaJens/libtextsecure-java/tree/fix/maven_local) my fork
+
+and run: ````./gradlew tasks installArchives```` to install in local maven directory.
 
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!

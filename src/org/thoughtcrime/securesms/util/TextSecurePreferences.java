@@ -66,6 +66,7 @@ public class TextSecurePreferences {
   private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
   private static final String VERIFYING_STATE_PREF             = "pref_verifying";
   public  static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
+  public  static final String REGISTERED_PUSH_PREF             = "pref_push_registered";
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_DEFAULT_SMS_PREF        = "pref_prompted_default_sms";
@@ -387,11 +388,20 @@ public class TextSecurePreferences {
   }
 
   public static boolean isPushRegistered(Context context) {
-    return getBooleanPreference(context, REGISTERED_GCM_PREF, false);
+    return getBooleanPreference(context, REGISTERED_PUSH_PREF, false);
   }
 
   public static void setPushRegistered(Context context, boolean registered) {
     Log.w("TextSecurePreferences", "Setting push registered: " + registered);
+    setBooleanPreference(context, REGISTERED_PUSH_PREF, registered);
+  }
+
+  public static boolean isGcmRegistered(Context context) {
+    return getBooleanPreference(context, REGISTERED_GCM_PREF, false);
+  }
+
+  public static void setGcmRegistered(Context context, boolean registered) {
+    Log.w("TextSecurePreferences", "Setting gcm registered: " + registered);
     setBooleanPreference(context, REGISTERED_GCM_PREF, registered);
   }
 

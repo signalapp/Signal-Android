@@ -21,6 +21,7 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
+import android.content.Intent;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -39,6 +40,7 @@ import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.libaxolotl.logging.AxolotlLoggerProvider;
 import org.whispersystems.libaxolotl.util.AndroidAxolotlLogger;
+import org.thoughtcrime.securesms.service.MessageRetrievalService;
 
 import dagger.ObjectGraph;
 
@@ -125,10 +127,14 @@ public class ApplicationContext extends Application implements DependencyInjecto
   }
 
   private void initializeGcmCheck() {
-    if (TextSecurePreferences.isPushRegistered(this) &&
+    if (TextSecurePreferences.isGcmRegistered(this) &&
         TextSecurePreferences.getGcmRegistrationId(this) == null)
     {
       this.jobManager.add(new GcmRefreshJob(this));
+    } else if (!TextSecurePreferences.isGcmRegistered(this) &&
+               TextSecurePreferences.isPushRegistered(this))
+    {
+      startService(new Intent(this, MessageRetrievalService.class));
     }
   }
 

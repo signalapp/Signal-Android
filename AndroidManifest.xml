@@ -7,7 +7,7 @@
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat"/>
 
-    <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
+    <permission android:name="${applicationId}.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />
 
@@ -85,9 +85,9 @@
     <uses-permission android:name="android.permission.READ_LOGS"/>
     <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
 
-    <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
+    <permission android:name="${applicationId}.permission.C2D_MESSAGE"
                 android:protectionLevel="signature" />
-    <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
 
     <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
@@ -438,17 +438,17 @@
               android:enabled="true"
               android:exported="true">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.notifications.WEAR_REPLY"/>
+            <action android:name="${applicationId}.notifications.WEAR_REPLY"/>
         </intent-filter>
     </receiver>
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
-              android:authorities="org.thoughtcrime.provider.securesms" />
+              android:authorities="${applicationId}.provider" />
 
     <provider android:name=".providers.MmsBodyProvider"
               android:grantUriPermissions="true"
-              android:authorities="org.thoughtcrime.provider.securesms.mms" />
+              android:authorities="${applicationId}.provider.mms" />
 
     <receiver android:name=".service.RegistrationNotifier"
               android:exported="false">

@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenLocal()
         maven {
             url "https://repo1.maven.org/maven2"
         }
@@ -70,7 +71,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.6'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:textsecure-android:1.8.3'
+    compile 'org.whispersystems:textsecure-android:2.8.2'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
     compile 'com.google.zxing:core:3.2.1'
 
@@ -154,16 +155,18 @@ android {
     }
 
     defaultConfig {
+        applicationId "org.thoughtcrime.securesms"
         minSdkVersion 9
         targetSdkVersion 22
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
-        buildConfigField "String", "USER_AGENT", "\"OWA\""
+        buildConfigField "String", "USER_AGENT", "\"JEN\""
         buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-master.whispersystems.org\""
         buildConfigField "String", "REDPHONE_RELAY_HOST", "\"relay.whispersystems.org\""
         buildConfigField "String", "REDPHONE_PREFIX_NAME", "\".whispersystems.org\""
         buildConfigField "boolean", "DEV_BUILD", "false"
+        buildConfigField "boolean", "FORCE_WEBSOCKETS", "false"
     }
 
     compileOptions {
@@ -210,9 +213,25 @@ android {
         dev.initWith(buildTypes.debug)
         dev {
             buildConfigField "boolean", "DEV_BUILD", "true"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+        }
+        websockets.initWith(buildTypes.dev)
+        websockets {
+            buildConfigField "boolean", "FORCE_WEBSOCKETS", "true"
         }
     }
 
+    productFlavors {
+      prod {
+        // defaults
+      }
+      staging {
+        buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service-staging.whispersystems.org\""
+        buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-staging.whispersystems.org\""
+        buildConfigField "String", "REDPHONE_RELAY_HOST", "\"redphone-staging-relay.whispersystems.org\""
+      }
+    }
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'

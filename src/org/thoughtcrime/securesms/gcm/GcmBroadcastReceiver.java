@@ -35,7 +35,7 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
     if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
       Log.w(TAG, "GCM message...");
 
-      if (!TextSecurePreferences.isPushRegistered(context)) {
+      if (!TextSecurePreferences.isGcmRegistered(context)) {
         Log.w(TAG, "Not push registered!");
         return;
       }

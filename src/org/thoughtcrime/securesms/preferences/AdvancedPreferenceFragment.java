@@ -194,19 +194,21 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
                                                                                        TextSecurePreferences.getLocalNumber(context),
                                                                                        TextSecurePreferences.getPushServerPassword(context));
 
-          try {
-            accountManager.setGcmId(Optional.<String>absent());
-          } catch (AuthorizationFailedException e) {
-            Log.w(TAG, e);
-          }
+          if (TextSecurePreferences.isGcmRegistered(context)) {
+            try {
+              accountManager.setGcmId(Optional.<String>absent());
+            } catch (AuthorizationFailedException e) {
+              Log.w(TAG, e);
+            }
 
-          try {
-            redPhoneAccountManager.setGcmId(Optional.<String>absent());
-          } catch (UnauthorizedException e) {
-            Log.w(TAG, e);
-          }
+            try {
+              redPhoneAccountManager.setGcmId(Optional.<String>absent());
+            } catch (UnauthorizedException e) {
+              Log.w(TAG, e);
+            }
 
-          GoogleCloudMessaging.getInstance(context).unregister();
+            GoogleCloudMessaging.getInstance(context).unregister();
+          }
 
           return SUCCESS;
         } catch (IOException ioe) {
