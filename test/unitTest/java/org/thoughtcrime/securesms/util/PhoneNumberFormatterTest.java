@@ -3,12 +3,13 @@ package org.thoughtcrime.securesms.util;
 import junit.framework.AssertionFailedError;
 
 import org.junit.Test;
+import org.thoughtcrime.securesms.BaseUnitTest;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PhoneNumberFormatterTest extends TextSecureTestCase {
+public class PhoneNumberFormatterTest extends BaseUnitTest {
   private static final String LOCAL_NUMBER_US  = "+15555555555";
   private static final String NUMBER_CH        = "+41446681800";
   private static final String NUMBER_UK        = "+442079460018";
