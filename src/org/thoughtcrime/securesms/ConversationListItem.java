@@ -178,6 +178,7 @@ public class ConversationListItem extends RelativeLayout
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.thumbnail);
+      subjectParams.addRule(RelativeLayout.START_OF, R.id.thumbnail);
       this.subjectView.setLayoutParams(subjectParams);
       this.post(new ThumbnailPositioner(thumbnailView, archivedView, deliveryStatusIndicator, dateView));
     } else {
@@ -185,6 +186,7 @@ public class ConversationListItem extends RelativeLayout
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.delivery_status);
+      subjectParams.addRule(RelativeLayout.START_OF, R.id.delivery_status);
       this.subjectView.setLayoutParams(subjectParams);
     }
   }
@@ -255,8 +257,10 @@ public class ConversationListItem extends RelativeLayout
           (archivedView.getWidth() + deliveryStatusView.getWidth()) > dateView.getWidth())
       {
         thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.delivery_status);
+        thumbnailParams.addRule(RelativeLayout.START_OF, R.id.delivery_status);
       } else {
         thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.date);
+        thumbnailParams.addRule(RelativeLayout.START_OF, R.id.date);
       }
 
       thumbnailView.setLayoutParams(thumbnailParams);
