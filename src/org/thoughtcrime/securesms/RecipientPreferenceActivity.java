@@ -197,15 +197,18 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       mutePreference.setChecked(recipients.isMuted());
 
-      if (recipients.getRingtone() != null) {
-        Ringtone tone = RingtoneManager.getRingtone(getActivity(), recipients.getRingtone());
+      final Uri toneUri = recipients.getRingtone();
+
+      if (toneUri == null) {
+        ringtonePreference.setSummary(R.string.preferences__default);
+        ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
+      } else {
+        Ringtone tone = RingtoneManager.getRingtone(getActivity(), toneUri);
 
         if (tone != null) {
           ringtonePreference.setSummary(tone.getTitle(getActivity()));
-          ringtonePreference.setCurrentRingtone(recipients.getRingtone());
+          ringtonePreference.setCurrentRingtone(toneUri);
         }
-      } else {
-        ringtonePreference.setSummary(R.string.preferences__default);
       }
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {
