@@ -74,7 +74,7 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.closeButton.setOnClickListener(new CloseClickListener());
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-      this.locationButton.setVisibility(View.INVISIBLE);
+      ViewUtil.findById(layout, R.id.location_linear_layout).setVisibility(View.INVISIBLE);
     }
 
     setContentView(layout);
