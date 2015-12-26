@@ -29,7 +29,7 @@ public class OutgoingMediaMessage {
   public OutgoingMediaMessage(Recipients recipients, SlideDeck slideDeck, String message, long sentTimeMillis, int distributionType)
   {
     this(recipients,
-         TextUtils.isEmpty(message) ? slideDeck.getBody() : slideDeck.getBody() + "\n\n" + message,
+         buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis,
          distributionType);
@@ -71,4 +71,13 @@ public class OutgoingMediaMessage {
     return sentTimeMillis;
   }
 
+  private static String buildMessage(SlideDeck slideDeck, String message) {
+    if (!TextUtils.isEmpty(message) && !TextUtils.isEmpty(slideDeck.getBody())) {
+      return slideDeck.getBody() + "\n\n" + message;
+    } else if (!TextUtils.isEmpty(message)) {
+      return message;
+    } else {
+      return slideDeck.getBody();
+    }
+  }
 }
