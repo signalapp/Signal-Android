@@ -8,14 +8,23 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur kata kunci!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="other">%d pesan per percakapan</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Hapus seluruh pesan lama?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="other">Ini akan segera memangkas seluruh percakapan dari %d pesan terbaru.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Hapus</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Nonaktifkan frasa sandi?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
         Nonaktifkan gembok layar untuk pesan?
     </string>
   <string name="ApplicationPreferencesActivity_disable">Nonaktif</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Berhenti registrasi</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Berhenti registrasi dari pesan dan panggilan Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Nonaktifkan pesan dan panggilan Signal?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Menonaktifkan pesan dan pangggilan Signal dengan berhenti registrasi dari server. Anda perlu mendaftar ulang nomor telepon Anda untuk menggunakannya lagi di kemudian hari.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kesalahan dalam menghubungkan ke server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktif</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Sentuh untuk mengubah aplikasi SMS default</string>
@@ -27,6 +36,9 @@
   <string name="ApplicationPreferencesActivity_Off">Mati</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="other">%d menit</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(gambar)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -91,6 +103,9 @@ kontak ini.
   <string name="ConversationActivity_group_members">Anggota grup</string>
   <string name="ConversationActivity_group_conversation">Percakapan grup</string>
   <string name="ConversationActivity_unnamed_group">Grup tak bernama</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="other">%d anggota</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Draf tersimpan</string>
   <string name="ConversationActivity_invalid_recipient">Penerima tidak lengkap!</string>
   <string name="ConversationActivity_calls_not_supported">Panggilan tidak didukung</string>
@@ -146,9 +161,8 @@ kontak ini.
     <item quantity="other">Ini akan secara permanen menghapus semua %1$d percakapan terpilih.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Menghapus</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Menghapus percakapan terpilih...</string>
   <string name="ConversationListFragment_undo">ULANG</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Pindah percakapan ke kotak masuk</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Pindah percakapan ke kotak masuk</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci...</string>
   <!--ConversationListItemAction-->
@@ -172,6 +186,7 @@ kontak ini.
   <string name="DeviceListItem_unnamed_device">Perangkat tidak bernama</string>
   <string name="DeviceListItem_linked_s">Terkait %s</string>
   <string name="DeviceListItem_last_active_s">Terakhir aktif %s</string>
+  <string name="DeviceListItem_today">Hari ini</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
   <!--ExperienceUpgradeActivity-->
@@ -199,6 +214,7 @@ kontak ini.
   <string name="GroupCreateActivity_group_name_hint">Nama grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS baru</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup Signal, maka grup ini akan menjadi grup MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Anda tidak terdaftar dalam pesan dan panggilan Signal, jadi grup Signal dinonaktifkan. Mohon coba registrasi ulang melalui Pengaturan.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Terjadi kesalahan tidak terduga yang menggagalkan pembuatan grup.</string>
   <string name="GroupCreateActivity_contacts_no_members">Anda butuh minimal satu orang tergabung dalam grup Anda!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Salah satu anggota grup Anda memiliki nomor yang tidak dapat dibaca, silakan perbaiki atau keluarkan kontak tersebut dan coba lagi.</string>
@@ -314,6 +330,8 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="DeviceProvisioningActivity_content_progress_key_error">Kode QR tidak valid.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Maaf, sudah terlalu banyak perangkat yang Anda kaitkan, coba untuk membuang beberapa...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Maaf, ini bukan tautan perangkat QR code yang benar.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Kaitkan perangkat Signal?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sepertinya Anda mencoba untuk menghubungkan perangkat Signal menggunakan pemindai pihak ke-3. Untuk perlindungan Anda, mohon memindai kode lagi dari Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Masukkan frasa sandi</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikon Signal</string>
@@ -736,11 +754,13 @@ gagal
   <string name="AndroidManifest__change_passphrase">Ganti Kata Kunci</string>
   <string name="AndroidManifest__verify_identity">Verifikasi identitas</string>
   <string name="AndroidManifest__log_submit">Kirim debug log</string>
+  <string name="AndroidManifest__media_preview">Pratinjau media</string>
   <string name="AndroidManifest__media_overview">Semua gambar</string>
   <string name="AndroidManifest__media_overview_named">Semua gambar dengan %1$s</string>
   <string name="AndroidManifest__message_details">Rincian pesan</string>
   <string name="AndroidManifest_manage_linked_devices">Kelola perangkat terkait</string>
   <string name="AndroidManifest__invite_friends">Undang teman</string>
+  <string name="AndroidManifest_archived_conversations">Arsip percakapan</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor / ekspor</string>
   <string name="arrays__your_identity_key">Kunci identitas Anda</string>
@@ -782,16 +802,8 @@ gagal
   <string name="preferences__change_passphrase">Ganti Kata Kunci</string>
   <string name="preferences__change_your_passphrase">Ubah frasa sandi Anda</string>
   <string name="preferences__enable_passphrase">Aktifkan frasa sandi</string>
-  <string name="preferences__passphrase_summary">Frasa sandi %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Aktifkan gembok layar untuk pesan</string>
   <string name="preferences__screen_security">Keamanan Layar</string>
-  <string name="preferences__screen_security_summary">Keamanan layar %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokir tangkapan layar di daftar baru-baru saja dan di dalam aplikasi</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Lupakan kata kunci dari memori setelah beberapa saat</string>
-  <string name="preferences__timeout_passphrase">Kata kunci kadaluarsa</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Pilih waktu kedaluwarsa frasa sandi</string>
-  <string name="preferences__pref_timeout_interval_title">Interval Kadaluarsa</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Waktu tunggu sebelum melupakan kata kunci dari memori</string>
   <string name="preferences__notifications">Pemberitahuan</string>
   <string name="preferences__enable_message_notifications">Aktifkan pemberitahuan pesan</string>
   <string name="preferences__led_color">Warna LED</string>
@@ -804,6 +816,7 @@ gagal
   <string name="preferences__sound">Bunyi</string>
   <string name="preferences__change_notification_sound">Ganti suara notofikasi</string>
   <string name="preferences__silent">Diam</string>
+  <string name="preferences__in_conversation_notifications">Pemberitahuan percakapan</string>
   <string name="preferences__play_inthread_notifications">Putar suara pemberitahuan ketika berada pada percakapan aktif</string>
   <string name="preferences__repeat_alerts">Ulangi peringatan</string>
   <string name="preferences__never">Tidak pernah</string>
@@ -841,18 +854,19 @@ gagal
   <string name="preferences__mmsc_password">Kata Sandi MMSC</string>
   <string name="preferences__sms_delivery_reports">Laporan pengiriman SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Minta laporan pengiriman untuk tiap SMS yang dikirim</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Otomatis menghapus pesan lama saat melebihi batas percakapan tertentu</string>
   <string name="preferences__delete_old_messages">Hapus pesan lama</string>
   <string name="preferences__chats">Obrolan dan media</string>
   <string name="preferences__conversation_length_limit">Batas panjang percakapan</string>
+  <string name="preferences__trim_all_conversations_now">Pangkas seluruh percakapan</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Pindai seluruh rangkaian percakapan dan terapkan batas panjang percakapan</string>
   <string name="preferences__devices">Perangkat</string>
   <string name="preferences__light_theme">Terang</string>
   <string name="preferences__dark_theme">Gelap</string>
   <string name="preferences__appearance">Penampilan</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Default</string>
   <string name="preferences__language">Bahasa</string>
-  <string name="preferences__language_summary">Bahasa %s</string>
   <string name="preferences__signal_messages_and_calls">Pesan dan panggilan Signal</string>
   <string name="preferences__free_private_messages_and_calls">Pesan dan panggilan privat gratis ke pengguna Signal</string>
   <string name="preferences__submit_debug_log">Kirim debug log</string>
@@ -900,6 +914,7 @@ gagal
   <string name="conversation_list_batch__menu_delete_selected">Hapus terpilih</string>
   <string name="conversation_list_batch__menu_select_all">Pilih semua</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arsip terpilih</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ekstrak arsip terpilih</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cari</string>
   <!--conversation_list_item_view-->
@@ -945,6 +960,13 @@ gagal
   <string name="text_secure_normal__invite_friends">Undang teman</string>
   <string name="text_secure_normal__help">Batuan</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Versi Signal Anda telah usang</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="other">Versi Signal Anda akan berakhir dalam %d hari. Tekan untuk update versi terbaru.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Versi Signal Anda akan berakhir hari ini. Tekan untuk update versi terbaru</string>
+  <string name="reminder_header_expired_build">Versi Signal Anda telah usang!</string>
+  <string name="reminder_header_expired_build_details">Pesan tidak akan berhasil dikirim. Tekan untuk update versi terbaru.</string>
   <string name="reminder_header_expired_build_button">PERBARUI</string>
   <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS baku</string>
   <string name="reminder_header_sms_default_text">Tekan untuk membuat Signal menjadi aplikasi SMS utama Anda.</string>
@@ -969,6 +991,7 @@ gagal
   <!--media_preview-->
   <string name="media_preview__save_title">Simpan</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Prantinjau gambar</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Perbaharui</string>
   <!--redphone_audio_popup_menu-->

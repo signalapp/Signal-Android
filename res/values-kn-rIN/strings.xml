@@ -490,11 +490,6 @@
   <string name="preferences__enable_passphrase">ಗುಪ್ತಪದವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__screen_security">ತೆರೆಯ ಸುರಕ್ಷತೆ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">ಇತ್ತೀಚಿನ ಪಟ್ಟಿಯಲ್ಲಿ ಮತ್ತು ಅಪ್ಲಿಕೇಶನ್ ಒಳಗೆ  ಸ್ಕ್ರೀನ್ ಶಾಟ್ ಬ್ಲಾಕ್ ಮಾಡಿ</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">ವಿರಾಮದ ನಂತರ ಸ್ಮರಣೆಯಿಂದ ಗುಪ್ತಪದವನ್ನು ಮರೆತುಬಿಡಿ</string>
-  <string name="preferences__timeout_passphrase">ಗುಪ್ತಪದದ ಅವಧಿ ಮೀರಿದೆ</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">ಗುಪ್ತಪದದ ಕಾಲಾವಧಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
-  <string name="preferences__pref_timeout_interval_title">ಕಾಲಾವಧಿ</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">ಸ್ಮರಣೆಯಿಂದ ಗುಪ್ತಪದವನ್ನು ಮರೆಯುವ ಮೊದಲು ಕಾಯಬೇಕಿರುವ ಸಮಯ ಪ್ರಮಾಣ</string>
   <string name="preferences__notifications">ಸೂಚನೆಗಳು</string>
   <string name="preferences__led_color">ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ</string>
   <string name="preferences__led_color_unknown">ತಿಳಿಯದ</string>
@@ -540,10 +535,8 @@
   <string name="preferences__dark_theme">ಗಾಢಬಣ್ಣದ ವಿನ್ಯಾಸ</string>
   <string name="preferences__appearance">ಲಕ್ಷಣ</string>
   <string name="preferences__theme">ವಿನ್ಯಾಸ</string>
-  <string name="preferences__theme_summary">ವಿನ್ಯಾಸ %s</string>
   <string name="preferences__default">ಪೂರ್ವನಿಯೋಜಿತ</string>
   <string name="preferences__language">ಭಾಷೆ</string>
-  <string name="preferences__language_summary">ಭಾಷೆ  %s</string>
   <string name="preferences__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಿ</string>
   <string name="preferences__support_wifi_calling">\'ವೈಫೈ ಕಾಲಿಂಗ್\' ಹೊಂದಾಣಿಕೆ ಮೋಡ್</string>
   <!--****************************************-->

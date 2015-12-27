@@ -8,7 +8,13 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="other">每个会话 %d 个信息</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">删除所有旧信息？</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="other">这将会立刻整理所有会话到 %d 最近的信息。</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">删除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">禁用密码？</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -28,7 +34,12 @@
   <string name="ApplicationPreferencesActivity_off">关</string>
   <string name="ApplicationPreferencesActivity_Off">关</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">短信 %1$s，彩信 %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">密码 %1$s，屏幕安全性 %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">主题 %1$s，语言 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="other">%d 分钟</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">（图片）</string>
   <string name="DraftDatabase_Draft_audio_snippet">（音频）</string>
@@ -90,6 +101,9 @@
   <string name="ConversationActivity_group_members">群组成员</string>
   <string name="ConversationActivity_group_conversation">群组会话</string>
   <string name="ConversationActivity_unnamed_group">未命名的群组</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="other">%d 名成员</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">保存草稿</string>
   <string name="ConversationActivity_invalid_recipient">无效收件人！</string>
   <string name="ConversationActivity_calls_not_supported">不支持呼叫</string>
@@ -145,9 +159,14 @@
     <item quantity="other">这将会永久的删除所有 %1$d 已选择的会话。</item>
   </plurals>
   <string name="ConversationListFragment_deleting">正在删除</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">正在删除已选择的会话…</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="other">%d 个会话已经被存档</item>
+  </plurals>
   <string name="ConversationListFragment_undo">撤销</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">移动会话到收件箱</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">已移动会话到收件箱</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="other">已经移动 %d 个会话到收件箱</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息...</string>
   <!--ConversationListItemAction-->
@@ -171,6 +190,7 @@
   <string name="DeviceListItem_unnamed_device">未命名的设备</string>
   <string name="DeviceListItem_linked_s">已连接 %s</string>
   <string name="DeviceListItem_last_active_s">最后活动  %s</string>
+  <string name="DeviceListItem_today">今天</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共享给</string>
   <!--ExperienceUpgradeActivity-->
@@ -310,6 +330,8 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">无效的二维码。</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">抱歉，您已经连接了太多的设备，请先移除一些…</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，这不是有效的设备连接二维码。</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">连接一个暗号设备？</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起来您正在使用第三方的扫描器来连接暗号设备。处于您的安全考虑，请尝试使用暗号的扫描器扫描二维码。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密钥</string>
   <string name="PassphrasePromptActivity_watermark_content_description">暗号图标</string>
@@ -499,6 +521,7 @@
   <string name="attachment_type_selector__video">视频</string>
   <string name="attachment_type_selector__contact">联系人</string>
   <string name="attachment_type_selector__camera">相机</string>
+  <string name="attachment_type_selector__location">位置</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">旧密钥</string>
   <string name="change_passphrase_activity__new_passphrase">新密钥</string>
@@ -710,11 +733,13 @@
   <string name="AndroidManifest__change_passphrase"> 修改密码</string>
   <string name="AndroidManifest__verify_identity">验证身份</string>
   <string name="AndroidManifest__log_submit">发送调试日志</string>
+  <string name="AndroidManifest__media_preview">媒体预览</string>
   <string name="AndroidManifest__media_overview">所有图片</string>
   <string name="AndroidManifest__media_overview_named">所有图片和%1$s</string>
   <string name="AndroidManifest__message_details">信息详情</string>
   <string name="AndroidManifest_manage_linked_devices">管理已连接的设备</string>
   <string name="AndroidManifest__invite_friends">邀请好友</string>
+  <string name="AndroidManifest_archived_conversations">存档会话</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
   <string name="arrays__your_identity_key">你的身份密钥</string>
@@ -756,18 +781,16 @@
   <string name="preferences__change_passphrase"> 修改密码</string>
   <string name="preferences__change_your_passphrase"> 修改你的密码</string>
   <string name="preferences__enable_passphrase">启用密码</string>
-  <string name="preferences__passphrase_summary">密码 %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">为信息启用锁屏</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密码来锁定暗号和信息通知。</string>
   <string name="preferences__screen_security">屏幕安全性</string>
-  <string name="preferences__screen_security_summary">屏幕安全性 %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽下列应用和内置应用的截屏功能</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">在一段时间后忘记内存中的密码</string>
-  <string name="preferences__timeout_passphrase">超时密码</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">选择口令超时</string>
-  <string name="preferences__pref_timeout_interval_title">超时间隔</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">忘记缓存密码的等待时间</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在一段时间的不活跃后自动锁定暗号。</string>
+  <string name="preferences__inactivity_timeout_passphrase">不活动密码超时</string>
+  <string name="preferences__inactivity_timeout_interval">不活动超时间隔</string>
   <string name="preferences__notifications">通知</string>
   <string name="preferences__enable_message_notifications">启用消息通知</string>
+  <string name="preferences__new_contacts_notifications">新的联系人通知</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">当有新暗号联系人时显示通知</string>
   <string name="preferences__led_color">LED颜色</string>
   <string name="preferences__led_color_unknown">未知</string>
   <string name="preferences__pref_led_blink_title">LED闪烁规律</string>
@@ -778,6 +801,7 @@
   <string name="preferences__sound">声音</string>
   <string name="preferences__change_notification_sound">改变提示音</string>
   <string name="preferences__silent">静音</string>
+  <string name="preferences__in_conversation_notifications">会话内通知</string>
   <string name="preferences__play_inthread_notifications">在查看活动的会话时播放提示音</string>
   <string name="preferences__repeat_alerts">重复警报</string>
   <string name="preferences__never">永不</string>
@@ -815,18 +839,19 @@
   <string name="preferences__mmsc_password">MMSC 密码</string>
   <string name="preferences__sms_delivery_reports">短信发送报告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">请求发送报告</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">对话超过指定数量时自动删除旧的信息</string>
   <string name="preferences__delete_old_messages">删除旧信息</string>
   <string name="preferences__chats">聊天与媒体</string>
   <string name="preferences__conversation_length_limit">对话数量限制</string>
+  <string name="preferences__trim_all_conversations_now">立刻整理所有的会话</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">查找并处理所有超过限制的对话</string>
   <string name="preferences__devices">设备</string>
   <string name="preferences__light_theme">明亮</string>
   <string name="preferences__dark_theme">黑暗</string>
   <string name="preferences__appearance">外观</string>
   <string name="preferences__theme">主题</string>
-  <string name="preferences__theme_summary">主题 %s</string>
   <string name="preferences__default">默认</string>
   <string name="preferences__language">语言</string>
-  <string name="preferences__language_summary">语言 %s</string>
   <string name="preferences__signal_messages_and_calls">暗号信息和呼叫</string>
   <string name="preferences__free_private_messages_and_calls">免费的加密信息和呼叫至暗号用户</string>
   <string name="preferences__submit_debug_log">提交调试日志</string>
@@ -874,6 +899,7 @@
   <string name="conversation_list_batch__menu_delete_selected">删除已选</string>
   <string name="conversation_list_batch__menu_select_all">选择全部</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">存档已选择</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">已选择取消存档</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">搜索</string>
   <!--conversation_list_item_view-->
@@ -919,6 +945,13 @@
   <string name="text_secure_normal__invite_friends">邀请好友</string>
   <string name="text_secure_normal__help">帮助</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">您的暗号版本已经过期</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="other">您目前正在使用的暗号将会在 %d 天后过期。点击以更新到最新的版本。</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">您的暗号版本将会在今天过期。点击以更新到最新最新版本。</string>
+  <string name="reminder_header_expired_build">您目前使用的暗号版本已经过期！</string>
+  <string name="reminder_header_expired_build_details">消息将无法再成功发送。点击以更新到最新版本。</string>
   <string name="reminder_header_expired_build_button">更新</string>
   <string name="reminder_header_sms_default_title">使用为默认的短信应用</string>
   <string name="reminder_header_sms_default_text">触击以将暗号标记为默认的短信应用</string>
@@ -943,6 +976,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">图片预览</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">刷新</string>
   <!--redphone_audio_popup_menu-->

@@ -512,15 +512,8 @@ zlyhalo.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__change_passphrase">Zmeniť heslo</string>
   <string name="preferences__enable_passphrase">Použiť heslo</string>
-  <string name="preferences__passphrase_summary">Heslo %s</string>
   <string name="preferences__screen_security">Zabezpečenie obrazovky</string>
-  <string name="preferences__screen_security_summary">Zabezpečenie obrazovky %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Zakázať vytváranie snímkov obrazovky vnútri aplikácie a v zozname bežiacích aplikácií</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Po určitom čase vymazať heslo z pamäte</string>
-  <string name="preferences__timeout_passphrase">Doba platnosti hesla</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Vyber dobu platnosti hesla</string>
-  <string name="preferences__pref_timeout_interval_title">Doba platnosti</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Časový interval po ktorom sa heslo vymaže z pamäte</string>
   <string name="preferences__notifications">Notifikácie</string>
   <string name="preferences__led_color">LED farba</string>
   <string name="preferences__led_color_unknown">Neznáme</string>
@@ -572,10 +565,8 @@ zlyhalo.
   <string name="preferences__dark_theme">Tmavá</string>
   <string name="preferences__appearance">Vzhľad</string>
   <string name="preferences__theme">Téma</string>
-  <string name="preferences__theme_summary">Téma %s</string>
   <string name="preferences__default">Štandardné nastavenie</string>
   <string name="preferences__language">Jazyk</string>
-  <string name="preferences__language_summary">Jazyk %s</string>
   <string name="preferences__submit_debug_log">Odošli ladiaci log</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>

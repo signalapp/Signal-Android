@@ -436,6 +436,7 @@
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">消音しての会話</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">会話を表示している間の通知無効化</string>
+  <string name="recipient_preferences__notification_sound">通知音</string>
   <string name="recipient_preferences__vibrate">振動</string>
   <string name="recipient_preferences__block">ブロック</string>
   <string name="recipient_preferences__color">色</string>
@@ -534,17 +535,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
   <string name="preferences__enable_passphrase">パスフレーズが有効</string>
-  <string name="preferences__passphrase_summary">パスフレーズ %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">ロックスクリーンでのメッセージを有効化</string>
   <string name="preferences__screen_security">スクリーンセキュリティ</string>
-  <string name="preferences__screen_security_summary">スクリーンセキュリティ %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">スクリーンショットをアプリ表示の場合防ぐ</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">一定時間経過するとメモリからパスワードを消去する</string>
-  <string name="preferences__timeout_passphrase">パスワードの
-タイムアウト</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">パスワードタイムアウトを選択</string>
-  <string name="preferences__pref_timeout_interval_title">タイムアウトの間隔</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">メモリからパスワードを消去するまでの待ち時間です</string>
   <string name="preferences__notifications">通知</string>
   <string name="preferences__enable_message_notifications">メッセージ通知を有効に</string>
   <string name="preferences__led_color">LED色</string>
@@ -600,10 +592,8 @@
   <string name="preferences__dark_theme">ダーク</string>
   <string name="preferences__appearance">デザイン設定</string>
   <string name="preferences__theme">テーマ</string>
-  <string name="preferences__theme_summary">テーマ %s</string>
   <string name="preferences__default">初期設定の言語</string>
   <string name="preferences__language">言語</string>
-  <string name="preferences__language_summary">言語 %s</string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' 互換モード</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">あなたのデバイスでSMS/MMSの配送をWi-Fi(Wi-Fi Callingが有効にできるデバイスで有効にしある時のみ)上で行うのを有効にする</string>

@@ -36,6 +36,8 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_off">aus</string>
   <string name="ApplicationPreferencesActivity_Off">Aus</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Passwort %1$s, Bildschirmschutz %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Design %1$s, Sprache %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 Minute</item>
@@ -46,7 +48,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="DraftDatabase_Draft_audio_snippet">(Audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(Video)</string>
   <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Keine App zur Dateiauswahl auffindbar.</string>
+  <string name="AttachmentManager_cant_open_media_selection">Keine App zur Auswahl der Medieninhalte auffindbar.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
@@ -70,8 +72,8 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ConversationItem_message_size_d_kb">Nachrichtengröße: %d kB</string>
   <string name="ConversationItem_expires_s">Läuft ab in: %s</string>
   <string name="ConversationItem_error_not_delivered">Nicht zugestellt</string>
-  <string name="ConversationItem_view_secure_media_question">Verschlüsselte Datei anzeigen?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Diese Datei ist in einer verschlüsselten Datenbank gespeichert. Zur Anzeige muss sie vorübergehend entschlüsselt abgespeichert werden. Möchten Sie dennoch fortfahren?</string>
+  <string name="ConversationItem_view_secure_media_question">Sichere Medieninhalte anzeigen?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Diese Medieninhalte sind in einer verschlüsselten Datenbank gespeichert. Zur Anzeige müssen sie vorübergehend entschlüsselt im Gerätespeicher abgespeichert werden. Möchten Sie dennoch fortfahren?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fehler: Abgelaufene Schlüsselaustausch-Nachricht empfangen.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Schlüsselaustausch-Nachricht empfangen. Zum Fortfahren antippen.</string>
   <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
@@ -80,7 +82,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rückgriff auf unverschlüsselte SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rückgriff auf unverschlüsselte MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt sein, da der Kontakt Signal nicht mehr verwendet.\n\nUnsichere Nachricht senden?</string>
-  <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen der Datei gefunden.</string>
+  <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen dieser Medieninhalte gefunden.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Verschlüsselung neu starten?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung in dieser Unterhaltung. Ihre Nachrichten bleiben erhalten.</string>
@@ -138,7 +140,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
     <item quantity="other">Unwiderruflich alle %1$d ausgewählten Nachrichten löschen.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Das Speichern der Datei im Gerätespeicher ermöglicht allen anderen Apps Ihres Geräts darauf Zugriff.\n\nTrotzdem fortfahren?</string>
+  <string name="ConversationFragment_saving_this_media_to_storage_warning">Das Speichern dieser Medieninhalte im Gerätespeicher ermöglicht allen anderen Apps Ihres Geräts darauf Zugriff.\n\nTrotzdem fortfahren?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs im Gerätespeicher!</string>
   <string name="ConversationFragment_success_exclamation">Erfolgreich!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kein Schreibzugriff auf Gerätespeicher!</string>
@@ -163,11 +165,15 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Ausgewählte Unterhaltungen werden gelöscht …</string>
-  <string name="ConversationListFragment_conversations_archived">Unterhaltungen archiviert</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Unterhaltung archiviert</item>
+    <item quantity="other">%d Unterhaltungen archiviert</item>
+  </plurals>
   <string name="ConversationListFragment_undo">RÜCKGÄNGIG</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Unterhaltung in Eingang verschoben</string>
-  <string name="ConversationListFragment_conversation_archived">Unterhaltung archiviert</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Unterhaltungen in Eingang verschoben</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Unterhaltung in Eingang verschoben</item>
+    <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustausch-Nachricht …</string>
   <!--ConversationListItemAction-->
@@ -203,7 +209,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportieren</string>
   <string name="ExportFragment_export_plaintext_to_storage">Klartextsicherung exportieren?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung: Exportiert Ihre Signal-Inhalte unverschlüsselt in den Gerätespeicher.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung: Exportiert die unverschlüsselten Inhalte Ihrer Signal-Nachrichten in den Gerätespeicher.</string>
   <string name="ExportFragment_cancel">Abbruch</string>
   <string name="ExportFragment_exporting">Exportieren</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Klartext wird in Gerätespeicher exportiert …</string>
@@ -297,7 +303,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="NotificationBarManager__end_call">Anruf beenden</string>
   <string name="NotificationBarManager__cancel_call">Anruf abbrechen</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">Multimedianachricht</string>
+  <string name="NotificationMmsMessageRecord_multimedia_message">MMS</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitten Sie den Kontakt, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Sie haben die Gruppe verlassen.</string>
@@ -431,7 +437,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="ThreadRecord_called">Ausgegangener Anruf</string>
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
   <string name="ThreadRecord_missed_call">Verpasster Anruf</string>
-  <string name="ThreadRecord_media_message">Multimedianachricht</string>
+  <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
@@ -489,14 +495,14 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
   <string name="MessageNotifier_locked_message">Gesperrte Nachricht …</string>
-  <string name="MessageNotifier_media_message_with_text">Mediennachricht: %s</string>
+  <string name="MessageNotifier_media_message_with_text">Nachricht mit Medieninhalten: %s</string>
   <string name="MessageNotifier_no_subject">(ohne Text)</string>
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_error_delivering_message">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_mark_all_as_read">Alle gelesen</string>
   <string name="MessageNotifier_mark_read">Gelesen</string>
-  <string name="MessageNotifier_media_message">Mediennachricht</string>
+  <string name="MessageNotifier_media_message">Nachricht mit Medieninhalten</string>
   <string name="MessageNotifier_reply">Antworten</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>
@@ -510,6 +516,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Standort</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Altes Passwort</string>
   <string name="change_passphrase_activity__new_passphrase">Neues Passwort</string>
@@ -543,8 +550,8 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ZUM ABBRECHEN WEGWISCHEN</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_downloading_description">Mediennachricht wird heruntergeladen</string>
-  <string name="conversation_item__mms_image_description">Mediennachricht</string>
+  <string name="conversation_item__mms_downloading_description">Nachricht mit Medieninhalten wird heruntergeladen</string>
+  <string name="conversation_item__mms_image_description">Nachricht mit Medieninhalten</string>
   <string name="conversation_item__secure_message_description">Sichere Nachricht</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Download</string>
@@ -589,7 +596,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung exportieren</string>
   <string name="import_fragment__import_system_sms_database">System-SMS-Datenbank importieren</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Datenbank aus der Standard-SMS-App importieren</string>
-  <string name="import_fragment__restore_encrypted_backup">Verschlüsselte Sicherung wiederherstellen?</string>
+  <string name="import_fragment__restore_encrypted_backup">Verschlüsselte Sicherung wiederherstellen</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Eine zuvor exportierte, verschlüsselte Signal-Datensicherung wiederherstellen</string>
   <string name="import_fragment__import_plaintext_backup">Klartextsicherung importieren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Eine mit „SMS Backup &amp; Restore“ kompatible Klartextsicherung importieren</string>
@@ -617,8 +624,8 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal benötigt MMS-Einstellungen, um Medien- und Gruppennachrichten über Ihren Mobilfunkanbieter zu versenden. Ihr Gerät stellt diese Informationen nicht zur Verfügung, was gelegentlich bei gesperrten oder anderweitig restriktiv konfigurierten Geräten der Fall ist.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Zum Versenden von Medien- und Gruppennachrichten bitte „OK“ antippen und die geforderten Einstellungen vervollständigen. Die MMS-Einstellungen Ihres Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem „APN“ des Anbieters gefunden werden.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal benötigt MMS-Einstellungen, um Nachrichten mit Medieninhalten und Gruppennachrichten über Ihren Mobilfunkanbieter zu versenden. Ihr Gerät stellt diese Informationen nicht zur Verfügung, was gelegentlich bei gesperrten oder anderweitig restriktiv konfigurierten Geräten der Fall ist.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Zum Versenden von Nachrichten mit Medieninhalten und Gruppennachrichten bitte „OK“ antippen und die geforderten Einstellungen vervollständigen. Die MMS-Einstellungen Ihres Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem „APN“ des Anbieters gefunden werden.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCKIERT</string>
   <!--recipient_preferences-->
@@ -708,7 +715,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__change_passphrase">Passwort ändern</string>
   <string name="AndroidManifest__verify_identity">Kontakt überprüfen</string>
   <string name="AndroidManifest__log_submit">Diagnoseprotokoll übermitteln</string>
-  <string name="AndroidManifest__media_preview">Medienvorschau</string>
+  <string name="AndroidManifest__media_preview">Medieninhaltevorschau</string>
   <string name="AndroidManifest__media_overview">Alle Bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle Bilder mit %1$s</string>
   <string name="AndroidManifest__message_details">Nachrichtendetails</string>
@@ -757,18 +764,16 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__change_passphrase">Passwort ändern</string>
   <string name="preferences__change_your_passphrase">Ihr Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
-  <string name="preferences__passphrase_summary">Passwort %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Signal und Benachrichtigungen mit Passwort sperren</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal und Benachrichtungen mit einem Passwort sperren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
-  <string name="preferences__screen_security_summary">Bildschirmschutz %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Passwort nach einer gewissen Zeit vergessen</string>
-  <string name="preferences__timeout_passphrase">Passwort vergessen</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Wartezeit auswählen</string>
-  <string name="preferences__pref_timeout_interval_title">Zeitüberschreitung</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Wartezeit, nach deren Ablauf das Passwort vergessen wird</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal bei Inaktivität nach einer festgelegten Verzögerungszeit automatisch sperren</string>
+  <string name="preferences__inactivity_timeout_passphrase">Passwort bei Inaktivität</string>
+  <string name="preferences__inactivity_timeout_interval">Verzögerungszeit</string>
   <string name="preferences__notifications">Benachrichtigungen</string>
   <string name="preferences__enable_message_notifications">Benachrichtigungen über Nachrichtenempfang aktivieren</string>
+  <string name="preferences__new_contacts_notifications">Über neue Kontakte benachrichtigen</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Benachrichtigungen über neue Signal-Kontakte anzeigen</string>
   <string name="preferences__led_color">LED-Farbe</string>
   <string name="preferences__led_color_unknown">Unbekannt</string>
   <string name="preferences__pref_led_blink_title">LED-Blinkmuster</string>
@@ -819,7 +824,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Alte Nachrichten automatisch löschen, sobald eine Unterhaltung die angegebene Länge überschreitet</string>
   <string name="preferences__delete_old_messages">Alte Nachrichten löschen</string>
-  <string name="preferences__chats">Unterhaltungen und Multimedia</string>
+  <string name="preferences__chats">Unterhaltungen und Medieninhalte</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
   <string name="preferences__trim_all_conversations_now">Alle Unterhaltungen jetzt kürzen</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Alle Unterhaltungen prüfen und deren Längenbegrenzung sicherstellen</string>
@@ -828,10 +833,8 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__dark_theme">Dunkel</string>
   <string name="preferences__appearance">Darstellung</string>
   <string name="preferences__theme">Design</string>
-  <string name="preferences__theme_summary">Design %s</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprache</string>
-  <string name="preferences__language_summary">Sprache %s</string>
   <string name="preferences__signal_messages_and_calls">Signal-Nachrichten und -Anrufe</string>
   <string name="preferences__free_private_messages_and_calls">Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und telefonieren</string>
   <string name="preferences__submit_debug_log">Diagnoseprotokoll übermitteln</string>
@@ -842,7 +845,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
-  <string name="preferences_chats__media_auto_download">Multimediainhalte automatisch herunterladen</string>
+  <string name="preferences_chats__media_auto_download">Medieninhalte automatisch herunterladen</string>
   <string name="preferences_chats__message_trimming">Unterhaltungen kürzen</string>
   <string name="preferences_advanced__use_system_emoji">System-Emojis verwenden</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
@@ -953,7 +956,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sie</string>
   <string name="MediaPreviewActivity_cant_display">Bildvorschau fehlgeschlagen</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nicht unterstützter Dateityp</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Nicht unterstützter Medieninhaltetyp</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Speichern</string>
   <!--media_preview_activity-->

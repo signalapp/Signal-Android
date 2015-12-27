@@ -459,15 +459,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Абярыце кантакт са спісу.</string>
   <string name="preferences__change_passphrase">Змяніць пароль.</string>
   <string name="preferences__enable_passphrase">Уключыць пароль</string>
-  <string name="preferences__passphrase_summary">Пароль %s</string>
   <string name="preferences__screen_security">Бяспека экрана</string>
-  <string name="preferences__screen_security_summary">Бяспека экрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блакіраваць магчымасць рабіць скрыншоты ўнутры праграмы</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Выдаляць пароль з памяці праз пэўны інтэрвал часу</string>
-  <string name="preferences__timeout_passphrase">Час запамінання пароля</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Абярыце час запамінання пароля</string>
-  <string name="preferences__pref_timeout_interval_title">Інтэрвал часу запамінання</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Значэнне часу, праз які пароль будзе выдалены з памяці</string>
   <string name="preferences__notifications">Апавяшчэнні</string>
   <string name="preferences__led_color">колер святлодыёда</string>
   <string name="preferences__led_color_unknown">Невядома</string>
@@ -519,10 +512,8 @@
   <string name="preferences__dark_theme">Цёмны</string>
   <string name="preferences__appearance">З\'яўленне</string>
   <string name="preferences__theme">Тэма</string>
-  <string name="preferences__theme_summary">Тэма %s</string>
   <string name="preferences__default">Па-змоўчані</string>
   <string name="preferences__language">Мова</string>
-  <string name="preferences__language_summary">Мова %s</string>
   <string name="preferences__submit_debug_log">Выслаць debug log</string>
   <string name="preferences__support_wifi_calling">Рэжым сумяшчальнасці \'WiFi выклік\' </string>
   <!--****************************************-->

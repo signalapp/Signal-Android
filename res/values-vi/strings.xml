@@ -8,7 +8,13 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập cụm từ mật khẩu!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="other">%d tin nhắn cho mỗi cuộc hội thoại</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="other">Thao tác này sẽ thu ngắn tức thì tất cả các cuộc hội thoại đến %d tin nhắn gần nhất.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Xóa</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Tắt cụm từ mật khẩu?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -30,7 +36,12 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ApplicationPreferencesActivity_off">tắt</string>
   <string name="ApplicationPreferencesActivity_Off">Tắt</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Cụm mật khẩu %1$s, Bảo mật màn hình %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Chủ đề %1$s, Ngôn ngữ %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="other">%d phút</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(hình)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(âm thanh)</string>
@@ -95,6 +106,9 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationActivity_group_members">Thành viên trong nhóm</string>
   <string name="ConversationActivity_group_conversation">Chuyện trò nhóm</string>
   <string name="ConversationActivity_unnamed_group">Nhóm chưa đặt tên</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="other">%d thành viên</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Lưu bản nháp</string>
   <string name="ConversationActivity_invalid_recipient">Người nhận không đúng!</string>
   <string name="ConversationActivity_calls_not_supported">Không hỗ trợ tính năng gọi điện</string>
@@ -151,9 +165,13 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   </plurals>
   <string name="ConversationListFragment_deleting">Đang xóa</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Đang xoá các cuộc hội thoại đã chọn...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="other">Đã lưu %d cuộc hội thoại</item>
+  </plurals>
   <string name="ConversationListFragment_undo">HOÀN TÁC</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Đã chuyển cuộc hội thoại vào hộp thư đến</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Đã chuyển các cuộc hội thoại vào hộp thư đến</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="other">Đã chuyển %d cuộc hội thoại vào hộp thư đến</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Thông tin trao đổi chìa khóa...</string>
   <!--ConversationListItemAction-->
@@ -513,6 +531,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="attachment_type_selector__video">Đoạn phim</string>
   <string name="attachment_type_selector__contact">Liên lạc</string>
   <string name="attachment_type_selector__camera">Máy ảnh</string>
+  <string name="attachment_type_selector__location">Vị trí</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Cụm từ mật khẩu cũ</string>
   <string name="change_passphrase_activity__new_passphrase">Cụm từ mật khẩu mới</string>
@@ -701,8 +720,8 @@ chứng SMS...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Việc này
 có thể mất chút thời gian. Xin kiên nhãn chờ, chúng tôi sẽ báo cho bạn biết khi kiểm chứng xong.
 </string>
-  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">Quá thời gian quy định khi Signal chờ tin nhắn SMS xác minh.
-</string>
+  <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
+Quá thời gian quy định khi Signal chờ tin nhắn SMS xác minh.</string>
   <string name="registration_progress_activity__sms_verification_failed">Kiểm chứng
 SMS thất bại.
 </string>
@@ -739,6 +758,7 @@ SMS thất bại.
   <string name="AndroidManifest__message_details">Chi tiết tin nhắn</string>
   <string name="AndroidManifest_manage_linked_devices">Quản trị các thiết bị liên kết</string>
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
+  <string name="AndroidManifest_archived_conversations">Các cuộc hội thoại đã bảo lưu</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Xuất / nhập</string>
   <string name="arrays__your_identity_key">Khóa danh tính</string>
@@ -780,18 +800,16 @@ SMS thất bại.
   <string name="preferences__change_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="preferences__change_your_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="preferences__enable_passphrase">Mở cụm từ mật khẩu</string>
-  <string name="preferences__passphrase_summary">Cụm từ mật khẩu %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Mở khóa màn hình cho tin nhắn</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Khoá Signal và thông báo tin nhắn bằng cụm mật khẩu</string>
   <string name="preferences__screen_security">An ninh màn hình</string>
-  <string name="preferences__screen_security_summary">An ninh màn hình %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Chặn không cho chụp màn hình trong danh sách mới nhất và bên trong ứng dụng</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Quên cụm từ mật khẩu đi trong bộ nhớ sau một khoảng thời gian</string>
-  <string name="preferences__timeout_passphrase">Hết hạn nhớ cụm từ mật khẩu</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Chọn thời gian hết hạn nhớ cụm từ mật khẩu</string>
-  <string name="preferences__pref_timeout_interval_title">Thời gian hết hạn</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Khoảng thời gian chờ trước khi quên đi cụm từ mật khẩu trong bộ nhớ</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Signal sau một khoảng thời gian không hoạt động định trước</string>
+  <string name="preferences__inactivity_timeout_passphrase">Cụm mật khẩu khoá máy khi không hoạt động</string>
+  <string name="preferences__inactivity_timeout_interval">Khoảng thời gian khoá máy khi không hoạt động</string>
   <string name="preferences__notifications">Thông báo</string>
   <string name="preferences__enable_message_notifications">Mở thông báo tin nhắn</string>
+  <string name="preferences__new_contacts_notifications">Thông báo liên lạc mới</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Hiện thông báo cho các liên lạc Signal mới</string>
   <string name="preferences__led_color">Màu LED</string>
   <string name="preferences__led_color_unknown">Không rõ</string>
   <string name="preferences__pref_led_blink_title">Mô hình chớp nháy LED</string>
@@ -851,10 +869,8 @@ SMS thất bại.
   <string name="preferences__dark_theme">Đậm</string>
   <string name="preferences__appearance">Diện mạo</string>
   <string name="preferences__theme">Hình nền</string>
-  <string name="preferences__theme_summary">Hình nền %s</string>
   <string name="preferences__default">Mặc định</string>
   <string name="preferences__language">Ngôn ngữ</string>
-  <string name="preferences__language_summary">Ngôn ngữ %s</string>
   <string name="preferences__signal_messages_and_calls">Tin nhắn và cuộc gọi Signal</string>
   <string name="preferences__free_private_messages_and_calls">
 Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Signal
@@ -950,6 +966,13 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="text_secure_normal__invite_friends">Mời bạn bè</string>
   <string name="text_secure_normal__help">Trợ giúp</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Phiên bản Signal của bạn đã quá cũ</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="other">Phiên bản Signal của bạn sẽ hết hạn trong %d ngày. Chạm để cập nhật lên phiên bản mới nhất.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Phiên bản Signal của bạn sẽ hết hạn vào hôm nay. Chạm để cập nhật lên phiên bản mới nhất.</string>
+  <string name="reminder_header_expired_build">Phiên bản Signal của bạn đã hết hạn!</string>
+  <string name="reminder_header_expired_build_details">Tin nhắn sẽ không còn được gửi đi được nữa. Chạm để cập nhật lên phiên bản mới nhất.</string>
   <string name="reminder_header_expired_build_button">CẬP NHẬT</string>
   <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định</string>
   <string name="reminder_header_sms_default_text">Chạm để đặt Signal làm ứng dụng SMS mặc định.</string>

@@ -150,8 +150,6 @@ verifiera denna kontakt.</string>
   <string name="ConversationListFragment_deleting">Raderar</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Raderar markerade konversationer...</string>
   <string name="ConversationListFragment_undo">ÅNGRA</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Flyttade konversationen till inkorgen</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Flyttade konversationerna till inkorgen</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Meddelande för nyckelutbyte ...</string>
   <!--ConversationListItemAction-->
@@ -754,16 +752,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>
   <string name="preferences__change_your_passphrase">Ändra ditt lösenord</string>
   <string name="preferences__enable_passphrase">Aktivera lösenordsfras</string>
-  <string name="preferences__passphrase_summary">Lösenordsfras %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Börja använd låsskärm för meddelanden</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
-  <string name="preferences__screen_security_summary">Skärmsäkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Glöm lösenord från minnet efter en tid</string>
-  <string name="preferences__timeout_passphrase">Tidsbegränsad upplåsning</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Välj tidsgräns för lösenord</string>
-  <string name="preferences__pref_timeout_interval_title">Fråga om lösenord efter</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Väntetiden innan lösenordet glöms från minnet</string>
   <string name="preferences__notifications">Aviseringar</string>
   <string name="preferences__enable_message_notifications">Slå på meddelandeaviseringar</string>
   <string name="preferences__led_color">Färg på ljusindikator</string>
@@ -825,10 +815,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__dark_theme">Mörkt</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Språk</string>
-  <string name="preferences__language_summary">Språk %s</string>
   <string name="preferences__signal_messages_and_calls">Signal meddelanden och samtal</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privata meddelanden och samtal med andra Signalanvändare</string>
   <string name="preferences__submit_debug_log">Skicka in loggfilen för felsökning</string>

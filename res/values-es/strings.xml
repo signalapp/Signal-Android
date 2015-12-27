@@ -36,6 +36,7 @@
   <string name="ApplicationPreferencesActivity_off">inactivo</string>
   <string name="ApplicationPreferencesActivity_Off">Inactivo</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minuto</item>
@@ -172,11 +173,15 @@ Recibido:%4$s</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Eliminando</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Borrando conversaciones seleccionadas...</string>
-  <string name="ConversationListFragment_conversations_archived">Las conversaciones han sido archivadas</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Conversación archivada</item>
+    <item quantity="other">%d conversaciones archivadas</item>
+  </plurals>
   <string name="ConversationListFragment_undo">Atrás</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Conversación movida a la bandeja de entrada</string>
-  <string name="ConversationListFragment_conversation_archived">La conversación ha sido archivada</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversaciones movidas a la bandeja de entrada</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Conversacion movida a la bandeja de entrada</item>
+    <item quantity="other">%d Conversaciones movidas a la bandeja de entrada</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
   <!--ConversationListItemAction-->
@@ -544,6 +549,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="attachment_type_selector__video">Vídeo</string>
   <string name="attachment_type_selector__contact">Contacto</string>
   <string name="attachment_type_selector__camera">Cámara</string>
+  <string name="attachment_type_selector__location">Localización</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Clave de acceso antigua</string>
   <string name="change_passphrase_activity__new_passphrase">Nueva clave de acceso</string>
@@ -815,18 +821,15 @@ por SMS.
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
   <string name="preferences__change_your_passphrase">Cambiar su frase de contraseña</string>
   <string name="preferences__enable_passphrase">Habilitar clave de acceso</string>
-  <string name="preferences__passphrase_summary">Clave de acceso %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Habilitar pantalla de bloqueo para mensajes</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear Signal y notificaciones de mensaje con una frase de contraseña</string>
   <string name="preferences__screen_security">Seguridad de la pantalla</string>
-  <string name="preferences__screen_security_summary">Seguridad de la pantalla %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear capturas de pantalla en la lista de aplicaciones recientes y dentro de la aplicación</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Eliminar la clave de acceso de la memoria tras cierto intervalo</string>
-  <string name="preferences__timeout_passphrase">Caducidad de clave de acceso</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar caducidad de clave de acceso</string>
-  <string name="preferences__pref_timeout_interval_title">Intervalo de expiración</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">El intervalo de tiempo a esperar antes de eliminar la clave de acceso de la memoria</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automáticamente Signal después de un intervalo de inactividad específico</string>
+  <string name="preferences__inactivity_timeout_interval">Intervalo de tiempo de inactividad</string>
   <string name="preferences__notifications">Notificaciones</string>
   <string name="preferences__enable_message_notifications">Habilitar notificaciones de mensaje</string>
+  <string name="preferences__new_contacts_notifications">Notificaciones de nuevos contactos</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Mostrar una notificación para nuevos contactos de Signal</string>
   <string name="preferences__led_color">Color del LED</string>
   <string name="preferences__led_color_unknown">Desconocido</string>
   <string name="preferences__pref_led_blink_title">Patrón de parpadeo del LED</string>
@@ -886,10 +889,8 @@ por SMS.
   <string name="preferences__dark_theme">Oscuro</string>
   <string name="preferences__appearance">Apariencia</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Por defecto</string>
   <string name="preferences__language">Idioma</string>
-  <string name="preferences__language_summary">Idioma %s</string>
   <string name="preferences__signal_messages_and_calls">Signal mensajes y llamadas</string>
   <string name="preferences__free_private_messages_and_calls">Llamadas y mensajes privados gratuitos para los usuarios de Signal</string>
   <string name="preferences__submit_debug_log">Enviar registro de depuración</string>

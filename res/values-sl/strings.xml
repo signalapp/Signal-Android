@@ -40,6 +40,8 @@ Izklopim zaklep zaslona za sporočila?</string>
   <string name="ApplicationPreferencesActivity_off">Izklopljeno</string>
   <string name="ApplicationPreferencesActivity_Off">Izklopljeno</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Geslo: %1$s, Zaščita zaslona: %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Jezik: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minuta</item>
@@ -145,7 +147,7 @@ preveriti ta stik.</string>
     <item quantity="other">Izbrišem izbrana sporočila?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">To bo nepovratno izbrisalo vizbrano sporočilo.</item>
+    <item quantity="one">To bo nepovratno izbrisalo izbrano sporočilo.</item>
     <item quantity="two">To bo nepovratno izbrisalo %1$d izbrani sporočili.</item>
     <item quantity="few">To bo nepovratno izbrisalo vsa %1$d izbrana sporočila.</item>
     <item quantity="other">To bo nepovratno izbrisalo vseh %1$d izbranih sporočil.</item>
@@ -173,18 +175,26 @@ preveriti ta stik.</string>
     <item quantity="other">Izbrišem izbrane pogovore?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">To bo nepovratno izbrisalo izbran pogovor.</item>
+    <item quantity="one">To bo nepovratno izbrisalo izbrani pogovor.</item>
     <item quantity="two">To bo nepovratno izbrisalo %1$d izbrana pogovora.</item>
     <item quantity="few">To bo nepovratno izbrisalo vse %1$d izbrane pogovore.</item>
     <item quantity="other">To bo nepovratno izbrisalo vseh %1$d izbranih pogovorov.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Brišem izbrane pogovore...</string>
-  <string name="ConversationListFragment_conversations_archived">Pogovori so bili arhivirani</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Arhiviran pogovor</item>
+    <item quantity="two">%d arhivirana pogovora</item>
+    <item quantity="few">%d arhivirani pogovori</item>
+    <item quantity="other">%d arhiviranih pogovorov</item>
+  </plurals>
   <string name="ConversationListFragment_undo">RAZVELJAVI</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Premaknjeno v nabiralnik</string>
-  <string name="ConversationListFragment_conversation_archived">Pogovor je bil arhiviran</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Premaknjeno v nabiralnik</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Pogovorov je premaknjen v nabiralnik</item>
+    <item quantity="two">%d pogovora premaknjena v nabiralnik</item>
+    <item quantity="few">%d pogovori premaknjeni v nabiralnik</item>
+    <item quantity="other">%d pogovorov premaknjeno v nabiralnik</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
   <!--ConversationListItemAction-->
@@ -206,8 +216,8 @@ preveriti ta stik.</string>
   <string name="DeviceListActivity_network_failed">Povezovanje ni uspelo!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nepoimenovana naprava</string>
-  <string name="DeviceListItem_linked_s">Povezan z %s</string>
-  <string name="DeviceListItem_last_active_s">Zadnja aktivna %s</string>
+  <string name="DeviceListItem_linked_s">Povezano: %s</string>
+  <string name="DeviceListItem_last_active_s">Zadnjič aktivna: %s</string>
   <string name="DeviceListItem_today">Danes</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
@@ -219,12 +229,12 @@ preveriti ta stik.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure in RedPhone sta odslej ena aplikacija: Signal. Tapnite za več!</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Izvozi</string>
-  <string name="ExportFragment_export_plaintext_to_storage">Izvozim v sistemsko shrambo nešifrirani obliki?</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Izvozim v nešifrirani obliki?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Pozor, s tem boste izvozili vsa svoja sporočila v sistemsko shrambo v nešifrirani obliki.</string>
   <string name="ExportFragment_cancel">Prekliči</string>
   <string name="ExportFragment_exporting">Izvažam</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">Izvažam nešifriran tekst...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">Napaka - ne morem shraniti v sistemsko shrambo!</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Izvažam nešifrirano vsebino...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Napaka - ne morem shranjevati v sistemsko shrambo!</string>
   <string name="ExportFragment_error_while_writing_to_storage">Napaka pri zapisovanju.</string>
   <string name="ExportFragment_success">Uspešno opravljeno!</string>
   <!--GcmRefreshJob-->
@@ -456,7 +466,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="ThreadRecord_called">Klicali ste</string>
   <string name="ThreadRecord_called_you">Imeli ste klic</string>
   <string name="ThreadRecord_missed_call">Neodgovorjen klic</string>
-  <string name="ThreadRecord_media_message">Multimedijsko sporočilo</string>
+  <string name="ThreadRecord_media_message">Večpredstavno sporočilo</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s uporablja Signal, pozdravite ga!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nimate identifikacijskega ključa.</string>
@@ -514,14 +524,14 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="MessageNotifier_d_new_messages_in_d_conversations">Novih sporočil: %1$d, pogovorov: %2$d</string>
   <string name="MessageNotifier_most_recent_from_s">Zadnje sporočilo od: %1$s</string>
   <string name="MessageNotifier_locked_message">Zaklenjeno sporočilo...</string>
-  <string name="MessageNotifier_media_message_with_text">Multimedijsko sporočilo: %s</string>
+  <string name="MessageNotifier_media_message_with_text">Večpredstavno sporočilo: %s</string>
   <string name="MessageNotifier_no_subject">(brez naslova)</string>
   <string name="MessageNotifier_message_delivery_failed">Dostava sporočila ni uspela.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Neuspešna dostava sporočila.</string>
   <string name="MessageNotifier_error_delivering_message">Napaka pri dostavi sporočila.</string>
   <string name="MessageNotifier_mark_all_as_read">Označi vse kot prebrano</string>
   <string name="MessageNotifier_mark_read">Označi kot prebrano</string>
-  <string name="MessageNotifier_media_message">Multiedijsko sporočilo</string>
+  <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string>
   <string name="MessageNotifier_reply">Odgovor</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hiter odziv ni mogoč kadar je aplikacija Signal zaklenjena!</string>
@@ -535,6 +545,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Stik</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Lokacija</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staro geslo</string>
   <string name="change_passphrase_activity__new_passphrase">Novo geslo</string>
@@ -568,8 +579,8 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ZA PREKINITEV PODRSAJTE</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_downloading_description">Nalagam multimedijsko sporočilo</string>
-  <string name="conversation_item__mms_image_description">Multiedijsko sporočilo</string>
+  <string name="conversation_item__mms_downloading_description">Nalagam večpredstavno sporočilo</string>
+  <string name="conversation_item__mms_image_description">Večpredstavno sporočilo</string>
   <string name="conversation_item__secure_message_description">Zavarovano sporočilo</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Prenos</string>
@@ -611,7 +622,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Posodabljam zbirko...</string>
   <string name="export_fragment__export_plaintext_backup">Izvoz nešifrirane varnostne kopije</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Izvozi nešifrirano varnostno kopijo, združljivo s sistemskimi varnostnimi kopijami SMS v sistemsko shrambo.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Izvozi nešifrirano varnostno kopijo združljivo s sistemskimi varnostnimi kopijami SMS v sistemsko shrambo.</string>
   <string name="import_fragment__import_system_sms_database">Uvoz iz sistemske zbirke sporočil SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Uvozi zbirko sporočil iz sistemsko privzete aplikacije SMS.</string>
   <string name="import_fragment__restore_encrypted_backup">Uvoz iz šifrirane varnostne kopije</string>
@@ -644,8 +655,8 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odkleni</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Za pošiljanje multimedijskih in skupinskih sporočil potrebuje aplikacija Signal nastavitve MMS vašega mobilnega operaterja. Teh podatkov ni moč pridobiti iz vaše naprave, kar je značilno za zaklenjene naprave in druge omejene konfiguracije. </string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Za pošiljanje multimedijskih in skupinskih sporočil kliknite \'OK\' in vnesite potrebne podatke. Nastavitve MMS za vašo napravo najdete pod \'APN operaterja\'. Podatke morate vnesti samo enkrat.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Za pošiljanje vešpredsatvnostnih in skupinskih sporočil potrebuje aplikacija Signal nastavitve MMS vašega mobilnega operaterja. Teh podatkov ni moč pridobiti iz vaše naprave, kar je značilno za zaklenjene naprave in druge omejene konfiguracije. </string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Za pošiljanje večpredstavnostnih in skupinskih sporočil kliknite \'OK\' in vnesite potrebne podatke. Nastavitve MMS za vašo napravo najdete pod \'APN operaterja\'. Podatke morate vnesti samo enkrat.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKIRAN</string>
   <!--recipient_preferences-->
@@ -763,7 +774,7 @@ bila uspešna.</string>
   <string name="arrays__disabled">Izklopljeno</string>
   <string name="arrays__name_and_message">Pošiljatelj in sporočilo</string>
   <string name="arrays__name_only">Samo pošiljatelj</string>
-  <string name="arrays__no_name_or_message">Ne pošiljatelj ne sporočilo</string>
+  <string name="arrays__no_name_or_message">Ne pošiljatelj, ne sporočilo</string>
   <string name="arrays__images">Slike</string>
   <string name="arrays__audio">Zvok</string>
   <string name="arrays__video">Video</string>
@@ -780,7 +791,7 @@ bila uspešna.</string>
   <string name="preferences__pref_all_sms_title">Prejemaj sporočila SMS</string>
   <string name="preferences__pref_all_mms_title">Prejemaj sporočila MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Uporabljaj TextSecure za vsa dohodna tekstovna sporočila</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj TextSecure za vsa dohodna multimedijska sporočila</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj TextSecure za vsa dohodna večpredstavnostna sporočila</string>
   <string name="preferences__input_settings">Vnos besedila</string>
   <string name="preferences__enable_enter_key_title">Vklop tipke \'Naprej\'</string>
   <string name="preferences__replace_smiley_with_enter_key">Zamenjava tipke \'Smeško\' s tipko \'Naprej\'</string>
@@ -790,20 +801,18 @@ bila uspešna.</string>
   <string name="preferences__choose_identity">Izberi identiteto</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>
-  <string name="preferences__change_your_passphrase">Zamenjaj geslo</string>
+  <string name="preferences__change_your_passphrase">Zamenjava gesla</string>
   <string name="preferences__enable_passphrase">Vklop gesla</string>
-  <string name="preferences__passphrase_summary">Geslo: %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Omogoči zaklepanje sporočil</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zaklep aplikacije Signal in obvestil z geslom</string>
   <string name="preferences__screen_security">Zaščita zaslona</string>
-  <string name="preferences__screen_security_summary">Zaščita zaslona: %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Prepreči zajem slike zaslona</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Po določenem času bo geslo v pomnilniku pozabljeno</string>
-  <string name="preferences__timeout_passphrase">Časovni zaklep aplikacije</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Izberi čas pomnenja gesla</string>
-  <string name="preferences__pref_timeout_interval_title">Čas pomnjenja gesla</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Koliko časa naj bo geslo v pomnilniku, preden bo pozabljeno</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Po nastavljenem času neaktivnosti bo aplikacija Signal zaklenjena</string>
+  <string name="preferences__inactivity_timeout_passphrase">Geslo za zaklep aplikacije</string>
+  <string name="preferences__inactivity_timeout_interval">Časovni interval za zaklep aplikacije</string>
   <string name="preferences__notifications">Obvestila</string>
   <string name="preferences__enable_message_notifications">Omogoči obvestila o novih sporočilih</string>
+  <string name="preferences__new_contacts_notifications">Obvestilo o novih uporabnikih</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Prikaži obvestilo o novih uporabnikih aplikacije Signal</string>
   <string name="preferences__led_color">Barva LED</string>
   <string name="preferences__led_color_unknown">Neznano</string>
   <string name="preferences__pref_led_blink_title">Vzorec utripanja LED</string>
@@ -863,10 +872,8 @@ bila uspešna.</string>
   <string name="preferences__dark_theme">Temna</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema: %s</string>
   <string name="preferences__default">Privzeto</string>
   <string name="preferences__language">Jezik</string>
-  <string name="preferences__language_summary">Jezik: %s</string>
   <string name="preferences__signal_messages_and_calls">Sporočila in klici Signal</string>
   <string name="preferences__free_private_messages_and_calls">Brezplačna zasebna sporočila in klici uporabnikom aplikacije Signal</string>
   <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
@@ -913,14 +920,14 @@ bila uspešna.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Izbriši označeno</string>
   <string name="conversation_list_batch__menu_select_all">Označi vse</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">Izbrani arhiv</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Premakni izbrano v arhiv</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Poišči</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika stika</string>
   <string name="conversation_list_item_view__error_alert">Alarm za napako</string>
-  <string name="conversation_list_item_view__archived">Arhivirano</string>
+  <string name="conversation_list_item_view__archived">Premaknjeno v arhiv</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nov pogovor</string>
   <!--conversation_secure_verified-->
@@ -958,7 +965,7 @@ bila uspešna.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zakleni</string>
   <string name="text_secure_normal__mark_all_as_read">Označi vse kot prebrano</string>
   <string name="text_secure_normal__invite_friends">Povabi prijatelje</string>
-  <string name="text_secure_normal__help">Ponoč</string>
+  <string name="text_secure_normal__help">Pomoč</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaša različica aplikacije Signal je zastarela</string>
   <plurals name="reminder_header_outdated_build_details">

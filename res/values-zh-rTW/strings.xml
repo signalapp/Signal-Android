@@ -30,6 +30,9 @@
   <string name="ApplicationPreferencesActivity_Off">關</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">%1$s 則簡訊，%2$s 則MMS</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="other">%d 分鐘</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(圖片)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(音訊)</string>
@@ -90,6 +93,9 @@
   <string name="ConversationActivity_group_members">群組成員</string>
   <string name="ConversationActivity_group_conversation">群組聊天</string>
   <string name="ConversationActivity_unnamed_group">未命名的群組</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="other">%d 成員</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">草稿已存</string>
   <string name="ConversationActivity_invalid_recipient">無效的連絡人！</string>
   <string name="ConversationActivity_calls_not_supported">不支援的通話</string>
@@ -147,8 +153,6 @@
   <string name="ConversationListFragment_deleting">正在刪除</string>
   <string name="ConversationListFragment_deleting_selected_conversations">正在刪除已選擇的對話...</string>
   <string name="ConversationListFragment_undo">撤銷</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">移動對話至收件箱</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">移動對話至收件箱</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息...</string>
   <!--ConversationListItemAction-->
@@ -726,6 +730,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="AndroidManifest__message_details">訊息細節</string>
   <string name="AndroidManifest_manage_linked_devices">管理已連接設備</string>
   <string name="AndroidManifest__invite_friends">邀請好友</string>
+  <string name="AndroidManifest_archived_conversations">存檔對話</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">匯入／匯出</string>
   <string name="arrays__your_identity_key">您的身份密鑰</string>
@@ -767,16 +772,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__change_passphrase">變更『自訂密碼』</string>
   <string name="preferences__change_your_passphrase">變更您的『自訂密碼』</string>
   <string name="preferences__enable_passphrase">啓用『自訂密碼』</string>
-  <string name="preferences__passphrase_summary">『自訂密碼』 %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">啓用訊息鎖屏</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
-  <string name="preferences__screen_security_summary">熒幕安全設定 %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">停用畫面擷取功能，在對話清單或APP內</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">若閒置太久沒用，讓『自訂密碼』自動幫 TextSecure上鎖</string>
-  <string name="preferences__timeout_passphrase">『自訂密碼』上鎖倒數</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">選擇『自訂密碼』上鎖倒數的區間</string>
-  <string name="preferences__pref_timeout_interval_title">倒數時間</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">等候『自訂密碼』幫 TextSecure 上鎖的等候時間</string>
   <string name="preferences__notifications">通知</string>
   <string name="preferences__enable_message_notifications">啓用訊息通知</string>
   <string name="preferences__led_color">LED燈號顏色</string>
@@ -838,10 +835,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__dark_theme">黑暗</string>
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
-  <string name="preferences__theme_summary">主題 %s</string>
   <string name="preferences__default">預設</string>
   <string name="preferences__language">語言選項</string>
-  <string name="preferences__language_summary">語言 %s</string>
   <string name="preferences__signal_messages_and_calls">Signal訊息與通話</string>
   <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至Signal用戶</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
@@ -935,6 +930,12 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="text_secure_normal__invite_friends">邀請好友</string>
   <string name="text_secure_normal__help">幫助</string>
   <!--reminder_header-->
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="other">您的 Signal 版本將於 %d 日內到期，請更新至最新版本。</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">您的 Signal 版本今日到期，請更新至最新版本。</string>
+  <string name="reminder_header_expired_build">您的 Signal 版本已過期！</string>
+  <string name="reminder_header_expired_build_details">您的訊息將無法成功發送，請更新至最新版本。</string>
   <string name="reminder_header_expired_build_button">更新</string>
   <string name="reminder_header_sms_default_title">設置爲預設簡訊應用</string>
   <string name="reminder_header_sms_default_text">點擊將 Signal 設置爲預設的簡訊應用。</string>

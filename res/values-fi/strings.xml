@@ -36,6 +36,8 @@ Poistetaanko sovelluksen ja viestien lukitus salalauseella käytöstä?</string>
   <string name="ApplicationPreferencesActivity_off">pois</string>
   <string name="ApplicationPreferencesActivity_Off">Poissa päältä</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Salalause %1$s, Näytön suojaus %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, Kieli %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minuutti</item>
@@ -171,11 +173,15 @@ Vastaanotettu: %4$s</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Poistetaan</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Poistetaan valittuja keskusteluja...</string>
-  <string name="ConversationListFragment_conversations_archived">Keskustelut arkistoitu</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Keskustelu arkistoitu</item>
+    <item quantity="other">%d keskustelua arkistoitu</item>
+  </plurals>
   <string name="ConversationListFragment_undo">KUMOA</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Keskustelu siirretty postilaatikkoon</string>
-  <string name="ConversationListFragment_conversation_archived">Keskustelu arkistoitu</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Keskustelut siirretty postilaatikkoon</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
+    <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti...</string>
   <!--ConversationListItemAction-->
@@ -532,6 +538,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Yhteystieto</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Sijainti</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vanha salalause</string>
   <string name="change_passphrase_activity__new_passphrase">Uusi salalause</string>
@@ -782,18 +789,16 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences__change_passphrase">Salalauseen vaihto</string>
   <string name="preferences__change_your_passphrase">Vaihda salalauseesi</string>
   <string name="preferences__enable_passphrase">Käytä salalausetta</string>
-  <string name="preferences__passphrase_summary">Salalause %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Lukitse sovellus ja viestit salalauseella</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukitse Signal ja ilmoitukset viesteistä salalauseella</string>
   <string name="preferences__screen_security">Näytön suojaus</string>
-  <string name="preferences__screen_security_summary">Näytön suojaus %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Estä kuvakaappaukset \"viimeksi käytetyt sovellukset\" -näkymästä sekä sovelluksen sisältä</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Unohda salalause muistista määritetyn ajan kuluttua</string>
-  <string name="preferences__timeout_passphrase">Ajasta salalause</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Valitse salalauseen ajastimen kesto</string>
-  <string name="preferences__pref_timeout_interval_title">Salalauseen ajastimen kesto</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Odotusaika, ennen kuin salalause unohdetaan muistista</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukitse automaattisesti salalauseella, jos Signalia ei ole käytetty määriteltynä aikavälinä</string>
+  <string name="preferences__inactivity_timeout_passphrase">Ajasta lukitus</string>
+  <string name="preferences__inactivity_timeout_interval">Automaattisen lukituksen aikaväli</string>
   <string name="preferences__notifications">Ilmoitukset</string>
   <string name="preferences__enable_message_notifications">Näytä ilmoitukset viesteistä</string>
+  <string name="preferences__new_contacts_notifications">Ilmoitukset uusista Signal-yhteystiedoista</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Näytä ilmoitukset uusista Signalin käyttäjistä</string>
   <string name="preferences__led_color">LED:in väri</string>
   <string name="preferences__led_color_unknown">Tuntematon</string>
   <string name="preferences__pref_led_blink_title">LED:in vilkkumistahti</string>
@@ -853,10 +858,8 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences__dark_theme">Tumma</string>
   <string name="preferences__appearance">Ulkonäkö</string>
   <string name="preferences__theme">Teema</string>
-  <string name="preferences__theme_summary">Teema %s</string>
   <string name="preferences__default">Oletus</string>
   <string name="preferences__language">Kieli</string>
-  <string name="preferences__language_summary">Kieli %s</string>
   <string name="preferences__signal_messages_and_calls">Signal-viestit ja -puhelut</string>
   <string name="preferences__free_private_messages_and_calls">Ilmaiset ja yksityiset viestit sekä puhelut Signalin käyttäjille</string>
   <string name="preferences__submit_debug_log">Lähetä virheenkorjausloki</string>

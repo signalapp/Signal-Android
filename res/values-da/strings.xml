@@ -164,7 +164,6 @@ denne kontakt.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte samtaler...</string>
-  <string name="ConversationListFragment_conversations_archived">Samtaler arkiveret</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
   <!--ConversationListItemAction-->
@@ -770,16 +769,8 @@ mislykkedes.</string>
   <string name="preferences__change_passphrase">Ændr kodeord</string>
   <string name="preferences__change_your_passphrase">Ændring af dit kodeord</string>
   <string name="preferences__enable_passphrase">Aktivér kodeord</string>
-  <string name="preferences__passphrase_summary">Kodeord %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Kræv kodeord når Signal åbnes</string>
   <string name="preferences__screen_security">Skærmsikkerhed</string>
-  <string name="preferences__screen_security_summary">Skærmsikkerhed %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \\"forrige apps\\" og i Signal</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern kodeord efter den valgte tidsperiode. Brug hvis du kun har behov for kodelås midlertidigt, fx ved udlån af mobil, eller hvis din mobil bruges som fælles musikafspiller.</string>
-  <string name="preferences__timeout_passphrase">Midlertidig kodelås</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Vælg timeout for kodeord</string>
-  <string name="preferences__pref_timeout_interval_title">Tidsinterval for midlertidig kodelås</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hvor lang tid der skal gå, før kodeordet slettes fra hukommelsen</string>
   <string name="preferences__notifications">Notifikationer</string>
   <string name="preferences__enable_message_notifications">Aktivér beskednotifikationer</string>
   <string name="preferences__led_color">LED-farve</string>
@@ -837,10 +828,8 @@ mislykkedes.</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Udseende</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprog</string>
-  <string name="preferences__language_summary">Sprog %s</string>
   <string name="preferences__signal_messages_and_calls">Signalbeskeder og -opkald</string>
   <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Signal-brugere</string>
   <string name="preferences__submit_debug_log">Indsend fejlfindingslog</string>
@@ -933,6 +922,14 @@ mislykkedes.</string>
   <string name="text_secure_normal__invite_friends">Invitér venner</string>
   <string name="text_secure_normal__help">Hjælp</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Din version af Signal er forældet</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Din version af Signal udløber om 1 dag. Tap for at opdatere til den seneste version.</item>
+    <item quantity="other">Din version af Signal udløber om %d dage. Tap for at opdatere til den seneste version.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Din version af Signal udløber i dag. Tap for at opdatere til den seneste version.</string>
+  <string name="reminder_header_expired_build">Din version af Signal er udgået!</string>
+  <string name="reminder_header_expired_build_details">Beskeder vil ikke længere blive afsendt ordentligt. Tap for at opdatere til den seneste version.</string>
   <string name="reminder_header_expired_build_button">OPDATER</string>
   <string name="reminder_header_sms_default_title">Anvend som standard SMS-app</string>
   <string name="reminder_header_sms_default_text">Tryk for at gøre Signal til din standard SMS-app.</string>

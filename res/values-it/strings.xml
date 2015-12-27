@@ -8,6 +8,10 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">In questo momento: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 messaggio per conversazione</item>
+    <item quantity="other">%d messaggi per conversazione</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Eliminare tutti i messaggi vecchi ora?</string>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
@@ -28,7 +32,12 @@ Disabilitare la schermata di blocco per i messaggi?</string>
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Lingua %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minuto</item>
+    <item quantity="other">%d minuti</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(immagine)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -88,6 +97,10 @@ questo contatto.</string>
   <string name="ConversationActivity_group_members">Membri del gruppo</string>
   <string name="ConversationActivity_group_conversation">Conversazione di gruppo</string>
   <string name="ConversationActivity_unnamed_group">Gruppo senza nome</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 membro</item>
+    <item quantity="other">%d membri</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Bozza salvata</string>
   <string name="ConversationActivity_invalid_recipient">Destinatario non valido!</string>
   <string name="ConversationActivity_calls_not_supported">Chiamate non supportate</string>
@@ -148,9 +161,15 @@ questo contatto.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Eliminazione</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Eliminazione delle conversazioni selezionate...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Conversazione archiviata</item>
+    <item quantity="other">%d conversazioni archiviate</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ANNULLA</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Sposta la conversazione nei messaggi in arrivo</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Sposta le conversazioni nei messaggi in arrivo</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Conversazione spostata nei messaggi in arrivo</item>
+    <item quantity="other">%d conversazioni spostate nei messaggi in arrivo</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Messaggio di scambio della chiave...</string>
   <!--ConversationListItemAction-->
@@ -507,6 +526,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Contatto</string>
   <string name="attachment_type_selector__camera">Fotocamera</string>
+  <string name="attachment_type_selector__location">Posizione</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vecchia password</string>
   <string name="change_passphrase_activity__new_passphrase">Nuova password</string>
@@ -727,6 +747,7 @@ non riuscita.
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
   <string name="AndroidManifest_manage_linked_devices">Gestisci dispositivi collegati</string>
   <string name="AndroidManifest__invite_friends">Invita amici</string>
+  <string name="AndroidManifest_archived_conversations">Conversazioni archiviate</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__your_identity_key">Chiave della tua identità</string>
@@ -769,18 +790,13 @@ non riuscita.
   <string name="preferences__change_passphrase">Cambia passphrase</string>
   <string name="preferences__change_your_passphrase">Cambia la tua password</string>
   <string name="preferences__enable_passphrase">Usa password</string>
-  <string name="preferences__passphrase_summary">Password %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Attiva schermata di blocco per i messaggi</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blocca signal e le notifiche dei messaggi con una password</string>
   <string name="preferences__screen_security">Sicurezza schermo</string>
-  <string name="preferences__screen_security_summary">Sicurezza schermo %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blocca il fotografare dello schermo nella lista recenti e all\'interno dell\'app</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Dimentica la password dalla cache dopo un intervallo di tempo</string>
-  <string name="preferences__timeout_passphrase">Tempo per dimenticare la password</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Imposta timeout per la password</string>
-  <string name="preferences__pref_timeout_interval_title">Intervallo di tempo</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">La quantità di tempo prima di dimenticare la password</string>
   <string name="preferences__notifications">Notifiche</string>
   <string name="preferences__enable_message_notifications">Attiva notifiche messaggi</string>
+  <string name="preferences__new_contacts_notifications">Notifiche per nuovi contatti</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Mostra una notifica per i nuovi contatti Signal</string>
   <string name="preferences__led_color">Colore del LED</string>
   <string name="preferences__led_color_unknown">Sconosciuto</string>
   <string name="preferences__pref_led_blink_title">Impostazioni LED</string>
@@ -840,10 +856,8 @@ non riuscita.
   <string name="preferences__dark_theme">Scuro</string>
   <string name="preferences__appearance">Aspetto</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Predefinito</string>
   <string name="preferences__language">Lingua</string>
-  <string name="preferences__language_summary">Lingua %s</string>
   <string name="preferences__signal_messages_and_calls">Messaggi e chiamate Signal</string>
   <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
@@ -891,6 +905,7 @@ non riuscita.
   <string name="conversation_list_batch__menu_delete_selected">Elimina selezionati</string>
   <string name="conversation_list_batch__menu_select_all">Seleziona tutto</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archivia queste conversazioni</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Non archiviate selezionato</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cerca</string>
   <!--conversation_list_item_view-->
@@ -936,6 +951,14 @@ non riuscita.
   <string name="text_secure_normal__invite_friends">Invita amici</string>
   <string name="text_secure_normal__help">Aiuto</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">La tua versione di Signal è vecchia</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">La tua versione di Signal scadrà tra 1 giorno. Premi per aggiornare alla versione più recente.</item>
+    <item quantity="other">La tua versione di Signal scadrà tra %d giorni. Premi per aggiornare alla versione più recente.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">La tua versione di Signal scade oggi. Premi per aggiornare alla versione più recente.</string>
+  <string name="reminder_header_expired_build">La tua versione di Signal è scaduta!</string>
+  <string name="reminder_header_expired_build_details">I messaggi non vengo più inviati con successo. Premi per aggiornare alla versione più recente.</string>
   <string name="reminder_header_expired_build_button">AGGIORNA</string>
   <string name="reminder_header_sms_default_title">Usa come app per tutti gli SMS</string>
   <string name="reminder_header_sms_default_text">Tocca per usare Signal come applicazione di default per gli SMS.</string>

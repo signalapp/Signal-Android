@@ -692,16 +692,8 @@ neuspješno.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Odaberite unos kontakta sa popisa kontakata.</string>
   <string name="preferences__change_passphrase">Izmjeni lozinku</string>
   <string name="preferences__enable_passphrase">Omogući lozinku</string>
-  <string name="preferences__passphrase_summary">Lozinka %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Omogući zaključani ekran za poruke</string>
   <string name="preferences__screen_security">Sigurnost ekrana</string>
-  <string name="preferences__screen_security_summary">Sigurnost ekrana %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Onemogući snimanje ekrana na popisu nedavnih i unutar aplikacije</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Zaboravi lozinku iz memorije nakon nekoliko intervala</string>
-  <string name="preferences__timeout_passphrase">Vremensko ograničenje lozinke</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Odaberite vremensko ograničenje lozinke</string>
-  <string name="preferences__pref_timeout_interval_title">Interval vremenskog ograničenja</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Vrijeme nakon kojeg će se obrisati lozinka iz memorije</string>
   <string name="preferences__notifications">Obavijesti</string>
   <string name="preferences__enable_message_notifications">Omogući obavijesti o poruci</string>
   <string name="preferences__led_color">LED boja</string>
@@ -757,10 +749,8 @@ neuspješno.</string>
   <string name="preferences__dark_theme">Tamna</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Teme</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Zadano</string>
   <string name="preferences__language">Jezik</string>
-  <string name="preferences__language_summary">Jezik %s</string>
   <string name="preferences__submit_debug_log">Pošalji debug zapis</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' način kompatibilnosti</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ukoliko vaš uređaj koristi SMS/MMS isporuku preko WiFi (omogućite jedino kada je \'WiFi pozivanje\' omogućeno na vašem uređaju)</string>

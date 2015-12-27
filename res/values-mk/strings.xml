@@ -513,15 +513,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт од вашата листа на контакти</string>
   <string name="preferences__change_passphrase">Променете лозинка</string>
   <string name="preferences__enable_passphrase">Овозможете лозинка</string>
-  <string name="preferences__passphrase_summary">Лозинка %s</string>
   <string name="preferences__screen_security">Сигурност на екранот</string>
-  <string name="preferences__screen_security_summary">Сигурност на екранот %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Оневозможете screenshots во листата на последни апликации и во самата апликација</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Избриши ја лозинката од меморија после одреден интервал</string>
-  <string name="preferences__timeout_passphrase">Временско ограничување за лозинката</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Изберете интервал за временско ограничување на лозинката</string>
-  <string name="preferences__pref_timeout_interval_title">Интервал за временско ограничување </string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Време после кое лозинката ќе биде избришана од меморија</string>
   <string name="preferences__notifications">Известувања</string>
   <string name="preferences__led_color">LED боја</string>
   <string name="preferences__led_color_unknown">Непознато</string>
@@ -575,10 +568,8 @@
   <string name="preferences__dark_theme">Темна</string>
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Дизајн</string>
-  <string name="preferences__theme_summary">Дизајн %s</string>
   <string name="preferences__default">Стандардно</string>
   <string name="preferences__language">Јазик</string>
-  <string name="preferences__language_summary">Јазик %s</string>
   <string name="preferences__submit_debug_log">Испратете протокол за дијагноза</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' мод за компатибилност</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку \'WiFi Calling\' е овозможен на уредот)</string>

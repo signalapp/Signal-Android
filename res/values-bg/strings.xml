@@ -36,6 +36,8 @@
   <string name="ApplicationPreferencesActivity_off">изкл</string>
   <string name="ApplicationPreferencesActivity_Off">Изключено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Парола %1$s, Защита на екрана %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Език %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 минута</item>
@@ -164,11 +166,11 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Изтриване</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Изтриване на избраните разговори...</string>
-  <string name="ConversationListFragment_conversations_archived">Разговорите са архивирани</string>
   <string name="ConversationListFragment_undo">ВЪЗСТАНОВИ</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Разговорът е преместен във входящата кутия</string>
-  <string name="ConversationListFragment_conversation_archived">Разговорът е архивиран</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Разговорът е преместен във входящата кутия</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Преместен разговор във входяща кутия</item>
+    <item quantity="other">Преместени %d разговора във входящата кутия</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
   <!--ConversationListItemAction-->
@@ -527,6 +529,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="attachment_type_selector__video">Видео</string>
   <string name="attachment_type_selector__contact">Контакт</string>
   <string name="attachment_type_selector__camera">Камера</string>
+  <string name="attachment_type_selector__location">Местоположение</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Стара парола</string>
   <string name="change_passphrase_activity__new_passphrase">Нова парола</string>
@@ -787,16 +790,10 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="preferences__change_passphrase">Смени паролата</string>
   <string name="preferences__change_your_passphrase">Сменете паролата си</string>
   <string name="preferences__enable_passphrase">Включи парола</string>
-  <string name="preferences__passphrase_summary">Парола %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Включи заключен екран за съобщения</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Заключи Signal и всички извесития с парола</string>
   <string name="preferences__screen_security">Сигурност на екрана</string>
-  <string name="preferences__screen_security_summary">Защита на екрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Забрани автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Изтрий паролата от паметта след известно време</string>
-  <string name="preferences__timeout_passphrase">Изтичане на паролата</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Продължителност на помненето на паролата</string>
-  <string name="preferences__pref_timeout_interval_title">Продължителност на помненето</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Продължителнос от време, преди да забравя паролата от памета</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматично заключвай Signal след зададен период от неактивност</string>
   <string name="preferences__notifications">Известия</string>
   <string name="preferences__enable_message_notifications">Разреши известия за съобщения</string>
   <string name="preferences__led_color">LED цвят</string>
@@ -858,10 +855,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="preferences__dark_theme">Тъмна</string>
   <string name="preferences__appearance">Външен вид</string>
   <string name="preferences__theme">Тема</string>
-  <string name="preferences__theme_summary">Тема %s</string>
   <string name="preferences__default">По подразбиране</string>
   <string name="preferences__language">Език</string>
-  <string name="preferences__language_summary">Език %s</string>
   <string name="preferences__signal_messages_and_calls">Signal съобщения и обаждания</string>
   <string name="preferences__free_private_messages_and_calls">Безплатни, лични съобщения и обаждания до Signal потребители</string>
   <string name="preferences__submit_debug_log">Изпрати доклад</string>

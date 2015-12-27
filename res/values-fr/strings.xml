@@ -37,6 +37,8 @@ Désactiver l\'écran de protection des messages ?
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Phrase de passe %1$s, Sécurité de l\'écran %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, Langage %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minute</item>
@@ -165,11 +167,15 @@ vérifier ce contact.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Suppression</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Suppression des conversations sélectionnées...</string>
-  <string name="ConversationListFragment_conversations_archived">Conversations archivées</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Conversation archivée</item>
+    <item quantity="other">%d conversations archivées</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ANNULER</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Conversation déplacée dans la boite de réception</string>
-  <string name="ConversationListFragment_conversation_archived">Conversation archivée</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversations déplacées dans la boite de réception</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">conversation déplacé dans la boîte de réception</item>
+    <item quantity="other">%d conversations déplacées dans la boîte de réception</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Message d’échange des clés…</string>
   <!--ConversationListItemAction-->
@@ -523,6 +529,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="attachment_type_selector__video">Vidéo</string>
   <string name="attachment_type_selector__contact">Contact</string>
   <string name="attachment_type_selector__camera">Appareil photo</string>
+  <string name="attachment_type_selector__location">Lieu</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe</string>
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe</string>
@@ -781,18 +788,16 @@ par SMS.</string>
   <string name="preferences__change_passphrase">Modifier la phrase de passe</string>
   <string name="preferences__change_your_passphrase">Changer votre phrase de passe</string>
   <string name="preferences__enable_passphrase">Activer la phrase de passe</string>
-  <string name="preferences__passphrase_summary">Phrase de passe %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Activer l\'écran de protection pour les messages</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Verrouiller Signal et les notifications de message à l\'aide d\'une phrase de passe</string>
   <string name="preferences__screen_security">Sécurité d’écran</string>
-  <string name="preferences__screen_security_summary">Sécurité d\'écran %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Désactiver les prises d\'écrans dans la liste des applications récentes et à l\'intérieur de l\'application</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Oublier la phrase de passe en mémoire après une certaine durée</string>
-  <string name="preferences__timeout_passphrase">Expiration du mot de passe</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Expiration du mot de passe</string>
-  <string name="preferences__pref_timeout_interval_title">Délai d\'expiration</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Délai avant l\'oubli de la phrase de passe en mémoire</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Verrouillage automatique de Signal après un temps d\'inactivité spécifié</string>
+  <string name="preferences__inactivity_timeout_passphrase">Expiration de la phrase de passe due à l\'inactivité</string>
+  <string name="preferences__inactivity_timeout_interval">Intervalle de temps pour l\'inactivité</string>
   <string name="preferences__notifications">Notifications</string>
   <string name="preferences__enable_message_notifications">Activer les notifications de messages</string>
+  <string name="preferences__new_contacts_notifications">Notifications pour les nouveaux contacts</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Montrer une notifications pour les nouveaux contacts Signal</string>
   <string name="preferences__led_color">Couleur de la LED</string>
   <string name="preferences__led_color_unknown">Inconnu</string>
   <string name="preferences__pref_led_blink_title">Rythme de clignotement de la LED</string>
@@ -852,10 +857,8 @@ par SMS.</string>
   <string name="preferences__dark_theme">Sombre</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
-  <string name="preferences__theme_summary">Thème %s</string>
   <string name="preferences__default">Par défaut</string>
   <string name="preferences__language">Langue</string>
-  <string name="preferences__language_summary">Langue %s</string>
   <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
   <string name="preferences__free_private_messages_and_calls">Messages et appels gratuits et privés vers les utilisateurs Signal</string>
   <string name="preferences__submit_debug_log">Envoyer un rapport de débogage</string>

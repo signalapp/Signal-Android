@@ -38,6 +38,8 @@ Zakázat uzamčení obrazovky zpráv?</string>
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
   <string name="ApplicationPreferencesActivity_Off">Vyp.</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Heslo %1$s, Zabezpečení obrazovky %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Téma %1$s, Jazyk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minuta</item>
@@ -173,11 +175,17 @@ kontakt</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Mažu</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Mažu označené konverzace...</string>
-  <string name="ConversationListFragment_conversations_archived">Konverzace archivovány</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Konverzace archivována</item>
+    <item quantity="few">%d konverzace archivovány</item>
+    <item quantity="other">%d konverzací archivováno</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ZPĚT</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Přesunuta konverzace do složky příchozích zpráv</string>
-  <string name="ConversationListFragment_conversation_archived">Konverzace archivována</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Přesunuty konverzace do složky příchozích zpráv</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Konverzace přesunuta do složky příchozích zpráv</item>
+    <item quantity="few">Přesunuty %d konverzace do složky příchozích zpráv</item>
+    <item quantity="other">Přesunuto %d konverzací do složky příchozích zpráv</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Předávání klíčů...</string>
   <!--ConversationListItemAction-->
@@ -528,6 +536,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Poloha</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Původní heslo</string>
   <string name="change_passphrase_activity__new_passphrase">Nové heslo</string>
@@ -789,18 +798,16 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__change_passphrase">Změnit heslo</string>
   <string name="preferences__change_your_passphrase">Změna vašeho hesla</string>
   <string name="preferences__enable_passphrase">Povolit přístupové heslo</string>
-  <string name="preferences__passphrase_summary">Heslo %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Povolit uzamčení obrazovky zpráv</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zamknout Signal a upozornění na zprávy heslem</string>
   <string name="preferences__screen_security">Zabezpečení obrazovky</string>
-  <string name="preferences__screen_security_summary">Zabezpečení obrazovky %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Zablokovat náhled v seznamu aplikací</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Po určitém čase zapomenout heslo</string>
-  <string name="preferences__timeout_passphrase">Vypršení hesla</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Volba času zapomenutí hesla</string>
-  <string name="preferences__pref_timeout_interval_title">Limit čekání</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Doba po kterou si pamatovat vyplněné heslo</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automaticky zamknout Signal po určité době neaktivity</string>
+  <string name="preferences__inactivity_timeout_passphrase">Heslo po době neaktivity</string>
+  <string name="preferences__inactivity_timeout_interval">Interval neaktivity</string>
   <string name="preferences__notifications">Upozornění</string>
   <string name="preferences__enable_message_notifications">Povolit upozornění na zprávy</string>
+  <string name="preferences__new_contacts_notifications">Upozornění na nové kontakty</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Zobrazit upozornění na nové kontakty Signal.</string>
   <string name="preferences__led_color">Barva LED</string>
   <string name="preferences__led_color_unknown">Neznámý</string>
   <string name="preferences__pref_led_blink_title">Schéma blikání LED</string>
@@ -860,10 +867,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Chování</string>
   <string name="preferences__theme">Vzhled</string>
-  <string name="preferences__theme_summary">Vzhled %s</string>
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
-  <string name="preferences__language_summary">Jazyk %s</string>
   <string name="preferences__signal_messages_and_calls">Signal zpravy a volání</string>
   <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladící log</string>

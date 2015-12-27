@@ -8,7 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Jelenleg: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottál be jelmondatot!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 üzenet beszélgetésenként</item>
+    <item quantity="other">%d üzenet beszélgetésenként</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Minden régi üzenet törlése most?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Ez azonnal csonkolni fogja az összes beszélgetést a legfrissebb üzenetre.</item>
+    <item quantity="other">Ez azonnal csonkolni fogja az összes beszélgetést a(z) %d legfrissebb üzenetre.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Törlés</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Jelmondat tiltása?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -29,6 +37,10 @@ Képernyő zárolásának tiltása az üzeneteknél?</string>
   <string name="ApplicationPreferencesActivity_Off">Ki</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 perc</item>
+    <item quantity="other">%d perc</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(kép)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(hang)</string>
@@ -80,7 +92,7 @@ ezt a névjegyet.
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ez segíthet, ha titkosítási problémáid vannak ebben a beszélgetésben. Az üzeneteid meg lesznek tartva.</string>
   <string name="ConversationActivity_reset">Alaphelyzetbe állítás</string>
   <string name="ConversationActivity_delete_thread_question">Beszélgetés törlése?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Ez azonnal törölni fogja az összes üzenetet ebben a beszégetésben</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Ez végelegesen törölni fogja az összes üzenetet ebben a beszélgetésben.</string>
   <string name="ConversationActivity_add_attachment">Melléklet hozzáadása</string>
   <string name="ConversationActivity_select_contact_info">Válassz névjegy infót!</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
@@ -93,6 +105,10 @@ ezt a névjegyet.
   <string name="ConversationActivity_group_members">Csoport tagok</string>
   <string name="ConversationActivity_group_conversation">Csoportos beszélgetés</string>
   <string name="ConversationActivity_unnamed_group">Névtelen csoport</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 tag</item>
+    <item quantity="other">%d tag</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Mentett piszkozat</string>
   <string name="ConversationActivity_invalid_recipient">Érvénytelen címzett!</string>
   <string name="ConversationActivity_calls_not_supported">A hívások nem támogatottak!</string>
@@ -124,8 +140,8 @@ ezt a névjegyet.
     <item quantity="other">Kiválasztott üzenetek törlése?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">Ez azonnal törölni fogja a kiválasztott üzenetet.</item>
-    <item quantity="other">Ez azonnal törölni fogja mind a(z) %1$d kiválasztott üzenetet.</item>
+    <item quantity="one">Ez végelegesen törölni fogja a kiválasztott üzenetet.</item>
+    <item quantity="other">Ez végelegesen törölni fogja mind a(z) %1$d kiválasztott üzenetet.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Mentés tárolóra?</string>
   <string name="ConversationFragment_saving_this_media_to_storage_warning">Ez a média mentése a tárolóra lehetővé teszi bármelyik másik alkalmazásnak a készülékeden, hogy hozzáférjen.\n\nFolytatod?</string>
@@ -148,14 +164,12 @@ ezt a névjegyet.
     <item quantity="other">Kiválasztott beszélgetések törlése?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Ez azonnal törölni fogja a kiválasztott beszélgetést.</item>
-    <item quantity="other">Ez azonnal törölni fogja mind a(z) %1$d kiválasztott beszélgetést.</item>
+    <item quantity="one">Ez végelegesen törölni fogja a kiválasztott beszélgetést.</item>
+    <item quantity="other">Ez végelegesen törölni fogja mind a(z) %1$d kiválasztott beszélgetést.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Törlés</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Kiválasztott beszélgetések törlése...</string>
   <string name="ConversationListFragment_undo">VISSZAVONÁS</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Beérkezőbe áthelyezett beszélgetés</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Beérkezőbe áthelyezett beszélgetések</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet...</string>
   <!--ConversationListItemAction-->
@@ -231,7 +245,7 @@ ezt a névjegyet.
     </string>
   <string name="ImportFragment_import">Importálás</string>
   <string name="ImportFragment_cancel">Mégsem</string>
-  <string name="ImportFragment_restore_encrypted_backup">Titkosított biztonsági másolat visszaállítása?</string>
+  <string name="ImportFragment_restore_encrypted_backup">Titkosított biztonsági mentés visszaállítása?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
         Egy titkosított biztonsági mentés visszaállításával minden létező kulcs, beállítás és üzenet felülíródik.
         El fogsz veszíteni minden információt a jelenlegi Signal telepítésedben, de nincs
@@ -296,7 +310,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimédia üzenet</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy üzenet érkezett a Signal egy régebbi verziójával titkosítva, ami már nem támogatott. Kérlek kérd meg a küldőt, hogy frissítsen a legutóbbi verzióra és küldje újra az üzenetet.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy üzenet érkezett a Signal egy régebbi verziójával titkosítva, ami már nem támogatott. Kérlek kérd meg a küldőt, hogy frissítsen a legfrissebb verzióra és küldje újra az üzenetet.</string>
   <string name="MessageRecord_left_group">Elhagytad a csoportot.</string>
   <string name="MessageRecord_updated_group">A csoport frissítése megtörtént.</string>
   <string name="MessageRecord_s_called_you">%s hívott téged</string>
@@ -502,7 +516,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="KeyCachingService_lock">Lezárás jelmondattal</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d új üzenet %2$d beszélgetésben</string>
-  <string name="MessageNotifier_most_recent_from_s">Legutóbbi tőle: %1$s</string>
+  <string name="MessageNotifier_most_recent_from_s">Legfrissebb tőle: %1$s</string>
   <string name="MessageNotifier_locked_message">Zárolt üzenet...</string>
   <string name="MessageNotifier_media_message_with_text">Média üzenet: %s</string>
   <string name="MessageNotifier_no_subject">(Nincs tárgy)</string>
@@ -760,6 +774,7 @@ sikertelen.
   <string name="AndroidManifest__message_details">Üzenet részletek</string>
   <string name="AndroidManifest_manage_linked_devices">Társított készülékek kezelése</string>
   <string name="AndroidManifest__invite_friends">Barátok meghívása</string>
+  <string name="AndroidManifest_archived_conversations">Archivált beszélgetések</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás / Exportálás</string>
   <string name="arrays__your_identity_key">Azonosító kulcsod</string>
@@ -802,16 +817,8 @@ sikertelen.
   <string name="preferences__change_passphrase">Jelmondat megváltoztatása</string>
   <string name="preferences__change_your_passphrase">Változtasd meg a jelmondatod</string>
   <string name="preferences__enable_passphrase">Jelmondat engedélyezése</string>
-  <string name="preferences__passphrase_summary">Jelmondat %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Zárolt képernyő engedélyezése az üzeneteknek</string>
   <string name="preferences__screen_security">Képernyő biztonság</string>
-  <string name="preferences__screen_security_summary">Képernyő biztonság %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">A képernyőkép mentés tiltása a korábbi listákban és az alkalmazáson belül</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Jelmondat memóriából való törlése egy bizonyos idő elteltével</string>
-  <string name="preferences__timeout_passphrase">Jelmondat időtúllépés</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Jelmondat időtúllépés kiválasztása</string>
-  <string name="preferences__pref_timeout_interval_title">Időtúllépés intervalluma</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">A jelmondat memóriából való törlése előtti várakozási idő tartama</string>
   <string name="preferences__notifications">Értesítések</string>
   <string name="preferences__enable_message_notifications">Üzenet értesítések engedélyezése</string>
   <string name="preferences__led_color">LED színe</string>
@@ -873,10 +880,8 @@ sikertelen.
   <string name="preferences__dark_theme">Sötét</string>
   <string name="preferences__appearance">Megjelenés</string>
   <string name="preferences__theme">Téma</string>
-  <string name="preferences__theme_summary">Téma %s</string>
   <string name="preferences__default">Alapértelmezett</string>
   <string name="preferences__language">Nyelv</string>
-  <string name="preferences__language_summary">Nyelv %s</string>
   <string name="preferences__signal_messages_and_calls">Signal üzenetek és hívások</string>
   <string name="preferences__free_private_messages_and_calls">Ingyenes privát üzenetek és hívások Signal felhasználóknak</string>
   <string name="preferences__submit_debug_log">Hibakeresési napló küldése</string>
@@ -970,6 +975,14 @@ sikertelen.
   <string name="text_secure_normal__invite_friends">Barátok meghívása</string>
   <string name="text_secure_normal__help">Súgó</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">A Signal-od verziója elavult</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">A Signal-od verziója 1 nap múlva lejár. Érints a legfrissebb verzióra történő frissítéshez.</item>
+    <item quantity="other">A Signal-od verziója %d nap múlva lejár. Érints a legfrissebb verzióra történő frissítéshez.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">A Signal-od verziója ma le fog járni. </string>
+  <string name="reminder_header_expired_build">A Signal-od verziója lejárt!</string>
+  <string name="reminder_header_expired_build_details">A továbbiakban az üzenetek nem lesznek sikeresen elküldve. Érints a legfrissebb verzióra történő frissítéshez.</string>
   <string name="reminder_header_expired_build_button">FRISSÍTÉS</string>
   <string name="reminder_header_sms_default_title">Használat alapértelmezett SMS alkalmazásként</string>
   <string name="reminder_header_sms_default_text">Érints a Signal alapértelmezett SMS alkalmazássá tételéhez.</string>

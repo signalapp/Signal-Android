@@ -155,11 +155,7 @@ Mesajlar için kilit ekranı devre dışı bırakılsın mı?</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Siliniyor</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Seçilmiş sohbetler siliniyor...</string>
-  <string name="ConversationListFragment_conversations_archived">Sohbetler arşivlendi</string>
   <string name="ConversationListFragment_undo">Geri Al</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Sohbet gelen kutusuna taşındı</string>
-  <string name="ConversationListFragment_conversation_archived">Sohbet arşivlendi</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Sohbetler gelen kutusuna taşındı</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas mesajı...</string>
   <!--ConversationListItemAction-->
@@ -763,16 +759,8 @@ başarısız.</string>
   <string name="preferences__change_passphrase">Parola değiştir</string>
   <string name="preferences__change_your_passphrase">Parolanı değiştir</string>
   <string name="preferences__enable_passphrase">Parolayı etkinleştir</string>
-  <string name="preferences__passphrase_summary">Parola %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Mesajlar için kilit ekranını etkinleştir</string>
   <string name="preferences__screen_security">Ekran güvenliği</string>
-  <string name="preferences__screen_security_summary">Ekran güvenliği %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">En son listelerde ve uygulama içinde ekran görüntüsü alınmasını engelle</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Hafızadaki parolayı bir süre sonra unut</string>
-  <string name="preferences__timeout_passphrase">Parola zaman aşımı</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Seçili anahtar parolasının süresi dolmuş</string>
-  <string name="preferences__pref_timeout_interval_title">Zaman aşımı aralığı</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hafızadaki parolanın unutulması için geçmesi gereken süre</string>
   <string name="preferences__notifications">Bildirimler</string>
   <string name="preferences__enable_message_notifications">Mesaj bildirimlerini etkinleştir</string>
   <string name="preferences__led_color">LED rengi</string>
@@ -834,10 +822,8 @@ başarısız.</string>
   <string name="preferences__dark_theme">Koyu</string>
   <string name="preferences__appearance">Görünüm</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Varsayılan</string>
   <string name="preferences__language">Dil</string>
-  <string name="preferences__language_summary">Dil %s</string>
   <string name="preferences__signal_messages_and_calls">Signal mesajları ve aramaları</string>
   <string name="preferences__free_private_messages_and_calls">Signal kullanıcılarına ücretsiz özel mesajlar ve aramalar</string>
   <string name="preferences__submit_debug_log">Hata ayıklama kaydı gönder</string>

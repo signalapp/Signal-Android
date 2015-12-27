@@ -154,8 +154,6 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   <string name="ConversationListFragment_deleting">A apagar</string>
   <string name="ConversationListFragment_deleting_selected_conversations">A eliminar conversas seleccionadas...</string>
   <string name="ConversationListFragment_undo">REVERTER</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Conversa movida para a caixa de entrada</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversas movidas para a caixa de entrada</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
   <!--ConversationListItemAction-->
@@ -788,16 +786,8 @@ falhou.
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
   <string name="preferences__change_your_passphrase">Alterar a sua frase-chave</string>
   <string name="preferences__enable_passphrase">Activar frase-chave</string>
-  <string name="preferences__passphrase_summary">Frase-chave %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Habilitar ecrã de bloqueio para mensagens</string>
   <string name="preferences__screen_security">Segurança de ecrã</string>
-  <string name="preferences__screen_security_summary">Segurança de ecrã %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear captura de ecrã na lista de recentes e dentro da aplicação</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Esquecer a frase-chave após algum intervalo</string>
-  <string name="preferences__timeout_passphrase">Expirar frase-chave</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar tempo de expiração da frase-chave</string>
-  <string name="preferences__pref_timeout_interval_title">Intervalo de expiração</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Tempo a esperar antes de remover a frase-chave da memória</string>
   <string name="preferences__notifications">Notificações</string>
   <string name="preferences__enable_message_notifications">Activar notificações de mensagens</string>
   <string name="preferences__led_color">Cor do LED</string>
@@ -859,10 +849,8 @@ falhou.
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aspecto</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Opção por omissão</string>
   <string name="preferences__language">Língua</string>
-  <string name="preferences__language_summary">Língua %s</string>
   <string name="preferences__signal_messages_and_calls">Mensagens e chamadas Signal</string>
   <string name="preferences__free_private_messages_and_calls">Mensagens e chamadas privadas gratuitas para utilizadores Signal</string>
   <string name="preferences__submit_debug_log">Submeter registo de depuração</string>

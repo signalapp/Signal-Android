@@ -8,7 +8,17 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Obecnie: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nie masz jeszcze ustawionego hasła!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 wiadomość na rozmowę</item>
+    <item quantity="few">%d wiadomości na rozmowę</item>
+    <item quantity="other">%d wiadomości na konwersacje</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Usunąć wszystkie stare wiadomości?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">To sprawi natychmiastowe przycięcie wszystkich konwersacji aż do najnowszej wiadomości.</item>
+    <item quantity="few">To sprawi natychmiastowe przycięcie wszystkich konwersacji aż do %d najnowszych wiadomości.</item>
+    <item quantity="other">To sprawi natychmiastowe przycięcie wszystkich konwersacji aż do %d najnowszych wiadomości.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Usuń</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wyłączyć hasło?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -29,7 +39,14 @@ Wyłączyć blokadę ekranu dla wiadomości?
   <string name="ApplicationPreferencesActivity_off">wyłączone</string>
   <string name="ApplicationPreferencesActivity_Off">Wyłączone</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Hasło %1$s, Ochrona ekranu %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Wygląd %1$s, Język %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minutę</item>
+    <item quantity="few">%d minuty</item>
+    <item quantity="other">%d minuty</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(zdjęcie)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(dźwięk)</string>
@@ -76,7 +93,7 @@ ten kontakt.
   <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To może pomóc jeśli masz problemy z szyfrowaniem w tej konwersacji. Twoje wiadomości będą zachowane.</string>
   <string name="ConversationActivity_reset">Reset</string>
-  <string name="ConversationActivity_delete_thread_question">Usunąć rozmowę?</string>
+  <string name="ConversationActivity_delete_thread_question">Usunąć konwersację?</string>
   <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">To spowoduje permanentne usunięcie wszystkich wiadomości w tej konwersacji.</string>
   <string name="ConversationActivity_add_attachment">Dodaj załącznik</string>
   <string name="ConversationActivity_select_contact_info">Wybierz dane kontaktowe</string>
@@ -90,6 +107,11 @@ ten kontakt.
   <string name="ConversationActivity_group_members">Użytkownicy grupy</string>
   <string name="ConversationActivity_group_conversation">Grupowa konwersacja</string>
   <string name="ConversationActivity_unnamed_group">Grupa bez nazwy</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 użytkownik</item>
+    <item quantity="few">%d użytkowników</item>
+    <item quantity="other">%d użytkowników</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Zapisane wersje robocze</string>
   <string name="ConversationActivity_invalid_recipient">Nieprawidłowy adresat!</string>
   <string name="ConversationActivity_calls_not_supported">Połączenia nie są obsługiwane</string>
@@ -153,10 +175,18 @@ ten kontakt.
     <item quantity="other">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych konwersacji.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Usuwanie...</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Usuwanie zaznaczonych rozmów...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Usuwanie zaznaczonych konwersacji...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Konwersacja została dodana do archiwum</item>
+    <item quantity="few">%d konwersacji dodano do archiwum</item>
+    <item quantity="other">%d konwersacji dodano do archiwum</item>
+  </plurals>
   <string name="ConversationListFragment_undo">COFNIJ</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Przeniesiono konwersacje do skrzynki odbiorczej</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Przeniesiono konwersacje do skrzynki odbiorczej</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Konwersacja została przeniesiona do skrzynki odbiorczej</item>
+    <item quantity="few">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
+    <item quantity="other">Przeniesiono %d konwersacji do skrzynki odbiorczej</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy...</string>
   <!--ConversationListItemAction-->
@@ -180,7 +210,7 @@ ten kontakt.
   <string name="DeviceListItem_unnamed_device">Nieznane urządzenie</string>
   <string name="DeviceListItem_linked_s">Zarejestrowano %s</string>
   <string name="DeviceListItem_last_active_s">Ostatnio aktywny %s</string>
-  <string name="DeviceListItem_today">Dzisiaj</string>
+  <string name="DeviceListItem_today">Dziś</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
   <!--ExperienceUpgradeActivity-->
@@ -321,6 +351,8 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="DeviceProvisioningActivity_content_progress_key_error">Niepoprawny kod QR.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Niestety masz już zbyt dużo zarejestrowanych urządzeń, spróbuj usunąć któreś z nich...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Przepraszamy, ale to nie jest prawidłowy link QR.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Dodać nowe urządzenie Signal?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal używając nieznanego skanera 3ciej partii. Dla Twojego bezpieczeństwa, prosimy abyś zeskanował kod używając Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -508,6 +540,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="attachment_type_selector__video">Wideo</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Lokalizacja</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Stare hasło</string>
   <string name="change_passphrase_activity__new_passphrase">Nowe hasło</string>
@@ -584,7 +617,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aktualizowanie bazy danych...</string>
   <string name="export_fragment__export_plaintext_backup">Eksport nieszyfrowanej kopi zapasowej</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksportuj niezaszyfrowaną kopię zapasową kompatybilną z \'SMS Backup &amp; Restore\'</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksportuj niezaszyfrowaną kopię zapasową kompatybilną z  \'SMS Backup &amp; Restore\'</string>
   <string name="import_fragment__import_system_sms_database">Importuj systemową bazę danych SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importuj wiadomości z domyślnej aplikacji SMS</string>
   <string name="import_fragment__restore_encrypted_backup">Przywróć szyfrowaną kopię zapasową</string>
@@ -594,7 +627,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Zobacz pełną konwersację</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Brak obrazów</string>
+  <string name="media_overview_activity__no_images">Brak zdjęć</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">WERYFIKUJ</string>
   <string name="message_recipients_list_item__resend">WYŚLIJ PONOWNIE</string>
@@ -621,8 +654,8 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ZABLOKOWANY</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Wycisz rozmowę</string>
-  <string name="recipient_preferences__disable_notifications_for_this_conversation">Wyłącz powiadomienia dla tej rozmowy</string>
+  <string name="recipient_preferences__mute_conversation">Wycisz konwersację</string>
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">Wyłącz powiadomienia dla tej konwersacji</string>
   <string name="recipient_preferences__notification_sound">Dźwięk powiadomień</string>
   <string name="recipient_preferences__vibrate">Wibracja</string>
   <string name="recipient_preferences__block">Blokuj</string>
@@ -707,12 +740,13 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__change_passphrase">Zmień hasło</string>
   <string name="AndroidManifest__verify_identity">Zweryfikuj tożsamość</string>
   <string name="AndroidManifest__log_submit">Wyślij logi debugowania</string>
-  <string name="AndroidManifest__media_preview">Podgląd wiadomości multimedialnej</string>
-  <string name="AndroidManifest__media_overview">Wszystkie obrazy</string>
-  <string name="AndroidManifest__media_overview_named">Wszystkie obrazy z %1$s</string>
+  <string name="AndroidManifest__media_preview">Podgląd plików multimedialnych</string>
+  <string name="AndroidManifest__media_overview">Pokaż wszystkie zdjęcia</string>
+  <string name="AndroidManifest__media_overview_named">Wszystkie zdjęcia z %1$s</string>
   <string name="AndroidManifest__message_details">Szczegóły wiadomości</string>
   <string name="AndroidManifest_manage_linked_devices">Zarządzaj zarejestrowanymi urządzeniami</string>
   <string name="AndroidManifest__invite_friends">Zaproś znajomych</string>
+  <string name="AndroidManifest_archived_conversations">Archiwum</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
   <string name="arrays__your_identity_key">Twój klucz tożsamości</string>
@@ -729,7 +763,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="arrays__name_and_message">Imię i wiadomość</string>
   <string name="arrays__name_only">Tylko imie</string>
   <string name="arrays__no_name_or_message">Brak imienia lub wiadomości</string>
-  <string name="arrays__images">Obrazy</string>
+  <string name="arrays__images">Zdjęcia</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Wideo</string>
   <!--plurals.xml-->
@@ -756,18 +790,16 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>
   <string name="preferences__change_your_passphrase">Zmień swoje hasło</string>
   <string name="preferences__enable_passphrase">Włącz hasło</string>
-  <string name="preferences__passphrase_summary">Hasło %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Włącz blokadę ekranu dla wiadomości</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zablokuj Signal i powiadomienia nowych wiadomości hasłem</string>
   <string name="preferences__screen_security">Ochrona ekranu</string>
-  <string name="preferences__screen_security_summary">Ochrona ekranu %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokuj rzuty ekranu w obecnej liście oraz w aplikacji</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Wymaż hasło z pamięci systemu po pewnym czasie</string>
-  <string name="preferences__timeout_passphrase">Limit czasu dla hasła?</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Wybierz czas wygaśnięcia hasła</string>
-  <string name="preferences__pref_timeout_interval_title">Wybierz czas wygaśnięcia hasła</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Ilość czasu zanim hasło zostanie wymazane z pamięci urządzenia</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-blokuj Signal po określonym czasie bezczynności</string>
+  <string name="preferences__inactivity_timeout_passphrase">Limit czasu dla hasła</string>
+  <string name="preferences__inactivity_timeout_interval">Czas zapomnienia hasła</string>
   <string name="preferences__notifications">Powiadomienia</string>
   <string name="preferences__enable_message_notifications">Włącz powiadomienia wiadomości</string>
+  <string name="preferences__new_contacts_notifications">Powiadomienia nowych kontaktów</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Pokaż powiadomienia dla nowych kontaktów Signal</string>
   <string name="preferences__led_color">Kolor LED</string>
   <string name="preferences__led_color_unknown">Nieznane</string>
   <string name="preferences__pref_led_blink_title">Wzór powiadomień LED</string>
@@ -778,7 +810,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__sound">Dźwięk</string>
   <string name="preferences__change_notification_sound">Zmień dźwięk powiadomienia</string>
   <string name="preferences__silent">Wycisz</string>
-  <string name="preferences__in_conversation_notifications">Powiadomienia \"w rozmowie\"</string>
+  <string name="preferences__in_conversation_notifications">Powiadomienia \"w konwersacji\"</string>
   <string name="preferences__play_inthread_notifications">Włącz dźwięk powiadomienia w aktywnej rozmowie</string>
   <string name="preferences__repeat_alerts">Powtarzaj alarmy</string>
   <string name="preferences__never">Nigdy</string>
@@ -816,18 +848,19 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__mmsc_password">Hasło MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporty dostarczenia SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Żądaj raportu dostarczenia każdej wysłanej wiadomości SMS</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatycznie usuń starsze wiadomości po przekroczeniu określonej długości konwersacji</string>
   <string name="preferences__delete_old_messages">Usuń stare wiadomości</string>
   <string name="preferences__chats">Czaty i media</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
+  <string name="preferences__trim_all_conversations_now">Przytnij wszystkie konwersacje teraz</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Przeskanuj wszystkie konwersacje i przytnij to określonej długości</string>
   <string name="preferences__devices">Urządzenia</string>
   <string name="preferences__light_theme">Jasny</string>
   <string name="preferences__dark_theme">Ciemny</string>
   <string name="preferences__appearance">Wygląd</string>
   <string name="preferences__theme">Motyw</string>
-  <string name="preferences__theme_summary">Wygląd %s</string>
   <string name="preferences__default">Domyślne</string>
   <string name="preferences__language">Język</string>
-  <string name="preferences__language_summary">Język %s</string>
   <string name="preferences__signal_messages_and_calls">Wiadomości i połączenia Signal</string>
   <string name="preferences__free_private_messages_and_calls">Darmowe oraz prywatne wiadomości i połączenia do użytkowników Signal</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
@@ -875,7 +908,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="conversation_list_batch__menu_delete_selected">Usuń zaznaczone</string>
   <string name="conversation_list_batch__menu_select_all">Zaznacz wszystko</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Wybrane archiwum</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Przywróć wybrane z archiwum</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Przenieś do skrzynki odbiorczej</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Szukaj</string>
   <!--conversation_list_item_view-->
@@ -897,8 +930,8 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="conversation__menu_update_group">Aktualizuj grupę</string>
   <string name="conversation__menu_leave_group">Opuść grupę</string>
   <string name="conversation__menu_delete_thread">Usuń konwersację</string>
-  <string name="conversation__menu_view_media">Wszystkie obrazy</string>
-  <string name="conversation__menu_conversation_settings">Ustawienia rozmowy</string>
+  <string name="conversation__menu_view_media">Pokaż wszystkie zdjęcia</string>
+  <string name="conversation__menu_conversation_settings">Ustawienia konwersacji</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Powiększ okno</string>
   <!--conversation_callable_insecure-->
@@ -906,7 +939,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lita odbiorców</string>
   <string name="conversation_group_options__delivery">Dostarczanie</string>
-  <string name="conversation_group_options__conversation">Rozmowa</string>
+  <string name="conversation_group_options__conversation">Konwersacja</string>
   <string name="conversation_group_options__broadcast">Nadawanie</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Porównaj</string>
@@ -921,6 +954,15 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="text_secure_normal__invite_friends">Zaproś znajomych</string>
   <string name="text_secure_normal__help">Pomoc</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Twoja wersja Signal jest nieaktualna.</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Twoja wersja Signal wygaśnie za 1 dzień. Dotknij, aby zaktualizować do najnowszej wersji.</item>
+    <item quantity="few">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
+    <item quantity="other">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Twoja wersja Signal dzisiaj będzie już nieaktualna. Dotknij, aby zaktualizować do najnowszej wersji.</string>
+  <string name="reminder_header_expired_build">Twoja wersja Signal jest nieaktualna!</string>
+  <string name="reminder_header_expired_build_details">Wiadomości nie będą dostarczane. Dotknij, aby zaktualizować Signal za darmo do najnowszej wersji.</string>
   <string name="reminder_header_expired_build_button">AKTUALIZUJ</string>
   <string name="reminder_header_sms_default_title">Ustaw jako domyślną aplikację SMS</string>
   <string name="reminder_header_sms_default_text">Dotknij, aby Signal był Twoją domyślną aplikacją SMS.</string>
@@ -945,6 +987,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Podgląd zdjęcia</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Odśwież</string>
   <!--redphone_audio_popup_menu-->

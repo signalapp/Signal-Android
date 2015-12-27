@@ -164,10 +164,6 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Se șterge</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Se şterg conversaţiile selectate...</string>
-  <string name="ConversationListFragment_conversations_archived">Conversațiile au fost arhivate</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Mută conversația în inbox</string>
-  <string name="ConversationListFragment_conversation_archived">Conversație arhivată</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Conversațiile au fost mutate în inbox</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimb de chei...</string>
   <!--ConversationListItemAction-->
@@ -756,16 +752,8 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__change_passphrase">Schimbă parola</string>
   <string name="preferences__change_your_passphrase">Schimbă-ți parola</string>
   <string name="preferences__enable_passphrase">Activează parola</string>
-  <string name="preferences__passphrase_summary">Parola %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Activează ecran de blocare pentru mesaje</string>
   <string name="preferences__screen_security">Securitate ecran</string>
-  <string name="preferences__screen_security_summary">Securitate ecran %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blochează screenshot-urile în lista cu aplicaţii recente şi în interiorul applicaţiei</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Şterge parolele din memorie după un interval de timp</string>
-  <string name="preferences__timeout_passphrase">Expiră parola</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Selectează expirarea parolei</string>
-  <string name="preferences__pref_timeout_interval_title">Interval expirare</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Perioada de timp de așteptare înainte de a șterge parola din memorie</string>
   <string name="preferences__notifications">Notificări</string>
   <string name="preferences__enable_message_notifications">Activează notificari pentru mesaje</string>
   <string name="preferences__led_color">Culoare LED</string>
@@ -827,10 +815,8 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__dark_theme">Închisă</string>
   <string name="preferences__appearance">Aspect</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Implicit</string>
   <string name="preferences__language">Limba</string>
-  <string name="preferences__language_summary">Limba %s</string>
   <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Signal</string>
   <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private şi gratuite cu utilizatorii Signal
     </string>

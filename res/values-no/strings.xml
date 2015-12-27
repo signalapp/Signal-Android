@@ -165,11 +165,7 @@ denne kontakten.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Sletter utvalgte samtaler...</string>
-  <string name="ConversationListFragment_conversations_archived">Samtaler arkivert</string>
   <string name="ConversationListFragment_undo">Angre</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Samtale flyttet til innboks</string>
-  <string name="ConversationListFragment_conversation_archived">Samtale arkivert</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Samtalene flyttet til innboks</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
   <!--ConversationListItemAction-->
@@ -771,16 +767,8 @@ feilet.</string>
   <string name="preferences__change_passphrase">Passordbytte</string>
   <string name="preferences__change_your_passphrase">Endre ditt passord</string>
   <string name="preferences__enable_passphrase">Aktiver passord</string>
-  <string name="preferences__passphrase_summary">Passord %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Aktiver skjermlås for meldinger</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
-  <string name="preferences__screen_security_summary">Skjermsikkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilde i listen over siste applikasjoner og inni applikasjonen</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern passord fra minnet etter et gitt intervall</string>
-  <string name="preferences__timeout_passphrase">Passordtimeout</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Velg passord timeout</string>
-  <string name="preferences__pref_timeout_interval_title">Timeoutintervall</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Tiden det skal gå før passordet slettes fra minnet på enheten</string>
   <string name="preferences__notifications">Varsling</string>
   <string name="preferences__enable_message_notifications">Aktiver meldingsvarling</string>
   <string name="preferences__led_color">LED farge</string>
@@ -842,10 +830,8 @@ feilet.</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
-  <string name="preferences__theme_summary">Tema %s</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Språk</string>
-  <string name="preferences__language_summary">Språk %s</string>
   <string name="preferences__signal_messages_and_calls">Signal meldinger og anrop</string>
   <string name="preferences__free_private_messages_and_calls">Gratis og private meldinger til andre brukere av Signal</string>
   <string name="preferences__submit_debug_log">Send debug logg</string>

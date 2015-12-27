@@ -8,7 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">עכשיו: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדיין לא הגדרת משפט סודי!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">מסר אחד בשיחה</item>
+    <item quantity="other">%d מסרים בשיחה</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל המסרים הישנים עכשיו?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">זה מיד יקצץ את כל השיחות וישאיר רק את המסר החדש ביותר.</item>
+    <item quantity="other">זה מיד יקצץ את כל השיחות וישאיר רק את %d המסרים החדשים ביותר.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">מחיקה</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">לבטל את המשפט הסודי?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -20,18 +28,24 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">לכבות את המסרים ואת השיחות הקוליות של סיגנל באמצעות ביטול רישום בשרת. יהיה צריך לרשום מחדש את מספר הטלפון שלך מחדש כדי להשתמש בהם שוב בעתיד.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">אירעה שגיאה בחיבור לשרת!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS מופעלים</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">נא לגעת כדי לשנות את האפליקציה שלך ל־SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">נא לגעת כדי לשנות את אפליקצית ברירת המחדל שלך ל־SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">התמיכה ב־SMS כבויה</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">נא לגעת כדי להפוך את סיגנל לאפליקציה שלך ל־SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">נא לגעת כדי להפוך את סיגנל לאפליקצית ברירת המחדל שלך ל־SMS</string>
   <string name="ApplicationPreferencesActivity_on">מופעל</string>
   <string name="ApplicationPreferencesActivity_On">מופעל</string>
   <string name="ApplicationPreferencesActivity_off">כבוי</string>
   <string name="ApplicationPreferencesActivity_Off">כבוי</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">משפט סודי %1$s, אבטחת מסך %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">ערכת נושא %1$s, שפה %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">דקה אחת</item>
+    <item quantity="other">%d דקות</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(תמונה)</string>
-  <string name="DraftDatabase_Draft_audio_snippet">(קול)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(שמע)</string>
   <string name="DraftDatabase_Draft_video_snippet">(סרטון)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">לא ניתן למצוא אפליקציה לבחירת מדיה.</string>
@@ -39,7 +53,7 @@
   <string name="AttachmentTypeSelectorAdapter_camera">מצלמה</string>
   <string name="AttachmentTypeSelectorAdapter_picture">תמונה</string>
   <string name="AttachmentTypeSelectorAdapter_video">וידאו</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">קול</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">שמע</string>
   <string name="AttachmentTypeSelectorAdapter_contact">מידע על איש קשר</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">שגיאה בהשמעת צליל!</string>
@@ -48,34 +62,33 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">החומר המזהה למפתח עבור %1$s השתנה.
-אולי זה קורה כי מישהו מנסה ליירט את התקשורת שלך
-או אולי כי %2$s פשוט התקין את סיגנל מחדש ושינה
-את מפתח הזהות.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">מידע מזהה השייך למפתח עבור %1$s השתנה.
+המשמעות היא: או שמישהו מנסה ליירט את התקשורת שלך,
+או ש-%2$s פשוט התקין את סיגנל מחדש ושינה את מפתח הזהות.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
 את איש הקשר הזה.
 </string>
-  <string name="ConfirmIdentityDialog_accept">לקבל</string>
+  <string name="ConfirmIdentityDialog_accept">קבל</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">שליחת מסר אל %s</string>
-  <string name="ContactsDatabase_signal_call_s">שיחת סיגנל מאת %s</string>
+  <string name="ContactsDatabase_signal_call_s">שיחת סיגנל אל %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">גודל המסר: %d ק״ב</string>
   <string name="ConversationItem_expires_s">פג: %s</string>
   <string name="ConversationItem_error_not_delivered">לא נמסר</string>
   <string name="ConversationItem_view_secure_media_question">לצפות במדיה מאובטחת?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">המדיה הזאת אוחסנה במסד נתונים מוצפן. למרבה הצער, כדי להציג אותו עם מציג תוכן חיצוני צריך זמנית לפענח אותו ולכתוב אותו לדיסק. האם ברצונך באמת לעשות את זה?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">שגיאה, התקבלה הודעת החלפת מפתח עבשה.</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">המדיה הזו אוחסנה במסד נתונים מוצפן. למרבה הצער, כדי להציג אותו עם מציג תוכן חיצוני צריך - זמנית - לפענח אותו ולכתוב אותו לדיסק. האם ברצונך באמת לעשות זאת?</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">שגיאה, התקבלה הודעת החלפת מפתח ישנה.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">התקבלה הודעת החלפת מפתח, נא ללחוץ לעיבוד.</string>
-  <string name="ConversationItem_group_action_left">%1$s יצא מהקבוצה.</string>
-  <string name="ConversationItem_click_for_details">להקיש לפרטים נוספים</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">להקיש לגיבוי בלתי־מאובטח</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">לעבור ל־SMS לא מוצפן?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">לעבור ל־MMS לא מוצפן?</string>
+  <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
+  <string name="ConversationItem_click_for_details">הקש לפרטים נוספים</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">הקש למשלוח בלתי־מאובטח אם משלוח מאובטח בלתי אפשרי</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">לעבור ל־SMS לא מוצפן במידה והצפנה אינה אפשרית?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">לעבור ל־MMS לא מוצפן במידה והצפנה אינה אפשרית?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">המסר הזה <b>לא</b> יוצפן כי המקבל כבר אינו משתמש בסיגנל.\n\nהאם לשלוח מסר לא מאובטח?</string>
-  <string name="ConversationItem_unable_to_open_media">לא הצלחתי למצוא אפליקציה לפתיחת המדיה הזאת.</string>
+  <string name="ConversationItem_unable_to_open_media">לא הצלחתי למצוא אפליקציה לפתיחת המדיה הזו.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">לאתחל התחברות מאובטחת?</string>
+  <string name="ConversationActivity_reset_secure_session_question">לאתחל מחדש התחברות מאובטחת?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">זה יכול לעזור עם יש לך בעיות הצפנה בשיחה הזאת. המסרים שלך יישמרו.</string>
   <string name="ConversationActivity_reset">לאתחל</string>
   <string name="ConversationActivity_delete_thread_question">למחוק שיחה?</string>
@@ -85,21 +98,25 @@
   <string name="ConversationActivity_compose_message">כתיבת מסר</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">סליחה, אירעה שגיאה בהצבת הקובץ המצורף שלך.</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">הגיף שבחרת היה גדול מדי!</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">סליחה, הסרט שנבחר גדול מכמה שאפשר לשלוח במסר (%1$s ק״ב).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">סליחה, הקלטת הקול שנבחרה גדולה מכמה שאפשר לשלוח במסר (%1$s ק״ב).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">סליחה, הסרטון שנבחר עבר את גודל המסר המירבי (%1$s ק״ב).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">סליחה, השמע שנבחר עבר את גודל המסר המירבי (%1$s ק״ב).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">הנמען אינו SMS או אימייל חוקיים!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">המסר ריק!</string>
   <string name="ConversationActivity_group_members">חברי הקבוצה</string>
   <string name="ConversationActivity_group_conversation">שיחה קבוצתית</string>
   <string name="ConversationActivity_unnamed_group">קבוצה ללא שם</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">חבר אחד</item>
+    <item quantity="other">%d חברים</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">טיוטה שמורה</string>
   <string name="ConversationActivity_invalid_recipient">נמען שגוי!</string>
   <string name="ConversationActivity_calls_not_supported">שיחות לא נתמכות</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">נראה כי מכשיר זה אינו תומך בפעולות חיוג.</string>
-  <string name="ConversationActivity_leave_group">לעזוב את הקבוצה</string>
+  <string name="ConversationActivity_leave_group">לעזוב את הקבוצה?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">האם ברצונך באמת לעזוב את הקבוצה?</string>
-  <string name="ConversationActivity_transport_insecure_sms">הודעת SMS לא מאובטחת</string>
-  <string name="ConversationActivity_transport_insecure_mms">הודעת MMS לא מאובטחת</string>
+  <string name="ConversationActivity_transport_insecure_sms">מסר SMS בלתי מאובטח</string>
+  <string name="ConversationActivity_transport_insecure_mms">מסר MMS בלתי מאובטח</string>
   <string name="ConversationActivity_transport_signal">סיגנל</string>
   <string name="ConversationActivity_lets_switch_to_signal">הבה נעבור להשתמש בסיגנל %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">הבה נשתמש בזה בשביל התכתבות: %1$s</string>
@@ -111,7 +128,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">האם באמת להסיר את החסימה מאיש הקשר הזה?</string>
   <string name="ConversationActivity_unblock">הסרת חסימה</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה עברה את הגודל המותר לסוג המסר הנשלח.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">אין מצלמה זמינה</string>
+  <string name="ConversationActivity_quick_camera_unavailable">מצלמה אינה זמינה</string>
   <string name="ConversationActivity_unable_to_record_audio">לא ניתן להקליט קול!</string>
   <string name="ConversationActivity_error_sending_voice_message">שגיאה בשליחת מסר קולי...</string>
   <!--ConversationFragment-->
@@ -128,17 +145,17 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">לשמור לאחסון?</string>
   <string name="ConversationFragment_saving_this_media_to_storage_warning">שמירת המדיה הזאת לאחסון תאפשר לאפליקציות אחרות במכשיר שלך לגשת אליו.\n\nלהמשיך?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">שגיאה בעת שמירה לאחסון!</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">שגיאה בעת שמירת הצרופה לאחסון!</string>
   <string name="ConversationFragment_success_exclamation">זה עבד!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">לא ניתן לכתוב לאחסון!</string>
   <string name="ConversationFragment_saving_attachment">שומר את הצרופה</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">שומר את הצרופה לאחסון...</string>
-  <string name="ConversationFragment_pending">המתנה...</string>
+  <string name="ConversationFragment_pending">ממתין...</string>
   <string name="ConversationFragment_push">נתונים (סיגנל)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">מוחק</string>
-  <string name="ConversationFragment_deleting_messages">מחיקת מסרים...</string>
+  <string name="ConversationFragment_deleting_messages">מוחק מסרים...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">חיפוש...</string>
   <!--ConversationListFragment-->
@@ -152,9 +169,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">מוחק</string>
   <string name="ConversationListFragment_deleting_selected_conversations">מחיקת השיחות הנבחרות...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">השיחה נגנזה</item>
+    <item quantity="other">%d שיחות נגנזו</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ביטול</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">העברת שיחות לדואר נכנס</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">הועברו שיחות לדואר נכנס</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">השיחה הועברה לתיבת הדואר הנכנס</item>
+    <item quantity="other">%d שיחות הועברו לתיבת הדואר הנכנס</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
   <!--ConversationListItemAction-->
@@ -167,12 +190,12 @@
   <string name="DateUtils_now">עכשיו</string>
   <string name="DateUtils_minutes_ago">%d דק׳</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_unlink_s">לבטל את הקישור של \"%s\"?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ביטול הקישור של המכשיר הזה ימנע שליחה וקבלה של מסרים.</string>
+  <string name="DeviceListActivity_unlink_s">לבטל את הקישור אל \"%s\"?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ביטול הקישור של המכשיר הזה ימנע ממנו שליחה וקבלה של מסרים.</string>
   <string name="DeviceListActivity_network_connection_failed">חיבור הרשת נכשל...</string>
   <string name="DeviceListActivity_try_again">לנסות שוב</string>
-  <string name="DeviceListActivity_unlinking_device">מבטל את קישור מכשיר...</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">מבטל את קישור מכשיר</string>
+  <string name="DeviceListActivity_unlinking_device">מבטל קישור מכשיר...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">מבטל קישור מכשיר</string>
   <string name="DeviceListActivity_network_failed">הרשת לא עבדה!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">מכשיר ללא שם</string>
@@ -461,9 +484,9 @@
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">להתחיל למרות בקשה קיימת?</string>
   <string name="KeyExchangeInitiator_send">שלח</string>
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת פגומה...</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">מסר מוצפן פגום...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">מפענח, אנא המתן...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ההודעה הוצפנה לחיבור שאינו קיים...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">המסר הוצפן להתחברות שאינה קיימת...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">שגיאה בפענוח מסר.</string>
   <!--ThreadDatabase-->
@@ -477,8 +500,8 @@
   <string name="MmsDatabase_error_decrypting_message">שגיאה בפענוח מסר.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">מפענח MMS, אנא המתן...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">הודעת MMS מוצפנת פגומה...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">הודעת ה־MMS הוצפנה להתחברות שאינה קיימת...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">מסר MMS מוצפם פגום...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">מסר ה־MMS הוצפן להתחברות שאינה קיימת...</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">השתקת התראות</string>
   <!--ApplicationMigrationService-->
@@ -514,6 +537,7 @@
   <string name="attachment_type_selector__video">סרט</string>
   <string name="attachment_type_selector__contact">איש קשר</string>
   <string name="attachment_type_selector__camera">מצלמה</string>
+  <string name="attachment_type_selector__location">מיקום</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">משפט סודי ישן</string>
   <string name="change_passphrase_activity__new_passphrase">משפט סודי חדש</string>
@@ -534,7 +558,7 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">שיחה מושתקת</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">שליחת הודעת סיגנל</string>
+  <string name="conversation_activity__type_message_push">שליחת מסר בסיגנל</string>
   <string name="conversation_activity__type_message_sms_insecure">שליחת SMS לא מאובטח</string>
   <string name="conversation_activity__type_message_mms_insecure">שליחת MMS לא מאובטח</string>
   <string name="conversation_activity__send">שליחה</string>
@@ -621,8 +645,8 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ביטול נעילה</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">סיגנל דורש הגדרות MMS כדי למסור מדיה והודעות קבוצתיות דרך ספק התקשורת הניידת שלך. המידע הזה לא זמין במכשיר שלך, מה שלפעמים קורה במכשירים נעולים ובתצורות מגבילות אחרות.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות, יש ללחוץ \"אישור\" ולהשלים את ההגדרות המתבקשות. את הגדרות ה־MMS עבור ספק השירות שלך בדרך כלל אפשר למצוא באמצעות חיפוש \"ספק השרות APN\". צריך לעשות את זה רק פעם אחת.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">סיגנל דורש הגדרות MMS כדי למסור מדיה ומסרים קבוצתיים דרך ספק התקשורת הניידת שלך. המידע הזה אינו זמין במכשיר שלך, מה שלפעמים קורה במכשירים נעולים ובתצורות מגבילות אחרות.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">כדי לשלוח מסרי מולטימדיה או מסרים קבוצתיים, יש ללחוץ „אישור” ולהשלים את ההגדרות המתבקשות. את הגדרות ה־MMS עבור ספק השירות שלך בדרך כלל אפשר למצוא באמצעות חיפוש „ספק השרות APN”. צריך לעשות את זה רק פעם אחת.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">חסום</string>
   <!--recipient_preferences-->
@@ -689,7 +713,7 @@
   <string name="registration_progress_activity__connecting">מתחבר...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">ממתין
 לאימות SMS...</string>
-  <string name="registration_progress_activity__registering_with_server">נרשם בשרת...</string>
+  <string name="registration_progress_activity__registering_with_server">מבצע רישום בשרת...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">זה
 יכול לקחת רגע. נא להמתין בסבלנות, אנחנו נודיע לך כשהאימות יושלם.</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
@@ -729,6 +753,7 @@
   <string name="AndroidManifest__message_details">פרטי מסר</string>
   <string name="AndroidManifest_manage_linked_devices">ניהול מכשירים מקושרים</string>
   <string name="AndroidManifest__invite_friends">להזמין חברים</string>
+  <string name="AndroidManifest_archived_conversations">שיחות גנוזות</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ייבוא / ייצוא</string>
   <string name="arrays__your_identity_key">מפתח הזהות שלך</string>
@@ -771,18 +796,16 @@
   <string name="preferences__change_passphrase">שינוי משפט סודי</string>
   <string name="preferences__change_your_passphrase">שינוי המשפט הסודי שלך</string>
   <string name="preferences__enable_passphrase">הפעלת משפט סודי</string>
-  <string name="preferences__passphrase_summary">משפט סודי %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">הפעלת מסך נעילה למסרים</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">לנעול את סיגנל ואת התראות המסרים עם משפט סודי</string>
   <string name="preferences__screen_security">אבטחת מסך</string>
-  <string name="preferences__screen_security_summary">אבטחת מסך %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">חסימת צילומי מסך ברשימות האחרונים ובתוך האפליקציה</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">לשכוח את המשפט הסודי מהזיכרון אחרי זמן מסוים</string>
-  <string name="preferences__timeout_passphrase">פקיעת זמן למשפט הסודי</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">בחירת זמן פקיעה למשפט הסודי</string>
-  <string name="preferences__pref_timeout_interval_title">זמן הפקיעה</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">פרק הזמן שיש להמתין לפני השכחת המשפט הסודי מהזיכרון</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">לנעול אוטומטית את סיגנל אחרי זמן מוגדר של חוסר־פעילות</string>
+  <string name="preferences__inactivity_timeout_passphrase">משפט סודי לחוסר־פעילות</string>
+  <string name="preferences__inactivity_timeout_interval">פרק זמן לחוסר־פעילות</string>
   <string name="preferences__notifications">התראות</string>
   <string name="preferences__enable_message_notifications">הפעלת התראות מסרים</string>
+  <string name="preferences__new_contacts_notifications">התראות על אנשי קשר חדשים</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">להציג התראה על אנשי קשר חדשים בסיגנל</string>
   <string name="preferences__led_color">צבע נורית</string>
   <string name="preferences__led_color_unknown">לא ידוע</string>
   <string name="preferences__pref_led_blink_title">תבנית הבהוב הנורית</string>
@@ -831,8 +854,8 @@
   <string name="preferences__mmsc_password">ססמת MMSC</string>
   <string name="preferences__sms_delivery_reports">דו״חות מסירה של SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">לבקש דו״ח מסירה לכל SMS שנשלח</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">למחוק אוטומטית הודעות ישנות יותר כשהשיחה עולה על אורך מסוים</string>
-  <string name="preferences__delete_old_messages">למחוק הודעות ישנות</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">למחוק אוטומטית מסרים ישנים יותר כשהשיחה עולה על אורך מסוים</string>
+  <string name="preferences__delete_old_messages">למחוק מסרים ישנים</string>
   <string name="preferences__chats">התכתבויות ומדיה</string>
   <string name="preferences__conversation_length_limit">הגבלת אורך שיחה</string>
   <string name="preferences__trim_all_conversations_now">לקצץ את כל השיחות כעת</string>
@@ -842,19 +865,17 @@
   <string name="preferences__dark_theme">חשוכה</string>
   <string name="preferences__appearance">מראה</string>
   <string name="preferences__theme">ערכת נושא</string>
-  <string name="preferences__theme_summary">ערכת נושא %s</string>
   <string name="preferences__default">רגיל</string>
   <string name="preferences__language">שפה</string>
-  <string name="preferences__language_summary">שפה: %s</string>
   <string name="preferences__signal_messages_and_calls">מסרים ושיחות של סיגנל</string>
   <string name="preferences__free_private_messages_and_calls">מסרים ושיחות בחינם ובפרטיות למשתמשי סיגנל</string>
   <string name="preferences__submit_debug_log">שליחת יומן תיקון שגיאות</string>
-  <string name="preferences__support_wifi_calling">מצב תאימות „התקשרות וייפיי”</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">יש להפעיל את זה אם המכשיר שלך משתמש במסירת SMS/MMS דרך וייפיי (ורק אם מצב „התקשרות וייפיי” או WiFi Calling מופעל במכשיר שלך)</string>
+  <string name="preferences__support_wifi_calling">מצב תאימות „התקשרות WiFi”</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">יש להפעיל את זה אם המכשיר שלך משתמש במסירת SMS/MMS דרך WiFi (ורק אם מצב „התקשרות Wifi” או WiFi Calling מופעל במכשיר שלך)</string>
   <string name="preferences_app_protection__blocked_contacts">אנשי קשר חסומים</string>
   <string name="preferences_notifications__display_in_notifications">להציג בהתראות</string>
   <string name="preferences_chats__when_using_mobile_data">בזמן שימוש בנתונים ניידים</string>
-  <string name="preferences_chats__when_using_wifi">בזמן שימוש בווייפיי</string>
+  <string name="preferences_chats__when_using_wifi">בזמן שימוש ב-WiFi</string>
   <string name="preferences_chats__when_roaming">בזמן נדידה</string>
   <string name="preferences_chats__media_auto_download">הורדה אוטומטית של מדיה</string>
   <string name="preferences_chats__message_trimming">קיצוץ מסרים</string>
@@ -878,7 +899,7 @@
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">שיחת סיגנל</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">פרטי הודעה</string>
+  <string name="conversation_context__menu_message_details">פרטי מסר</string>
   <string name="conversation_context__menu_copy_text">העתקת טקסט</string>
   <string name="conversation_context__menu_delete_message">מחיקת מסר</string>
   <string name="conversation_context__menu_forward_message">העברת מסר</string>
@@ -886,7 +907,7 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">שמירת צרופה</string>
   <!--conversation_insecure-->
-  <string name="conversation_insecure__invite">הזמנה</string>
+  <string name="conversation_insecure__invite">הזמן</string>
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__security">אבטחה</string>
   <!--conversation_list_batch-->
@@ -897,7 +918,7 @@
   <!--conversation_list-->
   <string name="conversation_list__menu_search">חיפוש</string>
   <!--conversation_list_item_view-->
-  <string name="conversation_list_item_view__contact_photo_image">צילום איש קשר</string>
+  <string name="conversation_list_item_view__contact_photo_image">תמונת איש קשר</string>
   <string name="conversation_list_item_view__error_alert">התרעת על שגיאה</string>
   <string name="conversation_list_item_view__archived">נגנז</string>
   <!--conversation_list_fragment-->
@@ -939,6 +960,14 @@
   <string name="text_secure_normal__invite_friends">להזמין חברים</string>
   <string name="text_secure_normal__help">עזרה</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">גרסת הסיגנל שלך אינה עדכנית</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">גרסת הסיגנל שלך תפוג בעוד יום אחד. יש ללחוץ כדי לעדכן לגרסה החדשה ביותר.</item>
+    <item quantity="other">גרסת הסיגנל שלך תפוג בעוד %d ימים. יש ללחוץ כדי לעדכן לגרסה החדשה ביותר.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">גרסת הסיגנל שלך תפוג היום. יש ללחוץ כדי לעדכן לגרסה החדשה ביותר.</string>
+  <string name="reminder_header_expired_build">גרסת הסיגנל שלך פגה!</string>
+  <string name="reminder_header_expired_build_details">מסרים לא יוכלו להישלח עוד. יש ללחוץ כדי לעדכן לגרסה החדשה ביותר.</string>
   <string name="reminder_header_expired_build_button">שדרוג</string>
   <string name="reminder_header_sms_default_title">להגדיר בתור האפליקציה לשליחת SMS</string>
   <string name="reminder_header_sms_default_text">נא ללחוץ כדי להגדיל את סיגנל בתור האפליקציה הרגילה שלך לשליחת SMS.</string>

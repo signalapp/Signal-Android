@@ -164,11 +164,7 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het verwijderen...</string>
-  <string name="ConversationListFragment_conversations_archived">Gesprekken gearchiveerd</string>
   <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">Gesprek naar inbox verplaatst</string>
-  <string name="ConversationListFragment_conversation_archived">Gesprek gearchiveerd</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">Gesprekken naar inbox verplaatst</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
   <!--ConversationListItemAction-->
@@ -769,16 +765,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__change_passphrase">Wachtwoord veranderen</string>
   <string name="preferences__change_your_passphrase">Verander je wachtwoord</string>
   <string name="preferences__enable_passphrase">Wachtwoord inschakelen</string>
-  <string name="preferences__passphrase_summary">Wachtwoord %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Vergrendeling inschakelen voor berichten</string>
   <string name="preferences__screen_security">Schermbeveiliging</string>
-  <string name="preferences__screen_security_summary">Schermbeveiliging %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Screenshots onmogelijk maken in deze app en de recente lijst</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Wachtwoord na een bepaalde tijd uit het geheugen vergeten</string>
-  <string name="preferences__timeout_passphrase">Time-out wachtwoord</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Wachtwoord time-out selecteren</string>
-  <string name="preferences__pref_timeout_interval_title">Time-out interval</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hoe lang te wachten voor het vergeten van het wachtwoord uit het geheugen</string>
   <string name="preferences__notifications">Notificaties</string>
   <string name="preferences__enable_message_notifications">Toon bericht notificaties</string>
   <string name="preferences__led_color">LED-kleur</string>
@@ -840,10 +828,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__dark_theme">Donker</string>
   <string name="preferences__appearance">Uiterlijk</string>
   <string name="preferences__theme">Thema</string>
-  <string name="preferences__theme_summary">Thema %s</string>
   <string name="preferences__default">Standaard</string>
   <string name="preferences__language">Taal</string>
-  <string name="preferences__language_summary">Taal %s</string>
   <string name="preferences__signal_messages_and_calls">Signal berichten en oproepen</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal gebruikers</string>
   <string name="preferences__submit_debug_log">Dien debug log in</string>
