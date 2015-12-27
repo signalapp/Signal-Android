@@ -31,7 +31,11 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
   {
     try {
       Log.w(TAG, "Sending via legacy connection");
-      return new OutgoingLegacyMmsConnection(context).send(pduBytes);
+      SendConf sc = new OutgoingLegacyMmsConnection(context).send(pduBytes);
+      if (sc.getResponseStatus() == 225) {
+        throw new UndeliverableMessageException();
+      }
+      return sc;
     } catch (UndeliverableMessageException | ApnUnavailableException e) {
       if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
         Log.w(TAG, "Falling back to try sending via Lollipop API");
