@@ -37,8 +37,12 @@ public class ContactPhotoFactory {
   }
 
   public static ContactPhoto getContactPhoto(Context context, Uri uri, String name) {
+    int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+    return getContactPhoto(context, uri, name, targetSize);
+  }
+
+  public static ContactPhoto getContactPhoto(Context context, Uri uri, String name, int targetSize) {
     try {
-      int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
       Bitmap bitmap = Glide.with(context)
                            .load(new ContactPhotoUri(uri)).asBitmap()
                            .centerCrop().into(targetSize, targetSize).get();

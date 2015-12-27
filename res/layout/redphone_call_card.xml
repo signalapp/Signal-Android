@@ -44,6 +44,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:gravity="top|center_horizontal"
+                   android:background="@android:color/black"
                    android:scaleType="centerCrop"
                    />
 
@@ -139,23 +140,6 @@
                       />
 
         </RelativeLayout>  <!-- End of call_banner for call_info #1. -->
-
-        <!-- "Inset" photo used with "id/photo" above:
-               When the contact photo is a lo-res thumbnail, id/photo
-             contains a scaled-up but *blurred* version of the photo, and
-             *this* ImageView is overlaid on top as a smaller, unblurred
-             inset.  (See InCallContactPhoto.java.)
-               The top of the inset is vertically aligned with the bottom
-             of the call banner.  (Note that means that in states where the
-             "call state label" is visible, the label (see below) will overlap
-             the top of the inset photo.)  -->
-        <ImageView android:id="@+id/insetPhoto"
-            android:layout_below="@id/call_banner_1"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:scaleType="centerCrop"
-            android:layout_marginLeft="0dp"
-            />
 
         <!-- The "call state label": In some states, this shows a special
              indication like "Dialing" or "Incoming call" or "Call ended".
