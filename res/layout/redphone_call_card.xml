@@ -40,9 +40,10 @@
 
         <!-- Contact photo for call_info_1 -->
         <ImageView android:id="@+id/photo"
-                   android:layout_alignParentTop="true"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
+                   android:layout_below="@+id/call_banner_1"
+                   android:layout_marginBottom="@dimen/in_call_button_height"
                    android:gravity="top|center_horizontal"
                    android:background="@android:color/black"
                    android:scaleType="centerCrop"
