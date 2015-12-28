@@ -74,14 +74,17 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
   }
 
   private void start( int soundID ) {
-    if( soundID == currentSoundID ) return;
-    currentSoundID = soundID;
-    loopEnabled = true;
-    start();
+    start(soundID, true);
   }
 
-  private void start() {
-    if( mediaPlayer != null ) mediaPlayer.release();
+  private void start(int soundID, boolean loop) {
+    if( soundID == currentSoundID ) return;
+
+    if (mediaPlayer != null) mediaPlayer.release();
+
+    currentSoundID = soundID;
+    loopEnabled = loop;
+
     mediaPlayer = new MediaPlayer();
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
     mediaPlayer.setOnCompletionListener(this);
@@ -116,9 +119,7 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
   }
 
   private void stop( int soundID ) {
-    currentSoundID = soundID;
-    loopEnabled = false;
-    start();
+    start(soundID, false);
   }
 
   public void onCompletion(MediaPlayer mp) {
