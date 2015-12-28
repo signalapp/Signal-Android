@@ -139,7 +139,7 @@ public class ContactsDatabase {
     String filterSelection = "";
     filter = "%"+ filter + "%";
     if (!TextUtils.isEmpty(filter)) {
-      filterSelection = NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "' AND ";
+      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "') AND ";
     }
     baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 
@@ -158,20 +158,22 @@ public class ContactsDatabase {
     for(Integer id : ids) {
       c++;
       if(c < SQL_QUERY_LIMIT) {
-        if (c == 1) {
-          selection.append(ID_COLUMN + " != '" + id + "'");
+        if (c == 1 && ids.size() > 1) {
+          selection.append(ID_COLUMN + " NOT IN (" + id + "");
+        } else if(c == ids.size() && c != 1) {
+          selection.append(", "+ id + ")");
+        } else if(c == 1 && ids.size() == 1) {
+          selection.append(ID_COLUMN + " NOT IN (" + id + ")");
         } else {
-          selection.append(" AND " + ID_COLUMN + " != '" + id + "'");
+          selection.append(", "+ id + "");
         }
       }
     }
-
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
 
-    String selectionString = filterSelection + (!contactSelection.equals("null")
+    String selectionString = filterSelection+ (!contactSelection.equals("null")
             ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
     : "" + selection.toString());
-
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
     selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
@@ -195,6 +197,7 @@ public class ContactsDatabase {
       selection     = null;
       selectionArgs = null;
     }
+    Log.d("MYLOG","MYLOG queryBUil2 " + selection);
     return queryLocalDb(selection, selectionArgs, null);
   }
 
