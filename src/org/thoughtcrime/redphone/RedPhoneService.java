@@ -366,7 +366,9 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     NotificationBarManager.setCallEnded(this);
 
     incomingRinger.stop();
-    outgoingRinger.stop();
+    if (outgoingRinger.isLooping()) {
+      outgoingRinger.stop();
+    }
 
     if (currentCallManager != null) {
       currentCallManager.terminate();
@@ -498,16 +500,19 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   public void notifyNoSuchUser() {
+    outgoingRinger.playFailure();
     sendMessage(Type.NO_SUCH_USER, getRecipient(), null);
     this.terminate();
   }
 
   public void notifyServerMessage(String message) {
+    outgoingRinger.playFailure();
     sendMessage(Type.SERVER_MESSAGE, getRecipient(), message);
     this.terminate();
   }
 
   public void notifyClientError(String msg) {
+    outgoingRinger.playFailure();
     sendMessage(Type.CLIENT_FAILURE, getRecipient(), msg);
     this.terminate();
   }

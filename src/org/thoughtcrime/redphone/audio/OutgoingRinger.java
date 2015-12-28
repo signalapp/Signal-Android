@@ -69,6 +69,10 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     start(R.raw.redphone_busy, true);
   }
 
+  public synchronized boolean isLooping() {
+    return mediaPlayer == null ? false : mediaPlayer.isLooping();
+  }
+
   private void start(int soundID, boolean loop) {
     if( soundID == currentSoundID ) return;
 
