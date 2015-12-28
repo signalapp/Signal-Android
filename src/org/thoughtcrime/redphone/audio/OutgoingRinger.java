@@ -39,14 +39,10 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
 
   private MediaPlayer mediaPlayer;
   private int         currentSoundID;
-  private boolean     loopEnabled;
   private Context     context;
 
   public OutgoingRinger(Context context) {
     this.context = context;
-
-    loopEnabled = true;
-
   }
 
   public void playSonar() {
@@ -83,13 +79,12 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     if (mediaPlayer != null) mediaPlayer.release();
 
     currentSoundID = soundID;
-    loopEnabled = loop;
 
     mediaPlayer = new MediaPlayer();
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
     mediaPlayer.setOnCompletionListener(this);
     mediaPlayer.setOnPreparedListener(this);
-    mediaPlayer.setLooping(loopEnabled);
+    mediaPlayer.setLooping(loop);
 
     String packageName = context.getPackageName();
     Uri dataUri = Uri.parse("android.resource://" + packageName + "/" + currentSoundID);
