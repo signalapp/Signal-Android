@@ -400,7 +400,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   public void notifyBusy() {
-    Log.w("RedPhoneService", "Got busy signal from responder!");
+    Log.w(TAG, "Got busy signal from responder!");
     sendMessage(Type.CALL_BUSY, getRecipient(), null);
 
     outgoingRinger.playBusy();
@@ -432,11 +432,20 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   public void notifyCallDisconnected() {
-    if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber, false);
-
     sendMessage(Type.CALL_DISCONNECTED, getRecipient(), null);
-    this.terminate();
+
+    if (state == STATE_RINGING) {
+      handleMissedCall(remoteNumber, false);
+      this.terminate();
+    } else {
+      outgoingRinger.playBusy();
+      serviceHandler.postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          RedPhoneService.this.terminate();
+        }
+      }, RedPhone.BUSY_SIGNAL_DELAY_FINISH);
+    }
   }
 
   public void notifyHandshakeFailed() {
