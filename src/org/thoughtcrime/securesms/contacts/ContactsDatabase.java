@@ -171,7 +171,6 @@ public class ContactsDatabase {
     String selectionString = filterSelection+ (!contactSelection.equals("null")
             ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
     : "" + selection.toString());
-    Log.d("MYLOG","MYLOG "+selectionString);
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
     selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
