@@ -46,31 +46,27 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
   }
 
   public void playSonar() {
-    start(R.raw.redphone_sonarping);
+    start(R.raw.redphone_sonarping, true);
   }
 
   public void playHandshake() {
-    start(R.raw.redphone_handshake);
+    start(R.raw.redphone_handshake, true);
   }
 
   public void playRing() {
-    start(R.raw.redphone_outring);
+    start(R.raw.redphone_outring, true);
   }
 
   public void playComplete() {
-    stop(R.raw.redphone_completed);
+    start(R.raw.redphone_completed, false);
   }
 
   public void playFailure() {
-    stop(R.raw.redphone_failure);
+    start(R.raw.redphone_failure, false);
   }
 
   public void playBusy() {
-    start(R.raw.redphone_busy);
-  }
-
-  private void start( int soundID ) {
-    start(soundID, true);
+    start(R.raw.redphone_busy, true);
   }
 
   private void start(int soundID, boolean loop) {
@@ -111,10 +107,6 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     mediaPlayer = null;
 
     currentSoundID = -1;
-  }
-
-  private void stop( int soundID ) {
-    start(soundID, false);
   }
 
   public void onCompletion(MediaPlayer mp) {
