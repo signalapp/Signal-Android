@@ -50,7 +50,6 @@ import de.gdata.messaging.util.PrivacyBridge;
  */
 public class ContactsDatabase {
   private static final String TAG = ContactsDatabase.class.getSimpleName();
-  private static final int SQL_QUERY_LIMIT = 950;
   private final DatabaseOpenHelper dbHelper;
   private final Context            context;
 
@@ -157,7 +156,6 @@ public class ContactsDatabase {
     int c = 0;
     for(Integer id : ids) {
       c++;
-      if(c < SQL_QUERY_LIMIT) {
         if (c == 1 && ids.size() > 1) {
           selection.append(ID_COLUMN + " NOT IN (" + id + "");
         } else if(c == ids.size() && c != 1) {
@@ -167,13 +165,13 @@ public class ContactsDatabase {
         } else {
           selection.append(", "+ id + "");
         }
-      }
     }
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
 
     String selectionString = filterSelection+ (!contactSelection.equals("null")
             ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
     : "" + selection.toString());
+    Log.d("MYLOG","MYLOG "+selectionString);
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
     selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
