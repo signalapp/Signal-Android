@@ -46,7 +46,6 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     this.context = context;
 
     loopEnabled = true;
-    currentSoundID = -1;
 
   }
 
@@ -74,14 +73,10 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     start(R.raw.redphone_busy);
   }
 
-  private void setSound( int soundID ) {
-    currentSoundID = soundID;
-    loopEnabled = true;
-  }
-
   private void start( int soundID ) {
     if( soundID == currentSoundID ) return;
-    setSound( soundID );
+    currentSoundID = soundID;
+    loopEnabled = true;
     start();
   }
 
@@ -121,7 +116,7 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
   }
 
   private void stop( int soundID ) {
-    setSound( soundID );
+    currentSoundID = soundID;
     loopEnabled = false;
     start();
   }
