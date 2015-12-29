@@ -20,6 +20,8 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -35,13 +37,20 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
 import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
+
+  public static final int MEDIA_TYPE_VIDEO = 23;
+  public static final int MEDIA_TYPE_IMAGE = 24;
+  private static final String MEDIA_FILE_NAME = "media_file_";
 
   private static Context            context;
   private final View               attachmentView;
@@ -93,6 +102,7 @@ public class AttachmentManager {
     return captureFile;
   }
   public static void selectVideo(Activity activity, int requestCode) {
+    new GDataPreferences(activity).getNextImageIndicator();
     selectMediaType(activity, ContentType.VIDEO_UNSPECIFIED, requestCode);
   }
 
@@ -102,7 +112,7 @@ public class AttachmentManager {
   }
   public static void takePhoto(Activity activity, int requestCode) {
     new GDataPreferences(activity).getNextImageIndicator();
-    File image = getOutputMediaFile(activity);
+    File image = getOutputMediaFile(activity, MEDIA_TYPE_IMAGE);
     if(image != null) {
       Uri fileUri = Uri.fromFile(image);
       Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -113,7 +123,7 @@ public class AttachmentManager {
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }
-  public static File getOutputMediaFile(Context activity){
+  public static File getOutputMediaFile(Context activity, int type){
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES), "SecureChat");
     if (!mediaStorageDir.exists()){
@@ -122,8 +132,14 @@ public class AttachmentManager {
         return null;
       }
     }
+    String end = ".jpg";
+    if(type == MEDIA_TYPE_VIDEO) {
+      end = ".mp4";
+    } else if(type == MEDIA_TYPE_IMAGE) {
+      end = ".jpg";
+    }
     File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-              "prof_image"+ new GDataPreferences(activity).getLastImageIndicator() +" .jpg");
+              MEDIA_FILE_NAME + new GDataPreferences(activity).getLastImageIndicator() + end);
 
     return mediaFile;
   }
@@ -137,9 +153,49 @@ public class AttachmentManager {
       }
     }
     File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-            "prof_image"+ new GDataPreferences(activity).getLastImageIndicator() +addition+" .jpg");
+            MEDIA_FILE_NAME + new GDataPreferences(activity).getLastImageIndicator() +addition+" .jpg");
 
     return mediaFile;
+  }
+  public ImageSlide copyUriToStorageAndGenerateImageSlide(Uri uri) {
+    ImageSlide chosenImage = null;
+    if (uri != null) {
+        OutputStream out;
+        File f = AttachmentManager.getOutputMediaFile(context, MEDIA_TYPE_VIDEO);
+        if (!f.exists()) {
+          try {
+            out = new FileOutputStream(f);
+            out.write(GUtil.readBytes(context, uri));
+            out.close();
+          } catch (IOException e) {
+            Log.d("GDATA", "Warning " + e.getMessage());
+          }
+        }
+        FileOutputStream outImage = null;
+        try {
+          File image = AttachmentManager.getOutputMediaFile(context, MEDIA_TYPE_IMAGE);
+          outImage = new FileOutputStream(image);
+          Bitmap thumb = ThumbnailUtils.createVideoThumbnail(f.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+          thumb.compress(Bitmap.CompressFormat.PNG, 100, outImage); // bmp is your Bitmap instance
+          // PNG is a lossless format, the compression factor (100) is ignored
+          try {
+            chosenImage = new ImageSlide(context, Uri.fromFile(image));
+          } catch (BitmapDecodingException e) {
+            Log.d("GDATA", "Warning " + e.getMessage());
+          }
+        } catch (Exception e) {
+          Log.d("GDATA","Warning " + e.getMessage());
+        } finally {
+          try {
+            if (outImage != null) {
+              outImage.close();
+            }
+          } catch (IOException e) {
+            Log.d("GDATA", "Warning " + e.getMessage());
+          }
+        }
+    }
+    return chosenImage;
   }
   public static void selectContactInfo(Activity activity, int requestCode) {
     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);

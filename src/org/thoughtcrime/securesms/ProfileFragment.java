@@ -755,13 +755,15 @@ public class ProfileFragment extends Fragment {
         }
     };
     private void fireIntent(Slide slide) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
-        try {
-            getActivity().startActivity(intent);
-        } catch (ActivityNotFoundException anfe) {
-            Log.w("GDATA", anfe.getMessage() + " - " + slide.getContentType());
+        if(slide != null) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
+            try {
+                getActivity().startActivity(intent);
+            } catch (ActivityNotFoundException anfe) {
+                Log.w("GDATA", anfe.getMessage() + " - " + slide.getContentType());
+            }
         }
     }
 
