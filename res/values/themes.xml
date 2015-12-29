@@ -133,6 +133,7 @@
 
         <item name="emoji_category_recent">@drawable/emoji_category_recent_light</item>
         <item name="emoji_category_people">@drawable/emoji_category_people_light</item>
+        <item name="emoji_category_bbm">@drawable/emoji_category_bbm_light</item>
         <item name="emoji_category_objects">@drawable/emoji_category_objects_light</item>
         <item name="emoji_category_nature">@drawable/emoji_category_nature_light</item>
         <item name="emoji_category_places">@drawable/emoji_category_places_light</item>
@@ -268,6 +269,7 @@
 
         <item name="emoji_category_recent">@drawable/emoji_category_recent_dark</item>
         <item name="emoji_category_people">@drawable/emoji_category_people_dark</item>
+        <item name="emoji_category_bbm">@drawable/emoji_category_bbm_dark</item>
         <item name="emoji_category_objects">@drawable/emoji_category_objects_dark</item>
         <item name="emoji_category_nature">@drawable/emoji_category_nature_dark</item>
         <item name="emoji_category_places">@drawable/emoji_category_places_dark</item>
