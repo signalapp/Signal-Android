@@ -331,7 +331,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 addAttachmentImage(data.getData());
                 break;
             case PICK_VIDEO:
-                if (Build.VERSION.SDK_INT >= 18) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                     class CompressVideoTask extends AsyncTask<Void, Integer, String> {
                         String pathToOutputFile = "";
 
