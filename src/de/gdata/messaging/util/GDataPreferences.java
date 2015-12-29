@@ -275,9 +275,14 @@ public class GDataPreferences {
     File mediaFile = new File("");
     for(int i = 0; i<= lastImageNumber;i++) {
       mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-              "prof_image"+ i +" .jpg");
+              "media_file_"+ i +".jpg");
       if(mediaFile.exists()) {
         mediaFile.delete();
+      }
+      mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                "media_file_" + i + ".mp4");
+      if (mediaFile.exists()) {
+          mediaFile.delete();
       }
     }
     lastImageNumber = lastImageNumber + 1;

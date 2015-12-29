@@ -195,8 +195,17 @@ public class ThumbnailView extends ForegroundImageView {
         handler.post(new Runnable() {
           @Override
           public void run() {
-            Log.w(TAG, "Resolved slide was null!");
-            setVisibility(View.GONE);
+            Log.w(TAG, "Resolved slide was null! " + (videoSlide != null));
+            if(videoSlide == null) {
+              setVisibility(View.GONE);
+            } else {
+              handler.post(new Runnable() {
+                @Override
+                public void run() {
+                  setImageResource(videoSlide, masterSecret);
+                }
+              });
+            }
           }
         });
       }

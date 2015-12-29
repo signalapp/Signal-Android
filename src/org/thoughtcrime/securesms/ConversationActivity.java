@@ -288,6 +288,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
         if (compressingIsrunning) {
             compressingDialog = ProgressDialog.show(this, getString(R.string.dialog_compressing_header), getString(R.string.dialog_compressing));
+            compressingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
+                    compressingIsrunning = false;
+                }
+            });
+            compressingDialog.setCancelable(true);
         }
         if (draftText != null) composeText.setText(draftText + "");
     }
@@ -310,7 +317,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onActivityResult(int reqCode, int resultCode, final Intent data) {
-        Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
+        Log.w(TAG, "GData onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
         super.onActivityResult(reqCode, resultCode, data);
 
         if ((data == null || resultCode != RESULT_OK) && reqCode != AttachmentTypeSelectorAdapter.TAKE_PHOTO)
@@ -324,10 +331,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 addAttachmentImage(data.getData());
                 break;
             case PICK_VIDEO:
-                /*
-                 * Does not work yet properly
-                 */
-                if (Build.VERSION.SDK_INT >= 99) {
+                if (Build.VERSION.SDK_INT >= 18) {
                     class CompressVideoTask extends AsyncTask<Void, Integer, String> {
                         String pathToOutputFile = "";
 
@@ -346,10 +350,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                         }
 
                         protected void onPostExecute(String result) {
-                            addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
-                            compressingIsrunning = false;
-                            if (compressingDialog.isShowing()) {
-                                compressingDialog.dismiss();
+                            if(compressingIsrunning) {
+                                if (!pathToOutputFile.equals(VideoResolutionChanger.COMPRESSING_ERROR)) {
+                                    addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
+                                } else {
+                                    Log.d("GData", "continue without compression?");
+                                }
+                                compressingIsrunning = false;
+                                if (compressingDialog.isShowing()) {
+                                    try {
+                                        compressingDialog.dismiss();
+                                    } catch (Exception e) {
+                                        //catch D 0,0-1026,483} not attached to window manager
+                                        compressingDialog.cancel();
+                                        compressingDialog = null;
+                                    }
+                                }
                             }
                         }
                     }
@@ -376,7 +392,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     public void handleTakenPhoto(Context context) {
-        File image = AttachmentManager.getOutputMediaFile(context);
+        File image = AttachmentManager.getOutputMediaFile(context, AttachmentManager.MEDIA_TYPE_IMAGE);
         if (image != null) {
             Uri fileUri = Uri.fromFile(image);
             try {

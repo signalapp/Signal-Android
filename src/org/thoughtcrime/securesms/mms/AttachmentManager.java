@@ -50,6 +50,10 @@ import ws.com.google.android.mms.ContentType;
 public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
+  public static final int MEDIA_TYPE_VIDEO = 23;
+  public static final int MEDIA_TYPE_IMAGE = 24;
+  private static final String MEDIA_FILE_NAME = "media_file_";
+
   private static Context            context;
   private final View               attachmentView;
   private final ThumbnailView      thumbnail;
@@ -106,6 +110,7 @@ public class AttachmentManager {
     return captureFile;
   }
   public static void selectVideo(Activity activity, int requestCode) {
+    new GDataPreferences(activity).getNextImageIndicator();
     selectMediaType(activity, ContentType.VIDEO_UNSPECIFIED, requestCode);
   }
 
@@ -115,7 +120,7 @@ public class AttachmentManager {
   }
   public static void takePhoto(Activity activity, int requestCode) {
     new GDataPreferences(activity).getNextImageIndicator();
-    File image = getOutputMediaFile(activity);
+    File image = getOutputMediaFile(activity, MEDIA_TYPE_IMAGE);
     if(image != null) {
       Uri fileUri = Uri.fromFile(image);
       Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -126,7 +131,7 @@ public class AttachmentManager {
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }
-  public static File getOutputMediaFile(Context activity){
+  public static File getOutputMediaFile(Context activity, int type){
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES), "SecureChat");
     if (!mediaStorageDir.exists()){
@@ -135,8 +140,14 @@ public class AttachmentManager {
         return null;
       }
     }
+    String end = ".jpg";
+    if(type == MEDIA_TYPE_VIDEO) {
+      end = ".mp4";
+    } else if(type == MEDIA_TYPE_IMAGE) {
+      end = ".jpg";
+    }
     File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-              "prof_image"+ new GDataPreferences(activity).getLastImageIndicator() +" .jpg");
+              MEDIA_FILE_NAME + new GDataPreferences(activity).getLastImageIndicator() + end);
 
     return mediaFile;
   }
@@ -151,21 +162,7 @@ public class AttachmentManager {
       }
     }
     File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-            "prof_image"+ new GDataPreferences(activity).getLastImageIndicator() +addition+" .jpg");
-
-    return mediaFile;
-  }
-  public static File getOutputMediaVideo(Context activity){
-    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), "SecureChat");
-    if (!mediaStorageDir.exists()){
-      if (!mediaStorageDir.mkdirs()){
-        Log.d("SecureChat", "failed to create directory");
-        return null;
-      }
-    }
-    File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-            "sec_video"+ new GDataPreferences(activity).getLastImageIndicator() +" .mp4");
+            MEDIA_FILE_NAME + new GDataPreferences(activity).getLastImageIndicator() +addition+" .jpg");
 
     return mediaFile;
   }
@@ -173,23 +170,28 @@ public class AttachmentManager {
     ImageSlide chosenImage = null;
     if (uri != null) {
         OutputStream out;
-        File f = AttachmentManager.getOutputMediaVideo(context);
-        if (f.exists()) {
-          f.delete();
+        File f = AttachmentManager.getOutputMediaFile(context, MEDIA_TYPE_VIDEO);
+        if (!f.exists()) {
+          try {
+            out = new FileOutputStream(f);
+            out.write(GUtil.readBytes(context, uri));
+            out.close();
+          } catch (IOException e) {
+            Log.d("GDATA", "Warning " + e.getMessage());
+          }
         }
-      try {
-        out = new FileOutputStream(f);
-        out.write(GUtil.readBytes(context, uri));
-        out.close();
-
         FileOutputStream outImage = null;
         try {
-          File image = AttachmentManager.getOutputMediaFile(context);
+          File image = AttachmentManager.getOutputMediaFile(context, MEDIA_TYPE_IMAGE);
           outImage = new FileOutputStream(image);
           Bitmap thumb = ThumbnailUtils.createVideoThumbnail(f.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
           thumb.compress(Bitmap.CompressFormat.PNG, 100, outImage); // bmp is your Bitmap instance
           // PNG is a lossless format, the compression factor (100) is ignored
-          chosenImage = new ImageSlide(context, Uri.fromFile(image));
+          try {
+            chosenImage = new ImageSlide(context, Uri.fromFile(image));
+          } catch (BitmapDecodingException e) {
+            Log.d("GDATA", "Warning " + e.getMessage());
+          }
         } catch (Exception e) {
           Log.d("GDATA","Warning " + e.getMessage());
         } finally {
@@ -201,13 +203,6 @@ public class AttachmentManager {
             Log.d("GDATA", "Warning " + e.getMessage());
           }
         }
-      } catch (FileNotFoundException e) {
-        Log.d("GDATA", "Warning " + e.getMessage());
-      } catch (IOException e) {
-        Log.d("GDATA", "Warning " + e.getMessage());
-      } catch (BitmapDecodingException e) {
-        Log.d("GDATA", "Warning " + e.getMessage());
-      }
     }
     return chosenImage;
   }

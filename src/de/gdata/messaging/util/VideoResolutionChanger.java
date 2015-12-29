@@ -20,6 +20,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Surface;
 
+import org.thoughtcrime.securesms.mms.AttachmentManager;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -31,8 +33,8 @@ public class VideoResolutionChanger {
     private static final int TIMEOUT_USEC = 10000;
 
     public static final String OUTPUT_VIDEO_MIME_TYPE = "video/avc";
-    private static final int OUTPUT_VIDEO_BIT_RATE = 2048 * 1024;
-    private static final int OUTPUT_VIDEO_FRAME_RATE = 30;
+    private static final int OUTPUT_VIDEO_BIT_RATE = 768 * 480;
+    private static final int OUTPUT_VIDEO_FRAME_RATE = 24;
     private static final int OUTPUT_VIDEO_IFRAME_INTERVAL = 10;
     private static final int OUTPUT_VIDEO_COLOR_FORMAT =
             MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface;
@@ -44,35 +46,29 @@ public class VideoResolutionChanger {
             MediaCodecInfo.CodecProfileLevel.AACObjectHE;
     private static final int OUTPUT_AUDIO_SAMPLE_RATE_HZ = 44100;
 
+    private boolean compressingSuccessful = true;
+
     private int mWidth = 640;
-    private int mHeight = 480;
+    private int mHeight = 360;
     private String mOutputFile, mInputFile;
+
+    public static String COMPRESSING_ERROR = "error";
 
     public String changeResolution(Context context, Uri f)
             throws Throwable {
 
         mInputFile = GUtil.getPath(context, f);
 
-        String filePath = mInputFile.substring(0, mInputFile.lastIndexOf(File.separator));
-        String[] splitByDot = mInputFile.split("\\.");
-        String ext="";
-        if(splitByDot!=null && splitByDot.length>1)
-            ext = splitByDot[splitByDot.length-1];
-        String fileName = mInputFile.substring(mInputFile.lastIndexOf(File.separator)+1,
-                mInputFile.length());
-        if(ext.length()>0)
-            fileName=fileName.replace("."+ext, "_out.mp4");
-        else
-            fileName=fileName.concat("_out.mp4");
-
-        final File outFile = new File(Environment.getExternalStorageDirectory(), fileName);
+        final File outFile = AttachmentManager.getOutputMediaFile(context, AttachmentManager.MEDIA_TYPE_VIDEO);
         if(!outFile.exists())
             outFile.createNewFile();
 
         mOutputFile = outFile.getAbsolutePath();
 
         ChangerWrapper.changeResolutionInSeparatedThread(this);
-
+        if(!compressingSuccessful) {
+        mOutputFile = COMPRESSING_ERROR;
+        }
         return mOutputFile;
     }
 
@@ -263,8 +259,10 @@ public class VideoResolutionChanger {
                     exception = e;
             }
         }
-        if (exception != null)
+        if (exception != null) {
+            compressingSuccessful = false;
             throw exception;
+        }
     }
 
     private MediaExtractor createExtractor() throws IOException {
