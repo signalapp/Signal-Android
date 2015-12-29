@@ -194,7 +194,7 @@ public class ContactsDatabase {
       selection     = null;
       selectionArgs = null;
     }
-    Log.d("MYLOG","MYLOG queryBUil2 " + selection);
+  
     return queryLocalDb(selection, selectionArgs, null);
   }
 
