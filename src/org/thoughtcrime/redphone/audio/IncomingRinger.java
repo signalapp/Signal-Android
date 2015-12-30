@@ -56,7 +56,6 @@ public class IncomingRinger {
   public IncomingRinger(Context context) {
     this.context = context.getApplicationContext();
     vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-    player = createPlayer();
   }
 
   private MediaPlayer createPlayer() {
@@ -77,10 +76,8 @@ public class IncomingRinger {
   public void start() {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
-    if(player == null) {
-      //retry player creation to pick up changed ringtones or audio server restarts
-      player = createPlayer();
-    }
+    if (player != null) player.release();
+    player = createPlayer();
 
     int ringerMode = audioManager.getRingerMode();
 
@@ -113,6 +110,8 @@ public class IncomingRinger {
     if (player != null) {
       Log.d(TAG, "Stopping ringer");
       player.stop();
+      player.release();
+      player = null;
     }
     Log.d(TAG, "Cancelling vibrator");
     vibrator.cancel();
