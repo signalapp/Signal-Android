@@ -60,6 +60,7 @@ public class CallAudioManager {
   }
 
   public void terminate() {
+    Log.d(TAG, "terminate");
     stop(handle);
     dispose(handle);
   }
