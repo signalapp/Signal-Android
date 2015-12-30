@@ -37,14 +37,12 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
-import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {

@@ -1,9 +1,7 @@
 package de.gdata.messaging.util;
 
 import android.annotation.TargetApi;
-import android.content.ContentUris;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
@@ -13,11 +11,6 @@ import android.media.MediaFormat;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaMuxer;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Surface;
 
 import org.thoughtcrime.securesms.mms.AttachmentManager;
