@@ -95,14 +95,8 @@ public class IncomingRinger {
       try {
         if(!player.isPlaying()) {
           player.prepare();
-          player.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
-            @Override
-            public void onSeekComplete(MediaPlayer mp) {
-              Log.d(TAG, "Playing ringtone now...");
-              mp.start();
-            }
-          });
-          player.seekTo(0);
+          player.start();
+          Log.d(TAG, "Playing ringtone now...");
         } else {
           Log.d(TAG, "Ringtone is already playing, declining to restart.");
         }
