@@ -31,8 +31,10 @@ public class VideoResolutionChanger {
     private static final int TIMEOUT_USEC = 10000;
 
     public static final String OUTPUT_VIDEO_MIME_TYPE = "video/avc";
-    private static final int OUTPUT_VIDEO_BIT_RATE = 2048 * 1024;
-    private static final int OUTPUT_VIDEO_FRAME_RATE = 30;
+
+    private static final int OUTPUT_VIDEO_BIT_RATE = 2000 * 1024;
+    private static final int OUTPUT_VIDEO_FRAME_RATE = 24;
+
     private static final int OUTPUT_VIDEO_IFRAME_INTERVAL = 10;
     private static final int OUTPUT_VIDEO_COLOR_FORMAT =
             MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface;
