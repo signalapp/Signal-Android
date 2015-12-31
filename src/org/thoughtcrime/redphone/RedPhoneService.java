@@ -63,6 +63,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import de.greenrobot.event.EventBus;
 
@@ -86,6 +88,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   private static final int STATE_CONNECTED   = 5;
   private static final int STATE_TERMINATING = 6;
 
+  private static final int MAX_RINGING_DURATION = 3 * 60 * 1000;
+
   public static final String EXTRA_REMOTE_NUMBER      = "remote_number";
   public static final String EXTRA_SESSION_DESCRIPTOR = "session_descriptor";
   public static final String EXTRA_MUTE               = "mute_value";
@@ -101,6 +105,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   private OutgoingRinger outgoingRinger;
   private IncomingRinger incomingRinger;
+  private Timer          ringingTimer;
 
   private int                             state;
   private byte[]                          zid;
@@ -252,6 +257,8 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleAnswerCall(Intent intent) {
+    this.cancelTimer();
+
     state = STATE_ANSWERING;
     incomingRinger.stop();
     DatabaseFactory.getSmsDatabase(this).insertReceivedCall(remoteNumber);
@@ -261,8 +268,14 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   private void handleDenyCall(Intent intent) {
+    this.cancelTimer();
+
     incomingRinger.stop();
-    DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
+    if (intent == null) {
+      handleMissedCall(remoteNumber, false);
+    } else {
+      DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
+    }
     if(currentCallManager != null) {
       ((ResponderCallManager)this.currentCallManager).answer(false);
     }
@@ -319,6 +332,14 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     am.setMode(AudioManager.MODE_NORMAL);
     am.abandonAudioFocus(null);
     am.stopBluetoothSco();
+  }
+
+  private void cancelTimer() {
+    if (this.ringingTimer != null) {
+      this.ringingTimer.cancel();
+      this.ringingTimer.purge();
+      this.ringingTimer = null;
+    }
   }
 
   public int getState() {
@@ -378,6 +399,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     lockManager.updatePhoneState(LockManager.PhoneState.PROCESSING);
     NotificationBarManager.setCallEnded(this);
 
+    cancelTimer();
     incomingRinger.stop();
     outgoingRinger.stop();
 
@@ -412,6 +434,15 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     incomingRinger.start();
 
     NotificationBarManager.setCallInProgress(this, NotificationBarManager.TYPE_INCOMING_RINGING, getRecipient());
+
+    this.ringingTimer = new Timer();
+    this.ringingTimer.schedule(new TimerTask() {
+      @Override
+      public void run() {
+        Log.w(TAG, "Incoming call timed out");
+        RedPhoneService.this.handleDenyCall(null);
+      }
+    }, MAX_RINGING_DURATION);
   }
 
   public void notifyBusy() {
