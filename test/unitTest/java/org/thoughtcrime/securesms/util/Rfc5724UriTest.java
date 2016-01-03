@@ -91,7 +91,9 @@ public class Rfc5724UriTest extends BaseUnitTest {
         {"sms:+15555555555?a=b&c=d", "a", "b"},
         {"sms:+15555555555?a=b&c=d", "b", null},
         {"sms:+15555555555?a=b&c=d", "c", "d"},
-        {"sms:+15555555555?a=b&c=d", "d", null}
+        {"sms:+15555555555?a=b&c=d", "d", null},
+        {"sms:+15555555555?body=b",  "body", "b"},
+        {"sms:?body=b",              "body", "b"}
     };
 
     for (String[] uriTestPair : uriTestPairs) {
