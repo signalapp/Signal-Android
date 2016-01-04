@@ -111,6 +111,7 @@ public class AttachmentTypeSelector extends PopupWindow {
       animateButtonIn(cameraButton, ANIMATION_DURATION / 2);
 
       animateButtonIn(audioButton, ANIMATION_DURATION / 3);
+      animateButtonIn(locationButton, ANIMATION_DURATION / 3);
       animateButtonIn(videoButton, ANIMATION_DURATION / 4);
       animateButtonIn(contactButton, 0);
       animateButtonIn(closeButton, 0);
