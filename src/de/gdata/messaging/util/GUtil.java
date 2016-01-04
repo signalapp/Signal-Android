@@ -39,8 +39,10 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
@@ -73,7 +75,26 @@ public class GUtil {
       Intent intent = new Intent(ACTION_RELOAD_HEADER);
       LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
     }
-  }public static int getAppVersionCode(Context context) {
+  }
+    public static byte[] readBytes(Context context, Uri uri) throws IOException {
+        // this dynamically extends to take the bytes you read
+        InputStream inputStream = context.getContentResolver().openInputStream(uri);
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+
+        // this is storage overwritten on each iteration with bytes
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+
+        // we need to know how may bytes were read to write them to the byteBuffer
+        int len = 0;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+        // and then we can return your byte array.
+        return byteBuffer.toByteArray();
+
+  }
+    public static int getAppVersionCode(Context context) {
         try {
             PackageInfo packageInfo = context.getPackageManager()
                     .getPackageInfo(context.getPackageName(), 0);
