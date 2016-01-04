@@ -623,8 +623,6 @@ public class VideoResolutionChanger {
         }
         return null;
     }
-<<<<<<< HEAD
-=======
     /**
      * Get a file path from a Uri. This will get the the path for Storage Access
      * Framework Documents, as well as the _data field for the MediaStore and
@@ -765,5 +763,4 @@ public class VideoResolutionChanger {
     public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
->>>>>>> 6a02bc2... Feature #48129 - added missing lib vid compressing classes
 }
