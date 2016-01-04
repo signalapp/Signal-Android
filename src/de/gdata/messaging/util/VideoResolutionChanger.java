@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicReference;
 
-@TargetApi(18)
+@TargetApi(19)
 public class VideoResolutionChanger {
 
     private static final int TIMEOUT_USEC = 10000;
@@ -52,7 +52,6 @@ public class VideoResolutionChanger {
 
     public String changeResolution(Context context, Uri f)
             throws Throwable {
-
 
         mInputFile = getPath(context, f);
 
