@@ -75,7 +75,7 @@ public class MasterCipher {
     return encryptBytes(privateKey.serialize());
   }
 
-  public String encryptBody(String body)  {
+  public String encryptBody(@NonNull  String body)  {
     return encryptAndEncodeBytes(body.getBytes());
   }
 	
@@ -149,7 +149,7 @@ public class MasterCipher {
     }
   }
 	
-  private String encryptAndEncodeBytes(byte[] bytes) {
+  private String encryptAndEncodeBytes(@NonNull  byte[] bytes) {
     byte[] encryptedAndMacBody = encryptBytes(bytes);
     return Base64.encodeBytes(encryptedAndMacBody);
   }

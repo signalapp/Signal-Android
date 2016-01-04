@@ -35,15 +35,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.RemovableMediaView;
-import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
@@ -148,11 +147,10 @@ public class AttachmentManager {
   }
 
   public void setLocation(@NonNull final MasterSecret masterSecret,
-                          @NonNull final Place place,
+                          @NonNull final SignalPlace place,
                           @NonNull final MediaConstraints constraints)
   {
-    final SignalPlace              signalPlace = new SignalPlace(place);
-          ListenableFuture<Bitmap> future      = mapView.display(signalPlace);
+    ListenableFuture<Bitmap> future = mapView.display(place);
 
     attachmentView.setVisibility(View.VISIBLE);
     removableMediaView.display(mapView);
@@ -162,7 +160,7 @@ public class AttachmentManager {
       public void onSuccess(@NonNull Bitmap result) {
         byte[]        blob          = BitmapUtil.toByteArray(result);
         Uri           uri           = PersistentBlobProvider.getInstance(context).create(masterSecret, blob);
-        LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, signalPlace.getDescription());
+        LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
         setSlide(locationSlide);
         attachmentListener.onAttachmentChanged();
