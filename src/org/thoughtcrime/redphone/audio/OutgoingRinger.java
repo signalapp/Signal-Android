@@ -125,6 +125,10 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
       }
     }
 
-    mp.start();
+    try {
+      mp.start();
+    } catch (IllegalStateException e) {
+      Log.w(TAG, e);
+    }
   }
 }
