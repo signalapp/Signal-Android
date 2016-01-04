@@ -13,6 +13,10 @@
     <item quantity="other">%d beskeder pr. samtale</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slet alle gamle beskeder?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Dette vil øjeblikkeligt reducere alle samtaler til den nyeste besked.</item>
+    <item quantity="other">Dette vil øjeblikkeligt reducere alle samtaler til de %d nyeste beskeder.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Slet</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktivér kodeord?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -33,6 +37,8 @@ Deaktivér låseskærm for beskeder?
   <string name="ApplicationPreferencesActivity_off">slukket</string>
   <string name="ApplicationPreferencesActivity_Off">Slukket</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Kodeord %1$s, Skærmsikkerhed %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Sprog %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minut</item>
@@ -164,6 +170,15 @@ denne kontakt.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte samtaler...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Samtale arkiveret</item>
+    <item quantity="other">%d samtaler arkiveret</item>
+  </plurals>
+  <string name="ConversationListFragment_undo">FORTRYD</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Samtale flyttet til inbox</item>
+    <item quantity="other">%d samtaler flyttet til inbox</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
   <!--ConversationListItemAction-->
@@ -324,7 +339,9 @@ vil det resultere i dupletter.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netværksfejl.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager, du har allerede for mange tilkoblede enheder; prøv at fjern nogle...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager. Dette er ikke en gyldig QR-kode til at forbinde enheder.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Forbind en Signal enhed?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at forbinde en Signal-enhed vha. en tredjeparts-skanner. Af hensyn til sikkerhed, bør du skanne koden igen fra selve Signal-appen.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Indtast kodeord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
@@ -507,7 +524,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kunne ikke sende besked.</string>
   <string name="MessageNotifier_error_delivering_message">Fejl ved levering af besked.</string>
-  <string name="MessageNotifier_mark_all_as_read">Markér alle som læst</string>
+  <string name="MessageNotifier_mark_all_as_read">Læst</string>
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Multimediebesked</string>
   <string name="MessageNotifier_reply">Svar</string>
@@ -523,6 +540,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Kontaktperson</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Lokation</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammelt kodeord</string>
   <string name="change_passphrase_activity__new_passphrase">Nyt kodeord</string>
@@ -681,6 +699,7 @@ Signal kan også ringe til dig og verificere dit telefonnummer. Tryk på \'Ring 
   <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal var ikke i stand til at forbinde til serveren.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen netværksforbindelse.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Din enhed skal have netværksforbindelse for at bruge denne Signal-funktion. Tjek om der er forbindelse til mobildata eller Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Hvis du er tilsluttet Internet via et trådløst netværk, er det muligt, at en firewall blokerer adgangen til Signals server. Prøv et andet trådløst netværk eller brug mobildata.</string>
@@ -721,6 +740,7 @@ mislykkedes.</string>
   <string name="AndroidManifest__change_passphrase">Ændr kodeord</string>
   <string name="AndroidManifest__verify_identity">Verificér identitet</string>
   <string name="AndroidManifest__log_submit">Indsend fejlfindingslogge</string>
+  <string name="AndroidManifest__media_preview">Mediepreview</string>
   <string name="AndroidManifest__media_overview">Alle billeder</string>
   <string name="AndroidManifest__media_overview_named">Alle billeder med %1$s</string>
   <string name="AndroidManifest__message_details">Besked-detaljer</string>
@@ -769,10 +789,14 @@ mislykkedes.</string>
   <string name="preferences__change_passphrase">Ændr kodeord</string>
   <string name="preferences__change_your_passphrase">Ændring af dit kodeord</string>
   <string name="preferences__enable_passphrase">Aktivér kodeord</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og beskednotifikationer med et kodeord</string>
   <string name="preferences__screen_security">Skærmsikkerhed</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \\"forrige apps\\" og i Signal</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal efter et valgt tidsinterval med inaktivitet</string>
   <string name="preferences__notifications">Notifikationer</string>
   <string name="preferences__enable_message_notifications">Aktivér beskednotifikationer</string>
+  <string name="preferences__new_contacts_notifications">Notifikationer om nye kontakter</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Vis notifikationer om nye Signal-kontakter</string>
   <string name="preferences__led_color">LED-farve</string>
   <string name="preferences__led_color_unknown">Ukendt</string>
   <string name="preferences__pref_led_blink_title">LED-blinkemønster</string>
@@ -783,6 +807,7 @@ mislykkedes.</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__change_notification_sound">Ændr notifikationslyd</string>
   <string name="preferences__silent">Ingen lyd</string>
+  <string name="preferences__in_conversation_notifications">Notifikationer under samtalevisning</string>
   <string name="preferences__play_inthread_notifications">Afspil notifikationslyd, når en aktiv samtale vises</string>
   <string name="preferences__repeat_alerts">Gentag notifikationer</string>
   <string name="preferences__never">Aldrig</string>
@@ -823,6 +848,8 @@ mislykkedes.</string>
   <string name="preferences__delete_old_messages">Slet gamle beskeder</string>
   <string name="preferences__chats">Chat og medier</string>
   <string name="preferences__conversation_length_limit">Grænse på samtaler</string>
+  <string name="preferences__trim_all_conversations_now">Trim alle samtaler nu</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Løb gennem alle samtaler og gennemfør begrænsninger for samtalelængde</string>
   <string name="preferences__devices">Enheder</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
@@ -877,6 +904,7 @@ mislykkedes.</string>
   <string name="conversation_list_batch__menu_delete_selected">Slet markeret</string>
   <string name="conversation_list_batch__menu_select_all">Markér alle</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver valgte</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Uarkiver valgte</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Søg</string>
   <!--conversation_list_item_view-->
@@ -954,6 +982,7 @@ mislykkedes.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Billedpreview</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Opdater</string>
   <!--redphone_audio_popup_menu-->

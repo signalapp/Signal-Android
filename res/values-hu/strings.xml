@@ -36,6 +36,8 @@ Képernyő zárolásának tiltása az üzeneteknél?</string>
   <string name="ApplicationPreferencesActivity_off">ki</string>
   <string name="ApplicationPreferencesActivity_Off">Ki</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Jelmondat %1$s, Képernyő biztonság %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Téma %1$s, Nyelv %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 perc</item>
@@ -169,7 +171,15 @@ ezt a névjegyet.
   </plurals>
   <string name="ConversationListFragment_deleting">Törlés</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Kiválasztott beszélgetések törlése...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Beszélgetés archiválva</item>
+    <item quantity="other">%d beszélgetés archiválva</item>
+  </plurals>
   <string name="ConversationListFragment_undo">VISSZAVONÁS</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Beszélgetés áthelyezve a bejövőbe</item>
+    <item quantity="other">%d beszélgetés áthelyezve a bejövőbe</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet...</string>
   <!--ConversationListItemAction-->
@@ -539,6 +549,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="attachment_type_selector__video">Videó</string>
   <string name="attachment_type_selector__contact">Névjegy</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Hely</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Régi jelmondat</string>
   <string name="change_passphrase_activity__new_passphrase">Új jelmondat</string>
@@ -817,10 +828,16 @@ sikertelen.
   <string name="preferences__change_passphrase">Jelmondat megváltoztatása</string>
   <string name="preferences__change_your_passphrase">Változtasd meg a jelmondatod</string>
   <string name="preferences__enable_passphrase">Jelmondat engedélyezése</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal és üzenet értesítések zárolása jelmondattal</string>
   <string name="preferences__screen_security">Képernyő biztonság</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">A képernyőkép mentés tiltása a korábbi listákban és az alkalmazáson belül</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatikus zárolása egy meghatározott inaktivitási időintervallum után</string>
+  <string name="preferences__inactivity_timeout_passphrase">Inaktivitási időtúllépés jelmondat</string>
+  <string name="preferences__inactivity_timeout_interval">Inaktivitási időtúllépés intervallum</string>
   <string name="preferences__notifications">Értesítések</string>
   <string name="preferences__enable_message_notifications">Üzenet értesítések engedélyezése</string>
+  <string name="preferences__new_contacts_notifications">Új névjegy értesítések</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Értesítések mutatása új Signal névjegyekhez</string>
   <string name="preferences__led_color">LED színe</string>
   <string name="preferences__led_color_unknown">Ismeretlen</string>
   <string name="preferences__pref_led_blink_title">LED villogás mintázata</string>

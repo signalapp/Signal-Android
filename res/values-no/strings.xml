@@ -37,6 +37,8 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Passord %1$s, skjermsikkerhet %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minutt</item>
@@ -165,7 +167,15 @@ denne kontakten.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Sletter utvalgte samtaler...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Samtale arkivert</item>
+    <item quantity="other">%d samtaler arkivert</item>
+  </plurals>
   <string name="ConversationListFragment_undo">Angre</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Samtalen flyttet til innboks</item>
+    <item quantity="other">%d samtaler flyttet til inboks</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>
   <!--ConversationListItemAction-->
@@ -515,6 +525,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Lokasjon</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammelt passord</string>
   <string name="change_passphrase_activity__new_passphrase">Nytt passord</string>
@@ -767,10 +778,16 @@ feilet.</string>
   <string name="preferences__change_passphrase">Passordbytte</string>
   <string name="preferences__change_your_passphrase">Endre ditt passord</string>
   <string name="preferences__enable_passphrase">Aktiver passord</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarslinger med passord</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilde i listen over siste applikasjoner og inni applikasjonen</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lås Signal etter et gitt tidsintervall med inakivitet</string>
+  <string name="preferences__inactivity_timeout_passphrase">Inaktivitetstimeout passord</string>
+  <string name="preferences__inactivity_timeout_interval">Inaktivitetstimeoutintervall</string>
   <string name="preferences__notifications">Varsling</string>
   <string name="preferences__enable_message_notifications">Aktiver meldingsvarling</string>
+  <string name="preferences__new_contacts_notifications">Varsling av nye kontakter</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Vis et varsel ved nye Signal kontakter</string>
   <string name="preferences__led_color">LED farge</string>
   <string name="preferences__led_color_unknown">Ukjent</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>

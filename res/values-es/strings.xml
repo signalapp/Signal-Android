@@ -36,6 +36,7 @@
   <string name="ApplicationPreferencesActivity_off">inactivo</string>
   <string name="ApplicationPreferencesActivity_Off">Inactivo</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Frase contraseña %1$s, seguridad de la pantalla %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -549,7 +550,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="attachment_type_selector__video">Vídeo</string>
   <string name="attachment_type_selector__contact">Contacto</string>
   <string name="attachment_type_selector__camera">Cámara</string>
-  <string name="attachment_type_selector__location">Localización</string>
+  <string name="attachment_type_selector__location">Ubicación</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Clave de acceso antigua</string>
   <string name="change_passphrase_activity__new_passphrase">Nueva clave de acceso</string>
@@ -821,11 +822,12 @@ por SMS.
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
   <string name="preferences__change_your_passphrase">Cambiar su frase de contraseña</string>
   <string name="preferences__enable_passphrase">Habilitar clave de acceso</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear Signal y notificaciones de mensaje con una frase de contraseña</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear Signal y notificaciones de mensajes con una frase-contraseña</string>
   <string name="preferences__screen_security">Seguridad de la pantalla</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear capturas de pantalla en la lista de aplicaciones recientes y dentro de la aplicación</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automáticamente Signal después de un intervalo de inactividad específico</string>
-  <string name="preferences__inactivity_timeout_interval">Intervalo de tiempo de inactividad</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automáticamente Signal tras un intervalo de inactividad específicado</string>
+  <string name="preferences__inactivity_timeout_passphrase">Frase-contraseña para suspensión por inactividad</string>
+  <string name="preferences__inactivity_timeout_interval">Intervalo para suspensión por inactividad</string>
   <string name="preferences__notifications">Notificaciones</string>
   <string name="preferences__enable_message_notifications">Habilitar notificaciones de mensaje</string>
   <string name="preferences__new_contacts_notifications">Notificaciones de nuevos contactos</string>

@@ -74,7 +74,7 @@ preveriti ta stik.</string>
   <string name="ConfirmIdentityDialog_accept">Sprejmi</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sporočilo %s</string>
-  <string name="ContactsDatabase_signal_call_s">Klic Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Klic Signal: %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Velikost sporočila: %d KB</string>
   <string name="ConversationItem_expires_s">Poteče: %s</string>
@@ -183,14 +183,14 @@ preveriti ta stik.</string>
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Brišem izbrane pogovore...</string>
   <plurals name="ConversationListFragment_conversations_archived">
-    <item quantity="one">Arhiviran pogovor</item>
-    <item quantity="two">%d arhivirana pogovora</item>
-    <item quantity="few">%d arhivirani pogovori</item>
-    <item quantity="other">%d arhiviranih pogovorov</item>
+    <item quantity="one">Pogovor arhiviran </item>
+    <item quantity="two">%d pogovora arhivirana</item>
+    <item quantity="few">%d pogovori arhivirani</item>
+    <item quantity="other">%d pogovorov arhiviranih</item>
   </plurals>
   <string name="ConversationListFragment_undo">RAZVELJAVI</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-    <item quantity="one">Pogovorov je premaknjen v nabiralnik</item>
+    <item quantity="one">Pogovor je premaknjen v nabiralnik</item>
     <item quantity="two">%d pogovora premaknjena v nabiralnik</item>
     <item quantity="few">%d pogovori premaknjeni v nabiralnik</item>
     <item quantity="other">%d pogovorov premaknjeno v nabiralnik</item>
@@ -320,7 +320,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="MmsDownloader_error_reading_mms_settings">Ne morem razbrati MMS nastavitev vašega operaterja...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
-  <string name="NotificationBarManager_missed_call_from_s">Neodgovorjen klic od %s</string>
+  <string name="NotificationBarManager_missed_call_from_s">Neodgovorjen klic: %s</string>
   <string name="NotificationBarManager_missed_signal_call">Neodgovorjen klic Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Dohodni klic Signal</string>
@@ -335,8 +335,8 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="MessageRecord_left_group">Zapustili ste skupino.</string>
   <string name="MessageRecord_updated_group">Skupina je bila posodobljena.</string>
   <string name="MessageRecord_s_called_you">Oseba %s vas je klicala</string>
-  <string name="MessageRecord_called_s">Klicali ste %s</string>
-  <string name="MessageRecord_missed_call_from">Neodgovorjen klic od %s</string>
+  <string name="MessageRecord_called_s">Klicali ste: %s</string>
+  <string name="MessageRecord_missed_call_from">Neodgovorjen klic: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s uporablja Signal, pozdravite ga!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>

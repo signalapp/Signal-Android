@@ -8,7 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 mensagem por conversa</item>
+    <item quantity="other">%d mensagens por conversa</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Apagar todas as mensagens antigas?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Isto irá reduzir as conversas anteriores à mensagem mais recente.</item>
+    <item quantity="other">Isto irá reduzir as conversas anteriores às %d mensagens mais recentes.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Apagar</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -30,7 +38,13 @@ Vai ser necessário re-registar o seu número de telefone se pretender utilizar 
   <string name="ApplicationPreferencesActivity_off">desligado</string>
   <string name="ApplicationPreferencesActivity_Off">Desligado</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Chave frase %1$s, Segurança de ecrã %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Língua %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minuto</item>
+    <item quantity="other">%d minutos</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(imagem)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(áudio)</string>
@@ -93,6 +107,10 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   <string name="ConversationActivity_group_members">Membros do grupo</string>
   <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
   <string name="ConversationActivity_unnamed_group">Grupo sem nome</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 membro</item>
+    <item quantity="other">%d membros</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Rascunho guardado</string>
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <string name="ConversationActivity_calls_not_supported">Chamadas não suportadas</string>
@@ -153,7 +171,15 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
   </plurals>
   <string name="ConversationListFragment_deleting">A apagar</string>
   <string name="ConversationListFragment_deleting_selected_conversations">A eliminar conversas seleccionadas...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Conversa arquivada</item>
+    <item quantity="other">%d conversas arquivadas</item>
+  </plurals>
   <string name="ConversationListFragment_undo">REVERTER</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Conversa movida para a caixa de entrada</item>
+    <item quantity="other">%d conversas movidas para a caixa de entrada</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
   <!--ConversationListItemAction-->
@@ -516,6 +542,7 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="attachment_type_selector__video">Vídeo</string>
   <string name="attachment_type_selector__contact">Contacto</string>
   <string name="attachment_type_selector__camera">Câmara</string>
+  <string name="attachment_type_selector__location">Localização</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova</string>
@@ -744,6 +771,7 @@ falhou.
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <string name="AndroidManifest_manage_linked_devices">Gerir dispositivos interligados</string>
   <string name="AndroidManifest__invite_friends">Convidar amigos</string>
+  <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__your_identity_key">A sua chave de identidade</string>
@@ -786,10 +814,16 @@ falhou.
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
   <string name="preferences__change_your_passphrase">Alterar a sua frase-chave</string>
   <string name="preferences__enable_passphrase">Activar frase-chave</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear Signal e notificações de mensagens com uma frase chave</string>
   <string name="preferences__screen_security">Segurança de ecrã</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear captura de ecrã na lista de recentes e dentro da aplicação</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-bloquear Signal ao fim de um dado intervavo de inactividade</string>
+  <string name="preferences__inactivity_timeout_passphrase">Expirar frase-chave ao fim de dado período</string>
+  <string name="preferences__inactivity_timeout_interval">Intervalo de expiração por inactividade</string>
   <string name="preferences__notifications">Notificações</string>
   <string name="preferences__enable_message_notifications">Activar notificações de mensagens</string>
+  <string name="preferences__new_contacts_notifications">Notificações de contactos novos</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Apresentar uma notificação para contactos Signal novos</string>
   <string name="preferences__led_color">Cor do LED</string>
   <string name="preferences__led_color_unknown">Desconhecido</string>
   <string name="preferences__pref_led_blink_title">Padrão de piscar do LED</string>
@@ -944,6 +978,14 @@ falhou.
   <string name="text_secure_normal__invite_friends">Convidar amigos</string>
   <string name="text_secure_normal__help">Ajuda</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">A sua versão de Signal está desactualizada</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">A sua versão de Signal vai expirar dentro de 1 dia. Toque para actualizar para a versão mais recente.</item>
+    <item quantity="other">A sua versão de Signal vai expirar dentro de %d dias. Toque para actualizar para a versão mais recente.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">A sua versão de Signal vai expirar hoje. Toque para actualizar para a versão mais recente.</string>
+  <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>
+  <string name="reminder_header_expired_build_details">As mensagens deixarão de ser enviadas com sucesso. Toque para actualizar para a versão mais recente.</string>
   <string name="reminder_header_expired_build_button">ACTUALIZAR</string>
   <string name="reminder_header_sms_default_title">Definir como aplicação SMS por omissão</string>
   <string name="reminder_header_sms_default_text">Pressione para tornar Signal a sua applicação SMS por omissão.</string>

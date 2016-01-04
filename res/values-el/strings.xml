@@ -36,6 +36,8 @@
   <string name="ApplicationPreferencesActivity_off">απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_Off">Απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Φράση κλειδί %1$s, Ασφάλεια οθόνης %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Θέμα %1$s, Γλώσσα %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 λεπτό</item>
@@ -531,6 +533,7 @@
   <string name="attachment_type_selector__video">Βίντεο</string>
   <string name="attachment_type_selector__contact">Επαφή</string>
   <string name="attachment_type_selector__camera">Κάμερα</string>
+  <string name="attachment_type_selector__location">Περιοχή</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Παλιό συνθηματικό</string>
   <string name="change_passphrase_activity__new_passphrase">Νέο συνθηματικό</string>
@@ -798,10 +801,16 @@
   <string name="preferences__change_passphrase">Αλλαγή συνθηματικού</string>
   <string name="preferences__change_your_passphrase">Αλλαγή συνθηματικού</string>
   <string name="preferences__enable_passphrase">Ενεργοποίηση συνθηματικού</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Κλειδώστε το Signal και τις ειδοποιήσεις μηνυμάτων με μια φράση κλειδί</string>
   <string name="preferences__screen_security">Ασφάλεια οθόνης</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Να επιτρέπεται η καταγραφή της οθόνης (screenshots)</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Κλειδώστε αυτόματα το Signal μετά απο κάποιο συγκεκτριμένο χρόνο αδράνειας</string>
+  <string name="preferences__inactivity_timeout_passphrase">Φράση κλειδί χρόνου λήξης αδράνειας</string>
+  <string name="preferences__inactivity_timeout_interval">Χρονικό διάστημα χρόνου λήξης αδράνειας</string>
   <string name="preferences__notifications">Ειδοποιήσεις</string>
   <string name="preferences__enable_message_notifications">Ενεργοποίηση ειδοποιήσεων μηνυμάτων</string>
+  <string name="preferences__new_contacts_notifications">Ειδοποιήσεις νέων επαφών</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Εμφάνισε μια ειδοποίηση για νέες επαφές του Signal</string>
   <string name="preferences__led_color">Χρώμα LED</string>
   <string name="preferences__led_color_unknown">Αγνωστο</string>
   <string name="preferences__pref_led_blink_title">Μοτίβο αναβοσβησίματος του LED</string>

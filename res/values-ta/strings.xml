@@ -8,6 +8,10 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">தற்போது: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet"> நீங்கள் இன்னும் ஒரு கடவுச்சொல்லை அமைக்கவில்லை!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">ஓரு உரையாடலில் 1 செய்தி</item>
+    <item quantity="other">ஓர் உரையாடலில் %d செய்திகள்</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">அனைத்து பழைய செய்திகளையும் நீக்கலாமா?</string>
   <string name="ApplicationPreferencesActivity_delete">நீக்கு</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">கடவுச்சொல்லை முடக்கு</string>
@@ -24,7 +28,13 @@
   <string name="ApplicationPreferencesActivity_On">இயக்க</string>
   <string name="ApplicationPreferencesActivity_off">அணை</string>
   <string name="ApplicationPreferencesActivity_Off">அணை</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">குறுஞ்செய்தி %1$s, செழுஞ்செய்தி. %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">பின்புலத்தோற்றம் %1$s, மொழி %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">ஒரு நிமிடம்</item>
+    <item quantity="other">%d நிமிடங்கள்</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(படம்)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ஆடியோ) </string>
@@ -64,6 +74,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">மறையாக்கபடாத MMS-ஆக அனுப்பலாமா?</string>
   <string name="ConversationItem_unable_to_open_media">இந்த ஊடகத்தை திறக்க முடியும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
   <string name="ConversationActivity_reset">மீட்டமைக்க</string>
   <string name="ConversationActivity_delete_thread_question">உரையாடலை நீக்கு ?</string>
   <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">இந்த உரையாடலை நிரந்தரமாக நீக்கீவிடும்..</string>
@@ -71,6 +82,7 @@
   <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
   <string name="ConversationActivity_compose_message">செய்தியை இயற்று</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">மன்னிக்கவும், உங்கள் இணைப்பை அமைப்பதில் பிழை ஏற்ப்பட்டது.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">நீங்கள் தேர்ந்தெடுத்த கிஃப் மிக பெரியது!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">மன்னிக்கவும், தேர்ந்தெடுத்த வீடியோ செய்தி அளவு கட்டுப்பாடுகளை மீறுகிறது (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">மன்னிக்கவும், தேர்ந்தெடுத்த ஆடியோ செய்தி அளவு கட்டுப்பாடுகளை மீறுகிறது (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">பெறுநர் ஒரு செல்லுபடியாகும் SMS அல்லது மின்னஞ்சல் முகவரி அல்ல!</string>
@@ -78,6 +90,10 @@
   <string name="ConversationActivity_group_members">குழு உறுப்பினர்கள்</string>
   <string name="ConversationActivity_group_conversation">குழு உரையாடல்</string>
   <string name="ConversationActivity_unnamed_group">பெயரிடப்படாத குழு</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 உறுப்பினர்</item>
+    <item quantity="other"> %d உறுப்பினர்கள்</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">வரைவு சேமிக்கப்பட்டது</string>
   <string name="ConversationActivity_invalid_recipient">செல்லாத பெறுநர்!</string>
   <string name="ConversationActivity_calls_not_supported">அழைப்புக்களுக்கு ஆதரவில்லை</string>
@@ -88,15 +104,27 @@
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
   <string name="ConversationActivity_transport_signal">சமிக்ஞை</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் சமிக்ஞைக்கு மாறுவோம்</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">நாம் அரட்டையடிக்க இதை பயன்படுத்துவோம்: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">குழுவை விட்டு விலகுவதில் பிழை...</string>
+  <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
   <string name="ConversationActivity_unblock_question">தடுப்புநீக்கு ?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">உறுதியாக இந்த தொடர்பை தடை நீக்கு ?</string>
   <string name="ConversationActivity_unblock">தடுப்புநீக்க</string>
   <string name="ConversationActivity_quick_camera_unavailable">புகைப்படக் கருவி கிடைப்பிலில்லை</string>
   <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய முடியவில்லை!</string>
+  <string name="ConversationActivity_error_sending_voice_message">குரல் செய்தியை அனுப்புவதில் பிழை ...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">செய்தி விவரங்கள்</string>
   <string name="ConversationFragment_transport_s_sent_received_s">போக்குவரத்து: %1$s\nஅனுப்பியது/பெற்றது: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">அனுப்புநர்: %1$s\nபோக்குவரத்து: %2$s\nஅனுப்பியது: %3$s\nபெற்றது: %4$s</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்க ?</item>
+    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட செய்தியைகளை நீக்க ?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியைகளை நிரந்தரமாக நீக்கீவிடும்.</item>
+    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட %1$d செய்தியைகளை நிரந்தரமாக நீக்கீவிடும்.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">சேமிப்பில் சேர்கும்போது பிழையேர்ப்பட்டது!</string>
   <string name="ConversationFragment_success_exclamation">வெற்றி!</string>
@@ -244,6 +272,7 @@
   <string name="RatingManager_later">பிறகு</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">தடு</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">உறுதியாக இந்த தொடர்பை தடை நீக்கு ?</string>
   <string name="RecipientPreferenceActivity_unblock">தடுப்புநீக்க</string>
   <string name="RecipientPreferenceActivity_enabled">செயல்படுத்தப்பட்டது</string>
   <string name="RecipientPreferenceActivity_disabled">முடக்கப்பட்டது</string>

@@ -166,6 +166,10 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Изтриване</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Изтриване на избраните разговори...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Разговорът е архивиран</item>
+    <item quantity="other">%d архивирани разговора</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ВЪЗСТАНОВИ</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Преместен разговор във входяща кутия</item>
@@ -794,8 +798,12 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="preferences__screen_security">Сигурност на екрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Забрани автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматично заключвай Signal след зададен период от неактивност</string>
+  <string name="preferences__inactivity_timeout_passphrase">Парола за период на неактивност</string>
+  <string name="preferences__inactivity_timeout_interval">Продължителност на период за неактивност</string>
   <string name="preferences__notifications">Известия</string>
   <string name="preferences__enable_message_notifications">Разреши известия за съобщения</string>
+  <string name="preferences__new_contacts_notifications">Известия за нови контакти</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Показва известия за нови Signal контакти</string>
   <string name="preferences__led_color">LED цвят</string>
   <string name="preferences__led_color_unknown">Непознат</string>
   <string name="preferences__pref_led_blink_title">LED известяване</string>

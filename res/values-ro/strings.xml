@@ -752,10 +752,16 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__change_passphrase">Schimbă parola</string>
   <string name="preferences__change_your_passphrase">Schimbă-ți parola</string>
   <string name="preferences__enable_passphrase">Activează parola</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blochează Signal și notificările mesageriei cu o parolă</string>
   <string name="preferences__screen_security">Securitate ecran</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blochează screenshot-urile în lista cu aplicaţii recente şi în interiorul applicaţiei</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blochează automat Signal după o perioadă specificată de timp de inactivitate</string>
+  <string name="preferences__inactivity_timeout_passphrase">Cere parolă pentru inactivitate</string>
+  <string name="preferences__inactivity_timeout_interval">Interval de timp pentru inactivitate</string>
   <string name="preferences__notifications">Notificări</string>
   <string name="preferences__enable_message_notifications">Activează notificari pentru mesaje</string>
+  <string name="preferences__new_contacts_notifications">Notificări contacte noi</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Afișează o notificare pentru noile contacte Signal</string>
   <string name="preferences__led_color">Culoare LED</string>
   <string name="preferences__led_color_unknown">Necunoscut</string>
   <string name="preferences__pref_led_blink_title">Tipar de clipire LED</string>

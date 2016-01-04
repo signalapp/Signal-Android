@@ -29,7 +29,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Отменяем регистрацию в Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Отключить сообщения и звонки через Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Отключить сообщения и звонки в Signal отменив регистрацию на сервере. Вам нужно будет заново зарегистрировать Ваш телефонный номер для использования их в будущем. </string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Отключить сообщения и звонки Signal, отменив регистрацию на сервере. Вам нужно будет заново зарегистрироваться при помощи Вашего номера телефона, чтобы вновь использовать эти сервисы. </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS включены</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора SMS-приложения по умолчанию</string>
@@ -40,6 +40,8 @@
   <string name="ApplicationPreferencesActivity_off">выключена</string>
   <string name="ApplicationPreferencesActivity_Off">Выключено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Парольная фраза %1$s, Защита экрана %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Язык %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 минута</item>
@@ -72,7 +74,7 @@
   <string name="ConfirmIdentityDialog_accept">Принять</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Сообщение %s</string>
-  <string name="ContactsDatabase_signal_call_s">Звонок через Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Звонок через Signal от %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Размер сообщения: %d Kб</string>
   <string name="ConversationItem_expires_s">Истекает: %s</string>
@@ -130,7 +132,7 @@
   <string name="ConversationActivity_unblock_question">Разблокировать?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Вы уверены, что хотите разблокировать этот контакт?</string>
   <string name="ConversationActivity_unblock">Разблокировать</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает допустимый размер для того типа сообщения, которое вы отправляете.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает допустимый размер для того типа сообщения, которое Вы отправляете.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Невозможно записать аудио!</string>
   <string name="ConversationActivity_error_sending_voice_message">Ошибка при отправке голосового сообщения...</string>
@@ -180,7 +182,19 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Удаление</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Удаление выбранных разговоров...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Разговор заархивирован</item>
+    <item quantity="few">%d разговора заархивировано</item>
+    <item quantity="many">%d разговоров заархивировано</item>
+    <item quantity="other">%d разговоров заархивировано</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ОТМЕНИТЬ</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Разговор перемещён во Входящие</item>
+    <item quantity="few">%d разговора перемещено во Входящие</item>
+    <item quantity="many">%d разговоров перемещено во Входящие</item>
+    <item quantity="other">%d разговоров перемещено во Входящие</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщениe обмена ключами...</string>
   <!--ConversationListItemAction-->
@@ -534,6 +548,7 @@
   <string name="attachment_type_selector__video">Видео</string>
   <string name="attachment_type_selector__contact">Контакт</string>
   <string name="attachment_type_selector__camera">Камера</string>
+  <string name="attachment_type_selector__location">Местоположение</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Старая парольная фраза</string>
   <string name="change_passphrase_activity__new_passphrase">Новая парольная фраза</string>
@@ -639,7 +654,7 @@
     <item quantity="other">%1$s присоединились к группе.</item>
   </plurals>
   <string name="GroupUtil_group_updated">Группа обновлена.</string>
-  <string name="GroupUtil_group_name_is_now">Группы теперь называется «%1$s».</string>
+  <string name="GroupUtil_group_name_is_now">Группа теперь называется «%1$s».</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Открыть</string>
   <!--prompt_mms_activity-->
@@ -752,7 +767,7 @@ SMS-подтверждения...
   <string name="AndroidManifest__message_details">Подробности сообщения</string>
   <string name="AndroidManifest_manage_linked_devices">Управление привязанными устройствами</string>
   <string name="AndroidManifest__invite_friends">Пригласить друзей в Signal</string>
-  <string name="AndroidManifest_archived_conversations">Разговоры в архиве</string>
+  <string name="AndroidManifest_archived_conversations">Архивированные разговоры</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Импорт / экспорт</string>
   <string name="arrays__your_identity_key">Ваш личный ключ</string>
@@ -797,10 +812,16 @@ SMS-подтверждения...
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>
   <string name="preferences__change_your_passphrase">Изменить парольную фразу</string>
   <string name="preferences__enable_passphrase">Включить парольную фразу</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блокировать Signal и уведомления о сообщениях парольной фразой</string>
   <string name="preferences__screen_security">Защита экрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокировать снимки экрана внутри приложения</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматически блокировать Signal после указанного времени бездействия</string>
+  <string name="preferences__inactivity_timeout_passphrase">Парольная фраза при бездействии</string>
+  <string name="preferences__inactivity_timeout_interval">Интервал бездействия</string>
   <string name="preferences__notifications">Уведомления</string>
   <string name="preferences__enable_message_notifications">Разрешить уведомления</string>
+  <string name="preferences__new_contacts_notifications">Уведомления о новых контактах</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Показывать уведомление для новых контактов в Signal</string>
   <string name="preferences__led_color">Цвет светодиода</string>
   <string name="preferences__led_color_unknown">Неизвестен</string>
   <string name="preferences__pref_led_blink_title">Мигание светодиода</string>

@@ -37,6 +37,8 @@
   <string name="ApplicationPreferencesActivity_off">uit</string>
   <string name="ApplicationPreferencesActivity_Off">Uit</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Wachtwoord %1$s, Schermbeveiliging %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Taal %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minuut</item>
@@ -164,7 +166,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het verwijderen...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Gesprek gearchiveerd</item>
+    <item quantity="other">%d gesprekken gearchiveerd</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Gesprek naar inbox verplaatst</item>
+    <item quantity="other"> %d gesprekken naar inbox verplaatst</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht...</string>
   <!--ConversationListItemAction-->
@@ -262,6 +272,10 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="InviteActivity_heart_content_description">Hartje</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
   <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">VERSTUREN NAAR 1 VRIEND</item>
+    <item quantity="other">VERSTUREN NAAR %d VRIENDEN</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1 SMS uitnodiging versturen?</item>
     <item quantity="other">%d SMS uitnodigingen versturen?</item>
@@ -512,6 +526,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Contactpersoon</string>
   <string name="attachment_type_selector__camera">Camera</string>
+  <string name="attachment_type_selector__location">Locatie</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord</string>
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord</string>
@@ -765,10 +780,16 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__change_passphrase">Wachtwoord veranderen</string>
   <string name="preferences__change_your_passphrase">Verander je wachtwoord</string>
   <string name="preferences__enable_passphrase">Wachtwoord inschakelen</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal en berichtnotificaties vergrendelen met een wachtwoord</string>
   <string name="preferences__screen_security">Schermbeveiliging</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Screenshots onmogelijk maken in deze app en de recente lijst</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
+  <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
+  <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
   <string name="preferences__notifications">Notificaties</string>
   <string name="preferences__enable_message_notifications">Toon bericht notificaties</string>
+  <string name="preferences__new_contacts_notifications">Notificaties nieuwe contacten</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Notificatie tonen voor nieuwe Signal contacten</string>
   <string name="preferences__led_color">LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">LED-knipperpatroon</string>
@@ -832,7 +853,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__language">Taal</string>
   <string name="preferences__signal_messages_and_calls">Signal berichten en oproepen</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal gebruikers</string>
-  <string name="preferences__submit_debug_log">Dien debug log in</string>
+  <string name="preferences__submit_debug_log">Debug log indienen</string>
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Inschakelen als je toestel SMS/MMS over WiFi gebruikt (alleen inschakelen als \'WiFi Bellen\' is ingeschakeld op je toestel)</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contacten</string>

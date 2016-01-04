@@ -8,7 +8,15 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nuvarande: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte angivit ett lösenord än!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 meddelande per konversation</item>
+    <item quantity="other">%d meddelanden per konversation</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Detta kommer omedelbart trimma alla konversationer till det senaste meddelandet.</item>
+    <item quantity="other">Detta kommer omedelbart trimma alla konversationer till de %d senaste meddelanden.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Radera</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Ta bort lösenordsfras?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
@@ -28,7 +36,13 @@ Stäng av låsskärm för meddelanden?</string>
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Lösenordsfras %1$s, Skärmsäkerhet %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minut</item>
+    <item quantity="other">%d minuter</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(bild)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ljud)</string>
@@ -89,6 +103,10 @@ verifiera denna kontakt.</string>
   <string name="ConversationActivity_group_members">Gruppmedlemmar</string>
   <string name="ConversationActivity_group_conversation">Gruppkonversation</string>
   <string name="ConversationActivity_unnamed_group">Namnlös grupp</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 medlem</item>
+    <item quantity="other">%d medlemmar</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Sparade utkast</string>
   <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds ej</string>
@@ -149,7 +167,15 @@ verifiera denna kontakt.</string>
   </plurals>
   <string name="ConversationListFragment_deleting">Raderar</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Raderar markerade konversationer...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Konversation arkiverad</item>
+    <item quantity="other">%d konversationer arkiverade</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ÅNGRA</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Flyttade konversation till inkorgen</item>
+    <item quantity="other">Flyttade %d konversationer till inkorgen</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Meddelande för nyckelutbyte ...</string>
   <!--ConversationListItemAction-->
@@ -500,6 +526,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Kontakt</string>
   <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__location">Plats</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammal lösenfras</string>
   <string name="change_passphrase_activity__new_passphrase">Ny lösenfras</string>
@@ -710,6 +737,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
   <string name="AndroidManifest_manage_linked_devices">Hantera länkade enheter</string>
   <string name="AndroidManifest__invite_friends">Bjud in vänner</string>
+  <string name="AndroidManifest_archived_conversations">Arkiverade konversationer</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera / exportera</string>
   <string name="arrays__your_identity_key">Din identitetsnyckel</string>
@@ -910,6 +938,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="text_secure_normal__invite_friends">Bjud in vänner</string>
   <string name="text_secure_normal__help">Hjälp</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Din version av Signal är urgammal</string>
   <string name="reminder_header_expired_build_button">UPPDATERA</string>
   <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
   <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string>

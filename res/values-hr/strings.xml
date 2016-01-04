@@ -28,6 +28,8 @@ Onemogući zaključani ekran za poruke?</string>
   <string name="ApplicationPreferencesActivity_off">isključeno</string>
   <string name="ApplicationPreferencesActivity_Off">Isključeno</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Lozinka: %1$s, Sigurnost zaslona: %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Jezik: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
