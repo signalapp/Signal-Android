@@ -154,24 +154,20 @@ public class ContactsDatabase {
       }
     }
     StringBuilder selection = new StringBuilder();
-    int c = 0;
     for(Integer id : ids) {
-      c++;
-      if (c == 1 && ids.size() > 1) {
-        selection.append(ID_COLUMN + " NOT IN (" + id + "");
-      } else if(c == ids.size() && c != 1) {
-        selection.append(", "+ id + ")");
-      } else if(c == 1 && ids.size() == 1) {
-        selection.append(ID_COLUMN + " NOT IN (" + id + ")");
-      } else {
-        selection.append(", "+ id + "");
-      }
+      selection.append(", " + id);
     }
+
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
 
-    String selectionString = filterSelection+ (!contactSelection.equals("null")
-            ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
-            : "" + selection.toString());
+    String notInSelection = (ids.size() > 0 ? " AND "
+            + "(id NOT IN (" + selection.toString().substring(2) + "))" : "");
+
+    contactSelection = (!contactSelection.equals("null")
+            ? contactSelection + notInSelection: "");
+
+    String selectionString = filterSelection + contactSelection;
+
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
             selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
