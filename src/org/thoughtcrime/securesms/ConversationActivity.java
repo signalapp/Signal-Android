@@ -331,48 +331,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 addAttachmentImage(data.getData());
                 break;
             case PICK_VIDEO:
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    class CompressVideoTask extends AsyncTask<Void, Integer, String> {
-                        String pathToOutputFile = "";
-
-                        protected void onPreExecute() {
-                            compressingIsrunning = true;
-                        }
-
-                        protected String doInBackground(Void... arg0) {
-                            try {
-                                pathToOutputFile =
-                                        new VideoResolutionChanger().changeResolution(getApplicationContext(), data.getData());
-                            } catch (Throwable t) {
-                                t.fillInStackTrace();
-                            }
-                            return "";
-                        }
-
-                        protected void onPostExecute(String result) {
-                            if(compressingIsrunning) {
-                                if (!pathToOutputFile.equals(VideoResolutionChanger.COMPRESSING_ERROR)) {
-                                    addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
-                                } else {
-                                    Log.d("GData", "continue without compression?");
-                                }
-                                compressingIsrunning = false;
-                                if (compressingDialog.isShowing()) {
-                                    try {
-                                        compressingDialog.dismiss();
-                                    } catch (Exception e) {
-                                        //catch D 0,0-1026,483} not attached to window manager
-                                        compressingDialog.cancel();
-                                        compressingDialog = null;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    new CompressVideoTask().execute();
-                } else {
-                    addAttachmentVideo(data.getData());
-                }
+                handleVideoAttachment(data.getData());
                 break;
             case PICK_AUDIO:
                 addAttachmentAudio(data.getData());
@@ -388,6 +347,51 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 if (resultCode == RESULT_CANCELED) return;
                 handleTakenPhoto(getApplicationContext());
                 break;
+        }
+    }
+
+    private void handleVideoAttachment(final Uri data) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            class CompressVideoTask extends AsyncTask<Void, Integer, String> {
+                String pathToOutputFile = "";
+
+                protected void onPreExecute() {
+                    compressingIsrunning = true;
+                }
+
+                protected String doInBackground(Void... arg0) {
+                    try {
+                        pathToOutputFile =
+                                new VideoResolutionChanger().changeResolution(getApplicationContext(), data);
+                    } catch (Throwable t) {
+                        t.fillInStackTrace();
+                    }
+                    return "";
+                }
+
+                protected void onPostExecute(String result) {
+                    if(compressingIsrunning) {
+                        if (!pathToOutputFile.equals(VideoResolutionChanger.COMPRESSING_ERROR)) {
+                            addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
+                        } else {
+                            Log.d("GData", "continue without compression?");
+                        }
+                        compressingIsrunning = false;
+                        if (compressingDialog.isShowing()) {
+                            try {
+                                compressingDialog.dismiss();
+                            } catch (Exception e) {
+                                //catch D 0,0-1026,483} not attached to window manager
+                                compressingDialog.cancel();
+                                compressingDialog = null;
+                            }
+                        }
+                    }
+                }
+            }
+            new CompressVideoTask().execute();
+        } else {
+            addAttachmentVideo(data);
         }
     }
 
@@ -830,7 +834,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             public void onClick(DialogInterface dialog, int which) {
                 if (threadId > 0) {
                     GDataPreferences pref = new GDataPreferences(getApplicationContext());
-                        pref.saveReadCount(threadId+"", 0L);
+                    pref.saveReadCount(threadId + "", 0L);
                     DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
                     finish();
                 }
@@ -970,8 +974,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (draftImage != null) addAttachmentImage(draftImage);
         if (draftAudio != null && ContentType.isAudioType(contentType))
             addAttachmentAudio(draftAudio, contentType);
-        if (draftVideo != null && ContentType.isVideoType(contentType))
-            addAttachmentVideo(draftVideo, contentType);
+        if (draftVideo != null && ContentType.isVideoType(contentType)) {
+            handleVideoAttachment(draftVideo);
+        }
 
         if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
             initializeDraftFromDatabase();
