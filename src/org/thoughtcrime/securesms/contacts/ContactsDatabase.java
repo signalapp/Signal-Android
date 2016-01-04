@@ -139,7 +139,7 @@ public class ContactsDatabase {
     String filterSelection = "";
     filter = "%"+ filter + "%";
     if (!TextUtils.isEmpty(filter)) {
-      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "') AND ";
+      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "')";
     }
     baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 
@@ -161,7 +161,7 @@ public class ContactsDatabase {
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
 
     String notInSelection = (ids.size() > 0 ? " AND "
-            + "(id NOT IN (" + selection.toString().substring(2) + "))" : "");
+            + "(id NOT IN (" + selection.toString().substring(1) + "))" : "");
 
     contactSelection = (!contactSelection.equals("null")
             ? contactSelection + notInSelection: "");
