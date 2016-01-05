@@ -157,17 +157,16 @@ public class ContactsDatabase {
     for(Integer id : ids) {
       selection.append(", " + id);
     }
-
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
 
     String notInSelection = (ids.size() > 0 ? " AND "
-            + "(id NOT IN (" + selection.toString().substring(1) + "))" : "");
+            + "("+ID_COLUMN+" NOT IN (" + selection.toString().substring(1) + "))" : "");
 
     contactSelection = (!contactSelection.equals("null")
-            ? contactSelection + notInSelection: "");
+            ? contactSelection : "") + notInSelection;
 
     String selectionString = filterSelection + contactSelection;
-
+    
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
             selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
