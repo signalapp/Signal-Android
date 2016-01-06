@@ -139,7 +139,7 @@ public class ContactsDatabase {
     String filterSelection = "";
     filter = "%"+ filter + "%";
     if (!TextUtils.isEmpty(filter)) {
-      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "')";
+      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "') AND ";
     }
     baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 
