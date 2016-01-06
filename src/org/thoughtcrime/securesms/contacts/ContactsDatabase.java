@@ -139,7 +139,7 @@ public class ContactsDatabase {
     String filterSelection = "";
     filter = "%"+ filter + "%";
     if (!TextUtils.isEmpty(filter)) {
-      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "') AND ";
+      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "') ";
     }
     baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 
@@ -163,7 +163,7 @@ public class ContactsDatabase {
             + "("+ID_COLUMN+" NOT IN (" + selection.toString().substring(1) + "))" : "");
 
     contactSelection = (!contactSelection.equals("null")
-            ? contactSelection : "") + notInSelection;
+            ? " AND " +contactSelection : "") + notInSelection;
 
     String selectionString = filterSelection + contactSelection;
     
