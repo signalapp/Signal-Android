@@ -34,7 +34,7 @@ public class VideoResolutionChanger {
 
     public static final String OUTPUT_VIDEO_MIME_TYPE = "video/avc";
 
-    private static final int OUTPUT_VIDEO_BIT_RATE = 2000 * 1024;
+    private static final int OUTPUT_VIDEO_BIT_RATE = 1024 * 1024;
     private static final int OUTPUT_VIDEO_FRAME_RATE = 24;
 
     private static final int OUTPUT_VIDEO_IFRAME_INTERVAL = 10;
