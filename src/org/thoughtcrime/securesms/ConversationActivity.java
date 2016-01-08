@@ -240,6 +240,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         initializeDraft();
       }
     });
+
+    final Context context = getApplicationContext();
+    container.setBackgroundColor(TextSecurePreferences.getBackgroudColor(context));
   }
 
   @Override

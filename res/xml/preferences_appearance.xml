@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <ListPreference android:key="pref_theme"
                     android:title="@string/preferences__theme"
                     android:entries="@array/pref_theme_entries"
                     android:entryValues="@array/pref_theme_values"
                     android:defaultValue="light">
     </ListPreference>
+
+    <com.rarepebble.colorpicker.ColorPreference
+        android:id="@+id/bg_colorPicker"
+        android:key="pref_background_color"
+        android:title="@string/preferences__background_color"
+        android:summary="@string/preferences__background_color_summary"
+        app:colorpicker_selectNoneButtonText="@string/no_color"/>
 
     <ListPreference android:key="pref_language"
                     android:title="@string/preferences__language"
