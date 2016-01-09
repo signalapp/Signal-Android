@@ -1107,6 +1107,7 @@
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_delete_thread">Delete conversation</string>
     <string name="conversation__menu_view_media">All images</string>
+    <string name="conversation__menu_delete_recent_emojis">Delete Recent Emojis</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
 
     <!-- conversation_popup -->
