@@ -75,7 +75,7 @@ dependencies {
     compile 'org.whispersystems:textsecure-android:1.8.3'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
     compile 'com.google.zxing:core:3.2.1'
-    compile 'com.rarepebble:colorpicker:1.5.2'
+    compile 'com.rarepebble:colorpicker:1.6.0'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:1.7.1'
