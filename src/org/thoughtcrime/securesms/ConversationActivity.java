@@ -292,6 +292,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 @Override
                 public void onCancel(DialogInterface dialogInterface) {
                     compressingIsrunning = false;
+                    VideoResolutionChanger.COMPRESSING_ERROR = "CANCELED";
                 }
             });
             compressingDialog.setCancelable(true);
@@ -374,7 +375,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                         if (!pathToOutputFile.equals(VideoResolutionChanger.COMPRESSING_ERROR)) {
                             addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
                         } else {
-                            Log.d("GData", "continue without compression?");
+                            VideoResolutionChanger.COMPRESSING_ERROR = "";
+                            Toast.makeText(getApplicationContext(), getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
+                                            (getCurrentMediaSize() / 1024)),
+                                    Toast.LENGTH_LONG).show();
                         }
                         compressingIsrunning = false;
                         if (compressingDialog.isShowing()) {
@@ -386,6 +390,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                 compressingDialog = null;
                             }
                         }
+                    } else {
+                        VideoResolutionChanger.COMPRESSING_ERROR = "";
                     }
                 }
             }
