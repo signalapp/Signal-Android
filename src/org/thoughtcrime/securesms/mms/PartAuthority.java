@@ -23,11 +23,10 @@ public class PartAuthority {
   private static final Uri    PART_CONTENT_URI  = Uri.parse(PART_URI_STRING);
   private static final Uri    THUMB_CONTENT_URI = Uri.parse(THUMB_URI_STRING);
 
-  private static final int PART_ROW              = 1;
-  private static final int THUMB_ROW             = 2;
-  private static final int LEGACY_PERSISTENT_ROW = 3;
-  private static final int PERSISTENT_ROW        = 4;
-  private static final int SINGLE_USE_ROW        = 5;
+  private static final int PART_ROW       = 1;
+  private static final int THUMB_ROW      = 2;
+  private static final int PERSISTENT_ROW = 3;
+  private static final int SINGLE_USE_ROW = 4;
 
   private static final UriMatcher uriMatcher;
 
@@ -35,7 +34,6 @@ public class PartAuthority {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     uriMatcher.addURI("org.thoughtcrime.securesms", "part/*/#", PART_ROW);
     uriMatcher.addURI("org.thoughtcrime.securesms", "thumb/*/#", THUMB_ROW);
-    uriMatcher.addURI(PersistentBlobProvider.AUTHORITY, PersistentBlobProvider.LEGACY_EXPECTED_PATH, LEGACY_PERSISTENT_ROW);
     uriMatcher.addURI(PersistentBlobProvider.AUTHORITY, PersistentBlobProvider.EXPECTED_PATH, PERSISTENT_ROW);
     uriMatcher.addURI(SingleUseBlobProvider.AUTHORITY, SingleUseBlobProvider.PATH, SINGLE_USE_ROW);
   }
@@ -52,7 +50,6 @@ public class PartAuthority {
       case THUMB_ROW:
         partUri = new PartUriParser(uri);
         return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(masterSecret, partUri.getPartId());
-      case LEGACY_PERSISTENT_ROW:
       case PERSISTENT_ROW:
         return PersistentBlobProvider.getInstance(context).getStream(masterSecret, ContentUris.parseId(uri));
       case SINGLE_USE_ROW:

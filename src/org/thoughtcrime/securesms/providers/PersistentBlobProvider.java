@@ -33,14 +33,12 @@ public class PersistentBlobProvider {
   private static final String     URI_STRING            = "content://org.thoughtcrime.securesms/capture";
   public  static final Uri        CONTENT_URI           = Uri.parse(URI_STRING);
   public  static final String     AUTHORITY             = "org.thoughtcrime.securesms";
-  public  static final String     LEGACY_EXPECTED_PATH  = "capture/#/#";
   public  static final String     EXPECTED_PATH         = "capture/*/*/#";
   private static final int        MIMETYPE_PATH_SEGMENT = 1;
   private static final String     BLOB_DIRECTORY        = "captures";
   private static final String     BLOB_EXTENSION        = "blob";
   private static final int        MATCH                 = 1;
   private static final UriMatcher MATCHER               = new UriMatcher(UriMatcher.NO_MATCH) {{
-    addURI(AUTHORITY, LEGACY_EXPECTED_PATH, MATCH);
     addURI(AUTHORITY, EXPECTED_PATH, MATCH);
   }};
 
@@ -119,29 +117,20 @@ public class PersistentBlobProvider {
     case MATCH:
       long id = ContentUris.parseId(uri);
       cache.remove(id);
-      if (!getFile(ContentUris.parseId(uri)).delete()) {
-        return getLegacyFile(ContentUris.parseId(uri)).delete();
-      }
+      return getFile(ContentUris.parseId(uri)).delete();
     default:
       return new File(uri.getPath()).delete();
     }
   }
 
   public @NonNull InputStream getStream(MasterSecret masterSecret, long id) throws IOException {
-    File blobFile = getFile(id);
-    if (!blobFile.exists()) blobFile = getLegacyFile(id);
-
     final byte[] cached = cache.get(id);
     return cached != null ? new ByteArrayInputStream(cached)
-                          : new DecryptingPartInputStream(blobFile, masterSecret);
+                          : new DecryptingPartInputStream(getFile(id), masterSecret);
   }
 
   private File getFile(long id) {
     return new File(context.getDir(BLOB_DIRECTORY, Context.MODE_PRIVATE), id + "." + BLOB_EXTENSION);
-  }
-
-  private File getLegacyFile(long id) {
-    return new File(context.getDir(BLOB_DIRECTORY, Context.MODE_PRIVATE), id + ".jpg");
   }
 
   public static @Nullable String getMimeType(@NonNull Context context, @NonNull Uri persistentBlobUri) {
