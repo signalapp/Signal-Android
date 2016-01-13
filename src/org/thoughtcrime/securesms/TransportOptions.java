@@ -121,19 +121,22 @@ public class TransportOptions {
     List<TransportOption> results = new LinkedList<>();
 
     if (isMediaMessage) {
-      results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_insecure_mms),
-                                                    context.getString(R.string.conversation_activity__type_message_mms_insecure),
+      results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_unsecured_mms),
+                                                    context.getString(R.string.conversation_activity__enter_unsecured_mms),
+                                                    context.getString(R.string.conversation_activity__send_unsecured_mms),
                                                     new MmsCharacterCalculator()));
     } else {
-      results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_insecure_sms),
-                                                    context.getString(R.string.conversation_activity__type_message_sms_insecure),
+      results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_unsecured_sms),
+                                                    context.getString(R.string.conversation_activity__enter_unsecured_sms),
+                                                    context.getString(R.string.conversation_activity__send_unsecured_sms),
                                                     new SmsCharacterCalculator()));
     }
 
     results.add(new TransportOption(Type.TEXTSECURE, R.drawable.ic_send_push_white_24dp,
                                     context.getResources().getColor(R.color.textsecure_primary),
                                     context.getString(R.string.ConversationActivity_transport_signal),
-                                    context.getString(R.string.conversation_activity__type_message_push),
+                                    context.getString(R.string.conversation_activity__enter_signal_message),
+                                    context.getString(R.string.conversation_activity__send_signal_message),
                                     new PushCharacterCalculator()));
 
     return results;
@@ -141,6 +144,7 @@ public class TransportOptions {
 
   private @NonNull List<TransportOption> getTransportOptionsForSimCards(@NonNull String text,
                                                                         @NonNull String composeHint,
+                                                                        @NonNull String imeActionLabel,
                                                                         @NonNull CharacterCalculator characterCalculator)
   {
     List<TransportOption>        results             = new LinkedList<>();
@@ -150,12 +154,12 @@ public class TransportOptions {
     if (subscriptions.size() < 2) {
       results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
                                       context.getResources().getColor(R.color.grey_600),
-                                      text, composeHint, characterCalculator));
+                                      text, composeHint, imeActionLabel, characterCalculator));
     } else {
       for (SubscriptionInfoCompat subscriptionInfo : subscriptions) {
         results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
                                         context.getResources().getColor(R.color.grey_600),
-                                        text, composeHint, characterCalculator,
+                                        text, composeHint, imeActionLabel, characterCalculator,
                                         Optional.of(subscriptionInfo.getDisplayName()),
                                         Optional.of(subscriptionInfo.getSubscriptionId())));
       }

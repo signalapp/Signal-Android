@@ -131,8 +131,8 @@
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
     <string name="ConversationActivity_leave_group">Leave group?</string>
     <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Are you sure you want to leave this group?</string>
-    <string name="ConversationActivity_transport_insecure_sms">Insecure SMS</string>
-    <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
+    <string name="ConversationActivity_transport_unsecured_sms">Unsecured SMS</string>
+    <string name="ConversationActivity_transport_unsecured_mms">Unsecured MMS</string>
     <string name="ConversationActivity_transport_signal">Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal %1$s</string>
     <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %1$s</string>
@@ -661,9 +661,12 @@
     <string name="conversation_title_view__conversation_muted">Conversation muted</string>
 
     <!-- conversation_activity -->
-    <string name="conversation_activity__type_message_push">Send Signal message</string>
-    <string name="conversation_activity__type_message_sms_insecure">Send unsecured SMS</string>
-    <string name="conversation_activity__type_message_mms_insecure">Send unsecured MMS</string>
+    <string name="conversation_activity__enter_signal_message">Enter Signal message</string>
+    <string name="conversation_activity__enter_unsecured_sms">Enter unsecured SMS</string>
+    <string name="conversation_activity__enter_unsecured_mms">Enter unsecured MMS</string>
+    <string name="conversation_activity__send_signal_message">Send\nSignal\nmessage</string>
+    <string name="conversation_activity__send_unsecured_sms">Send\nunsecured\nSMS</string>
+    <string name="conversation_activity__send_unsecured_mms">Send\nunsecured\nMMS</string>
     <string name="conversation_activity__from_sim_name">From %1$s</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>

@@ -98,7 +98,7 @@ public class ComposeText extends EmojiEditText {
     int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
     int inputType  = getInputType();
 
-    if (isLandscape()) setImeActionLabel(transport.getComposeHint(), EditorInfo.IME_ACTION_SEND);
+    if (isLandscape()) setImeActionLabel(transport.getImeActionLabel(), EditorInfo.IME_ACTION_SEND);
     else               setImeActionLabel(null, 0);
 
     if (useSystemEmoji) {

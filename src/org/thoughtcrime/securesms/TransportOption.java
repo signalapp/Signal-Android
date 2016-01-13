@@ -19,6 +19,7 @@ public class TransportOption {
   private final @NonNull String                 text;
   private final @NonNull Type                   type;
   private final @NonNull String                 composeHint;
+  private final @NonNull String                 imeActionLabel;
   private final @NonNull CharacterCalculator    characterCalculator;
   private final @NonNull Optional<CharSequence> simName;
   private final @NonNull Optional<Integer>      simSubscriptionId;
@@ -28,9 +29,10 @@ public class TransportOption {
                          int backgroundColor,
                          @NonNull String text,
                          @NonNull String composeHint,
+                         @NonNull String imeActionLabel,
                          @NonNull CharacterCalculator characterCalculator)
   {
-    this(type, drawable, backgroundColor, text, composeHint, characterCalculator,
+    this(type, drawable, backgroundColor, text, composeHint, imeActionLabel, characterCalculator,
          Optional.<CharSequence>absent(), Optional.<Integer>absent());
   }
 
@@ -39,6 +41,7 @@ public class TransportOption {
                          int backgroundColor,
                          @NonNull String text,
                          @NonNull String composeHint,
+                         @NonNull String imeActionLabel,
                          @NonNull CharacterCalculator characterCalculator,
                          @NonNull Optional<CharSequence> simName,
                          @NonNull Optional<Integer> simSubscriptionId)
@@ -48,6 +51,7 @@ public class TransportOption {
     this.backgroundColor     = backgroundColor;
     this.text                = text;
     this.composeHint         = composeHint;
+    this.imeActionLabel      = imeActionLabel;
     this.characterCalculator = characterCalculator;
     this.simName             = simName;
     this.simSubscriptionId   = simSubscriptionId;
@@ -80,6 +84,10 @@ public class TransportOption {
 
   public @NonNull String getComposeHint() {
     return composeHint;
+  }
+
+  public @NonNull String getImeActionLabel() {
+    return imeActionLabel;
   }
 
   public @NonNull String getDescription() {
