@@ -159,7 +159,8 @@ public class AttachmentManager {
       @Override
       public void onSuccess(@NonNull Bitmap result) {
         byte[]        blob          = BitmapUtil.toByteArray(result);
-        Uri           uri           = PersistentBlobProvider.getInstance(context).create(masterSecret, blob);
+        Uri           uri           = PersistentBlobProvider.getInstance(context)
+                                                            .create(masterSecret, blob, ContentType.IMAGE_PNG);
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
         setSlide(locationSlide);
