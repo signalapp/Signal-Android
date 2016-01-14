@@ -1,6 +1,8 @@
 package de.gdata.messaging.util;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
@@ -20,6 +22,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Surface;
 
+import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 
@@ -55,11 +59,14 @@ public class VideoResolutionChanger {
     private int mHeight = 360;
     private String mOutputFile, mInputFile;
 
-    public static String COMPRESSING_ERROR = "error";
+    public static String COMPRESSING_ERROR = "";
 
-    public String changeResolution(Context context, Uri f)
+    private int newFieSizeBites = 0;
+    private int videoLength = 0;
+    private Activity context;
+
+    public String changeResolution(Activity context, Uri f)
             throws Throwable {
-
         mInputFile = getPath(context, f);
 
         final File outFile = AttachmentManager.getOutputMediaFile(context, AttachmentManager.MEDIA_TYPE_VIDEO);
@@ -67,6 +74,8 @@ public class VideoResolutionChanger {
             outFile.createNewFile();
 
         mOutputFile=outFile.getAbsolutePath();
+
+        this.context = context;
 
         ChangerWrapper.changeResolutionInSeparatedThread(this);
         if(!compressingSuccessful) {
@@ -134,13 +143,16 @@ public class VideoResolutionChanger {
             int inputWidth = thumbnail.getWidth(),
                     inputHeight = thumbnail.getHeight();
             
-            int fileSize = (int) (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE))
-                    * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0)) / 8 / 1024 / 1024;
+            int fileSize = (int) ((Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE))
+                    * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0)) / 8.0 / 1024.0 / 1024.0);
 
             int newFileSize = (int) (OUTPUT_VIDEO_BIT_RATE
-                    * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0) / 8 / 1024 / 1024);
+                    * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0) / 8.0 / 1024.0 / 1024.0);
 
-            Log.d("MYLOG", "MYLOG SIZE " + inputWidth + " " + inputHeight + " " + fileSize + " " + newFileSize);
+            newFieSizeBites = (int) (OUTPUT_VIDEO_BIT_RATE
+                    * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0));
+
+            videoLength = (int) (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)));
 
             if (newFileSize * 1024 * 1024 > PushMediaConstraints.MAX_MESSAGE_SIZE) {
                 compressingSuccessful = false;
@@ -277,6 +289,7 @@ public class VideoResolutionChanger {
             }
             if (exception != null) {
                 compressingSuccessful = false;
+                exception.printStackTrace();
                 throw exception;
             }
     }
@@ -383,42 +396,9 @@ public class VideoResolutionChanger {
         boolean audioDecoderDone = false;
         boolean audioEncoderDone = false;
 
-        boolean videoExtractorDoneLogged = false;
-        boolean videoDecoderDoneLogged = false;
-        boolean videoEncoderDoneLogged = false;
-
-        boolean audioExtractorDoneLogged = false;
-        boolean audioDecoderDoneLogged = false;
-        boolean audioEncoderDoneLogged = false;
-
         int pendingAudioDecoderOutputBufferIndex = -1;
         boolean muxing = false;
         while (((!videoEncoderDone) || (!audioEncoderDone)) && "".equals(COMPRESSING_ERROR)) {
-
-            if(videoDecoderDone && !videoDecoderDoneLogged) {
-                Log.d("MYLOG","MYLOG videoDecoderDone");
-                videoDecoderDoneLogged = true;
-            }
-            if(videoExtractorDone && !videoExtractorDoneLogged) {
-                Log.d("MYLOG","MYLOG videoExtractorDone");
-                videoExtractorDoneLogged = true;
-            }
-            if(videoEncoderDone && !videoEncoderDoneLogged) {
-                Log.d("MYLOG","MYLOG videoEncoderDone");
-                videoEncoderDoneLogged = true;
-            }
-            if(audioExtractorDone && !audioExtractorDoneLogged) {
-                Log.d("MYLOG","MYLOG audioExtractorDone");
-                audioExtractorDoneLogged = true;
-            }
-            if(audioDecoderDone && !audioDecoderDoneLogged) {
-                Log.d("MYLOG","MYLOG audioDecoderDone");
-                audioDecoderDoneLogged = true;
-            }
-            if(audioEncoderDone && !audioEncoderDoneLogged) {
-                Log.d("MYLOG","MYLOG audioEncoderDone");
-                audioEncoderDoneLogged = true;
-            }
 
             while (!videoExtractorDone
                     && (encoderOutputVideoFormat == null || muxing)) {
@@ -453,11 +433,22 @@ public class VideoResolutionChanger {
                 ByteBuffer decoderInputBuffer = audioDecoderInputBuffers[decoderInputBufferIndex];
                 int size = audioExtractor.readSampleData(decoderInputBuffer, 0);
                 long presentationTime = audioExtractor.getSampleTime();
-
-                if (size >= 0)
+                long presTime = 0;
+                if (size >= 0) {
+                    presTime += presentationTime;
                     audioDecoder.queueInputBuffer(decoderInputBufferIndex, 0, size,
                             presentationTime, audioExtractor.getSampleFlags());
+                }
 
+                final int currentProgress = (int) ((100.0 / videoLength) * ((presTime / 1000.0)));
+
+                context.runOnUiThread(new Thread(new Runnable() {
+                    public void run() {
+                        if(ConversationActivity.compressingDialog != null && ConversationActivity.compressingDialog.isShowing()) {
+                            ConversationActivity.compressingDialog.setMessage(context.getString(R.string.dialog_compressing) + " " + currentProgress + "%");
+                        }
+                    }
+                }));
                 audioExtractorDone = !audioExtractor.advance();
                 if (audioExtractorDone)
                     audioDecoder.queueInputBuffer(decoderInputBufferIndex, 0, 0,

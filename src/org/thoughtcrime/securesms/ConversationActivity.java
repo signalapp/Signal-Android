@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -211,7 +212,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
     private int currentMediaSize;
     private String profileId = "0";
-    private ProgressDialog compressingDialog;
+    public static ProgressDialog compressingDialog;
     private boolean compressingIsrunning = false;
 
     private String draftText;
@@ -353,6 +354,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     private void handleVideoAttachment(final Uri data) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            final Activity activity = this;
             class CompressVideoTask extends AsyncTask<Void, Integer, String> {
                 String pathToOutputFile = "";
 
@@ -363,7 +365,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 protected String doInBackground(Void... arg0) {
                     try {
                         pathToOutputFile =
-                                new VideoResolutionChanger().changeResolution(getApplicationContext(), data);
+                                new VideoResolutionChanger().changeResolution(activity, data);
                     } catch (Throwable t) {
                         t.fillInStackTrace();
                     }
