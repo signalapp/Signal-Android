@@ -142,9 +142,6 @@ public class VideoResolutionChanger {
             Bitmap thumbnail = m.getFrameAtTime();
             int inputWidth = thumbnail.getWidth(),
                     inputHeight = thumbnail.getHeight();
-            
-            int fileSize = (int) ((Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE))
-                    * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0)) / 8.0 / 1024.0 / 1024.0);
 
             int newFileSize = (int) (OUTPUT_VIDEO_BIT_RATE
                     * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0) / 8.0 / 1024.0 / 1024.0);
@@ -152,7 +149,7 @@ public class VideoResolutionChanger {
             newFieSizeBites = (int) (OUTPUT_VIDEO_BIT_RATE
                     * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0));
 
-            videoLength = (int) (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)));
+            videoLength = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
 
             if (newFileSize * 1024 * 1024 > PushMediaConstraints.MAX_MESSAGE_SIZE) {
                 compressingSuccessful = false;
