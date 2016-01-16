@@ -8,6 +8,18 @@ Currently available on the Play store.
 
 *[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms)*
 
+Help
+====
+## Support
+For troubleshooting and questions, please visit our support center!
+
+http://support.whispersystems.org/
+
+## Documentation
+Looking for documentation? Check out the wiki!
+
+https://github.com/WhisperSystems/Signal-Android/wiki
+
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
@@ -48,18 +60,6 @@ https://lists.riseup.net/www/info/whispersystems
 [![Donate](https://cloud.githubusercontent.com/assets/3121306/11278543/d46e03d0-8eeb-11e5-9691-0da1bf643192.png)](https://www.coinbase.com/checkouts/51dac699e660a4d773216b5ad94d6a0b)
 
 You can add funds to BitHub to directly help further development efforts.
-
-Help
-====
-## Support
-For troubleshooting and questions, please visit our support center!
-
-http://support.whispersystems.org/
-
-## Documentation
-Looking for documentation? Check out the wiki!
-
-https://github.com/WhisperSystems/Signal-Android/wiki
 
 # Legal things
 ## Cryptography Notice
