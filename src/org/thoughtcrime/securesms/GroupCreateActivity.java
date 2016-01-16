@@ -316,7 +316,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         break;
 
       case Crop.REQUEST_PICK:
-        new Crop(data.getData()).output(outputFile).asSquare().start(this);
+        Crop.of(data.getData(),outputFile).asSquare().start(this);
         break;
       case Crop.REQUEST_CROP:
         Glide.with(this).load(Crop.getOutput(data)).asBitmap().skipMemoryCache(true)
