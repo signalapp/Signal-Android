@@ -441,7 +441,7 @@
 
     <receiver android:name=".notifications.WearReplyReceiver"
               android:enabled="true"
-              android:exported="true">
+              android:exported="false">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.notifications.WEAR_REPLY"/>
         </intent-filter>
@@ -449,10 +449,12 @@
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
+              android:exported="false"
               android:authorities="org.thoughtcrime.provider.securesms" />
 
     <provider android:name=".providers.MmsBodyProvider"
               android:grantUriPermissions="true"
+              android:exported="false"
               android:authorities="org.thoughtcrime.provider.securesms.mms" />
 
     <receiver android:name=".service.RegistrationNotifier"
