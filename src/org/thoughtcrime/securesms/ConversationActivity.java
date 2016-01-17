@@ -55,6 +55,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.protobuf.ByteString;
@@ -140,6 +144,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.io.File;
 
 import ws.com.google.android.mms.ContentType;
 
@@ -241,8 +246,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     });
 
-    final Context context = getApplicationContext();
-    container.setBackgroundColor(TextSecurePreferences.getBackgroudColor(context));
+
+    String pathName = getCacheDir() + File.separator + "wallpaper";
+    File file = new File(pathName);
+    if (file.exists()) {
+      Resources res = getResources();
+      Bitmap bitmap = BitmapFactory.decodeFile(pathName);
+      BitmapDrawable bd = new BitmapDrawable(res, bitmap);
+      if(Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+        container.setBackgroundDrawable(bd);
+      } else {
+        container.setBackground(bd);
+      }
+    } else {
+      final Context context = getApplicationContext();
+      Integer backgoundColor = TextSecurePreferences.getBackgroudColor(context);
+      if (backgoundColor != 0) {
+        container.setBackgroundColor(backgoundColor);
+      }
+    }
+
   }
 
   @Override

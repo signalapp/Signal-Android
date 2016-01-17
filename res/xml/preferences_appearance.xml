@@ -17,6 +17,10 @@
         android:summary="@string/preferences__background_color_summary"
         app:colorpicker_selectNoneButtonText="@string/no_color"/>
 
+    <Preference android:key="pref_wallpaper"
+        android:title="@string/preferences__wallpaper"
+        android:summary="@string/preferences__wallpaper_summary" />
+
     <ListPreference android:key="pref_language"
                     android:title="@string/preferences__language"
                     android:entries="@array/language_entries"

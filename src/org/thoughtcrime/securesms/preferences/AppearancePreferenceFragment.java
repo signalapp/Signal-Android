@@ -1,14 +1,24 @@
 package org.thoughtcrime.securesms.preferences;
 
+import com.soundcloud.android.crop.Crop;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
+import android.content.Intent;
+import android.net.Uri;
+import android.app.Activity;
+import android.util.DisplayMetrics;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Arrays;
+import java.io.File;
+
 
 public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment {
 
@@ -19,14 +29,32 @@ public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment 
 
     this.findPreference(TextSecurePreferences.THEME_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.LANGUAGE_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
-    initializeListSummary((ListPreference)findPreference(TextSecurePreferences.THEME_PREF));
-    initializeListSummary((ListPreference)findPreference(TextSecurePreferences.LANGUAGE_PREF));
-  }
+    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.THEME_PREF));
+    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LANGUAGE_PREF));
+
+    this.findPreference(TextSecurePreferences.WALLPAPER_PREF).setOnPreferenceClickListener(new OnPreferenceClickListener() {
+      public boolean onPreferenceClick(Preference preference) {
+        Crop.pickImage(getActivity());
+        return true;
+      }
+    });
+
+    this.findPreference(TextSecurePreferences.BACKGROUND_COLOR_PREF).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+      public boolean onPreferenceChange(Preference preference, Object newValue) {
+        String pathName = getActivity().getCacheDir() + File.separator + "wallpaper";
+        File file = new File(pathName);
+        file.delete();
+        return true;
+      }
+    });
+
+    }
+
 
   @Override
   public void onStart() {
     super.onStart();
-    getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener((ApplicationPreferencesActivity)getActivity());
+    getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener((ApplicationPreferencesActivity) getActivity());
   }
 
   @Override
@@ -57,4 +85,27 @@ public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment 
                              themeEntries[themeIndex],
                              languageEntries[langIndex]);
   }
+
+  @Override
+  public void onActivityResult(int reqCode, int resultCode, final Intent data) {
+    super.onActivityResult(reqCode, resultCode, data);
+    Uri outputFile = Uri.fromFile(new File(getActivity().getCacheDir(), "wallpaper"));
+
+    if (data == null || resultCode != Activity.RESULT_OK)
+      return;
+
+    switch (reqCode) {
+      case Crop.REQUEST_PICK:
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels;
+        Crop.of(data.getData(),outputFile).withAspect(width, height).start(getActivity());
+        break;
+
+      case Crop.REQUEST_CROP:
+        TextSecurePreferences.removeBackgroudColor(getActivity());
+    }
+  }
+
 }
