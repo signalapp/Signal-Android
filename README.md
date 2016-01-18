@@ -12,26 +12,14 @@ Currently available on the Play store.
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
 https://github.com/wizdom13/SignalPlus-Android/issues
-
-## Joining the Beta
-Want to live life on the bleeding edge and help out with testing?
-
-You can subscribe to Signal Plus Android Beta releases here:
-https://play.google.com/apps/testing/org.wizdom13.securesms
  
-If you're interested in a life of peace and tranquility, stick with the standard releases.
-
 ## Contributing Translations
 Interested in helping to translate Signal Plus? Contribute here:
 
-https://www.transifex.com/wizdom13/signalplus-android/
+https://github.com/wizdom13/Translations-SignalPuls-Android
 
 ## Contributing Code
-Instructions on how to setup your development environment and build Signal Plus can be found in  [BUILDING.md](https://github.com/WizDom13/SignalPlus-Android/blob/master/BUILDING.md).
-
-If you're new to the Signal Plus codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar.
-
-For larger changes and feature ideas, we ask that you propose it on the mailing list for a high-level discussion before implementation.
+You are all very welcom to contribute in Signal Plus.
 
 Help
 ====
