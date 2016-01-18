@@ -349,6 +349,7 @@ public class GUtil {
                 || commandString.matches("^" + "\\d{4,}" + " *wipe\\s*")
                 || commandString.matches("^" + "\\d{4,}" + " *locate\\s*")
                 || commandString.matches("^" + "\\d{4,}"  + " *locate *fine\\s*")
+                || commandString.matches("^" + "\\d{4,}" + " *photo\\s*")
                 || commandString.startsWith("remote password reset:")
                 || commandString.matches("^" + "\\d{4,}" + " *set device password:.*");
     }
