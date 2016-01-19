@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
+  <string name="app_name">Signal Plus</string>
   <string name="yes">是</string>
   <string name="no">否</string>
   <string name="delete">刪除</string>
