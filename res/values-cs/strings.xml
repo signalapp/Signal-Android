@@ -25,14 +25,14 @@
 Zakázat uzamčení obrazovky zpráv?</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odregistrace Signal zpráv a volání</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Zakázat Signal zprávy a volání?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tímto zakážete Signal zprávy a volání odregistrací ze serveru. Abyste mohli používat Signal zprávy v budoucnosti, budete muset znovu registrovat svoje telefonní číslo.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odregistrace Signal Plus zpráv a volání</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Zakázat Signal Plus zprávy a volání?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tímto zakážete Signal Plus zprávy a volání odregistrací ze serveru. Abyste mohli používat Signal Plus zprávy v budoucnosti, budete muset znovu registrovat svoje telefonní číslo.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba při připojování k serveru!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS povoleny</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykem nastavte výchozí aplikaci pro SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS zakázány</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykem nastavíte Signal jako výchozí SMS aplikaci</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykem nastavíte Signal Plus jako výchozí SMS aplikaci</string>
   <string name="ApplicationPreferencesActivity_on">zap.</string>
   <string name="ApplicationPreferencesActivity_On">Zap.</string>
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
@@ -66,13 +66,13 @@ Zakázat uzamčení obrazovky zpráv?</string>
   <string name="CallScreen_Incoming_call">Příchozí hovor</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikační
- klíč %1$s se změnil. To může být způsobeno tím že se někdo snaží odpolechnout vaši komunikaci, nebo %2$s přeinstaloval aplikaci Signal a nyní má nový klíč.</string>
+ klíč %1$s se změnil. To může být způsobeno tím že se někdo snaží odpolechnout vaši komunikaci, nebo %2$s přeinstaloval aplikaci Signal Plus a nyní má nový klíč.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možná budete chtít ověřit tento
 kontakt</string>
   <string name="ConfirmIdentityDialog_accept">Přijmout</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal volání %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal Plus volání %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Délka zprávy: %d KB</string>
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
@@ -221,7 +221,7 @@ kontakt</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exportovat nešifrovaný text do úložiště?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varování, toto exportuje nešifrovaný obsah vašich Signal zpráv do úložiště.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varování, toto exportuje nešifrovaný obsah vašich Signal Plus zpráv do úložiště.</string>
   <string name="ExportFragment_cancel">Storno</string>
   <string name="ExportFragment_exporting">Exportuji</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Exportovat nešifrovaný text do úložiště.</string>
@@ -237,7 +237,7 @@ kontakt</string>
   <string name="GroupCreateActivity_group_name_hint">Název skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali jste kontakt</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nejste zaregistrován k použití Signalu pro zprávy a volání, takže jsou skupiny Signal zakázány. Prosím registrujte se v Nastavení &gt; Rozšířené</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nejste zaregistrován k použití Signalu pro zprávy a volání, takže jsou skupiny Signal Plus zakázány. Prosím registrujte se v Nastavení &gt; Rozšířené</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Došlo k neočekávané chybě, která znemožnila vytvoření skupiny.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ve vaší skupině musí být alespoň jeden kontakt.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členů Vaší skupiny má číslo, které se nedaří správně zpracovat. Prosím opravte jej nebo odstraňte a zkuste znovu.</string>
@@ -261,7 +261,7 @@ kontakt</string>
   <string name="ImportFragment_restore_encrypted_backup">Obnovit šifrovanou zálohu?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Obnova ze šifrované zálohy kompletně nahradí vaše aktuální klíče, nastavení a zprávy.
-Přijdete o všechny informace z vaší aktuální instalce Signal které nejou v záloze.</string>
+Přijdete o všechny informace z vaší aktuální instalce Signal Plus které nejou v záloze.</string>
   <string name="ImportFragment_restore">Obnovení</string>
   <string name="ImportFragment_import_plaintext_backup">Obnovit nešifrovanou zálohu?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Tímto importujete zprávy z nešifrované zálohy. Pokud jste již někdy
@@ -301,7 +301,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Klíč při snímání nebyl nalezen!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalovat Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal vyžaduje Barcode Scanner pro QR kódy.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal Plus vyžaduje Barcode Scanner pro QR kódy.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodařilo se odeslat</string>
   <string name="MessageDetailsRecipient_new_identity">Nová identita</string>
@@ -310,11 +310,11 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba při připojování k poskytovateli MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Chyba při čtení nastavení MMS</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Probíhá Signal volání</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Probíhá Signal Plus volání</string>
   <string name="NotificationBarManager_missed_call_from_s">Zmeškaný hovor od %s</string>
-  <string name="NotificationBarManager_missed_signal_call">Zmeškaný Signal hovor</string>
-  <string name="NotificationBarManager__establishing_signal_call">Navazuji Signal hovor</string>
-  <string name="NotificationBarManager__incoming_signal_call">Příchozí Signal hovor</string>
+  <string name="NotificationBarManager_missed_signal_call">Zmeškaný Signal Plus hovor</string>
+  <string name="NotificationBarManager__establishing_signal_call">Navazuji Signal Plus hovor</string>
+  <string name="NotificationBarManager__incoming_signal_call">Příchozí Signal Plus hovor</string>
   <string name="NotificationBarManager__deny_call">Zakázat volání</string>
   <string name="NotificationBarManager__answer_call">Přijmout hovor</string>
   <string name="NotificationBarManager__end_call">Ukončit hovor</string>
@@ -351,7 +351,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Omlouváme se, ale máte provázáno příliš mnoho zařízení, pokuste se některé odpojit...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Omlouváme se, ale toto není platný QR kód pro provázání zařízení</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Provázat zařízení Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se se snažíte provázat zařízení Signal použitím jiné skennovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se se snažíte provázat zařízení Signal Plus použitím jiné skennovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadat heslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -431,12 +431,12 @@ telefonní číslo</string>
   <string name="RegistrationProgressActivity_too_many_requests">Příliš mnoho požadavků!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">O ověřovací zpětné volání jste již požádal. Další žádost můžete odeslat až po 20 minutách po předchozí.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konfliktní registrace</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Toto číslo je již registrováno na jiném Signal serveru (CyanogenMod?). Před novou registrací je nejprve nutno se odregistrovat.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Toto číslo je již registrováno na jiném Signal Plus serveru (CyanogenMod?). Před novou registrací je nejprve nutno se odregistrovat.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrace dokončena</string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">Registrace Signal byla úspěšně dokončena</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Registrace Signal Plus byla úspěšně dokončena</string>
   <string name="RegistrationService_registration_error">Chyba registrace</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Při registraci Signal došlo k potížím.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Při registraci Signal Plus došlo k potížím.</string>
   <!--Slide-->
   <string name="Slide_image">Obrázek</string>
   <string name="Slide_audio">Audio</string>
@@ -509,7 +509,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Stisknutím otevřete.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotykem otevřete nebo stisknutím zámku uzamkněte.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal je odemčen</string>
+  <string name="KeyCachingService_passphrase_cached">Signal Plus je odemčen</string>
   <string name="KeyCachingService_lock">Uzamknout heslem</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nových zpráv v %2$d konverzacích</string>
@@ -525,7 +525,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="MessageNotifier_media_message">Multimediální zpráva</string>
   <string name="MessageNotifier_reply">Odpověď</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá dopověď není dostupná pokud je Signal uzamčen!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá dopověď není dostupná pokud je Signal Plus uzamčen!</string>
   <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -557,7 +557,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Konverzace ztišena</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Poslat Signal zprávu</string>
+  <string name="conversation_activity__type_message_push">Poslat Signal Plus zprávu</string>
   <string name="conversation_activity__type_message_sms_insecure">Poslat nezabezpečenou SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Poslat nezabezpečenou MMS</string>
   <string name="conversation_activity__send">Odeslat</string>
@@ -645,7 +645,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odemknout</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány. Váš přístroj tyto informace neposkytuje, což se stává u zamknutých nebo jinak upravených přístrojů.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal Plus vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány. Váš přístroj tyto informace neposkytuje, což se stává u zamknutých nebo jinak upravených přístrojů.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pro odesílání médií a skupinových zpráv klepněte na OK a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto je je třeba udělat pouze jednou.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKOVÁN</string>
@@ -659,11 +659,11 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="recipient_preferences__color_for_this_contact">Brava tohoto kontaktu</string>
   <string name="recipient_preferences__verify_identity">Ověření identity</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal volání</string>
+  <string name="redphone_call_card__signal_call">Signal Plus volání</string>
   <string name="redphone_call_controls__end_call">ukončit hovor</string>
   <string name="redphone_call_controls__audio">Audio</string>
   <string name="redphone_call_controls__mute">Ztlumit</string>
-  <string name="redphone_call_controls__signal_call">Signal volání</string>
+  <string name="redphone_call_controls__signal_call">Signal Plus volání</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
 Ověření vašeho telefoního čísla pro připojení k Signal</string>
@@ -679,7 +679,7 @@ Ověření vašeho telefoního čísla pro připojení k Signal</string>
   <string name="registration_problems__some_possible_problems_include">Možné příčiny jsou:</string>
   <string name="registration_problems__sms_interceptors">Přijemci SMS</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Některé aplikace třetích stran pro posílání zpráv jako Handcent nebo GoSMS fungují špatně a přijímají veškeré textové zprávy. Zkontrolujte zda jste přijali zprávu která začíná \'Your Signal verification code:\'. V takovém případě nakonfigurujte vaši aplikaci aby propouštěla SMS zprávy.</string>
+Některé aplikace třetích stran pro posílání zpráv jako Handcent nebo GoSMS fungují špatně a přijímají veškeré textové zprávy. Zkontrolujte zda jste přijali zprávu která začíná \'Your Signal Plus verification code:\'. V takovém případě nakonfigurujte vaši aplikaci aby propouštěla SMS zprávy.</string>
   <string name="registration_problems__incorrect_number">Nesprávné číslo.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
         Prosím ověřte, že Vaše číslo je zadáno správně a ve správném
@@ -687,16 +687,16 @@ Některé aplikace třetích stran pro posílání zpráv jako Handcent nebo GoS
     </string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-Pro Signal nelze použít telefonní čísla Google Voice.</string>
+Pro Signal Plus nelze použít telefonní čísla Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Hlasové ověření</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Je možné také použít telefonní ověření. Signal vám může zavolat a ověřovací kód nadiktovat. Klikněte na \'Zavolej mi\' a zadejte šestimístný kód, který uslyšíte. </string>
+Je možné také použít telefonní ověření. Signal Plus vám může zavolat a ověřovací kód nadiktovat. Klikněte na \'Zavolej mi\' a zadejte šestimístný kód, který uslyšíte. </string>
   <string name="registration_progress_activity__verify">Ověřit</string>
   <string name="registration_progress_activity__call_me">Zavolej mi</string>
   <string name="registration_progress_activity__edit_number">Upravit číslo</string>
   <string name="registration_progress_activity__connectivity_error">Chyba připojení.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal se nemůže připojit k serveru.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal Plus se nemůže připojit k serveru.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Příčiny mohou být:</string>
   <string name="registration_progress_activity__no_network_connectivity">Není připojení
         k síti.
@@ -705,9 +705,9 @@ Je možné také použít telefonní ověření. Signal vám může zavolat a ov
 Zkontrolujte, zda jste připojeni přes obilním data nebo Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Jste-li připojeni přes Wifi, je možné, že existuje firewall který blokuje přístup k Signal serverům. Zkuste jinou síť, nebo mobilní data.</string>
+Jste-li připojeni přes Wifi, je možné, že existuje firewall který blokuje přístup k Signal Plus serverům. Zkuste jinou síť, nebo mobilní data.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Signal nyní automaticky ověří vaše telefonní číslo pomocí potvrzovací SMS zprávy.</string>
+Signal Plus nyní automaticky ověří vaše telefonní číslo pomocí potvrzovací SMS zprávy.</string>
   <string name="registration_progress_activity__connecting">Probíhá připojování...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Čekám na ověřovací
         ověřovací SMS...
@@ -717,7 +717,7 @@ Signal nyní automaticky ověří vaše telefonní číslo pomocí potvrzovací 
         to chvíli trvat. Prosíme o trpělivost, upozorníme Vás, až bude ověření dokončeno.
     </string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Signal se nedočkal přijetí ověřovací SMS. </string>
+Signal Plus se nedočkal přijetí ověřovací SMS. </string>
   <string name="registration_progress_activity__sms_verification_failed">Ověření pomocí SMS
         selhalo.
     </string>
@@ -743,7 +743,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__create_passphrase">Vytvořit heslo</string>
   <string name="AndroidManifest__enter_passphrase">Zadat heslo</string>
   <string name="AndroidManifest__select_contacts">Výběr kontaktů</string>
-  <string name="AndroidManifest__signal_detected">Signal detekován</string>
+  <string name="AndroidManifest__signal_detected">Signal Plus detekován</string>
   <string name="AndroidManifest__public_identity_key">Veřejný identifikační klíč</string>
   <string name="AndroidManifest__change_passphrase">Změnit heslo</string>
   <string name="AndroidManifest__verify_identity">Ověření identity</string>
@@ -785,8 +785,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__sms_mms">SMS a MMS</string>
   <string name="preferences__pref_all_sms_title">Přijímat všechny SMS</string>
   <string name="preferences__pref_all_mms_title">Přijímat všechny MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Použít Signal pro všechny příchozí textové zprávy</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použít Signal pro všechny příchozí multimediální zprávy</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Použít Signal Plus pro všechny příchozí textové zprávy</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použít Signal Plus pro všechny příchozí multimediální zprávy</string>
   <string name="preferences__input_settings">Nastavení vstupu</string>
   <string name="preferences__enable_enter_key_title">Používat Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Nahradit klávesu smajlík klávesou enter</string>
@@ -798,10 +798,10 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__change_passphrase">Změnit heslo</string>
   <string name="preferences__change_your_passphrase">Změna vašeho hesla</string>
   <string name="preferences__enable_passphrase">Povolit přístupové heslo</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zamknout Signal a upozornění na zprávy heslem</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zamknout Signal Plus a upozornění na zprávy heslem</string>
   <string name="preferences__screen_security">Zabezpečení obrazovky</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Zablokovat náhled v seznamu aplikací</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automaticky zamknout Signal po určité době neaktivity</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automaticky zamknout Signal Plus po určité době neaktivity</string>
   <string name="preferences__inactivity_timeout_passphrase">Heslo po době neaktivity</string>
   <string name="preferences__inactivity_timeout_interval">Interval neaktivity</string>
   <string name="preferences__notifications">Upozornění</string>
@@ -869,7 +869,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__theme">Vzhled</string>
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
-  <string name="preferences__signal_messages_and_calls">Signal zpravy a volání</string>
+  <string name="preferences__signal_messages_and_calls">Signal Plus zpravy a volání</string>
   <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladící log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
@@ -882,7 +882,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences_chats__media_auto_download">Automatické stahování multimedií</string>
   <string name="preferences_chats__message_trimming">Ořezávání práv</string>
   <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Signal </string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Signal Plus </string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -899,7 +899,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Volat</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal volání</string>
+  <string name="conversation_callable_secure__menu_call">Signal Plus volání</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Podrobnosti zprávy</string>
   <string name="conversation_context__menu_copy_text">Kopírovat text</string>
@@ -962,23 +962,23 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="text_secure_normal__invite_friends">Pozvat přátele</string>
   <string name="text_secure_normal__help">Nápověda</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Vaše verze aplikace Signal je zastaralá</string>
+  <string name="reminder_header_outdated_build">Vaše verze aplikace Signal Plus je zastaralá</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Platnost vaší verze aplikace Signal skončí za 1 den. Dotykem aktualizujte na nejnovější verzi.</item>
-    <item quantity="few">Platnost vaší verze aplikace Signal skončí za %d dny. Dotykem aktualizujte na nejnovější verzi.</item>
-    <item quantity="other">Platnost vaší verze aplikace Signal skončí za %d dnů. Dotykem aktualizujte na nejnovější verzi.</item>
+    <item quantity="one">Platnost vaší verze aplikace Signal Plus skončí za 1 den. Dotykem aktualizujte na nejnovější verzi.</item>
+    <item quantity="few">Platnost vaší verze aplikace Signal Plus skončí za %d dny. Dotykem aktualizujte na nejnovější verzi.</item>
+    <item quantity="other">Platnost vaší verze aplikace Signal Plus skončí za %d dnů. Dotykem aktualizujte na nejnovější verzi.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Platnost vaší verze aplikace Signal skončí dnes. Dotykem aktualizujte na nejnovější verzi.</string>
-  <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal vypršela!</string>
+  <string name="reminder_header_outdated_build_details_today">Platnost vaší verze aplikace Signal Plus skončí dnes. Dotykem aktualizujte na nejnovější verzi.</string>
+  <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal Plus vypršela!</string>
   <string name="reminder_header_expired_build_details">Zprávy nemohou být úspěšně odesílány. Dotykem aktulizujte na nejnovější verzi.</string>
   <string name="reminder_header_expired_build_button">AKTUALIZOVAT</string>
   <string name="reminder_header_sms_default_title">Nastavit jako výchozí aplikaci pro SMS</string>
-  <string name="reminder_header_sms_default_text">Dotykem nastavíte Signal jako výchozí SMS aplikaci</string>
+  <string name="reminder_header_sms_default_text">Dotykem nastavíte Signal Plus jako výchozí SMS aplikaci</string>
   <string name="reminder_header_sms_default_button">NASTAVIT</string>
   <string name="reminder_header_sms_import_title">Importovat SMS ze systému</string>
   <string name="reminder_header_sms_import_text">Poklepejte ke zkopírování SMS zpráv ve Vašem telefonu do šifrované databáze.</string>
   <string name="reminder_header_sms_import_button">IMPORTOVAT</string>
-  <string name="reminder_header_push_title">Povolit Signal zprávy a volání</string>
+  <string name="reminder_header_push_title">Povolit Signal Plus zprávy a volání</string>
   <string name="reminder_header_push_text">Lepší zážitky z komunikace.</string>
   <string name="reminder_header_push_button">POVOLIT</string>
   <string name="reminder_header_invite_title">Pozvat do Signalu</string>

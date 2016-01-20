@@ -31,7 +31,7 @@ Deaktivér låseskærm for beskeder?
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS slået til</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Brug som standard SMS-program</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS slået fra</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tryk for at gøre Signal til din standard SMS-app.</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tryk for at gøre Signal Plus til din standard SMS-app.</string>
   <string name="ApplicationPreferencesActivity_on">tændt</string>
   <string name="ApplicationPreferencesActivity_On">Tændt</string>
   <string name="ApplicationPreferencesActivity_off">slukket</string>
@@ -64,7 +64,7 @@ Deaktivér låseskærm for beskeder?
   <string name="CallScreen_Incoming_call">Indgående opkald</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identitetsnøglen for %1$s er blevet ændret. Dette kan enten betyde at nogen forsøger at
-        opsnappe kommunikationen, eller at %2$s bare har geninstalleret Signal og nu har en ny
+        opsnappe kommunikationen, eller at %2$s bare har geninstalleret Signal Plus og nu har en ny
         identitetsnøgle.
     </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verificere
@@ -72,7 +72,7 @@ denne kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Godkend</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Besked %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal opkald %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal Plus opkald %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Beskedstørrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Udløber: %s</string>
@@ -119,8 +119,8 @@ denne kontakt.</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikker (ikke krypteret) SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikker (ikke krypteret) MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Skal vi ikke bruge Signal %1$s?</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Skal vi ikke bruge Signal %1$s?</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Skal vi ikke bruge Signal Plus %1$s?</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Skal vi ikke bruge Signal Plus %1$s?</string>
   <string name="ConversationActivity_error_leaving_group">Kunne ikke forlade gruppe...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS ikke understøttet</string>
   <string name="ConversationActivity_mms_not_supported_message">Denne besked kan ikke sendes, da din teleudbyder ikke understøtter MMS.</string>
@@ -290,7 +290,7 @@ vil det resultere i dupletter.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannet nøgle fundet!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Installér Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal skal bruge Barcode Scanner til QR-koder.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal Plus skal bruge Barcode Scanner til QR-koder.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Kunne ikke sende</string>
   <string name="MessageDetailsRecipient_new_identity">Ny identitet</string>
@@ -340,7 +340,7 @@ vil det resultere i dupletter.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager, du har allerede for mange tilkoblede enheder; prøv at fjern nogle...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager. Dette er ikke en gyldig QR-kode til at forbinde enheder.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Forbind en Signal enhed?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Forbind en Signal Plus enhed?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at forbinde en Signal-enhed vha. en tredjeparts-skanner. Af hensyn til sikkerhed, bør du skanne koden igen fra selve Signal-appen.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Indtast kodeord</string>
@@ -513,7 +513,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tryk for at åbne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tryk for at åbne, eller tryk på låsen for at lukke.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal er låst op</string>
+  <string name="KeyCachingService_passphrase_cached">Signal Plus er låst op</string>
   <string name="KeyCachingService_lock">Lås med et kodeord</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye beskeder i %2$d samtaler</string>
@@ -529,7 +529,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="MessageNotifier_media_message">Multimediebesked</string>
   <string name="MessageNotifier_reply">Svar</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal er låst!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal Plus er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -648,7 +648,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås op</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal skal bruge MMS-indstillinger for at levere media og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke denne information tilgængelig, hvilket nogle gange er tilfældet for låste enheder og andre begrænsende opsætninger.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal Plus skal bruge MMS-indstillinger for at levere media og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke denne information tilgængelig, hvilket nogle gange er tilfældet for låste enheder og andre begrænsende opsætninger.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Klik \"OK\" for at sende multimedie- og gruppebeskeder og udfyld indstillingerne. MMS-indstillingerne for din teleoperatør kan ofte findes ved at søge på \"din operatørs APN\". Du behøver kun gøre dette en gang.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKERET</string>
@@ -681,22 +681,22 @@ TELEFONNUMMER</string>
   <string name="registration_problems__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_problems__sms_interceptors">SMS-blokering.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Visse tredjeparts SMS-apps som f.eks. Handcent og GoSMS overtager alle modtagne SMS\'er. Se om du har modtaget en SMS som begynder med \'Your Signal verification code:\', Hvis dette er tilfældet, skal du konfigurere din tredjeparts SMS-app til at lade tekst-beskeder slippe igennem.</string>
+Visse tredjeparts SMS-apps som f.eks. Handcent og GoSMS overtager alle modtagne SMS\'er. Se om du har modtaget en SMS som begynder med \'Your Signal Plus verification code:\', Hvis dette er tilfældet, skal du konfigurere din tredjeparts SMS-app til at lade tekst-beskeder slippe igennem.</string>
   <string name="registration_problems__incorrect_number">Forkert nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Tjek venligst om du har indtastet din landekode og dit telefonnummer korrekt.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-Signal virker ikke med Google Voice-numre.</string>
+Signal Plus virker ikke med Google Voice-numre.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Stemmegodkendelse</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal kan også ringe til dig og verificere dit telefonnummer. Tryk på \'Ring til mig\' og indtast den 6-cifrede kode du hører, forneden.</string>
+Signal Plus kan også ringe til dig og verificere dit telefonnummer. Tryk på \'Ring til mig\' og indtast den 6-cifrede kode du hører, forneden.</string>
   <string name="registration_progress_activity__verify">Godkend</string>
   <string name="registration_progress_activity__call_me">Ring mig op</string>
   <string name="registration_progress_activity__edit_number">Redigér nummer</string>
   <string name="registration_progress_activity__connectivity_error">Forbindelsesfejl.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal var ikke i stand til at forbinde til serveren.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal Plus var ikke i stand til at forbinde til serveren.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen netværksforbindelse.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Din enhed skal have netværksforbindelse for at bruge denne Signal-funktion. Tjek om der er forbindelse til mobildata eller Wi-Fi.</string>
@@ -704,13 +704,13 @@ Signal kan også ringe til dig og verificere dit telefonnummer. Tryk på \'Ring 
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Hvis du er tilsluttet Internet via et trådløst netværk, er det muligt, at en firewall blokerer adgangen til Signals server. Prøv et andet trådløst netværk eller brug mobildata.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Signal vil nu automatisk verificere dit telefonnummer med en bekræftelses-SMS.</string>
+Signal Plus vil nu automatisk verificere dit telefonnummer med en bekræftelses-SMS.</string>
   <string name="registration_progress_activity__connecting">Forbinder...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Venter på SMS-godkendelse...</string>
   <string name="registration_progress_activity__registering_with_server">Server behandler din registrering...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dette kan tage et stykke tid. Vent venligst - vi siger til når godkendelsen er afsluttet.</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Der opstod en \'timeout\' mens Signal ventede på verificerings-SMS\'en.</string>
+Der opstod en \'timeout\' mens Signal Plus ventede på verificerings-SMS\'en.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-godkendelse
 mislykkedes.</string>
   <string name="registration_progress_activity__generating_keys">Genererer nøgler...</string>
@@ -735,7 +735,7 @@ mislykkedes.</string>
   <string name="AndroidManifest__create_passphrase">Opret kodeord</string>
   <string name="AndroidManifest__enter_passphrase">Indtast kodeord</string>
   <string name="AndroidManifest__select_contacts">Vælg kontakter</string>
-  <string name="AndroidManifest__signal_detected">Signal detekteret</string>
+  <string name="AndroidManifest__signal_detected">Signal Plus detekteret</string>
   <string name="AndroidManifest__public_identity_key">Offentlig identitetsnøgle</string>
   <string name="AndroidManifest__change_passphrase">Ændr kodeord</string>
   <string name="AndroidManifest__verify_identity">Verificér identitet</string>
@@ -776,8 +776,8 @@ mislykkedes.</string>
   <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>
   <string name="preferences__pref_all_mms_title">Modtag alle MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Brug Signal til alle indgående SMS\'er</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Brug Signal til alle indgående MMS\'er</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Brug Signal Plus til alle indgående SMS\'er</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Brug Signal Plus til alle indgående MMS\'er</string>
   <string name="preferences__input_settings">Indstillinger for input</string>
   <string name="preferences__enable_enter_key_title">Slå enter-tast til</string>
   <string name="preferences__replace_smiley_with_enter_key">Erstat \\"Smiley-tast\\" med en \\"Enter-tast\\"</string>
@@ -789,10 +789,10 @@ mislykkedes.</string>
   <string name="preferences__change_passphrase">Ændr kodeord</string>
   <string name="preferences__change_your_passphrase">Ændring af dit kodeord</string>
   <string name="preferences__enable_passphrase">Aktivér kodeord</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og beskednotifikationer med et kodeord</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal Plus og beskednotifikationer med et kodeord</string>
   <string name="preferences__screen_security">Skærmsikkerhed</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \\"forrige apps\\" og i Signal</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal efter et valgt tidsinterval med inaktivitet</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal Plus efter et valgt tidsinterval med inaktivitet</string>
   <string name="preferences__notifications">Notifikationer</string>
   <string name="preferences__enable_message_notifications">Aktivér beskednotifikationer</string>
   <string name="preferences__new_contacts_notifications">Notifikationer om nye kontakter</string>
@@ -950,17 +950,17 @@ mislykkedes.</string>
   <string name="text_secure_normal__invite_friends">Invitér venner</string>
   <string name="text_secure_normal__help">Hjælp</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Din version af Signal er forældet</string>
+  <string name="reminder_header_outdated_build">Din version af Signal Plus er forældet</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Din version af Signal udløber om 1 dag. Tap for at opdatere til den seneste version.</item>
-    <item quantity="other">Din version af Signal udløber om %d dage. Tap for at opdatere til den seneste version.</item>
+    <item quantity="one">Din version af Signal Plus udløber om 1 dag. Tap for at opdatere til den seneste version.</item>
+    <item quantity="other">Din version af Signal Plus udløber om %d dage. Tap for at opdatere til den seneste version.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Din version af Signal udløber i dag. Tap for at opdatere til den seneste version.</string>
-  <string name="reminder_header_expired_build">Din version af Signal er udgået!</string>
+  <string name="reminder_header_outdated_build_details_today">Din version af Signal Plus udløber i dag. Tap for at opdatere til den seneste version.</string>
+  <string name="reminder_header_expired_build">Din version af Signal Plus er udgået!</string>
   <string name="reminder_header_expired_build_details">Beskeder vil ikke længere blive afsendt ordentligt. Tap for at opdatere til den seneste version.</string>
   <string name="reminder_header_expired_build_button">OPDATER</string>
   <string name="reminder_header_sms_default_title">Anvend som standard SMS-app</string>
-  <string name="reminder_header_sms_default_text">Tryk for at gøre Signal til din standard SMS-app.</string>
+  <string name="reminder_header_sms_default_text">Tryk for at gøre Signal Plus til din standard SMS-app.</string>
   <string name="reminder_header_sms_default_button">SET</string>
   <string name="reminder_header_sms_import_title">Importér SMS</string>
   <string name="reminder_header_sms_import_text">Tryk for at kopiere din telefons SMS\'er til TextSecures krypterede database.</string>

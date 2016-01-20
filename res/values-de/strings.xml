@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
-Signal und Benachrichtigungen dauerhaft entsperren.</string>
+Signal Plus und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
@@ -30,7 +30,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiviert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Standard-SMS-App ändern</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktiviert</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Antippen, um Signal als Standard-SMS-App zu verwenden</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Antippen, um Signal Plus als Standard-SMS-App zu verwenden</string>
   <string name="ApplicationPreferencesActivity_on">an</string>
   <string name="ApplicationPreferencesActivity_On">An</string>
   <string name="ApplicationPreferencesActivity_off">aus</string>
@@ -62,7 +62,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Der Schlüssel von %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, Ihre Kommunikation abzuhören. Vielleicht hat %2$s Signal aber auch nur neu installiert und verwendet nun einen neuen Schlüssel.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Der Schlüssel von %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, Ihre Kommunikation abzuhören. Vielleicht hat %2$s Signal Plus aber auch nur neu installiert und verwendet nun einen neuen Schlüssel.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Sie sollten diesen Kontakt ggf. überprüfen.</string>
   <string name="ConfirmIdentityDialog_accept">OK</string>
   <!--ContactsDatabase-->
@@ -81,7 +81,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Für Rückgriff auf unsicheren Versand antippen</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rückgriff auf unverschlüsselte SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rückgriff auf unverschlüsselte MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt sein, da der Kontakt Signal nicht mehr verwendet.\n\nUnsichere Nachricht senden?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt sein, da der Kontakt Signal Plus nicht mehr verwendet.\n\nUnsichere Nachricht senden?</string>
   <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen dieser Medieninhalte gefunden.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Verschlüsselung neu starten?</string>
@@ -114,7 +114,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ConversationActivity_transport_insecure_sms">Unsichere SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Unsichere MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Wechseln wir zu Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Wechseln wir zu Signal Plus %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Unterhalten wir uns hiermit: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe …</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nicht unterstützt</string>
@@ -218,14 +218,14 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ExportFragment_success">Erfolgreich!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google Play-Dienste registriert werden. Signal-Nachrichten und -Anrufe wurden daher deaktiviert. Bitte registrieren Sie Signal im Menü „Einstellungen“ &gt; „Weitere Einstellungen“ erneut.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Plus konnte nicht für die Google Play-Dienste registriert werden. Signal-Nachrichten und -Anrufe wurden daher deaktiviert. Bitte registrieren Sie Signal Plus im Menü „Einstellungen“ &gt; „Weitere Einstellungen“ erneut.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Neue Gruppe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Gruppe bearbeiten</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenname</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Neue MMS-Gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Sie haben einen Kontakt ausgewählt, der Signal-Gruppen nicht unterstützt. Daher wird dies eine MMS-Gruppe sein.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Sie sind nicht für Signal-Nachrichten und -Anrufe registriert, daher sind Signal-Gruppen deaktiviert. Bitte registrieren Sie Signal im Menü „Einstellungen“ &gt; „Weitere Einstellungen“.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Sie sind nicht für Signal-Nachrichten und -Anrufe registriert, daher sind Signal-Gruppen deaktiviert. Bitte registrieren Sie Signal Plus im Menü „Einstellungen“ &gt; „Weitere Einstellungen“.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Gruppe konnte aufgrund eines unerwartet aufgetretenen Fehlers nicht erstellt werden.</string>
   <string name="GroupCreateActivity_contacts_no_members">Sie brauchen mindestens eine Person in Ihrer Gruppe!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Eines der Gruppenmitglieder hat eine nicht korrekt lesbare Rufnummer. Bitte beheben oder Kontakt entfernen und erneut versuchen.</string>
@@ -243,14 +243,14 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ImportExportActivity_export">Exportieren</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">System-SMS-Datenbank importieren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Nachrichten aus der Standard-SMS-Datenbank in Signal importieren. Falls Sie dies schon einmal gemacht haben, wird es zu doppelten Nachrichten kommen.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Nachrichten aus der Standard-SMS-Datenbank in Signal Plus importieren. Falls Sie dies schon einmal gemacht haben, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_import">Importieren</string>
   <string name="ImportFragment_cancel">Abbruch</string>
   <string name="ImportFragment_restore_encrypted_backup">Verschlüsselte Sicherung wiederherstellen?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt Ihre bestehenden Schlüssel, Einstellungen und Nachrichten. Sie werden jegliche Informationen Ihrer jetzigen Signal-Installation verlieren, die nicht in dieser Datensicherung enthalten sind.</string>
   <string name="ImportFragment_restore">Wiederherstellen</string>
   <string name="ImportFragment_import_plaintext_backup">Klartextsicherung importieren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Nachrichten aus einer Klartext-Datensicherung in Signal importieren. Falls Sie bereits zuvor diese Datensicherung importiert haben, wird es zu doppelten Nachrichten kommen.</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Nachrichten aus einer Klartext-Datensicherung in Signal Plus importieren. Falls Sie bereits zuvor diese Datensicherung importiert haben, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_importing">Importieren</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Klartextsicherung wird importiert …</string>
   <string name="ImportFragment_no_plaintext_backup_found">Keine Klartextsicherung gefunden!</string>
@@ -269,7 +269,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="InviteActivity_sending">Sendevorgang …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
-  <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
+  <string name="InviteActivity_invite_to_signal">Zu Signal Plus einladen</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">AN 1 FREUND SENDEN</item>
     <item quantity="other">AN %d FREUNDE SENDEN</item>
@@ -284,7 +284,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Keinen scanbaren Schlüssel gefunden!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">App „Barcode Scanner“ installieren?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Für QR-Codes benötigt Signal die App „Barcode Scanner“.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Für QR-Codes benötigt Signal Plus die App „Barcode Scanner“.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Versand fehlgeschlagen</string>
   <string name="MessageDetailsRecipient_new_identity">Neuer Schlüssel</string>
@@ -305,7 +305,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitten Sie den Kontakt, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal Plus verschlüsselt, die nicht mehr unterstützt wird. Bitten Sie den Kontakt, Signal Plus zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Sie haben die Gruppe verlassen.</string>
   <string name="MessageRecord_updated_group">Gruppe wurde aktualisiert.</string>
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
@@ -332,7 +332,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Es sind bereits zu viele Geräte verknüpft. Versuchen Sie, mindestens eines zu entfernen …</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dies ist leider kein gültiger QR-Code zur Geräteverknüpfung.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal-Gerät verknüpfen?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sie versuchen offenbar, ein Signal-Gerät mithilfe einer Scanner-App eines Drittanbieters zu verknüpfen. Scannen Sie den QR-Code zu Ihrem Schutz noch einmal direkt aus Signal ein.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sie versuchen offenbar, ein Signal-Gerät mithilfe einer Scanner-App eines Drittanbieters zu verknüpfen. Scannen Sie den QR-Code zu Ihrem Schutz noch einmal direkt aus Signal Plus ein.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-Symbol</string>
@@ -377,7 +377,7 @@ Signal und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die gewählte Rufnummer unterstützt keine sicheren Anrufe!</string>
   <string name="RedPhone_got_it">OK</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Mit Signal verbinden</string>
+  <string name="RegistrationActivity_connect_with_signal">Mit Signal Plus verbinden</string>
   <string name="RegistrationActivity_select_your_country">Wählen Sie Ihr Land aus</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Landesvorwahl muss angegeben werden</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Sie müssen Ihre Rufnummer angeben</string>
@@ -489,7 +489,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Zum Öffnen antippen.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Zum Öffnen antippen oder zum Schließen Schloss antippen.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal ist entsperrt</string>
+  <string name="KeyCachingService_passphrase_cached">Signal Plus ist entsperrt</string>
   <string name="KeyCachingService_lock">Mit Passwort sperren</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
@@ -505,7 +505,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="MessageNotifier_media_message">Nachricht mit Medieninhalten</string>
   <string name="MessageNotifier_reply">Antworten</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal Plus gesperrt ist!</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -624,7 +624,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal benötigt MMS-Einstellungen, um Nachrichten mit Medieninhalten und Gruppennachrichten über Ihren Mobilfunkanbieter zu versenden. Ihr Gerät stellt diese Informationen nicht zur Verfügung, was gelegentlich bei gesperrten oder anderweitig restriktiv konfigurierten Geräten der Fall ist.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal Plus benötigt MMS-Einstellungen, um Nachrichten mit Medieninhalten und Gruppennachrichten über Ihren Mobilfunkanbieter zu versenden. Ihr Gerät stellt diese Informationen nicht zur Verfügung, was gelegentlich bei gesperrten oder anderweitig restriktiv konfigurierten Geräten der Fall ist.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Zum Versenden von Nachrichten mit Medieninhalten und Gruppennachrichten bitte „OK“ antippen und die geforderten Einstellungen vervollständigen. Die MMS-Einstellungen Ihres Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem „APN“ des Anbieters gefunden werden.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCKIERT</string>
@@ -657,17 +657,17 @@ RUFNUMMER</string>
   <string name="registration_problems__some_possible_problems_include">Einige mögliche Probleme beinhalten:</string>
   <string name="registration_problems__sms_interceptors">SMS-abfangende Apps.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Manche SMS-Apps von Drittanbietern, z. B. Handcent oder GoSMS, fangen fälschlicherweise alle eingehenden SMS ab. Überprüfen Sie, ob Sie eine SMS empfangen haben, die mit „Your Signal verification code:“ beginnt. In diesem Fall müssen Sie Ihre Drittanbieter-App so einstellen, dass diese SMS durchlässt.</string>
+Manche SMS-Apps von Drittanbietern, z. B. Handcent oder GoSMS, fangen fälschlicherweise alle eingehenden SMS ab. Überprüfen Sie, ob Sie eine SMS empfangen haben, die mit „Your Signal Plus verification code:“ beginnt. In diesem Fall müssen Sie Ihre Drittanbieter-App so einstellen, dass diese SMS durchlässt.</string>
   <string name="registration_problems__incorrect_number">Fehlerhafte Rufnummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Bitte überprüfen Sie die eingegebene Rufnummer auf Richtigkeit und eine Ihrer Region entsprechend korrekte Formatierung.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-Signal funktioniert nicht mit Google Voice-Rufnummern.</string>
+Signal Plus funktioniert nicht mit Google Voice-Rufnummern.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Überprüfung durch Anruf</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf „Anrufen“ und geben Sie unten den gehörten sechsstelligen Code ein.</string>
+Signal Plus kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf „Anrufen“ und geben Sie unten den gehörten sechsstelligen Code ein.</string>
   <string name="registration_progress_activity__verify">Überprüfen</string>
   <string name="registration_progress_activity__call_me">Mich anrufen</string>
   <string name="registration_progress_activity__edit_number">Rufnummer bearbeiten</string>
@@ -680,7 +680,7 @@ Signal kann Sie zur Überprüfung Ihrer Rufnummer auch anrufen. Tippen Sie auf �
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Bei Verbindung über WLAN blockiert möglicherweise eine Firewall den Zugang zum Signal-Server. Versuchen Sie ein anderes Netzwerk oder die mobile Datenverbindung.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Signal wird Ihre Rufnummer nun automatisch mit einer SMS überprüfen.</string>
+Signal Plus wird Ihre Rufnummer nun automatisch mit einer SMS überprüfen.</string>
   <string name="registration_progress_activity__connecting">Verbindung wird hergestellt …</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Warten auf SMS-Überprüfung …</string>
   <string name="registration_progress_activity__registering_with_server">Registrierung wird durchgeführt …</string>
@@ -710,7 +710,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__create_passphrase">Passwort erstellen</string>
   <string name="AndroidManifest__enter_passphrase">Passwort eingeben</string>
   <string name="AndroidManifest__select_contacts">Kontakte auswählen</string>
-  <string name="AndroidManifest__signal_detected">Signal erkannt</string>
+  <string name="AndroidManifest__signal_detected">Signal Plus erkannt</string>
   <string name="AndroidManifest__public_identity_key">Öffentlicher Schlüssel</string>
   <string name="AndroidManifest__change_passphrase">Passwort ändern</string>
   <string name="AndroidManifest__verify_identity">Kontakt überprüfen</string>
@@ -751,8 +751,8 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__sms_mms">SMS und MMS</string>
   <string name="preferences__pref_all_sms_title">Für SMS-Empfang verwenden</string>
   <string name="preferences__pref_all_mms_title">Für MMS-Empfang verwenden</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal für alle eingehenden SMS verwenden</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal für alle eingehenden MMS verwenden</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal Plus für alle eingehenden SMS verwenden</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal Plus für alle eingehenden MMS verwenden</string>
   <string name="preferences__input_settings">Eingabe</string>
   <string name="preferences__enable_enter_key_title">Eingabetaste aktivieren</string>
   <string name="preferences__replace_smiley_with_enter_key">Emoji-Taste durch Eingabetaste ersetzen</string>
@@ -764,10 +764,10 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__change_passphrase">Passwort ändern</string>
   <string name="preferences__change_your_passphrase">Ihr Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal und Benachrichtungen mit einem Passwort sperren</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Signal Plus und Benachrichtungen mit einem Passwort sperren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal bei Inaktivität nach einer festgelegten Verzögerungszeit automatisch sperren</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal Plus bei Inaktivität nach einer festgelegten Verzögerungszeit automatisch sperren</string>
   <string name="preferences__inactivity_timeout_passphrase">Passwort bei Inaktivität</string>
   <string name="preferences__inactivity_timeout_interval">Verzögerungszeit</string>
   <string name="preferences__notifications">Benachrichtigungen</string>
@@ -923,22 +923,22 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="text_secure_normal__menu_new_message">Neue Unterhaltung</string>
   <string name="text_secure_normal__menu_new_group">Neue Gruppe</string>
   <string name="text_secure_normal__menu_settings">Einstellungen</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Signal sperren</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Signal Plus sperren</string>
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <string name="text_secure_normal__invite_friends">Freunde einladen</string>
   <string name="text_secure_normal__help">Hilfe</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Ihre Version von Signal ist veraltet</string>
+  <string name="reminder_header_outdated_build">Ihre Version von Signal Plus ist veraltet</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Ihre Version von Signal wird in 1 Tag ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</item>
-    <item quantity="other">Ihre Version von Signal wird in %d Tagen ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</item>
+    <item quantity="one">Ihre Version von Signal Plus wird in 1 Tag ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</item>
+    <item quantity="other">Ihre Version von Signal Plus wird in %d Tagen ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Ihre Version von Signal wird heute ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</string>
-  <string name="reminder_header_expired_build">Ihre Version von Signal ist abgelaufen!</string>
+  <string name="reminder_header_outdated_build_details_today">Ihre Version von Signal Plus wird heute ablaufen. Antippen, um auf die neueste Version zu aktualisieren.</string>
+  <string name="reminder_header_expired_build">Ihre Version von Signal Plus ist abgelaufen!</string>
   <string name="reminder_header_expired_build_details">Nachrichten werden nicht mehr erfolgreich versendet werden. Antippen, um auf die neueste Version zu aktualisieren.</string>
   <string name="reminder_header_expired_build_button">AKTUALISIEREN</string>
   <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden</string>
-  <string name="reminder_header_sms_default_text">Antippen, um Signal als Standard-SMS-App zu verwenden.</string>
+  <string name="reminder_header_sms_default_text">Antippen, um Signal Plus als Standard-SMS-App zu verwenden.</string>
   <string name="reminder_header_sms_default_button">FESTLEGEN</string>
   <string name="reminder_header_sms_import_title">System-SMS importieren</string>
   <string name="reminder_header_sms_import_text">Antippen, um auf dem Telefon gespeicherte SMS-Nachrichten in die verschlüsselte Datenbank zu importieren.</string>
@@ -946,11 +946,11 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="reminder_header_push_title">Signal-Nachrichten und -Anrufe aktivieren</string>
   <string name="reminder_header_push_text">Verbessern Sie Ihr Kommunikationserlebnis.</string>
   <string name="reminder_header_push_button">AKTIVIEREN</string>
-  <string name="reminder_header_invite_title">Zu Signal einladen</string>
+  <string name="reminder_header_invite_title">Zu Signal Plus einladen</string>
   <string name="reminder_header_invite_text">Heben Sie Ihre Kommunikation mit %1$s auf die nächste Stufe.</string>
   <string name="reminder_header_invite_button">EINLADEN</string>
   <string name="reminder_header_share_title">Laden Sie Ihre Freunde ein!</string>
-  <string name="reminder_header_share_text">Je mehr Freunde Signal nutzen, desto besser wird es.</string>
+  <string name="reminder_header_share_text">Je mehr Freunde Signal Plus nutzen, desto besser wird es.</string>
   <string name="reminder_header_share_button">TEILEN</string>
   <string name="reminder_header_close_button">SCHLIESSEN</string>
   <!--MediaPreviewActivity-->

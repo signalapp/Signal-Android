@@ -15,7 +15,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS zapnuté</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom sem môžete zmeniť Vašu predvolenú aplikáciu pre SMS.</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS vypnuté</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Signal ako Vašu predvolenú aplikáciu</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Signal Plus ako Vašu predvolenú aplikáciu</string>
   <string name="ApplicationPreferencesActivity_on">zapnuté</string>
   <string name="ApplicationPreferencesActivity_On">Zapnuté</string>
   <string name="ApplicationPreferencesActivity_off">vypnuté</string>
@@ -642,7 +642,7 @@ zlyhalo.
   <string name="text_secure_normal__menu_clear_passphrase">Zamkni</string>
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
+  <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal Plus ako Vašu predvolenú SMS aplikáciu.</string>
   <string name="reminder_header_sms_import_text">Dotykom sem môžete skopírovať SMS správy z Vašeho telefónu do zašifrovanej databázy.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>

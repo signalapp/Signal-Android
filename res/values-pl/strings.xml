@@ -28,12 +28,12 @@ Wyłączyć blokadę ekranu dla wiadomości?
   <string name="ApplicationPreferencesActivity_unregistering">Wyrejestrowanie </string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Trwa wyrejestrowanie z Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Wyłączyć wiadomości i połączenia Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Wyłącz wiadomości i połączenia telefoniczne Signal poprzez wyrejestrowanie z serwera. Będziesz musiał ponownie zarejestrować swój numer telefonu, jeśli będziesz chciał go używać w przyszłości.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Wyłącz wiadomości i połączenia telefoniczne Signal Plus poprzez wyrejestrowanie z serwera. Będziesz musiał ponownie zarejestrować swój numer telefonu, jeśli będziesz chciał go używać w przyszłości.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Błąd połączenia z serwerem!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Włączone</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotknij, aby zmienić swoją domyślną aplikację SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Wyłączone</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotknij, aby Signal był Twoją domyślną aplikacją SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotknij, aby Signal Plus był Twoją domyślną aplikacją SMS</string>
   <string name="ApplicationPreferencesActivity_on">włączone</string>
   <string name="ApplicationPreferencesActivity_On">Włączone</string>
   <string name="ApplicationPreferencesActivity_off">wyłączone</string>
@@ -66,14 +66,14 @@ Wyłączyć blokadę ekranu dla wiadomości?
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Podpis identyfikacyjny dla %1$s zmienił się. Może to oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub %2$s przeinstalował aplikację Signal i posiada teraz nowy klucz identyfikacyjny.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Podpis identyfikacyjny dla %1$s zmienił się. Może to oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub %2$s przeinstalował aplikację Signal Plus i posiada teraz nowy klucz identyfikacyjny.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Może chcesz zweryfikować 
 ten kontakt.
 </string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Wiadomość %s</string>
-  <string name="ContactsDatabase_signal_call_s">Połączenie Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Połączenie Signal Plus %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Rozmiar wiadomości: %d KB </string>
   <string name="ConversationItem_expires_s">Wygasa: %s</string>
@@ -121,7 +121,7 @@ ten kontakt.
   <string name="ConversationActivity_transport_insecure_sms">Nieszyfrowany SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Zacznij używać Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Zacznij używać Signal Plus %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Zacznij używać Signal: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Błąd opuszczenia grupy...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nie są wspomagane</string>
@@ -231,14 +231,14 @@ ten kontakt.
   <string name="ExportFragment_success">Sukces!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanentny błąd komunikacji Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nie był w stanie zarejestrować się z Google Play Services. Wiadomości i połączenia Signal zostały wyłączone. Proszę spróbuj ponownie zarejestrować się poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Plus nie był w stanie zarejestrować się z Google Play Services. Wiadomości i połączenia Signal Plus zostały wyłączone. Proszę spróbuj ponownie zarejestrować się poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nowa grupa</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aktualizuj grupę</string>
   <string name="GroupCreateActivity_group_name_hint">Nazwa grupy</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nowa grupa MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Zaznaczyłeś kontakt, który nie wspiera grup Signal, tak więc ta grupa będzie grupą MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nie jesteś zarejestrowany w Signal, aby wysyłać wiadomości i wykonywać połączenia telefoniczne, tak więc grupy aplikacji Signal są wyłączone. Spróbuj ponownie poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nie jesteś zarejestrowany w Signal, aby wysyłać wiadomości i wykonywać połączenia telefoniczne, tak więc grupy aplikacji Signal Plus są wyłączone. Spróbuj ponownie poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Wystąpił błąd podczas tworzenia nowej grupy. Grupa nie została utworzona.</string>
   <string name="GroupCreateActivity_contacts_no_members">Potrzebujesz przynajmniej jeden osoby w Twojej grupie.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z członków Twojej grupy ma numer który nie może być prawidłowo odczytany. Proszę popraw go lub usuń ten numer i spróbuj ponownie.</string>
@@ -263,7 +263,7 @@ wiadomości SMS z domyślnej aplikacji SMS. Jeżeli wcześniej wykonywałeś ju�
   <string name="ImportFragment_restore_encrypted_backup">Przywrócić z zaszyfrowanej kopii zapasowej?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Przywracanie szyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniejących kluczy, ustawień i wiadomości. 
-Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem tych zawartych w kopii zapasowej.</string>
+Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal Plus z wyjątkiem tych zawartych w kopii zapasowej.</string>
   <string name="ImportFragment_restore">Przywróć</string>
   <string name="ImportFragment_import_plaintext_backup">Importować z nieszyfrowanej kopii zapasowej?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Wiadomości z jawnej kopii zapasowej zostaną zaimportowane. Jeżeli wcześniej wykonywałeś już tę czynność, to ponowny import spowoduje duplikację wiadomości.</string>
@@ -302,7 +302,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nie znaleziono żadnego zeskanowanego klucza!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Zainstalować Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Aplikacja Signal potrzebuje skanera kodów QR.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Aplikacja Signal Plus potrzebuje skanera kodów QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string>
   <string name="MessageDetailsRecipient_new_identity">Nowa tożsamość</string>
@@ -311,7 +311,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="MmsDownloader_error_connecting_to_mms_provider">Błąd połączenia z dostawcą usługi MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Błąd odczytu ustawień usługi MMS Twojego operatora...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal w toku</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal Plus w toku</string>
   <string name="NotificationBarManager_missed_call_from_s">Nieodebrane połączenie od %s</string>
   <string name="NotificationBarManager_missed_signal_call">Nieodebrane połączenie Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
@@ -352,7 +352,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Niestety masz już zbyt dużo zarejestrowanych urządzeń, spróbuj usunąć któreś z nich...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Przepraszamy, ale to nie jest prawidłowy link QR.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Dodać nowe urządzenie Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal używając nieznanego skanera 3ciej partii. Dla Twojego bezpieczeństwa, prosimy abyś zeskanował kod używając Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal Plus używając nieznanego skanera 3ciej partii. Dla Twojego bezpieczeństwa, prosimy abyś zeskanował kod używając Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -435,12 +435,12 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
   <string name="RegistrationProgressActivity_too_many_requests">Zbyt wiele zapytań!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Już zażądałeś połączenia głosowego. Możesz ponownie zażądać innego połączenia w ciągu następnych 20 minut.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflikt rejestracji</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ten numer jest już zarejestrowany na innym serwerze Signal (CyanogenMod?). Musisz się wpierw wyrejestrować zanim będziesz mógł się tutaj zarejestrować.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ten numer jest już zarejestrowany na innym serwerze Signal Plus (CyanogenMod?). Musisz się wpierw wyrejestrować zanim będziesz mógł się tutaj zarejestrować.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Rejestracja zakończona!</string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">Rejestracja w Signal zakończona pomyślnie.</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Rejestracja w Signal Plus zakończona pomyślnie.</string>
   <string name="RegistrationService_registration_error">Błąd rejestracji</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Rejestracja w Signal napotkała błąd.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Rejestracja w Signal Plus napotkała błąd.</string>
   <!--Slide-->
   <string name="Slide_image">Obraz</string>
   <string name="Slide_audio">Audio</string>
@@ -513,7 +513,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Dotknij, aby otworzyć.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotknij, aby otworzyć lub dotknij zamek, aby zamknąć.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal jest niezablokowany</string>
+  <string name="KeyCachingService_passphrase_cached">Signal Plus jest niezablokowany</string>
   <string name="KeyCachingService_lock">Zablokuj hasłem</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nowych wiadomości w %2$d rozmowach</string>
@@ -529,7 +529,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Szybka odpowiedź jest niedostępna kiedy Signal jest zablokowany!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Szybka odpowiedź jest niedostępna kiedy Signal Plus jest zablokowany!</string>
   <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -649,7 +649,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odblokuj</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych oraz wiadomości grupowych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracyjnymi w telefonie.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal Plus wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych oraz wiadomości grupowych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracyjnymi w telefonie.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Aby mieć możliwość wysyłania wiadomości multimedialnych i wiadomości grupowych, kliknij \'OK\' i wypełnij pola, o które jesteś proszony. Dane MMS dla Twojego operatora, można znaleźć szukając w ustawieniach frazy typu \'Punkty Dostępu - APN\'. Wystarczy to zrobić tylko jeden raz.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ZABLOKOWANY</string>
@@ -688,7 +688,7 @@ Niektóre zewnętrzne aplikacje SMS, takie jak Handcent lub GoSMS mogą przechwy
 Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu jest prawidłowy.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-Signal nie będzie działać z numerami Google Voice.</string>
+Signal Plus nie będzie działać z numerami Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Weryfikacja głosowa</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
@@ -697,7 +697,7 @@ TextSecure może również zadzwonić do Ciebie w celu weryfikacji numeru. Wybie
   <string name="registration_progress_activity__call_me">Zadzwoń do mnie</string>
   <string name="registration_progress_activity__edit_number">Edytuj numer</string>
   <string name="registration_progress_activity__connectivity_error">Błąd połączenia.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal nie był w stanie połączyć się z serwerem.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal Plus nie był w stanie połączyć się z serwerem.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Niektóre możliwe problemy:</string>
   <string name="registration_progress_activity__no_network_connectivity">Brak połączenia z siecią.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Twój telefon musi połączyć się z siecią, aby użyć tej funkcji Signal. Sprawdź czy urządzenie podłączone jest do danych mobilnych lub WiFi.</string>
@@ -705,7 +705,7 @@ TextSecure może również zadzwonić do Ciebie w celu weryfikacji numeru. Wybie
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Jeśli jesteś połączony przez WiFi, możliwe jest że Firewall blokuje dostęp do serwera Signal. Spróbuj połączyć się z inną siecią lub danymi mobilnymi.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Za chwilę Signal automatycznie zweryfikuje Twój numer za pomocą wiadomości SMS.</string>
+Za chwilę Signal Plus automatycznie zweryfikuje Twój numer za pomocą wiadomości SMS.</string>
   <string name="registration_progress_activity__connecting">Łączenie...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Oczekiwanie na weryfikację SMS...</string>
   <string name="registration_progress_activity__registering_with_server">Rejestrowanie z serwerem...</string>
@@ -777,8 +777,8 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__sms_mms">SMS i MMS</string>
   <string name="preferences__pref_all_sms_title">Otrzymuj wszystkie SMSy</string>
   <string name="preferences__pref_all_mms_title">Otrzymuj wszystkie MMSy</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Używaj Signal dla wszystkich wiadomości SMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Używaj Signal dla wszystkich wiadomości multimedialnych</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Używaj Signal Plus dla wszystkich wiadomości SMS</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Używaj Signal Plus dla wszystkich wiadomości multimedialnych</string>
   <string name="preferences__input_settings">Ustawienia wprowadzania</string>
   <string name="preferences__enable_enter_key_title">Włącz klawisz Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Zastąp przycisk emotikon klawiszem Enter</string>
@@ -790,10 +790,10 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>
   <string name="preferences__change_your_passphrase">Zmień swoje hasło</string>
   <string name="preferences__enable_passphrase">Włącz hasło</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zablokuj Signal i powiadomienia nowych wiadomości hasłem</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zablokuj Signal Plus i powiadomienia nowych wiadomości hasłem</string>
   <string name="preferences__screen_security">Ochrona ekranu</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokuj rzuty ekranu w obecnej liście oraz w aplikacji</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-blokuj Signal po określonym czasie bezczynności</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-blokuj Signal Plus po określonym czasie bezczynności</string>
   <string name="preferences__inactivity_timeout_passphrase">Limit czasu dla hasła</string>
   <string name="preferences__inactivity_timeout_interval">Czas zapomnienia hasła</string>
   <string name="preferences__notifications">Powiadomienia</string>
@@ -954,18 +954,18 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="text_secure_normal__invite_friends">Zaproś znajomych</string>
   <string name="text_secure_normal__help">Pomoc</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Twoja wersja Signal jest nieaktualna.</string>
+  <string name="reminder_header_outdated_build">Twoja wersja Signal Plus jest nieaktualna.</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Twoja wersja Signal wygaśnie za 1 dzień. Dotknij, aby zaktualizować do najnowszej wersji.</item>
-    <item quantity="few">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
-    <item quantity="other">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
+    <item quantity="one">Twoja wersja Signal Plus wygaśnie za 1 dzień. Dotknij, aby zaktualizować do najnowszej wersji.</item>
+    <item quantity="few">Twoja wersja Signal Plus wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
+    <item quantity="other">Twoja wersja Signal Plus wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Twoja wersja Signal dzisiaj będzie już nieaktualna. Dotknij, aby zaktualizować do najnowszej wersji.</string>
-  <string name="reminder_header_expired_build">Twoja wersja Signal jest nieaktualna!</string>
-  <string name="reminder_header_expired_build_details">Wiadomości nie będą dostarczane. Dotknij, aby zaktualizować Signal za darmo do najnowszej wersji.</string>
+  <string name="reminder_header_outdated_build_details_today">Twoja wersja Signal Plus dzisiaj będzie już nieaktualna. Dotknij, aby zaktualizować do najnowszej wersji.</string>
+  <string name="reminder_header_expired_build">Twoja wersja Signal Plus jest nieaktualna!</string>
+  <string name="reminder_header_expired_build_details">Wiadomości nie będą dostarczane. Dotknij, aby zaktualizować Signal Plus za darmo do najnowszej wersji.</string>
   <string name="reminder_header_expired_build_button">AKTUALIZUJ</string>
   <string name="reminder_header_sms_default_title">Ustaw jako domyślną aplikację SMS</string>
-  <string name="reminder_header_sms_default_text">Dotknij, aby Signal był Twoją domyślną aplikacją SMS.</string>
+  <string name="reminder_header_sms_default_text">Dotknij, aby Signal Plus był Twoją domyślną aplikacją SMS.</string>
   <string name="reminder_header_sms_default_button">USTAW</string>
   <string name="reminder_header_sms_import_title">Importuj bazę SMS</string>
   <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS na tym telefonie do szyfrowanej bazy danych.</string>

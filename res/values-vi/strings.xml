@@ -24,13 +24,13 @@ Tắt khóa màn hình cho tin nhắn?
   <string name="ApplicationPreferencesActivity_unregistering">Tháo gỡ đăng ký</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Đang huỷ đăng ký với tin nhắn và cuộc gọi Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Tắt tin nhắn và cuộc gọi Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tắt tin nhắn và cuộc gọi Signal bằng cách huỷ đăng ký từ máy chủ.
-Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal trong tương lai.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tắt tin nhắn và cuộc gọi Signal Plus bằng cách huỷ đăng ký từ máy chủ.
+Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal Plus trong tương lai.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Có lỗi kết nối vào máy chủ!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Đã mở SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Đã tắt SMS</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Chạm để chọn Signal làm ứng dụng SMS mặc định</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Chạm để chọn Signal Plus làm ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_on">mở</string>
   <string name="ApplicationPreferencesActivity_On">Mở</string>
   <string name="ApplicationPreferencesActivity_off">tắt</string>
@@ -63,7 +63,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">
 nguyên liệu xác minh khoá cho %1$s đã thay đổi. Điều này có nghĩa là ai đó đang cố tình
-chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã cài đặt lại Signal và bây giờ có một khoá xác minh mới.
+chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã cài đặt lại Signal Plus và bây giờ có một khoá xác minh mới.
 
 </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
@@ -72,7 +72,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConfirmIdentityDialog_accept">Chấp nhận</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Tin nhắn %s</string>
-  <string name="ContactsDatabase_signal_call_s">Cuộc gọi Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Cuộc gọi Signal Plus %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Kích thước tin nhắn: %d KB</string>
   <string name="ConversationItem_expires_s">Hết hạn: %s</string>
@@ -118,7 +118,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal Plus %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Có lỗi khi rời nhóm</string>
   <string name="ConversationActivity_mms_not_supported_title">Không hỗ trợ MMS</string>
@@ -207,7 +207,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <!--ExportFragment-->
   <string name="ExportFragment_export">Xuất</string>
   <string name="ExportFragment_export_plaintext_to_storage">Xuất văn bản không mã hóa ra ổ lưu trữ?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ xuất nội dung tin nhắn Signal của bạn vào ổ lưu trữ dưới dạng không được mã khoá.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ xuất nội dung tin nhắn Signal Plus của bạn vào ổ lưu trữ dưới dạng không được mã khoá.</string>
   <string name="ExportFragment_cancel">Hủy</string>
   <string name="ExportFragment_exporting">Đang xuất</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Đang xuất văn bản không mã hóa ra ổ lưu trữ...</string>
@@ -216,14 +216,14 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ExportFragment_success">Thành công!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể đăng ký với Google Play Services. Cuộc gọi và tin nhắn Signal đã ngừng hoạt động, hãy thử đăng ký lại từ mục Cài đặt &gt; Nâng cao.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Plus không thể đăng ký với Google Play Services. Cuộc gọi và tin nhắn Signal Plus đã ngừng hoạt động, hãy thử đăng ký lại từ mục Cài đặt &gt; Nâng cao.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
   <string name="GroupCreateActivity_actionbar_update_title">Cập nhật nhóm</string>
   <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Bạn đã chọn một liên hệ không hỗ trợ nhóm Signal, vậy nên nhóm này sẽ dùng MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Bạn chưa đăng ký dịch vụ gọi và nhắn tin Signal, vậy nên nhóm Signal không khả dụng. Hãy thử đăng ký từ mục Cài đặt &gt; Nâng cao.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Bạn chưa đăng ký dịch vụ gọi và nhắn tin Signal, vậy nên nhóm Signal Plus không khả dụng. Hãy thử đăng ký từ mục Cài đặt &gt; Nâng cao.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Có lỗi bất ngờ xảy ra do đó không lập nhóm được.</string>
   <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không đọc được. Xin điều chỉnh hoặc xóa đi và thử lại.</string>
@@ -249,7 +249,7 @@ nhập cơ sở dữ liệu SMS của hệ thống, việc này sẽ tạo ra c�
   <string name="ImportFragment_cancel">Hủy</string>
   <string name="ImportFragment_restore_encrypted_backup">Phục hồi phần sao lưu mã hóa?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Khôi phục sao lưu đã mã khoá sẽ thay thế hoàn toàn các khoá, tinh chỉnh và tin nhắn hiện hữu của bạn. Bạn cũng sẽ mất tất cả thông tin trong bản cài đặt Signal hiện tại ngoại trừ
+Khôi phục sao lưu đã mã khoá sẽ thay thế hoàn toàn các khoá, tinh chỉnh và tin nhắn hiện hữu của bạn. Bạn cũng sẽ mất tất cả thông tin trong bản cài đặt Signal Plus hiện tại ngoại trừ
 trong bản sao lưu.
 </string>
   <string name="ImportFragment_restore">Phục hồi</string>
@@ -288,7 +288,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Không dò tìm thấy chìa khóa nào!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Cài đặt Ứng Dụng Quét Mã Vạch?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal cần Barcode Scanner cho mã QR.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal Plus cần Barcode Scanner cho mã QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gửi đi không được</string>
   <string name="MessageDetailsRecipient_new_identity">Danh tính mới</string>
@@ -297,9 +297,9 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="MmsDownloader_error_connecting_to_mms_provider">Có lỗi kết nối vào nhà dịch vụ MMS</string>
   <string name="MmsDownloader_error_reading_mms_settings">Có lỗi khi đọc thiết đặt MMS của dịch vụ di động...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Cuộc gọi Signal đang tiến hành</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Cuộc gọi Signal Plus đang tiến hành</string>
   <string name="NotificationBarManager_missed_call_from_s">Cuộc gọi nhỡ từ %s</string>
-  <string name="NotificationBarManager_missed_signal_call">Cuộc gọi Signal nhỡ</string>
+  <string name="NotificationBarManager_missed_signal_call">Cuộc gọi Signal Plus nhỡ</string>
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Cuộc gọi đến từ Signal</string>
   <string name="NotificationBarManager__deny_call">Từ chối cuộc gọi</string>
@@ -309,7 +309,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Tin nhắn đa phương tiện</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá bởi phiên bản Signal cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá bởi phiên bản Signal Plus cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
   <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
   <string name="MessageRecord_updated_group">Cập nhật nhóm.</string>
   <string name="MessageRecord_s_called_you">%s đã gọi cho bạn</string>
@@ -339,7 +339,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Xin lỗi, bạn có quá nhiều thiết bị đã được liên kết, thử tháo bỏ vài cái...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Xin lỗi, đây không phải là mã QR liên kết thiết bị chính xác.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Liên kết một thiết bị dùng Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal Plus bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mật khẩu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Signal</string>
@@ -425,10 +425,10 @@ mã số quốc gia bạn</string>
   <string name="RegistrationProgressActivity_too_many_requests">Quá nhiều yêu cầu!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Bạn đã yêu cầu cú gọi gần đây. Bạn có thể yêu cầu lần nữa trong vòng 20 phút.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Đăng ký gặp va chạm</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Số điện thoại này đã đăng ký trên máy chủ Signal khác rồi (CyanogenMod?). Bạn phải huỷ đăng ký đó trước khi đăng ký tại đây.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Số điện thoại này đã đăng ký trên máy chủ Signal Plus khác rồi (CyanogenMod?). Bạn phải huỷ đăng ký đó trước khi đăng ký tại đây.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Đăng ký hoàn tất</string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">Đăng ký Signal thành công.</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Đăng ký Signal Plus thành công.</string>
   <string name="RegistrationService_registration_error">Có lỗi đăng ký</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Có lỗi khi đăng ký Signal.</string>
   <!--Slide-->
@@ -504,7 +504,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Chạm vào để mở.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal đã mở khóa</string>
+  <string name="KeyCachingService_passphrase_cached">Signal Plus đã mở khóa</string>
   <string name="KeyCachingService_lock">Khóa bằng cụm từ mật khẩu</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc chuyện trò</string>
@@ -520,7 +520,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="MessageNotifier_media_message">Tin nhắn đa phương tiện</string>
   <string name="MessageNotifier_reply">Hồi âm</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal bị khoá!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal Plus bị khoá!</string>
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -613,7 +613,7 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <string name="import_fragment__import_the_database_from_the_default_system">Nhập cơ sở dữ liệu từ ứng dụng tin nhắn mặc định của hệ thống</string>
   <string name="import_fragment__restore_encrypted_backup">Phục hồi sao lưu đã mã khóa</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">
-Phục hồi sao lưu Signal đã mã khóa từng xuất ra trước đó</string>
+Phục hồi sao lưu Signal Plus đã mã khóa từng xuất ra trước đó</string>
   <string name="import_fragment__import_plaintext_backup">Nhập sao lưu văn bản thường</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Nhập tập tin sao lưu văn bản không mã khoá. Tương thích với \'Sao lưu &amp; Phục hồi SMS.\'</string>
   <!--load_more_header-->
@@ -639,7 +639,7 @@ Phục hồi sao lưu Signal đã mã khóa từng xuất ra trước đó</stri
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal cần cài đặt MMS để chuyển dữ liệu truyền thông và các tin nhắn nhóm thông qua nhà mạng không dây. Thiết bị của bạn không cung cấp đầy đủ các thông tin này, đôi khi là do thiết bị đã bị khoá và các quy định nghiêm ngặt khác.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal Plus cần cài đặt MMS để chuyển dữ liệu truyền thông và các tin nhắn nhóm thông qua nhà mạng không dây. Thiết bị của bạn không cung cấp đầy đủ các thông tin này, đôi khi là do thiết bị đã bị khoá và các quy định nghiêm ngặt khác.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Để gửi tin nhắn đa phương tiện hoặc tin nhắn nhóm, bấm \'OK\' và hoàn tất các thiết đặt cần thiết. Thiết đặt MMS cho nhà mạng di động có thể tìm thấy bằng cách tìm \'your carrier APN\'. Bạn chỉ cần làm bước này một lần.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BỊ CHẶN</string>
@@ -676,7 +676,7 @@ bao gồm:</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Một vài ứng dụng tin nhắn bên thứ ba như là Handcent hoặc GoSMS thường gây khó khăn khi nhận hay thậm chí
 chặn tất cả SMS đến. Hãy kiểm tra xem bạn có nhận được tin nhắn bắt đầu
-với \'Mã xác minh Signal của bạn\'. Trong trường hợp này, bạn sẽ phải tuỳ chỉnh lại
+với \'Mã xác minh Signal Plus của bạn\'. Trong trường hợp này, bạn sẽ phải tuỳ chỉnh lại
 ứng dụng bên thứ ba để có thể nhận được tin nhắn.
 </string>
   <string name="registration_problems__incorrect_number">Số không đúng.</string>
@@ -685,24 +685,24 @@ Xin xem lại số điền vào có đúng không,
 và dạng số phù hợp với vùng bạn cư ngụ. </string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-Signal sẽ không hoạt động với các số điện thoại Google Voice.
+Signal Plus sẽ không hoạt động với các số điện thoại Google Voice.
 </string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Kiểm chứng giọng nói</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Signal cũng có thể gọi cho bạn để xác minh số điện thoại. Chạm vào \"Gọi Tôi\" và nhập 6 ký tự mã mà bạn nghe được vào bên dưới.
+Signal Plus cũng có thể gọi cho bạn để xác minh số điện thoại. Chạm vào \"Gọi Tôi\" và nhập 6 ký tự mã mà bạn nghe được vào bên dưới.
 </string>
   <string name="registration_progress_activity__verify">Kiểm chứng</string>
   <string name="registration_progress_activity__call_me">Gọi tôi</string>
   <string name="registration_progress_activity__edit_number">Sửa số</string>
   <string name="registration_progress_activity__connectivity_error">Có lỗi kết nối.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal không thể kết nối đến máy chủ.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal Plus không thể kết nối đến máy chủ.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Một số vấn đề có
 thể gặp bao gồm:</string>
   <string name="registration_progress_activity__no_network_connectivity">Không có đường
 truyền mạng.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Thiết bị
-của bạn cần kết nối mạng để có thể sử dụng tính năng Signal này. Hãy kiểm tra để chắc
+của bạn cần kết nối mạng để có thể sử dụng tính năng Signal Plus này. Hãy kiểm tra để chắc
 rằng thiết bị có kết nối 3G hoặc Wi-Fi.
 </string>
   <string name="registration_progress_activity__restrictive_firewall">Tường lửa ngăn chận.</string>
@@ -711,7 +711,7 @@ Nếu bạn đang kết nối Wi-Fi, có khả năng là tường lửa đã ch�
 đến máy chủ Signal. Hãy thử dùng mạng khác hoặc dữ liệu di động.
 </string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Bây giờ, Signal sẽ tự động xác minh số điện thoại của bạn với một tin nhắn SMS.
+Bây giờ, Signal Plus sẽ tự động xác minh số điện thoại của bạn với một tin nhắn SMS.
 </string>
   <string name="registration_progress_activity__connecting">Đang kết nối...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Chờ kiểm
@@ -721,7 +721,7 @@ chứng SMS...</string>
 có thể mất chút thời gian. Xin kiên nhãn chờ, chúng tôi sẽ báo cho bạn biết khi kiểm chứng xong.
 </string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Quá thời gian quy định khi Signal chờ tin nhắn SMS xác minh.</string>
+Quá thời gian quy định khi Signal Plus chờ tin nhắn SMS xác minh.</string>
   <string name="registration_progress_activity__sms_verification_failed">Kiểm chứng
 SMS thất bại.
 </string>
@@ -787,8 +787,8 @@ SMS thất bại.
   <string name="preferences__sms_mms">SMS và MMS</string>
   <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
   <string name="preferences__pref_all_mms_title">Nhận tất cả MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Dùng Signal cho tất cả tin nhắn đến</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Dùng Signal cho tất cả tin nhắn đa phương tiện</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Dùng Signal Plus cho tất cả tin nhắn đến</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Dùng Signal Plus cho tất cả tin nhắn đa phương tiện</string>
   <string name="preferences__input_settings">Thiết Đặt Cách Nhập</string>
   <string name="preferences__enable_enter_key_title">Mở phím Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Thay phím mặt cười với phím Enter</string>
@@ -800,16 +800,16 @@ SMS thất bại.
   <string name="preferences__change_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="preferences__change_your_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="preferences__enable_passphrase">Mở cụm từ mật khẩu</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Khoá Signal và thông báo tin nhắn bằng cụm mật khẩu</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Khoá Signal Plus và thông báo tin nhắn bằng cụm mật khẩu</string>
   <string name="preferences__screen_security">An ninh màn hình</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Chặn không cho chụp màn hình trong danh sách mới nhất và bên trong ứng dụng</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Signal sau một khoảng thời gian không hoạt động định trước</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Signal Plus sau một khoảng thời gian không hoạt động định trước</string>
   <string name="preferences__inactivity_timeout_passphrase">Cụm mật khẩu khoá máy khi không hoạt động</string>
   <string name="preferences__inactivity_timeout_interval">Khoảng thời gian khoá máy khi không hoạt động</string>
   <string name="preferences__notifications">Thông báo</string>
   <string name="preferences__enable_message_notifications">Mở thông báo tin nhắn</string>
   <string name="preferences__new_contacts_notifications">Thông báo liên lạc mới</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Hiện thông báo cho các liên lạc Signal mới</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Hiện thông báo cho các liên lạc Signal Plus mới</string>
   <string name="preferences__led_color">Màu LED</string>
   <string name="preferences__led_color_unknown">Không rõ</string>
   <string name="preferences__pref_led_blink_title">Mô hình chớp nháy LED</string>
@@ -966,16 +966,16 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="text_secure_normal__invite_friends">Mời bạn bè</string>
   <string name="text_secure_normal__help">Trợ giúp</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Phiên bản Signal của bạn đã quá cũ</string>
+  <string name="reminder_header_outdated_build">Phiên bản Signal Plus của bạn đã quá cũ</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Phiên bản Signal của bạn sẽ hết hạn trong %d ngày. Chạm để cập nhật lên phiên bản mới nhất.</item>
+    <item quantity="other">Phiên bản Signal Plus của bạn sẽ hết hạn trong %d ngày. Chạm để cập nhật lên phiên bản mới nhất.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Phiên bản Signal của bạn sẽ hết hạn vào hôm nay. Chạm để cập nhật lên phiên bản mới nhất.</string>
-  <string name="reminder_header_expired_build">Phiên bản Signal của bạn đã hết hạn!</string>
+  <string name="reminder_header_outdated_build_details_today">Phiên bản Signal Plus của bạn sẽ hết hạn vào hôm nay. Chạm để cập nhật lên phiên bản mới nhất.</string>
+  <string name="reminder_header_expired_build">Phiên bản Signal Plus của bạn đã hết hạn!</string>
   <string name="reminder_header_expired_build_details">Tin nhắn sẽ không còn được gửi đi được nữa. Chạm để cập nhật lên phiên bản mới nhất.</string>
   <string name="reminder_header_expired_build_button">CẬP NHẬT</string>
   <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định</string>
-  <string name="reminder_header_sms_default_text">Chạm để đặt Signal làm ứng dụng SMS mặc định.</string>
+  <string name="reminder_header_sms_default_text">Chạm để đặt Signal Plus làm ứng dụng SMS mặc định.</string>
   <string name="reminder_header_sms_default_button">THIẾT LẬP</string>
   <string name="reminder_header_sms_import_title">Nhập SMS hệ thống</string>
   <string name="reminder_header_sms_import_text">Nhấn để sao chép tin nhắn SMS trong điện thoại vào cơ sở dữ liệu mã hóa.</string>
@@ -987,7 +987,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="reminder_header_invite_text"> Hãy nâng cuộc hội thoại của bạn với %1$s lên tầm cao mới.</string>
   <string name="reminder_header_invite_button">MỜI</string>
   <string name="reminder_header_share_title">Hãy mời bạn bè!</string>
-  <string name="reminder_header_share_text">Càng đông bạn dùng Signal càng vui.</string>
+  <string name="reminder_header_share_text">Càng đông bạn dùng Signal Plus càng vui.</string>
   <string name="reminder_header_share_button">CHIA SẺ</string>
   <string name="reminder_header_close_button">ĐÓNG</string>
   <!--MediaPreviewActivity-->

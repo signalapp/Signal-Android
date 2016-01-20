@@ -34,7 +34,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS включены</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора SMS-приложения по умолчанию</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS отключены</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Нажмите, чтобы использовать Signal для всех SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Нажмите, чтобы использовать Signal Plus для всех SMS</string>
   <string name="ApplicationPreferencesActivity_on">включена</string>
   <string name="ApplicationPreferencesActivity_On">Включено</string>
   <string name="ApplicationPreferencesActivity_off">выключена</string>
@@ -68,13 +68,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящий звонок</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Ключ, идентифицирующий личность %1$s, изменился. Это может означать, что кто-то пытается перехватить вашу переписку, или что %2$s просто переустановил(а) Signal и получил(а) новый личный ключ. </string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Ключ, идентифицирующий личность %1$s, изменился. Это может означать, что кто-то пытается перехватить вашу переписку, или что %2$s просто переустановил(а) Signal Plus и получил(а) новый личный ключ. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Возможно, этого собеседника
 стоит перепроверить.</string>
   <string name="ConfirmIdentityDialog_accept">Принять</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Сообщение %s</string>
-  <string name="ContactsDatabase_signal_call_s">Звонок через Signal от %s</string>
+  <string name="ContactsDatabase_signal_call_s">Звонок через Signal Plus от %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Размер сообщения: %d Kб</string>
   <string name="ConversationItem_expires_s">Истекает: %s</string>
@@ -123,7 +123,7 @@
   <string name="ConversationActivity_transport_insecure_sms">Незащищённое SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдём на Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдём на Signal Plus %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Давайте общаться через Signal: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не поддерживаются</string>
@@ -230,7 +230,7 @@
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспорт</string>
   <string name="ExportFragment_export_plaintext_to_storage">Экспортировать открытым текстом на SD-карту?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, ваши сообщения в Signal будут экспортированы на SD-карту в открытом виде.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, ваши сообщения в Signal Plus будут экспортированы на SD-карту в открытом виде.</string>
   <string name="ExportFragment_cancel">Отмена</string>
   <string name="ExportFragment_exporting">Экспорт</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Экспортируем открытый текст на SD-карту...</string>
@@ -239,14 +239,14 @@
   <string name="ExportFragment_success">Успешно!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Неустранимая ошибка соединения!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в службах Google Play. Сообщения и звонки в Signal отключены. Пожалуйста, попробуйте зарегистрироваться снова через меню Наcтройки &gt; Расширенные.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Plus не смог зарегистрироваться в службах Google Play. Сообщения и звонки в Signal Plus отключены. Пожалуйста, попробуйте зарегистрироваться снова через меню Наcтройки &gt; Расширенные.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Новая группа</string>
   <string name="GroupCreateActivity_actionbar_update_title">Обновить группу</string>
   <string name="GroupCreateActivity_group_name_hint">Название группы</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS-группа</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает Signal-группы, поэтому эта группа будет преобразована в MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Вы не зарегистрированы для получения сообщений и звонков в Signal, поэтому группы Signal отключены. Пожалуйста, зарегистрируйтесь через меню Настройки &gt; Расширенные.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Вы не зарегистрированы для получения сообщений и звонков в Signal, поэтому группы Signal Plus отключены. Пожалуйста, зарегистрируйтесь через меню Настройки &gt; Расширенные.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Непредвиденная ошибка не позволила создать группу.</string>
   <string name="GroupCreateActivity_contacts_no_members">Нужен как минимум один участник в группе!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Один из участников имеет неправильный номер. Пожалуйста, исправьте или удалите этот контакт и попробуйте снова.</string>
@@ -337,7 +337,7 @@
   <string name="MessageRecord_s_called_you">%s звонил(а) вам</string>
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s теперь в Signal Plus — скажите «Привет»!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
@@ -440,10 +440,10 @@
   <string name="RegistrationProgressActivity_too_many_requests">Слишком много запросов!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Вы недавно уже запрашивали голосовой звонок. Запросить ещё один вы сможете через 20 минут.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Конфликт регистрации</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере Signal (CyanogenMod?). Вам нужно удалить регистрацию там, чтобы зарегистрироваться здесь.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере Signal Plus (CyanogenMod?). Вам нужно удалить регистрацию там, чтобы зарегистрироваться здесь.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Регистрация завершена</string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">Регистрация в Signal успешно завершена.</string>
+  <string name="RegistrationService_signal_registration_has_successfully_completed">Регистрация в Signal Plus успешно завершена.</string>
   <string name="RegistrationService_registration_error">Ошибка регистрации</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Возникла проблема при регистрации в Signal.</string>
   <!--Slide-->
@@ -470,7 +470,7 @@
   <string name="ThreadRecord_called_you">Звонили вам</string>
   <string name="ThreadRecord_missed_call">Пропущен звонок</string>
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s теперь в Signal Plus — скажите «Привет»!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У получателя нет личного ключа.</string>
@@ -521,7 +521,7 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Нажмите, чтобы открыть.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Нажмите, чтобы открыть; нажмите на замок, чтобы закрыть.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal разблокирован</string>
+  <string name="KeyCachingService_passphrase_cached">Signal Plus разблокирован</string>
   <string name="KeyCachingService_lock">Заблокировать парольной фразой</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
@@ -537,7 +537,7 @@
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_reply">Ответить</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда Signal заблокирован!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда Signal Plus заблокирован!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
@@ -658,7 +658,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Открыть</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Приложению Signal необходимо знать настройки MMS вашего сотового оператора, чтобы отправлять и получать мультимедийные и групповые сообщения. Ваше устройство не даёт доступа к этой информации — так иногда бывает, если в телефоне запрещена смена SIM-карты и в некоторых иных случаях.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Приложению Signal Plus необходимо знать настройки MMS вашего сотового оператора, чтобы отправлять и получать мультимедийные и групповые сообщения. Ваше устройство не даёт доступа к этой информации — так иногда бывает, если в телефоне запрещена смена SIM-карты и в некоторых иных случаях.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Чтобы отправлять мультимедийные и групповые сообщения, нажмите «ОК» и настройте MMS. Это нужно сделать только один раз. Настройки для вашего оператора можно узнать в службе техподдержки или в интернете по запросу «ваш оператор APN».</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ЗАБЛОКИРОВАН</string>
@@ -691,7 +691,7 @@
   <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
   <string name="registration_problems__sms_interceptors">Обработчики SMS</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Некоторые SMS-приложения сторонних разработчиков (например, Handcent или GoSMS) ведут себя неправильно и перехватывают все входящие SMS-сообщения. Проверьте, не получали ли вы сообщение, начинающееся со слов «Your Signal verification code». Если да, то вам необходимо настроить ваше SMS-приложение так, чтобы оно пропускало сообщения дальше. </string>
+Некоторые SMS-приложения сторонних разработчиков (например, Handcent или GoSMS) ведут себя неправильно и перехватывают все входящие SMS-сообщения. Проверьте, не получали ли вы сообщение, начинающееся со слов «Your Signal Plus verification code». Если да, то вам необходимо настроить ваше SMS-приложение так, чтобы оно пропускало сообщения дальше. </string>
   <string name="registration_problems__incorrect_number">Неверный номер.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Пожалуйста, убедитесь, правильно ли вы указали свой номер и соответствует ли его формат
@@ -699,16 +699,16 @@
 </string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-Signal не работает с номерами Google Voice.</string>
+Signal Plus не работает с номерами Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Голосовая проверка</string>
   <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
-Для проверки вашего номера Signal также может вам позвонить. Нажмите «Позвонить мне», дождитесь звонка и введите ниже шесть цифр, которые вы услышите.</string>
+Для проверки вашего номера Signal Plus также может вам позвонить. Нажмите «Позвонить мне», дождитесь звонка и введите ниже шесть цифр, которые вы услышите.</string>
   <string name="registration_progress_activity__verify">Проверить</string>
   <string name="registration_progress_activity__call_me">Позвонить мне</string>
   <string name="registration_progress_activity__edit_number">Изменить номер</string>
   <string name="registration_progress_activity__connectivity_error">Ошибка связи.</string>
-  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal не смог соединиться с сервером.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal Plus не смог соединиться с сервером.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Возможные 
 причины:
 </string>
@@ -721,7 +721,7 @@ Signal не работает с номерами Google Voice.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Если вы подключены по Wi-Fi, возможно, в сети имеется брандмауэр, который блокирует доступ к серверу Signal. Попробуйте воспользоваться другой беспроводной сетью либо мобильным интернетом.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Сейчас Signal автоматически проверит ваш номер телефона при помощи SMS-сообщения. </string>
+Сейчас Signal Plus автоматически проверит ваш номер телефона при помощи SMS-сообщения. </string>
   <string name="registration_progress_activity__connecting">Соединяемся...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Ожидаем
 SMS-подтверждения...
@@ -800,7 +800,7 @@ SMS-подтверждения...
   <string name="preferences__pref_all_sms_title">Получать все SMS</string>
   <string name="preferences__pref_all_mms_title">Получать все MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Использовать SIgnal для всех входящих текстовых сообщений</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать Signal для всех входящих мультимедиа-сообщений</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать Signal Plus для всех входящих мультимедиа-сообщений</string>
   <string name="preferences__input_settings">Настройки ввода</string>
   <string name="preferences__enable_enter_key_title">Включить клавишу «Ввод»</string>
   <string name="preferences__replace_smiley_with_enter_key">Заменить клавишу смайликов на «Ввод»</string>
@@ -812,10 +812,10 @@ SMS-подтверждения...
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>
   <string name="preferences__change_your_passphrase">Изменить парольную фразу</string>
   <string name="preferences__enable_passphrase">Включить парольную фразу</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блокировать Signal и уведомления о сообщениях парольной фразой</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блокировать Signal Plus и уведомления о сообщениях парольной фразой</string>
   <string name="preferences__screen_security">Защита экрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокировать снимки экрана внутри приложения</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматически блокировать Signal после указанного времени бездействия</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматически блокировать Signal Plus после указанного времени бездействия</string>
   <string name="preferences__inactivity_timeout_passphrase">Парольная фраза при бездействии</string>
   <string name="preferences__inactivity_timeout_interval">Интервал бездействия</string>
   <string name="preferences__notifications">Уведомления</string>
@@ -976,19 +976,19 @@ SMS-подтверждения...
   <string name="text_secure_normal__invite_friends">Пригласить друзей в Signal</string>
   <string name="text_secure_normal__help">Помощь</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Ваша версия Signal устарела</string>
+  <string name="reminder_header_outdated_build">Ваша версия Signal Plus устарела</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Срок действия вашей версии Signal истечёт через 1 день. Нажмите, чтобы обновиться до последней версии.</item>
-    <item quantity="few">Срок действия вашей версии Signal истечёт через %d дня. Нажмите, чтобы обновиться до последней версии.</item>
-    <item quantity="many">Срок действия вашей версии Signal истечёт через %d дней. Нажмите, чтобы обновиться до последней версии.</item>
-    <item quantity="other">Срок действия вашей версии Signal истечёт через %d дней. Нажмите, чтобы обновиться до последней версии.</item>
+    <item quantity="one">Срок действия вашей версии Signal Plus истечёт через 1 день. Нажмите, чтобы обновиться до последней версии.</item>
+    <item quantity="few">Срок действия вашей версии Signal Plus истечёт через %d дня. Нажмите, чтобы обновиться до последней версии.</item>
+    <item quantity="many">Срок действия вашей версии Signal Plus истечёт через %d дней. Нажмите, чтобы обновиться до последней версии.</item>
+    <item quantity="other">Срок действия вашей версии Signal Plus истечёт через %d дней. Нажмите, чтобы обновиться до последней версии.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Срок действия вашей версии Signal истекает сегодня. Нажмите, чтобы обновиться до последней версии.</string>
-  <string name="reminder_header_expired_build">Срок действия вашей версии Signal истёк!</string>
+  <string name="reminder_header_outdated_build_details_today">Срок действия вашей версии Signal Plus истекает сегодня. Нажмите, чтобы обновиться до последней версии.</string>
+  <string name="reminder_header_expired_build">Срок действия вашей версии Signal Plus истёк!</string>
   <string name="reminder_header_expired_build_details">Сообщения более не будут отправляться. Нажмите, чтобы обновиться до последней версии.</string>
   <string name="reminder_header_expired_build_button">ОБНОВИТЬСЯ</string>
   <string name="reminder_header_sms_default_title">SMS-приложение по умолчанию</string>
-  <string name="reminder_header_sms_default_text">Нажмите, чтобы использовать Signal для всех SMS на устройстве.</string>
+  <string name="reminder_header_sms_default_text">Нажмите, чтобы использовать Signal Plus для всех SMS на устройстве.</string>
   <string name="reminder_header_sms_default_button">ОК</string>
   <string name="reminder_header_sms_import_title">Импортировать SMS из системы</string>
   <string name="reminder_header_sms_import_text">Нажмите, чтобы скопировать SMS с вашего устройства в зашифрованную базу данных.</string>

@@ -680,7 +680,7 @@
   <string name="registration_problems__sms_interceptors">מיירטי SMS</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 לקוחות צד־שלישי אחדים לשליחת מסרים, כגון Handcent או GoSMS לא מתנהגים יפה
-ומיירטים את כל ה־SMS־ים הנכנסים. נא לבדוק שקיבלת SMS שמתחיל במילים „Your Signal verification code:”, ואולי כדאי גם
+ומיירטים את כל ה־SMS־ים הנכנסים. נא לבדוק שקיבלת SMS שמתחיל במילים „Your Signal Plus verification code:”, ואולי כדאי גם
 שתגדיר את אפליקציית המסרים שלך כך שתיתן למסרים לעבור.</string>
   <string name="registration_problems__incorrect_number">מספר שגוי.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
