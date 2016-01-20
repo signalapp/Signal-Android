@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.annotation.TargetApi;
 import android.content.Context;

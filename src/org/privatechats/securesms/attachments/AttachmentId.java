@@ -1,6 +1,6 @@
-package org.thoughtcrime.securesms.attachments;
+package org.privatechats.securesms.attachments;
 
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.util.Util;
 
 public class AttachmentId {
 

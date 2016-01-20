@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -19,15 +19,15 @@ import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.RoundedCorners;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideClickListener;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.privatechats.securesms.mms.RoundedCorners;
+import org.privatechats.securesms.mms.Slide;
+import org.privatechats.securesms.mms.SlideClickListener;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 public class ThumbnailView extends FrameLayout {

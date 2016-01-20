@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.audio;
+package org.privatechats.securesms.audio;
 
 import android.annotation.TargetApi;
 import android.media.AudioFormat;
@@ -10,7 +10,7 @@ import android.media.MediaRecorder;
 import android.os.Build;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.util.Util;
 
 import java.io.IOException;
 import java.io.OutputStream;

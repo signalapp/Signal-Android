@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,12 +23,12 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.crypto.IdentityKeyParcelable;
+import org.privatechats.securesms.crypto.IdentityKeyUtil;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.storage.TextSecureSessionStore;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
 import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.state.SessionRecord;

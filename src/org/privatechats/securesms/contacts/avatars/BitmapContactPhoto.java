@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.contacts.avatars;
+package org.privatechats.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.graphics.Bitmap;

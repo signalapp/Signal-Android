@@ -3,37 +3,37 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+    <org.privatechats.securesms.components.CustomDefaultPreference
             app:custom_pref_toggle="pref_apn_mmsc_custom_host"
             android:key="pref_apn_mmsc_host"
             android:title="@string/preferences__mmsc_url"
             android:inputType="textUri" />
 
-    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+    <org.privatechats.securesms.components.CustomDefaultPreference
             app:custom_pref_toggle="pref_apn_mms_custom_proxy"
             android:key="pref_apn_mms_proxy"
             android:title="@string/preferences__mms_proxy_host"
             android:inputType="textUri" />
 
-    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+    <org.privatechats.securesms.components.CustomDefaultPreference
             app:custom_pref_toggle="pref_apn_mms_custom_proxy_port"
             android:key="pref_apn_mms_proxy_port"
             android:title="@string/preferences__mms_proxy_port"
             android:inputType="number"/>
 
-    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+    <org.privatechats.securesms.components.CustomDefaultPreference
             app:custom_pref_toggle="pref_apn_mmsc_custom_username"
             android:key="pref_apn_mmsc_username"
             android:title="@string/preferences__mmsc_username"
             android:inputType="textNoSuggestions"/>
 
-    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+    <org.privatechats.securesms.components.CustomDefaultPreference
             app:custom_pref_toggle="pref_apn_mmsc_custom_password"
             android:key="pref_apn_mmsc_password"
             android:title="@string/preferences__mmsc_password"
             android:inputType="textVisiblePassword"/>
 
-    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+    <org.privatechats.securesms.components.CustomDefaultPreference
             app:custom_pref_toggle="pref_custom_mms_user_agent"
             android:key="pref_mms_user_agent"
             android:title="@string/preferences__mms_user_agent"

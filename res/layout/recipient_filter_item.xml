@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        <org.privatechats.securesms.components.emoji.EmojiTextView
             android:id="@+id/name"
             style="?android:attr/dropDownItemStyle"
             android:layout_width="wrap_content"

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.signaling;
+package org.privatechats.redphone.signaling;
 
 public class ServerMessageException extends Exception {
 

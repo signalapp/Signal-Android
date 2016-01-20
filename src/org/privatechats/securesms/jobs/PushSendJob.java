@@ -1,18 +1,18 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.TextSecureDirectory;
+import org.privatechats.securesms.events.PartProgressEvent;
+import org.privatechats.securesms.jobs.requirements.MasterSecretRequirement;
+import org.privatechats.securesms.mms.PartAuthority;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.util.guava.Optional;

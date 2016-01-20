@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 
@@ -8,9 +8,9 @@ import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskCacheAdapter;
 import com.bumptech.glide.module.GlideModule;
 
-import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
-import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.privatechats.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
+import org.privatechats.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
+import org.privatechats.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 
 import java.io.InputStream;
 

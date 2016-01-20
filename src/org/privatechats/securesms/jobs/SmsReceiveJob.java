@@ -1,20 +1,20 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.crypto.MasterSecretUtil;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.EncryptingSmsDatabase;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.service.KeyCachingService;
+import org.privatechats.securesms.sms.IncomingTextMessage;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 

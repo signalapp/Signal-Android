@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -8,11 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.ConversationListActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.preferences.NotificationPrivacyPreference;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;

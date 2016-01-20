@@ -4,7 +4,7 @@
  * at http://creativecommons.org/licenses/publicdomain
  */
 
-package org.thoughtcrime.securesms.util.deque;
+package org.privatechats.securesms.util.deque;
 
 import java.util.Collection;
 import java.util.Iterator;

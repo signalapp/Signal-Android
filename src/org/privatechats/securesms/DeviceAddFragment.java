@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
@@ -28,11 +28,11 @@ import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 
-import org.thoughtcrime.securesms.components.camera.CameraView;
-import org.thoughtcrime.securesms.components.camera.CameraView.PreviewCallback;
-import org.thoughtcrime.securesms.components.camera.CameraView.PreviewFrame;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.components.camera.CameraView;
+import org.privatechats.securesms.components.camera.CameraView.PreviewCallback;
+import org.privatechats.securesms.components.camera.CameraView.PreviewFrame;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.ViewUtil;
 
 public class DeviceAddFragment extends Fragment implements PreviewCallback {
 

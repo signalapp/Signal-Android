@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 /*
  * Copyright 2013 Google Inc.
@@ -38,7 +38,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 /**
  * A preference that allows the user to choose an application or shortcut.

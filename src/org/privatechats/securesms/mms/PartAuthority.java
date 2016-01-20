@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -6,20 +6,20 @@ import android.content.UriMatcher;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
-import org.thoughtcrime.securesms.providers.PartProvider;
-import org.thoughtcrime.securesms.providers.SingleUseBlobProvider;
+import org.privatechats.securesms.attachments.AttachmentId;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.providers.PersistentBlobProvider;
+import org.privatechats.securesms.providers.PartProvider;
+import org.privatechats.securesms.providers.SingleUseBlobProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class PartAuthority {
 
-  private static final String PART_URI_STRING   = "content://org.thoughtcrime.securesms/part";
-  private static final String THUMB_URI_STRING  = "content://org.thoughtcrime.securesms/thumb";
+  private static final String PART_URI_STRING   = "content://org.privatechats.securesms/part";
+  private static final String THUMB_URI_STRING  = "content://org.privatechats.securesms/thumb";
   private static final Uri    PART_CONTENT_URI  = Uri.parse(PART_URI_STRING);
   private static final Uri    THUMB_CONTENT_URI = Uri.parse(THUMB_URI_STRING);
 
@@ -32,8 +32,8 @@ public class PartAuthority {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.securesms", "part/*/#", PART_ROW);
-    uriMatcher.addURI("org.thoughtcrime.securesms", "thumb/*/#", THUMB_ROW);
+    uriMatcher.addURI("org.privatechats.securesms", "part/*/#", PART_ROW);
+    uriMatcher.addURI("org.privatechats.securesms", "thumb/*/#", THUMB_ROW);
     uriMatcher.addURI(PersistentBlobProvider.AUTHORITY, PersistentBlobProvider.EXPECTED_PATH, PERSISTENT_ROW);
     uriMatcher.addURI(SingleUseBlobProvider.AUTHORITY, SingleUseBlobProvider.PATH, SINGLE_USE_ROW);
   }

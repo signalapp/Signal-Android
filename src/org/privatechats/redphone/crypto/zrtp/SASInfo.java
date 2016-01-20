@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.crypto.zrtp;
+package org.privatechats.redphone.crypto.zrtp;
 
 public class SASInfo {
 

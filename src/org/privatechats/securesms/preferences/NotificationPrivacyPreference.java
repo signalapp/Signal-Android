@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 public class NotificationPrivacyPreference {
 

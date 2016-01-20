@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-import org.thoughtcrime.securesms.BaseUnitTest;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import org.privatechats.securesms.BaseUnitTest;
+import org.privatechats.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.NotFoundException;

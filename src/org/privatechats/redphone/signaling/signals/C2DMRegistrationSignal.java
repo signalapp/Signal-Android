@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.signaling.signals;
+package org.privatechats.redphone.signaling.signals;
 
 /**
  * A signal which indicates that the endpoint has registered

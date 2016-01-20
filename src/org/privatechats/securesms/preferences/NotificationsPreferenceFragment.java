@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,11 +13,11 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.ApplicationPreferencesActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragment {
 

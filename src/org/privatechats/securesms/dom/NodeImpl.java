@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom;
+package org.privatechats.securesms.dom;
 
 import java.util.NoSuchElementException;
 import java.util.Vector;
@@ -31,7 +31,7 @@ import org.w3c.dom.events.EventException;
 import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
 
-import org.thoughtcrime.securesms.dom.events.EventTargetImpl;
+import org.privatechats.securesms.dom.events.EventTargetImpl;
 
 public abstract class NodeImpl implements Node, EventTarget {
     private Node mParentNode;

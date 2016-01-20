@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -24,11 +24,11 @@ import android.database.sqlite.SQLiteStatement;
 import android.net.Uri;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.crypto.MasterCipher;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.RecipientFormattingException;
+import org.privatechats.securesms.recipients.Recipients;
 
 import java.util.StringTokenizer;
 

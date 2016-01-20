@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.text.InputFilter;
 import android.text.Spannable;

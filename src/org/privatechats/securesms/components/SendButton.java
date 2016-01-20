@@ -1,15 +1,15 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
 
-import org.thoughtcrime.securesms.TransportOption;
-import org.thoughtcrime.securesms.TransportOptions;
-import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
-import org.thoughtcrime.securesms.TransportOptionsPopup;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.TransportOption;
+import org.privatechats.securesms.TransportOptions;
+import org.privatechats.securesms.TransportOptions.OnTransportChangedListener;
+import org.privatechats.securesms.TransportOptionsPopup;
+import org.privatechats.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 public class SendButton extends ImageButton

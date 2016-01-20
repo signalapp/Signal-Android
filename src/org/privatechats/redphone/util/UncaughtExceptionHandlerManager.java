@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.util;
+package org.privatechats.redphone.util;
 
 import android.util.Log;
 

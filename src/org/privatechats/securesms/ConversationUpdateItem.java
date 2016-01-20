@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,13 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.DateUtils;
+import org.privatechats.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.Util;
 
 import java.util.Locale;
 import java.util.Set;

@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.smil;
+package org.privatechats.securesms.dom.smil;
 
 import org.w3c.dom.DOMException;
 import org.w3c.dom.smil.SMILElement;
 
-import org.thoughtcrime.securesms.dom.ElementImpl;
+import org.privatechats.securesms.dom.ElementImpl;
 
 public class SmilElementImpl extends ElementImpl implements SMILElement {
     /**

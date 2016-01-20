@@ -1,14 +1,14 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.AvatarImageView;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.Util;
 
 public class BlockedContactListItem extends RelativeLayout implements Recipients.RecipientsModifiedListener {
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.gcm;
+package org.privatechats.securesms.gcm;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,17 +9,17 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.thoughtcrime.redphone.RedPhoneService;
-import org.thoughtcrime.redphone.crypto.EncryptedSignalMessage;
-import org.thoughtcrime.redphone.crypto.InvalidEncryptedSignalException;
-import org.thoughtcrime.redphone.signaling.SessionDescriptor;
-import org.thoughtcrime.redphone.signaling.signals.CompressedInitiateSignalProtocol.CompressedInitiateSignal;
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.redphone.RedPhoneService;
+import org.privatechats.redphone.crypto.EncryptedSignalMessage;
+import org.privatechats.redphone.crypto.InvalidEncryptedSignalException;
+import org.privatechats.redphone.signaling.SessionDescriptor;
+import org.privatechats.redphone.signaling.signals.CompressedInitiateSignalProtocol.CompressedInitiateSignal;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.jobs.PushContentReceiveJob;
+import org.privatechats.securesms.jobs.PushNotificationReceiveJob;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
 

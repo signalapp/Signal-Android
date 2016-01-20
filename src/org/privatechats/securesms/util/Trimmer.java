@@ -1,13 +1,13 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.ThreadDatabase;
 
 public class Trimmer {
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

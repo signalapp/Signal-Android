@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -20,11 +20,11 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.BitmapUtil;
+import org.privatechats.securesms.util.FutureTaskListener;
+import org.privatechats.securesms.util.ListenableFutureTask;
+import org.privatechats.securesms.util.Util;
 
 import java.io.IOException;
 import java.lang.ref.SoftReference;

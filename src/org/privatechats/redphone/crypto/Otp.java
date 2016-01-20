@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.crypto;
+package org.privatechats.redphone.crypto;
 
-import org.thoughtcrime.securesms.util.Base64;
+import org.privatechats.securesms.util.Base64;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

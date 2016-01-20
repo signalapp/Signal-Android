@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -17,16 +17,16 @@ import android.text.SpannableStringBuilder;
 
 import com.bumptech.glide.Glide;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.mms.DecryptableStreamUriLoader;
+import org.privatechats.securesms.mms.Slide;
+import org.privatechats.securesms.mms.SlideDeck;
+import org.privatechats.securesms.preferences.NotificationPrivacyPreference;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.BitmapUtil;
+import org.privatechats.securesms.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;

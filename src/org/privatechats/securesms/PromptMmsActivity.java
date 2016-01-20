@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 
-import org.thoughtcrime.securesms.preferences.MmsPreferencesActivity;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.preferences.MmsPreferencesActivity;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 public class PromptMmsActivity extends PassphraseRequiredActionBarActivity {
 

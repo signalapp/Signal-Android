@@ -4,7 +4,7 @@
  * http://creativecommons.org/licenses/publicdomain
  */
 
-package org.thoughtcrime.securesms.util.deque;
+package org.privatechats.securesms.util.deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingQueue;

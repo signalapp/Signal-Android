@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.push;
+package org.privatechats.securesms.push;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 

@@ -1,13 +1,13 @@
-package org.thoughtcrime.securesms.dependencies;
+package org.privatechats.securesms.dependencies;
 
 import android.content.Context;
 
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
-import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.redphone.signaling.RedPhoneAccountManager;
+import org.privatechats.redphone.signaling.RedPhoneTrustStore;
+import org.privatechats.securesms.BuildConfig;
+import org.privatechats.securesms.jobs.GcmRefreshJob;
+import org.privatechats.securesms.jobs.RefreshAttributesJob;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import dagger.Module;
 import dagger.Provides;

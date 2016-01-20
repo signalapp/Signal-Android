@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.os.Parcel;
 import android.os.Parcelable;

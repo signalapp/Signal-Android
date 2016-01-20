@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,11 +20,11 @@ import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 
-import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.database.loaders.DeviceListLoader;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.util.task.ProgressDialogAsyncTask;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.ViewUtil;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceInfo;
 

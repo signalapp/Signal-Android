@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -13,9 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.ViewUtil;
 
 public class ContactFilterToolbar extends Toolbar {
   private   OnFilterChangedListener listener;

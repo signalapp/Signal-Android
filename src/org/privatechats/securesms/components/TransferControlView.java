@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.graphics.PorterDuff.Mode;
@@ -20,12 +20,12 @@ import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.animation.ValueAnimator.AnimatorUpdateListener;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.events.PartProgressEvent;
+import org.privatechats.securesms.mms.Slide;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.ViewUtil;
 
 import de.greenrobot.event.EventBus;
 

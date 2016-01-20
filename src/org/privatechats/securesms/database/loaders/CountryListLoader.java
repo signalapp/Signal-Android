@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database.loaders;
+package org.privatechats.securesms.database.loaders;
 
 
 import java.util.ArrayList;

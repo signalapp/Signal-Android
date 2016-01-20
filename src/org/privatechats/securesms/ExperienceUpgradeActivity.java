@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -21,11 +21,11 @@ import android.view.View.OnClickListener;
 import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ArgbEvaluator;
 
-import org.thoughtcrime.securesms.IntroPagerAdapter.IntroPage;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.IntroPagerAdapter.IntroPage;
+import org.privatechats.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Collections;

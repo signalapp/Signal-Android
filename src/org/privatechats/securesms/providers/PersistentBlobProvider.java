@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.providers;
+package org.privatechats.securesms.providers;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -7,11 +7,11 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.crypto.DecryptingPartInputStream;
+import org.privatechats.securesms.crypto.EncryptingPartOutputStream;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.Util;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -29,9 +29,9 @@ public class PersistentBlobProvider {
 
   private static final String TAG = PersistentBlobProvider.class.getSimpleName();
 
-  private static final String     URI_STRING    = "content://org.thoughtcrime.securesms/capture";
+  private static final String     URI_STRING    = "content://org.privatechats.securesms/capture";
   public  static final Uri        CONTENT_URI   = Uri.parse(URI_STRING);
-  public  static final String     AUTHORITY     = "org.thoughtcrime.securesms";
+  public  static final String     AUTHORITY     = "org.privatechats.securesms";
   public  static final String     EXPECTED_PATH = "capture/*/#";
   private static final int        MATCH         = 1;
   private static final UriMatcher MATCHER       = new UriMatcher(UriMatcher.NO_MATCH) {{

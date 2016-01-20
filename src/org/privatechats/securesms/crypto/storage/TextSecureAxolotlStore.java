@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.crypto.storage;
+package org.privatechats.securesms.crypto.storage;
 
 import android.content.Context;
 

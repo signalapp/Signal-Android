@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.crypto.zrtp.retained;
+package org.privatechats.redphone.crypto.zrtp.retained;
 
 import java.util.Arrays;
 

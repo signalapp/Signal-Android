@@ -14,14 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.recipients;
+package org.privatechats.securesms.recipients;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.database.CanonicalAddressDatabase;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.Collection;

@@ -3,7 +3,7 @@
 <!--
 
 	These strings are the source of the TextSecure Google Play Store description.
-	https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&hl=en
+	https://play.google.com/store/apps/details?id=org.privatechats.securesms&hl=en
 
 	The sparse numbering of the string variables allows inserting additional lines
 	later without the need to renumber existing strings.

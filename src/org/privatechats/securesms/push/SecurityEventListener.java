@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.push;
+package org.privatechats.securesms.push;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.crypto.SecurityEvent;
+import org.privatechats.securesms.crypto.SecurityEvent;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 

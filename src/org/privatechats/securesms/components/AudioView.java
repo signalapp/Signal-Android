@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,14 +17,14 @@ import android.widget.TextView;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.mms.SlideClickListener;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.audio.AudioSlidePlayer;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.events.PartProgressEvent;
+import org.privatechats.securesms.mms.AudioSlide;
+import org.privatechats.securesms.mms.SlideClickListener;
+import org.privatechats.securesms.util.Util;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

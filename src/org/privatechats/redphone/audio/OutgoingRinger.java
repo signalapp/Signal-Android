@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.audio;
+package org.privatechats.redphone.audio;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -23,8 +23,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.ServiceUtil;
 
 import java.io.IOException;
 

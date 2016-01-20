@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.crypto;
+package org.privatechats.securesms.crypto;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.thoughtcrime.securesms.BaseUnitTest;
+import org.privatechats.securesms.BaseUnitTest;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 
 @PowerMockIgnore("javax.crypto.*")

@@ -3,7 +3,7 @@
        xmlns:app="http://schemas.android.com/apk/res-auto"
        xmlns:tools="http://schemas.android.com/tools">
 
-<org.thoughtcrime.securesms.components.InputPanel
+<org.privatechats.securesms.components.InputPanel
         android:id="@+id/bottom_panel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
                       android:clipChildren="false"
                       android:clipToPadding="false">
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiToggle
+            <org.privatechats.securesms.components.emoji.EmojiToggle
                     android:id="@+id/emoji_toggle"
                     android:layout_width="37dp"
                     android:layout_height="37dp"
@@ -35,7 +35,7 @@
                     android:background="@drawable/touch_highlight_background"
                     android:contentDescription="@string/conversation_activity__emoji_toggle_description" />
 
-            <org.thoughtcrime.securesms.components.ComposeText
+            <org.privatechats.securesms.components.ComposeText
                     style="@style/ComposeEditText"
                     android:id="@+id/embedded_text_editor"
                     android:layout_width="0dp"
@@ -48,9 +48,9 @@
                     tools:visibility="invisible"
                     tools:hint="Send TextSecure message" >
                 <requestFocus />
-            </org.thoughtcrime.securesms.components.ComposeText>
+            </org.privatechats.securesms.components.ComposeText>
 
-            <org.thoughtcrime.securesms.components.HidingLinearLayout
+            <org.privatechats.securesms.components.HidingLinearLayout
                     android:id="@+id/quick_attachment_toggle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                         android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
                         android:padding="10dp"/>
 
-                <org.thoughtcrime.securesms.components.MicrophoneRecorderView
+                <org.privatechats.securesms.components.MicrophoneRecorderView
                         android:id="@+id/recorder_view"
                         android:layout_width="37dp"
                         android:layout_height="37dp"
@@ -93,9 +93,9 @@
                                android:visibility="gone"
                                android:scaleType="center"/>
 
-                </org.thoughtcrime.securesms.components.MicrophoneRecorderView>
+                </org.privatechats.securesms.components.MicrophoneRecorderView>
 
-            </org.thoughtcrime.securesms.components.HidingLinearLayout>
+            </org.privatechats.securesms.components.HidingLinearLayout>
         </LinearLayout>
 
         <LinearLayout android:id="@+id/recording_container"
@@ -140,7 +140,7 @@
         </LinearLayout>
 
     </FrameLayout>
-    <org.thoughtcrime.securesms.components.AnimatingToggle
+    <org.privatechats.securesms.components.AnimatingToggle
             android:id="@+id/button_toggle"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -156,7 +156,7 @@
                      android:contentDescription="@string/ConversationActivity_add_attachment"
                      android:nextFocusLeft="@+id/embedded_text_editor" />
 
-        <org.thoughtcrime.securesms.components.SendButton
+        <org.privatechats.securesms.components.SendButton
                 android:id="@+id/send_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -165,6 +165,6 @@
                 android:src="?conversation_transport_sms_indicator"
                 android:background="@drawable/circle_touch_highlight_background" />
 
-    </org.thoughtcrime.securesms.components.AnimatingToggle>
-</org.thoughtcrime.securesms.components.InputPanel>
+    </org.privatechats.securesms.components.AnimatingToggle>
+</org.privatechats.securesms.components.InputPanel>
 </merge>

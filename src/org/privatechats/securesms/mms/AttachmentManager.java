@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -37,21 +37,21 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-import org.thoughtcrime.securesms.MediaPreviewActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.AudioView;
-import org.thoughtcrime.securesms.components.RemovableMediaView;
-import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.components.location.SignalMapView;
-import org.thoughtcrime.securesms.components.location.SignalPlace;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
+import org.privatechats.securesms.MediaPreviewActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.AudioView;
+import org.privatechats.securesms.components.RemovableMediaView;
+import org.privatechats.securesms.components.ThumbnailView;
+import org.privatechats.securesms.components.location.SignalMapView;
+import org.privatechats.securesms.components.location.SignalPlace;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.providers.PersistentBlobProvider;
+import org.privatechats.securesms.util.BitmapUtil;
+import org.privatechats.securesms.util.MediaUtil;
+import org.privatechats.securesms.util.ViewUtil;
+import org.privatechats.securesms.util.concurrent.AssertedSuccessListener;
+import org.privatechats.securesms.util.concurrent.ListenableFuture;
+import org.privatechats.securesms.util.concurrent.ListenableFuture.Listener;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;

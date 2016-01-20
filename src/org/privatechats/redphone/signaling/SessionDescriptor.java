@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.signaling;
+package org.privatechats.redphone.signaling;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.thoughtcrime.securesms.BuildConfig;
+import org.privatechats.securesms.BuildConfig;
 
 /**
  * A helper tuple that encapsulates both a call's session ID

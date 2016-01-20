@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -12,7 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class EmojiPageView extends FrameLayout {
   private static final String TAG = EmojiPageView.class.getSimpleName();

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone;
+package org.privatechats.redphone;
 
 import android.app.Service;
 import android.content.Intent;
@@ -31,33 +31,33 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.redphone.audio.IncomingRinger;
-import org.thoughtcrime.redphone.audio.OutgoingRinger;
-import org.thoughtcrime.redphone.call.CallManager;
-import org.thoughtcrime.redphone.call.CallStateListener;
-import org.thoughtcrime.redphone.call.InitiatingCallManager;
-import org.thoughtcrime.redphone.call.LockManager;
-import org.thoughtcrime.redphone.call.ResponderCallManager;
-import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
-import org.thoughtcrime.redphone.pstn.CallStateView;
-import org.thoughtcrime.redphone.pstn.IncomingPstnCallListener;
-import org.thoughtcrime.redphone.signaling.OtpCounterProvider;
-import org.thoughtcrime.redphone.signaling.SessionDescriptor;
-import org.thoughtcrime.redphone.signaling.SignalingException;
-import org.thoughtcrime.redphone.signaling.SignalingSocket;
-import org.thoughtcrime.redphone.ui.NotificationBarManager;
-import org.thoughtcrime.redphone.util.AudioUtils;
-import org.thoughtcrime.redphone.util.UncaughtExceptionHandlerManager;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.events.RedPhoneEvent;
-import org.thoughtcrime.securesms.events.RedPhoneEvent.Type;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.redphone.audio.IncomingRinger;
+import org.privatechats.redphone.audio.OutgoingRinger;
+import org.privatechats.redphone.call.CallManager;
+import org.privatechats.redphone.call.CallStateListener;
+import org.privatechats.redphone.call.InitiatingCallManager;
+import org.privatechats.redphone.call.LockManager;
+import org.privatechats.redphone.call.ResponderCallManager;
+import org.privatechats.redphone.crypto.zrtp.SASInfo;
+import org.privatechats.redphone.pstn.CallStateView;
+import org.privatechats.redphone.pstn.IncomingPstnCallListener;
+import org.privatechats.redphone.signaling.OtpCounterProvider;
+import org.privatechats.redphone.signaling.SessionDescriptor;
+import org.privatechats.redphone.signaling.SignalingException;
+import org.privatechats.redphone.signaling.SignalingSocket;
+import org.privatechats.redphone.ui.NotificationBarManager;
+import org.privatechats.redphone.util.AudioUtils;
+import org.privatechats.redphone.util.UncaughtExceptionHandlerManager;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.events.RedPhoneEvent;
+import org.privatechats.securesms.events.RedPhoneEvent.Type;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.service.KeyCachingService;
+import org.privatechats.securesms.util.Base64;
+import org.privatechats.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -88,12 +88,12 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   public static final String EXTRA_SESSION_DESCRIPTOR = "session_descriptor";
   public static final String EXTRA_MUTE               = "mute_value";
 
-  public static final String ACTION_INCOMING_CALL = "org.thoughtcrime.redphone.RedPhoneService.INCOMING_CALL";
-  public static final String ACTION_OUTGOING_CALL = "org.thoughtcrime.redphone.RedPhoneService.OUTGOING_CALL";
-  public static final String ACTION_ANSWER_CALL   = "org.thoughtcrime.redphone.RedPhoneService.ANSWER_CALL";
-  public static final String ACTION_DENY_CALL     = "org.thoughtcrime.redphone.RedPhoneService.DENY_CALL";
-  public static final String ACTION_HANGUP_CALL   = "org.thoughtcrime.redphone.RedPhoneService.HANGUP";
-  public static final String ACTION_SET_MUTE      = "org.thoughtcrime.redphone.RedPhoneService.SET_MUTE";
+  public static final String ACTION_INCOMING_CALL = "org.privatechats.redphone.RedPhoneService.INCOMING_CALL";
+  public static final String ACTION_OUTGOING_CALL = "org.privatechats.redphone.RedPhoneService.OUTGOING_CALL";
+  public static final String ACTION_ANSWER_CALL   = "org.privatechats.redphone.RedPhoneService.ANSWER_CALL";
+  public static final String ACTION_DENY_CALL     = "org.privatechats.redphone.RedPhoneService.DENY_CALL";
+  public static final String ACTION_HANGUP_CALL   = "org.privatechats.redphone.RedPhoneService.HANGUP";
+  public static final String ACTION_SET_MUTE      = "org.privatechats.redphone.RedPhoneService.SET_MUTE";
 
   private final Handler serviceHandler       = new Handler();
 

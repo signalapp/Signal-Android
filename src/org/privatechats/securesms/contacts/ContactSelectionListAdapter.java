@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -33,13 +33,13 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScrollAdapter;
-import org.thoughtcrime.securesms.ContactSelectionListFragment.StickyHeaderAdapter;
-import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.HeaderViewHolder;
-import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.RecyclerViewFastScroller.FastScrollAdapter;
+import org.privatechats.securesms.ContactSelectionListFragment.StickyHeaderAdapter;
+import org.privatechats.securesms.contacts.ContactSelectionListAdapter.HeaderViewHolder;
+import org.privatechats.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
+import org.privatechats.securesms.database.CursorRecyclerViewAdapter;
+import org.privatechats.securesms.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;

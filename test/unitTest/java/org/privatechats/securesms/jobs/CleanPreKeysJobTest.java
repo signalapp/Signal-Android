@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.BaseUnitTest;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
+import org.privatechats.securesms.BaseUnitTest;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.dependencies.AxolotlStorageModule;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;

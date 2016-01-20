@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -38,33 +38,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.AudioView;
-import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.components.DeliveryStatusView;
-import org.thoughtcrime.securesms.components.AlertView;
-import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
-import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
-import org.thoughtcrime.securesms.jobs.MmsSendJob;
-import org.thoughtcrime.securesms.jobs.SmsSendJob;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideClickListener;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.components.AudioView;
+import org.privatechats.securesms.components.AvatarImageView;
+import org.privatechats.securesms.components.DeliveryStatusView;
+import org.privatechats.securesms.components.AlertView;
+import org.privatechats.securesms.components.ThumbnailView;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.MmsDatabase;
+import org.privatechats.securesms.database.MmsSmsDatabase;
+import org.privatechats.securesms.database.SmsDatabase;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatch;
+import org.privatechats.securesms.database.model.MediaMmsMessageRecord;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.database.model.NotificationMmsMessageRecord;
+import org.privatechats.securesms.jobs.MmsDownloadJob;
+import org.privatechats.securesms.jobs.MmsSendJob;
+import org.privatechats.securesms.jobs.SmsSendJob;
+import org.privatechats.securesms.mms.PartAuthority;
+import org.privatechats.securesms.mms.Slide;
+import org.privatechats.securesms.mms.SlideClickListener;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.DateUtils;
+import org.privatechats.securesms.util.DynamicTheme;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 
 import java.util.HashSet;
 import java.util.List;

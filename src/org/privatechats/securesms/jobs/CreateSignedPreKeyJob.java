@@ -1,14 +1,14 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.PreKeyUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.crypto.IdentityKeyUtil;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.PreKeyUtil;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.jobs.requirements.MasterSecretRequirement;
+import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.IdentityKeyPair;

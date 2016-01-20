@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
 
 import java.util.LinkedList;
 import java.util.List;

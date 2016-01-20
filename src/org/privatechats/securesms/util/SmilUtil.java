@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.util.Log;
 
-import org.thoughtcrime.securesms.dom.smil.SmilDocumentImpl;
-import org.thoughtcrime.securesms.dom.smil.parser.SmilXmlSerializer;
-import org.thoughtcrime.securesms.mms.PartParser;
+import org.privatechats.securesms.dom.smil.SmilDocumentImpl;
+import org.privatechats.securesms.dom.smil.parser.SmilXmlSerializer;
+import org.privatechats.securesms.mms.PartParser;
 import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILElement;
 import org.w3c.dom.smil.SMILLayoutElement;

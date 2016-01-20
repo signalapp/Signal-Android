@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 public class ApnUnavailableException extends Exception {
 

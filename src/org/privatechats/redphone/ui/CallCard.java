@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.ui;
+package org.privatechats.redphone.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -24,8 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.recipients.Recipient;
 
 /**
  * The in-call display card.

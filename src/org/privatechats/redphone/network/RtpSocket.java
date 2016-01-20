@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.network;
+package org.privatechats.redphone.network;
 
 import android.util.Log;
 

@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.crypto;
+package org.privatechats.securesms.crypto;
 
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.Base64;
+import org.privatechats.securesms.util.Base64;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 
 import java.io.IOException;

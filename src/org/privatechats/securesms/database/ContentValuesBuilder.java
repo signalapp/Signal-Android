@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.ContentValues;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.util.Util;
 
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;

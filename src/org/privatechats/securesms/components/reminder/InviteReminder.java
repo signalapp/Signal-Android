@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.reminder;
+package org.privatechats.securesms.components.reminder;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.recipients.Recipients;
 
 public class InviteReminder extends Reminder {
 

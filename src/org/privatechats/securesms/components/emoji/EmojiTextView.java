@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.content.Context;
 import android.graphics.Paint.FontMetricsInt;
@@ -10,9 +10,9 @@ import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 
-import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.components.emoji.EmojiProvider.EmojiDrawable;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.ViewUtil;
 
 public class EmojiTextView extends AppCompatTextView {
   private CharSequence source;

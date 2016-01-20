@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,20 +28,20 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.mms.MediaStream;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.VisibleForTesting;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.attachments.AttachmentId;
+import org.privatechats.securesms.attachments.DatabaseAttachment;
+import org.privatechats.securesms.crypto.DecryptingPartInputStream;
+import org.privatechats.securesms.crypto.EncryptingPartOutputStream;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.mms.MediaStream;
+import org.privatechats.securesms.mms.PartAuthority;
+import org.privatechats.securesms.util.MediaUtil;
+import org.privatechats.securesms.util.MediaUtil.ThumbnailData;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.VisibleForTesting;
 
 import java.io.File;
 import java.io.FileNotFoundException;

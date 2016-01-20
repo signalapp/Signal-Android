@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -24,9 +24,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Base64;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.Base64;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 

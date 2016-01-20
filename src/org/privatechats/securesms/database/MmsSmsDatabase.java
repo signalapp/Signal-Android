@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -25,8 +25,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.model.MessageRecord;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.HashSet;

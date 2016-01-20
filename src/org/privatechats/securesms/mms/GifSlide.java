@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 import java.io.IOException;
 import java.io.InputStream;

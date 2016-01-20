@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Intent;
 import android.os.Build.VERSION;
@@ -15,8 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
 

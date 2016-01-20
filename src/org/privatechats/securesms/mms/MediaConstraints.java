@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,11 +7,11 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.privatechats.securesms.util.BitmapUtil;
+import org.privatechats.securesms.util.MediaUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

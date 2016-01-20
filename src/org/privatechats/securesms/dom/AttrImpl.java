@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom;
+package org.privatechats.securesms.dom;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMException;

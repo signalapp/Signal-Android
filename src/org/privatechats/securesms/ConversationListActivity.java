@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Intent;
 import android.database.ContentObserver;
@@ -31,17 +31,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import org.thoughtcrime.securesms.components.RatingManager;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.components.RatingManager;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.service.DirectoryRefreshListener;
+import org.privatechats.securesms.service.KeyCachingService;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.DynamicTheme;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity
     implements ConversationListFragment.ConversationSelectedListener

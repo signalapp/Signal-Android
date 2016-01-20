@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.contacts.avatars;
+package org.privatechats.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,8 +10,8 @@ import android.text.TextUtils;
 
 import com.bumptech.glide.Glide;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
 
 import java.util.concurrent.ExecutionException;
 

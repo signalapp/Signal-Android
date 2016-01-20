@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,13 +9,13 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.color.MaterialColor;
+import org.privatechats.securesms.contacts.avatars.ContactColors;
+import org.privatechats.securesms.contacts.avatars.ContactPhotoFactory;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
 
 public class AvatarImageView extends ImageView {
 

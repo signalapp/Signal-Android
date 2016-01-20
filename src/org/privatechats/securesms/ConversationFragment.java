@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.app.Activity;
 import android.content.Context;
@@ -46,21 +46,21 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.SaveAttachmentTask;
-import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.ConversationAdapter.ItemClickListener;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.MmsSmsDatabase;
+import org.privatechats.securesms.database.loaders.ConversationLoader;
+import org.privatechats.securesms.database.model.MediaMmsMessageRecord;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.mms.Slide;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.sms.MessageSender;
+import org.privatechats.securesms.util.task.ProgressDialogAsyncTask;
+import org.privatechats.securesms.util.SaveAttachmentTask;
+import org.privatechats.securesms.util.SaveAttachmentTask.Attachment;
+import org.privatechats.securesms.util.ViewUtil;
 
 import java.util.Collections;
 import java.util.Comparator;

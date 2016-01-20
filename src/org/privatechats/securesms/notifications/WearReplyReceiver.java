@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,14 +24,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.RemoteInput;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.mms.OutgoingMediaMessage;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.sms.MessageSender;
+import org.privatechats.securesms.sms.OutgoingTextMessage;
 
 import java.util.LinkedList;
 
@@ -43,7 +43,7 @@ import ws.com.google.android.mms.pdu.PduBody;
 public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
 
   public static final String TAG                 = WearReplyReceiver.class.getSimpleName();
-  public static final String REPLY_ACTION        = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
+  public static final String REPLY_ACTION        = "org.privatechats.securesms.notifications.WEAR_REPLY";
   public static final String RECIPIENT_IDS_EXTRA = "recipient_ids";
 
   @Override

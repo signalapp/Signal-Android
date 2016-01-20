@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,17 +27,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.preference.PreferenceFragment;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
-import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.preferences.AdvancedPreferenceFragment;
+import org.privatechats.securesms.preferences.AppProtectionPreferenceFragment;
+import org.privatechats.securesms.preferences.AppearancePreferenceFragment;
+import org.privatechats.securesms.preferences.NotificationsPreferenceFragment;
+import org.privatechats.securesms.preferences.SmsMmsPreferenceFragment;
+import org.privatechats.securesms.preferences.ChatsPreferenceFragment;
+import org.privatechats.securesms.service.KeyCachingService;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.DynamicTheme;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 /**
  * The Activity for application preference display and management.

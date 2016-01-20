@@ -20,7 +20,7 @@
               android:layout_height="fill_parent"
               >
 
-    <org.thoughtcrime.redphone.ui.CallScreen android:id="@+id/callScreen"
+    <org.privatechats.redphone.ui.CallScreen android:id="@+id/callScreen"
                                              android:layout_width="fill_parent"
                                              android:layout_height="fill_parent" />
 
@@ -44,7 +44,7 @@
 <!--                         android:layout_height="fill_parent" -->
 <!--                         > -->
 
-<!-- 			<org.thoughtcrime.redphone.ui.CallCard xmlns:android="http://schemas.android.com/apk/res/android" -->
+<!-- 			<org.privatechats.redphone.ui.CallCard xmlns:android="http://schemas.android.com/apk/res/android" -->
 <!--     											   android:id="@+id/callCard" -->
 <!--     											   android:layout_width="fill_parent" -->
 <!--     											   android:layout_height="fill_parent" /> -->

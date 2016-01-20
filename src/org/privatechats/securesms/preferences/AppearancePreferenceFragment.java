@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 import com.soundcloud.android.crop.Crop;
 
@@ -12,9 +12,9 @@ import android.net.Uri;
 import android.app.Activity;
 import android.util.DisplayMetrics;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.ApplicationPreferencesActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.util.Arrays;
 import java.io.File;

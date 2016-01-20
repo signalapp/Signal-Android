@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.model.ThreadRecord;
+import org.privatechats.securesms.util.ViewUtil;
 
 import java.util.Locale;
 import java.util.Set;

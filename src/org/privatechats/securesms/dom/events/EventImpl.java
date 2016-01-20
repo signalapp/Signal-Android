@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.events;
+package org.privatechats.securesms.dom.events;
 
 import org.w3c.dom.events.Event;
 import org.w3c.dom.events.EventTarget;

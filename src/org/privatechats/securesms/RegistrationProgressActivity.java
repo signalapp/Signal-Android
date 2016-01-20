@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -30,12 +30,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.service.RegistrationService;
-import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.push.TextSecureCommunicationFactory;
+import org.privatechats.securesms.service.RegistrationService;
+import org.privatechats.securesms.util.Dialogs;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.api.push.exceptions.RateLimitException;
@@ -43,7 +43,7 @@ import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 
-import static org.thoughtcrime.securesms.service.RegistrationService.RegistrationState;
+import static org.privatechats.securesms.service.RegistrationService.RegistrationState;
 
 public class RegistrationProgressActivity extends BaseActionBarActivity {
 

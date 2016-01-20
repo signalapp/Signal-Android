@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 
 import android.accounts.Account;
 import android.content.AbstractThreadedSyncAdapter;
@@ -8,9 +8,9 @@ import android.content.SyncResult;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.service.KeyCachingService;
+import org.privatechats.securesms.util.DirectoryHelper;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
 

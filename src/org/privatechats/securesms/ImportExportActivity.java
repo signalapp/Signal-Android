@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,8 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.util.DynamicTheme;
 
 
 public class ImportExportActivity extends PassphraseRequiredActionBarActivity {

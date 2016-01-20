@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,11 +6,11 @@ import android.database.sqlite.SQLiteStatement;
 import android.os.Environment;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.crypto.MasterCipher;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.RecipientFormattingException;
+import org.privatechats.securesms.recipients.Recipients;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;

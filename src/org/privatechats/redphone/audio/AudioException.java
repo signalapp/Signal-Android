@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.audio;
+package org.privatechats.redphone.audio;
 
 /**
  * An exception related to the audio subsystem.

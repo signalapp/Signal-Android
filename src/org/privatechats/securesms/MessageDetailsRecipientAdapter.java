@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipients;
 
 public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 

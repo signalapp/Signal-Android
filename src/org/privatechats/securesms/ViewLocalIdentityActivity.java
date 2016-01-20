@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,9 +23,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.IdentityKeyUtil;
+import org.privatechats.securesms.crypto.IdentityKeyParcelable;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 /**
  * Activity that displays the local identity key and offers the option to regenerate it.

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
@@ -33,18 +33,18 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.ConversationListActivity;
-import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
-import org.thoughtcrime.securesms.DummyActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.jobs.MasterSecretDecryptJob;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.ConversationListActivity;
+import org.privatechats.securesms.DatabaseUpgradeActivity;
+import org.privatechats.securesms.DummyActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.InvalidPassphraseException;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUtil;
+import org.privatechats.securesms.jobs.MasterSecretDecryptJob;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 
@@ -58,15 +58,15 @@ public class KeyCachingService extends Service {
 
   public static final int SERVICE_RUNNING_ID = 4141;
 
-  public  static final String KEY_PERMISSION           = "org.thoughtcrime.securesms.ACCESS_SECRETS";
-  public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
-  public  static final String CLEAR_KEY_EVENT          = "org.thoughtcrime.securesms.service.action.CLEAR_KEY_EVENT";
-  private static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
-  public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
-  public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
-  public  static final String ACTIVITY_START_EVENT     = "org.thoughtcrime.securesms.service.action.ACTIVITY_START_EVENT";
-  public  static final String ACTIVITY_STOP_EVENT      = "org.thoughtcrime.securesms.service.action.ACTIVITY_STOP_EVENT";
-  public  static final String LOCALE_CHANGE_EVENT      = "org.thoughtcrime.securesms.service.action.LOCALE_CHANGE_EVENT";
+  public  static final String KEY_PERMISSION           = "org.privatechats.securesms.ACCESS_SECRETS";
+  public  static final String NEW_KEY_EVENT            = "org.privatechats.securesms.service.action.NEW_KEY_EVENT";
+  public  static final String CLEAR_KEY_EVENT          = "org.privatechats.securesms.service.action.CLEAR_KEY_EVENT";
+  private static final String PASSPHRASE_EXPIRED_EVENT = "org.privatechats.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
+  public  static final String CLEAR_KEY_ACTION         = "org.privatechats.securesms.service.action.CLEAR_KEY";
+  public  static final String DISABLE_ACTION           = "org.privatechats.securesms.service.action.DISABLE";
+  public  static final String ACTIVITY_START_EVENT     = "org.privatechats.securesms.service.action.ACTIVITY_START_EVENT";
+  public  static final String ACTIVITY_STOP_EVENT      = "org.privatechats.securesms.service.action.ACTIVITY_STOP_EVENT";
+  public  static final String LOCALE_CHANGE_EVENT      = "org.privatechats.securesms.service.action.LOCALE_CHANGE_EVENT";
 
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 

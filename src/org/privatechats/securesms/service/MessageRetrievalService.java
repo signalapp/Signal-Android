@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 import android.app.Service;
 import android.content.Context;
@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
-import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.gcm.GcmBroadcastReceiver;
+import org.privatechats.securesms.jobs.PushContentReceiveJob;
+import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.jobqueue.requirements.RequirementListener;

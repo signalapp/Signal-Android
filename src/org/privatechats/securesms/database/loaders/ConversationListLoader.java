@@ -1,14 +1,14 @@
-package org.thoughtcrime.securesms.database.loaders;
+package org.privatechats.securesms.database.loaders;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
 
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.util.AbstractCursorLoader;
+import org.privatechats.securesms.contacts.ContactAccessor;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.util.AbstractCursorLoader;
 
 import java.util.LinkedList;
 import java.util.List;

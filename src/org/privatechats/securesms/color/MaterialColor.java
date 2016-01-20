@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.color;
+package org.privatechats.securesms.color;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public enum MaterialColor {
 

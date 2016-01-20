@@ -14,14 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database.model;
+package org.privatechats.securesms.database.model;
 
 import android.content.Context;
 import android.text.SpannableString;
 
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.database.MmsSmsColumns;
+import org.privatechats.securesms.database.SmsDatabase;
+import org.privatechats.securesms.recipients.Recipients;
 
 /**
  * The base class for all message record models.  Encapsulates basic data

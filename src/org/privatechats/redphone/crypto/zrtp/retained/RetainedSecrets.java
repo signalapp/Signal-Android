@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.crypto.zrtp.retained;
+package org.privatechats.redphone.crypto.zrtp.retained;
 
 public class RetainedSecrets {
 

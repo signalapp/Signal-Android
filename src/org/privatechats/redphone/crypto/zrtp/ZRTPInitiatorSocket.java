@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.crypto.zrtp;
+package org.privatechats.redphone.crypto.zrtp;
 
 import android.content.Context;
 
-import org.thoughtcrime.redphone.crypto.SecureRtpSocket;
-import org.thoughtcrime.redphone.crypto.zrtp.retained.InitiatorRetainedSecretsCalculator;
-import org.thoughtcrime.redphone.crypto.zrtp.retained.RetainedSecrets;
-import org.thoughtcrime.redphone.crypto.zrtp.retained.RetainedSecretsCalculator;
-import org.thoughtcrime.redphone.crypto.zrtp.retained.RetainedSecretsDerivatives;
+import org.privatechats.redphone.crypto.SecureRtpSocket;
+import org.privatechats.redphone.crypto.zrtp.retained.InitiatorRetainedSecretsCalculator;
+import org.privatechats.redphone.crypto.zrtp.retained.RetainedSecrets;
+import org.privatechats.redphone.crypto.zrtp.retained.RetainedSecretsCalculator;
+import org.privatechats.redphone.crypto.zrtp.retained.RetainedSecretsDerivatives;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -1,12 +1,12 @@
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.service.KeyCachingService;
 
 public abstract class MasterSecretBroadcastReceiver extends BroadcastReceiver {
 

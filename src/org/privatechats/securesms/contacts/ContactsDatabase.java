@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 
 import android.accounts.Account;
 import android.content.ContentProviderOperation;
@@ -34,7 +34,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -54,8 +54,8 @@ import java.util.Map;
 public class ContactsDatabase {
 
   private static final String TAG              = ContactsDatabase.class.getSimpleName();
-  private static final String CONTACT_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact";
-  private static final String CALL_MIMETYPE    = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call";
+  private static final String CONTACT_MIMETYPE = "vnd.android.cursor.item/vnd.org.privatechats.securesms.contact";
+  private static final String CALL_MIMETYPE    = "vnd.android.cursor.item/vnd.org.privatechats.securesms.call";
   private static final String SYNC             = "__TS";
 
   public static final String ID_COLUMN           = "_id";

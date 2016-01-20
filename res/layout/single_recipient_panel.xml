@@ -6,7 +6,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <org.thoughtcrime.securesms.contacts.RecipientsEditor android:id="@+id/recipients_text"
+        <org.privatechats.securesms.contacts.RecipientsEditor android:id="@+id/recipients_text"
            android:layout_height="wrap_content"
             android:capitalize="sentences"
             android:autoText="true"

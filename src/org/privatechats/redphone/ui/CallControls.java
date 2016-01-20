@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.ui;
+package org.privatechats.redphone.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -33,10 +33,10 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
-import org.thoughtcrime.redphone.util.AudioUtils;
-import org.thoughtcrime.redphone.util.multiwaveview.MultiWaveView;
-import org.thoughtcrime.securesms.R;
+import org.privatechats.redphone.crypto.zrtp.SASInfo;
+import org.privatechats.redphone.util.AudioUtils;
+import org.privatechats.redphone.util.multiwaveview.MultiWaveView;
+import org.privatechats.securesms.R;
 
 /**
  * Displays the controls at the bottom of the in-call screen.

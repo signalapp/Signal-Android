@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.color;
+package org.privatechats.securesms.color;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

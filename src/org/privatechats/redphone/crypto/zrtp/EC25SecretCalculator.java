@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.crypto.zrtp;
+package org.privatechats.redphone.crypto.zrtp;
 
 import android.util.Log;
 
@@ -23,7 +23,7 @@ import org.spongycastle.jce.ECNamedCurveTable;
 import org.spongycastle.jce.spec.ECParameterSpec;
 import org.spongycastle.jce.spec.ECPublicKeySpec;
 import org.spongycastle.math.ec.ECPoint;
-import org.thoughtcrime.redphone.util.Conversions;
+import org.privatechats.redphone.util.Conversions;
 
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;

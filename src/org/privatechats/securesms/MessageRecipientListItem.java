@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -26,16 +26,16 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.MessageSender;
+import org.privatechats.securesms.components.AvatarImageView;
+import org.privatechats.securesms.components.FromTextView;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.MmsDatabase;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatch;
+import org.privatechats.securesms.database.documents.NetworkFailure;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.sms.MessageSender;
 
 /**
  * A simple view to show the recipients of a message

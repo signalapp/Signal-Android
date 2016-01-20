@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone;
+package org.privatechats.redphone;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.smil;
+package org.privatechats.securesms.dom.smil;
 
 import org.w3c.dom.DOMException;
 import org.w3c.dom.events.DocumentEvent;
@@ -26,7 +26,7 @@ import org.w3c.dom.smil.TimeList;
 
 import android.util.Log;
 
-import org.thoughtcrime.securesms.dom.events.EventImpl;
+import org.privatechats.securesms.dom.events.EventImpl;
 
 public class SmilMediaElementImpl extends SmilElementImpl implements
         SMILMediaElement {

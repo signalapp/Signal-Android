@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.recipients.RecipientsFormatter;
 
 import android.content.ContentResolver;
 import android.content.Context;

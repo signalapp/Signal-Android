@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database.model;
+package org.privatechats.securesms.database.model;
 
 import android.content.Context;
 import android.text.Spannable;
@@ -22,14 +22,14 @@ import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.database.MmsSmsColumns;
+import org.privatechats.securesms.database.SmsDatabase;
+import org.privatechats.securesms.database.documents.NetworkFailure;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatch;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.GroupUtil;
 
 import java.util.List;
 

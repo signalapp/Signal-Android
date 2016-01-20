@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.ConversationTitleView
+<org.privatechats.securesms.ConversationTitleView
               xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
@@ -8,7 +8,7 @@
               android:layout_gravity="center_vertical"
               android:gravity="center_vertical">
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+    <org.privatechats.securesms.components.emoji.EmojiTextView
               android:id="@+id/title"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -31,4 +31,4 @@
               android:textDirection="ltr"
               style="@style/TextSecure.SubtitleTextStyle"/>
 
-</org.thoughtcrime.securesms.ConversationTitleView>
+</org.privatechats.securesms.ConversationTitleView>

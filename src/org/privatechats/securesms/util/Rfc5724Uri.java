@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import java.net.URISyntaxException;
 import java.net.URLDecoder;

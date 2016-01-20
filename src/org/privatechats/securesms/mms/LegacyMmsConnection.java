@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -38,11 +38,11 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
-import org.thoughtcrime.securesms.database.ApnDatabase;
-import org.thoughtcrime.securesms.util.TelephonyUtil;
-import org.thoughtcrime.securesms.util.Conversions;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.database.ApnDatabase;
+import org.privatechats.securesms.util.TelephonyUtil;
+import org.privatechats.securesms.util.Conversions;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.NumberParseException;

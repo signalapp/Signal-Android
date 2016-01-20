@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 public abstract class MasterSecretIntentService extends IntentService {
 

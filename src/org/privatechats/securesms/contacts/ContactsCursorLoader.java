@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -26,13 +26,13 @@ import android.support.v4.content.CursorLoader;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
-import org.thoughtcrime.securesms.util.NumberUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.DirectoryHelper;
+import org.privatechats.securesms.util.DirectoryHelper.UserCapabilities.Capability;
+import org.privatechats.securesms.util.NumberUtil;
 
 import java.util.ArrayList;
 

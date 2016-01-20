@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -7,9 +7,9 @@ import android.support.v7.widget.AppCompatEditText;
 import android.text.InputFilter;
 import android.util.AttributeSet;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.emoji.EmojiProvider.EmojiDrawable;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 
 public class EmojiEditText extends AppCompatEditText {

@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.jobs.requirements;
+package org.privatechats.securesms.jobs.requirements;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.privatechats.securesms.service.KeyCachingService;
 import org.whispersystems.jobqueue.requirements.RequirementListener;
 import org.whispersystems.jobqueue.requirements.RequirementProvider;
 

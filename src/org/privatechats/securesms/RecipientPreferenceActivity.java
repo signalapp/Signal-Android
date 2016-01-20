@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,19 +23,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.color.MaterialColors;
-import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
-import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
-import org.thoughtcrime.securesms.preferences.ColorPreference;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
-import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.privatechats.securesms.color.MaterialColor;
+import org.privatechats.securesms.color.MaterialColors;
+import org.privatechats.securesms.components.AvatarImageView;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.privatechats.securesms.preferences.AdvancedRingtonePreference;
+import org.privatechats.securesms.preferences.ColorPreference;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.DynamicNoActionBarTheme;
+import org.privatechats.securesms.util.DynamicTheme;
 
 public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActivity implements Recipients.RecipientsModifiedListener
 {

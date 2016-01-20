@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,14 +30,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.mms.PartAuthority;
+import org.privatechats.securesms.providers.PersistentBlobProvider;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.DynamicTheme;
+import org.privatechats.securesms.util.MediaUtil;
+import org.privatechats.securesms.util.ViewUtil;
 
 import java.io.IOException;
 import java.io.InputStream;

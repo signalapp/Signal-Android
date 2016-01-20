@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.signaling.signals;
+package org.privatechats.redphone.signaling.signals;
 
 /**
  * Typically client endpoints are sending signals and receiving responses,

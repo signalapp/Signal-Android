@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.util.LRUCache;
+import org.privatechats.securesms.util.LRUCache;
 
 public class EarlyReceiptCache {
 

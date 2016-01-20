@@ -1,12 +1,12 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountAttributes;
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.redphone.signaling.RedPhoneAccountAttributes;
+import org.privatechats.redphone.signaling.RedPhoneAccountManager;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;

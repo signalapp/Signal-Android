@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.redphone.call;
+package org.privatechats.redphone.call;
 
 import android.content.Context;
 import android.hardware.Sensor;

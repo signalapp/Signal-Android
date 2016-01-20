@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 /*
  * Copyright (C) 2006 The Android Open Source Project
  *

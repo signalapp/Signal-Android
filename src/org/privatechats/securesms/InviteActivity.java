@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
@@ -24,17 +24,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.ContactFilterToolbar;
-import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
+import org.privatechats.securesms.components.ContactFilterToolbar;
+import org.privatechats.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.sms.MessageSender;
+import org.privatechats.securesms.sms.OutgoingTextMessage;
+import org.privatechats.securesms.util.task.ProgressDialogAsyncTask;
+import org.privatechats.securesms.util.ViewUtil;
+import org.privatechats.securesms.util.concurrent.ListenableFuture.Listener;
 
 import java.util.concurrent.ExecutionException;
 

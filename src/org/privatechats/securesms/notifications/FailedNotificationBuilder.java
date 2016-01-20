@@ -1,13 +1,13 @@
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.database.RecipientPreferenceDatabase;
+import org.privatechats.securesms.preferences.NotificationPrivacyPreference;
 
 public class FailedNotificationBuilder extends AbstractNotificationBuilder {
 

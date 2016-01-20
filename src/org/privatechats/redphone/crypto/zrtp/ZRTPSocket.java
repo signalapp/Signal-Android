@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.crypto.zrtp;
+package org.privatechats.redphone.crypto.zrtp;
 
 import android.content.Context;
 import android.util.Log;
 
 import org.spongycastle.jce.interfaces.ECPublicKey;
 import org.spongycastle.math.ec.ECPoint;
-import org.thoughtcrime.redphone.crypto.SecureRtpSocket;
-import org.thoughtcrime.redphone.util.Conversions;
+import org.privatechats.redphone.crypto.SecureRtpSocket;
+import org.privatechats.redphone.util.Conversions;
 
 import java.io.IOException;
 import java.math.BigInteger;

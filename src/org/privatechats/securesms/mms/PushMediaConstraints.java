@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.util.Util;
 
 public class PushMediaConstraints extends MediaConstraints {
   private static final int MAX_IMAGE_DIMEN_LOWMEM = 768;

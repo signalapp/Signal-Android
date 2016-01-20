@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.signaling.signals;
+package org.privatechats.redphone.signaling.signals;
 
-import org.thoughtcrime.redphone.crypto.Otp;
-import org.thoughtcrime.securesms.util.Base64;
+import org.privatechats.redphone.crypto.Otp;
+import org.privatechats.securesms.util.Base64;
 
 /**
  * Base class for constructing a signal.

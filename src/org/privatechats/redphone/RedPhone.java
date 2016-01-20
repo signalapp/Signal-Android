@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone;
+package org.privatechats.redphone;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -35,13 +35,13 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
-import org.thoughtcrime.redphone.ui.CallControls;
-import org.thoughtcrime.redphone.ui.CallScreen;
-import org.thoughtcrime.redphone.util.AudioUtils;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.events.RedPhoneEvent;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.redphone.ui.CallControls;
+import org.privatechats.redphone.ui.CallScreen;
+import org.privatechats.redphone.util.AudioUtils;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.events.RedPhoneEvent;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import de.greenrobot.event.EventBus;
 
@@ -144,7 +144,7 @@ public class RedPhone extends Activity {
     RedPhoneEvent event = EventBus.getDefault().getStickyEvent(RedPhoneEvent.class);
 
     if (event != null) {
-      callScreen.setActiveCall(event.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_answering));
+      callScreen.setActiveCall(event.getRecipient(), getString(org.privatechats.securesms.R.string.RedPhone_answering));
 
       Intent intent = new Intent(this, RedPhoneService.class);
       intent.setAction(RedPhoneService.ACTION_ANSWER_CALL);
@@ -160,7 +160,7 @@ public class RedPhone extends Activity {
       intent.setAction(RedPhoneService.ACTION_DENY_CALL);
       startService(intent);
 
-      callScreen.setActiveCall(event.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_ending_call));
+      callScreen.setActiveCall(event.getRecipient(), getString(org.privatechats.securesms.R.string.RedPhone_ending_call));
       delayedFinish();
     }
   }
@@ -183,7 +183,7 @@ public class RedPhone extends Activity {
   }
 
   private void handleOutgoingCall(@NonNull RedPhoneEvent event) {
-    callScreen.setActiveCall(event.getRecipient(), getString(org.thoughtcrime.securesms.R.string.RedPhone_dialing));
+    callScreen.setActiveCall(event.getRecipient(), getString(org.privatechats.securesms.R.string.RedPhone_dialing));
   }
 
   private void handleTerminate(@NonNull Recipient recipient /*, int terminationType */) {

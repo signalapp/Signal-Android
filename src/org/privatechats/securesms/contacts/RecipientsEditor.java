@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatMultiAutoCompleteTextView;
@@ -36,11 +36,11 @@ import android.view.MotionEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.MultiAutoCompleteTextView;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.RecipientFormattingException;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.recipients.RecipientsFormatter;
 
 import java.util.ArrayList;
 import java.util.List;

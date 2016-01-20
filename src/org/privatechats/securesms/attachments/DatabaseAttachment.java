@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.attachments;
+package org.privatechats.securesms.attachments;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.privatechats.securesms.mms.PartAuthority;
 
 public class DatabaseAttachment extends Attachment {
 

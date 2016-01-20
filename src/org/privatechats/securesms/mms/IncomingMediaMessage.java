@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.database.MmsAddresses;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.attachments.PointerAttachment;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.database.MmsAddresses;
+import org.privatechats.securesms.util.GroupUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;

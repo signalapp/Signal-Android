@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -27,13 +27,13 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.redphone.util.Conversions;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.privatechats.redphone.util.Conversions;
+import org.privatechats.securesms.crypto.MasterCipher;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.CursorRecyclerViewAdapter;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.database.model.ThreadRecord;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,15 +27,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.ImageMediaAdapter.ViewHolder;
-import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
-import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.privatechats.securesms.ImageMediaAdapter.ViewHolder;
+import org.privatechats.securesms.components.ThumbnailView;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.CursorRecyclerViewAdapter;
+import org.privatechats.securesms.database.ImageDatabase.ImageRecord;
+import org.privatechats.securesms.mms.Slide;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.MediaUtil;
 
 public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   private static final String TAG = ImageMediaAdapter.class.getSimpleName();

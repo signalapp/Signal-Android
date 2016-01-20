@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.contacts.avatars;
+package org.privatechats.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,7 +8,7 @@ import android.support.v4.content.ContextCompat;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class GeneratedContactPhoto implements ContactPhoto {
 

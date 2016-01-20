@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.crypto.zrtp;
+package org.privatechats.redphone.crypto.zrtp;
 
 import android.util.Log;
 
-import org.thoughtcrime.redphone.network.RtpPacket;
-import org.thoughtcrime.redphone.util.Conversions;
-import org.thoughtcrime.securesms.util.Hex;
+import org.privatechats.redphone.network.RtpPacket;
+import org.privatechats.redphone.util.Conversions;
+import org.privatechats.securesms.util.Hex;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;

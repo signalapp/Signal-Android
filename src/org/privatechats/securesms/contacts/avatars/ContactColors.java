@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.contacts.avatars;
+package org.privatechats.securesms.contacts.avatars;
 
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.color.MaterialColors;
+import org.privatechats.securesms.color.MaterialColor;
+import org.privatechats.securesms.color.MaterialColors;
 
 public class ContactColors {
 

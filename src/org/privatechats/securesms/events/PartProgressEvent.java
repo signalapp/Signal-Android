@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.events;
+package org.privatechats.securesms.events;
 
 
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.privatechats.securesms.attachments.Attachment;
 
 public class PartProgressEvent {
 

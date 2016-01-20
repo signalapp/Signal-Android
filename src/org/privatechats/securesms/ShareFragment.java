@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -29,9 +29,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 
-import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.loaders.ConversationListLoader;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 /**
  * A fragment to select and share to open conversations

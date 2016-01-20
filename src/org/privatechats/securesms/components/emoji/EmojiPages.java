@@ -1,6 +1,6 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 import java.util.Arrays;
 import java.util.List;

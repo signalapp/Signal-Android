@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.jobs.requirements;
+package org.privatechats.securesms.jobs.requirements;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.privatechats.securesms.service.KeyCachingService;
 import org.whispersystems.jobqueue.dependencies.ContextDependent;
 import org.whispersystems.jobqueue.requirements.Requirement;
 

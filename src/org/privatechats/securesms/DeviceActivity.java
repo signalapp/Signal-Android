@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.net.Uri;
@@ -14,15 +14,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.crypto.IdentityKeyUtil;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.push.TextSecureCommunicationFactory;
+import org.privatechats.securesms.util.Base64;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.DynamicTheme;
+import org.privatechats.securesms.util.task.ProgressDialogAsyncTask;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;

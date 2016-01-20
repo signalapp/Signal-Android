@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.thoughtcrime.redphone.util.multiwaveview;
+package org.privatechats.redphone.util.multiwaveview;
 
 
 import android.content.res.Resources;

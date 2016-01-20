@@ -230,7 +230,7 @@ static SrtpStreamParameters* constructSrtpStreamParameters(JNIEnv *env, jbyteArr
   return parameters;
 }
 
-jlong JNICALL Java_org_thoughtcrime_redphone_audio_CallAudioManager_create
+jlong JNICALL Java_org_privatechats_redphone_audio_CallAudioManager_create
   (JNIEnv *env, jobject obj, jint androidSdkVersion,
    jint socketFd, jstring serverIpString, jint serverPort,
    jbyteArray senderCipherKey, jbyteArray senderMacKey, jbyteArray senderSalt,
@@ -243,7 +243,7 @@ jlong JNICALL Java_org_thoughtcrime_redphone_audio_CallAudioManager_create
 
   if (sockAddr == NULL) {
     __android_log_print(ANDROID_LOG_WARN, TAG, "Failed to construct sockAddr!");
-    env->ThrowNew(env->FindClass("org/thoughtcrime/redphone/audio/NativeAudioException"),
+    env->ThrowNew(env->FindClass("org/privatechats/redphone/audio/NativeAudioException"),
                                  "Failed to initialize native audio");
     return -1;
   }
@@ -256,7 +256,7 @@ jlong JNICALL Java_org_thoughtcrime_redphone_audio_CallAudioManager_create
 
   if (manager->init() != 0) {
     delete manager;
-    env->ThrowNew(env->FindClass("org/thoughtcrime/redphone/audio/NativeAudioException"),
+    env->ThrowNew(env->FindClass("org/privatechats/redphone/audio/NativeAudioException"),
                                  "Failed to initialize native audio");
     return -1;
   }
@@ -264,33 +264,33 @@ jlong JNICALL Java_org_thoughtcrime_redphone_audio_CallAudioManager_create
   return (jlong)manager;
 }
 
-void JNICALL Java_org_thoughtcrime_redphone_audio_CallAudioManager_start
+void JNICALL Java_org_privatechats_redphone_audio_CallAudioManager_start
 (JNIEnv *env, jobject obj, jlong handle)
 {
   CallAudioManager *manager = reinterpret_cast<CallAudioManager *>(handle);
   int              result   = manager->start();
 
   if (result == -1) {
-    env->ThrowNew(env->FindClass("org/thoughtcrime/redphone/audio/NativeAudioException"),
+    env->ThrowNew(env->FindClass("org/privatechats/redphone/audio/NativeAudioException"),
                                  "Failed to start native audio");
   }
 }
 
-void JNICALL Java_org_thoughtcrime_redphone_audio_CallAudioManager_setMute
+void JNICALL Java_org_privatechats_redphone_audio_CallAudioManager_setMute
 (JNIEnv *env, jobject obj, jlong handle, jboolean muteEnabled)
 {
   CallAudioManager *manager = reinterpret_cast<CallAudioManager *>(handle);
   manager->setMute(muteEnabled);
 }
 
-void JNICALL Java_org_thoughtcrime_redphone_audio_CallAudioManager_stop
+void JNICALL Java_org_privatechats_redphone_audio_CallAudioManager_stop
 (JNIEnv *env, jobject obj, jlong handle)
 {
   CallAudioManager *manager = reinterpret_cast<CallAudioManager*>(handle);
   manager->stop();
 }
 
-void JNICALL Java_org_thoughtcrime_redphone_audio_CallAudioManager_dispose
+void JNICALL Java_org_privatechats_redphone_audio_CallAudioManager_dispose
 (JNIEnv *env, jobject obj, jlong handle)
 {
   CallAudioManager *manager = reinterpret_cast<CallAudioManager*>(handle);

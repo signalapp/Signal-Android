@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -17,12 +17,12 @@ import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
-import org.thoughtcrime.securesms.components.RepeatableImageKey;
-import org.thoughtcrime.securesms.components.RepeatableImageKey.KeyEventListener;
-import org.thoughtcrime.securesms.components.emoji.EmojiPageView.EmojiSelectionListener;
-import org.thoughtcrime.securesms.util.ResUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.InputAwareLayout.InputView;
+import org.privatechats.securesms.components.RepeatableImageKey;
+import org.privatechats.securesms.components.RepeatableImageKey.KeyEventListener;
+import org.privatechats.securesms.components.emoji.EmojiPageView.EmojiSelectionListener;
+import org.privatechats.securesms.util.ResUtil;
 
 import java.util.LinkedList;
 import java.util.List;

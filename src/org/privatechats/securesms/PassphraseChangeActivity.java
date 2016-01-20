@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.os.AsyncTask;
 import android.content.Context;
@@ -27,12 +27,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.crypto.InvalidPassphraseException;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUtil;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.DynamicTheme;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 /**
  * Activity for changing a user's local encryption passphrase.

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 public class PushCharacterCalculator extends CharacterCalculator {
   private static final int MAX_SIZE = 2000;

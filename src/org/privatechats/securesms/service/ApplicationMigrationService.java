@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -17,11 +17,11 @@ import android.os.PowerManager.WakeLock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.SmsMigrator;
-import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
+import org.privatechats.securesms.ConversationListActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.SmsMigrator;
+import org.privatechats.securesms.database.SmsMigrator.ProgressDescription;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
@@ -32,8 +32,8 @@ public class ApplicationMigrationService extends Service
     implements SmsMigrator.SmsMigrationProgressListener
 {
   private static final String TAG               = ApplicationMigrationService.class.getSimpleName();
-  public  static final String MIGRATE_DATABASE  = "org.thoughtcrime.securesms.ApplicationMigration.MIGRATE_DATABSE";
-  public  static final String COMPLETED_ACTION  = "org.thoughtcrime.securesms.ApplicationMigrationService.COMPLETED";
+  public  static final String MIGRATE_DATABASE  = "org.privatechats.securesms.ApplicationMigration.MIGRATE_DATABSE";
+  public  static final String COMPLETED_ACTION  = "org.privatechats.securesms.ApplicationMigrationService.COMPLETED";
   private static final String PREFERENCES_NAME  = "SecureSMS";
   private static final String DATABASE_MIGRATED = "migrated";
 

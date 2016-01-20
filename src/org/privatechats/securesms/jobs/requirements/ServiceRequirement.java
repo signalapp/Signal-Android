@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.jobs.requirements;
+package org.privatechats.securesms.jobs.requirements;
 
 import android.content.Context;
 import android.os.Looper;
@@ -8,8 +8,8 @@ import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.sms.TelephonyServiceState;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.sms.TelephonyServiceState;
 import org.whispersystems.jobqueue.dependencies.ContextDependent;
 import org.whispersystems.jobqueue.requirements.Requirement;
 

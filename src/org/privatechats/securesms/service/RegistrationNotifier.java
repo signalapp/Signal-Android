@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -8,8 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.ConversationListActivity;
+import org.privatechats.securesms.R;
 
 public class RegistrationNotifier extends BroadcastReceiver {
   @Override

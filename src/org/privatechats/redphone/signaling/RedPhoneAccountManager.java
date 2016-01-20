@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.signaling;
+package org.privatechats.redphone.signaling;
 
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -6,8 +6,8 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.privatechats.securesms.util.Base64;
+import org.privatechats.securesms.util.JsonUtils;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.push.TrustStore;
 

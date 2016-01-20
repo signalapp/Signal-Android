@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 public class AccountVerificationTimeoutException extends Exception {
   public AccountVerificationTimeoutException() {

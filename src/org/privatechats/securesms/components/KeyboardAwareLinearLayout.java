@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -28,9 +28,9 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.View;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.Util;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.audio;
+package org.privatechats.securesms.audio;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -11,10 +11,10 @@ import android.util.Log;
 import android.util.Pair;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.mms.AudioSlide;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.ui;
+package org.privatechats.redphone.ui;
 
 import android.content.Context;
 import android.graphics.drawable.LayerDrawable;
@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 
-import org.thoughtcrime.redphone.util.AudioUtils;
-import org.thoughtcrime.securesms.R;
+import org.privatechats.redphone.util.AudioUtils;
+import org.privatechats.securesms.R;
 
-import static org.thoughtcrime.redphone.util.AudioUtils.AudioMode.DEFAULT;
-import static org.thoughtcrime.redphone.util.AudioUtils.AudioMode.HEADSET;
-import static org.thoughtcrime.redphone.util.AudioUtils.AudioMode.SPEAKER;
+import static org.privatechats.redphone.util.AudioUtils.AudioMode.DEFAULT;
+import static org.privatechats.redphone.util.AudioUtils.AudioMode.HEADSET;
+import static org.privatechats.redphone.util.AudioUtils.AudioMode.SPEAKER;
 
 /**
  * Manages the audio button displayed on the in-call screen

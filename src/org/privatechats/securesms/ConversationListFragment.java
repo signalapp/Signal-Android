@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -51,24 +51,24 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
-import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
-import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
-import org.thoughtcrime.securesms.components.reminder.OutdatedBuildReminder;
-import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
-import org.thoughtcrime.securesms.components.reminder.Reminder;
-import org.thoughtcrime.securesms.components.reminder.ReminderView;
-import org.thoughtcrime.securesms.components.reminder.ReminderView.OnDismissListener;
-import org.thoughtcrime.securesms.components.reminder.ShareReminder;
-import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
+import org.privatechats.securesms.ConversationListAdapter.ItemClickListener;
+import org.privatechats.securesms.components.reminder.DefaultSmsReminder;
+import org.privatechats.securesms.components.reminder.ExpiredBuildReminder;
+import org.privatechats.securesms.components.reminder.OutdatedBuildReminder;
+import org.privatechats.securesms.components.reminder.PushRegistrationReminder;
+import org.privatechats.securesms.components.reminder.Reminder;
+import org.privatechats.securesms.components.reminder.ReminderView;
+import org.privatechats.securesms.components.reminder.ReminderView.OnDismissListener;
+import org.privatechats.securesms.components.reminder.ShareReminder;
+import org.privatechats.securesms.components.reminder.SystemSmsImportReminder;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.loaders.ConversationListLoader;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.ViewUtil;
+import org.privatechats.securesms.util.task.SnackbarAsyncTask;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.HashSet;

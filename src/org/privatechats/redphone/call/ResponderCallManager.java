@@ -15,25 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.call;
+package org.privatechats.redphone.call;
 
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.redphone.audio.AudioException;
-import org.thoughtcrime.redphone.audio.CallAudioManager;
-import org.thoughtcrime.redphone.crypto.SecureRtpSocket;
-import org.thoughtcrime.redphone.crypto.zrtp.MasterSecret;
-import org.thoughtcrime.redphone.crypto.zrtp.ZRTPResponderSocket;
-import org.thoughtcrime.redphone.network.RtpSocket;
-import org.thoughtcrime.redphone.signaling.LoginFailedException;
-import org.thoughtcrime.redphone.signaling.NetworkConnector;
-import org.thoughtcrime.redphone.signaling.OtpCounterProvider;
-import org.thoughtcrime.redphone.signaling.SessionDescriptor;
-import org.thoughtcrime.redphone.signaling.SessionInitiationFailureException;
-import org.thoughtcrime.redphone.signaling.SessionStaleException;
-import org.thoughtcrime.redphone.signaling.SignalingException;
-import org.thoughtcrime.redphone.signaling.SignalingSocket;
+import org.privatechats.redphone.audio.AudioException;
+import org.privatechats.redphone.audio.CallAudioManager;
+import org.privatechats.redphone.crypto.SecureRtpSocket;
+import org.privatechats.redphone.crypto.zrtp.MasterSecret;
+import org.privatechats.redphone.crypto.zrtp.ZRTPResponderSocket;
+import org.privatechats.redphone.network.RtpSocket;
+import org.privatechats.redphone.signaling.LoginFailedException;
+import org.privatechats.redphone.signaling.NetworkConnector;
+import org.privatechats.redphone.signaling.OtpCounterProvider;
+import org.privatechats.redphone.signaling.SessionDescriptor;
+import org.privatechats.redphone.signaling.SessionInitiationFailureException;
+import org.privatechats.redphone.signaling.SessionStaleException;
+import org.privatechats.redphone.signaling.SignalingException;
+import org.privatechats.redphone.signaling.SignalingSocket;
 
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;

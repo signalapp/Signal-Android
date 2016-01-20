@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.MessageRecipientListItem
+<org.privatechats.securesms.MessageRecipientListItem
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +9,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
+    <org.privatechats.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="50dp"
@@ -36,7 +36,7 @@
                       android:layout_height="wrap_content"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.FromTextView
+            <org.privatechats.securesms.components.FromTextView
                       android:id="@+id/from"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -89,4 +89,4 @@
 
     </LinearLayout>
 
-</org.thoughtcrime.securesms.MessageRecipientListItem>
+</org.privatechats.securesms.MessageRecipientListItem>

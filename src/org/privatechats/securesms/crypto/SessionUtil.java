@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.crypto;
+package org.privatechats.securesms.crypto;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.privatechats.securesms.crypto.storage.TextSecureSessionStore;
+import org.privatechats.securesms.recipients.Recipient;
 import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.reminder;
+package org.privatechats.securesms.components.reminder;
 
 import android.support.annotation.NonNull;
 import android.view.View.OnClickListener;

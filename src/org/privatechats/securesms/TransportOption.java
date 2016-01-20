@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.support.annotation.DrawableRes;
 
-import org.thoughtcrime.securesms.util.CharacterCalculator;
-import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
+import org.privatechats.securesms.util.CharacterCalculator;
+import org.privatechats.securesms.util.CharacterCalculator.CharacterState;
 
 public class TransportOption {
 

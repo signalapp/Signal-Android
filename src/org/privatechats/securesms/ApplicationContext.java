@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.app.Application;
 import android.content.Context;
@@ -22,18 +22,18 @@ import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
 
-import org.thoughtcrime.securesms.crypto.PRNGFixes;
-import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.RedPhoneCommunicationModule;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
-import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
-import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.crypto.PRNGFixes;
+import org.privatechats.securesms.dependencies.AxolotlStorageModule;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.dependencies.RedPhoneCommunicationModule;
+import org.privatechats.securesms.dependencies.TextSecureCommunicationModule;
+import org.privatechats.securesms.jobs.GcmRefreshJob;
+import org.privatechats.securesms.jobs.RefreshAttributesJob;
+import org.privatechats.securesms.jobs.persistence.EncryptingJobSerializer;
+import org.privatechats.securesms.jobs.requirements.MasterSecretRequirementProvider;
+import org.privatechats.securesms.jobs.requirements.MediaNetworkRequirementProvider;
+import org.privatechats.securesms.jobs.requirements.ServiceRequirementProvider;
+import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;

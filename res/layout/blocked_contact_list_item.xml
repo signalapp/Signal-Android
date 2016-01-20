@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<org.thoughtcrime.securesms.preferences.BlockedContactListItem
+<org.privatechats.securesms.preferences.BlockedContactListItem
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:paddingRight="25dip">
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
+    <org.privatechats.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
             android:layout_width="@dimen/contact_selection_photo_size"
             android:layout_height="@dimen/contact_selection_photo_size"
@@ -29,4 +29,4 @@
               android:gravity="center_vertical|left"
               android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</org.thoughtcrime.securesms.preferences.BlockedContactListItem>
+</org.privatechats.securesms.preferences.BlockedContactListItem>

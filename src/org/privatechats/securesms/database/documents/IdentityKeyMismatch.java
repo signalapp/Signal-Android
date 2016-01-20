@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database.documents;
+package org.privatechats.securesms.database.documents;
 
 import android.util.Log;
 
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.thoughtcrime.securesms.util.Base64;
+import org.privatechats.securesms.util.Base64;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 

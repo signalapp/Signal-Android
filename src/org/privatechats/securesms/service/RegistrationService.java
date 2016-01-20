@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -12,21 +12,21 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountAttributes;
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
-import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.PreKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.redphone.signaling.RedPhoneAccountAttributes;
+import org.privatechats.redphone.signaling.RedPhoneAccountManager;
+import org.privatechats.redphone.signaling.RedPhoneTrustStore;
+import org.privatechats.securesms.BuildConfig;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.IdentityKeyUtil;
+import org.privatechats.securesms.crypto.PreKeyUtil;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.jobs.GcmRefreshJob;
+import org.privatechats.securesms.push.TextSecureCommunicationFactory;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.util.DirectoryHelper;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
@@ -62,14 +62,14 @@ import java.util.concurrent.Executors;
 
 public class RegistrationService extends Service {
 
-  public static final String REGISTER_NUMBER_ACTION = "org.thoughtcrime.securesms.RegistrationService.REGISTER_NUMBER";
-  public static final String VOICE_REQUESTED_ACTION = "org.thoughtcrime.securesms.RegistrationService.VOICE_REQUESTED";
-  public static final String VOICE_REGISTER_ACTION  = "org.thoughtcrime.securesms.RegistrationService.VOICE_REGISTER";
+  public static final String REGISTER_NUMBER_ACTION = "org.privatechats.securesms.RegistrationService.REGISTER_NUMBER";
+  public static final String VOICE_REQUESTED_ACTION = "org.privatechats.securesms.RegistrationService.VOICE_REQUESTED";
+  public static final String VOICE_REGISTER_ACTION  = "org.privatechats.securesms.RegistrationService.VOICE_REGISTER";
 
-  public static final String NOTIFICATION_TITLE     = "org.thoughtcrime.securesms.NOTIFICATION_TITLE";
-  public static final String NOTIFICATION_TEXT      = "org.thoughtcrime.securesms.NOTIFICATION_TEXT";
-  public static final String CHALLENGE_EVENT        = "org.thoughtcrime.securesms.CHALLENGE_EVENT";
-  public static final String REGISTRATION_EVENT     = "org.thoughtcrime.securesms.REGISTRATION_EVENT";
+  public static final String NOTIFICATION_TITLE     = "org.privatechats.securesms.NOTIFICATION_TITLE";
+  public static final String NOTIFICATION_TEXT      = "org.privatechats.securesms.NOTIFICATION_TEXT";
+  public static final String CHALLENGE_EVENT        = "org.privatechats.securesms.CHALLENGE_EVENT";
+  public static final String REGISTRATION_EVENT     = "org.privatechats.securesms.REGISTRATION_EVENT";
 
   public static final String CHALLENGE_EXTRA        = "CAAChallenge";
 

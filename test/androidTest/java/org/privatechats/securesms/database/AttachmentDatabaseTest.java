@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.net.Uri;
 
-import org.thoughtcrime.securesms.TextSecureTestCase;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.TextSecureTestCase;
+import org.privatechats.securesms.attachments.AttachmentId;
+import org.privatechats.securesms.attachments.DatabaseAttachment;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;

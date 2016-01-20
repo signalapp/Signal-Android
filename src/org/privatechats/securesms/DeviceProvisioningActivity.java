@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.Window;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActivity {
 

@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/gray95">
 
-    <org.thoughtcrime.securesms.components.ZoomingImageView
+    <org.privatechats.securesms.components.ZoomingImageView
                android:id="@+id/image"
                android:layout_width="match_parent"
                android:layout_height="match_parent"

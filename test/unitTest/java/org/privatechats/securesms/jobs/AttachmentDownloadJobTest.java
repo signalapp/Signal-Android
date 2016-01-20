@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.thoughtcrime.securesms.BaseUnitTest;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob.InvalidPartException;
+import org.privatechats.securesms.BaseUnitTest;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.attachments.AttachmentId;
+import org.privatechats.securesms.jobs.AttachmentDownloadJob.InvalidPartException;
 
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mock;

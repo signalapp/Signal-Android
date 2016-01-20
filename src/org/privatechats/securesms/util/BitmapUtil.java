@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,7 +23,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 import com.bumptech.glide.load.resource.bitmap.Downsampler;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 
-import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.privatechats.securesms.mms.MediaConstraints;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;

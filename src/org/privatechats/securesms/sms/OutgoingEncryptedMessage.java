@@ -1,7 +1,7 @@
-package org.thoughtcrime.securesms.sms;
+package org.privatechats.securesms.sms;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipients;
 
 public class OutgoingEncryptedMessage extends OutgoingTextMessage {
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -17,10 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
-import org.thoughtcrime.securesms.service.ApplicationMigrationService;
-import org.thoughtcrime.securesms.service.ApplicationMigrationService.ImportState;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.SmsMigrator.ProgressDescription;
+import org.privatechats.securesms.service.ApplicationMigrationService;
+import org.privatechats.securesms.service.ApplicationMigrationService.ImportState;
 
 public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivity {
 

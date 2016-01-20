@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -25,8 +25,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ResUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.ResUtil;
 
 import java.util.ArrayList;
 import java.util.List;

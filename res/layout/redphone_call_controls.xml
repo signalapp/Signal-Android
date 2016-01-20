@@ -44,7 +44,7 @@
               don't have an icon in the downward direction so the whole
               bottom area of this widget is just wasted space.
     -->
-    <org.thoughtcrime.redphone.util.multiwaveview.MultiWaveView
+    <org.privatechats.redphone.util.multiwaveview.MultiWaveView
         android:id="@+id/incomingCallWidget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                      action button that brings up a popup menu; see
                      redphone_btn_compound_audio.xmlaudio.xml and InCallTouchUi.updateAudioButton()
                      for the full details. -->
-                <!--<org.thoughtcrime.redphone.ui.StateListenerView-->
+                <!--<org.privatechats.redphone.ui.StateListenerView-->
                     <!--android:id="@+id/menuAttachment"-->
                     <!--android:layout_width="0dp"-->
                     <!--android:layout_height="0dp"/>-->

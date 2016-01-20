@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -35,9 +35,9 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.ViewUtil;
 
 public class RecyclerViewFastScroller extends LinearLayout {
   private static final int BUBBLE_ANIMATION_DURATION = 100;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<org.thoughtcrime.securesms.contacts.ContactSelectionListItem
+<org.privatechats.securesms.contacts.ContactSelectionListItem
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +11,7 @@
         android:paddingLeft="48dp"
         android:paddingRight="20dp">
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
+    <org.privatechats.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -27,7 +27,7 @@
                   android:layout_weight="1"
                   android:orientation="vertical">
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        <org.privatechats.securesms.components.emoji.EmojiTextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,4 +77,4 @@
               android:focusable="false"
               android:clickable="false" />
 
-</org.thoughtcrime.securesms.contacts.ContactSelectionListItem>
+</org.privatechats.securesms.contacts.ContactSelectionListItem>

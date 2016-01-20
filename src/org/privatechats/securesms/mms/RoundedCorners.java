@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,7 +15,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils;
 
-import org.thoughtcrime.securesms.util.ResUtil;
+import org.privatechats.securesms.util.ResUtil;
 
 public class RoundedCorners extends BitmapTransformation {
   private final boolean crop;

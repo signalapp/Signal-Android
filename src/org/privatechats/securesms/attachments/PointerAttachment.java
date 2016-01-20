@@ -1,12 +1,12 @@
-package org.thoughtcrime.securesms.attachments;
+package org.privatechats.securesms.attachments;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.crypto.MediaKey;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.crypto.MediaKey;
+import org.privatechats.securesms.database.AttachmentDatabase;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 

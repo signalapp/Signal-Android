@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.ConversationUpdateItem
+<org.privatechats.securesms.ConversationUpdateItem
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/conversation_update_item"
@@ -48,4 +48,4 @@
     </LinearLayout>
 
 
-</org.thoughtcrime.securesms.ConversationUpdateItem>
+</org.privatechats.securesms.ConversationUpdateItem>

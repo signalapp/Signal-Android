@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.attachments;
+package org.privatechats.securesms.attachments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.util.MediaUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;

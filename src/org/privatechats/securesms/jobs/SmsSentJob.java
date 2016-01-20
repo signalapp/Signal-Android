@@ -1,21 +1,21 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.app.Activity;
 import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.service.SmsDeliveryListener;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.SecurityEvent;
+import org.privatechats.securesms.crypto.storage.TextSecureSessionStore;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.EncryptingSmsDatabase;
+import org.privatechats.securesms.database.NoSuchMessageException;
+import org.privatechats.securesms.database.model.SmsMessageRecord;
+import org.privatechats.securesms.jobs.requirements.MasterSecretRequirement;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.service.SmsDeliveryListener;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.state.SessionStore;
 

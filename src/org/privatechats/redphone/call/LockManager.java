@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.call;
+package org.privatechats.redphone.call;
 
 import android.app.KeyguardManager;
 import android.content.Context;

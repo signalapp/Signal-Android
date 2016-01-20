@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;

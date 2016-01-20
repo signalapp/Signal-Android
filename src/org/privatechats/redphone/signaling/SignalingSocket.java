@@ -15,22 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.signaling;
+package org.privatechats.redphone.signaling;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.thoughtcrime.redphone.network.LowLatencySocketConnector;
-import org.thoughtcrime.redphone.signaling.signals.BusySignal;
-import org.thoughtcrime.redphone.signaling.signals.HangupSignal;
-import org.thoughtcrime.redphone.signaling.signals.InitiateSignal;
-import org.thoughtcrime.redphone.signaling.signals.RingingSignal;
-import org.thoughtcrime.redphone.signaling.signals.ServerSignal;
-import org.thoughtcrime.redphone.signaling.signals.Signal;
-import org.thoughtcrime.redphone.util.LineReader;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.privatechats.redphone.network.LowLatencySocketConnector;
+import org.privatechats.redphone.signaling.signals.BusySignal;
+import org.privatechats.redphone.signaling.signals.HangupSignal;
+import org.privatechats.redphone.signaling.signals.InitiateSignal;
+import org.privatechats.redphone.signaling.signals.RingingSignal;
+import org.privatechats.redphone.signaling.signals.ServerSignal;
+import org.privatechats.redphone.signaling.signals.Signal;
+import org.privatechats.redphone.util.LineReader;
+import org.privatechats.securesms.util.JsonUtils;
 import org.whispersystems.textsecure.api.push.TrustStore;
 
 import java.io.IOException;

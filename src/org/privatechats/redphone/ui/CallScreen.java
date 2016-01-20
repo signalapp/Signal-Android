@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.ui;
+package org.privatechats.redphone.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -24,9 +24,9 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.privatechats.redphone.crypto.zrtp.SASInfo;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.recipients.Recipient;
 
 /**
  * A UI widget that encapsulates the entire in-call screen

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -22,10 +22,10 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.components.AvatarImageView;
+import org.privatechats.securesms.components.FromTextView;
+import org.privatechats.securesms.database.model.ThreadRecord;
+import org.privatechats.securesms.recipients.Recipients;
 
 /**
  * A simple view to show the recipients of an open conversation

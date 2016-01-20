@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class EmojiSpan extends AnimatingImageSpan {
   private final int            size;

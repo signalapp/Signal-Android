@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.smil;
+package org.privatechats.securesms.dom.smil;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ import org.w3c.dom.smil.ElementSequentialTimeContainer;
 import org.w3c.dom.smil.ElementTime;
 import org.w3c.dom.smil.SMILElement;
 
-import org.thoughtcrime.securesms.dom.NodeListImpl;
+import org.privatechats.securesms.dom.NodeListImpl;
 
 public abstract class ElementSequentialTimeContainerImpl extends
         ElementTimeContainerImpl implements ElementSequentialTimeContainer {

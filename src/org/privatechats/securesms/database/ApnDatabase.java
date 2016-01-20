@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -24,9 +24,9 @@ import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.mms.LegacyMmsConnection.Apn;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.File;

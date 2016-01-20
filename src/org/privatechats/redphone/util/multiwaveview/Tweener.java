@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.redphone.util.multiwaveview;
+package org.privatechats.redphone.util.multiwaveview;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;

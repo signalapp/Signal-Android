@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.network;
+package org.privatechats.redphone.network;
 
-import org.thoughtcrime.redphone.util.Conversions;
+import org.privatechats.redphone.util.Conversions;
 
 /**
  * This class builds an RTP packet

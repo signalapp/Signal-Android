@@ -1,15 +1,15 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.MmsDatabase;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 
 import ws.com.google.android.mms.pdu.GenericPdu;

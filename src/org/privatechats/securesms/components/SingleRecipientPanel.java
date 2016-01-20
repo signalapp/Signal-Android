@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -24,15 +24,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.RecipientsAdapter;
-import org.thoughtcrime.securesms.contacts.RecipientsEditor;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.recipients.Recipients.RecipientsModifiedListener;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.contacts.ContactAccessor;
+import org.privatechats.securesms.contacts.RecipientsAdapter;
+import org.privatechats.securesms.contacts.RecipientsEditor;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.RecipientFormattingException;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.recipients.Recipients.RecipientsModifiedListener;
 
 import java.util.Iterator;
 import java.util.LinkedList;

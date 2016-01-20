@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -22,13 +22,13 @@ import android.os.Bundle;
 import android.support.v4.preference.PreferenceFragment;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.CustomDefaultPreference;
-import org.thoughtcrime.securesms.database.ApnDatabase;
-import org.thoughtcrime.securesms.mms.LegacyMmsConnection;
-import org.thoughtcrime.securesms.util.TelephonyUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.PassphraseRequiredActionBarActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.CustomDefaultPreference;
+import org.privatechats.securesms.database.ApnDatabase;
+import org.privatechats.securesms.mms.LegacyMmsConnection;
+import org.privatechats.securesms.util.TelephonyUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
 

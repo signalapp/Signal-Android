@@ -21,14 +21,14 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <org.thoughtcrime.securesms.components.ImageDivet android:id="@+id/avatar"
+            <org.privatechats.securesms.components.ImageDivet android:id="@+id/avatar"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 position="bottom_right"
                 android:layout_marginRight="10dp"
                 android:contentDescription="@string/GroupCreateActivity_avatar_content_description" />
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+            <org.privatechats.securesms.components.emoji.EmojiEditText
                 android:id="@+id/group_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 style="@android:style/Widget.ProgressBar"
                 android:indeterminate="true" />
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            <org.privatechats.securesms.components.emoji.EmojiTextView
                 android:id="@+id/creating_group_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             </RelativeLayout>
     </RelativeLayout>
 
-    <org.thoughtcrime.securesms.components.PushRecipientsPanel android:id="@+id/recipients"
+    <org.privatechats.securesms.components.PushRecipientsPanel android:id="@+id/recipients"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="15dp"

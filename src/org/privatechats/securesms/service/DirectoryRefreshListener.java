@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 
 import android.app.AlarmManager;
@@ -8,9 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.jobs.DirectoryRefreshJob;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 public class DirectoryRefreshListener extends BroadcastReceiver {
 

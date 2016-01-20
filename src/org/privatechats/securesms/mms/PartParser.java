@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.util.Log;
 
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.util.Util;
 
 import java.io.UnsupportedEncodingException;
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.providers;
+package org.privatechats.securesms.providers;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -8,11 +8,11 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.crypto.DecryptingPartInputStream;
+import org.privatechats.securesms.crypto.EncryptingPartOutputStream;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.Util;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -29,7 +29,7 @@ public class SingleUseBlobProvider {
 
   private static final String TAG = SingleUseBlobProvider.class.getSimpleName();
 
-  public  static final String AUTHORITY   = "org.thoughtcrime.securesms";
+  public  static final String AUTHORITY   = "org.privatechats.securesms";
   public  static final String PATH        = "memory/*/#";
   private static final Uri    CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/memory");
 

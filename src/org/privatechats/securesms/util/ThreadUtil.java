@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;

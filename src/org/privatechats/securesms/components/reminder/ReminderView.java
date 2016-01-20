@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.reminder;
+package org.privatechats.securesms.components.reminder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -11,8 +11,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.ViewUtil;
 
 /**
  * View to display actionable reminders to the user

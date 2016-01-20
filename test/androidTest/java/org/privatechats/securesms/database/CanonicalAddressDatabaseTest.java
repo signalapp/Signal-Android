@@ -1,6 +1,6 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
-import org.thoughtcrime.securesms.TextSecureTestCase;
+import org.privatechats.securesms.TextSecureTestCase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

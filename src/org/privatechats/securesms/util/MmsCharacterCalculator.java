@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 public class MmsCharacterCalculator extends CharacterCalculator {
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.jobs.requirements;
+package org.privatechats.securesms.jobs.requirements;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -6,13 +6,13 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.attachments.AttachmentId;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.util.MediaUtil;
+import org.privatechats.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.dependencies.ContextDependent;
 import org.whispersystems.jobqueue.requirements.Requirement;
 

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,25 +27,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
-import org.thoughtcrime.securesms.jobs.PushDecryptJob;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.VersionTracker;
+import org.privatechats.securesms.attachments.DatabaseAttachment;
+import org.privatechats.securesms.crypto.IdentityKeyUtil;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.storage.TextSecurePreKeyStore;
+import org.privatechats.securesms.crypto.storage.TextSecureSessionStore;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.MmsDatabase;
+import org.privatechats.securesms.database.MmsDatabase.Reader;
+import org.privatechats.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.database.PushDatabase;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.jobs.AttachmentDownloadJob;
+import org.privatechats.securesms.jobs.CreateSignedPreKeyJob;
+import org.privatechats.securesms.jobs.DirectoryRefreshJob;
+import org.privatechats.securesms.jobs.PushDecryptJob;
+import org.privatechats.securesms.jobs.RefreshAttributesJob;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.VersionTracker;
 
 import java.io.File;
 import java.util.List;

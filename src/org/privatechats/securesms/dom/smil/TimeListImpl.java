@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.smil;
+package org.privatechats.securesms.dom.smil;
 
 import java.util.ArrayList;
 

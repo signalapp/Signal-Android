@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,14 +16,14 @@ import android.widget.Toast;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerDialogFragment;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.BlockedContactsActivity;
-import org.thoughtcrime.securesms.PassphraseChangeActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.ApplicationPreferencesActivity;
+import org.privatechats.securesms.BlockedContactsActivity;
+import org.privatechats.securesms.PassphraseChangeActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUtil;
+import org.privatechats.securesms.service.KeyCachingService;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 

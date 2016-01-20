@@ -5,7 +5,7 @@
               android:orientation="vertical"
               xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <org.thoughtcrime.securesms.components.ContactFilterToolbar
+    <org.privatechats.securesms.components.ContactFilterToolbar
             android:id="@+id/toolbar"
             android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
@@ -16,6 +16,6 @@
         <fragment android:id="@+id/contact_selection_list_fragment"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:name="org.thoughtcrime.securesms.ContactSelectionListFragment" />
+                  android:name="org.privatechats.securesms.ContactSelectionListFragment" />
 
 </LinearLayout>

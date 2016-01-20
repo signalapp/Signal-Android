@@ -1,12 +1,12 @@
-package org.thoughtcrime.securesms.components.reminder;
+package org.privatechats.securesms.components.reminder;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.Util;
 
 public class OutdatedBuildReminder extends Reminder {
 

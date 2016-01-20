@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.transport;
+package org.privatechats.securesms.transport;
 
 import java.io.IOException;
 

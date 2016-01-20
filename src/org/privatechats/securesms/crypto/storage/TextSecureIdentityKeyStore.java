@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.crypto.storage;
+package org.privatechats.securesms.crypto.storage;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.crypto.IdentityKeyUtil;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;

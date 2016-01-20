@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class Dialogs {
   public static void showAlertDialog(Context context, String title, String message) {

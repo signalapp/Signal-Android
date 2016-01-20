@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.location;
+package org.privatechats.securesms.components.location;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -19,10 +19,10 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.ViewUtil;
+import org.privatechats.securesms.util.concurrent.ListenableFuture;
+import org.privatechats.securesms.util.concurrent.SettableFuture;
 
 public class SignalMapView extends LinearLayout {
 

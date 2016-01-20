@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.providers;
+package org.privatechats.securesms.providers;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -33,7 +33,7 @@ import java.io.OutputStream;
 
 public class MmsBodyProvider extends ContentProvider {
   private static final String TAG                = MmsBodyProvider.class.getSimpleName();
-  private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms.mms/mms";
+  private static final String CONTENT_URI_STRING = "content://org.privatechats.provider.securesms.mms/mms";
   public  static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
   private static final int    SINGLE_ROW         = 1;
 
@@ -41,7 +41,7 @@ public class MmsBodyProvider extends ContentProvider {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.provider.securesms.mms", "mms/#", SINGLE_ROW);
+    uriMatcher.addURI("org.privatechats.provider.securesms.mms", "mms/#", SINGLE_ROW);
   }
 
   @Override

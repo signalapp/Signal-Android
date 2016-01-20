@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -18,15 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
-import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
-import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.emoji.EmojiDrawer;
+import org.privatechats.securesms.components.emoji.EmojiEditText;
+import org.privatechats.securesms.components.emoji.EmojiToggle;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.ViewUtil;
+import org.privatechats.securesms.util.concurrent.AssertedSuccessListener;
+import org.privatechats.securesms.util.concurrent.ListenableFuture;
+import org.privatechats.securesms.util.concurrent.SettableFuture;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;

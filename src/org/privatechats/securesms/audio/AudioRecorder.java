@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.audio;
+package org.privatechats.securesms.audio;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -9,13 +9,13 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ThreadUtil;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.providers.PersistentBlobProvider;
+import org.privatechats.securesms.util.MediaUtil;
+import org.privatechats.securesms.util.ThreadUtil;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.concurrent.ListenableFuture;
+import org.privatechats.securesms.util.concurrent.SettableFuture;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;

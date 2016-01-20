@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,10 +11,10 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Trimmer;
+import org.privatechats.securesms.ApplicationPreferencesActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Trimmer;
 
 import java.util.ArrayList;
 import java.util.List;

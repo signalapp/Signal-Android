@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+    <org.privatechats.securesms.components.SwitchPreferenceCompat
                         android:key="pref_key_enable_notifications"
                         android:title="@string/preferences__notifications"
                         android:summary="@string/preferences__enable_message_notifications"
@@ -28,7 +28,7 @@
         android:entries="@array/pref_led_color_entries"
         android:entryValues="@array/pref_led_color_values" />
 
-    <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
+    <org.privatechats.securesms.preferences.LedBlinkPatternListPreference
         android:key="pref_led_blink"
         android:defaultValue="500,2000"
         android:title="@string/preferences__pref_led_blink_title"
@@ -57,7 +57,7 @@
                     android:entries="@array/pref_notification_privacy_entries"
                     android:entryValues="@array/pref_notification_privacy_values"/>
 
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+    <org.privatechats.securesms.components.SwitchPreferenceCompat
         android:key="pref_enable_new_contacts_notifications"
         android:title="@string/preferences__new_contacts_notifications"
         android:summary="@string/preferences__show_a_notification_for_new_signal_contacts"

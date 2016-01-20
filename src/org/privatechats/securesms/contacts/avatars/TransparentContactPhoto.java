@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.contacts.avatars;
+package org.privatechats.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import com.makeramen.roundedimageview.RoundedDrawable;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class TransparentContactPhoto implements ContactPhoto {
 

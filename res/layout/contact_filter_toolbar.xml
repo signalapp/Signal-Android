@@ -32,7 +32,7 @@
                       android:layout_gravity="center_vertical"
                       android:gravity="center_vertical"/>
 
-            <org.thoughtcrime.securesms.components.AnimatingToggle
+            <org.privatechats.securesms.components.AnimatingToggle
                 android:id="@+id/button_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                            android:background="@drawable/circle_touch_highlight_background"
                            android:src="@drawable/ic_clear_white_24dp" />
 
-            </org.thoughtcrime.securesms.components.AnimatingToggle>
+            </org.privatechats.securesms.components.AnimatingToggle>
 
         </LinearLayout>
 

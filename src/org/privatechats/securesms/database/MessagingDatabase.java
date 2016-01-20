@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.database.documents.Document;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.privatechats.securesms.database.documents.Document;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatch;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatchList;
+import org.privatechats.securesms.util.JsonUtils;
 import org.whispersystems.libaxolotl.IdentityKey;
 
 import java.io.IOException;

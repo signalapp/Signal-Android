@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -7,10 +7,10 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ConversationActivity;
-import org.thoughtcrime.securesms.ConversationPopupActivity;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.ConversationActivity;
+import org.privatechats.securesms.ConversationPopupActivity;
+import org.privatechats.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.privatechats.securesms.recipients.Recipients;
 
 import java.util.HashSet;
 import java.util.LinkedList;

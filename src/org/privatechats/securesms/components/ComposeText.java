@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -12,9 +12,9 @@ import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
 
-import org.thoughtcrime.securesms.TransportOption;
-import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.TransportOption;
+import org.privatechats.securesms.components.emoji.EmojiEditText;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
   private SpannableString hint;

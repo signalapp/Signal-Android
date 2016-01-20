@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.signaling;
+package org.privatechats.redphone.signaling;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

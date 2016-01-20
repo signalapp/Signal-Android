@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,16 +9,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.GifSlide;
-import org.thoughtcrime.securesms.mms.ImageSlide;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.mms.AudioSlide;
+import org.privatechats.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.privatechats.securesms.mms.GifSlide;
+import org.privatechats.securesms.mms.ImageSlide;
+import org.privatechats.securesms.mms.PartAuthority;
+import org.privatechats.securesms.mms.Slide;
+import org.privatechats.securesms.mms.VideoSlide;
 
 import java.io.IOException;
 import java.io.InputStream;

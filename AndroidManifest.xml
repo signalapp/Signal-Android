@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="org.thoughtcrime.securesms"
+          package="org.privatechats.securesms"
       android:versionCode="181"
       android:versionName="3.9.1">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat"/>
 
-    <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
+    <permission android:name="org.privatechats.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />
 
@@ -21,7 +21,7 @@
     <uses-feature android:name="android.hardware.portrait" android:required="false"/>
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
 
-    <uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
+    <uses-permission android:name="org.privatechats.securesms.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
     <uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"
@@ -85,9 +85,9 @@
     <uses-permission android:name="android.permission.READ_LOGS"/>
     <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
 
-    <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
+    <permission android:name="org.privatechats.securesms.permission.C2D_MESSAGE"
                 android:protectionLevel="signature" />
-    <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
+    <uses-permission android:name="org.privatechats.securesms.permission.C2D_MESSAGE" />
 
     <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
@@ -104,10 +104,10 @@
     <meta-data android:name="com.google.android.gms.version"
                android:value="@integer/google_play_services_version" />
 
-    <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
+    <meta-data android:name="org.privatechats.securesms.mms.TextSecureGlideModule"
                android:value="GlideModule" />
 
-    <activity android:name="org.thoughtcrime.redphone.RedPhone"
+    <activity android:name="org.privatechats.redphone.RedPhone"
               android:screenOrientation="portrait"
               android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
               android:launchMode="singleTask">
@@ -126,7 +126,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="org.thoughtcrime.securesms.ConversationListActivity" />
+            android:value="org.privatechats.securesms.ConversationListActivity" />
     </activity>
 
     <activity android:name=".PromptMmsActivity"
@@ -191,7 +191,7 @@
               android:parentActivityName=".ConversationListActivity">
         <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.thoughtcrime.securesms.ConversationListActivity" />
+                android:value="org.privatechats.securesms.ConversationListActivity" />
     </activity>
 
     <activity android:name=".ConversationActivity"
@@ -329,11 +329,11 @@
         <intent-filter>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
-            <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact" />
+            <data android:mimeType="vnd.android.cursor.item/vnd.org.privatechats.securesms.contact" />
         </intent-filter>
     </activity>
 
-    <activity android:name="org.thoughtcrime.redphone.RedPhoneShare"
+    <activity android:name="org.privatechats.redphone.RedPhoneShare"
               android:theme="@style/NoAnimation.Theme.BlackScreen"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
@@ -341,7 +341,7 @@
         <intent-filter>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
-            <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call" />
+            <data android:mimeType="vnd.android.cursor.item/vnd.org.privatechats.securesms.call" />
         </intent-filter>
 
     </activity>
@@ -356,7 +356,7 @@
 
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
-    <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
+    <service android:enabled="true" android:name="org.privatechats.redphone.RedPhoneService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
@@ -394,7 +394,7 @@
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            <category android:name="org.thoughtcrime.securesms" />
+            <category android:name="org.privatechats.securesms" />
         </intent-filter>
     </receiver>
 
@@ -413,7 +413,7 @@
     <receiver android:name=".service.SmsDeliveryListener"
               android:exported="true">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
+            <action android:name="org.privatechats.securesms.services.MESSAGE_SENT"/>
         </intent-filter>
     </receiver>
 
@@ -435,7 +435,7 @@
               android:enabled="true"
               android:exported="true">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.notifications.CLEAR"/>
+            <action android:name="org.privatechats.securesms.notifications.CLEAR"/>
         </intent-filter>
     </receiver>
 
@@ -443,24 +443,24 @@
               android:enabled="true"
               android:exported="false">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.notifications.WEAR_REPLY"/>
+            <action android:name="org.privatechats.securesms.notifications.WEAR_REPLY"/>
         </intent-filter>
     </receiver>
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:exported="false"
-              android:authorities="org.thoughtcrime.provider.securesms" />
+              android:authorities="org.privatechats.provider.securesms" />
 
     <provider android:name=".providers.MmsBodyProvider"
               android:grantUriPermissions="true"
               android:exported="false"
-              android:authorities="org.thoughtcrime.provider.securesms.mms" />
+              android:authorities="org.privatechats.provider.securesms.mms" />
 
     <receiver android:name=".service.RegistrationNotifier"
               android:exported="false">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
+            <action android:name="org.privatechats.securesms.REGISTRATION_EVENT" />
         </intent-filter>
     </receiver>
 
@@ -473,13 +473,13 @@
 
     <receiver android:name=".notifications.MessageNotifier$ReminderReceiver">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION"/>
+            <action android:name="org.privatechats.securesms.MessageNotifier.REMINDER_ACTION"/>
         </intent-filter>
     </receiver>
 
     <receiver android:name=".notifications.MessageNotifier$DeleteReceiver">
         <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION"/>
+            <action android:name="org.privatechats.securesms.MessageNotifier.DELETE_REMINDER_ACTION"/>
         </intent-filter>
     </receiver>
 

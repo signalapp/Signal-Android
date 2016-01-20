@@ -1,21 +1,21 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
-import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.EncryptingSmsDatabase;
+import org.privatechats.securesms.database.NoSuchMessageException;
+import org.privatechats.securesms.database.SmsDatabase;
+import org.privatechats.securesms.database.model.SmsMessageRecord;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.transport.InsecureFallbackApprovalException;
+import org.privatechats.securesms.transport.RetryLaterException;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
@@ -27,7 +27,7 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import static org.privatechats.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 
 public class PushTextSendJob extends PushSendJob implements InjectableType {
 

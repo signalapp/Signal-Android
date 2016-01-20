@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 import android.os.Build.VERSION;
@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.privatechats.securesms.transport.UndeliverableMessageException;
 
 import java.io.IOException;
 

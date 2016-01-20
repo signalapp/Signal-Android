@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -31,22 +31,22 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.components.DeliveryStatusView;
-import org.thoughtcrime.securesms.components.AlertView;
-import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.ResUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.components.AvatarImageView;
+import org.privatechats.securesms.components.DeliveryStatusView;
+import org.privatechats.securesms.components.AlertView;
+import org.privatechats.securesms.components.FromTextView;
+import org.privatechats.securesms.components.ThumbnailView;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.model.ThreadRecord;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.DateUtils;
+import org.privatechats.securesms.util.ResUtil;
+import org.privatechats.securesms.util.ViewUtil;
 
 import java.util.Locale;
 import java.util.Set;
 
-import static org.thoughtcrime.securesms.util.SpanUtil.color;
+import static org.privatechats.securesms.util.SpanUtil.color;
 
 /**
  * A view that displays the element in a list of multiple conversation threads.

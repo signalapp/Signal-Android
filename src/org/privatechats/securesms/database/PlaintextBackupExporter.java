@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 
 import android.content.Context;
 import android.os.Environment;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.model.SmsMessageRecord;
 
 import java.io.File;
 import java.io.IOException;

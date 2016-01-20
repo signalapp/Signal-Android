@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.app.AlarmManager;
 import android.app.NotificationManager;
@@ -39,23 +39,23 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ConversationActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.SpanUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.ConversationActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.MmsSmsDatabase;
+import org.privatechats.securesms.database.PushDatabase;
+import org.privatechats.securesms.database.SmsDatabase;
+import org.privatechats.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.database.model.MediaMmsMessageRecord;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.mms.SlideDeck;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.service.KeyCachingService;
+import org.privatechats.securesms.util.SpanUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
 import java.io.IOException;
@@ -420,7 +420,7 @@ public class MessageNotifier {
 
   public static class ReminderReceiver extends BroadcastReceiver {
 
-    public static final String REMINDER_ACTION = "org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION";
+    public static final String REMINDER_ACTION = "org.privatechats.securesms.MessageNotifier.REMINDER_ACTION";
 
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -439,7 +439,7 @@ public class MessageNotifier {
 
   public static class DeleteReceiver extends BroadcastReceiver {
 
-    public static final String DELETE_REMINDER_ACTION = "org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION";
+    public static final String DELETE_REMINDER_ACTION = "org.privatechats.securesms.MessageNotifier.DELETE_REMINDER_ACTION";
 
     @Override
     public void onReceive(Context context, Intent intent) {

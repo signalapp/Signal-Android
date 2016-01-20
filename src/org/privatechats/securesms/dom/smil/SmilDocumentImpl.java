@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.smil;
+package org.privatechats.securesms.dom.smil;
 
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
@@ -30,8 +30,8 @@ import org.w3c.dom.smil.SMILElement;
 import org.w3c.dom.smil.SMILLayoutElement;
 import org.w3c.dom.smil.TimeList;
 
-import org.thoughtcrime.securesms.dom.DocumentImpl;
-import org.thoughtcrime.securesms.dom.events.EventImpl;
+import org.privatechats.securesms.dom.DocumentImpl;
+import org.privatechats.securesms.dom.events.EventImpl;
 
 public class SmilDocumentImpl extends DocumentImpl implements SMILDocument, DocumentEvent {
     /*

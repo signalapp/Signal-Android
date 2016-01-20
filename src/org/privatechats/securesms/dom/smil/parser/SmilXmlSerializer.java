@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.smil.parser;
+package org.privatechats.securesms.dom.smil.parser;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.util;
+package org.privatechats.redphone.util;
 
 import android.util.Log;
 
-import org.thoughtcrime.securesms.util.Hex;
+import org.privatechats.securesms.util.Hex;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

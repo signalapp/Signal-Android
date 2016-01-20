@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database.model;
+package org.privatechats.securesms.database.model;
 
 import android.content.Context;
 import android.net.Uri;
@@ -25,12 +25,12 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.database.MmsSmsColumns;
+import org.privatechats.securesms.database.SmsDatabase;
+import org.privatechats.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.GroupUtil;
 
 /**
  * The message record model which represents thread heading messages.
@@ -89,11 +89,11 @@ public class ThreadRecord extends DisplayRecord {
       String draftText = context.getString(R.string.ThreadRecord_draft);
       return emphasisAdded(draftText + " " + getBody().getBody(), 0, draftText.length());
     } else if (SmsDatabase.Types.isOutgoingCall(type)) {
-      return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_called));
+      return emphasisAdded(context.getString(org.privatechats.securesms.R.string.ThreadRecord_called));
     } else if (SmsDatabase.Types.isIncomingCall(type)) {
-      return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_called_you));
+      return emphasisAdded(context.getString(org.privatechats.securesms.R.string.ThreadRecord_called_you));
     } else if (SmsDatabase.Types.isMissedCall(type)) {
-      return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
+      return emphasisAdded(context.getString(org.privatechats.securesms.R.string.ThreadRecord_missed_call));
     } else if (SmsDatabase.Types.isJoinedType(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal_say_hey, getRecipients().getPrimaryRecipient().toShortString()));
     } else {

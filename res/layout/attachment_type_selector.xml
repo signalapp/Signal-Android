@@ -19,7 +19,7 @@
                       android:gravity="center"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.CircleColorImageView
+            <org.privatechats.securesms.components.CircleColorImageView
                     android:id="@+id/gallery_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -42,7 +42,7 @@
                       android:layout_weight="1"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.CircleColorImageView
+            <org.privatechats.securesms.components.CircleColorImageView
                     android:id="@+id/audio_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -65,7 +65,7 @@
                       android:layout_weight="1"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.CircleColorImageView
+            <org.privatechats.securesms.components.CircleColorImageView
                     android:id="@+id/video_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -89,7 +89,7 @@
                       android:orientation="vertical"
                       android:layout_weight="1">
 
-            <org.thoughtcrime.securesms.components.CircleColorImageView
+            <org.privatechats.securesms.components.CircleColorImageView
                     android:id="@+id/contact_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -120,7 +120,7 @@
                       android:gravity="center"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.CircleColorImageView
+            <org.privatechats.securesms.components.CircleColorImageView
                     android:id="@+id/camera_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -145,7 +145,7 @@
                       android:gravity="center"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.CircleColorImageView
+            <org.privatechats.securesms.components.CircleColorImageView
                     android:id="@+id/location_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -177,7 +177,7 @@
                       android:gravity="center"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.CircleColorImageView
+            <org.privatechats.securesms.components.CircleColorImageView
                     android:id="@+id/close_button"
                     android:layout_width="60dp"
                     android:layout_height="60dp"

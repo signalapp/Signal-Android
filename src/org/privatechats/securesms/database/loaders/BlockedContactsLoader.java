@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.database.loaders;
+package org.privatechats.securesms.database.loaders;
 
 import android.content.Context;
 import android.database.Cursor;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.util.AbstractCursorLoader;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.util.AbstractCursorLoader;
 
 public class BlockedContactsLoader extends AbstractCursorLoader {
 

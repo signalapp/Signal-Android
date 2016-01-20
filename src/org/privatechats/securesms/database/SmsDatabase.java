@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,20 +28,20 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
-import org.thoughtcrime.securesms.database.model.DisplayRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.jobs.TrimThreadJob;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.LRUCache;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatch;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatchList;
+import org.privatechats.securesms.database.model.DisplayRecord;
+import org.privatechats.securesms.database.model.SmsMessageRecord;
+import org.privatechats.securesms.jobs.TrimThreadJob;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.sms.IncomingGroupMessage;
+import org.privatechats.securesms.sms.IncomingTextMessage;
+import org.privatechats.securesms.sms.OutgoingTextMessage;
+import org.privatechats.securesms.util.JsonUtils;
+import org.privatechats.securesms.util.LRUCache;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
@@ -50,7 +50,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import static org.thoughtcrime.securesms.util.Util.canonicalizeNumber;
+import static org.privatechats.securesms.util.Util.canonicalizeNumber;
 
 /**
  * Database for storage of SMS messages.
@@ -436,7 +436,7 @@ public class SmsDatabase extends MessagingDatabase {
       groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
     }
 
-    boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
+    boolean    unread     = org.privatechats.securesms.util.Util.isDefaultSmsProvider(context) ||
                             message.isSecureMessage() || message.isPreKeyBundle();
 
     long       threadId;

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.sms;
+package org.privatechats.securesms.sms;
 
 import static org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -24,11 +24,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.database.model.ThreadRecord;
+import org.privatechats.securesms.crypto.MasterCipher;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 /**
  * A CursorAdapter for building a list of open conversations

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,9 +9,9 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.privatechats.securesms.crypto.MasterCipher;
 
 import java.util.LinkedList;
 import java.util.List;

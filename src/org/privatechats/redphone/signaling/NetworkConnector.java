@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.signaling;
+package org.privatechats.redphone.signaling;
 
 import android.util.Log;
 
-import org.thoughtcrime.redphone.signaling.signals.OpenPortSignal;
-import org.thoughtcrime.redphone.signaling.signals.Signal;
-import org.thoughtcrime.redphone.util.LineReader;
+import org.privatechats.redphone.signaling.signals.OpenPortSignal;
+import org.privatechats.redphone.signaling.signals.Signal;
+import org.privatechats.redphone.util.LineReader;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

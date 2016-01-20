@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,8 +12,8 @@ import android.util.Log;
 
 import com.h6ah4i.android.compat.content.SharedPreferenceCompat;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.preferences.NotificationPrivacyPreference;
 
 import java.io.IOException;
 import java.util.Arrays;

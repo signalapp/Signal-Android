@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.dependencies;
+package org.privatechats.securesms.dependencies;
 
 public interface InjectableType {
 }

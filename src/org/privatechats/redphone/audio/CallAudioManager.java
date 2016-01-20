@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.audio;
+package org.privatechats.redphone.audio;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -6,7 +6,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.ServiceUtil;
 
 import java.io.FileDescriptor;
 import java.lang.reflect.Field;

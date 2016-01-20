@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -24,19 +24,19 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
-import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.model.DisplayRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.LRUCache;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.AsymmetricMasterCipher;
+import org.privatechats.securesms.crypto.AsymmetricMasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.crypto.MasterSecretUtil;
+import org.privatechats.securesms.database.model.DisplayRecord;
+import org.privatechats.securesms.database.model.SmsMessageRecord;
+import org.privatechats.securesms.sms.IncomingTextMessage;
+import org.privatechats.securesms.sms.OutgoingTextMessage;
+import org.privatechats.securesms.util.LRUCache;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterCipher;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;

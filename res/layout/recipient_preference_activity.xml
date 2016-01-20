@@ -19,7 +19,7 @@
                       android:orientation="horizontal"
                       android:gravity="center_vertical">
 
-            <org.thoughtcrime.securesms.components.AvatarImageView
+            <org.privatechats.securesms.components.AvatarImageView
                     android:id="@+id/avatar"
                     android:foreground="@drawable/contact_photo_background"
                     android:layout_width="50dp"
@@ -32,7 +32,7 @@
                           android:orientation="vertical"
                           android:paddingLeft="10dp">
 
-                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                <org.privatechats.securesms.components.emoji.EmojiTextView
                           android:id="@+id/name"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"

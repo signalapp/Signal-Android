@@ -13,7 +13,7 @@
  limitations under the License.
  */
 
-package org.thoughtcrime.securesms.components.camera;
+package org.privatechats.securesms.components.camera;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -41,11 +41,11 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.BitmapUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.jobqueue.Job;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.util.guava.Optional;

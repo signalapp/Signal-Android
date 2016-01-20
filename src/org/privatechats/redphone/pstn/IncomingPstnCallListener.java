@@ -1,4 +1,4 @@
-package org.thoughtcrime.redphone.pstn;
+package org.privatechats.redphone.pstn;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

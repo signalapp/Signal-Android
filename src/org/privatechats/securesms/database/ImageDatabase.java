@@ -1,13 +1,13 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.attachments.AttachmentId;
+import org.privatechats.securesms.attachments.DatabaseAttachment;
 
 public class ImageDatabase extends Database {
 

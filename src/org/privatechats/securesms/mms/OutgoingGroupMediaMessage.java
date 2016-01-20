@@ -1,12 +1,12 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Base64;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.Base64;
 import org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
 import java.io.IOException;

@@ -9,7 +9,7 @@
  * it here for backwards compatibility.
  */
 
-package org.thoughtcrime.securesms.util.deque;
+package org.privatechats.securesms.util.deque;
 
 import java.util.AbstractQueue;
 import java.util.Collection;

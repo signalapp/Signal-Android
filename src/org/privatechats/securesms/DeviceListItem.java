@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.util.DateUtils;
+import org.privatechats.securesms.util.DateUtils;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceInfo;
 
 import java.util.Locale;

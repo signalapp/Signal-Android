@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database.documents;
+package org.privatechats.securesms.database.documents;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

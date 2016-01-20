@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
@@ -8,13 +8,13 @@ import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
 
 public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
 
   private static final String TAG              = MarkReadReceiver.class.getSimpleName();
-  public static final  String CLEAR_ACTION     = "org.thoughtcrime.securesms.notifications.CLEAR";
+  public static final  String CLEAR_ACTION     = "org.privatechats.securesms.notifications.CLEAR";
   public static final  String THREAD_IDS_EXTRA = "thread_ids";
 
   @Override

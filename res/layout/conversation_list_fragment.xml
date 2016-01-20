@@ -12,7 +12,7 @@
                   android:layout_height="match_parent"
                   android:orientation="vertical">
 
-        <org.thoughtcrime.securesms.components.reminder.ReminderView
+        <org.privatechats.securesms.components.reminder.ReminderView
                 android:id="@+id/reminder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

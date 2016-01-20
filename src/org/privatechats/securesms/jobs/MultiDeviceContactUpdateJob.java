@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -8,13 +8,13 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.contacts.ContactAccessor;
+import org.privatechats.securesms.contacts.ContactAccessor.ContactData;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import org.privatechats.securesms.jobs.requirements.MasterSecretRequirement;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.util.guava.Optional;

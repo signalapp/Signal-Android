@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:app="http://schemas.android.com/apk/res-auto">
-    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+    <org.privatechats.securesms.components.SwitchPreferenceCompat
             android:key="pref_key_recipient_mute"
             android:title="@string/recipient_preferences__mute_conversation"
             android:summary="@string/recipient_preferences__disable_notifications_for_this_conversation"
@@ -9,7 +9,7 @@
             android:disableDependentsState="true"
             android:persistent="false" />
 
-    <org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference
+    <org.privatechats.securesms.preferences.AdvancedRingtonePreference
                         android:dependency="pref_key_recipient_mute"
                         android:key="pref_key_recipient_ringtone"
                         android:title="@string/recipient_preferences__notification_sound"
@@ -26,7 +26,7 @@
                     android:defaultValue="0"
                     android:persistent="false"/>
 
-    <org.thoughtcrime.securesms.preferences.ColorPreference
+    <org.privatechats.securesms.preferences.ColorPreference
             android:key="pref_key_recipient_color"
             android:title="@string/recipient_preferences__color"
             android:summary="@string/recipient_preferences__color_for_this_contact"

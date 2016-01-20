@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.call;
+package org.privatechats.redphone.call;
 
-import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
+import org.privatechats.redphone.crypto.zrtp.SASInfo;
 
 /**
  * An interface for those interested in receiving information

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,11 +13,11 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.WindowManager;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.service.MessageRetrievalService;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUtil;
+import org.privatechats.securesms.service.KeyCachingService;
+import org.privatechats.securesms.service.MessageRetrievalService;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
 

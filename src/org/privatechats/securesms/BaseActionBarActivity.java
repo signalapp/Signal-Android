@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.annotation.TargetApi;
 import android.app.ActivityOptions;
@@ -17,7 +17,7 @@ import android.view.ViewConfiguration;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.lang.reflect.Field;
 

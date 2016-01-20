@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.support.v4.preference.PreferenceFragment;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,8 +9,8 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ResUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.ResUtil;
 
 public class EmojiView extends View implements Drawable.Callback {
   private String   emoji;

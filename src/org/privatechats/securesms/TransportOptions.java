@@ -1,16 +1,16 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.util.MmsCharacterCalculator;
-import org.thoughtcrime.securesms.util.PushCharacterCalculator;
-import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
+import org.privatechats.securesms.util.MmsCharacterCalculator;
+import org.privatechats.securesms.util.PushCharacterCalculator;
+import org.privatechats.securesms.util.SmsCharacterCalculator;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.thoughtcrime.securesms.TransportOption.Type;
+import static org.privatechats.securesms.TransportOption.Type;
 
 public class TransportOptions {
 

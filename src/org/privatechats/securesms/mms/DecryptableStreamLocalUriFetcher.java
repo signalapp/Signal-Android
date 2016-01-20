@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

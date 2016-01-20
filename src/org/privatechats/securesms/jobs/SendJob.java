@@ -1,19 +1,19 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.TextSecureExpiredException;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.MediaStream;
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.BuildConfig;
+import org.privatechats.securesms.TextSecureExpiredException;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.mms.MediaConstraints;
+import org.privatechats.securesms.mms.MediaStream;
+import org.privatechats.securesms.transport.UndeliverableMessageException;
+import org.privatechats.securesms.util.MediaUtil;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 
 import java.io.IOException;

@@ -1,23 +1,23 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.MmsDatabase;
+import org.privatechats.securesms.database.NoSuchMessageException;
+import org.privatechats.securesms.database.documents.NetworkFailure;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.jobs.requirements.MasterSecretRequirement;
+import org.privatechats.securesms.mms.OutgoingGroupMediaMessage;
+import org.privatechats.securesms.mms.OutgoingMediaMessage;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.RecipientFormattingException;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.transport.UndeliverableMessageException;
+import org.privatechats.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
@@ -39,7 +39,7 @@ import javax.inject.Inject;
 
 import ws.com.google.android.mms.MmsException;
 
-import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+import static org.privatechats.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 
 public class PushGroupSendJob extends PushSendJob implements InjectableType {
 

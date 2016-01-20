@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<org.thoughtcrime.securesms.components.InputAwareLayout
+<org.privatechats.securesms.components.InputAwareLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer
+<org.privatechats.securesms.components.camera.QuickAttachmentDrawer
         android:id="@+id/quick_attachment_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +23,7 @@
                   android:clipToPadding="false"
                   android:clipChildren="false">
 
-        <org.thoughtcrime.securesms.components.reminder.ReminderView
+        <org.privatechats.securesms.components.reminder.ReminderView
             android:id="@+id/reminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -40,20 +40,20 @@
                      android:background="?android:windowBackground"
                      android:visibility="gone">
 
-            <org.thoughtcrime.securesms.components.RemovableMediaView
+            <org.privatechats.securesms.components.RemovableMediaView
                     android:id="@+id/removable_media_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
-                <org.thoughtcrime.securesms.components.location.SignalMapView
+                <org.privatechats.securesms.components.location.SignalMapView
                         android:id="@+id/attachment_location"
                         android:layout_width="210dp"
                         android:layout_height="210dp"
                         android:layout_gravity="center_horizontal"
                         android:visibility="gone"/>
 
-                <org.thoughtcrime.securesms.components.ThumbnailView
+                <org.privatechats.securesms.components.ThumbnailView
                         android:id="@+id/attachment_thumbnail"
                         android:layout_width="230dp"
                         android:layout_height="150dp"
@@ -62,7 +62,7 @@
                         android:contentDescription="@string/conversation_activity__attachment_thumbnail"
                         app:backgroundColorHint="?conversation_background" />
 
-                <org.thoughtcrime.securesms.components.AudioView
+                <org.privatechats.securesms.components.AudioView
                         android:id="@+id/attachment_audio"
                         android:layout_width="210dp"
                         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                         android:paddingBottom="15dp"
                         app:tintColor="@color/grey_500"/>
 
-            </org.thoughtcrime.securesms.components.RemovableMediaView>
+            </org.privatechats.securesms.components.RemovableMediaView>
 
         </FrameLayout>
 
@@ -94,12 +94,12 @@
                   android:text="160/160 (1)" />
 
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiDrawer
+        <org.privatechats.securesms.components.emoji.EmojiDrawer
                 android:id="@+id/emoji_drawer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
     </LinearLayout>
-</org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer>
-</org.thoughtcrime.securesms.components.InputAwareLayout>
+</org.privatechats.securesms.components.camera.QuickAttachmentDrawer>
+</org.privatechats.securesms.components.InputAwareLayout>

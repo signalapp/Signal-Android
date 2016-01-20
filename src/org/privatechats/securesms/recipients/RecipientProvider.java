@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.recipients;
+package org.privatechats.securesms.recipients;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -25,19 +25,19 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
-import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.color.MaterialColor;
+import org.privatechats.securesms.contacts.avatars.ContactColors;
+import org.privatechats.securesms.contacts.avatars.ContactPhoto;
+import org.privatechats.securesms.contacts.avatars.ContactPhotoFactory;
+import org.privatechats.securesms.database.CanonicalAddressDatabase;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.GroupDatabase;
+import org.privatechats.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.privatechats.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.LRUCache;
+import org.privatechats.securesms.util.ListenableFutureTask;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;

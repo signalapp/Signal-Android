@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
@@ -32,15 +32,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.ZoomingImageView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.SaveAttachmentTask;
-import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
+import org.privatechats.securesms.components.ZoomingImageView;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipient.RecipientModifiedListener;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.util.DateUtils;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.SaveAttachmentTask;
+import org.privatechats.securesms.util.SaveAttachmentTask.Attachment;
 
 /**
  * Activity for displaying media attachments in-app

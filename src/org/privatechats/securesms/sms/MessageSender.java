@@ -14,34 +14,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.sms;
+package org.privatechats.securesms.sms;
 
 import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.jobs.MmsSendJob;
-import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
-import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
-import org.thoughtcrime.securesms.jobs.PushTextSendJob;
-import org.thoughtcrime.securesms.jobs.SmsSendJob;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.EncryptingSmsDatabase;
+import org.privatechats.securesms.database.MmsDatabase;
+import org.privatechats.securesms.database.NotInDirectoryException;
+import org.privatechats.securesms.database.TextSecureDirectory;
+import org.privatechats.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.jobs.MmsSendJob;
+import org.privatechats.securesms.jobs.PushGroupSendJob;
+import org.privatechats.securesms.jobs.PushMediaSendJob;
+import org.privatechats.securesms.jobs.PushTextSendJob;
+import org.privatechats.securesms.jobs.SmsSendJob;
+import org.privatechats.securesms.mms.OutgoingMediaMessage;
+import org.privatechats.securesms.push.TextSecureCommunicationFactory;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;

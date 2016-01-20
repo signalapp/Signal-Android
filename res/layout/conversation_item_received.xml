@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.ConversationItem
+<org.privatechats.securesms.ConversationItem
         android:id="@+id/conversation_item"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
                     android:layout_marginBottom="6dp"
                     android:layout_marginRight="0dp">
 
-        <org.thoughtcrime.securesms.components.AvatarImageView
+        <org.privatechats.securesms.components.AvatarImageView
             android:id="@+id/contact_photo"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="40dp"
@@ -45,7 +45,7 @@
                       android:background="@drawable/received_bubble"
                       android:orientation="vertical">
 
-            <org.thoughtcrime.securesms.components.ThumbnailView
+            <org.privatechats.securesms.components.ThumbnailView
                     android:id="@+id/image_view"
                     android:layout_width="@dimen/media_bubble_height"
                     android:layout_height="@dimen/media_bubble_height"
@@ -56,7 +56,7 @@
                     tools:src="@drawable/ic_video_light"
                     tools:visibility="gone" />
 
-            <org.thoughtcrime.securesms.components.AudioView
+            <org.privatechats.securesms.components.AudioView
                     android:id="@+id/audio_view"
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                     app:tintColor="@color/white"
                     tools:visibility="visible"/>
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            <org.privatechats.securesms.components.emoji.EmojiTextView
                     android:id="@+id/conversation_item_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                            android:tint="?conversation_item_received_text_secondary_color"
                            android:tintMode="multiply"/>
 
-                <org.thoughtcrime.securesms.components.DeliveryStatusView
+                <org.privatechats.securesms.components.DeliveryStatusView
                         android:id="@+id/delivery_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <org.thoughtcrime.securesms.components.AlertView
+        <org.privatechats.securesms.components.AlertView
                 android:id="@+id/indicators_parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,4 +167,4 @@
                   android:visibility="gone" />
 
     </RelativeLayout>
-</org.thoughtcrime.securesms.ConversationItem>
+</org.privatechats.securesms.ConversationItem>

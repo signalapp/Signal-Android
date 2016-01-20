@@ -24,7 +24,7 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <org.thoughtcrime.securesms.components.RecyclerViewFastScroller
+    <org.privatechats.securesms.components.RecyclerViewFastScroller
         android:id="@+id/fast_scroller"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

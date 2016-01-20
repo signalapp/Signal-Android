@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable.Callback;

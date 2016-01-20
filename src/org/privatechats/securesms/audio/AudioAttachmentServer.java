@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.audio;
+package org.privatechats.securesms.audio;
 
 
 import android.content.Context;
@@ -7,10 +7,10 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.spongycastle.util.encoders.Hex;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.mms.PartAuthority;
+import org.privatechats.securesms.util.Util;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;

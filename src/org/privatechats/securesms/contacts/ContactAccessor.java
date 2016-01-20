@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.contacts;
+package org.privatechats.securesms.contacts;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -28,16 +28,16 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.GroupDatabase;
+import org.privatechats.securesms.database.TextSecureDirectory;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import static org.privatechats.securesms.database.GroupDatabase.GroupRecord;
 
 /**
  * This class was originally a layer of indirection between

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.notifications;
+package org.privatechats.securesms.notifications;
 
 import android.app.Notification;
 import android.content.Context;
@@ -10,11 +10,11 @@ import android.support.v4.app.NotificationCompat;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.database.RecipientPreferenceDatabase;
+import org.privatechats.securesms.preferences.NotificationPrivacyPreference;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 
 public abstract class AbstractNotificationBuilder extends NotificationCompat.Builder {
 

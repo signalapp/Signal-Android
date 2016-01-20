@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.app.Activity;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class DynamicNoActionBarTheme extends DynamicTheme {
   @Override

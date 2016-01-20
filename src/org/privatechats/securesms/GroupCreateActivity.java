@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.app.Activity;
 import android.content.Context;
@@ -43,34 +43,34 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.soundcloud.android.crop.Crop;
 
-import org.thoughtcrime.securesms.components.PushRecipientsPanel;
-import org.thoughtcrime.securesms.components.PushRecipientsPanel.RecipientsPanelChangedListener;
-import org.thoughtcrime.securesms.contacts.RecipientsEditor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
-import org.thoughtcrime.securesms.mms.RoundedCorners;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
-import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter.OnRecipientDeletedListener;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.components.PushRecipientsPanel;
+import org.privatechats.securesms.components.PushRecipientsPanel.RecipientsPanelChangedListener;
+import org.privatechats.securesms.contacts.RecipientsEditor;
+import org.privatechats.securesms.contacts.avatars.ContactColors;
+import org.privatechats.securesms.contacts.avatars.ContactPhotoFactory;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.GroupDatabase;
+import org.privatechats.securesms.database.GroupDatabase.GroupRecord;
+import org.privatechats.securesms.database.NotInDirectoryException;
+import org.privatechats.securesms.database.TextSecureDirectory;
+import org.privatechats.securesms.database.ThreadDatabase;
+import org.privatechats.securesms.groups.GroupManager;
+import org.privatechats.securesms.groups.GroupManager.GroupActionResult;
+import org.privatechats.securesms.mms.RoundedCorners;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.BitmapUtil;
+import org.privatechats.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.util.DynamicTheme;
+import org.privatechats.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.task.ProgressDialogAsyncTask;
+import org.privatechats.securesms.util.SelectedRecipientsAdapter;
+import org.privatechats.securesms.util.SelectedRecipientsAdapter.OnRecipientDeletedListener;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.ViewUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 

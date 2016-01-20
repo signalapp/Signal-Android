@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -40,8 +40,8 @@ import android.widget.EditText;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
+import org.privatechats.securesms.BuildConfig;
+import org.privatechats.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 

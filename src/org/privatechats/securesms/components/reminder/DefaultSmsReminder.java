@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.reminder;
+package org.privatechats.securesms.components.reminder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.provider.Telephony;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 
 public class DefaultSmsReminder extends Reminder {
 

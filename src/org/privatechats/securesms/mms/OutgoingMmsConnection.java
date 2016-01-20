@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.privatechats.securesms.transport.UndeliverableMessageException;
 
 import ws.com.google.android.mms.pdu.SendConf;
 

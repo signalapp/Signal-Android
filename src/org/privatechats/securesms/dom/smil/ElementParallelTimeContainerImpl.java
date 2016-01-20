@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.smil;
+package org.privatechats.securesms.dom.smil;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ import org.w3c.dom.smil.SMILElement;
 import org.w3c.dom.smil.Time;
 import org.w3c.dom.smil.TimeList;
 
-import org.thoughtcrime.securesms.dom.NodeListImpl;
+import org.privatechats.securesms.dom.NodeListImpl;
 
 public abstract class ElementParallelTimeContainerImpl extends ElementTimeContainerImpl
         implements ElementParallelTimeContainer {

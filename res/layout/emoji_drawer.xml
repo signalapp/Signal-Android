@@ -25,7 +25,7 @@
               android:layout_marginTop="10dp"
               android:layout_marginBottom="10dp" />
 
-        <org.thoughtcrime.securesms.components.RepeatableImageKey
+        <org.privatechats.securesms.components.RepeatableImageKey
                 android:id="@+id/backspace"
                 android:background="?emoji_tab_strip_background"
                 android:src="@drawable/ic_backspace_grey600_24dp"

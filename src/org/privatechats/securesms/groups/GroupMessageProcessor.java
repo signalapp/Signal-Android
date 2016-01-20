@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups;
+package org.privatechats.securesms.groups;
 
 
 import android.content.Context;
@@ -9,21 +9,21 @@ import android.util.Pair;
 
 import com.google.protobuf.ByteString;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.EncryptingSmsDatabase;
+import org.privatechats.securesms.database.GroupDatabase;
+import org.privatechats.securesms.database.MmsDatabase;
+import org.privatechats.securesms.jobs.AvatarDownloadJob;
+import org.privatechats.securesms.mms.OutgoingGroupMediaMessage;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.sms.IncomingGroupMessage;
+import org.privatechats.securesms.sms.IncomingTextMessage;
+import org.privatechats.securesms.util.Base64;
+import org.privatechats.securesms.util.GroupUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
@@ -37,7 +37,7 @@ import java.util.Set;
 
 import ws.com.google.android.mms.MmsException;
 
-import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import static org.privatechats.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.textsecure.internal.push.TextSecureProtos.AttachmentPointer;
 import static org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 

@@ -8,7 +8,7 @@
  * freely, as long as the origin is not misrepresented.
  */
 
-package org.thoughtcrime.securesms.crypto;
+package org.privatechats.securesms.crypto;
 
 import android.os.Build;
 import android.os.Process;

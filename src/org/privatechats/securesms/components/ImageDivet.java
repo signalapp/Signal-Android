@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class ImageDivet extends ImageView {
   private static final float CORNER_OFFSET = 12F;

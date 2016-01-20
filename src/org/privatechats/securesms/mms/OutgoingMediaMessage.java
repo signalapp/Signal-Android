@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.recipients.Recipients;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.recipients.Recipients;
 
 import java.util.List;
 

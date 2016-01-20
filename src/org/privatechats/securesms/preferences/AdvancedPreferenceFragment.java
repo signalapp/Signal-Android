@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences;
+package org.privatechats.securesms.preferences;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,20 +19,20 @@ import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.thoughtcrime.redphone.signaling.RedPhoneAccountManager;
-import org.thoughtcrime.redphone.signaling.RedPhoneTrustStore;
-import org.thoughtcrime.redphone.signaling.UnauthorizedException;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.LogSubmitActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RegistrationActivity;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.redphone.signaling.RedPhoneAccountManager;
+import org.privatechats.redphone.signaling.RedPhoneTrustStore;
+import org.privatechats.redphone.signaling.UnauthorizedException;
+import org.privatechats.securesms.ApplicationPreferencesActivity;
+import org.privatechats.securesms.BuildConfig;
+import org.privatechats.securesms.LogSubmitActivity;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.RegistrationActivity;
+import org.privatechats.securesms.contacts.ContactAccessor;
+import org.privatechats.securesms.contacts.ContactIdentityManager;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.push.TextSecureCommunicationFactory;
+import org.privatechats.securesms.util.task.ProgressDialogAsyncTask;
+import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.push.exceptions.AuthorizationFailedException;

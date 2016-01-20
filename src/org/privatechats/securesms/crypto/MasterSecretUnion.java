@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.crypto;
+package org.privatechats.securesms.crypto;
 
 import android.support.annotation.NonNull;
 

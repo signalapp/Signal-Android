@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.ui;
+package org.privatechats.redphone.ui;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -23,9 +23,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import org.thoughtcrime.redphone.RedPhone;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.privatechats.redphone.RedPhone;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.recipients.Recipient;
 
 /**
  * Manages the state of the RedPhone items in the Android notification bar.

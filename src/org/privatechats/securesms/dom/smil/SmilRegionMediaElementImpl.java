@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.dom.smil;
+package org.privatechats.securesms.dom.smil;
 
 import org.w3c.dom.NodeList;
 import org.w3c.dom.smil.SMILDocument;

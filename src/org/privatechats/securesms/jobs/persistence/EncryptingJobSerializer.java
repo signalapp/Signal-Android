@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.jobs.persistence;
+package org.privatechats.securesms.jobs.persistence;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.ParcelUtil;
+import org.privatechats.securesms.crypto.MasterCipher;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.util.ParcelUtil;
 import org.whispersystems.jobqueue.EncryptionKeys;
 import org.whispersystems.jobqueue.Job;
 import org.whispersystems.jobqueue.persistence.JavaJobSerializer;

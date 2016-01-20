@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.TransferControlView
+<org.privatechats.securesms.components.TransferControlView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/transfer_controls"
         android:orientation="vertical"

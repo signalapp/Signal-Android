@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.attachments;
+package org.privatechats.securesms.attachments;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.database.AttachmentDatabase;
 
 public abstract class Attachment {
 

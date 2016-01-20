@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.dependencies.InjectableType;
+import org.privatechats.securesms.jobs.requirements.MasterSecretRequirement;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import static org.thoughtcrime.securesms.dependencies.AxolotlStorageModule.SignedPreKeyStoreFactory;
+import static org.privatechats.securesms.dependencies.AxolotlStorageModule.SignedPreKeyStoreFactory;
 
 public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util.concurrent;
+package org.privatechats.securesms.util.concurrent;
 
 import java.util.LinkedList;
 import java.util.List;

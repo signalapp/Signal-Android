@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.groups;
+package org.privatechats.securesms.groups;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,22 +8,22 @@ import android.support.annotation.Nullable;
 
 import com.google.protobuf.ByteString;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.UriAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
-import org.thoughtcrime.securesms.providers.SingleUseBlobProvider;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.attachments.UriAttachment;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.AttachmentDatabase;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.GroupDatabase;
+import org.privatechats.securesms.mms.OutgoingGroupMediaMessage;
+import org.privatechats.securesms.providers.SingleUseBlobProvider;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.sms.MessageSender;
+import org.privatechats.securesms.util.BitmapUtil;
+import org.privatechats.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 

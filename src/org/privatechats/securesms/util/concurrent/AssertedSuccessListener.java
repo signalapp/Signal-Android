@@ -1,6 +1,6 @@
-package org.thoughtcrime.securesms.util.concurrent;
+package org.privatechats.securesms.util.concurrent;
 
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
+import org.privatechats.securesms.util.concurrent.ListenableFuture.Listener;
 
 import java.util.concurrent.ExecutionException;
 

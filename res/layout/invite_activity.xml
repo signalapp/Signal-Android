@@ -84,7 +84,7 @@
                   android:orientation="vertical"
                   android:visibility="gone">
 
-        <org.thoughtcrime.securesms.components.ContactFilterToolbar
+        <org.privatechats.securesms.components.ContactFilterToolbar
             android:id="@+id/contact_filter"
             android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="0dp"
                   android:layout_weight="1"
-                  android:name="org.thoughtcrime.securesms.ContactSelectionListFragment"
+                  android:name="org.privatechats.securesms.ContactSelectionListFragment"
                   tools:layout="@layout/contact_selection_list_fragment"/>
 
         <LinearLayout android:layout_width="match_parent"

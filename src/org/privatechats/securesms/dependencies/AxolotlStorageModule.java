@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.dependencies;
+package org.privatechats.securesms.dependencies;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
-import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.storage.TextSecureAxolotlStore;
+import org.privatechats.securesms.jobs.CleanPreKeysJob;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 
 import dagger.Module;

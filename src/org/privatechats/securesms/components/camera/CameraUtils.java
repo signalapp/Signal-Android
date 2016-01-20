@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.camera;
+package org.privatechats.securesms.components.camera;
 
 import android.app.Activity;
 import android.hardware.Camera;

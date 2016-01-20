@@ -1,8 +1,8 @@
-package org.thoughtcrime.redphone.signaling;
+package org.privatechats.redphone.signaling;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 import org.whispersystems.textsecure.api.push.TrustStore;
 
 import java.io.InputStream;

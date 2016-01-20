@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,13 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
-import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
-import org.thoughtcrime.securesms.service.ApplicationMigrationService;
-import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.EncryptedBackupExporter;
+import org.privatechats.securesms.database.NoExternalStorageException;
+import org.privatechats.securesms.database.PlaintextBackupImporter;
+import org.privatechats.securesms.service.ApplicationMigrationService;
+import org.privatechats.securesms.service.KeyCachingService;
 
 import java.io.IOException;
 

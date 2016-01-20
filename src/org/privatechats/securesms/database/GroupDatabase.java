@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 
 import android.annotation.SuppressLint;
@@ -13,14 +13,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.RecipientFormattingException;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.BitmapUtil;
+import org.privatechats.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 
 import java.io.IOException;
@@ -31,7 +31,7 @@ import java.util.List;
 
 public class GroupDatabase extends Database {
 
-  public static final String DATABASE_UPDATE_ACTION = "org.thoughtcrime.securesms.database.GroupDatabase.UPDATE";
+  public static final String DATABASE_UPDATE_ACTION = "org.privatechats.securesms.database.GroupDatabase.UPDATE";
 
   private static final String TAG = GroupDatabase.class.getSimpleName();
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -12,19 +12,19 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
-import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.SessionUtil;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.NotInDirectoryException;
+import org.privatechats.securesms.database.TextSecureDirectory;
+import org.privatechats.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.privatechats.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.push.TextSecureCommunicationFactory;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.sms.IncomingJoinedMessage;
+import org.privatechats.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
@@ -232,7 +232,7 @@ public class DirectoryHelper {
 
   private static Optional<Account> getOrCreateAccount(Context context) {
     AccountManager accountManager = AccountManager.get(context);
-    Account[]      accounts       = accountManager.getAccountsByType("org.thoughtcrime.securesms");
+    Account[]      accounts       = accountManager.getAccountsByType("org.privatechats.securesms");
 
     Optional<Account> account;
 
@@ -248,7 +248,7 @@ public class DirectoryHelper {
 
   private static Optional<Account> createAccount(Context context) {
     AccountManager accountManager = AccountManager.get(context);
-    Account        account        = new Account(context.getString(R.string.app_name), "org.thoughtcrime.securesms");
+    Account        account        = new Account(context.getString(R.string.app_name), "org.privatechats.securesms");
 
     if (accountManager.addAccountExplicitly(account, null, null)) {
       Log.w(TAG, "Created new account...");

@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.sms;
+package org.privatechats.securesms.sms;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.GroupUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;

@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.components.location.SignalPlace;
+import org.privatechats.securesms.components.location.SignalPlace;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 public class LocationSlide extends ImageSlide {

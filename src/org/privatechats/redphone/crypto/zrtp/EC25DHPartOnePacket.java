@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.crypto.zrtp;
+package org.privatechats.redphone.crypto.zrtp;
 
-import org.thoughtcrime.redphone.crypto.zrtp.retained.RetainedSecretsDerivatives;
-import org.thoughtcrime.redphone.network.RtpPacket;
+import org.privatechats.redphone.crypto.zrtp.retained.RetainedSecretsDerivatives;
+import org.privatechats.redphone.network.RtpPacket;
 
 /**
  * A DHPartOnePacket for the EC25 KA type.

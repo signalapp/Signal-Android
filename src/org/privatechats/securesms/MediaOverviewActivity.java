@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -34,14 +34,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.AbstractCursorLoader;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.CursorRecyclerViewAdapter;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.Recipient.RecipientModifiedListener;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.util.AbstractCursorLoader;
+import org.privatechats.securesms.util.DynamicLanguage;
 
 /**
  * Activity for displaying media attachments in-app

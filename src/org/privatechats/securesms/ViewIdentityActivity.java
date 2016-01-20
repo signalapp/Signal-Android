@@ -14,15 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecret;
 import org.whispersystems.libaxolotl.IdentityKey;
-import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
+import org.privatechats.securesms.crypto.IdentityKeyParcelable;
 
 /**
  * Activity for displaying an identity key.

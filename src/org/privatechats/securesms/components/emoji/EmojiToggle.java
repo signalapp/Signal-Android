@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiDrawerListener;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.emoji.EmojiDrawer.EmojiDrawerListener;
 
 public class EmojiToggle extends ImageButton implements EmojiDrawerListener {
 

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -29,16 +29,16 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.redphone.util.Conversions;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.LRUCache;
+import org.privatechats.redphone.util.Conversions;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.database.CursorRecyclerViewAdapter;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.MmsSmsColumns;
+import org.privatechats.securesms.database.MmsSmsDatabase;
+import org.privatechats.securesms.database.SmsDatabase;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.LRUCache;
 
 import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
@@ -49,8 +49,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.VisibleForTesting;
+import org.privatechats.securesms.util.ViewUtil;
+import org.privatechats.securesms.util.VisibleForTesting;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately

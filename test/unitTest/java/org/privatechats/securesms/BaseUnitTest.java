@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.privatechats.securesms;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,7 +15,7 @@ import org.mockito.stubbing.Answer;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecret;
 
 import javax.crypto.spec.SecretKeySpec;
 
@@ -79,6 +79,6 @@ public abstract class BaseUnitTest {
     when(sharedPreferences.getBoolean(anyString(), anyBoolean())).thenReturn(false);
     when(sharedPreferences.getFloat(anyString(), anyFloat())).thenReturn(0f);
     when(context.getSharedPreferences(anyString(), anyInt())).thenReturn(sharedPreferences);
-    when(context.getPackageName()).thenReturn("org.thoughtcrime.securesms");
+    when(context.getPackageName()).thenReturn("org.privatechats.securesms");
   }
 }

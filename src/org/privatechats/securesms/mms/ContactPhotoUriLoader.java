@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.privatechats.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,7 +8,7 @@ import com.bumptech.glide.load.model.GenericLoaderFactory;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.stream.StreamModelLoader;
 
-import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
+import org.privatechats.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
 
 import java.io.InputStream;
 

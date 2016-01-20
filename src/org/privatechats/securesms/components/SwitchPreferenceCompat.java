@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.os.Build;
 import android.preference.CheckBoxPreference;
 import android.util.AttributeSet;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class SwitchPreferenceCompat extends CheckBoxPreference {
 

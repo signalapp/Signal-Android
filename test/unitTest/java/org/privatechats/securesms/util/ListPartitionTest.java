@@ -1,7 +1,7 @@
-package org.thoughtcrime.securesms.util;
+package org.privatechats.securesms.util;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.BaseUnitTest;
+import org.privatechats.securesms.BaseUnitTest;
 
 import java.util.LinkedList;
 import java.util.List;

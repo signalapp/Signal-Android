@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.recipients;
+package org.privatechats.securesms.recipients;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -22,18 +22,18 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Patterns;
 
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
-import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.color.MaterialColor;
+import org.privatechats.securesms.contacts.avatars.ContactColors;
+import org.privatechats.securesms.contacts.avatars.ContactPhoto;
+import org.privatechats.securesms.contacts.avatars.ContactPhotoFactory;
+import org.privatechats.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.privatechats.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.privatechats.securesms.recipients.Recipient.RecipientModifiedListener;
+import org.privatechats.securesms.util.FutureTaskListener;
+import org.privatechats.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.ListenableFutureTask;
+import org.privatechats.securesms.util.NumberUtil;
+import org.privatechats.securesms.util.Util;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -15,23 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.redphone.call;
+package org.privatechats.redphone.call;
 
 import android.content.Context;
 import android.os.Process;
 import android.util.Log;
 
-import org.thoughtcrime.redphone.audio.AudioException;
-import org.thoughtcrime.redphone.audio.CallAudioManager;
-import org.thoughtcrime.redphone.crypto.SecureRtpSocket;
-import org.thoughtcrime.redphone.crypto.zrtp.MasterSecret;
-import org.thoughtcrime.redphone.crypto.zrtp.NegotiationFailedException;
-import org.thoughtcrime.redphone.crypto.zrtp.RecipientUnavailableException;
-import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
-import org.thoughtcrime.redphone.crypto.zrtp.ZRTPSocket;
-import org.thoughtcrime.redphone.signaling.SessionDescriptor;
-import org.thoughtcrime.redphone.signaling.SignalingSocket;
-import org.thoughtcrime.redphone.util.AudioUtils;
+import org.privatechats.redphone.audio.AudioException;
+import org.privatechats.redphone.audio.CallAudioManager;
+import org.privatechats.redphone.crypto.SecureRtpSocket;
+import org.privatechats.redphone.crypto.zrtp.MasterSecret;
+import org.privatechats.redphone.crypto.zrtp.NegotiationFailedException;
+import org.privatechats.redphone.crypto.zrtp.RecipientUnavailableException;
+import org.privatechats.redphone.crypto.zrtp.SASInfo;
+import org.privatechats.redphone.crypto.zrtp.ZRTPSocket;
+import org.privatechats.redphone.signaling.SessionDescriptor;
+import org.privatechats.redphone.signaling.SignalingSocket;
+import org.privatechats.redphone.util.AudioUtils;
 
 import java.io.IOException;
 import java.net.DatagramSocket;

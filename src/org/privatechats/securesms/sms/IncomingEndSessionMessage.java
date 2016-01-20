@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.sms;
+package org.privatechats.securesms.sms;
 
 public class IncomingEndSessionMessage extends IncomingTextMessage {
 

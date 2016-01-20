@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.service;
+package org.privatechats.securesms.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,10 +23,10 @@ import android.os.Build;
 import android.provider.Telephony;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.jobs.MmsReceiveJob;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.jobs.MmsReceiveJob;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 
 public class MmsListener extends BroadcastReceiver {
 

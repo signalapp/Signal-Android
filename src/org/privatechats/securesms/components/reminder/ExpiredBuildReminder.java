@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.reminder;
+package org.privatechats.securesms.components.reminder;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,8 +6,8 @@ import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.Util;
 
 public class ExpiredBuildReminder extends Reminder {
   private static final String TAG = ExpiredBuildReminder.class.getSimpleName();

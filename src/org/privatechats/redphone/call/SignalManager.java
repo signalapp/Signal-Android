@@ -1,11 +1,11 @@
-package org.thoughtcrime.redphone.call;
+package org.privatechats.redphone.call;
 
 import android.util.Log;
 
-import org.thoughtcrime.redphone.signaling.SessionDescriptor;
-import org.thoughtcrime.redphone.signaling.SignalingException;
-import org.thoughtcrime.redphone.signaling.SignalingSocket;
-import org.thoughtcrime.redphone.signaling.signals.ServerSignal;
+import org.privatechats.redphone.signaling.SessionDescriptor;
+import org.privatechats.redphone.signaling.SignalingException;
+import org.privatechats.redphone.signaling.SignalingSocket;
+import org.privatechats.redphone.signaling.signals.ServerSignal;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

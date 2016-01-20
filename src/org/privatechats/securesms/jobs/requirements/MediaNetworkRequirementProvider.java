@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.jobs.requirements;
+package org.privatechats.securesms.jobs.requirements;
 
 import org.whispersystems.jobqueue.requirements.RequirementListener;
 import org.whispersystems.jobqueue.requirements.RequirementProvider;

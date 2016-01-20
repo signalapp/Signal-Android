@@ -1,11 +1,11 @@
-package org.thoughtcrime.redphone.util;
+package org.privatechats.redphone.util;
 
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.ServiceUtil;
 
 /**
  * Utilities for manipulating device audio configuration

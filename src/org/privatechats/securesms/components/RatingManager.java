@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,8 +8,8 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 

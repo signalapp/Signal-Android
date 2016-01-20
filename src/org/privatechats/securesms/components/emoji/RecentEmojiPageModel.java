@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.emoji;
+package org.privatechats.securesms.components.emoji;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,8 +10,8 @@ import android.util.Log;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.JsonUtils;
 
 import java.io.IOException;
 import java.util.Iterator;

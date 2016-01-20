@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.database;
+package org.privatechats.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -31,37 +31,37 @@ import android.util.Pair;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
-import org.thoughtcrime.securesms.database.documents.NetworkFailureList;
-import org.thoughtcrime.securesms.database.model.DisplayRecord;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
-import org.thoughtcrime.securesms.jobs.TrimThreadJob;
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.privatechats.securesms.ApplicationContext;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.attachments.Attachment;
+import org.privatechats.securesms.attachments.DatabaseAttachment;
+import org.privatechats.securesms.crypto.AsymmetricMasterCipher;
+import org.privatechats.securesms.crypto.MasterCipher;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatch;
+import org.privatechats.securesms.database.documents.IdentityKeyMismatchList;
+import org.privatechats.securesms.database.documents.NetworkFailure;
+import org.privatechats.securesms.database.documents.NetworkFailureList;
+import org.privatechats.securesms.database.model.DisplayRecord;
+import org.privatechats.securesms.database.model.MediaMmsMessageRecord;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.database.model.NotificationMmsMessageRecord;
+import org.privatechats.securesms.jobs.TrimThreadJob;
+import org.privatechats.securesms.mms.IncomingMediaMessage;
+import org.privatechats.securesms.mms.OutgoingGroupMediaMessage;
+import org.privatechats.securesms.mms.OutgoingMediaMessage;
+import org.privatechats.securesms.mms.OutgoingSecureMediaMessage;
+import org.privatechats.securesms.mms.SlideDeck;
+import org.privatechats.securesms.recipients.Recipient;
+import org.privatechats.securesms.recipients.RecipientFactory;
+import org.privatechats.securesms.recipients.RecipientFormattingException;
+import org.privatechats.securesms.recipients.Recipients;
+import org.privatechats.securesms.util.GroupUtil;
+import org.privatechats.securesms.util.JsonUtils;
+import org.privatechats.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -77,8 +77,8 @@ import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.NotificationInd;
 import ws.com.google.android.mms.pdu.PduHeaders;
 
-import static org.thoughtcrime.securesms.util.Util.canonicalizeNumber;
-import static org.thoughtcrime.securesms.util.Util.canonicalizeNumberOrGroup;
+import static org.privatechats.securesms.util.Util.canonicalizeNumber;
+import static org.privatechats.securesms.util.Util.canonicalizeNumberOrGroup;
 
 public class MmsDatabase extends MessagingDatabase {
 
@@ -716,7 +716,7 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
-    if (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context)) {
+    if (org.privatechats.securesms.util.Util.isDefaultSmsProvider(context)) {
       DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
     }
 
@@ -1026,10 +1026,10 @@ public class MmsDatabase extends MessagingDatabase {
       byte[]transactionIdBytes   = null;
 
       if (!TextUtils.isEmpty(contentLocation))
-        contentLocationBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(contentLocation);
+        contentLocationBytes = org.privatechats.securesms.util.Util.toIsoBytes(contentLocation);
 
       if (!TextUtils.isEmpty(transactionId))
-        transactionIdBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(transactionId);
+        transactionIdBytes = org.privatechats.securesms.util.Util.toIsoBytes(transactionId);
 
 
       return new NotificationMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),

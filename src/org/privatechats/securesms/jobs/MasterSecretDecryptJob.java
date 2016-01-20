@@ -1,22 +1,22 @@
-package org.thoughtcrime.securesms.jobs;
+package org.privatechats.securesms.jobs;
 
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
-import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.privatechats.securesms.crypto.AsymmetricMasterCipher;
+import org.privatechats.securesms.crypto.AsymmetricMasterSecret;
+import org.privatechats.securesms.crypto.MasterSecret;
+import org.privatechats.securesms.crypto.MasterSecretUnion;
+import org.privatechats.securesms.crypto.MasterSecretUtil;
+import org.privatechats.securesms.database.DatabaseFactory;
+import org.privatechats.securesms.database.EncryptingSmsDatabase;
+import org.privatechats.securesms.database.MmsDatabase;
+import org.privatechats.securesms.database.SmsDatabase;
+import org.privatechats.securesms.database.model.MessageRecord;
+import org.privatechats.securesms.database.model.SmsMessageRecord;
+import org.privatechats.securesms.jobs.requirements.MasterSecretRequirement;
+import org.privatechats.securesms.notifications.MessageNotifier;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 

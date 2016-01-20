@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,8 +18,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.util.TextSecurePreferences;
 
 import java.net.URI;
 import java.net.URISyntaxException;

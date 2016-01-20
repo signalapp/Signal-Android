@@ -1,11 +1,11 @@
-package org.thoughtcrime.securesms.components;
+package org.privatechats.securesms.components;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 
-import org.thoughtcrime.securesms.R;
+import org.privatechats.securesms.R;
 
 public class BubbleDrawableBuilder {
   private int color;

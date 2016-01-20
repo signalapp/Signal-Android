@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.camera;
+package org.privatechats.securesms.components.camera;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -23,13 +23,13 @@ import android.widget.ImageButton;
 
 import com.nineoldandroids.animation.ObjectAnimator;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
-import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
-import org.thoughtcrime.securesms.components.camera.CameraView.CameraViewListener;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.privatechats.securesms.R;
+import org.privatechats.securesms.components.InputAwareLayout.InputView;
+import org.privatechats.securesms.components.KeyboardAwareLinearLayout;
+import org.privatechats.securesms.components.camera.CameraView.CameraViewListener;
+import org.privatechats.securesms.util.ServiceUtil;
+import org.privatechats.securesms.util.Util;
+import org.privatechats.securesms.util.ViewUtil;
 
 public class QuickAttachmentDrawer extends ViewGroup implements InputView, CameraViewListener {
   private static final String TAG = QuickAttachmentDrawer.class.getSimpleName();
