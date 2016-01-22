@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical">
+              android:layout_weight="1">
 
     <android.support.v7.widget.RecyclerView
             android:id="@android:id/list"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.0"
+            android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:cacheColorHint="?conversation_background" />
 
-</LinearLayout>
+    <View android:id="@+id/conversation_input_panel_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="4dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/conversation_input_panel_divider_gradient"
+        android:visibility="invisible" />
+
+</FrameLayout>

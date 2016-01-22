@@ -44,6 +44,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
@@ -88,6 +89,7 @@ public class ConversationFragment extends Fragment
   private Locale       locale;
   private RecyclerView list;
   private View         loadMoreView;
+  private View         inputPanelDivider;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -100,9 +102,11 @@ public class ConversationFragment extends Fragment
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
     list = ViewUtil.findById(view, android.R.id.list);
+    inputPanelDivider = ViewUtil.findById(view, R.id.conversation_input_panel_divider);
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
+    list.addOnScrollListener(listScrollListener);
 
     loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
     loadMoreView.setOnClickListener(new OnClickListener() {
@@ -187,9 +191,9 @@ public class ConversationFragment extends Fragment
       MessageRecord messageRecord = messageRecords.iterator().next();
 
       menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(messageRecord.isMms()              &&
-                                                                  !messageRecord.isMmsNotification() &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
+      menu.findItem(R.id.menu_context_save_attachment).setVisible(messageRecord.isMms() &&
+              !messageRecord.isMmsNotification() &&
+              ((MediaMmsMessageRecord) messageRecord).containsMediaSlide());
 
       menu.findItem(R.id.menu_context_forward).setVisible(true);
       menu.findItem(R.id.menu_context_details).setVisible(true);
@@ -226,6 +230,34 @@ public class ConversationFragment extends Fragment
       }
     });
   }
+
+  private boolean isScrolledToBottom() {
+    return ((LinearLayoutManager) list.getLayoutManager())
+            .findFirstCompletelyVisibleItemPosition() == 0;
+  }
+
+  private final RecyclerView.OnScrollListener listScrollListener =
+    new RecyclerView.OnScrollListener() {
+      public boolean wasScrolledToBottom = true;
+
+      @Override
+      public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        if (isScrolledToBottom() != wasScrolledToBottom) {
+          inputPanelDivider.clearAnimation();
+
+          float fromAlpha = wasScrolledToBottom ? 0 : 1;
+          float toAlpha = isScrolledToBottom() ? 0 : 1;
+
+          AlphaAnimation fadeGradient = new AlphaAnimation(fromAlpha, toAlpha);
+          fadeGradient.setDuration(200);
+          fadeGradient.setFillAfter(true);
+
+          inputPanelDivider.startAnimation(fadeGradient);
+
+          wasScrolledToBottom = isScrolledToBottom();
+        }
+      }
+    };
 
   private void handleCopyMessage(final Set<MessageRecord> messageRecords) {
     List<MessageRecord> messageList = new LinkedList<>(messageRecords);
@@ -375,6 +407,8 @@ public class ConversationFragment extends Fragment
     if (list.getAdapter() != null) {
       getListAdapter().changeCursor(null);
     }
+
+    listScrollListener.onScrolled(list, 0, 0);
   }
 
   public interface ConversationFragmentListener {
