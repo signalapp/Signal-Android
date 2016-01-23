@@ -207,11 +207,11 @@ ezt a névjegyet.
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Megosztás...</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Üdvözöl a Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">A TextSecure és a RedPhone most egy privát üzenetküldő minden helyzetre: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Üdvözöl a Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">A TextSecure mostantól Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">A TextSecure és a RedPhone most egy alkalmazás: Signal. Érints a felfedezéshez.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Üdvözöl a Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">A TextSecure és a RedPhone most egy privát üzenetküldő minden helyzetre: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Üdvözöl a Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">A TextSecure mostantól Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">A TextSecure és a RedPhone most egy alkalmazás: Signal Plus. Érints a felfedezéshez.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportálás</string>
   <string name="ExportFragment_export_plaintext_to_storage">Nyílt szöveg exportálása tárolóra?</string>

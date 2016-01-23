@@ -21,7 +21,7 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivează</string>
   <string name="ApplicationPreferencesActivity_unregistering">Anulare înregistrare</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal... </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal Plus... </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivez mesajele și apelurile Signal? </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivare mesaje și apeluri Signal Plus prin dezabonarea de la server. Va trebui să re-înregistrezi numărul tău de telefon pentru a putea să le folosești din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
@@ -77,7 +77,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Apasă pentru revenirea la soluția ne-securizată</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Reveniţi la SMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Reveniţi la MMS necriptat ca soluţie de rezervă?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Signal.\n\nTrimit mesaj nesecurizat?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Signal Plus.\n\nTrimit mesaj nesecurizat?</string>
   <string name="ConversationItem_unable_to_open_media">Nu a fost găsită o aplicație pentru a deschide acest tip media.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string>
@@ -186,11 +186,11 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partajează cu</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bunvenit la Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure și RedPhone sunt acum un singur mesager privat pentru orice situație: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bunvenit la Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure se numește acum Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Signal. Apasă pentru a explora.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bunvenit la Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure și RedPhone sunt acum un singur mesager privat pentru orice situație: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bunvenit la Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure se numește acum Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Signal Plus. Apasă pentru a explora.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportă</string>
   <string name="ExportFragment_export_plaintext_to_storage">Export în format text pe spațiul de stocare?</string>
@@ -215,7 +215,7 @@
   <string name="GroupCreateActivity_menu_create_title">Creare grup </string>
   <string name="GroupCreateActivity_creating_group">Se creează %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Se actualizează %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s nu a putut fi adăugat deoarece nu este un utlizator Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s nu a putut fi adăugat deoarece nu este un utlizator Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Se încarcă detaliile grupului...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ești deja în grup.</string>
   <!--GroupMembersDialog-->
@@ -226,7 +226,7 @@
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importă baza de date cu SMS-uri?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Această acțiune va importa 
-mesajele din baza de date SMS implicită de sistem în Signal. Dacă ai importat anterior
+mesajele din baza de date SMS implicită de sistem în Signal Plus. Dacă ai importat anterior
  baza de date cu SMS-uri, importarea repetată va rezulta în mesaje duplicate.</string>
   <string name="ImportFragment_import">Importă</string>
   <string name="ImportFragment_cancel">Anulare</string>
@@ -266,7 +266,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal Plu
     <item quantity="few">Trimit %d invitații prin SMS?</item>
     <item quantity="other">Trimit %d invitații prin SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Hai să folosim Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Hai să folosim Signal Plus: %1$s</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să comunice necriptat.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nu a fost găsită nici o cheie scanată!</string>
@@ -628,7 +628,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="redphone_call_controls__signal_call">Apel Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-        Verifică numărul tău de telefon pentru a te conecta la Signal.
+        Verifică numărul tău de telefon pentru a te conecta la Signal Plus.
     </string>
   <string name="registration_activity__your_country">TARA DVS.</string>
   <string name="registration_activity__your_country_code_and_phone_number">CODUL ŢĂRII DVS. ŞI 

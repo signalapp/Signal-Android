@@ -27,7 +27,7 @@
 Izklopim zaklep zaslona za sporočila?</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
   <string name="ApplicationPreferencesActivity_unregistering">Odjava poteka</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odjava od sporočil in klicev Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odjava od sporočil in klicev Signal Plus...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Izklopim sporočila in klice Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">S tem boste izključili sporočila in klice Signal Plus in se odjavili s strežnika. Za ponovno uporabo boste morali zopet prijaviti s svojo telefonsko številko.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom!</string>
@@ -74,7 +74,7 @@ preveriti ta stik.</string>
   <string name="ConfirmIdentityDialog_accept">Sprejmi</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sporočilo %s</string>
-  <string name="ContactsDatabase_signal_call_s">Klic Signal: %s</string>
+  <string name="ContactsDatabase_signal_call_s">Klic Signal Plus: %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Velikost sporočila: %d KB</string>
   <string name="ConversationItem_expires_s">Poteče: %s</string>
@@ -88,7 +88,7 @@ preveriti ta stik.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tapni za prehod na nezavarovana sporočila</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Preklopim na nešifriran SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Preklopim na nešifriran MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker prejemnik ni več uporabnik aplikacije Signal.\n\nPošljem nešifrirano?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker prejemnik ni več uporabnik aplikacije Signal Plus.\n\nPošljem nešifrirano?</string>
   <string name="ConversationItem_unable_to_open_media">Ne najdem aplikacije za odpiranje te vrste datotek.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string>
@@ -222,11 +222,11 @@ preveriti ta stik.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobrodošli v aplikaciji Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure in RedPhone sta odslej združena v skupni aplikaciji za zasebno komuniciranje: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Dobrodošli v aplikaciji Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je odslej Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure in RedPhone sta odslej ena aplikacija: Signal. Tapnite za več!</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobrodošli v aplikaciji Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure in RedPhone sta odslej združena v skupni aplikaciji za zasebno komuniciranje: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Dobrodošli v aplikaciji Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je odslej Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure in RedPhone sta odslej ena aplikacija: Signal Plus. Tapnite za več!</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Izvozi</string>
   <string name="ExportFragment_export_plaintext_to_storage">Izvozim v nešifrirani obliki?</string>
@@ -238,7 +238,7 @@ preveriti ta stik.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Napaka pri zapisovanju.</string>
   <string name="ExportFragment_success">Uspešno opravljeno!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal Plus!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova skupina</string>
@@ -254,7 +254,7 @@ preveriti ta stik.</string>
   <string name="GroupCreateActivity_menu_create_title">Ustvari skupino</string>
   <string name="GroupCreateActivity_creating_group">Ustvarjam %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Posodabljam %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Stik %1$s ni bil dodan, ker ni uporabnik aplikacije Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Stik %1$s ni bil dodan, ker ni uporabnik aplikacije Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Nalagam podatke o skupini...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ste že v skupini.</string>
   <!--GroupMembersDialog-->
@@ -264,7 +264,7 @@ preveriti ta stik.</string>
   <string name="ImportExportActivity_export">Izvoz</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Uvozim iz sistemske zbirke sporočil SMS?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">S tem boste uvozili sporočila iz sistemsko privzete aplikacije SMS v aplikacijo Signal. Če ste predhodno že uvozili sporočila iz sistemske aplikacije SMS, bodo ta sporočila podvojena.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">S tem boste uvozili sporočila iz sistemsko privzete aplikacije SMS v aplikacijo Signal Plus. Če ste predhodno že uvozili sporočila iz sistemske aplikacije SMS, bodo ta sporočila podvojena.</string>
   <string name="ImportFragment_import">Uvozi</string>
   <string name="ImportFragment_cancel">Prekliči</string>
   <string name="ImportFragment_restore_encrypted_backup">Obnovim iz šifirane varnostne kopije?</string>
@@ -304,7 +304,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
     <item quantity="few">Pošljem %d povabila SMS?</item>
     <item quantity="other">Pošljem %d povabil SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Preklopi na Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Preklopi na Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Pametni ljudje uporabljajo šifrirano komunikacijo!</string>
   <!--KeyScanningActivity-->
@@ -626,7 +626,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="import_fragment__import_system_sms_database">Uvoz iz sistemske zbirke sporočil SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Uvozi zbirko sporočil iz sistemsko privzete aplikacije SMS.</string>
   <string name="import_fragment__restore_encrypted_backup">Uvoz iz šifrirane varnostne kopije</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Obnovi podatke iz predhodno ustvarjene šifrirane varnostne kopije Signal.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Obnovi podatke iz predhodno ustvarjene šifrirane varnostne kopije Signal Plus.</string>
   <string name="import_fragment__import_plaintext_backup">Uvoz iz nešifrirane varnostne kopije</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Uvozi iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami sporočil SMS.</string>
   <!--load_more_header-->

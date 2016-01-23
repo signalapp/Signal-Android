@@ -22,7 +22,7 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Nonaktif</string>
   <string name="ApplicationPreferencesActivity_unregistering">Berhenti registrasi</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Berhenti registrasi dari pesan dan panggilan Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Berhenti registrasi dari pesan dan panggilan Signal Plus...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Nonaktifkan pesan dan panggilan Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Menonaktifkan pesan dan pangggilan Signal Plus dengan berhenti registrasi dari server. Anda perlu mendaftar ulang nomor telepon Anda untuk menggunakannya lagi di kemudian hari.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kesalahan dalam menghubungkan ke server!</string>
@@ -83,7 +83,7 @@ kontak ini.
   <string name="ConversationItem_click_to_approve_unencrypted">Tekan untuk beralih tanpa enkripsi</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alihkan ke SMS tanpa enkripsi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Alihkan ke MMS tanpa enkripsi?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Signal.\n\nTetap kirim pesan tidak aman?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Signal Plus.\n\nTetap kirim pesan tidak aman?</string>
   <string name="ConversationItem_unable_to_open_media">Tidak bisa menemukan aplikasi untuk membuka media ini.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string>
@@ -190,11 +190,11 @@ kontak ini.
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Selamat datang di Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure dan RedPhone sekarang bergabung menjadi perpesanan privat tunggal, untuk semua situasi: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Selamat datang di Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sekarang adalah Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure dan RedPhone sekarang bergabung menjadi satu aplikasi: Signal. Tekan untuk menjelajah.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Selamat datang di Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure dan RedPhone sekarang bergabung menjadi perpesanan privat tunggal, untuk semua situasi: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Selamat datang di Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sekarang adalah Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure dan RedPhone sekarang bergabung menjadi satu aplikasi: Signal Plus. Tekan untuk menjelajah.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
   <string name="ExportFragment_export_plaintext_to_storage">Ekspor teks ke media penyimpanan?</string>
@@ -206,7 +206,7 @@ kontak ini.
   <string name="ExportFragment_error_while_writing_to_storage">Gagal saat menyimpan ke penyimpanan.</string>
   <string name="ExportFragment_success">Sukses!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan permanen komunikasi Signal!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan permanen komunikasi Signal Plus!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Plus tidak dapat melakukan registrasi dengan Layanan Google Play. Fitur Signal Plus seperti pesan dan panggilan di nonaktifkan, mohon registrasi ulang melalui Pengaturan</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup baru</string>
@@ -222,7 +222,7 @@ kontak ini.
   <string name="GroupCreateActivity_menu_create_title">Buat grup</string>
   <string name="GroupCreateActivity_creating_group">Membuat %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Memperbarui %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak bisa menambahkan %1$s karena mereka bukan pengguna Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak bisa menambahkan %1$s karena mereka bukan pengguna Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Memuat detail grup...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Anda sudah berada di grup.</string>
   <!--GroupMembersDialog-->
@@ -233,7 +233,7 @@ kontak ini.
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Impor basis data SMS sistem?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Ini akan mengimpor
-        pesan dari basis data SMS bawaan sistem ke Signal. Jika Anda sebelumnya telah
+        pesan dari basis data SMS bawaan sistem ke Signal Plus. Jika Anda sebelumnya telah
         mengimpor basis data SMS sistem, mengimpornya lagi akan mengakibatkan duplikasi pesan.
     </string>
   <string name="ImportFragment_import">Import</string>
@@ -267,14 +267,14 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="InviteActivity_sending">Mengirim...</string>
   <string name="InviteActivity_heart_content_description">Hati</string>
   <string name="InviteActivity_invitations_sent">Undangan dikirim!</string>
-  <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
+  <string name="InviteActivity_invite_to_signal">Undang ke Signal Plus!</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="other">KIRIM KE %d TEMAN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirim %d SMS undangan?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Ayo pindah ke Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Ayo pindah ke Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Teman tidak membiarkan temannya mengobrol tanpa enkripsi.</string>
   <!--KeyScanningActivity-->
@@ -331,7 +331,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Maaf, sudah terlalu banyak perangkat yang Anda kaitkan, coba untuk membuang beberapa...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Maaf, ini bukan tautan perangkat QR code yang benar.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Kaitkan perangkat Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sepertinya Anda mencoba untuk menghubungkan perangkat Signal Plus menggunakan pemindai pihak ke-3. Untuk perlindungan Anda, mohon memindai kode lagi dari Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sepertinya Anda mencoba untuk menghubungkan perangkat Signal Plus menggunakan pemindai pihak ke-3. Untuk perlindungan Anda, mohon memindai kode lagi dari Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Masukkan frasa sandi</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikon Signal</string>
@@ -655,7 +655,7 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="redphone_call_controls__signal_call">Panggilan Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-        Verifikasi nomor telepon Anda untuk tersambung dengan Signal.
+        Verifikasi nomor telepon Anda untuk tersambung dengan Signal Plus.
     </string>
   <string name="registration_activity__your_country">NEGARA ANDA</string>
   <string name="registration_activity__your_country_code_and_phone_number">KODE NEGARA ANDA DAN
@@ -702,14 +702,14 @@ termasuk:
 jaringan.
 </string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Perangkat Anda
-membutuhkan konektivitas jaringan agar dapat menggunakan fitur Signal. Periksa untuk memastikan
+membutuhkan konektivitas jaringan agar dapat menggunakan fitur Signal Plus. Periksa untuk memastikan
 Anda tersambung ke data seluler atau Wi-Fi.
 </string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall membatasi.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Jika Anda tersambung melalui Wi-Fi, kemungkinan ada pengaturan firewall yang memblokir akses ke
-server Signal. Coba jaringan lain atau gunakan data seluler.
+server Signal Plus. Coba jaringan lain atau gunakan data seluler.
 </string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
         Signal Plus akan secara otomatis memverifikasi nomor Anda menggunakan konfirmasi pesan SMS.

@@ -206,11 +206,11 @@ denne kontakt.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nu én privat messenger, til enhver lejlighed: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nu Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nu én app: Signal. Tryk for at udforske.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nu én privat messenger, til enhver lejlighed: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nu Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nu én app: Signal Plus. Tryk for at udforske.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksportér</string>
   <string name="ExportFragment_export_plaintext_to_storage">Eksportér klartekst til hukommelsen?</string>
@@ -246,7 +246,7 @@ denne kontakt.</string>
   <string name="ImportExportActivity_export">Eksportér</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importér enhedens SMS-database?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra enhedens standard SMS-database til Signal. Hvis du har gjort det tidligere, vil dette resultere i dupletter.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra enhedens standard SMS-database til Signal Plus. Hvis du har gjort det tidligere, vil dette resultere i dupletter.</string>
   <string name="ImportFragment_import">Importér</string>
   <string name="ImportFragment_cancel">Afbryd</string>
   <string name="ImportFragment_restore_encrypted_backup">Gendan en krypteret backup?</string>
@@ -284,7 +284,7 @@ vil det resultere i dupletter.</string>
     <item quantity="one">Send 1 SMS-invitation?</item>
     <item quantity="other">Send %d SMS-invitationer?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Lad os bruge Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Lad os bruge Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det lader til at du ikke har nogle apps at dele til.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner lader ikke deres venner chatte ukrypteret.</string>
   <!--KeyScanningActivity-->
@@ -669,7 +669,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="redphone_call_controls__signal_call">Signalopkald</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Bekræft at dit telefonnummer er forbundet til Signal.</string>
+Bekræft at dit telefonnummer er forbundet til Signal Plus.</string>
   <string name="registration_activity__your_country">DIT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDEKODE OG DIT
 TELEFONNUMMER</string>

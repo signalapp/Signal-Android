@@ -169,11 +169,11 @@ ovaj kontakt.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podijeli s</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobro došli u Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone su sada jedan privatni način komunikacije za svaku situaciju: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Dobro došli u Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je sada Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Signal. Pritisnite za pregled.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobro došli u Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone su sada jedan privatni način komunikacije za svaku situaciju: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Dobro došli u Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je sada Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Signal Plus. Pritisnite za pregled.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Izvoz</string>
   <string name="ExportFragment_export_plaintext_to_storage">Izvezi u obliku običnog teksta na pohranu?</string>
@@ -212,7 +212,7 @@ ovaj kontakt.</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Uvezi sistemsku SMS bazu podataka?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Ovo će uvesti
-poruke iz zadane SMS aplikacije sustava u Signal. Ukoliko ste prethodno uvezli
+poruke iz zadane SMS aplikacije sustava u Signal Plus. Ukoliko ste prethodno uvezli
 SMS bazu podataka sustava, ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="ImportFragment_import">Uvoz</string>
   <string name="ImportFragment_cancel">Odustani</string>
@@ -574,7 +574,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="redphone_call_controls__signal_call">Signal Plus poziv</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Potvrdite svoj broj telefona kako biste se povezali sa Signal.</string>
+Potvrdite svoj broj telefona kako biste se povezali sa Signal Plus.</string>
   <string name="registration_activity__your_country">VAŠA ZEMLJA</string>
   <string name="registration_activity__your_country_code_and_phone_number">POZIVNI BROJ ZEMLJE I
 TELEFONSKI BROJ</string>

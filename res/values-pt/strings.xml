@@ -24,7 +24,7 @@ Desabilitar ecrã de bloqueio para mensagens?
 </string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">A eliminar o registo...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">A eliminar o registo do serviço de mensagens e chamadas Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">A eliminar o registo do serviço de mensagens e chamadas Signal Plus...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desactivar as mensagens Signal, eliminando o seu registo do servidor.
 Vai ser necessário re-registar o seu número de telefone se pretender utilizar esta funcionalidade novamente.</string>
@@ -87,7 +87,7 @@ que %2$s reinstalou o Signal Plus e tem agora uma nova chave de identidade.
   <string name="ConversationItem_click_to_approve_unencrypted">Pressione para enviar de modo inseguro</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não cifrado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Recorrer a MMS não cifrado?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será cifrada porque o destinatário já não é um utilizador Signal.\n\nEnviar mensagem de modo inseguro?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será cifrada porque o destinatário já não é um utilizador Signal Plus.\n\nEnviar mensagem de modo inseguro?</string>
   <string name="ConversationItem_unable_to_open_media">Não foi possível encontrar uma aplicação capaz de abrir este média.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
@@ -208,10 +208,10 @@ que %2$s reinstalou o Signal Plus e tem agora uma nova chave de identidade.
   <string name="ShareActivity_share_with">Partilhar com</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvindo ao Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um programa de mensagens privada para todas as situações: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Benvindo ao Signal!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um programa de mensagens privada para todas as situações: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Benvindo ao Signal Plus!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure é agora Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são uma única aplicação: Signal. Pressione para explorar.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são uma única aplicação: Signal Plus. Pressione para explorar.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportar</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exportar em texto simples para o armazenamento local?</string>
@@ -239,7 +239,7 @@ que %2$s reinstalou o Signal Plus e tem agora uma nova chave de identidade.
   <string name="GroupCreateActivity_menu_create_title">Criar grupo</string>
   <string name="GroupCreateActivity_creating_group">Criando %1$s...</string>
   <string name="GroupCreateActivity_updating_group">A actualizar %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque não é um utilizador Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque não é um utilizador Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">A carregar detalhes do grupo...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Já se encontra no grupo.</string>
   <!--GroupMembersDialog-->
@@ -250,7 +250,7 @@ que %2$s reinstalou o Signal Plus e tem agora uma nova chave de identidade.
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importar a base de dados SMS do sistema?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Esta operação
-irá importar as mensagens da bases de dados SMS do sistema para o Signal.
+irá importar as mensagens da bases de dados SMS do sistema para o Signal Plus.
 Se já fez a importação da base de dados de SMS do sistema,
 Importar novamente poderá resultar em mensagens duplicadas.
 </string>
@@ -284,7 +284,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="InviteActivity_sending">A enviar...</string>
   <string name="InviteActivity_heart_content_description">Coração</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
-  <string name="InviteActivity_invite_to_signal">Convidar para Signal!</string>
+  <string name="InviteActivity_invite_to_signal">Convidar para Signal Plus!</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">ENVIAR PARA 1 AMIGO</item>
     <item quantity="other">ENVIAR PARA %d AMIGOS</item>
@@ -349,7 +349,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lamentamos mas tem demasiados dispositivos interligados, tente remover alguns...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lamento mas este não é um código QR de ligação de dispositivo válido.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Interligar a um dispositivo Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Aparentemente está a tentar interligar-se a um dispositivo Signal Plus através de um scanner externo. Para sua protecção, releia o código através do Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Aparentemente está a tentar interligar-se a um dispositivo Signal Plus através de um scanner externo. Para sua protecção, releia o código através do Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduza palavra-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon Signal</string>
@@ -716,14 +716,14 @@ possíveis incluem:
 de rede.
 </string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">O seu
-dispositivo necessita de conectividade de rede para usar esta função Signal.
+dispositivo necessita de conectividade de rede para usar esta função Signal Plus.
 Certifique-se que 
 está ligado a dados móveis ou Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall restritiva.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Se está ligado via Wi-Fi, é possível que haja uma firewall a bloquear acesso ao
-servidor Signal. Tente aceder de outra rede ou via dados móveis.
+servidor Signal Plus. Tente aceder de outra rede ou via dados móveis.
 </string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Signal Plus vai agora automaticamente verificar o seu número com um SMS de confirmação.</string>
@@ -996,7 +996,7 @@ falhou.
   <string name="reminder_header_push_title">Habilitar mensagens e chamadas Signal</string>
   <string name="reminder_header_push_text">Melhore a sua experiência de comunicação.</string>
   <string name="reminder_header_push_button">ACTIVAR</string>
-  <string name="reminder_header_invite_title">Convidar para Signal!</string>
+  <string name="reminder_header_invite_title">Convidar para Signal Plus!</string>
   <string name="reminder_header_invite_text">Leve a sua conversa com %1$s para o próximo nível.</string>
   <string name="reminder_header_invite_button">CONVIDAR</string>
   <string name="reminder_header_share_title">Convide os seus amigos!</string>

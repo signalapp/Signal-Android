@@ -27,7 +27,7 @@
 Отключить пароль для просмотра сообщений?</string>
   <string name="ApplicationPreferencesActivity_disable">Отключить</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Отменяем регистрацию в Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Отменяем регистрацию в Signal Plus...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Отключить сообщения и звонки через Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Отключить сообщения и звонки Signal, отменив регистрацию на сервере. Вам нужно будет заново зарегистрироваться при помощи Вашего номера телефона, чтобы вновь использовать эти сервисы. </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
@@ -88,7 +88,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Отправить незащищённым</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Отправить как незашифрованное SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Отправить как незашифрованное MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal.\n\nОтправить незащищённое сообщение?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal Plus.\n\nОтправить незащищённое сообщение?</string>
   <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Сбросить защищённый сеанс?</string>
@@ -124,7 +124,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдём на Signal Plus %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Давайте общаться через Signal: %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Давайте общаться через Signal Plus: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не поддерживаются</string>
   <string name="ConversationActivity_mms_not_supported_message">Сообщение не может быть отправлено, так как ваш оператор не поддерживает MMS.</string>
@@ -222,11 +222,11 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добро пожаловать в Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добро пожаловать в Signal Plus.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure и RedPhone объединились в одно приложение для приватного общения в любых ситуациях: Signal</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добро пожаловать в Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Теперь TextSecure — это Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и RedPhone объединились в одно приложение: Signal. Нажмите, чтобы узнать больше.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добро пожаловать в Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Теперь TextSecure — это Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и RedPhone объединились в одно приложение: Signal Plus. Нажмите, чтобы узнать больше.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспорт</string>
   <string name="ExportFragment_export_plaintext_to_storage">Экспортировать открытым текстом на SD-карту?</string>
@@ -254,7 +254,7 @@
   <string name="GroupCreateActivity_menu_create_title">Создать группу</string>
   <string name="GroupCreateActivity_creating_group">Создаём %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Обновляем %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Невозможно добавить %1$s, так как он(а) не является пользователем Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Невозможно добавить %1$s, так как он(а) не является пользователем Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Загружаем подробности о группе...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Вы уже в группе.</string>
   <!--GroupMembersDialog-->
@@ -264,7 +264,7 @@
   <string name="ImportExportActivity_export">Экспорт</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Импортировать системную базу SMS?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Вы собираетесь импортировать SMS-сообщения из системной базы данных в Signal. Если вы уже это делали ранее, повторный импорт приведёт к дублированию сообщений.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Вы собираетесь импортировать SMS-сообщения из системной базы данных в Signal Plus. Если вы уже это делали ранее, повторный импорт приведёт к дублированию сообщений.</string>
   <string name="ImportFragment_import">Импортировать</string>
   <string name="ImportFragment_cancel">Отмена</string>
   <string name="ImportFragment_restore_encrypted_backup">Восстановить из зашифрованной резервной копии?</string>
@@ -304,7 +304,7 @@
     <item quantity="many">Отправить %d SMS-приглашений?</item>
     <item quantity="other">Отправить %d SMS-приглашений?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Давайте перейдём на Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Давайте перейдём на Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзья не позволяют друзьям общаться без шифрования.</string>
   <!--KeyScanningActivity-->
@@ -360,7 +360,7 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">К сожалению, у вас слишком много привязанных устройств. Попробуйте отвязать некоторые из них.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">К сожалению, этот QR-код недействителен для привязки устройства.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Привязать устройство Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Похоже, вы пытаетесь привязать устройство Signal, используя сторонний сканер. Для вашей защиты, пожалуйста, просканируйте код через Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Похоже, вы пытаетесь привязать устройство Signal, используя сторонний сканер. Для вашей защиты, пожалуйста, просканируйте код через Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Введите парольную фразу</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Иконка Signal</string>
@@ -445,7 +445,7 @@
   <string name="RegistrationService_registration_complete">Регистрация завершена</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Регистрация в Signal Plus успешно завершена.</string>
   <string name="RegistrationService_registration_error">Ошибка регистрации</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Возникла проблема при регистрации в Signal.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Возникла проблема при регистрации в Signal Plus.</string>
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
   <string name="Slide_audio">Аудио</string>
@@ -719,7 +719,7 @@ Signal Plus не работает с номерами Google Voice.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ограничения брандмауэра.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Если вы подключены по Wi-Fi, возможно, в сети имеется брандмауэр, который блокирует доступ к серверу Signal. Попробуйте воспользоваться другой беспроводной сетью либо мобильным интернетом.</string>
+Если вы подключены по Wi-Fi, возможно, в сети имеется брандмауэр, который блокирует доступ к серверу Signal Plus. Попробуйте воспользоваться другой беспроводной сетью либо мобильным интернетом.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Сейчас Signal Plus автоматически проверит ваш номер телефона при помощи SMS-сообщения. </string>
   <string name="registration_progress_activity__connecting">Соединяемся...</string>
@@ -999,7 +999,7 @@ SMS-подтверждения...
   <string name="reminder_header_invite_title">Пригласить в Signal</string>
   <string name="reminder_header_invite_text">Начните общаться с %1$s на новом уровне.</string>
   <string name="reminder_header_invite_button">ПРИГЛАСИТЬ</string>
-  <string name="reminder_header_share_title">Пригласите своих друзей в Signal!</string>
+  <string name="reminder_header_share_title">Пригласите своих друзей в Signal Plus!</string>
   <string name="reminder_header_share_text">Чем больше друзей пользуется Signal, тем лучше он становится.</string>
   <string name="reminder_header_share_button">ПОДЕЛИТЬСЯ</string>
   <string name="reminder_header_close_button">ЗАКРЫТЬ</string>

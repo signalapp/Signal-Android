@@ -202,10 +202,10 @@ Signal Plus und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ShareActivity_share_with">Teilen mit</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Willkommen bei Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure und RedPhone sind jetzt gemeinsam ein sicherer Messenger für jede Situation: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Willkommen bei Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heißt jetzt Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure und RedPhone sind jetzt eine gemeinsame App: Signal. Antippen, um mehr zu erfahren.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure und RedPhone sind jetzt gemeinsam ein sicherer Messenger für jede Situation: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Willkommen bei Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heißt jetzt Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure und RedPhone sind jetzt eine gemeinsame App: Signal Plus. Antippen, um mehr zu erfahren.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportieren</string>
   <string name="ExportFragment_export_plaintext_to_storage">Klartextsicherung exportieren?</string>
@@ -278,7 +278,7 @@ Signal Plus und Benachrichtigungen dauerhaft entsperren.</string>
     <item quantity="one">1 SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Wechseln wir zu Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Wechseln wir zu Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hätten Sie keine zum Teilen geeignete Apps installiert.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
   <!--KeyScanningActivity-->
@@ -311,7 +311,7 @@ Signal Plus und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="MessageRecord_s_called_you">Eingegangener Anruf von %s</string>
   <string name="MessageRecord_called_s">Ausgegangener Anruf an %s</string>
   <string name="MessageRecord_missed_call_from">Verpasster Anruf von %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen! </string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal Plus. Zeit, Hallo zu sagen! </string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -438,7 +438,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
   <string name="ThreadRecord_missed_call">Verpasster Anruf</string>
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal Plus. Zeit, Hallo zu sagen!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Kontakt hat keinen Schlüssel.</string>
@@ -645,7 +645,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="redphone_call_controls__signal_call">Signal-Anruf</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Überprüfen Sie Ihre Rufnummer zur Registrierung bei Signal.</string>
+Überprüfen Sie Ihre Rufnummer zur Registrierung bei Signal Plus.</string>
   <string name="registration_activity__your_country">IHR LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">IHRE LANDESVORWAHL UND
 RUFNUMMER</string>

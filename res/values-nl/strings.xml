@@ -202,11 +202,11 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Delen met</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welkom bij Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure en RedPhone zijn nu samen één app, geschikt voor iedere situatie: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welkom bij Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heet nu Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure en RedPhone zijn nu één app: Signal. Maak snel kennis!</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welkom bij Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure en RedPhone zijn nu samen één app, geschikt voor iedere situatie: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welkom bij Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heet nu Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure en RedPhone zijn nu één app: Signal Plus. Maak snel kennis!</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporteer</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exporteer tekst naar opslag?</string>
@@ -244,7 +244,7 @@
   <string name="ImportExportActivity_export">Exporteer</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard SMS-database van het systeem importeren naar Signal. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard SMS-database van het systeem importeren naar Signal Plus. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_import">Importeer</string>
   <string name="ImportFragment_cancel">Annuleren</string>
   <string name="ImportFragment_restore_encrypted_backup">Versleutelde back-up herstellen?</string>
@@ -280,7 +280,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
     <item quantity="one">1 SMS uitnodiging versturen?</item>
     <item quantity="other">%d SMS uitnodigingen versturen?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Laten we wisselen naar Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Laten we wisselen naar Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
   <!--KeyScanningActivity-->
@@ -337,7 +337,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, u hebt teveel gekoppelde apparaten, probeer er te verwijderen...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, dit is geen geldige QR code voor koppeling van een apparaat.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal Plus apparaat koppelen?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt er op dat je een Signal Plus apparaat wil koppelen met een externe scanner. Scan voor de veiligheid alsjeblieft de code opnieuw vanuit Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt er op dat je een Signal Plus apparaat wil koppelen met een externe scanner. Scan voor de veiligheid alsjeblieft de code opnieuw vanuit Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal Plus icoon</string>

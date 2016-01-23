@@ -212,8 +212,8 @@ Vastaanotettu: %4$s</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tervetuloa Signaliin.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ja RedPhone ovat yhdistyneet nyt Signaliksi: yksityiset viestit ja puhelut samassa paketissa.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tervetuloa Signaliin!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure on nyt Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ja RedPhone ovat nyt yksi ja sama sovellus: Signal. Napsauta tutustuaksesi.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure on nyt Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ja RedPhone ovat nyt yksi ja sama sovellus: Signal Plus. Napsauta tutustuaksesi.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Vie</string>
   <string name="ExportFragment_export_plaintext_to_storage">Viedäänkö salaamattomana tallennustilaan?</string>

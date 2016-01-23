@@ -39,7 +39,7 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:minLines="2"
-                      tools:text="Let's switch to Signal: http://sgnl.link/asdfdfsa"
+                      tools:text="Let's switch to Signal Plus: https://goo.gl/Iiti21"
                       android:background="@drawable/sent_bubble"
                       android:paddingTop="10dp"
                       android:paddingBottom="10dp"

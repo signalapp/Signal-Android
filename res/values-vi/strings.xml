@@ -22,7 +22,7 @@ Tắt khóa màn hình cho tin nhắn?
     </string>
   <string name="ApplicationPreferencesActivity_disable">Tắt</string>
   <string name="ApplicationPreferencesActivity_unregistering">Tháo gỡ đăng ký</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Đang huỷ đăng ký với tin nhắn và cuộc gọi Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Đang huỷ đăng ký với tin nhắn và cuộc gọi Signal Plus...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Tắt tin nhắn và cuộc gọi Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tắt tin nhắn và cuộc gọi Signal Plus bằng cách huỷ đăng ký từ máy chủ.
 Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal Plus trong tương lai.</string>
@@ -86,7 +86,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationItem_click_to_approve_unencrypted">Nhấn để trở lại dạng không bảo mật</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Trở lại MMS không mã hóa?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã khoá bởi vì người nhận không còn sử dụng Signal.\n\ngSẽ gửi tin nhắn không bảo mật chứ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã khoá bởi vì người nhận không còn sử dụng Signal Plus.\n\ngSẽ gửi tin nhắn không bảo mật chứ?</string>
   <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở dữ liệu truyền thông này.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Tái thiết lập phiên bảo mật?</string>
@@ -199,11 +199,11 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure và RedPhone giờ đây đã được nhập chung thành ứng dụng nhắn tin riêng tư: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Chào mừng bạn đến với Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure bây giờ là Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Signal. Chạm để khám phá.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure và RedPhone giờ đây đã được nhập chung thành ứng dụng nhắn tin riêng tư: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Chào mừng bạn đến với Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure bây giờ là Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Signal Plus. Chạm để khám phá.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Xuất</string>
   <string name="ExportFragment_export_plaintext_to_storage">Xuất văn bản không mã hóa ra ổ lưu trữ?</string>
@@ -215,7 +215,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ExportFragment_error_while_writing_to_storage">Lỗi khi chép vào ổ lưu trữ!</string>
   <string name="ExportFragment_success">Thành công!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal Plus!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Plus không thể đăng ký với Google Play Services. Cuộc gọi và tin nhắn Signal Plus đã ngừng hoạt động, hãy thử đăng ký lại từ mục Cài đặt &gt; Nâng cao.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
@@ -231,7 +231,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="GroupCreateActivity_menu_create_title">Tạo nhóm</string>
   <string name="GroupCreateActivity_creating_group">Tạo %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Cập nhật %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Nạp chi tiết nhóm...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Bạn đã gia nhập nhóm này rồi.</string>
   <!--GroupMembersDialog-->
@@ -242,7 +242,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Nhập cơ sở dữ liệu SMS của hệ thống?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Thao tác này sẽ nhập
-tin nhắn từ cơ sở dữ liệu SMS mặc định của hệ thống vào Signal. Nếu trước đó bạn đã
+tin nhắn từ cơ sở dữ liệu SMS mặc định của hệ thống vào Signal Plus. Nếu trước đó bạn đã
 nhập cơ sở dữ liệu SMS của hệ thống, việc này sẽ tạo ra các tin nhắn bị trùng lặp.
 </string>
   <string name="ImportFragment_import">Nhập</string>
@@ -282,7 +282,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Gửi %d lời mời qua SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Bạn bè không để bạn mình tán gẫu không có mã khoá.</string>
   <!--KeyScanningActivity-->
@@ -339,7 +339,7 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Xin lỗi, bạn có quá nhiều thiết bị đã được liên kết, thử tháo bỏ vài cái...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Xin lỗi, đây không phải là mã QR liên kết thiết bị chính xác.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Liên kết một thiết bị dùng Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal Plus bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal Plus bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mật khẩu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Signal</string>
@@ -430,7 +430,7 @@ mã số quốc gia bạn</string>
   <string name="RegistrationService_registration_complete">Đăng ký hoàn tất</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Đăng ký Signal Plus thành công.</string>
   <string name="RegistrationService_registration_error">Có lỗi đăng ký</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Có lỗi khi đăng ký Signal.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Có lỗi khi đăng ký Signal Plus.</string>
   <!--Slide-->
   <string name="Slide_image">Ảnh</string>
   <string name="Slide_audio">Đoạn nhạc</string>
@@ -660,7 +660,7 @@ Phục hồi sao lưu Signal Plus đã mã khóa từng xuất ra trước đó<
   <string name="redphone_call_controls__signal_call">Cuộc gọi Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Xác minh số điện thoại của bạn để kết nối với Signal.
+Xác minh số điện thoại của bạn để kết nối với Signal Plus.
 </string>
   <string name="registration_activity__your_country">QUỐC GIA BẠN</string>
   <string name="registration_activity__your_country_code_and_phone_number">MÃ SỐ QUỐC GIA VÀ
@@ -708,7 +708,7 @@ rằng thiết bị có kết nối 3G hoặc Wi-Fi.
   <string name="registration_progress_activity__restrictive_firewall">Tường lửa ngăn chận.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Nếu bạn đang kết nối Wi-Fi, có khả năng là tường lửa đã chặn đường
-đến máy chủ Signal. Hãy thử dùng mạng khác hoặc dữ liệu di động.
+đến máy chủ Signal Plus. Hãy thử dùng mạng khác hoặc dữ liệu di động.
 </string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Bây giờ, Signal Plus sẽ tự động xác minh số điện thoại của bạn với một tin nhắn SMS.

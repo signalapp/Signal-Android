@@ -82,7 +82,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Натисни, за да разрешиш преминавене към не криптирани съобщения в краен случай</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Разреши преминавене към не шифровани SMS-и?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Разреши преминавене към не шифровани MMS-и?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>НЯМА</b> да бъде криптирано, защото получтеля вече не е потребител на Signal.\n\nИзпрати незащитено съобщение?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>НЯМА</b> да бъде криптирано, защото получтеля вече не е потребител на Signal Plus.\n\nИзпрати незащитено съобщение?</string>
   <string name="ConversationItem_unable_to_open_media">Неуспешно откриване на приложение за отваряне на този файл.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Рестартирай сигурната сесия?</string>
@@ -202,11 +202,11 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели с</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добре дошли в Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure и Redphone се обедениха в чат програма за конфеденциално разговори, за всяка ситуация: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добре дошли в Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure вече е Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и Redphone вече са една програма: Signal. Натисни за да разгледаш.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добре дошли в Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure и Redphone се обедениха в чат програма за конфеденциално разговори, за всяка ситуация: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добре дошли в Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure вече е Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и Redphone вече са една програма: Signal Plus. Натисни за да разгледаш.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Изнасяне</string>
   <string name="ExportFragment_export_plaintext_to_storage">Изнеси некриптирано на диска?</string>
@@ -234,7 +234,7 @@
   <string name="GroupCreateActivity_menu_create_title">Създай група</string>
   <string name="GroupCreateActivity_creating_group">Създаване на %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Обновяване %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Неуспешно добавяне на %1$s, защото те не са потребители на Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Неуспешно добавяне на %1$s, защото те не са потребители на Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Зареждане на информация за групата...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Вече сте в групата.</string>
   <!--GroupMembersDialog-->
@@ -245,7 +245,7 @@
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Добави всички съществуващи SMS-и?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Това ще внесе
-SMS-те от системния архив в Signal. Ако вече сте внесли
+SMS-те от системния архив в Signal Plus. Ако вече сте внесли
 системата SMS базата данни това ще  доведе до дублиратне на съобщенията. </string>
   <string name="ImportFragment_import">Внеси</string>
   <string name="ImportFragment_cancel">Отказ</string>
@@ -342,7 +342,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имаш твърде много регистрирани устройства, опитай да премахнеш някои от тях...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление това не е валидна QR връзка.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Свържи с Signal Plus устройство?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Signal Plus устройство с 3та скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Signal Plus устройство с 3та скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведи паролата</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal Plus икона</string>
@@ -379,7 +379,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="RedPhone_recipient_unavailable">Приемащия повикването не е на линия</string>
   <string name="RedPhone_performing_handshake">Установяване на връзка</string>
   <string name="RedPhone_network_failed">Грешка в мрежата!</string>
-  <string name="RedPhone_client_failed">Грешка в Signal!</string>
+  <string name="RedPhone_client_failed">Грешка в Signal Plus!</string>
   <string name="RedPhone_fatal_error">Фатална грешка</string>
   <string name="RedPhone_login_failed">Неуспешно вписване!</string>
   <string name="RedPhone_message_from_the_server">Съобщение от сървъра</string>

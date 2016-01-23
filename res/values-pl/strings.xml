@@ -26,7 +26,7 @@ Wyłączyć blokadę ekranu dla wiadomości?
 </string>
   <string name="ApplicationPreferencesActivity_disable">Wyłącz</string>
   <string name="ApplicationPreferencesActivity_unregistering">Wyrejestrowanie </string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Trwa wyrejestrowanie z Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Trwa wyrejestrowanie z Signal Plus...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Wyłączyć wiadomości i połączenia Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Wyłącz wiadomości i połączenia telefoniczne Signal Plus poprzez wyrejestrowanie z serwera. Będziesz musiał ponownie zarejestrować swój numer telefonu, jeśli będziesz chciał go używać w przyszłości.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Błąd połączenia z serwerem!</string>
@@ -87,7 +87,7 @@ ten kontakt.
   <string name="ConversationItem_click_to_approve_unencrypted">Dotknij w celu użycia niezabezpieczonej alternatywy</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback do nieszyfrowanej wiadomości SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie</b> będzie zaszyfrowana, ponieważ odbiorca nie jest już użytkownikiem Signal.\n\nWysłać wiadomość nieszyfrowaną?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie</b> będzie zaszyfrowana, ponieważ odbiorca nie jest już użytkownikiem Signal Plus.\n\nWysłać wiadomość nieszyfrowaną?</string>
   <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć te media.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string>
@@ -122,7 +122,7 @@ ten kontakt.
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Zacznij używać Signal Plus %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Zacznij używać Signal: %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Zacznij używać Signal Plus: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Błąd opuszczenia grupy...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nie są wspomagane</string>
   <string name="ConversationActivity_mms_not_supported_message">Wiadomość nie może zostać wysłana, ponieważ Twój operator nie obsługuje usługi MMS.</string>
@@ -214,11 +214,11 @@ ten kontakt.
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Witamy w Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone są teraz jedną aplikacją: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Witamy w Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure nazywa się teraz Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone są teraz jedną aplikacją: Signal. Dotknij, aby dowiedzieć się więcej.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Witamy w Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone są teraz jedną aplikacją: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Witamy w Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure nazywa się teraz Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone są teraz jedną aplikacją: Signal Plus. Dotknij, aby dowiedzieć się więcej.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
   <string name="ExportFragment_export_plaintext_to_storage">Wyeksportować nieszyfrowaną kopię na dysk?</string>
@@ -230,7 +230,7 @@ ten kontakt.
   <string name="ExportFragment_error_while_writing_to_storage">Wystąpił błąd w czasie próby zapisu na dysku.</string>
   <string name="ExportFragment_success">Sukces!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanentny błąd komunikacji Signal!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanentny błąd komunikacji Signal Plus!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Plus nie był w stanie zarejestrować się z Google Play Services. Wiadomości i połączenia Signal Plus zostały wyłączone. Proszę spróbuj ponownie zarejestrować się poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nowa grupa</string>
@@ -246,7 +246,7 @@ ten kontakt.
   <string name="GroupCreateActivity_menu_create_title">Utwórz grupę</string>
   <string name="GroupCreateActivity_creating_group">Trwa tworzenie %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizowanie %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nie można dodać %1$s ponieważ nie jest on użytkownikiem aplikacji Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nie można dodać %1$s ponieważ nie jest on użytkownikiem aplikacji Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Wczytywanie szczegółów grupy...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Już jesteś w tej grupie.</string>
   <!--GroupMembersDialog-->
@@ -296,7 +296,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal Plus z wyjątki
     <item quantity="few">Wysłać %d zaproszeń SMS?</item>
     <item quantity="other">Wysłać %d zaproszeń SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Zacznij używać Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Zacznij używać Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Nie pozwól znajomym używać nieszyfrowanych połączeń.</string>
   <!--KeyScanningActivity-->
@@ -352,7 +352,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal Plus z wyjątki
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Niestety masz już zbyt dużo zarejestrowanych urządzeń, spróbuj usunąć któreś z nich...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Przepraszamy, ale to nie jest prawidłowy link QR.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Dodać nowe urządzenie Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal Plus używając nieznanego skanera 3ciej partii. Dla Twojego bezpieczeństwa, prosimy abyś zeskanował kod używając Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal Plus używając nieznanego skanera 3ciej partii. Dla Twojego bezpieczeństwa, prosimy abyś zeskanował kod używając Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -670,7 +670,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="redphone_call_controls__signal_call">Połączenie Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Weryfikuj swój numer telefonu, aby połączyć się z Signal.</string>
+Weryfikuj swój numer telefonu, aby połączyć się z Signal Plus.</string>
   <string name="registration_activity__your_country">TWÓJ KRAJ</string>
   <string name="registration_activity__your_country_code_and_phone_number">KOD TWOJEGO KRAJU I 
 NUMER TELEFONU</string>
@@ -700,10 +700,10 @@ TextSecure może również zadzwonić do Ciebie w celu weryfikacji numeru. Wybie
   <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal Plus nie był w stanie połączyć się z serwerem.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Niektóre możliwe problemy:</string>
   <string name="registration_progress_activity__no_network_connectivity">Brak połączenia z siecią.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Twój telefon musi połączyć się z siecią, aby użyć tej funkcji Signal. Sprawdź czy urządzenie podłączone jest do danych mobilnych lub WiFi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Twój telefon musi połączyć się z siecią, aby użyć tej funkcji Signal Plus. Sprawdź czy urządzenie podłączone jest do danych mobilnych lub WiFi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restrykcyjny Firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Jeśli jesteś połączony przez WiFi, możliwe jest że Firewall blokuje dostęp do serwera Signal. Spróbuj połączyć się z inną siecią lub danymi mobilnymi.</string>
+Jeśli jesteś połączony przez WiFi, możliwe jest że Firewall blokuje dostęp do serwera Signal Plus. Spróbuj połączyć się z inną siecią lub danymi mobilnymi.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Za chwilę Signal Plus automatycznie zweryfikuje Twój numer za pomocą wiadomości SMS.</string>
   <string name="registration_progress_activity__connecting">Łączenie...</string>

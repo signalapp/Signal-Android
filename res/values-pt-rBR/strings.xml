@@ -24,7 +24,7 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal Plus...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desabilitar mensagens e chamadas Signal Plus descadastrando-o do servidor. Você precisará recadastrar seu número de telefone para usar o Signal Plus novamente no futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
@@ -89,7 +89,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Clique para usar contingência insegura</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Contingenciar para SMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Contingenciar para MMS não criptografado?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois o destinatário não é mais um usuário Signal.\n\nEnviar mensagem não segura?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois o destinatário não é mais um usuário Signal Plus.\n\nEnviar mensagem não segura?</string>
   <string name="ConversationItem_unable_to_open_media">Não foi possível encontrar um aplicativo para abrir este arquivo.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
@@ -209,11 +209,11 @@ Tem certeza que deseja fazer isto?</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartilhar com</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bem vindo ao Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um mensageiro privado, para todas as situações: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bem vindo ao Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure agora é Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são um aplicativo: Signal. Clique para explorar.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bem vindo ao Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um mensageiro privado, para todas as situações: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bem vindo ao Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure agora é Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são um aplicativo: Signal Plus. Clique para explorar.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportar</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exportar texto para a memória?</string>
@@ -225,7 +225,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ExportFragment_error_while_writing_to_storage">Erro ao gravar na memória do aparelho.</string>
   <string name="ExportFragment_success">Sucesso!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal Plus!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal Plus não conseguiu cadastrar-se com o Google Play Services. Mensagens e chamadas Signal Plus foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Novo grupo</string>
@@ -241,7 +241,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="GroupCreateActivity_menu_create_title">Criar grupo</string>
   <string name="GroupCreateActivity_creating_group">Criando %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Atualizando %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque o grupo não é usuário do Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque o grupo não é usuário do Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Carregando detalhes do grupo...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Você já está quase no grupo.</string>
   <!--GroupMembersDialog-->
@@ -252,7 +252,7 @@ Tem certeza que deseja fazer isto?</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importar base de dados SMS do sistema?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Isto importará
-        mensagens da base de dados SMS padrão do sistema para o Signal. Se isto já foi
+        mensagens da base de dados SMS padrão do sistema para o Signal Plus. Se isto já foi
         feito anteriormente, importar novamente resultará em mensagens duplicadas.
     </string>
   <string name="ImportFragment_import">Importar</string>
@@ -296,7 +296,7 @@ Tem certeza que deseja fazer isto?</string>
     <item quantity="one">Enviar 1 convite SMS?</item>
     <item quantity="other">Enviar %d convites SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que você não tem aplicativos para onde compartilhar.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amigos não deixam amigos conversar sem criptografia.</string>
   <!--KeyScanningActivity-->
@@ -353,7 +353,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Desculpe, você já possui muitos dispositivos vinculados. Tente remover alguns...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Desculpe, este não é um código QR de dispositivo válido.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Conectar um dispositivo Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando conectar um dispositivo Signal Plus usando um outro scanner. Para sua proteção, favor escanear novamente o código usando o Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando conectar um dispositivo Signal Plus usando um outro scanner. Para sua proteção, favor escanear novamente o código usando o Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Signal</string>
@@ -681,7 +681,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="redphone_call_controls__signal_call">Chamada do Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-        Verifique o seu número de telefone para se conectar ao Signal.
+        Verifique o seu número de telefone para se conectar ao Signal Plus.
     </string>
   <string name="registration_activity__your_country">SEU PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">SEU CÓDIGO DE PAÍS E
@@ -697,7 +697,7 @@ Tem certeza que deseja fazer isto?</string>
     </string>
   <string name="registration_problems__sms_interceptors">Interceptadores SMS.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Alguns clientes de mensagem de texto de terceiros, tais como o Handcent ou o GoSMS, se comportam mau e interceptam todas as mensagens de SMS recebidas. Verifique se você recebeu uma mensagem de texto que começa com \'Seu código de verificação do Signal:\', pois neste caso precisará configurar seu aplicativo de mensagens de texto de terceiros para deixar que as mensagens sejam encaminhadas.
+Alguns clientes de mensagem de texto de terceiros, tais como o Handcent ou o GoSMS, se comportam mau e interceptam todas as mensagens de SMS recebidas. Verifique se você recebeu uma mensagem de texto que começa com \'Seu código de verificação do Signal Plus:\', pois neste caso precisará configurar seu aplicativo de mensagens de texto de terceiros para deixar que as mensagens sejam encaminhadas.
  </string>
   <string name="registration_problems__incorrect_number">Número incorreto.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
@@ -723,10 +723,10 @@ possíveis, incluem:
   <string name="registration_progress_activity__no_network_connectivity">Sem conectividade
  na rede.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">O seu
-dispositivo precisa de conexão com a rede para poder usar este recurso do Signal. Certifique-se de que ele está conectado aos dados móveis ou ao Wi-Fi.
+dispositivo precisa de conexão com a rede para poder usar este recurso do Signal Plus. Certifique-se de que ele está conectado aos dados móveis ou ao Wi-Fi.
 </string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall restritivo.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Se você está conectado através de Wi-Fi, é possível que exista um firewall bloqueando o acesso ao servidor do Signal. Tente com outra rede ou com os dados móveis.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Se você está conectado através de Wi-Fi, é possível que exista um firewall bloqueando o acesso ao servidor do Signal Plus. Tente com outra rede ou com os dados móveis.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Agora o Signal Plus verificará o seu número automaticamente com uma mensagem SMS de confirmação.</string>
   <string name="registration_progress_activity__connecting">Conectando...</string>

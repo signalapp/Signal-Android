@@ -203,11 +203,11 @@ verifiera denna kontakt.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Välkommen till Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure och RedPhone är nu en privat meddelandeklient för varje situation: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Välkommen till Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure är nu Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure och RedPhone är nu en app: Signal. Tryck för att utforska.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Välkommen till Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure och RedPhone är nu en privat meddelandeklient för varje situation: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Välkommen till Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure är nu Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure och RedPhone är nu en app: Signal Plus. Tryck för att utforska.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exportera</string>
   <string name="ExportFragment_export_plaintext_to_storage">Exportera okrypterat till lagring?</string>
@@ -219,7 +219,7 @@ verifiera denna kontakt.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Fel vid skrivande till lagringsutrymmet.</string>
   <string name="ExportFragment_success">Lyckades!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent kommunikationsfel med Signal!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent kommunikationsfel med Signal Plus!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Plus kunde inte registrera med Google Play-tjänster. Meddelanden och samtal med Signal Plus har avaktiverats, vänligen försök återregistrera i inställningar &gt; Avancerade.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny grupp</string>
@@ -285,7 +285,7 @@ som inte finns i säkerhetskopian.</string>
     <item quantity="one">Skicka 1 SMS-inbjudan?</item>
     <item quantity="other">Skicka %d SMS-inbjudningar?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Byt till Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Byt till Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vänner låter inte varandra chatta okrypterat.</string>
   <!--KeyScanningActivity-->
@@ -341,7 +341,7 @@ som inte finns i säkerhetskopian.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Tyvärr har du redan för många länkade enheter, försök ta bort några...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tyvärr, det här är ingen giltig QR-kod för enhetslänkning.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Länka en Signal-enhet?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, vänligen skanna koden igen från Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, vänligen skanna koden igen från Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signalikon</string>
@@ -655,7 +655,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="redphone_call_controls__signal_call">Signalsamtal</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Verifiera ditt telefonnummer för att ansluta till Signal.</string>
+Verifiera ditt telefonnummer för att ansluta till Signal Plus.</string>
   <string name="registration_activity__your_country">DITT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDSKOD OCH 
 TELEFONNUMMER</string>
@@ -689,7 +689,7 @@ Signal Plus kan också ringa upp dig för att verifiera ditt telefonnummer. Tryc
   <string name="registration_progress_activity__some_possible_problems_include">Några möjliga orsaker:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen nätverksanslutning.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Din
-enhet behöver en nätverksuppkoppling för att använda denna funktion i Signal. Vänligen kolla
+enhet behöver en nätverksuppkoppling för att använda denna funktion i Signal Plus. Vänligen kolla
 så att du är uppkopplad med mobildata eller Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv brandvägg.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">

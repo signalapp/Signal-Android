@@ -1,12 +1,12 @@
 # Signal Plus for Android 
 
-Signal Plus is a messaging app for simple private communication with friends folked from WhisperSystems Signal for ading more addvanced options.
+Signal Plus is a messaging app for simple private communication with friends forked from WhisperSystems Signal for adding more advanced options.
 
 Signal Plus uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
 
 Currently available on the Play store.
 
-*[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.wizdom13.securesms)*
+*[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.privatechats.securesms)*
 
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
@@ -19,14 +19,15 @@ Interested in helping to translate Signal Plus? Contribute here:
 https://github.com/wizdom13/Translations-SignalPuls-Android
 
 ## Contributing Code
-You are all very welcom to contribute in Signal Plus.
+You are all very welcome to contribute in Signal Plus.
 
 Help
 ====
 ## Support
 For troubleshooting and questions, please visit our support center!
 
-http://support.wizdom13.org/
+http://support.privatechats.org/
+
 
 ## Documentation
 Looking for documentation? Check out the wiki!

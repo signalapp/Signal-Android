@@ -19,7 +19,7 @@
 Disabilitare la schermata di blocco per i messaggi?</string>
   <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
   <string name="ApplicationPreferencesActivity_unregistering">Disiscriviti</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Cancellando la registrazione da Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Cancellando la registrazione da Signal Plus...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disattivare i messaggi di Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disabilita i messaggi di Signal Plus annullando la tua registrazione sul server. Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare di nuovo i messaggi di Signal Plus in futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
@@ -77,7 +77,7 @@ questo contatto.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tocca per tornare alla conversazione non cifrata</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Tornare agli SMS non cifrati?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Tornare agli MMS non cifrati?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perchè il destinatario non è più  un utente Signal.\n\nInviare un messaggio non sicuro?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perchè il destinatario non è più  un utente Signal Plus.\n\nInviare un messaggio non sicuro?</string>
   <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire il file.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Azzerare la sessione sicura?</string>
@@ -198,10 +198,10 @@ questo contatto.</string>
   <string name="ShareActivity_share_with">Condividi con</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvenuto su Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e Redphone ora fanno parte di un unico messenger, per ogni situazione: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Benvenuto su Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Textsecure è diventato Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e Redphone ora sono un\'unica app: Signal. Tocca per esplorare.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e Redphone ora fanno parte di un unico messenger, per ogni situazione: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Benvenuto su Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Textsecure è diventato Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e Redphone ora sono un\'unica app: Signal Plus. Tocca per esplorare.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Esporta</string>
   <string name="ExportFragment_export_plaintext_to_storage">Esportare messaggi in chiaro sulla memoria?</string>
@@ -230,7 +230,7 @@ I suoi messagi e le chiamate sono state disabilitate, si prega di provare e ri-r
   <string name="GroupCreateActivity_menu_create_title">Crea gruppo</string>
   <string name="GroupCreateActivity_creating_group">Creo %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aggiornamento %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossibile aggiungere %1$s perchè non è un utente di Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossibile aggiungere %1$s perchè non è un utente di Signal Plus.</string>
   <string name="GroupCreateActivity_loading_group_details">Caricamennto dettagli del gruppo...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sei già nel gruppo.</string>
   <!--GroupMembersDialog-->
@@ -278,7 +278,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
     <item quantity="one">Inviare 1 invito?</item>
     <item quantity="other">Inviare %d SMS di invito?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Passiamo a Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Passiamo a Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sembra che tu non abbia alcune applicazioni per condividere.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Gli amici non lasciano che gli amici chattino senza crittografia.</string>
   <!--KeyScanningActivity-->
@@ -698,7 +698,7 @@ di rete.
   <string name="registration_progress_activity__restrictive_firewall">Firewall troppo restrittivo.
     </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Se sei connesso tramite Wi-Fi, è possibile che ci sia un firewall che blocchi l\'accesso al server di Signal. Prova un\'altra rete oppure usa la connessione mobile.</string>
+Se sei connesso tramite Wi-Fi, è possibile che ci sia un firewall che blocchi l\'accesso al server di Signal Plus. Prova un\'altra rete oppure usa la connessione mobile.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Signal Plus verificherà automaticamente il tuo numero con un SMS di conferma.</string>
   <string name="registration_progress_activity__connecting">Connessione in corso...</string>

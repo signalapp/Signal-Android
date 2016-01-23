@@ -203,11 +203,11 @@ denne kontakten.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nå en applikasjon, for ethvert formål: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nå Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nå en app: Signal. Trykk for å utforske.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nå en applikasjon, for ethvert formål: Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal Plus!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nå Signal Plus.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nå en app: Signal Plus. Trykk for å utforske.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksporter</string>
   <string name="ExportFragment_export_plaintext_to_storage">Eksportere klartekst til enheten sitt minne?</string>
@@ -245,7 +245,7 @@ denne kontakten.</string>
   <string name="ImportExportActivity_export">Eksportere</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importer systemets SMS database?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere meldinger fra systemets SMS database til Signal. Dersom du har gjort en slik import tidligere, vil dette føre til dupliserte meldinger.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere meldinger fra systemets SMS database til Signal Plus. Dersom du har gjort en slik import tidligere, vil dette føre til dupliserte meldinger.</string>
   <string name="ImportFragment_import">Importer</string>
   <string name="ImportFragment_cancel">Avbryt</string>
   <string name="ImportFragment_restore_encrypted_backup">Gjenopprett kryptert backup?</string>
@@ -281,7 +281,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
     <item quantity="one">Send 1 invitasjon på SMS?</item>
     <item quantity="other">Send %d invitasjoner på SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">La oss bytte til Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">La oss bytte til Signal Plus: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som du ikke har noen apper å dele til.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner lar ikke venner chatte ukryptert.</string>
   <!--KeyScanningActivity-->
@@ -337,7 +337,7 @@ Inlasting av en kryptert backup vil erstatte dine eksisterende nøkler, preferan
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager, du har for mange enheter koblet til allerede, forsøk å fjerne noen...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager, dette er ikke en gyldig QR kode for kobling av enheter.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Koble en Signal Plus enhet?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som om du prøver å koble en Signal Plus enhet ved hjelp av en 3. parts skanner. For å beskytte deg ber vi at du skanner koden igjen fra Signal.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som om du prøver å koble en Signal Plus enhet ved hjelp av en 3. parts skanner. For å beskytte deg ber vi at du skanner koden igjen fra Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Tast inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal Plus ikon</string>
@@ -425,7 +425,7 @@ Dobbelsjekk at dette er nummeret ditt! Vi er i ferd med å verifisere det med en
   <string name="RegistrationService_registration_complete">Registrering fullført</string>
   <string name="RegistrationService_signal_registration_has_successfully_completed">Signal Plus registreringen er fullført.</string>
   <string name="RegistrationService_registration_error">Registreringsfeil</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Det oppstod en feil under registeringen til Signal.</string>
+  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Det oppstod en feil under registeringen til Signal Plus.</string>
   <!--Slide-->
   <string name="Slide_image">Bilde</string>
   <string name="Slide_audio">Lyd</string>
@@ -654,7 +654,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="redphone_call_controls__signal_call">Signal Plus anrop</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Verifiser telefonnummeret dit for å koble til Signal.
+Verifiser telefonnummeret dit for å koble til Signal Plus.
 </string>
   <string name="registration_activity__your_country">DITT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDSKODE OG
