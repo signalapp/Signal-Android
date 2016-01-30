@@ -18,8 +18,6 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -39,14 +37,12 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.thoughtcrime.securesms.database.ApnDatabase;
-import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -56,8 +52,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings("deprecation")
 public abstract class LegacyMmsConnection {
@@ -91,8 +89,20 @@ public abstract class LegacyMmsConnection {
     }
   }
 
-  protected boolean isCdmaDevice() {
-    return ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
+  protected boolean isDirectConnect() {
+    // We think Sprint supports direct connection over wifi/data, but not Verizon
+    Set<String> sprintMccMncs = new HashSet<String>() {{
+      add("312530");
+      add("311880");
+      add("311870");
+      add("311490");
+      add("310120");
+      add("316010");
+      add("312190");
+    }};
+
+    return ServiceUtil.getTelephonyManager(context).getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA &&
+           sprintMccMncs.contains(TelephonyUtil.getMccMnc(context));
   }
 
   @SuppressWarnings("TryWithIdenticalCatches")
