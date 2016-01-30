@@ -30,7 +30,7 @@ public class MediaUtil {
   private static final String TAG = MediaUtil.class.getSimpleName();
 
   public static @Nullable ThumbnailData generateThumbnail(Context context, MasterSecret masterSecret, String contentType, Uri uri)
-      throws ExecutionException
+      throws BitmapDecodingException
   {
     long   startMillis = System.currentTimeMillis();
     ThumbnailData data = null;
@@ -49,7 +49,7 @@ public class MediaUtil {
   }
 
   private static Bitmap generateImageThumbnail(Context context, MasterSecret masterSecret, Uri uri)
-      throws ExecutionException
+      throws BitmapDecodingException
   {
     int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
     return BitmapUtil.createScaledBitmap(context, new DecryptableUri(masterSecret, uri), maxSize, maxSize);

@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
@@ -63,7 +64,7 @@ public class AvatarDownloadJob extends MasterSecretJob {
 
         database.updateAvatar(groupId, avatar);
       }
-    } catch (ExecutionException | NonSuccessfulResponseCodeException e) {
+    } catch (BitmapDecodingException | NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);
     } finally {
       if (attachment != null)

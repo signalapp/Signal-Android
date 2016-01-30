@@ -21,6 +21,7 @@ import android.util.SparseArray;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -221,7 +221,7 @@ public class EmojiProvider {
             try {
               Log.w(TAG, "loading page " + model.getSprite());
               return loadPage();
-            } catch (IOException | ExecutionException ioe) {
+            } catch (IOException ioe) {
               Log.w(TAG, ioe);
             }
             return null;
@@ -242,7 +242,7 @@ public class EmojiProvider {
       return task;
     }
 
-    private Bitmap loadPage() throws IOException, ExecutionException {
+    private Bitmap loadPage() throws IOException {
       if (bitmapReference != null && bitmapReference.get() != null) return bitmapReference.get();
 
       try {
@@ -252,9 +252,9 @@ public class EmojiProvider {
         bitmapReference = new SoftReference<>(bitmap);
         Log.w(TAG, "onPageLoaded(" + model.getSprite() + ")");
         return bitmap;
-      } catch (ExecutionException e) {
+      } catch (BitmapDecodingException e) {
         Log.w(TAG, e);
-        throw e;
+        throw new IOException(e);
       }
     }
 
