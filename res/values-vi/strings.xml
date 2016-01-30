@@ -17,9 +17,6 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Xóa</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Tắt cụm từ mật khẩu?</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-Tắt khóa màn hình cho tin nhắn?
-    </string>
   <string name="ApplicationPreferencesActivity_disable">Tắt</string>
   <string name="ApplicationPreferencesActivity_unregistering">Tháo gỡ đăng ký</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Đang huỷ đăng ký với tin nhắn và cuộc gọi Signal...</string>
@@ -46,6 +43,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="DraftDatabase_Draft_image_snippet">(hình)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(âm thanh)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(vị trí)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Không tìm thấy ứng dụng để chọn dữ liệu truyền thông.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -78,9 +76,7 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ConversationItem_expires_s">Hết hạn: %s</string>
   <string name="ConversationItem_error_not_delivered">Không đưa tin được</string>
   <string name="ConversationItem_view_secure_media_question">Xem dữ liệu truyền thông bảo mật?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Dữ liệu truyền thông này được lưu trữ trong cơ sở dữ liệu có mã hóa. Tuy nhiên để xem nó bằng một ứng dụng khác đòi hỏi dữ liệu được giải mã tạm thời và chép vào ổ đĩa. Bạn có chắc là muốn làm điều này?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Có lỗi, nhận thông tin cũ về trao đổi chìa khóa</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Nhận thông tin trao đổi chìa khóa, bấm để tiếp tục.</string>
   <string name="ConversationItem_group_action_left">%1$s đã rời khỏi nhóm.</string>
   <string name="ConversationItem_click_for_details">Nhấn để biết chi tiết</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Nhấn để trở lại dạng không bảo mật</string>
@@ -384,7 +380,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Số điện thoại vừa rồi không hỗ trợ cuộc gọi bảo mật!</string>
   <string name="RedPhone_got_it">Đã nhận được</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Kết nối với Signal</string>
   <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết
 mã số quốc gia bạn</string>
@@ -440,8 +435,6 @@ mã số quốc gia bạn</string>
 trao đổi chìa khóa bị hỏng!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý và hiển thị.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Nhận được cập nhật nhưng không rõ thông tin danh tính. Nhấn vào để kiểm nhận danh tính.</string>
   <string name="SmsMessageRecord_secure_session_reset">Đã tái thiết lập phiên bảo mật.</string>
   <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
@@ -594,7 +587,6 @@ Nhận thông tin về chìa khóa danh tính không rõ. Bấm để xử lý v
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">tiếp tục</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Không lấy được ký sự từ thiết bị của bạn. Thay vào đó, bạn có thể dùng ADB để lấy ký sự dò lỗi (debug).</string>
   <string name="log_submit_activity__thanks">Cám ơn sự trợ giúp của bạn!</string>
   <string name="log_submit_activity__submitting">Đang nộp</string>
   <string name="log_submit_activity__posting_logs">Gửi ký sự lên gist...</string>
@@ -640,7 +632,6 @@ Phục hồi sao lưu Signal đã mã khóa từng xuất ra trước đó</stri
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal cần cài đặt MMS để chuyển dữ liệu truyền thông và các tin nhắn nhóm thông qua nhà mạng không dây. Thiết bị của bạn không cung cấp đầy đủ các thông tin này, đôi khi là do thiết bị đã bị khoá và các quy định nghiêm ngặt khác.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Để gửi tin nhắn đa phương tiện hoặc tin nhắn nhóm, bấm \'OK\' và hoàn tất các thiết đặt cần thiết. Thiết đặt MMS cho nhà mạng di động có thể tìm thấy bằng cách tìm \'your carrier APN\'. Bạn chỉ cần làm bước này một lần.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BỊ CHẶN</string>
   <!--recipient_preferences-->
@@ -751,7 +742,6 @@ SMS thất bại.
   <string name="AndroidManifest__public_identity_key">Chìa khóa danh tính công cộng</string>
   <string name="AndroidManifest__change_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="AndroidManifest__verify_identity">Kiểm chứng danh tính</string>
-  <string name="AndroidManifest__log_submit">Nộp ký sự dò lỗi</string>
   <string name="AndroidManifest__media_preview">Xem trước tệp đa phương tiện</string>
   <string name="AndroidManifest__media_overview">Tất cả hình ảnh</string>
   <string name="AndroidManifest__media_overview_named">Tất cả hình ảnh với %1$s</string>
@@ -978,7 +968,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="reminder_header_sms_default_text">Chạm để đặt Signal làm ứng dụng SMS mặc định.</string>
   <string name="reminder_header_sms_default_button">THIẾT LẬP</string>
   <string name="reminder_header_sms_import_title">Nhập SMS hệ thống</string>
-  <string name="reminder_header_sms_import_text">Nhấn để sao chép tin nhắn SMS trong điện thoại vào cơ sở dữ liệu mã hóa.</string>
   <string name="reminder_header_sms_import_button">NHẬP</string>
   <string name="reminder_header_push_title">Bật tin nhắn và cuộc gọi Signal?</string>
   <string name="reminder_header_push_text">Nâng tầm trải nghiệm giao tiếp.</string>

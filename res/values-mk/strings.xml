@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Signal</string>
   <string name="yes">Да</string>
   <string name="no">Не</string>
   <string name="delete">Избриши</string>
@@ -7,6 +8,10 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сеуште не сте поставиле лозинка!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 порака по разговор</item>
+    <item quantity="other">%d пораки по разговор</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Избришете ги сите стари пораки?</string>
   <string name="ApplicationPreferencesActivity_delete">Избриши</string>
   <string name="ApplicationPreferencesActivity_disable">Оневозможи</string>
@@ -45,9 +50,7 @@
   <string name="ConversationItem_expires_s">Истекува: %s</string>
   <string name="ConversationItem_error_not_delivered">Не е доставено</string>
   <string name="ConversationItem_view_secure_media_question">Прикажи шифрирана датотека?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Оваа датотека е снимена во шифрирана база на податоци. За да се прикаже, ќе мора привремено нешифрирано да се сними на дискот. Дали сте сигурни?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Грешка: примена е застарена порака за размена на клучеви.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Примена е порака за размена на клучеви. Кликнете за понатаму.</string>
   <string name="ConversationItem_group_action_left">%1$s ја напушти групата.</string>
   <string name="ConversationItem_click_for_details">Кликнете за повеќе детали</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Кликнете за несигурен трансфер</string>
@@ -74,6 +77,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Дали сте сигурни дека сакате да ја напуштите групата?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незаштитена SMS порака</string>
   <string name="ConversationActivity_transport_insecure_mms">Незаштитена MMS порака</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_error_leaving_group">Грешка при напуштање на групата...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS не е поддржан</string>
   <string name="ConversationActivity_mms_not_supported_message">Оваа порака не може да се испрати, бидејќи вашиот провајдер не поддржува MMS.</string>
@@ -261,8 +265,6 @@
 за размена на клучеви!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Примена е порака за размена на клучеви за погрешна верзија на протоколот.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Примена е порака со непознат клуч за идентификација. Притиснете за процесирање и приказ.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Примени се ажурирани, но непознати информации за идентификација. Притиснете за проверка на идентитетот.</string>
   <string name="SmsMessageRecord_duplicate_message">Дупла порака.</string>
   <!--ThreadRecord-->
@@ -326,6 +328,7 @@
   <string name="MessageNotifier_media_message">Медиа порака</string>
   <!--QuickResponseService-->
   <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
@@ -378,7 +381,6 @@
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Не е можен пристап до логовите на вашиот уред. Сеуште можете да го искористете ADB за да ги добиете дебуг логовите.</string>
   <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string>
   <string name="log_submit_activity__submitting">Испраќање</string>
   <string name="log_submit_activity__posting_logs">Испраќање на логовите на gist...</string>
@@ -411,7 +413,6 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Отклучи</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">За испраќање на медиа и групни пораки, притиснете \'OK\' и подесете ги потребните податоци. MMS подесувањата за вашиот провајдер можат вообичаено да се најдат доколку пребарате \'ваш провајдер APN\'. Ова е потребно да го направите само еднаш.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">БЛОКИРАНО</string>
   <!--recipient_preferences-->
@@ -479,7 +480,6 @@
   <string name="AndroidManifest__public_identity_key">Јавен клуч за идентитификација</string>
   <string name="AndroidManifest__change_passphrase">Променете лозинка</string>
   <string name="AndroidManifest__verify_identity">Проверете идентитет</string>
-  <string name="AndroidManifest__log_submit">Испратете debug логови</string>
   <string name="AndroidManifest__media_overview">Сите слики</string>
   <string name="AndroidManifest__media_overview_named">Сите слики со %1$s</string>
   <!--arrays.xml-->
@@ -642,7 +642,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заклучи</string>
   <string name="text_secure_normal__mark_all_as_read">Обележи ги сите како прочитани</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_import_text">Притиснете за копирање на SMS пораките од вашиот телефон во шифрираната база на податоци.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вие</string>
   <string name="MediaPreviewActivity_cant_display">Неуспешно прикажување на сликата</string>

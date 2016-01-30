@@ -10,9 +10,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">全ての古いメッセージを今、削除しますか？</string>
   <string name="ApplicationPreferencesActivity_delete">削除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">パスワードを無効にする?</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-        ロックスクリーンでのメッセージを無効化する?
-    </string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">未登録</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
@@ -52,9 +49,7 @@
   <string name="ConversationItem_expires_s">有効期限： %s</string>
   <string name="ConversationItem_error_not_delivered">未送信</string>
   <string name="ConversationItem_view_secure_media_question">暗号化されたファイルを表示しますか？</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">このファイルは暗号化されたデータベースに保存されています。外部コンテンツのビューアで見るには、データを一時的に復号し、ディスクに書き込まなければなりません。この作業を実行してもいいですか？</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">エラー、古い鍵交換のメッセージを受信してしまいました。</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">鍵交換のメッセージを受信しました。クリックして実行してください。</string>
   <string name="ConversationItem_group_action_left">%1$sがグループを抜けました。</string>
   <string name="ConversationItem_click_for_details">タップして詳細</string>
   <string name="ConversationItem_click_to_approve_unencrypted">タップしてセキュアでない通信を行う</string>
@@ -272,8 +267,6 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">無効な鍵交換メッセージを受信しました。</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 受信した鍵交換メッセージのプロトコルバージョンが無効です。</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-受信したメッセージの認証キーは不明です。タップで表示。</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">新たな識別情報を受信しましたが認証が不明です。タップで検証してください。</string>
   <string name="SmsMessageRecord_duplicate_message">多重送信メッセージ。</string>
   <!--ThreadRecord-->
@@ -397,7 +390,6 @@
   <string name="device_list_fragment__no_devices_linked">リンクしたデバイスはありません...</string>
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">デバッグログの入手に失敗しました。ADBを使ってログの入手は、可能です。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
   <string name="log_submit_activity__submitting">提出中</string>
   <string name="log_submit_activity__posting_logs">ログをgistに投稿中…</string>
@@ -430,7 +422,6 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ファイル付き及びグループ・メッセージを配信するのに、OKをクリックして設定を完了してください。お使いの通信事業者への設定値は通常、\"通信事業者APN”で検索すると設定できます。この作業の実行は一度だけでいいです。</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ブロック済み</string>
   <!--recipient_preferences-->
@@ -496,7 +487,6 @@
   <string name="AndroidManifest__public_identity_key">公共認証キー</string>
   <string name="AndroidManifest__change_passphrase">パスワードの変更</string>
   <string name="AndroidManifest__verify_identity">認証検証</string>
-  <string name="AndroidManifest__log_submit">デバッグログを提出</string>
   <string name="AndroidManifest__media_overview">すべての画像</string>
   <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
   <string name="AndroidManifest_manage_linked_devices">リンク済みデバイスの管理</string>
@@ -674,7 +664,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">ロック</string>
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_import_text">タップして電話のSMSメッセージを暗号化したデータベースにコピーする。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>
   <string name="MediaPreviewActivity_cant_display">この画像のプレビューに失敗</string>

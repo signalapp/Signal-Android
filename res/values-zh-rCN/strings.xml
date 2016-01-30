@@ -17,8 +17,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">删除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">禁用密码？</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-为信息禁用锁屏？</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">这将会永久性的解锁暗号和消息通知。</string>
   <string name="ApplicationPreferencesActivity_disable">禁用</string>
   <string name="ApplicationPreferencesActivity_unregistering">反注册</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">正在注销来自暗号的信息和呼叫…</string>
@@ -44,6 +43,7 @@
   <string name="DraftDatabase_Draft_image_snippet">（图片）</string>
   <string name="DraftDatabase_Draft_audio_snippet">（音频）</string>
   <string name="DraftDatabase_Draft_video_snippet">（视频）</string>
+  <string name="DraftDatabase_Draft_location_snippet">(位置)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">无法找到用于选择媒体的应用。</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -73,9 +73,9 @@
   <string name="ConversationItem_expires_s">到期： %s</string>
   <string name="ConversationItem_error_not_delivered">未送达</string>
   <string name="ConversationItem_view_secure_media_question">查看安全媒体？</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">该媒体已经被存储在加密数据库中，但是当您使用外部查看器查看该媒体时需要将不加密的副本临时保存在磁盘上，您希望这样做吗？</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">此媒体已经被存储在加密的数据库中。不幸的是，如果需要使用外部查看器来查看的话，则必须要临时解密并保存在外部存储。您确定要这么做吗？</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">错误，收到旧密钥交换消息。</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">已经收到密钥交换信息，点击并处理。</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">已收到密钥交换信息，点击以开始处理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已经离开了该群组。</string>
   <string name="ConversationItem_click_for_details">点击查看详情</string>
   <string name="ConversationItem_click_to_approve_unencrypted">点击退回不安全的通信</string>
@@ -430,8 +430,7 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">收到损坏的密钥
 交换消息！</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">接收到的密钥交换信息来自不正确的协议版本。</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-收到的消息来自未知的身份密钥，点击将处理并显示。</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">接收到来自未知密钥身份的信息。点击以处理或显示。</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">已经收到更新，但是无法确认身份信息。点击并验证身份。</string>
   <string name="SmsMessageRecord_secure_session_reset">安全会话已重设。</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
@@ -584,7 +583,7 @@
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">继续</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">无法获取您设备上的日志，不过您仍然可以以ADB方式来获得您的调试日志。</string>
+  <string name="log_submit_activity__log_fetch_failed">无法在您的设备上读取日志。您仍然可以使用 ADB 来获得调试日志。</string>
   <string name="log_submit_activity__thanks">感谢！</string>
   <string name="log_submit_activity__submitting">正在提交</string>
   <string name="log_submit_activity__posting_logs">正在将日志发布到 gist …</string>
@@ -629,7 +628,7 @@
   <string name="prompt_passphrase_activity__unlock">解锁</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">暗号需要通过运营商获取您的彩信设置才能接受彩信或组播信息，但是您的设备没有这些信息，可能是由于设备被锁定或者访问受到限制。</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">想发送多媒体和组播信息，需点击“好”来完成所需的设置。您可以通过搜索“您的运营商 APN”（如百度／谷歌：中国移动 APN）来获取这些信息。通常，您只需要设置一次。</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">要发送媒体和群组消息，点击“好”并完成所需的设置。此彩信设置将会通过搜索您的运营商信息来完成。此设置只会要求您进行一次。</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">已屏蔽</string>
   <!--recipient_preferences-->
@@ -957,7 +956,7 @@
   <string name="reminder_header_sms_default_text">触击以将暗号标记为默认的短信应用</string>
   <string name="reminder_header_sms_default_button">设置</string>
   <string name="reminder_header_sms_import_title">导入系统短信</string>
-  <string name="reminder_header_sms_import_text">点击将手机中的短信息复制到 TextSecure 的加密的数据库中。</string>
+  <string name="reminder_header_sms_import_text">点击以复制您手机中的短信息到暗号的加密数据库中。</string>
   <string name="reminder_header_sms_import_button">导入</string>
   <string name="reminder_header_push_title">启用暗号信息和呼叫</string>
   <string name="reminder_header_push_text">升级您的通讯体验</string>

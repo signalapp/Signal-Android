@@ -50,9 +50,7 @@ identitu tohto kontaktu.
   <string name="ConversationItem_expires_s">Expirácia: %s</string>
   <string name="ConversationItem_error_not_delivered">Nedoručené</string>
   <string name="ConversationItem_view_secure_media_question">Zobraziť zašifrované média?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tento súbor bol uložený v zašifrovanej databáze. Bohužiaľ, pre otvorenie tohto súboru externým programom musí byť súbor dočasne zapísaný na disk v dešifrovanej podobe. Ste si naozaj istý, že si prajete pokračovať?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Chyba, bola prijatá správa zaseknutej výmeny kľúčov.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Prijal som správu vzájomnej výmeny kľúčov, kliknite pre spracovanie.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil/a skupinu.</string>
   <string name="ConversationItem_click_for_details">Dotykom sem zobrazíte detaily.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Dotykom sem povolíte nezabezpečenú alternatívu.</string>
@@ -266,8 +264,6 @@ vzájomnej výmeny kľúčov.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu.
 </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bola prijatá aktualizované, ale neznáme identifikačné údaje. Dotykom potvrdíte idenitu.</string>
   <string name="SmsMessageRecord_duplicate_message">Zduplikuj správu.</string>
   <!--ThreadRecord-->
@@ -381,7 +377,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Nepodarilo sa získať logy z Vašeho zariadenia. Stále môžete použiť ADB na stiahnutie ladiacich logov.</string>
   <string name="log_submit_activity__thanks">Ďakujem za tvoju pomoc!</string>
   <string name="log_submit_activity__submitting">Posielanie</string>
   <string name="log_submit_activity__posting_logs">Posielanie logov do gist...</string>
@@ -414,7 +409,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pre odosielanie multimédií a skupinových správ vyberte \'OK\' a preveďte potrebné nastavenia. Nastavenia MMS pre Vášho operátora sa väčšinou dajú nájsť zadaním \'Váš operátor APN\' do vyhľadávača na internete. Toto nastavenie je potrebné dokončiť iba prvykrát.</string>
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
   <!--- redphone_call_controls-->
@@ -484,7 +478,6 @@ zlyhalo.
   <string name="AndroidManifest__public_identity_key">Kľúč verejnej totožnosti</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
   <string name="AndroidManifest__verify_identity">Over totožnosť</string>
-  <string name="AndroidManifest__log_submit">Odošli ladiaci log</string>
   <string name="AndroidManifest__media_overview">Všetky obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všetky obrázky s %1$s</string>
   <!--arrays.xml-->
@@ -643,7 +636,6 @@ zlyhalo.
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
-  <string name="reminder_header_sms_import_text">Dotykom sem môžete skopírovať SMS správy z Vašeho telefónu do zašifrovanej databázy.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
   <string name="MediaPreviewActivity_cant_display">Nepodarilo sa zobraziť náhľad pre tento obrázok</string>

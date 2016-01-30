@@ -13,14 +13,16 @@
     <item quantity="other">%d messaggi per conversazione</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Eliminare tutti i messaggi vecchi ora?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Questo ridurrà immediatamente tutte le conversazioni al messaggio più recente.</item>
+    <item quantity="other">Questo ridurrà immediatamente tutte le conversazioni ai %d messaggi più recenti.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-Disabilitare la schermata di blocco per i messaggi?</string>
   <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
   <string name="ApplicationPreferencesActivity_unregistering">Disiscriviti</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Cancellando la registrazione da Signal...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disattivare i messaggi di Signal?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disattivare i messaggi e le chiamate di Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disabilita i messaggi di Signal annullando la tua registrazione sul server. Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare di nuovo i messaggi di Signal in futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Abilitati</string>
@@ -32,6 +34,7 @@ Disabilitare la schermata di blocco per i messaggi?</string>
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Password %1$s, Sicurezza schermo %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Lingua %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -42,6 +45,7 @@ Disabilitare la schermata di blocco per i messaggi?</string>
   <string name="DraftDatabase_Draft_image_snippet">(immagine)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(posizione)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -69,9 +73,7 @@ questo contatto.</string>
   <string name="ConversationItem_expires_s">Scadenza: %s</string>
   <string name="ConversationItem_error_not_delivered">Non consegnato</string>
   <string name="ConversationItem_view_secure_media_question">Vuoi vedere il file multimediale?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Questo contenuto è stato archiviato in un database cifrato. Sfortunatamente, per aprirlo con un visualizzatore esterno, attualmente è necessario che venga temporaneamente decifrato e scritto sul disco. Si è certi di voler procedere?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Errore, ricevuto messaggio per la contrattazione della chiave scaduto.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Ricevuto messaggio per lo scambio della chiave, cliccare per procedere</string>
   <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
   <string name="ConversationItem_click_for_details">Tocca per i dettagli</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tocca per tornare alla conversazione non cifrata</string>
@@ -334,6 +336,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Siamo spiacenti, hai già troppi dispositivi collegati. Prova a scollegarne qualcuno...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ci spiace, questo non è un codice QR valido per collegare il dispositivo.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Collegare un dispositivo Signal?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembrerebbe che tu stia provando a connettere un dispositivo Signal usando uno scanner di terze parti. Per la tua protezione ti preghiamo di  scansionare nuovamente il codice usando Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserire la password</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona Signal</string>
@@ -434,9 +437,6 @@ scambia un altro messaggio!
 </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valida.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elaborarla e mostrarla.
-</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Ricevute informazioni di identità aggiornate ma sconosciute. Clicca per validare l\'identità.</string>
   <string name="SmsMessageRecord_secure_session_reset">Sessione sicura azzerata.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
@@ -556,6 +556,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="conversation_activity__compose_description">Composizione messaggio</string>
   <string name="conversation_activity__emoji_toggle_description">Dis/attiva la tastiera emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Anteprima allegato</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Mostra/nascondi pannello degli allegati</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SPOSTA IL DITO PER ANNULLARE</string>
   <!--conversation_item-->
@@ -588,7 +589,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continua</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Non riesco a recuperare i log dal tuo dispositivo. Puoi sempre utilizzare ADB per ottenere i log di debug.</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
   <string name="log_submit_activity__submitting">Invio in corso</string>
   <string name="log_submit_activity__posting_logs">Salvando i logs su gist...</string>
@@ -634,7 +634,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ha bisogno delle impostazioni degli MMS per poter inviare messaggi multimediali e di gruppo con il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché ha un operatore bloccato o altre configurazioni restrittive.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per inviare contenuti multimediali e messaggi di gruppo, tocca \"OK\" e completa le impostazioni richieste. Le impostazioni MMS del proprio operatore possono essere trovate generalmente cercando \"APN proprio operatore\". Sarà necessario eseguire una sola volta questa procedura.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCCATO</string>
   <!--recipient_preferences-->
@@ -738,9 +737,8 @@ non riuscita.
   <string name="AndroidManifest__select_contacts">Seleziona contatti</string>
   <string name="AndroidManifest__signal_detected">Signal rilevato</string>
   <string name="AndroidManifest__public_identity_key">Chiave pubblica dell\'identità</string>
-  <string name="AndroidManifest__change_passphrase">Cambia passphrase</string>
+  <string name="AndroidManifest__change_passphrase">Cambia password</string>
   <string name="AndroidManifest__verify_identity">Verifica identità</string>
-  <string name="AndroidManifest__log_submit">Invia log di debug</string>
   <string name="AndroidManifest__media_preview">Anteprima contenuto multimediale</string>
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
@@ -787,12 +785,15 @@ non riuscita.
   <string name="preferences__display_settings">Impostazioni display</string>
   <string name="preferences__choose_identity">Scegli identità</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
-  <string name="preferences__change_passphrase">Cambia passphrase</string>
+  <string name="preferences__change_passphrase">Cambia password</string>
   <string name="preferences__change_your_passphrase">Cambia la tua password</string>
   <string name="preferences__enable_passphrase">Usa password</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blocca signal e le notifiche dei messaggi con una password</string>
   <string name="preferences__screen_security">Sicurezza schermo</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blocca il fotografare dello schermo nella lista recenti e all\'interno dell\'app</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocca automaticamente Signal dopo uno specifico intervallo di intattività</string>
+  <string name="preferences__inactivity_timeout_passphrase">Password intervallo di inattività</string>
+  <string name="preferences__inactivity_timeout_interval">Intervallo di timeout per inattività</string>
   <string name="preferences__notifications">Notifiche</string>
   <string name="preferences__enable_message_notifications">Attiva notifiche messaggi</string>
   <string name="preferences__new_contacts_notifications">Notifiche per nuovi contatti</string>
@@ -964,7 +965,6 @@ non riuscita.
   <string name="reminder_header_sms_default_text">Tocca per usare Signal come applicazione di default per gli SMS.</string>
   <string name="reminder_header_sms_default_button">IMPOSTA</string>
   <string name="reminder_header_sms_import_title">Importa gli SMS di sistema</string>
-  <string name="reminder_header_sms_import_text">Tocca per copiare gli SMS del telefono nel database criptato.</string>
   <string name="reminder_header_sms_import_button">IMPORTA</string>
   <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Signal</string>
   <string name="reminder_header_push_text">Migliora la tua esperienza messaggi.</string>
