@@ -245,6 +245,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onNewIntent(Intent intent) {
     Log.w(TAG, "onNewIntent()");
+    
+    if (isFinishing()) {
+      Log.w(TAG, "Activity is finishing...");
+      return;
+    }
 
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
       saveDraft();
