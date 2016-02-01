@@ -50,4 +50,7 @@ Copyright 2011 Whisper Systems
 
 Copyright 2013-2015 Open Whisper Systems
 
+Copyright 2016 WizDom13
+
+
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
