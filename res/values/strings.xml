@@ -707,7 +707,7 @@
     <string name="experience_upgrade_activity__continue">continue</string>
 
     <!-- log_submit_activity -->
-    <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
+    <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get debug logs instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
     <string name="log_submit_activity__submitting">Submitting</string>
     <string name="log_submit_activity__posting_logs">Posting logs to gist&#8230;</string>
@@ -893,7 +893,7 @@
     <string name="AndroidManifest__public_identity_key">Public identity key</string>
     <string name="AndroidManifest__change_passphrase">Change passphrase</string>
     <string name="AndroidManifest__verify_identity">Verify identity</string>
-    <string name="AndroidManifest__log_submit">Submit debug logs</string>
+    <string name="AndroidManifest__log_submit">Submit debug log</string>
     <string name="AndroidManifest__media_preview">Media preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
