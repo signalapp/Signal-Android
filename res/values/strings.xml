@@ -134,7 +134,7 @@
     <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Are you sure you want to leave this group?</string>
     <string name="ConversationActivity_transport_insecure_sms">Insecure SMS</string>
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
-    <string name="ConversationActivity_transport_signal">Signal</string>
+    <string name="ConversationActivity_transport_signal">Signal Plus</string>
     <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal Plus %1$s</string>
     <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %1$s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
@@ -169,7 +169,7 @@
     <string name="ConversationFragment_saving_attachment">Saving attachment</string>
     <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to storage...</string>
     <string name="ConversationFragment_pending">Pending...</string>
-    <string name="ConversationFragment_push">Data (Signal)</string>
+    <string name="ConversationFragment_push">Data (Signal Plus)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Deleting</string>
@@ -318,7 +318,7 @@
     <string name="InviteActivity_sending">Sending...</string>
     <string name="InviteActivity_heart_content_description">Heart</string>
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
-    <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
+    <string name="InviteActivity_invite_to_signal">Invite to Signal Plus</string>
     <plurals name="InviteActivity_send_to_friends">
         <item quantity="one">SEND TO 1 FRIEND</item>
         <item quantity="other">SEND TO %d FRIENDS</item>
@@ -366,7 +366,7 @@
     <string name="MessageRecord_s_called_you">%s called you</string>
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
-    <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal Plus, say hey!</string>
 
 
     <!-- PassphraseChangeActivity -->
@@ -444,7 +444,7 @@
     <string name="RedPhone_got_it">Got it</string>
 
     <!-- RegistrationActivity -->
-    <string name="RegistrationActivity_connect_with_signal">Connect With Signal</string>
+    <string name="RegistrationActivity_connect_with_signal">Connect with Signal Plus</string>
     <string name="RegistrationActivity_select_your_country">Select your country</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your
         country code
@@ -609,7 +609,7 @@
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
 
     <!-- SingleRecipientNotificationBuilder -->
-    <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+    <string name="SingleRecipientNotificationBuilder_signal">Signal Plus</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
 
     <!-- attachment_type_selector -->
@@ -709,7 +709,7 @@
     <string name="log_submit_activity__posting_logs">Posting logs to gist&#8230;</string>
 
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal\'s encrypted database?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal Plus encrypted database?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">The default system database will not be modified or altered in any way.</string>
     <string name="database_migration_activity__skip">Skip</string>
     <string name="database_migration_activity__import">Import</string>
@@ -1034,7 +1034,7 @@
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_trimming">Message trimming</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal Plus built-in emoji support</string>
 
     <!-- **************************************** -->
     <!-- menus -->
