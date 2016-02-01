@@ -35,6 +35,11 @@ public class MmsMediaConstraints extends MediaConstraints {
   }
 
   @Override
+  public int getFileMaxSize() {
+    return MAX_MESSAGE_SIZE;
+  }
+
+  @Override
   public int getAudioMaxSize() {
     return MAX_MESSAGE_SIZE;
   }

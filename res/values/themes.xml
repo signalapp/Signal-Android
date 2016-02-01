@@ -121,6 +121,7 @@
         <item name="conversation_attach_camera">@drawable/ic_photo_camera_light</item>
         <item name="conversation_attach_image">@drawable/ic_image_light</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_light</item>
+        <item name="conversation_attach_file">@drawable/ic_movie_creation_light</item>
         <item name="conversation_attach_sound">@drawable/ic_volume_up_light</item>
         <item name="conversation_attach_contact_info">@drawable/ic_account_box_light</item>
         <item name="conversation_attach">@drawable/ic_attach_grey600_24dp</item>
@@ -183,6 +184,7 @@
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
+        <item name="conversation_icon_attach_file">@drawable/ic_file_light</item>
 
         <item name="reminder_header_background">#ff1d85d7</item>
 
@@ -256,6 +258,7 @@
         <item name="conversation_attach_camera">@drawable/ic_photo_camera_dark</item>
         <item name="conversation_attach_image">@drawable/ic_image_dark</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_dark</item>
+        <item name="conversation_attach_file">@drawable/ic_movie_creation_dark</item>
         <item name="conversation_attach_sound">@drawable/ic_volume_up_dark</item>
         <item name="conversation_attach_contact_info">@drawable/ic_account_box_dark</item>
         <item name="conversation_attach">@drawable/ic_attach_white_24dp</item>
@@ -299,6 +302,7 @@
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_dark</item>
+        <item name="conversation_icon_attach_file">@drawable/ic_file_dark</item>
 
         <item name="reminder_header_background">@color/textsecure_primary_dark</item>
 

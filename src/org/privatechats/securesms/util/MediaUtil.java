@@ -14,6 +14,7 @@ import org.privatechats.securesms.attachments.Attachment;
 import org.privatechats.securesms.crypto.MasterSecret;
 import org.privatechats.securesms.mms.AudioSlide;
 import org.privatechats.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.privatechats.securesms.mms.FileSlide;
 import org.privatechats.securesms.mms.GifSlide;
 import org.privatechats.securesms.mms.ImageSlide;
 import org.privatechats.securesms.mms.PartAuthority;
@@ -65,6 +66,8 @@ public class MediaUtil {
       slide = new VideoSlide(context, attachment);
     } else if (ContentType.isAudioType(attachment.getContentType())) {
       slide = new AudioSlide(context, attachment);
+    } else if (ContentType.isFileType(attachment.getContentType())) {
+      slide = new FileSlide(context, attachment);
     }
 
     return slide;
@@ -126,6 +129,10 @@ public class MediaUtil {
 
   public static boolean isVideo(Attachment attachment) {
     return ContentType.isVideoType(attachment.getContentType());
+  }
+
+  public static boolean isApp(Attachment attachment) {
+    return ContentType.isFileType(attachment.getContentType());
   }
 
   public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {

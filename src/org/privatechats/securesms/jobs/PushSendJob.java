@@ -60,7 +60,8 @@ public abstract class PushSendJob extends SendJob {
     for (final Attachment attachment : parts) {
       if (ContentType.isImageType(attachment.getContentType()) ||
           ContentType.isAudioType(attachment.getContentType()) ||
-          ContentType.isVideoType(attachment.getContentType()))
+          ContentType.isVideoType(attachment.getContentType()) ||
+          ContentType.isFileType(attachment.getContentType()))
       {
         try {
           if (attachment.getDataUri() == null) throw new IOException("Assertion failed, outgoing attachment has no data!");

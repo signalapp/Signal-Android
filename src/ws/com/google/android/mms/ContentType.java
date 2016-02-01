@@ -68,6 +68,7 @@ public class ContentType {
     public static final String VIDEO_H263        = "video/h263";
     public static final String VIDEO_MP4         = "video/mp4";
 
+    public static final String APP_UNSPECIFIED   = "application/*";
     public static final String APP_SMIL          = "application/smil";
     public static final String APP_WAP_XHTML     = "application/vnd.wap.xhtml+xml";
     public static final String APP_XHTML         = "application/xhtml+xml";
@@ -195,6 +196,10 @@ public class ContentType {
 
     public static boolean isVideoType(String contentType) {
         return (null != contentType) && contentType.startsWith("video/");
+    }
+
+    public static boolean isFileType(String contentType) {
+        return (null != contentType) && (contentType.startsWith("application/") ||contentType.startsWith("text/" ));
     }
 
     public static boolean isDrmType(String contentType) {

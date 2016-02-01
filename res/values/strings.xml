@@ -53,6 +53,7 @@
     <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
     <string name="DraftDatabase_Draft_video_snippet">(video)</string>
     <string name="DraftDatabase_Draft_location_snippet">(location)</string>
+    <string name="DraftDatabase_Draft_file_snippet">(file)</string>
 
     <!-- AttchmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
@@ -61,6 +62,7 @@
     <string name="AttachmentTypeSelectorAdapter_camera">Camera</string>
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
+    <string name="AttachmentTypeSelectorAdapter_file">File</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
     <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
 
@@ -503,6 +505,7 @@
     <string name="Slide_image">Image</string>
     <string name="Slide_audio">Audio</string>
     <string name="Slide_video">Video</string>
+    <string name="Slide_file">File</string>
 
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Received corrupted key
@@ -620,6 +623,7 @@
     <string name="attachment_type_selector__contact">Contact</string>
     <string name="attachment_type_selector__camera">Camera</string>
     <string name="attachment_type_selector__location">Location</string>
+    <string name="attachment_type_selector__file">File</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Old passphrase</string>

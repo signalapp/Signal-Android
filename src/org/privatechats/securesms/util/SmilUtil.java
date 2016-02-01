@@ -106,6 +106,8 @@ public class SmilUtil {
       tag = "audio";
     } else if (PartParser.isVideo(part)) {
       tag = "video";
+    } else if (PartParser.isApp(part)) {
+      tag = "app";
     } else if (PartParser.isText(part)) {
       tag = "text";
     } else {

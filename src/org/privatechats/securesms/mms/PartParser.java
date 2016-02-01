@@ -78,11 +78,15 @@ public class PartParser {
     return ContentType.isVideoType(Util.toIsoString(part.getContentType()));
   }
 
+  public static boolean isApp(PduPart part) {
+    return ContentType.isFileType(Util.toIsoString(part.getContentType()));
+  }
+
   public static boolean isText(PduPart part) {
     return ContentType.isTextType(Util.toIsoString(part.getContentType()));
   }
 
   public static boolean isDisplayableMedia(PduPart part) {
-    return isImage(part) || isAudio(part) || isVideo(part);
+    return isImage(part) || isAudio(part) || isVideo(part) || isApp(part);
   }
 }

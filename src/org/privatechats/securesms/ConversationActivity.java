@@ -183,6 +183,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int TAKE_PHOTO        = 6;
   private static final int ADD_CONTACT       = 7;
   private static final int PICK_LOCATION     = 8;
+  private static final int PICK_FILE         = 9;
 
   private   MasterSecret          masterSecret;
   protected ComposeText           composeText;
@@ -383,6 +384,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       SignalPlace place = new SignalPlace(PlacePicker.getPlace(data, this));
       attachmentManager.setLocation(masterSecret, place, getCurrentMediaConstraints());
       break;
+    case PICK_FILE:
+        setMedia(data.getData(), MediaType.FILE);
+        break;
     }
   }
 
@@ -796,6 +800,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
               setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO);
             } else if (draft.getType().equals(Draft.VIDEO)) {
               setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO);
+            } else if (draft.getType().equals(Draft.FILE)) {
+              setMedia(Uri.parse(draft.getValue()), MediaType.FILE);
             }
           } catch (IOException e) {
             Log.w(TAG, e);
@@ -1049,6 +1055,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO); break;
     case AttachmentTypeSelector.ADD_LOCATION:
       AttachmentManager.selectLocation(this, PICK_LOCATION); break;
+    case AttachmentTypeSelector.ADD_FILE:
+      AttachmentManager.selectFile(this, PICK_FILE); break;
     case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     }
@@ -1100,6 +1108,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       else if (slide.hasVideo())    drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
       else if (slide.hasLocation()) drafts.add(new Draft(Draft.LOCATION, ((LocationSlide)slide).getPlace().serialize()));
       else if (slide.hasImage())    drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
+      else if (slide.isRawFile())   drafts.add(new Draft(Draft.FILE, slide.getUri().toString()));
+
     }
 
     return drafts;

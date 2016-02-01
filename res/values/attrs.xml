@@ -37,6 +37,7 @@
     <attr name="conversation_attach_camera" format="reference"/>
     <attr name="conversation_attach_image" format="reference"/>
     <attr name="conversation_attach_video" format="reference"/>
+    <attr name="conversation_attach_file" format="reference"/>
     <attr name="conversation_attach_sound" format="reference"/>
     <attr name="conversation_attach_contact_info" format="reference"/>
     <attr name="conversation_attach" format="reference"/>
@@ -73,6 +74,7 @@
 
     <attr name="conversation_icon_attach_audio" format="reference"/>
     <attr name="conversation_icon_attach_video" format="reference" />
+    <attr name="conversation_icon_attach_file" format="reference" />
 
     <attr name="contact_selection_push_user" format="reference|color" />
     <attr name="contact_selection_lay_user" format="reference|color" />

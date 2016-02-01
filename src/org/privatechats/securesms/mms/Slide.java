@@ -76,6 +76,10 @@ public abstract class Slide {
     return false;
   }
 
+  public boolean isRawFile() {
+    return false;
+  }
+
   public @NonNull String getContentDescription() { return ""; }
 
   public Attachment asAttachment() {
@@ -119,9 +123,10 @@ public abstract class Slide {
     Slide that = (Slide)other;
 
     return Util.equals(this.getContentType(), that.getContentType()) &&
-           this.hasAudio() == that.hasAudio()                        &&
-           this.hasImage() == that.hasImage()                        &&
-           this.hasVideo() == that.hasVideo()                        &&
+           this.hasAudio()  == that.hasAudio()                       &&
+           this.hasImage()  == that.hasImage()                       &&
+           this.hasVideo()  == that.hasVideo()                       &&
+           this.isRawFile() == that.isRawFile()                          &&
            this.getTransferState() == that.getTransferState()        &&
            Util.equals(this.getUri(), that.getUri())                 &&
            Util.equals(this.getThumbnailUri(), that.getThumbnailUri());
@@ -130,6 +135,6 @@ public abstract class Slide {
   @Override
   public int hashCode() {
     return Util.hashCode(getContentType(), hasAudio(), hasImage(),
-                         hasVideo(), getUri(), getThumbnailUri(), getTransferState());
+                         hasVideo(), isRawFile(), getUri(), getThumbnailUri(), getTransferState());
   }
 }

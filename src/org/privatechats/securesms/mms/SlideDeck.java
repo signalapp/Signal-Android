@@ -86,7 +86,7 @@ public class SlideDeck {
 
   public boolean containsMediaSlide() {
     for (Slide slide : slides) {
-      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
+      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.isRawFile()) {
         return true;
       }
     }

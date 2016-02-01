@@ -161,6 +161,8 @@ public class SmilDocumentImpl extends DocumentImpl implements SMILDocument, Docu
             return new SmilRegionMediaElementImpl(this, tagName);
         } else if (tagName.equals("audio")) {
             return new SmilMediaElementImpl(this, tagName);
+        } else if (tagName.equals("app")) {
+            return new SmilMediaElementImpl(this, tagName);
         } else if (tagName.equals("layout")) {
             return new SmilLayoutElementImpl(this, tagName);
         } else if (tagName.equals("root-layout")) {

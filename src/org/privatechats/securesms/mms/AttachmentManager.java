@@ -247,6 +247,10 @@ public class AttachmentManager {
     selectMediaType(activity, "audio/*", requestCode);
   }
 
+  public static void selectFile(Activity activity, int requestCode) {
+    selectMediaType(activity, "*/*", requestCode);
+  }
+
   public static void selectContactInfo(Activity activity, int requestCode) {
     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
     activity.startActivityForResult(intent, requestCode);
@@ -347,7 +351,7 @@ public class AttachmentManager {
   }
 
   public enum MediaType {
-    IMAGE, GIF, AUDIO, VIDEO;
+    IMAGE, GIF, AUDIO, VIDEO, FILE;
 
     public @NonNull Slide createSlide(@NonNull Context context,
                                       @NonNull Uri     uri,
@@ -358,16 +362,18 @@ public class AttachmentManager {
       case GIF:   return new GifSlide(context, uri, dataSize);
       case AUDIO: return new AudioSlide(context, uri, dataSize);
       case VIDEO: return new VideoSlide(context, uri, dataSize);
+      case FILE:  return new FileSlide(context, uri, dataSize);
       default:    throw  new AssertionError("unrecognized enum");
       }
     }
 
     public static @Nullable MediaType from(final @Nullable String mimeType) {
-      if (TextUtils.isEmpty(mimeType))       return null;
-      if (MediaUtil.isGif(mimeType))         return GIF;
-      if (ContentType.isImageType(mimeType)) return IMAGE;
-      if (ContentType.isAudioType(mimeType)) return AUDIO;
-      if (ContentType.isVideoType(mimeType)) return VIDEO;
+      if (TextUtils.isEmpty(mimeType))         return null;
+      if (MediaUtil.isGif(mimeType))           return GIF;
+      if (ContentType.isImageType(mimeType))   return IMAGE;
+      if (ContentType.isAudioType(mimeType))   return AUDIO;
+      if (ContentType.isVideoType(mimeType))   return VIDEO;
+      if (ContentType.isFileType(mimeType))    return FILE;
       return null;
     }
   }

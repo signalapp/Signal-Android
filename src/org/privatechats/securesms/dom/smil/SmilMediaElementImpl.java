@@ -100,7 +100,7 @@ public class SmilMediaElementImpl extends SmilElementImpl implements
                 if (dur == 0) {
                     // Duration is not specified, So get the implicit duration.
                     String tag = getTagName();
-                    if (tag.equals("video") || tag.equals("audio")) {
+                    if (tag.equals("video") || tag.equals("audio") || tag.equals("app")) {
                         // Continuous media
                         // FIXME Should get the duration of the media. "indefinite" instead here.
                         dur = -1.0F;

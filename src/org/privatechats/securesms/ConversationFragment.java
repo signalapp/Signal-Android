@@ -340,7 +340,7 @@ public class ConversationFragment extends Fragment
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         for (Slide slide : message.getSlideDeck().getSlides()) {
-          if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
+          if (slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.isRawFile()) {
             SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity(), masterSecret);
             saveTask.execute(new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived()));
             return;
