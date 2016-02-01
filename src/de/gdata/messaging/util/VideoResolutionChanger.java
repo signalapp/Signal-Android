@@ -442,7 +442,7 @@ public class VideoResolutionChanger {
                 context.runOnUiThread(new Thread(new Runnable() {
                     public void run() {
                         if(ConversationActivity.compressingDialog != null && ConversationActivity.compressingDialog.isShowing()) {
-                            if(currentProgress > 0) {
+                            if(currentProgress > 0 && currentProgress <= 100) {
                                 ConversationActivity.compressingDialog.setMessage(context.getString(R.string.dialog_compressing) + " " + currentProgress + "%");
                             }
                         }
