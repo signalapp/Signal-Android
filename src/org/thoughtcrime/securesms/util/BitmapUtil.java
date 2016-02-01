@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 import com.bumptech.glide.load.resource.bitmap.Downsampler;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.Util;
 
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 
@@ -101,7 +102,9 @@ public class BitmapUtil {
                                                      DecodeFormat.PREFER_RGB_565);
 
     final Resource<Bitmap> resource = BitmapResource.obtain(rough, Glide.get(context).getBitmapPool());
-    final Resource<Bitmap> result   = new FitCenter(context).transform(resource, width, height);
+    final Resource<Bitmap> result   = Util.isValidDimensions(width,height)?
+                            new FitCenter(context).transform(resource, width, height):
+                      BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_error_red_24dp);
 
     if (result == null) {
       throw new BitmapDecodingException("unable to transform Bitmap");
