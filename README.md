@@ -6,7 +6,7 @@ Signal Plus uses your phone's data connection (WiFi/3G/4G) to communicate secure
 
 Currently available on the Play store.
 
-*[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.privatechats.securesms)*
+<a href="https://play.google.com/store/apps/details?id=org.privatechats.securesms"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=36px /></a>
 
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
