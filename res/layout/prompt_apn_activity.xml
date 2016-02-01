@@ -29,7 +29,7 @@
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:layout_marginBottom="16dip"
-                      android:text="@string/prompt_mms_activity__to_send_media_and_group_messages_click_ok"/>
+                      android:text="@string/prompt_mms_activity__to_send_media_and_group_messages_tap_ok"/>
                         
             <LinearLayout android:orientation="horizontal"
                           android:gravity="center"
