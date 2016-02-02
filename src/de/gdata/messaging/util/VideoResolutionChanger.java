@@ -68,7 +68,7 @@ public class VideoResolutionChanger {
     public String changeResolution(Activity context, Uri f)
             throws Throwable {
         mInputFile = getPath(context, f);
-
+        COMPRESSING_ERROR = "";
         final File outFile = AttachmentManager.getOutputMediaFile(context, AttachmentManager.MEDIA_TYPE_VIDEO);
         if(!outFile.exists())
             outFile.createNewFile();

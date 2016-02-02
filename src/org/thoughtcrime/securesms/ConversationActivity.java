@@ -294,8 +294,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             compressingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialogInterface) {
-                    compressingIsrunning = false;
-                    VideoResolutionChanger.COMPRESSING_ERROR = "CANCELED";
+                    cancelVideoCompression();
                 }
             });
             compressingDialog.setCancelable(true);
@@ -305,16 +304,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     protected void onPause() {
         super.onPause();
+        cancelVideoCompression();
         MessageNotifier.setVisibleThread(-1L);
         if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
     }
-
+    public void cancelVideoCompression() {
+        compressingIsrunning = false;
+        VideoResolutionChanger.COMPRESSING_ERROR = "CANCELED";
+        if(compressingDialog != null) {
+            compressingDialog.cancel();
+            compressingDialog = null;
+        }
+    }
     @Override
     protected void onDestroy() {
         saveDraft();
         unregisterReceiver(securityUpdateReceiver);
         unregisterReceiver(groupUpdateReceiver);
         MemoryCleaner.clean(masterSecret);
+        cancelVideoCompression();
         super.onDestroy();
     }
 
