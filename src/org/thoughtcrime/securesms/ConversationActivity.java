@@ -52,6 +52,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -289,6 +290,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
         if (compressingIsrunning && (compressingDialog == null || !compressingDialog.isShowing())) {
             compressingDialog = ProgressDialog.show(this, getString(R.string.dialog_compressing_header), getString(R.string.dialog_compressing));
+            compressingDialog.setCanceledOnTouchOutside(false);
             compressingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialogInterface) {
@@ -300,7 +302,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
         if (draftText != null) composeText.setText(draftText + "");
     }
-
     @Override
     protected void onPause() {
         super.onPause();
