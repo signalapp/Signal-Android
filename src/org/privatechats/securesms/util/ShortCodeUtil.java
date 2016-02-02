@@ -29,11 +29,6 @@ public class ShortCodeUtil {
       String                  localCountryCode  = util.getRegionCodeForNumber(localNumberObject);
       String                  bareNumber        = number.replaceAll("[^0-9+]", "");
 
-      // libphonenumber doesn't seem to be correct for Germany and Finland
-      if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode))) {
-        return true;
-      }
-
       // libphonenumber seems incorrect for Russia and a few other countries with 4 digit short codes.
       if (bareNumber.length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {
         return true;
