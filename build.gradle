@@ -72,7 +72,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:textsecure-android:1.8.4'
+    compile 'org.whispersystems:textsecure-android:1.8.3'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
     compile 'com.google.zxing:core:3.2.1'
 
@@ -126,7 +126,7 @@ dependencyVerification {
             'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
             'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
-            'org.whispersystems:textsecure-android:680efc3e18bc75af09e6513ac7bac60abb76d97ae1a6ad6891f70e8f59b7412f',
+            'org.whispersystems:textsecure-android:aec5fc59952d9f5482491091091687816f46be1144342a0244f48fd55d6ab393',
             'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
             'com.google.zxing:core:b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259',
             'com.google.android.gms:play-services-base:ef36e50fa5c0415ed41f74dd399a889efd2fa327c449036e140c7c3786aa0e1f',
@@ -134,12 +134,12 @@ dependencyVerification {
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
-            'org.whispersystems:textsecure-java:9f860cd9caf4a46925939e5af20f7c744cec4b79ba8468187961c7ac3e13b73e',
+            'org.whispersystems:textsecure-java:b407ca6d1430204dfabf38e27db22d5177409072a9668238bd1877de7676ad3f',
             'org.whispersystems:axolotl-android:40d3db5004a84749a73f68d2f0d01b2ae35a73c54df96d8c6c6723b96efb6fc0',
             'com.google.android.gms:play-services-basement:e1d29b21e02fd2a63e5a31807415cbb17a59568e27e3254181c01ffae10659bf',
+            'com.googlecode.libphonenumber:libphonenumber:9625de9d2270e9a280ff4e6d9ef3106573fb4828773fd32c9b7614f4e17d2811',
             'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
             'com.squareup.okhttp:okhttp:89b7f63e2e5b6c410266abc14f50fe52ea8d2d8a57260829e499b1cd9f0e61af',
-            'com.googlecode.libphonenumber:libphonenumber:df224009eedb35523ab0e4badba5878eb82fdc83fffbb4c92a4fa1b2f4ec91e3',
             'com.fasterxml.jackson.core:jackson-databind:835097bcdd11f5bc8a08378c70d4c8054dfa4b911691cc2752063c75534d198d',
             'org.whispersystems:axolotl-java:6daee739b89d8d7101de6d98f77132fee48495c6ea647d880e77def842f999ea',
             'org.whispersystems:curve25519-android:3c29a4131a69b0d16baaa3d707678deb39602c3a3ffd75805ce7f9db252e5d0d',
