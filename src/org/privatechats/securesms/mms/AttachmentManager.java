@@ -197,7 +197,7 @@ public class AttachmentManager {
 
       @Override
       protected void onPostExecute(@Nullable final Slide slide) {
-        if (slide == null) {
+        if (slide == null || slide.asAttachment().getSize() == 0) {
           attachmentView.setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
@@ -291,6 +291,7 @@ public class AttachmentManager {
   private static void selectMediaType(Activity activity, String type, int requestCode) {
     final Intent intent = new Intent();
     intent.setType(type);
+    intent.addCategory(Intent.CATEGORY_OPENABLE);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
