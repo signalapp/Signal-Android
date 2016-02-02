@@ -30,7 +30,7 @@ public class ShortCodeUtil {
       String                  bareNumber        = number.replaceAll("[^0-9+]", "");
 
       // libphonenumber doesn't seem to be correct for Germany and Finland
-      if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode))) {
+      if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode) || "SK".equals(localCountryCode))) {
         return true;
       }
 
