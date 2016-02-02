@@ -155,7 +155,12 @@ public class VideoResolutionChanger {
                 compressingSuccessful = false;
                 COMPRESSING_ERROR = "TOO BIG";
             } else {
-
+                //Really dirty workaround but it seems that the width and Height of this china device are mixed up (Huwai Ascend 4.4.4)
+                if("G620S-L01".equals(android.os.Build.MODEL)) {
+                    int temp = inputWidth;
+                    inputWidth = inputHeight;
+                    inputHeight = temp;
+                }
                 if (inputWidth > inputHeight) {
                     if (mWidth < mHeight) {
                         int w = mWidth;
