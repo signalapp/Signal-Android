@@ -53,6 +53,9 @@ public abstract class Slide {
   }
 
   public String getContentType() {
+    if("video/avc".equals(new String(part.getContentType()))) {
+      return "video/mp4";
+    }
     return new String(part.getContentType());
   }
 
