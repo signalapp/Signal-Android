@@ -21,8 +21,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Smazat</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Zakázat heslo?</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-Zakázat uzamčení obrazovky zpráv?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Tímto trvale odemkenete Signal Plus a upozornění na zprávy.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odregistrace Signal Plus zpráv a volání</string>
@@ -50,6 +49,7 @@ Zakázat uzamčení obrazovky zpráv?</string>
   <string name="DraftDatabase_Draft_image_snippet">(obrázek)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(poloha)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -78,9 +78,9 @@ kontakt</string>
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
   <string name="ConversationItem_error_not_delivered">Nedoručeno</string>
   <string name="ConversationItem_view_secure_media_question">Zobrazit zabezpečená média?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tato média byla uložena v zašifrované databázi. Aby bylo možné je zobrazit v jiném programu, musí být dočasně dešifrována a v dešifrované podobě uložena. Opravdu to chcete udělat?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tato media jsou uložena v zašifrované databázi. Bohužel, abyste je mohli prohlížet jinou aplikací, je nutno je dešifrovat a uložit dešifrované do úložiště. Opravdu to chcete udělat?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Chyba při předávání klíčů.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Byl vám doručen klíč, klepněte pro jeho přijetí.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Byl vám doručen klíč, klikněte pro jeho zpracování.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil(a) skupinu.</string>
   <string name="ConversationItem_click_for_details">Klikněte pro detail</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Klikněte pro nešifrovaný záložní způsob</string>
@@ -119,7 +119,7 @@ kontakt</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jsi si jistý, že chceš opustit tuto skupinu?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezabezpečená SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Signal Plus</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pojďme přepnout na Signal Plus: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Pojďme použít na chat: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba při opouštění skupiny.</string>
@@ -155,7 +155,7 @@ kontakt</string>
   <string name="ConversationFragment_saving_attachment">Ukládám přílohu</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Ukládám přílohu do paměti.</string>
   <string name="ConversationFragment_pending">Probíhající:</string>
-  <string name="ConversationFragment_push">Data(Signal)</string>
+  <string name="ConversationFragment_push">Data(Signal Plus)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Mažu</string>
@@ -213,7 +213,7 @@ kontakt</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Vítejte v systému Signal</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Vítejte v systému Signal Plus</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure a RedPhone jsou nyní jednou platformou pro důvěrnou komunikaci: Signal Plus.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Vítejte v systému Signal Plus!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je nyní Signal Plus.</string>
@@ -237,7 +237,7 @@ kontakt</string>
   <string name="GroupCreateActivity_group_name_hint">Název skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali jste kontakt</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nejste zaregistrován k použití Signalu pro zprávy a volání, takže jsou skupiny Signal Plus zakázány. Prosím registrujte se v Nastavení &gt; Rozšířené</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nejste zaregistrován k použití Signal Plusu pro zprávy a volání, takže jsou skupiny Signal Plus zakázány. Prosím registrujte se v Nastavení &gt; Rozšířené</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Došlo k neočekávané chybě, která znemožnila vytvoření skupiny.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ve vaší skupině musí být alespoň jeden kontakt.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členů Vaší skupiny má číslo, které se nedaří správně zpracovat. Prosím opravte jej nebo odstraňte a zkuste znovu.</string>
@@ -284,7 +284,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="InviteActivity_sending">Odesílám...</string>
   <string name="InviteActivity_heart_content_description">Srdíčko</string>
   <string name="InviteActivity_invitations_sent">Pozvnáka odeslána!</string>
-  <string name="InviteActivity_invite_to_signal">Pozvat do Signalu</string>
+  <string name="InviteActivity_invite_to_signal">Pozvat do Signal Plusu</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">POSLAT PŘÍTELI</item>
     <item quantity="few">POSLAT %d PŘÁTELŮM</item>
@@ -328,7 +328,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageRecord_s_called_you">%s vám volal</string>
   <string name="MessageRecord_called_s">Volán %s</string>
   <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s je na Signalu, řekni ahoj!</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s je na Signal Plusu, řekni ahoj!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nejsou stejná</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Chybné staré heslo!</string>
@@ -350,11 +350,11 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Omlouváme se, ale máte provázáno příliš mnoho zařízení, pokuste se některé odpojit...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Omlouváme se, ale toto není platný QR kód pro provázání zařízení</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Provázat zařízení Signal?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Provázat zařízení Signal Plus?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se se snažíte provázat zařízení Signal Plus použitím jiné skennovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadat heslo</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal Plus</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Zadejte heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Chybné heslo!</string>
   <!--PlayServicesProblemFragment-->
@@ -396,7 +396,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Volané číslo nepodporuje šifrované hovory!</string>
   <string name="RedPhone_got_it">Mám to.</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Připojení pomocí Signal</string>
+  <string name="RegistrationActivity_connect_with_signal">Připojení pomocí Signál</string>
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zadejte kód
 vaší země</string>
@@ -445,8 +445,7 @@ telefonní číslo</string>
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Obdržen neplatný požadavek na výměnu klíčů.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zpracování a zobrazení.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Přijata zpráva s neznámým identifikačním klíčem. Klikněte pro její zpracování a zobrazení.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Aktualizována přijatá dat od neznámé identity. Klikněte pro ověření identity.</string>
   <string name="SmsMessageRecord_secure_session_reset">Reset zabezpečené komunikace.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
@@ -458,7 +457,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="ThreadRecord_called_you">Volal vás</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediální zpráva</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s zapnul Signal, řekni ahoj!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s zapnul Signal Plus, řekni ahoj!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Příjemce nemá identifikační klíč.</string>
@@ -528,7 +527,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá dopověď není dostupná pokud je Signal Plus uzamčen!</string>
   <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal Plus</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová zpráva</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Obrázek</string>
@@ -599,12 +598,12 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">pokračovat</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Nepodařilo se zaznamenat logy z vašeho zařízení. Jěště můžete zkusit použít pro získání debug logů nástroj ADB.</string>
+  <string name="log_submit_activity__log_fetch_failed">Na vašem zařízení nelze číst log. Můžete místo toho použít pro získání logu ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
   <string name="log_submit_activity__submitting">Odesílání</string>
   <string name="log_submit_activity__posting_logs">Posílání logů do gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovat vaše existující textové zpávy do zašifrované databáze Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovat vaše existující textové zpávy do zašifrované databáze Signal Plus?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Původní systémová databáze tím nebude dotčena, ani žádným způsobem modifikována.</string>
   <string name="database_migration_activity__skip">Přeskočit</string>
   <string name="database_migration_activity__import">Import</string>
@@ -646,7 +645,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="prompt_passphrase_activity__unlock">Odemknout</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal Plus vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány. Váš přístroj tyto informace neposkytuje, což se stává u zamknutých nebo jinak upravených přístrojů.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pro odesílání médií a skupinových zpráv klepněte na OK a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto je je třeba udělat pouze jednou.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pro odesílání médií a skupinových zpráv klepněte na OK a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto stačí udělat pouze jednou.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOKOVÁN</string>
   <!--recipient_preferences-->
@@ -666,7 +665,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="redphone_call_controls__signal_call">Signal Plus volání</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Ověření vašeho telefoního čísla pro připojení k Signal</string>
+Ověření vašeho telefoního čísla pro připojení k Signal Plus</string>
   <string name="registration_activity__your_country">Země</string>
   <string name="registration_activity__your_country_code_and_phone_number">Kód země
         Telefonní číslo
@@ -701,7 +700,7 @@ Je možné také použít telefonní ověření. Signal Plus vám může zavolat
   <string name="registration_progress_activity__no_network_connectivity">Není připojení
         k síti.
     </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Abyste mohli použít tuto funkci Signal, musíte být připojeni k internetu.
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Abyste mohli použít tuto funkci Signal Plus, musíte být připojeni k internetu.
 Zkontrolujte, zda jste připojeni přes obilním data nebo Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -747,7 +746,7 @@ Signal Plus se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__public_identity_key">Veřejný identifikační klíč</string>
   <string name="AndroidManifest__change_passphrase">Změnit heslo</string>
   <string name="AndroidManifest__verify_identity">Ověření identity</string>
-  <string name="AndroidManifest__log_submit">Odeslat ladící logy</string>
+  <string name="AndroidManifest__log_submit">Odeslat ladící log</string>
   <string name="AndroidManifest__media_preview">Náhled multimedií</string>
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všechny obrázky s %1$s</string>
@@ -870,7 +869,7 @@ Signal Plus se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__signal_messages_and_calls">Signal Plus zpravy a volání</string>
-  <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
+  <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal Plus</string>
   <string name="preferences__submit_debug_log">Odeslat ladící log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
@@ -976,16 +975,16 @@ Signal Plus se nedočkal přijetí ověřovací SMS. </string>
   <string name="reminder_header_sms_default_text">Dotykem nastavíte Signal Plus jako výchozí SMS aplikaci</string>
   <string name="reminder_header_sms_default_button">NASTAVIT</string>
   <string name="reminder_header_sms_import_title">Importovat SMS ze systému</string>
-  <string name="reminder_header_sms_import_text">Poklepejte ke zkopírování SMS zpráv ve Vašem telefonu do šifrované databáze.</string>
+  <string name="reminder_header_sms_import_text">Klikněte pro zkopírování SMS z telefonu do šifrované databáze Signal Plus.</string>
   <string name="reminder_header_sms_import_button">IMPORTOVAT</string>
   <string name="reminder_header_push_title">Povolit Signal Plus zprávy a volání</string>
   <string name="reminder_header_push_text">Lepší zážitky z komunikace.</string>
   <string name="reminder_header_push_button">POVOLIT</string>
-  <string name="reminder_header_invite_title">Pozvat do Signalu</string>
+  <string name="reminder_header_invite_title">Pozvat do Signal Plusu</string>
   <string name="reminder_header_invite_text">Posuňte vaši konverzaci s %1$s na vyšší úroveň.</string>
   <string name="reminder_header_invite_button">POZVAT</string>
   <string name="reminder_header_share_title">Pozvěte vaše přátele!</string>
-  <string name="reminder_header_share_text">Čím víc bude uživatelů Signal, tím bude lepší.</string>
+  <string name="reminder_header_share_text">Čím víc bude uživatelů Signal Plus, tím bude lepší.</string>
   <string name="reminder_header_share_button">SDÍLET</string>
   <string name="reminder_header_close_button">ZAVŘÍT</string>
   <!--MediaPreviewActivity-->

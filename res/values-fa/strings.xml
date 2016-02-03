@@ -14,8 +14,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پیام‌های قدیمی حذف شوند؟</string>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">عبارت عبور غیر فعال کنم؟</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-غیر فعال کردن قفل صفحه نمایش برای پیام؟</string>
   <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
   <string name="ApplicationPreferencesActivity_unregistering">لغو ثبت نام</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">لغو ثبت برای پیام ها و تماس های سیگنال ...</string>
@@ -66,7 +64,6 @@
   <string name="ConversationItem_error_not_delivered">تحویل داده نشد</string>
   <string name="ConversationItem_view_secure_media_question">نمایش رسانه های امن؟</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">خطا، یک پیام کهنه تبادل کلید دریافت شد.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">یک پیام تبادل کلید دریافت شد. برای پردازش، اینجا را لمس کنید.</string>
   <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرده است.</string>
   <string name="ConversationItem_click_for_details">برای جزئیات بیشتر ضربه بزنید</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">به اس ام اس رمز نشده برگرده؟</string>
@@ -308,7 +305,6 @@
   <string name="RedPhone_number_not_registered">شماره ثبت نام نکرده!</string>
   <string name="RedPhone_got_it">فهمیدم</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">ارتباط با سیگنال</string>
   <string name="RegistrationActivity_select_your_country">کشور خود را انتخاب کنید</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">شما باید کد کشور خود را
 مشخص کنید
@@ -607,7 +603,6 @@
   <string name="AndroidManifest__public_identity_key">کلید هویت عمومی</string>
   <string name="AndroidManifest__change_passphrase">تغییر رمز</string>
   <string name="AndroidManifest__verify_identity">تشخیص هویت</string>
-  <string name="AndroidManifest__log_submit">ارسال گزارش اشکال‌زدایی</string>
   <string name="AndroidManifest__media_preview">پیش نمایش رسانه</string>
   <string name="AndroidManifest__media_overview">همه تصاویر</string>
   <string name="AndroidManifest__media_overview_named">همه عکس ها با %1$s</string>
@@ -809,7 +804,6 @@
   <string name="reminder_header_sms_default_text">ضربه بزنید تا برنامه پیش فرض SMS را تغییر دهید</string>
   <string name="reminder_header_sms_default_button">تنظیم</string>
   <string name="reminder_header_sms_import_title">وارد کردن SMS سیستم</string>
-  <string name="reminder_header_sms_import_text">برای کپی کردن SMS های گوشی داخل دیتابیس رمزنگاری شده ضربه بزنید</string>
   <string name="reminder_header_sms_import_button">وارد کردن</string>
   <string name="reminder_header_push_title">فعال کردن تماس ها و پیام های سیگنال</string>
   <string name="reminder_header_push_button">فعال کردن</string>

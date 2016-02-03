@@ -42,9 +42,7 @@
   <string name="ConversationItem_expires_s">Заканчваецца: %s</string>
   <string name="ConversationItem_error_not_delivered">Не было дастаўлена</string>
   <string name="ConversationItem_view_secure_media_question">Паказаць бяспечнае медыя?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Гэты кантэнт быў захаваны ў зашыфраванай базе дадзеных. На жаль, для яго прагляду ў знешняй праграме спатрэбіцца часова расшыфраваць дадзеныя і запісаць іх на дыск. Вы ўпэўненыя, што хочаце гэта зрабіць?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Памылка, атрымана неактуальнае паведамленне абмену ключамі.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Паведамленне абмену ключамі атрымана, дакраніцеся, каб працягнуць.</string>
   <string name="ConversationItem_group_action_left">%1$s пакінуў групавую гутарку.</string>
   <string name="ConversationItem_click_for_details">Націсніце каб пабачыць дэталі</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Націсніце для небяспечнага паўтора</string>
@@ -226,8 +224,6 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Атрыманы пашкоджаны ключ абмену паведамленнямі!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Атрыманы ключ абмену паведамленнямі для няправільнай версіі пратакола.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Атрыманае паведамленне з невядомым ідэнтыфікацыйным ключом. Націсніце працягнуць.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Атрыманая інфармацыя абноўленая, але мае невядомую інфармацыю індэнтыфікацыі. Націсніце каб валідзіраваць ідэнтыфікацыю.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат паведамлення.</string>
   <!--ThreadRecord-->
@@ -339,7 +335,6 @@
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Не атрымалася ўзяць логі з вашай прылады. Вы па-ранейшаму можаце выкарыстоўваць ADB, каб атрымаць логі замест гэтага.</string>
   <string name="log_submit_activity__thanks">Дзякуй за вашу дапамогу!</string>
   <string name="log_submit_activity__submitting">Падпіска</string>
   <string name="log_submit_activity__posting_logs">Публікацыя логаў у gist...</string>
@@ -372,7 +367,6 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Разблакіраваць</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Каб даслаць медыя ці групавыя паведамленні, націсніце \'OK\' і задайце неабходныя налады. Налады MMS для вашага аператара могуць быць атрыманыя праз пошук у \'APN вашага аператара\'. Вы можаце зрабіць гэта толькі адзін раз. </string>
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
   <!--- redphone_call_controls-->
@@ -430,7 +424,6 @@
   <string name="AndroidManifest__public_identity_key">Публічны ідэнтыфікацыйны ключ</string>
   <string name="AndroidManifest__change_passphrase">Змяніць пароль</string>
   <string name="AndroidManifest__verify_identity">Праверыць ідэнтыфікатар</string>
-  <string name="AndroidManifest__log_submit">Даслаць логі</string>
   <string name="AndroidManifest__media_overview">Усе выявы</string>
   <string name="AndroidManifest__media_overview_named">Усе выявы з %1$s</string>
   <!--arrays.xml-->
@@ -582,7 +575,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заблакіраваць</string>
   <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_import_text">Націсніце каб скапіраваць вашыя SMS з тэлефона ў зашыфраваную базу.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
   <string name="MediaPreviewActivity_cant_display">Не атрымліваецца папярэдне праглядзець выяву</string>

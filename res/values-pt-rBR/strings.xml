@@ -19,13 +19,11 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Excluir</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-        Desabilitar tela de bloqueio para mensagens?
-    </string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Signal Plus e de mensagens.</string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal Plus...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Signal?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Signal Plus?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desabilitar mensagens e chamadas Signal Plus descadastrando-o do servidor. Você precisará recadastrar seu número de telefone para usar o Signal Plus novamente no futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitado</string>
@@ -48,6 +46,7 @@
   <string name="DraftDatabase_Draft_image_snippet">(imagem)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(áudio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(local)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar um aplicativo para selecionar arquivos.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -80,10 +79,9 @@
   <string name="ConversationItem_expires_s">Expira em: %s</string>
   <string name="ConversationItem_error_not_delivered">Não entregue</string>
   <string name="ConversationItem_view_secure_media_question">Ver arquivo seguro?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este arquivo foi armazenado em uma base de dados criptografada. Infelizmente, para visualizá-lo em um programa externo é necessário que os dados sejam descriptografados temporariamente e escritos para o disco.
-Tem certeza que deseja fazer isto?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este arquivo foi armazenado em uma base de dados criptografada. Infelizmente, para visualizá-lo com um aplicativo externo é preciso que os dados sejam temporariamente descriptografados e escritos no armazenamento. Tem certeza que deseja fazer isso?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Erro, foi recebida uma mensagem desatualizada de troca de chaves.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Foi recebida uma mensagem de troca de chaves, clique para processá-la.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem de troca de chaves, clique para processá-la.</string>
   <string name="ConversationItem_group_action_left">%1$s saiu do grupo.</string>
   <string name="ConversationItem_click_for_details">Clique para ver detalhes</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Clique para usar contingência insegura</string>
@@ -121,7 +119,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Signal Plus</string>
   <string name="ConversationActivity_lets_switch_to_signal">Vamos mudar para o Signal Plus %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo...</string>
@@ -155,7 +153,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationFragment_saving_attachment">Salvando anexo</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Salvando anexo no cartão SD...</string>
   <string name="ConversationFragment_pending">Pendente...</string>
-  <string name="ConversationFragment_push">Dados (Signal)</string>
+  <string name="ConversationFragment_push">Dados (Signal Plus)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Excluindo</string>
@@ -232,8 +230,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="GroupCreateActivity_actionbar_update_title">Atualizar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome do grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Novo grupo MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Você selecionou um contato que não tem suporte a grupos Signal, então este grupo será de MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Você não está cadastrado para usar mensagens e chamadas Signal, então grupos Signal Plus estão desabilitados. Tente recadastrar em Configurações &gt; Avançado.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Você selecionou um contato que não tem suporte a grupos Signal Plus, então este grupo será de MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Você não está cadastrado para usar mensagens e chamadas Signal Plus, então grupos Signal Plus estão desabilitados. Tente recadastrar em Configurações &gt; Avançado.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Um erro inesperado ocorreu e fez a criação do grupo falhar.</string>
   <string name="GroupCreateActivity_contacts_no_members">Você precisa de pelo menos uma pessoa no seu grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número que não pôde ser lido. Favor consertar ou remover esse contato e tentar novamente.</string>
@@ -287,7 +285,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="InviteActivity_sending">Enviando...</string>
   <string name="InviteActivity_heart_content_description">Coração</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
-  <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
+  <string name="InviteActivity_invite_to_signal">Convidar para o Signal Plus</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">ENVIAR PARA 1 AMIGO</item>
     <item quantity="other">ENVIAR PARA %d AMIGOS</item>
@@ -314,8 +312,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal Plus em andamento</string>
   <string name="NotificationBarManager_missed_call_from_s">Chamada perdida de %s</string>
   <string name="NotificationBarManager_missed_signal_call">Chamada Signal Plus perdida</string>
-  <string name="NotificationBarManager__establishing_signal_call">Estabelecendo uma ligação via Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Recebendo ligação via Signal</string>
+  <string name="NotificationBarManager__establishing_signal_call">Estabelecendo uma ligação via Signal Plus</string>
+  <string name="NotificationBarManager__incoming_signal_call">Recebendo ligação via Signal Plus</string>
   <string name="NotificationBarManager__deny_call">Bloquear ligação</string>
   <string name="NotificationBarManager__answer_call">Atender ligação</string>
   <string name="NotificationBarManager__end_call">Terminar ligação</string>
@@ -329,7 +327,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="MessageRecord_s_called_you">%s fez uma chamada para você.</string>
   <string name="MessageRecord_called_s">Chamou %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s está no Signal, diga oi!</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s está no Signal Plus, diga oi!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frases-chave não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorreta!</string>
@@ -352,11 +350,11 @@ Tem certeza que deseja fazer isto?</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Desculpe, você já possui muitos dispositivos vinculados. Tente remover alguns...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Desculpe, este não é um código QR de dispositivo válido.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Conectar um dispositivo Signal?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Conectar um dispositivo Signal Plus?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando conectar um dispositivo Signal Plus usando um outro scanner. Para sua proteção, favor escanear novamente o código usando o Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase-chave</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Signal Plus</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
   <!--PlayServicesProblemFragment-->
@@ -398,7 +396,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">O número que você ligou não suporta ligação criptografada!</string>
   <string name="RedPhone_got_it">Entendi</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Conectado com Signal</string>
+  <string name="RegistrationActivity_connect_with_signal">Conectar ao Signal Plus</string>
   <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve especificar o
         código do seu país
@@ -460,9 +458,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Mensagem de troca de chaves recebida para uma versão de protocolo inválida.
     </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-        Mensagem recebida com chave de identidade desconhecida. Clique para processar e exibir.
-    </string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Foi recebida uma mensagem com uma chave de identidade desconhecida. Clique para processá-la e exibi-la.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Foi recebida atualização mas com informação de identidade desconhecida. Clique para validar a identidade.</string>
   <string name="SmsMessageRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
@@ -474,7 +470,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ThreadRecord_called_you">Ligação recebida</string>
   <string name="ThreadRecord_missed_call">Ligação perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s está no Signal, diga oi!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s está no Signal Plus, diga oi!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">O destinatário não tem chave de identidade.</string>
@@ -544,7 +540,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal Plus está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal Plus</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagem</string>
@@ -573,7 +569,7 @@ Tem certeza que deseja fazer isto?</string>
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Conversa silenciada</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Enviar mensagem via Signal</string>
+  <string name="conversation_activity__type_message_push">Enviar mensagem via Signal Plus</string>
   <string name="conversation_activity__type_message_sms_insecure">Enviar SMS inseguro</string>
   <string name="conversation_activity__type_message_mms_insecure">Enviar MMS inseguro</string>
   <string name="conversation_activity__send">Enviar</string>
@@ -615,12 +611,12 @@ Tem certeza que deseja fazer isto?</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Não foi possível captar logs do seu dispositivo. É possível usar como alternativa o ADB para captar logs de debug.</string>
+  <string name="log_submit_activity__log_fetch_failed">Não foi possível ler o log no seu dispositivo. Você pode usar o ADB para obter um log de depuração.</string>
   <string name="log_submit_activity__thanks">Obrigado por sua ajuda!</string>
   <string name="log_submit_activity__submitting">Enviando</string>
   <string name="log_submit_activity__posting_logs">Postando logs no gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar suas mensagens para a base de dados criptografada do Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar suas mensagens para a base de dados criptografada do Signal Plus?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados padrão do sistema não será alterada.</string>
   <string name="database_migration_activity__skip">Pular</string>
   <string name="database_migration_activity__import">Importar</string>
@@ -661,7 +657,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="prompt_passphrase_activity__unlock">Destrancar</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">O Signal Plus requer configurações de MMS para entregar mídia e mensagens de grupos através de seu provedor de wireless. Seu dispositivo não disponibiliza esta informação, o que ocasionalmente ocorre com dispositivos bloqueados ou com outras configurações restritivas.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar mídia e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar mensagens de grupo e de mídia, clique \'OK\' e complete as configurações solicitadas. As configurações de MMS para a sua operadora geralmente podem ser encontradas fazendo uma busca por \'APN da sua operadora\'. Você só precisará fazer isto uma vez.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOQUEADO</string>
   <!--recipient_preferences-->
@@ -674,11 +670,11 @@ Tem certeza que deseja fazer isto?</string>
   <string name="recipient_preferences__color_for_this_contact">Cor para este contato</string>
   <string name="recipient_preferences__verify_identity">Verificar identidade</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Chamada do Signal</string>
+  <string name="redphone_call_card__signal_call">Chamada do Signal Plus</string>
   <string name="redphone_call_controls__end_call">encerrar ligação</string>
   <string name="redphone_call_controls__audio">Áudio</string>
   <string name="redphone_call_controls__mute">Mudo</string>
-  <string name="redphone_call_controls__signal_call">Chamada do Signal</string>
+  <string name="redphone_call_controls__signal_call">Chamada do Signal Plus</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
         Verifique o seu número de telefone para se conectar ao Signal Plus.
@@ -767,7 +763,7 @@ falhou.</string>
   <string name="AndroidManifest__public_identity_key">Chave de identidade pública</string>
   <string name="AndroidManifest__change_passphrase">Mudar frase-chave</string>
   <string name="AndroidManifest__verify_identity">Verificar identidade</string>
-  <string name="AndroidManifest__log_submit">Enviar logs de depuração</string>
+  <string name="AndroidManifest__log_submit">Enviar log de depuração</string>
   <string name="AndroidManifest__media_preview">Pré-visualização de mídia</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
@@ -826,7 +822,7 @@ falhou.</string>
   <string name="preferences__notifications">Notificações</string>
   <string name="preferences__enable_message_notifications">Habilitar notificações de mensagem</string>
   <string name="preferences__new_contacts_notifications">Notificações de novos contatos</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Mostrar uma notificação para novos contatos Signal</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Mostrar uma notificação para novos contatos Signal Plus</string>
   <string name="preferences__led_color">Cor do LED</string>
   <string name="preferences__led_color_unknown">Desconhecida</string>
   <string name="preferences__pref_led_blink_title">Padrão de piscagem do LED</string>
@@ -888,8 +884,8 @@ falhou.</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Padrão</string>
   <string name="preferences__language">Idioma</string>
-  <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal</string>
-  <string name="preferences__free_private_messages_and_calls">Chamadas e mensagens privadas gratuitas para usuários do Signal</string>
+  <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal Plus</string>
+  <string name="preferences__free_private_messages_and_calls">Chamadas e mensagens privadas gratuitas para usuários do Signal Plus</string>
   <string name="preferences__submit_debug_log">Enviar log de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>
@@ -901,7 +897,7 @@ falhou.</string>
   <string name="preferences_chats__media_auto_download">Download automático de mídia</string>
   <string name="preferences_chats__message_trimming">Aparar mensagem</string>
   <string name="preferences_advanced__use_system_emoji">Usar emoji do sistema</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desabilitar o suporte a emoji embutido no Signal</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desabilitar o suporte a emoji embutido no Signal Plus</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -918,7 +914,7 @@ falhou.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chamar</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Chamada do Signal</string>
+  <string name="conversation_callable_secure__menu_call">Chamada do Signal Plus</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalhes da mensagem</string>
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
@@ -995,16 +991,16 @@ falhou.</string>
   <string name="reminder_header_sms_default_text">Aperte para tornar o Signal Plus o seu aplicativo padrão de SMS</string>
   <string name="reminder_header_sms_default_button">DEFINIR</string>
   <string name="reminder_header_sms_import_title">Importar SMS do sistema</string>
-  <string name="reminder_header_sms_import_text">Clique para copiar as mensagens SMS do seu telefone para a base de dados criptografada.</string>
+  <string name="reminder_header_sms_import_text">Clique para copiar as mensagens SMS do seu telefone para a base de dados criptografada do Signal Plus.</string>
   <string name="reminder_header_sms_import_button">IMPORTAR</string>
-  <string name="reminder_header_push_title">Habilitar mensagens e ligações pelo Signal</string>
+  <string name="reminder_header_push_title">Habilitar mensagens e ligações pelo Signal Plus</string>
   <string name="reminder_header_push_text">Melhore sua experiência de comunicação.</string>
   <string name="reminder_header_push_button">HABILITAR</string>
-  <string name="reminder_header_invite_title">Convidar para o Signal</string>
+  <string name="reminder_header_invite_title">Convidar para o Signal Plus</string>
   <string name="reminder_header_invite_text">Leve sua conversa com %1$s para outro nível.</string>
   <string name="reminder_header_invite_button">Convidar</string>
   <string name="reminder_header_share_title">Convide seus amigos!</string>
-  <string name="reminder_header_share_text">Quanto mais amigos utilizarem o Signal, melhor ele se torna.</string>
+  <string name="reminder_header_share_text">Quanto mais amigos utilizarem o Signal Plus, melhor ele se torna.</string>
   <string name="reminder_header_share_button">Compartilhar</string>
   <string name="reminder_header_close_button">Fechar</string>
   <!--MediaPreviewActivity-->

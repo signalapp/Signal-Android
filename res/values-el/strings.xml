@@ -19,12 +19,10 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Διαγραφή</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Απενεργοποίηση συνθηματικού;</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-Απενεργοποίηση οθόνης κλειδώματος για τα μηνύματα;</string>
   <string name="ApplicationPreferencesActivity_disable">Απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_unregistering">Απεγγραφή</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Απεγγραφή από τα μηνύματα και τις κλήσεις Signal Plus...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Απενεργοποίηση των μηνυμάτων και των κλήσεων Signal;</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Απενεργοποίηση των μηνυμάτων και των κλήσεων Signal Plus;</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Απενεργοποίηση μηνυμάτων και κλήσεων του Signal Plus με απεγγραφή από τον διακομιστή. Θα χρειαστεί να επανεγγράψεις τον αριθμό τηλεφώνου σου για να τα ξαναχρησιμοποιήσεις στο μέλλον.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Σφάλμα κατά τη σύνδεση με τον διακομιστή!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Ενεργοποίηση SMS</string>
@@ -36,7 +34,7 @@
   <string name="ApplicationPreferencesActivity_off">απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_Off">Απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Φράση κλειδί %1$s, Ασφάλεια οθόνης %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Συνθηματικό %1$s, Ασφάλεια οθόνης %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Θέμα %1$s, Γλώσσα %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -47,6 +45,7 @@
   <string name="DraftDatabase_Draft_image_snippet">(εικόνα)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ήχος)</string>
   <string name="DraftDatabase_Draft_video_snippet">(βίντεο)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(τοποθεσία)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δεν μπορεί να βρεθεί μια εφαρμογή για επιλογή μέσων ενημέρωσης.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -78,9 +77,7 @@
   <string name="ConversationItem_expires_s">Λήγει: %s</string>
   <string name="ConversationItem_error_not_delivered">Δεν παραδόθηκε</string>
   <string name="ConversationItem_view_secure_media_question">Προβολή ασφαλών πολυμέσων;</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Αυτό το αρχείο έχει αποθηκευτεί σε μια κρυπτογραφημένη βάση δεδομένων. Δυστυχώς, για να το ανοίξεις με κάποιο εξωτερικό πρόγραμμα, είναι απαραίτητο να αποκρυπτογραφηθεί και να εγγραφεί στον δίσκο. Είσαι σίγουρος/η πως το θέλεις αυτό;</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Σφάλμα, λάβαμε παλιό μήνυμα ανταλλαγής κλειδιών.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Ελήφθη μήνυμα ανταλλαγής κλειδιών, κάνε κλικ για επεξεργασία.</string>
   <string name="ConversationItem_group_action_left">Ο/Η %1$s έφυγε απο την ομάδα.</string>
   <string name="ConversationItem_click_for_details">Πάτησε για λεπτομέρειες</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Πάτησε για απροστάτευτη εναλλακτική</string>
@@ -118,7 +115,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είσαι σίγουρος/η πως θέλεις να αποχωρήσεις από την ομάδα;</string>
   <string name="ConversationActivity_transport_insecure_sms">Μη ασφαλές SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Signal Plus</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ας χρησιμοποιήσουμε το Signal Plus %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό για να συνομιλήσουμε: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Σφάλμα κατα την αποχώρηση από την ομάδα...</string>
@@ -156,7 +153,7 @@
   <string name="ConversationFragment_saving_attachment">Αποθήκευση συνημμένου</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Αποθήκευση συνημμένου στην μνήμη...</string>
   <string name="ConversationFragment_pending">Εν αναμονή...</string>
-  <string name="ConversationFragment_push">Δεδομένα (Signal)</string>
+  <string name="ConversationFragment_push">Δεδομένα (Signal Plus)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Διαγραφ</string>
@@ -174,7 +171,15 @@
   </plurals>
   <string name="ConversationListFragment_deleting">Διαγραφή</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Διαγραφή επιλεγμένων συζητήσεων...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Η συζήτηση αρχειοθετήθηκε</item>
+    <item quantity="other">Αρχειοθετήθηκαν %d συζητήσεις</item>
+  </plurals>
   <string name="ConversationListFragment_undo">ΑΝΑΙΡΕΣΗ</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Η συνομιλία μεταφέρθηκε στα εισερχόμενα</item>
+    <item quantity="other">%d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιών...</string>
   <!--ConversationListItemAction-->
@@ -205,7 +210,7 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Καλωσήλθες στο Signal Plus.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Το Textsecure και το Redphone είναι πλέον ένας messenger ιδιωτικότητας, για κάθε περίπτωση: Signal Plus.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Καλωσήλθες στο Signal Plus!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Το TextSecure είναι πλέον Signal</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Το TextSecure είναι πλέον Signal Plus</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Το Textsecure και το Redphone είναι πλέον μία εφαρμογή: Signal Plus. Πάτησε για να την εξερευνήσεις.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Εξαγωγή</string>
@@ -225,8 +230,8 @@
   <string name="GroupCreateActivity_actionbar_update_title">Ενημέρωση ομάδας</string>
   <string name="GroupCreateActivity_group_name_hint">Όνομα ομάδας</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Νέα ομάδα MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Επέλεξες μια επαφή που δεν υποστηρίζει ομάδες Signal, οπότε αυτή η ομάδα θα είναι MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Δεν έχεις εγγραφτεί για μηνύματα και κλήσεις του Signal, οπότε οι ομάδες του Signal Plus έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να εγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Επέλεξες μια επαφή που δεν υποστηρίζει ομάδες Signal Plus, οπότε αυτή η ομάδα θα είναι MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Δεν έχεις εγγραφτεί για μηνύματα και κλήσεις του Signal Plus, οπότε οι ομάδες του Signal Plus έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να εγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Προέκυψε ένα απρόσμενο σφάλμα και η δημιουργία ομάδας απέτυχε.</string>
   <string name="GroupCreateActivity_contacts_no_members">Χρειάζεται τουλάχιστον ένα άτομο στην ομάδα σου
 !</string>
@@ -252,7 +257,7 @@
   <string name="ImportFragment_cancel">Ακύρωση</string>
   <string name="ImportFragment_restore_encrypted_backup">Επαναφορά του κρυπτογραφημένου αντίγραφου ασφαλείας;</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Η επαναφορά του κρυπτογραφημένου αντίγραφου ασφαλείας θα αντικαταστήσει πλήρως τα υπάρχοντα κλειδιά, τις ρυθμίσεις και τα μηνύματά σου. Θα χάσεις όλα τα δεδομένα αυτής της εγκατάστασης του Signal, αλλά όχι το αντίγραφο ασφαλείας.
+Η επαναφορά του κρυπτογραφημένου αντίγραφου ασφαλείας θα αντικαταστήσει πλήρως τα υπάρχοντα κλειδιά, τις ρυθμίσεις και τα μηνύματά σου. Θα χάσεις όλα τα δεδομένα αυτής της εγκατάστασης του Signal Plus, αλλά όχι το αντίγραφο ασφαλείας.
 </string>
   <string name="ImportFragment_restore">Επαναφορά</string>
   <string name="ImportFragment_import_plaintext_backup">Εισαγωγή μη κρυπτογραφημένου αντίγραφου ασφαλείας;</string>
@@ -277,8 +282,8 @@
   <string name="InviteActivity_cancel">Ακύρωση</string>
   <string name="InviteActivity_sending">Αποστολή...</string>
   <string name="InviteActivity_heart_content_description">Καρδιά</string>
-  <string name="InviteActivity_invitations_sent">Οι προσκλήσεις έχουν σταλεί!</string>
-  <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
+  <string name="InviteActivity_invitations_sent">Οι προσκλήσεις στάλθηκαν!</string>
+  <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal Plus</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">ΑΠΟΣΤΟΛΗ ΣΕ 1 ΦΙΛΟ</item>
     <item quantity="other">ΑΠΟΣΤΟΛΗ ΣΕ %d ΦΙΛΟΥΣ</item>
@@ -304,9 +309,9 @@
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal Plus εν εξελίξει</string>
   <string name="NotificationBarManager_missed_call_from_s">Αναπάντητη κλήση από τον/την %s</string>
-  <string name="NotificationBarManager_missed_signal_call">Αναπάντητη κλήση Signal</string>
-  <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
+  <string name="NotificationBarManager_missed_signal_call">Αναπάντητη κλήση Signal Plus</string>
+  <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal Plus</string>
+  <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal Plus</string>
   <string name="NotificationBarManager__deny_call">Απόρριψη κλήσης</string>
   <string name="NotificationBarManager__answer_call">Απάντηση</string>
   <string name="NotificationBarManager__end_call">Τερματισμός κλήσης</string>
@@ -320,7 +325,7 @@
   <string name="MessageRecord_s_called_you">O/H %s σε κάλεσε</string>
   <string name="MessageRecord_called_s">Κλήση προς τον/την %s</string>
   <string name="MessageRecord_missed_call_from">Αναπάντητη κλήση από τον/την %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s είναι στο Signal, πείτε ένα γεια!</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">Ο/Η %s είναι στο Signal Plus, πες ένα γεια!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Τα συνθηματικά δε ταιριάζουν!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Λανθασμένο, παλιό συνθηματικό!</string>
@@ -342,11 +347,11 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Άκυρος QR κωδικός.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Συγγνώμη, έχεις πάρα πολλές συσκευές ήδη συνδεδεμένες, προσπάθησε να αφαιρέσεις κάποιες...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Συγγνώμη, αυτός δεν είναι ένας έγκυρος κωδικός QR για σύνδεση συσκευών.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Σύνδεση μιας συσκευής Signal;</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Σύνδεση μιας συσκευής Signal Plus;</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Φαίνεται πως προσπαθείς να συνδέσεις μια συσκευή Signal Plus χρησιμοποιώντας ένα τρίτο πρόγραμμα σάρωσης. Για την προστασία σου, παρακαλώ ξανασκάνναρε τον κωδικό μέσα από το Signal Plus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Εισαγωγή συνθηματικό</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο Signal Plus</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Καταχώρηση συνθηματικού</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Άκυρο συνθηματικό!</string>
   <!--PlayServicesProblemFragment-->
@@ -378,7 +383,7 @@
   <string name="RedPhone_connecting">Συνδέεται</string>
   <string name="RedPhone_handshake_failed">Αποτυχία χειραψίας!</string>
   <string name="RedPhone_recipient_unavailable">Μη διαθέσιμος αποδέκτης</string>
-  <string name="RedPhone_performing_handshake">Εκτέλεση \"χειραψίας\"</string>
+  <string name="RedPhone_performing_handshake">Εκτέλεση χειραψίας</string>
   <string name="RedPhone_network_failed">Αποτυχία Δικτύου!</string>
   <string name="RedPhone_client_failed">Αποτυχία πελάτη</string>
   <string name="RedPhone_fatal_error">Ανεπανόρθωτο σφάλμα</string>
@@ -388,7 +393,6 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Ο αριθμός που κάλεσες δεν υποστηρίζει ασφαλή φωνή!</string>
   <string name="RedPhone_got_it">Εντάξει</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Σύνδεση με το Signal</string>
   <string name="RegistrationActivity_select_your_country">Επιλέξτε χώρα</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να καθορίσεις τον
 κώδικα της χώρας σου</string>
@@ -442,8 +446,6 @@
     </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Ελήφθη μήνυμα ανταλλαγής κλειδιών για άκυρη έκδοση του πρωτόκολλου.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Ελήφθη μήνυμα με άγνωστο κλειδί ταυτότητας. Κλικ για επεξεργασία και προβολή.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Λήφθηκε ενημερωμένη αλλά άγνωστη πληροφορία ταυτότητας. Πάτησε για επιβεβαίωση ταυτότητας.</string>
   <string name="SmsMessageRecord_secure_session_reset">Επαναφορά ασφαλούς συνεδρίας.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
@@ -455,7 +457,7 @@
   <string name="ThreadRecord_called_you">Σε κάλεσε</string>
   <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">Ο/Η %s είναι στο Signal, πές ένα γεια!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">Ο/Η %s είναι στο Signal Plus, πές ένα γεια!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Δεν έχεις κλειδί ταυτότητας.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Ο παραλήπτης δεν έχει κλειδί ταυτότητας.</string>
@@ -525,7 +527,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal Plus είναι κλειδωμένο!</string>
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal Plus</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Νέο Μήνυμα</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Εικόνα</string>
@@ -533,7 +535,7 @@
   <string name="attachment_type_selector__video">Βίντεο</string>
   <string name="attachment_type_selector__contact">Επαφή</string>
   <string name="attachment_type_selector__camera">Κάμερα</string>
-  <string name="attachment_type_selector__location">Περιοχή</string>
+  <string name="attachment_type_selector__location">Τοποθεσία</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Παλιό συνθηματικό</string>
   <string name="change_passphrase_activity__new_passphrase">Νέο συνθηματικό</string>
@@ -554,7 +556,7 @@
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Η συζήτηση έχει σιγαθεί</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Αποστολή μηνύματος Signal</string>
+  <string name="conversation_activity__type_message_push">Αποστολή μηνύματος Signal Plus</string>
   <string name="conversation_activity__type_message_sms_insecure">Αποστολή μη ασφαλούς SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Αποστολή μη ασφαλούς MMS</string>
   <string name="conversation_activity__send">Αποστολή</string>
@@ -596,12 +598,11 @@
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">συνέχεια</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Αποτυχία δημιουργίας αρχείου συμβάντων για τη συσκευή σου. Μπορείς να χρησιμοποιήσεις το ADB για να ανακτήσεις τα debug logs.</string>
   <string name="log_submit_activity__thanks">Ευχαριστούμε για τη βοήθειά σου!</string>
   <string name="log_submit_activity__submitting">Αποστολή</string>
   <string name="log_submit_activity__posting_logs">Αποστολή των αρχείων καταγραφής στο gist…</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Θέλεις να εισάγεις τα υπάρχοντα μηνύματά σου στη κρυπτογραφημένη βάση δεδομένων του Signal;</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Θέλεις να εισάγεις τα υπάρχοντα μηνύματά σου στη κρυπτογραφημένη βάση δεδομένων του Signal Plus;</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Η προκαθορισμένη βάση δεδομένων του συστήματος δε θα αλλαχθεί καθόλου.</string>
   <string name="database_migration_activity__skip">Παράλειψη</string>
   <string name="database_migration_activity__import">Εισαγωγή</string>
@@ -614,7 +615,7 @@
   <string name="import_fragment__import_system_sms_database">Εισαγωγή της βάσης δεδομένων SMS του συστήματος</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Εισαγωγή της βάσης δεδομένων από την προκαθορισμένη συσκευή μηνυμάτων του συστήματος</string>
   <string name="import_fragment__restore_encrypted_backup">Επαναφορά κρυπτογραφημένου αντίγραφου ασφαλείας</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Επαναφορά ενός υφιστάμενου κρυπτογραφημένου αντίγραφου ασφαλείας του Signal</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Επαναφορά ενός υφιστάμενου κρυπτογραφημένου αντίγραφου ασφαλείας του Signal Plus</string>
   <string name="import_fragment__import_plaintext_backup">Εισαγωγή μη κρυπτογραφημένου αντίγραφου ασφαλείας</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Εισαγωγή μη κρυπτογραφημένου αντίγραφου ασφαλείας. Συμβατό με το \'SMS Backup &amp; Restore.\'</string>
   <!--load_more_header-->
@@ -642,7 +643,6 @@
   <string name="prompt_passphrase_activity__unlock">Ξεκλείδωμα</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Το Signal Plus χρειάζεται τις ρυθμίσεις MMS για να στείλει μηνύματα πολυμέσων και ομαδικών συζητήσεων μέσω του παρόχου σου. Η συσκευή σου δεν παρέχει αυτές τις πληροφορίες, το οποίο μερικές φορές γίνεται σε κλειδωμένες συσκευές ή λόγω άλλων περιοριστικών ρυθμίσεων.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Για να στείλεις μηνύματα πολυμέσων, πάτησε «ΟΚ» και συμπλήρωσε τις ρυθμίσεις APN. Θα βρείς τις σωστές ρυθμίσεις APN για τον πάροχό σου ψάχνοντας online για «το όνομα του παρόχου σου» + APN. Αυτές οι ρυθμίσεις γίνονται μόνο μία φορά.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ΜΠΛΟΚΑΡΙΣΜΕΝΟΣ/Η</string>
   <!--recipient_preferences-->
@@ -655,11 +655,11 @@
   <string name="recipient_preferences__color_for_this_contact">Χρώμα επαφής</string>
   <string name="recipient_preferences__verify_identity">Επιβεβαίωση ταυτότητας</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Κλήση Signal</string>
+  <string name="redphone_call_card__signal_call">Κλήση Signal Plus</string>
   <string name="redphone_call_controls__end_call">τερματισμός κλήσης</string>
   <string name="redphone_call_controls__audio">Ήχος</string>
   <string name="redphone_call_controls__mute">Σίγαση</string>
-  <string name="redphone_call_controls__signal_call">Κλήση Signal</string>
+  <string name="redphone_call_controls__signal_call">Κλήση Signal Plus</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
 Επιβεβαίωσε τον αριθμό τηλεφώνου σου για να συνδεθείς με το Signal Plus.
@@ -686,7 +686,7 @@
 για την περιοχή σου.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
-        Το Signal Plus δεν λειτουργεί με αριθμούς Google Voice.
+Το Signal Plus δεν λειτουργεί με αριθμούς Google Voice.
     </string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Επιβεβαίωση με φωνή</string>
@@ -751,7 +751,6 @@
   <string name="AndroidManifest__public_identity_key">Δημόσιο κλειδί ταυτότητας</string>
   <string name="AndroidManifest__change_passphrase">Αλλαγή συνθηματικού</string>
   <string name="AndroidManifest__verify_identity">Επιβεβαίωση ταυτότητας</string>
-  <string name="AndroidManifest__log_submit">Υποβολή διαγνωστικού αρχείου.</string>
   <string name="AndroidManifest__media_preview">Προεπισκόπιση</string>
   <string name="AndroidManifest__media_overview">Όλες οι εικόνες</string>
   <string name="AndroidManifest__media_overview_named">Όλες οι εικόνες με τον/την %1$s</string>
@@ -801,16 +800,16 @@
   <string name="preferences__change_passphrase">Αλλαγή συνθηματικού</string>
   <string name="preferences__change_your_passphrase">Αλλαγή συνθηματικού</string>
   <string name="preferences__enable_passphrase">Ενεργοποίηση συνθηματικού</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Κλειδώστε το Signal Plus και τις ειδοποιήσεις μηνυμάτων με μια φράση κλειδί</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Κλείδωμα του Signal Plus και των ειδοποιήσεων μηνυμάτων με ένα συνθηματικό</string>
   <string name="preferences__screen_security">Ασφάλεια οθόνης</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Να επιτρέπεται η καταγραφή της οθόνης (screenshots)</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Κλειδώστε αυτόματα το Signal Plus μετά απο κάποιο συγκεκτριμένο χρόνο αδράνειας</string>
-  <string name="preferences__inactivity_timeout_passphrase">Φράση κλειδί χρόνου λήξης αδράνειας</string>
-  <string name="preferences__inactivity_timeout_interval">Χρονικό διάστημα χρόνου λήξης αδράνειας</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Αυτόματο κλείδωμα του Signal Plus μετά απο κάποιο συγκεκριμένο χρόνο αδράνειας</string>
+  <string name="preferences__inactivity_timeout_passphrase">Συνθηματικό χρόνου αδράνειας</string>
+  <string name="preferences__inactivity_timeout_interval">Χρονικό διάστημα χρόνου αδράνειας</string>
   <string name="preferences__notifications">Ειδοποιήσεις</string>
   <string name="preferences__enable_message_notifications">Ενεργοποίηση ειδοποιήσεων μηνυμάτων</string>
   <string name="preferences__new_contacts_notifications">Ειδοποιήσεις νέων επαφών</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Εμφάνισε μια ειδοποίηση για νέες επαφές του Signal</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Εμφάνιση ειδοποίησης για νέες επαφές Signal Plus</string>
   <string name="preferences__led_color">Χρώμα LED</string>
   <string name="preferences__led_color_unknown">Αγνωστο</string>
   <string name="preferences__pref_led_blink_title">Μοτίβο αναβοσβησίματος του LED</string>
@@ -872,8 +871,8 @@
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__default">Προκαθορισμένη</string>
   <string name="preferences__language">Γλώσσα</string>
-  <string name="preferences__signal_messages_and_calls">Μηνύματα και κλήσεις του Signal</string>
-  <string name="preferences__free_private_messages_and_calls">Δωρεάν προσωπικά μηνύματα και κλήσεις προς τους χρήστες του Signal</string>
+  <string name="preferences__signal_messages_and_calls">Μηνύματα και κλήσεις του Signal Plus</string>
+  <string name="preferences__free_private_messages_and_calls">Δωρεάν προσωπικά μηνύματα και κλήσεις προς τους χρήστες του Signal Plus</string>
   <string name="preferences__submit_debug_log">Αποστολή αρχείων καταγραφής αποσφαλμάτωσης</string>
   <string name="preferences__support_wifi_calling">Λειτουργία συμβατότητας \"WiFi Calling\' </string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ενεργοποίηση αν η συσκευή σου χρησιμοποιεί παράδοση SMS/MMS μέσω WiFi (ενεργοποίηση μόνο αν το \'WiFi Calling\' είναι ενεργοποιημένο στη συσκευή σου)</string>
@@ -885,7 +884,7 @@
   <string name="preferences_chats__media_auto_download">Αυτόματο κατέβασμα πολυμέσων</string>
   <string name="preferences_chats__message_trimming">Περικοπή μηνυμάτων</string>
   <string name="preferences_advanced__use_system_emoji">Χρήση emoji συστήματος</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Απενεργοποίηση την ενσωματωμένη υποστήριξη για emoji του Signal</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Απενεργοποίηση την ενσωματωμένη υποστήριξη για emoji του Signal Plus</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -902,7 +901,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Κλήση</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Κλήση Signal</string>
+  <string name="conversation_callable_secure__menu_call">Κλήση Signal Plus</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Στοιχεία μηνύματος</string>
   <string name="conversation_context__menu_copy_text">Αντιγραφή κειμένου</string>
@@ -978,16 +977,15 @@
   <string name="reminder_header_sms_default_text">Πάτα για να κάνεις το Signal Plus την προκαθορισμένη εφαρμογή για τα SMS.</string>
   <string name="reminder_header_sms_default_button">ΟΡΙΣΜΟΣ</string>
   <string name="reminder_header_sms_import_title">Εισαγωγή SMS συστήματος</string>
-  <string name="reminder_header_sms_import_text">Πάτησε για να αντιγραφτούν τα μηνύματα SMS του κινητού σου τηλεφώνου στην κρυπτογραφημένη βάση δεδομένων.</string>
   <string name="reminder_header_sms_import_button">ΕΙΣΑΓΩΓΗ</string>
-  <string name="reminder_header_push_title">Ενεργοποίηση των μηνημάτων και κλήσεων Signal</string>
+  <string name="reminder_header_push_title">Ενεργοποίηση των μηνημάτων και κλήσεων Signal Plus</string>
   <string name="reminder_header_push_text">Αναβάθμισε την εμπειρία επικοινωνίας σου.</string>
   <string name="reminder_header_push_button">ΕΝΕΡΓΟΠΟΙΗΣΗ</string>
-  <string name="reminder_header_invite_title">Πρόσκληση στο Signal</string>
+  <string name="reminder_header_invite_title">Πρόσκληση στο Signal Plus</string>
   <string name="reminder_header_invite_text">Φέρε την συζήτησή σου με τον/την %1$s στο επόμενο επίπεδο.</string>
   <string name="reminder_header_invite_button">ΠΡΟΣΚΛΗΣΗ</string>
   <string name="reminder_header_share_title">Προσκάλεσε τους φίλους και τις φίλες σου!</string>
-  <string name="reminder_header_share_text">Όσο περισσότεροι φίλοι σου χρησιμοποιούν το Signal, τόσο καλύτερο γίνεται.</string>
+  <string name="reminder_header_share_text">Όσο περισσότεροι φίλοι σου χρησιμοποιούν το Signal Plus, τόσο καλύτερο γίνεται.</string>
   <string name="reminder_header_share_button">ΜΟΙΡΑΣΟΥ</string>
   <string name="reminder_header_close_button">ΚΛΕΙΣΙΜΟ</string>
   <!--MediaPreviewActivity-->

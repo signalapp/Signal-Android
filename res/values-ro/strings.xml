@@ -16,13 +16,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Şterge toate mesajele vechi acum?</string>
   <string name="ApplicationPreferencesActivity_delete">Şterge</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-        Dezactivez ecranul de blocare pentru mesaje?
-    </string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivează</string>
   <string name="ApplicationPreferencesActivity_unregistering">Anulare înregistrare</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal Plus... </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivez mesajele și apelurile Signal? </string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivez mesajele și apelurile Signal Plus? </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivare mesaje și apeluri Signal Plus prin dezabonarea de la server. Va trebui să re-înregistrezi numărul tău de telefon pentru a putea să le folosești din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
@@ -44,10 +41,11 @@
   <string name="DraftDatabase_Draft_image_snippet">(imagine)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(locație)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_camera">Camera</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Camera foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Imagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -69,9 +67,7 @@
   <string name="ConversationItem_expires_s">Expira in: %s</string>
   <string name="ConversationItem_error_not_delivered">Nelivrat</string>
   <string name="ConversationItem_view_secure_media_question">Afișez datele securizate?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Aceste date au fost salvate într-o bază de date criptată. Din păcate, pentru a putea vizualiza datele cu ajutorul unui viewer de date extern, este necesar ca datele să fie temporar decriptate și salvate pe disc. Ești sigur că dorești acest lucru?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Eroare, mesajul pentru schimbul de chei este vechi.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Am recepționat un mesaj \"schimb de cheie\", tastați pentru a-l procesa.</string>
   <string name="ConversationItem_group_action_left">%1$s a ieșit din grup.</string>
   <string name="ConversationItem_click_for_details">Apasă pentru detalii</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Apasă pentru revenirea la soluția ne-securizată</string>
@@ -109,7 +105,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteți sigur că doriți să părăsiți acest grup?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS nesecurizat</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Signal Plus</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hai să folosim Signal Plus %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Hai să utilizăm aplicația asta ca să vorbim: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Eroare la parăsirea grupului...</string>
@@ -120,7 +116,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Sunteți sigur că doriți deblocarea acestui contact?</string>
   <string name="ConversationActivity_unblock">Deblochează</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vrei să-l trimiți.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Cameră indisponibilă</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Camera foto indisponibilă</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Eroare la trimiterea mesajului vocal...</string>
   <!--ConversationFragment-->
@@ -144,7 +140,7 @@
   <string name="ConversationFragment_saving_attachment">Ataşamentul se salvează</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Atașamentul se salvează pe spațiul de stocare...</string>
   <string name="ConversationFragment_pending">În curs...</string>
-  <string name="ConversationFragment_push">Date (Signal)</string>
+  <string name="ConversationFragment_push">Date (Signal Plus)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Se șterge</string>
@@ -207,7 +203,7 @@
   <string name="GroupCreateActivity_actionbar_update_title">Actualizează grup</string>
   <string name="GroupCreateActivity_group_name_hint">Nume grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS nou</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Ai selectat un contact care nu suportă grupuri Signal, astfel acest grup va fi de tip MMS.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Ai selectat un contact care nu suportă grupuri Signal Plus, astfel acest grup va fi de tip MMS.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">A apărut o eroare neprevazută care a dus la imposibilitatea creării grupului.</string>
   <string name="GroupCreateActivity_contacts_no_members">Este nevoie de cel puțin o persoană în grupul tău!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Unul dintre membrii grupului dvs. are un număr de telefon ce nu poate fi citit corect. Vă rugăm să remediaţi problema sau să eliminaţi acel contact şi să încercaţi din nou.</string>
@@ -255,7 +251,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal Plu
   <string name="InviteActivity_sending">Se trimite...</string>
   <string name="InviteActivity_heart_content_description">Inimă</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
-  <string name="InviteActivity_invite_to_signal">Invită la Signal</string>
+  <string name="InviteActivity_invite_to_signal">Invită la Signal Plus</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">TRIMITE LA 1 PRIETEN</item>
     <item quantity="few">TRIMITE LA %d PRIETENI</item>
@@ -283,8 +279,8 @@ Vei pierde orice informație care se află în instalarea curentă de Signal Plu
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal Plus în curs</string>
   <string name="NotificationBarManager_missed_call_from_s">Apel ratat de la %s</string>
   <string name="NotificationBarManager_missed_signal_call">Apel Signal Plus ratat</string>
-  <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal</string>
+  <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal Plus</string>
+  <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal Plus</string>
   <string name="NotificationBarManager__deny_call">Respinge apel</string>
   <string name="NotificationBarManager__answer_call">Răspunde apelului</string>
   <string name="NotificationBarManager__end_call">Închide apelul</string>
@@ -297,7 +293,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal Plu
   <string name="MessageRecord_s_called_you">%s te-a sunat</string>
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, salută-l!</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal Plus, salută-l!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
@@ -315,10 +311,10 @@ Vei pierde orice informație care se află în instalarea curentă de Signal Plu
   <string name="DeviceProvisioningActivity_content_progress_key_error">Cod QR invalid.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ne pare rău, ai prea multe dispozitive conectate deja, încearcă să elimini câteva...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ne pare rău. acest cod QR pentru conectarea dispozitivului nu este valid.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Conectez un dispozitiv Signal?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Conectez un dispozitiv Signal Plus?</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduceţi parola</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Icoană Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Icoană Signal Plus</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Trimite parola</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parolă incorectă!</string>
   <!--PlayServicesProblemFragment-->
@@ -360,7 +356,6 @@ Vei pierde orice informație care se află în instalarea curentă de Signal Plu
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numărul format nu suportă apeluri securizate!</string>
   <string name="RedPhone_got_it">Am înțeles</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Conectare prin Signal</string>
   <string name="RegistrationActivity_select_your_country">Alegeţi ţara dumneavostră</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie sa specificati
 codul dvs de tara</string>
@@ -414,8 +409,6 @@ Verifică din nou dacă acesta este numărul tău! Suntem pe cale să-l verific�
 schimbul de chei este corupt </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune de protocol invalidă.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru a-l procesa și afișa.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">S-au primit informații de identitate actualizate dar necunoscute. Apăsați pentru a valida identitatea.</string>
   <string name="SmsMessageRecord_secure_session_reset">Sesiune securizată resetată.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
@@ -427,7 +420,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="ThreadRecord_called_you">Te-a sunat</string>
   <string name="ThreadRecord_missed_call">Apel ratat</string>
   <string name="ThreadRecord_media_message">Mesaj media</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s este pe Signal, salută-l!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s este pe Signal Plus, salută-l!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nu ai o cheie de identitate.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Destinatarul nu are o cheie de identitate.</string>
@@ -495,14 +488,15 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal Plus este blocat!</string>
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal Plus</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Imagine</string>
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Contact</string>
-  <string name="attachment_type_selector__camera">Camera</string>
+  <string name="attachment_type_selector__camera">Camera foto</string>
+  <string name="attachment_type_selector__location">Locație</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Parola veche</string>
   <string name="change_passphrase_activity__new_passphrase">Parola nouă</string>
@@ -522,7 +516,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="contact_selection_recent_activity__no_recent_calls">Nu exista apeluri recente.</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Trimite mesaj Signal</string>
+  <string name="conversation_activity__type_message_push">Trimite mesaj Signal Plus</string>
   <string name="conversation_activity__type_message_sms_insecure">Trimite SMS nesecurizat</string>
   <string name="conversation_activity__type_message_mms_insecure">Trimite SMS nesecurizat</string>
   <string name="conversation_activity__send">Trimite</string>
@@ -562,12 +556,11 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuă</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Nu au putut fi obţinute log-urile pentru dispozitiv. Puteţi folosi în schimb ADB pentru a obţine log-urile.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
   <string name="log_submit_activity__submitting">Se trimite</string>
   <string name="log_submit_activity__posting_logs">Se trimit log-urile către gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vrei să imporţi mesajale tale text existente în baza de date criptată Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vrei să imporţi mesajale tale text existente în baza de date criptată Signal Plus?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza de date a sistemului nu va fi modificată în nici un fel.</string>
   <string name="database_migration_activity__skip">Treci peste</string>
   <string name="database_migration_activity__import">Importă</string>
@@ -609,7 +602,6 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="prompt_passphrase_activity__unlock">Deblochează</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal Plus are nevoie de setările MMS pentru a trimite media și mesaje pentru grupuri prin operatorul wireless. Acest dispozitiv nu oferă această informație, lucru care se poate întâmpla uneori pentru dispozitive blocate sau alte configurații restrictive.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul dvs. pot fi găsite cautând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCAT</string>
   <!--recipient_preferences-->
@@ -621,11 +613,11 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="recipient_preferences__color_for_this_contact">Culoare pentru acest contact</string>
   <string name="recipient_preferences__verify_identity">Verifică identitatea</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Apel Signal</string>
+  <string name="redphone_call_card__signal_call">Apel Signal Plus</string>
   <string name="redphone_call_controls__end_call">închide apelul</string>
   <string name="redphone_call_controls__audio">Audio</string>
   <string name="redphone_call_controls__mute">Silenţios</string>
-  <string name="redphone_call_controls__signal_call">Apel Signal</string>
+  <string name="redphone_call_controls__signal_call">Apel Signal Plus</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
         Verifică numărul tău de telefon pentru a te conecta la Signal Plus.
@@ -701,7 +693,6 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="AndroidManifest__public_identity_key">Cheia de identitate publică</string>
   <string name="AndroidManifest__change_passphrase">Schimbă parola</string>
   <string name="AndroidManifest__verify_identity">Verifică identitatea</string>
-  <string name="AndroidManifest__log_submit">Trimite log-urile de depanare</string>
   <string name="AndroidManifest__media_preview">Previzualizare media</string>
   <string name="AndroidManifest__media_overview">Toate imaginile</string>
   <string name="AndroidManifest__media_overview_named">Toate imaginile cu %1$s</string>
@@ -761,7 +752,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__notifications">Notificări</string>
   <string name="preferences__enable_message_notifications">Activează notificari pentru mesaje</string>
   <string name="preferences__new_contacts_notifications">Notificări contacte noi</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Afișează o notificare pentru noile contacte Signal</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Afișează o notificare pentru noile contacte Signal Plus</string>
   <string name="preferences__led_color">Culoare LED</string>
   <string name="preferences__led_color_unknown">Necunoscut</string>
   <string name="preferences__pref_led_blink_title">Tipar de clipire LED</string>
@@ -823,8 +814,8 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Implicit</string>
   <string name="preferences__language">Limba</string>
-  <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Signal</string>
-  <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private şi gratuite cu utilizatorii Signal
+  <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Signal Plus</string>
+  <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private şi gratuite cu utilizatorii Signal Plus
     </string>
   <string name="preferences__submit_debug_log">Trimite log-urile de depanare</string>
   <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare WiFi\"</string>
@@ -854,7 +845,7 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Sună</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Apel Signal</string>
+  <string name="conversation_callable_secure__menu_call">Apel Signal Plus</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalii mesaj</string>
   <string name="conversation_context__menu_copy_text">Copiază textul</string>
@@ -919,16 +910,15 @@ Vă rugăm să aveți răbdare, vă vom notifica când verificarea este complet�
   <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal Plus ca și aplicație SMS implicită.</string>
   <string name="reminder_header_sms_default_button">SETEAZĂ</string>
   <string name="reminder_header_sms_import_title">Importă SMS de sistem</string>
-  <string name="reminder_header_sms_import_text">Atingeți  pentru a copia mesajele SMS din telefon în baza de date criptată.</string>
   <string name="reminder_header_sms_import_button">IMPORTĂ</string>
-  <string name="reminder_header_push_title">Activează mesaje și apeluri Signal</string>
+  <string name="reminder_header_push_title">Activează mesaje și apeluri Signal Plus</string>
   <string name="reminder_header_push_text">Actualizează-ți experiența ta de comunicare.</string>
   <string name="reminder_header_push_button">ACTIVEAZĂ</string>
-  <string name="reminder_header_invite_title">Invită la Signal</string>
+  <string name="reminder_header_invite_title">Invită la Signal Plus</string>
   <string name="reminder_header_invite_text">Treci la următorul nivel al conversației cu %1$s.</string>
   <string name="reminder_header_invite_button">INVITĂ</string>
   <string name="reminder_header_share_title">Invită-ți prietenii!</string>
-  <string name="reminder_header_share_text">Cu cât mai mulți prieteni utilizează Signal, cu atât devine mai bun.</string>
+  <string name="reminder_header_share_text">Cu cât mai mulți prieteni utilizează Signal Plus, cu atât devine mai bun.</string>
   <string name="reminder_header_share_button">PARTAJEAZĂ</string>
   <string name="reminder_header_close_button">ÎNCHIDE</string>
   <!--MediaPreviewActivity-->

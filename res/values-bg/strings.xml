@@ -19,8 +19,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Изтрий</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Изключи паролата?</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-Изключи заключен екран за съобщения?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Това ще отключи изцяло всички известия съобщения и Signal Plus съобщения.</string>
   <string name="ApplicationPreferencesActivity_disable">Изключи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отписване</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Дерегистриране от Singal съобщения и обаждания...</string>
@@ -47,6 +46,7 @@
   <string name="DraftDatabase_Draft_image_snippet">(изображение)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(аудио)</string>
   <string name="DraftDatabase_Draft_video_snippet">(видео)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(местоположение)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неуспешно откирване на папка за избор на файл.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -74,9 +74,9 @@
   <string name="ConversationItem_expires_s">Изтича: %s</string>
   <string name="ConversationItem_error_not_delivered">Недоставен</string>
   <string name="ConversationItem_view_secure_media_question">Искаш ли да видиш подсигурения медиен файл?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Тази информация се съхранява в криптирана база данни. За съжаление, за да я видиш в момента се изисква данните да бъдат временно разшифровани и записани на диска. Сигурен ли си, че искаш да направиш това?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Медията е запазаена в криптирана база данни. За съжаление, за да я разгледате приложението за разглеждане изисква информацията да бъде времено декриптирана и запазане на диска. Сигурни ли сте че желаете това?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Грешка, загубил давност ключ е получен при обмяна на ключовете.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Получи се съобщение за обмяна на ключове, натисни, за да продължиш.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получи се съобщение за обмяна на ключове, натисни, за да продължиш.</string>
   <string name="ConversationItem_group_action_left">%1$s напусна групата.</string>
   <string name="ConversationItem_click_for_details">Натисни за повече информация</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Натисни, за да разрешиш преминавене към не криптирани съобщения в краен случай</string>
@@ -114,7 +114,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Сигурен ли си, че искаш да напуснеш тази група?</string>
   <string name="ConversationActivity_transport_insecure_sms">Некриптиран SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Некриптиран MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Signal Plus</string>
   <string name="ConversationActivity_lets_switch_to_signal">Да преминем към Signal Plus %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Да използваме следното за чатене: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка при напускането на група...</string>
@@ -148,7 +148,7 @@
   <string name="ConversationFragment_saving_attachment">Запазване на прикачения файл</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Запазване на прикачения файл на SD карта...</string>
   <string name="ConversationFragment_pending">Предстоящ...</string>
-  <string name="ConversationFragment_push">Данни (Signal)</string>
+  <string name="ConversationFragment_push">Данни (Signal Plus)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Изтриване</string>
@@ -252,7 +252,7 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <string name="ImportFragment_restore_encrypted_backup">Възстанови от шифровано архивно копие? </string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Възстановяването от криптиран архив напълно ще промени съществуващите ключове, настройки и съобщения.
-Ще изгубите всичката информация, която е в сегашната инсталация на Signal, но не и в криптирания архив.</string>
+Ще изгубите всичката информация, която е в сегашната инсталация на Signal Plus, но не и в криптирания архив.</string>
   <string name="ImportFragment_restore">Възстанови</string>
   <string name="ImportFragment_import_plaintext_backup">Възстанови от разшифровано архивно копие? </string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Това ще възстанови
@@ -276,7 +276,7 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <string name="InviteActivity_sending">Изпращане...</string>
   <string name="InviteActivity_heart_content_description">Сърце</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
-  <string name="InviteActivity_invite_to_signal">Покани в Signal</string>
+  <string name="InviteActivity_invite_to_signal">Покани в Signal Plus</string>
   <plurals name="InviteActivity_send_to_friends">
     <item quantity="one">ИЗПРАТИ ДО 1 ПРИЯТЕЛ</item>
     <item quantity="other">ИЗПРАТИ ДО %d ПРИЯТЕЛЯ</item>
@@ -312,13 +312,13 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедийно съобщение</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получихте съобщение криптирано със стара версия на Signal, която вече не се поддържа. Моля помолете изпращача да обнови версията си и да препрати съобщението.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получихте съобщение криптирано със стара версия на Signal Plus, която вече не се поддържа. Моля помолете изпращача да обнови версията си и да препрати съобщението.</string>
   <string name="MessageRecord_left_group">Напуснахте групата.</string>
   <string name="MessageRecord_updated_group">Групата е обновена.</string>
   <string name="MessageRecord_s_called_you">%s ти се обади</string>
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
-  <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal, кажи им здрасти!</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal Plus, кажи им здрасти!</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Грешна стара парола!</string>
@@ -387,7 +387,7 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Номерът, който набрахте не поддържа криптирани обаждания!</string>
   <string name="RedPhone_got_it">Ясно</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">Свържи се със Signal</string>
+  <string name="RegistrationActivity_connect_with_signal">Свържи се със Signal Plus</string>
   <string name="RegistrationActivity_select_your_country">Избери държавата си</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Трябва да въведеш своя
 международен код</string>
@@ -442,8 +442,7 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Съобщението за обмяна на ключа е с грешна версия на протокола.
 </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Получено е съобщение с не познат ключ за самоличност. Натисни, за да го обработиш и покажеш.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Получено е съобщение с не познат ключ за самоличност. Натисни, за да го обработиш и покажеш.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получена е променена, но непозната информация за самоличност. Натисни, за да я провериш.</string>
   <string name="SmsMessageRecord_secure_session_reset">Сигурната сесия е започната от начало.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
@@ -455,7 +454,7 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <string name="ThreadRecord_called_you">Ви се обади</string>
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
-  <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Signal, кажи му здрасти!</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Signal Plus, кажи му здрасти!</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма ключ за самоличност.</string>
@@ -525,7 +524,7 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Signal Plus е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal Plus</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__image">Изображение</string>
@@ -596,12 +595,12 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продължи</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Не успешен опит да се сдобием с доклада от устройството ти. Въпреки това можеш да ползваш ADB, за да се добиеш с доклада.</string>
+  <string name="log_submit_activity__log_fetch_failed">Неуспешно прочитане на доклада на Вашето устройство. Все пак може да използвате ADB, за да получте доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
   <string name="log_submit_activity__submitting">Изпращане</string>
   <string name="log_submit_activity__posting_logs">Изпращане на доклад до gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желаете ли да внесете вече същестуващите текстови съобщения в криптиранта база данни на Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желаете ли да внесете вече същестуващите текстови съобщения в криптиранта база данни на Signal Plus?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системната база данни няма да бъде променена по никакъв начин.</string>
   <string name="database_migration_activity__skip">Пропусни</string>
   <string name="database_migration_activity__import">Внеси</string>
@@ -642,7 +641,7 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <string name="prompt_passphrase_activity__unlock">Отключи</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal Plus се нуждае от MMS настройки, за да може да достави медийни и групови съобщения през мрежата. Устройството ти не прави тази информация достъпна, което се случва понякога за заключени устройва и други ограничени конфигурации.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">За да изптратиш медийни и групови съобщения, избери \'ОК\' и нагласи изискваните настройки. MMS настройките на твоя мобилен оператор могат да бъдат намерени като потърсиш \'APN настройки\'. Нужно е да изпълниш тази стъпка само веднъж.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да изптратиш медийни и групови съобщения, избери \'ОК\' и нагласи изискваните настройки. MMS настройките на твоя мобилен оператор могат да бъдат намерени като потърсиш \'APN настройки\'. Нужно е да изпълниш тази стъпка само веднъж.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">БЛОКИРАН</string>
   <!--recipient_preferences-->
@@ -655,14 +654,14 @@ SMS-те от системния архив в Signal Plus. Ако вече ст
   <string name="recipient_preferences__color_for_this_contact">Цвят за този контакт</string>
   <string name="recipient_preferences__verify_identity">Провери самоличността</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal-ско обаждане</string>
+  <string name="redphone_call_card__signal_call">Signal Plus-ско обаждане</string>
   <string name="redphone_call_controls__end_call">прекрати обаждането</string>
   <string name="redphone_call_controls__audio">Аудио</string>
   <string name="redphone_call_controls__mute">Заглуши</string>
-  <string name="redphone_call_controls__signal_call">Signal-ско обаждане</string>
+  <string name="redphone_call_controls__signal_call">Signal Plus-ско обаждане</string>
   <!--registration_activity-->
   <string name="registration_activity__verify_your_number_to_connect_with_signal">
-Потвърди своя телфонен номер, за да се свържеш с Signal</string>
+Потвърди своя телфонен номер, за да се свържеш с Signal Plus</string>
   <string name="registration_activity__your_country">ТВОЯТА ДЪРЖАВА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОДА НА ТВОЯТА ДЪРЖАВА И
 ТЕЛЕФОНЕН НОМЕР</string>
@@ -740,7 +739,7 @@ Signal Plus чака твърде дълго за SMS потвърждение.<
   <string name="AndroidManifest__create_passphrase">Създай парола</string>
   <string name="AndroidManifest__enter_passphrase">Въведи парола</string>
   <string name="AndroidManifest__select_contacts">Избери контакти</string>
-  <string name="AndroidManifest__signal_detected">Открит е Signal</string>
+  <string name="AndroidManifest__signal_detected">Открит е Signal Plus</string>
   <string name="AndroidManifest__public_identity_key">Публичен ключ за самоличност</string>
   <string name="AndroidManifest__change_passphrase">Смени паролата</string>
   <string name="AndroidManifest__verify_identity">Провери самоличността</string>
@@ -971,16 +970,16 @@ Signal Plus чака твърде дълго за SMS потвърждение.<
   <string name="reminder_header_sms_default_text">Натисни, за да направиш Signal Plus своята SMS програма по подразбиране.</string>
   <string name="reminder_header_sms_default_button">ЗАДАЙ</string>
   <string name="reminder_header_sms_import_title">Внеси системните SMS-и</string>
-  <string name="reminder_header_sms_import_text">Натисните, за да копирате своите SMS съобщения в шифрованата база данни.</string>
+  <string name="reminder_header_sms_import_text">Натиснете, за да копирате SMS съобщенията от Вашия телефон в криптираната база данни на Сигнал.</string>
   <string name="reminder_header_sms_import_button">ВНЕСИ</string>
   <string name="reminder_header_push_title">Активирай Singal съобщения и обаждания</string>
   <string name="reminder_header_push_text">Обнови комуникацията си.</string>
   <string name="reminder_header_push_button">АКТИВИРАЙ</string>
-  <string name="reminder_header_invite_title">Покани в Signal</string>
+  <string name="reminder_header_invite_title">Покани в Signal Plus</string>
   <string name="reminder_header_invite_text">Издигни разговора си с %1$s до ново ниво.</string>
   <string name="reminder_header_invite_button">ПОКАНИ</string>
   <string name="reminder_header_share_title">Поканете приятелите си!</string>
-  <string name="reminder_header_share_text">Колкото повече приятели използват Signal, толкова по-добър става той.</string>
+  <string name="reminder_header_share_text">Колкото повече приятели използват Signal Plus, толкова по-добър става той.</string>
   <string name="reminder_header_share_button">СПОДЕЛИ</string>
   <string name="reminder_header_close_button">ЗАТВОРИ</string>
   <!--MediaPreviewActivity-->
