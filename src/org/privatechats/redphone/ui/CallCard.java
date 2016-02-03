@@ -18,13 +18,20 @@
 package org.privatechats.redphone.ui;
 
 import android.content.Context;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.privatechats.securesms.R;
+import org.privatechats.securesms.contacts.avatars.ContactPhoto;
+import org.privatechats.securesms.contacts.avatars.ContactPhotoFactory;
 import org.privatechats.securesms.recipients.Recipient;
 
 /**
@@ -62,8 +69,25 @@ public class CallCard extends LinearLayout {
     this.elapsedTime.setText(time);
   }
 
-  private void setPersonInfo(Recipient recipient) {
-    this.photo.setImageDrawable(recipient.getContactPhoto().asCallCard(getContext()));
+  private void setPersonInfo(final Recipient recipient) {
+    final Context context = getContext();
+    new AsyncTask<Void, Void, ContactPhoto>() {
+      @Override
+      protected ContactPhoto doInBackground(Void... params) {
+        DisplayMetrics metrics       = new DisplayMetrics();
+        WindowManager  windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Uri            contentUri    = ContactsContract.Contacts.lookupContact(context.getContentResolver(),
+                recipient.getContactUri());
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+        return ContactPhotoFactory.getContactPhoto(context, contentUri, null, metrics.widthPixels);
+      }
+
+      @Override
+      protected void onPostExecute(final ContactPhoto contactPhoto) {
+        CallCard.this.photo.setImageDrawable(contactPhoto.asCallCard(context));
+      }
+    }.execute();
+
     this.name.setText(recipient.getName());
     this.phoneNumber.setText(recipient.getNumber());
   }
