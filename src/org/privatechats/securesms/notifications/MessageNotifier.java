@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -58,7 +57,6 @@ import org.privatechats.securesms.util.SpanUtil;
 import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
@@ -290,19 +288,29 @@ public class MessageNotifier {
       if (ringtone == null) {
         Log.w(TAG, "ringtone preference was null.");
         return;
-      } else {
-        uri = Uri.parse(ringtone);
+	  }
+	  
+      uri = Uri.parse(ringtone);
+	  
+      if (uri == null) {
+        Log.w(TAG, "couldn't parse ringtone uri " + ringtone);
+        return;
       }
     }
 
-    if (uri == null) {
-      Log.w(TAG, "couldn't parse ringtone uri " + TextSecurePreferences.getNotificationRingtone(context));
+	if (uri.toString().isEmpty()) {
+      Log.d(TAG, "ringtone uri is empty");
       return;
     }
 
     Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
-
-    if (Build.VERSION.SDK_INT >= 21) {
+	
+    if (ringtone == null) {
+      Log.w(TAG, "ringtone is null");
+      return;
+    }
+	
+	if (Build.VERSION.SDK_INT >= 21) {
       ringtone.setAudioAttributes(new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
                                                                .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
                                                                .build());
