@@ -76,7 +76,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
     try {
       MmsRadio radio = MmsRadio.getInstance(context);
 
-      if (isCdmaDevice()) {
+      if (isDirectConnect()) {
         Log.w(TAG, "Sending MMS directly without radio change...");
         try {
           return send(pduBytes, false, false);

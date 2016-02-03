@@ -65,7 +65,8 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
   {
     MmsRadio radio = MmsRadio.getInstance(context);
     Apn contentApn = new Apn(contentLocation, apn.getProxy(), Integer.toString(apn.getPort()), apn.getUsername(), apn.getPassword());
-    if (isCdmaDevice()) {
+
+    if (isDirectConnect()) {
       Log.w(TAG, "Connecting directly...");
       try {
         return retrieve(contentApn, transactionId, false, false);
