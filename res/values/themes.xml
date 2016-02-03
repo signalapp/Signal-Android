@@ -157,6 +157,8 @@
         <item name="dialog_info_icon">@drawable/ic_info_outline_light</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_light</item>
 
+        <item name="device_link_item_card_background">@color/device_link_item_background_light</item>
+
         <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_light</item>
@@ -236,6 +238,8 @@
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>
+
+        <item name="device_link_item_card_background">@color/device_link_item_background_dark</item>
 
         <item name="import_export_item_background_color">@color/import_export_item_background_dark</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>
