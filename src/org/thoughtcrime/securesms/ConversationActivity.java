@@ -386,10 +386,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                         if (!pathToOutputFile.equals(VideoResolutionChanger.COMPRESSING_ERROR)) {
                             addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
                         } else {
+                            if(VideoResolutionChanger.COMPRESSING_ERROR.equals(VideoResolutionChanger.ERROR_TOO_BIG)) {
+                                Toast.makeText(getApplicationContext(), getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
+                                                (getCurrentMediaSize() / 1024)),
+                                        Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+                                        Toast.LENGTH_LONG).show();
+                            }
                             VideoResolutionChanger.COMPRESSING_ERROR = "";
-                            Toast.makeText(getApplicationContext(), getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-                                            (getCurrentMediaSize() / 1024)),
-                                    Toast.LENGTH_LONG).show();
                         }
                         compressingIsrunning = false;
                         if (compressingDialog.isShowing()) {

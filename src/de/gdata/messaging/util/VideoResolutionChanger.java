@@ -37,6 +37,9 @@ public class VideoResolutionChanger {
 
     private static final int TIMEOUT_USEC = 10000;
 
+
+    public static final String ERROR_TOO_BIG = "TOO_BIG";
+
     public static final String OUTPUT_VIDEO_MIME_TYPE = "video/avc";
 
     private static final int OUTPUT_VIDEO_BIT_RATE = 1024 * 1024;
@@ -52,6 +55,8 @@ public class VideoResolutionChanger {
     private static final int OUTPUT_AUDIO_AAC_PROFILE =
             MediaCodecInfo.CodecProfileLevel.AACObjectHE;
     private static final int OUTPUT_AUDIO_SAMPLE_RATE_HZ = 44100;
+    private static final String ROTATION_90 = "90";
+    private static final String ROTATION_270 = "270";
 
     private boolean compressingSuccessful = true;
 
@@ -140,6 +145,7 @@ public class VideoResolutionChanger {
             MediaMetadataRetriever m = new MediaMetadataRetriever();
             m.setDataSource(mInputFile);
             Bitmap thumbnail = m.getFrameAtTime();
+            String rotation = m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
             int inputWidth = thumbnail.getWidth(),
                     inputHeight = thumbnail.getHeight();
 
@@ -153,10 +159,10 @@ public class VideoResolutionChanger {
 
             if (newFileSize * 1024 * 1024 > PushMediaConstraints.MAX_MESSAGE_SIZE) {
                 compressingSuccessful = false;
-                COMPRESSING_ERROR = "TOO BIG";
+                COMPRESSING_ERROR = ERROR_TOO_BIG;
             } else {
                 //Really dirty workaround but it seems that the width and Height of this china device are mixed up (Huwai Ascend 4.4.4)
-                if("G620S-L01".equals(android.os.Build.MODEL)) {
+                if(ROTATION_90.equals(rotation) || ROTATION_270.equals(rotation)) {
                     int temp = inputWidth;
                     inputWidth = inputHeight;
                     inputHeight = temp;
