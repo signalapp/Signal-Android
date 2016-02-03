@@ -30,10 +30,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BitmapUtil {
+
   private static final String TAG = BitmapUtil.class.getSimpleName();
 
   private static final int MAX_COMPRESSION_QUALITY  = 80;
@@ -41,7 +41,7 @@ public class BitmapUtil {
   private static final int MAX_COMPRESSION_ATTEMPTS = 4;
 
   public static <T> byte[] createScaledBytes(Context context, T model, MediaConstraints constraints)
-      throws ExecutionException, IOException
+      throws BitmapDecodingException
   {
     int    quality  = MAX_COMPRESSION_QUALITY;
     int    attempts = 0;
@@ -62,7 +62,7 @@ public class BitmapUtil {
       }
       while (bytes.length > constraints.getImageMaxSize() && attempts++ < MAX_COMPRESSION_ATTEMPTS);
       if (bytes.length > constraints.getImageMaxSize()) {
-        throw new IOException("Unable to scale image below: " + bytes.length);
+        throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
       }
       Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
       return bytes;
@@ -72,7 +72,7 @@ public class BitmapUtil {
   }
 
   public static <T> Bitmap createScaledBitmap(Context context, T model, int maxWidth, int maxHeight)
-      throws ExecutionException
+      throws BitmapDecodingException
   {
     final Pair<Integer, Integer> dimensions = getDimensions(getInputStreamForModel(context, model));
     final Pair<Integer, Integer> clamped    = clampDimensions(dimensions.first, dimensions.second,
@@ -81,19 +81,19 @@ public class BitmapUtil {
   }
 
   private static <T> InputStream getInputStreamForModel(Context context, T model)
-      throws ExecutionException
+      throws BitmapDecodingException
   {
     try {
       return Glide.buildStreamModelLoader(model, context)
                   .getResourceFetcher(model, -1, -1)
                   .loadData(Priority.NORMAL);
     } catch (Exception e) {
-      throw new ExecutionException(e);
+      throw new BitmapDecodingException(e);
     }
   }
 
   private static <T> Bitmap createScaledBitmapInto(Context context, T model, int width, int height)
-      throws ExecutionException
+      throws BitmapDecodingException
   {
     final Bitmap rough = Downsampler.AT_LEAST.decode(getInputStreamForModel(context, model),
                                                      Glide.get(context).getBitmapPool(),
@@ -104,20 +104,22 @@ public class BitmapUtil {
     final Resource<Bitmap> result   = new FitCenter(context).transform(resource, width, height);
 
     if (result == null) {
-      throw new ExecutionException(new BitmapDecodingException("unable to transform Bitmap"));
+      throw new BitmapDecodingException("unable to transform Bitmap");
     }
     return result.get();
   }
 
   public static <T> Bitmap createScaledBitmap(Context context, T model, float scale)
-      throws ExecutionException
+      throws BitmapDecodingException
   {
     Pair<Integer, Integer> dimens = getDimensions(getInputStreamForModel(context, model));
     return createScaledBitmapInto(context, model,
                                   (int)(dimens.first * scale), (int)(dimens.second * scale));
   }
 
-  private static BitmapFactory.Options getImageDimensions(InputStream inputStream) {
+  private static BitmapFactory.Options getImageDimensions(InputStream inputStream)
+      throws BitmapDecodingException
+  {
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inJustDecodeBounds    = true;
     BufferedInputStream fis       = new BufferedInputStream(inputStream);
@@ -127,10 +129,15 @@ public class BitmapUtil {
     } catch (IOException ioe) {
       Log.w(TAG, "failed to close the InputStream after reading image dimensions");
     }
+
+    if (options.outWidth == -1 || options.outHeight == -1) {
+      throw new BitmapDecodingException("Failed to decode image dimensions: " + options.outWidth + ", " + options.outHeight);
+    }
+
     return options;
   }
 
-  public static Pair<Integer, Integer> getDimensions(InputStream inputStream) {
+  public static Pair<Integer, Integer> getDimensions(InputStream inputStream) throws BitmapDecodingException {
     BitmapFactory.Options options = getImageDimensions(inputStream);
     return new Pair<>(options.outWidth, options.outHeight);
   }

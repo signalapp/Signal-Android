@@ -11,6 +11,7 @@ import org.privatechats.securesms.database.GroupDatabase;
 import org.privatechats.securesms.jobs.requirements.MasterSecretRequirement;
 import org.privatechats.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.privatechats.securesms.push.TextSecurePushTrustStore;
+import org.privatechats.securesms.util.BitmapDecodingException;
 import org.privatechats.securesms.util.BitmapUtil;
 import org.privatechats.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
@@ -63,7 +64,7 @@ public class AvatarDownloadJob extends MasterSecretJob {
 
         database.updateAvatar(groupId, avatar);
       }
-    } catch (ExecutionException | NonSuccessfulResponseCodeException e) {
+    } catch (BitmapDecodingException | NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);
     } finally {
       if (attachment != null)
