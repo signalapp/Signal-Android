@@ -342,7 +342,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 addAttachmentImage(data.getData());
                 break;
             case PICK_VIDEO:
-                handleVideoAttachment(data.getData());
+                addAttachmentVideoWithoutToast(data.getData());
                 break;
             case PICK_AUDIO:
                 addAttachmentAudio(data.getData());
@@ -376,7 +376,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                         pathToOutputFile =
                                 new VideoResolutionChanger().changeResolution(activity, data);
                     } catch (Throwable t) {
-                        t.fillInStackTrace();
+                        t.printStackTrace();
                     }
                     return "";
                 }
@@ -982,17 +982,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     private void initializeDraft() {
+
         draftText = getIntent().getExtras().getString(DRAFT_TEXT_EXTRA);
         Uri draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
         Uri draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
         Uri draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
         String contentType = getIntent().getStringExtra(DRAFT_MEDIA_TYPE_EXTRA);
-
-        if (draftImage != null) addAttachmentImage(draftImage);
+        if (draftImage != null && draftVideo == null) addAttachmentImage(draftImage);
         if (draftAudio != null && ContentType.isAudioType(contentType))
             addAttachmentAudio(draftAudio, contentType);
         if (draftVideo != null && ContentType.isVideoType(contentType)) {
-            handleVideoAttachment(draftVideo);
+            addAttachmentVideoWithoutToast(draftVideo);
         }
 
         if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
@@ -1260,25 +1260,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             Log.w("ComposeMessageActivity", e);
         }
     }
-
-    private void addAttachmentVideo(Uri videoUri, String contentType) {
+    private void addAttachmentVideoWithoutToast(Uri videoUri) {
         try {
-            attachmentManager.setVideo(videoUri, contentType, true);
+            attachmentManager.setVideo(videoUri, true);
         } catch (IOException e) {
             attachmentManager.clear();
             Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                     Toast.LENGTH_LONG).show();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
-            attachmentManager.clear();
-
-            Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-                            (getCurrentMediaSize() / 1024)),
-                    Toast.LENGTH_LONG).show();
-            Log.w("ComposeMessageActivity", e);
+            handleVideoAttachment(videoUri);
         }
     }
-
     private void addAttachmentAudio(Uri audioUri, String contentType) {
         try {
             attachmentManager.setAudio(audioUri, contentType, true);
