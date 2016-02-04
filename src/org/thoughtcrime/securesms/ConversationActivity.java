@@ -387,12 +387,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                             addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
                         } else {
                             if(VideoResolutionChanger.COMPRESSING_ERROR.equals(VideoResolutionChanger.ERROR_TOO_BIG)) {
-                                Toast.makeText(getApplicationContext(), getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-                                                (getCurrentMediaSize() / 1024)),
-                                        Toast.LENGTH_LONG).show();
+                                showAttachmentSizeErrorToast();
                             } else {
-                                Toast.makeText(getApplicationContext(), R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                                        Toast.LENGTH_LONG).show();
+                                showAttachmentErrorToast();
                             }
                             VideoResolutionChanger.COMPRESSING_ERROR = "";
                         }
@@ -1239,57 +1236,71 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     private void addAttachmentImage(Uri imageUri) {
         try {
+            if(GUtil.isImageType(GUtil.getContentTypeForUri(this, imageUri))) {
             attachmentManager.setImage(imageUri);
+            } else {
+                showAttachmentErrorToast();
+            }
         } catch (IOException | BitmapDecodingException e) {
             Log.w(TAG, e);
-            attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
         }
     }
 
     private void addAttachmentVideo(Uri videoUri) {
         try {
+            if(GUtil.isVideoType(GUtil.getContentTypeForUri(this, videoUri))) {
             attachmentManager.setVideo(videoUri, true);
+            } else {
+                showAttachmentErrorToast();
+            }
         } catch (IOException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
-            attachmentManager.clear();
-
-            Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-                            (getCurrentMediaSize() / 1024)),
-                    Toast.LENGTH_LONG).show();
+            showAttachmentSizeErrorToast();
             Log.w("ComposeMessageActivity", e);
         }
     }
     private void addAttachmentVideoWithoutToast(Uri videoUri) {
         try {
+            if(GUtil.isVideoType(GUtil.getContentTypeForUri(this, videoUri))) {
             attachmentManager.setVideo(videoUri, true);
+            } else {
+                showAttachmentErrorToast();
+            }
         } catch (IOException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
             handleVideoAttachment(videoUri);
         }
     }
+
+    private void showAttachmentErrorToast() {
+        attachmentManager.clear();
+        Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+                Toast.LENGTH_LONG).show();
+    }
+    private void showAttachmentSizeErrorToast() {
+        attachmentManager.clear();
+        Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
+                        (getCurrentMediaSize() / 1024)),
+                Toast.LENGTH_LONG).show();
+    }
     private void addAttachmentAudio(Uri audioUri, String contentType) {
         try {
-            attachmentManager.setAudio(audioUri, contentType, true);
+            if(GUtil.isAudioType(GUtil.getContentTypeForUri(this, audioUri))) {
+                attachmentManager.setAudio(audioUri, contentType, true);
+            } else {
+                showAttachmentErrorToast();
+            }
         } catch (IOException e) {
             attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
-                            (getCurrentMediaSize() / 1024)),
-                    Toast.LENGTH_LONG).show();
+            showAttachmentSizeErrorToast();
             Log.w("ComposeMessageActivity", e);
         }
     }
@@ -1298,15 +1309,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         try {
             attachmentManager.setAudio(audioUri, true);
         } catch (IOException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
-                            (getCurrentMediaSize() / 1024)),
-                    Toast.LENGTH_LONG).show();
+            showAttachmentSizeErrorToast();
             Log.w("ComposeMessageActivity", e);
         }
     }

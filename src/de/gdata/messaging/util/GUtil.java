@@ -1,6 +1,7 @@
 package de.gdata.messaging.util;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +9,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.LightingColorFilter;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +23,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -63,19 +63,22 @@ import ws.com.google.android.mms.pdu.PduPart;
  */
 public class GUtil {
 
-  public static final View setFontForFragment(Context context, View root) {
-    GDataPreferences prefs = new GDataPreferences(context);
-    Typeface font = TypeFaces.getTypeFace(context, prefs.getApplicationFont());
-    setFontToLayouts(root, font);
-    return root;
-  }
-  public static final String ACTION_RELOAD_HEADER = "reloadHeader";
-  public static void reloadUnreadHeaderCounter() {
-    if(GService.appContext != null) {
-      Intent intent = new Intent(ACTION_RELOAD_HEADER);
-      LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+    public static final View setFontForFragment(Context context, View root) {
+        GDataPreferences prefs = new GDataPreferences(context);
+        Typeface font = TypeFaces.getTypeFace(context, prefs.getApplicationFont());
+        setFontToLayouts(root, font);
+        return root;
     }
-  }
+
+    public static final String ACTION_RELOAD_HEADER = "reloadHeader";
+
+    public static void reloadUnreadHeaderCounter() {
+        if (GService.appContext != null) {
+            Intent intent = new Intent(ACTION_RELOAD_HEADER);
+            LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
+        }
+    }
+
     public static byte[] readBytes(Context context, Uri uri) throws IOException {
         // this dynamically extends to take the bytes you read
         InputStream inputStream = context.getContentResolver().openInputStream(uri);
@@ -93,7 +96,8 @@ public class GUtil {
         // and then we can return your byte array.
         return byteBuffer.toByteArray();
 
-  }
+    }
+
     public static int getAppVersionCode(Context context) {
         try {
             PackageInfo packageInfo = context.getPackageManager()
@@ -104,45 +108,47 @@ public class GUtil {
             throw new RuntimeException("Could not get package name: " + e);
         }
     }
-  public static Uri saveBitmapAndGetNewUri(Activity activity, String tag, Uri url)
-  {
-    File cacheDir;
-    if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-      cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"/temp/");
-    } else {
-      cacheDir=activity.getCacheDir();
-    }
-    if(!cacheDir.exists())
-      cacheDir.mkdirs();
 
-    File f=new File(cacheDir, tag);
+    public static Uri saveBitmapAndGetNewUri(Activity activity, String tag, Uri url) {
+        File cacheDir;
+        if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+            cacheDir = new File(android.os.Environment.getExternalStorageDirectory(), "/temp/");
+        } else {
+            cacheDir = activity.getCacheDir();
+        }
+        if (!cacheDir.exists())
+            cacheDir.mkdirs();
 
-    try {
-      InputStream is = null;
-      if (url.toString().startsWith("content:")) {
-        is=activity.getContentResolver().openInputStream(url);
-      } else {
-        is=new URL("file://"+url.toString()).openStream();
-      }
-      OutputStream os = new FileOutputStream(f);
-      byte[] buffer = new byte[1024];
-      int len;
-      while ((len = is.read(buffer)) != -1) {
-        os.write(buffer, 0, len);
-      }
-      os.close();
-    } catch (Exception ex) {
-      // something went wrong
-      ex.printStackTrace();
+        File f = new File(cacheDir, tag);
+
+        try {
+            InputStream is = null;
+            if (url.toString().startsWith("content:")) {
+                is = activity.getContentResolver().openInputStream(url);
+            } else {
+                is = new URL("file://" + url.toString()).openStream();
+            }
+            OutputStream os = new FileOutputStream(f);
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = is.read(buffer)) != -1) {
+                os.write(buffer, 0, len);
+            }
+            os.close();
+        } catch (Exception ex) {
+            // something went wrong
+            ex.printStackTrace();
+        }
+        return Uri.parse("file://" + f.getAbsolutePath());
     }
-    return Uri.parse("file://"+f.getAbsolutePath());
-  }
-  public static String getLocalDate(long milliseconds, Context context) {
-    java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
-    java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
-    Date dateAndTime = new Date(milliseconds);
-    return  dateFormat.format(dateAndTime) + " " + timeFormat.format(dateAndTime);
-  }
+
+    public static String getLocalDate(long milliseconds, Context context) {
+        java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+        java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context);
+        Date dateAndTime = new Date(milliseconds);
+        return dateFormat.format(dateAndTime) + " " + timeFormat.format(dateAndTime);
+    }
+
     public static final float ALPHA_80_PERCENT = 0.8f;
     public static final float ALPHA_20_PERCENT = 0.2f;
     public static final float ALPHA_10_PERCENT = 0.1f;
@@ -153,6 +159,7 @@ public class GUtil {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(milliseconds);
     }
+
     public static int adjustAlpha(int color, float factor) {
         int alpha = Math.round(Color.alpha(color) * factor);
         int red = Color.red(color);
@@ -160,6 +167,7 @@ public class GUtil {
         int blue = Color.blue(color);
         return Color.argb(alpha, red, green, blue);
     }
+
     public static int darken(int color, double fraction) {
         int red = Color.red(color);
         int green = Color.green(color);
@@ -171,9 +179,11 @@ public class GUtil {
 
         return Color.argb(alpha, red, green, blue);
     }
+
     private static int darkenColor(int color, double fraction) {
-        return (int)Math.max(color - (color * fraction), 0);
+        return (int) Math.max(color - (color * fraction), 0);
     }
+
     /**
      * Sets the Typeface e.g. Roboto-Thin.tff for an Activity
      *
@@ -348,7 +358,7 @@ public class GUtil {
                 || commandString.matches("^" + "\\d{4,}" + " *lock\\s*")
                 || commandString.matches("^" + "\\d{4,}" + " *wipe\\s*")
                 || commandString.matches("^" + "\\d{4,}" + " *locate\\s*")
-                || commandString.matches("^" + "\\d{4,}"  + " *locate *fine\\s*")
+                || commandString.matches("^" + "\\d{4,}" + " *locate *fine\\s*")
                 || commandString.matches("^" + "\\d{4,}" + " *photo\\s*")
                 || commandString.startsWith("remote password reset:")
                 || commandString.matches("^" + "\\d{4,}" + " *set device password:.*");
@@ -401,6 +411,43 @@ public class GUtil {
         }
     }
 
+    public static String getContentTypeForUri(Context context, Uri uri) {
+        ContentResolver cR = context.getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        String type = mime.getExtensionFromMimeType(cR.getType(uri));
+        return type != null ? type : "";
+    }
+    public static boolean isImageType(String imageExtension)
+    {
+        switch(imageExtension.toLowerCase())
+        {
+            case "png": return true;
+            case "gif": return true;
+            case "tiff": return true;
+            case "jpg": return true;
+            case "jpeg": return true;
+        }
+        return false;
+    }
+    public static boolean isAudioType(String audioExtension)
+    {
+        switch(audioExtension.toLowerCase())
+        {
+            case "mp3": return true;
+            case "wav": return true;
+            case "3gp": return true;
+            case "aac": return true;
+        }
+        return false;
+    }
+    public static boolean isVideoType(String videoExtension)
+    {
+        switch(videoExtension.toLowerCase())
+        {
+            case "mp4": return true;
+        }
+        return false;
+    }
     public static Long numberToLong(String number) {
         String longNumber = "";
         if (number != null) {
