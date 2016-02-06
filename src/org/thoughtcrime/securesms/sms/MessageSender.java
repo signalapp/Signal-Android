@@ -74,7 +74,8 @@ public class MessageSender {
       allocatedThreadId = threadId;
     }
 
-    long messageId = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), allocatedThreadId, message, forceSms, System.currentTimeMillis());
+    long messageId = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), allocatedThreadId,
+                                                  message, forceSms, System.currentTimeMillis());
 
     sendTextMessage(context, recipients, forceSms, keyExchange, messageId);
 

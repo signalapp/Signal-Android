@@ -63,9 +63,11 @@ public class MmsListener extends BroadcastReceiver {
          isRelevant(context, intent)))
     {
       Log.w(TAG, "Relevant!");
+      int subscriptionId = intent.getExtras().getInt("subscription", -1);
+
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MmsReceiveJob(context, intent.getByteArrayExtra("data")));
+                        .add(new MmsReceiveJob(context, intent.getByteArrayExtra("data"), subscriptionId));
 
       abortBroadcast();
     }

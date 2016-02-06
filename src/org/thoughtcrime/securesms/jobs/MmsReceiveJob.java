@@ -19,16 +19,20 @@ import ws.com.google.android.mms.pdu.PduParser;
 
 public class MmsReceiveJob extends ContextJob {
 
+  private static final long serialVersionUID = 1L;
+
   private static final String TAG = MmsReceiveJob.class.getSimpleName();
 
   private final byte[] data;
+  private final int    subscriptionId;
 
-  public MmsReceiveJob(Context context, byte[] data) {
+  public MmsReceiveJob(Context context, byte[] data, int subscriptionId) {
     super(context, JobParameters.newBuilder()
                                 .withWakeLock(true)
                                 .withPersistence().create());
 
-    this.data = data;
+    this.data           = data;
+    this.subscriptionId = subscriptionId;
   }
 
   @Override
@@ -54,7 +58,7 @@ public class MmsReceiveJob extends ContextJob {
 
     if (isNotification(pdu) && !isBlocked(pdu)) {
       MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
-      Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu);
+      Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu, subscriptionId);
 
       Log.w(TAG, "Inserted received MMS notification...");
 

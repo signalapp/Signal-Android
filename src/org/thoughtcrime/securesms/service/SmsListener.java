@@ -84,16 +84,6 @@ public class SmsListener extends BroadcastReceiver {
     return bodyBuilder.toString();
   }
 
-//  private ArrayList<IncomingTextMessage> getAsTextMessages(Intent intent) {
-//    Object[] pdus                   = (Object[])intent.getExtras().get("pdus");
-//    ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>(pdus.length);
-//
-//    for (int i=0;i<pdus.length;i++)
-//      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdus[i])));
-//
-//    return messages;
-//  }
-
   private boolean isRelevant(Context context, Intent intent) {
     SmsMessage message = getSmsMessageFromIntent(intent);
     String messageBody = getSmsMessageBodyFromIntent(intent);
@@ -164,14 +154,10 @@ public class SmsListener extends BroadcastReceiver {
     } else if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
                (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
     {
-      Object[] pdus = (Object[])intent.getExtras().get("pdus");
-      ApplicationContext.getInstance(context).getJobManager().add(new SmsReceiveJob(context, pdus));
+      Object[] pdus           = (Object[]) intent.getExtras().get("pdus");
+      int      subscriptionId = intent.getExtras().getInt("subscription", -1);
 
-//      Intent receivedIntent = new Intent(context, SendReceiveService.class);
-//      receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
-//      receivedIntent.putExtra("ResultCode", this.getResultCode());
-//      receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
-//      context.startService(receivedIntent);
+      ApplicationContext.getInstance(context).getJobManager().add(new SmsReceiveJob(context, pdus, subscriptionId));
 
       abortBroadcast();
     }

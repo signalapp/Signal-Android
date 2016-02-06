@@ -60,7 +60,7 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
 
   @Override
   public @Nullable RetrieveConf retrieve(@NonNull String contentLocation,
-                                         byte[] transactionId)
+                                         byte[] transactionId, int subscriptionId)
       throws MmsRadioException, ApnUnavailableException, IOException
   {
     MmsRadio radio = MmsRadio.getInstance(context);

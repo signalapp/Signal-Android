@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -105,7 +106,7 @@ public class SmsSendJob extends SendJob {
     // catching it and marking the message as a failure.  That way at least it doesn't
     // repeatedly crash every time you start the app.
     try {
-      SmsManager.getDefault().sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
+      getSmsManagerFor(message.getSubscriptionId()).sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException npe) {
       Log.w(TAG, npe);
       Log.w(TAG, "Recipient: " + recipient);
@@ -113,9 +114,9 @@ public class SmsSendJob extends SendJob {
 
       try {
         for (int i=0;i<messages.size();i++) {
-          SmsManager.getDefault().sendTextMessage(recipient, null, messages.get(i),
-                                                  sentIntents.get(i),
-                                                  deliveredIntents == null ? null : deliveredIntents.get(i));
+          getSmsManagerFor(message.getSubscriptionId()).sendTextMessage(recipient, null, messages.get(i),
+                                                                        sentIntents.get(i),
+                                                                        deliveredIntents == null ? null : deliveredIntents.get(i));
         }
       } catch (NullPointerException npe2) {
         Log.w(TAG, npe);
@@ -177,6 +178,14 @@ public class SmsSendJob extends SendJob {
     pending.putExtra("message_id", messageId);
 
     return pending;
+  }
+
+  private SmsManager getSmsManagerFor(int subscriptionId) {
+    if (Build.VERSION.SDK_INT >= 22 && subscriptionId != -1) {
+      return SmsManager.getSmsManagerForSubscriptionId(subscriptionId);
+    } else {
+      return SmsManager.getDefault();
+    }
   }
 
   private static JobParameters constructParameters(Context context, String name) {

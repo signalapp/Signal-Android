@@ -9,5 +9,5 @@ import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.RetrieveConf;
 
 public interface IncomingMmsConnection {
-  @Nullable RetrieveConf retrieve(@NonNull String contentLocation, byte[] transactionId) throws MmsException, MmsRadioException, ApnUnavailableException, IOException;
+  @Nullable RetrieveConf retrieve(@NonNull String contentLocation, byte[] transactionId, int subscriptionId) throws MmsException, MmsRadioException, ApnUnavailableException, IOException;
 }

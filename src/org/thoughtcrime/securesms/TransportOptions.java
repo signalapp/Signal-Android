@@ -1,10 +1,15 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
+import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.MmsCharacterCalculator;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
+import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
+import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.LinkedList;
@@ -20,49 +25,76 @@ public class TransportOptions {
   private final Context                          context;
   private final List<TransportOption>            enabledTransports;
 
-  private Type    selectedType;
-  private boolean manuallySelected;
+  private Type                      defaultTransportType  = Type.SMS;
+  private Optional<Integer>         defaultSubscriptionId = Optional.absent();
+  private Optional<TransportOption> selectedOption        = Optional.absent();
 
   public TransportOptions(Context context, boolean media) {
     this.context           = context;
     this.enabledTransports = initializeAvailableTransports(media);
-
-    setDefaultTransport(Type.SMS);
   }
 
   public void reset(boolean media) {
     List<TransportOption> transportOptions = initializeAvailableTransports(media);
+
     this.enabledTransports.clear();
     this.enabledTransports.addAll(transportOptions);
 
-    if (!find(selectedType).isPresent()) {
-      this.manuallySelected = false;
-      setTransport(Type.SMS);
+    if (selectedOption.isPresent() && !isEnabled(selectedOption.get())) {
+      setSelectedTransport(null);
     } else {
+      this.defaultTransportType = Type.SMS;
+      this.defaultSubscriptionId = Optional.absent();
+
       notifyTransportChangeListeners();
     }
   }
 
   public void setDefaultTransport(Type type) {
-    if (!this.manuallySelected) {
-      setTransport(type);
+    this.defaultTransportType = type;
+
+    if (!selectedOption.isPresent()) {
+      notifyTransportChangeListeners();
     }
   }
 
-  public void setSelectedTransport(Type type) {
-    this.manuallySelected= true;
-    setTransport(type);
+  public void setDefaultSubscriptionId(Optional<Integer> subscriptionId) {
+    this.defaultSubscriptionId = subscriptionId;
+
+    if (!selectedOption.isPresent()) {
+      notifyTransportChangeListeners();
+    }
+  }
+
+  public void setSelectedTransport(@Nullable  TransportOption transportOption) {
+    this.selectedOption = Optional.fromNullable(transportOption);
+    notifyTransportChangeListeners();
   }
 
   public boolean isManualSelection() {
-    return manuallySelected;
+    return this.selectedOption.isPresent();
   }
 
-  public TransportOption getSelectedTransport() {
-    Optional<TransportOption> option =  find(selectedType);
+  public @NonNull TransportOption getSelectedTransport() {
+    if (selectedOption.isPresent()) return selectedOption.get();
 
-    if (option.isPresent()) return option.get();
-    else                    throw new AssertionError("Selected type isn't present!");
+    if (defaultSubscriptionId.isPresent()) {
+      for (TransportOption transportOption : enabledTransports) {
+        if (transportOption.getType() == defaultTransportType &&
+            (int)defaultSubscriptionId.get() == transportOption.getSimSubscriptionId().or(-1))
+        {
+          return transportOption;
+        }
+      }
+    }
+
+    for (TransportOption transportOption : enabledTransports) {
+      if (transportOption.getType() == defaultTransportType) {
+        return transportOption;
+      }
+    }
+
+    throw new AssertionError("No options of default type!");
   }
 
   public void disableTransport(Type type) {
@@ -71,8 +103,8 @@ public class TransportOptions {
     if (option.isPresent()) {
       enabledTransports.remove(option.get());
 
-      if (manuallySelected && type == selectedType) {
-        manuallySelected = false;
+      if (selectedOption.isPresent() && selectedOption.get().getType() == type) {
+        setSelectedTransport(null);
       }
     }
   }
@@ -89,17 +121,13 @@ public class TransportOptions {
     List<TransportOption> results = new LinkedList<>();
 
     if (isMediaMessage) {
-      results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
-                                      context.getResources().getColor(R.color.grey_600),
-                                      context.getString(R.string.ConversationActivity_transport_insecure_mms),
-                                      context.getString(R.string.conversation_activity__type_message_mms_insecure),
-                                      new MmsCharacterCalculator()));
+      results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_insecure_mms),
+                                                    context.getString(R.string.conversation_activity__type_message_mms_insecure),
+                                                    new MmsCharacterCalculator()));
     } else {
-      results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
-                                      context.getResources().getColor(R.color.grey_600),
-                                      context.getString(R.string.ConversationActivity_transport_insecure_sms),
-                                      context.getString(R.string.conversation_activity__type_message_sms_insecure),
-                                      new SmsCharacterCalculator()));
+      results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_insecure_sms),
+                                                    context.getString(R.string.conversation_activity__type_message_sms_insecure),
+                                                    new SmsCharacterCalculator()));
     }
 
     results.add(new TransportOption(Type.TEXTSECURE, R.drawable.ic_send_push_white_24dp,
@@ -111,16 +139,34 @@ public class TransportOptions {
     return results;
   }
 
+  private @NonNull List<TransportOption> getTransportOptionsForSimCards(@NonNull String text,
+                                                                        @NonNull String composeHint,
+                                                                        @NonNull CharacterCalculator characterCalculator)
+  {
+    List<TransportOption>        results             = new LinkedList<>();
+    SubscriptionManagerCompat    subscriptionManager = new SubscriptionManagerCompat(context);
+    List<SubscriptionInfoCompat> subscriptions       = subscriptionManager.getActiveSubscriptionInfoList();
 
-  private void setTransport(Type type) {
-    this.selectedType = type;
+    if (subscriptions.size() < 2) {
+      results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
+                                      context.getResources().getColor(R.color.grey_600),
+                                      text, composeHint, characterCalculator));
+    } else {
+      for (SubscriptionInfoCompat subscriptionInfo : subscriptions) {
+        results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
+                                        context.getResources().getColor(R.color.grey_600),
+                                        text, composeHint, characterCalculator,
+                                        Optional.of(subscriptionInfo.getDisplayName()),
+                                        Optional.of(subscriptionInfo.getSubscriptionId())));
+      }
+    }
 
-    notifyTransportChangeListeners();
+    return results;
   }
 
   private void notifyTransportChangeListeners() {
     for (OnTransportChangedListener listener : listeners) {
-      listener.onChange(getSelectedTransport());
+      listener.onChange(getSelectedTransport(), selectedOption.isPresent());
     }
   }
 
@@ -134,7 +180,15 @@ public class TransportOptions {
     return Optional.absent();
   }
 
+  private boolean isEnabled(TransportOption transportOption) {
+    for (TransportOption option : enabledTransports) {
+      if (option.equals(transportOption)) return true;
+    }
+
+    return false;
+  }
+
   public interface OnTransportChangedListener {
-    public void onChange(TransportOption newTransport);
+    public void onChange(TransportOption newTransport, boolean manuallySelected);
   }
 }

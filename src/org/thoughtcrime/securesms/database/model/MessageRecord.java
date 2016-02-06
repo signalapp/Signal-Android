@@ -50,13 +50,15 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      id;
   private final List<IdentityKeyMismatch> mismatches;
   private final List<NetworkFailure>      networkFailures;
+  private final int                       subscriptionId;
 
   MessageRecord(Context context, long id, Body body, Recipients recipients,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
                 int deliveryStatus, int receiptCount, long type,
                 List<IdentityKeyMismatch> mismatches,
-                List<NetworkFailure> networkFailures)
+                List<NetworkFailure> networkFailures,
+                int subscriptionId)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
           type);
@@ -65,6 +67,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.recipientDeviceId   = recipientDeviceId;
     this.mismatches          = mismatches;
     this.networkFailures     = networkFailures;
+    this.subscriptionId      = subscriptionId;
   }
 
   public abstract boolean isMms();
@@ -195,4 +198,7 @@ public abstract class MessageRecord extends DisplayRecord {
     return (int)getId();
   }
 
+  public int getSubscriptionId() {
+    return subscriptionId;
+  }
 }

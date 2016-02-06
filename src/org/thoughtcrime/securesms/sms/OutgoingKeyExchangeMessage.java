@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public class OutgoingKeyExchangeMessage extends OutgoingTextMessage {
 
   public OutgoingKeyExchangeMessage(Recipients recipients, String message) {
-    super(recipients, message);
+    super(recipients, message, -1);
   }
 
   private OutgoingKeyExchangeMessage(OutgoingKeyExchangeMessage base, String body) {

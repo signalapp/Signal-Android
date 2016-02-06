@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 public class OutgoingEncryptedMessage extends OutgoingTextMessage {
 
   public OutgoingEncryptedMessage(Recipients recipients, String body) {
-    super(recipients, body);
+    super(recipients, body, -1);
   }
 
   private OutgoingEncryptedMessage(OutgoingEncryptedMessage base, String body) {

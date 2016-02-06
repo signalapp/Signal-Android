@@ -261,7 +261,7 @@ public class PushDecryptJob extends ContextJob {
     MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
     String               localNumber  = TextSecurePreferences.getLocalNumber(context);
     IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterSecret, envelope.getSource(),
-                                                                 localNumber, message.getTimestamp(),
+                                                                 localNumber, message.getTimestamp(), -1,
                                                                  Optional.fromNullable(envelope.getRelay()),
                                                                  message.getBody(),
                                                                  message.getGroupInfo(),
@@ -293,7 +293,7 @@ public class PushDecryptJob extends ContextJob {
     Recipients            recipients   = getSyncMessageDestination(message);
     OutgoingMediaMessage  mediaMessage = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
                                                                   PointerAttachment.forPointers(masterSecret, message.getMessage().getAttachments()),
-                                                                  message.getTimestamp(), ThreadDatabase.DistributionTypes.DEFAULT);
+                                                                  message.getTimestamp(), -1, ThreadDatabase.DistributionTypes.DEFAULT);
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
@@ -350,7 +350,7 @@ public class PushDecryptJob extends ContextJob {
     EncryptingSmsDatabase database            = DatabaseFactory.getEncryptingSmsDatabase(context);
     Recipients            recipients          = getSyncMessageDestination(message);
     String                body                = message.getMessage().getBody().or("");
-    OutgoingTextMessage   outgoingTextMessage = new OutgoingTextMessage(recipients, body);
+    OutgoingTextMessage   outgoingTextMessage = new OutgoingTextMessage(recipients, body, -1);
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
     long messageId = database.insertMessageOutbox(masterSecret, threadId, outgoingTextMessage, false, message.getTimestamp());

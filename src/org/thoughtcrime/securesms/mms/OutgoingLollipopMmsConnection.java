@@ -59,17 +59,27 @@ public class OutgoingLollipopMmsConnection extends LollipopMmsConnection impleme
 
   @Override
   @TargetApi(VERSION_CODES.LOLLIPOP)
-  public @Nullable synchronized SendConf send(@NonNull byte[] pduBytes) throws UndeliverableMessageException {
+  public @Nullable synchronized SendConf send(@NonNull byte[] pduBytes, int subscriptionId)
+      throws UndeliverableMessageException
+  {
     beginTransaction();
     try {
       MmsBodyProvider.Pointer pointer = MmsBodyProvider.makeTemporaryPointer(getContext());
       Util.copy(new ByteArrayInputStream(pduBytes), pointer.getOutputStream());
 
-      SmsManager.getDefault().sendMultimediaMessage(getContext(),
-                                                    pointer.getUri(),
-                                                    null,
-                                                    null,
-                                                    getPendingIntent());
+      SmsManager smsManager;
+
+      if (VERSION.SDK_INT >= 22 && subscriptionId != -1) {
+        smsManager = SmsManager.getSmsManagerForSubscriptionId(subscriptionId);
+      } else {
+        smsManager = SmsManager.getDefault();
+      }
+
+      smsManager.sendMultimediaMessage(getContext(),
+                                       pointer.getUri(),
+                                       null,
+                                       null,
+                                       getPendingIntent());
 
       waitForResult();
 
