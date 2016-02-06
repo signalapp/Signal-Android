@@ -9,9 +9,9 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
@@ -35,7 +35,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.NotificationInd;
@@ -75,8 +74,8 @@ public class MmsDownloadJob extends MasterSecretJob {
 
   @Override
   public void onRun(MasterSecret masterSecret) {
-    MmsDatabase               database     = DatabaseFactory.getMmsDatabase(context);
-    Optional<NotificationInd> notification = database.getNotification(messageId);
+    MmsDatabase                              database     = DatabaseFactory.getMmsDatabase(context);
+    Optional<Pair<NotificationInd, Integer>> notification = database.getNotification(messageId);
 
     if (!notification.isPresent()) {
       Log.w(TAG, "No notification for ID: " + messageId);
@@ -84,22 +83,24 @@ public class MmsDownloadJob extends MasterSecretJob {
     }
 
     try {
-      if (notification.get().getContentLocation() == null) {
+      if (notification.get().first.getContentLocation() == null) {
         throw new MmsException("Notification content location was null.");
       }
 
       database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
 
-      String contentLocation = new String(notification.get().getContentLocation());
-      byte[] transactionId   = notification.get().getTransactionId();
+      String contentLocation = new String(notification.get().first.getContentLocation());
+      byte[] transactionId   = notification.get().first.getTransactionId();
 
       Log.w(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost());
 
-      RetrieveConf retrieveConf = new CompatMmsConnection(context).retrieve(contentLocation, transactionId);
+      RetrieveConf retrieveConf = new CompatMmsConnection(context).retrieve(contentLocation, transactionId, notification.get().second);
+
       if (retrieveConf == null) {
         throw new MmsException("RetrieveConf was null");
       }
-      storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf);
+
+      storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf, notification.get().second);
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
       handleDownloadError(masterSecret, messageId, threadId, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
@@ -146,7 +147,8 @@ public class MmsDownloadJob extends MasterSecretJob {
   }
 
   private void storeRetrievedMms(MasterSecret masterSecret, String contentLocation,
-                                 long messageId, long threadId, RetrieveConf retrieved)
+                                 long messageId, long threadId, RetrieveConf retrieved,
+                                 int subscriptionId)
       throws MmsException, NoSessionException, DuplicateMessageException, InvalidMessageException,
              LegacyMessageException
   {
@@ -192,7 +194,7 @@ public class MmsDownloadJob extends MasterSecretJob {
 
 
 
-    IncomingMediaMessage message  = new IncomingMediaMessage(from, to, cc, body, retrieved.getDate() * 1000L, attachments);
+    IncomingMediaMessage message  = new IncomingMediaMessage(from, to, cc, body, retrieved.getDate() * 1000L, attachments, subscriptionId);
 
     Pair<Long, Long> messageAndThreadId  = database.insertMessageInbox(new MasterSecretUnion(masterSecret),
                                                                        message, contentLocation, threadId);

@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -17,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
@@ -49,14 +52,17 @@ public class QuickResponseService extends MasterSecretIntentService {
       if(numbers.contains("%")){
         numbers = URLDecoder.decode(numbers);
       }
-      Recipients recipients = RecipientFactory.getRecipientsFromString(this, numbers, false);
+
+      Recipients                      recipients     = RecipientFactory.getRecipientsFromString(this, numbers, false);
+      Optional<RecipientsPreferences> preferences    = DatabaseFactory.getRecipientPreferenceDatabase(this).getRecipientsPreferences(recipients.getIds());
+      int                             subscriptionId = preferences.isPresent() ? preferences.get().getDefaultSubscriptionId().or(-1) : -1;
 
       if (!TextUtils.isEmpty(content)) {
         if (recipients.isSingleRecipient()) {
-          MessageSender.send(this, masterSecret, new OutgoingTextMessage(recipients, content), -1, false);
+          MessageSender.send(this, masterSecret, new OutgoingTextMessage(recipients, content, subscriptionId), -1, false);
         } else {
           MessageSender.send(this, masterSecret, new OutgoingMediaMessage(recipients, new SlideDeck(), content, System.currentTimeMillis(),
-                                                                          ThreadDatabase.DistributionTypes.DEFAULT), -1, false);
+                                                                          subscriptionId, ThreadDatabase.DistributionTypes.DEFAULT), -1, false);
         }
       }
     } catch (URISyntaxException e) {

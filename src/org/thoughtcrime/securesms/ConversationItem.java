@@ -65,6 +65,9 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
+import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -93,6 +96,7 @@ public class ConversationItem extends LinearLayout
   private View               bodyBubble;
   private TextView           bodyText;
   private TextView           dateText;
+  private TextView           simInfoText;
   private TextView           indicatorText;
   private TextView           groupStatusText;
   private ImageView          secureImage;
@@ -135,6 +139,7 @@ public class ConversationItem extends LinearLayout
 
     this.bodyText                = (TextView)           findViewById(R.id.conversation_item_body);
     this.dateText                = (TextView)           findViewById(R.id.conversation_item_date);
+    this.simInfoText             = (TextView)           findViewById(R.id.sim_info);
     this.indicatorText           = (TextView)           findViewById(R.id.indicator_text);
     this.groupStatusText         = (TextView)           findViewById(R.id.group_message_status);
     this.secureImage             = (ImageView)          findViewById(R.id.secure_indicator);
@@ -188,6 +193,7 @@ public class ConversationItem extends LinearLayout
     setGroupMessageStatus(messageRecord, recipient);
     setMinimumWidth();
     setMediaAttributes(messageRecord);
+    setSimInfo(messageRecord);
   }
 
   private void initializeAttributes() {
@@ -324,6 +330,25 @@ public class ConversationItem extends LinearLayout
       else if (messageRecord.isPending())   deliveryStatusIndicator.setPending();
       else if (messageRecord.isDelivered()) deliveryStatusIndicator.setDelivered();
       else                                  deliveryStatusIndicator.setSent();
+    }
+  }
+
+  private void setSimInfo(MessageRecord messageRecord) {
+    if (messageRecord.getSubscriptionId() == -1) {
+      simInfoText.setVisibility(View.GONE);
+    } else {
+      SubscriptionManagerCompat        subscriptionManager = new SubscriptionManagerCompat(context);
+      Optional<SubscriptionInfoCompat> subscriptionInfo    = subscriptionManager.getActiveSubscriptionInfo(messageRecord.getSubscriptionId());
+
+      if (subscriptionInfo.isPresent() && messageRecord.isOutgoing()) {
+        simInfoText.setText(getContext().getString(R.string.ConversationItem_from_s, subscriptionInfo.get().getDisplayName()));
+        simInfoText.setVisibility(View.VISIBLE);
+      } else if (subscriptionInfo.isPresent()) {
+        simInfoText.setText(getContext().getString(R.string.ConversationItem_to_s,  subscriptionInfo.get().getDisplayName()));
+        simInfoText.setVisibility(View.VISIBLE);
+      } else {
+        simInfoText.setVisibility(View.GONE);
+      }
     }
   }
 

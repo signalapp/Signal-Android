@@ -52,7 +52,8 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
                                               MmsDatabase.STATUS, MmsSmsColumns.RECEIPT_COUNT,
                                               MmsSmsColumns.MISMATCHED_IDENTITIES,
-                                              MmsDatabase.NETWORK_FAILURE, TRANSPORT,
+                                              MmsDatabase.NETWORK_FAILURE,
+                                              MmsSmsColumns.SUBSCRIPTION_ID, TRANSPORT,
                                               AttachmentDatabase.ATTACHMENT_ID_ALIAS,
                                               AttachmentDatabase.UNIQUE_ID,
                                               AttachmentDatabase.MMS_ID,
@@ -132,7 +133,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
                               MmsSmsColumns.RECEIPT_COUNT, MmsSmsColumns.MISMATCHED_IDENTITIES,
-                              MmsDatabase.NETWORK_FAILURE, TRANSPORT,
+                              MmsSmsColumns.SUBSCRIPTION_ID, MmsDatabase.NETWORK_FAILURE,  TRANSPORT,
                               AttachmentDatabase.UNIQUE_ID,
                               AttachmentDatabase.MMS_ID,
                               AttachmentDatabase.SIZE,
@@ -156,6 +157,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
                               MmsSmsColumns.RECEIPT_COUNT, MmsSmsColumns.MISMATCHED_IDENTITIES,
+                              MmsSmsColumns.SUBSCRIPTION_ID,
                               MmsDatabase.NETWORK_FAILURE, TRANSPORT,
                               AttachmentDatabase.UNIQUE_ID,
                               AttachmentDatabase.MMS_ID,
@@ -192,6 +194,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsSmsColumns.ADDRESS_DEVICE_ID);
     mmsColumnsPresent.add(MmsSmsColumns.RECEIPT_COUNT);
     mmsColumnsPresent.add(MmsSmsColumns.MISMATCHED_IDENTITIES);
+    mmsColumnsPresent.add(MmsSmsColumns.SUBSCRIPTION_ID);
     mmsColumnsPresent.add(MmsDatabase.MESSAGE_TYPE);
     mmsColumnsPresent.add(MmsDatabase.MESSAGE_BOX);
     mmsColumnsPresent.add(MmsDatabase.DATE_SENT);
@@ -222,6 +225,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
     smsColumnsPresent.add(MmsSmsColumns.RECEIPT_COUNT);
     smsColumnsPresent.add(MmsSmsColumns.MISMATCHED_IDENTITIES);
+    smsColumnsPresent.add(MmsSmsColumns.SUBSCRIPTION_ID);
     smsColumnsPresent.add(SmsDatabase.TYPE);
     smsColumnsPresent.add(SmsDatabase.SUBJECT);
     smsColumnsPresent.add(SmsDatabase.DATE_SENT);

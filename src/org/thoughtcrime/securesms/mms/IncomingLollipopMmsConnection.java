@@ -39,6 +39,7 @@ import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.RetrieveConf;
 
 public class IncomingLollipopMmsConnection extends LollipopMmsConnection implements IncomingMmsConnection {
+
   public  static final String ACTION = IncomingLollipopMmsConnection.class.getCanonicalName() + "MMS_DOWNLOADED_ACTION";
   private static final String TAG    = IncomingLollipopMmsConnection.class.getSimpleName();
 
@@ -58,7 +59,8 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
   @Override
   @TargetApi(VERSION_CODES.LOLLIPOP)
   public synchronized @Nullable RetrieveConf retrieve(@NonNull String contentLocation,
-                                                      byte[] transactionId) throws MmsException
+                                                      byte[] transactionId,
+                                                      int subscriptionId) throws MmsException
   {
     beginTransaction();
 
@@ -66,11 +68,20 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
       MmsBodyProvider.Pointer pointer = MmsBodyProvider.makeTemporaryPointer(getContext());
 
       Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + pointer.getUri());
-      SmsManager.getDefault().downloadMultimediaMessage(getContext(),
-                                                        contentLocation,
-                                                        pointer.getUri(),
-                                                        null,
-                                                        getPendingIntent());
+
+      SmsManager smsManager;
+
+      if (VERSION.SDK_INT >= 22 && subscriptionId != -1) {
+        smsManager = SmsManager.getSmsManagerForSubscriptionId(subscriptionId);
+      } else {
+        smsManager = SmsManager.getDefault();
+      }
+
+      smsManager.downloadMultimediaMessage(getContext(),
+                                           contentLocation,
+                                           pointer.getUri(),
+                                           null,
+                                           getPendingIntent());
 
       waitForResult();
 

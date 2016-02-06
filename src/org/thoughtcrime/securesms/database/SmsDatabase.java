@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.LRUCache;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
@@ -78,7 +77,7 @@ public class SmsDatabase extends MessagingDatabase {
     DATE_RECEIVED  + " INTEGER, " + DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
     STATUS + " INTEGER DEFAULT -1," + TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " +
     RECEIPT_COUNT + " INTEGER DEFAULT 0," + SUBJECT + " TEXT, " + BODY + " TEXT, " +
-    MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, " + SERVICE_CENTER + " TEXT);";
+    MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, " + SERVICE_CENTER + " TEXT, " + SUBSCRIPTION_ID + " INTEGER DEFAULT -1);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -95,7 +94,7 @@ public class SmsDatabase extends MessagingDatabase {
       DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
       PROTOCOL, READ, STATUS, TYPE,
       REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, RECEIPT_COUNT,
-      MISMATCHED_IDENTITIES
+      MISMATCHED_IDENTITIES, SUBSCRIPTION_ID
   };
 
   private static final EarlyReceiptCache earlyReceiptCache = new EarlyReceiptCache();
@@ -451,6 +450,7 @@ public class SmsDatabase extends MessagingDatabase {
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(PROTOCOL, message.getProtocol());
     values.put(READ, unread ? 0 : 1);
+    values.put(SUBSCRIPTION_ID, message.getSubscriptionId());
 
     if (!TextUtils.isEmpty(message.getPseudoSubject()))
       values.put(SUBJECT, message.getPseudoSubject());
@@ -497,6 +497,7 @@ public class SmsDatabase extends MessagingDatabase {
     contentValues.put(DATE_SENT, date);
     contentValues.put(READ, 1);
     contentValues.put(TYPE, type);
+    contentValues.put(SUBSCRIPTION_ID, message.getSubscriptionId());
 
     try {
       contentValues.put(RECEIPT_COUNT, earlyReceiptCache.remove(date, canonicalizeNumber(context, address)));
@@ -663,6 +664,7 @@ public class SmsDatabase extends MessagingDatabase {
       int status              = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
       int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.RECEIPT_COUNT));
       String mismatchDocument = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.MISMATCHED_IDENTITIES));
+      int subscriptionId      = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.SUBSCRIPTION_ID));
 
       List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
       Recipients                recipients = getRecipientsFor(address);
@@ -672,7 +674,7 @@ public class SmsDatabase extends MessagingDatabase {
                                   recipients.getPrimaryRecipient(),
                                   addressDeviceId,
                                   dateSent, dateReceived, receiptCount, type,
-                                  threadId, status, mismatches);
+                                  threadId, status, mismatches, subscriptionId);
     }
 
     private Recipients getRecipientsFor(String address) {

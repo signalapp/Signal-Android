@@ -125,6 +125,25 @@
                           android:paddingBottom="2dp"
                           tools:text="30 mins" />
 
+                <TextView android:id="@+id/sim_info"
+                          android:autoLink="none"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:minWidth="15sp"
+                          android:linksClickable="false"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_gravity="right"
+                          android:fontFamily="sans-serif-light"
+                          android:textColor="?conversation_item_sent_text_secondary_color"
+                          android:textSize="@dimen/conversation_item_date_text_size"
+                          android:paddingTop="1dip"
+                          android:paddingBottom="2dp"
+                          android:paddingLeft="4dp"
+                          android:paddingStart="4dp"
+                          android:visibility="gone"
+                          tools:visibility="visible"
+                          tools:text="to SIM1"/>
+
                 <org.thoughtcrime.securesms.components.DeliveryStatusView
                         android:id="@+id/delivery_status"
                         android:layout_width="20dp"

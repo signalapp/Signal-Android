@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -25,12 +24,9 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.SmilUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
-import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -83,7 +79,7 @@ public class MmsSendJob extends SendJob {
       validateDestinations(message, pdu);
 
       final byte[]        pduBytes = getPduBytes(pdu);
-      final SendConf      sendConf = new CompatMmsConnection(context).send(pduBytes);
+      final SendConf      sendConf = new CompatMmsConnection(context).send(pduBytes, message.getSubscriptionId());
       final MmsSendResult result   = getSendResult(sendConf, pdu);
 
       database.markAsSent(messageId);

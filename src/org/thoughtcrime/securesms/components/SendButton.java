@@ -83,14 +83,18 @@ public class SendButton extends ImageButton
     transportOptions.setDefaultTransport(type);
   }
 
+  public void setDefaultSubscriptionId(Optional<Integer> subscriptionId) {
+    transportOptions.setDefaultSubscriptionId(subscriptionId);
+  }
+
   @Override
   public void onSelected(TransportOption option) {
-    transportOptions.setSelectedTransport(option.getType());
+    transportOptions.setSelectedTransport(option);
     getTransportOptionsPopup().dismiss();
   }
 
   @Override
-  public void onChange(TransportOption newTransport) {
+  public void onChange(TransportOption newTransport, boolean isManualSelection) {
     setImageResource(newTransport.getDrawable());
     setContentDescription(newTransport.getDescription());
   }

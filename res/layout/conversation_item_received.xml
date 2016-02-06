@@ -113,6 +113,8 @@
                            android:layout_height="wrap_content"
                            android:layout_gravity="center_vertical"
                            android:paddingTop="2dp"
+                           android:paddingRight="4dp"
+                           android:paddingEnd="4dp"
                            android:src="?menu_lock_icon_small"
                            android:contentDescription="@string/conversation_item__secure_message_description"
                            android:visibility="gone"
@@ -130,6 +132,19 @@
                           android:layout_height="wrap_content"
                           android:layout_gravity="left"
                           android:paddingTop="1dip"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:textColor="?conversation_item_received_text_secondary_color"
+                          android:textSize="@dimen/conversation_item_date_text_size"
+                          android:fontFamily="sans-serif-light"
+                          android:autoLink="none"
+                          android:linksClickable="false"
+                          tools:text="Now"/>
+
+                <TextView android:id="@+id/sim_info"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="left"
+                          android:paddingTop="1dip"
                           android:paddingLeft="4dp"
                           android:paddingStart="4dp"
                           android:textAppearance="?android:attr/textAppearanceSmall"
@@ -137,7 +152,10 @@
                           android:textSize="@dimen/conversation_item_date_text_size"
                           android:fontFamily="sans-serif-light"
                           android:autoLink="none"
-                          android:linksClickable="false" />
+                          android:linksClickable="false"
+                          android:visibility="gone"
+                          tools:visibility="visible"
+                          tools:text="from SIM1"/>
             </LinearLayout>
         </LinearLayout>
 

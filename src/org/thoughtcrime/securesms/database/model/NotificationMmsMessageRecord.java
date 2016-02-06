@@ -49,11 +49,12 @@ public class NotificationMmsMessageRecord extends MessageRecord {
                                       Recipient individualRecipient, int recipientDeviceId,
                                       long dateSent, long dateReceived, int receiptCount,
                                       long threadId, byte[] contentLocation, long messageSize,
-                                      long expiry, int status, byte[] transactionId, long mailbox)
+                                      long expiry, int status, byte[] transactionId, long mailbox,
+                                      int subscriptionId)
   {
     super(context, id, new Body("", true), recipients, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox,
-          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>());
+          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

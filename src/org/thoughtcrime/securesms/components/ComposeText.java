@@ -3,9 +3,11 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.text.style.RelativeSizeSpan;
@@ -17,7 +19,9 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
+
   private SpannableString hint;
+  private SpannableString subHint;
 
   public ComposeText(Context context) {
     super(context);
@@ -31,10 +35,18 @@ public class ComposeText extends EmojiEditText {
     super(context, attrs, defStyleAttr);
   }
 
-  @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+  @Override
+  protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
     super.onLayout(changed, left, top, right, bottom);
+
     if (!TextUtils.isEmpty(hint)) {
-      setHint(ellipsizeToWidth(hint));
+      if (!TextUtils.isEmpty(subHint)) {
+        setHint(new SpannableStringBuilder().append(ellipsizeToWidth(hint))
+                                            .append("\n")
+                                            .append(ellipsizeToWidth(subHint)));
+      } else {
+        setHint(ellipsizeToWidth(hint));
+      }
     }
   }
 
@@ -45,10 +57,24 @@ public class ComposeText extends EmojiEditText {
                                TruncateAt.END);
   }
 
-  public void setHint(@NonNull String hint) {
+  public void setHint(@NonNull String hint, @Nullable CharSequence subHint) {
     this.hint = new SpannableString(hint);
     this.hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-    super.setHint(ellipsizeToWidth(this.hint));
+
+    if (subHint != null) {
+      this.subHint = new SpannableString(subHint);
+      this.subHint.setSpan(new RelativeSizeSpan(0.8f), 0, subHint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+    } else {
+      this.subHint = null;
+    }
+
+    if (this.subHint != null) {
+      super.setHint(new SpannableStringBuilder().append(ellipsizeToWidth(this.hint))
+                                                .append("\n")
+                                                .append(ellipsizeToWidth(this.subHint)));
+    } else {
+      super.setHint(ellipsizeToWidth(this.hint));
+    }
   }
 
   public void appendInvite(String invite) {
@@ -88,6 +114,6 @@ public class ComposeText extends EmojiEditText {
 
     setInputType(inputType);
     setImeOptions(imeOptions);
-    setHint(transport.getComposeHint());
+    setHint(transport.getComposeHint(), transport.getSimName().isPresent() ? "From " + transport.getSimName().get() : null);
   }
 }

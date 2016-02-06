@@ -8,6 +8,7 @@
               android:gravity="center_vertical"
               android:paddingLeft="10dp"
               android:paddingRight="10dp">
+
     <ImageView android:id="@+id/icon"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -16,11 +17,28 @@
                android:contentDescription="@string/transport_selection_list_item__transport_icon"
                tools:src="@drawable/ic_send_push_white_24dp"
                tools:backgroundTint="@color/textsecure_primary" />
-    <TextView android:id="@+id/text"
-              android:paddingLeft="10dp"
-              android:fontFamily="sans-serif-light"
-              android:textSize="16sp"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              tools:text="TextSecure" />
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center_vertical"
+                  android:paddingLeft="10dp">
+
+        <TextView android:id="@+id/text"
+                  android:fontFamily="sans-serif-light"
+                  android:textSize="16sp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  tools:text="TextSecure" />
+
+        <TextView android:id="@+id/subtext"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="sans-serif-light"
+                  android:textSize="12dp"
+                  android:visibility="gone"
+                  tools:text="From Home"
+                  tools:visibility="visible"/>
+
+    </LinearLayout>
 </LinearLayout>
