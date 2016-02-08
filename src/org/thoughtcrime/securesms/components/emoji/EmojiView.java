@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components.emoji;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
@@ -17,7 +16,6 @@ public class EmojiView extends View implements Drawable.Callback {
   private Drawable drawable;
 
   private final Paint paint      = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-  private final Rect  textBounds = new Rect();
 
   public EmojiView(Context context) {
     this(context, null);
@@ -54,12 +52,17 @@ public class EmojiView extends View implements Drawable.Callback {
       float targetFontSize = 0.75f * getHeight() - getPaddingTop() - getPaddingBottom();
       paint.setTextSize(targetFontSize);
       paint.setColor(ResUtil.getColor(getContext(), R.attr.emoji_text_color));
-      paint.getTextBounds(emoji, 0, emoji.length(), textBounds);
-      float overflow = textBounds.width() / (getWidth() - getPaddingLeft() - getPaddingRight());
+      paint.setTextAlign(Paint.Align.CENTER);
+      int xPos = (canvas.getWidth() / 2);
+      int yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
+
+      float overflow = paint.measureText(emoji) /
+          (getWidth() - getPaddingLeft() - getPaddingRight());
       if (overflow > 1f) {
         paint.setTextSize(targetFontSize / overflow);
+        yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
       }
-      canvas.drawText(emoji, 0.5f * (getWidth() - textBounds.width()), 0.5f * (getHeight() + textBounds.height()), paint);
+      canvas.drawText(emoji, xPos, yPos, paint);
     }
   }
 
