@@ -25,6 +25,12 @@
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:defaultValue="false"
+                        android:key="pref_unicode_stripping_sms"
+                        android:summary="@string/preferences__strip_all_unicode_characters"
+                        android:title="@string/preferences__sms_unicode_stripping" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                        android:defaultValue="false"
                         android:key="pref_wifi_sms"
                         android:title="@string/preferences__support_wifi_calling"
                         android:summary="@string/preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi"/>

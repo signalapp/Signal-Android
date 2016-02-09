@@ -60,6 +60,7 @@ public class TextSecurePreferences {
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
+  private static final String SMS_UNICODE_STRIPPING_PREF       = "pref_unicode_stripping_sms";
   public  static final String MMS_USER_AGENT                   = "pref_mms_user_agent";
   private static final String MMS_CUSTOM_USER_AGENT            = "pref_custom_mms_user_agent";
   private static final String THREAD_TRIM_ENABLED              = "pref_trim_threads";
@@ -422,6 +423,10 @@ public class TextSecurePreferences {
 
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
     return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
+  }
+
+  public static boolean isUnicodeStrippingEnabled(Context context) {
+    return getBooleanPreference(context, SMS_UNICODE_STRIPPING_PREF, false);
   }
 
   public static boolean hasPromptedPushRegistration(Context context) {

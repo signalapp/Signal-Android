@@ -23,11 +23,14 @@ import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.UnicodeFilter;
 import org.whispersystems.jobqueue.JobParameters;
 
 import java.util.ArrayList;
 
 public class SmsSendJob extends SendJob {
+
+  private static final long serialVersionUID = 0L;
 
   private static final String TAG = SmsSendJob.class.getSimpleName();
 
@@ -75,6 +78,14 @@ public class SmsSendJob extends SendJob {
     MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
   }
 
+  private String getMessageBody(String body) {
+    if (TextSecurePreferences.isUnicodeStrippingEnabled(context)) {
+      return UnicodeFilter.filter(body);
+    } else {
+      return body;
+    }
+  }
+
   private void deliver(SmsMessageRecord message)
       throws UndeliverableMessageException
   {
@@ -96,7 +107,7 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Not a valid SMS destination! " + recipient);
     }
 
-    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody().getBody());
+    ArrayList<String> messages                = SmsManager.getDefault().divideMessage(getMessageBody(message.getBody().getBody()));
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, false);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
 
