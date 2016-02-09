@@ -229,7 +229,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       if (context == null) return null;
 
       for (String number : numbers) {
-        Recipients                      recipients  = RecipientFactory.getRecipientsFromString(context, number, false);
+        Recipients recipients = RecipientFactory.getRecipientsFromString(context, number, false);
 
         if (recipients.getPrimaryRecipient() != null) {
           Optional<RecipientsPreferences> preferences    = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(recipients.getIds());

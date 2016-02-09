@@ -63,7 +63,7 @@ public class MmsListener extends BroadcastReceiver {
          isRelevant(context, intent)))
     {
       Log.w(TAG, "Relevant!");
-      int      subscriptionId = intent.getExtras().getInt("subscription", -1);
+      int subscriptionId = intent.getExtras().getInt("subscription", -1);
 
       ApplicationContext.getInstance(context)
                         .getJobManager()
