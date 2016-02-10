@@ -105,6 +105,8 @@ public class TextSecurePreferences {
     return getIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, CameraInfo.CAMERA_FACING_FRONT);
   }
 
+  public  static final String BUG_130689_NOTIFICATION_FIX_PREF = "pref_bug_130689_notification_fix";
+
   public static void setMultiDevice(Context context, boolean value) {
     setBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, value);
   }
@@ -494,6 +496,10 @@ public class TextSecurePreferences {
 
   public static boolean isSystemEmojiPreferred(Context context) {
     return getBooleanPreference(context, SYSTEM_EMOJI_PREF, false);
+  }
+
+  public static boolean isBug130689NotificationFixEnabled(Context context) {
+    return getBooleanPreference(context, BUG_130689_NOTIFICATION_FIX_PREF, false);
   }
 
   public static @NonNull Set<String> getMobileMediaDownloadAllowed(Context context) {

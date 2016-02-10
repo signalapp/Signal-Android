@@ -6,8 +6,13 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.service.KeyCachingService;
+
+import java.util.Set;
 
 public class Trimmer {
 
@@ -37,7 +42,12 @@ public class Trimmer {
 
     @Override
     protected Void doInBackground(Integer... params) {
+      Set<Long> unreadThreadIds = MessageNotifier.unreadThreadIds(context, null);
+
       DatabaseFactory.getThreadDatabase(context).trimAllThreads(params[0], this);
+
+      final MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
+      MessageNotifier.updateNotificationCancelRead(context, masterSecret, unreadThreadIds);
       return null;
     }
 

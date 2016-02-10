@@ -78,7 +78,7 @@ public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
           }
 
           DatabaseFactory.getThreadDatabase(context).setRead(threadId);
-          MessageNotifier.updateNotification(context, masterSecret);
+          MessageNotifier.updateNotificationCancelRead(context, masterSecret, threadId);
 
           return null;
         }
