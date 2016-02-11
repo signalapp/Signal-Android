@@ -334,11 +334,12 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setSimInfo(MessageRecord messageRecord) {
-    if (messageRecord.getSubscriptionId() == -1) {
+    SubscriptionManagerCompat subscriptionManager = new SubscriptionManagerCompat(context);
+
+    if (messageRecord.getSubscriptionId() == -1 || subscriptionManager.getActiveSubscriptionInfoList().size() < 2) {
       simInfoText.setVisibility(View.GONE);
     } else {
-      SubscriptionManagerCompat        subscriptionManager = new SubscriptionManagerCompat(context);
-      Optional<SubscriptionInfoCompat> subscriptionInfo    = subscriptionManager.getActiveSubscriptionInfo(messageRecord.getSubscriptionId());
+      Optional<SubscriptionInfoCompat> subscriptionInfo = subscriptionManager.getActiveSubscriptionInfo(messageRecord.getSubscriptionId());
 
       if (subscriptionInfo.isPresent() && messageRecord.isOutgoing()) {
         simInfoText.setText(getContext().getString(R.string.ConversationItem_from_s, subscriptionInfo.get().getDisplayName()));
