@@ -22,7 +22,7 @@
                 android:icon="?pref_ic_chats"/>
 
     <Preference android:key="preference_category_devices"
-                android:title="@string/preferences__devices"
+                android:title="@string/preferences__linked_devices"
                 android:icon="?pref_ic_devices"/>
 
     <Preference android:key="preference_category_advanced"
