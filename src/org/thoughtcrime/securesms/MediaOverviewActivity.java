@@ -160,13 +160,12 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
             Cursor cursor                                   = DatabaseFactory.getImageDatabase(c).getImagesForThread(threadId);
             List<SaveAttachmentTask.Attachment> attachments = new ArrayList<>(cursor.getCount());
 
-            cursor.moveToFirst();
-            do {
+            while (cursor != null && cursor.moveToNext()) {
               ImageRecord record = ImageRecord.from(cursor);
               attachments.add(new SaveAttachmentTask.Attachment(record.getAttachment().getDataUri(),
                                                                 record.getContentType(),
                                                                 record.getDate()));
-            } while (cursor.moveToNext());
+            }
 
             return attachments;
           }
