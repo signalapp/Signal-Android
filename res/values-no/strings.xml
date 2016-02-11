@@ -37,7 +37,7 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Passord %1$s, skjermsikkerhet %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, språk %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">1 minutt</item>
@@ -81,10 +81,12 @@ denne kontakten.</string>
   <string name="ConversationItem_group_action_left">%1$s har forlatt gruppen.</string>
   <string name="ConversationItem_click_for_details">Klikk for detaljer</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Klikk for usikret «fallback»</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">«Fallback» til ukryptert SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Benytte ukryptert SMS som alternativ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Benytte ukryptert MMS som alternativ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen vil <b>ikke</b> bli kryptert fordi mottakeren ikke lenger er en Signal bruker.\n\nSend meldingen ukryptert?</string>
   <string name="ConversationItem_unable_to_open_media">Finner ikke en applikasjon som kan åpne dette mediet.</string>
+  <string name="ConversationItem_from_s">fra %s</string>
+  <string name="ConversationItem_to_s">til %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Nullstill sikker sesjon?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe dersom du har krypteringsproblemer i denne samtalen. Meldingene dine vil bli lagret. </string>
@@ -174,7 +176,7 @@ denne kontakten.</string>
   <string name="ConversationListFragment_undo">Angre</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Samtalen flyttet til innboks</item>
-    <item quantity="other">%d samtaler flyttet til inboks</item>
+    <item quantity="other">Flyttet %d samtaler til innboks</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding...</string>

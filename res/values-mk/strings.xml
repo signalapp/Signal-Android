@@ -33,6 +33,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не постои апликација за избор на датотеки.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Камера</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Слика</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Звук</string>
@@ -41,10 +42,12 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
   <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Доаѓачки повик</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Овој контакт би требало да го верфивикувате.</string>
   <string name="ConfirmIdentityDialog_accept">Прифати</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Порака %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Големина на порака: %d KB</string>
   <string name="ConversationItem_expires_s">Истекува: %s</string>
@@ -62,6 +65,7 @@
   <string name="ConversationActivity_select_contact_info">Изберете контакт инфо</string>
   <string name="ConversationActivity_compose_message">Креирајте порака</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извинете, се појави грешка при прикачување на датотеката.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gif-от што го избравте беше многу голем!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Извинете, избраното видео ја пречекорува дозволената големина на порака (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Извинете, избраното аудио ја пречекорува дозволената големина на порака (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адресата не е валидна SMS или e-mail адреса!</string>
@@ -85,6 +89,9 @@
   <string name="ConversationActivity_unblock_question">Одблокирај?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Дали сте сигурни дека сакате да го одблокирате овој контакт?</string>
   <string name="ConversationActivity_unblock">Одблокирај</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Камерата е недостапна</string>
+  <string name="ConversationActivity_unable_to_record_audio">Не може да се снима аудио!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Грешка при праќањето на говорна порака...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Детали за пораката</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Трансфер: %1$s\nИспратено/Примено: %2$s</string>
@@ -176,11 +183,24 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при поврзувањето со MMS провајдерот...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Грешка при читање на подесувањата на wireless провајдерот за MMS...</string>
   <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_missed_call_from_s">Пропуштен повик од %s</string>
+  <string name="NotificationBarManager_missed_signal_call">Пропуштен Signal повик</string>
+  <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Signal</string>
+  <string name="NotificationBarManager__deny_call">Одбиј го повикот</string>
+  <string name="NotificationBarManager__answer_call">Одговори на повикот</string>
+  <string name="NotificationBarManager__end_call">Заврши го повикот</string>
+  <string name="NotificationBarManager__cancel_call">Откажи повик</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедијална порака</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
   <string name="MessageRecord_left_group">Ја напуштивте групата.</string>
   <string name="MessageRecord_updated_group">Групата е ажурирана.</string>
+  <string name="MessageRecord_s_called_you">%s ве повика</string>
+  <string name="MessageRecord_called_s">Повикан %s</string>
+  <string name="MessageRecord_missed_call_from">Пропуштен повик од %s</string>
+  <string name="MessageRecord_s_is_on_signal_say_hey">%s има инсталирано Signal, кажи му здраво! </string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Тајните фрази не се идентични!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Погрешна стара лозинка!</string>
@@ -191,6 +211,14 @@
   <string name="DeviceProvisioningActivity_continue">ПРОДОЛЖИ</string>
   <string name="DeviceProvisioningActivity_title">Поврзете го овај уред?</string>
   <string name="DeviceProvisioningActivity_content_intro">Ќе може</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+
+• Прочитајте ги сите ваши пораки
+
+\n• Испратете пораки во ваше име</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Поврзување на уред</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Поврзување на нов уред...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Уредот е одобрен!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Уредот не е пронајден.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Мрежна грешка.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Погрешен QR код.</string>
@@ -215,7 +243,19 @@
   <string name="RecipientPreferenceActivity_enabled">Овозможено</string>
   <string name="RecipientPreferenceActivity_disabled">Оневозможено</string>
   <!--RedPhone-->
+  <string name="RedPhone_ending_call">Завршување на повик</string>
+  <string name="RedPhone_dialing">Повикување</string>
+  <string name="RedPhone_canceling_call">Откажување за повик</string>
+  <string name="RedPhone_call_rejected">Повикот отфрлен</string>
+  <string name="RedPhone_busy">Зафатено</string>
+  <string name="RedPhone_connected">Поврзан</string>
+  <string name="RedPhone_connecting">Се поврзува...</string>
+  <string name="RedPhone_message_from_the_server">Порака од серверот</string>
+  <string name="RedPhone_number_not_registered">Бројот не е регистриран!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Бројот што го биравте не поддржува</string>
+  <string name="RedPhone_got_it">Во ред</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">Конектирајте се со Signal</string>
   <string name="RegistrationActivity_select_your_country">Изберете држава</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Внесете го повикувачкиот број
 за вашата држава </string>
@@ -260,6 +300,7 @@
   <string name="RegistrationService_registration_complete">Регистрацијата е завршена</string>
   <string name="RegistrationService_registration_error">Грешка при регистрацијата</string>
   <!--Slide-->
+  <string name="Slide_audio">Звук</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Примена е погрешна порака
 за размена на клучеви!</string>
@@ -270,6 +311,7 @@
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ја напушти групата...</string>
   <string name="ThreadRecord_draft">Скица:</string>
+  <string name="ThreadRecord_s_is_on_signal_say_hey">%s има инсталирано Signal, кажи му здраво! </string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немат клуч за идентификација.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Примателот нема клуч за идентификација.</string>
@@ -331,6 +373,8 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
   <!--attachment_type_selector-->
+  <string name="attachment_type_selector__audio">Звук</string>
+  <string name="attachment_type_selector__camera">камера</string>
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
@@ -420,7 +464,10 @@
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Оневозможи известувања за овој разговор</string>
   <string name="recipient_preferences__vibrate">Вибрирај</string>
   <string name="recipient_preferences__block">Блокирај</string>
+  <string name="recipient_preferences__color">Боја</string>
+  <string name="recipient_preferences__color_for_this_contact">Боја за овој контакт?</string>
   <!--- redphone_call_controls-->
+  <string name="redphone_call_controls__audio">Звук</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">ВАШАТА ДРЖАВА</string>
   <string name="registration_activity__your_country_code_and_phone_number">ПОВИКУВАЧКИ БРОЈ ЗА ВАШАТА ДРЖАВА И
@@ -444,6 +491,7 @@
   <string name="registration_progress_activity__call_me">Повикај ме</string>
   <string name="registration_progress_activity__edit_number">Измени број</string>
   <string name="registration_progress_activity__connectivity_error">Грешка во конекцијата.</string>
+  <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal не може да се поврзе со серверот.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Некои можни
         проблеми вклучуваат:</string>
   <string name="registration_progress_activity__no_network_connectivity">Нема мрежа.</string>
@@ -482,6 +530,7 @@
   <string name="AndroidManifest__verify_identity">Проверете идентитет</string>
   <string name="AndroidManifest__media_overview">Сите слики</string>
   <string name="AndroidManifest__media_overview_named">Сите слики со %1$s</string>
+  <string name="AndroidManifest__invite_friends">Покани пријатели</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Импортирај / експортирај</string>
   <string name="arrays__use_default">Користете стандардно</string>
@@ -493,6 +542,7 @@
   <string name="arrays__settings_default">Стандардни подесувања</string>
   <string name="arrays__enabled">Овозможено</string>
   <string name="arrays__disabled">Оневозможено</string>
+  <string name="arrays__audio">Звук</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -622,7 +672,9 @@
   <string name="conversation__menu_add_attachment">Прикачи датотека</string>
   <string name="conversation__menu_update_group">Ажурирај група</string>
   <string name="conversation__menu_leave_group">Напушти група</string>
+  <string name="conversation__menu_delete_thread">Избриши разговор</string>
   <string name="conversation__menu_view_media">Сите слики</string>
+  <string name="conversation__menu_conversation_settings">Разговорни подесувања</string>
   <!--conversation_popup-->
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додади во контакти</string>
@@ -641,7 +693,15 @@
   <string name="text_secure_normal__menu_settings">Подесувања</string>
   <string name="text_secure_normal__menu_clear_passphrase">Заклучи</string>
   <string name="text_secure_normal__mark_all_as_read">Обележи ги сите како прочитани</string>
+  <string name="text_secure_normal__invite_friends">Покани пријатели</string>
+  <string name="text_secure_normal__help">Помош</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Вашата верзија на Signal е застарена.</string>
+  <string name="reminder_header_sms_default_title">Користи како стандардна СМС апликација</string>
+  <string name="reminder_header_invite_button">Покани</string>
+  <string name="reminder_header_share_title">Покани ги твиоте пријатели!</string>
+  <string name="reminder_header_share_button">Сподели</string>
+  <string name="reminder_header_close_button">Затвори</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вие</string>
   <string name="MediaPreviewActivity_cant_display">Неуспешно прикажување на сликата</string>
@@ -649,8 +709,10 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Зачувај</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Приказ на сликата</string>
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__speaker">Звучник</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">Бришење</string>
   <string name="trimmer__deleting_old_messages">Бришење на старите пораки...</string>

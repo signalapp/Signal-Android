@@ -83,6 +83,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">退回到未加密的彩信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于对方已经不再是暗号的使用者，当前消息 <b>不会</b> 被发送。\n\n发送不加密的信息？</string>
   <string name="ConversationItem_unable_to_open_media">无法找到能打开该媒体的应用。</string>
+  <string name="ConversationItem_from_s">来自 %s</string>
+  <string name="ConversationItem_to_s">至 %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">该选项将会有助于解决您在会话中遇到的加密问题，但是您的消息可能会受人控制。</string>

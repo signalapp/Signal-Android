@@ -83,6 +83,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden om dat ontvanger geen Signal meer gebruikt.\n\nOnbeveiligd bericht verzenden?</string>
   <string name="ConversationItem_unable_to_open_media">Geen app gevonden om dit bestand te openen.</string>
+  <string name="ConversationItem_from_s">van %s</string>
+  <string name="ConversationItem_to_s">naar %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Beveiligde sessie resetten?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dit kan mogelijk helpen wanneer je versleutelingsproblemen hebt met dit gesprek. Je berichten blijven behouden.</string>

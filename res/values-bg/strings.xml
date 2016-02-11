@@ -84,6 +84,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Разреши преминавене към не шифровани MMS-и?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>НЯМА</b> да бъде криптирано, защото получтеля вече не е потребител на Signal.\n\nИзпрати незащитено съобщение?</string>
   <string name="ConversationItem_unable_to_open_media">Неуспешно откриване на приложение за отваряне на този файл.</string>
+  <string name="ConversationItem_from_s">от %s</string>
+  <string name="ConversationItem_to_s">do %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Рестартирай сигурната сесия?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Това може да помогне ако имате проблеми с екрипцията в този разговор. Вашите съобщения ще бъдат запазени.</string>

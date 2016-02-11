@@ -21,6 +21,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Обриши</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Да искључим лозинку?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ово ће трајно да откључа Сигнал и обавештења о порукама.</string>
   <string name="ApplicationPreferencesActivity_disable">Искључи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Одјављујем</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Одјављујем се са порука и позива преко Сигнала...</string>
@@ -80,6 +81,7 @@
   <string name="ConversationItem_expires_s">Истиче: %s</string>
   <string name="ConversationItem_error_not_delivered">Није испоручена</string>
   <string name="ConversationItem_view_secure_media_question">Приказати обезбеђени медијум?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Овај медијум је уписан у шифровану базу података. Да бисте га приказали у спољашњем прегледачу садржаја потребно је податке привремено дешифровати и уписати на диск. Желите ли заиста да то урадите?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Грешка, примљена је застарела порука размене кључева.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Примљена порука размене кључева, тапните за обраду.</string>
   <string name="ConversationItem_group_action_left">%1$s напусти групу.</string>
@@ -89,6 +91,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да спаднем на нешифровани ММС?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ова порука <b>неће</b> бити шифрована јер корисник више није пријављен на Сигнал.\n\nДа пошаљем необезбеђену поруку?</string>
   <string name="ConversationItem_unable_to_open_media">Нема апликације која може да отвори овај медијум.</string>
+  <string name="ConversationItem_from_s">од %s</string>
+  <string name="ConversationItem_to_s">за %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ресетовати безбедну сесију?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Може да помогне ако имате проблема са шифровањем у овој преписци. Поруке ће остати.</string>
@@ -610,6 +614,7 @@
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">настави</string>
   <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">Не могу да очитам дневник на вашем уређају. Можете да искористите АДБ да бисте добавили дневник исправљања грешака.</string>
   <string name="log_submit_activity__thanks">Хвала вам на помоћи!</string>
   <string name="log_submit_activity__submitting">Шаљем</string>
   <string name="log_submit_activity__posting_logs">Отпремам дневник на гист…</string>
@@ -656,6 +661,7 @@
   <string name="prompt_passphrase_activity__unlock">Откључај</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Сигнал захтева ММС поставке да би испоручио мултимедијалне и групне поруке преко вашег оператера. Ваш уређај не даје ове податке, што повремено важи за закључане уређаје и друге ограничавајуће конфигурације.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Да бисте слали мултимедијалне и групне поруке тапните „У реду“ и попуните захтеване поставке. ММС поставке за вашег оператера углавном можете наћи претрагом „мој оператер APN“. Ово треба да урадите само једном.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">БЛОКИРАН</string>
   <!--recipient_preferences-->
@@ -984,6 +990,7 @@
   <string name="reminder_header_sms_default_text">Тапните да поставите Сигнал за подразумевану апликацију за СМС.</string>
   <string name="reminder_header_sms_default_button">ПОСТАВИ</string>
   <string name="reminder_header_sms_import_title">Увези системске СМС</string>
+  <string name="reminder_header_sms_import_text">Тапните да копирате СМС поруке са вашег телефона у шифровану базу Сигнала.</string>
   <string name="reminder_header_sms_import_button">УВЕЗИ</string>
   <string name="reminder_header_push_title">Омогућите поруке и позиве преко Сигнала</string>
   <string name="reminder_header_push_text">Побољшајте комуникацију.</string>

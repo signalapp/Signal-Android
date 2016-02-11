@@ -90,6 +90,8 @@ preveriti ta stik.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Preklopim na nešifriran MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker prejemnik ni več uporabnik aplikacije Signal.\n\nPošljem nešifrirano?</string>
   <string name="ConversationItem_unable_to_open_media">Ne najdem aplikacije za odpiranje te vrste datotek.</string>
+  <string name="ConversationItem_from_s">od %s</string>
+  <string name="ConversationItem_to_s">za %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
@@ -981,7 +983,7 @@ bila uspešna.</string>
   <string name="reminder_header_sms_default_text">Z dotikom nastavite Signal za privzeto aplikacijo SMS</string>
   <string name="reminder_header_sms_default_button">NASTAVI</string>
   <string name="reminder_header_sms_import_title">Uvoz iz sistemske zbirke sporočil SMS</string>
-  <string name="reminder_header_sms_import_text">Tapnite za kopiranje SMS sporočil iz telefona v kriptirano zbirko aplikacije Signal.</string>
+  <string name="reminder_header_sms_import_text">Tapnite za kopiranje sporočil SMS iz telefona v kriptirano zbirko aplikacije Signal.</string>
   <string name="reminder_header_sms_import_button">UVOZI</string>
   <string name="reminder_header_push_title">Vklopi sporočila in klice Signal</string>
   <string name="reminder_header_push_text">Izboljšajte kvaliteto svoje komunikacije!</string>

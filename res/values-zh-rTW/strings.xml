@@ -11,12 +11,13 @@
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="other">每個對話中有 %d 個訊息</item>
   </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">刪除\"全部\"的舊訊息？</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">確認刪除全部舊的訊息？</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">這將會立即裁剪所有對話至 %d 最新訊息。</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">刪除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">停用密碼嗎?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將會永久性地解鎖 Signal 與訊息通知。</string>
   <string name="ApplicationPreferencesActivity_disable">停用</string>
   <string name="ApplicationPreferencesActivity_unregistering">取消註冊</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊Signal訊息與通話...</string>
@@ -70,7 +71,9 @@
   <string name="ConversationItem_expires_s">於: %s 後過期</string>
   <string name="ConversationItem_error_not_delivered">未送達</string>
   <string name="ConversationItem_view_secure_media_question">檢視安全的媒體檔案？</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">此媒體已經被保存於加密數據庫中。不幸地，如果要使用外部程式開啓內容，則必須臨時解密並保存於外部存儲。您確定要這麼做嗎？</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">錯誤，收到的是過期的金鑰交換訊息。</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">接收到金鑰交換訊息，按此開始處理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已經離開群組。</string>
   <string name="ConversationItem_click_for_details">輕觸查閱詳情</string>
   <string name="ConversationItem_click_to_approve_unencrypted">輕觸回收不安全的通訊</string>
@@ -373,6 +376,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">您撥通的號碼不支援加密語音！</string>
   <string name="RedPhone_got_it">收到</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">使用 Signal 連接</string>
   <string name="RegistrationActivity_select_your_country">選擇您的國家／地區</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">您必須輸入
 您的國碼</string>
@@ -430,6 +434,7 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         收到的金鑰交換訊息是未知的協定／版本。
     </string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">收到的金鑰交換訊息夾帶未知的身分值，按此顯示細節並執行。</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">已接收金鑰交換更新請求但未知對方身分。按此進行身分確認。</string>
   <string name="SmsMessageRecord_secure_session_reset">安全工作階段重設。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息。</string>
@@ -582,6 +587,7 @@
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">繼續</string>
   <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">無法在您的設備上讀取日誌。您仍然可以使用 ADB 來獲得偵錯紀錄。</string>
   <string name="log_submit_activity__thanks">感謝您的協助！</string>
   <string name="log_submit_activity__submitting">上傳中</string>
   <string name="log_submit_activity__posting_logs">正在把記錄轉貼至gist上...</string>
@@ -626,6 +632,7 @@
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal 需要多媒體訊息設定以透過業者傳輸媒體與群組訊息。您的裝置沒有所需的資訊，有可能是由於裝置被鎖定或者其他限制設定。</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">傳送媒體檔案或群組訊息，請按下 \"OK\" 並完成必要的設定。您所使用電信業者相關的MMS多媒體簡訊設定可能羅列在 \'無線與網路／行動網路\'的設定項目內。且您只需設定一次。</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">已封鎖</string>
   <!--recipient_preferences-->
@@ -727,6 +734,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="AndroidManifest__public_identity_key">公鑰／公開金鑰</string>
   <string name="AndroidManifest__change_passphrase">變更自訂密碼</string>
   <string name="AndroidManifest__verify_identity">驗證身分</string>
+  <string name="AndroidManifest__log_submit">送出偵錯紀錄</string>
   <string name="AndroidManifest__media_preview">媒體預覽</string>
   <string name="AndroidManifest__media_overview">所有圖片</string>
   <string name="AndroidManifest__media_overview_named">所有圖片與 %1$s</string>
@@ -765,10 +773,10 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">使用 Signal 接收所有簡訊</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 接收所有多媒體訊息</string>
   <string name="preferences__input_settings">輸入設定</string>
-  <string name="preferences__enable_enter_key_title">啟用 Enter 鍵</string>
-  <string name="preferences__replace_smiley_with_enter_key">把介面上的表情符號按鈕，換成 Enter 按鈕</string>
-  <string name="preferences__pref_enter_sends_title">啟用 按 Enter 鍵 就送出訊息</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">若按下 Enter 鍵，不會換行，而是直接把訊息送出</string>
+  <string name="preferences__enable_enter_key_title">啟用輸入鍵</string>
+  <string name="preferences__replace_smiley_with_enter_key">把介面上的表情符號鍵換成輸入鍵</string>
+  <string name="preferences__pref_enter_sends_title">按下輸入鍵發送</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下輸入鍵將會發送訊息</string>
   <string name="preferences__display_settings">顯示設定</string>
   <string name="preferences__choose_identity">選擇身分</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的聯絡人清單中選擇聯絡人項目。</string>
@@ -833,8 +841,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__mmsc_password">MMSC 密碼</string>
   <string name="preferences__sms_delivery_reports">手機簡訊傳送狀態報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">針對每則手機簡訊都要求回覆傳送報告</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">當對話群組超過一定長度時自動刪除舊的簡訊</string>
-  <string name="preferences__delete_old_messages">刪除舊的簡訊</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">當對話群組超過一定長度時自動刪除舊的訊息</string>
+  <string name="preferences__delete_old_messages">刪除舊的訊息</string>
   <string name="preferences__chats">聊天與媒體</string>
   <string name="preferences__conversation_length_limit">對話群組長度上限</string>
   <string name="preferences__trim_all_conversations_now">現在開始精簡所有的對話群組</string>
@@ -951,6 +959,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="reminder_header_sms_default_text">輕觸將 Signal 設定為預設的簡訊應用程式。</string>
   <string name="reminder_header_sms_default_button">設定</string>
   <string name="reminder_header_sms_import_title">匯入系統簡訊</string>
+  <string name="reminder_header_sms_import_text">按此以複製您手機中的簡訊訊息至 Signal 的加密數據庫中。</string>
   <string name="reminder_header_sms_import_button">匯入</string>
   <string name="reminder_header_push_title">啟用 Signal 訊息與通話</string>
   <string name="reminder_header_push_text">升級您的通訊體驗。</string>
@@ -979,7 +988,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <!--Trimmer-->
   <string name="trimmer__deleting">正在刪除</string>
   <string name="trimmer__deleting_old_messages">正在刪除舊訊息...</string>
-  <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息。</string>
+  <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
   <!--EOF-->

@@ -872,7 +872,7 @@ sikertelen.
   <string name="preferences__slow">Lassú</string>
   <string name="preferences__custom">Egyéni</string>
   <string name="preferences__advanced">Haladó</string>
-  <string name="preferences__privacy">Magánélet</string>
+  <string name="preferences__privacy">Adatvédelem</string>
   <string name="preferences__mms_user_agent">MMS felhasználó ügynök</string>
   <string name="preferences__advanced_mms_access_point_names">MMS beállítások manuális megadása</string>
   <string name="preferences__enable_manual_mms">Manuális MMS beállítások használata</string>

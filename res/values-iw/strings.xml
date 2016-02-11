@@ -87,6 +87,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">לעבור ל־MMS לא מוצפן במידה והצפנה אינה אפשרית?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">המסר הזה <b>לא</b> יוצפן כי המקבל כבר אינו משתמש בסיגנל.\n\nהאם לשלוח מסר לא מאובטח?</string>
   <string name="ConversationItem_unable_to_open_media">לא הצלחתי למצוא אפליקציה לפתיחת המדיה הזו.</string>
+  <string name="ConversationItem_from_s">מאת %s</string>
+  <string name="ConversationItem_to_s">אל %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">לאתחל מחדש התחברות מאובטחת?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">זה יכול לעזור עם יש לך בעיות הצפנה בשיחה הזאת. המסרים שלך יישמרו.</string>

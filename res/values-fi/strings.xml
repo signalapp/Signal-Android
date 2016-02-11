@@ -87,6 +87,8 @@ tämän yhteystiedon.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Käytetäänkö salaamattomia MMS-viestejä?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tätä viestiä <b>ei</b> voida salata, koska vastaanottaja ei enää käytä Signalia.\n\nLähetetäänkö salaamattomana?</string>
   <string name="ConversationItem_unable_to_open_media">Median avaamiseen ei löytynyt sovellusta.</string>
+  <string name="ConversationItem_from_s">lähetetty SIM-kortilta %s</string>
+  <string name="ConversationItem_to_s">vastaanotettu SIM-kortille %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Alusta suojattu istunto?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tämä saattaa auttaa, jos tässä keskustelussa on ilmennyt salaukseen liittyviä ongelmia. Huom. tämä ei poista eikä muokkaa mitenkään olemassa olevia viestejä.</string>

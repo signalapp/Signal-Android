@@ -19,6 +19,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Questo sbloccherá Signal e le relative notifiche permanentemente</string>
   <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
   <string name="ApplicationPreferencesActivity_unregistering">Disiscriviti</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Cancellando la registrazione da Signal...</string>
@@ -73,7 +74,9 @@ questo contatto.</string>
   <string name="ConversationItem_expires_s">Scadenza: %s</string>
   <string name="ConversationItem_error_not_delivered">Non consegnato</string>
   <string name="ConversationItem_view_secure_media_question">Vuoi vedere il file multimediale?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Questo media é memorizzato in un database cifrato. Purtroppo, per vederlo con un\'app esterna i dati devono essere temporaneamente decifrato e scritto nella memoria del tuo dispositivo. Sei sicuro di volerlo fare?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Errore, ricevuto messaggio per la contrattazione della chiave scaduto.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ricevuto un messaggio con chiave di scambio, tocca per processarlo</string>
   <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
   <string name="ConversationItem_click_for_details">Tocca per i dettagli</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tocca per tornare alla conversazione non cifrata</string>
@@ -437,6 +440,7 @@ scambia un altro messaggio!
 </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valida.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Ricevuto un messaggio con chiave d\'identitá sconosciuta. Tocca per accettarlo e visualizzarlo</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Ricevute informazioni di identità aggiornate ma sconosciute. Clicca per validare l\'identità.</string>
   <string name="SmsMessageRecord_secure_session_reset">Sessione sicura azzerata.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
@@ -589,6 +593,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continua</string>
   <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">Non é possibile leggere i log dal tuo dispositivo. Puoi provare ad usare ADB per ottenere i log di debug</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
   <string name="log_submit_activity__submitting">Invio in corso</string>
   <string name="log_submit_activity__posting_logs">Salvando i logs su gist...</string>
@@ -634,6 +639,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ha bisogno delle impostazioni degli MMS per poter inviare messaggi multimediali e di gruppo con il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché ha un operatore bloccato o altre configurazioni restrittive.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Per inviare media e messaggi di gruppo, tocca \'OK\' e completa le impostazioni richieste. Le impostazioni MMS per il tuo operatore possono essere trovate cercando per \'your carrier APN\'. Dovrai fare questo solo una volta.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOCCATO</string>
   <!--recipient_preferences-->
@@ -739,6 +745,7 @@ non riuscita.
   <string name="AndroidManifest__public_identity_key">Chiave pubblica dell\'identità</string>
   <string name="AndroidManifest__change_passphrase">Cambia password</string>
   <string name="AndroidManifest__verify_identity">Verifica identità</string>
+  <string name="AndroidManifest__log_submit">Invia log di debug</string>
   <string name="AndroidManifest__media_preview">Anteprima contenuto multimediale</string>
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
@@ -965,6 +972,7 @@ non riuscita.
   <string name="reminder_header_sms_default_text">Tocca per usare Signal come applicazione di default per gli SMS.</string>
   <string name="reminder_header_sms_default_button">IMPOSTA</string>
   <string name="reminder_header_sms_import_title">Importa gli SMS di sistema</string>
+  <string name="reminder_header_sms_import_text">Tocca per copiare i messaggi SMS del tuo telefono nel database cifrato di Signal</string>
   <string name="reminder_header_sms_import_button">IMPORTA</string>
   <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Signal</string>
   <string name="reminder_header_push_text">Migliora la tua esperienza messaggi.</string>
