@@ -76,12 +76,12 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getScanString() {
-    return getString(R.string.ViewIdentityActivity_scan_to_compare);
+    return getString(R.string.ViewIdentityActivity_scan_contacts_qr_code);
   }
 
   @Override
   protected String getDisplayString() {
-    return getString(R.string.ViewIdentityActivity_get_scanned_to_compare);
+    return getString(R.string.ViewIdentityActivity_display_your_qr_code);
   }
 
   @Override
