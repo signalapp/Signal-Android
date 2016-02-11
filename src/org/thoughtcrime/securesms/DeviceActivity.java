@@ -55,7 +55,7 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setTitle(R.string.AndroidManifest_manage_linked_devices);
+    getSupportActionBar().setTitle(R.string.AndroidManifest__linked_devices);
     this.deviceAddFragment  = new DeviceAddFragment();
     this.deviceListFragment = new DeviceListFragment();
     this.deviceLinkFragment = new DeviceLinkFragment();
