@@ -101,7 +101,7 @@ public class Recipient {
     this.color        = details.color;
   }
 
-  public synchronized Uri getContactUri() {
+  public synchronized @Nullable Uri getContactUri() {
     return this.contactUri;
   }
 
