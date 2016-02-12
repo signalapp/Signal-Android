@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GenericLoaderFactory;
@@ -41,9 +42,9 @@ public class ContactPhotoUriLoader implements StreamModelLoader<ContactPhotoUri>
   }
 
   public static class ContactPhotoUri {
-    public Uri uri;
+    public @NonNull Uri uri;
 
-    public ContactPhotoUri(Uri uri) {
+    public ContactPhotoUri(@NonNull Uri uri) {
       this.uri = uri;
     }
   }
