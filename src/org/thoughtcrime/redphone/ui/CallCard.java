@@ -21,6 +21,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -41,14 +42,16 @@ import org.thoughtcrime.securesms.recipients.Recipient;
  *
  */
 
-public class CallCard extends LinearLayout {
+public class CallCard extends LinearLayout implements Recipient.RecipientModifiedListener {
 
   private ImageView photo;
-  private TextView name;
-  private TextView phoneNumber;
-  private TextView label;
-  private TextView elapsedTime;
-  private TextView status;
+  private TextView  name;
+  private TextView  phoneNumber;
+  private TextView  label;
+  private TextView  elapsedTime;
+  private TextView  status;
+
+  private Recipient recipient;
 
   public CallCard(Context context) {
     super(context);
@@ -63,14 +66,19 @@ public class CallCard extends LinearLayout {
   public void reset() {
     setPersonInfo(Recipient.getUnknownRecipient());
     this.status.setText("");
+    this.recipient = null;
   }
 
   public void setElapsedTime(String time) {
     this.elapsedTime.setText(time);
   }
 
-  private void setPersonInfo(final Recipient recipient) {
+  private void setPersonInfo(final @NonNull Recipient recipient) {
+    this.recipient = recipient;
+    this.recipient.addListener(this);
+
     final Context context = getContext();
+
     new AsyncTask<Void, Void, ContactPhoto>() {
       @Override
       protected ContactPhoto doInBackground(Void... params) {
@@ -110,4 +118,10 @@ public class CallCard extends LinearLayout {
     this.status      = (TextView)findViewById(R.id.callStateLabel);
   }
 
+  @Override
+  public void onModified(Recipient recipient) {
+    if (recipient == this.recipient) {
+      setPersonInfo(recipient);
+    }
+  }
 }
