@@ -529,8 +529,8 @@
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
     <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Recipient has no identity key.</string>
     <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Recipient has no identity key!</string>
-    <string name="VerifyIdentityActivity_scan_their_key_to_compare">Scan their key to compare</string>
-    <string name="VerifyIdentityActivity_get_your_key_scanned">Get your key scanned</string>
+    <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scan contact's QR code</string>
+    <string name="VerifyIdentityActivity_display_your_qr_code">Display your QR code</string>
     <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.</string>
     <string name="VerifyIdentityActivity_not_verified_exclamation">NOT Verified!</string>
     <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Their key is correct. It is also necessary to verify your key with them as well.</string>
@@ -539,8 +539,8 @@
 
     <!-- ViewIdentityActivity -->
     <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
-    <string name="ViewIdentityActivity_scan_to_compare">Scan to compare</string>
-    <string name="ViewIdentityActivity_get_scanned_to_compare">Get scanned to compare</string>
+    <string name="ViewIdentityActivity_scan_contacts_qr_code">Scan contact's QR code</string>
+    <string name="ViewIdentityActivity_display_your_qr_code">Display your QR code</string>
     <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">WARNING, the scanned key DOES NOT match!</string>
     <string name="ViewIdentityActivity_not_verified_exclamation">NOT verified!</string>
     <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">The scanned key matches!</string>
@@ -1118,8 +1118,8 @@
 
     <!-- key_scanning -->
     <string name="key_scanning__menu_compare">Compare</string>
-    <string name="key_scanning__menu_get_scanned_to_compare">Get scanned to compare</string>
-    <string name="key_scanning__menu_scan_to_compare">Scan to compare</string>
+    <string name="key_scanning__menu_display_your_qr_code">Display your QR code</string>
+    <string name="key_scanning__menu_scan_contacts_qr_code">Scan contact's QR code</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_message">New message</string>

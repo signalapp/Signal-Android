@@ -112,12 +112,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getScanString() {
-    return getString(R.string.VerifyIdentityActivity_scan_their_key_to_compare);
+    return getString(R.string.VerifyIdentityActivity_scan_contacts_qr_code);
   }
 
   @Override
   protected String getDisplayString() {
-    return getString(R.string.VerifyIdentityActivity_get_your_key_scanned);
+    return getString(R.string.VerifyIdentityActivity_display_your_qr_code);
   }
 
   @Override
