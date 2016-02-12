@@ -228,7 +228,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
       return;
     }
 
-    handleMissedCall(intent.getStringExtra(EXTRA_REMOTE_NUMBER));
+    handleMissedCall(intent.getStringExtra(EXTRA_REMOTE_NUMBER), false);
 
     try {
       SignalingSocket signalingSocket = new SignalingSocket(this, session.getFullServerName(),
@@ -243,9 +243,9 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     }
   }
 
-  private void handleMissedCall(String remoteNumber) {
+  private void handleMissedCall(String remoteNumber, boolean signal) {
     DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
-    MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this));
+    MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this), signal);
   }
 
   private void handleAnswerCall(Intent intent) {
@@ -259,7 +259,6 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   private void handleDenyCall(Intent intent) {
     state = STATE_IDLE;
-    incomingRinger.stop();
     DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
     if(currentCallManager != null) {
       ((ResponderCallManager)this.currentCallManager).answer(false);
@@ -381,7 +380,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyCallStale() {
     Log.w(TAG, "Got a stale call, probably an old SMS...");
-    handleMissedCall(remoteNumber);
+    handleMissedCall(remoteNumber, true);
     this.terminate();
   }
 
@@ -431,7 +430,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyCallDisconnected() {
     if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber);
+      handleMissedCall(remoteNumber, !incomingRinger.isPlaying());
 
     sendMessage(Type.CALL_DISCONNECTED, getRecipient(), null);
     this.terminate();
@@ -458,7 +457,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyServerFailure() {
     if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber);
+      handleMissedCall(remoteNumber, !incomingRinger.isPlaying());
 
     state = STATE_IDLE;
     outgoingRinger.playFailure();
@@ -468,7 +467,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyClientFailure() {
     if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber);
+      handleMissedCall(remoteNumber, !incomingRinger.isPlaying());
 
     state = STATE_IDLE;
     outgoingRinger.playFailure();
@@ -478,7 +477,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyLoginFailed() {
     if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber);
+      handleMissedCall(remoteNumber, !incomingRinger.isPlaying());
 
     state = STATE_IDLE;
     outgoingRinger.playFailure();

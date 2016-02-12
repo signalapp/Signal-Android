@@ -121,6 +121,15 @@ public class IncomingRinger {
     audioManager.setMode(AudioManager.MODE_NORMAL);
   }
 
+  public boolean isPlaying() {
+    try {
+      if (player != null) return player.isPlaying();
+    } catch (IllegalStateException e) {
+      Log.w(TAG, e);
+    }
+    return false;
+  }
+
   private boolean shouldVibrate() {
     if(player == null) {
       return true;
