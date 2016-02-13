@@ -19,7 +19,7 @@ The following steps should help you (re)build Signal from the command line.
 
 2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed.
 3. Ensure that the following packages are installed from the Android SDK manager:
-    * Android SDK Build Tools
+    * Android SDK Build Tools (22.0.1)
     * SDK Platform (API level 22)
     * Android Support Repository
     * Google Repository
@@ -27,7 +27,11 @@ The following steps should help you (re)build Signal from the command line.
 
         sdk.dir=/Application/android-sdk-macosx
 
-5. Execute Gradle:
+5. Make sure you have Java 1.7 JDK installed. JAVA_HOME environment variable must be pointing to the JDK. For example:
+        
+        export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+
+6. Execute Gradle:
 
         ./gradlew build
 
