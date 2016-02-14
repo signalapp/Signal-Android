@@ -216,7 +216,15 @@ public class DirectoryHelper {
     if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) return;
 
     for (String newUser : newUsers) {
-      if (!SessionUtil.hasSession(context, masterSecret, newUser)) {
+      String e164number = "";
+      try {
+        e164number = Util.canonicalizeNumber(context, newUser);
+      } catch (InvalidNumberException e) {
+        Log.w(TAG, e);
+      }
+
+      if (!SessionUtil.hasSession(context, masterSecret, newUser) &&
+          !TextSecurePreferences.getLocalNumber(context).equals(e164number)) {
         IncomingJoinedMessage message        = new IncomingJoinedMessage(newUser);
         Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 
