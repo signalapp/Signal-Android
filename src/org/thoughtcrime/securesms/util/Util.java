@@ -184,6 +184,16 @@ public class Util {
     else                                  return canonicalizeNumber(context, number);
   }
 
+  public static boolean isOwnNumber(Context context, String number) {
+    try {
+      String e164number = canonicalizeNumber(context, number);
+      return TextSecurePreferences.getLocalNumber(context).equals(e164number);
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+    }
+    return false;
+  }
+
   public static byte[] readFully(InputStream in) throws IOException {
     ByteArrayOutputStream bout = new ByteArrayOutputStream();
     byte[] buffer              = new byte[4096];

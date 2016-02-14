@@ -216,7 +216,7 @@ public class DirectoryHelper {
     if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) return;
 
     for (String newUser : newUsers) {
-      if (!SessionUtil.hasSession(context, masterSecret, newUser)) {
+      if (!SessionUtil.hasSession(context, masterSecret, newUser) && !Util.isOwnNumber(context, newUser)) {
         IncomingJoinedMessage message        = new IncomingJoinedMessage(newUser);
         Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 

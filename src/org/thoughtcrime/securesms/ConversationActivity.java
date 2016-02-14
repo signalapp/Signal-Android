@@ -1189,17 +1189,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private boolean isSelfConversation() {
-    try {
-      if (!TextSecurePreferences.isPushRegistered(this))       return false;
-      if (!recipients.isSingleRecipient())                     return false;
-      if (recipients.getPrimaryRecipient().isGroupRecipient()) return false;
+    if (!TextSecurePreferences.isPushRegistered(this))       return false;
+    if (!recipients.isSingleRecipient())                     return false;
+    if (recipients.getPrimaryRecipient().isGroupRecipient()) return false;
 
-      return Util.canonicalizeNumber(this, recipients.getPrimaryRecipient().getNumber())
-                 .equals(TextSecurePreferences.getLocalNumber(this));
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-      return false;
-    }
+    return Util.isOwnNumber(this, recipients.getPrimaryRecipient().getNumber());
   }
 
   private boolean isGroupConversation() {
