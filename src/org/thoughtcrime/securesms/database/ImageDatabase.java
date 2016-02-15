@@ -19,6 +19,8 @@ public class ImageDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", "
+        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
+        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.NORMALIZED_DATE_RECEIVED + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ADDRESS + " "
         + "FROM " + AttachmentDatabase.TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
@@ -69,12 +71,20 @@ public class ImageDatabase extends Database {
       AttachmentId attachmentId = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)),
                                                    cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));
 
+      long date;
+
+      if (MmsDatabase.Types.isPushType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)))) {
+        date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_SENT));
+      } else {
+        date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED));
+      }
+
       return new ImageRecord(attachmentId,
                              cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID)),
                              !cursor.isNull(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA)),
                              cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.CONTENT_TYPE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
-                             cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED)),
+                             date,
                              cursor.getInt(cursor.getColumnIndexOrThrow(AttachmentDatabase.TRANSFER_STATE)),
                              cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE)));
     }
