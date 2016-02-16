@@ -11,12 +11,14 @@ public class DeviceGroup {
   private final Optional<String>                     name;
   private final List<String>                         members;
   private final Optional<TextSecureAttachmentStream> avatar;
+  private final boolean                              active;
 
-  public DeviceGroup(byte[] id, Optional<String> name, List<String> members, Optional<TextSecureAttachmentStream> avatar) {
-    this.id      = id;
-    this.name    = name;
-    this.members = members;
-    this.avatar  = avatar;
+  public DeviceGroup(byte[] id, Optional<String> name, List<String> members, Optional<TextSecureAttachmentStream> avatar, boolean active) {
+    this.id       = id;
+    this.name     = name;
+    this.members  = members;
+    this.avatar   = avatar;
+    this.active   = active;
   }
 
   public Optional<TextSecureAttachmentStream> getAvatar() {
@@ -35,4 +37,7 @@ public class DeviceGroup {
     return members;
   }
 
+  public boolean isActive() {
+    return active;
+  }
 }

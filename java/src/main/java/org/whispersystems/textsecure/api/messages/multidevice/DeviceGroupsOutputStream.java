@@ -44,6 +44,7 @@ public class DeviceGroupsOutputStream extends ChunkedOutputStream {
     }
 
     groupDetails.addAllMembers(group.getMembers());
+    groupDetails.setActive(group.isActive());
 
     byte[] serializedContactDetails = groupDetails.build().toByteArray();
 

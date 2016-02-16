@@ -9798,6 +9798,16 @@ public final class TextSecureProtos {
      * <code>optional .textsecure.GroupDetails.Avatar avatar = 4;</code>
      */
     org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupDetails.AvatarOrBuilder getAvatarOrBuilder();
+
+    // optional bool active = 5 [default = true];
+    /**
+     * <code>optional bool active = 5 [default = true];</code>
+     */
+    boolean hasActive();
+    /**
+     * <code>optional bool active = 5 [default = true];</code>
+     */
+    boolean getActive();
   }
   /**
    * Protobuf type {@code textsecure.GroupDetails}
@@ -9879,6 +9889,11 @@ public final class TextSecureProtos {
                 avatar_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000004;
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000008;
+              active_ = input.readBool();
               break;
             }
           }
@@ -10587,11 +10602,28 @@ public final class TextSecureProtos {
       return avatar_;
     }
 
+    // optional bool active = 5 [default = true];
+    public static final int ACTIVE_FIELD_NUMBER = 5;
+    private boolean active_;
+    /**
+     * <code>optional bool active = 5 [default = true];</code>
+     */
+    public boolean hasActive() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bool active = 5 [default = true];</code>
+     */
+    public boolean getActive() {
+      return active_;
+    }
+
     private void initFields() {
       id_ = com.google.protobuf.ByteString.EMPTY;
       name_ = "";
       members_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       avatar_ = org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupDetails.Avatar.getDefaultInstance();
+      active_ = true;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -10616,6 +10648,9 @@ public final class TextSecureProtos {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(4, avatar_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(5, active_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -10646,6 +10681,10 @@ public final class TextSecureProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, avatar_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, active_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -10776,6 +10815,8 @@ public final class TextSecureProtos {
           avatarBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
+        active_ = true;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -10826,6 +10867,10 @@ public final class TextSecureProtos {
         } else {
           result.avatar_ = avatarBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.active_ = active_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -10862,6 +10907,9 @@ public final class TextSecureProtos {
         }
         if (other.hasAvatar()) {
           mergeAvatar(other.getAvatar());
+        }
+        if (other.hasActive()) {
+          setActive(other.getActive());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -11210,6 +11258,39 @@ public final class TextSecureProtos {
         return avatarBuilder_;
       }
 
+      // optional bool active = 5 [default = true];
+      private boolean active_ = true;
+      /**
+       * <code>optional bool active = 5 [default = true];</code>
+       */
+      public boolean hasActive() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional bool active = 5 [default = true];</code>
+       */
+      public boolean getActive() {
+        return active_;
+      }
+      /**
+       * <code>optional bool active = 5 [default = true];</code>
+       */
+      public Builder setActive(boolean value) {
+        bitField0_ |= 0x00000010;
+        active_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool active = 5 [default = true];</code>
+       */
+      public Builder clearActive() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        active_ = true;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:textsecure.GroupDetails)
     }
 
@@ -11338,12 +11419,13 @@ public final class TextSecureProtos {
       "\016\n\006number\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0221\n\006avatar\030" +
       "\003 \001(\0132!.textsecure.ContactDetails.Avatar" +
       "\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006lengt" +
-      "h\030\002 \001(\r\"\231\001\n\014GroupDetails\022\n\n\002id\030\001 \001(\014\022\014\n\004" +
+      "h\030\002 \001(\r\"\257\001\n\014GroupDetails\022\n\n\002id\030\001 \001(\014\022\014\n\004" +
       "name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\022/\n\006avatar\030\004 ",
-      "\001(\0132\037.textsecure.GroupDetails.Avatar\032-\n\006" +
-      "Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006length\030\002 " +
-      "\001(\rB?\n+org.whispersystems.textsecure.int" +
-      "ernal.pushB\020TextSecureProtos"
+      "\001(\0132\037.textsecure.GroupDetails.Avatar\022\024\n\006" +
+      "active\030\005 \001(\010:\004true\032-\n\006Avatar\022\023\n\013contentT" +
+      "ype\030\001 \001(\t\022\016\n\006length\030\002 \001(\rB?\n+org.whisper" +
+      "systems.textsecure.internal.pushB\020TextSe" +
+      "cureProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -11427,7 +11509,7 @@ public final class TextSecureProtos {
           internal_static_textsecure_GroupDetails_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_GroupDetails_descriptor,
-              new java.lang.String[] { "Id", "Name", "Members", "Avatar", });
+              new java.lang.String[] { "Id", "Name", "Members", "Avatar", "Active", });
           internal_static_textsecure_GroupDetails_Avatar_descriptor =
             internal_static_textsecure_GroupDetails_descriptor.getNestedTypes().get(0);
           internal_static_textsecure_GroupDetails_Avatar_fieldAccessorTable = new

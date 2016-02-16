@@ -107,8 +107,9 @@ message GroupDetails {
     optional uint32 length      = 2;
   }
 
-  optional bytes  id      = 1;
-  optional string name    = 2;
-  repeated string members = 3;
-  optional Avatar avatar  = 4;
+  optional bytes  id       = 1;
+  optional string name     = 2;
+  repeated string members  = 3;
+  optional Avatar avatar   = 4;
+  optional bool   active   = 5 [default = true];
 }
