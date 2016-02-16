@@ -62,7 +62,8 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
 
       while ((record = reader.getNext()) != null) {
         out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
-                                  record.getMembers(), getAvatar(record.getAvatar())));
+                                  record.getMembers(), getAvatar(record.getAvatar()),
+                                  record.isActive()));
       }
 
       out.close();
