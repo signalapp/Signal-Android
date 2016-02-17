@@ -53,11 +53,11 @@ public enum MaterialColor {
     this.serialized             = serialized;
   }
 
-  MaterialColor(int lightThemeLightColor, int lightThemeDarkColor,
-                int darkThemeLightColor, int darkThemeDarkColor, String serialized)
+  MaterialColor(int lightColor, int darkColor,
+                int lightStatusBarColor, int darkStatusBarColor, String serialized)
   {
-    this(lightThemeLightColor, lightThemeLightColor, lightThemeDarkColor,
-         darkThemeLightColor, darkThemeLightColor, darkThemeDarkColor, serialized);
+    this(lightColor, lightColor, lightStatusBarColor,
+         darkColor, darkColor, darkStatusBarColor, serialized);
   }
 
   public int toConversationColor(@NonNull Context context) {
