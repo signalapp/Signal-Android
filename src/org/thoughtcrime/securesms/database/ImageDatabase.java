@@ -21,7 +21,7 @@ public class ImageDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
-        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.NORMALIZED_DATE_RECEIVED + ", "
+        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ADDRESS + " "
         + "FROM " + AttachmentDatabase.TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
         + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
@@ -76,7 +76,7 @@ public class ImageDatabase extends Database {
       if (MmsDatabase.Types.isPushType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)))) {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_SENT));
       } else {
-        date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED));
+        date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_RECEIVED));
       }
 
       return new ImageRecord(attachmentId,
