@@ -163,7 +163,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 22
 
-        buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+        buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "USER_AGENT", "\"OWA\""
         buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-master.whispersystems.org\""
@@ -246,6 +246,18 @@ android {
 tasks.whenTaskAdded { task ->
     if (task.name.equals("lint")) {
         task.enabled = false
+    }
+}
+
+def getLastCommitTimestamp() {
+    new ByteArrayOutputStream().withStream { os ->
+        def result = exec {
+            executable = 'git'
+            args = ['log', '-1', '--pretty=format:%ct']
+            standardOutput = os
+        }
+
+        return os.toString() + "000"
     }
 }
 
