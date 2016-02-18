@@ -255,25 +255,19 @@ public class MessageSender {
   }
 
   private static boolean isSelfSend(Context context, Recipients recipients) {
-    try {
-      if (!TextSecurePreferences.isPushRegistered(context)) {
-        return false;
-      }
-
-      if (!recipients.isSingleRecipient()) {
-        return false;
-      }
-
-      if (recipients.isGroupRecipient()) {
-        return false;
-      }
-
-      String e164number = Util.canonicalizeNumber(context, recipients.getPrimaryRecipient().getNumber());
-      return TextSecurePreferences.getLocalNumber(context).equals(e164number);
-    } catch (InvalidNumberException e) {
-      Log.w("MessageSender", e);
+    if (!TextSecurePreferences.isPushRegistered(context)) {
       return false;
     }
+
+    if (!recipients.isSingleRecipient()) {
+      return false;
+    }
+
+    if (recipients.isGroupRecipient()) {
+      return false;
+    }
+
+    return Util.isOwnNumber(context, recipients.getPrimaryRecipient().getNumber());
   }
 
   private static boolean isPushDestination(Context context, String destination) {
