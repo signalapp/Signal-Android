@@ -101,17 +101,11 @@ public class MessageNotifier {
   }
 
   public static void updateNotification(@NonNull Context context, @Nullable MasterSecret masterSecret) {
-    updateNotification(context, masterSecret, false);
-  }
-
-  public static void updateNotification(@NonNull Context context,
-                                        @Nullable MasterSecret masterSecret,
-                                        boolean signal) {
     if (!TextSecurePreferences.isNotificationsEnabled(context)) {
       return;
     }
 
-    updateNotification(context, masterSecret, signal, false, 0);
+    updateNotification(context, masterSecret, false, false, 0);
   }
 
   public static void updateNotification(@NonNull  Context context,
