@@ -35,7 +35,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
@@ -116,8 +115,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       setMasterSecret(masterSecret);
     } catch (InvalidPassphraseException ipe) {
       passphraseText.setText("");
-      Toast.makeText(this, R.string.PassphrasePromptActivity_invalid_passphrase_exclamation,
-                     Toast.LENGTH_SHORT).show();
+      passphraseText.setError(
+              getString(R.string.PassphrasePromptActivity_invalid_passphrase_exclamation));
     }
   }
 
