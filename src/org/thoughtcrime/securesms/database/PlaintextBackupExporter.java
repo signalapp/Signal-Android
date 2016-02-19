@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class PlaintextBackupExporter {
 
+  private static final String FILENAME = "SignalPlaintextBackup.xml";
+
   public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
@@ -24,16 +26,15 @@ public class PlaintextBackupExporter {
       throw new NoExternalStorageException();
   }
 
-  private static String getPlaintextExportDirectoryPath() {
-    File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+  public static File getPlaintextExportFile() {
+    return new File(Environment.getExternalStorageDirectory(), FILENAME);
   }
 
   private static void exportPlaintext(Context context, MasterSecret masterSecret)
       throws IOException
   {
     int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath(), count);
+    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportFile().getAbsolutePath(), count);
 
 
     SmsMessageRecord record;
