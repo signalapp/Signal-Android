@@ -9,7 +9,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -30,14 +29,18 @@ public class PlaintextBackupImporter {
   }
 
   private static void verifyExternalStorageForPlaintextImport() throws NoExternalStorageException {
-    if (!Environment.getExternalStorageDirectory().canRead() ||
-        !(new File(getPlaintextExportDirectoryPath()).exists()))
+    if (!Environment.getExternalStorageDirectory().canRead() || !getPlaintextExportFile().exists())
       throw new NoExternalStorageException();
   }
 
-  private static String getPlaintextExportDirectoryPath() {
-    File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+  private static File getPlaintextExportFile() {
+    File backup    = PlaintextBackupExporter.getPlaintextExportFile();
+    File oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
+
+    if (!backup.exists() && oldBackup.exists()) {
+      return oldBackup;
+    }
+    return backup;
   }
 
   private static void importPlaintext(Context context, MasterSecret masterSecret)
@@ -49,7 +52,7 @@ public class PlaintextBackupImporter {
 
     try {
       ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      XmlBackup      backup          = new XmlBackup(getPlaintextExportDirectoryPath());
+      XmlBackup      backup          = new XmlBackup(getPlaintextExportFile().getAbsolutePath());
       MasterCipher   masterCipher    = new MasterCipher(masterSecret);
       Set<Long>      modifiedThreads = new HashSet<Long>();
       XmlBackup.XmlBackupItem item;
