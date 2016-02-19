@@ -143,12 +143,25 @@ vérifier ce contact.</string>
     <item quantity="other">Cela supprimera définitivement les %1$d messages sélectionnés.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Enregistrer dans l\'espace de stockage ?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">La sauvegarde du média dans l\'espace de stockage autorisera d\'autres applications à y accéder.\n\nContinuer ?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erreur lors de l\'enregistrement de la pièce jointe sur l\'espace de stockage !</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">La sauvegarde du média dans l\'espace de stockage autorisera d\'autres applications à y accéder.\n\nContinuer ?</item>
+    <item quantity="other">La sauvegarde des %1$d médias dans l\'espace de stockage autorisera d\'autres applications à y accéder.\n\nContinuer ?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Erreur lors de l\'enregistrement de la pièce jointe sur l\'espace de stockage !</item>
+    <item quantity="other">Erreur lors de l\'enregistrement des pièces jointes sur l\'espace de stockage !</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">Réussite !</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage !</string>
-  <string name="ConversationFragment_saving_attachment">Enregistrement de la pièce jointe</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Enregistrement de la pièce jointe dans l\'espace de stockage…</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Enregistrement de la pièce jointe</item>
+    <item quantity="other">Enregistrement des %1$d pièces jointes</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Enregistrement de la pièce jointe dans l\'espace de stockage…</item>
+    <item quantity="other">Enregistrement des %1$d pièces jointes dans l\'espace de stockage…</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">Collection des pièces jointes...</string>
   <string name="ConversationFragment_pending">En attente…</string>
   <string name="ConversationFragment_push">Données (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -456,8 +469,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Vous n’avez pas de clé d’identité.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Le destinataire n’a pas de clé d’identité.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Le destinataire n’a pas de clé d’identité !</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Analyser leur clé pour comparer</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Faire scanner votre clé</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scanner le QR code du contact</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Afficher votre QR code</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATTENTION, la clé analysée NE correspond PAS ! Veuillez vérifier scrupuleusement le texte de l\'empreinte.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NON vérifié !</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Leur clé est valide. Il est aussi nécessaire de vérifier votre clé avec eux.</string>
@@ -465,8 +478,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Vous n’avez pas de clé d’identité.</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Vous n’avez pas de clé d’identité.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Analyser pour comparer</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Être analysé pour comparer</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Scanner le QR code du contact</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Afficher votre QR code</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ATTENTION, la clé analysée ne correspond PAS !</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NON vérifiée !</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">La clé analysée correspond !</string>
@@ -499,6 +512,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importation en cours</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importation des messages textes</string>
+  <string name="ApplicationMigrationService_import_complete">Importation terminée</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">L\'importation de la base de donnée de Signal est complète.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Appuyez pour ouvrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Appuyez pour ouvrir, ou appuyez sur le cadenas pour fermer.</string>
@@ -942,8 +957,8 @@ par SMS.</string>
   <string name="conversation_group_options__broadcast">Diffusion</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Comparer</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Être analysé pour comparer</string>
-  <string name="key_scanning__menu_scan_to_compare">Analyser pour comparer</string>
+  <string name="key_scanning__menu_display_your_qr_code">Afficher votre QR code</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Scanner le QR code du contact</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nouveau message</string>
   <string name="text_secure_normal__menu_new_group">Nouveau groupe</string>
@@ -984,6 +999,8 @@ par SMS.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Type de média non supporté</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Enregistrer</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">Tout sauvegarder</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Aperçu d\'image</string>
   <!--new_conversation_activity-->

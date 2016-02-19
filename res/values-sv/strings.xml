@@ -139,12 +139,8 @@ verifiera denna kontakt.</string>
     <item quantity="other">Detta kommer permanent radera %1$d valda meddelanden.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Spara till lagring?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Att spara denna media till lagring kommer göra att andra appar på din enhet får tillgång till den.\n\nFortsätta?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Det blev ett fel när bifogad fil skulle sparas till lagring!</string>
   <string name="ConversationFragment_success_exclamation">Klart!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan inte skriva till lagring!</string>
-  <string name="ConversationFragment_saving_attachment">Sparar bilaga</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Sparar bifogad fil till lagring...</string>
   <string name="ConversationFragment_pending">Väntar...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -447,8 +443,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnyckel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottagaren har ingen identitetsnyckel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Mottagaren har ingen identitetsnyckel!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skanna deras nyckel för att jämföra</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Få din nyckel skannad</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">VARNING, den skannade nyckeln överensstämmer INTE! Var vänlig kontrollera texten för fingeravtrycket noggrant.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">INTE verifierad!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Deras nyckel är korrekt. Det är också nödvändigt att verifiera din nyckel med dem.</string>
@@ -456,8 +450,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen identitetsnyckel!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Du har inte någon identitetsnyckel.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Skanna för att jämföra</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Bli skannad för att jämföra</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">VARNING, den skannade nyckeln överensstämmer INTE!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">INTE verifierad!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannade nyckeln överensstämmer!</string>
@@ -924,8 +916,6 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="conversation_group_options__broadcast">Sändning</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Jämför</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Bli skannad för att jämföra</string>
-  <string name="key_scanning__menu_scan_to_compare">Skanna för att jämföra</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nytt meddelande</string>
   <string name="text_secure_normal__menu_new_group">Ny grupp</string>
@@ -965,6 +955,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spara</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Bildförhandsgranskning</string>
   <!--new_conversation_activity-->

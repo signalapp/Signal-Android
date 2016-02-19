@@ -153,12 +153,8 @@
     <item quantity="other">Ово ће трајно да обрише свих %1$d изабраних порука.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Сачувати у складиште?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Упис овог медијума у складиште ће омогућити било којој апликацији на вашем уређају да му приступи.\n\nДа наставим?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка уписа прилога у складиште!</string>
   <string name="ConversationFragment_success_exclamation">Успех!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не могу да упишем у складиште!</string>
-  <string name="ConversationFragment_saving_attachment">Уписивање прилога</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Уписујем прилог у складиште...</string>
   <string name="ConversationFragment_pending">На чекању...</string>
   <string name="ConversationFragment_push">интернета (Сигнал)</string>
   <string name="ConversationFragment_mms">ММС</string>
@@ -478,8 +474,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немате кључ идентитета.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Прималац нема кључ идентитета.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Прималац нема кључ идентитета!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Очитај њихов кључ за поређење</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Очитајте ваш кључ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УПОЗОРЕЊЕ, очитани кључ се НЕ поклапа! Проверите текст отиска пажљиво.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НИЈЕ оверен!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Њихов кључ је тачан. Потребно је такође да оверите ваш кључ са њима.</string>
@@ -487,8 +481,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Немате кључ идентитета!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Немате кључ идентитета.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Очитај за поређење</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Очитај ме за поређење</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">УПОЗОРЕЊЕ, очитани кључ се НЕ поклапа!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">НИЈЕ оверен!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Очитани кључ се поклапа!</string>
@@ -521,6 +513,7 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Увоз у току</string>
   <string name="ApplicationMigrationService_importing_text_messages">Увозим текстуалне поруке</string>
+  <string name="ApplicationMigrationService_import_complete">Увоз завршен</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Тапните за отварање.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Тапните за отварање или тапните браву да затворите.</string>
@@ -965,8 +958,6 @@
   <string name="conversation_group_options__broadcast">Емитовање</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Упореди</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Очитај ме за поређење</string>
-  <string name="key_scanning__menu_scan_to_compare">Очитај за поређење</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Нова порука</string>
   <string name="text_secure_normal__menu_new_group">Нова група</string>
@@ -1008,6 +999,8 @@
   <string name="MediaPreviewActivity_unssuported_media_type">Неподржан тип медијума</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Сачувај</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">Сачувај све</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Преглед слике</string>
   <!--new_conversation_activity-->

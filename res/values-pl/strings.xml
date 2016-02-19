@@ -78,6 +78,7 @@ ten kontakt.
   <string name="ConversationItem_expires_s">Wygasa: %s</string>
   <string name="ConversationItem_error_not_delivered">Nie dostarczono</string>
   <string name="ConversationItem_view_secure_media_question">Pokazać zabezpieczone media? </string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">To multimedium jest przechowywane w zaszyfrowanej bazie danych. Niestety, aby wyświetlić je z użyciem zewnętrznej aplikacji, dane muszą zostać tymczasowo odszyfrowane i zapisane w pamięci urządzenia. Czy jesteś pewien, że chcesz kontynuować?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Błąd, otrzymano nieprawidłową wiadomość wymiany kluczy. </string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Otrzymano wiadomość wymiany kluczy, dotknij aby kontynuować.</string>
   <string name="ConversationItem_group_action_left">%1$s opuścił grupę.</string>
@@ -87,6 +88,8 @@ ten kontakt.
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie</b> będzie zaszyfrowana, ponieważ odbiorca nie jest już użytkownikiem Signal.\n\nWysłać wiadomość nieszyfrowaną?</string>
   <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć te media.</string>
+  <string name="ConversationItem_from_s">od %s</string>
+  <string name="ConversationItem_to_s">do %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To może pomóc jeśli masz problemy z szyfrowaniem w tej konwersacji. Twoje wiadomości będą zachowane.</string>
@@ -147,12 +150,8 @@ ten kontakt.
     <item quantity="other">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych wiadomości.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Zapisać na dysk?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Zapisanie tych plików na dysku pozwoli innym aplikacjom na Twoim telefonie na dostęp do tych plików.\n\nKontynuować?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Błąd podczas zapisywania załącznika na dysk!</string>
   <string name="ConversationFragment_success_exclamation">Sukces!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
-  <string name="ConversationFragment_saving_attachment">Zapisywanie załącznika</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Zapisywanie załącznika na dysku...</string>
   <string name="ConversationFragment_pending">Oczekiwanie...</string>
   <string name="ConversationFragment_push">Dane (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -464,8 +463,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Odbiorca nie posiada klucza tożsamości.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Odbiorca nie posiada klucza tożsamości!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skanuj ich klucz aby porównać</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Zeskanuj mój klucz</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UWAGA, zeskanowane klucze NIE ZGADZAJĄ się! Proszę sprawdź klucz ostrożnie!</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NIE zweryfikowany!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ich klucz jest poprawny. Niezbędna będzie także weryfikacja Twojego klucza z odbiorcami.</string>
@@ -473,8 +470,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nie posiadasz klucza tożsamości!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Skanuj aby porównać</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Weź zeskanowane do porównania</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">UWAGA, zeskanowane klucze NIE ZGADZAJĄ SIĘ!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">Niezweryfikowany!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Zeskanowane klucze zgadzają się!</string>
@@ -600,6 +595,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">kontynuuj</string>
   <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">Nie udało się otworzyć dziennika na tym urządzeniu. Mimo tego, nadal możesz używać ADB aby wyświetlić dziennik debugowania.</string>
   <string name="log_submit_activity__thanks">Dziękujemy za Twoją pomoc!</string>
   <string name="log_submit_activity__submitting">Wysyłanie</string>
   <string name="log_submit_activity__posting_logs">Wysyłanie logów do gist...</string>
@@ -646,6 +642,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="prompt_passphrase_activity__unlock">Odblokuj</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych oraz wiadomości grupowych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracyjnymi w telefonie.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Aby wysyłać wiadomości multimedialne i grupowe, naciśnij „OK” i zmień żądane ustawienia. Ustawienia MMS twojego operatora zwykle można odnaleźć wyszukując „APN mojego operatora”. Ta operacja musi być ukończona tylko raz.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">ZABLOKOWANY</string>
   <!--recipient_preferences-->
@@ -938,8 +935,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="conversation_group_options__broadcast">Nadawanie</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Porównaj</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Weź zeskanowane do porównania</string>
-  <string name="key_scanning__menu_scan_to_compare">Skanuj aby porównać</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nowa wiadomość</string>
   <string name="text_secure_normal__menu_new_group">Nowa grupa</string>
@@ -981,6 +976,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nieobsługiwany typ media</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Podgląd zdjęcia</string>
   <!--new_conversation_activity-->

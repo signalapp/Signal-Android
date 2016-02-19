@@ -119,11 +119,8 @@
     <item quantity="other">این به صورت دائم %1$d پیامهای انتخاب شده را حذف میکند.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">ذخیره درحافظه؟</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">خطا در هنگام ذخیره سازی فایل ضمیمه</string>
   <string name="ConversationFragment_success_exclamation">موفقیت!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر نیست به ارسال به ذخیره سازی!</string>
-  <string name="ConversationFragment_saving_attachment">ذخیره کردن فایل پیوست</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">ذخیره کردن فایل پیوست در ذخیره سازی</string>
   <string name="ConversationFragment_pending">در انتظار ...</string>
   <string name="ConversationFragment_push">داده ها (سیگنال)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -367,8 +364,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">شما یک کلید هویت ندارد.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">شما یک کلید هویت ندارید.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">گیرنده هیچ کلید هویتی ندارد!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">کلید آن ها را برای مقایسه اسکن کنید.</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">بدست آوردن کلید اسکن شده شما</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">هشدار، کلید اسکن شده مطابقت نمی کند! لطفا متن اثر انگشت را با دقت بررسی کنید.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">تایید نشده!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">کلید آنها درست است. همچنین لازم است کلید خود را با آنها بررسی کنید.</string>
@@ -376,8 +371,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">شما یک کلید هویت ندارد!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">شما کلید هویت ندارید.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">اسکن برای مقایسه</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">دریافت اسکن برای مقایسه</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">هشدار، کلید اسکن مطابقت نمی کند!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">تایید نشده!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">کلید اسکن شده مطابقت می کند!</string>
@@ -788,8 +781,6 @@
   <string name="conversation_group_options__broadcast">پخش</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">مقایسه</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">دریافت اسکن برای مقایسه</string>
-  <string name="key_scanning__menu_scan_to_compare">اسکن برای مقایسه</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">پیام جدید</string>
   <string name="text_secure_normal__menu_new_group">گروه جدید</string>
@@ -818,6 +809,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">نوع رسانه پشتیبانی نشده</string>
   <!--media_preview-->
   <string name="media_preview__save_title">دخیره</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">پیش نمایش تصویر</string>
   <!--new_conversation_activity-->

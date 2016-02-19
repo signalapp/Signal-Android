@@ -39,6 +39,7 @@
   <string name="DraftDatabase_Draft_image_snippet">(படம்)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ஆடியோ) </string>
   <string name="DraftDatabase_Draft_video_snippet">(வீடியோ)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(இடம்)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">மீடியாவை தேர்வுசெய்யும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -48,6 +49,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">ஆடியோ</string>
   <string name="AttachmentTypeSelectorAdapter_contact">தொடர்பின் தகவல்</string>
   <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">ஒலி இயக்குவதில் பிழை!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">முடக்கப்பட்ட தொடர்புகள்</string>
   <!--CallScreen-->
@@ -71,6 +73,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">மறையாக்கபடாத SMS-ஆக அனுப்பலாமா?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">மறையாக்கபடாத MMS-ஆக அனுப்பலாமா?</string>
   <string name="ConversationItem_unable_to_open_media">இந்த ஊடகத்தை திறக்க முடியும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
+  <string name="ConversationItem_from_s">அனுப்பினர் %s</string>
+  <string name="ConversationItem_to_s">பெறுனர் %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
   <string name="ConversationActivity_reset">மீட்டமைக்க</string>
@@ -124,11 +128,8 @@
     <item quantity="other">தேர்ந்தெடுக்கப்பட்ட %1$d செய்தியைகளை நிரந்தரமாக நீக்கீவிடும்.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">சேமிப்பில் சேர்கும்போது பிழையேர்ப்பட்டது!</string>
   <string name="ConversationFragment_success_exclamation">வெற்றி!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">சேமிப்பில் சேர்க இயலவில்லை!</string>
-  <string name="ConversationFragment_saving_attachment">இணைப்பு சேமிக்கபடுகிறது</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">இணைப்பு சேமிப்பில் சேர்க்கபடுகிறது...</string>
   <string name="ConversationFragment_pending">நிலுவையில் உள்ளது...</string>
   <string name="ConversationFragment_push">தரவு (சமிக்ஞை)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -138,11 +139,25 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">தேடல்</string>
   <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை அழி ?</item>
+    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை அழி ?</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">நீக்கப்படுகிறது</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகள் நீக்கப்படுகிறது ...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது.</item>
+    <item quantity="other">%d உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது.</item>
+  </plurals>
   <string name="ConversationListFragment_undo">மீளமை</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
+    <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">சாவி பரிமாற்றச் செய்தி...</string>
   <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d"> உரையாடல்கள் பெட்டகப்படுத்தப்பட்டது (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் விருப்பம்: %s</string>
   <string name="CustomDefaultPreference_using_default">பயன்படுத்தப்படும் இயல்புநிலை: %s</string>
@@ -152,9 +167,11 @@
   <string name="DateUtils_minutes_ago">%d நிமிடம்</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' துண்டி?</string>
+  <string name="DeviceListActivity_network_connection_failed">பிணைய இணைப்பு தோல்வி ...</string>
   <string name="DeviceListActivity_try_again">மீண்டும் முயற்சிக்கவும்</string>
   <string name="DeviceListActivity_unlinking_device">கருவி துண்டிக்கப்படுகிறது ...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">கருவி துண்டிக்கப்படுகிறது</string>
+  <string name="DeviceListActivity_network_failed">பிணையம் தோல்வி ...</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">பெயரில்லாத கருவி</string>
   <string name="DeviceListItem_linked_s">%s இணைக்கப்பட்டது.</string>
@@ -280,6 +297,10 @@
   <string name="RedPhone_busy">மும்முரமாக</string>
   <string name="RedPhone_connected">இணைக்கப்பட்டது</string>
   <string name="RedPhone_connecting">இணைக்கப்படுகிறது</string>
+  <string name="RedPhone_network_failed">பிணையம் தோல்வி ...</string>
+  <string name="RedPhone_login_failed">புகுபதிகை தோல்வி!</string>
+  <string name="RedPhone_number_not_registered">எண் பதிவிலில்லை.</string>
+  <string name="RedPhone_got_it">கிடைத்து.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் குறிப்பிடவேண்டியது உங்கள்:
@@ -342,11 +363,11 @@
   <string name="ThreadRecord_called">நீங்கள் அழைத்தீர்கள்</string>
   <string name="ThreadRecord_called_you">உங்களை அழைத்தார்</string>
   <string name="ThreadRecord_missed_call">தவறிய அழைப்பு</string>
+  <string name="ThreadRecord_media_message">பல்லூடகச் செய்தி</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">உங்களிடம் ஒரு அடையாளச்சாவி இல்லை.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">பெறுநரிடம் ஒரு அடையாளச்சாவி இல்லை.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">பெறுநரிடம்  ஒரு அடையாளச்சாவி  இல்லை!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare"> அவர்களின் சாவியை  ஸ்கேன் செய்து ஒப்பிடவும்</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">எச்சரிக்கை, ஸ்கேன் செய்யப்பட்ட சாவி பொருந்தவில்லை! கவனமாக டிஜிட்டல் கைரேகையை சரிபார்க்கவும்.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">சரிபார்க்கப்படவில்லை!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">அவர்களின் சாவி சரியாக இருக்கிறது. அதுபோல அவர்களும் உங்கள் சாவியை சரிபார்ப்பது அவசியம்.</string>
@@ -354,8 +375,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">உங்களிடம்  ஒரு அடையாளச்சாவி இல்லை!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">உங்களிடம்  ஒரு அடையாளச்சாவி இல்லை.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">ஒப்பிட ஸ்கேன் செய்யவும்</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare"> ஸ்கேன் செய்து ஒப்பிட்டுக்கொள்ளவும்</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">எச்சரிக்கை, ஸ்கேன் செய்யப்பட்ட சாவி பொருந்தவில்லை!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">சரிபார்க்கப்படவில்லை! </string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">ஸ்கேன் செய்யப்பட்ட சாவி பொருந்திய்து!</string>
@@ -402,6 +421,7 @@
   <string name="MessageNotifier_media_message">மீடியா செய்தி</string>
   <string name="MessageNotifier_reply">மறுமொழி கூறு</string>
   <!--QuickResponseService-->
+  <string name="QuickResponseService_problem_sending_message">செய்தி அனுப்புவதில் பிரச்சணை!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">சமிக்ஞை</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
@@ -411,6 +431,7 @@
   <string name="attachment_type_selector__video">காணொளி</string>
   <string name="attachment_type_selector__contact">தொடர்பு</string>
   <string name="attachment_type_selector__camera">நிழற்படக்கருவி</string>
+  <string name="attachment_type_selector__location">இடம்</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">பழைய கடவுச்சொல்</string>
   <string name="change_passphrase_activity__new_passphrase">புதிய கடவுச்சொல்</string>
@@ -729,8 +750,6 @@
   <string name="conversation_group_options__broadcast">ஒளிபரப்பு</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">ஒப்பிடு</string>
-  <string name="key_scanning__menu_get_scanned_to_compare"> ஸ்கேன் செய்து ஒப்பிட்டுக்கொள்ளவும்</string>
-  <string name="key_scanning__menu_scan_to_compare">ஒப்பிட ஸ்கேன் செய்யவும்</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">புதிய செய்தி</string>
   <string name="text_secure_normal__menu_new_group">புதிய குழு</string>
@@ -745,13 +764,17 @@
   <string name="reminder_header_push_button">இயங்கச் செய்</string>
   <string name="reminder_header_invite_title">சமிக்ஞைக்கு அழை</string>
   <string name="reminder_header_invite_button">அழை</string>
+  <string name="reminder_header_share_title">நண்பர்களை அழைக்கவும்</string>
   <string name="reminder_header_share_button">பகிர்</string>
+  <string name="reminder_header_close_button">மூடு</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">நீங்கள்</string>
   <string name="MediaPreviewActivity_cant_display">இந்த படத்தின் முன்னோட்டம் தோல்வியுற்றது</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
   <!--media_preview-->
   <string name="media_preview__save_title">சேமி</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">அனைத்தையும் சேமி</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">படத்தின் மாதிரிக்காட்சி</string>
   <!--new_conversation_activity-->

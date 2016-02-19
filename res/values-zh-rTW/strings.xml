@@ -135,12 +135,8 @@
     <item quantity="other">這將會永久性地刪除所有 %1$d 已選訊息。</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">儲存至儲存裝置？</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">將檔案儲存至儲存裝置，將會使得手機上的其他應用程式也能存取它。\n\n您要繼續嗎？</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">儲存檔案到儲存裝置時發生錯誤！</string>
   <string name="ConversationFragment_success_exclamation">成功！</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">無法寫入儲存裝置！</string>
-  <string name="ConversationFragment_saving_attachment">正在儲存附件檔案</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">正在寫入儲存裝置中...</string>
   <string name="ConversationFragment_pending">待定...</string>
   <string name="ConversationFragment_push">資料 (Signal)</string>
   <string name="ConversationFragment_mms">多媒體訊息</string>
@@ -451,8 +447,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您不具備身分認證金鑰。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">收件者不具備身分認證金鑰。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">收件者不具備身分認證金鑰！</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">比對他們的金鑰</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">驗證您的金鑰</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告！驗證結果不符合！請再檢查並仔細比對一次指紋碼。</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">無法驗證！</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">對方提供的金鑰是正確的。但您也必須將您的金鑰與其比對。</string>
@@ -460,8 +454,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">您不具備身分認證金鑰！</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">您不具備身分認證金鑰。</string>
-  <string name="ViewIdentityActivity_scan_to_compare">掃描以比對</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">掃描並且進行比對</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告！掃描的值並不相符！</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">無法驗證！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">掃描的金鑰相符！</string>
@@ -936,8 +928,6 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="conversation_group_options__broadcast">訊息廣播</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">比對</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">掃描並且進行比對</string>
-  <string name="key_scanning__menu_scan_to_compare">掃描以比對</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">新訊息</string>
   <string name="text_secure_normal__menu_new_group">新增群組</string>
@@ -977,6 +967,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
   <!--media_preview-->
   <string name="media_preview__save_title">儲存</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">圖片預覽</string>
   <!--new_conversation_activity-->

@@ -143,12 +143,25 @@
     <item quantity="other">Това ще изтрие невъзвращаемо всичките  %1$d избрани съобщения.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Запази на SD картата?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Запазване на този файл на външната памет ще разреши на всички други приложения да го виждат и променят.\n\nПродължи?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка при запазване на прикачения файл на SD карта!</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Запазването на този медиен файл ще даде достъп до него на всички други приложения.\n\nПродължи?</item>
+    <item quantity="other">Запазването на всички %1$d медийни файла ще даде достъп до тях на всички други приложения.\n\nПродължи?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Грешка при запазването на прикаченият файл!</item>
+    <item quantity="other">Грешка при запазването на прикачените файлове!</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">Успех!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Неуспеше запис на SD карта!</string>
-  <string name="ConversationFragment_saving_attachment">Запазване на прикачения файл</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Запазване на прикачения файл на SD карта...</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Запазване на прикачения файл</item>
+    <item quantity="other">Запазване на %1$d прикачени файла</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Запазване на прикачения файл...</item>
+    <item quantity="other">Запазване на %1$d прикачени файла...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">Събиране на прикачените файлове...</string>
   <string name="ConversationFragment_pending">Предстоящ...</string>
   <string name="ConversationFragment_push">Данни (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -461,8 +474,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Получателят няма ключ за самоличност.</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Сканирай ключа им за сравнение</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Сканирай моя ключ</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Сканирай QR кодът на контакта</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Покажи собствения QR code</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, сканираният ключ НЕ Е същият! Моля, провери текстовия отпечатък внимателно.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ Е Проверен!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Техният ключ е правилен. Необходимо е да се провери и твоят ключ от тях.</string>
@@ -470,8 +483,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Нямаш ключ за самоличност!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност!</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Сканирай за сравнение</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Позволи сканиране за сравнение</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Сканирай QR кодът на контакта</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Покажи собствения QR code</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ВНИМАНИЕ, сканираният ключ НЕ Е съвпада!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">Не потвърдено!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Сканираният ключ е същия!</string>
@@ -504,6 +517,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Извършва се внасяне</string>
   <string name="ApplicationMigrationService_importing_text_messages">Внасяне на текстови съобщения</string>
+  <string name="ApplicationMigrationService_import_complete">Внасянето завършено</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Внасянето на системната база данни на Signal е завършено.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Натисните, за да отворите.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Натиснете, за да отворите или натиснете катинара, за да затворите.</string>
@@ -948,8 +963,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="conversation_group_options__broadcast">Предаване</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Сравни</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Позволи сканиране за сравнение</string>
-  <string name="key_scanning__menu_scan_to_compare">Сканирай за сравнение</string>
+  <string name="key_scanning__menu_display_your_qr_code">Покажи собствения QR code</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Сканирай QR кодът на контакта</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Ново съобщение</string>
   <string name="text_secure_normal__menu_new_group">Нова група</string>
@@ -990,6 +1005,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="MediaPreviewActivity_unssuported_media_type">Неподдържан медиен формат.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Запази</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">Запази всички</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Преглед на изображението</string>
   <!--new_conversation_activity-->

@@ -144,12 +144,25 @@ denne kontakten.</string>
     <item quantity="other">Dette vil permanent slette alle de %1$d valgte meldingene.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Lagre?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Lagring av dette vil gi andre apper på enheten din tilgang til det.\n\nFortsett?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Feil ved lagring av vedlegg!</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Lagring av denne mediafilen utenfor Signal vil gi andre apper på enheten din tilgang til det.\n\nFortsett?</item>
+    <item quantity="other">Lagring av alle %1$d mediafiler utenfor Signal vil gi andre apper på enheten din tilgang til det.\n\nFortsett?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Feil ved lagring av vedlegg!</item>
+    <item quantity="other">Feil ved lagring av vedlegg!</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">Suksess!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lagringsenheten!</string>
-  <string name="ConversationFragment_saving_attachment">Lagrer vedlegg</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Lagrer vedlegg...</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Lagrer vedlegg</item>
+    <item quantity="other">Lagrer %1$d vedlegg.</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Lagrer vedlegg...</item>
+    <item quantity="other">Lagrer %1$d vedlegg...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">Samler vedlegg...</string>
   <string name="ConversationFragment_pending">Venter...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -453,8 +466,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Mottakeren har ingen ID-nøkkel!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skann deres nøkkel for å sammenligne</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Få din nøkkel skannet</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scan kontaktens QR kode</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Vis din QR kode</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME! Vær vennlig å sjekke fingeravtrykkets tekst nøye.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">IKKE bekreftet!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Nøkkelen deres er korrekt. Det er også nødvendig å bekrefte nøkkelen din med dem også.</string>
@@ -462,8 +475,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen ID-nøkkel!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Skann for å sammenligne</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Få den skannet for å sammenlikne</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Scan kontaktens QR kode</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Vis din QR kode</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekreftet!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøkkelen stemmer overens!</string>
@@ -496,6 +509,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
+  <string name="ApplicationMigrationService_import_complete">Import fullført</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Import av Signal systemdatabase fullført.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Berør for å åpne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Berør for å åpne, eller velg låsen for å lukke.</string>
@@ -699,8 +714,7 @@ verifikasjon...</string>
   <string name="registration_progress_activity__registering_with_server">Registrering til server pågår...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dette kan ta litt tid. Vær tålmodig, vi vil varsle deg når verifikasjonen er gjennomført.</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Signal ut mens den ventet på en verifikasjons-SMS.
-</string>
+Signal fikk tidsavbrudd mens den ventet på en verifikasjons-SMS.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS verifikasjon
 feilet.</string>
   <string name="registration_progress_activity__generating_keys">Genererer nøkler...</string>
@@ -932,8 +946,8 @@ feilet.</string>
   <string name="conversation_group_options__broadcast">Kringkast</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Sammenlign</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Få den skannet for å sammenlikne</string>
-  <string name="key_scanning__menu_scan_to_compare">Skann for å sammenligne</string>
+  <string name="key_scanning__menu_display_your_qr_code">Vis din QR kode</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Scan kontaktens QR kode</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Ny melding</string>
   <string name="text_secure_normal__menu_new_group">Ny gruppe</string>
@@ -971,9 +985,11 @@ feilet.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_cant_display">Klarte ikke å forhåndsvise dette bildet</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Media typen er ikke støttet.</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Media typen er ikke støttet</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagre</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">Lagre alt</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Forhåndsvisning av bilde</string>
   <!--new_conversation_activity-->

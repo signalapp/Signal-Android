@@ -150,12 +150,29 @@ kontakt</string>
     <item quantity="other">Tímto trvale smažete všech %1$d označených zpráv.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Uložit do paměti?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Uložením dat do paměti k nim umožníte přístup kterékoliv aplikaci ve svém telefonu.\n\nPokračovat?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Chyba při ukládání přílohy!</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Uložíte-li přílohu do úložiště, budou k ní mít přístup všechny aplikace ve vašem zařízení.\n\nPokračovat?</item>
+    <item quantity="few">Uložíte-li %1$d přílohy do úložiště, budou k nim mít přístup všechny aplikace ve vašem zařízení.\n\nPokračovat?</item>
+    <item quantity="other">Uložíte-li všech %1$d příloh do úložiště, budou k nim mít přístup všechny aplikace ve vašem zařízení.\n\nPokračovat?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Chyba při ukládání příloy!</item>
+    <item quantity="few">Chyba při ukládání příloh!</item>
+    <item quantity="other">Chyba při ukládání příloh!</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">Úspěšně dokončeno!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nelze uložit data do paměti.</string>
-  <string name="ConversationFragment_saving_attachment">Ukládám přílohu</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Ukládám přílohu do paměti.</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Ukládám přílohu</item>
+    <item quantity="few">Ukládám %1$d přílohy</item>
+    <item quantity="other">Ukládám %1$d příloh</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Příloha uložena do úložiště</item>
+    <item quantity="few">Uloženo %1$d přílohy do úložiště</item>
+    <item quantity="other">Uloženo %1$d příloh do úložiště</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">Shromažďuji přílohy...</string>
   <string name="ConversationFragment_pending">Probíhající:</string>
   <string name="ConversationFragment_push">Data(Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -464,8 +481,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Příjemce nemá identifikační klíč.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Příjemce nemá identifikační klíč!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Nasnímat cizí klíč pro srovnání</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Získejte váš naskenovaný klíč</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Skenovat QR kód kontaktu</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Zobrazit váš QR kód</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">VAROVÁNÍ, nasnímaný klíč NENÍ SPRÁVNÝ! Zkontrolujte prosím textový otisk.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NEověřeno!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Klíč protistrany je správný. Protistrana by měla ještě ověřit váš vlastní klíč.</string>
@@ -473,8 +490,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nemáte identifikační klíč!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Nasnímej a porovnej</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Nechat se naskenovat k porovnání</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Skenovat QR kód kontaktu</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Zobrazit váš QR kód</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">UPOZORNĚNÍ: naskenovaný klíč nesouhlasí</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NEověřeno!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Nasnímaný klíč souhlasí!</string>
@@ -507,6 +524,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuji textové zprávy</string>
+  <string name="ApplicationMigrationService_import_complete">Import dokončen</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Import systémové databáze Signál je dokončen.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Stisknutím otevřete.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotykem otevřete nebo stisknutím zámku uzamkněte.</string>
@@ -952,8 +971,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="conversation_group_options__broadcast">Rozeslat</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Porovnat</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Nechat se naskenovat</string>
-  <string name="key_scanning__menu_scan_to_compare">Nasnímej a porovnej</string>
+  <string name="key_scanning__menu_display_your_qr_code">Zobrazit váš QR kód</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Skenovat QR kód kontaktu</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nová zpráva</string>
   <string name="text_secure_normal__menu_new_group">Nová skupina</string>
@@ -995,6 +1014,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ dat.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložit</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">Uložit vše</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Náhled obrázku</string>
   <!--new_conversation_activity-->

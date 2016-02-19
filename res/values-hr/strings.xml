@@ -8,7 +8,17 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1 poruka po razgovoru</item>
+    <item quantity="few">%d poruke po razgovoru</item>
+    <item quantity="other">%d poruka po razgovoru</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obriši sve stare poruke?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Ovo će automatski skratiti sve razgovore na odabrani broj poruka.</item>
+    <item quantity="few">Ovo će automatski skratiti sve razgovore na %d najnovije poruke.</item>
+    <item quantity="other">Ovo će automatski skratiti sve razgovore na %d najnovijih poruka.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Obriši</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Onemogući lozinku?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Trajno ćete otključati Signal i obavijesti o porukama.</string>
@@ -30,6 +40,11 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Lozinka: %1$s, Sigurnost zaslona: %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Jezik: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">1 minuta</item>
+    <item quantity="few">%d minute</item>
+    <item quantity="other">%d minuta</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
@@ -58,7 +73,7 @@ ovaj kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Prihvati</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Poruka %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal pozivi %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal poziv %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Veličina poruke: %d KB</string>
   <string name="ConversationItem_expires_s">Ističe: %s</string>
@@ -74,6 +89,8 @@ ovaj kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nekriptirani MMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj nije više Signal korisnik.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
+  <string name="ConversationItem_from_s">od %s</string>
+  <string name="ConversationItem_to_s">prema %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetiraj sigurnu sesiju?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Može pomoći ukoliko imate problema s kriptiranjem u ovom razgovoru. Vaše poruke će biti zadržane.</string>
@@ -92,6 +109,11 @@ ovaj kontakt.</string>
   <string name="ConversationActivity_group_members">Članovi grupe</string>
   <string name="ConversationActivity_group_conversation">Grupni razgovor</string>
   <string name="ConversationActivity_unnamed_group">Neimenovana grupa</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 član</item>
+    <item quantity="few">%d člana</item>
+    <item quantity="other">%d članova</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Spremljena skica</string>
   <string name="ConversationActivity_invalid_recipient">Naispravan primatelj!</string>
   <string name="ConversationActivity_calls_not_supported">Pozivi nisu podržani</string>
@@ -123,13 +145,14 @@ ovaj kontakt.</string>
     <item quantity="few">Obriši odabrane poruke?</item>
     <item quantity="other">Obriši odabrane poruke?</item>
   </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Ovo će trajno obrisati odabrane poruke.</item>
+    <item quantity="few">Ovo će trajno obrisati sve %1$d odabrane poruke.</item>
+    <item quantity="other">Ovo će trajno obrisati svih %1$d odabranih poruka.</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Spremi na disk?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Spremanje ovog medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem uređaju.\n\nNastavi?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Greška prilikom spremanja privitka na disk!</string>
   <string name="ConversationFragment_success_exclamation">Uspješno!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pisati na disk!</string>
-  <string name="ConversationFragment_saving_attachment">Spremanje privitka</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Spremanje privitka na disk...</string>
   <string name="ConversationFragment_pending">U toku...</string>
   <string name="ConversationFragment_push">Podaci (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -139,9 +162,29 @@ ovaj kontakt.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Traži...</string>
   <!--ConversationListFragment-->
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Obriši odabrane razgovore?</item>
+    <item quantity="few">Obriši odabrane razgovore?</item>
+    <item quantity="other">Obriši odabrane razgovore?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Ovo će trajno obrisati odabrane razgovore.</item>
+    <item quantity="few">Ovo će trajno obrisati %1$d odabrana razgovora.</item>
+    <item quantity="other">Ovo će trajno obrisati %1$d odabranih razgovora.</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Brisanje odabranih razgovora...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Razgovori arhivirani</item>
+    <item quantity="few">%d razgovora arhivirana</item>
+    <item quantity="other">%d razgovora arhivirano</item>
+  </plurals>
   <string name="ConversationListFragment_undo">VRATI</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Razgovori premješteni u primljene poruke</item>
+    <item quantity="few">%d razgovora premještena u primljene poruke</item>
+    <item quantity="other">%d razgovora premješteno u primljene poruke</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa...</string>
   <!--ConversationListItemAction-->
@@ -176,13 +219,13 @@ ovaj kontakt.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Signal. Pritisnite za pregled.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Izvoz</string>
-  <string name="ExportFragment_export_plaintext_to_storage">Izvezi u obliku običnog teksta na pohranu?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozorenje, ova radnja će izvesti vaše Signalporuke na pohranu u obliku običnog teksta.</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Izvezi u obliku običnog teksta na disk?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozorenje, ova radnja će izvesti vaše Signal poruke na disk u obliku običnog teksta.</string>
   <string name="ExportFragment_cancel">Odustani</string>
   <string name="ExportFragment_exporting">Izvoz</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">Izvoz u obliku običnog teksta na pohranu...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">Greška, nije moguće pisati na pohranu.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">Greška prilikom pisanja na pohranu.</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Izvoz u obliku običnog teksta na disk...</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">Greška, nije moguće pisati na disk.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Greška prilikom pisanja na disk.</string>
   <string name="ExportFragment_success">Uspješno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>
@@ -245,6 +288,16 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
   <string name="InviteActivity_invitations_sent">Pozivnice poslane!</string>
   <string name="InviteActivity_invite_to_signal">Pozovi u Signal</string>
+  <plurals name="InviteActivity_send_to_friends">
+    <item quantity="one">POŠALJI ODABRANIM PRIJATELJIMA</item>
+    <item quantity="few">POŠALJI PRIJATELJIMA: %d</item>
+    <item quantity="other">POŠALJI PRIJATELJIMA: %d</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Pošalji SMS pozivnice?</item>
+    <item quantity="few">Pošalji %d SMS pozivnice?</item>
+    <item quantity="other">Pošalji %d SMS pozivnica?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Prebacimo se na Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji paze da se njihovi prijatelji kriptirano dopisuju.</string>
@@ -289,6 +342,10 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
   <string name="DeviceProvisioningActivity_title">Poveži ovaj uređaj?</string>
   <string name="DeviceProvisioningActivity_content_intro">Moći će</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+        • Pročitajte sve svoje poruke
+        \n• Pošaljite poruke u svoje ime
+    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Povezivanje uređaja</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Povezivanje novog uređaja...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Uređaj odobren!</string>
@@ -415,8 +472,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemate ključ identiteta.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Primatelj nema ključ identiteta.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Primatelj nema ključ identiteta!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skenirajte njihov ključ za usporedbu</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Skeniraj moj ključ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UPOZORENJE, skenirani ključ NE ODGOVARA! Provjerite pažljivo tekst otiska prsta.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NIJE potvrđeno!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Njihov ključ je ispravan. Također je potrebno potvrditi vaš ključ sa njima.</string>
@@ -424,8 +479,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nemate ključ identiteta!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nemate ključ identiteta!</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Skenirajte za usporedbu</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Budite skenirani za usporedbu</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">UPOZORENJE, skenirani ključ NE ODGOVARA!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NIJE potvrđeno!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Skenirani ključ odgovara!</string>
@@ -565,6 +618,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Ažuriranje baze podataka...</string>
   <string name="export_fragment__export_plaintext_backup">Izvezi nekriptiranu kopiju</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Izvezi nekriptiranu kopiju kompatibilnu s \'SMS Backup &amp; Restore\' na disk</string>
   <string name="import_fragment__import_system_sms_database">Uvezi SMS bazu podataka sustava</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Uvezi bazu podataka iz zadane aplikacije za poruke</string>
   <string name="import_fragment__restore_encrypted_backup">Vrati kriptiranu kopiju</string>
@@ -587,6 +641,11 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="MmsPreferencesFragment__invalid_uri">Uneseni tekst nije ispravan URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Uneseni tekst nije ispravan poslužitelj</string>
   <!--GroupUtil-->
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s se pridružio grupi.</item>
+    <item quantity="few">%1$s se pridružilo grupi.</item>
+    <item quantity="other">%1$s se pridružilo grupi.</item>
+  </plurals>
   <string name="GroupUtil_group_updated">Grupa je ažurirana.</string>
   <string name="GroupUtil_group_name_is_now">Ime grupe sada je \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
@@ -649,6 +708,9 @@ Signal vas može nazvati kako bi potvrdio vaš broj. Pritisnite \'Nazovi me\' i 
   <string name="registration_progress_activity__some_possible_problems_include">Neki mogući
 problemi uključuju:</string>
   <string name="registration_progress_activity__no_network_connectivity">Nema mreže.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaš
+uređaj treba vezu na mrežu kako biste koristili ovu Signal mogućnost. Provjerite da li je
+uređaj povezan na mobilne podatke ili Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ograničenja vatrozida.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Ukoliko ste povezani preko Wi-Fi, moguće je da postoji vatrozid koji blokira pristup na
@@ -746,8 +808,11 @@ neuspješno.</string>
   <string name="preferences__screen_security">Sigurnost ekrana</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Onemogući snimanje ekrana na popisu nedavnih i unutar aplikacije</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automatski zaključaj Signal nakon određenog vremenskog intervala neaktivnosti</string>
+  <string name="preferences__inactivity_timeout_passphrase">Lozinka neaktivnosti</string>
+  <string name="preferences__inactivity_timeout_interval">Interval neaktivnosti</string>
   <string name="preferences__notifications">Obavijesti</string>
   <string name="preferences__enable_message_notifications">Omogući obavijesti o poruci</string>
+  <string name="preferences__new_contacts_notifications">Obavijesti o novim kontaktima</string>
   <string name="preferences__show_a_notification_for_new_signal_contacts">Pokaži obavijesti o novim Signal kontaktima</string>
   <string name="preferences__led_color">LED boja</string>
   <string name="preferences__led_color_unknown">Nepoznato</string>
@@ -759,6 +824,7 @@ neuspješno.</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__change_notification_sound">Izmjenite zvuk obavijesti</string>
   <string name="preferences__silent">Bezvučno</string>
+  <string name="preferences__in_conversation_notifications">Obavijesti unutar razgovora</string>
   <string name="preferences__play_inthread_notifications">Reproduciraj zvukove obavijesti prilikom pregleda aktivnog razgovora</string>
   <string name="preferences__repeat_alerts">Ponovi upozorenja</string>
   <string name="preferences__never">Nikada</string>
@@ -856,6 +922,7 @@ neuspješno.</string>
   <string name="conversation_list_batch__menu_delete_selected">Obriši odabrano</string>
   <string name="conversation_list_batch__menu_select_all">Odaberi sve</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Odabran arhiv</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Odabrano raspakiranje arhive</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Traži</string>
   <!--conversation_list_item_view-->
@@ -890,8 +957,6 @@ neuspješno.</string>
   <string name="conversation_group_options__broadcast">Emitiranje</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Usporedi</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Budite skenirani za usporedbu</string>
-  <string name="key_scanning__menu_scan_to_compare">Skenirajte za usporedbu</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nova poruka</string>
   <string name="text_secure_normal__menu_new_group">Nova grupa</string>
@@ -902,6 +967,11 @@ neuspješno.</string>
   <string name="text_secure_normal__help">Pomoć</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaša Signal inačica je istekla!</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Vaša Signal inačica će isteći za 1 dan. Dodirnite za ažuriranje na najnoviju inačicu.</item>
+    <item quantity="few">Vaša Signal inačica će isteći za %d dana. Dodirnite za ažuriranje na najnoviju inačicu.</item>
+    <item quantity="other">Vaša Signal inačica će isteći za %d dana. Dodirnite za ažuriranje na najnoviju inačicu.</item>
+  </plurals>
   <string name="reminder_header_outdated_build_details_today">Vaša će verzija Signala isteći danas. Dodirnite za ažuriranje na najnoviju inačicu.</string>
   <string name="reminder_header_expired_build">Vaša je verzija Signala istekla!</string>
   <string name="reminder_header_expired_build_details">Poruke više neće moći biti uspješno poslane. Pritisnite za ažuriranje na najnoviju inačicu.</string>
@@ -928,6 +998,7 @@ neuspješno.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodržani tip medija</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spremi</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Prikaz slike</string>
   <!--new_conversation_activity-->

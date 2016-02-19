@@ -141,12 +141,8 @@ questo contatto.</string>
     <item quantity="other">Così cancellerai per sempre i %1$d messaggi selezionati.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Salvare i file sulla memoria consentirà a qualunque applicazione sul tuo telefono di accedervi.\n\nContinuare?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Errore nel salvare l\'allegato in memoria!</string>
   <string name="ConversationFragment_success_exclamation">Completato!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossibile scrivere sulla memoria!</string>
-  <string name="ConversationFragment_saving_attachment">Salvataggio allegato</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Salvataggio allegato nella memoria...</string>
   <string name="ConversationFragment_pending">In sospeso...</string>
   <string name="ConversationFragment_push">Dati (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -457,8 +453,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Il destinatario non ha una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Il destinatario non ha una chiave di identità.</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Scansiona la chiave per controllare</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Fai scansionare la tua chiave</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATTENZIONE, la chiave scansionata non corrisponde! Controlla il testo della chiave con attenzione.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NON verificata!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La chiave è corretta. È anche necessario verificare la tua chiave.</string>
@@ -466,8 +460,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Non hai una chiave per l\'identità!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Scansione per controllare</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Scansionato per controllare</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ATTENZIONE, la chiave scansionata non corrisponde!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NON verificato!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">La chiave scansionata corrisponde!</string>
@@ -948,8 +940,6 @@ non riuscita.
   <string name="conversation_group_options__broadcast">Broadcast</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Controlla</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Scansionato per controllare</string>
-  <string name="key_scanning__menu_scan_to_compare">Scansiona per controllare</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nuovo messaggio</string>
   <string name="text_secure_normal__menu_new_group">Nuovo gruppo</string>
@@ -990,6 +980,7 @@ non riuscita.
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo di media non supportato</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Anteprima immagine</string>
   <!--new_conversation_activity-->

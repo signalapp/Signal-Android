@@ -77,11 +77,8 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Адпраўшчык: %1$s\nТранспарт: %2$s\nДаслана: %3$s\nАтрымана: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Памылка пры захаванні дадатку на дыск!</string>
   <string name="ConversationFragment_success_exclamation">Паспяхова!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Немагчыма запісаць на дыск!</string>
-  <string name="ConversationFragment_saving_attachment">Захаванне дадатку</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Захаванне дадатку на дыск...</string>
   <string name="ConversationFragment_pending">У працэсе...</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -233,7 +230,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас няма індэнтыфікацыйнага ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Атрымальнік ня мае ідэнтыфікацыйнага ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Атрымальнік ня мае ідэнтыфікацыйнага ключа!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Адскануйце гэты ключ, каб параўнаць</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УВАГА, адсканаваныя ключы не супадаюць! Калі ласка ўважліва праверце адбіткі.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ верыфікавана!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Іх ключ правільны. Таксама не забудзься верыфікаваць свой ключ з імі.</string>
@@ -241,8 +237,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">У Вас няма ідэнтыфікацыйнага ключа!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">У Вас няма ідэнтыфікацыйнага ключа.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Адскануйце каб параўнаць</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Скануюцца для параўнання</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">УВАГА, адсканаваны ключ не супадае!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">Не верыфікавана!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Адсканаваныя ключ супадае!</string>
@@ -566,8 +560,6 @@
   <string name="conversation_group_options__broadcast">Трансляцыя</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Параўнаць</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Скануюцца для параўнання</string>
-  <string name="key_scanning__menu_scan_to_compare">Адскануйце каб параўнаць</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Новае паведамленне</string>
   <string name="text_secure_normal__menu_new_group">Новая група</string>
@@ -581,6 +573,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">Гэты медыя тып не падтрымліваецца</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Захаваць</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->

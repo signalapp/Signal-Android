@@ -89,11 +89,8 @@
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n送信方法: %2$s\n送信: %3$s\n受信: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">メモリに保存しますか？</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">保存中にエラーが発生しました。</string>
   <string name="ConversationFragment_success_exclamation">成功しました。</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">メモリに書き込めませんでした。</string>
-  <string name="ConversationFragment_saving_attachment">添付ファイルを保存しています</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">メモリに添付ファイルを保存中…</string>
   <string name="ConversationFragment_pending">ペンディング</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -276,7 +273,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">受信者は認証キーがありません。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">受信者は認証キーがありません！</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">鍵をスキャンして比較</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告、スキャンした鍵が正しくありません！フィンガープリントのテキストを慎重にチェックしてください。</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">鍵が一致しました。これらの鍵と一緒に、自分の鍵も確認する必要があります。</string>
@@ -284,8 +280,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">認証キーがありません。</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>
-  <string name="ViewIdentityActivity_scan_to_compare">スキャンして比較</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">スキャンして比較してもらう</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告、スキャンした鍵が正しくありません！</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">スキャンした鍵が一致しました！</string>
@@ -655,8 +649,6 @@
   <string name="conversation_group_options__broadcast">一斉送信</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">比較</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">スキャンして比較してもらう</string>
-  <string name="key_scanning__menu_scan_to_compare">スキャンして比較</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">新規メッセージ</string>
   <string name="text_secure_normal__menu_new_group">新規グループ</string>
@@ -670,6 +662,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディア種別</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->

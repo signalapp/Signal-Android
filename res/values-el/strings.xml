@@ -146,12 +146,8 @@
     <item quantity="other">Αυτό θα διαγράψει οριστικά όλα τα %1$d επιλεγμένα μηνύματα.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Να αποθηκευτεί στην μνήμη;</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Αποθηκεύοντας αυτό το αρχείο στον αποθηκευτικό χώρο θα επιτρέψει σε οποιαδήποτε άλλη εφαρμογή στην συσκευή σου να έχει πρόσβαση σε αυτό.\n\nΣυνέχεια;</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Σφάλμα κατά την αποθήκευση συνημμένου στην αποθήκευση!</string>
   <string name="ConversationFragment_success_exclamation">Επιτυχία!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Αδύνατη η εγγραφή στην μνήμη!</string>
-  <string name="ConversationFragment_saving_attachment">Αποθήκευση συνημμένου</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Αποθήκευση συνημμένου στην μνήμη...</string>
   <string name="ConversationFragment_pending">Εν αναμονή...</string>
   <string name="ConversationFragment_push">Δεδομένα (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -462,8 +458,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Δεν έχεις κλειδί ταυτότητας.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Ο παραλήπτης δεν έχει κλειδί ταυτότητας.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Ο παραλήπτης δεν έχει κλειδί ταυτότητας!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Σάρωσε το κλειδί του/της για σύγκριση</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Σάρωση του κλειδιού σου</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ΠΡΟΣΟΧΗ, το σαρωμένο κλειδί ΔΕΝ ταιριάζει! Έλεγξε προσεκτικά το αποτύπωμα.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">ΔΕΝ επιβεβαιώθηκε!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Το κλειδί του/της είναι σωστό. Πρέπει επίσης και αυτός/η να επιβεβαιώσει το κλειδί σου.</string>
@@ -471,8 +465,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Δεν έχεις κλειδί ταυτότητας!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Δεν έχεις κλειδί ταυτότητας.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Σάρωσε για σύγκριση</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Να μας σαρώσουν για σύγκριση</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ΠΡΟΣΟΧΗ, το σαρωμένο κλειδί ΔΕΝ ταιριάζει!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">ΔΕΝ επιβεβαιώθηκε!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Το σαρωμένο κλειδί ταιριάζει!</string>
@@ -953,8 +945,6 @@
   <string name="conversation_group_options__broadcast">Αποστολή σε Όλους</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Σύγκριση</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Να μας σαρώσουν για σύγκριση</string>
-  <string name="key_scanning__menu_scan_to_compare">Σάρωση για σύγκριση</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Νέο Μήνυμα</string>
   <string name="text_secure_normal__menu_new_group">Νέα ομάδα</string>
@@ -994,6 +984,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">Μη υποστηριζόμενος τύπος μέσων ενημέρωσης</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Αποθήκευση</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Προεπισκόπηση εικόνας</string>
   <!--new_conversation_activity-->

@@ -136,12 +136,21 @@
     <item quantity="other">선택된 메시지 %1$d개가 영구 삭제됩니다.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">저장소에 저장하시겠습니까?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">이 미디어를 저장소에 저장하게 되면, 기기에 설치된 다른 앱이 접근할 수 있습니다.\n\n저장하시겠습니까?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">첨부파일 저장 오류 발생</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="other">미디어 %1$d개를 저장소에 저장하게 되면, 기기에 설치된 다른 앱이 접근할 수 있습니다.\n\n저장하시겠습니까?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="other">첨부파일 저장 오류 발생</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">성공</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">저장소에 저장할 수 없음</string>
-  <string name="ConversationFragment_saving_attachment">첨부파일 저장</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">첨부파일을 저장소에 저장 중…</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="other">첨부파일 %1$d개 저장</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="other">첨부파일 %1$d개를 저장소에 저장 중…</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">첨부파일 저장 준비 중…</string>
   <string name="ConversationFragment_pending">대기 중…</string>
   <string name="ConversationFragment_push">인터넷 (Signal)</string>
   <string name="ConversationFragment_mms">MMS (멀티미디어)</string>
@@ -430,8 +439,8 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">내 인증 키가 없습니다.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">수신자는 인증 키가 없습니다.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">수신자 인증 키가 없음</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">상대방의 키 스캔 및 비교</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">스캔 위해 내 키 표시</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">상대방의 QR코드 스캔</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">내 QR코드 표시</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">경고: 스캔된 키가 일치하지 않습니다. 키 지문을 자세히 확인하세요.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">확인 실패</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">상대방의 키가 일치합니다. 상대방이 내 키도 확인해야 합니다.</string>
@@ -439,8 +448,8 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">인증 키가 없음</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">인증 키가 없습니다.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">키 스캔 및 비교</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">스캔 위해 키 표시</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">상대방의 QR코드 스캔</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">내 QR코드 표시</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">경고: 스캔된 키가 일치하지 않습니다.</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">확인 실패</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">스캔된 키가 일치합니다.</string>
@@ -473,6 +482,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">가져오는 중입니다.</string>
   <string name="ApplicationMigrationService_importing_text_messages">메시지 가져오기</string>
+  <string name="ApplicationMigrationService_import_complete">가져오기 완료</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Signal 데이터베이스를 가져오기가  완료되었습니다.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">열려면 터치하세요.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">열려면 터치하세요. 그러나 잠그려면 자물쇠를 터치하세요.</string>
@@ -893,8 +904,8 @@
   <string name="conversation_group_options__broadcast">방송</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">비교</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">스캔 위해 키 표시</string>
-  <string name="key_scanning__menu_scan_to_compare">키 스캔 및 비교</string>
+  <string name="key_scanning__menu_display_your_qr_code">내 QR코드 표시</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">상대방의 QR코드 스캔</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">새 메시지</string>
   <string name="text_secure_normal__menu_new_group">새 그룹</string>
@@ -934,6 +945,8 @@
   <string name="MediaPreviewActivity_unssuported_media_type">지원되지 않는 미디어 형식</string>
   <!--media_preview-->
   <string name="media_preview__save_title">저장</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">모두 저장</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">이미지 미리보기</string>
   <!--new_conversation_activity-->

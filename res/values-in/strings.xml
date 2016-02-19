@@ -135,12 +135,8 @@ kontak ini.
     <item quantity="other">Ini akan secara permanen menghapus semua %1$d pesan terpilih.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Simpan ke penyimpanan?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Menyimpan media ini ke penyimpanan membuat aplikasi lain di perangkat Anda dapat mengaksesnya.\n\nLanjutkan?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Galat saat menyimpan lampiran ke penyimpanan!</string>
   <string name="ConversationFragment_success_exclamation">Sukses!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Tidak bisa menyimpan ke penyimpanan!</string>
-  <string name="ConversationFragment_saving_attachment">Menyimpan lampiran</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Menyimpan lampiran ke penyimpanan...</string>
   <string name="ConversationFragment_pending">Tertunda...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -448,8 +444,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Anda tidak memiliki kunci identitas.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Penerima tidak memiliki kunci identitas.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Penerima tidak memiliki kunci identitas!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Pindai kunci untuk dicocokkan</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Pindai kunci saya</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">PERINGATAN, kunci terpindai TIDAK cocok! Mohon periksa teks sidik jari dengan baik.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">TIDAK diverifikasi!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Kunci benar. Diperlukan juga untuk memverifikasi kunci anda.</string>
@@ -457,8 +451,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Anda tidak memiliki kunci identitas!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Anda tidak memiliki kunci identitas.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Pindai untuk dicocokkan</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Pindai kunci untuk dicocokkan</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">PERINGATAN, kunci terpindai tidak cocok!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">TIDAK terverifikasi!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Kunci terpindai cocok!</string>
@@ -941,8 +933,6 @@ gagal
   <string name="conversation_group_options__broadcast">Siaran</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Bandingkan</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Pindai kunci untuk dicocokkan</string>
-  <string name="key_scanning__menu_scan_to_compare">Pindai untuk dicocokkan</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Pesan baru</string>
   <string name="text_secure_normal__menu_new_group">Grup baru</string>
@@ -981,6 +971,7 @@ gagal
   <string name="MediaPreviewActivity_unssuported_media_type">Tipe media tidak didukung</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Simpan</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Prantinjau gambar</string>
   <!--new_conversation_activity-->

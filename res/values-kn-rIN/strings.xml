@@ -110,11 +110,8 @@
   <string name="ConversationFragment_transport_s_sent_received_s">ರವಾನೆ: %1$s \nಕಳುಹಿಸಲಾಗಿದೆ/ಸ್ವೀಕರಿಸಲಾಗಿದೆ:%2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">ಕಳುಹಿಸುವವನು: %1$s\nರವಾನೆ: %2$s\nಕಳುಹಿಸಲಾಗಿದೆ: %3$s\nಸ್ವೀಕರಿಸಿದ್ದೇವೆ:%4$s</string>
   <string name="ConversationFragment_save_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಉಳಿಸಲೆ?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸುವಾಗ ತೊಡಕಾಗಿದೆ!</string>
   <string name="ConversationFragment_success_exclamation">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ಸಂಗ್ರಹಕ್ಕೆ ಬರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ!</string>
-  <string name="ConversationFragment_saving_attachment">ಲಗತ್ತು ಉಳಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="ConversationFragment_pending">ಬಾಕಿ ಉಳಿದಿರುವುದು...</string>
   <string name="ConversationFragment_mms">ಎಮ್ ಎಮ್ ಎಸ್</string>
   <string name="ConversationFragment_sms">ಎಸ್ ಎಮ್ ಎಸ್</string>
@@ -285,7 +282,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">ನೀವು ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">ಸ್ವೀಕರಿಸುವವರ ಯಾವುದೇ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">ಸ್ವೀಕರಿಸುವವರ ಯಾವುದೇ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">ಅವರ ಕೀಲಿಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಹೋಲಿಸಿ ನೋಡಿ</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ಎಚ್ಚರಿಕೆ, ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ! ಬೆರಳಚ್ಚುಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">ಪರಿಶೀಲಿಸಿಲ್ಲ!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">ಅವರ ಕೀಲಿ ಸರಿಯಾಗಿದೆ. ಅವರು ನಿಮ್ಮ ಕೀಲಿಯನ್ನು ಪರಿಶೀಲಿಸುವುದು ಸಹ ಅವಶ್ಯಕ.</string>
@@ -293,8 +289,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">ನೀವು ಗುರುತನ್ನು ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">ನೀವು ಗುರುತಿನ  ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">ಹೋಲಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">ಹೋಲಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿಕೊಳ್ಳಿ</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ಎಚ್ಚರಿಕೆ, ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">ಪರಿಶೀಲಿಸಿಲ್ಲ!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿಗಳು ಸಮಾನವಾಗಿವೆ!</string>
@@ -618,8 +612,6 @@
   <string name="conversation_group_options__broadcast">ಬಿತ್ತರಿಸು</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">ಹೋಲಿಸಿ</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">ಹೋಲಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿಕೊಳ್ಳಿ</string>
-  <string name="key_scanning__menu_scan_to_compare">ಹೋಲಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">ಹೊಸ ಸಂದೇಶ</string>
   <string name="text_secure_normal__menu_new_group">ಹೋಸ ಸಮೂಹ </string>
@@ -633,6 +625,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">ಬೆಂಬಲವಿಲ್ಲದ ಮಾಧ್ಯಮ ಪ್ರಕಾರ</string>
   <!--media_preview-->
   <string name="media_preview__save_title">ಉಳಿಸಿ</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->

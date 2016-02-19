@@ -89,6 +89,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Contingenciar para MMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois o destinatário não é mais um usuário Signal.\n\nEnviar mensagem não segura?</string>
   <string name="ConversationItem_unable_to_open_media">Não foi possível encontrar um aplicativo para abrir este arquivo.</string>
+  <string name="ConversationItem_from_s">de %s</string>
+  <string name="ConversationItem_to_s">para %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
@@ -146,12 +148,25 @@
     <item quantity="other">Isto irá excluir permanentemente todas as %1$d mensagens selecionadas.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvar no cartão SD?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Ao salvar este arquivo na memória do dispositivo outros aplicativos terão acesso a ele.\n\nContinuar?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o cartão SD!</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Gravar este arquivo no armazenamento permitirá que qualquer outro aplicativo no seu dispositivo tenha acesso a ele.\n\nContinuar?</item>
+    <item quantity="other">Gravar estes %1$d arquivos no armazenamento permitirá que qualquer outro aplicativo no seu dispositivo tenha acesso a eles.\n\nContinuar?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Erro ao gravar anexo no armazenamento!</item>
+    <item quantity="other">Erro ao gravar anexos no armazenamento!</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">Sucesso!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não foi possível escrever no cartão SD!</string>
-  <string name="ConversationFragment_saving_attachment">Salvando anexo</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Salvando anexo no cartão SD...</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Gravando anexo</item>
+    <item quantity="other">Gravando %1$d anexos</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Gravando anexo no armazenamento...</item>
+    <item quantity="other">Gravando %1$d anexos no armazenamento...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">Coletando anexos...</string>
   <string name="ConversationFragment_pending">Pendente...</string>
   <string name="ConversationFragment_push">Dados (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -475,8 +490,8 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">O destinatário não tem chave de identidade.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">O destinatário não tem chave de identidade!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Ler a chave do destinatário para comparação</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Escaneie sua chave</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Escanear código QR do contato</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Mostrar seu código QR</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">AVISO, a chave lida NÃO coincide. Por favor verifique cuidadosamente o texto da fingerprint.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NÃO verificado!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">A chave do destinatário está correcta. É igualmente necessário verificar a sua chave perante ele.</string>
@@ -484,8 +499,8 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Não tem uma chave de identidade!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Você não tem uma chave de identidade.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Leia o código QR para comparar</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Apresente o código QR para comparar</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Escanear código QR do contato</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Mostrar seu código QR</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">AVISO, a chave lida NÃO coincide.</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NÃO verificado!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">A chave lida coincide!</string>
@@ -518,6 +533,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em andamento</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensagens de texto</string>
+  <string name="ApplicationMigrationService_import_complete">Importação finalizada</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Importação da base de dados do sistema Signal finalizada.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Toque para abrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Toque para abrir ou clique no cadeado para fechar.</string>
@@ -966,8 +983,8 @@ falhou.</string>
   <string name="conversation_group_options__broadcast">Broadcast</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Comparar</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Apresente o código QR para comparar</string>
-  <string name="key_scanning__menu_scan_to_compare">Leia o código QR para comparar</string>
+  <string name="key_scanning__menu_display_your_qr_code">Mostrar seu código QR</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Escanear código QR do contato</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nova mensagem</string>
   <string name="text_secure_normal__menu_new_group">Novo grupo</string>
@@ -1009,6 +1026,8 @@ falhou.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo de mídia não suportado</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvar</string>
+  <!--media_overview-->
+  <string name="media_overview__save_all">Gravar tudo</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Pré-visualização de imagem</string>
   <!--new_conversation_activity-->

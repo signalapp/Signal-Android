@@ -140,12 +140,8 @@ denne kontakt.</string>
     <item quantity="other">Dette vil slette alle %1$d valgte beskeder permanent.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Gem på lager?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Hvis du gemmer dette indhold i hukommelsen, vil alle andre apps på din enhed have adgang til det.\n\nFortsæt?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Kunne ikke gemme vedhæftet fil på lageret!</string>
   <string name="ConversationFragment_success_exclamation">Fuldført!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lageret!</string>
-  <string name="ConversationFragment_saving_attachment">Gemmer vedhæftet fil</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Gemmer vedhæftet fil på lageret...</string>
   <string name="ConversationFragment_pending">Afventer...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -458,8 +454,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Modtageren har ingen identitetsnøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Modtageren har ingen identiitetsnøgle!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skan deres nøgle for at sammenligne</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Få din nøgle skannet.</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøgle matcher IKKE! Tjek fingeraftryksteksten nøje.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Modpartens nøgle er korrekt. Det er også nødvendigt at bekræfte din nøgle med modparten.</string>
@@ -467,8 +461,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen identitetsnøgle!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnøgle.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Skan for at sammenligne</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Bliv skannet for at sammenligne</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVARSEL. Den skannede nøgle matcher IKKE!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøgle matcher!</string>
@@ -927,8 +919,6 @@ mislykkedes.</string>
   <string name="conversation_group_options__broadcast">Transmission</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Sammenlign</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Bliv skannet for at sammenligne</string>
-  <string name="key_scanning__menu_scan_to_compare">Skan for at sammenligne</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Ny besked</string>
   <string name="text_secure_normal__menu_new_group">Ny gruppe</string>
@@ -968,6 +958,7 @@ mislykkedes.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ikke-understøttet multimedietype</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Billedpreview</string>
   <!--new_conversation_activity-->

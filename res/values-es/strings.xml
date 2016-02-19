@@ -151,12 +151,8 @@ Recibido:%4$s</string>
     <item quantity="other">Esto eliminará de forma permanente los %1$d mensajes seleccionados.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">¿Guardar en el almacenamiento?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Guardar este contenido multimedia en la memoria permitirá que cualquier otra aplicación en su dispositivo lo acceda.\n\n¿Continuar?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">¡Error al guardar adjunto en el almacenamiento!</string>
   <string name="ConversationFragment_success_exclamation">¡Completado!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">¡No se pudo escribir en el almacenamiento!</string>
-  <string name="ConversationFragment_saving_attachment">Guardando adjunto</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Guardando adjunto en el almacenamiento...</string>
   <string name="ConversationFragment_pending">Pendiente...</string>
   <string name="ConversationFragment_push">Datos (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -477,8 +473,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">No tiene ninguna clave de identidad.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">El destinatario no tiene clave de identidad.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">¡El destinatario no tiene clave de identidad!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Escanear la clave de ellos, para comparar</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Que escaneen su clave</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVERTENCIA: la clave escaneada NO coincide. Por favor, verifique el texto de la huella digital cuidadosamente.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">¡NO verificado!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La clave de ellos es correcta. También es necesario verificar su clave con ellos.</string>
@@ -486,8 +480,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">¡No tiene ninguna clave de identidad!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">No tiene ninguna clave de identidad.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Escanear para comparar</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Escanear su clave para comparar</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVERTENCIA: ¡las claves escaneadas NO coinciden!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">¡NO verificada!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">¡La clave escaneada coincide!</string>
@@ -975,8 +967,6 @@ por SMS.
   <string name="conversation_group_options__broadcast">Transmisión</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Comparar</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Escanear mi clave para comparar</string>
-  <string name="key_scanning__menu_scan_to_compare">Escanear para comparar</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nuevo mensaje</string>
   <string name="text_secure_normal__menu_new_group">Nuevo grupo</string>
@@ -1017,6 +1007,7 @@ por SMS.
   <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido no compatible</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Previsualización de imagen</string>
   <!--new_conversation_activity-->

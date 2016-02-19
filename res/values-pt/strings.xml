@@ -142,12 +142,8 @@ que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
     <item quantity="other">Isto irá eliminar permanentemente todas as %1$d mensagens seleccionadas.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Guardar para o armazenamento local?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Gravar este ficheiro para o armazenamento local vai permitir que qualquer outra app lhe possa aceder.\n\nContinuar?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o armazenamento local!</string>
   <string name="ConversationFragment_success_exclamation">Sucesso!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não é possível escrever para o armazenamento local!</string>
-  <string name="ConversationFragment_saving_attachment">A guardar anexo</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">A guardar anexo para o armazenamento local...</string>
   <string name="ConversationFragment_pending">Pendente...</string>
   <string name="ConversationFragment_push">Dados (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -461,8 +457,6 @@ chave corrompida.
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Destinatário não tem chave de identidade.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Destinatário não tem chave de identidade!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Ler a chave do destinatário para comparação</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Ler a sua chave</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATENÇÃO, a chave lida NÃO coincide! Por favor, verifique a impressão digital cuidadosamente.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NÃO verificado!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">A chave do destinatário está correcta. É igualmente necessário verificar a sua chave perante ele.</string>
@@ -470,8 +464,6 @@ chave corrompida.
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Não tem uma chave de identidade!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Você não tem uma chave de identidade.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Leia o código QR para comparar</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Apresente o código QR para comparar</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">AVISO, a chave lida NÃO coincide.</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NÃO verificado!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">A chave lida coincide!</string>
@@ -956,8 +948,6 @@ falhou.
   <string name="conversation_group_options__broadcast">Emissão</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Comparar</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Apresente o código QR para comparar</string>
-  <string name="key_scanning__menu_scan_to_compare">Leia o código QR para comparar</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Mensagem nova</string>
   <string name="text_secure_normal__menu_new_group">Grupo novo</string>
@@ -997,6 +987,7 @@ falhou.
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo de média não suportado</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Antevisão de imagem</string>
   <!--new_conversation_activity-->

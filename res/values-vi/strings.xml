@@ -138,12 +138,8 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
     <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn?</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">Lưu tập tin đa phương tiện này vào ổ lưu trữ sẽ cho phép bất kỳ ứng dụng nào khác trên thiết bị truy cập nó.\n\nTiếp tục chứ?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Có lỗi khi lưu tập tin đính kèm vào thẻ nhớ!</string>
   <string name="ConversationFragment_success_exclamation">Thành công!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Không thể viết vào thẻ nhớ!</string>
-  <string name="ConversationFragment_saving_attachment">Đang lưu lại phần đính kèm</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Đang lưu phần đính kèm vào thẻ nhớ...</string>
   <string name="ConversationFragment_pending">Chờ giải quyết...</string>
   <string name="ConversationFragment_push">Dữ liệu (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -451,8 +447,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Bạn không có chìa khóa danh tính.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Người nhận không có chìa khóa danh tính.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Người nhận không có chìa khóa danh tính!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Quét chìa khóa của họ để so sánh</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">Quét khoá của bạn</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">CẢNH BÁO, chìa khóa được quét KHÔNG trùng hợp! Xin xem lại cho kỹ càng văn bản dấu tay.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">CHƯA Kiểm Chứng!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Chìa khóa của họ đúng. Cũng cần phải kiểm chứng chìa khóa của bạn với họ luôn.</string>
@@ -460,8 +454,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Bạn không có chìa khóa danh tính!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Bạn không có chìa khóa danh tính!</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Quét để so sánh</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Quét để so sánh</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">CẢNH BÁO, chìa khóa được quét KHÔNG trùng hợp!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">CHƯA kiểm chứng!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Chìa khóa được quét trùng hợp!</string>
@@ -945,8 +937,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="conversation_group_options__broadcast">Phát rộng</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">So sánh</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Quét để so sánh</string>
-  <string name="key_scanning__menu_scan_to_compare">Quét để so sánh</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Tin nhắn mới</string>
   <string name="text_secure_normal__menu_new_group">Tạo nhóm mới</string>
@@ -985,6 +975,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="MediaPreviewActivity_unssuported_media_type">Không hỗ trợ dạng truyền thông này</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lưu</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Xem trước hình</string>
   <!--new_conversation_activity-->
