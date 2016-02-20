@@ -72,7 +72,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:textsecure-android:1.8.6'
+    compile 'org.whispersystems:textsecure-android:1.8.7'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
     compile 'com.google.zxing:core:3.2.1'
 
@@ -126,7 +126,7 @@ dependencyVerification {
             'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
             'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
-            'org.whispersystems:textsecure-android:0405821f479985677d6d5f4032eaaa732e04562c1975969cbaea37939030ec96',
+            'org.whispersystems:textsecure-android:5aa9fe94799570da35c8ff2faf517924ca602284971c60a5a7208818d6d00df4',
             'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
             'com.google.zxing:core:b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259',
             'com.google.android.gms:play-services-base:ef36e50fa5c0415ed41f74dd399a889efd2fa327c449036e140c7c3786aa0e1f',
@@ -134,7 +134,7 @@ dependencyVerification {
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
-            'org.whispersystems:textsecure-java:d4ee0d0537693f82b7a9f76fe32cf6b61f79e27d8657a486ee4959b54b738c5a',
+            'org.whispersystems:textsecure-java:d9e366c2ff9ed208d0fd2dd76e9097604425b2824739e59057b6afef0fd34e3d',
             'org.whispersystems:axolotl-android:40d3db5004a84749a73f68d2f0d01b2ae35a73c54df96d8c6c6723b96efb6fc0',
             'com.google.android.gms:play-services-basement:e1d29b21e02fd2a63e5a31807415cbb17a59568e27e3254181c01ffae10659bf',
             'com.googlecode.libphonenumber:libphonenumber:9625de9d2270e9a280ff4e6d9ef3106573fb4828773fd32c9b7614f4e17d2811',

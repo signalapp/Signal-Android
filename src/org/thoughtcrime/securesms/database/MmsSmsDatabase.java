@@ -26,11 +26,14 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import ws.com.google.android.mms.pdu.PduHeaders;
 
 public class MmsSmsDatabase extends Database {
 
@@ -107,6 +110,17 @@ public class MmsSmsDatabase extends Database {
     return queryTables(PROJECTION, selection, order, null);
   }
 
+  public int getUnreadCount(long threadId) {
+    String selection = MmsSmsColumns.READ + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId;
+    Cursor cursor    = queryTables(PROJECTION, selection, null, null);
+
+    try {
+      return cursor != null ? cursor.getCount() : 0;
+    } finally {
+      if (cursor != null) cursor.close();;
+    }
+  }
+
   public int getConversationCount(long threadId) {
     int count = DatabaseFactory.getSmsDatabase(context).getMessageCountForThread(threadId);
     count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId);
@@ -114,9 +128,9 @@ public class MmsSmsDatabase extends Database {
     return count;
   }
 
-  public void incrementDeliveryReceiptCount(String address, long timestamp) {
-    DatabaseFactory.getSmsDatabase(context).incrementDeliveryReceiptCount(address, timestamp);
-    DatabaseFactory.getMmsDatabase(context).incrementDeliveryReceiptCount(address, timestamp);
+  public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId) {
+    DatabaseFactory.getSmsDatabase(context).incrementDeliveryReceiptCount(syncMessageId);
+    DatabaseFactory.getMmsDatabase(context).incrementDeliveryReceiptCount(syncMessageId);
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String limit) {

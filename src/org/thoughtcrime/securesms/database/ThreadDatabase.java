@@ -29,6 +29,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -257,16 +258,22 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public void setRead(long threadId) {
+  public List<SyncMessageId> setRead(long threadId) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
 
-    DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
-    DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
+    final List<SyncMessageId> smsRecords = DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
+    final List<SyncMessageId> mmsRecords = DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
+
     notifyConversationListListeners();
+
+    return new LinkedList<SyncMessageId>() {{
+      addAll(smsRecords);
+      addAll(mmsRecords);
+    }};
   }
 
   public void setUnread(long threadId) {
@@ -463,6 +470,18 @@ public class ThreadDatabase extends Database {
     }
 
     return null;
+  }
+
+  public void updateReadState(long threadId) {
+    int unreadCount = DatabaseFactory.getMmsSmsDatabase(context).getUnreadCount(threadId);
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(READ, unreadCount == 0);
+
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,ID_WHERE,
+                                                new String[] {String.valueOf(threadId)});
+
+    notifyConversationListListeners();
   }
 
   public boolean update(long threadId, boolean unarchive) {

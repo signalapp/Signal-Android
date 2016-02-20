@@ -90,9 +90,12 @@ import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
@@ -1232,8 +1235,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Long, Void, Void>() {
       @Override
       protected Void doInBackground(Long... params) {
-        DatabaseFactory.getThreadDatabase(ConversationActivity.this).setRead(params[0]);
-        MessageNotifier.updateNotification(ConversationActivity.this, masterSecret);
+        Context             context    = ConversationActivity.this;
+        List<SyncMessageId> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0]);
+
+        MessageNotifier.updateNotification(context, masterSecret);
+
+        if (!messageIds.isEmpty()) {
+          ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceReadUpdateJob(context, messageIds));
+        }
+
         return null;
       }
     }.execute(threadId);
