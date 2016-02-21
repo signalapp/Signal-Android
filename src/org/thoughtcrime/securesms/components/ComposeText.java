@@ -5,12 +5,9 @@ import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.InputType;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
-import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
 
@@ -20,8 +17,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
 
-  private SpannableString hint;
-  private SpannableString subHint;
+  private CharSequence hint;
+  private CharSequence subHint;
 
   public ComposeText(Context context) {
     super(context);
@@ -58,12 +55,10 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setHint(@NonNull String hint, @Nullable CharSequence subHint) {
-    this.hint = new SpannableString(hint);
-    this.hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+    this.hint = hint;
 
     if (subHint != null) {
-      this.subHint = new SpannableString(subHint);
-      this.subHint.setSpan(new RelativeSizeSpan(0.8f), 0, subHint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+      this.subHint = subHint;
     } else {
       this.subHint = null;
     }
