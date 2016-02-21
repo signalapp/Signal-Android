@@ -595,7 +595,7 @@
     <string name="ApplicationMigrationService_import_in_progress">Import in progress</string>
     <string name="ApplicationMigrationService_importing_text_messages">Importing text messages</string>
     <string name="ApplicationMigrationService_import_complete">Import complete</string>
-    <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Signal system database import is complete.</string>
+    <string name="ApplicationMigrationService_system_database_import_is_complete">System database import is complete.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Touch to open.</string>
