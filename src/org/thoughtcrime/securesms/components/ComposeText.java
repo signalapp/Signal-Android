@@ -56,12 +56,7 @@ public class ComposeText extends EmojiEditText {
 
   public void setHint(@NonNull String hint, @Nullable CharSequence subHint) {
     this.hint = hint;
-
-    if (subHint != null) {
-      this.subHint = subHint;
-    } else {
-      this.subHint = null;
-    }
+    this.subHint = subHint;
 
     if (this.subHint != null) {
       super.setHint(new SpannableStringBuilder().append(ellipsizeToWidth(this.hint))
