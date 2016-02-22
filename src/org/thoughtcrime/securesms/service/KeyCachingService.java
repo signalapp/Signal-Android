@@ -243,7 +243,7 @@ public class KeyCachingService extends Service {
     builder.setWhen(0);
     builder.setPriority(Notification.PRIORITY_MIN);
 
-    builder.addAction(R.drawable.ic_menu_lock_holo_dark, getString(R.string.KeyCachingService_lock), buildLockIntent());
+    builder.addAction(R.drawable.ic_menu_lock_dark, getString(R.string.KeyCachingService_lock), buildLockIntent());
     builder.setContentIntent(buildLaunchIntent());
 
     stopForeground(true);
