@@ -33,7 +33,6 @@ public class PersistentBlobProvider {
   public  static final Uri        CONTENT_URI           = Uri.parse(URI_STRING);
   public  static final String     AUTHORITY             = "org.thoughtcrime.securesms";
   public  static final String     EXPECTED_PATH         = "capture/*/*";
-  private static final String     BLOB_DIRECTORY        = "captures";
   private static final String     BLOB_EXTENSION        = "blob";
   private static final int        MATCH                 = 1;
   private static final UriMatcher MATCHER               = new UriMatcher(UriMatcher.NO_MATCH) {{
@@ -139,7 +138,7 @@ public class PersistentBlobProvider {
   }
 
   private File getFile(long id) {
-    return new File(context.getDir(BLOB_DIRECTORY, Context.MODE_PRIVATE), id + "." + BLOB_EXTENSION);
+    return new File(context.getDir("captures", Context.MODE_PRIVATE), id + "." + BLOB_EXTENSION);
   }
 
   public static @Nullable String getMimeType(@NonNull Context context, @NonNull Uri persistentBlobUri) {
