@@ -24,10 +24,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.RemoteInput;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
+import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -36,6 +40,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Get the response text from the Wearable Device and sends an message as a reply
@@ -77,8 +82,14 @@ public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
             threadId = MessageSender.send(context, masterSecret, reply, -1, false);
           }
 
-          DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+          List<SyncMessageId> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId);
           MessageNotifier.updateNotification(context, masterSecret);
+
+          if (!messageIds.isEmpty()) {
+            ApplicationContext.getInstance(context)
+                              .getJobManager()
+                              .add(new MultiDeviceReadUpdateJob(context, messageIds));
+          }
 
           return null;
         }

@@ -17,6 +17,8 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -56,6 +58,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureContent;
 import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
+import org.whispersystems.textsecure.api.messages.multidevice.ReadMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.RequestMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
@@ -146,6 +149,8 @@ public class PushDecryptJob extends ContextJob {
 
         if      (syncMessage.getSent().isPresent())    handleSynchronizeSentMessage(masterSecret, envelope, syncMessage.getSent().get(), smsMessageId);
         else if (syncMessage.getRequest().isPresent()) handleSynchronizeRequestMessage(masterSecret, syncMessage.getRequest().get());
+        else if (syncMessage.getRead().isPresent())    handleSynchronizeReadMessage(masterSecret, syncMessage.getRead().get());
+        else                                           Log.w(TAG, "Contains no known sync types...");
       }
 
       if (envelope.isPreKeyWhisperMessage()) {
@@ -250,6 +255,17 @@ public class PushDecryptJob extends ContextJob {
                         .getJobManager()
                         .add(new MultiDeviceGroupUpdateJob(getContext()));
     }
+  }
+
+  private void handleSynchronizeReadMessage(@NonNull MasterSecretUnion masterSecret,
+                                            @NonNull List<ReadMessage> readMessages)
+  {
+    for (ReadMessage readMessage : readMessages) {
+      DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(readMessage.getSender(), readMessage.getTimestamp()));
+      DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(readMessage.getSender(), readMessage.getTimestamp()));
+    }
+
+    MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull());
   }
 
   private void handleMediaMessage(@NonNull MasterSecretUnion masterSecret,

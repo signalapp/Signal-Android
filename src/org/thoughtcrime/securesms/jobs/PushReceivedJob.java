@@ -5,6 +5,8 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -64,8 +66,8 @@ public abstract class PushReceivedJob extends ContextJob {
 
   private void handleReceipt(TextSecureEnvelope envelope) {
     Log.w(TAG, String.format("Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
-    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(envelope.getSource(),
-                                                                             envelope.getTimestamp());
+    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(new SyncMessageId(envelope.getSource(),
+                                                                                               envelope.getTimestamp()));
   }
 
   private boolean isActiveNumber(Context context, String e164number) {

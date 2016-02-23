@@ -190,14 +190,14 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  public void incrementDeliveryReceiptCount(String address, long timestamp) {
+  public void incrementDeliveryReceiptCount(SyncMessageId messageId) {
     MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
     SQLiteDatabase     database        = databaseHelper.getWritableDatabase();
     Cursor             cursor          = null;
     boolean            found           = false;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX}, DATE_SENT + " = ?", new String[] {String.valueOf(timestamp)}, null, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX}, DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())}, null, null, null, null);
 
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
@@ -205,7 +205,7 @@ public class MmsDatabase extends MessagingDatabase {
 
           for (String storedAddress : addresses) {
             try {
-              String ourAddress   = canonicalizeNumber(context, address);
+              String ourAddress   = canonicalizeNumber(context, messageId.getAddress());
               String theirAddress = canonicalizeNumberOrGroup(context, storedAddress);
 
               if (ourAddress.equals(theirAddress) || GroupUtil.isEncodedGroup(theirAddress)) {
@@ -230,7 +230,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       if (!found) {
         try {
-          earlyReceiptCache.increment(timestamp, canonicalizeNumber(context, address));
+          earlyReceiptCache.increment(messageId.getTimetamp(), canonicalizeNumber(context, messageId.getAddress()));
         } catch (InvalidNumberException e) {
           Log.w(TAG, e);
         }
@@ -432,12 +432,72 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
   }
 
-  public void setMessagesRead(long threadId) {
-    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(READ, 1);
+  public List<SyncMessageId> setMessagesRead(long threadId) {
+    SQLiteDatabase      database  = databaseHelper.getWritableDatabase();
+    String              where     = THREAD_ID + " = ? AND " + READ + " = 0";
+    String[]            selection = new String[]{String.valueOf(threadId)};
+    List<SyncMessageId> result    = new LinkedList<>();
+    Cursor              cursor    = null;
 
-    database.update(TABLE_NAME, contentValues, THREAD_ID + " = ?", new String[] {threadId + ""});
+    database.beginTransaction();
+
+    try {
+      cursor = database.query(TABLE_NAME, new String[] {ADDRESS, DATE_SENT, MESSAGE_BOX}, where, selection, null, null, null);
+
+      while(cursor != null && cursor.moveToNext()) {
+        if (Types.isSecureType(cursor.getLong(2))) {
+          result.add(new SyncMessageId(cursor.getString(0), cursor.getLong(1)));
+        }
+      }
+
+      ContentValues contentValues = new ContentValues();
+      contentValues.put(READ, 1);
+
+      database.update(TABLE_NAME, contentValues, where, selection);
+      database.setTransactionSuccessful();
+    } finally {
+      if (cursor != null) cursor.close();
+      database.endTransaction();
+    }
+
+    return result;
+  }
+
+  public void setTimestampRead(SyncMessageId messageId) {
+    MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
+    SQLiteDatabase     database        = databaseHelper.getWritableDatabase();
+    Cursor             cursor          = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX}, DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())}, null, null, null, null);
+
+      while (cursor.moveToNext()) {
+        List<String> addresses = addressDatabase.getAddressesListForId(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+
+        for (String storedAddress : addresses) {
+          try {
+            String ourAddress   = canonicalizeNumber(context, messageId.getAddress());
+            String theirAddress = canonicalizeNumberOrGroup(context, storedAddress);
+
+            if (ourAddress.equals(theirAddress) || GroupUtil.isEncodedGroup(theirAddress)) {
+              long id       = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+              long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+
+              database.execSQL("UPDATE " + TABLE_NAME + " SET " + READ + " = 1 WHERE " + ID + " = ?",
+                               new String[] {String.valueOf(id)});
+
+              DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
+              notifyConversationListeners(threadId);
+            }
+          } catch (InvalidNumberException e) {
+            Log.w("MmsDatabase", e);
+          }
+        }
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
   }
 
   public void setAllMessagesRead() {

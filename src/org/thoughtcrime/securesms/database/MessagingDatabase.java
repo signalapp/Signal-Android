@@ -165,4 +165,23 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
         cursor.close();
     }
   }
+
+  public static class SyncMessageId {
+
+    private final String address;
+    private final long   timetamp;
+
+    public SyncMessageId(String address, long timetamp) {
+      this.address = address;
+      this.timetamp = timetamp;
+    }
+
+    public String getAddress() {
+      return address;
+    }
+
+    public long getTimetamp() {
+      return timetamp;
+    }
+  }
 }

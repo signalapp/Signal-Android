@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobs.DeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
@@ -43,6 +44,7 @@ import dagger.Provides;
                                      PushNotificationReceiveJob.class,
                                      MultiDeviceContactUpdateJob.class,
                                      MultiDeviceGroupUpdateJob.class,
+                                     MultiDeviceReadUpdateJob.class,
                                      DeviceListFragment.class,
                                      RefreshAttributesJob.class,
                                      GcmRefreshJob.class})

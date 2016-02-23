@@ -252,20 +252,20 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENT_FAILED_TYPE);
   }
 
-  public void incrementDeliveryReceiptCount(String address, long timestamp) {
+  public void incrementDeliveryReceiptCount(SyncMessageId messageId) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     Cursor         cursor       = null;
     boolean        foundMessage = false;
 
     try {
       cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE},
-                              DATE_SENT + " = ?", new String[] {String.valueOf(timestamp)},
+                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
                               null, null, null, null);
 
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
           try {
-            String theirAddress = canonicalizeNumber(context, address);
+            String theirAddress = canonicalizeNumber(context, messageId.getAddress());
             String ourAddress   = canonicalizeNumber(context, cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
 
             if (ourAddress.equals(theirAddress)) {
@@ -288,7 +288,7 @@ public class SmsDatabase extends MessagingDatabase {
 
       if (!foundMessage) {
         try {
-          earlyReceiptCache.increment(timestamp, canonicalizeNumber(context, address));
+          earlyReceiptCache.increment(messageId.getTimetamp(), canonicalizeNumber(context, messageId.getAddress()));
         } catch (InvalidNumberException e) {
           Log.w(TAG, e);
         }
@@ -300,14 +300,68 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public void setMessagesRead(long threadId) {
-    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(READ, 1);
+  public List<SyncMessageId> setMessagesRead(long threadId) {
+    SQLiteDatabase      database  = databaseHelper.getWritableDatabase();
+    String              where     = THREAD_ID + " = ? AND " + READ + " = 0";
+    String[]            selection = new String[]{String.valueOf(threadId)};
+    List<SyncMessageId> results   = new LinkedList<>();
+    Cursor              cursor    = null;
 
-    database.update(TABLE_NAME, contentValues,
-                    THREAD_ID + " = ? AND " + READ + " = 0",
-                    new String[] {threadId+""});
+    database.beginTransaction();
+    try {
+      cursor = database.query(TABLE_NAME, new String[] {ADDRESS, DATE_SENT, TYPE}, where, selection, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        if (Types.isSecureType(cursor.getLong(2))) {
+          results.add(new SyncMessageId(cursor.getString(0), cursor.getLong(1)));
+        }
+      }
+
+      ContentValues contentValues = new ContentValues();
+      contentValues.put(READ, 1);
+
+      database.update(TABLE_NAME, contentValues, where, selection);
+      database.setTransactionSuccessful();
+    } finally {
+      if (cursor != null) cursor.close();
+      database.endTransaction();
+    }
+
+    return results;
+  }
+
+  public void setTimestampRead(SyncMessageId messageId) {
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    Cursor         cursor       = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE},
+                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
+                              null, null, null, null);
+
+      while (cursor.moveToNext()) {
+        try {
+          String theirAddress = canonicalizeNumber(context, messageId.getAddress());
+          String ourAddress   = canonicalizeNumber(context, cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+
+          if (ourAddress.equals(theirAddress)) {
+            long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(READ, 1);
+
+            database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID)) + ""});
+
+            DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
+            notifyConversationListeners(threadId);
+          }
+        } catch (InvalidNumberException e) {
+          Log.w(TAG, e);
+        }
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
   }
 
   public void setAllMessagesRead() {
