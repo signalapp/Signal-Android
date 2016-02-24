@@ -11,7 +11,7 @@ https://whispersystems.discoursehosting.net
 Delete any sections that aren't relevant.
 -->
 
-<!-- This is relevant: mark with x between the [ ] to show you have understood -->
+<!-- This is relevant: replace the empty checkboxes [ ] below with checked ones [x] accordingly -->
 I have:
 - [ ] searched open and closed issues for duplicates
 - [ ] read https://github.com/WhisperSystems/Signal-Android/wiki/Submitting-useful-bug-reports
