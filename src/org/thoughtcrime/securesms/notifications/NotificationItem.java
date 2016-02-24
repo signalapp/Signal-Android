@@ -22,12 +22,15 @@ public class NotificationItem {
   private final @Nullable CharSequence      text;
   private final long                        timestamp;
   private final @Nullable SlideDeck         slideDeck;
+  private Boolean                           notified = false;
 
   public NotificationItem(@NonNull   Recipient individualRecipient,
                           @NonNull   Recipients recipients,
                           @Nullable  Recipients threadRecipients,
                           long threadId, @Nullable CharSequence text, long timestamp,
-                          @Nullable SlideDeck slideDeck)
+                          @Nullable SlideDeck slideDeck,
+                          boolean notified)
+
   {
     this.individualRecipient = individualRecipient;
     this.recipients          = recipients;
@@ -36,6 +39,7 @@ public class NotificationItem {
     this.threadId            = threadId;
     this.timestamp           = timestamp;
     this.slideDeck           = slideDeck;
+    this.notified            = notified;
   }
 
   public @NonNull  Recipients getRecipients() {
@@ -62,6 +66,14 @@ public class NotificationItem {
     return slideDeck;
   }
 
+  public boolean isNotified() {
+    return this.notified;
+  }
+
+  public void setNotified(boolean notified) {
+    this.notified = notified;
+  }
+
   public PendingIntent getPendingIntent(Context context) {
     Intent     intent           = new Intent(context, ConversationActivity.class);
     Recipients notifyRecipients = threadRecipients != null ? threadRecipients : recipients;
@@ -73,6 +85,35 @@ public class NotificationItem {
     return TaskStackBuilder.create(context)
                            .addNextIntentWithParentStack(intent)
                            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof NotificationItem)) {
+      return false;
+    }
+
+    final NotificationItem other = (NotificationItem) obj;
+
+    if (this.timestamp != other.timestamp) {
+      return false;
+    }
+
+    if (this.threadId != other.threadId) {
+      return false;
+    }
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+
+    result = 31 * result + (int) (this.timestamp ^ (this.timestamp >>> 32));
+    result = 31 * result + (int) (this.threadId ^ (this.threadId >>> 32));
+
+    return result;
   }
 
 

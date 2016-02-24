@@ -43,7 +43,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
   public SingleRecipientNotificationBuilder(@NonNull Context context,
                                             @Nullable MasterSecret masterSecret,
-                                            @NonNull NotificationPrivacyPreference privacy)
+                                            @NonNull NotificationPrivacyPreference privacy,
+                                            boolean summary)
   {
     super(context, privacy);
     this.masterSecret = masterSecret;
@@ -54,6 +55,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
     setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(MessageNotifier.DeleteReceiver.DELETE_REMINDER_ACTION), 0));
     setGroup(MessageNotifier.GROUP_KEY_MESSAGES);
+    setGroupSummary(summary);
   }
 
   public void setThread(@NonNull Recipients recipients) {

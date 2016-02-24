@@ -43,9 +43,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
   }
 
   public void setMostRecentSender(Recipient recipient) {
-    if (privacy.isDisplayMessage()) {
-      setContentText(messageBodies.get(0));
-    } else if (privacy.isDisplayContact()) {
+    if (privacy.isDisplayContact()) {
       setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
                                        recipient.toShortString()));
     }
