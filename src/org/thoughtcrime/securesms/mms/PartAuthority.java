@@ -51,7 +51,7 @@ public class PartAuthority {
         partUri = new PartUriParser(uri);
         return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(masterSecret, partUri.getPartId());
       case PERSISTENT_ROW:
-        return PersistentBlobProvider.getInstance(context).getStream(masterSecret, uri);
+        return PersistentBlobProvider.getInstance(context).getStream(masterSecret, ContentUris.parseId(uri));
       case SINGLE_USE_ROW:
         return SingleUseBlobProvider.getInstance().getStream(ContentUris.parseId(uri));
       default:

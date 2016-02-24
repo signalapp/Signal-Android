@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.providers;
 
 import android.annotation.SuppressLint;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
@@ -32,7 +33,8 @@ public class PersistentBlobProvider {
   private static final String     URI_STRING            = "content://org.thoughtcrime.securesms/capture";
   public  static final Uri        CONTENT_URI           = Uri.parse(URI_STRING);
   public  static final String     AUTHORITY             = "org.thoughtcrime.securesms";
-  public  static final String     EXPECTED_PATH         = "capture/*/*";
+  public  static final String     EXPECTED_PATH         = "capture/*/*/#";
+  private static final int        MIMETYPE_PATH_SEGMENT = 1;
   private static final String     BLOB_EXTENSION        = "blob";
   private static final int        MATCH                 = 1;
   private static final UriMatcher MATCHER               = new UriMatcher(UriMatcher.NO_MATCH) {{
@@ -79,10 +81,11 @@ public class PersistentBlobProvider {
 
   private Uri create(MasterSecret masterSecret, InputStream input, long id, String mimeType) {
     persistToDisk(masterSecret, id, input);
-    return CONTENT_URI.buildUpon()
-                      .appendEncodedPath(String.valueOf(System.currentTimeMillis()))
-                      .appendEncodedPath(id + "." + getExtensionFromMimeType(mimeType))
-                      .build();
+    final Uri uniqueUri = CONTENT_URI.buildUpon()
+                                     .appendPath(mimeType)
+                                     .appendEncodedPath(String.valueOf(System.currentTimeMillis()))
+                                     .build();
+    return ContentUris.withAppendedId(uniqueUri, id);
   }
 
   private void persistToDisk(final MasterSecret masterSecret, final long id, final InputStream input) {
@@ -111,30 +114,18 @@ public class PersistentBlobProvider {
   public boolean delete(@NonNull Uri uri) {
     switch (MATCHER.match(uri)) {
     case MATCH:
-      long id = getId(uri);
+      long id = ContentUris.parseId(uri);
       cache.remove(id);
-      return getFile(id).delete();
+      return getFile(ContentUris.parseId(uri)).delete();
     default:
       return new File(uri.getPath()).delete();
     }
   }
 
-  public @Nullable InputStream getStream(MasterSecret masterSecret, Uri persistentBlobUri) throws IOException {
-    return MATCHER.match(persistentBlobUri) == MATCH ? getStream(masterSecret, getId(persistentBlobUri))
-                                                     : null;
-  }
-
-  private @NonNull InputStream getStream(MasterSecret masterSecret, long id) throws IOException {
+  public @NonNull InputStream getStream(MasterSecret masterSecret, long id) throws IOException {
     final byte[] cached = cache.get(id);
     return cached != null ? new ByteArrayInputStream(cached)
                           : new DecryptingPartInputStream(getFile(id), masterSecret);
-  }
-
-  private static long getId(Uri persistentBlobUri) {
-    final String filename = persistentBlobUri.getLastPathSegment();
-    int index = filename.lastIndexOf(".");
-    return index == -1 ? Long.parseLong(filename)
-                       : Long.parseLong(filename.substring(0, index));
   }
 
   private File getFile(long id) {
@@ -143,8 +134,7 @@ public class PersistentBlobProvider {
 
   public static @Nullable String getMimeType(@NonNull Context context, @NonNull Uri persistentBlobUri) {
     if (!isAuthority(context, persistentBlobUri)) return null;
-    return MimeTypeMap.getSingleton()
-                      .getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(persistentBlobUri.toString()));
+    return persistentBlobUri.getPathSegments().get(MIMETYPE_PATH_SEGMENT);
   }
 
   private static @NonNull String getExtensionFromMimeType(String mimeType) {
