@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,10 +72,14 @@ public class MediaUtil {
   }
 
   public static @Nullable String getMimeType(Context context, Uri uri) {
+    if (PersistentBlobProvider.isAuthority(context, uri)) {
+      return PersistentBlobProvider.getMimeType(context, uri);
+    }
+
     String type = context.getContentResolver().getType(uri);
     if (type == null) {
       final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
-      type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+      type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
     }
     return getCorrectedMimeType(type);
   }
