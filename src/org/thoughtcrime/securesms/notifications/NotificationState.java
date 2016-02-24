@@ -70,13 +70,15 @@ public class NotificationState {
     return notifications;
   }
 
-  public PendingIntent getMarkAsReadIntent(Context context) {
+  public PendingIntent getMarkAsReadIntent(Context context, int notificationId, @Nullable Long threadId) {
     long[] threadArray = new long[threads.size()];
     int    index       = 0;
 
     for (long thread : threads) {
-      Log.w("NotificationState", "Added thread: " + thread);
-      threadArray[index++] = thread;
+      if (threadId == null || threadId == thread) {
+        Log.w("NotificationState", "Added thread: " + thread);
+        threadArray[index++] = thread;
+      }
     }
 
     Intent intent = new Intent(MarkReadReceiver.CLEAR_ACTION);
@@ -89,28 +91,24 @@ public class NotificationState {
     Log.w("NotificationState", "Pending array off intent length: " +
         intent.getLongArrayExtra("thread_ids").length);
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    return PendingIntent.getBroadcast(context, notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
-  public PendingIntent getWearableReplyIntent(Context context, Recipients recipients) {
-    if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
-
+  public PendingIntent getWearableReplyIntent(Context context, Recipients recipients, int notificationId) {
     Intent intent = new Intent(WearReplyReceiver.REPLY_ACTION);
     intent.putExtra(WearReplyReceiver.RECIPIENT_IDS_EXTRA, recipients.getIds());
     intent.setPackage(context.getPackageName());
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    return PendingIntent.getBroadcast(context, notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
-  public PendingIntent getQuickReplyIntent(Context context, Recipients recipients) {
-    if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
-
+  public PendingIntent getQuickReplyIntent(Context context, Recipients recipients, int notificationId) {
     Intent     intent           = new Intent(context, ConversationPopupActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
-    return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    return PendingIntent.getActivity(context, notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
 
