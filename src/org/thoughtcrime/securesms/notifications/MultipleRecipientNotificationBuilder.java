@@ -31,6 +31,8 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
     setPriority(NotificationCompat.PRIORITY_HIGH);
     setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(MessageNotifier.DeleteReceiver.DELETE_REMINDER_ACTION), 0));
+    setGroup(MessageNotifier.GROUP_KEY_MESSAGES);
+    setGroupSummary(true);
   }
 
   public void setMessageCount(int messageCount, int threadCount) {
@@ -41,7 +43,9 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
   }
 
   public void setMostRecentSender(Recipient recipient) {
-    if (privacy.isDisplayContact()) {
+    if (privacy.isDisplayMessage()) {
+      setContentText(messageBodies.get(0));
+    } else if (privacy.isDisplayContact()) {
       setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
                                        recipient.toShortString()));
     }
