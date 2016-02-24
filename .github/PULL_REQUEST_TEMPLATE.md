@@ -11,7 +11,7 @@
  * Device A, Android X.Y.Z
  * Device B, Android Z.Y
 - [ ] My contribution is fully baked and ready to be merged as is
-- [ ] I have made the choice whether I want the Bithub reward or not by omitting or adding the word `FREEBIE` in my commit message
+- [ ] I have made the choice whether I want the [Bithub reward](https://github.com/WhisperSystems/Signal-Android/wiki/BitHub-Rewards) or not by omitting or adding the word `FREEBIE` in my commit message
 
 ----------
 
