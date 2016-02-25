@@ -259,7 +259,7 @@ public class MessageNotifier {
       }
     }
 
-    if (signal) {
+    if (signal && summary) {
       builder.setAlarms(notificationState.getRingtone(), notificationState.getVibrate());
       builder.setTicker(notificationItem.getIndividualRecipient(),
                         notificationItem.getText());
