@@ -199,7 +199,7 @@ public class MessageNotifier {
         }
 
         if (notificationState.hasMultipleThreads()) {
-          sendMultipleThreadNotification(context, notificationState, signal, item);
+          sendMultipleThreadNotification(context, notificationState, signal);
         } else {
           sendSingleThreadNotification(context, masterSecret, notificationState, signal, item, true);
         }
@@ -273,16 +273,15 @@ public class MessageNotifier {
 
   private static void sendMultipleThreadNotification(@NonNull  Context context,
                                                      @NonNull  NotificationState notificationState,
-                                                     boolean signal,
-                                                     NotificationItem notificationItem)
+                                                     boolean signal)
   {
     MultipleRecipientNotificationBuilder builder       = new MultipleRecipientNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
     List<NotificationItem>               notifications = notificationState.getNotifications();
 
     builder.setMessageCount(notificationState.getMessageCount(), notificationState.getThreadCount());
-    builder.setMostRecentSender(notificationItem.getIndividualRecipient());
+    builder.setMostRecentSender(notifications.get(0).getIndividualRecipient());
 
-    long timestamp = notificationItem.getTimestamp();
+    long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
     builder.addActions(notificationState.getMarkAsReadIntent(context, SUMMARY_NOTIFICATION_ID, null));
@@ -296,7 +295,7 @@ public class MessageNotifier {
 
     if (signal) {
       builder.setAlarms(notificationState.getRingtone(), notificationState.getVibrate());
-      builder.setTicker(notificationItem.getText());
+      builder.setTicker(notifications.get(0).getText());
     }
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
