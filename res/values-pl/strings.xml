@@ -150,8 +150,19 @@ ten kontakt.
     <item quantity="other">To spowoduje permanentne usunięcie wszystkich %1$d zaznaczonych wiadomości.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Zapisać na dysk?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Zapisywanie tego załącznika do pamięci pozwoli na dostęp innych aplikacji do niego na Twoim urządzeniu.\n\nKontunuuj?</item>
+    <item quantity="few">Zapisywanie wszystkich %1$d załączników do pamięci pozwoli na dostęp innych aplikacji do nich na Twoim urządzeniu.\n\nKontunuuj?</item>
+    <item quantity="other">Zapisywanie wszystkich %1$d załączników do pamięci pozwoli na dostęp innych aplikacji do nich na Twoim urządzeniu.\n\nKontunuuj?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Błąd podczas zapisywania załącznika do pamięci!</item>
+    <item quantity="few">Błąd podczas zapisywania załączników do pamięci!</item>
+    <item quantity="other">Błąd podczas zapisywania załączników do pamięci!</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">Sukces!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
+  <string name="ConversationFragment_collecting_attahments">Zbieranie załączników...</string>
   <string name="ConversationFragment_pending">Oczekiwanie...</string>
   <string name="ConversationFragment_push">Dane (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -463,6 +474,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Odbiorca nie posiada klucza tożsamości.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Odbiorca nie posiada klucza tożsamości!</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Zeskanuj kod QR kontaktu</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Wyświetl swój kod QR</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UWAGA, zeskanowane klucze NIE ZGADZAJĄ się! Proszę sprawdź klucz ostrożnie!</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NIE zweryfikowany!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ich klucz jest poprawny. Niezbędna będzie także weryfikacja Twojego klucza z odbiorcami.</string>
@@ -470,6 +483,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nie posiadasz klucza tożsamości!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Skanuj kod QR kontaktu</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Wyświetl swój kod QR</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">UWAGA, zeskanowane klucze NIE ZGADZAJĄ SIĘ!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">Niezweryfikowany!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Zeskanowane klucze zgadzają się!</string>
@@ -502,6 +517,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Trwa importowanie</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importowanie wiadomości tekstowych</string>
+  <string name="ApplicationMigrationService_import_complete">Importowanie zakończone</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Importowanie bazy systemu Signal zakończone.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Dotknij, aby otworzyć.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotknij, aby otworzyć lub dotknij zamek, aby zamknąć.</string>
@@ -935,6 +952,8 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="conversation_group_options__broadcast">Nadawanie</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Porównaj</string>
+  <string name="key_scanning__menu_display_your_qr_code">Wyświetl swój kod QR</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Skanuj kod QR kontaktu</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nowa wiadomość</string>
   <string name="text_secure_normal__menu_new_group">Nowa grupa</string>
@@ -977,6 +996,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">Zapisz wszystko</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Podgląd zdjęcia</string>
   <!--new_conversation_activity-->

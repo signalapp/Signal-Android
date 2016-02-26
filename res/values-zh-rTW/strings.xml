@@ -81,6 +81,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">回收未加密的多媒體訊息？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由於對方已經不再是Signal的使用者，當前訊息<b>不會</b>被加密。\n\n傳送不加密的訊息？</string>
   <string name="ConversationItem_unable_to_open_media">找不到合適的應用程式來開啟媒體檔案。</string>
+  <string name="ConversationItem_from_s">來自 %s</string>
+  <string name="ConversationItem_to_s">至 %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">重設安全工作階段？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">該選項將會有助於解決您在對話中遇到的加密問題。您的訊息將被保留。</string>
@@ -135,8 +137,21 @@
     <item quantity="other">這將會永久性地刪除所有 %1$d 已選訊息。</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">儲存至儲存裝置？</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="other">保存所有的 %1$d 媒體至存儲將會允許您設備上的其它軟體開啓它們。\n\n繼續嗎？</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="other">保存附件至存儲時遇到錯誤！</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">成功！</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">無法寫入儲存裝置！</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="other">正在保存 %1$d 附件</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="other">正在保存 %1$d 附件至存儲...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">正在收集附件...</string>
   <string name="ConversationFragment_pending">待定...</string>
   <string name="ConversationFragment_push">資料 (Signal)</string>
   <string name="ConversationFragment_mms">多媒體訊息</string>
@@ -447,6 +462,8 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您不具備身分認證金鑰。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">收件者不具備身分認證金鑰。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">收件者不具備身分認證金鑰！</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">掃描聯絡人二維碼</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">顯示您的二維碼</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告！驗證結果不符合！請再檢查並仔細比對一次指紋碼。</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">無法驗證！</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">對方提供的金鑰是正確的。但您也必須將您的金鑰與其比對。</string>
@@ -454,6 +471,8 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">您不具備身分認證金鑰！</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">您不具備身分認證金鑰。</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">掃描聯絡人二維碼</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">顯示您的二維碼</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告！掃描的值並不相符！</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">無法驗證！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">掃描的金鑰相符！</string>
@@ -486,6 +505,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">匯入中</string>
   <string name="ApplicationMigrationService_importing_text_messages">匯入文字簡訊</string>
+  <string name="ApplicationMigrationService_import_complete">匯入完成</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Signal 系統數據庫導入完成。</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">按一下開啟。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">按一下開啟，或按一下鎖住並關閉。</string>
@@ -928,6 +949,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="conversation_group_options__broadcast">訊息廣播</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">比對</string>
+  <string name="key_scanning__menu_display_your_qr_code">顯示您的二維碼</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">掃描聯絡人二維碼</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">新訊息</string>
   <string name="text_secure_normal__menu_new_group">新增群組</string>
@@ -968,6 +991,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <!--media_preview-->
   <string name="media_preview__save_title">儲存</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">儲存所有</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">圖片預覽</string>
   <!--new_conversation_activity-->

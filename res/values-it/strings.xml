@@ -15,21 +15,21 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Eliminare tutti i messaggi vecchi ora?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Questo ridurrà immediatamente tutte le conversazioni al messaggio più recente.</item>
-    <item quantity="other">Questo ridurrà immediatamente tutte le conversazioni ai %d messaggi più recenti.</item>
+    <item quantity="other">Saranno ridotte immediatamente tutte le conversazioni ai %d messaggi più recenti.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Questo sbloccherá Signal e le relative notifiche permanentemente</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Saranno sbloccati definitivamente Signal e le relative notifiche</string>
   <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
   <string name="ApplicationPreferencesActivity_unregistering">Disiscriviti</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Cancellando la registrazione da Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Disiscrizione da messaggi e chiamate Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disattivare i messaggi e le chiamate di Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disabilita i messaggi di Signal annullando la tua registrazione sul server. Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare di nuovo i messaggi di Signal in futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Abilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tocca per cambiare l\'applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabilitati</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tocca per usare Signal come applicazione di default per gli SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tocca per usare Signal come applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_on">on</string>
   <string name="ApplicationPreferencesActivity_On">On</string>
   <string name="ApplicationPreferencesActivity_off">off</string>
@@ -62,7 +62,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">La chiave che identifica %1$s è cambiata. Questo può voler dire che qualcuno sta cercando di intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal e ora ha una nuova chiave.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">La chiave che identifica %1$s è cambiata. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal ed ora ha una nuova chiave.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Dovresti verificare
 questo contatto.</string>
   <string name="ConfirmIdentityDialog_accept">Accetta</string>
@@ -74,7 +74,7 @@ questo contatto.</string>
   <string name="ConversationItem_expires_s">Scadenza: %s</string>
   <string name="ConversationItem_error_not_delivered">Non consegnato</string>
   <string name="ConversationItem_view_secure_media_question">Vuoi vedere il file multimediale?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Questo media é memorizzato in un database cifrato. Purtroppo, per vederlo con un\'app esterna i dati devono essere temporaneamente decifrato e scritto nella memoria del tuo dispositivo. Sei sicuro di volerlo fare?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Questo media è memorizzato in un archivio cifrato. Purtroppo, per visualizzarlo con un\'app esterna i dati devono essere temporaneamente decifrati e scritti nella memoria di archiviazione. Sei sicuro di volerlo fare?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Errore, ricevuto messaggio per la contrattazione della chiave scaduto.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ricevuto un messaggio con chiave di scambio, tocca per processarlo</string>
   <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
@@ -84,12 +84,14 @@ questo contatto.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Tornare agli MMS non cifrati?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perchè il destinatario non è più  un utente Signal.\n\nInviare un messaggio non sicuro?</string>
   <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire il file.</string>
+  <string name="ConversationItem_from_s">da %s</string>
+  <string name="ConversationItem_to_s">a %s</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Azzerare la sessione sicura?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Reimpostare la sessione sicura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Questo potrebbe aiutare se stai avendo problemi di crittografia in questa conversazione. I tuoi messaggi verranno conservati.</string>
   <string name="ConversationActivity_reset">Reimposta</string>
-  <string name="ConversationActivity_delete_thread_question">Cancellare conversazione?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Così cancellerai permanentemente tutti i messaggi in questa conversazione.</string>
+  <string name="ConversationActivity_delete_thread_question">Eliminare la conversazione?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Saranno eliminati definitivamente i messaggi in questa conversazione.</string>
   <string name="ConversationActivity_add_attachment">Aggiungi allegato</string>
   <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
   <string name="ConversationActivity_compose_message">Componi messaggio</string>
@@ -134,11 +136,11 @@ questo contatto.</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Mittente: %1$s\nTrasporto: %2$s\nInviato: %3$s\nRicevuto: %4$s</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Cancellare il messaggio selezionato?</item>
-    <item quantity="other">Cancellare i messaggi selezionati?</item>
+    <item quantity="other">Eliminare i messaggi selezionati?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Così cancellerai per sempre il messaggio selezionato.</item>
-    <item quantity="other">Così cancellerai per sempre i %1$d messaggi selezionati.</item>
+    <item quantity="other">Saranno eliminati definitivamente i %1$d messaggi selezionati.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
   <string name="ConversationFragment_success_exclamation">Completato!</string>
@@ -154,11 +156,11 @@ questo contatto.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Cancellare la conversazione selezionata?</item>
-    <item quantity="other">Cancellare le conversazioni selezionate?</item>
+    <item quantity="other">Eliminare le conversazioni selezionate?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Così cancellerai per sempre la conversazione selezionata.</item>
-    <item quantity="other">Così cancellerai per sempre le %1$d conversazioni selezionate.</item>
+    <item quantity="other">Saranno eliminati definitivamente i %1$d messaggi selezionati.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Eliminazione</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Eliminazione delle conversazioni selezionate...</string>
@@ -453,6 +455,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Il destinatario non ha una chiave di identità.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Il destinatario non ha una chiave di identità.</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scansione codice QR del contatto</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Visualizza il tuo codice QR</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATTENZIONE, la chiave scansionata non corrisponde! Controlla il testo della chiave con attenzione.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NON verificata!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La chiave è corretta. È anche necessario verificare la tua chiave.</string>
@@ -460,6 +464,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Non hai una chiave per l\'identità!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Scansione codice QR del contatto</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Visualizza il tuo codice QR</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ATTENZIONE, la chiave scansionata non corrisponde!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NON verificato!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">La chiave scansionata corrisponde!</string>
@@ -492,6 +498,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importazione in corso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando i messaggi</string>
+  <string name="ApplicationMigrationService_import_complete">Importazione terminata</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tocca per aprire.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tocca per aprire, o tocca il lucchetto per chiudere.</string>
@@ -503,8 +510,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_locked_message">Messaggio bloccato...</string>
   <string name="MessageNotifier_media_message_with_text">Messaggio multimediale: %s</string>
   <string name="MessageNotifier_no_subject">(Nessun oggetto)</string>
-  <string name="MessageNotifier_message_delivery_failed">Non è riuscito l\'invio del messaggio</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Non è riuscito l\'invio del messaggio</string>
+  <string name="MessageNotifier_message_delivery_failed">L\'invio del messaggio non è riuscito</string>
+  <string name="MessageNotifier_failed_to_deliver_message">L\'invio del messaggio non è riuscito</string>
   <string name="MessageNotifier_error_delivering_message">C\'è stato un errore durante l\'invio del messaggio</string>
   <string name="MessageNotifier_mark_all_as_read">Segna tutto come già letto</string>
   <string name="MessageNotifier_mark_read">Ho letto</string>
@@ -760,7 +767,7 @@ non riuscita.
   <string name="arrays__disabled">Disattivato</string>
   <string name="arrays__name_and_message">Nome e messaggio</string>
   <string name="arrays__name_only">Solo nome</string>
-  <string name="arrays__no_name_or_message">Nè nome nè messaggio</string>
+  <string name="arrays__no_name_or_message">Né nome né messaggio</string>
   <string name="arrays__images">Immagini</string>
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
@@ -940,6 +947,8 @@ non riuscita.
   <string name="conversation_group_options__broadcast">Broadcast</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Controlla</string>
+  <string name="key_scanning__menu_display_your_qr_code">Visualizza il tuo codice QR</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Scansione codice QR del contatto</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nuovo messaggio</string>
   <string name="text_secure_normal__menu_new_group">Nuovo gruppo</string>
@@ -981,6 +990,7 @@ non riuscita.
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">Salva tutti</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Anteprima immagine</string>
   <!--new_conversation_activity-->

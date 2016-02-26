@@ -502,7 +502,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="ApplicationMigrationService_import_in_progress">Importieren wird durchgeführt</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nachrichten werden importiert</string>
   <string name="ApplicationMigrationService_import_complete">Importieren abgeschlossen</string>
-  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Importieren der Systemdatenbank abgeschlossen.</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Importieren der SMS/MMS-Systemdatenbank abgeschlossen.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Zum Öffnen antippen.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Zum Öffnen antippen oder zum Schließen Schloss antippen.</string>

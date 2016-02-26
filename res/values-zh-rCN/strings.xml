@@ -139,8 +139,21 @@
     <item quantity="other">这将会永久的删除所有 %1$d 已选择的信息。</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">保存到存储？</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="other">保存所有的 %1$d 媒体到存储将会允许您设备上的其他应用访问她们。\n\n继续吗？</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="other">保存附件到存储时遇到错误！</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">成功！</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">存储无法写入！</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="other">正在保存 %1$d 附件</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="other">正在保存 %1$d 附件到存储…</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">正在收集附件…</string>
   <string name="ConversationFragment_pending">待定…</string>
   <string name="ConversationFragment_push">数据（暗号）</string>
   <string name="ConversationFragment_mms">彩信</string>
@@ -445,6 +458,8 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">收件人没有身份密钥。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">收件人没有身份密钥！</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">扫描联系人二维码</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">显示您的二维码</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告：扫描的密钥不匹配！ 请仔细检查指纹文本。</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">未验证！</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">他们的密钥正确。 还需要他们验证您的密钥。</string>
@@ -452,6 +467,8 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">您没有身份密钥！</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">扫描联系人二维码</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">显示您的二维码</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告：扫描的密钥不匹配！</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">没有经过验证！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">扫描的密钥匹配！</string>
@@ -484,6 +501,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">正在导入数据</string>
   <string name="ApplicationMigrationService_importing_text_messages">正在导入文本信息</string>
+  <string name="ApplicationMigrationService_import_complete">导入完成</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">暗号系统数据库导入完毕。</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">轻触以开启。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">轻触以开启，或点击锁定以关闭。</string>
@@ -927,6 +946,8 @@
   <string name="conversation_group_options__broadcast">广播</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">比较</string>
+  <string name="key_scanning__menu_display_your_qr_code">显示您的二维码</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">扫描联系人二维码</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">新信息</string>
   <string name="text_secure_normal__menu_new_group">新群组</string>
@@ -967,6 +988,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">保存全部</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">图片预览</string>
   <!--new_conversation_activity-->

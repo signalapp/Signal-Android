@@ -14,6 +14,11 @@
     <item quantity="other">%d повідомлень на розмову</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Вилучити всі старі повідомлення зараз?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Це одразу скоротить кожне листування, залишивши лише останнє повідомлення.</item>
+    <item quantity="few">Це одразу скоротить кожне листування, залишивши лише %d останніх повідомлень.</item>
+    <item quantity="other">Це одразу скоротить кожне листування, залишивши лише %d останніх повідомлень.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Видалити</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Відключити фразу-пароль?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Це відразу розблокує Signal та сповіщення про повідомлення.</string>
@@ -147,8 +152,29 @@
     <item quantity="other">Це остаточно видалить усі %1$d обрані повідомлення.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Зберегти на носій?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Збереження цього файлу до пам\'яті пристрою зробить його доступним іншим програмам на вашому пристрої.\n\nПродовжити?</item>
+    <item quantity="few">Збереження всіх %1$d файлів до пам\'яті пристрою зробить їх доступними для інших програм на вашому пристрої.\n\nПродовжити?</item>
+    <item quantity="other">Збереження всіх %1$d файлів до пам\'яті пристрою зробить їх доступними для інших програм на вашому пристрої.\n\nПродовжити?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Під час збереження вкладення до пам\'яті пристрою сталася помилка!</item>
+    <item quantity="few">Під час збереження вкладень до пам\'яті пристрою сталася помилка!</item>
+    <item quantity="other">Під час збереження вкладень до пам\'яті пристрою сталася помилка!</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">Успішно!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не можу записати на носій!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Збереження вкладення</item>
+    <item quantity="few">Збереження %1$d вкладень</item>
+    <item quantity="other">Збереження %1$d вкладень</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Збереження вкладення до пам\'яті пристрою...</item>
+    <item quantity="few">Збереження %1$d вкладень до пам\'яті пристрою...</item>
+    <item quantity="other">Збереження %1$d вкладень до пам\'яті пристрою...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">Збираю вкладення...</string>
   <string name="ConversationFragment_pending">Очікування...</string>
   <string name="ConversationFragment_push">Дані (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -176,6 +202,11 @@
     <item quantity="other">%d заархівовано розмов</item>
   </plurals>
   <string name="ConversationListFragment_undo">СКАСУВАТИ</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Листування переміщено до вхідних</item>
+    <item quantity="few">%d листувань переміщено до вхідних</item>
+    <item quantity="other">%d листувань переміщено до вхідних</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключами\u2026</string>
   <!--ConversationListItemAction-->
@@ -455,6 +486,8 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас немає особистого ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У одержувача немає особистого ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">У одержувача немає особистого ключа!</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Сканувати QR код контакту</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Показати ваш QR код</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УВАГА, просканований ключ НЕ СПІВПАДАЄ! Уважно перевірте текст відбитка.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ перевірено!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ключ співрозмовника вірний. Також необхідно, щоб співрозмовник підтвердив ваш ключ.</string>
@@ -462,6 +495,8 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">У вас немає особистого ключа!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">У вас немає особистого ключа.</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Сканувати QR код контакту</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Показати ваш QR код</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">УВАГА, просканований ключ НЕ СПІВПАДАЄ!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">НЕ перевірено!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Просканований ключ збігається!</string>
@@ -494,6 +529,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Триває імпортування</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпортування текстових повідомлень</string>
+  <string name="ApplicationMigrationService_import_complete">Імпорт завершено</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Завершено імпорт системної бази даних Сигналу</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Доторкніться щоб відкрити.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Торкніться щоб відкрити, чи торкніться замка щоб закрити.</string>
@@ -666,6 +703,12 @@
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Можливі проблеми:</string>
   <string name="registration_problems__sms_interceptors">Перехоплювачі SMS</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+        Деякі сторонні програми обміну текстовими повідомленнями, такі як Handcent або GoSMS, чинять не як належить
+        перехоплюючи всі вхідні SMS повідомлення. Перевірте, чи отримали текстове повідомлення, яке починається
+        словами \'Your Signal verification code:\', у такому разі вам потрібно налаштувати вашу
+        сторонню програму обміну текстовими повідомленнями, щоб вона пропускала текстові повідомлення.
+    </string>
   <string name="registration_problems__incorrect_number">Неправильний номер.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Переконайтеся, що номер введений правильно і має вірний формат.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
@@ -699,6 +742,7 @@ Signal не дочекався перевірочного SMS.
 </string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-перевірка не вдалася.</string>
   <string name="registration_progress_activity__generating_keys">Генерування ключів...</string>
+  <string name="registration_progress_activity__alert">Тривога</string>
   <string name="registration_progress_activity__telephone">Телефон</string>
   <string name="registration_progress_activity__check">Перевірка</string>
   <!--recipients_panel-->
@@ -735,6 +779,7 @@ Signal не дочекався перевірочного SMS.
   <string name="arrays__import_export">Імпорт / експорт</string>
   <string name="arrays__your_identity_key">Ваш ключ ідентифікації</string>
   <string name="arrays__use_default">Використовувати за замовчанням</string>
+  <string name="arrays__use_custom">Використовувати, як користувач визначає</string>
   <string name="arrays__mute_for_one_hour">Вимкнути звук на 1 годину</string>
   <string name="arrays__mute_for_two_hours">Вимкнути звук на 2 години</string>
   <string name="arrays__mute_for_one_day">Вимкнути звук на 1 день</string>
@@ -775,6 +820,7 @@ Signal не дочекався перевірочного SMS.
   <string name="preferences__enable_passphrase">Увімкнути фразу-пароль</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Встановити фразу-ключ на Signal </string>
   <string name="preferences__screen_security">Безпека екрану</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокувати знімки екрану в списку нещодавніх та в середині програми</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоблокувати Signal після певного часу неактивності</string>
   <string name="preferences__inactivity_timeout_passphrase">фраза-ключ після спливання часу неактивностіі</string>
   <string name="preferences__inactivity_timeout_interval">Інтервал часу неактивності</string>
@@ -786,12 +832,15 @@ Signal не дочекався перевірочного SMS.
   <string name="preferences__led_color_unknown">Невідомо</string>
   <string name="preferences__pref_led_blink_title">Шаблон мерехтіння LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Задати власний шаблон мерехтіння LED</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Включено для:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Виключено для:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Власний шаблон мерехтіння LED задано!</string>
   <string name="preferences__sound">Звук</string>
   <string name="preferences__change_notification_sound">Змінити звук сповіщення</string>
   <string name="preferences__silent">Беззвучно</string>
   <string name="preferences__in_conversation_notifications">Сповіщення при розмові</string>
   <string name="preferences__play_inthread_notifications">Відтворювати звуковий сигнал у активній розмові</string>
+  <string name="preferences__repeat_alerts">Повторити застереження</string>
   <string name="preferences__never">Ніколи</string>
   <string name="preferences__one_time">Один раз</string>
   <string name="preferences__two_times">Два рази</string>
@@ -844,6 +893,7 @@ Signal не дочекався перевірочного SMS.
   <string name="preferences__free_private_messages_and_calls">Безкоштовні приватні повідомлення та дзвінки для користувачів Signal</string>
   <string name="preferences__submit_debug_log">Відіслати журнал відлагодження</string>
   <string name="preferences__support_wifi_calling">Режим сумісності \'WiFi Calling\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «Дзвінки по WiFi» включено на вашому пристрої)</string>
   <string name="preferences_app_protection__blocked_contacts">Заблоковані контакти</string>
   <string name="preferences_notifications__display_in_notifications">Відображати у сповіщеннях</string>
   <string name="preferences_chats__when_using_mobile_data">При використанні мобільних даних</string>
@@ -891,6 +941,7 @@ Signal не дочекався перевірочного SMS.
   <string name="conversation_list__menu_search">Пошук</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Зображення контакту</string>
+  <string name="conversation_list_item_view__error_alert">Помилка застереження</string>
   <string name="conversation_list_item_view__archived">Архівовано</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нова розмова</string>
@@ -899,6 +950,7 @@ Signal не дочекався перевірочного SMS.
   <string name="conversation_secure_verified__menu_verify_identity">Перевірити особистість</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Скинути безпечну сесію</string>
   <!--conversation_muted-->
+  <string name="conversation_muted__unmute">Увімкнути мікрофон</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Відключити звук сповіщень</string>
   <!--conversation-->
@@ -909,6 +961,7 @@ Signal не дочекався перевірочного SMS.
   <string name="conversation__menu_view_media">Всі зображення</string>
   <string name="conversation__menu_conversation_settings">Налаштування розмови</string>
   <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Розгорнути спливне вікно</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додати до контактів</string>
   <!--conversation_group_options-->
@@ -918,6 +971,8 @@ Signal не дочекався перевірочного SMS.
   <string name="conversation_group_options__broadcast">Трансляція</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Порівняти</string>
+  <string name="key_scanning__menu_display_your_qr_code">Показати ваш QR код</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Сканувати QR код контакту</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Нове повідомлення</string>
   <string name="text_secure_normal__menu_new_group">Нова група</string>
@@ -928,6 +983,12 @@ Signal не дочекався перевірочного SMS.
   <string name="text_secure_normal__help">Допомога</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Ваша версія Signal застаріла!</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Вашу версію Сигналу за 1 день перестануть підтримувати. Торкніться, щоб оновити до останньої версії.</item>
+    <item quantity="few">Вашу версію Сигналу перестануть підтримувати за %d дні. Торкніться, щоб оновити до останньої версії.</item>
+    <item quantity="other">Вашу версію Сигналу перестануть підтримувати за %d днів. Торкніться, щоб оновити до останньої версії.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Вашу версію Сигналу перестануть підтримувати сьогодні. Торкніться, щоб оновити до останньої версії.</string>
   <string name="reminder_header_expired_build">Ваша версія Signal застаріла!</string>
   <string name="reminder_header_expired_build_details">Повідомлення більше не будуть відправлятися. Торкніться, щоб оновитися до останньої версії.</string>
   <string name="reminder_header_expired_build_button">ОНОВИТИ</string>
@@ -938,8 +999,10 @@ Signal не дочекався перевірочного SMS.
   <string name="reminder_header_sms_import_text">Торкніться, щоб імпортувати ваші SMS повідомлення у зашифровану базу даних Signal.</string>
   <string name="reminder_header_sms_import_button">ІМПОРТУВАТИ</string>
   <string name="reminder_header_push_title">Увімкнути повідомлення та виклики Signal</string>
+  <string name="reminder_header_push_text">Оновіть досвід вашого спілкування.</string>
   <string name="reminder_header_push_button">ВВІМКНУТИ</string>
   <string name="reminder_header_invite_title">Запросити до Сигнал</string>
+  <string name="reminder_header_invite_text">Спілкуйтеся з %1$s на якісно новому рівні.</string>
   <string name="reminder_header_invite_button">ЗАПРОСИТИ</string>
   <string name="reminder_header_share_title">Запроси друзів!</string>
   <string name="reminder_header_share_text">Чим більше друзів використовують Signal, тим кращим він стає.</string>
@@ -947,15 +1010,18 @@ Signal не дочекався перевірочного SMS.
   <string name="reminder_header_close_button">ЗАКРИТИ</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ви</string>
+  <string name="MediaPreviewActivity_cant_display">Не вдалося показати це зображення для попереднього перегляду</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Непідтримуваний тип медіа</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Зберегти</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">Зберегти все</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Попередній перегляд зображення</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">Оновити</string>
   <!--redphone_audio_popup_menu-->
+  <string name="redphone_audio_popup_menu__handset">Гарнітура</string>
   <string name="redphone_audio_popup_menu__headset">Гарнітура</string>
   <string name="redphone_audio_popup_menu__speaker">Гучномовець</string>
   <!--Trimmer-->
@@ -963,5 +1029,6 @@ Signal не дочекався перевірочного SMS.
   <string name="trimmer__deleting_old_messages">Видалення старих повідомлень...</string>
   <string name="trimmer__old_messages_successfully_deleted">Старі повідомлення були успішно видалені</string>
   <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">Логотип транспорту</string>
   <!--EOF-->
 </resources>

@@ -153,12 +153,12 @@
     <item quantity="few">To bo nepovratno izbrisalo vsa %1$d izbrana sporočila.</item>
     <item quantity="other">To bo nepovratno izbrisalo vseh %1$d izbranih sporočil.</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Spravim v sistemsko shrambo?</string>
+  <string name="ConversationFragment_save_to_sd_card">Shranim v sistemsko shrambo?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Shranitev datoteke v sistemsko shrambo bo omogočilo vsaki aplikaciji na vaši napravi dostop do njih.\n\nNadaljujem?</item>
-    <item quantity="two">Shranitev datotek (%1$d) v sistemsko shrambo bo omogočilo vsaki aplikaciji na vaši napravi dostop do njih.\n\nNadaljujem?</item>
-    <item quantity="few">Shranitev vseh %1$d datotek v sistemsko shrambo bo omogočilo vsaki aplikaciji na vaši napravi dostop do njih.\n\nNadaljujem?</item>
-    <item quantity="other">Shranitev vseh %1$d datotek v sistemsko shrambo bo omogočilo vsaki aplikaciji na vaši napravi dostop do njih.\n\nNadaljujem?</item>
+    <item quantity="one">Shranitev datoteke v sistemsko shrambo bo omogočila dostop do nje vsaki aplikaciji na vaši napravi.\n\nNadaljujem?</item>
+    <item quantity="two">Shranitev datotek (%1$d) v sistemsko shrambo bo omogočila dostop do njiju vsaki aplikaciji na vaši napravi.\n\nNadaljujem?</item>
+    <item quantity="few">Shranitev vseh %1$d datotek v sistemsko shrambo bo omogočila dostop do njih vsaki aplikaciji na vaši napravi.\n\nNadaljujem?</item>
+    <item quantity="other">Shranitev vseh %1$d datotek v sistemsko shrambo bo omogočila dostop do njih vsaki aplikaciji na vaši napravi.\n\nNadaljujem?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Napaka pri shranjevanju priponke v shrambo!</item>
@@ -536,7 +536,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Uvoz v teku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Uvažam kratka sporočila</string>
-  <string name="ApplicationMigrationService_import_complete">Uvažanje končano</string>
+  <string name="ApplicationMigrationService_import_complete">Uvažanje dokončano</string>
   <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Uvažanje sistemske zbirke v aplikacijo Signal je končano.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Kliknite za odprtje.</string>
@@ -645,13 +645,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Posodabljam zbirko...</string>
   <string name="export_fragment__export_plaintext_backup">Izvoz nešifrirane varnostne kopije</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Izvozi nešifrirano varnostno kopijo združljivo s sistemskimi varnostnimi kopijami SMS v sistemsko shrambo.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Izvoz nešifrirane varnostne kopije, združljive s sistemskimi varnostnimi kopijami SMS, v sistemsko shrambo.</string>
   <string name="import_fragment__import_system_sms_database">Uvoz iz sistemske zbirke sporočil SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Uvozi zbirko sporočil iz sistemsko privzete aplikacije SMS.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Uvoz zbirke sporočil iz sistemsko privzete aplikacije SMS.</string>
   <string name="import_fragment__restore_encrypted_backup">Uvoz iz šifrirane varnostne kopije</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Obnovi podatke iz predhodno ustvarjene šifrirane varnostne kopije Signal.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Obnova podatkov iz predhodno ustvarjene šifrirane varnostne kopije Signal.</string>
   <string name="import_fragment__import_plaintext_backup">Uvoz iz nešifrirane varnostne kopije</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Uvozi iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami sporočil SMS.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Uvoz iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami sporočil SMS.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Celoten pogovor</string>
   <!--media_overview_activity-->

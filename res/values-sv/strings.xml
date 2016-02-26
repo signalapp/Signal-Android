@@ -82,6 +82,8 @@ verifiera denna kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denna meddelande kommer <b>inte</b> krypterades eftersom mottagaren inte längre är en Signal-användare. \n\nSkicka osäkert meddelande?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ej hitta app som kan öppna denna media.</string>
+  <string name="ConversationItem_from_s">från %s</string>
+  <string name="ConversationItem_to_s">till %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Starta om säker session?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i den här konversationen. Dina meddelanden kommer behållas.</string>
@@ -379,6 +381,7 @@ som inte finns i säkerhetskopian.</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numret du ringde har inte stöd för säkra röstsamtal!</string>
   <string name="RedPhone_got_it">Uppfattat</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">Anslut med Signal</string>
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din landskod</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Du måste ange ditt telefonnummer</string>
@@ -482,6 +485,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerar SMS</string>
+  <string name="ApplicationMigrationService_import_complete">Import färdig</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tryck för att öppna.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tryck för att öppna, tryck på låset för att stänga.</string>
@@ -956,6 +960,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spara</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">Spara alla</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Bildförhandsgranskning</string>
   <!--new_conversation_activity-->

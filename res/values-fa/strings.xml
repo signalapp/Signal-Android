@@ -37,6 +37,7 @@
   <string name="DraftDatabase_Draft_image_snippet">(تصویر)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(صوتی)</string>
   <string name="DraftDatabase_Draft_video_snippet">(ویدئو)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(موقعیت)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -69,6 +70,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">به اس ام اس رمز نشده برگرده؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">مجدد به تکه تکه کردن MMS؟</string>
   <string name="ConversationItem_unable_to_open_media">برنامه ای برای بازکردن این رسانه وجود ندارد.</string>
+  <string name="ConversationItem_from_s">از %s</string>
+  <string name="ConversationItem_to_s">به %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">تنظیم مجدد جلسه امن؟</string>
   <string name="ConversationActivity_reset">تنظیم مجدد</string>
@@ -107,8 +110,10 @@
   <string name="ConversationActivity_unblock_question">رفع مسدودی؟</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">آیا شما مطمئن هستید که میخواهید این مخاطب را از بلاک در بیاورید؟</string>
   <string name="ConversationActivity_unblock">رفع انسداد</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل ضمیمه شده بیشتر از اندازه مجاز تعیین شده برای این نوع پیام است.</string>
   <string name="ConversationActivity_quick_camera_unavailable">دوربین در دسترس نیست</string>
   <string name="ConversationActivity_unable_to_record_audio">قادر به ضبط صدا نیست!</string>
+  <string name="ConversationActivity_error_sending_voice_message">خطا در حال ارسال پیام صوتی</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">جزییات پیام</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">فرستنده: %1$s\nنوع انتقال: %2$s\nزمان ارسال: %3$s\nزمان دریافت: %4$s</string>
@@ -790,6 +795,9 @@
   <string name="text_secure_normal__invite_friends">دعوت دوستان</string>
   <string name="text_secure_normal__help">کمک</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">نسخه سیگنال شما قدیمی است.</string>
+  <string name="reminder_header_outdated_build_details_today">نرم افزار سیگنال شما امروز منقضی می شود. برای بروزرسانی جدیدترین نسخه ضربه بزنید.</string>
+  <string name="reminder_header_expired_build">نسخه نرم افزار سیگنال شما منقضی شده است.</string>
   <string name="reminder_header_expired_build_button">بروزرسانی</string>
   <string name="reminder_header_sms_default_title">تنظیم به عنوان برنامه پیش‌فرض پیامک</string>
   <string name="reminder_header_sms_default_text">ضربه بزنید تا برنامه پیش فرض SMS را تغییر دهید</string>
@@ -797,6 +805,7 @@
   <string name="reminder_header_sms_import_title">وارد کردن SMS سیستم</string>
   <string name="reminder_header_sms_import_button">وارد کردن</string>
   <string name="reminder_header_push_title">فعال کردن تماس ها و پیام های سیگنال</string>
+  <string name="reminder_header_push_text">تجربه ارتباط  خود را ارتقا دهید.</string>
   <string name="reminder_header_push_button">فعال کردن</string>
   <string name="reminder_header_invite_title">دعوت به سیگنال</string>
   <string name="reminder_header_invite_button">دعوت كردن</string>
@@ -810,6 +819,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">دخیره</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">همه را ذخیره کن</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">پیش نمایش تصویر</string>
   <!--new_conversation_activity-->

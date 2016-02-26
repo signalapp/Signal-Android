@@ -80,7 +80,7 @@
   <string name="ConversationItem_expires_s">Истекает: %s</string>
   <string name="ConversationItem_error_not_delivered">Не доставлено</string>
   <string name="ConversationItem_view_secure_media_question">Просмотреть защищенный медиа-файл?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Этот медиа-файл хранится в зашифрованной базе данных. К сожалению, для просмотра файла через стороннее приложение, его необходимо временно расшифровать и записать на диск. Вы уверены, что хотите это сделать?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Этот медиа-файл хранится в зашифрованной базе данных. К сожалению, для просмотра файла через стороннее приложение, его необходимо временно расшифровать и записать в память. Вы уверены, что хотите это сделать?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Ошибка: получено устаревшее сообщение обмена ключами.</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получено сообщение обмена ключами. Нажмите, чтобы его обработать.</string>
   <string name="ConversationItem_group_action_left">%1$s покинул группу.</string>
@@ -90,6 +90,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Отправить как незашифрованное MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Данное сообщение <b>не будет</b> зашифровано, поскольку получатель больше не использует Signal.\n\nОтправить незащищённое сообщение?</string>
   <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
+  <string name="ConversationItem_from_s">от %s</string>
+  <string name="ConversationItem_to_s">для %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Сбросить защищённый сеанс?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Все сообщения будут сохранены.</string>
@@ -152,9 +154,34 @@
     <item quantity="many">%1$d выбранных сообщений будут навсегда удалены.</item>
     <item quantity="other">%1$d выбранных сообщений будут навсегда удалены.</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Сохранить на SD-карту?</string>
+  <string name="ConversationFragment_save_to_sd_card">Сохранить в память?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Сохранение этого медиа-файла в память устройства позволит любому приложению иметь к нему доступ.\n\nПродолжить?</item>
+    <item quantity="few">Сохранение этих %1$d медиа-файлов в память устройства позволит любому приложению иметь к ним доступ.\n\nПродолжить?</item>
+    <item quantity="many">Сохранение этих %1$d медиа-файлов в память устройства позволит любому приложению иметь к ним доступ.\n\nПродолжить?</item>
+    <item quantity="other">Сохранение этих %1$d медиа-файлов в память устройства позволит любому приложению иметь к ним доступ.\n\nПродолжить?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Ошибка при сохранении вложения в память!</item>
+    <item quantity="few">Ошибка при сохранении вложений в память!</item>
+    <item quantity="many">Ошибка при сохранении вложений в память!</item>
+    <item quantity="other">Ошибка при сохранении вложений в память!</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">Успешно!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Невозможно произвести запись на SD-карту!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Невозможно произвести запись в память!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Сохранение вложения</item>
+    <item quantity="few">Сохранение %1$d вложений</item>
+    <item quantity="many">Сохранение %1$d вложений</item>
+    <item quantity="other">Сохранение %1$d вложений</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Сохраняем вложение в память устройства...</item>
+    <item quantity="few">Сохраняем %1$d вложения в память устройства...</item>
+    <item quantity="many">Сохраняем %1$d вложений в память устройства...</item>
+    <item quantity="other">Сохраняем %1$d вложений в память устройства...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">Собираем вложения...</string>
   <string name="ConversationFragment_pending">Ожидание...</string>
   <string name="ConversationFragment_push">Данные (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -225,8 +252,8 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и RedPhone объединились в одно приложение: Signal. Нажмите, чтобы узнать больше.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Экспорт</string>
-  <string name="ExportFragment_export_plaintext_to_storage">Экспортировать открытым текстом на SD-карту?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, ваши сообщения в Signal будут экспортированы на SD-карту в открытом виде.</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Экспортировать открытым текстом?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, ваши сообщения в Signal будут экспортированы в память устройства в незашифрованном виде.</string>
   <string name="ExportFragment_cancel">Отмена</string>
   <string name="ExportFragment_exporting">Экспорт</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Экспортируем открытый текст на SD-карту...</string>
@@ -470,6 +497,8 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У получателя нет личного ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">У получателя нет личного ключа!</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Сканировать QR-код контакта</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Показать ваш QR-код</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, просканированный ключ НЕ СОВПАДАЕТ! Внимательно проверьте текст отпечатка.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ подтверждено!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ключ собеседника верен. Также необходимо, чтобы собеседник подтвердил ваш ключ.</string>
@@ -477,6 +506,8 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">У вас нет личного ключа!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Сканировать QR-код контакта</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Показать ваш QR-код</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ВНИМАНИЕ, просканированный ключ НЕ СОВПАДАЕТ!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">НЕ подтверждено!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Просканированный ключ совпадает.</string>
@@ -509,6 +540,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Идёт импорт</string>
   <string name="ApplicationMigrationService_importing_text_messages">Импорт текстовых сообщений</string>
+  <string name="ApplicationMigrationService_import_complete">Импорт завершён</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Импорт системной базы данных завершён.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Нажмите, чтобы открыть.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Нажмите, чтобы открыть; нажмите на замок, чтобы закрыть.</string>
@@ -956,6 +989,8 @@ SMS-подтверждения...
   <string name="conversation_group_options__broadcast">Вещание</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Сравнить</string>
+  <string name="key_scanning__menu_display_your_qr_code">Показать ваш QR-код</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Сканировать QR-код контакта</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Новое сообщение</string>
   <string name="text_secure_normal__menu_new_group">Новая группа</string>
@@ -999,6 +1034,7 @@ SMS-подтверждения...
   <!--media_preview-->
   <string name="media_preview__save_title">Сохранить</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">Сохранить всё</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Предпросмотр </string>
   <!--new_conversation_activity-->

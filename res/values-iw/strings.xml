@@ -146,8 +146,25 @@
     <item quantity="other">זה ימחק לצמיתות את כל %1$d המסרים שנבחרו.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">לשמור לאחסון?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">שמירת המדיה הזאת לאחסון תאפשר לכל אפליקציה אחרת לגשת אליהם.\n\nלהמשיך?</item>
+    <item quantity="other">שמירת כל %1$d פריטי המדיה לאחסון תאפשר לכל אפליקציה אחרת לגשת אליהם.\n\nלהמשיך?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">שגיאה בעת שמירת הצרופה לאחסון!</item>
+    <item quantity="other">שגיאה בעת שמירת הצרופות לאחסון!</item>
+  </plurals>
   <string name="ConversationFragment_success_exclamation">זה עבד!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">לא ניתן לכתוב לאחסון!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">שמירת צרופה</item>
+    <item quantity="other">שמירת %1$d צרופות</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">שמירת צרופה לאחסון...</item>
+    <item quantity="other">שמירת %1$d צרופות לאחסון...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">איסוף צרופות...</string>
   <string name="ConversationFragment_pending">ממתין...</string>
   <string name="ConversationFragment_push">נתונים (סיגנל)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -462,6 +479,8 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">אין לך מפתח זהות.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">לנמען אין מפתח זהות.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">לנמען אין מפתח זהות!</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">סריקת קוד QR של איש קשר</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">הצגת קוד ה־QR שלך</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">אזהרה, המפתח שנסרק אינו זהה! נא לבדוק בזהירות את הטקסט של טביעת האצבע.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">לא מאומת!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">המפתח שלהם נכון. הכרחי גם לאמת את המפתח שלך אתם.</string>
@@ -469,6 +488,8 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">אין לך מפתח זהות!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">אין לך מפתח זהות.</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">סריקת קוד QR של איש קשר</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">הצגת קוד ה־QR שלך</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">אזהרה, המפתח שנסרק אינו מתאים!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">לא מאומת!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">המפתח שנסרק מתאים!</string>
@@ -501,6 +522,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">בתהליך ייבוא</string>
   <string name="ApplicationMigrationService_importing_text_messages">מייבא מסרים</string>
+  <string name="ApplicationMigrationService_import_complete">הייבוא הושלם</string>
+  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">ייבוא מסד הנתונים של סיגנל הושלם.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">נא לגעת לפתיחה.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">נא לגעת לפתיחה, או לגעת במנעול לסגירה.</string>
@@ -943,6 +966,8 @@
   <string name="conversation_group_options__broadcast">שידור</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">השוואה</string>
+  <string name="key_scanning__menu_display_your_qr_code">הצגת קוד ה־QR שלך</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">סריקת קוד QR של איש קשר</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">מסר חדש</string>
   <string name="text_secure_normal__menu_new_group">קבוצה חדשה</string>
@@ -984,6 +1009,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">שמירה</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">לשמור הכול</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">תצוגה מקדימה של תמונה</string>
   <!--new_conversation_activity-->
