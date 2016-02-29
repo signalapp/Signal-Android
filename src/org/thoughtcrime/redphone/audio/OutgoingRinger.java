@@ -112,13 +112,10 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
   }
 
   public void stop() {
-    if( mediaPlayer == null ) return;
-    try {
-      mediaPlayer.stop();
-      mediaPlayer.release();
-      mediaPlayer = null;
-    } catch( IllegalStateException e ) {
-    }
+    if (mediaPlayer == null) return;
+    mediaPlayer.release();
+    mediaPlayer = null;
+
     currentSoundID = -1;
   }
 

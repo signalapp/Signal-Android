@@ -109,7 +109,6 @@ public class IncomingRinger {
   public void stop() {
     if (player != null) {
       Log.d(TAG, "Stopping ringer");
-      player.stop();
       player.release();
       player = null;
     }
