@@ -134,12 +134,20 @@ public class PersistentBlobProvider {
 
   public static @Nullable String getMimeType(@NonNull Context context, @NonNull Uri persistentBlobUri) {
     if (!isAuthority(context, persistentBlobUri)) return null;
-    return persistentBlobUri.getPathSegments().get(MIMETYPE_PATH_SEGMENT);
+    return isExternalBlobUri(context, persistentBlobUri)
+        ? getMimeTypeFromExtension(persistentBlobUri)
+        : persistentBlobUri.getPathSegments().get(MIMETYPE_PATH_SEGMENT);
   }
 
   private static @NonNull String getExtensionFromMimeType(String mimeType) {
     final String extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType);
     return extension != null ? extension : BLOB_EXTENSION;
+  }
+
+  private static @NonNull String getMimeTypeFromExtension(@NonNull Uri uri) {
+    final String mimeType = MimeTypeMap.getSingleton()
+        .getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(uri.toString()));
+    return mimeType != null ? mimeType : "application/octet-stream";
   }
 
   private static @NonNull File getExternalDir(Context context) throws IOException {
@@ -149,11 +157,14 @@ public class PersistentBlobProvider {
   }
 
   public static boolean isAuthority(@NonNull Context context, @NonNull Uri uri) {
+    return MATCHER.match(uri) == MATCH || isExternalBlobUri(context, uri);
+  }
+
+  private static boolean isExternalBlobUri(@NonNull Context context, @NonNull Uri uri) {
     try {
-      return MATCHER.match(uri) == MATCH || uri.getPath().startsWith(getExternalDir(context).getAbsolutePath());
+      return uri.getPath().startsWith(getExternalDir(context).getAbsolutePath());
     } catch (IOException ioe) {
       return false;
     }
   }
-
 }
