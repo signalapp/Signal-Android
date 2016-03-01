@@ -11,6 +11,7 @@ import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -104,6 +105,9 @@ public class ComposeText extends EmojiEditText {
 
     setInputType(inputType);
     setImeOptions(imeOptions);
-    setHint(transport.getComposeHint(), transport.getSimName().isPresent() ? "From " + transport.getSimName().get() : null);
+    setHint(transport.getComposeHint(),
+            transport.getSimName().isPresent()
+                ? getContext().getString(R.string.conversation_activity__from_sim_name, transport.getSimName().get())
+                : null);
   }
 }
