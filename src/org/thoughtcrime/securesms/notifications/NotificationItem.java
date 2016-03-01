@@ -27,7 +27,7 @@ public class NotificationItem {
   private final @Nullable CharSequence      text;
   private final long                        timestamp;
   private final @Nullable SlideDeck         slideDeck;
-  private Boolean                           alreadyNotified;
+  private final boolean                     alreadyNotified;
 
   public NotificationItem(@NonNull   Recipient individualRecipient,
                            @NonNull   Recipients recipients,
@@ -42,24 +42,6 @@ public class NotificationItem {
     this.text                = text;
     this.threadId            = threadId;
     this.messageId           = messageId;
-    this.timestamp           = timestamp;
-    this.slideDeck           = slideDeck;
-    this.alreadyNotified     = alreadyNotified;
-  }
-
-  public NotificationItem(@NonNull   Recipient individualRecipient,
-                          @NonNull   Recipients recipients,
-                          @Nullable  Recipients threadRecipients,
-                          long threadId, @Nullable CharSequence text, long timestamp,
-                          @Nullable SlideDeck slideDeck, boolean alreadyNotified)
-
-  {
-    this.individualRecipient = individualRecipient;
-    this.recipients          = recipients;
-    this.threadRecipients    = threadRecipients;
-    this.text                = text;
-    this.threadId            = threadId;
-    this.messageId            = -1;
     this.timestamp           = timestamp;
     this.slideDeck           = slideDeck;
     this.alreadyNotified     = alreadyNotified;
@@ -100,8 +82,8 @@ public class NotificationItem {
       @Override
       protected Void doInBackground(Void... params) {
         Log.w(TAG, "Marking as read: " + threadId);
-        DatabaseFactory.getSmsDatabase(context).setAlreadyNotified(threadId);
-        DatabaseFactory.getMmsDatabase(context).setAlreadyNotified(threadId);
+        DatabaseFactory.getSmsDatabase(context).setAlreadyNotified(messageId);
+        DatabaseFactory.getMmsDatabase(context).setAlreadyNotified(messageId);
 
         return null;
       }

@@ -32,6 +32,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationManagerCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -78,8 +79,6 @@ public class MessageNotifier {
   public static final int SUMMARY_NOTIFICATION_ID = 1338;
 
   private static int notificationCounter = 2000;
-
-  private static NotificationState lastNotificationState = new NotificationState();
 
   private volatile static long visibleThread = -1;
 
@@ -174,8 +173,9 @@ public class MessageNotifier {
       if ((telcoCursor == null || telcoCursor.isAfterLast()) &&
           (pushCursor == null || pushCursor.isAfterLast()))
       {
-        ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-          .cancel(SUMMARY_NOTIFICATION_ID);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.cancel(SUMMARY_NOTIFICATION_ID);
+
         updateBadge(context, 0);
         clearReminder(context);
         return;
@@ -196,12 +196,12 @@ public class MessageNotifier {
 
         if (!item.isAlreadyNotified()) {
           sendSingleThreadNotification(context, masterSecret, notificationState, signal, item, false);
-        }
 
-        if (notificationState.hasMultipleThreads()) {
-          sendMultipleThreadNotification(context, notificationState, signal);
-        } else {
-          sendSingleThreadNotification(context, masterSecret, notificationState, signal, item, true);
+          if (notificationState.hasMultipleThreads()) {
+            sendMultipleThreadNotification(context, notificationState, signal);
+          } else {
+            sendSingleThreadNotification(context, masterSecret, notificationState, signal, item, true);
+          }
         }
       }
 
@@ -225,9 +225,10 @@ public class MessageNotifier {
   {
     int notificationId = (summary) ? SUMMARY_NOTIFICATION_ID : notificationCounter++;
 
+    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+
     if (notificationState.getNotifications().isEmpty()) {
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-          .cancelAll();
+      notificationManager.cancelAll();
       return;
     }
 
@@ -265,8 +266,7 @@ public class MessageNotifier {
                         notificationItem.getText());
     }
 
-    ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-      .notify(notificationId, builder.build());
+    notificationManager.notify(notificationId, builder.build());
 
     notificationItem.setAlreadyNotified(context);
   }
@@ -285,6 +285,7 @@ public class MessageNotifier {
     if (timestamp != 0) builder.setWhen(timestamp);
 
     builder.addActions(notificationState.getMarkAsReadIntent(context, SUMMARY_NOTIFICATION_ID, null));
+    builder.addActions(notificationState.getMarkAsReadIntent(context, SUMMARY_NOTIFICATION_ID, null));
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
@@ -298,8 +299,8 @@ public class MessageNotifier {
       builder.setTicker(notifications.get(0).getText());
     }
 
-    ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-      .notify(SUMMARY_NOTIFICATION_ID, builder.build());
+    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+    notificationManager.notify(SUMMARY_NOTIFICATION_ID, builder.build());
   }
 
   private static void sendInThreadNotification(Context context, Recipients recipients) {
@@ -366,7 +367,7 @@ public class MessageNotifier {
         body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         if (!recipients.isMuted()) {
-          notificationState.addNotification(new NotificationItem(recipient, recipients, null, threadId, body, 0, null, false));
+          notificationState.addNotification(new NotificationItem(recipient, recipients, null, threadId, -1, body, 0, null, false));
         }
       }
     } finally {
@@ -379,8 +380,6 @@ public class MessageNotifier {
                                                               @Nullable MasterSecret masterSecret,
                                                               @NonNull  Cursor cursor)
   {
-    List<NotificationItem> prevNotifications = lastNotificationState.getNotifications();
-
     NotificationState notificationState = new NotificationState();
     MessageRecord record;
     MmsSmsDatabase.Reader reader;
@@ -392,10 +391,12 @@ public class MessageNotifier {
       Recipient    recipient        = record.getIndividualRecipient();
       Recipients   recipients       = record.getRecipients();
       long         threadId         = record.getThreadId();
+      long         messageId        = record.getId();
       CharSequence body             = record.getDisplayBody();
       Recipients   threadRecipients = null;
       SlideDeck    slideDeck        = null;
       long         timestamp        = record.getTimestamp();
+      boolean      alreadyNotified  = record.isAlreadyNotified();
 
 
       if (threadId != -1) {
@@ -415,14 +416,13 @@ public class MessageNotifier {
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {
-        NotificationItem item = new NotificationItem(recipient, recipients, threadRecipients, threadId, body, timestamp, slideDeck, false);
+        NotificationItem item = new NotificationItem(recipient, recipients, threadRecipients, threadId, messageId, body, timestamp, slideDeck, alreadyNotified);
 
         notificationState.addNotification(item);
       }
     }
 
     reader.close();
-    lastNotificationState = notificationState;
     return notificationState;
   }
 
