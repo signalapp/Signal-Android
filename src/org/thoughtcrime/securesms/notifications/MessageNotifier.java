@@ -194,7 +194,7 @@ public class MessageNotifier {
       while(iterator.hasNext()) {
         NotificationItem item = iterator.next();
 
-        if (!item.isNotified()) {
+        if (!item.isAlreadyNotified()) {
           sendSingleThreadNotification(context, masterSecret, notificationState, signal, item, false);
         }
 
@@ -268,7 +268,7 @@ public class MessageNotifier {
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
       .notify(notificationId, builder.build());
 
-    notificationItem.setNotified(true);
+    notificationItem.setAlreadyNotified(context);
   }
 
   private static void sendMultipleThreadNotification(@NonNull  Context context,
@@ -396,7 +396,7 @@ public class MessageNotifier {
       Recipients   threadRecipients = null;
       SlideDeck    slideDeck        = null;
       long         timestamp        = record.getTimestamp();
-      
+
 
       if (threadId != -1) {
         threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
@@ -416,11 +416,6 @@ public class MessageNotifier {
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {
         NotificationItem item = new NotificationItem(recipient, recipients, threadRecipients, threadId, body, timestamp, slideDeck, false);
-
-        if (prevNotifications.contains(item)) {
-          NotificationItem prevNotification = prevNotifications.get(prevNotifications.indexOf(item));
-          item.setNotified(prevNotification.isNotified());
-        }
 
         notificationState.addNotification(item);
       }
