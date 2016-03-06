@@ -1,7 +1,7 @@
 <!--
-Please note that this is an issue tracker
+Please note that this is an issue tracker.
 
-For support go to the Support Center:
+For support go to the support center:
 http://support.whispersystems.org/
 or email support@whispersystems.org
 
@@ -22,7 +22,7 @@ I have:
 ### Steps to reproduce
 - add your steps here
 - as a list
-- using hyphens
+- using hyphens as bullet points
 
 ### Screenshots
 <!-- you can drag and drop images here -->
