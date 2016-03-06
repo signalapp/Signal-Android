@@ -20,12 +20,7 @@ public class LockManager {
   private final PowerManager.WakeLock        partialLock;
   private final WifiManager.WifiLock         wifiLock;
   private final ProximityLock                proximityLock;
-
-  private final AccelerometerListener accelerometerListener;
-  private final boolean               wifiLockEnforced;
-
-
-  private int orientation = AccelerometerListener.ORIENTATION_UNKNOWN;
+  private final boolean                      wifiLockEnforced;
 
   public enum PhoneState {
     IDLE,
@@ -54,15 +49,6 @@ public class LockManager {
     partialLock.setReferenceCounted(false);
     wifiLock.setReferenceCounted(false);
 
-    accelerometerListener = new AccelerometerListener(context, new AccelerometerListener.OrientationListener() {
-      @Override
-      public void orientationChanged(int newOrientation) {
-        orientation = newOrientation;
-        Log.d(TAG, "Orentation Update: " + newOrientation);
-        updateInCallLockState();
-      }
-    });
-
     wifiLockEnforced = isWifiPowerActiveModeEnabled(context);
   }
 
@@ -77,32 +63,23 @@ public class LockManager {
     return true;
   }
 
-  private void updateInCallLockState() {
-    if (orientation != AccelerometerListener.ORIENTATION_HORIZONTAL
-      && wifiLockEnforced) {
-      setLockState(LockState.PROXIMITY);
-    } else {
-      setLockState(LockState.FULL);
-    }
-  }
-
   public void updatePhoneState(PhoneState state) {
     switch(state) {
       case IDLE:
         setLockState(LockState.SLEEP);
-        accelerometerListener.enable(false);
         break;
       case PROCESSING:
         setLockState(LockState.PARTIAL);
-        accelerometerListener.enable(false);
         break;
       case INTERACTIVE:
         setLockState(LockState.FULL);
-        accelerometerListener.enable(false);
         break;
       case IN_CALL:
-        accelerometerListener.enable(true);
-        updateInCallLockState();
+        if (wifiLockEnforced) {
+          setLockState(LockState.PROXIMITY);
+        } else {
+          setLockState(LockState.FULL);
+        }
         break;
     }
   }
