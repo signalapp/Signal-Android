@@ -20,9 +20,12 @@ I have:
 
 
 ### Steps to reproduce
-- add your steps here
-- as a list
 - using hyphens as bullet points
+- list the steps
+- that reproduce the bug
+
+**Actual result:** Describe here what happens after you run the above steps (i.e. the buggy behaviour)
+**Expected result:** Describe here what should happen after you run the above steps (i.e. what would be the correct behaviour)
 
 ### Screenshots
 <!-- you can drag and drop images here -->
@@ -30,7 +33,7 @@ I have:
 
 ### Device info
 <!-- replace examples with your info -->
-**Device model:** Manufacturer Model XVI
+**Device:** Manufacturer Model XVI
 **Android version:** 0.0.0
 **Signal version:** 0.0.0
 
