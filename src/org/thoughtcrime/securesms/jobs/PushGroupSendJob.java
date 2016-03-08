@@ -104,10 +104,16 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       }
 
       database.addFailures(messageId, failures);
-      database.markAsSentFailed(messageId);
       database.markAsPush(messageId);
 
-      notifyMediaMessageDeliveryFailed(context, messageId);
+      if (e.getNetworkExceptions().isEmpty() && e.getUntrustedIdentityExceptions().isEmpty()) {
+        database.markAsSecure(messageId);
+        database.markAsSent(messageId);
+        markAttachmentsUploaded(messageId, message.getAttachments());
+      } else {
+        database.markAsSentFailed(messageId);
+        notifyMediaMessageDeliveryFailed(context, messageId);
+      }
     }
   }
 
