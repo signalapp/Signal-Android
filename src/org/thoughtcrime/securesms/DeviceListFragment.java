@@ -146,8 +146,7 @@ public class DeviceListFragment extends ListFragment
       }
     });
 
-    builder.setNegativeButton(android.R.string.cancel,
-            new DialogInterface.OnClickListener() {
+    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
         DeviceListFragment.this.getActivity().onBackPressed();
@@ -161,8 +160,7 @@ public class DeviceListFragment extends ListFragment
     });
 
     AlertDialog dialog = builder.create();
-    // This method is not available in the Builder class.
-    dialog.setCanceledOnTouchOutside(false);
+    dialog.setCanceledOnTouchOutside(true);
     dialog.show();
   }
 
