@@ -149,15 +149,12 @@ public class VideoResolutionChanger {
             int inputWidth = thumbnail.getWidth(),
                     inputHeight = thumbnail.getHeight();
 
-            int newFileSize = (int) (OUTPUT_VIDEO_BIT_RATE
-                    * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0) / 8.0 / 1024.0 / 1024.0);
-
-            newFieSizeBites = (int) (OUTPUT_VIDEO_BIT_RATE
-                    * (Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000.0));
 
             videoLength = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
+            newFieSizeBites = (int) (OUTPUT_VIDEO_BIT_RATE
+                    * (videoLength) / 1000.0);
 
-            if (newFileSize * 1024 * 1024 > PushMediaConstraints.MAX_MESSAGE_SIZE) {
+            if (newFieSizeBites > PushMediaConstraints.MAX_MESSAGE_SIZE) {
                 compressingSuccessful = false;
                 COMPRESSING_ERROR = ERROR_TOO_BIG;
             } else {

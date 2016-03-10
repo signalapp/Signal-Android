@@ -445,6 +445,7 @@ public class GUtil {
         switch(videoExtension.toLowerCase())
         {
             case "mp4": return true;
+            case "": return true;
         }
         return false;
     }
