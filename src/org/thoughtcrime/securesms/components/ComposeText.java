@@ -113,11 +113,11 @@ public class ComposeText extends EmojiEditText {
                ? imeOptions & ~EditorInfo.IME_FLAG_NO_ENTER_ACTION
                : imeOptions | EditorInfo.IME_FLAG_NO_ENTER_ACTION;
 
-    setInputType(inputType);
     setImeOptions(imeOptions);
     setHint(transport.getComposeHint(),
             transport.getSimName().isPresent()
                 ? getContext().getString(R.string.conversation_activity__from_sim_name, transport.getSimName().get())
                 : null);
+    setInputType(inputType);
   }
 }
