@@ -38,4 +38,5 @@ I have:
 **Signal version:** 0.0.0
 
 ### Link to debug log
+<!-- immediately after the bug has happened capture a debug log via Signal's advanced settings and paste the link below -->
 
