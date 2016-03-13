@@ -152,7 +152,6 @@ denne kontakten.</string>
     <item quantity="one">Feil ved lagring av vedlegg!</item>
     <item quantity="other">Feil ved lagring av vedlegg!</item>
   </plurals>
-  <string name="ConversationFragment_success_exclamation">Suksess!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lagringsenheten!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Lagrer vedlegg</item>
@@ -232,7 +231,6 @@ denne kontakten.</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Eksporterer klartekst til enheten sitt minne...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Feil, ute av stand til å skrive til enheten sitt minne.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Feil oppstod under skriving til enheten sitt minne.</string>
-  <string name="ExportFragment_success">Suksess!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonsfeil!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunne ikke registrere seg med Google Play Tjenester. Signal meldinger og anrop er slått av, vennligst prøv å registrere på nytt i Innstillinger &gt; Avansert.</string>
@@ -510,7 +508,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
   <string name="ApplicationMigrationService_import_complete">Import fullført</string>
-  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Import av Signal systemdatabase fullført.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Berør for å åpne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Berør for å åpne, eller velg låsen for å lukke.</string>
@@ -565,6 +562,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="conversation_activity__type_message_push">Send Signal melding</string>
   <string name="conversation_activity__type_message_sms_insecure">Send usikret SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Send usikret MMS</string>
+  <string name="conversation_activity__from_sim_name">Fra %1$s</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slett</string>
   <string name="conversation_activity__window_description">Samtale med %1$s</string>
@@ -748,7 +746,6 @@ feilet.</string>
   <string name="AndroidManifest__media_overview">Alle bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
-  <string name="AndroidManifest_manage_linked_devices">Administrer tilkoblede enheter</string>
   <string name="AndroidManifest__invite_friends">Inviter venner</string>
   <string name="AndroidManifest_archived_conversations">Arkiverte samtaler</string>
   <!--arrays.xml-->
@@ -857,7 +854,6 @@ feilet.</string>
   <string name="preferences__conversation_length_limit">Grense på samtalelengde</string>
   <string name="preferences__trim_all_conversations_now">Trimme alle samtaler nå</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skann alle samtaletrådene og håndhev grensen på samtalelengde </string>
-  <string name="preferences__devices">Enheter</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utseende</string>

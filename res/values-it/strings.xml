@@ -143,8 +143,24 @@ questo contatto.</string>
     <item quantity="other">Saranno eliminati definitivamente i %1$d messaggi selezionati.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
-  <string name="ConversationFragment_success_exclamation">Completato!</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Salvare il file sulla memoria consentirà ad altre applicazioni di accedervi.\n\nContinuare?</item>
+    <item quantity="other">Salvare il %1$d file sulla memoria consentirà ad altre applicazioni di accedervi.\n\nContinuare?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Errore nel salvare l\'allegato in memoria!</item>
+    <item quantity="other">Errore nel salvare gli allegati in memoria!</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossibile scrivere sulla memoria!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Salvataggio allegato</item>
+    <item quantity="other">Salvataggio %1$d allegati</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Salvataggio allegato in memoria...</item>
+    <item quantity="other">Salvataggio %1$d allegati in memoria...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">Recupero allegati...</string>
   <string name="ConversationFragment_pending">In sospeso...</string>
   <string name="ConversationFragment_push">Dati (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -214,7 +230,6 @@ questo contatto.</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Esportazione messaggi in memoria...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Errore, impossibile scrivere sulla memoria.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Errore durante la scrittura in memoria.</string>
-  <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal è stato impossibilitato a registrarsi con i sevizi di Google Play.
@@ -256,7 +271,7 @@ messaggi da una copia. Se hai già importato questa copia,
 una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="ImportFragment_importing">Importazione</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importazione backup in chiaro...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">Nessuna copia in chiaro trovato!</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Nessuna copia in chiaro trovata!</string>
   <string name="ImportFragment_error_importing_backup">Errore durante l\'importazione della copia!</string>
   <string name="ImportFragment_import_complete">Importazione terminata!</string>
   <string name="ImportFragment_restoring">Ripristino</string>
@@ -749,7 +764,6 @@ non riuscita.
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
-  <string name="AndroidManifest_manage_linked_devices">Gestisci dispositivi collegati</string>
   <string name="AndroidManifest__invite_friends">Invita amici</string>
   <string name="AndroidManifest_archived_conversations">Conversazioni archiviate</string>
   <!--arrays.xml-->
@@ -858,7 +872,6 @@ non riuscita.
   <string name="preferences__conversation_length_limit">Limite di lunghezza conversazione</string>
   <string name="preferences__trim_all_conversations_now">Riduci immediatamente tutte le conversazioni</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Analizza tutte le conversazioni e applica il limite di lunghezza.</string>
-  <string name="preferences__devices">Dispositivi</string>
   <string name="preferences__light_theme">Chiaro</string>
   <string name="preferences__dark_theme">Scuro</string>
   <string name="preferences__appearance">Aspetto</string>

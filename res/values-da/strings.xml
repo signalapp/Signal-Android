@@ -140,7 +140,6 @@ denne kontakt.</string>
     <item quantity="other">Dette vil slette alle %1$d valgte beskeder permanent.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Gem på lager?</string>
-  <string name="ConversationFragment_success_exclamation">Fuldført!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lageret!</string>
   <string name="ConversationFragment_pending">Afventer...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
@@ -211,7 +210,6 @@ denne kontakt.</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Eksporterer klartekst til hukommelsen...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Fejl - kunne ikke gemme i hukommelsen.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Fejl under gemning i hukommelsen.</string>
-  <string name="ExportFragment_success">Fuldført!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl i Signal-kommunikationen!</string>
   <!--GroupCreateActivity-->
@@ -724,7 +722,6 @@ mislykkedes.</string>
   <string name="AndroidManifest__media_overview">Alle billeder</string>
   <string name="AndroidManifest__media_overview_named">Alle billeder med %1$s</string>
   <string name="AndroidManifest__message_details">Besked-detaljer</string>
-  <string name="AndroidManifest_manage_linked_devices">Håndtér tilkoblede enheder</string>
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
   <string name="AndroidManifest_archived_conversations">Arkiverede samtaler</string>
   <!--arrays.xml-->
@@ -830,7 +827,6 @@ mislykkedes.</string>
   <string name="preferences__conversation_length_limit">Grænse på samtaler</string>
   <string name="preferences__trim_all_conversations_now">Trim alle samtaler nu</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Løb gennem alle samtaler og gennemfør begrænsninger for samtalelængde</string>
-  <string name="preferences__devices">Enheder</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Udseende</string>

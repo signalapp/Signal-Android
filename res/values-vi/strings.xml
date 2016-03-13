@@ -138,7 +138,6 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
     <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn?</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
-  <string name="ConversationFragment_success_exclamation">Thành công!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Không thể viết vào thẻ nhớ!</string>
   <string name="ConversationFragment_pending">Chờ giải quyết...</string>
   <string name="ConversationFragment_push">Dữ liệu (Signal)</string>
@@ -205,7 +204,6 @@ chặn cuộc hội thoại của bạn hoặc chỉ đơn giản là %2$s đã 
   <string name="ExportFragment_exporting_plaintext_to_storage">Đang xuất văn bản không mã hóa ra ổ lưu trữ...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Có lỗi, không thể chép vào ổ lưu trữ!</string>
   <string name="ExportFragment_error_while_writing_to_storage">Lỗi khi chép vào ổ lưu trữ!</string>
-  <string name="ExportFragment_success">Thành công!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể đăng ký với Google Play Services. Cuộc gọi và tin nhắn Signal đã ngừng hoạt động, hãy thử đăng ký lại từ mục Cài đặt &gt; Nâng cao.</string>
@@ -738,7 +736,6 @@ SMS thất bại.
   <string name="AndroidManifest__media_overview">Tất cả hình ảnh</string>
   <string name="AndroidManifest__media_overview_named">Tất cả hình ảnh với %1$s</string>
   <string name="AndroidManifest__message_details">Chi tiết tin nhắn</string>
-  <string name="AndroidManifest_manage_linked_devices">Quản trị các thiết bị liên kết</string>
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
   <string name="AndroidManifest_archived_conversations">Các cuộc hội thoại đã bảo lưu</string>
   <!--arrays.xml-->
@@ -846,7 +843,6 @@ SMS thất bại.
   <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc chuyện trò</string>
   <string name="preferences__trim_all_conversations_now">Lập tức rút ngắn tất cả các cuộc hội thoại</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Quét tất cả các cuộc hội thoại và áp dụng giới hạn độ dài hội thoại</string>
-  <string name="preferences__devices">Các thiết bị</string>
   <string name="preferences__light_theme">Lợt</string>
   <string name="preferences__dark_theme">Đậm</string>
   <string name="preferences__appearance">Diện mạo</string>

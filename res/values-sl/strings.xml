@@ -166,7 +166,6 @@
     <item quantity="few">Napaka pri shranjevanju priponk v shrambo!</item>
     <item quantity="other">Napaka pri shranjevanju priponk v shrambo!</item>
   </plurals>
-  <string name="ConversationFragment_success_exclamation">Uspešno opravljeno!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ne morem shranjevati v sistemsko shrambo!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Shranjujem priponko</item>
@@ -258,7 +257,6 @@
   <string name="ExportFragment_exporting_plaintext_to_storage">Izvažam nešifrirano vsebino...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Napaka - ne morem shranjevati v sistemsko shrambo!</string>
   <string name="ExportFragment_error_while_writing_to_storage">Napaka pri zapisovanju.</string>
-  <string name="ExportFragment_success">Uspešno opravljeno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
@@ -537,7 +535,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ApplicationMigrationService_import_in_progress">Uvoz v teku</string>
   <string name="ApplicationMigrationService_importing_text_messages">Uvažam kratka sporočila</string>
   <string name="ApplicationMigrationService_import_complete">Uvažanje dokončano</string>
-  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Uvažanje sistemske zbirke v aplikacijo Signal je končano.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Kliknite za odprtje.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Kliknite za odprtje, za zaprtje kliknite ključavnico.</string>
@@ -592,6 +589,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_activity__type_message_push">Pošlji sporočilo Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Pošlji nezavarovan SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Pošlji nezavarovan MMS</string>
+  <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Pošlji</string>
   <string name="conversation_activity__remove">Odstrani</string>
   <string name="conversation_activity__window_description">Pogovor: %1$s</string>
@@ -779,7 +777,6 @@ bila uspešna.</string>
   <string name="AndroidManifest__media_overview">Vse slike</string>
   <string name="AndroidManifest__media_overview_named">Vse slike z %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
-  <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanih naprav</string>
   <string name="AndroidManifest__invite_friends">Povabi prijatelje</string>
   <string name="AndroidManifest_archived_conversations">Arhivirani pogovori</string>
   <!--arrays.xml-->
@@ -890,7 +887,6 @@ bila uspešna.</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
   <string name="preferences__trim_all_conversations_now">Obreži vse pogovore zdaj</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Preišči vse pogovore in uveljavi omejitve njihove dolžine</string>
-  <string name="preferences__devices">Naprave</string>
   <string name="preferences__light_theme">Svetla</string>
   <string name="preferences__dark_theme">Temna</string>
   <string name="preferences__appearance">Izgled</string>

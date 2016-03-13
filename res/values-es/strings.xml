@@ -159,7 +159,7 @@ Recibido:%4$s</string>
     <item quantity="one">¡Error al guardar adjunto en el almacenamiento!</item>
     <item quantity="other">¡Error al guardar adjuntos en el almacenamiento!</item>
   </plurals>
-  <string name="ConversationFragment_success_exclamation">¡Completado!</string>
+  <string name="ConversationFragment_file_saved_successfully">Archivo guardado con éxito.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">¡No se pudo escribir en el almacenamiento!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Guardando adjunto</item>
@@ -239,7 +239,7 @@ Recibido:%4$s</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Exportando texto plano a almacenamiento...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Error, imposible escribir en almacenamiento.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Error al escribir en almacenamiento.</string>
-  <string name="ExportFragment_success">¡Éxito!</string>
+  <string name="ExportFragment_export_successful">Exportación satisfactoria.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Fallo permanente de comunicación de Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal fué incapaz de registrarse con Google Play Services. Los mensajes y llamadas de Signal han sido desactivados, por favor, intenta registrarte otra vez en Configuración &gt; Avanzado.</string>
@@ -534,7 +534,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ApplicationMigrationService_import_in_progress">Importación en progreso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensajes de texto</string>
   <string name="ApplicationMigrationService_import_complete">Importación completada</string>
-  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Se completó la importación de la base de datos del sistema Signal.</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">La importación de la base de datos al sistema está completa.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Pulse para abrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pulse para abrir, o pulse el candado para cerrar.</string>
@@ -589,6 +589,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_activity__type_message_push">Enviar mensaje de Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Enviar SMS no seguro</string>
   <string name="conversation_activity__type_message_mms_insecure">Enviar MMS no seguro</string>
+  <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__remove">Eliminar</string>
   <string name="conversation_activity__window_description">Conversación con %1$s</string>
@@ -792,7 +793,7 @@ por SMS.
   <string name="AndroidManifest__media_overview">Todas las imágenes</string>
   <string name="AndroidManifest__media_overview_named">Todas la imágenes con %1$s</string>
   <string name="AndroidManifest__message_details">Detalles del mensaje</string>
-  <string name="AndroidManifest_manage_linked_devices">Administrar dispositivos vinculados</string>
+  <string name="AndroidManifest__linked_devices">Dispositivos enlazados</string>
   <string name="AndroidManifest__invite_friends">Invitar amigos</string>
   <string name="AndroidManifest_archived_conversations">Conversaciones archivadas</string>
   <!--arrays.xml-->
@@ -901,7 +902,7 @@ por SMS.
   <string name="preferences__conversation_length_limit">Límite de longitud de la conversación</string>
   <string name="preferences__trim_all_conversations_now">Recortar todas las conversaciones ahora</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todas las conversaciones e imponer los límites de longitud en las conversaciones</string>
-  <string name="preferences__devices">Dispositivos</string>
+  <string name="preferences__linked_devices">Dispositivos enlazados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Oscuro</string>
   <string name="preferences__appearance">Apariencia</string>

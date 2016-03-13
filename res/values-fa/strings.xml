@@ -124,7 +124,6 @@
     <item quantity="other">این به صورت دائم %1$d پیامهای انتخاب شده را حذف میکند.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">ذخیره درحافظه؟</string>
-  <string name="ConversationFragment_success_exclamation">موفقیت!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر نیست به ارسال به ذخیره سازی!</string>
   <string name="ConversationFragment_pending">در انتظار ...</string>
   <string name="ConversationFragment_push">داده ها (سیگنال)</string>
@@ -177,7 +176,6 @@
   <string name="ExportFragment_export">خروجی</string>
   <string name="ExportFragment_cancel">لغو</string>
   <string name="ExportFragment_exporting">خروجی گرفتن</string>
-  <string name="ExportFragment_success">موفقیت!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">گروه جدید</string>
@@ -605,7 +603,6 @@
   <string name="AndroidManifest__media_overview">همه تصاویر</string>
   <string name="AndroidManifest__media_overview_named">همه عکس ها با %1$s</string>
   <string name="AndroidManifest__message_details">جزییات پیام</string>
-  <string name="AndroidManifest_manage_linked_devices">مدیریت دستگاه های مرتبط</string>
   <string name="AndroidManifest__invite_friends">دعوت دوستان</string>
   <string name="AndroidManifest_archived_conversations">گفتگوهای آرشیو شده</string>
   <!--arrays.xml-->
@@ -702,7 +699,6 @@
   <string name="preferences__delete_old_messages">حذف پیام‌های قدیمی</string>
   <string name="preferences__chats">چت و رسانه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول گفتگو</string>
-  <string name="preferences__devices">دستگاه ها</string>
   <string name="preferences__light_theme">روشن</string>
   <string name="preferences__dark_theme">تیره</string>
   <string name="preferences__appearance">ظاهر برنامه</string>

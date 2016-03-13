@@ -112,7 +112,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n送信方法: %2$s\n送信: %3$s\n受信: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">メモリに保存しますか？</string>
-  <string name="ConversationFragment_success_exclamation">成功しました。</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">メモリに書き込めませんでした。</string>
   <string name="ConversationFragment_pending">ペンディング</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -152,7 +151,6 @@
   <string name="ExportFragment_export">エクスポート</string>
   <string name="ExportFragment_cancel">中止</string>
   <string name="ExportFragment_exporting">エクスポート中…</string>
-  <string name="ExportFragment_success">成功しました。</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
@@ -516,7 +514,6 @@
   <string name="AndroidManifest__verify_identity">本人確認</string>
   <string name="AndroidManifest__media_overview">すべての画像</string>
   <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
-  <string name="AndroidManifest_manage_linked_devices">リンク済みデバイスの管理</string>
   <string name="AndroidManifest__invite_friends">友達にオススメする</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>

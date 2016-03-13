@@ -92,7 +92,6 @@ identitu tohto kontaktu.
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odosielateľ: %1$s\nPrenos: %2$s\nOdoslané: %3$s\nPrijaté: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Vytvoriť súbor?</string>
-  <string name="ConversationFragment_success_exclamation">Operácia úspešne dokončená!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Aplikácia nedokázala zapísať informácie na dátové úložisko zariadenia!</string>
   <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -122,7 +121,6 @@ identitu tohto kontaktu.
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_cancel">Zrušiť</string>
   <string name="ExportFragment_exporting">Export</string>
-  <string name="ExportFragment_success">Úspech!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>

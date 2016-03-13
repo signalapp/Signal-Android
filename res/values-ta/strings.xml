@@ -128,7 +128,6 @@
     <item quantity="other">தேர்ந்தெடுக்கப்பட்ட %1$d செய்தியைகளை நிரந்தரமாக நீக்கீவிடும்.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
-  <string name="ConversationFragment_success_exclamation">வெற்றி!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">சேமிப்பில் சேர்க இயலவில்லை!</string>
   <string name="ConversationFragment_pending">நிலுவையில் உள்ளது...</string>
   <string name="ConversationFragment_push">தரவு (சமிக்ஞை)</string>
@@ -187,7 +186,6 @@
   <string name="ExportFragment_export">ஏற்றுமதி செய்</string>
   <string name="ExportFragment_cancel">ரத்து</string>
   <string name="ExportFragment_exporting">ஏற்றுமதி செய்யப்படுகிறது</string>
-  <string name="ExportFragment_success">வெற்றி!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">புதிய குழு</string>
@@ -679,7 +677,6 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">நீங்கள் அனுப்பும் அனைத்து SMS-களுக்கும் விநியோக அறிக்கைகளை வேண்டவும்</string>
   <string name="preferences__delete_old_messages">பழைய செய்திகளை நீக்க</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
-  <string name="preferences__devices">கருவிகள்</string>
   <string name="preferences__light_theme">வெளிச்சமிக்க</string>
   <string name="preferences__dark_theme">இருள்கொண்ட </string>
   <string name="preferences__appearance">தோற்றம்</string>

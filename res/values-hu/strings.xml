@@ -48,7 +48,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(videó)</string>
   <string name="DraftDatabase_Draft_location_snippet">(hely)</string>
   <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás a média kiválasztásához.</string>
+  <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás média kiválasztásához.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Kép</string>
@@ -88,7 +88,7 @@ ezt a névjegyet.
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Visszaállás védtelen SMS-re?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Visszaállás védtelen MMS-re?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet <b>nem</b> lesz titkosítva, mert a címzett már nem Signal felhasználó.\n\nVédtelen üzenet küldése?</string>
-  <string name="ConversationItem_unable_to_open_media">Nem található alkalmazás ezen médiafájl megnyitásához.</string>
+  <string name="ConversationItem_unable_to_open_media">Nem található alkalmazás ez a média megnyitásához.</string>
   <string name="ConversationItem_from_s">tőle: %s</string>
   <string name="ConversationItem_to_s">neki: %s</string>
   <!--ConversationActivity-->
@@ -156,7 +156,7 @@ ezt a névjegyet.
     <item quantity="one">Hiba történt a melléklet tárolóra mentése közben!</item>
     <item quantity="other">Hiba történt a mellékletek tárolóra mentése közben!</item>
   </plurals>
-  <string name="ConversationFragment_success_exclamation">Sikerült!</string>
+  <string name="ConversationFragment_file_saved_successfully">Fájl mentése sikeres.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet írni a tárolóra!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Melléklet mentése</item>
@@ -236,7 +236,7 @@ ezt a névjegyet.
   <string name="ExportFragment_exporting_plaintext_to_storage">Nyílt szöveg exportálása tárolóra...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Hiba, nem lehet írni a tárolóra.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Hiba a tárolóra írás közben.</string>
-  <string name="ExportFragment_success">Sikerült!</string>
+  <string name="ExportFragment_export_successful">Exportálás sikeres.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal nem tudott regisztrálni a Google Play Szolgáltatásokkal. A Signal üzenetek és hívások le vannak tiltva, kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban.</string>
@@ -272,7 +272,7 @@ ezt a névjegyet.
   <string name="ImportFragment_cancel">Mégse</string>
   <string name="ImportFragment_restore_encrypted_backup">Titkosított biztonsági mentés visszaállítása?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-        Egy titkosított biztonsági mentés visszaállításával minden létező kulcs, beállítás és üzenet felülíródik.
+        Egy titkosított biztonsági mentés visszaállítása teljesen lecseréli a létező kulcsaidat, beállításaidat és üzeneteidet.
         El fogsz veszíteni minden információt, ami a jelenlegi Signal telepítésedben van, de nincs
         a biztonsági mentésben.
     </string>
@@ -472,7 +472,7 @@ Ellenőrizd újra, hogy ez a te számod! Hamarosan egy SMS-ben fogjuk ellenőriz
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
  </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Frissített, de ismeretlen azonosító kulcs érkezett. Érints a feldolgozáshoz és megjelenítéshez.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Üzenet érkezett ismeretlen azonosító kulccsal. Érints a feldolgozáshoz és megjelenítéshez.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Frissített, de ismeretlen azonosító adat érkezett. Érints az azonosító érvényesítéséhez!</string>
   <string name="SmsMessageRecord_secure_session_reset">Biztonságos munkamenet alaphelyzetbe állítása.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
@@ -533,7 +533,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ApplicationMigrationService_import_in_progress">Importálás folyamatban</string>
   <string name="ApplicationMigrationService_importing_text_messages">Szöveges üzenetek importálása</string>
   <string name="ApplicationMigrationService_import_complete">Importálás befejezve</string>
-  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Signal rendszer adatbázis importálás befejezve.</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Rendszer adatbázis betöltése befejezve.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Érintsd meg a megnyitáshoz.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Érintsd meg a megnyitáshoz, vagy érintsd meg a zárat a bezáráshoz.</string>
@@ -588,6 +588,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_activity__type_message_push">Signal üzenet küldése</string>
   <string name="conversation_activity__type_message_sms_insecure">Védtelen SMS küldése</string>
   <string name="conversation_activity__type_message_mms_insecure">Védtelen MMS küldése</string>
+  <string name="conversation_activity__from_sim_name">Tőle: %1$s</string>
   <string name="conversation_activity__send">Küldés</string>
   <string name="conversation_activity__remove">Eltávolítás</string>
   <string name="conversation_activity__window_description">Beszélgetés vele: %1$s</string>
@@ -798,7 +799,7 @@ sikertelen.
   <string name="AndroidManifest__media_overview">Összes kép</string>
   <string name="AndroidManifest__media_overview_named">Összes kép vele: %1$s</string>
   <string name="AndroidManifest__message_details">Üzenet részletek</string>
-  <string name="AndroidManifest_manage_linked_devices">Társított készülékek kezelése</string>
+  <string name="AndroidManifest__linked_devices">Társított készülékek</string>
   <string name="AndroidManifest__invite_friends">Barátok meghívása</string>
   <string name="AndroidManifest_archived_conversations">Archivált beszélgetések</string>
   <!--arrays.xml-->
@@ -907,7 +908,7 @@ sikertelen.
   <string name="preferences__conversation_length_limit">Beszélgetés hossz korlát</string>
   <string name="preferences__trim_all_conversations_now">Összes beszélgetés csonkolása most</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Összes beszélgetés átvizsgálása és a beszélgetés hossz korlátok érvényesítése</string>
-  <string name="preferences__devices">Készülékek</string>
+  <string name="preferences__linked_devices">Társított készülékek</string>
   <string name="preferences__light_theme">Világos</string>
   <string name="preferences__dark_theme">Sötét</string>
   <string name="preferences__appearance">Megjelenés</string>

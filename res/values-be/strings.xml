@@ -77,7 +77,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Адпраўшчык: %1$s\nТранспарт: %2$s\nДаслана: %3$s\nАтрымана: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
-  <string name="ConversationFragment_success_exclamation">Паспяхова!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Немагчыма запісаць на дыск!</string>
   <string name="ConversationFragment_pending">У працэсе...</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -104,7 +103,6 @@
   <string name="ExportFragment_export">Экспарт</string>
   <string name="ExportFragment_cancel">Адмена</string>
   <string name="ExportFragment_exporting">Экспарт</string>
-  <string name="ExportFragment_success">Паспяхова!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Новая група</string>

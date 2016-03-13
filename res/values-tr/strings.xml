@@ -142,7 +142,7 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">Depolama alanına ek kaydedilirken hata oluştu!</item>
   </plurals>
-  <string name="ConversationFragment_success_exclamation">Başarılı!</string>
+  <string name="ConversationFragment_file_saved_successfully">Dosya başarıyla kaydedildi.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Depolama alanına yazılamıyor!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">%1$d kaydediliyor</item>
@@ -216,7 +216,7 @@
   <string name="ExportFragment_exporting_plaintext_to_storage">Metin dışa aktarılıyor...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Hata, depolama alanına yazılamıyor.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Depolama alanına yazılırken hata.</string>
-  <string name="ExportFragment_success">Başarılı!</string>
+  <string name="ExportFragment_export_successful">Dışa aktarma başarılı.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kalıcı Signal haberleşme hatası!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Servislerine kayıt olamadı. Signal mesajları ve aramaları devre dışı bırakıldı, Lütfen Ayarlar &gt; Gelişmiş kısmından tekrardan kayıt olmayı deneyin.</string>
@@ -494,7 +494,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ApplicationMigrationService_import_in_progress">İçe aktarma sürüyor</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mesajlar içe aktarılıyor</string>
   <string name="ApplicationMigrationService_import_complete">Aktarım tamamlandı</string>
-  <string name="ApplicationMigrationService_Signal_system_database_import_is_complete">Signal sistem veri tabanı aktarması tamamlandı.</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Sistem veritabanı aktarması tamamlandı.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Açmak için dokunun.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Açmak için dokunun, veya kapatmak için kilide dokunun.</string>
@@ -549,6 +549,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_activity__type_message_push">Signal mesajı gönder</string>
   <string name="conversation_activity__type_message_sms_insecure">Güvensiz SMS gönder</string>
   <string name="conversation_activity__type_message_mms_insecure">Güvensiz MMS gönder</string>
+  <string name="conversation_activity__from_sim_name">Gönderen %1$s</string>
   <string name="conversation_activity__send">Gönder</string>
   <string name="conversation_activity__remove">Kaldır</string>
   <string name="conversation_activity__window_description">%1$s ile sohbet</string>
@@ -736,7 +737,7 @@ başarısız.</string>
   <string name="AndroidManifest__media_overview">Tüm resimler</string>
   <string name="AndroidManifest__media_overview_named">%1$s ile tüm resimler</string>
   <string name="AndroidManifest__message_details">Mesaj ayrıntıları</string>
-  <string name="AndroidManifest_manage_linked_devices">Bağlanmış cihazları yönetin</string>
+  <string name="AndroidManifest__linked_devices">Bağlı cihazlar</string>
   <string name="AndroidManifest__invite_friends">Arkadaşlarını davet et</string>
   <string name="AndroidManifest_archived_conversations">Arşivlenmiş sohbetler</string>
   <!--arrays.xml-->
@@ -844,7 +845,7 @@ başarısız.</string>
   <string name="preferences__conversation_length_limit">Sohbet uzunluk sınırı</string>
   <string name="preferences__trim_all_conversations_now">Tüm sohbetleri şimdi kırp</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Tüm sohbetleri tara ve sohbet uzunluğu limitlerini uygula</string>
-  <string name="preferences__devices">Cihazlar</string>
+  <string name="preferences__linked_devices">Bağlı cihazlar</string>
   <string name="preferences__light_theme">Açık</string>
   <string name="preferences__dark_theme">Koyu</string>
   <string name="preferences__appearance">Görünüm</string>
