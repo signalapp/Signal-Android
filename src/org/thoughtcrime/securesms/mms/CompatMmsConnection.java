@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import java.io.IOException;
 
 import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.PduHeaders;
 import ws.com.google.android.mms.pdu.RetrieveConf;
 import ws.com.google.android.mms.pdu.SendConf;
 
@@ -33,7 +34,13 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
     if (subscriptionId == -1 || VERSION.SDK_INT < 22) {
       Log.w(TAG, "Sending via legacy connection");
       try {
-        return new OutgoingLegacyMmsConnection(context).send(pduBytes, subscriptionId);
+        SendConf result = new OutgoingLegacyMmsConnection(context).send(pduBytes, subscriptionId);
+
+        if (result != null && result.getResponseStatus() == PduHeaders.RESPONSE_STATUS_OK) {
+          return result;
+        } else {
+          Log.w(TAG, "Got bad legacy response: " + (result != null ? result.getResponseStatus() : null));
+        }
       } catch (UndeliverableMessageException | ApnUnavailableException e) {
         Log.w(TAG, e);
       }
