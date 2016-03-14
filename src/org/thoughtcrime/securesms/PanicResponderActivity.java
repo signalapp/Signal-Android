@@ -62,6 +62,7 @@ public class PanicResponderActivity extends Activity {
             && !TextSecurePreferences.isPasswordDisabled(this)
             && PANIC_TRIGGER_ACTION.equals(intent.getAction())) {
       handleClearPassphrase();
+      ExitActivity.exitAndRemoveFromRecentApps(this);
     }
 
     if (Build.VERSION.SDK_INT >= 21) {
