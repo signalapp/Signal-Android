@@ -146,11 +146,12 @@ public class VideoResolutionChanger {
             m.setDataSource(mInputFile);
             Bitmap thumbnail = m.getFrameAtTime();
             String rotation = m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
-
+            boolean rotationUsed = false;
             if (inputFormat.containsKey("rotation-degrees")) {
                 // Decoded video is rotated automatically in Android 5.0 lollipop.
                 // refer: https://android.googlesource.com/platform/frameworks/av/+blame/lollipop-release/media/libstagefright/Utils.cpp
                 inputFormat.setInteger("rotation-degrees", Integer.parseInt(rotation));
+                rotationUsed = true;
             }
             int inputWidth = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)),
             inputHeight = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
@@ -163,11 +164,15 @@ public class VideoResolutionChanger {
                 compressingSuccessful = false;
                 COMPRESSING_ERROR = ERROR_TOO_BIG;
             } else {
-                //Really dirty workaround but it seems that the width and Height of this china device are mixed up (Huwai Ascend 4.4.4)
-                if(ROTATION_90.equals(rotation) || ROTATION_270.equals(rotation)) {
-                    int temp = inputWidth;
-                    inputWidth = inputHeight;
-                    inputHeight = temp;
+                if(rotationUsed) {
+                    //Really dirty workaround but it seems that the width and Height of this china device are mixed up (Huwai Ascend 4.4.4)
+                    if (ROTATION_90.equals(rotation) || ROTATION_270.equals(rotation)) {
+                        if (inputWidth > inputHeight) {
+                            int temp = inputWidth;
+                            inputWidth = inputHeight;
+                            inputHeight = temp;
+                        }
+                    }
                 }
                 if (inputWidth > inputHeight) {
                     if (mWidth < mHeight) {
