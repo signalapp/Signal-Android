@@ -146,9 +146,14 @@ public class VideoResolutionChanger {
             m.setDataSource(mInputFile);
             Bitmap thumbnail = m.getFrameAtTime();
             String rotation = m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
-            int inputWidth = thumbnail.getWidth(),
-                    inputHeight = thumbnail.getHeight();
 
+            if (inputFormat.containsKey("rotation-degrees")) {
+                // Decoded video is rotated automatically in Android 5.0 lollipop.
+                // refer: https://android.googlesource.com/platform/frameworks/av/+blame/lollipop-release/media/libstagefright/Utils.cpp
+                inputFormat.setInteger("rotation-degrees", Integer.parseInt(rotation));
+            }
+            int inputWidth = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)),
+            inputHeight = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
 
             videoLength = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
             newFieSizeBites = (int) (OUTPUT_VIDEO_BIT_RATE
