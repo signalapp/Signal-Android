@@ -58,7 +58,7 @@
             android:value="info" />
         <meta-data
             android:name="AdjustEnvironment"
-            android:value="production" />
+            android:value="${adjustEnvironment}" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
