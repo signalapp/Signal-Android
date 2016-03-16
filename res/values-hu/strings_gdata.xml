@@ -17,6 +17,7 @@
     <string name="log_submit_activity__button_submit">Küldés</string>
     <string name="menu_filter">Névjegyek blokkolása</string>
     <string name="menu_privacy">Üzenetek elrejtése</string>
+    <string name="permission_string_4a_read_write_contacts">A bizalmas kapcsolatok kiválasztásához az alkalmazás hozzáférést igényel a névjegyekhez.</string>
     <string name="menu_privacy_unhide">Elrejtés engedélyezése</string>
     <string name="menu_privacy_hide">Elrejtés</string>
     <string name="menu_privacy_single_hide">Üzenet elrejtése</string>

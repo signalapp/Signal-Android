@@ -15,6 +15,7 @@
     <string name="menu_privacy_unhide">Verstecken einschalten</string>
     <string name="menu_privacy_hide">Verstecken</string>
     <string name="menu_privacy_single_hide">Unterhaltung verstecken</string>
+    <string name="permission_string_4a_read_write_contacts">Für die Auswahl der versteckten Kontakte benötigt die App Zugriff auf Ihre Kontakte.</string>
     <string name="menu_filter_block_contact">Kontakt blockieren</string>
     <string name="self_destruction">Zerstören</string>
     <string name="self_destruction_title">#1# Sekunden bis zur Selbstzerstörung...</string>

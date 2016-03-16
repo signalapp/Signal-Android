@@ -17,6 +17,7 @@
     <string name="menu_privacy_single_hide">Hide conversation</string>
     <string name="menu_filter_block_contact">Block contact</string>
     <string name="self_destruction">Destroy</string>
+    <string name="permission_string_4a_read_write_contacts">To select hidden contacts, the app requires access to your contacts.</string>
     <string name="self_destruction_title">#1# seconds to self-destruct...</string>
     <string name="self_destruction_body">The contents of this message will self-destruct in #1# seconds after opening.</string>
     <string name="privacy_pw_dialog_header">Enter password: </string>

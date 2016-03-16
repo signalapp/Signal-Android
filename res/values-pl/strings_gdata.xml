@@ -16,6 +16,7 @@
     <string name="log_submit_activity__button_submit">Wyślij</string>
     <string name="menu_filter">Zablokuj kontakty</string>
     <string name="menu_privacy">Ukryj konwersacje</string>
+    <string name="permission_string_4a_read_write_contacts">Do ukrywania kontaktów aplikacja wymaga dostępu do Twoich kontaktów.</string>
     <string name="menu_privacy_unhide">Pokaż ukryte</string>
     <string name="menu_privacy_hide">Ukryj</string>
     <string name="menu_privacy_single_hide">Ukryj konwersację</string>

@@ -233,8 +233,12 @@ public class PrivacyBridge {
     return preferences == null ? new GDataPreferences(context): preferences;
   }
   private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
+
+    boolean securityException = false;
     @Override
     protected Integer doInBackground(final List<NumberEntry>... arrayLists) {
+      int cnt = 0;
+      try {
       final List<NumberEntry> entries = arrayLists[0];
       Uri.Builder b = new Uri.Builder();
       b.scheme(ContentResolver.SCHEME_CONTENT);
@@ -264,18 +268,22 @@ public class PrivacyBridge {
           numbers.add(cv);
         }
       }
-      int cnt = 0;
+
       if (GUtil.isValidPhoneNumber(number) && !id.equals("-1")) {
         if (contacts.size() > 0) {
-          cnt += contentResolver.bulkInsert(hiddenContactsUri.buildUpon().appendPath(String.valueOf(0)).build(),
-              contacts.toArray(new ContentValues[contacts.size()]));
+
+            cnt += contentResolver.bulkInsert(hiddenContactsUri.buildUpon().appendPath(String.valueOf(0)).build(),
+                    contacts.toArray(new ContentValues[contacts.size()]));
         }
       }
       if (numbers.size() > 0) {
         cnt += contentResolver.bulkInsert(hiddenNumbersUri.buildUpon().appendPath(String.valueOf(0)).build(),
             numbers.toArray(new ContentValues[numbers.size()]));
       }
-
+      } catch(SecurityException ex) {
+        securityException = true;
+        return cnt;
+      }
       return cnt;
 
     }
@@ -283,7 +291,11 @@ public class PrivacyBridge {
     @Override
     protected void onPostExecute(Integer integer) {
       super.onPostExecute(integer);
-      reloadAdapter();
+      if(securityException && GService.appContext != null) {
+        Toast.makeText(GService.appContext, GService.appContext.getString(R.string.permission_string_4a_read_write_contacts), Toast.LENGTH_LONG).show();
+      } else {
+        reloadAdapter();
+      }
     }
   }
 
