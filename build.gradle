@@ -85,6 +85,7 @@ dependencies {
     //compile project(':libtextsecure')
     compile project(':LibTextsecure')
     compile project(':IsfaServerDefinitions')
+    compile 'com.adjust.sdk:adjust-android:3.6.1'
 }
 dependencyVerification {
     verify = [
@@ -148,6 +149,8 @@ android {
         applicationId 'de.gdata.securechat'
 
         resConfigs "en", "de", "fr", "it", "es", "pt", "pt-rBR", "nl", "ja", "tr", "ru", "pl", "zh-rCN", "zh-rTW"
+
+        manifestPlaceholders = [ adjustAppToken: System.env['ADJUST_APP_TOKEN'] ? System.env['ADJUST_APP_TOKEN'] : '' ]
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -160,6 +163,7 @@ android {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-adjust.pro',
                     'proguard-google-play-services.pro',
                     'proguard-dagger.pro',
                     'proguard-jackson.pro',
@@ -175,6 +179,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-adjust.pro',
                     'proguard-google-play-services.pro',
                     'proguard-dagger.pro',
                     'proguard-jackson.pro',

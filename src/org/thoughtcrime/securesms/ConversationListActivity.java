@@ -72,6 +72,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
 import com.nineoldandroids.animation.ObjectAnimator;
 
 import org.thoughtcrime.securesms.components.CircledImageView;
@@ -79,7 +80,6 @@ import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -92,7 +92,6 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GDataPreferences;
@@ -637,11 +636,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         mSlidingTabLayout.refreshTabTitle();
         setActionFloatMenuIcons();
         setColorBar();
+
+        Adjust.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Adjust.onPause();
     }
 
     @Override

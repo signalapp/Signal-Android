@@ -51,6 +51,15 @@
         android:label="@string/app_name"
         android:theme="@style/GSecure.GDataTheme" >
         <meta-data
+            android:name="AdjustAppToken"
+            android:value="${adjustAppToken}" />
+        <meta-data
+            android:name="AdjustLogLevel"
+            android:value="info" />
+        <meta-data
+            android:name="AdjustEnvironment"
+            android:value="production" />
+        <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
