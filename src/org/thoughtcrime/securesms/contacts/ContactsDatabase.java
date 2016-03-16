@@ -138,41 +138,36 @@ public class ContactsDatabase {
     String filterSelection = "";
     filter = "%"+ filter + "%";
     if (!TextUtils.isEmpty(filter)) {
-      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "') AND ";
+      filterSelection = "("+NAME_COLUMN + " LIKE '" + filter + "' OR " + NUMBER_COLUMN + " LIKE '" + filter + "') ";
     }
     baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 
     Cursor cursorD = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
-        PrivacyBridge.getContactSelection(context), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
+            PrivacyBridge.getContactSelection(context), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
     HashSet<String> hashSet = new HashSet <String> ();
     HashSet<Integer> ids = new HashSet <Integer> ();
     while (cursorD.moveToNext()) {
       if(!hashSet.add(GUtil.numberToLong(cursorD.getString(4))+"")) {
-       ids.add(cursorD.getInt(0));
+        ids.add(cursorD.getInt(0));
       }
     }
     StringBuilder selection = new StringBuilder();
-    int c = 0;
     for(Integer id : ids) {
-      c++;
-        if (c == 1 && ids.size() > 1) {
-          selection.append(ID_COLUMN + " NOT IN (" + id + "");
-        } else if(c == ids.size() && c != 1) {
-          selection.append(", "+ id + ")");
-        } else if(c == 1 && ids.size() == 1) {
-          selection.append(ID_COLUMN + " NOT IN (" + id + ")");
-        } else {
-          selection.append(", "+ id + "");
-        }
+      selection.append(", " + id);
     }
     String contactSelection = PrivacyBridge.getContactSelection(context)+ "";
 
-    String selectionString = filterSelection+ (!contactSelection.equals("null")
-            ? contactSelection + (!"".equals(selection.toString()) ? " AND (" +selection.toString()+")" : "")
-    : "" + selection.toString());
+    String notInSelection = (ids.size() > 0 ? " AND "
+            + "("+ID_COLUMN+" NOT IN (" + selection.toString().substring(1) + "))" : "");
+
+    contactSelection = (!contactSelection.equals("null")
+            ? " AND " +contactSelection : "") + notInSelection;
+
+    String selectionString = filterSelection + contactSelection;
+
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
-    selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
+            selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
     return new TypedCursorWrapper(cursor);
   }
