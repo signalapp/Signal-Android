@@ -65,7 +65,7 @@
     <string name="status_nocallsjustchat">No calls, SecureChat only</string>
     <string name="status_onlyurgentcalls">Urgent calls only</string>
     <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions"> Sorry, the selected audio exceeds message size restrictions (%1$skB).</string>
-    <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions"> Sorry, the selected video exceeds message size restrictions (%1$skB).</string>
+    <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions"> Sorry, the selected video exceeds message size restrictions, even compressed (%1$skB).</string>
     <string name="eula_gdata_header_one">WELCOME TO</string>
     <string name="msg_failed">Note: The key of one of the recipients may have been changed due to a reinstallation or an attempted attack by a third party. Within a group this problem can be solved by initiating a regular key exchange in a new conversation with the contact and then refreshing the group.</string>
     <string name="profile_history_label">Media</string>
