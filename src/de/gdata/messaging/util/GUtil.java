@@ -426,6 +426,7 @@ public class GUtil {
             case "tiff": return true;
             case "jpg": return true;
             case "jpeg": return true;
+            case "": return true;
         }
         return false;
     }
@@ -437,6 +438,7 @@ public class GUtil {
             case "wav": return true;
             case "3gp": return true;
             case "aac": return true;
+            case "": return true;
         }
         return false;
     }
