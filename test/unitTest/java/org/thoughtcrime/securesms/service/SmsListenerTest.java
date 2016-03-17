@@ -24,6 +24,14 @@ public class SmsListenerTest extends BaseUnitTest {
       put("Your TextSecure verification code: 1337-1337",      "13371337");
       put("XXXYour TextSecure verification code: 1337-1337",   "13371337");
       put("Your TextSecure verification code: 1337-1337XXX",   "13371337");
+
+      put("Your Signal verification code: 337-337",        "337337");
+      put("XXX\nYour Signal verification code: 1337-1337", "13371337");
+      put("Your Signal verification code: 337-1337",       "3371337");
+      put("Your Signal verification code: 1337-337",       "1337337");
+      put("Your Signal verification code: 1337-1337",      "13371337");
+      put("XXXYour Signal verification code: 1337-1337",   "13371337");
+      put("Your Signal verification code: 1337-1337XXX",   "13371337");
   }};
 
   private SmsListener listener;
