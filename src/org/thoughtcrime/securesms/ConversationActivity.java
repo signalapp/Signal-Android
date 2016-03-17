@@ -90,7 +90,6 @@ import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
@@ -136,7 +135,6 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -1057,11 +1055,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ContactAccessor contactDataList = ContactAccessor.getInstance();
     ContactData contactData = contactDataList.getContactData(this, contactUri);
 
-    if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
+    if      (contactData.numbers.size() == 1) composeText.append(contactData.name + " " + contactData.numbers.get(0).number);
     else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
   }
 
-  private void selectContactInfo(ContactData contactData) {
+  private void selectContactInfo(final ContactData contactData) {
     final CharSequence[] numbers     = new CharSequence[contactData.numbers.size()];
     final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
 
@@ -1077,7 +1075,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setItems(numberItems, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        composeText.append(numbers[which]);
+        composeText.append(contactData.name + " " + numbers[which]);
       }
     });
     builder.show();
