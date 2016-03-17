@@ -169,7 +169,7 @@ public class ConversationFragment extends ListFragment
         menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       }
 
-      if(getSelectedMessageRecord().getDisplayBody().toString().equals("")) {
+      if(getSelectedMessageRecord() != null && getSelectedMessageRecord().getDisplayBody().toString().equals("")) {
         menu.findItem(R.id.menu_context_copy).setVisible(false);
       }
     }
