@@ -159,9 +159,7 @@ public class DeviceListFragment extends ListFragment
       }
     });
 
-    AlertDialog dialog = builder.create();
-    dialog.setCanceledOnTouchOutside(true);
-    dialog.show();
+    builder.show();
   }
 
   private void handleDisconnectDevice(final long deviceId) {
