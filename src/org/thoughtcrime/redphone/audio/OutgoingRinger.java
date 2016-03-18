@@ -39,79 +39,67 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
 
   private MediaPlayer mediaPlayer;
   private int         currentSoundID;
-  private boolean     loopEnabled;
   private Context     context;
 
   public OutgoingRinger(Context context) {
     this.context = context;
-
-    loopEnabled = true;
-    currentSoundID = -1;
-
   }
 
   public void playSonar() {
-    start(R.raw.redphone_sonarping);
+    start(R.raw.redphone_sonarping, true);
   }
 
   public void playHandshake() {
-    start(R.raw.redphone_handshake);
+    start(R.raw.redphone_handshake, true);
   }
 
   public void playRing() {
-    start(R.raw.redphone_outring);
+    start(R.raw.redphone_outring, true);
   }
 
   public void playComplete() {
-    stop(R.raw.redphone_completed);
+    start(R.raw.redphone_completed, false);
   }
 
   public void playFailure() {
-    stop(R.raw.redphone_failure);
+    start(R.raw.redphone_failure, false);
   }
 
   public void playBusy() {
-    start(R.raw.redphone_busy);
+    start(R.raw.redphone_busy, true);
   }
 
-  private void setSound( int soundID ) {
-    currentSoundID = soundID;
-    loopEnabled = true;
+  public synchronized boolean isLooping() {
+    return mediaPlayer == null ? false : mediaPlayer.isLooping();
   }
 
-  private void start( int soundID ) {
+  private void start(int soundID, boolean loop) {
     if( soundID == currentSoundID ) return;
-    setSound( soundID );
-    start();
-  }
 
-  private void start() {
-    if( mediaPlayer != null ) mediaPlayer.release();
+    stop();
+
+    currentSoundID = soundID;
+
     mediaPlayer = new MediaPlayer();
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
     mediaPlayer.setOnCompletionListener(this);
     mediaPlayer.setOnPreparedListener(this);
+    mediaPlayer.setLooping(loop);
 
     String packageName = context.getPackageName();
     Uri dataUri = Uri.parse("android.resource://" + packageName + "/" + currentSoundID);
 
     try {
       mediaPlayer.setDataSource(context, dataUri);
+      mediaPlayer.prepareAsync();
     } catch (IllegalArgumentException | SecurityException | IllegalStateException | IOException e) {
       Log.w(TAG, e);
       // TODO Auto-generated catch block
       return;
     }
-    try {
-      mediaPlayer.prepareAsync();
-    } catch (IllegalStateException e) {
-      // TODO Auto-generated catch block
-      Log.w(TAG, e);
-      return;
-    }
   }
 
-  public void stop() {
+  public synchronized void stop() {
     if (mediaPlayer == null) return;
     mediaPlayer.release();
     mediaPlayer = null;
@@ -119,20 +107,13 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     currentSoundID = -1;
   }
 
-  private void stop( int soundID ) {
-    setSound( soundID );
-    loopEnabled = false;
-    start();
-  }
-
   public void onCompletion(MediaPlayer mp) {
-    //mediaPlayer.release();
-    //mediaPlayer = null;
+    if (mp.isLooping()) return;
+
+    stop();
   }
 
   public void onPrepared(MediaPlayer mp) {
-    mediaPlayer.setLooping(loopEnabled);
-
     AudioManager am = ServiceUtil.getAudioManager(context);
 
     if (am.isBluetoothScoAvailableOffCall()) {
@@ -144,6 +125,10 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
       }
     }
 
-    mediaPlayer.start();
+    try {
+      mp.start();
+    } catch (IllegalStateException e) {
+      Log.w(TAG, e);
+    }
   }
 }
