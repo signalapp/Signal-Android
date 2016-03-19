@@ -91,22 +91,17 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
     mediaPlayer.setOnCompletionListener(this);
     mediaPlayer.setOnPreparedListener(this);
+    mediaPlayer.setLooping(loopEnabled);
 
     String packageName = context.getPackageName();
     Uri dataUri = Uri.parse("android.resource://" + packageName + "/" + currentSoundID);
 
     try {
       mediaPlayer.setDataSource(context, dataUri);
+      mediaPlayer.prepareAsync();
     } catch (IllegalArgumentException | SecurityException | IllegalStateException | IOException e) {
       Log.w(TAG, e);
       // TODO Auto-generated catch block
-      return;
-    }
-    try {
-      mediaPlayer.prepareAsync();
-    } catch (IllegalStateException e) {
-      // TODO Auto-generated catch block
-      Log.w(TAG, e);
       return;
     }
   }
@@ -131,8 +126,6 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
   }
 
   public void onPrepared(MediaPlayer mp) {
-    mediaPlayer.setLooping(loopEnabled);
-
     AudioManager am = ServiceUtil.getAudioManager(context);
 
     if (am.isBluetoothScoAvailableOffCall()) {
@@ -144,6 +137,10 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
       }
     }
 
-    mediaPlayer.start();
+    try {
+      mp.start();
+    } catch (IllegalStateException e) {
+      Log.w(TAG, e);
+    }
   }
 }
