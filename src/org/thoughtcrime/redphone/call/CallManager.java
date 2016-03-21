@@ -53,7 +53,7 @@ public abstract class CallManager extends Thread {
   protected final CallStateListener callStateListener;
   protected final Context           context;
 
-  private   boolean          terminated;
+  protected boolean          terminated;
   protected CallAudioManager callAudioManager;
   private   SignalManager    signalManager;
   private   SASInfo          sasInfo;
@@ -61,6 +61,7 @@ public abstract class CallManager extends Thread {
   private   boolean          callConnected;
 
   protected ZRTPSocket        zrtpSocket;
+  protected Object            initLock;
 
   public CallManager(Context context, CallStateListener callStateListener,
                     String remoteNumber, String threadName)
@@ -70,6 +71,7 @@ public abstract class CallManager extends Thread {
     this.callStateListener = callStateListener;
     this.terminated        = false;
     this.context           = context;
+    this.initLock          = new Object();
   }
 
   @Override
@@ -118,18 +120,22 @@ public abstract class CallManager extends Thread {
     Log.d(TAG, "terminate");
     this.terminated = true;
 
-    if (callAudioManager != null)
-      callAudioManager.terminate();
+    synchronized (this.initLock) {
+      if (callAudioManager != null)
+        callAudioManager.terminate();
 
-    if (signalManager != null)
-      signalManager.terminate();
+      if (signalManager != null)
+        signalManager.terminate();
 
-    if (zrtpSocket != null)
-      zrtpSocket.close();
+      if (zrtpSocket != null)
+        zrtpSocket.close();
+    }
   }
 
   public SessionDescriptor getSessionDescriptor() {
-    return this.signalManager == null ? null : this.signalManager.getSessionDescriptor();
+    synchronized (this.initLock) {
+      return this.signalManager == null ? null : this.signalManager.getSessionDescriptor();
+    }
   }
 
   public SASInfo getSasInfo() {
