@@ -428,6 +428,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   }
 
   public void notifyConnectingtoInitiator() {
+    outgoingRinger.playHandshake();
     sendMessage(Type.CONNECTING_TO_INITIATOR, getRecipient(), null);
   }
 
