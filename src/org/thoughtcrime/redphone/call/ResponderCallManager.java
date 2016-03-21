@@ -55,6 +55,8 @@ public class ResponderCallManager extends CallManager {
 
   private int answer = 0;
 
+  private SessionDescriptor sessionDescriptor;
+
   public ResponderCallManager(Context context, CallStateListener callStateListener,
                               String remoteNumber, String localNumber,
                               String password, SessionDescriptor sessionDescriptor,
@@ -70,16 +72,18 @@ public class ResponderCallManager extends CallManager {
   @Override
   public void run() {
     try {
-      signalingSocket = new SignalingSocket(context,
-                                            sessionDescriptor.getFullServerName(),
-                                            31337,
-                                            localNumber, password,
-                                            OtpCounterProvider.getInstance());
+      Log.d(TAG, "run");
+
+      SignalingSocket signalingSocket = new SignalingSocket(context,
+                                                            sessionDescriptor.getFullServerName(),
+                                                            31337,
+                                                            localNumber, password,
+                                                            OtpCounterProvider.getInstance());
 
       signalingSocket.setRinging(sessionDescriptor.sessionId);
       callStateListener.notifyCallFresh();
 
-      processSignals();
+      processSignals(signalingSocket, sessionDescriptor);
 
       if (!waitForAnswer()) {
         return;
@@ -92,8 +96,8 @@ public class ResponderCallManager extends CallManager {
       InetSocketAddress remoteAddress = new InetSocketAddress(sessionDescriptor.getFullServerName(),
                                                               sessionDescriptor.relayPort);
 
-      secureSocket  = new SecureRtpSocket(new RtpSocket(localPort, remoteAddress));
-      zrtpSocket    = new ZRTPResponderSocket(context, secureSocket, zid, remoteNumber, sessionDescriptor.version <= 0);
+      SecureRtpSocket secureSocket = new SecureRtpSocket(new RtpSocket(localPort, remoteAddress));
+      zrtpSocket = new ZRTPResponderSocket(context, secureSocket, zid, remoteNumber, sessionDescriptor.version <= 0);
 
       callStateListener.notifyConnectingtoInitiator();
 

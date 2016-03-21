@@ -31,6 +31,7 @@ import org.thoughtcrime.redphone.signaling.NetworkConnector;
 import org.thoughtcrime.redphone.signaling.NoSuchUserException;
 import org.thoughtcrime.redphone.signaling.OtpCounterProvider;
 import org.thoughtcrime.redphone.signaling.ServerMessageException;
+import org.thoughtcrime.redphone.signaling.SessionDescriptor;
 import org.thoughtcrime.redphone.signaling.SessionInitiationFailureException;
 import org.thoughtcrime.redphone.signaling.SignalingException;
 import org.thoughtcrime.redphone.signaling.SignalingSocket;
@@ -68,13 +69,15 @@ public class InitiatingCallManager extends CallManager {
   @Override
   public void run() {
     try {
+      Log.d(TAG, "run");
+
       callStateListener.notifyCallConnecting();
 
-      signalingSocket = new SignalingSocket(context, BuildConfig.REDPHONE_RELAY_HOST,
-                                            31337, localNumber, password,
-                                            OtpCounterProvider.getInstance());
+      SignalingSocket signalingSocket = new SignalingSocket(context, BuildConfig.REDPHONE_RELAY_HOST,
+                                                            31337, localNumber, password,
+                                                            OtpCounterProvider.getInstance());
 
-      sessionDescriptor = signalingSocket.initiateConnection(remoteNumber);
+      SessionDescriptor sessionDescriptor = signalingSocket.initiateConnection(remoteNumber);
 
       int localPort = new NetworkConnector(sessionDescriptor.sessionId,
                                            sessionDescriptor.getFullServerName(),
@@ -83,11 +86,11 @@ public class InitiatingCallManager extends CallManager {
       InetSocketAddress remoteAddress = new InetSocketAddress(sessionDescriptor.getFullServerName(),
                                                               sessionDescriptor.relayPort);
 
-      secureSocket  = new SecureRtpSocket(new RtpSocket(localPort, remoteAddress));
+      SecureRtpSocket secureSocket = new SecureRtpSocket(new RtpSocket(localPort, remoteAddress));
 
-      zrtpSocket    = new ZRTPInitiatorSocket(context, secureSocket, zid, remoteNumber);
+      zrtpSocket = new ZRTPInitiatorSocket(context, secureSocket, zid, remoteNumber);
 
-      processSignals();
+      processSignals(signalingSocket, sessionDescriptor);
 
       callStateListener.notifyWaitingForResponder();
 

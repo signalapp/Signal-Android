@@ -23,7 +23,6 @@ import android.util.Log;
 
 import org.thoughtcrime.redphone.audio.AudioException;
 import org.thoughtcrime.redphone.audio.CallAudioManager;
-import org.thoughtcrime.redphone.crypto.SecureRtpSocket;
 import org.thoughtcrime.redphone.crypto.zrtp.MasterSecret;
 import org.thoughtcrime.redphone.crypto.zrtp.NegotiationFailedException;
 import org.thoughtcrime.redphone.crypto.zrtp.RecipientUnavailableException;
@@ -31,7 +30,6 @@ import org.thoughtcrime.redphone.crypto.zrtp.SASInfo;
 import org.thoughtcrime.redphone.crypto.zrtp.ZRTPSocket;
 import org.thoughtcrime.redphone.signaling.SessionDescriptor;
 import org.thoughtcrime.redphone.signaling.SignalingSocket;
-import org.thoughtcrime.redphone.util.AudioUtils;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -62,10 +60,7 @@ public abstract class CallManager extends Thread {
   private   boolean          muteEnabled;
   private   boolean          callConnected;
 
-  protected SessionDescriptor sessionDescriptor;
   protected ZRTPSocket        zrtpSocket;
-  protected SecureRtpSocket   secureSocket;
-  protected SignalingSocket   signalingSocket;
 
   public CallManager(Context context, CallStateListener callStateListener,
                     String remoteNumber, String threadName)
@@ -120,6 +115,7 @@ public abstract class CallManager extends Thread {
   }
 
   public void terminate() {
+    Log.d(TAG, "terminate");
     this.terminated = true;
 
     if (callAudioManager != null)
@@ -133,14 +129,14 @@ public abstract class CallManager extends Thread {
   }
 
   public SessionDescriptor getSessionDescriptor() {
-    return this.sessionDescriptor;
+    return this.signalManager == null ? null : this.signalManager.getSessionDescriptor();
   }
 
   public SASInfo getSasInfo() {
     return this.sasInfo;
   }
 
-  protected void processSignals() {
+  protected void processSignals(SignalingSocket signalingSocket, SessionDescriptor sessionDescriptor) {
     Log.w(TAG, "Starting signal processing loop...");
     this.signalManager = new SignalManager(callStateListener, signalingSocket, sessionDescriptor);
   }
