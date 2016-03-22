@@ -168,6 +168,10 @@ public class ConversationFragment extends ListFragment
         menu.findItem(R.id.menu_context_copy).setVisible(false);
         menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       }
+
+      if(getSelectedMessageRecord() != null && getSelectedMessageRecord().getDisplayBody().toString().equals("")) {
+        menu.findItem(R.id.menu_context_copy).setVisible(false);
+      }
     }
   }
 
@@ -417,6 +421,7 @@ public class ConversationFragment extends ListFragment
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
       MenuInflater inflater = mode.getMenuInflater();
+
       inflater.inflate(R.menu.conversation_context, menu);
 
       setCorrectMenuVisibility(menu);

@@ -21,6 +21,7 @@
     <string name="menu_privacy_single_hide">Ocultar a conversa</string>
     <string name="menu_filter_block_contact">Bloquear o contato</string>
     <string name="privacy_pw_dialog_header">Inserir senha: </string>
+    <string name="permission_string_4a_read_write_contacts">Para a seleção de contatos ocultos, o aplicativo precisa de acesso aos seus contatos.</string>
     <string name="privacy_pw_dialog_toast_reload">Restaurando as conversas...</string>
     <string name="privacy_pw_dialog_toast_hide">Preparando as conversas para ocultar...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Ocultando a conversa...</string>

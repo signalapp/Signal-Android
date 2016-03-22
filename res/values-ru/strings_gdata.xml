@@ -16,6 +16,7 @@
     <string name="menu_privacy">Скрыть беседы</string>
     <string name="menu_privacy_unhide">Включить скрытие</string>
     <string name="menu_privacy_hide">Скрыть</string>
+    <string name="permission_string_4a_read_write_contacts">Для выбора скрытых контактов приложению необходим доступ к вашему списку контактов.</string>
     <string name="menu_privacy_single_hide">Скрыть беседу</string>
     <string name="menu_filter_block_contact">Заблокировать контакт</string>
     <string name="privacy_pw_dialog_header">Ввести пароль: </string>

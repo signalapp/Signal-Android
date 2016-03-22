@@ -17,6 +17,7 @@
     <string name="menu_filter">Blocca contatti</string>
     <string name="menu_privacy">Nascondi intrattenimenti</string>
     <string name="menu_privacy_unhide">Attiva Nascondi</string>
+    <string name="permission_string_4a_read_write_contacts">Per la selezione dei contatti nascosti, l\'app deve avere accesso ai contatti.</string>
     <string name="menu_privacy_hide">Nascondi</string>
     <string name="menu_privacy_single_hide">Nascondi intrattenimento</string>
     <string name="menu_filter_block_contact">Blocca contatto</string>

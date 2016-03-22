@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -51,6 +52,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -211,7 +213,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
     private int currentMediaSize;
     private String profileId = "0";
-    private ProgressDialog compressingDialog;
+    public static ProgressDialog compressingDialog;
     private boolean compressingIsrunning = false;
 
     private String draftText;
@@ -286,31 +288,47 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId) == null && threadId != -1) {
             finish();
         }
-        if (compressingIsrunning) {
+        if (compressingIsrunning && (compressingDialog == null || !compressingDialog.isShowing())) {
             compressingDialog = ProgressDialog.show(this, getString(R.string.dialog_compressing_header), getString(R.string.dialog_compressing));
+            compressingDialog.setCanceledOnTouchOutside(false);
+            compressingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
+                    cancelVideoCompression();
+                }
+            });
+            compressingDialog.setCancelable(true);
         }
         if (draftText != null) composeText.setText(draftText + "");
     }
-
     @Override
     protected void onPause() {
         super.onPause();
+        cancelVideoCompression();
         MessageNotifier.setVisibleThread(-1L);
         if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
     }
-
+    public void cancelVideoCompression() {
+        compressingIsrunning = false;
+        VideoResolutionChanger.COMPRESSING_ERROR = "CANCELED";
+        if(compressingDialog != null) {
+            compressingDialog.cancel();
+            compressingDialog = null;
+        }
+    }
     @Override
     protected void onDestroy() {
         saveDraft();
         unregisterReceiver(securityUpdateReceiver);
         unregisterReceiver(groupUpdateReceiver);
         MemoryCleaner.clean(masterSecret);
+        cancelVideoCompression();
         super.onDestroy();
     }
 
     @Override
     public void onActivityResult(int reqCode, int resultCode, final Intent data) {
-        Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
+        Log.w(TAG, "GData onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
         super.onActivityResult(reqCode, resultCode, data);
 
         if ((data == null || resultCode != RESULT_OK) && reqCode != AttachmentTypeSelectorAdapter.TAKE_PHOTO)
@@ -324,39 +342,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 addAttachmentImage(data.getData());
                 break;
             case PICK_VIDEO:
-                /*
-                 * Does not work yet properly
-                 */
-                if (Build.VERSION.SDK_INT >= 99) {
-                    class CompressVideoTask extends AsyncTask<Void, Integer, String> {
-                        String pathToOutputFile = "";
-
-                        protected void onPreExecute() {
-                            compressingIsrunning = true;
-                        }
-
-                        protected String doInBackground(Void... arg0) {
-                            try {
-                                pathToOutputFile =
-                                        new VideoResolutionChanger().changeResolution(getApplicationContext(), data.getData());
-                            } catch (Throwable t) {
-                                t.fillInStackTrace();
-                            }
-                            return "";
-                        }
-
-                        protected void onPostExecute(String result) {
-                            addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
-                            compressingIsrunning = false;
-                            if (compressingDialog.isShowing()) {
-                                compressingDialog.dismiss();
-                            }
-                        }
-                    }
-                    new CompressVideoTask().execute();
-                } else {
-                    addAttachmentVideo(data.getData());
-                }
+                addAttachmentVideoWithoutToast(data.getData());
                 break;
             case PICK_AUDIO:
                 addAttachmentAudio(data.getData());
@@ -375,8 +361,61 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
     }
 
+    private void handleVideoAttachment(final Uri data) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            final Activity activity = this;
+            class CompressVideoTask extends AsyncTask<Void, Integer, String> {
+                String pathToOutputFile = "";
+
+                protected void onPreExecute() {
+                    compressingIsrunning = true;
+                }
+
+                protected String doInBackground(Void... arg0) {
+                    try {
+                        pathToOutputFile =
+                                new VideoResolutionChanger().changeResolution(activity, data);
+                    } catch (Throwable t) {
+                        t.printStackTrace();
+                    }
+                    return "";
+                }
+
+                protected void onPostExecute(String result) {
+                    if(compressingIsrunning) {
+                        if (!pathToOutputFile.equals(VideoResolutionChanger.COMPRESSING_ERROR)) {
+                            addAttachmentVideo(Uri.parse("file://" + pathToOutputFile));
+                        } else {
+                            if(VideoResolutionChanger.COMPRESSING_ERROR.equals(VideoResolutionChanger.ERROR_TOO_BIG)) {
+                                showAttachmentSizeErrorToast();
+                            } else {
+                                showAttachmentErrorToast();
+                            }
+                            VideoResolutionChanger.COMPRESSING_ERROR = "";
+                        }
+                        compressingIsrunning = false;
+                        if (compressingDialog.isShowing()) {
+                            try {
+                                compressingDialog.dismiss();
+                            } catch (Exception e) {
+                                //catch D 0,0-1026,483} not attached to window manager
+                                compressingDialog.cancel();
+                                compressingDialog = null;
+                            }
+                        }
+                    } else {
+                        VideoResolutionChanger.COMPRESSING_ERROR = "";
+                    }
+                }
+            }
+            new CompressVideoTask().execute();
+        } else {
+            addAttachmentVideo(data);
+        }
+    }
+
     public void handleTakenPhoto(Context context) {
-        File image = AttachmentManager.getOutputMediaFile(context);
+        File image = AttachmentManager.getOutputMediaFile(context, AttachmentManager.MEDIA_TYPE_IMAGE);
         if (image != null) {
             Uri fileUri = Uri.fromFile(image);
             try {
@@ -814,7 +853,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             public void onClick(DialogInterface dialog, int which) {
                 if (threadId > 0) {
                     GDataPreferences pref = new GDataPreferences(getApplicationContext());
-                        pref.saveReadCount(threadId+"", 0L);
+                    pref.saveReadCount(threadId + "", 0L);
                     DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
                     finish();
                 }
@@ -945,17 +984,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     private void initializeDraft() {
+
         draftText = getIntent().getExtras().getString(DRAFT_TEXT_EXTRA);
         Uri draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
         Uri draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
         Uri draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
         String contentType = getIntent().getStringExtra(DRAFT_MEDIA_TYPE_EXTRA);
-
-        if (draftImage != null) addAttachmentImage(draftImage);
+        if (draftImage != null && draftVideo == null) addAttachmentImage(draftImage);
         if (draftAudio != null && ContentType.isAudioType(contentType))
             addAttachmentAudio(draftAudio, contentType);
-        if (draftVideo != null && ContentType.isVideoType(contentType))
-            addAttachmentVideo(draftVideo, contentType);
+        if (draftVideo != null && ContentType.isVideoType(contentType)) {
+            addAttachmentVideoWithoutToast(draftVideo);
+        }
 
         if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
             initializeDraftFromDatabase();
@@ -1196,64 +1236,71 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     private void addAttachmentImage(Uri imageUri) {
         try {
+            if(GUtil.isImageType(GUtil.getContentTypeForUri(this, imageUri))) {
             attachmentManager.setImage(imageUri);
+            } else {
+                showAttachmentErrorToast();
+            }
         } catch (IOException | BitmapDecodingException e) {
             Log.w(TAG, e);
-            attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
         }
     }
 
     private void addAttachmentVideo(Uri videoUri) {
         try {
+            if(GUtil.isVideoType(GUtil.getContentTypeForUri(this, videoUri))) {
             attachmentManager.setVideo(videoUri, true);
+            } else {
+                showAttachmentErrorToast();
+            }
         } catch (IOException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
-            attachmentManager.clear();
-
-            Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-                            (getCurrentMediaSize() / 1024)),
-                    Toast.LENGTH_LONG).show();
+            showAttachmentSizeErrorToast();
             Log.w("ComposeMessageActivity", e);
         }
     }
-
-    private void addAttachmentVideo(Uri videoUri, String contentType) {
+    private void addAttachmentVideoWithoutToast(Uri videoUri) {
         try {
-            attachmentManager.setVideo(videoUri, contentType, true);
+            if(GUtil.isVideoType(GUtil.getContentTypeForUri(this, videoUri))) {
+            attachmentManager.setVideo(videoUri, true);
+            } else {
+                showAttachmentErrorToast();
+            }
         } catch (IOException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
-            attachmentManager.clear();
-
-            Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-                            (getCurrentMediaSize() / 1024)),
-                    Toast.LENGTH_LONG).show();
-            Log.w("ComposeMessageActivity", e);
+            handleVideoAttachment(videoUri);
         }
     }
 
+    private void showAttachmentErrorToast() {
+        attachmentManager.clear();
+        Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+                Toast.LENGTH_LONG).show();
+    }
+    private void showAttachmentSizeErrorToast() {
+        attachmentManager.clear();
+        Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
+                        (getCurrentMediaSize() / 1024)),
+                Toast.LENGTH_LONG).show();
+    }
     private void addAttachmentAudio(Uri audioUri, String contentType) {
         try {
-            attachmentManager.setAudio(audioUri, contentType, true);
+            if(GUtil.isAudioType(GUtil.getContentTypeForUri(this, audioUri))) {
+                attachmentManager.setAudio(audioUri, contentType, true);
+            } else {
+                showAttachmentErrorToast();
+            }
         } catch (IOException e) {
             attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
-                            (getCurrentMediaSize() / 1024)),
-                    Toast.LENGTH_LONG).show();
+            showAttachmentSizeErrorToast();
             Log.w("ComposeMessageActivity", e);
         }
     }
@@ -1262,15 +1309,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         try {
             attachmentManager.setAudio(audioUri, true);
         } catch (IOException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                    Toast.LENGTH_LONG).show();
+            showAttachmentErrorToast();
             Log.w("ComposeMessageActivity", e);
         } catch (MediaTooLargeException e) {
-            attachmentManager.clear();
-            Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
-                            (getCurrentMediaSize() / 1024)),
-                    Toast.LENGTH_LONG).show();
+            showAttachmentSizeErrorToast();
             Log.w("ComposeMessageActivity", e);
         }
     }

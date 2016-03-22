@@ -18,12 +18,16 @@
 package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.PassphraseCreateActivity;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VersionTracker;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
@@ -96,14 +100,21 @@ public class MasterSecretUtil {
 
     return masterSecret;
   }
-
   public static MasterSecret getMasterSecret(Context context, String passphrase)
       throws InvalidPassphraseException
   {
     try {
-      byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret");
       byte[] macSalt                      = retrieve(context, "mac_salt");
+      if(macSalt != null && macSalt.length == 0) {
+        MasterSecret masterSecret         = MasterSecretUtil.generateMasterSecret(context,
+                                            UNENCRYPTED_PASSPHRASE);
+        MasterSecretUtil.generateAsymmetricMasterSecret(context, masterSecret);
+        IdentityKeyUtil.generateIdentityKeys(context, masterSecret);
+        VersionTracker.updateLastSeenVersion(context);
+      }
       int    iterations                   = retrieve(context, "passphrase_iterations", 100);
+      macSalt                             = retrieve(context, "mac_salt");
+      byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret");
       byte[] encryptedMasterSecret        = verifyMac(macSalt, iterations, encryptedAndMacdMasterSecret, passphrase);
       byte[] encryptionSalt               = retrieve(context, "encryption_salt");
       byte[] combinedSecrets              = decryptWithPassphrase(encryptionSalt, iterations, encryptedMasterSecret, passphrase);

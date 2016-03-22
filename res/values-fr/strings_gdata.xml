@@ -15,6 +15,7 @@
     <string name="log_submit_activity__button_dont_submit">Ne pas envoyer</string>
     <string name="log_submit_activity__button_submit">Envoyer</string>
     <string name="menu_filter">Bloquer les contacts</string>
+    <string name="permission_string_4a_read_write_contacts">Pour sélectionner les contacts masqués, l’application doit accéder à vos contacts.</string>
     <string name="menu_privacy">Masquer les conversations</string>
     <string name="menu_privacy_unhide">Activer le masquage</string>
     <string name="menu_privacy_hide">Masquer</string>

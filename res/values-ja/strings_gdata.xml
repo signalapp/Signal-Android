@@ -14,6 +14,7 @@
     <string name="gd_dialog_fragment_phishing_continue">続行</string>
     <string name="log_submit_activity__button_dont_submit">送信しない</string>
     <string name="log_submit_activity__button_submit">送信</string>
+    <string name="permission_string_4a_read_write_contacts">非表示化する連絡先を指定するため、連絡先へのアクセス権限が必要です。</string>
     <string name="menu_filter">連絡先をブロック</string>
     <string name="menu_privacy">チャットの非表示</string>
     <string name="menu_privacy_unhide">非表示をオン</string>
