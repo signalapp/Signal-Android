@@ -50,6 +50,7 @@ import de.gdata.messaging.util.PrivacyBridge;
  */
 public class ContactsDatabase {
   private static final String TAG = ContactsDatabase.class.getSimpleName();
+  private static final int SQL_QUERY_LIMIT = 950;
   private final DatabaseOpenHelper dbHelper;
   private final Context            context;
 

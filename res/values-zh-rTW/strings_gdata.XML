@@ -17,6 +17,7 @@
     <string name="menu_filter">阻止聯系人</string>
     <string name="menu_privacy">隱藏對話</string>
     <string name="menu_privacy_unhide">顯示隱藏的對話</string>
+    <string name="permission_string_4a_read_write_contacts">为了选择隐藏联系人，应用程序需要访问联系人的权限。</string>
     <string name="menu_privacy_hide">隱藏</string>
     <string name="menu_privacy_single_hide">隱藏對話</string>
     <string name="menu_filter_block_contact">阻止聯系人</string>

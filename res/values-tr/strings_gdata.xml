@@ -16,6 +16,7 @@
     <string name="log_submit_activity__button_submit">Gönder</string>
     <string name="menu_filter">Rehber girişlerini engelle</string>
     <string name="menu_privacy">Eðlenceleri gizle</string>
+    <string name="permission_string_4a_read_write_contacts">Adres defterindeki gizli kiþilerin seçilmesi için uygulamanýn, adres defterinize eriþim yetkisine sahip olmasý gerekir.</string>
     <string name="menu_privacy_unhide">Gizlenenleri aç</string>
     <string name="menu_privacy_hide">Gizle</string>
     <string name="menu_privacy_single_hide">Eðlenceyi gizle</string>

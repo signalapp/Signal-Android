@@ -1,7 +1,13 @@
 package de.gdata.messaging.util;
 
 import android.annotation.TargetApi;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.ContentUris;
+
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
@@ -11,23 +17,34 @@ import android.media.MediaFormat;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaMuxer;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.view.Surface;
 
+import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
+import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicReference;
 
-@TargetApi(18)
+@TargetApi(19)
 public class VideoResolutionChanger {
 
     private static final int TIMEOUT_USEC = 10000;
 
+
+    public static final String ERROR_TOO_BIG = "TOO_BIG";
+
     public static final String OUTPUT_VIDEO_MIME_TYPE = "video/avc";
-    private static final int OUTPUT_VIDEO_BIT_RATE = 2000 * 1024;
+    private static final int OUTPUT_VIDEO_BIT_RATE = 1024 * 1024;
     private static final int OUTPUT_VIDEO_FRAME_RATE = 24;
+
     private static final int OUTPUT_VIDEO_IFRAME_INTERVAL = 10;
     private static final int OUTPUT_VIDEO_COLOR_FORMAT =
             MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface;
@@ -38,6 +55,8 @@ public class VideoResolutionChanger {
     private static final int OUTPUT_AUDIO_AAC_PROFILE =
             MediaCodecInfo.CodecProfileLevel.AACObjectHE;
     private static final int OUTPUT_AUDIO_SAMPLE_RATE_HZ = 44100;
+    private static final String ROTATION_90 = "90";
+    private static final String ROTATION_270 = "270";
 
     private boolean compressingSuccessful = true;
 
@@ -45,18 +64,24 @@ public class VideoResolutionChanger {
     private int mHeight = 360;
     private String mOutputFile, mInputFile;
 
-    public static String COMPRESSING_ERROR = "error";
+    public static String COMPRESSING_ERROR = "";
 
-    public String changeResolution(Context context, Uri f)
+    private int newFieSizeBites = 0;
+    private int videoLength = 0;
+    private Activity context;
+
+    public String changeResolution(Activity context, Uri f)
             throws Throwable {
-
-        mInputFile = GUtil.getPath(context, f);
+        mInputFile = getPath(context, f);
+        COMPRESSING_ERROR = "";
 
         final File outFile = AttachmentManager.getOutputMediaFile(context, AttachmentManager.MEDIA_TYPE_VIDEO);
         if(!outFile.exists())
             outFile.createNewFile();
 
-        mOutputFile = outFile.getAbsolutePath();
+        mOutputFile=outFile.getAbsolutePath();
+
+        this.context = context;
 
         ChangerWrapper.changeResolutionInSeparatedThread(this);
         if(!compressingSuccessful) {
@@ -121,141 +146,168 @@ public class VideoResolutionChanger {
             MediaMetadataRetriever m = new MediaMetadataRetriever();
             m.setDataSource(mInputFile);
             Bitmap thumbnail = m.getFrameAtTime();
-            int inputWidth = thumbnail.getWidth(),
-                    inputHeight = thumbnail.getHeight();
+            String rotation = m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
+            boolean rotationUsed = false;
+            if (inputFormat.containsKey("rotation-degrees")) {
+                // Decoded video is rotated automatically in Android 5.0 lollipop.
+                // refer: https://android.googlesource.com/platform/frameworks/av/+blame/lollipop-release/media/libstagefright/Utils.cpp
+                inputFormat.setInteger("rotation-degrees", Integer.parseInt(rotation));
+                rotationUsed = true;
+            }
+            int inputWidth = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)),
+            inputHeight = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
 
-            if(inputWidth>inputHeight){
-                if(mWidth<mHeight){
-                    int w = mWidth;
-                    mWidth=mHeight;
-                    mHeight=w;
+            videoLength = Integer.parseInt(m.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
+            newFieSizeBites = (int) (OUTPUT_VIDEO_BIT_RATE
+                    * (videoLength) / 1000.0);
+
+            if (newFieSizeBites > PushMediaConstraints.MAX_MESSAGE_SIZE) {
+                compressingSuccessful = false;
+                COMPRESSING_ERROR = ERROR_TOO_BIG;
+            } else {
+                if(rotationUsed) {
+                    //Really dirty workaround but it seems that the width and Height of this china device are mixed up (Huwai Ascend 4.4.4)
+                    if (ROTATION_90.equals(rotation) || ROTATION_270.equals(rotation)) {
+                        if (inputWidth > inputHeight) {
+                            int temp = inputWidth;
+                            inputWidth = inputHeight;
+                            inputHeight = temp;
+                        }
+                    }
+                }
+                if (inputWidth > inputHeight) {
+                    if (mWidth < mHeight) {
+                        int w = mWidth;
+                        mWidth = mHeight;
+                        mHeight = w;
+                    }
+                } else {
+                    if (mWidth > mHeight) {
+                        int w = mWidth;
+                        mWidth = mHeight;
+                        mHeight = w;
+                    }
+                }
+
+                MediaFormat outputVideoFormat =
+                        MediaFormat.createVideoFormat(OUTPUT_VIDEO_MIME_TYPE, mWidth, mHeight);
+                outputVideoFormat.setInteger(
+                        MediaFormat.KEY_COLOR_FORMAT, OUTPUT_VIDEO_COLOR_FORMAT);
+                outputVideoFormat.setInteger(MediaFormat.KEY_BIT_RATE, OUTPUT_VIDEO_BIT_RATE);
+                outputVideoFormat.setInteger(MediaFormat.KEY_FRAME_RATE, OUTPUT_VIDEO_FRAME_RATE);
+                outputVideoFormat.setInteger(
+                        MediaFormat.KEY_I_FRAME_INTERVAL, OUTPUT_VIDEO_IFRAME_INTERVAL);
+
+                AtomicReference<Surface> inputSurfaceReference = new AtomicReference<Surface>();
+                videoEncoder = createVideoEncoder(
+                        videoCodecInfo, outputVideoFormat, inputSurfaceReference);
+                inputSurface = new InputSurface(inputSurfaceReference.get());
+                inputSurface.makeCurrent();
+
+                outputSurface = new OutputSurface();
+                videoDecoder = createVideoDecoder(inputFormat, outputSurface.getSurface());
+
+                audioExtractor = createExtractor();
+                int audioInputTrack = getAndSelectAudioTrackIndex(audioExtractor);
+                MediaFormat inputAudioFormat = audioExtractor.getTrackFormat(audioInputTrack);
+                MediaFormat outputAudioFormat =
+                        MediaFormat.createAudioFormat(
+                                OUTPUT_AUDIO_MIME_TYPE, OUTPUT_AUDIO_SAMPLE_RATE_HZ,
+                                OUTPUT_AUDIO_CHANNEL_COUNT);
+                outputAudioFormat.setInteger(MediaFormat.KEY_BIT_RATE, OUTPUT_AUDIO_BIT_RATE);
+                outputAudioFormat.setInteger(MediaFormat.KEY_AAC_PROFILE, OUTPUT_AUDIO_AAC_PROFILE);
+
+                audioEncoder = createAudioEncoder(audioCodecInfo, outputAudioFormat);
+                audioDecoder = createAudioDecoder(inputAudioFormat);
+
+                muxer = new MediaMuxer(mOutputFile, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
+
+                changeResolution(videoExtractor, audioExtractor,
+                        videoDecoder, videoEncoder,
+                        audioDecoder, audioEncoder,
+                        muxer, inputSurface, outputSurface);
+            }
+            }finally{
+                try {
+                    if (videoExtractor != null)
+                        videoExtractor.release();
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
+                }
+                try {
+                    if (audioExtractor != null)
+                        audioExtractor.release();
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
+                }
+                try {
+                    if (videoDecoder != null) {
+                        videoDecoder.stop();
+                        videoDecoder.release();
+                    }
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
+                }
+                try {
+                    if (outputSurface != null) {
+                        outputSurface.release();
+                    }
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
+                }
+                try {
+                    if (videoEncoder != null) {
+                        videoEncoder.stop();
+                        videoEncoder.release();
+                    }
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
+                }
+                try {
+                    if (audioDecoder != null) {
+                        audioDecoder.stop();
+                        audioDecoder.release();
+                    }
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
+                }
+                try {
+                    if (audioEncoder != null) {
+                        audioEncoder.stop();
+                        audioEncoder.release();
+                    }
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
+                }
+                try {
+                    if (muxer != null) {
+                        muxer.stop();
+                        muxer.release();
+                    }
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
+                }
+                try {
+                    if (inputSurface != null)
+                        inputSurface.release();
+                } catch (Exception e) {
+                    if (exception == null)
+                        exception = e;
                 }
             }
-            else{
-                if(mWidth>mHeight){
-                    int w = mWidth;
-                    mWidth=mHeight;
-                    mHeight=w;
-                }
+            if (exception != null) {
+                compressingSuccessful = false;
+                exception.printStackTrace();
+                throw exception;
             }
-
-            MediaFormat outputVideoFormat =
-                    MediaFormat.createVideoFormat(OUTPUT_VIDEO_MIME_TYPE, mWidth, mHeight);
-            outputVideoFormat.setInteger(
-                    MediaFormat.KEY_COLOR_FORMAT, OUTPUT_VIDEO_COLOR_FORMAT);
-            outputVideoFormat.setInteger(MediaFormat.KEY_BIT_RATE, OUTPUT_VIDEO_BIT_RATE);
-            outputVideoFormat.setInteger(MediaFormat.KEY_FRAME_RATE, OUTPUT_VIDEO_FRAME_RATE);
-            outputVideoFormat.setInteger(
-                    MediaFormat.KEY_I_FRAME_INTERVAL, OUTPUT_VIDEO_IFRAME_INTERVAL);
-
-            AtomicReference<Surface> inputSurfaceReference = new AtomicReference<Surface>();
-            videoEncoder = createVideoEncoder(
-                    videoCodecInfo, outputVideoFormat, inputSurfaceReference);
-            inputSurface = new InputSurface(inputSurfaceReference.get());
-            inputSurface.makeCurrent();
-
-            outputSurface = new OutputSurface();
-            videoDecoder = createVideoDecoder(inputFormat, outputSurface.getSurface());
-
-            audioExtractor = createExtractor();
-            int audioInputTrack = getAndSelectAudioTrackIndex(audioExtractor);
-            MediaFormat inputAudioFormat = audioExtractor.getTrackFormat(audioInputTrack);
-            MediaFormat outputAudioFormat =
-                    MediaFormat.createAudioFormat(
-                            OUTPUT_AUDIO_MIME_TYPE, OUTPUT_AUDIO_SAMPLE_RATE_HZ,
-                            OUTPUT_AUDIO_CHANNEL_COUNT);
-            outputAudioFormat.setInteger(MediaFormat.KEY_BIT_RATE, OUTPUT_AUDIO_BIT_RATE);
-            outputAudioFormat.setInteger(MediaFormat.KEY_AAC_PROFILE, OUTPUT_AUDIO_AAC_PROFILE);
-
-            audioEncoder = createAudioEncoder(audioCodecInfo, outputAudioFormat);
-            audioDecoder = createAudioDecoder(inputAudioFormat);
-
-            muxer = new MediaMuxer(mOutputFile, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
-
-            changeResolution(videoExtractor, audioExtractor,
-                    videoDecoder, videoEncoder,
-                    audioDecoder, audioEncoder,
-                    muxer, inputSurface, outputSurface);
-        } finally {
-            try {
-                if (videoExtractor != null)
-                    videoExtractor.release();
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-            try {
-                if (audioExtractor != null)
-                    audioExtractor.release();
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-            try {
-                if (videoDecoder != null) {
-                    videoDecoder.stop();
-                    videoDecoder.release();
-                }
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-            try {
-                if (outputSurface != null) {
-                    outputSurface.release();
-                }
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-            try {
-                if (videoEncoder != null) {
-                    videoEncoder.stop();
-                    videoEncoder.release();
-                }
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-            try {
-                if (audioDecoder != null) {
-                    audioDecoder.stop();
-                    audioDecoder.release();
-                }
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-            try {
-                if (audioEncoder != null) {
-                    audioEncoder.stop();
-                    audioEncoder.release();
-                }
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-            try {
-                if (muxer != null) {
-                    muxer.stop();
-                    muxer.release();
-                }
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-            try {
-                if (inputSurface != null)
-                    inputSurface.release();
-            } catch(Exception e) {
-                if (exception == null)
-                    exception = e;
-            }
-        }
-        if (exception != null) {
-            compressingSuccessful = false;
-            throw exception;
-        }
     }
 
     private MediaExtractor createExtractor() throws IOException {
@@ -362,7 +414,8 @@ public class VideoResolutionChanger {
 
         int pendingAudioDecoderOutputBufferIndex = -1;
         boolean muxing = false;
-        while ((!videoEncoderDone) || (!audioEncoderDone)) {
+        while (((!videoEncoderDone) || (!audioEncoderDone)) && "".equals(COMPRESSING_ERROR)) {
+
             while (!videoExtractorDone
                     && (encoderOutputVideoFormat == null || muxing)) {
                 int decoderInputBufferIndex = videoDecoder.dequeueInputBuffer(TIMEOUT_USEC);
@@ -372,7 +425,6 @@ public class VideoResolutionChanger {
                 ByteBuffer decoderInputBuffer = videoDecoderInputBuffers[decoderInputBufferIndex];
                 int size = videoExtractor.readSampleData(decoderInputBuffer, 0);
                 long presentationTime = videoExtractor.getSampleTime();
-
                 if (size >= 0) {
                     videoDecoder.queueInputBuffer(
                             decoderInputBufferIndex,
@@ -397,11 +449,24 @@ public class VideoResolutionChanger {
                 ByteBuffer decoderInputBuffer = audioDecoderInputBuffers[decoderInputBufferIndex];
                 int size = audioExtractor.readSampleData(decoderInputBuffer, 0);
                 long presentationTime = audioExtractor.getSampleTime();
-
-                if (size >= 0)
+                long presTime = 0;
+                if (size >= 0) {
+                    presTime += presentationTime;
                     audioDecoder.queueInputBuffer(decoderInputBufferIndex, 0, size,
                             presentationTime, audioExtractor.getSampleFlags());
+                }
 
+                final int currentProgress = (int) ((100.0 / videoLength) * ((presTime / 1000.0)));
+
+                context.runOnUiThread(new Thread(new Runnable() {
+                    public void run() {
+                        if(ConversationActivity.compressingDialog != null && ConversationActivity.compressingDialog.isShowing()) {
+                            if(currentProgress > 0 && currentProgress <= 100) {
+                                ConversationActivity.compressingDialog.setMessage(context.getString(R.string.dialog_compressing) + " " + currentProgress + "%");
+                            }
+                        }
+                    }
+                }));
                 audioExtractorDone = !audioExtractor.advance();
                 if (audioExtractorDone)
                     audioDecoder.queueInputBuffer(decoderInputBufferIndex, 0, 0,
@@ -612,5 +677,145 @@ public class VideoResolutionChanger {
             }
         }
         return null;
+    }
+    /**
+     * Get a file path from a Uri. This will get the the path for Storage Access
+     * Framework Documents, as well as the _data field for the MediaStore and
+     * other file-based ContentProviders.
+     *
+     * @param context The context.
+     * @param uri The Uri to query.
+     * @author paulburke
+     */
+    public static String getPath(final Context context, final Uri uri) {
+
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+        // DocumentProvider
+        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // ExternalStorageProvider
+            if (isExternalStorageDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                if ("primary".equalsIgnoreCase(type)) {
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+
+                // TODO handle non-primary volumes
+            }
+            // DownloadsProvider
+            else if (isDownloadsDocument(uri)) {
+
+                final String id = DocumentsContract.getDocumentId(uri);
+                final Uri contentUri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+                return getDataColumn(context, contentUri, null, null);
+            }
+            // MediaProvider
+            else if (isMediaDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+
+                final String selection = "_id=?";
+                final String[] selectionArgs = new String[] {
+                        split[1]
+                };
+
+                return getDataColumn(context, contentUri, selection, selectionArgs);
+            }
+        }
+        // MediaStore (and general)
+        else if ("content".equalsIgnoreCase(uri.getScheme())) {
+
+            // Return the remote address
+            if (isGooglePhotosUri(uri))
+                return uri.getLastPathSegment();
+
+            return getDataColumn(context, uri, null, null);
+        }
+        // File
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+
+        return null;
+    }
+    /**
+     * Get the value of the data column for this Uri. This is useful for
+     * MediaStore Uris, and other file-based ContentProviders.
+     *
+     * @param context The context.
+     * @param uri The Uri to query.
+     * @param selection (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     * @return The value of the _data column, which is typically a file path.
+     */
+    public static String getDataColumn(Context context, Uri uri, String selection,
+                                       String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {
+                column
+        };
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    public static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is Google Photos.
+     */
+    public static boolean isGooglePhotosUri(Uri uri) {
+        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 }
