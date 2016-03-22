@@ -72,7 +72,9 @@ public class ThreadRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody() {
-    if (SmsDatabase.Types.isDecryptInProgressType(type)) {
+    if (this.getRecipient().isBlocked()) {
+      return emphasisAdded(context.getString(R.string.ThreadRecord_blocked));
+    } else if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
     } else if (isGroupUpdate()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));

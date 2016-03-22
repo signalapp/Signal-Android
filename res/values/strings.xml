@@ -574,6 +574,7 @@
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Group updated</string>
+    <string name="ThreadRecord_blocked">Blocked</string>
     <string name="ThreadRecord_left_the_group">Left the group</string>
     <string name="ThreadRecord_secure_session_reset">Secure session reset.</string>
     <string name="ThreadRecord_draft">Draft:</string>

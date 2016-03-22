@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -175,8 +174,8 @@ public class ConversationListItem extends RelativeLayout
     return lastSeen;
   }
 
-  private void setThumbnailSnippet(MasterSecret masterSecret, ThreadRecord thread) {
-    if (thread.getSnippetUri() != null) {
+  private void setThumbnailSnippet(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread) {
+    if (thread.getSnippetUri() != null && !thread.getRecipient().isBlocked()) {
       this.thumbnailView.setVisibility(View.VISIBLE);
       this.thumbnailView.setImageResource(masterSecret, glideRequests, thread.getSnippetUri());
 
@@ -188,21 +187,26 @@ public class ConversationListItem extends RelativeLayout
       this.subjectView.setLayoutParams(subjectParams);
       this.post(new ThumbnailPositioner(thumbnailView, archivedView, deliveryStatusIndicator, dateView));
     } else {
-      this.thumbnailView.setVisibility(View.GONE);
-
-      LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
-      subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.status);
-      if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-        subjectParams.addRule(RelativeLayout.START_OF, R.id.status);
-      }
-      this.subjectView.setLayoutParams(subjectParams);
+      clearThumbnailSnippet();
     }
   }
 
-  private void setStatusIcons(ThreadRecord thread) {
-    if (!thread.isOutgoing() || thread.isOutgoingCall() || thread.isVerificationStatusChange()) {
-      deliveryStatusIndicator.setNone();
-      alertView.setNone();
+  private void clearThumbnailSnippet() {
+    this.thumbnailView.setVisibility(View.GONE);
+
+    LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
+    subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.status);
+    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
+      subjectParams.addRule(RelativeLayout.START_OF, R.id.status);
+    }
+    this.subjectView.setLayoutParams(subjectParams);
+  }
+
+  private void setStatusIcons(@NonNull ThreadRecord thread) {
+    if (!thread.isOutgoing() || thread.isOutgoingCall() || thread.isVerificationStatusChange()
+            || thread.getRecipient().isBlocked())
+    {
+      clearStatusIcons();
     } else if (thread.isFailed()) {
       deliveryStatusIndicator.setNone();
       alertView.setFailed();
@@ -217,6 +221,11 @@ public class ConversationListItem extends RelativeLayout
       else if (thread.isDelivered())  deliveryStatusIndicator.setDelivered();
       else                            deliveryStatusIndicator.setSent();
     }
+  }
+
+  private void clearStatusIcons() {
+    deliveryStatusIndicator.setNone();
+    alertView.setNone();
   }
 
   private void setRippleColor(Recipient recipient) {
@@ -249,6 +258,11 @@ public class ConversationListItem extends RelativeLayout
       fromView.setText(recipient, unreadCount == 0);
       contactPhotoImage.setAvatar(glideRequests, recipient, true);
       setRippleColor(recipient);
+
+      if (recipient.isBlocked()) {
+        clearStatusIcons();
+        clearThumbnailSnippet();
+      }
     });
   }
 
