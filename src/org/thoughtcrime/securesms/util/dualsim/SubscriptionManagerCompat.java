@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 
-import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;

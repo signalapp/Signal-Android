@@ -12,15 +12,15 @@ import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
-import org.whispersystems.textsecure.api.messages.multidevice.DeviceGroup;
-import org.whispersystems.textsecure.api.messages.multidevice.DeviceGroupsOutputStream;
-import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
-import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroup;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsOutputStream;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -49,9 +49,9 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
 
   @Override
   public void onRun(MasterSecret masterSecret) throws Exception {
-    TextSecureMessageSender messageSender   = messageSenderFactory.create();
-    File                    contactDataFile = createTempFile("multidevice-contact-update");
-    GroupDatabase.Reader    reader          = null;
+    SignalServiceMessageSender messageSender = messageSenderFactory.create();
+    File                    contactDataFile  = createTempFile("multidevice-contact-update");
+    GroupDatabase.Reader    reader           = null;
 
     GroupDatabase.GroupRecord record;
 
@@ -97,28 +97,28 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
 
   }
 
-  private void sendUpdate(TextSecureMessageSender messageSender, File contactsFile)
+  private void sendUpdate(SignalServiceMessageSender messageSender, File contactsFile)
       throws IOException, UntrustedIdentityException
   {
-    FileInputStream            contactsFileStream = new FileInputStream(contactsFile);
-    TextSecureAttachmentStream attachmentStream   = TextSecureAttachment.newStreamBuilder()
-                                                                        .withStream(contactsFileStream)
-                                                                        .withContentType("application/octet-stream")
-                                                                        .withLength(contactsFile.length())
-                                                                        .build();
+    FileInputStream               contactsFileStream = new FileInputStream(contactsFile);
+    SignalServiceAttachmentStream attachmentStream   = SignalServiceAttachment.newStreamBuilder()
+                                                                              .withStream(contactsFileStream)
+                                                                              .withContentType("application/octet-stream")
+                                                                              .withLength(contactsFile.length())
+                                                                              .build();
 
-    messageSender.sendMessage(TextSecureSyncMessage.forGroups(attachmentStream));
+    messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream));
   }
 
 
-  private Optional<TextSecureAttachmentStream> getAvatar(@Nullable byte[] avatar) {
+  private Optional<SignalServiceAttachmentStream> getAvatar(@Nullable byte[] avatar) {
     if (avatar == null) return Optional.absent();
 
-    return Optional.of(TextSecureAttachment.newStreamBuilder()
-                                           .withStream(new ByteArrayInputStream(avatar))
-                                           .withContentType("image/*")
-                                           .withLength(avatar.length)
-                                           .build());
+    return Optional.of(SignalServiceAttachment.newStreamBuilder()
+                                              .withStream(new ByteArrayInputStream(avatar))
+                                              .withContentType("image/*")
+                                              .withLength(avatar.length)
+                                              .build());
   }
 
   private File createTempFile(String prefix) throws IOException {

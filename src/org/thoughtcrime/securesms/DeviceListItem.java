@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.whispersystems.textsecure.api.messages.multidevice.DeviceInfo;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 
 import java.util.Locale;
 

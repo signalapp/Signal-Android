@@ -25,10 +25,10 @@ import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.push.ContactTokenDetails;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -83,7 +83,7 @@ public class DirectoryHelper {
   }
 
   public static @NonNull List<String> refreshDirectory(@NonNull Context context,
-                                                       @NonNull TextSecureAccountManager accountManager,
+                                                       @NonNull SignalServiceAccountManager accountManager,
                                                        @NonNull String localNumber)
       throws IOException
   {
@@ -112,7 +112,7 @@ public class DirectoryHelper {
   {
     try {
       TextSecureDirectory           directory      = TextSecureDirectory.getInstance(context);
-      TextSecureAccountManager      accountManager = TextSecureCommunicationFactory.createManager(context);
+      SignalServiceAccountManager   accountManager = TextSecureCommunicationFactory.createManager(context);
       String                        number         = Util.canonicalizeNumber(context, recipients.getPrimaryRecipient().getNumber());
       Optional<ContactTokenDetails> details        = accountManager.getContact(number);
 

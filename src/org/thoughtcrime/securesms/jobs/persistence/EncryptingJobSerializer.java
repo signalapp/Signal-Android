@@ -7,7 +7,7 @@ import org.whispersystems.jobqueue.EncryptionKeys;
 import org.whispersystems.jobqueue.Job;
 import org.whispersystems.jobqueue.persistence.JavaJobSerializer;
 import org.whispersystems.jobqueue.persistence.JobSerializer;
-import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libsignal.InvalidMessageException;
 
 import java.io.IOException;
 

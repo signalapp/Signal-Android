@@ -13,7 +13,7 @@ import android.support.v4.content.AsyncTaskLoader;
 
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 public class CountryListLoader extends AsyncTaskLoader<ArrayList<Map<String, String>>> {
 

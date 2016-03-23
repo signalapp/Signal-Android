@@ -5,9 +5,9 @@ import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.MmsAddresses;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureGroup;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -48,8 +48,8 @@ public class IncomingMediaMessage {
                               int subscriptionId,
                               Optional<String> relay,
                               Optional<String> body,
-                              Optional<TextSecureGroup> group,
-                              Optional<List<TextSecureAttachment>> attachments)
+                              Optional<SignalServiceGroup> group,
+                              Optional<List<SignalServiceAttachment>> attachments)
   {
     this.push           = true;
     this.from           = from;

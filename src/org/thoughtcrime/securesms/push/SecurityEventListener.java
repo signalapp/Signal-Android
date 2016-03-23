@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
-public class SecurityEventListener implements TextSecureMessageSender.EventListener {
+public class SecurityEventListener implements SignalServiceMessageSender.EventListener {
 
   private static final String TAG = SecurityEventListener.class.getSimpleName();
 
@@ -17,7 +17,7 @@ public class SecurityEventListener implements TextSecureMessageSender.EventListe
   }
 
   @Override
-  public void onSecurityEvent(TextSecureAddress textSecureAddress) {
+  public void onSecurityEvent(SignalServiceAddress textSecureAddress) {
     SecurityEvent.broadcastSecurityUpdateEvent(context);
   }
 }

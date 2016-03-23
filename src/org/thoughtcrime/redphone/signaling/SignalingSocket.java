@@ -31,7 +31,7 @@ import org.thoughtcrime.redphone.signaling.signals.ServerSignal;
 import org.thoughtcrime.redphone.signaling.signals.Signal;
 import org.thoughtcrime.redphone.util.LineReader;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.whispersystems.textsecure.api.push.TrustStore;
+import org.whispersystems.signalservice.api.push.TrustStore;
 
 import java.io.IOException;
 import java.io.InputStream;

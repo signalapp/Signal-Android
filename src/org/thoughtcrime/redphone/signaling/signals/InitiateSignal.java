@@ -19,8 +19,8 @@ package org.thoughtcrime.redphone.signaling.signals;
 
 //import org.thoughtcrime.redphone.util.PhoneNumberFormatter;
 
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
-import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 /**
  * A signal which initiates a call with the specified remote number.

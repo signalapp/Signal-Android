@@ -17,8 +17,8 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
-import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libsignal.ecc.ECPrivateKey;
+import org.whispersystems.libsignal.ecc.ECPublicKey;
 
 /**
  * When a user first initializes TextSecure, a few secrets

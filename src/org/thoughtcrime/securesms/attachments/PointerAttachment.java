@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.MediaKey;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,11 +34,11 @@ public class PointerAttachment extends Attachment {
   }
 
 
-  public static List<Attachment> forPointers(@NonNull MasterSecretUnion masterSecret, Optional<List<TextSecureAttachment>> pointers) {
+  public static List<Attachment> forPointers(@NonNull MasterSecretUnion masterSecret, Optional<List<SignalServiceAttachment>> pointers) {
     List<Attachment> results = new LinkedList<>();
 
     if (pointers.isPresent()) {
-      for (TextSecureAttachment pointer : pointers.get()) {
+      for (SignalServiceAttachment pointer : pointers.get()) {
         if (pointer.isPointer()) {
           String encryptedKey = MediaKey.getEncrypted(masterSecret, pointer.asPointer().getKey());
           results.add(new PointerAttachment(pointer.getContentType(),

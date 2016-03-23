@@ -5,9 +5,9 @@ import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class IncomingTextMessage implements Parcelable {
   public IncomingTextMessage(SmsMessage message, int subscriptionId) {
     this.message              = message.getDisplayMessageBody();
     this.sender               = message.getDisplayOriginatingAddress();
-    this.senderDeviceId       = TextSecureAddress.DEFAULT_DEVICE_ID;
+    this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
     this.protocol             = message.getProtocolIdentifier();
     this.serviceCenterAddress = message.getServiceCenterAddress();
     this.replyPathPresent     = message.isReplyPathPresent();
@@ -52,7 +52,7 @@ public class IncomingTextMessage implements Parcelable {
   }
 
   public IncomingTextMessage(String sender, int senderDeviceId, long sentTimestampMillis,
-                             String encodedBody, Optional<TextSecureGroup> group)
+                             String encodedBody, Optional<SignalServiceGroup> group)
   {
     this.message              = encodedBody;
     this.sender               = sender;
@@ -124,7 +124,7 @@ public class IncomingTextMessage implements Parcelable {
   {
     this.message              = "";
     this.sender               = sender;
-    this.senderDeviceId       = TextSecureAddress.DEFAULT_DEVICE_ID;
+    this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
     this.protocol             = 31338;
     this.serviceCenterAddress = "Outgoing";
     this.replyPathPresent     = true;

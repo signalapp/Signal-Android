@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.push.exceptions.NetworkFailureException;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
 
 import java.io.IOException;
 
@@ -22,8 +22,8 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
   private static final String TAG = RefreshAttributesJob.class.getSimpleName();
 
-  @Inject transient TextSecureAccountManager textSecureAccountManager;
-  @Inject transient RedPhoneAccountManager   redPhoneAccountManager;
+  @Inject transient SignalServiceAccountManager textSecureAccountManager;
+  @Inject transient RedPhoneAccountManager      redPhoneAccountManager;
 
   public RefreshAttributesJob(Context context) {
     super(context, JobParameters.newBuilder()

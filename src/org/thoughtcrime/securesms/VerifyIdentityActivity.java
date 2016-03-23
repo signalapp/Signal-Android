@@ -29,11 +29,11 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.whispersystems.libaxolotl.AxolotlAddress;
-import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.libaxolotl.state.SessionRecord;
-import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.state.SessionRecord;
+import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 /**
  * Activity for verifying identity keys.
@@ -157,9 +157,9 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       return identityKeyParcelable.get();
     }
 
-    SessionStore   sessionStore   = new TextSecureSessionStore(this, masterSecret);
-    AxolotlAddress axolotlAddress = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
-    SessionRecord  record         = sessionStore.loadSession(axolotlAddress);
+    SessionStore          sessionStore   = new TextSecureSessionStore(this, masterSecret);
+    SignalProtocolAddress axolotlAddress = new SignalProtocolAddress(recipient.getNumber(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+    SessionRecord         record         = sessionStore.loadSession(axolotlAddress);
 
     if (record == null) {
       return null;

@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libsignal.IdentityKey;
 
 /**
  * Activity for initiating/receiving key QR code scans.

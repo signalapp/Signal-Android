@@ -4,12 +4,12 @@ import org.junit.Test;
 import org.thoughtcrime.securesms.BaseUnitTest;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
-import org.whispersystems.libaxolotl.ecc.Curve;
-import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
-import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
-import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.libsignal.ecc.Curve;
+import org.whispersystems.libsignal.state.SignedPreKeyRecord;
+import org.whispersystems.libsignal.state.SignedPreKeyStore;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -32,9 +32,9 @@ import static org.mockito.Mockito.when;
 public class CleanPreKeysJobTest extends BaseUnitTest {
   @Test
   public void testSignedPreKeyRotationNotRegistered() throws IOException, MasterSecretJob.RequirementNotMetException {
-    TextSecureAccountManager accountManager    = mock(TextSecureAccountManager.class);
-    SignedPreKeyStore        signedPreKeyStore = mock(SignedPreKeyStore.class);
-    MasterSecret             masterSecret      = mock(MasterSecret.class);
+    SignalServiceAccountManager accountManager    = mock(SignalServiceAccountManager.class);
+    SignedPreKeyStore           signedPreKeyStore = mock(SignedPreKeyStore.class);
+    MasterSecret                masterSecret      = mock(MasterSecret.class);
     when(accountManager.getSignedPreKey()).thenReturn(null);
 
     CleanPreKeysJob cleanPreKeysJob = new CleanPreKeysJob(context);
@@ -50,10 +50,10 @@ public class CleanPreKeysJobTest extends BaseUnitTest {
 
   @Test
   public void testSignedPreKeyEviction() throws Exception {
-    SignedPreKeyStore        signedPreKeyStore         = mock(SignedPreKeyStore.class);
-    TextSecureAccountManager accountManager            = mock(TextSecureAccountManager.class);
-    SignedPreKeyEntity       currentSignedPreKeyEntity = mock(SignedPreKeyEntity.class);
-    MasterSecret             masterSecret              = mock(MasterSecret.class);
+    SignedPreKeyStore           signedPreKeyStore         = mock(SignedPreKeyStore.class);
+    SignalServiceAccountManager accountManager            = mock(SignalServiceAccountManager.class);
+    SignedPreKeyEntity          currentSignedPreKeyEntity = mock(SignedPreKeyEntity.class);
+    MasterSecret                masterSecret              = mock(MasterSecret.class);
 
     when(currentSignedPreKeyEntity.getKeyId()).thenReturn(3133);
     when(accountManager.getSignedPreKey()).thenReturn(currentSignedPreKeyEntity);
@@ -84,9 +84,9 @@ public class CleanPreKeysJobTest extends BaseUnitTest {
 
   @Test
   public void testSignedPreKeyNoEviction() throws Exception {
-    SignedPreKeyStore        signedPreKeyStore         = mock(SignedPreKeyStore.class);
-    TextSecureAccountManager accountManager            = mock(TextSecureAccountManager.class);
-    SignedPreKeyEntity       currentSignedPreKeyEntity = mock(SignedPreKeyEntity.class);
+    SignedPreKeyStore           signedPreKeyStore         = mock(SignedPreKeyStore.class);
+    SignalServiceAccountManager accountManager            = mock(SignalServiceAccountManager.class);
+    SignedPreKeyEntity          currentSignedPreKeyEntity = mock(SignedPreKeyEntity.class);
 
     when(currentSignedPreKeyEntity.getKeyId()).thenReturn(3133);
     when(accountManager.getSignedPreKey()).thenReturn(currentSignedPreKeyEntity);
@@ -111,7 +111,7 @@ public class CleanPreKeysJobTest extends BaseUnitTest {
   @Test
   public void testConnectionError() throws Exception {
     SignedPreKeyStore        signedPreKeyStore = mock(SignedPreKeyStore.class);
-    TextSecureAccountManager accountManager    = mock(TextSecureAccountManager.class);
+    SignalServiceAccountManager accountManager    = mock(SignalServiceAccountManager.class);
     MasterSecret             masterSecret      = mock(MasterSecret.class);
 
     when(accountManager.getSignedPreKey()).thenThrow(new PushNetworkException("Connectivity error!"));
@@ -131,15 +131,15 @@ public class CleanPreKeysJobTest extends BaseUnitTest {
 
   @Module(injects = {CleanPreKeysJob.class})
   public static class TestModule {
-    private final TextSecureAccountManager accountManager;
+    private final SignalServiceAccountManager accountManager;
     private final SignedPreKeyStore        signedPreKeyStore;
 
-    private TestModule(TextSecureAccountManager accountManager, SignedPreKeyStore signedPreKeyStore) {
+    private TestModule(SignalServiceAccountManager accountManager, SignedPreKeyStore signedPreKeyStore) {
       this.accountManager    = accountManager;
       this.signedPreKeyStore = signedPreKeyStore;
     }
 
-    @Provides TextSecureAccountManager provideTextSecureAccountManager() {
+    @Provides SignalServiceAccountManager provideTextSecureAccountManager() {
       return accountManager;
     }
 

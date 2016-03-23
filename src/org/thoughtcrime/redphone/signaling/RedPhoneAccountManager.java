@@ -8,8 +8,8 @@ import com.squareup.okhttp.Response;
 
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.push.TrustStore;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.TrustStore;
 
 import java.io.IOException;
 import java.io.InputStream;

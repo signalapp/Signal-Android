@@ -36,9 +36,9 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 
 import javax.inject.Inject;
 
@@ -48,8 +48,8 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
 
   public static final String REGISTRATION_ID = "312334754206";
 
-  @Inject transient TextSecureAccountManager textSecureAccountManager;
-  @Inject transient RedPhoneAccountManager   redPhoneAccountManager;
+  @Inject transient SignalServiceAccountManager textSecureAccountManager;
+  @Inject transient RedPhoneAccountManager      redPhoneAccountManager;
 
   public GcmRefreshJob(Context context) {
     super(context, JobParameters.newBuilder().withRequirement(new NetworkRequirement(context)).create());

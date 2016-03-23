@@ -5,10 +5,10 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.thoughtcrime.securesms.BaseUnitTest;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
-import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
-import org.whispersystems.textsecure.api.push.exceptions.NotFoundException;
-import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verify;
 public class DeliveryReceiptJobTest extends BaseUnitTest {
   @Test
   public void testDelivery() throws IOException {
-    TextSecureMessageSender textSecureMessageSender = mock(TextSecureMessageSender.class);
+    SignalServiceMessageSender textSecureMessageSender = mock(SignalServiceMessageSender.class);
     long                    timestamp               = System.currentTimeMillis();
 
     DeliveryReceiptJob deliveryReceiptJob = new DeliveryReceiptJob(context,
@@ -38,7 +38,7 @@ public class DeliveryReceiptJobTest extends BaseUnitTest {
 
     deliveryReceiptJob.onRun();
 
-    ArgumentCaptor<TextSecureAddress> captor = ArgumentCaptor.forClass(TextSecureAddress.class);
+    ArgumentCaptor<SignalServiceAddress> captor = ArgumentCaptor.forClass(SignalServiceAddress.class);
     verify(textSecureMessageSender).sendDeliveryReceipt(captor.capture(), eq(timestamp));
 
     assertTrue(captor.getValue().getRelay().get().equals("foo"));
@@ -46,12 +46,12 @@ public class DeliveryReceiptJobTest extends BaseUnitTest {
   }
 
   public void testNetworkError() throws IOException {
-    TextSecureMessageSender textSecureMessageSender = mock(TextSecureMessageSender.class);
+    SignalServiceMessageSender textSecureMessageSender = mock(SignalServiceMessageSender.class);
     long                    timestamp               = System.currentTimeMillis();
 
     Mockito.doThrow(new PushNetworkException("network error"))
            .when(textSecureMessageSender)
-           .sendDeliveryReceipt(any(TextSecureAddress.class), eq(timestamp));
+           .sendDeliveryReceipt(any(SignalServiceAddress.class), eq(timestamp));
 
 
     DeliveryReceiptJob deliveryReceiptJob = new DeliveryReceiptJob(context,
@@ -70,7 +70,7 @@ public class DeliveryReceiptJobTest extends BaseUnitTest {
 
     Mockito.doThrow(new NotFoundException("not found"))
            .when(textSecureMessageSender)
-           .sendDeliveryReceipt(any(TextSecureAddress.class), eq(timestamp));
+           .sendDeliveryReceipt(any(SignalServiceAddress.class), eq(timestamp));
 
     try {
       deliveryReceiptJob.onRun();
@@ -83,17 +83,17 @@ public class DeliveryReceiptJobTest extends BaseUnitTest {
   @Module(injects = DeliveryReceiptJob.class)
   public static class TestModule {
 
-    private final TextSecureMessageSender textSecureMessageSender;
+    private final SignalServiceMessageSender textSecureMessageSender;
 
-    public TestModule(TextSecureMessageSender textSecureMessageSender) {
+    public TestModule(SignalServiceMessageSender textSecureMessageSender) {
       this.textSecureMessageSender = textSecureMessageSender;
     }
 
     @Provides
-    TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
+    TextSecureMessageSenderFactory provideSignalServiceMessageSenderFactory() {
       return new TextSecureMessageSenderFactory() {
         @Override
-        public TextSecureMessageSender create() {
+        public SignalServiceMessageSender create() {
           return textSecureMessageSender;
         }
       };

@@ -27,13 +27,13 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libaxolotl.IdentityKeyPair;
-import org.whispersystems.libaxolotl.state.PreKeyRecord;
-import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
-import org.whispersystems.libaxolotl.util.KeyHelper;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.push.exceptions.ExpectationFailedException;
+import org.whispersystems.libsignal.IdentityKeyPair;
+import org.whispersystems.libsignal.state.PreKeyRecord;
+import org.whispersystems.libsignal.state.SignedPreKeyRecord;
+import org.whispersystems.libsignal.util.KeyHelper;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -161,7 +161,7 @@ public class RegistrationService extends Service {
     String signalingKey = intent.getStringExtra("signaling_key");
 
     try {
-      TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
+      SignalServiceAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
 
       handleCommonRegistration(accountManager, number, password, signalingKey);
 
@@ -198,7 +198,7 @@ public class RegistrationService extends Service {
       initializeChallengeListener();
 
       setState(new RegistrationState(RegistrationState.STATE_CONNECTING, number));
-      TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
+      SignalServiceAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
       accountManager.requestSmsVerificationCode();
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
@@ -231,7 +231,7 @@ public class RegistrationService extends Service {
     }
   }
 
-  private void handleCommonRegistration(TextSecureAccountManager accountManager, String number, String password, String signalingKey)
+  private void handleCommonRegistration(SignalServiceAccountManager accountManager, String number, String password, String signalingKey)
       throws IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));

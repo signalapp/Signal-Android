@@ -2,29 +2,29 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
-import org.whispersystems.libaxolotl.AxolotlAddress;
-import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.libaxolotl.IdentityKeyPair;
-import org.whispersystems.libaxolotl.InvalidKeyIdException;
-import org.whispersystems.libaxolotl.state.AxolotlStore;
-import org.whispersystems.libaxolotl.state.IdentityKeyStore;
-import org.whispersystems.libaxolotl.state.PreKeyRecord;
-import org.whispersystems.libaxolotl.state.PreKeyStore;
-import org.whispersystems.libaxolotl.state.SessionRecord;
-import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
-import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.IdentityKeyPair;
+import org.whispersystems.libsignal.InvalidKeyIdException;
+import org.whispersystems.libsignal.state.SignalProtocolStore;
+import org.whispersystems.libsignal.state.IdentityKeyStore;
+import org.whispersystems.libsignal.state.PreKeyRecord;
+import org.whispersystems.libsignal.state.PreKeyStore;
+import org.whispersystems.libsignal.state.SessionRecord;
+import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.libsignal.state.SignedPreKeyRecord;
+import org.whispersystems.libsignal.state.SignedPreKeyStore;
 
 import java.util.List;
 
-public class TextSecureAxolotlStore implements AxolotlStore {
+public class SignalProtocolStoreImpl implements SignalProtocolStore {
 
   private final PreKeyStore       preKeyStore;
   private final SignedPreKeyStore signedPreKeyStore;
   private final IdentityKeyStore  identityKeyStore;
   private final SessionStore      sessionStore;
 
-  public TextSecureAxolotlStore(Context context) {
+  public SignalProtocolStoreImpl(Context context) {
     this.preKeyStore       = new TextSecurePreKeyStore(context);
     this.signedPreKeyStore = new TextSecurePreKeyStore(context);
     this.identityKeyStore  = new TextSecureIdentityKeyStore(context);
@@ -72,7 +72,7 @@ public class TextSecureAxolotlStore implements AxolotlStore {
   }
 
   @Override
-  public SessionRecord loadSession(AxolotlAddress axolotlAddress) {
+  public SessionRecord loadSession(SignalProtocolAddress axolotlAddress) {
     return sessionStore.loadSession(axolotlAddress);
   }
 
@@ -82,17 +82,17 @@ public class TextSecureAxolotlStore implements AxolotlStore {
   }
 
   @Override
-  public void storeSession(AxolotlAddress axolotlAddress, SessionRecord record) {
+  public void storeSession(SignalProtocolAddress axolotlAddress, SessionRecord record) {
     sessionStore.storeSession(axolotlAddress, record);
   }
 
   @Override
-  public boolean containsSession(AxolotlAddress axolotlAddress) {
+  public boolean containsSession(SignalProtocolAddress axolotlAddress) {
     return sessionStore.containsSession(axolotlAddress);
   }
 
   @Override
-  public void deleteSession(AxolotlAddress axolotlAddress) {
+  public void deleteSession(SignalProtocolAddress axolotlAddress) {
     sessionStore.deleteSession(axolotlAddress);
   }
 

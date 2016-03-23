@@ -3,7 +3,7 @@ package org.thoughtcrime.redphone.signaling;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.R;
-import org.whispersystems.textsecure.api.push.TrustStore;
+import org.whispersystems.signalservice.api.push.TrustStore;
 
 import java.io.InputStream;
 

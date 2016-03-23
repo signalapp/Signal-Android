@@ -15,11 +15,11 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment.ProgressListener;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,14 +48,14 @@ public abstract class PushSendJob extends SendJob {
     return builder.create();
   }
 
-  protected TextSecureAddress getPushAddress(String number) throws InvalidNumberException {
+  protected SignalServiceAddress getPushAddress(String number) throws InvalidNumberException {
     String e164number = Util.canonicalizeNumber(context, number);
     String relay      = TextSecureDirectory.getInstance(context).getRelay(e164number);
-    return new TextSecureAddress(e164number, Optional.fromNullable(relay));
+    return new SignalServiceAddress(e164number, Optional.fromNullable(relay));
   }
 
-  protected List<TextSecureAttachment> getAttachmentsFor(MasterSecret masterSecret, List<Attachment> parts) {
-    List<TextSecureAttachment> attachments = new LinkedList<>();
+  protected List<SignalServiceAttachment> getAttachmentsFor(MasterSecret masterSecret, List<Attachment> parts) {
+    List<SignalServiceAttachment> attachments = new LinkedList<>();
 
     for (final Attachment attachment : parts) {
       if (ContentType.isImageType(attachment.getContentType()) ||
@@ -65,17 +65,17 @@ public abstract class PushSendJob extends SendJob {
         try {
           if (attachment.getDataUri() == null) throw new IOException("Assertion failed, outgoing attachment has no data!");
           InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
-          attachments.add(TextSecureAttachment.newStreamBuilder()
-                                              .withStream(is)
-                                              .withContentType(attachment.getContentType())
-                                              .withLength(attachment.getSize())
-                                              .withListener(new ProgressListener() {
-                                                @Override
-                                                public void onAttachmentProgress(long total, long progress) {
-                                                  EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
-                                                }
-                                              })
-                                              .build());
+          attachments.add(SignalServiceAttachment.newStreamBuilder()
+                                                 .withStream(is)
+                                                 .withContentType(attachment.getContentType())
+                                                 .withLength(attachment.getSize())
+                                                 .withListener(new ProgressListener() {
+                                                   @Override
+                                                   public void onAttachmentProgress(long total, long progress) {
+                                                     EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
+                                                   }
+                                                 })
+                                                 .build());
         } catch (IOException ioe) {
           Log.w(TAG, "Couldn't open attachment", ioe);
         }

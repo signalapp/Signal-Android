@@ -37,8 +37,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
-import org.whispersystems.libaxolotl.logging.AxolotlLoggerProvider;
-import org.whispersystems.libaxolotl.util.AndroidAxolotlLogger;
+import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
+import org.whispersystems.libsignal.util.AndroidSignalProtocolLogger;
 
 import dagger.ObjectGraph;
 
@@ -99,7 +99,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
   }
 
   private void initializeLogging() {
-    AxolotlLoggerProvider.setProvider(new AndroidAxolotlLogger());
+    SignalProtocolLoggerProvider.setProvider(new AndroidSignalProtocolLogger());
   }
 
   private void initializeJobManager() {

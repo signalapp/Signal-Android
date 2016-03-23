@@ -10,12 +10,12 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Conversions;
-import org.whispersystems.libaxolotl.AxolotlAddress;
-import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.libaxolotl.state.SessionRecord;
-import org.whispersystems.libaxolotl.state.SessionState;
-import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.state.SessionRecord;
+import org.whispersystems.libsignal.state.SessionState;
+import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,7 +26,7 @@ import java.nio.channels.FileChannel;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure;
+import static org.whispersystems.libsignal.state.StorageProtos.SessionStructure;
 
 public class TextSecureSessionStore implements SessionStore {
 
@@ -52,7 +52,7 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public SessionRecord loadSession(@NonNull AxolotlAddress address) {
+  public SessionRecord loadSession(@NonNull SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
       try {
         FileInputStream in            = new FileInputStream(getSessionFile(address));
@@ -88,7 +88,7 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public void storeSession(@NonNull AxolotlAddress address, @NonNull SessionRecord record) {
+  public void storeSession(@NonNull SignalProtocolAddress address, @NonNull SessionRecord record) {
     synchronized (FILE_LOCK) {
       try {
         RandomAccessFile sessionFile  = new RandomAccessFile(getSessionFile(address), "rw");
@@ -107,13 +107,13 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public boolean containsSession(AxolotlAddress address) {
+  public boolean containsSession(SignalProtocolAddress address) {
     return getSessionFile(address).exists() &&
            loadSession(address).getSessionState().hasSenderChain();
   }
 
   @Override
-  public void deleteSession(AxolotlAddress address) {
+  public void deleteSession(SignalProtocolAddress address) {
     getSessionFile(address).delete();
   }
 
@@ -121,10 +121,10 @@ public class TextSecureSessionStore implements SessionStore {
   public void deleteAllSessions(String name) {
     List<Integer> devices = getSubDeviceSessions(name);
 
-    deleteSession(new AxolotlAddress(name, TextSecureAddress.DEFAULT_DEVICE_ID));
+    deleteSession(new SignalProtocolAddress(name, SignalServiceAddress.DEFAULT_DEVICE_ID));
 
     for (int device : devices) {
-      deleteSession(new AxolotlAddress(name, device));
+      deleteSession(new SignalProtocolAddress(name, device));
     }
   }
 
@@ -159,7 +159,7 @@ public class TextSecureSessionStore implements SessionStore {
 
       for (File session : directory.listFiles()) {
         if (session.isFile()) {
-          AxolotlAddress address = getAddressName(session);
+          SignalProtocolAddress address = getAddressName(session);
 
           if (address != null) {
             SessionRecord sessionRecord = loadSession(address);
@@ -170,7 +170,7 @@ public class TextSecureSessionStore implements SessionStore {
     }
   }
 
-  private File getSessionFile(AxolotlAddress address) {
+  private File getSessionFile(SignalProtocolAddress address) {
     return new File(getSessionDirectory(), getSessionName(address));
   }
 
@@ -186,16 +186,16 @@ public class TextSecureSessionStore implements SessionStore {
     return directory;
   }
 
-  private String getSessionName(AxolotlAddress axolotlAddress) {
+  private String getSessionName(SignalProtocolAddress axolotlAddress) {
     Recipient recipient   = RecipientFactory.getRecipientsFromString(context, axolotlAddress.getName(), true)
                                           .getPrimaryRecipient();
     long      recipientId = recipient.getRecipientId();
     int       deviceId    = axolotlAddress.getDeviceId();
 
-    return recipientId + (deviceId == TextSecureAddress.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
+    return recipientId + (deviceId == SignalServiceAddress.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
   }
 
-  private @Nullable AxolotlAddress getAddressName(File sessionFile) {
+  private @Nullable SignalProtocolAddress getAddressName(File sessionFile) {
     try {
       String[]  parts     = sessionFile.getName().split("[.]");
       Recipient recipient = RecipientFactory.getRecipientForId(context, Integer.valueOf(parts[0]), true);
@@ -203,9 +203,9 @@ public class TextSecureSessionStore implements SessionStore {
       int deviceId;
 
       if (parts.length > 1) deviceId = Integer.parseInt(parts[1]);
-      else                  deviceId = TextSecureAddress.DEFAULT_DEVICE_ID;
+      else                  deviceId = SignalServiceAddress.DEFAULT_DEVICE_ID;
 
-      return new AxolotlAddress(recipient.getNumber(), deviceId);
+      return new SignalProtocolAddress(recipient.getNumber(), deviceId);
     } catch (NumberFormatException e) {
       Log.w(TAG, e);
       return null;

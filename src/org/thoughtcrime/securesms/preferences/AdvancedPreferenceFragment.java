@@ -33,9 +33,9 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.push.exceptions.AuthorizationFailedException;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 
 import java.io.IOException;
 
@@ -187,12 +187,12 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       @Override
       protected Integer doInBackground(Void... params) {
         try {
-          Context                  context                = getActivity();
-          TextSecureAccountManager accountManager         = TextSecureCommunicationFactory.createManager(context);
-          RedPhoneAccountManager   redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
-                                                                                       new RedPhoneTrustStore(context),
-                                                                                       TextSecurePreferences.getLocalNumber(context),
-                                                                                       TextSecurePreferences.getPushServerPassword(context));
+          Context                     context                = getActivity();
+          SignalServiceAccountManager accountManager         = TextSecureCommunicationFactory.createManager(context);
+          RedPhoneAccountManager      redPhoneAccountManager = new RedPhoneAccountManager(BuildConfig.REDPHONE_MASTER_URL,
+                                                                                          new RedPhoneTrustStore(context),
+                                                                                          TextSecurePreferences.getLocalNumber(context),
+                                                                                          TextSecurePreferences.getPushServerPassword(context));
 
           try {
             accountManager.setGcmId(Optional.<String>absent());

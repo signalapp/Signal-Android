@@ -11,10 +11,10 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libaxolotl.IdentityKeyPair;
-import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.libsignal.IdentityKeyPair;
+import org.whispersystems.libsignal.state.SignedPreKeyRecord;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ public class CreateSignedPreKeyJob extends MasterSecretJob implements Injectable
 
   private static final String TAG = CreateSignedPreKeyJob.class.getSimpleName();
 
-  @Inject transient TextSecureAccountManager accountManager;
+  @Inject transient SignalServiceAccountManager accountManager;
 
   public CreateSignedPreKeyJob(Context context) {
     super(context, JobParameters.newBuilder()

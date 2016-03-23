@@ -34,8 +34,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.InvalidMessageException;
 
 import java.io.File;
 import java.io.FileInputStream;

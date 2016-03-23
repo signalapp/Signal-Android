@@ -10,7 +10,7 @@ import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 
 import java.io.File;
 import java.io.FileNotFoundException;

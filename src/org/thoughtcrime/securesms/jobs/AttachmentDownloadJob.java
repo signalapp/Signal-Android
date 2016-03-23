@@ -20,12 +20,12 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.VisibleForTesting;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment.ProgressListener;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
-import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   private static final long   serialVersionUID = 1L;
   private static final String TAG              = AttachmentDownloadJob.class.getSimpleName();
 
-  @Inject transient TextSecureMessageReceiver messageReceiver;
+  @Inject transient SignalServiceMessageReceiver messageReceiver;
 
   private final long messageId;
   private final long partRowId;
@@ -109,8 +109,8 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
     try {
       attachmentFile = createTempFile();
 
-      TextSecureAttachmentPointer pointer = createAttachmentPointer(masterSecret, attachment);
-      InputStream                 stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, new ProgressListener() {
+      SignalServiceAttachmentPointer pointer = createAttachmentPointer(masterSecret, attachment);
+      InputStream                    stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, new ProgressListener() {
         @Override
         public void onAttachmentProgress(long total, long progress) {
           EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
@@ -128,7 +128,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   }
 
   @VisibleForTesting
-  TextSecureAttachmentPointer createAttachmentPointer(MasterSecret masterSecret, Attachment attachment)
+  SignalServiceAttachmentPointer createAttachmentPointer(MasterSecret masterSecret, Attachment attachment)
       throws InvalidPartException
   {
     if (TextUtils.isEmpty(attachment.getLocation())) {
@@ -149,7 +149,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         relay = attachment.getRelay();
       }
 
-      return new TextSecureAttachmentPointer(id, null, key, relay);
+      return new SignalServiceAttachmentPointer(id, null, key, relay);
     } catch (InvalidMessageException | IOException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);

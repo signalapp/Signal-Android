@@ -59,7 +59,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.util.List;
 import java.util.ListIterator;
@@ -336,7 +336,7 @@ public class MessageNotifier {
                                                   @NonNull Cursor cursor)
   {
     PushDatabase.Reader reader = null;
-    TextSecureEnvelope envelope;
+    SignalServiceEnvelope envelope;
 
     try {
       reader = DatabaseFactory.getPushDatabase(context).readerFor(cursor);

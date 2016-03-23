@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libsignal.IdentityKey;
 
 import java.io.IOException;
 import java.util.ArrayList;

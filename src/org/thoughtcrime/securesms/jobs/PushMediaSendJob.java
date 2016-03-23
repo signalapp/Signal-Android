@@ -17,13 +17,13 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
-import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -112,17 +112,17 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throw new UndeliverableMessageException("No destination address.");
     }
 
-    TextSecureMessageSender messageSender = messageSenderFactory.create();
+    SignalServiceMessageSender messageSender = messageSenderFactory.create();
 
     try {
-      TextSecureAddress          address           = getPushAddress(message.getRecipients().getPrimaryRecipient().getNumber());
-      List<Attachment>           scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.PUSH_CONSTRAINTS, message.getAttachments());
-      List<TextSecureAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
-      TextSecureDataMessage      mediaMessage      = TextSecureDataMessage.newBuilder()
-                                                                          .withBody(message.getBody())
-                                                                          .withAttachments(attachmentStreams)
-                                                                          .withTimestamp(message.getSentTimeMillis())
-                                                                          .build();
+      SignalServiceAddress          address           = getPushAddress(message.getRecipients().getPrimaryRecipient().getNumber());
+      List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.PUSH_CONSTRAINTS, message.getAttachments());
+      List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
+      SignalServiceDataMessage      mediaMessage      = SignalServiceDataMessage.newBuilder()
+                                                                                .withBody(message.getBody())
+                                                                                .withAttachments(attachmentStreams)
+                                                                                .withTimestamp(message.getSentTimeMillis())
+                                                                                .build();
 
       messageSender.sendMessage(address, mediaMessage);
     } catch (InvalidNumberException | UnregisteredUserException e) {

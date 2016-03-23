@@ -13,11 +13,10 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
+import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -40,29 +39,29 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.libaxolotl.DuplicateMessageException;
-import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.libaxolotl.InvalidKeyException;
-import org.whispersystems.libaxolotl.InvalidKeyIdException;
-import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.libaxolotl.InvalidVersionException;
-import org.whispersystems.libaxolotl.LegacyMessageException;
-import org.whispersystems.libaxolotl.NoSessionException;
-import org.whispersystems.libaxolotl.UntrustedIdentityException;
-import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
-import org.whispersystems.libaxolotl.state.AxolotlStore;
-import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
-import org.whispersystems.textsecure.api.messages.TextSecureContent;
-import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
-import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
-import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.api.messages.multidevice.ReadMessage;
-import org.whispersystems.textsecure.api.messages.multidevice.RequestMessage;
-import org.whispersystems.textsecure.api.messages.multidevice.SentTranscriptMessage;
-import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
+import org.whispersystems.libsignal.DuplicateMessageException;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.InvalidKeyException;
+import org.whispersystems.libsignal.InvalidKeyIdException;
+import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.InvalidVersionException;
+import org.whispersystems.libsignal.LegacyMessageException;
+import org.whispersystems.libsignal.NoSessionException;
+import org.whispersystems.libsignal.UntrustedIdentityException;
+import org.whispersystems.libsignal.protocol.PreKeySignalMessage;
+import org.whispersystems.libsignal.state.SignalProtocolStore;
+import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
+import org.whispersystems.signalservice.api.messages.SignalServiceContent;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -104,10 +103,10 @@ public class PushDecryptJob extends ContextJob {
       return;
     }
 
-    MasterSecret       masterSecret         = KeyCachingService.getMasterSecret(context);
-    PushDatabase       database             = DatabaseFactory.getPushDatabase(context);
-    TextSecureEnvelope envelope             = database.get(messageId);
-    Optional<Long>     optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) :
+    MasterSecret          masterSecret         = KeyCachingService.getMasterSecret(context);
+    PushDatabase          database             = DatabaseFactory.getPushDatabase(context);
+    SignalServiceEnvelope envelope             = database.get(messageId);
+    Optional<Long>        optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) :
                                                                  Optional.<Long>absent();
 
     MasterSecretUnion masterSecretUnion;
@@ -129,23 +128,23 @@ public class PushDecryptJob extends ContextJob {
 
   }
 
-  private void handleMessage(MasterSecretUnion masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
+  private void handleMessage(MasterSecretUnion masterSecret, SignalServiceEnvelope envelope, Optional<Long> smsMessageId) {
     try {
-      AxolotlStore      axolotlStore = new TextSecureAxolotlStore(context);
-      TextSecureAddress localAddress = new TextSecureAddress(TextSecurePreferences.getLocalNumber(context));
-      TextSecureCipher  cipher       = new TextSecureCipher(localAddress, axolotlStore);
+      SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
+      SignalServiceAddress localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
+      SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, axolotlStore);
 
-      TextSecureContent content = cipher.decrypt(envelope);
+      SignalServiceContent content = cipher.decrypt(envelope);
 
       if (content.getDataMessage().isPresent()) {
-        TextSecureDataMessage message = content.getDataMessage().get();
+        SignalServiceDataMessage message = content.getDataMessage().get();
 
         if      (message.isEndSession())               handleEndSessionMessage(masterSecret, envelope, message, smsMessageId);
         else if (message.isGroupUpdate())              handleGroupMessage(masterSecret, envelope, message, smsMessageId);
         else if (message.getAttachments().isPresent()) handleMediaMessage(masterSecret, envelope, message, smsMessageId);
         else                                           handleTextMessage(masterSecret, envelope, message, smsMessageId);
       } else if (content.getSyncMessage().isPresent()) {
-        TextSecureSyncMessage syncMessage = content.getSyncMessage().get();
+        SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
 
         if      (syncMessage.getSent().isPresent())    handleSynchronizeSentMessage(masterSecret, envelope, syncMessage.getSent().get(), smsMessageId);
         else if (syncMessage.getRequest().isPresent()) handleSynchronizeRequestMessage(masterSecret, syncMessage.getRequest().get());
@@ -153,7 +152,7 @@ public class PushDecryptJob extends ContextJob {
         else                                           Log.w(TAG, "Contains no known sync types...");
       }
 
-      if (envelope.isPreKeyWhisperMessage()) {
+      if (envelope.isPreKeySignalMessage()) {
         ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
       }
     } catch (InvalidVersionException e) {
@@ -177,16 +176,16 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
-  private void handleEndSessionMessage(@NonNull MasterSecretUnion     masterSecret,
-                                       @NonNull TextSecureEnvelope    envelope,
-                                       @NonNull TextSecureDataMessage message,
-                                       @NonNull Optional<Long>        smsMessageId)
+  private void handleEndSessionMessage(@NonNull MasterSecretUnion        masterSecret,
+                                       @NonNull SignalServiceEnvelope    envelope,
+                                       @NonNull SignalServiceDataMessage message,
+                                       @NonNull Optional<Long>           smsMessageId)
   {
     EncryptingSmsDatabase smsDatabase         = DatabaseFactory.getEncryptingSmsDatabase(context);
     IncomingTextMessage   incomingTextMessage = new IncomingTextMessage(envelope.getSource(),
                                                                         envelope.getSourceDevice(),
                                                                         message.getTimestamp(),
-                                                                        "", Optional.<TextSecureGroup>absent());
+                                                                        "", Optional.<SignalServiceGroup>absent());
 
     long threadId;
 
@@ -208,8 +207,8 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleGroupMessage(@NonNull MasterSecretUnion masterSecret,
-                                  @NonNull TextSecureEnvelope envelope,
-                                  @NonNull TextSecureDataMessage message,
+                                  @NonNull SignalServiceEnvelope envelope,
+                                  @NonNull SignalServiceDataMessage message,
                                   @NonNull Optional<Long> smsMessageId)
   {
     GroupMessageProcessor.process(context, masterSecret, envelope, message, false);
@@ -220,7 +219,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleSynchronizeSentMessage(@NonNull MasterSecretUnion masterSecret,
-                                            @NonNull TextSecureEnvelope envelope,
+                                            @NonNull SignalServiceEnvelope envelope,
                                             @NonNull SentTranscriptMessage message,
                                             @NonNull Optional<Long> smsMessageId)
       throws MmsException
@@ -269,8 +268,8 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleMediaMessage(@NonNull MasterSecretUnion masterSecret,
-                                  @NonNull TextSecureEnvelope envelope,
-                                  @NonNull TextSecureDataMessage message,
+                                  @NonNull SignalServiceEnvelope envelope,
+                                  @NonNull SignalServiceDataMessage message,
                                   @NonNull Optional<Long> smsMessageId)
       throws MmsException
   {
@@ -333,8 +332,8 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleTextMessage(@NonNull MasterSecretUnion masterSecret,
-                                 @NonNull TextSecureEnvelope envelope,
-                                 @NonNull TextSecureDataMessage message,
+                                 @NonNull SignalServiceEnvelope envelope,
+                                 @NonNull SignalServiceDataMessage message,
                                  @NonNull Optional<Long> smsMessageId)
   {
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
@@ -383,7 +382,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleInvalidVersionMessage(@NonNull MasterSecretUnion masterSecret,
-                                           @NonNull TextSecureEnvelope envelope,
+                                           @NonNull SignalServiceEnvelope envelope,
                                            @NonNull Optional<Long> smsMessageId)
   {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
@@ -398,7 +397,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleCorruptMessage(@NonNull MasterSecretUnion masterSecret,
-                                    @NonNull TextSecureEnvelope envelope,
+                                    @NonNull SignalServiceEnvelope envelope,
                                     @NonNull Optional<Long> smsMessageId)
   {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
@@ -413,7 +412,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleNoSessionMessage(@NonNull MasterSecretUnion masterSecret,
-                                      @NonNull TextSecureEnvelope envelope,
+                                      @NonNull SignalServiceEnvelope envelope,
                                       @NonNull Optional<Long> smsMessageId)
   {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
@@ -428,7 +427,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleLegacyMessage(@NonNull MasterSecretUnion masterSecret,
-                                   @NonNull TextSecureEnvelope envelope,
+                                   @NonNull SignalServiceEnvelope envelope,
                                    @NonNull Optional<Long> smsMessageId)
   {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
@@ -443,7 +442,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleDuplicateMessage(@NonNull MasterSecretUnion masterSecret,
-                                      @NonNull TextSecureEnvelope envelope,
+                                      @NonNull SignalServiceEnvelope envelope,
                                       @NonNull Optional<Long> smsMessageId)
   {
     // Let's start ignoring these now
@@ -459,19 +458,19 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleUntrustedIdentityMessage(@NonNull MasterSecretUnion masterSecret,
-                                              @NonNull TextSecureEnvelope envelope,
+                                              @NonNull SignalServiceEnvelope envelope,
                                               @NonNull Optional<Long> smsMessageId)
   {
     try {
       EncryptingSmsDatabase database       = DatabaseFactory.getEncryptingSmsDatabase(context);
       Recipients            recipients     = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
       long                  recipientId    = recipients.getPrimaryRecipient().getRecipientId();
-      PreKeyWhisperMessage  whisperMessage = new PreKeyWhisperMessage(envelope.getLegacyMessage());
+      PreKeySignalMessage   whisperMessage = new PreKeySignalMessage(envelope.getLegacyMessage());
       IdentityKey           identityKey    = whisperMessage.getIdentityKey();
       String                encoded        = Base64.encodeBytes(envelope.getLegacyMessage());
       IncomingTextMessage   textMessage    = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(),
                                                                      envelope.getTimestamp(), encoded,
-                                                                     Optional.<TextSecureGroup>absent());
+                                                                     Optional.<SignalServiceGroup>absent());
 
       if (!smsMessageId.isPresent()) {
         IncomingPreKeyBundleMessage bundleMessage      = new IncomingPreKeyBundleMessage(textMessage, encoded);
@@ -489,11 +488,11 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
-  private Pair<Long, Long> insertPlaceholder(@NonNull TextSecureEnvelope envelope) {
+  private Pair<Long, Long> insertPlaceholder(@NonNull SignalServiceEnvelope envelope) {
     EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
     IncomingTextMessage   textMessage = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(),
                                                                 envelope.getTimestamp(), "",
-                                                                Optional.<TextSecureGroup>absent());
+                                                                Optional.<SignalServiceGroup>absent());
 
     textMessage = new IncomingEncryptedMessage(textMessage, "");
     return database.insertMessageInbox(textMessage);

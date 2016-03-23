@@ -9,11 +9,11 @@ import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
-import org.whispersystems.textsecure.api.messages.multidevice.ReadMessage;
-import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
-import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -55,8 +55,8 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
       readMessages.add(new ReadMessage(messageId.sender, messageId.timestamp));
     }
 
-    TextSecureMessageSender messageSender = messageSenderFactory.create();
-    messageSender.sendMessage(TextSecureSyncMessage.forRead(readMessages));
+    SignalServiceMessageSender messageSender = messageSenderFactory.create();
+    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages));
   }
 
   @Override

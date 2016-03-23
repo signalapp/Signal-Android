@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.support.annotation.NonNull;
 
-import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public class MasterSecretUnion {
 

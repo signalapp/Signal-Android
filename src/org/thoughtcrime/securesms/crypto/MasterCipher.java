@@ -22,9 +22,9 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Hex;
-import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.libaxolotl.ecc.Curve;
-import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
+import org.whispersystems.libsignal.InvalidMessageException;
+import org.whispersystems.libsignal.ecc.Curve;
+import org.whispersystems.libsignal.ecc.ECPrivateKey;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -84,12 +84,12 @@ public class MasterCipher {
   }
 	
   public ECPrivateKey decryptKey(byte[] key)
-      throws org.whispersystems.libaxolotl.InvalidKeyException
+      throws org.whispersystems.libsignal.InvalidKeyException
   {
     try {
       return Curve.decodePrivatePoint(decryptBytes(key));
     } catch (InvalidMessageException ime) {
-      throw new org.whispersystems.libaxolotl.InvalidKeyException(ime);
+      throw new org.whispersystems.libsignal.InvalidKeyException(ime);
     }
   }
 	

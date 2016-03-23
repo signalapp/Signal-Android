@@ -4,7 +4,7 @@ import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
 
-import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

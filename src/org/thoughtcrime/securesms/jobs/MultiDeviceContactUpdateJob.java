@@ -14,26 +14,23 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
-import org.whispersystems.textsecure.api.messages.multidevice.DeviceContact;
-import org.whispersystems.textsecure.api.messages.multidevice.DeviceContactsOutputStream;
-import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
-import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
 
 import javax.inject.Inject;
@@ -59,8 +56,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   public void onRun(MasterSecret masterSecret)
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    TextSecureMessageSender messageSender   = messageSenderFactory.create();
-    File                    contactDataFile = createTempFile("multidevice-contact-update");
+    SignalServiceMessageSender messageSender   = messageSenderFactory.create();
+    File                       contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
       DeviceContactsOutputStream out      = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
@@ -98,36 +95,36 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   }
 
-  private void sendUpdate(TextSecureMessageSender messageSender, File contactsFile)
+  private void sendUpdate(SignalServiceMessageSender messageSender, File contactsFile)
       throws IOException, UntrustedIdentityException, NetworkException
   {
     if (contactsFile.length() > 0) {
-      FileInputStream            contactsFileStream = new FileInputStream(contactsFile);
-      TextSecureAttachmentStream attachmentStream   = TextSecureAttachment.newStreamBuilder()
-                                                                          .withStream(contactsFileStream)
-                                                                          .withContentType("application/octet-stream")
-                                                                          .withLength(contactsFile.length())
-                                                                          .build();
+      FileInputStream               contactsFileStream = new FileInputStream(contactsFile);
+      SignalServiceAttachmentStream attachmentStream   = SignalServiceAttachment.newStreamBuilder()
+                                                                                .withStream(contactsFileStream)
+                                                                                .withContentType("application/octet-stream")
+                                                                                .withLength(contactsFile.length())
+                                                                                .build();
 
       try {
-        messageSender.sendMessage(TextSecureSyncMessage.forContacts(attachmentStream));
+        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(attachmentStream));
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
       }
     }
   }
 
-  private Optional<TextSecureAttachmentStream> getAvatar(Uri uri) throws IOException {
+  private Optional<SignalServiceAttachmentStream> getAvatar(Uri uri) throws IOException {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
       try {
         Uri                 displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
         AssetFileDescriptor fd              = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
 
-        return Optional.of(TextSecureAttachment.newStreamBuilder()
-                                               .withStream(fd.createInputStream())
-                                               .withContentType("image/*")
-                                               .withLength(fd.getLength())
-                                               .build());
+        return Optional.of(SignalServiceAttachment.newStreamBuilder()
+                                                  .withStream(fd.createInputStream())
+                                                  .withContentType("image/*")
+                                                  .withLength(fd.getLength())
+                                                  .build());
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -150,11 +147,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
         byte[] data = cursor.getBlob(0);
 
         if (data != null) {
-          return Optional.of(TextSecureAttachment.newStreamBuilder()
-                                                 .withStream(new ByteArrayInputStream(data))
-                                                 .withContentType("image/*")
-                                                 .withLength(data.length)
-                                                 .build());
+          return Optional.of(SignalServiceAttachment.newStreamBuilder()
+                                                    .withStream(new ByteArrayInputStream(data))
+                                                    .withContentType("image/*")
+                                                    .withLength(data.length)
+                                                    .build());
         }
       }
 

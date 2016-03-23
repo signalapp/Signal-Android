@@ -4,7 +4,7 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.DeviceListFragment;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
+import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
@@ -23,11 +23,11 @@ import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
-import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.util.CredentialsProvider;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.util.CredentialsProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -56,38 +56,38 @@ public class TextSecureCommunicationModule {
     this.context = context;
   }
 
-  @Provides TextSecureAccountManager provideTextSecureAccountManager() {
-    return new TextSecureAccountManager(BuildConfig.TEXTSECURE_URL,
-                                        new TextSecurePushTrustStore(context),
-                                        TextSecurePreferences.getLocalNumber(context),
-                                        TextSecurePreferences.getPushServerPassword(context),
-                                        BuildConfig.USER_AGENT);
+  @Provides SignalServiceAccountManager provideTextSecureAccountManager() {
+    return new SignalServiceAccountManager(BuildConfig.TEXTSECURE_URL,
+                                           new TextSecurePushTrustStore(context),
+                                           TextSecurePreferences.getLocalNumber(context),
+                                           TextSecurePreferences.getPushServerPassword(context),
+                                           BuildConfig.USER_AGENT);
   }
 
   @Provides TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
     return new TextSecureMessageSenderFactory() {
       @Override
-      public TextSecureMessageSender create() {
-        return new TextSecureMessageSender(BuildConfig.TEXTSECURE_URL,
-                                           new TextSecurePushTrustStore(context),
-                                           TextSecurePreferences.getLocalNumber(context),
-                                           TextSecurePreferences.getPushServerPassword(context),
-                                           new TextSecureAxolotlStore(context),
-                                           BuildConfig.USER_AGENT,
-                                           Optional.<TextSecureMessageSender.EventListener>of(new SecurityEventListener(context)));
+      public SignalServiceMessageSender create() {
+        return new SignalServiceMessageSender(BuildConfig.TEXTSECURE_URL,
+                                              new TextSecurePushTrustStore(context),
+                                              TextSecurePreferences.getLocalNumber(context),
+                                              TextSecurePreferences.getPushServerPassword(context),
+                                              new SignalProtocolStoreImpl(context),
+                                              BuildConfig.USER_AGENT,
+                                              Optional.<SignalServiceMessageSender.EventListener>of(new SecurityEventListener(context)));
       }
     };
   }
 
-  @Provides TextSecureMessageReceiver provideTextSecureMessageReceiver() {
-    return new TextSecureMessageReceiver(BuildConfig.TEXTSECURE_URL,
+  @Provides SignalServiceMessageReceiver provideTextSecureMessageReceiver() {
+    return new SignalServiceMessageReceiver(BuildConfig.TEXTSECURE_URL,
                                          new TextSecurePushTrustStore(context),
                                          new DynamicCredentialsProvider(context),
                                          BuildConfig.USER_AGENT);
   }
 
   public static interface TextSecureMessageSenderFactory {
-    public TextSecureMessageSender create();
+    public SignalServiceMessageSender create();
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

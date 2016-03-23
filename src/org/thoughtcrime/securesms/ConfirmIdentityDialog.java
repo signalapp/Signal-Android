@@ -30,8 +30,8 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
-import org.whispersystems.textsecure.internal.push.TextSecureProtos;
+import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 
@@ -161,12 +161,12 @@ public class ConfirmIdentityDialog extends AlertDialog {
                                                  mismatch.getRecipientId(),
                                                  mismatch.getIdentityKey());
 
-            TextSecureEnvelope envelope = new TextSecureEnvelope(TextSecureProtos.Envelope.Type.PREKEY_BUNDLE_VALUE,
-                                                                 messageRecord.getIndividualRecipient().getNumber(),
-                                                                 messageRecord.getRecipientDeviceId(), "",
-                                                                 messageRecord.getDateSent(),
-                                                                 Base64.decode(messageRecord.getBody().getBody()),
-                                                                 null);
+            SignalServiceEnvelope envelope = new SignalServiceEnvelope(SignalServiceProtos.Envelope.Type.PREKEY_BUNDLE_VALUE,
+                                                                       messageRecord.getIndividualRecipient().getNumber(),
+                                                                       messageRecord.getRecipientDeviceId(), "",
+                                                                       messageRecord.getDateSent(),
+                                                                       Base64.decode(messageRecord.getBody().getBody()),
+                                                                       null);
 
             long pushId = pushDatabase.insert(envelope);
 

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.crypto;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libsignal.InvalidMessageException;
 
 import java.io.IOException;
 

@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.libaxolotl.state.SessionStore;
+import org.whispersystems.libsignal.state.SessionStore;
 
 public class SmsSentJob extends MasterSecretJob {
 

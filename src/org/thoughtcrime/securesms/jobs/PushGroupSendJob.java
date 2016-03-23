@@ -20,16 +20,16 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
-import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
-import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
-import org.whispersystems.textsecure.api.push.exceptions.NetworkFailureException;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
-import org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.EncapsulatedExceptions;
+import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -132,11 +132,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, RecipientFormattingException, InvalidNumberException,
       EncapsulatedExceptions, UndeliverableMessageException
   {
-    TextSecureMessageSender    messageSender = messageSenderFactory.create();
-    byte[]                     groupId       = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
-    Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
-    List<TextSecureAttachment> attachments   = getAttachmentsFor(masterSecret, message.getAttachments());
-    List<TextSecureAddress>    addresses;
+    SignalServiceMessageSender    messageSender = messageSenderFactory.create();
+    byte[]                        groupId       = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
+    Recipients                    recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+    List<SignalServiceAttachment> attachments   = getAttachmentsFor(masterSecret, message.getAttachments());
+    List<SignalServiceAddress>    addresses;
 
     if (filterRecipientId >= 0) addresses = getPushAddresses(filterRecipientId);
     else                        addresses = getPushAddresses(recipients);
@@ -144,22 +144,22 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     if (message.isGroup()) {
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
       GroupContext              groupContext     = groupMessage.getGroupContext();
-      TextSecureAttachment      avatar           = attachments.isEmpty() ? null : attachments.get(0);
-      TextSecureGroup.Type      type             = groupMessage.isGroupQuit() ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
-      TextSecureGroup           group            = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
-      TextSecureDataMessage     groupDataMessage = new TextSecureDataMessage(message.getSentTimeMillis(), group, null, null);
+      SignalServiceAttachment   avatar           = attachments.isEmpty() ? null : attachments.get(0);
+      SignalServiceGroup.Type   type             = groupMessage.isGroupQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
+      SignalServiceGroup        group            = new SignalServiceGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
+      SignalServiceDataMessage  groupDataMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group, null, null);
 
       messageSender.sendMessage(addresses, groupDataMessage);
     } else {
-      TextSecureGroup       group        = new TextSecureGroup(groupId);
-      TextSecureDataMessage groupMessage = new TextSecureDataMessage(message.getSentTimeMillis(), group, attachments, message.getBody());
+      SignalServiceGroup       group        = new SignalServiceGroup(groupId);
+      SignalServiceDataMessage groupMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group, attachments, message.getBody());
 
       messageSender.sendMessage(addresses, groupMessage);
     }
   }
 
-  private List<TextSecureAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
-    List<TextSecureAddress> addresses = new LinkedList<>();
+  private List<SignalServiceAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
+    List<SignalServiceAddress> addresses = new LinkedList<>();
 
     for (Recipient recipient : recipients.getRecipientsList()) {
       addresses.add(getPushAddress(recipient.getNumber()));
@@ -168,8 +168,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     return addresses;
   }
 
-  private List<TextSecureAddress> getPushAddresses(long filterRecipientId) throws InvalidNumberException {
-    List<TextSecureAddress> addresses = new LinkedList<>();
+  private List<SignalServiceAddress> getPushAddresses(long filterRecipientId) throws InvalidNumberException {
+    List<SignalServiceAddress> addresses = new LinkedList<>();
     addresses.add(getPushAddress(RecipientFactory.getRecipientForId(context, filterRecipientId, false).getNumber()));
     return addresses;
   }

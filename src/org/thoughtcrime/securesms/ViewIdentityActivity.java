@@ -21,7 +21,7 @@ import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libsignal.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 
 /**
