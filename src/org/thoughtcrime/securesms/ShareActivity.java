@@ -193,11 +193,12 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     @Override
     protected Uri doInBackground(Uri... uris) {
       try {
-        if (uris.length != 1 || uris[0] == null) {
+        if (uris.length != 1 || uris[0] == null || uris[0].getScheme().equals("file")) {
           return null;
         }
 
         InputStream input = context.getContentResolver().openInputStream(uris[0]);
+
         if (input == null) {
           return null;
         }
