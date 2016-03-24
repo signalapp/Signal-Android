@@ -7,7 +7,7 @@
   <string name="please_wait">Будь ласка, зачекайте...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Зараз: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ви ще не вказали фразу-пароль!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ви ще не задали фразу-пароль!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">1 повідомлення на розмову</item>
     <item quantity="few">%d повідомлення на розмову</item>
@@ -162,6 +162,7 @@
     <item quantity="few">Під час збереження вкладень до пам\'яті пристрою сталася помилка!</item>
     <item quantity="other">Під час збереження вкладень до пам\'яті пристрою сталася помилка!</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">Файл успішно збережено.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не можу записати на носій!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Збереження вкладення</item>
@@ -247,6 +248,7 @@
   <string name="ExportFragment_exporting_plaintext_to_storage">Експорт у незашифрованому вигляді на карту SD...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Помилка, не вдалося записати на накопичувач.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Помилка при записі на накопичувач.</string>
+  <string name="ExportFragment_export_successful">Експорт пройшов успішно.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Осточний збій зв\'язку Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не зміг зареєструватись у сервісах Google Play. Дзвінки та повідомлення Signal наразі відключені, спробуйте перереєструватися у Налаштування --&gt; Додатково</string>
@@ -528,6 +530,7 @@
   <string name="ApplicationMigrationService_import_in_progress">Триває імпортування</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпортування текстових повідомлень</string>
   <string name="ApplicationMigrationService_import_complete">Імпорт завершено</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Імпорт системної бази даних завершено</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Доторкніться щоб відкрити.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Торкніться щоб відкрити, чи торкніться замка щоб закрити.</string>
@@ -770,6 +773,7 @@ Signal не дочекався перевірочного SMS.
   <string name="AndroidManifest__media_overview">Всі зображення</string>
   <string name="AndroidManifest__media_overview_named">Усі зображення з %1$s</string>
   <string name="AndroidManifest__message_details">Деталі повідомлення</string>
+  <string name="AndroidManifest__linked_devices">Прив\'язані пристрої</string>
   <string name="AndroidManifest__invite_friends">Запросити друзів</string>
   <string name="AndroidManifest_archived_conversations">Архівовані розмови</string>
   <!--arrays.xml-->
@@ -879,6 +883,7 @@ Signal не дочекався перевірочного SMS.
   <string name="preferences__conversation_length_limit">Обмеження довжини розмови</string>
   <string name="preferences__trim_all_conversations_now">Обрізати усі розмови зараз</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Переглянути всі розмови і привести їх довжину у відповідність із заданою</string>
+  <string name="preferences__linked_devices">Прив\'язані пристрої</string>
   <string name="preferences__light_theme">Світла</string>
   <string name="preferences__dark_theme">Темна</string>
   <string name="preferences__appearance">Вигляд</string>
@@ -1000,7 +1005,7 @@ Signal не дочекався перевірочного SMS.
   <string name="reminder_header_invite_title">Запросити до Сигнал</string>
   <string name="reminder_header_invite_text">Спілкуйтеся з %1$s на якісно новому рівні.</string>
   <string name="reminder_header_invite_button">ЗАПРОСИТИ</string>
-  <string name="reminder_header_share_title">Запроси друзів!</string>
+  <string name="reminder_header_share_title">Запросити друзів</string>
   <string name="reminder_header_share_text">Чим більше друзів використовують Signal, тим кращим він стає.</string>
   <string name="reminder_header_share_button">ПОДІЛИТИСЯ</string>
   <string name="reminder_header_close_button">ЗАКРИТИ</string>

@@ -980,7 +980,7 @@ gagal
   <string name="text_secure_normal__menu_clear_passphrase">Kunci</string>
   <string name="text_secure_normal__mark_all_as_read">Tandai semua dibaca</string>
   <string name="text_secure_normal__invite_friends">Undang teman</string>
-  <string name="text_secure_normal__help">Batuan</string>
+  <string name="text_secure_normal__help">Bantuan</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Versi Signal Anda telah usang</string>
   <plurals name="reminder_header_outdated_build_details">

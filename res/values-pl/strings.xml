@@ -78,7 +78,7 @@ ten kontakt.
   <string name="ConversationItem_expires_s">Wygasa: %s</string>
   <string name="ConversationItem_error_not_delivered">Nie dostarczono</string>
   <string name="ConversationItem_view_secure_media_question">Pokazać zabezpieczone media? </string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">To multimedium jest przechowywane w zaszyfrowanej bazie danych. Niestety, aby wyświetlić je z użyciem zewnętrznej aplikacji, dane muszą zostać tymczasowo odszyfrowane i zapisane w pamięci urządzenia. Czy jesteś pewien, że chcesz kontynuować?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Multimedia są przechowywane w zaszyfrowanej bazie danych. Niestety, aby wyświetlić je z użyciem zewnętrznej aplikacji, dane muszą zostać tymczasowo odszyfrowane i zapisane w pamięci urządzenia. Czy na pewno chcesz to zrobić?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Błąd, otrzymano nieprawidłową wiadomość wymiany kluczy. </string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Otrzymano wiadomość wymiany kluczy, dotknij aby kontynuować.</string>
   <string name="ConversationItem_group_action_left">%1$s opuścił grupę.</string>
@@ -160,6 +160,7 @@ ten kontakt.
     <item quantity="few">Błąd podczas zapisywania załączników do pamięci!</item>
     <item quantity="other">Błąd podczas zapisywania załączników do pamięci!</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">Plik został zapisany pomyślnie.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
   <string name="ConversationFragment_collecting_attahments">Zbieranie załączników...</string>
   <string name="ConversationFragment_pending">Oczekiwanie...</string>
@@ -235,6 +236,7 @@ ten kontakt.
   <string name="ExportFragment_exporting_plaintext_to_storage">Eksportowanie nieszyfrowanych wiadomości...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Błąd. Nie udało się zapisać na dysku!</string>
   <string name="ExportFragment_error_while_writing_to_storage">Wystąpił błąd w czasie próby zapisu na dysku.</string>
+  <string name="ExportFragment_export_successful">Eksport zakończony pomyślnie.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanentny błąd komunikacji Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nie był w stanie zarejestrować się z Google Play Services. Wiadomości i połączenia Signal zostały wyłączone. Proszę spróbuj ponownie zarejestrować się poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
@@ -516,6 +518,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ApplicationMigrationService_import_in_progress">Trwa importowanie</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importowanie wiadomości tekstowych</string>
   <string name="ApplicationMigrationService_import_complete">Importowanie zakończone</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Import systemowej bazy danych został zakończony.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Dotknij, aby otworzyć.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotknij, aby otworzyć lub dotknij zamek, aby zamknąć.</string>
@@ -570,6 +573,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_activity__type_message_push">Wyślij wiadomość Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Wyślij nieszyfrowany SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Wyślij nieszyfrowany MMS</string>
+  <string name="conversation_activity__from_sim_name">Od %1$s</string>
   <string name="conversation_activity__send">Wyślij</string>
   <string name="conversation_activity__remove">Usuń</string>
   <string name="conversation_activity__window_description">Rozmowa z %1$s</string>
@@ -750,6 +754,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__media_overview">Pokaż wszystkie zdjęcia</string>
   <string name="AndroidManifest__media_overview_named">Wszystkie zdjęcia z %1$s</string>
   <string name="AndroidManifest__message_details">Szczegóły wiadomości</string>
+  <string name="AndroidManifest__linked_devices">Połączone urządzenia</string>
   <string name="AndroidManifest__invite_friends">Zaproś znajomych</string>
   <string name="AndroidManifest_archived_conversations">Archiwum</string>
   <!--arrays.xml-->
@@ -859,6 +864,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
   <string name="preferences__trim_all_conversations_now">Przytnij wszystkie konwersacje teraz</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Przeskanuj wszystkie konwersacje i przytnij to określonej długości</string>
+  <string name="preferences__linked_devices">Połączone urządzenia</string>
   <string name="preferences__light_theme">Jasny</string>
   <string name="preferences__dark_theme">Ciemny</string>
   <string name="preferences__appearance">Wygląd</string>

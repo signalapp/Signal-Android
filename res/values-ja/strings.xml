@@ -76,6 +76,8 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">セキュア・セッションをリセットしますか？</string>
   <string name="ConversationActivity_reset">リセット</string>
+  <string name="ConversationActivity_delete_thread_question">スレッドを削除しますか？</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">すべてのメッセージを完全に削除します。</string>
   <string name="ConversationActivity_add_attachment">添付</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
   <string name="ConversationActivity_compose_message">メッセージ作成</string>
@@ -89,9 +91,9 @@
   <string name="ConversationActivity_group_conversation">グループチャット</string>
   <string name="ConversationActivity_unnamed_group">グループ（名無し）</string>
   <plurals name="ConversationActivity_d_recipients_in_group">
-    <item quantity="other">参加者%d人</item>
+    <item quantity="other">参加者　%d人</item>
   </plurals>
-  <string name="ConversationActivity_saved_draft">下書きとして保存しました</string>
+  <string name="ConversationActivity_saved_draft">下書きを保存しました</string>
   <string name="ConversationActivity_invalid_recipient">受信先が無効です。</string>
   <string name="ConversationActivity_calls_not_supported">通話には対応していません</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末は、ダイヤル機能に対応していないようです。</string>
@@ -99,7 +101,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを本当に抜けますか？</string>
   <string name="ConversationActivity_transport_insecure_sms">暗号化されていないSMS</string>
   <string name="ConversationActivity_transport_insecure_mms">暗号化されていないMMS</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">このアプリでチャットしませんか？ %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">チャット・アプリ『Signal』を使いませんか？ %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">チャット・アプリ『Signal』を使いませんか？ %1$s</string>
   <string name="ConversationActivity_error_leaving_group">グループ離脱中にエラー...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMSには対応していません</string>
   <string name="ConversationActivity_mms_not_supported_message">お使いの端末がMMSに対応していないため、このメッセージは送信できません。</string>
@@ -193,6 +196,7 @@
   <string name="InviteActivity_send_sms">SMSで送る</string>
   <string name="InviteActivity_sending">送信中…</string>
   <string name="InviteActivity_invite_to_signal">Signalをオススメする</string>
+  <string name="InviteActivity_lets_switch_to_signal">チャット・アプリ『Signal』を使いませんか？ %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">シェアするためのアプリがないようです。</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>

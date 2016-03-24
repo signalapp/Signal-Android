@@ -145,6 +145,7 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">保存附件到存储时遇到错误！</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">保存文件成功。</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">存储无法写入！</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">正在保存 %1$d 附件</item>
@@ -218,6 +219,7 @@
   <string name="ExportFragment_exporting_plaintext_to_storage">正在导出明文存储…</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">错误，存储无法写入。</string>
   <string name="ExportFragment_error_while_writing_to_storage">在写入存储时遇到错误。</string>
+  <string name="ExportFragment_export_successful">导出成功。</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">暗号持续连接失效！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">暗号无法在 Google Play 服务中注册。暗号消息和呼叫已经被金庸。请尝试在设置 &gt; 高级中重新注册。</string>
@@ -500,6 +502,7 @@
   <string name="ApplicationMigrationService_import_in_progress">正在导入数据</string>
   <string name="ApplicationMigrationService_importing_text_messages">正在导入文本信息</string>
   <string name="ApplicationMigrationService_import_complete">导入完成</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">系统数据库导入完毕。</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">轻触以开启。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">轻触以开启，或点击锁定以关闭。</string>
@@ -747,6 +750,7 @@
   <string name="AndroidManifest__media_overview">所有图片</string>
   <string name="AndroidManifest__media_overview_named">所有图片和%1$s</string>
   <string name="AndroidManifest__message_details">信息详情</string>
+  <string name="AndroidManifest__linked_devices">已连接的设备</string>
   <string name="AndroidManifest__invite_friends">邀请好友</string>
   <string name="AndroidManifest_archived_conversations">存档会话</string>
   <!--arrays.xml-->
@@ -854,6 +858,7 @@
   <string name="preferences__conversation_length_limit">对话数量限制</string>
   <string name="preferences__trim_all_conversations_now">立刻整理所有的会话</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">查找并处理所有超过限制的对话</string>
+  <string name="preferences__linked_devices">已连接的设备</string>
   <string name="preferences__light_theme">明亮</string>
   <string name="preferences__dark_theme">黑暗</string>
   <string name="preferences__appearance">外观</string>
