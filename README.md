@@ -48,9 +48,13 @@ You can add funds to BitHub to directly help further development efforts.
 Help
 ====
 ## Support
-For troubleshooting and questions, please visit our support center!
+For troubleshooting please visit our support center!
 
 http://support.whispersystems.org/
+
+For questions use the the forum:
+
+https://whispersystems.discoursehosting.net/
 
 ## Documentation
 Looking for documentation? Check out the wiki!
