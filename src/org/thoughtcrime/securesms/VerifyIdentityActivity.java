@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.state.SessionRecord;
@@ -75,14 +76,14 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       return;
     }
 
-    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this).getFingerprint());
+    localIdentityFingerprint.setText(Hex.toString(IdentityKeyUtil.getIdentityKey(this).serialize()));
 
     IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
 
     if (identityKey == null) {
       remoteIdentityFingerprint.setText(R.string.VerifyIdentityActivity_recipient_has_no_identity_key);
     } else {
-      remoteIdentityFingerprint.setText(identityKey.getFingerprint());
+      remoteIdentityFingerprint.setText(Hex.toString(identityKey.serialize()));
     }
   }
 
