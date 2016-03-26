@@ -21,9 +21,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.os.Process;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.system.ErrnoException;
+import android.system.Os;
+import android.system.StructStat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,9 +43,13 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -193,17 +203,23 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     @Override
     protected Uri doInBackground(Uri... uris) {
       try {
-        if (uris.length != 1 || uris[0] == null || uris[0].getScheme().equals("file")) {
+        if (uris.length != 1 || uris[0] == null) {
           return null;
         }
 
-        InputStream input = context.getContentResolver().openInputStream(uris[0]);
+        InputStream inputStream;
 
-        if (input == null) {
+        if ("file".equals(uris[0].getScheme())) {
+          inputStream = openFileUri(uris[0]);
+        } else {
+          inputStream = context.getContentResolver().openInputStream(uris[0]);
+        }
+
+        if (inputStream == null) {
           return null;
         }
 
-        return PersistentBlobProvider.getInstance(context).create(masterSecret, input, mimeType);
+        return PersistentBlobProvider.getInstance(context).create(masterSecret, inputStream, mimeType);
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;
@@ -215,6 +231,18 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
       resolvedExtra = uri;
       ViewUtil.fadeIn(fragmentContainer, 300);
       ViewUtil.fadeOut(progressWheel, 300);
+    }
+
+    private InputStream openFileUri(Uri uri) throws IOException {
+      FileInputStream fin   = new FileInputStream(uri.getPath());
+      int             owner = FileUtils.getFileDescriptorOwner(fin.getFD());
+      
+      if (owner == -1 || owner == Process.myUid()) {
+        fin.close();
+        throw new IOException("File owned by application");
+      }
+
+      return fin;
     }
   }
 }
