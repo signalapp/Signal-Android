@@ -79,7 +79,7 @@ public class GroupManager {
     memberE164Numbers.add(TextSecurePreferences.getLocalNumber(context));
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberE164Numbers));
     groupDatabase.updateTitle(groupId, name);
-    groupDatabase.updateAvatar(groupId, avatarBytes);
+    if (avatarBytes != null) groupDatabase.updateAvatar(groupId, avatarBytes);
 
     return sendGroupUpdate(context, masterSecret, groupId, memberE164Numbers, name, avatarBytes);
   }
@@ -104,7 +104,7 @@ public class GroupManager {
 
     if (avatar != null) {
       Uri avatarUri = SingleUseBlobProvider.getInstance().createUri(avatar);
-      avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_JPEG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
+      avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
     }
 
     OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis());
