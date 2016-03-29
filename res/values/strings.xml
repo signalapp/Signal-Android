@@ -325,7 +325,7 @@
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
-    <string name="InviteActivity_send_sms">Send SMS</string>
+    <string name="InviteActivity_choose_contacts">Choose contacts</string>
     <string name="InviteActivity_cancel">Cancel</string>
     <string name="InviteActivity_sending">Sending...</string>
     <string name="InviteActivity_heart_content_description">Heart</string>
@@ -1169,7 +1169,7 @@
     <string name="reminder_header_invite_text">Take your conversation with %1$s to the next level.</string>
     <string name="reminder_header_invite_button">INVITE</string>
     <string name="reminder_header_share_title">Invite your friends!</string>
-    <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
+    <string name="reminder_header_share_text">The more friends use Signal, the better it gets. Tap to write an invitation.</string>
     <string name="reminder_header_share_button">SHARE</string>
     <string name="reminder_header_close_button">CLOSE</string>
 
