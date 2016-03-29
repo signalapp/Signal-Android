@@ -33,6 +33,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.Browser;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.view.WindowCompat;
@@ -366,6 +367,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.setLocation(masterSecret, place, getCurrentMediaConstraints());
       break;
     }
+  }
+
+  @Override
+  public void startActivity(Intent intent) {
+     if (intent.getStringExtra(Browser.EXTRA_APPLICATION_ID) != null) {
+        Log.d(TAG, "Adding EXTRA_CREATE_NEW_TAB to Browser intent.");
+        intent.putExtra(Browser.EXTRA_CREATE_NEW_TAB, true);
+     }
+     super.startActivity(intent);
   }
 
   @Override
