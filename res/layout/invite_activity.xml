@@ -68,7 +68,7 @@
                         android:drawableLeft="@drawable/ic_message_black_18dp"
                         android:drawableStart="@drawable/ic_message_black_18dp"
                         android:drawablePadding="10dp"
-                        android:text="@string/InviteActivity_send_sms"
+                        android:text="@string/InviteActivity_choose_contacts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:ignore="ButtonStyle" />
