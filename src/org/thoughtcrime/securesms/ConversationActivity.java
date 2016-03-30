@@ -372,8 +372,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void startActivity(Intent intent) {
     if (intent.getStringExtra(Browser.EXTRA_APPLICATION_ID) != null) {
-      Log.d(TAG, "Adding EXTRA_CREATE_NEW_TAB to Browser intent.");
-      intent.putExtra(Browser.EXTRA_CREATE_NEW_TAB, true);
+      Log.d(TAG, "Starting the Browser without replacing current tab.");
+      intent.removeExtra(Browser.EXTRA_APPLICATION_ID);
     }
     super.startActivity(intent);
   }
