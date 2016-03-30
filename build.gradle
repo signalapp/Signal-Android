@@ -250,14 +250,19 @@ tasks.whenTaskAdded { task ->
 }
 
 def getLastCommitTimestamp() {
-    new ByteArrayOutputStream().withStream { os ->
-        def result = exec {
-            executable = 'git'
-            args = ['log', '-1', '--pretty=format:%ct']
-            standardOutput = os
-        }
+    try {
+        new ByteArrayOutputStream().withStream { os ->
+            def result = exec {
+                executable = 'git'
+                args = ['log', '-1', '--pretty=format:%ct']
+                standardOutput = os
+            }
 
-        return os.toString() + "000"
+            return os.toString() + "000"
+        }
+    }
+    catch (org.gradle.process.internal.ExecException e) {
+        return System.currentTimeMillis()
     }
 }
 
