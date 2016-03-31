@@ -21,19 +21,26 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
+import android.widget.ToggleButton;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 /**
@@ -46,8 +53,9 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private Recipient    recipient;
   private MasterSecret masterSecret;
 
-  private TextView localIdentityFingerprint;
-  private TextView remoteIdentityFingerprint;
+  private TextView     localIdentityFingerprint;
+  private TextView     remoteIdentityFingerprint;
+  private ToggleButton identityVerified;
 
   @Override
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
@@ -59,6 +67,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
     this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
+    this.identityVerified          = (ToggleButton)findViewById(R.id.identities_verified);
   }
 
   @Override
@@ -78,13 +87,32 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
     localIdentityFingerprint.setText(Hex.toString(IdentityKeyUtil.getIdentityKey(this).serialize()));
 
-    IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
+    final IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
 
+    this.identityVerified.setChecked(false);
     if (identityKey == null) {
       remoteIdentityFingerprint.setText(R.string.VerifyIdentityActivity_recipient_has_no_identity_key);
+      this.identityVerified.setVisibility(ToggleButton.GONE);
     } else {
-      remoteIdentityFingerprint.setText(Hex.toString(identityKey.serialize()));
+      String remoteIdentityFingerprintValue = Hex.toString(identityKey.serialize());
+      remoteIdentityFingerprint.setText(remoteIdentityFingerprintValue);
+      final RecipientPreferenceDatabase recipientPreferenceDatabase = DatabaseFactory.getRecipientPreferenceDatabase(this);
+      Optional<RecipientsPreferences> preferences =
+                       recipientPreferenceDatabase.getRecipientsPreferences(new long[]{recipient.getRecipientId()});
+
+      if (preferences.isPresent()) {
+        if (preferences.get().isVerifiedId(identityKey)) {
+          this.identityVerified.setChecked(true);
+        }
+      }
+      this.identityVerified.setOnCheckedChangeListener(new ToggleButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+          recipientPreferenceDatabase.setVerifiedId(RecipientFactory.getRecipientsForIds(VerifyIdentityActivity.this, new long[]{recipient.getRecipientId()}, true), isChecked ? identityKey : null);
+        }
+      });
     }
+
   }
 
   @Override
