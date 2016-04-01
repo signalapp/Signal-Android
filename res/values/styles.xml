@@ -56,18 +56,6 @@
         <item name="elevation">0dp</item>
     </style>
 
-    <style name="TextSecure.DarkActionBar.TabBar"
-        parent="@style/Widget.AppCompat.ActionBar.TabBar">
-        <item name="background">@color/gray95</item>
-        <item name="android:background">@color/gray95</item>
-    </style>
-
-    <style name="TextSecure.LightActionBar.TabBar"
-        parent="@style/Widget.AppCompat.ActionBar.TabBar">
-        <item name="android:background">@color/textsecure_primary</item>
-        <item name="background">@color/textsecure_primary</item>
-    </style>
-
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">#BFffffff</item>
