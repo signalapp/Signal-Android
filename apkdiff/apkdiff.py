@@ -61,7 +61,7 @@ class ApkDiff:
         sourceChunk      = sourceFile.read(1024)
         destinationChunk = destinationFile.read(1024)
 
-        while sourceChunk != "" and destinationChunk != "":
+        while sourceChunk != "" or destinationChunk != "":
             if sourceChunk != destinationChunk:
                 return False
 
