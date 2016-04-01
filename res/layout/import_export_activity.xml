@@ -8,11 +8,16 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="?import_export_tab_background_color"
+        app:tabTextColor="?import_export_tab_text_color"
+        app:tabSelectedTextColor="?import_export_tab_selected_text_color"
+        app:tabIndicatorColor="?import_export_tab_indicator_color" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/import_export_pager"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
