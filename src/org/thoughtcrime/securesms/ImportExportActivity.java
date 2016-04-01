@@ -2,12 +2,11 @@ package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -19,6 +18,7 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   private MasterSecret    masterSecret;
   private TabPagerAdapter tabPagerAdapter;
   private ViewPager       viewPager;
+  private TabLayout       tabLayout;
 
   private DynamicTheme dynamicTheme = new DynamicTheme();
 
@@ -58,35 +58,30 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   private void initializeResources() {
     this.viewPager       = (ViewPager) findViewById(R.id.import_export_pager);
     this.tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
-
-    viewPager.setAdapter(tabPagerAdapter);
+    this.tabLayout       = (TabLayout) findViewById(R.id.tab_layout);
   }
 
   private void initializeViewPager() {
     viewPager.setAdapter(tabPagerAdapter);
-    viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-      @Override
-      public void onPageSelected(int position) {
-        getSupportActionBar().setSelectedNavigationItem(position);
-      }
-    });
+    viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
   }
 
   private void initializeTabs() {
-    final ActionBar actionBar = getSupportActionBar();
-    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-    ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-      public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+    tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
       }
 
-      public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {}
-      public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {}
-    };
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {}
 
-    actionBar.addTab(actionBar.newTab().setText(R.string.ImportExportActivity_import).setTabListener(tabListener));
-    actionBar.addTab(actionBar.newTab().setText(R.string.ImportExportActivity_export).setTabListener(tabListener));
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {}
+    });
+
+    tabLayout.addTab(tabLayout.newTab().setText(R.string.ImportExportActivity_import));
+    tabLayout.addTab(tabLayout.newTab().setText(R.string.ImportExportActivity_export));
   }
 
   private class TabPagerAdapter extends FragmentStatePagerAdapter {
