@@ -28,6 +28,16 @@
         <item name="contact_selection_header_text">#66eeeeee</item>
     </style>
 
+    <style name="TextSecure.LightFlatActionBarTheme" parent="@style/TextSecure.LightTheme">
+        <item name="actionBarStyle">@style/TextSecure.FlatLightActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="TextSecure.DarkFlatActionBarTheme" parent="@style/TextSecure.DarkTheme">
+        <item name="actionBarStyle">@style/TextSecure.FlatDarkActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">
         <item name="actionBarStyle">@style/TextSecure.FlatLightActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>

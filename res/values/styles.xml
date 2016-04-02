@@ -38,6 +38,11 @@
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
     </style>
 
+    <style name="TextSecure.FlatDarkActionBar"
+        parent="@style/TextSecure.DarkActionBar">
+        <item name="elevation">0dp</item>
+    </style>
+
     <style name="TextSecure.LightActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/textsecure_primary</item>

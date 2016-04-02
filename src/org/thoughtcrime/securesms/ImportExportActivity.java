@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.DynamicFlatActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 
@@ -20,7 +21,7 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   private ViewPager       viewPager;
   private TabLayout       tabLayout;
 
-  private DynamicTheme dynamicTheme = new DynamicTheme();
+  private DynamicTheme dynamicTheme = new DynamicFlatActionBarTheme();
 
   @Override
   protected void onPreCreate() {
