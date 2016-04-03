@@ -19,7 +19,8 @@
                       style="@style/TextSecure.TitleTextStyle"
                       android:background="@android:color/transparent"
                       android:layout_gravity="center_vertical"
-                      android:gravity="center_vertical"/>
+                      android:gravity="center_vertical"
+                      android:textCursorDrawable="@drawable/actionbar_cursor"/>
 
             <org.thoughtcrime.securesms.components.AnimatingToggle
                 android:id="@+id/button_toggle"
