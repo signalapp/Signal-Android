@@ -8,7 +8,8 @@
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
-        <item name="colorAccent">@color/textsecure_primary_dark</item>
+        <item name="colorAccent">@color/signal_primary</item>
+        <item name="android:colorControlActivated">@color/signal_primary</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <item name="android:windowBackground">@color/gray5</item>
@@ -26,6 +27,8 @@
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="colorAccent">@color/signal_primary_dark</item>
+        <item name="android:colorControlActivated">@color/signal_primary_dark</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
         <item name="android:windowBackground">@color/black</item>
