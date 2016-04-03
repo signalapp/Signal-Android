@@ -27,6 +27,7 @@
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="colorPrimary">@color/gray95</item>
         <item name="colorAccent">@color/signal_primary_dark</item>
         <item name="android:colorControlActivated">@color/signal_primary_dark</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
