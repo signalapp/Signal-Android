@@ -17,6 +17,7 @@
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
         <item name="contact_selection_header_text">@color/textsecure_primary_dark</item>
+        <item name="dialog_background_color">@color/background_material_light</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
@@ -32,6 +33,7 @@
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
         <item name="contact_selection_header_text">#66eeeeee</item>
+        <item name="dialog_background_color">@color/background_material_dark</item>
     </style>
 
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">
@@ -172,6 +174,7 @@
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_light</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_light</item>
+        <item name="dialog_background_color">@color/background_material_light</item>
 
         <item name="device_link_item_card_background">@color/device_link_item_background_light</item>
 
@@ -260,6 +263,7 @@
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>
+        <item name="dialog_background_color">@color/background_material_dark</item>
 
         <item name="device_link_item_card_background">@color/device_link_item_background_dark</item>
 

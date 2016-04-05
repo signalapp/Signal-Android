@@ -28,10 +28,12 @@
 
     <style name="AppCompatDialogStyleLight" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/signal_primary</item>
+        <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
     <style name="AppCompatDialogStyleDark" parent="Theme.AppCompat.Dialog">
         <item name="colorAccent">@color/signal_primary_dark</item>
+        <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
     <!-- ActionBar styles -->
