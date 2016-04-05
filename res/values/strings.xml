@@ -408,7 +408,8 @@
     <!-- MessageRecord -->
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
-    <string name="MessageRecord_updated_group">Updated the group.</string>
+    <string name="MessageRecord_you_updated_group">You updated the group.</string>
+    <string name="MessageRecord_s_updated_group">%s updated the group.</string>
     <string name="MessageRecord_s_called_you">%s called you</string>
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
@@ -575,6 +576,7 @@
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
     <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Group updated</string>
     <string name="ThreadRecord_left_the_group">Left the group</string>
     <string name="ThreadRecord_secure_session_reset">Secure session reset.</string>
     <string name="ThreadRecord_draft">Draft:</string>
@@ -886,7 +888,6 @@
         <item quantity="one">%1$s joined the group.</item>
         <item quantity="other">%1$s joined the group.</item>
     </plurals>
-    <string name="GroupUtil_group_updated">Group updated.</string>
     <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
 
     <!-- prompt_passphrase_activity -->
