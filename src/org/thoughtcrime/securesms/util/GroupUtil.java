@@ -61,13 +61,13 @@ public class GroupUtil {
       if (groupContext == null || groupContext.getMembersList().isEmpty()) {
         this.members = null;
       } else {
-        this.members = RecipientFactory.getRecipientsFromString(context, Util.join(groupContext.getMembersList(), ", "), true);
+        this.members = RecipientFactory.getRecipientsFromStrings(context, groupContext.getMembersList(), true);
       }
     }
 
     public String toString() {
       if (groupContext == null) {
-        return context.getString(R.string.GroupUtil_group_updated);
+        return "";
       }
 
       StringBuilder description = new StringBuilder();
@@ -83,11 +83,7 @@ public class GroupUtil {
         description.append(context.getString(R.string.GroupUtil_group_name_is_now, title));
       }
 
-      if (description.length() > 0) {
-        return description.toString();
-      } else {
-        return context.getString(R.string.GroupUtil_group_updated);
-      }
+      return description.toString();
     }
 
     public void addListener(Recipients.RecipientsModifiedListener listener) {

@@ -25,8 +25,8 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -93,9 +93,12 @@ public abstract class MessageRecord extends DisplayRecord {
   @Override
   public SpannableString getDisplayBody() {
     if (isGroupUpdate() && isOutgoing()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_updated_group));
+      return emphasisAdded(context.getString(R.string.MessageRecord_you_updated_group));
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()).toString());
+      String description = context.getString(R.string.MessageRecord_s_updated_group, getIndividualRecipient().toShortString());
+      String details     = GroupUtil.getDescription(context, getBody().getBody()).toString();
+      if (!details.trim().isEmpty()) description += "\n" + details;
+      return emphasisAdded(description);
     } else if (isGroupQuit() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
