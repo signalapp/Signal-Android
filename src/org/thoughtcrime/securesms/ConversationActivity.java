@@ -28,9 +28,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -41,9 +38,12 @@ import android.support.v4.app.DialogFragment;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -59,6 +59,8 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -134,8 +136,11 @@ import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import de.gdata.messaging.components.SelectTransportButton;
 import de.gdata.messaging.components.SelfDestructionButton;
@@ -145,6 +150,7 @@ import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.PrivacyBridge;
 import de.gdata.messaging.util.ProfileAccessor;
 import de.gdata.messaging.util.VideoResolutionChanger;
+import de.gdata.messaging.util.VoiceMessageRecorder;
 import ws.com.google.android.mms.ContentType;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -211,6 +217,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private BombTransportListener bombTransportButtonListener = new BombTransportListener();
     private SendButtonListener sendButtonListener = new SendButtonListener();
     private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
+    private AddVoiceMassageListener addVoiceMassageListener = new AddVoiceMassageListener();
     private int currentMediaSize;
     private String profileId = "0";
     public static ProgressDialog compressingDialog;
@@ -222,6 +229,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private int ACTION_BLOCK_CONTACT = 2;
 
     private GDataPreferences gDataPref;
+    private VoiceMessageRecorder vmr;
+    private String voiceHint = "";
 
     @Override
     protected void onCreate(Bundle state) {
@@ -438,7 +447,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         boolean pushRegistered = TextSecurePreferences.isPushRegistered(this);
 
         if (isSingleConversation() && isEncryptedConversation) {
-            inflater.inflate(R.menu.conversation_secure_identity, menu);
+            //inflater.inflate(R.menu.conversation_secure_identity, menu);
             //inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
         } else if (isSingleConversation()) {
             if (!pushRegistered) {
@@ -449,6 +458,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         if (isSingleConversation()) {
             inflater.inflate(R.menu.conversation_callable, menu);
+           inflater.inflate(R.menu.conversation_attachment, menu);
         } else if (isGroupConversation()) {
             inflater.inflate(R.menu.conversation_group_options, menu);
             if (isActiveGroup()) {
@@ -457,6 +467,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
 
         inflater.inflate(R.menu.conversation, menu);
+        if (isSingleConversation() && !isEncryptedConversation) {
+            menu.findItem(R.id.menu_verify_identity).setVisible(false);
+        }
 
         if (isSingleConversation() && getRecipients().getPrimaryRecipient().getContactUri() == null) {
             inflater.inflate(R.menu.conversation_add_to_contacts, menu);
@@ -1195,22 +1208,119 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         registerReceiver(groupUpdateReceiver,
                 new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
     }
-
     private void updateSendBarViews() {
+        updateSendBarViews(false);
+    }
+    private void updateSendBarViews(boolean isVoice) {
         if (!"".equals(composeText.getText().toString()) || attachmentManager.isAttachmentPresent()) {
             sendButton.setOnClickListener(sendButtonListener);
+            sendButton.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent rawEvent) {
+                    return false;
+                }
+            });
+            if(isVoice) {
+                composeText.setText(voiceHint +" Sprachnachricht" + composeText.getText().toString());
+            }
             sendButton.setEnabled(true);
             sendButton.setComposeTextView(composeText);
             sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
         } else {
-            sendButton.setOnClickListener(addAttachmentButtonListener);
+            vmr = new VoiceMessageRecorder();
+            sendButton.setOnTouchListener(recordClicker);
             sendButton.setEnabled(true);
             sendButton.setComposeTextView(composeText);
-            sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_attachment_gdata));
+            sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_voice_black));
+        }
+    }
+    private void setComposeTextHint(String hint) {
+        if (hint == null) {
+            this.composeText.setHint(null);
+        } else {
+            SpannableString span = new SpannableString(hint);
+            span.setSpan(new RelativeSizeSpan(GUtil.ALPHA_80_PERCENT), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            this.composeText.setHint(span);
+        }
+    }
+    public  View.OnTouchListener recordClicker = new View.OnTouchListener() {
+
+        private int moveCount = 0;
+        private String lastHint = "";
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+
+            final Animation animScale = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_scale);
+
+            int action = motionEvent.getAction();
+
+            if(MotionEvent.ACTION_DOWN == action) {
+                lastHint = composeText.getHint().toString();
+                vmr.onRecord(vmr.mStartRecording);
+                vmr.mStartRecording = !vmr.mStartRecording;
+                moveCount = 0;
+                new VoiceRecordingLabelTask().execute();
+                view.startAnimation(animScale);
+            } else if(MotionEvent.ACTION_UP == action) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(!vmr.mStartRecording) {
+                    vmr.onRecord(vmr.mStartRecording);
+                    vmr.mStartRecording = !vmr.mStartRecording;
+                    composeText.setText("");
+                    addAttachmentAudio(Uri.parse("file://" + vmr.mFileName), "audio/mp3");
+                    updateSendBarViews(true);
+                }
+                view.startAnimation(animScale);
+            } else if(MotionEvent.ACTION_MOVE == action) {
+                moveCount++;
+                if(moveCount > 10 && !vmr.mStartRecording) {
+                    vmr.onRecord(vmr.mStartRecording);
+                    vmr.mStartRecording = !vmr.mStartRecording;
+                    setComposeText("");
+                    setComposeTextHint(lastHint);
+                    updateSendBarViews();
+                    view.startAnimation(animScale);
+                }
+            }
+            return true;
+        }
+    };
+    class VoiceRecordingLabelTask extends AsyncTask<Void, Integer, String>
+    {
+        protected void onPreExecute (){
         }
 
-    }
+        protected String doInBackground(Void...arg0) {
+            while(!vmr.mStartRecording) {
+                publishProgress(0);
+                try {
+                    Thread.sleep(900);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return "";
+        }
 
+        protected void onProgressUpdate(Integer...a) {
+            if(!vmr.mStartRecording) {
+            TimeZone tz = TimeZone.getTimeZone("UTC");
+            SimpleDateFormat df = new SimpleDateFormat("mm:ss");
+            df.setTimeZone(tz);
+            String time = df.format(new Date(vmr.getDuration()));
+                setComposeTextHint(time +" "+"Wischen zum Abbrechen...");
+                voiceHint = time;
+            }
+        }
+
+        protected void onPostExecute(String result) {
+
+        }
+    }
     //////// Helper Methods
 
     private void addAttachment(int type) {
@@ -1707,7 +1817,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             return false;
         }
     }
+    private class AddVoiceMassageListener implements OnClickListener, TextView.OnEditorActionListener {
+        @Override
+        public void onClick(View v) {
+            VoiceMessageRecorder vmr = new VoiceMessageRecorder();
+        }
 
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            return false;
+        }
+    }
 
     private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher, OnFocusChangeListener {
         @Override
