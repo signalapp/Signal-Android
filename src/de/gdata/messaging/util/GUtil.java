@@ -415,7 +415,18 @@ public class GUtil {
         ContentResolver cR = context.getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         String type = mime.getExtensionFromMimeType(cR.getType(uri));
-        return type != null ? type : "";
+        type = type != null ? type : "";
+
+        if("".equals(type)) {
+            if(uri != null) {
+                String path = uri.toString();
+                int i = path.lastIndexOf('.');
+                if (i > 0) {
+                    type = path.substring(i + 1);
+                }
+            }
+        }
+        return type;
     }
     public static boolean isImageType(String imageExtension)
     {
@@ -426,7 +437,6 @@ public class GUtil {
             case "tiff": return true;
             case "jpg": return true;
             case "jpeg": return true;
-            case "": return true;
         }
         return false;
     }
@@ -438,7 +448,6 @@ public class GUtil {
             case "wav": return true;
             case "3gp": return true;
             case "aac": return true;
-            case "": return true;
         }
         return false;
     }
@@ -447,7 +456,6 @@ public class GUtil {
         switch(videoExtension.toLowerCase())
         {
             case "mp4": return true;
-            case "": return true;
         }
         return false;
     }
