@@ -106,6 +106,7 @@ public class ConversationItem extends LinearLayout
   private AvatarImageView    contactPhoto;
   private DeliveryStatusView deliveryStatusIndicator;
   private AlertView          alertView;
+  private View               readStatus;
 
   private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
   private @Nullable Recipients          conversationRecipients;
@@ -155,6 +156,7 @@ public class ConversationItem extends LinearLayout
     this.bodyBubble              =                      findViewById(R.id.body_bubble);
     this.mediaThumbnail          = (ThumbnailView)      findViewById(R.id.image_view);
     this.audioView               = (AudioView)          findViewById(R.id.audio_view);
+    this.readStatus              =                      findViewById(R.id.read_status);
     this.expirationTimer         = (ExpirationTimerView) findViewById(R.id.expiration_indicator);
 
     setOnClickListener(new ClickListener(null));
@@ -193,7 +195,7 @@ public class ConversationItem extends LinearLayout
     setInteractionState(messageRecord);
     setBodyText(messageRecord);
     setBubbleState(messageRecord, recipient);
-    setStatusIcons(messageRecord);
+    setStatusIcons(messageRecord, recipient);
     setContactPhoto(recipient);
     setGroupMessageStatus(messageRecord, recipient);
     setMinimumWidth();
@@ -323,7 +325,7 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setStatusIcons(MessageRecord messageRecord) {
+  private void setStatusIcons(MessageRecord messageRecord, Recipient recipient) {
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
     indicatorText.setVisibility(View.GONE);
@@ -343,6 +345,16 @@ public class ConversationItem extends LinearLayout
       else if (messageRecord.isPending())   deliveryStatusIndicator.setPending();
       else if (messageRecord.isDelivered()) deliveryStatusIndicator.setDelivered();
       else                                  deliveryStatusIndicator.setSent();
+    }
+
+    if (readStatus != null) {
+      if (!messageRecord.isRead()) {
+        final int color = recipient.getColor().toConversationColor(context);
+        readStatus.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        readStatus.setVisibility(View.VISIBLE);
+      } else {
+        readStatus.setVisibility(View.INVISIBLE);
+      }
     }
   }
 
