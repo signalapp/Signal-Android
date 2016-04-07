@@ -43,9 +43,10 @@ public abstract class DisplayRecord {
   private final Body       body;
   private final int        deliveryStatus;
   private final int        receiptCount;
+  private final boolean    read;
 
   public DisplayRecord(Context context, Body body, Recipients recipients, long dateSent,
-                       long dateReceived, long threadId, int deliveryStatus, int receiptCount, long type)
+                       long dateReceived, long threadId, int deliveryStatus, int receiptCount, long type, boolean read)
   {
     this.context              = context.getApplicationContext();
     this.threadId             = threadId;
@@ -56,6 +57,7 @@ public abstract class DisplayRecord {
     this.body                 = body;
     this.receiptCount         = receiptCount;
     this.deliveryStatus       = deliveryStatus;
+    this.read                 = read;
   }
 
   public Body getBody() {
@@ -154,6 +156,10 @@ public abstract class DisplayRecord {
 
   public boolean isPendingInsecureSmsFallback() {
     return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
+  }
+
+  public boolean isRead() {
+    return read;
   }
 
   public static class Body {

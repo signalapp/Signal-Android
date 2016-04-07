@@ -761,6 +761,7 @@ public class SmsDatabase extends MessagingDatabase {
       long dateSent           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_SENT));
       long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
       int status              = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
+      int read                = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.READ));
       int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.RECEIPT_COUNT));
       String mismatchDocument = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.MISMATCHED_IDENTITIES));
       int subscriptionId      = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.SUBSCRIPTION_ID));
@@ -774,7 +775,7 @@ public class SmsDatabase extends MessagingDatabase {
       return new SmsMessageRecord(context, messageId, body, recipients,
                                   recipients.getPrimaryRecipient(),
                                   addressDeviceId,
-                                  dateSent, dateReceived, receiptCount, type,
+                                  dateSent, dateReceived, (read == 1), receiptCount, type,
                                   threadId, status, mismatches, subscriptionId,
                                   expiresIn, expireStarted);
     }

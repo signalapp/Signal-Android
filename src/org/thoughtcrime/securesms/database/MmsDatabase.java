@@ -1143,6 +1143,7 @@ public class MmsDatabase extends MessagingDatabase {
       long messageSize           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_SIZE));
       long expiry                = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRY));
       int status                 = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.STATUS));
+      int read                   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ));
       int receiptCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.RECEIPT_COUNT));
       int subscriptionId         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID));
 
@@ -1158,7 +1159,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       return new NotificationMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                               addressDeviceId, dateSent, dateReceived, receiptCount, threadId,
-                                              contentLocationBytes, messageSize, expiry, status,
+                                              contentLocationBytes, messageSize, expiry, status, (read == 1),
                                               transactionIdBytes, mailbox, subscriptionId);
     }
 
@@ -1171,6 +1172,7 @@ public class MmsDatabase extends MessagingDatabase {
       String address          = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS));
       int addressDeviceId     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
       int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.RECEIPT_COUNT));
+      int read                = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ));
       DisplayRecord.Body body = getBody(cursor);
       int partCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       String mismatchDocument = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
@@ -1185,7 +1187,7 @@ public class MmsDatabase extends MessagingDatabase {
       SlideDeck                 slideDeck       = getSlideDeck(cursor);
 
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
-                                       addressDeviceId, dateSent, dateReceived, receiptCount,
+                                       addressDeviceId, dateSent, dateReceived, receiptCount, (read == 1),
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted);
     }
