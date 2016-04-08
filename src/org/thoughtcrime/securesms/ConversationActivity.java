@@ -450,8 +450,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         boolean pushRegistered = TextSecurePreferences.isPushRegistered(this);
 
         if (isSingleConversation() && isEncryptedConversation) {
-            //inflater.inflate(R.menu.conversation_secure_identity, menu);
-            //inflater.inflate(R.menu.conversation_secure_sms, menu.findItem(R.id.menu_security).getSubMenu());
+
         } else if (isSingleConversation()) {
             if (!pushRegistered) {
                 inflater.inflate(R.menu.conversation_insecure_no_push, menu);
@@ -472,6 +471,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         inflater.inflate(R.menu.conversation, menu);
         if (isSingleConversation() && !isEncryptedConversation) {
             menu.findItem(R.id.menu_verify_identity).setVisible(false);
+            updateSendBarViews(false);
         }
 
         if (isSingleConversation() && getRecipients().getPrimaryRecipient().getContactUri() == null) {
