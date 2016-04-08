@@ -93,7 +93,6 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import de.gdata.messaging.AudioRecordTest;
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GService;
@@ -767,11 +766,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
 
     private void openSingleContactSelection() {
-        /*Intent intent = new Intent(this, NewConversationActivity.class);
+        Intent intent = new Intent(this, NewConversationActivity.class);
         intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
-        startActivity(intent);*/
-        Intent intent = new Intent(this, AudioRecordTest.class);
-        //intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
         startActivity(intent);
     }
 

@@ -841,6 +841,7 @@
     <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
     <string name="gdata_twillio_number">4915735982710</string>
     <string name="gdata_twillio_replacement">G DATA SecureChat</string>
+    <string name="voice_message">Sprachnachricht</string>
 
 
     <!-- EOF -->

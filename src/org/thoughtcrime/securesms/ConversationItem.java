@@ -687,8 +687,14 @@ public class ConversationItem extends LinearLayout {
           mmsThumbnail.setVisibility(View.VISIBLE);
           mmsContainer.setVisibility(View.VISIBLE);
           mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
-              messageRecord.getDateReceived(),
-              messageRecord.getSlideDeckFuture());
+                  messageRecord.getDateReceived(),
+                  messageRecord.getSlideDeckFuture());
+
+          if(messageRecord.getDisplayBody().toString().contains(context.getString(R.string.voice_message))) {
+            mmsThumbnail.getLayoutParams().height = 100;
+            mmsThumbnail.getLayoutParams().width = 100;
+            mmsThumbnail.setPadding(0,20,0,0);
+          }
         } else {
           mmsThumbnail.setVisibility(View.GONE);
           mmsContainer.setVisibility(View.GONE);
@@ -801,8 +807,6 @@ public class ConversationItem extends LinearLayout {
       }
 
       public void onClick(final View v, final Slide slide) {
-        boolean isAudio = slide instanceof AudioSlide;
-        // if((isAudio && messageRecord.getBody().isSelfDestruction()) || !messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
         if (!batchSelected.isEmpty()) {
           selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
         } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {

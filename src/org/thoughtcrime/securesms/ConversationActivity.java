@@ -28,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -231,6 +232,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private GDataPreferences gDataPref;
     private VoiceMessageRecorder vmr;
     private String voiceHint = "";
+    private BroadcastReceiver composeTextUpdateReceiver;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -330,6 +332,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         saveDraft();
         unregisterReceiver(securityUpdateReceiver);
         unregisterReceiver(groupUpdateReceiver);
+        unregisterReceiver(composeTextUpdateReceiver);
         MemoryCleaner.clean(masterSecret);
         cancelVideoCompression();
         super.onDestroy();
@@ -1200,14 +1203,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 }
             }
         };
-
+        composeTextUpdateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (composeText != null) {
+                   composeText.setText("");
+                }
+            }
+        };
         registerReceiver(securityUpdateReceiver,
                 new IntentFilter(SecurityEvent.SECURITY_UPDATE_EVENT),
                 KeyCachingService.KEY_PERMISSION, null);
 
         registerReceiver(groupUpdateReceiver,
                 new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
+
+        registerReceiver(composeTextUpdateReceiver,
+                new IntentFilter(CLEAR_COMPOSE_ACTION));
     }
+    public static String CLEAR_COMPOSE_ACTION = "CLEAR_COMPOSE_ACTION";
     private void updateSendBarViews() {
         updateSendBarViews(false);
     }
@@ -1221,9 +1235,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 }
             });
             if(isVoice) {
-                composeText.setText(voiceHint +" Sprachnachricht" + composeText.getText().toString());
+                composeText.setText(voiceHint + " " + getString(R.string.voice_message));
+                composeText.setEnabled(false);
+                composeText.setTextColor(Color.GRAY);
+            }else {
+                sendButton.setEnabled(true);
             }
-            sendButton.setEnabled(true);
             sendButton.setComposeTextView(composeText);
             sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
         } else {
@@ -1260,6 +1277,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 vmr.mStartRecording = !vmr.mStartRecording;
                 moveCount = 0;
                 new VoiceRecordingLabelTask().execute();
+                composeText.setScaleY(0.9F);
+                composeText.setScaleX(0.9F);
                 view.startAnimation(animScale);
             } else if(MotionEvent.ACTION_UP == action) {
                 try {
@@ -1273,8 +1292,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                     composeText.setText("");
                     addAttachmentAudio(Uri.parse("file://" + vmr.mFileName), "audio/mp3");
                     updateSendBarViews(true);
+                    composeText.setText(composeText.getText()+" ");
+                    composeText.setSelection(composeText.getText().length());
                 }
                 view.startAnimation(animScale);
+                composeText.setScaleY(1F);
+                composeText.setScaleX(1F);
             } else if(MotionEvent.ACTION_MOVE == action) {
                 moveCount++;
                 if(moveCount > 10 && !vmr.mStartRecording) {
@@ -1284,6 +1307,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                     setComposeTextHint(lastHint);
                     updateSendBarViews();
                     view.startAnimation(animScale);
+                    composeText.setScaleY(1F);
+                    composeText.setScaleX(1F);
                 }
             }
             return true;
