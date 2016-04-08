@@ -17,12 +17,15 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -67,7 +70,16 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
     this.recipient = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
 
+    setActionBarNotificationBarColor(recipient.getColor());
     initializeFingerprints();
+  }
+
+  public void setActionBarNotificationBarColor(MaterialColor color) {
+    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setStatusBarColor(color.toStatusBarColor(this));
+    }
   }
 
   private void initializeFingerprints() {
