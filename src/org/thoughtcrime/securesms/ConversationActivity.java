@@ -1260,6 +1260,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             this.composeText.setHint(span);
         }
     }
+
+    private boolean mIsDown = false;
     public  View.OnTouchListener recordClicker = new View.OnTouchListener() {
 
         private int moveCount = 0;
@@ -1270,8 +1272,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             final Animation animScale = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_scale);
 
             int action = motionEvent.getAction();
+            float x = motionEvent.getX();
+            float y = motionEvent.getY();
 
+            float mPreviousX = 0;
+            float mPreviousY = 0;
             if(MotionEvent.ACTION_DOWN == action) {
+                mIsDown = true;
                 lastHint = composeText.getHint().toString();
                 vmr.onRecord(vmr.mStartRecording);
                 vmr.mStartRecording = !vmr.mStartRecording;
@@ -1281,6 +1288,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 composeText.setScaleX(0.9F);
                 view.startAnimation(animScale);
             } else if(MotionEvent.ACTION_UP == action) {
+                mIsDown = false;
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -1299,18 +1307,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 composeText.setScaleY(1F);
                 composeText.setScaleX(1F);
             } else if(MotionEvent.ACTION_MOVE == action) {
-                moveCount++;
-                if(moveCount > 10 && !vmr.mStartRecording) {
-                    vmr.onRecord(vmr.mStartRecording);
-                    vmr.mStartRecording = !vmr.mStartRecording;
-                    setComposeText("");
-                    setComposeTextHint(lastHint);
-                    updateSendBarViews();
-                    view.startAnimation(animScale);
-                    composeText.setScaleY(1F);
-                    composeText.setScaleX(1F);
+                float dx = x - mPreviousX;
+                float dy = y - mPreviousY;
+
+                if (Math.abs(dx) > 300 || Math.abs(dy) > 300 ) {
+                    if (!vmr.mStartRecording) {
+                        vmr.onRecord(vmr.mStartRecording);
+                        vmr.mStartRecording = !vmr.mStartRecording;
+                        setComposeText("");
+                        setComposeTextHint(lastHint);
+                        updateSendBarViews();
+                        view.startAnimation(animScale);
+                        composeText.setScaleY(1F);
+                        composeText.setScaleX(1F);
+                    }
                 }
             }
+            mPreviousX = x;
+            mPreviousY = y;
             return true;
         }
     };
