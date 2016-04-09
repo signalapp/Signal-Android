@@ -272,6 +272,7 @@ public class ThreadDatabase extends Database {
     final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
     final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
 
+    notifyConversationListeners(threadId);
     notifyConversationListListeners();
 
     return new LinkedList<MarkedMessageInfo>() {{

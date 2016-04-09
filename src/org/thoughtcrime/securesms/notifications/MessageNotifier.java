@@ -38,21 +38,15 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
-import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -137,14 +131,8 @@ public class MessageNotifier {
   {
     boolean    isVisible  = visibleThread == threadId;
 
-    ThreadDatabase threads    = DatabaseFactory.getThreadDatabase(context);
     Recipients     recipients = DatabaseFactory.getThreadDatabase(context)
                                                .getRecipientsForThreadId(threadId);
-
-    if (isVisible) {
-      List<MarkedMessageInfo> messageIds = threads.setRead(threadId);
-      MarkReadReceiver.process(context, messageIds);
-    }
 
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||
         (recipients != null && recipients.isMuted()))
@@ -153,10 +141,10 @@ public class MessageNotifier {
     }
 
     if (isVisible) {
-      sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
-    } else {
-      updateNotification(context, masterSecret, signal, includePushDatabase, 0);
+      sendInThreadNotification(context, recipients);
     }
+
+    updateNotification(context, masterSecret, signal && !isVisible, includePushDatabase, 0);
   }
 
   private static void updateNotification(@NonNull  Context context,
