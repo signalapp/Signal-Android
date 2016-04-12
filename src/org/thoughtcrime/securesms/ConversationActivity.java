@@ -328,7 +328,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
-    if (data == null && reqCode != TAKE_PHOTO || resultCode != RESULT_OK) return;
+    if (data == null && reqCode != TAKE_PHOTO || data.getData() == null || resultCode != RESULT_OK)
+      return;
 
     switch (reqCode) {
     case PICK_IMAGE:
