@@ -56,12 +56,14 @@ public class AttachmentManager {
   public static final int MEDIA_TYPE_IMAGE = 24;
   private static final String MEDIA_FILE_NAME = "media_file_";
 
-  private static Context            context;
+  private static Activity            context;
   private final View               attachmentView;
   private final ThumbnailView      thumbnail;
   private final ImageButton        removeButton;
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
+
+  private int widthBefore = 0;
 
   private static File captureFile;
 
@@ -98,6 +100,7 @@ public class AttachmentManager {
     attachmentView.setVisibility(View.VISIBLE);
     thumbnail.setImageResource(slide);
     if(slide instanceof AudioSlide) {
+      widthBefore =  widthBefore < thumbnail.getLayoutParams().height ? thumbnail.getLayoutParams().height : widthBefore;
       attachmentView.getLayoutParams().height = 100;
       thumbnail.getLayoutParams().height = 150;
       thumbnail.getLayoutParams().width = 150;
@@ -106,7 +109,28 @@ public class AttachmentManager {
         thumbnail.setImageAlpha(0);
         attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.INVISIBLE);
       }
+    } else {
+      if(widthBefore != 0) {
+        attachmentView.getLayoutParams().height = 2;
+        thumbnail.getLayoutParams().height = widthBefore;
+        thumbnail.getLayoutParams().width = widthBefore;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+          thumbnail.setImageAlpha(255);
+        }
+        thumbnail.setBackgroundResource(R.drawable.gdata_conversation_item_sent_shape);
+        attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.VISIBLE);
+      }
     }
+      /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+          attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.VISIBLE);
+          thumbnail.setImageAlpha(255);
+        }
+        attachmentView.getLayoutParams().height = 200;
+        thumbnail.getLayoutParams().height = 200;
+        thumbnail.getLayoutParams().width = 200;
+        thumbnail.setBackgroundResource(R.drawable.ic_settings_voice_black);
+      }*/
     attachmentListener.onAttachmentChanged();
   }
 

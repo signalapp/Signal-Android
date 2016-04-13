@@ -449,6 +449,9 @@ public class GUtil {
             case "3gp": return true;
             case "aac": return true;
         }
+        if(audioExtension.contains("securesms")) {
+            return true;
+        }
         return false;
     }
     public static boolean isVideoType(String videoExtension)

@@ -167,6 +167,7 @@ public class ConversationItem extends LinearLayout {
   private ImageView loadingDestroyIndicator;
   private GDataPreferences mPreferences;
   private Dialog alertDialogDestroy;
+  private int widthBefore = 0;
 
   public ConversationItem(Context context) {
     super(context);
@@ -691,9 +692,15 @@ public class ConversationItem extends LinearLayout {
                   messageRecord.getSlideDeckFuture());
 
           if(messageRecord.getDisplayBody().toString().contains(context.getString(R.string.voice_message))) {
+            widthBefore =  widthBefore < mmsThumbnail.getLayoutParams().height ? mmsThumbnail.getLayoutParams().height : widthBefore;
             mmsThumbnail.getLayoutParams().height = 100;
             mmsThumbnail.getLayoutParams().width = 100;
             mmsThumbnail.setPadding(0,20,0,0);
+          } else {
+            if(widthBefore != 0) {
+              mmsThumbnail.getLayoutParams().height = widthBefore;
+              mmsThumbnail.getLayoutParams().width = widthBefore;
+            }
           }
         } else {
           mmsThumbnail.setVisibility(View.GONE);
