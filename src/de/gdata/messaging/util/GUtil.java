@@ -438,6 +438,9 @@ public class GUtil {
             case "jpg": return true;
             case "jpeg": return true;
         }
+        if(imageExtension.contains("securesms")) {
+            return true;
+        }
         return false;
     }
     public static boolean isAudioType(String audioExtension)
@@ -456,9 +459,12 @@ public class GUtil {
     }
     public static boolean isVideoType(String videoExtension)
     {
-        switch(videoExtension.toLowerCase())
-        {
-            case "mp4": return true;
+        switch(videoExtension.toLowerCase()) {
+            case "mp4":
+                return true;
+        }
+        if(videoExtension.contains("securesms")) {
+            return true;
         }
         return false;
     }
