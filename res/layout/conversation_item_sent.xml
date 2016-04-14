@@ -76,7 +76,7 @@
                          android:visibility="gone">
 
                 <org.thoughtcrime.securesms.components.ThumbnailView android:id="@+id/image_view"
-                    android:layout_width="160dip"
+                    android:layout_width="100dip"
                     android:layout_height="100dip"
                     android:layout_gravity="center"
                     android:scaleType="centerInside"

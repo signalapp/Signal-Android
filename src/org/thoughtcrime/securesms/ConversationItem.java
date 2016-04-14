@@ -167,6 +167,7 @@ public class ConversationItem extends LinearLayout {
   private ImageView loadingDestroyIndicator;
   private GDataPreferences mPreferences;
   private Dialog alertDialogDestroy;
+  private int widthBefore = 0;
 
   public ConversationItem(Context context) {
     super(context);
@@ -687,8 +688,20 @@ public class ConversationItem extends LinearLayout {
           mmsThumbnail.setVisibility(View.VISIBLE);
           mmsContainer.setVisibility(View.VISIBLE);
           mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
-              messageRecord.getDateReceived(),
-              messageRecord.getSlideDeckFuture());
+                  messageRecord.getDateReceived(),
+                  messageRecord.getSlideDeckFuture());
+
+          if(messageRecord.getDisplayBody().toString().contains(context.getString(R.string.voice_message))) {
+            widthBefore =  widthBefore < mmsThumbnail.getLayoutParams().height ? mmsThumbnail.getLayoutParams().height : widthBefore;
+            mmsThumbnail.getLayoutParams().height = 100;
+            mmsThumbnail.getLayoutParams().width = 100;
+            mmsThumbnail.setPadding(0,20,0,0);
+          } else {
+            if(widthBefore != 0) {
+              mmsThumbnail.getLayoutParams().height = widthBefore;
+              mmsThumbnail.getLayoutParams().width = widthBefore;
+            }
+          }
         } else {
           mmsThumbnail.setVisibility(View.GONE);
           mmsContainer.setVisibility(View.GONE);
@@ -801,8 +814,6 @@ public class ConversationItem extends LinearLayout {
       }
 
       public void onClick(final View v, final Slide slide) {
-        boolean isAudio = slide instanceof AudioSlide;
-        // if((isAudio && messageRecord.getBody().isSelfDestruction()) || !messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
         if (!batchSelected.isEmpty()) {
           selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
         } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
