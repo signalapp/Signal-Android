@@ -889,6 +889,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     private void handleAddAttachment() {
+        draftText = null;
         if (this.isMmsEnabled || DirectoryHelper.isPushDestination(this, getRecipients())) {
             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.GDataDialogWindowTitle));
             builder.setIcon(R.drawable.ic_dialog_attach);
@@ -1003,6 +1004,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private void initializeDraft() {
 
         draftText = getIntent().getExtras().getString(DRAFT_TEXT_EXTRA);
+
         Uri draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
         Uri draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
         Uri draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
@@ -1352,7 +1354,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             SimpleDateFormat df = new SimpleDateFormat("mm:ss");
             df.setTimeZone(tz);
             String time = df.format(new Date(vmr.getDuration()));
-                setComposeTextHint(time +" "+"Wischen zum Abbrechen...");
+                setComposeTextHint(time +" "+getString(R.string.swipe_to_cancel));
                 voiceHint = time;
             }
         }
