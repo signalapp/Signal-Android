@@ -250,6 +250,7 @@ public class AttachmentManager {
 
   public static void selectContactInfo(Activity activity, int requestCode) {
     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+    intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
     activity.startActivityForResult(intent, requestCode);
   }
 
