@@ -233,6 +233,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private VoiceMessageRecorder vmr;
     private String voiceHint = "";
     private BroadcastReceiver composeTextUpdateReceiver;
+    private boolean isSecureDestination;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -470,7 +471,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
 
         inflater.inflate(R.menu.conversation, menu);
-        if (isSingleConversation() && !isEncryptedConversation) {
+        if (isSingleConversation() && !isSecureDestination) {
             menu.findItem(R.id.menu_verify_identity).setVisible(false);
             updateSendBarViews(false);
         }
@@ -699,7 +700,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         verifyIdentityIntent.putExtra("master_secret", masterSecret);
         startActivity(verifyIdentityIntent);
     }
-
     private void handleStartSecureSession() {
         if (getRecipients() == null) {
             Toast.makeText(this, getString(R.string.ConversationActivity_invalid_recipient),
@@ -1069,7 +1069,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Recipient primaryRecipient = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
         boolean isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
         AxolotlAddress axolotlAddress = new AxolotlAddress(primaryRecipient != null ? primaryRecipient.getNumber() : "", TextSecureAddress.DEFAULT_DEVICE_ID);
-        boolean isSecureDestination = (isSingleConversation() && sessionStore.containsSession(axolotlAddress)) /*|| isPushGroupConversation()*/;
+        isSecureDestination = (isSingleConversation() && sessionStore.containsSession(axolotlAddress)) /*|| isPushGroupConversation()*/;
 
         if (isPushDestination || isSecureDestination) {
             this.isEncryptedConversation = true;

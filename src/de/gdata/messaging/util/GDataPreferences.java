@@ -270,7 +270,7 @@ public class GDataPreferences {
     int lastImageNumber = getLastImageIndicator();
 
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), "SecureChat");
+            Environment.DIRECTORY_PICTURES), ".SecureChat");
 
     File mediaFile = new File("");
     for(int i = 0; i<= lastImageNumber;i++) {
