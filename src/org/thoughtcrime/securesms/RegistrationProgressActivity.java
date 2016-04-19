@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -91,8 +92,11 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   private MasterSecret masterSecret;
   private volatile boolean visible;
 
+  private DynamicTheme dynamicTheme = new DynamicTheme();
+
   @Override
   public void onCreate(Bundle bundle) {
+    dynamicTheme.onCreate(this);
     super.onCreate(bundle);
     getSupportActionBar().setTitle(getString(R.string.RegistrationProgressActivity_verifying_number));
     setContentView(R.layout.registration_progress_activity);
@@ -110,6 +114,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
   @Override
   public void onResume() {
+    dynamicTheme.onResume(this);
     super.onResume();
     handleActivityVisible();
   }
