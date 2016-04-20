@@ -87,7 +87,11 @@ public class VoiceMessageRecorder {
 
     private void stopRecording() {
         if(mRecorder != null) {
-            mRecorder.stop();
+            try {
+                mRecorder.stop();
+            } catch (Exception ex) {
+             //if already stopped, then still release
+            }
             mRecorder.release();
             mRecorder = null;
             stopTime = System.currentTimeMillis();
