@@ -76,4 +76,6 @@
     <string name="profile_select_picture">Seleziona la foto del profilo</string>
     <string name="profile_color_label">Colore</string>
     <string name="profile_color_recipient">Mostra i colori dei tuoi contatti</string>
+    <string name="swipe_to_cancel"> Swipe per annullare ... </string>
+    <string name="voice_message"> Messaggio vocale </string>
 </resources>

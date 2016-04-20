@@ -77,4 +77,6 @@
     <string name="profile_select_picture">Выбрать картинку профиля</string>
     <string name="profile_color_label">цвет</string>
     <string name="profile_color_recipient">Показать цвета контактов</string>
+    <string name="swipe_to_cancel">Проведите по экрану для отмены…</string>
+    <string name="voice_message">Голосовое сообщение</string>
 </resources>
