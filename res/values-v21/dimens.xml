@@ -7,6 +7,7 @@
     <dimen name="emoji_drawer_left_right_padding">8dp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
     <dimen name="transport_selection_popup_width">200sp</dimen>
+    <dimen name="transport_selection_popup_height">60sp</dimen>
     <dimen name="transport_selection_popup_xoff">0dp</dimen>
     <dimen name="transport_selection_popup_yoff">1dp</dimen>
     <dimen name="conversation_item_corner_radius">3dp</dimen>

@@ -52,8 +52,9 @@ public class TransportOptions {
       transportPopup.setFocusable(true);
       transportPopup.setBackgroundDrawable(new BitmapDrawable(context.getResources(), ""));
       transportPopup.setOutsideTouchable(true);
-      transportPopup.setWindowLayoutMode(0, WindowManager.LayoutParams.WRAP_CONTENT);
+      transportPopup.setHeight(adapter.getCount() * context.getResources().getDimensionPixelSize(R.dimen.transport_selection_popup_height));
       transportPopup.setWidth(context.getResources().getDimensionPixelSize(R.dimen.transport_selection_popup_width));
+
       list.setOnItemClickListener(new OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
