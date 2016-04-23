@@ -364,15 +364,33 @@
                                 android:visibility="invisible" />
                     </FrameLayout>
 
+                    <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
                     <TextView
-                            android:id="@+id/connecting_text"
+                            android:id="@+id/connecting_text_focused"
                             style="@style/Registration.Constant"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
                             android:text="@string/registration_progress_activity__connecting"
-                            android:textSize="16.0sp" />
+                            android:textColor="?attr/registration_focused_color"
+                            android:textSize="16.0sp"
+                            android:visibility="invisible" />
+
+                    <TextView
+                            android:id="@+id/connecting_text_unfocused"
+                            style="@style/Registration.Constant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="4.0dip"
+                            android:paddingRight="8.0dip"
+                            android:text="@string/registration_progress_activity__connecting"
+                            android:textColor="@color/registration_unfocused_color"
+                            android:textSize="16.0sp"
+                            android:visibility="invisible" />
+                    </FrameLayout>
                 </TableRow>
 
                 <TableRow>
@@ -391,7 +409,7 @@
                                 android:gravity="center"
                                 android:paddingLeft="4dip"
                                 android:paddingRight="4dip"
-                                android:src="@drawable/check_dark"
+                                android:src="?registration_ic_check"
                                 android:visibility="invisible"
                                 android:contentDescription="@string/registration_progress_activity__check"/>
 
@@ -408,15 +426,33 @@
                                 android:visibility="invisible" />
                     </FrameLayout>
 
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
                     <TextView
-                            android:id="@+id/verification_text"
+                            android:id="@+id/verification_text_focused"
                             style="@style/Registration.Constant"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
                             android:text="@string/registration_progress_activity__waiting_for_sms_verification"
-                            android:textSize="16.0sp" />
+                            android:textColor="?attr/registration_focused_color"
+                            android:textSize="16.0sp"
+                            android:visibility="invisible" />
+
+                    <TextView
+                            android:id="@+id/verification_text_unfocused"
+                            style="@style/Registration.Constant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="4.0dip"
+                            android:paddingRight="8.0dip"
+                            android:text="@string/registration_progress_activity__waiting_for_sms_verification"
+                            android:textColor="@color/registration_unfocused_color"
+                            android:textSize="16.0sp"
+                            android:visibility="invisible" />
+                    </FrameLayout>
                 </TableRow>
 
                 <TableRow>
@@ -435,7 +471,7 @@
                                 android:gravity="center"
                                 android:paddingLeft="4dip"
                                 android:paddingRight="4dip"
-                                android:src="@drawable/check_dark"
+                                android:src="?registration_ic_check"
                                 android:visibility="invisible"
                                 android:contentDescription="@string/registration_progress_activity__check"/>
 
@@ -452,15 +488,33 @@
                                 android:visibility="invisible" />
                     </FrameLayout>
 
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
                     <TextView
-                            android:id="@+id/generating_keys_text"
+                            android:id="@+id/generating_keys_text_focused"
                             style="@style/Registration.Constant"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
                             android:text="@string/registration_progress_activity__generating_keys"
-                            android:textSize="16.0sp" />
+                            android:textColor="?attr/registration_focused_color"
+                            android:textSize="16.0sp"
+                            android:visibility="invisible" />
+
+                    <TextView
+                            android:id="@+id/generating_keys_text_unfocused"
+                            style="@style/Registration.Constant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="4.0dip"
+                            android:paddingRight="8.0dip"
+                            android:text="@string/registration_progress_activity__generating_keys"
+                            android:textColor="@color/registration_unfocused_color"
+                            android:textSize="16.0sp"
+                            android:visibility="invisible" />
+                    </FrameLayout>
                 </TableRow>
 
                 <TableRow>
@@ -479,7 +533,7 @@
                                 android:gravity="center"
                                 android:paddingLeft="4dip"
                                 android:paddingRight="4dip"
-                                android:src="@drawable/check_dark"
+                                android:src="?registration_ic_check"
                                 android:visibility="invisible"
                                 android:contentDescription="@string/registration_progress_activity__check"/>
 
@@ -496,15 +550,33 @@
                                 android:visibility="invisible" />
                     </FrameLayout>
 
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
                     <TextView
-                            android:id="@+id/gcm_registering_text"
+                            android:id="@+id/gcm_registering_text_focused"
                             style="@style/Registration.Constant"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
                             android:text="@string/registration_progress_activity__registering_with_server"
-                            android:textSize="16.0sp" />
+                            android:textColor="?attr/registration_focused_color"
+                            android:textSize="16.0sp"
+                            android:visibility="invisible" />
+
+                    <TextView
+                            android:id="@+id/gcm_registering_text_unfocused"
+                            style="@style/Registration.Constant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="4.0dip"
+                            android:paddingRight="8.0dip"
+                            android:text="@string/registration_progress_activity__registering_with_server"
+                            android:textColor="@color/registration_unfocused_color"
+                            android:textSize="16.0sp"
+                            android:visibility="invisible" />
+                    </FrameLayout>
                 </TableRow>
 
             </TableLayout>
