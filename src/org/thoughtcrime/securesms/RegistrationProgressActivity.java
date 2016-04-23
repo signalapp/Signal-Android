@@ -50,7 +50,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
   private static final String TAG = RegistrationProgressActivity.class.getSimpleName();
 
-  private static final int FOCUSED_COLOR   = Color.parseColor("#ff333333");
+  private static final int FOCUSED_COLOR   = Color.parseColor("#ff1c7ac5");
   private static final int UNFOCUSED_COLOR = Color.parseColor("#ff808080");
 
   private ServiceConnection    serviceConnection        = new RegistrationServiceConnection();

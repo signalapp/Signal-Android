@@ -198,6 +198,8 @@
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
+
+        <item name="registration_ic_check">@drawable/check_dark</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -315,5 +317,7 @@
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
+
+        <item name="registration_ic_check">@drawable/check</item>
     </style>
 </resources>
