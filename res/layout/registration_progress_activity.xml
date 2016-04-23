@@ -68,18 +68,25 @@
             </RelativeLayout>
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                app:cardPreventCornerOverlap="false" >
+
             <RelativeLayout android:id="@+id/voice_verification_layout"
-                            android:layout_width="fill_parent"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dip"
-                            android:background="@drawable/background_pane">
+                            android:padding="10dip"
+                            android:background="?device_link_item_card_background">
 
                 <ImageView android:id="@+id/telephone"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:paddingLeft="4dip"
                            android:paddingRight="4dip"
-                           android:src="@drawable/telephone"
+                           android:src="@drawable/ic_phone_grey600_32dp"
                            android:contentDescription="@string/registration_progress_activity__telephone"/>
 
                 <TextView style="@style/Registration.Constant"
@@ -90,7 +97,7 @@
                           android:paddingLeft="4dip"
                           android:paddingRight="8dip"
                           android:text="@string/registration_progress_activity__voice_verification"
-                          android:textColor="#333333"
+                          android:textColor="?android:textColorPrimary"
                           android:textSize="16sp"/>
 
                 <TextView android:id="@+id/telephone_text"
@@ -101,7 +108,8 @@
                           android:paddingLeft="4dip"
                           android:paddingRight="4dip"
                           android:paddingBottom="10dip"
-                          android:text="@string/registration_progress_activity__signal_can_also_call_you_to_verify_your_number"/>
+                          android:text="@string/registration_progress_activity__signal_can_also_call_you_to_verify_your_number"
+                          android:textColor="?android:textColorSecondary" />
 
                 <LinearLayout android:id="@+id/code_container"
                               android:orientation="horizontal"
@@ -147,6 +155,7 @@
                         android:textStyle="bold"
                         android:layout_below="@id/call_button"/>
             </RelativeLayout>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
 
         <LinearLayout
