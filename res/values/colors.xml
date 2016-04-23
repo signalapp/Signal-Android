@@ -40,8 +40,8 @@
     <color name="light_button">#33ffffff</color>
     <color name="light_button_highlight">#66ffffff</color>
 
-    <color name="device_link_item_background_light">#ffffffff</color>
-    <color name="device_link_item_background_dark">#ff333333</color>
+    <color name="cardview_background_light">#ffffffff</color>
+    <color name="cardview_background_dark">#ff333333</color>
 
     <color name="import_export_item_background_light">#ffeeeeee</color>
     <color name="import_export_item_background_dark">#ff333333</color>

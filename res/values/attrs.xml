@@ -78,7 +78,7 @@
     <attr name="contact_selection_label_text" format="reference|color" />
     <attr name="contact_selection_header_text" format="reference|color" />
 
-    <attr name="device_link_item_card_background" format="reference|color" />
+    <attr name="cardview_background" format="reference|color" />
 
     <attr name="import_export_item_background_color" format="reference|color" />
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
