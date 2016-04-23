@@ -152,12 +152,18 @@
                 android:orientation="vertical"
                 android:visibility="gone" >
 
+            <android.support.v7.widget.CardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                app:cardPreventCornerOverlap="false" >
+
             <RelativeLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dip"
-                    android:layout_marginTop="10dip"
-                    android:background="@drawable/background_pane" >
+                    android:padding="10dip"
+                    android:background="?device_link_item_card_background">
 
                 <ImageView
                         android:id="@+id/connectivity_alert"
@@ -166,7 +172,7 @@
                         android:layout_alignParentLeft="true"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:src="@drawable/alert"
+                        android:src="?dialog_alert_icon"
                         android:contentDescription="@string/registration_progress_activity__alert"/>
 
                 <TextView
@@ -178,7 +184,7 @@
                         android:paddingLeft="4.0dip"
                         android:paddingRight="8.0dip"
                         android:text="@string/registration_progress_activity__connectivity_error"
-                        android:textColor="#333333"
+                        android:textColor="?android:textColorPrimary"
                         android:textSize="16.0sp" />
 
                 <TextView
@@ -188,8 +194,10 @@
                         android:layout_below="@+id/connectivity_alert"
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
-                        android:text="@string/registration_progress_activity__signal_was_unable_to_connect_to_the_server" />
+                        android:text="@string/registration_progress_activity__signal_was_unable_to_connect_to_the_server"
+                        android:textColor="?android:textColorSecondary" />
             </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
             <Button
                     android:id="@+id/connectivity_failure_edit_button"
