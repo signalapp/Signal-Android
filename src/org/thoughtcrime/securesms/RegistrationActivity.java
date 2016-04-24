@@ -68,6 +68,12 @@ public class RegistrationActivity extends BaseActionBarActivity {
   }
 
   @Override
+  public void onResume() {
+    dynamicTheme.onResume(this);
+    super.onResume();
+  }
+
+  @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == PICK_COUNTRY && resultCode == RESULT_OK && data != null) {
       this.countryCode.setText(data.getIntExtra("country_code", 1)+"");

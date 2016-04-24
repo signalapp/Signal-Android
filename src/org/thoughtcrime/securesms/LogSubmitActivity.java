@@ -31,7 +31,7 @@ public class LogSubmitActivity extends BaseActionBarActivity implements SubmitLo
 
   @Override
   protected void onResume() {
-    dynamicTheme.onCreate(this);
+    dynamicTheme.onResume(this);
     super.onResume();
   }
 
