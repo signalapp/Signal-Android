@@ -138,13 +138,18 @@ public class RecipientProvider {
 
     try {
       if (cursor != null && cursor.moveToFirst()) {
-        Uri          contactUri   = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
-        String       name         = cursor.getString(3).equals(cursor.getString(0)) ? null : cursor.getString(0);
-        ContactPhoto contactPhoto = ContactPhotoFactory.getContactPhoto(context,
-                                                                        Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
-                                                                        name);
+        final String resultNumber = cursor.getString(3);
+        if (resultNumber != null) {
+          Uri          contactUri   = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
+          String       name         = resultNumber.equals(cursor.getString(0)) ? null : cursor.getString(0);
+          ContactPhoto contactPhoto = ContactPhotoFactory.getContactPhoto(context,
+                                                                          Uri.withAppendedPath(Contacts.CONTENT_URI, cursor.getLong(2) + ""),
+                                                                          name);
 
-        return new RecipientDetails(cursor.getString(0), cursor.getString(3), contactUri, contactPhoto, color);
+          return new RecipientDetails(cursor.getString(0), resultNumber, contactUri, contactPhoto, color);
+        } else {
+          Log.w(TAG, "resultNumber is null");
+        }
       }
     } finally {
       if (cursor != null)
