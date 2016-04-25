@@ -23,7 +23,7 @@
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:orientation="vertical"
-                      android:background="?device_link_item_card_background">
+                      android:background="?attr/cardview_background">
 
             <TextView
                     android:layout_width="wrap_content"

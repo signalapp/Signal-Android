@@ -26,6 +26,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
@@ -51,8 +52,11 @@ public class RegistrationActivity extends BaseActionBarActivity {
 
   private MasterSecret masterSecret;
 
+  private DynamicTheme dynamicTheme = new DynamicTheme();
+
   @Override
   public void onCreate(Bundle icicle) {
+    dynamicTheme.onCreate(this);
     super.onCreate(icicle);
     setContentView(R.layout.registration_activity);
 
@@ -61,6 +65,12 @@ public class RegistrationActivity extends BaseActionBarActivity {
     initializeResources();
     initializeSpinner();
     initializeNumber();
+  }
+
+  @Override
+  public void onResume() {
+    dynamicTheme.onResume(this);
+    super.onResume();
   }
 
   @Override

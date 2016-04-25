@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -48,9 +49,6 @@ import static org.thoughtcrime.securesms.service.RegistrationService.Registratio
 public class RegistrationProgressActivity extends BaseActionBarActivity {
 
   private static final String TAG = RegistrationProgressActivity.class.getSimpleName();
-
-  private static final int FOCUSED_COLOR   = Color.parseColor("#ff333333");
-  private static final int UNFOCUSED_COLOR = Color.parseColor("#ff808080");
 
   private ServiceConnection    serviceConnection        = new RegistrationServiceConnection();
   private Handler              registrationStateHandler = new RegistrationStateHandler();
@@ -75,11 +73,15 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   private ImageView   generatingKeysCheck;
   private ImageView   gcmRegistrationCheck;
 
-  private TextView    connectingText;
-  private TextView    verificationText;
+  private TextView    connectingTextFocused;
+  private TextView    connectingTextUnfocused;
+  private TextView    verificationTextFocused;
+  private TextView    verificationTextUnfocused;
   private TextView    registrationTimerText;
-  private TextView    generatingKeysText;
-  private TextView    gcmRegistrationText;
+  private TextView    generatingKeysTextFocused;
+  private TextView    generatingKeysTextUnfocused;
+  private TextView    gcmRegistrationTextFocused;
+  private TextView    gcmRegistrationTextUnfocused;
 
   private Button      verificationFailureButton;
   private Button      connectivityFailureButton;
@@ -91,8 +93,11 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   private MasterSecret masterSecret;
   private volatile boolean visible;
 
+  private DynamicTheme dynamicTheme = new DynamicTheme();
+
   @Override
   public void onCreate(Bundle bundle) {
+    dynamicTheme.onCreate(this);
     super.onCreate(bundle);
     getSupportActionBar().setTitle(getString(R.string.RegistrationProgressActivity_verifying_number));
     setContentView(R.layout.registration_progress_activity);
@@ -110,6 +115,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
   @Override
   public void onResume() {
+    dynamicTheme.onResume(this);
     super.onResume();
     handleActivityVisible();
   }
@@ -131,31 +137,35 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   }
 
   private void initializeResources() {
-    this.masterSecret              = getIntent().getParcelableExtra("master_secret");
-    this.registrationLayout        = (LinearLayout)findViewById(R.id.registering_layout);
-    this.verificationFailureLayout = (LinearLayout)findViewById(R.id.verification_failure_layout);
-    this.connectivityFailureLayout = (LinearLayout)findViewById(R.id.connectivity_failure_layout);
-    this.registrationProgress      = (ProgressBar) findViewById(R.id.registration_progress);
-    this.connectingProgress        = (ProgressBar) findViewById(R.id.connecting_progress);
-    this.verificationProgress      = (ProgressBar) findViewById(R.id.verification_progress);
-    this.generatingKeysProgress    = (ProgressBar) findViewById(R.id.generating_keys_progress);
-    this.gcmRegistrationProgress   = (ProgressBar) findViewById(R.id.gcm_registering_progress);
-    this.connectingCheck           = (ImageView)   findViewById(R.id.connecting_complete);
-    this.verificationCheck         = (ImageView)   findViewById(R.id.verification_complete);
-    this.generatingKeysCheck       = (ImageView)   findViewById(R.id.generating_keys_complete);
-    this.gcmRegistrationCheck      = (ImageView)   findViewById(R.id.gcm_registering_complete);
-    this.connectingText            = (TextView)    findViewById(R.id.connecting_text);
-    this.verificationText          = (TextView)    findViewById(R.id.verification_text);
-    this.registrationTimerText     = (TextView)    findViewById(R.id.registration_timer);
-    this.generatingKeysText        = (TextView)    findViewById(R.id.generating_keys_text);
-    this.gcmRegistrationText       = (TextView)    findViewById(R.id.gcm_registering_text);
-    this.verificationFailureButton = (Button)      findViewById(R.id.verification_failure_edit_button);
-    this.connectivityFailureButton = (Button)      findViewById(R.id.connectivity_failure_edit_button);
-    this.callButton                = (Button)      findViewById(R.id.call_button);
-    this.verifyButton              = (Button)      findViewById(R.id.verify_button);
-    this.codeEditText              = (EditText)    findViewById(R.id.telephone_code);
-    this.timeoutProgressLayout     = (RelativeLayout) findViewById(R.id.timer_progress_layout);
-    Button editButton              = (Button)      findViewById(R.id.edit_button);
+    this.masterSecret                 = getIntent().getParcelableExtra("master_secret");
+    this.registrationLayout           = (LinearLayout)findViewById(R.id.registering_layout);
+    this.verificationFailureLayout    = (LinearLayout)findViewById(R.id.verification_failure_layout);
+    this.connectivityFailureLayout    = (LinearLayout)findViewById(R.id.connectivity_failure_layout);
+    this.registrationProgress         = (ProgressBar) findViewById(R.id.registration_progress);
+    this.connectingProgress           = (ProgressBar) findViewById(R.id.connecting_progress);
+    this.verificationProgress         = (ProgressBar) findViewById(R.id.verification_progress);
+    this.generatingKeysProgress       = (ProgressBar) findViewById(R.id.generating_keys_progress);
+    this.gcmRegistrationProgress      = (ProgressBar) findViewById(R.id.gcm_registering_progress);
+    this.connectingCheck              = (ImageView)   findViewById(R.id.connecting_complete);
+    this.verificationCheck            = (ImageView)   findViewById(R.id.verification_complete);
+    this.generatingKeysCheck          = (ImageView)   findViewById(R.id.generating_keys_complete);
+    this.gcmRegistrationCheck         = (ImageView)   findViewById(R.id.gcm_registering_complete);
+    this.connectingTextFocused        = (TextView)    findViewById(R.id.connecting_text_focused);
+    this.connectingTextUnfocused      = (TextView)    findViewById(R.id.connecting_text_unfocused);
+    this.verificationTextFocused      = (TextView)    findViewById(R.id.verification_text_focused);
+    this.verificationTextUnfocused    = (TextView)    findViewById(R.id.verification_text_unfocused);
+    this.registrationTimerText        = (TextView)    findViewById(R.id.registration_timer);
+    this.generatingKeysTextFocused    = (TextView)    findViewById(R.id.generating_keys_text_focused);
+    this.generatingKeysTextUnfocused  = (TextView)    findViewById(R.id.generating_keys_text_unfocused);
+    this.gcmRegistrationTextFocused   = (TextView)    findViewById(R.id.gcm_registering_text_focused);
+    this.gcmRegistrationTextUnfocused = (TextView)    findViewById(R.id.gcm_registering_text_unfocused);
+    this.verificationFailureButton    = (Button)      findViewById(R.id.verification_failure_edit_button);
+    this.connectivityFailureButton    = (Button)      findViewById(R.id.connectivity_failure_edit_button);
+    this.callButton                   = (Button)      findViewById(R.id.call_button);
+    this.verifyButton                 = (Button)      findViewById(R.id.verify_button);
+    this.codeEditText                 = (EditText)    findViewById(R.id.telephone_code);
+    this.timeoutProgressLayout        = (RelativeLayout) findViewById(R.id.timer_progress_layout);
+    Button editButton                 = (Button)      findViewById(R.id.edit_button);
 
     editButton.setOnClickListener(new EditButtonListener());
     this.verificationFailureButton.setOnClickListener(new EditButtonListener());
@@ -222,10 +232,14 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     this.generatingKeysCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
-    this.connectingText.setTextColor(FOCUSED_COLOR);
-    this.verificationText.setTextColor(UNFOCUSED_COLOR);
-    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
-    this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
+    this.connectingTextFocused.setVisibility(View.VISIBLE);
+    this.connectingTextUnfocused.setVisibility(View.INVISIBLE);
+    this.verificationTextFocused.setVisibility(View.INVISIBLE);
+    this.verificationTextUnfocused.setVisibility(View.VISIBLE);
+    this.generatingKeysTextFocused.setVisibility(View.INVISIBLE);
+    this.generatingKeysTextUnfocused.setVisibility(View.VISIBLE);
+    this.gcmRegistrationTextFocused.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationTextUnfocused.setVisibility(View.VISIBLE);
     this.timeoutProgressLayout.setVisibility(View.VISIBLE);
   }
 
@@ -241,10 +255,14 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     this.generatingKeysCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
-    this.connectingText.setTextColor(UNFOCUSED_COLOR);
-    this.verificationText.setTextColor(FOCUSED_COLOR);
-    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
-    this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
+    this.connectingTextFocused.setVisibility(View.INVISIBLE);
+    this.connectingTextUnfocused.setVisibility(View.VISIBLE);
+    this.verificationTextFocused.setVisibility(View.VISIBLE);
+    this.verificationTextUnfocused.setVisibility(View.INVISIBLE);
+    this.generatingKeysTextFocused.setVisibility(View.INVISIBLE);
+    this.generatingKeysTextUnfocused.setVisibility(View.VISIBLE);
+    this.gcmRegistrationTextFocused.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationTextUnfocused.setVisibility(View.VISIBLE);
     this.registrationProgress.setVisibility(View.VISIBLE);
     this.timeoutProgressLayout.setVisibility(View.VISIBLE);
   }
@@ -261,10 +279,14 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     this.generatingKeysCheck.setVisibility(View.INVISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.INVISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
-    this.connectingText.setTextColor(UNFOCUSED_COLOR);
-    this.verificationText.setTextColor(UNFOCUSED_COLOR);
-    this.generatingKeysText.setTextColor(FOCUSED_COLOR);
-    this.gcmRegistrationText.setTextColor(UNFOCUSED_COLOR);
+    this.connectingTextFocused.setVisibility(View.INVISIBLE);
+    this.connectingTextUnfocused.setVisibility(View.VISIBLE);
+    this.verificationTextFocused.setVisibility(View.INVISIBLE);
+    this.verificationTextUnfocused.setVisibility(View.VISIBLE);
+    this.generatingKeysTextFocused.setVisibility(View.VISIBLE);
+    this.generatingKeysTextUnfocused.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationTextFocused.setVisibility(View.INVISIBLE);
+    this.gcmRegistrationTextUnfocused.setVisibility(View.VISIBLE);
     this.registrationProgress.setVisibility(View.INVISIBLE);
     this.timeoutProgressLayout.setVisibility(View.INVISIBLE);
   }
@@ -281,10 +303,14 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     this.generatingKeysCheck.setVisibility(View.VISIBLE);
     this.gcmRegistrationProgress.setVisibility(View.VISIBLE);
     this.gcmRegistrationCheck.setVisibility(View.INVISIBLE);
-    this.connectingText.setTextColor(UNFOCUSED_COLOR);
-    this.verificationText.setTextColor(UNFOCUSED_COLOR);
-    this.generatingKeysText.setTextColor(UNFOCUSED_COLOR);
-    this.gcmRegistrationText.setTextColor(FOCUSED_COLOR);
+    this.connectingTextFocused.setVisibility(View.INVISIBLE);
+    this.connectingTextUnfocused.setVisibility(View.VISIBLE);
+    this.verificationTextFocused.setVisibility(View.INVISIBLE);
+    this.verificationTextUnfocused.setVisibility(View.VISIBLE);
+    this.generatingKeysTextFocused.setVisibility(View.INVISIBLE);
+    this.generatingKeysTextUnfocused.setVisibility(View.VISIBLE);
+    this.gcmRegistrationTextFocused.setVisibility(View.VISIBLE);
+    this.gcmRegistrationTextUnfocused.setVisibility(View.INVISIBLE);
     this.registrationProgress.setVisibility(View.INVISIBLE);
     this.timeoutProgressLayout.setVisibility(View.INVISIBLE);
   }

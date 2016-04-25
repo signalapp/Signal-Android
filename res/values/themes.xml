@@ -155,7 +155,7 @@
         <item name="dialog_info_icon">@drawable/ic_info_outline_light</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_light</item>
 
-        <item name="device_link_item_card_background">@color/device_link_item_background_light</item>
+        <item name="cardview_background">@color/cardview_background_light</item>
 
         <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
@@ -198,6 +198,10 @@
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
+
+        <item name="registration_ic_check">@drawable/check_dark</item>
+        <item name="registration_focused_color">#ff333333</item>
+        <item name="registration_problems_link_color">@color/signal_primary</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -236,7 +240,7 @@
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>
 
-        <item name="device_link_item_card_background">@color/device_link_item_background_dark</item>
+        <item name="cardview_background">@color/cardview_background_dark</item>
 
         <item name="import_export_item_background_color">@color/import_export_item_background_dark</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>
@@ -315,5 +319,9 @@
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
+
+        <item name="registration_ic_check">@drawable/check</item>
+        <item name="registration_focused_color">@color/white</item>
+        <item name="registration_problems_link_color">@color/signal_primary_dark</item>
     </style>
 </resources>
