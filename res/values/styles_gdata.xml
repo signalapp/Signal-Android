@@ -24,8 +24,8 @@
         <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
         <item name="actionOverflowButtonStyle">@style/OverFlow</item>
 
-        <item name="android:actionModeBackground">@color/gdata_primary_color</item>
-        <item name="actionModeBackground">@color/gdata_primary_color</item>
+        <item name="android:actionModeBackground">@color/transparent</item>
+        <item name="actionModeBackground">@color/transparent</item>
         <item name="android:actionModeSplitBackground">@color/gdata_primary_color</item>
         <item name="actionModeSplitBackground">@color/gdata_primary_color</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
@@ -166,10 +166,10 @@
 
         <item name="android:windowContentOverlay">@null</item>
 
-        <item name="android:actionModeBackground">@color/gdata_primary_color</item>
-        <item name="actionModeBackground">@color/gdata_primary_color</item>
-        <item name="android:actionModeSplitBackground">@color/gdata_primary_color</item>
-        <item name="actionModeSplitBackground">@color/gdata_primary_color</item>
+        <item name="android:actionModeBackground">@color/transparent</item>
+        <item name="actionModeBackground">@color/transparent</item>
+        <item name="android:actionModeSplitBackground">@color/transparent</item>
+        <item name="actionModeSplitBackground">@color/transparent</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
 
@@ -300,8 +300,8 @@
         <item name="actionBarTabBarStyle">@style/TabStyle</item>
     </style>
     <style name="My.Widget.ActionMode" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
-        <item name="background">@color/gdata_primary_color</item>
-        <item name="android:background">@color/gdata_primary_color</item>
+        <item name="background">@color/gray95_transparent50</item>
+        <item name="android:background">@color/gray95_transparent50</item>
         <item name="titleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Title</item>
         <item name="android:titleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Title</item>
         <item name="subtitleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Subtitle</item>

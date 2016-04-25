@@ -77,4 +77,6 @@
     <string name="profile_select_picture">選擇個人頭像</string>
     <string name="profile_color_label">膚色</string>
     <string name="profile_color_recipient">顯示您聊天對象的顔色</string>
+    <string name="swipe_to_cancel">滑動取消…</string>
+    <string name="voice_message">語音訊息</string>
 </resources>

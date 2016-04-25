@@ -519,8 +519,7 @@ public class RegistrationProgressActivity extends ActionBarActivity {
             TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
             int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
 
-            accountManager.verifyAccount(code, signalingKey, true, registrationId);
-
+            accountManager.verifyAccountWithCode(code, signalingKey, registrationId, true);
             return SUCCESS;
           } catch(AuthorizationFailedException aex){
             Log.w("RegistrationProgressActivity", aex);

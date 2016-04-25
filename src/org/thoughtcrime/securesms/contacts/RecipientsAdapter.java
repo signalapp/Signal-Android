@@ -31,6 +31,8 @@ import android.view.View;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
+import de.gdata.messaging.util.GUtil;
+
 /**
  * This adapter is used to filter contacts on both name and number.
  */
@@ -112,10 +114,27 @@ public class RecipientsAdapter extends ResourceCursorAdapter {
         int type = cursor.getInt(TYPE_INDEX);
         label.setText(mContactAccessor.phoneTypeToString(mContext, type, cursor.getString(LABEL_INDEX)));
 
+        String numberString = cursor.getString(NUMBER_INDEX);
+        String nameString = cursor.getString(NAME_INDEX);
         TextView number = (TextView) view.findViewById(R.id.number);
-        number.setText("(" + cursor.getString(NUMBER_INDEX) + ")");
-    }
 
+        if(!GUtil.isValidPhoneNumber(numberString)) {
+            number.setText(context.getString(R.string.RegistrationActivity_invalid_number));
+            view.setClickable(true);
+        } else {
+            if(numberString.length() != nameString.length()) {
+                number.setText("(" + numberString + ")");
+                view.setClickable(false);
+            } else {
+                number.setText("");
+                if(!usefulAsDigits(nameString)) {
+                    view.setClickable(true);
+                } else {
+                    view.setClickable(false);
+                }
+            }
+        }
+    }
     @Override
     public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
        return mContactAccessor.getCursorForRecipientFilter( constraint, mContentResolver );

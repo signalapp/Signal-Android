@@ -1,5 +1,5 @@
-def verName = "1.0.4.2."
-def verNumber = 11
+def verName = "1.0.5.1"
+def verNumber = 13
 
 def gitRevision = (System.env['GIT_COMMIT'] ? System.env['GIT_COMMIT'] : "MASTER  ").toString()
 def gitBranch = (System.env['GIT_BRANCH'] ? System.env['GIT_BRANCH'].toString().substring(7) : "develop")
@@ -65,11 +65,11 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.6.0'
     compile 'com.makeramen:roundedimageview:1.5.0'
 
-    compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
+    compile('com.android.support:support-v4-preferencefragment:1.0.0@aar') {
         exclude module: 'support-v4'
     }
     compile 'com.squareup.dagger:dagger:1.2.2'
-    compile ("com.doomonafireball.betterpickers:library:1.6.0") {
+    compile("com.doomonafireball.betterpickers:library:1.6.0") {
         exclude group: 'com.android.support', module: 'support-v4'
     }
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
@@ -85,6 +85,7 @@ dependencies {
     //compile project(':libtextsecure')
     compile project(':LibTextsecure')
     compile project(':IsfaServerDefinitions')
+    compile 'com.adjust.sdk:adjust-android:3.6.1'
 }
 dependencyVerification {
     verify = [
@@ -140,6 +141,8 @@ android {
         targetSdkVersion 22
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+        buildConfigField "String", "USER_AGENT", "\"GDATA SecureChat " + verName + "\""
+        buildConfigField "String", "SECURECHAT_PUSH_URL", "\"https://scsrv.secure.gd:8080\""
 
         versionCode verNumber
         versionName verName + gitRevision.substring(0, 8)
@@ -154,10 +157,12 @@ android {
     signingConfigs {
         release
     }
+
     buildTypes {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-adjust.pro',
                     'proguard-google-play-services.pro',
                     'proguard-dagger.pro',
                     'proguard-jackson.pro',
@@ -169,10 +174,12 @@ android {
                     'proguard-rounded-image-view.pro',
                     'proguard-glide.pro',
                     'proguard.cfg'
+            manifestPlaceholders = [adjustAppToken: System.env['ADJUST_APP_TOKEN'] ? System.env['ADJUST_APP_TOKEN'] : '', adjustEnvironment: "sandbox"]
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-adjust.pro',
                     'proguard-google-play-services.pro',
                     'proguard-dagger.pro',
                     'proguard-jackson.pro',
@@ -185,6 +192,7 @@ android {
                     'proguard-glide.pro',
                     'proguard.cfg'
             signingConfig signingConfigs.release
+            manifestPlaceholders = [adjustAppToken: System.env['ADJUST_APP_TOKEN'] ? System.env['ADJUST_APP_TOKEN'] : '', adjustEnvironment: "production"]
         }
     }
 
@@ -217,7 +225,7 @@ android {
     }
 
 
-     lintOptions {
+    lintOptions {
         abortOnError false
     }
 }
@@ -231,15 +239,14 @@ tasks.whenTaskAdded { task ->
 def Properties props = new Properties()
 def propFile = new File('signing.properties')
 
-if (propFile.canRead()){
+if (propFile.canRead()) {
     props.load(new FileInputStream(propFile))
 
-    if (props !=null &&
-        props.containsKey('STORE_FILE')     &&
-        props.containsKey('STORE_PASSWORD') &&
-        props.containsKey('KEY_ALIAS')      &&
-        props.containsKey('KEY_PASSWORD'))
-    {
+    if (props != null &&
+            props.containsKey('STORE_FILE') &&
+            props.containsKey('STORE_PASSWORD') &&
+            props.containsKey('KEY_ALIAS') &&
+            props.containsKey('KEY_PASSWORD')) {
         android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
         android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
         android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
@@ -248,7 +255,7 @@ if (propFile.canRead()){
         println 'signing.properties found but some entries are missing'
         android.buildTypes.release.signingConfig = null
     }
-}else {
+} else {
     println 'signing.properties not found'
     android.buildTypes.release.signingConfig = null
 }

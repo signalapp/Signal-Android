@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.ThumbnailTransform;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
@@ -37,6 +38,7 @@ public class ThumbnailView extends ForegroundImageView {
   private SlideDeckListener slideDeckListener = null;
   private ThumbnailClickListener thumbnailClickListener = null;
   private String slideId = null;
+  private Slide videoSlide;
 
   public Slide getSlide() {
     return slide;
@@ -45,7 +47,9 @@ public class ThumbnailView extends ForegroundImageView {
   public void setSlide(Slide slide) {
     this.slide = slide;
   }
-
+  public void setVideoSlide(VideoSlide slide) {
+    this.videoSlide = slide;
+  }
   private Slide slide = null;
   private Handler handler = new Handler();
   private boolean isLoadingDone = false;
@@ -162,6 +166,10 @@ public class ThumbnailView extends ForegroundImageView {
         .crossFade();
   }
 
+  public Slide getVideoSlide() {
+    return videoSlide;
+  }
+
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
     private final MasterSecret masterSecret;
 
@@ -174,6 +182,7 @@ public class ThumbnailView extends ForegroundImageView {
       if (slideDeck == null) return;
 
       final Slide slide = slideDeck.getThumbnailSlide();
+      videoSlide = slideDeck.getVideoSlide();
       if (slide != null) {
         handler.post(new Runnable() {
           @Override
@@ -186,8 +195,17 @@ public class ThumbnailView extends ForegroundImageView {
         handler.post(new Runnable() {
           @Override
           public void run() {
-            Log.w(TAG, "Resolved slide was null!");
-            setVisibility(View.GONE);
+            Log.w(TAG, "Resolved slide was null! " + (videoSlide != null));
+            if(videoSlide == null) {
+              setVisibility(View.GONE);
+            } else {
+              handler.post(new Runnable() {
+                @Override
+                public void run() {
+                  setImageResource(videoSlide, masterSecret);
+                }
+              });
+            }
           }
         });
       }
@@ -226,7 +244,11 @@ public class ThumbnailView extends ForegroundImageView {
     @Override
     public void onClick(View view) {
       if (listener != null) {
-        listener.onClick(view, slide);
+        if(videoSlide != null) {
+          listener.onClick(view, videoSlide);
+        } else {
+          listener.onClick(view, slide);
+        }
       } else {
         Log.w(TAG, "onClick, but no thumbnail click listener attached.");
       }

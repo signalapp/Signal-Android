@@ -26,7 +26,7 @@ import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
-import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -119,34 +119,50 @@ public class PushProfileSendJob extends PushSendJob implements InjectableType {
       byte[] buf = new byte[size];
       int len = inputStream.read(buf, 0, size);
 
-      GDataPreferences pr = new GDataPreferences(context);
-      boolean imageHasChanged = pr.hasProfileImageChanged();
-      boolean oldVersion = pr.getVersionForProfileId(GUtil.numberToLong(destination)+"").equals(ProfileAccessor.OLD_VERSION);
+        GDataPreferences pr = new GDataPreferences(context);
+        boolean imageHasChanged = pr.hasProfileImageChanged();
+        boolean oldVersion = pr.getVersionForProfileId(GUtil.numberToLong(destination)+"").equals(ProfileAccessor.OLD_VERSION);
 
-      if(!oldVersion) {
-        if (!imageHasChanged) {
-          attachments.clear();
+        if(!oldVersion) {
+            if (!imageHasChanged) {
+                attachments.clear();
+            }
+            attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
+                    + new GDataPreferences(context).getCurrentColorHex()
+                    + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len, new TextSecureAttachment.ProgressListener() {
+                @Override
+                public void onAttachmentProgress(long total, long progress) {
+                    //Hopefully useful for later use
+                }
+            }));
+
+            attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_VERSION
+                    + GUtil.getAppVersionCode(context)
+                    + ProfileAccessor.TAG_CLOSE_PROFILE_VERSION, len, new TextSecureAttachment.ProgressListener() {
+                @Override
+                public void onAttachmentProgress(long total, long progress) {
+                    //Hopefully useful for later use
+                }
+            }));
+        } else {
+            attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
+                    + new GDataPreferences(context).getCurrentColorHex()
+                    + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len, new TextSecureAttachment.ProgressListener() {
+                @Override
+                public void onAttachmentProgress(long total, long progress) {
+                    //Hopefully useful for later use
+                }
+            }));
         }
-        attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
-                + new GDataPreferences(context).getCurrentColorHex()
-                + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len));
-
-        attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_VERSION
-                + GUtil.getAppVersionCode(context)
-                + ProfileAccessor.TAG_CLOSE_PROFILE_VERSION, len));
-      } else {
-        attachments.add(0, new TextSecureAttachmentStream(inputStream, ProfileAccessor.TAG_OPEN_PROFILE_COLOR
-                + new GDataPreferences(context).getCurrentColorHex()
-                + ProfileAccessor.TAG_CLOSE_PROFILE_COLOR, len));
-      }
-      TextSecureMessage mediaMessage = TextSecureMessage.newBuilder()
+        TextSecureDataMessage mediaMessage = TextSecureDataMessage.newBuilder()
                 .withBody(body)
                 .withAttachments(attachments)
                 .withTimestamp(message.getSentTimestamp())
                 .asProfileUpdate(asProfileUpdate)
                 .build();
 
-      messageSender.sendMessage(address, mediaMessage);
+        messageSender.sendMessage(address, mediaMessage);
+
     } catch (InvalidNumberException | UnregisteredUserException e) {
       Log.w(TAG, e);
       throw new InsecureFallbackApprovalException(e);

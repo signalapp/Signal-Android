@@ -21,6 +21,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
@@ -28,10 +29,13 @@ import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -51,13 +55,16 @@ public class AttachmentManager {
   public static final int MEDIA_TYPE_VIDEO = 23;
   public static final int MEDIA_TYPE_IMAGE = 24;
   private static final String MEDIA_FILE_NAME = "media_file_";
+  private static final String HIDDEN_FOLDER = ".SecureChat";
 
-  private static Context            context;
+  private static Activity            context;
   private final View               attachmentView;
   private final ThumbnailView      thumbnail;
   private final ImageButton        removeButton;
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
+
+  private int widthBefore = 0;
 
   private static File captureFile;
 
@@ -85,8 +92,46 @@ public class AttachmentManager {
   public void setMedia(final Slide slide) {
     slideDeck.clear();
     slideDeck.addSlide(slide);
+    if(slide.hasVideo()) {
+      ImageSlide videoThumbnail = copyUriToStorageAndGenerateImageSlide(slide.getUri());
+      if(videoThumbnail != null) {
+        slideDeck.addSlide(videoThumbnail);
+      }
+    }
     attachmentView.setVisibility(View.VISIBLE);
     thumbnail.setImageResource(slide);
+    if(slide instanceof AudioSlide) {
+      widthBefore =  widthBefore < thumbnail.getLayoutParams().height ? thumbnail.getLayoutParams().height : widthBefore;
+      attachmentView.getLayoutParams().height = 100;
+      thumbnail.getLayoutParams().height = 150;
+      thumbnail.getLayoutParams().width = 150;
+      thumbnail.setBackgroundResource(R.drawable.ic_settings_voice_black);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        thumbnail.setImageAlpha(0);
+        attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.INVISIBLE);
+      }
+    } else {
+      if(widthBefore != 0) {
+        attachmentView.getLayoutParams().height = 2;
+        thumbnail.getLayoutParams().height = widthBefore;
+        thumbnail.getLayoutParams().width = widthBefore;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+          thumbnail.setImageAlpha(255);
+        }
+        thumbnail.setBackgroundResource(R.drawable.gdata_conversation_item_sent_shape);
+        attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.VISIBLE);
+      }
+    }
+      /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+          attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.VISIBLE);
+          thumbnail.setImageAlpha(255);
+        }
+        attachmentView.getLayoutParams().height = 200;
+        thumbnail.getLayoutParams().height = 200;
+        thumbnail.getLayoutParams().width = 200;
+        thumbnail.setBackgroundResource(R.drawable.ic_settings_voice_black);
+      }*/
     attachmentListener.onAttachmentChanged();
   }
 
@@ -125,7 +170,7 @@ public class AttachmentManager {
   }
   public static File getOutputMediaFile(Context activity, int type){
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), "SecureChat");
+            Environment.DIRECTORY_PICTURES), HIDDEN_FOLDER);
     if (!mediaStorageDir.exists()){
       if (!mediaStorageDir.mkdirs()){
         Log.d("SecureChat", "failed to create directory");
@@ -144,8 +189,9 @@ public class AttachmentManager {
     return mediaFile;
   }
   public static File getOutputMediaFileWithAddition(Context activity, String addition){
+
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), "SecureChat");
+            Environment.DIRECTORY_PICTURES), HIDDEN_FOLDER);
     if (!mediaStorageDir.exists()){
       if (!mediaStorageDir.mkdirs()){
         Log.d("SecureChat", "failed to create directory");
@@ -220,7 +266,6 @@ public class AttachmentManager {
         Log.w(TAG, "couldn't complete ACTION_OPEN_DOCUMENT, no activity found. falling back.");
       }
     }
-
     intent.setAction(Intent.ACTION_GET_CONTENT);
     try {
       activity.startActivityForResult(intent, requestCode);
@@ -250,6 +295,8 @@ public class AttachmentManager {
     public void onClick(View v) {
       clear();
       cleanup();
+      Intent intent = new Intent(ConversationActivity.CLEAR_COMPOSE_ACTION);
+      context.sendBroadcast(intent);
     }
   }
 

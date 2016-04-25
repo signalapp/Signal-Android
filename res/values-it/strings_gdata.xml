@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 minuti</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 minuti</string>
@@ -7,7 +7,7 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 secondi</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 secondi</string>
     <string name="gdata_contact_selection_page_title">Contatti</string>
-    <string name="gdata_conversation_list_page_title">Intrattenimenti</string>
+    <string name="gdata_conversation_list_page_title">Conversazioni</string>
     <string name="gd_dialog_fragment_phishing_title">Protezione Web</string>
     <string name="gd_dialog_fragment_phishing_message">Questo sito è un noto sito di phishing. Proseguire solo se si è sicuri di non correre alcun rischio.</string>
     <string name="gd_dialog_fragment_phishing_block">Blocca</string>
@@ -15,16 +15,15 @@
     <string name="log_submit_activity__button_dont_submit">Non inviare</string>
     <string name="log_submit_activity__button_submit">Invia</string>
     <string name="menu_filter">Blocca contatti</string>
-    <string name="menu_privacy">Nascondi intrattenimenti</string>
-    <string name="menu_privacy_unhide">Attiva Nascondi</string>
-    <string name="permission_string_4a_read_write_contacts">Per la selezione dei contatti nascosti, l\'app deve avere accesso ai contatti.</string>
-    <string name="menu_privacy_hide">Nascondi</string>
-    <string name="menu_privacy_single_hide">Nascondi intrattenimento</string>
+    <string name="menu_privacy">Nascondi Conversazioni</string>
+    <string name="menu_privacy_unhide">Disattiva occultamento</string>
+    <string name="menu_privacy_hide">Attiva occultamento</string>
+    <string name="menu_privacy_single_hide">Nascondi conversazione</string>
     <string name="menu_filter_block_contact">Blocca contatto</string>
     <string name="privacy_pw_dialog_header">Inserire la password: </string>
-    <string name="privacy_pw_dialog_toast_reload">Gli intrattenimenti vengono ripristinati...</string>
-    <string name="privacy_pw_dialog_toast_hide">Gli intrattenimenti vengono preparati per essere nascosti...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">L\'intrattenimento viene nascosto...</string>
+    <string name="privacy_pw_dialog_toast_reload">Le conversazioni vengono ripristinate...</string>
+    <string name="privacy_pw_dialog_toast_hide">Le conversazioni vengono preparate per essere nascoste...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">La conversazione viene nascosta...</string>
     <string name="privacy_toast_install_premium">Per questa funzione è necessario disporre di G DATA Internet Security per Android</string>
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
     <string name="preferences_notification_never">Mai</string>
@@ -36,7 +35,7 @@
     <string name="preferences_notification_title">Ripeti avvisi</string>
     <string name="self_destruction">Distruggi</string>
     <string name="self_destruction_title">#1# secondi all\'autodistruzione...</string>
-    <string name="self_destruction_body">Il contenuto di questo messaggio si autodistruggerà in #1# secondi dopo l\'apertura.</string>
+    <string name="self_destruction_body">Il contenuto di questo messaggio si agit addutodistruggerà in #1# secondi dopo l\'apertura.</string>
     <string name="unknown_country">Paese sconosciuto</string>
     <string name="self_destruction_compose_hint">Invia un messaggio autodistruzione</string>
     <string name="privacy_toast_unlock_premium">È necessario attivare le funzionalità Premium di G DATA Internet Security al fine di poter utilizzare queste funzioni.</string>
@@ -46,9 +45,9 @@
     <string name="profile_number_label">Numero di telefono</string>
     <string name="profile_status_member">Membro</string>
     <string name="identification">Identificazione</string>
-    <string name="identification_title">Questa chiave è la tua identificazione. Lascia scansionare la chiave dai tuoi interlocutori. Cosi puoi aver fiducia che i messaggi di questa chiave sono in realtà collegati a te.</string>
+    <string name="identification_title">Questa è la chiave della tua identità. Lascia scansionare questa chiave dai tuoi interlocutori. Cosi potrai essere sicuro che i messaggi collegati a questa chiave siano veramente collegati a te.</string>
     <string name="verify_identity_activity_their_identity">Identificazione del destinatario - Questa chiave identifica il tuo interlocutore. Scannerizza la chiave per confermare che i messaggi in arrivo siano autentici.</string>
-    <string name="verify_identity_activity_your_identity">La mia identità - Questa chiave è la tua identificazione. Lascia scansionare la chiave dai tuoi interlocutori per autenticare i tuoi messaggi.</string>
+    <string name="verify_identity_activity_your_identity">La mia identità - Questa è la chiave della tua identità. Lascia scansionare la chiave dai tuoi interlocutori per autenticare i tuoi messaggi.</string>
     <string name="identification_verified_unsuccessfully">La chiave non corrisponde!</string>
     <string name="identification_verified_successfully">Identificazione avvenuta con successo.</string>
     <string name="accept_eula_and_continue">Accetta e continua</string>
@@ -64,7 +63,7 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_0">Disabilita autodistruzione</string>
     <string name="privacy_pw_dialog_hint">Nota: questa è la password che hai selezionato in G DATA Internet Security per Android.</string>
     <string name="privacy_pw_dialog_toast_wrong">La password immessa non corrisponde a quella di G DATA Internet Security.</string>
-    <string name="msg_failed">Nota: la chiave di uno dei destinatari potrebbe essere cambiata in seguito a una reinstallazione o a un tentativo di attacco di terzi. All\'interno di un gruppo, questo problema si può risolvere avviando in una nuova conversazione un regolare scambio di chiavi con il contatto e quindi aggiornando il gruppo.</string>
+    <string name="msg_failed">Nota: la chiave di uno dei destinatari potrebbe essere variata in seguito a una reinstallazione o a un tentativo di attacco di terzi. All\'interno di un gruppo, questo problema si può risolvere avviando in una nuova conversazione un regolare scambio di chiavi con il contatto e quindi aggiornando il gruppo.</string>
     <string name="profile_history_label">Media</string>
     <string name="profile_history_content">Non sono ancora state scambiate immagini</string>
     <string name="menu_invite_to_sc">Invito</string>
@@ -77,4 +76,6 @@
     <string name="profile_select_picture">Seleziona la foto del profilo</string>
     <string name="profile_color_label">Colore</string>
     <string name="profile_color_recipient">Mostra i colori dei tuoi contatti</string>
+    <string name="swipe_to_cancel"> Swipe per annullare ... </string>
+    <string name="voice_message"> Messaggio vocale </string>
 </resources>

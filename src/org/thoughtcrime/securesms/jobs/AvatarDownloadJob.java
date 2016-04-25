@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.Release;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -100,17 +100,17 @@ public class AvatarDownloadJob extends MasterSecretJob {
   }
 
   private File downloadAttachment(String relay, long contentLocation) throws IOException {
-    PushServiceSocket socket = new PushServiceSocket(Release.PUSH_URL,
+    PushServiceSocket socket = new PushServiceSocket(BuildConfig.SECURECHAT_PUSH_URL,
                                                      new TextSecurePushTrustStore(context),
                                                      new StaticCredentialsProvider(TextSecurePreferences.getLocalNumber(context),
                                                                                    TextSecurePreferences.getPushServerPassword(context),
-                                                                                   null));
+                                                                                   null),   BuildConfig.USER_AGENT);
 
     File destination = File.createTempFile("avatar", "tmp");
 
     destination.deleteOnExit();
 
-    socket.retrieveAttachment(relay, contentLocation, destination);
+    socket.retrieveAttachment(relay, contentLocation, destination, null);
 
     return destination;
   }

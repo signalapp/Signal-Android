@@ -269,4 +269,15 @@ public class MmsSmsDatabase extends Database {
       cursor.close();
     }
   }
+    public MessageRecord getMessage(MasterSecret masterSecret, long messageId) throws NoSuchMessageException {
+        MmsDatabase mmsDatabase      = DatabaseFactory.getMmsDatabase(context);
+        Cursor cursor = mmsDatabase.getMessage(messageId);
+        MmsDatabase.Reader reader = mmsDatabase.readerFor(masterSecret, cursor);
+        MessageRecord record = reader.getNext();
+
+        reader.close();
+
+        if (record == null) throw new NoSuchMessageException("No message for ID: " + messageId);
+        else                return record;
+    }
 }

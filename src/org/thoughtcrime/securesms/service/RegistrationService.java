@@ -198,7 +198,7 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccount(challenge, signalingKey, true, registrationId);
+      accountManager.verifyAccountWithCode(challenge, signalingKey, registrationId, true);
 
       handleCommonRegistration(masterSecret, accountManager, number);
       markAsVerified(number, password, signalingKey);

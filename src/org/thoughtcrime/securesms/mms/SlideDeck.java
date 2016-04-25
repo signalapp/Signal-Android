@@ -90,7 +90,15 @@ public class SlideDeck {
 
   public Slide getThumbnailSlide() {
     for (Slide slide : slides) {
-      if (slide.hasImage()) {
+      if (slide.hasImage() && !slide.hasVideo()) {
+        return slide;
+      }
+    }
+    return null;
+  }
+  public Slide getVideoSlide() {
+    for (Slide slide : slides) {
+      if (slide.hasVideo()) {
         return slide;
       }
     }

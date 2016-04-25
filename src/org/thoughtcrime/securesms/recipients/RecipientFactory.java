@@ -68,6 +68,8 @@ public class RecipientFactory {
 
   public static Recipients getRecipientsFromString(Context context, String rawText, boolean asynchronous)
   {
+    if(rawText == null) Recipient.getUnknownRecipient(context);
+
     List<Recipient> results   = new LinkedList<Recipient>();
     StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
 

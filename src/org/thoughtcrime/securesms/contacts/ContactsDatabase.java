@@ -166,7 +166,7 @@ public class ContactsDatabase {
             ? " AND " +contactSelection : "") + notInSelection;
 
     String selectionString = filterSelection + contactSelection;
-    
+
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
             selectionString, PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
 
@@ -190,6 +190,7 @@ public class ContactsDatabase {
       selection     = null;
       selectionArgs = null;
     }
+  
     return queryLocalDb(selection, selectionArgs, null);
   }
 

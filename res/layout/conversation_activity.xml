@@ -83,6 +83,8 @@
                 android:id="@+id/bottom_panel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?conversation_item_received_background"
                 android:orientation="vertical">
 
                 <TextView
@@ -97,7 +99,6 @@
                     android:id="@+id/bottom_panel_inside"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="?conversation_editor_background"
                     android:orientation="horizontal">
 
                     <ImageButton
@@ -202,3 +203,4 @@
         android:visibility="gone" />
 
 </LinearLayout>
+

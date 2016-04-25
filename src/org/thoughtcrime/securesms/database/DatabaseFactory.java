@@ -61,7 +61,9 @@ public class DatabaseFactory {
   private static final int INTRODUCED_THUMBNAILS_VERSION      = 15;
   private static final int INTRODUCED_IDENTITY_COLUMN_VERSION = 16;
   private static final int INTRODUCED_UNIQUE_PART_IDS_VERSION = 17;
-  private static final int DATABASE_VERSION                   = 17;
+  //skipped that update
+  private static final int INTRODUCED_ENVELOPE_CONTENT_VERSION = 19;
+  private static final int DATABASE_VERSION                   = 19;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -514,11 +516,11 @@ public class DatabaseFactory {
         executeStatements(db, new String[] {
             "CREATE INDEX IF NOT EXISTS part_mms_id_index ON part (mid);"
         });
-        executeStatements(db, new String[] {
-            "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON thread (recipient_ids);",
+        executeStatements(db, new String[]{
+                "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON thread (recipient_ids);",
         });
-        executeStatements(db, new String[] {
-            "CREATE INDEX IF NOT EXISTS mms_addresses_mms_id_index ON mms_addresses (mms_id);",
+        executeStatements(db, new String[]{
+                "CREATE INDEX IF NOT EXISTS mms_addresses_mms_id_index ON mms_addresses (mms_id);",
         });
       }
 
@@ -532,8 +534,8 @@ public class DatabaseFactory {
 
       if (oldVersion < INTRODUCED_DRAFTS_VERSION) {
         db.execSQL("CREATE TABLE drafts (_id INTEGER PRIMARY KEY, thread_id INTEGER, type TEXT, value TEXT);");
-        executeStatements(db, new String[] {
-            "CREATE INDEX IF NOT EXISTS draft_thread_index ON drafts (thread_id);",
+        executeStatements(db, new String[]{
+                "CREATE INDEX IF NOT EXISTS draft_thread_index ON drafts (thread_id);",
         });
       }
 
@@ -721,7 +723,9 @@ public class DatabaseFactory {
       if (oldVersion < INTRODUCED_UNIQUE_PART_IDS_VERSION) {
         db.execSQL("ALTER TABLE part ADD COLUMN unique_id INTEGER NOT NULL DEFAULT 0");
       }
-
+      if (oldVersion < INTRODUCED_ENVELOPE_CONTENT_VERSION) {
+        db.execSQL("ALTER TABLE push ADD COLUMN content TEXT");
+      }
       db.setTransactionSuccessful();
       db.endTransaction();
     }

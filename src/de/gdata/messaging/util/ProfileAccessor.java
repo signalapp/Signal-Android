@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.ThumbnailTransform;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -117,12 +118,16 @@ public class ProfileAccessor {
   public static void savePartRowForUri(Context context, String uri, Long partRow) {
     getPreferences(context).setProfilePartRow(uri + "", partRow);
   }
-  public static ImageSlide getSlideForUri(Context context, MasterSecret masterSecret, String uriToPart) {
+  public static Slide getSlideForUri(Context context, MasterSecret masterSecret, String uriToPart, boolean isVideo) {
     PartDatabase database = DatabaseFactory.getPartDatabase(context);
     PduPart part = database.getPart(ProfileAccessor.getPartIdForUri(context, uriToPart));
     mMasterSecret = masterSecret;
-    if (part != null) {
+    if (part != null && !isVideo) {
       return new ImageSlide(context, masterSecret, part);
+    } else {
+      if (part != null) {
+        return new VideoSlide(context, masterSecret, part);
+      }
     }
     return null;
   }
@@ -166,6 +171,7 @@ public class ProfileAccessor {
           Log.d("GDATA", "RESULT " + result);
         }
       }.execute(outgoingMessage);
+    Log.d("MYLOG","MYLOG SEND IDENTY");
   }
 
   public static ImageSlide getProfileAsImageSlide(Context context, MasterSecret masterSecret, String profileId) {

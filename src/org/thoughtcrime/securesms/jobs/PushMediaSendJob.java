@@ -26,7 +26,7 @@ import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -112,7 +112,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       TextSecureAddress          address      = getPushAddress(destination);
       List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);
       String                     body         = PartParser.getMessageText(message.getBody());
-      TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()
+      TextSecureDataMessage          mediaMessage = TextSecureDataMessage.newBuilder()
               .withBody(body)
               .withAttachments(attachments)
               .withTimestamp(message.getSentTimestamp())
@@ -124,7 +124,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       for (int i=0;i<message.getBody().getPartsNum();i++) {
         PduPart part = message.getBody().getPart(i);
         String number = RecipientFactory.getRecipientsFromString(context,destination,false).getPrimaryRecipient().getNumber();
-        GUtil.saveInMediaHistory(context, part, number);
+        GUtil.saveInMediaHistory(context, part, number, message.getDatabaseMessageId()+"");
       }
     } catch (InvalidNumberException | UnregisteredUserException e) {
       Log.w(TAG, e);

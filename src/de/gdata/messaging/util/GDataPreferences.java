@@ -41,9 +41,11 @@ public class GDataPreferences {
   private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
   private static final String LAST_IMAGE_NUMBER = "LAST_IMAGE_NUMBER";
   private static final String CP_COLOR_ACTIVATED = "CP_COLOR_ACTIVATED";
+
   private static final String COLOR_DEFAULT = "COLOR_DEFAULT";
   private static final String PROFILE_IMAGE_CHANGED = "PROFILE_IMAGE_CHANGED";
 
+  private static final long ONE_SECOND = 1000;
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
@@ -90,7 +92,7 @@ public class GDataPreferences {
     return mPreferences.getLong("id:" +profileId, -1L);
   }
   public Long getProfilePartRow(String profileId) {
-    return mPreferences.getLong("row:"+profileId, -1L);
+    return mPreferences.getLong("row:" + profileId, -1L);
   }
   public void setProfileStatus(String profileStatus) {
     mPreferences.edit().putString(PROFILE_STATUS, profileStatus).commit();
@@ -252,11 +254,14 @@ public class GDataPreferences {
     }
     return arrayUri;
   }
-  public String[] getMediaTypeHistoryForId(long recipientId) {
+  public String[] getMediaMessageIdHistoryForContactId(long recipientId) {
     int size = mPreferences.getInt(MEDIA_HISTORY + "_size_" + recipientId, 0);
     String arrayType[] = new String[size];
     for(int i=0;i<size;i++) {
       arrayType[i] = mPreferences.getString(MEDIA_HISTORY + "_type_" + recipientId + "_" + i, "");
+    }
+    if(size > 0) {
+      arrayType = GUtil.reverseOrder(arrayType);
     }
     return arrayType;
   }
@@ -265,7 +270,7 @@ public class GDataPreferences {
     int lastImageNumber = getLastImageIndicator();
 
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), "SecureChat");
+            Environment.DIRECTORY_PICTURES), ".SecureChat");
 
     File mediaFile = new File("");
     for(int i = 0; i<= lastImageNumber;i++) {
@@ -292,6 +297,14 @@ public class GDataPreferences {
   }
   public boolean getChatPartnersColorEnabled() {
     return mPreferences.getBoolean(CP_COLOR_ACTIVATED, true);
+  }
+  public boolean isSoonAfterLastExchange(String id, long timestamp) {
+    boolean isSoonAfterLastExchange = false;
+    if (timestamp - mPreferences.getLong("lastExchange: " + id, 0) <= ONE_SECOND) {
+      isSoonAfterLastExchange = true;
+    }
+    mPreferences.edit().putLong("lastExchange: " + id, timestamp).commit();
+    return isSoonAfterLastExchange;
   }
   public boolean getColorDefaultEnabled() {
     return mPreferences.getBoolean(COLOR_DEFAULT, true);

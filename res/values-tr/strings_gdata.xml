@@ -79,4 +79,6 @@
     <string name="profile_select_picture">Profil resmi seç</string>
     <string name="profile_color_label">Renk</string>
     <string name="profile_color_recipient">Chat arkadaşlarının renklerini göster</string>
+    <string name="swipe_to_cancel">İptal etmek için sürükle…</string>
+    <string name="voice_message">sesli mesaj</string>
 </resources>

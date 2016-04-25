@@ -1,9 +1,11 @@
 package de.gdata.messaging.util;
 
 import android.annotation.TargetApi;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentUris;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -19,7 +21,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Surface;
 
 import org.thoughtcrime.securesms.ConversationActivity;
@@ -41,7 +42,6 @@ public class VideoResolutionChanger {
     public static final String ERROR_TOO_BIG = "TOO_BIG";
 
     public static final String OUTPUT_VIDEO_MIME_TYPE = "video/avc";
-
     private static final int OUTPUT_VIDEO_BIT_RATE = 1024 * 1024;
     private static final int OUTPUT_VIDEO_FRAME_RATE = 24;
 
@@ -74,6 +74,7 @@ public class VideoResolutionChanger {
             throws Throwable {
         mInputFile = getPath(context, f);
         COMPRESSING_ERROR = "";
+
         final File outFile = AttachmentManager.getOutputMediaFile(context, AttachmentManager.MEDIA_TYPE_VIDEO);
         if(!outFile.exists())
             outFile.createNewFile();

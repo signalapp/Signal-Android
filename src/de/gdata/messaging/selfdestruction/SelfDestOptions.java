@@ -44,9 +44,8 @@ public class SelfDestOptions {
             list.setAdapter(adapter);
             popupWindow = new PopupWindow(selectionMenu);
             popupWindow.setFocusable(true);
-            popupWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), ""));
             popupWindow.setOutsideTouchable(true);
-            popupWindow.setWindowLayoutMode(0, WindowManager.LayoutParams.WRAP_CONTENT);
+            popupWindow.setHeight(adapter.getCount() * context.getResources().getDimensionPixelSize(R.dimen.transport_selection_popup_height));
             popupWindow.setWidth(context.getResources().getDimensionPixelSize(R.dimen.transport_selection_popup_width));
             list.setOnItemClickListener(new OnItemClickListener() {
                 @Override
