@@ -18,7 +18,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -202,6 +201,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       if (toneUri == null) {
         ringtonePreference.setSummary(R.string.preferences__default);
         ringtonePreference.setCurrentRingtone(Settings.System.DEFAULT_NOTIFICATION_URI);
+      } else if (toneUri.toString().isEmpty()) {
+        ringtonePreference.setSummary(R.string.preferences__silent);
+        ringtonePreference.setCurrentRingtone(null);
       } else {
         Ringtone tone = RingtoneManager.getRingtone(getActivity(), toneUri);
 
@@ -252,7 +254,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
         final Uri uri;
 
-        if (TextUtils.isEmpty(value) || Settings.System.DEFAULT_NOTIFICATION_URI.toString().equals(value)) {
+        if (Settings.System.DEFAULT_NOTIFICATION_URI.toString().equals(value)) {
           uri = null;
         } else {
           uri = Uri.parse(value);
