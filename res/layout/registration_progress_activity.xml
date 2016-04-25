@@ -65,7 +65,8 @@
                         android:paddingLeft="4dip"
                         android:paddingRight="4dip"
                         android:text="@string/registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message"
-                        android:textColor="?android:textColorSecondary" />
+                        android:textColor="?android:textColorSecondary"
+                        android:textColorLink="?attr/registration_problems_link_color" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 

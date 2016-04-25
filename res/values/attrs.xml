@@ -120,6 +120,7 @@
 
     <attr name="registration_ic_check" format="reference"/>
     <attr name="registration_focused_color" format="reference|color"/>
+    <attr name="registration_problems_link_color" format="reference|color"/>
 
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>

@@ -201,6 +201,7 @@
 
         <item name="registration_ic_check">@drawable/check_dark</item>
         <item name="registration_focused_color">#ff333333</item>
+        <item name="registration_problems_link_color">@color/signal_primary</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -321,5 +322,6 @@
 
         <item name="registration_ic_check">@drawable/check</item>
         <item name="registration_focused_color">@color/white</item>
+        <item name="registration_problems_link_color">@color/signal_primary_dark</item>
     </style>
 </resources>
