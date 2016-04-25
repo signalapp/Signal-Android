@@ -376,15 +376,19 @@
 
                         <FrameLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical" >
 
                             <TextView
                                 android:id="@+id/connecting_text_focused"
                                 style="@style/Registration.Constant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="4.0dip"
                                 android:paddingRight="8.0dip"
+                                android:gravity="center_vertical"
                                 android:text="@string/registration_progress_activity__connecting"
                                 android:textColor="?attr/registration_focused_color"
                                 android:textSize="16.0sp"
@@ -395,8 +399,10 @@
                                 style="@style/Registration.Constant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="4.0dip"
                                 android:paddingRight="8.0dip"
+                                android:gravity="center_vertical"
                                 android:text="@string/registration_progress_activity__connecting"
                                 android:textColor="@color/registration_unfocused_color"
                                 android:textSize="16.0sp"
@@ -439,15 +445,19 @@
 
                         <FrameLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical">
 
                             <TextView
                                 android:id="@+id/verification_text_focused"
                                 style="@style/Registration.Constant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="4.0dip"
                                 android:paddingRight="8.0dip"
+                                android:gravity="center_vertical"
                                 android:text="@string/registration_progress_activity__waiting_for_sms_verification"
                                 android:textColor="?attr/registration_focused_color"
                                 android:textSize="16.0sp"
@@ -458,8 +468,10 @@
                                 style="@style/Registration.Constant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="4.0dip"
                                 android:paddingRight="8.0dip"
+                                android:gravity="center_vertical"
                                 android:text="@string/registration_progress_activity__waiting_for_sms_verification"
                                 android:textColor="@color/registration_unfocused_color"
                                 android:textSize="16.0sp"
@@ -474,7 +486,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center">
-
 
                             <ImageView
                                 android:id="@+id/generating_keys_complete"
@@ -503,15 +514,19 @@
 
                         <FrameLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical">
 
                             <TextView
                                 android:id="@+id/generating_keys_text_focused"
                                 style="@style/Registration.Constant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="4.0dip"
                                 android:paddingRight="8.0dip"
+                                android:gravity="center_vertical"
                                 android:text="@string/registration_progress_activity__generating_keys"
                                 android:textColor="?attr/registration_focused_color"
                                 android:textSize="16.0sp"
@@ -522,8 +537,10 @@
                                 style="@style/Registration.Constant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="4.0dip"
                                 android:paddingRight="8.0dip"
+                                android:gravity="center_vertical"
                                 android:text="@string/registration_progress_activity__generating_keys"
                                 android:textColor="@color/registration_unfocused_color"
                                 android:textSize="16.0sp"
@@ -566,15 +583,19 @@
 
                         <FrameLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical">
 
                             <TextView
                                 android:id="@+id/gcm_registering_text_focused"
                                 style="@style/Registration.Constant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="4.0dip"
                                 android:paddingRight="8.0dip"
+                                android:gravity="center_vertical"
                                 android:text="@string/registration_progress_activity__registering_with_server"
                                 android:textColor="?attr/registration_focused_color"
                                 android:textSize="16.0sp"
@@ -585,8 +606,10 @@
                                 style="@style/Registration.Constant"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:paddingLeft="4.0dip"
                                 android:paddingRight="8.0dip"
+                                android:gravity="center_vertical"
                                 android:text="@string/registration_progress_activity__registering_with_server"
                                 android:textColor="@color/registration_unfocused_color"
                                 android:textSize="16.0sp"
