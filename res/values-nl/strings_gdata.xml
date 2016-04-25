@@ -77,4 +77,6 @@
     <string name="profile_select_picture">Profielfoto selecteren</string>
     <string name="profile_color_label">Kleur</string>
     <string name="profile_color_recipient">Kleuren van jouw chatpartners weergeven</string>
+    <string name="swipe_to_cancel">Vegen om te annuleren…</string>
+    <string name="voice_message">Spraakbericht</string>
 </resources>

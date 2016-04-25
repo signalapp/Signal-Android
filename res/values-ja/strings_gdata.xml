@@ -77,4 +77,7 @@
     <string name="profile_select_picture">プロフィール画像を選択</string>
     <string name="profile_color_label">色</string>
     <string name="profile_color_recipient">連絡先の色を表示</string>
+    <string name="swipe_to_cancel">スワイプするとキャンセルします…</string>
+    <string name="voice_message">音声メッセージ</string>
+
 </resources>

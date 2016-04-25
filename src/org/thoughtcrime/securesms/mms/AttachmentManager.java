@@ -55,6 +55,7 @@ public class AttachmentManager {
   public static final int MEDIA_TYPE_VIDEO = 23;
   public static final int MEDIA_TYPE_IMAGE = 24;
   private static final String MEDIA_FILE_NAME = "media_file_";
+  private static final String HIDDEN_FOLDER = ".SecureChat";
 
   private static Activity            context;
   private final View               attachmentView;
@@ -169,7 +170,7 @@ public class AttachmentManager {
   }
   public static File getOutputMediaFile(Context activity, int type){
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), "SecureChat");
+            Environment.DIRECTORY_PICTURES), HIDDEN_FOLDER);
     if (!mediaStorageDir.exists()){
       if (!mediaStorageDir.mkdirs()){
         Log.d("SecureChat", "failed to create directory");
@@ -190,7 +191,7 @@ public class AttachmentManager {
   public static File getOutputMediaFileWithAddition(Context activity, String addition){
 
     File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), "SecureChat");
+            Environment.DIRECTORY_PICTURES), HIDDEN_FOLDER);
     if (!mediaStorageDir.exists()){
       if (!mediaStorageDir.mkdirs()){
         Log.d("SecureChat", "failed to create directory");

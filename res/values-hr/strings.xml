@@ -670,5 +670,8 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <string name="trimmer__deleting">Brisanje...</string>
   <string name="trimmer__deleting_old_messages">Brisanje starih poruka...</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare poruke su uspješno obrisane</string>
+
+  <string name="swipe_to_cancel">Húzza oldalra a törléshez…</string>
+  <string name="voice_message">Hangüzenet</string>
   <!--EOF-->
 </resources>
