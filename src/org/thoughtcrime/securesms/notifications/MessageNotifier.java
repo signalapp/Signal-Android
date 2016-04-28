@@ -246,6 +246,7 @@ public class MessageNotifier {
       builder.setTicker(notification.getIndividualRecipient(),
                         notification.getText());
     }
+    builder.setLed();
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
       .notify(NOTIFICATION_ID, builder.build());
@@ -277,6 +278,7 @@ public class MessageNotifier {
       builder.setAlarms(notificationState.getRingtone(), notificationState.getVibrate());
       builder.setTicker(notifications.get(0).getText());
     }
+    builder.setLed();
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
       .notify(NOTIFICATION_ID, builder.build());

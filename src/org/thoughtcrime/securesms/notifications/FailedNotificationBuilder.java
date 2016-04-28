@@ -23,6 +23,7 @@ public class FailedNotificationBuilder extends AbstractNotificationBuilder {
     setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
     setAutoCancel(true);
     setAlarms(null, RecipientPreferenceDatabase.VibrateState.DEFAULT);
+    setLed();
   }
 
 
