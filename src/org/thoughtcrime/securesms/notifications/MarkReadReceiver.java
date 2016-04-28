@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.notifications;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -34,8 +33,7 @@ public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
     if (threadIds != null) {
       Log.w("TAG", "threadIds length: " + threadIds.length);
 
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-                                   .cancel(MessageNotifier.NOTIFICATION_ID);
+      MessageNotifier.cancelNotification(context);
 
       new AsyncTask<Void, Void, Void>() {
         @Override
