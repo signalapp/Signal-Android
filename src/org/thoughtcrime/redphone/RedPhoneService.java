@@ -247,7 +247,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
   private void handleMissedCall(String remoteNumber, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
     MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this),
-                                       false, messageAndThreadId.second, signal);
+                                       messageAndThreadId.second, signal);
   }
 
   private void handleAnswerCall(Intent intent) {

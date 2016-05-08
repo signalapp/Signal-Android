@@ -49,8 +49,8 @@ import org.whispersystems.libsignal.LegacyMessageException;
 import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.UntrustedIdentityException;
 import org.whispersystems.libsignal.protocol.PreKeySignalMessage;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -99,7 +99,7 @@ public class PushDecryptJob extends ContextJob {
 
     if (!IdentityKeyUtil.hasIdentityKey(context)) {
       Log.w(TAG, "Skipping job, waiting for migration...");
-      MessageNotifier.updateNotification(context, null, true, -2);
+      MessageNotifier.updatePushNotification(context);
       return;
     }
 
