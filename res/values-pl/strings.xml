@@ -151,17 +151,27 @@ ten kontakt.
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Zapisać na dysk?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Zapisywanie tego załącznika do pamięci pozwoli na dostęp innych aplikacji do niego na Twoim urządzeniu.\n\nKontunuuj?</item>
-    <item quantity="few">Zapisywanie wszystkich %1$d załączników do pamięci pozwoli na dostęp innych aplikacji do nich na Twoim urządzeniu.\n\nKontunuuj?</item>
-    <item quantity="other">Zapisywanie wszystkich %1$d załączników do pamięci pozwoli na dostęp innych aplikacji do nich na Twoim urządzeniu.\n\nKontunuuj?</item>
+    <item quantity="one">Zapisanie tego załącznika na dysku pozwoli na dostęp do nich innym aplikacjom na Twoim urządzeniu.\n\nKontynuuj?</item>
+    <item quantity="few">Zapisywanie %1$d załączników na dysku pozwoli na dostęp do nich innym aplikacjom na Twoim urządzeniu.\n\nKontynuuj?</item>
+    <item quantity="other">Zapisywanie wszystkich %1$d załączników na dysku pozwoli na dostęp do nich innym aplikacjom na Twoim urządzeniu.\n\nKontynuuj?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">Błąd podczas zapisywania załącznika do pamięci!</item>
-    <item quantity="few">Błąd podczas zapisywania załączników do pamięci!</item>
-    <item quantity="other">Błąd podczas zapisywania załączników do pamięci!</item>
+    <item quantity="one">Wystąpił błąd podczas zapisywania załącznika na dysku!</item>
+    <item quantity="few">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
+    <item quantity="other">Wystąpił błąd podczas zapisywania załączników na dysku!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Plik został zapisany pomyślnie.</string>
+  <string name="ConversationFragment_file_saved_successfully">Plik pomyślnie został zapisany.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Zapisywanie załącznika</item>
+    <item quantity="few">Zapisywanie załączników</item>
+    <item quantity="other">Zapisywanie załączników</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Zapisywanie załącznika na dysku</item>
+    <item quantity="few">Zapisywanie załączników na dysku</item>
+    <item quantity="other">Zapisywanie załączników na dysku</item>
+  </plurals>
   <string name="ConversationFragment_collecting_attahments">Zbieranie załączników...</string>
   <string name="ConversationFragment_pending">Oczekiwanie...</string>
   <string name="ConversationFragment_push">Dane (Signal)</string>
@@ -457,7 +467,7 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Otrzymano uszkodzony klucz!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Otrzymano wiadomość z nieznanym kluczem tożsamości. Dotknij aby przetworzyć i wyświetlić.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Otrzymano wiadomość z nieznanym kluczem tożsamości. Dotknij, aby przetworzyć i wyświetlić.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Otrzymał zaktualizowany, ale z nieznaną informacją tożsamości. Dotknij aby potwierdzić tożsamość.</string>
   <string name="SmsMessageRecord_secure_session_reset">Reset bezpiecznej sesji.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>

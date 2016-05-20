@@ -45,6 +45,7 @@
   <string name="DraftDatabase_Draft_image_snippet">(billede)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(lyd)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(position)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ikke åbne valgte data.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -75,6 +76,7 @@ denne kontakt.</string>
   <string name="ConversationItem_expires_s">Udløber: %s</string>
   <string name="ConversationItem_error_not_delivered">Ikke sendt</string>
   <string name="ConversationItem_view_secure_media_question">Gennemse sikre data?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denne fil er gemt i en krypteret database. For at se den med et eksternt program, er den nødt til at blive dekrypteret og gemt til disk. Er du sikker på du vil gøre dette?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fejl! Modtog en gammel udvekslingsnøgle.</string>
   <string name="ConversationItem_group_action_left">%1$s har forladt gruppen.</string>
   <string name="ConversationItem_click_for_details">Tryk for detaljer</string>
@@ -83,6 +85,8 @@ denne kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Godkend ukrypteret MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne besked vil <b>ikke</b> blive krypteret, da modtageren ikke længere er Signal-bruger.\n\nSend ukrypteret besked?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ikke finde en app, der kan åbne denne fil.</string>
+  <string name="ConversationItem_from_s">fra %s</string>
+  <string name="ConversationItem_to_s">til %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Gendan sikker forbindelse?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette vil muligvis hjælpe hvis du oplever krypteringsproblemer med denne samtale. Dine beskeder bevares.</string>
@@ -140,7 +144,12 @@ denne kontakt.</string>
     <item quantity="other">Dette vil slette alle %1$d valgte beskeder permanent.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Gem på lager?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">At gemme denne fil på disk vil tillade alle andre apps at tilgå den.\n\nFortsæt?</item>
+    <item quantity="other">At gemme alle %1$d filer på disk vil tillade alle andre apps at tilgå dem.\n\nFortsæt?</item>
+  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lageret!</string>
+  <string name="ConversationFragment_collecting_attahments">Samler vedhæftninger...</string>
   <string name="ConversationFragment_pending">Afventer...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -375,6 +384,7 @@ vil det resultere i dupletter.</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Det indtastede telefonnummer understøtter ikke secure voice!</string>
   <string name="RedPhone_got_it">Modtaget</string>
   <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_signal">Forbind med Signal</string>
   <string name="RegistrationActivity_select_your_country">Vælg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din
 landekode
@@ -452,6 +462,8 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Modtageren har ingen identitetsnøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Modtageren har ingen identiitetsnøgle!</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scan kontakts QR kode</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">Vis din QR kode</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøgle matcher IKKE! Tjek fingeraftryksteksten nøje.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Modpartens nøgle er korrekt. Det er også nødvendigt at bekræfte din nøgle med modparten.</string>
@@ -459,6 +471,8 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen identitetsnøgle!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnøgle.</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">Scan kontakts QR kode</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">Vis din QR kode</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVARSEL. Den skannede nøgle matcher IKKE!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøgle matcher!</string>
@@ -491,6 +505,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">I gang med at importere</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstbeskeder</string>
+  <string name="ApplicationMigrationService_import_complete">Import fuldendt</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tryk for at åbne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tryk for at åbne, eller tryk på låsen for at lukke.</string>
@@ -545,6 +560,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="conversation_activity__type_message_push">Send Signalbesked</string>
   <string name="conversation_activity__type_message_sms_insecure">Send usikker (ukrypteret) SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Send usikker (ukrypteret) MMS</string>
+  <string name="conversation_activity__from_sim_name">Fra %1$s</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Fjern</string>
   <string name="conversation_activity__window_description">Samtale med %1$s</string>
@@ -718,10 +734,12 @@ mislykkedes.</string>
   <string name="AndroidManifest__public_identity_key">Offentlig identitetsnøgle</string>
   <string name="AndroidManifest__change_passphrase">Ændr kodeord</string>
   <string name="AndroidManifest__verify_identity">Verificér identitet</string>
+  <string name="AndroidManifest__log_submit">Indsend fejlfindingslog</string>
   <string name="AndroidManifest__media_preview">Mediepreview</string>
   <string name="AndroidManifest__media_overview">Alle billeder</string>
   <string name="AndroidManifest__media_overview_named">Alle billeder med %1$s</string>
   <string name="AndroidManifest__message_details">Besked-detaljer</string>
+  <string name="AndroidManifest__linked_devices">Enheder</string>
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
   <string name="AndroidManifest_archived_conversations">Arkiverede samtaler</string>
   <!--arrays.xml-->
@@ -822,11 +840,13 @@ mislykkedes.</string>
   <string name="preferences__mmsc_password">MMSC-kodeord</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapport for SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bed om en leveringsrapport for hver SMS-besked, du sender</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Slet automatisk ældre beskeder når samtalen overstiger en specificeret længde</string>
   <string name="preferences__delete_old_messages">Slet gamle beskeder</string>
   <string name="preferences__chats">Chat og medier</string>
   <string name="preferences__conversation_length_limit">Grænse på samtaler</string>
   <string name="preferences__trim_all_conversations_now">Trim alle samtaler nu</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Løb gennem alle samtaler og gennemfør begrænsninger for samtalelængde</string>
+  <string name="preferences__linked_devices">Enheder</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Udseende</string>
@@ -915,6 +935,8 @@ mislykkedes.</string>
   <string name="conversation_group_options__broadcast">Transmission</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Sammenlign</string>
+  <string name="key_scanning__menu_display_your_qr_code">Vis din QR kode</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">Scan kontakts QR kode</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Ny besked</string>
   <string name="text_secure_normal__menu_new_group">Ny gruppe</string>
@@ -937,6 +959,7 @@ mislykkedes.</string>
   <string name="reminder_header_sms_default_text">Tryk for at gøre Signal til din standard SMS-app.</string>
   <string name="reminder_header_sms_default_button">SET</string>
   <string name="reminder_header_sms_import_title">Importér SMS</string>
+  <string name="reminder_header_sms_import_text">Klik for at kopiere din telefons SMS beskeder til Signals krypterede database.</string>
   <string name="reminder_header_sms_import_button">IMPORTÈR</string>
   <string name="reminder_header_push_title">Aktivér Signalbeskeder og -opkald</string>
   <string name="reminder_header_push_text">Tryk for øjeblikkelig afsending, stærkere privatlivsbeskyttelse og ingen SMS-afgifter.</string>
@@ -955,6 +978,7 @@ mislykkedes.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">Gem alle</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Billedpreview</string>
   <!--new_conversation_activity-->

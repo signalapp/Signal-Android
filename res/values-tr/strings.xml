@@ -7,11 +7,11 @@
   <string name="please_wait">Lütfen bekleyin...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hala bir parola belirlememişsiniz!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hâlâ bir parola belirlememişsiniz!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="other">sohbet başına %d mesaj</item>
   </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Tüm eski mesajlar silinsin mi?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Bütün eski mesajlar silinsin mi?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">Bu işlem tüm sohbetleri en yeni %d mesaja kadar kırpar.</item>
   </plurals>
