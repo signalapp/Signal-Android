@@ -584,13 +584,13 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Actualizando base de datos...</string>
   <string name="export_fragment__export_plaintext_backup">Exportar copia de seguranza en texto simple</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporta unha copia en texto simple compatible con 'Copia de SMS &amp; Restaurar'.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporta unha copia en texto simple compatible con \'Copia de SMS &amp; Restaurar\'.</string>
   <string name="import_fragment__import_system_sms_database">Importar base de datos de SMS do sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importa a base de datos da aplicación de mensaxaría do sistema</string>
   <string name="import_fragment__restore_encrypted_backup">Restaurar unha copia de seguranza cifrada</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Restaura unha copia de seguranza de Signal previamente exportada</string>
   <string name="import_fragment__import_plaintext_backup">Importar copia de seguranza en texto simple</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importa un ficheiro en texto simple. É compatible con 'Copia de SMS &amp; Restaurar'.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importa un ficheiro en texto simple. É compatible con \'Copia de SMS &amp; Restaurar\'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversa completa</string>
   <!--media_overview_activity-->
