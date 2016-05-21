@@ -331,9 +331,9 @@
     <string name="InviteActivity_heart_content_description">Heart</string>
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
-    <plurals name="InviteActivity_send_to_friends">
-        <item quantity="one">SEND TO 1 FRIEND</item>
-        <item quantity="other">SEND TO %d FRIENDS</item>
+    <plurals name="InviteActivity_send_sms_to_friends">
+        <item quantity="one">SEND SMS TO 1 FRIEND</item>
+        <item quantity="other">SEND SMS TO %d FRIENDS</item>
     </plurals>
     <plurals name="InviteActivity_send_sms_invites">
         <item quantity="one">Send 1 SMS invite?</item>
