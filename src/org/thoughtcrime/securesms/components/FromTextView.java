@@ -3,13 +3,11 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -69,9 +67,10 @@ public class FromTextView extends EmojiTextView {
 
     setText(builder);
 
-    if      (recipients.isBlocked()) setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
-    else if (recipients.isMuted())   setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_volume_off_grey600_18dp, 0, 0, 0);
-    else                             setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+    if      (recipients.isBlocked())        setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
+    else if (recipients.isMuted())          setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_volume_off_grey600_18dp, 0, 0, 0);
+    else if (recipients.isGroupRecipient()) setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_group_grey600_24dp, 0, 0, 0);
+    else                                    setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
   }
 
 
