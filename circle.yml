@@ -65,8 +65,8 @@ dependencies:
       pwd ;
       ls -al ;
       cp -av app-signed-aligned.apk $CIRCLE_ARTIFACTS/signal_circleci_$CIRCLE_SHA1.apk || exit 1
-    - qrencode -o $CIRCLE_ARTIFACTS/QR_apk.png 'https://circle-artifacts.com/gh/zoff99/Signal-Android/'${CIRCLE_BUILD_NUM}'/artifacts/'${CIRCLE_NODE_INDEX}'/tmp/'`basename $CIRCLE_ARTIFACTS`'/'"signal_circleci_$CIRCLE_SHA1.apk" ; exit 0
-    - qrencode -o $CIRCLE_ARTIFACTS/QR_artifacts.png 'https://circle-artifacts.com/gh/zoff99/Signal-Android/'${CIRCLE_BUILD_NUM}'#artifacts' ; exit 0
+    - qrencode -o $CIRCLE_ARTIFACTS/QR_apk.png 'https://circle-artifacts.com/gh/'${CIRCLE_PROJECT_USERNAME}'/'${CIRCLE_PROJECT_REPONAME}'/'${CIRCLE_BUILD_NUM}'/artifacts/'${CIRCLE_NODE_INDEX}'/tmp/'`basename $CIRCLE_ARTIFACTS`'/'"signal_circleci_$CIRCLE_SHA1.apk" ; exit 0
+    - qrencode -o $CIRCLE_ARTIFACTS/QR_artifacts.png 'https://circle-artifacts.com/gh/'${CIRCLE_PROJECT_USERNAME}'/'${CIRCLE_PROJECT_REPONAME}'/'${CIRCLE_BUILD_NUM}'#artifacts' ; exit 0
 
 test:
   pre:
