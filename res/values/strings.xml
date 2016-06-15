@@ -703,6 +703,8 @@
 
     <!-- device_add_fragment -->
     <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on the device to link</string>
+    <string name="device_link_fragment__enter_qr">Not working? Enter QR text...</string>
+    <string name="device_link_fragment__enter_button">Done</string>
 
     <!-- device_link_fragment -->
     <string name="device_link_fragment__link_device">Link device</string>

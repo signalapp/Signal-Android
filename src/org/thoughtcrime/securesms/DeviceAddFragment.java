@@ -10,12 +10,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -28,6 +31,7 @@ import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 
+import org.thoughtcrime.securesms.components.ShapeScrim;
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.components.camera.CameraView.PreviewCallback;
 import org.thoughtcrime.securesms.components.camera.CameraView.PreviewFrame;
@@ -47,6 +51,9 @@ public class DeviceAddFragment extends Fragment implements PreviewCallback {
   private PreviewFrame   previewFrame;
   private ScanningThread scanningThread;
   private ScanListener   scanListener;
+  private EditText       qrcodeEditText;
+  private Button         qrcodeTextButton;
+  private ShapeScrim     cameraFrame;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
@@ -54,6 +61,9 @@ public class DeviceAddFragment extends Fragment implements PreviewCallback {
     this.overlay      = ViewUtil.findById(this.container, R.id.overlay);
     this.scannerView  = ViewUtil.findById(this.container, R.id.scanner);
     this.devicesImage = ViewUtil.findById(this.container, R.id.devices);
+    this.cameraFrame = ViewUtil.findById(this.container, R.id.camera_frame);
+    this.qrcodeEditText = ViewUtil.findById(this.container, R.id.qr_code_edit_text);
+    this.qrcodeTextButton = ViewUtil.findById(this.container, R.id.qr_code_text_button);
     this.scannerView.onResume();
     this.scannerView.setPreviewCallback(this);
 
@@ -80,6 +90,32 @@ public class DeviceAddFragment extends Fragment implements PreviewCallback {
       });
     }
 
+    qrcodeTextButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        String url = qrcodeEditText.getText().toString();
+        if (TextUtils.isEmpty(url)) {
+          qrcodeEditText.setError("The QR Code Field should not be empty.");
+        }
+        //TODO check for correctly formed input here before spamming the server with garbage
+
+        Uri uri = Uri.parse(url);
+        scanListener.onUrlFound(uri);
+      }
+    });
+
+    qrcodeEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if(hasFocus){
+          scannerView.setVisibility(View.GONE);
+          cameraFrame.setVisibility(View.GONE);
+          scannerView.onPause();
+          scanningThread.stopScanning();
+        }
+      }
+    });
+
     return this.container;
   }
 
@@ -91,6 +127,8 @@ public class DeviceAddFragment extends Fragment implements PreviewCallback {
     this.previewFrame   = null;
     this.scanningThread = new ScanningThread();
     this.scanningThread.start();
+    scannerView.setVisibility(View.VISIBLE);
+    cameraFrame.setVisibility(View.VISIBLE);
   }
 
   @Override
