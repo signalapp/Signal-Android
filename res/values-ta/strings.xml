@@ -60,7 +60,7 @@
   <string name="ConfirmIdentityDialog_accept">ஏற்க</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">செய்தி %s</string>
-  <string name="ContactsDatabase_signal_call_s">சமிக்ஞை அழைப்பு %s</string>
+  <string name="ContactsDatabase_signal_call_s"> சிக்னல் அழைப்பு %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">செய்தி அளவு : %d KB</string>
   <string name="ConversationItem_expires_s">காலாவதி நேரம்: %s</string>
@@ -72,7 +72,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">பாதுகாப்பற்ற குறைவடைந்த வழிக்கு தொடவும்</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">மறையாக்கபடாத SMS-ஆக அனுப்பலாமா?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">மறையாக்கபடாத MMS-ஆக அனுப்பலாமா?</string>
-  <string name="ConversationItem_unable_to_open_media">இந்த ஊடகத்தை திறக்க முடியும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
+  <string name="ConversationItem_unable_to_open_media">இந்த ஊடகத்தை திறக்க பயன்படும் ஒரு பயன்பாட்டை கண்டுபிடிக்க இயலவில்லை</string>
   <string name="ConversationItem_from_s">அனுப்பினர் %s</string>
   <string name="ConversationItem_to_s">பெறுனர் %s</string>
   <!--ConversationActivity-->
@@ -113,7 +113,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">உறுதியாக இந்த தொடர்பை தடை நீக்கு ?</string>
   <string name="ConversationActivity_unblock">தடுப்புநீக்க</string>
   <string name="ConversationActivity_quick_camera_unavailable">புகைப்படக் கருவி கிடைப்பிலில்லை</string>
-  <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய முடியவில்லை!</string>
+  <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய  இயலவில்லை!</string>
   <string name="ConversationActivity_error_sending_voice_message">குரல் செய்தியை அனுப்புவதில் பிழை ...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">செய்தி விவரங்கள்</string>
@@ -121,7 +121,7 @@
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">அனுப்புநர்: %1$s\nபோக்குவரத்து: %2$s\nஅனுப்பியது: %3$s\nபெற்றது: %4$s</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்க ?</item>
-    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட செய்தியைகளை நீக்க ?</item>
+    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட செய்திகளை நீக்க  வேண்டுமா?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியைகளை நிரந்தரமாக நீக்கீவிடும்.</item>
@@ -140,7 +140,7 @@
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை அழி ?</item>
-    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை அழி ?</item>
+    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை  நீக்குக ?</item>
   </plurals>
   <string name="ConversationListFragment_deleting">நீக்கப்படுகிறது</string>
   <string name="ConversationListFragment_deleting_selected_conversations">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகள் நீக்கப்படுகிறது ...</string>
@@ -187,6 +187,7 @@
   <string name="ExportFragment_cancel">ரத்து</string>
   <string name="ExportFragment_exporting">ஏற்றுமதி செய்யப்படுகிறது</string>
   <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play சேவை உடன் TextSecure-ஐ பதிவு செய்ய இயலவில்லை. இணையதளம் வழியாக தொடர்புடையாடல் முடக்கப்பட்டுள்ளது, TextSecure அமைப்புகள் மெனுவில் மறுபதிவுச்செய்ய முயற்சிக்கவும்</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">புதிய குழு</string>
   <string name="GroupCreateActivity_actionbar_update_title">குழுவை மேம்படுத்து</string>
@@ -282,6 +283,8 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">தவறான கடவுச்சொல்!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">இச் செயலியை மதிப்புரை செய்க</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">இச் செயலியின்  பயன்பாட்டை விரும்பினால் தயை கூர்ந்து  எங்கள் செயலியை   மதிப்புரை செய்க    </string>
   <string name="RatingManager_later">பிறகு</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">தடு</string>
@@ -290,6 +293,7 @@
   <string name="RecipientPreferenceActivity_enabled">செயல்படுத்தப்பட்டது</string>
   <string name="RecipientPreferenceActivity_disabled">முடக்கப்பட்டது</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">பதிலளிக்கபடுகிறது </string>
   <string name="RedPhone_dialing">அழைத்தல்</string>
   <string name="RedPhone_ringing">அடிக்கிறது</string>
   <string name="RedPhone_busy">மும்முரமாக</string>
@@ -341,6 +345,7 @@
   <string name="RegistrationProgressActivity_too_many_requests">மிக அதிக கோரிக்கைகள்!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">நீங்கள் ஏற்கனவே ஒரு அழைப்பை அண்மையில் கோரிதீர்கள். நீங்கள் 20 நிமிடங்களுக்கு பின் மற்றொன்றை கோரலாம்.</string>
   <string name="RegistrationProgressActivity_registration_conflict">பதிசெய்வதில் முரண்பாடு</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different"> இந்த எண் ஏற்கனவே வேறு ஒரு TextSecure வலைதளத்தில் (CyanogenMod?) பதிவாகியுள்ளது . நீங்கள் இங்கே பதிவு செய்யும்முன் அங்கே பதிவுநீக்கம் செய்யவேண்டும்.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">பதிவு முழுமையுற்றது</string>
   <string name="RegistrationService_registration_error">பதிவுசெய்தலில்  பிழை</string>
@@ -448,6 +453,7 @@
   <string name="contact_selection_recent_activity__no_recent_calls">சமீபத்திய அழைப்புகள் இல்லை.</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">சிக்னல் தகவல் அனுப்புக </string>
   <string name="conversation_activity__type_message_sms_insecure">பாதுகாப்பில்லாத SMS அனுப்பு </string>
   <string name="conversation_activity__type_message_mms_insecure">பாதுகாப்பில்லாத MMS அனுப்பு </string>
   <string name="conversation_activity__send">அனுப்பு</string>
@@ -569,7 +575,7 @@
   <string name="registration_progress_activity__generating_keys">சாவிகள் உருவாக்கப்படுகிறது...</string>
   <string name="registration_progress_activity__alert">எச்சரிக்கை</string>
   <string name="registration_progress_activity__telephone">தொலைபேசி</string>
-  <string name="registration_progress_activity__check">பார்க்க</string>
+  <string name="registration_progress_activity__check">சரி பார்க்க</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
   <string name="recipients_panel__add_member">குழுஉறுப்பினர் சேர்க்</string>
@@ -588,6 +594,7 @@
   <string name="AndroidManifest__create_passphrase">கடவுச்சொல்லை உருவாக்கு</string>
   <string name="AndroidManifest__enter_passphrase">கடவுச்சொல்லை உள்ளிடவும். </string>
   <string name="AndroidManifest__select_contacts">தொடர்புகளை தேர்ந்தெடு</string>
+  <string name="AndroidManifest__signal_detected">சிக்னல் செயலி உணரப்பட்டது</string>
   <string name="AndroidManifest__public_identity_key">பொது அடையாளச் சாவி</string>
   <string name="AndroidManifest__change_passphrase">கடவுச்சொல்லை மாற்று</string>
   <string name="AndroidManifest__verify_identity">அடையாளத்தை சரிபார்</string>

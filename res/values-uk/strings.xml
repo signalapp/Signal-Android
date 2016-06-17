@@ -250,7 +250,7 @@
   <string name="ExportFragment_error_while_writing_to_storage">Помилка при записі на накопичувач.</string>
   <string name="ExportFragment_export_successful">Експорт пройшов успішно.</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Осточний збій зв\'язку Signal!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не зміг зареєструватись у сервісах Google Play. Дзвінки та повідомлення Signal наразі відключені, спробуйте перереєструватися у Налаштування --&gt; Додатково</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
@@ -501,9 +501,9 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">НЕ перевірено!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Просканований ключ збігається!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Перевірено!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Ососбистий відбиток</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">Особистий відбиток</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Ігнорувати попередній запит?</string>
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Почати незважаючи на існуючийй запит?</string>
   <string name="KeyExchangeInitiator_send">Відправити</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Зашифроване повідомлення зіпсоване...</string>

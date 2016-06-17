@@ -84,7 +84,7 @@ verifiera denna kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Detta meddelande kommer <b>inte</b> krypteras eftersom mottagaren inte längre är en Signal-användare. \n\nSkicka osäkert meddelande?</string>
-  <string name="ConversationItem_unable_to_open_media">Kan ej hitta app som kan öppna denna media.</string>
+  <string name="ConversationItem_unable_to_open_media">Kan ej hitta app som kan öppna denna fil.</string>
   <string name="ConversationItem_from_s">från %s</string>
   <string name="ConversationItem_to_s">till %s</string>
   <!--ConversationActivity-->
@@ -100,7 +100,7 @@ verifiera denna kontakt.</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gifen du valde är för stor!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr, den valda videon överskrider gränsen för meddelandestorlek (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Tyvärr, den valda ljudfilen överskrider gränsen för meddelandestorlek (%1$skB).</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagare är inte en giltig SMS eller e-postadress!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagaren är inte en giltig SMS eller e-postadress!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meddelandet är tomt!</string>
   <string name="ConversationActivity_group_members">Gruppmedlemmar</string>
   <string name="ConversationActivity_group_conversation">Gruppkonversation</string>
@@ -115,14 +115,14 @@ verifiera denna kontakt.</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp-handlingar.</string>
   <string name="ConversationActivity_leave_group">Lämna grupp?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna den här gruppen?</string>
-  <string name="ConversationActivity_transport_insecure_sms">Okrypterat SMS</string>
-  <string name="ConversationActivity_transport_insecure_mms">Okrypterat MMS</string>
+  <string name="ConversationActivity_transport_insecure_sms">Osäkert SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">Osäkert MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Byt till Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Låt oss använda detta för att chatta: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fel vid lämnande av grupp...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS stöds ej</string>
-  <string name="ConversationActivity_mms_not_supported_message">Det här meddelandet kan inte skickas eftersom din operatör inte stöder MMS.</string>
+  <string name="ConversationActivity_mms_not_supported_message">Det här meddelandet kan inte skickas eftersom din operatör inte stödjer MMS.</string>
   <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
   <string name="ConversationActivity_unblock_question">Avblockera?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Är du säker på att du vill avblockera denna kontakt?</string>
@@ -403,10 +403,13 @@ som inte finns i säkerhetskopian.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">Anslut med Signal</string>
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din landskod</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du måste ange ditt telefonnummer</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din 
+landskod</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du måste ange ditt
+telefonnummer</string>
   <string name="RegistrationActivity_invalid_number">Ogiltigt nummer</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du angav (%s) är ogiltigt.</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du
+angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_unsupported">Stöds ej</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Tyvärr stödjer inte den här enheten datameddelanden. Enheter som kör versioner av Android äldre än 4.0 måste ha ett registrerat Google-konto. Enheter som kör Android 4.0 eller nyare behöver inte ett Google-konto, men måste ha appen Play Store installerad.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">

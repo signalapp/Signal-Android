@@ -10,6 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Zmazať všetky staré správy?</string>
   <string name="ApplicationPreferencesActivity_delete">Zmazať</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Vypnúť heslo?</string>
   <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba pripojenia na server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS zapnuté</string>
@@ -26,6 +27,7 @@
   <string name="DraftDatabase_Draft_image_snippet">(obrázok)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(poloha)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nepodarilo sa nájsť aplikáciu pre výber médií.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -35,9 +37,11 @@
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktné informácie</string>
   <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Chyba prehrávania zvuku!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string>
   <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možno by ste mali overiť
 identitu tohto kontaktu.
@@ -57,7 +61,13 @@ identitu tohto kontaktu.
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Prepnúť na nezabezpečené SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Prepnúť na nezabezpečené MMS?</string>
   <string name="ConversationItem_unable_to_open_media">Nepodarilo sa nájst aplikáciu schopnú otvoriť tento typ súboru.</string>
+  <string name="ConversationItem_from_s">od %s</string>
+  <string name="ConversationItem_to_s">pre %s</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">Obnoviť zabezpečené spojenie</string>
+  <string name="ConversationActivity_reset">Reset</string>
+  <string name="ConversationActivity_delete_thread_question">Vymazať konverzáciu?</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">Toto zmaže natrvalo všetky správy v tejto konverzácii.</string>
   <string name="ConversationActivity_add_attachment">Pridať prílohu</string>
   <string name="ConversationActivity_select_contact_info">Vyberte kontaktné informácie </string>
   <string name="ConversationActivity_compose_message">Vytvoriť správu</string>
@@ -70,6 +80,11 @@ identitu tohto kontaktu.
   <string name="ConversationActivity_group_members">Členovia skupiny</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzácia</string>
   <string name="ConversationActivity_unnamed_group">Nepomenovaná skupina</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="one">1 člen</item>
+    <item quantity="few">%d členov</item>
+    <item quantity="other">%d členov</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">Uložený koncept</string>
   <string name="ConversationActivity_invalid_recipient">Neplatný príjemca</string>
   <string name="ConversationActivity_calls_not_supported">Hovory nie sú podporované</string>
@@ -87,11 +102,24 @@ identitu tohto kontaktu.
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Naozaj chcete odblokovať tento kontakt?</string>
   <string name="ConversationActivity_unblock">Odblokovať</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera je momentálne neprístupná</string>
+  <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
+  <string name="ConversationActivity_error_sending_voice_message">Chyba pri posielaní zvukovej správy...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odosielateľ: %1$s\nPrenos: %2$s\nOdoslané: %3$s\nPrijaté: %4$s</string>
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Zmazať vybranú správu?</item>
+    <item quantity="few">Zmazať vybrané správy?</item>
+    <item quantity="other">Zmazať vybrané správy?</item>
+  </plurals>
   <string name="ConversationFragment_save_to_sd_card">Vytvoriť súbor?</string>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Nastala chyba pri ukladaní prílohy na dátové úložisko zariadenia!</item>
+    <item quantity="few">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
+    <item quantity="other">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
+  </plurals>
+  <string name="ConversationFragment_file_saved_successfully">Súbor úspešne uložený.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Aplikácia nedokázala zapísať informácie na dátové úložisko zariadenia!</string>
   <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
   <string name="ConversationFragment_mms">MMS</string>

@@ -72,6 +72,8 @@ public class MediaUtil {
   }
 
   public static @Nullable String getMimeType(Context context, Uri uri) {
+    if (uri == null) return null;
+
     if (PersistentBlobProvider.isAuthority(context, uri)) {
       return PersistentBlobProvider.getMimeType(context, uri);
     }
