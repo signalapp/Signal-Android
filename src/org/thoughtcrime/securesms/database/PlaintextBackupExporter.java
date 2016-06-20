@@ -9,10 +9,13 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PlaintextBackupExporter {
 
-  private static final String FILENAME = "SignalPlaintextBackup.xml";
+  private static final String TIMESTAMP = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date(System.currentTimeMillis()));
+  private static final String FILENAME = "SignalPlaintextBackup_.xml" + TIMESTAMP;
 
   public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
