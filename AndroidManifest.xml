@@ -497,5 +497,13 @@
         </intent-filter>
     </receiver>
 
+    <receiver
+        android:name=".service.PanicResponderListener"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="info.guardianproject.panic.action.TRIGGER" />
+        </intent-filter>
+    </receiver>
+
 </application>
 </manifest>
