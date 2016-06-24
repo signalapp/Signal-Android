@@ -23,7 +23,9 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -352,6 +354,13 @@ public class ConversationItem extends LinearLayout
         final int color = recipient.getColor().toConversationColor(context);
         readStatus.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
         readStatus.setVisibility(View.VISIBLE);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+          ShapeDrawable unread = new ShapeDrawable();
+          unread.getPaint().setColor(getResources().getColor(R.color.white));
+          unread.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+          readStatus.setBackgroundDrawable(unread);
+        }
       } else {
         readStatus.setVisibility(View.INVISIBLE);
       }

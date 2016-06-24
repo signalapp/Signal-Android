@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ShapeDrawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -107,6 +109,13 @@ public class ConversationUpdateItem extends LinearLayout
       final int color = sender.getColor().toConversationColor(getContext());
       readStatus.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
       readStatus.setVisibility(View.VISIBLE);
+
+      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        ShapeDrawable unread = new ShapeDrawable();
+        unread.getPaint().setColor(getResources().getColor(R.color.white));
+        unread.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        readStatus.setBackgroundDrawable(unread);
+      }
     } else {
       readStatus.setVisibility(View.INVISIBLE);
     }
