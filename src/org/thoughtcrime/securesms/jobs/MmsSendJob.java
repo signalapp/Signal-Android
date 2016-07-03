@@ -229,4 +229,8 @@ public class MmsSendJob extends SendJob {
       MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
     }
   }
+
+  protected boolean isSignalMessage() {
+    return false;
+  }
 }

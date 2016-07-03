@@ -204,5 +204,7 @@ public class SmsSendJob extends SendJob {
     return builder.create();
   }
 
-
+  protected boolean isSignalMessage() {
+    return false;
+  }
 }
