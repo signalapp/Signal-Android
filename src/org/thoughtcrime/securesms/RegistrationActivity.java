@@ -59,6 +59,8 @@ public class RegistrationActivity extends BaseActionBarActivity {
 
     getSupportActionBar().setTitle(getString(R.string.RegistrationActivity_connect_with_signal));
 
+    TextSecurePreferences.setPromptedPushRegistration(RegistrationActivity.this, true);
+
     initializeResources();
     initializeSpinner();
     initializeNumber();
@@ -302,7 +304,6 @@ public class RegistrationActivity extends BaseActionBarActivity {
   private class CancelButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
-      TextSecurePreferences.setPromptedPushRegistration(RegistrationActivity.this, true);
       Intent nextIntent = getIntent().getParcelableExtra("next_intent");
 
       if (nextIntent == null) {
