@@ -151,6 +151,7 @@ vérifier ce contact.</string>
     <item quantity="one">Erreur lors de l\'enregistrement de la pièce jointe sur l\'espace de stockage !</item>
     <item quantity="other">Erreur lors de l\'enregistrement des pièces jointes sur l\'espace de stockage !</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">Sauvegarde de fichier réussie.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage !</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Enregistrement de la pièce jointe</item>
@@ -230,6 +231,7 @@ vérifier ce contact.</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Exportation en clair dans l\'espace de stockage...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Erreur, écriture sur mémoire impossible.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Erreur lors de l\'enregistrement dans l\'espace de stockage.</string>
+  <string name="ExportFragment_export_successful">Exportation réussie.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec de communication Signal permanent !</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Les appels et messages Signal ont été désactivés car Signal n\'a pas pu s\'enregistrer auprès de Google Play Services. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres &gt; Avancé.</string>
@@ -511,6 +513,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ApplicationMigrationService_import_in_progress">Importation en cours</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importation des messages textes</string>
   <string name="ApplicationMigrationService_import_complete">Importation terminée</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">L\'importation de la base de données du système est complétée.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Appuyez pour ouvrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Appuyez pour ouvrir, ou appuyez sur le cadenas pour fermer.</string>
@@ -565,6 +568,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="conversation_activity__type_message_push">Envoyer un message Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Envoyer un SMS non-sécurisé</string>
   <string name="conversation_activity__type_message_mms_insecure">Envoyer un MMS non-sécurisé</string>
+  <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__remove">Supprimer</string>
   <string name="conversation_activity__window_description">Conversation avec %1$s</string>
@@ -756,6 +760,7 @@ par SMS.</string>
   <string name="AndroidManifest__media_overview">Toutes les images</string>
   <string name="AndroidManifest__media_overview_named">Toutes les images avec %1$s</string>
   <string name="AndroidManifest__message_details">Détails du message</string>
+  <string name="AndroidManifest__linked_devices">Appareils liés</string>
   <string name="AndroidManifest__invite_friends">Inviter des amis</string>
   <string name="AndroidManifest_archived_conversations">Conversations archivées</string>
   <!--arrays.xml-->
@@ -864,6 +869,7 @@ par SMS.</string>
   <string name="preferences__conversation_length_limit">Limite de taille de la conversation</string>
   <string name="preferences__trim_all_conversations_now">Réduire toutes les conversations maintenant</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scanner toutes les conversations et imposer les limites de longueur pour les conversations</string>
+  <string name="preferences__linked_devices">Appareils liés</string>
   <string name="preferences__light_theme">Clair</string>
   <string name="preferences__dark_theme">Sombre</string>
   <string name="preferences__appearance">Apparence</string>

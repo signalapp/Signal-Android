@@ -148,6 +148,7 @@ kontak ini.
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">Terjadi kesalahan saat menyimpan lampiran ke penyimpanan!</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">File berhasil disimpan</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Tidak bisa menyimpan ke penyimpanan!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">Menyimpan %1$d lampiran</item>
@@ -221,6 +222,7 @@ kontak ini.
   <string name="ExportFragment_exporting_plaintext_to_storage">Mengeksport teks ke media penyimpanan...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Gagal, tidak bisa menyimpan ke penyimpanan.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Gagal saat menyimpan ke penyimpanan.</string>
+  <string name="ExportFragment_export_successful">Export berhasil</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan permanen komunikasi Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat melakukan registrasi dengan Layanan Google Play. Fitur Signal seperti pesan dan panggilan di nonaktifkan, mohon registrasi ulang melalui Pengaturan</string>
@@ -514,6 +516,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ApplicationMigrationService_import_in_progress">Dalam proses mengimport</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mengimpor pesan teks</string>
   <string name="ApplicationMigrationService_import_complete">Selesai mengimpor</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Import sistim database berhasil</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Sentuh untuk membuka.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Sentuh untuk membuka, atau sentuh kunci untuk menutup.</string>

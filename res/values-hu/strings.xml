@@ -21,8 +21,8 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">Jelmondat tiltása?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ez véglegesen fel fogja oldani a Signal-t és az üzenet értesítéseket.</string>
   <string name="ApplicationPreferencesActivity_disable">Tiltás</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Leregisztrálás</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Leregisztrálás Signal üzenetekről és hívásokról...</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Regisztráció törlése</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Regisztráció törlése a Signal üzenetekről és hívásokról...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal üzenetek és hívások letiltása?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal üzenetek és hívások letiltása a kiszolgálóról történő leregisztrálással. Újra kell regisztrálnod a telefonszámod, hogy a jövőben újra használhasd őket.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba a kiszolgálóhoz való kapcsolódáskor!</string>
@@ -115,7 +115,7 @@ ezt a névjegyet.
   </plurals>
   <string name="ConversationActivity_saved_draft">Mentett piszkozat</string>
   <string name="ConversationActivity_invalid_recipient">Érvénytelen címzett!</string>
-  <string name="ConversationActivity_calls_not_supported">A hívások nem támogatottak!</string>
+  <string name="ConversationActivity_calls_not_supported">A hívások nem támogatottak</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Úgy tűnik, ez a készülék nem támogatja a tárcsázási műveleteket.</string>
   <string name="ConversationActivity_leave_group">Elhagyod a csoportot?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Biztosan el akarod hagyni ezt a csoportot?</string>
@@ -156,7 +156,7 @@ ezt a névjegyet.
     <item quantity="one">Hiba történt a melléklet tárolóra mentése közben!</item>
     <item quantity="other">Hiba történt a mellékletek tárolóra mentése közben!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Fájl mentése sikeres.</string>
+  <string name="ConversationFragment_file_saved_successfully">A fájl sikeresen mentve.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet írni a tárolóra!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Melléklet mentése</item>
@@ -533,7 +533,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ApplicationMigrationService_import_in_progress">Importálás folyamatban</string>
   <string name="ApplicationMigrationService_importing_text_messages">Szöveges üzenetek importálása</string>
   <string name="ApplicationMigrationService_import_complete">Importálás befejezve</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">Rendszer adatbázis betöltése befejezve.</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Rendszer adatbázis importálása befejezve.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Érintsd meg a megnyitáshoz.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Érintsd meg a megnyitáshoz, vagy érintsd meg a zárat a bezáráshoz.</string>
@@ -588,7 +588,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_activity__type_message_push">Signal üzenet küldése</string>
   <string name="conversation_activity__type_message_sms_insecure">Védtelen SMS küldése</string>
   <string name="conversation_activity__type_message_mms_insecure">Védtelen MMS küldése</string>
-  <string name="conversation_activity__from_sim_name">Tőle: %1$s</string>
+  <string name="conversation_activity__from_sim_name">%1$s hálózaton</string>
   <string name="conversation_activity__send">Küldés</string>
   <string name="conversation_activity__remove">Eltávolítás</string>
   <string name="conversation_activity__window_description">Beszélgetés vele: %1$s</string>

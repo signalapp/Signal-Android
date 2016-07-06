@@ -109,6 +109,7 @@ public class MessageRecipientListItem extends RelativeLayout
     } else if (networkFailure != null || (!isPushGroup && record.isFailed())) {
       resendButton.setVisibility(View.VISIBLE);
       resendButton.setEnabled(true);
+      resendButton.requestFocus();
       conflictButton.setVisibility(View.GONE);
 
       errorText = getContext().getString(R.string.MessageDetailsRecipient_failed_to_send);

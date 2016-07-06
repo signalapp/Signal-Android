@@ -70,8 +70,10 @@ public class NewConversationActivity extends ContactSelectionActivity {
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case android.R.id.home: super.onBackPressed(); return true;
-    case R.id.menu_refresh: handleManualRefresh(); return true;
+    case android.R.id.home:   super.onBackPressed(); return true;
+    case R.id.menu_refresh:   handleManualRefresh(); return true;
+    case R.id.menu_new_group: handleCreateGroup();   return true;
+    case R.id.menu_invite:    handleInvite();        return true;
     }
 
     return false;
@@ -80,6 +82,14 @@ public class NewConversationActivity extends ContactSelectionActivity {
   private void handleManualRefresh() {
     contactsFragment.setRefreshing(true);
     onRefresh();
+  }
+
+  private void handleCreateGroup() {
+    startActivity(new Intent(this, GroupCreateActivity.class));
+  }
+
+  private void handleInvite() {
+    startActivity(new Intent(this, InviteActivity.class));
   }
 
   @Override

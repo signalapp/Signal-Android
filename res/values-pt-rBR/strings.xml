@@ -156,6 +156,7 @@
     <item quantity="one">Erro ao gravar anexo no armazenamento!</item>
     <item quantity="other">Erro ao gravar anexos no armazenamento!</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">Arquivo gravado com sucesso.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não foi possível escrever no cartão SD!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Gravando anexo</item>
@@ -235,6 +236,7 @@
   <string name="ExportFragment_exporting_plaintext_to_storage">Exportando o texto para a memória do aparelho...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Erro, não foi possível armazenar na memória do aparelho.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Erro ao gravar na memória do aparelho.</string>
+  <string name="ExportFragment_export_successful">Exportação realizada com sucesso.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não conseguiu cadastrar-se com o Google Play Services. Mensagens e chamadas Signal foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
@@ -346,10 +348,10 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorreta!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Insira uma nova frase-chave!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Conectar este dispositivo?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Vincular este dispositivo?</string>
   <string name="DeviceProvisioningActivity_cancel">CANCELAR</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
-  <string name="DeviceProvisioningActivity_title">Conectar este dispositivo?</string>
+  <string name="DeviceProvisioningActivity_title">Vincular este dispositivo?</string>
   <string name="DeviceProvisioningActivity_content_intro">Ele será capaz de</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • Ler todas as suas mensagens
@@ -363,8 +365,8 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Desculpe, você já possui muitos dispositivos vinculados. Tente remover alguns...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Desculpe, este não é um código QR de dispositivo válido.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Conectar um dispositivo Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando conectar um dispositivo Signal usando um outro scanner. Para sua proteção, favor escanear novamente o código usando o Signal.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Vincular um dispositivo Signal?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando vincular um dispositivo Signal usando um outro scanner. Para sua proteção, favor escanear novamente o código usando o Signal.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Signal</string>
@@ -532,6 +534,7 @@
   <string name="ApplicationMigrationService_import_in_progress">Importação em andamento</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensagens de texto</string>
   <string name="ApplicationMigrationService_import_complete">Importação finalizada</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Importação da base de dados do sistema finalizada.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Toque para abrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Toque para abrir ou clique no cadeado para fechar.</string>
@@ -617,12 +620,12 @@
   <string name="country_selection_fragment__loading_countries">Carregando países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Escaneie o código QR mostrado no aparelho para conectar</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Escaneie o código QR mostrado no aparelho para vincular</string>
   <!--device_link_fragment-->
-  <string name="device_link_fragment__link_device">Conectar dispositivo</string>
+  <string name="device_link_fragment__link_device">Vincular dispositivo</string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">Nenhum dispositivo vinculado...</string>
-  <string name="device_list_fragment__link_new_device">Conectar novo dispositivo</string>
+  <string name="device_list_fragment__link_new_device">Vincular novo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
   <!--log_submit_activity-->
@@ -783,6 +786,7 @@ falhou.</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
+  <string name="AndroidManifest__linked_devices">Dispositivos vinculados</string>
   <string name="AndroidManifest__invite_friends">Convidar amigos</string>
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <!--arrays.xml-->
@@ -891,6 +895,7 @@ falhou.</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
   <string name="preferences__trim_all_conversations_now">Limpar todas as conversas agora</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todas as conversas e aplicar os limites de comprimento de conversa</string>
+  <string name="preferences__linked_devices">Dispositivos vinculados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aparência</string>

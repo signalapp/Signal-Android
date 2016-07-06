@@ -8,6 +8,8 @@
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:focusable="true"
+        android:background="@drawable/conversation_item_background"
         android:paddingLeft="48dp"
         android:paddingRight="20dp">
 
