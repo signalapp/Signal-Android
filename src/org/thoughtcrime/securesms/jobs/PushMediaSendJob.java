@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.AttachmentEmptyException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -60,7 +61,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   @Override
   public void onSend(MasterSecret masterSecret)
       throws RetryLaterException, MmsException, NoSuchMessageException,
-             UndeliverableMessageException
+             UndeliverableMessageException, AttachmentEmptyException
   {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
@@ -78,8 +79,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context));
     } catch (UntrustedIdentityException uie) {
       Log.w(TAG, uie);
-      Recipients recipients  = RecipientFactory.getRecipientsFromString(context, uie.getE164Number(), false);
-      long       recipientId = recipients.getPrimaryRecipient().getRecipientId();
+      Recipients recipients = RecipientFactory.getRecipientsFromString(context, uie.getE164Number(), false);
+      long recipientId = recipients.getPrimaryRecipient().getRecipientId();
 
       database.addMismatchedIdentity(messageId, recipientId, uie.getIdentityKey());
       database.markAsSentFailed(messageId);
@@ -103,7 +104,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message)
       throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
-             UndeliverableMessageException
+             UndeliverableMessageException, AttachmentEmptyException
   {
     if (message.getRecipients() == null                       ||
         message.getRecipients().getPrimaryRecipient() == null ||
