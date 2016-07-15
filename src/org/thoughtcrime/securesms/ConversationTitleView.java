@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ConversationTitleView extends LinearLayout {
@@ -67,8 +68,13 @@ public class ConversationTitleView extends LinearLayout {
         this.subtitle.setVisibility(View.GONE);
       } else {
         this.title.setText(recipient.getName());
-        this.subtitle.setText(recipient.getNumber());
-        this.subtitle.setVisibility(View.VISIBLE);
+        if(TextSecurePreferences.isHideNumberInActionBarEnabled(getContext())){
+          this.subtitle.setText(null);
+          this.subtitle.setVisibility(View.GONE);
+        }else {
+          this.subtitle.setText(recipient.getNumber());
+          this.subtitle.setVisibility(View.VISIBLE);
+        }
       }
     } else {
       String groupName = (!TextUtils.isEmpty(recipient.getName())) ?
