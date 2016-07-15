@@ -490,7 +490,7 @@ public class SmsDatabase extends MessagingDatabase {
     }
 
     boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
-                            message.isSecureMessage() || message.isPreKeyBundle();
+                            message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle();
 
     long       threadId;
 
