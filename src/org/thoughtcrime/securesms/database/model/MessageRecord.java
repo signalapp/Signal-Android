@@ -119,8 +119,10 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public long getTimestamp() {
-    if (isPush()) return getDateSent();
-    else          return getDateReceived();
+    if (isPush() && getDateSent() < getDateReceived()) {
+      return getDateSent();
+    }
+    return getDateReceived();
   }
 
   public boolean isForcedSms() {
