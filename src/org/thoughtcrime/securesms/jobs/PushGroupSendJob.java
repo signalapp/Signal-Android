@@ -143,9 +143,9 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, RecipientFormattingException, InvalidNumberException,
       EncapsulatedExceptions, UndeliverableMessageException
   {
-    SignalServiceMessageSender    messageSender = messageSenderFactory.create();
-    byte[]                        groupId       = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
-    Recipients                    recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+    SignalServiceMessageSender    messageSender     = messageSenderFactory.create();
+    byte[]                        groupId           = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
+    Recipients                    recipients        = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.PUSH_CONSTRAINTS, message.getAttachments());
     List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
     List<SignalServiceAddress>    addresses;
