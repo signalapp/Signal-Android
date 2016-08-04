@@ -53,7 +53,15 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
       if (allMmsPreference != null) preferenceScreen.removePreference(allMmsPreference);
 
       if (Util.isDefaultSmsProvider(getActivity())) {
-        defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+        if (VERSION.SDK_INT <= VERSION_CODES.LOLLIPOP_MR1)
+            defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+        else
+          if (VERSION.SDK_INT == 23)
+          // TODO(hidekido): Change this to VERSION_CODES.M when targetsdk is 23 or higher
+            defaultPreference.setIntent(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+          else
+            defaultPreference.setIntent(new Intent("android.settings.MANAGE_DEFAULT_APPS_SETTINGS"));
+            // TODO(hidekido): Change this to Settings.MANAGE_DEFAULT_APPS_SETTINGS when targetsdk is 24 or higher
         defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
         defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
       } else {
