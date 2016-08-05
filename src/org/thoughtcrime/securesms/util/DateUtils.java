@@ -83,6 +83,28 @@ public class DateUtils extends android.text.format.DateUtils {
     }
   }
 
+  public static String getUnabbreviatedRelativeTimeSpanString(final Context c, final Locale locale, final long timestamp) {
+    if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
+      return c.getString(R.string.DateUtils_now);
+    } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
+      int mins = convertDelta(timestamp, TimeUnit.MINUTES);
+      return c.getResources().getQuantityString(R.plurals.DateUtils_minutes_ago_unabbreviated, mins, mins);
+    } else if (isWithin(timestamp, 1, TimeUnit.DAYS)) {
+      int hours = convertDelta(timestamp, TimeUnit.HOURS);
+      return c.getResources().getQuantityString(R.plurals.hours_ago_unabbreviated, hours, hours);
+    } else {
+      StringBuilder format = new StringBuilder();
+      if      (isWithin(timestamp,   6, TimeUnit.DAYS)) format.append("EEEE ");
+      else if (isWithin(timestamp, 365, TimeUnit.DAYS)) format.append("MMMM d, ");
+      else                                              format.append("MMMM d, yyyy, ");
+
+      if (DateFormat.is24HourFormat(c)) format.append("HH:mm");
+      else                              format.append("hh:mm a");
+
+      return getFormattedDateTime(timestamp, format.toString(), locale);
+    }
+  }
+
   public static String getDayPrecisionTimeSpanString(Context context, Locale locale, long timestamp) {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 

@@ -94,9 +94,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void initializeActionBar() {
     final CharSequence relativeTimeSpan;
     if (date > 0) {
-      relativeTimeSpan = DateUtils.getRelativeTimeSpanString(date,
-                                                             System.currentTimeMillis(),
-                                                             DateUtils.MINUTE_IN_MILLIS);
+      relativeTimeSpan = DateUtils.getUnabbreviatedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(),date);
     } else {
       relativeTimeSpan = null;
     }
