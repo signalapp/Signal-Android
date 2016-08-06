@@ -90,8 +90,7 @@ public class AttachmentTypeSelector extends PopupWindow {
   public void show(@NonNull Activity activity, final @NonNull View anchor) {
     this.currentAnchor = anchor;
 
-    int screenHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
-    showAtLocation(anchor, Gravity.NO_GRAVITY, 0, screenHeight - getHeight());
+    showAtLocation(anchor, Gravity.BOTTOM, 0, 0);
 
     getContentView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
       @Override
