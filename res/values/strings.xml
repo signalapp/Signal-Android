@@ -188,6 +188,7 @@
     <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
 
     <!-- ConversationListActivity -->
+    <string name="ConversationListActivity_help_no_browser">You have no browser installed. Get a browser to access help.</string>
     <string name="ConversationListActivity_search">Search...</string>
 
     <!-- ConversationListFragment -->
