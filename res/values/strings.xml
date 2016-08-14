@@ -147,6 +147,7 @@
     <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_error_sending_voice_message">Error sending voice message...</string>
+    <string name="ConversationActivity_no_handler_app">You have no app installed to open this link.</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
