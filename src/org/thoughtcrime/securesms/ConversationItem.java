@@ -456,7 +456,9 @@ public class ConversationItem extends LinearLayout
 
   @Override
   public void onModified(Recipients recipient) {
-    onModified(recipient.getPrimaryRecipient());
+    if (!recipient.isGroupRecipient()) {
+      onModified(recipient.getPrimaryRecipient());
+    }
   }
 
   private class AttachmentDownloadClickListener implements SlideClickListener {
