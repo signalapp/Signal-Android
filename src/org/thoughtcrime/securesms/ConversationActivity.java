@@ -36,7 +36,6 @@ import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -128,7 +127,6 @@ import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities;
 import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -375,7 +373,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (intent.getStringExtra(Browser.EXTRA_APPLICATION_ID) != null) {
       intent.removeExtra(Browser.EXTRA_APPLICATION_ID);
     }
-    super.startActivity(intent);
+
+    try {
+      super.startActivity(intent);
+    } catch (ActivityNotFoundException e) {
+      Log.w(TAG, e);
+      Toast.makeText(this, R.string.ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device, Toast.LENGTH_LONG).show();
+    }
   }
 
   @Override

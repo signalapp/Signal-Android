@@ -147,6 +147,7 @@
     <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_error_sending_voice_message">Error sending voice message...</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -189,6 +190,7 @@
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_search">Search...</string>
+    <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
 
     <!-- ConversationListFragment -->
     <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -429,6 +431,7 @@
     <string name="RatingManager_rate_now">Rate now!</string>
     <string name="RatingManager_no_thanks">No thanks</string>
     <string name="RatingManager_later">Later</string>
+    <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, the Play Store app does not appear to be installed on your device.</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
@@ -766,6 +769,7 @@
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
     <string name="log_submit_activity__submitting">Submitting</string>
     <string name="log_submit_activity__posting_logs">Posting logs to gist&#8230;</string>
+    <string name="log_submit_activity__no_browser_installed">No browser installed</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal\'s encrypted database?</string>
