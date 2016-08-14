@@ -363,6 +363,19 @@
 
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
+    <!-- this can never have launchMode singleTask or singleInstance! -->
+    <activity android:name=".PanicResponderActivity"
+              android:noHistory="true"
+              android:theme="@android:style/Theme.NoDisplay">
+        <intent-filter>
+            <action android:name="info.guardianproject.panic.action.TRIGGER" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+    </activity>
+
+    <activity android:name=".ExitActivity"
+              android:theme="@android:style/Theme.NoDisplay" />
+
     <service android:enabled="true" android:name="org.thoughtcrime.redphone.RedPhoneService"/>
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
