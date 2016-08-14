@@ -1,8 +1,11 @@
 package org.thoughtcrime.securesms;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -57,5 +60,15 @@ public class LogSubmitActivity extends BaseActionBarActivity implements SubmitLo
   @Override
   public void onCancel() {
     finish();
+  }
+
+  @Override
+  public void startActivity(Intent intent) {
+    try {
+      super.startActivity(intent);
+    } catch (ActivityNotFoundException e) {
+      Log.w(TAG, e);
+      Toast.makeText(this, R.string.log_submit_activity__no_browser_installed, Toast.LENGTH_LONG).show();
+    }
   }
 }

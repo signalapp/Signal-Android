@@ -723,6 +723,7 @@
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
     <string name="log_submit_activity__submitting">Submitting</string>
     <string name="log_submit_activity__posting_logs">Posting logs to gist&#8230;</string>
+    <string name="log_submit_activity__no_browser_installed">No browser installed</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal\'s encrypted database?</string>
