@@ -163,7 +163,11 @@ android {
         minSdkVersion 9
         targetSdkVersion 22
 
-        buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
+        def build_timestamp = System.currentTimeMillis();
+        if (!org.gradle.internal.os.OperatingSystem.current().windows) {
+            build_timestamp = getLastCommitTimestamp();
+        }
+        buildConfigField "long", "BUILD_TIMESTAMP", build_timestamp + "L"
         buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "USER_AGENT", "\"OWA\""
         buildConfigField "String", "REDPHONE_MASTER_URL", "\"https://redphone-master.whispersystems.org\""
