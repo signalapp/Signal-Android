@@ -33,6 +33,9 @@
     <color name="conversation_list_divider_light">#15000000</color>
     <color name="conversation_list_divider_dark">#22ffffff</color>
 
+    <color name="conversation_input_panel_divider_gradient_start">#44000000</color>
+    <color name="conversation_input_panel_divider_gradient_end">@android:color/transparent</color>
+
     <color name="textsecure_holo_blue_light">#ff33b5e5</color>
 
     <color name="dark_action_bar">#ff111111</color>
