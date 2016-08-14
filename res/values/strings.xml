@@ -190,6 +190,7 @@
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_search">Search...</string>
+    <string name="ConversationListActivity_help_no_browser">You have no browser installed. Get a browser to access help.</string>
 
     <!-- ConversationListFragment -->
     <plurals name="ConversationListFragment_delete_selected_conversations">
