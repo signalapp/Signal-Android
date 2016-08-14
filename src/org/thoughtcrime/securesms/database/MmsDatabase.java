@@ -110,7 +110,7 @@ public class MmsDatabase extends MessagingDatabase {
     "ct_cls" + " INTEGER, " + "resp_txt" + " TEXT, " + "d_tm" + " INTEGER, "     +
     RECEIPT_COUNT + " INTEGER DEFAULT 0, " + MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, "     +
     NETWORK_FAILURE + " TEXT DEFAULT NULL," + "d_rpt" + " INTEGER, " +
-    SUBSCRIPTION_ID + " INTEGER DEFAULT -1);";
+    SUBSCRIPTION_ID + " INTEGER DEFAULT -1," + ALREADY_NOTIFIED + " INTEGER DEFAULT 0" + ");";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -129,7 +129,7 @@ public class MmsDatabase extends MessagingDatabase {
       CONTENT_LOCATION, EXPIRY, MESSAGE_TYPE,
       MESSAGE_SIZE, STATUS, TRANSACTION_ID,
       BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID,
-      RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
+      RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID, ALREADY_NOTIFIED,
       AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
       AttachmentDatabase.UNIQUE_ID,
       AttachmentDatabase.MMS_ID,
@@ -506,6 +506,14 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(READ, 1);
 
     database.update(TABLE_NAME, contentValues, null, null);
+  }
+
+  public void setAlreadyNotified(long messageId) {
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(ALREADY_NOTIFIED, 1);
+
+    database.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {messageId + ""});
   }
 
   public void updateMessageBody(MasterSecretUnion masterSecret, long messageId, String body) {
@@ -1087,6 +1095,7 @@ public class MmsDatabase extends MessagingDatabase {
       int status                 = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.STATUS));
       int receiptCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.RECEIPT_COUNT));
       int subscriptionId         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID));
+      int alreadyNotified        = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ALREADY_NOTIFIED));
 
       byte[]contentLocationBytes = null;
       byte[]transactionIdBytes   = null;
@@ -1101,7 +1110,8 @@ public class MmsDatabase extends MessagingDatabase {
       return new NotificationMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                               addressDeviceId, dateSent, dateReceived, receiptCount, threadId,
                                               contentLocationBytes, messageSize, expiry, status,
-                                              transactionIdBytes, mailbox, subscriptionId);
+                                              transactionIdBytes, mailbox, subscriptionId,
+                                              alreadyNotified == 1);
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
@@ -1118,6 +1128,7 @@ public class MmsDatabase extends MessagingDatabase {
       String mismatchDocument = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
       String networkDocument  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
       int subscriptionId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID));
+      int alreadyNotified     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ALREADY_NOTIFIED));
 
       Recipients                recipients      = getRecipientsFor(address);
       List<IdentityKeyMismatch> mismatches      = getMismatchedIdentities(mismatchDocument);
@@ -1127,7 +1138,7 @@ public class MmsDatabase extends MessagingDatabase {
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                        addressDeviceId, dateSent, dateReceived, receiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
-                                       networkFailures, subscriptionId);
+                                       networkFailures, subscriptionId, alreadyNotified == 1);
     }
 
     private Recipients getRecipientsFor(String address) {

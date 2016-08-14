@@ -48,11 +48,11 @@ public class SmsMessageRecord extends MessageRecord {
                           int receiptCount,
                           long type, long threadId,
                           int status, List<IdentityKeyMismatch> mismatches,
-                          int subscriptionId)
+                          int subscriptionId, boolean alreadyNotified)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, status, receiptCount, type,
-          mismatches, new LinkedList<NetworkFailure>(), subscriptionId);
+          mismatches, new LinkedList<NetworkFailure>(), subscriptionId, alreadyNotified);
   }
 
   public long getType() {

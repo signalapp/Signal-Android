@@ -40,19 +40,24 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
   private       SlideDeck    slideDeck;
   private final MasterSecret masterSecret;
+  private final boolean      summary;
 
   public SingleRecipientNotificationBuilder(@NonNull Context context,
                                             @Nullable MasterSecret masterSecret,
-                                            @NonNull NotificationPrivacyPreference privacy)
+                                            @NonNull NotificationPrivacyPreference privacy,
+                                            boolean summary)
   {
     super(context, privacy);
     this.masterSecret = masterSecret;
+    this.summary = summary;
 
     setSmallIcon(R.drawable.icon_notification);
     setColor(context.getResources().getColor(R.color.textsecure_primary));
     setPriority(NotificationCompat.PRIORITY_HIGH);
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
     setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(MessageNotifier.DeleteReceiver.DELETE_REMINDER_ACTION), 0));
+    setGroup(MessageNotifier.GROUP_KEY_MESSAGES);
+    setGroupSummary(summary);
   }
 
   public void setThread(@NonNull Recipients recipients) {
@@ -220,10 +225,15 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   private CharSequence getBigText(List<CharSequence> messageBodies) {
     SpannableStringBuilder content = new SpannableStringBuilder();
 
-    for (CharSequence message : messageBodies) {
-      content.append(message);
-      content.append('\n');
+    if (summary) {
+      for (CharSequence message : messageBodies) {
+        content.append(message);
+        content.append('\n');
+      }
+    } else {
+      content.append(messageBodies.get(messageBodies.size() - 1));
     }
+
 
     return content;
   }

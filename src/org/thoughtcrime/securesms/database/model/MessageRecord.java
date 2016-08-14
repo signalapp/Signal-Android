@@ -51,6 +51,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final List<IdentityKeyMismatch> mismatches;
   private final List<NetworkFailure>      networkFailures;
   private final int                       subscriptionId;
+  private final boolean                   alreadyNotified;
 
   MessageRecord(Context context, long id, Body body, Recipients recipients,
                 Recipient individualRecipient, int recipientDeviceId,
@@ -58,7 +59,8 @@ public abstract class MessageRecord extends DisplayRecord {
                 int deliveryStatus, int receiptCount, long type,
                 List<IdentityKeyMismatch> mismatches,
                 List<NetworkFailure> networkFailures,
-                int subscriptionId)
+                int subscriptionId,
+                boolean alreadyNotified)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
           type);
@@ -68,6 +70,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.mismatches          = mismatches;
     this.networkFailures     = networkFailures;
     this.subscriptionId      = subscriptionId;
+    this.alreadyNotified     = alreadyNotified;
   }
 
   public abstract boolean isMms();
@@ -200,5 +203,9 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public int getSubscriptionId() {
     return subscriptionId;
+  }
+
+  public boolean isAlreadyNotified() {
+    return alreadyNotified;
   }
 }
