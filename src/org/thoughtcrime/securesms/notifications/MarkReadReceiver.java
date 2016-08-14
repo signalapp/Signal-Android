@@ -35,7 +35,7 @@ public class MarkReadReceiver extends MasterSecretBroadcastReceiver {
       Log.w("TAG", "threadIds length: " + threadIds.length);
 
       ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-                                   .cancel(MessageNotifier.NOTIFICATION_ID);
+                                   .cancel(MessageNotifier.SUMMARY_NOTIFICATION_ID);
 
       new AsyncTask<Void, Void, Void>() {
         @Override
