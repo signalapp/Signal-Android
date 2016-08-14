@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -88,6 +89,7 @@ public class ConversationFragment extends Fragment
   private Locale       locale;
   private RecyclerView list;
   private View         loadMoreView;
+  private List<ConversationItem> selectedItems = new ArrayList<>();
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -258,7 +260,7 @@ public class ConversationFragment extends Fragment
         clipboard.setText(result);
   }
 
-  private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
+  private void handleDeleteMessages(final Set<MessageRecord> messageRecords, final ConversationItem[] conversationItems) {
     int                 messagesCount = messageRecords.size();
     AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
 
@@ -270,6 +272,10 @@ public class ConversationFragment extends Fragment
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
+        for(ConversationItem conversationItem : conversationItems) {
+          conversationItem.stopAudioPlaying();
+        }
+
         new ProgressDialogAsyncTask<MessageRecord, Void, Void>(getActivity(),
                                                                R.string.ConversationFragment_deleting,
                                                                R.string.ConversationFragment_deleting_messages)
@@ -400,11 +406,16 @@ public class ConversationFragment extends Fragment
     public void onItemLongClick(ConversationItem item) {
       if (actionMode == null) {
         ((ConversationAdapter) list.getAdapter()).toggleSelection(item.getMessageRecord());
+        selectedItems.add(item);
         list.getAdapter().notifyDataSetChanged();
 
         actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
       }
     }
+  }
+
+  private ConversationItem[] getSelectedConversationItems() {
+    return selectedItems.toArray(new ConversationItem[this.selectedItems.size()]);
   }
 
   private class ActionModeCallback implements ActionMode.Callback {
@@ -434,6 +445,7 @@ public class ConversationFragment extends Fragment
     @Override
     public void onDestroyActionMode(ActionMode mode) {
       ((ConversationAdapter)list.getAdapter()).clearSelection();
+      selectedItems.clear();
       list.getAdapter().notifyDataSetChanged();
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -451,7 +463,7 @@ public class ConversationFragment extends Fragment
           actionMode.finish();
           return true;
         case R.id.menu_context_delete_message:
-          handleDeleteMessages(getListAdapter().getSelectedItems());
+          handleDeleteMessages(getListAdapter().getSelectedItems(), getSelectedConversationItems());
           actionMode.finish();
           return true;
         case R.id.menu_context_details:

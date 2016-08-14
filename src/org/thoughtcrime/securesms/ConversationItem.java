@@ -628,4 +628,7 @@ public class ConversationItem extends LinearLayout
     builder.show();
   }
 
+  public void stopAudioPlaying() {
+    audioView.stopPlaying();
+  }
 }

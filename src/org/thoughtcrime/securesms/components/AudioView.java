@@ -237,6 +237,10 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     }
   }
 
+  public void stopPlaying() {
+    if(audioSlidePlayer != null) audioSlidePlayer.stop();
+  }
+
   @SuppressWarnings("unused")
   public void onEventAsync(final PartProgressEvent event) {
     if (audioSlidePlayer != null && event.attachment.equals(this.audioSlidePlayer.getAudioSlide().asAttachment())) {
