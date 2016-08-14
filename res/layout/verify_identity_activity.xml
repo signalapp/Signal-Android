@@ -45,5 +45,12 @@
                 android:fontFamily="monospace"
                 android:text="" />
 
+        <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/identities_verified"
+                android:textOn="@string/VerifyIdentityActivity_verified_exclamation"
+                android:textOff="@string/VerifyIdentityActivity_not_verified_exclamation" />
+
     </LinearLayout>
 </ScrollView>
