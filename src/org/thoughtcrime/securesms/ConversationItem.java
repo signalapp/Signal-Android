@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.AlertView;
+import org.thoughtcrime.securesms.components.ExpirationTimerView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -61,6 +63,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -110,6 +113,7 @@ public class ConversationItem extends LinearLayout
   private @NonNull  AudioView           audioView;
   private @NonNull  Button              mmsDownloadButton;
   private @NonNull  TextView            mmsDownloadingLabel;
+  private @NonNull  ExpirationTimerView expirationTimer;
 
   private int defaultBubbleColor;
 
@@ -151,6 +155,7 @@ public class ConversationItem extends LinearLayout
     this.bodyBubble              =                      findViewById(R.id.body_bubble);
     this.mediaThumbnail          = (ThumbnailView)      findViewById(R.id.image_view);
     this.audioView               = (AudioView)          findViewById(R.id.audio_view);
+    this.expirationTimer         = (ExpirationTimerView) findViewById(R.id.expiration_indicator);
 
     setOnClickListener(new ClickListener(null));
     PassthroughClickListener        passthroughClickListener = new PassthroughClickListener();
@@ -194,6 +199,7 @@ public class ConversationItem extends LinearLayout
     setMinimumWidth();
     setMediaAttributes(messageRecord);
     setSimInfo(messageRecord);
+    setExpiration(messageRecord);
   }
 
   private void initializeAttributes() {
@@ -211,6 +217,8 @@ public class ConversationItem extends LinearLayout
     if (recipient != null) {
       recipient.removeListener(this);
     }
+
+    this.expirationTimer.stopAnimation();
   }
 
   public MessageRecord getMessageRecord() {
@@ -350,6 +358,36 @@ public class ConversationItem extends LinearLayout
       } else {
         simInfoText.setVisibility(View.GONE);
       }
+    }
+  }
+
+  private void setExpiration(final MessageRecord messageRecord) {
+    if (messageRecord.getExpiresIn() > 0) {
+      this.expirationTimer.setVisibility(View.VISIBLE);
+      this.expirationTimer.setPercentage(0);
+
+      if (messageRecord.getExpireStarted() > 0) {
+        this.expirationTimer.setExpirationTime(messageRecord.getExpireStarted(),
+                                               messageRecord.getExpiresIn());
+        this.expirationTimer.startAnimation();
+      } else if (!messageRecord.isOutgoing() && !messageRecord.isMediaPending()) {
+        new AsyncTask<Void, Void, Void>() {
+          @Override
+          protected Void doInBackground(Void... params) {
+            ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
+            long                   id                = messageRecord.getId();
+            boolean                mms               = messageRecord.isMms();
+
+            if (mms) DatabaseFactory.getMmsDatabase(context).markExpireStarted(id);
+            else     DatabaseFactory.getSmsDatabase(context).markExpireStarted(id);
+
+            expirationManager.scheduleDeletion(id, mms, messageRecord.getExpiresIn());
+            return null;
+          }
+        }.execute();
+      }
+    } else {
+      this.expirationTimer.setVisibility(View.GONE);
     }
   }
 

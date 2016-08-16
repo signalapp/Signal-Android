@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout android:id="@+id/pending_indicator_stub"
                  android:layout_width="wrap_content"
                  android:paddingRight="2dp"
-                 android:layout_height="wrap_content" />
+                 android:layout_height="wrap_content"
+                 tools:visibility="gone"/>
 
     <ImageView android:id="@+id/sent_indicator"
                android:layout_width="wrap_content"
@@ -24,6 +26,7 @@
                android:paddingLeft="2dp"
                android:paddingBottom="2dp"
                android:visibility="gone"
-               android:contentDescription="@string/conversation_item_sent__delivered_description" />
+               android:contentDescription="@string/conversation_item_sent__delivered_description"
+               tools:visibility="visible"/>
 
 </merge>

@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
@@ -59,6 +62,17 @@ public class ConversationUpdateItem extends LinearLayout
                    @NonNull Recipients conversationRecipients)
   {
     bind(messageRecord, locale);
+
+    if (batchSelected.contains(messageRecord)) {
+      setSelected(true);
+    } else {
+      setSelected(false);
+    }
+  }
+
+  @Override
+  public MessageRecord getMessageRecord() {
+    return messageRecord;
   }
 
   private void bind(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {
@@ -68,10 +82,11 @@ public class ConversationUpdateItem extends LinearLayout
 
     this.sender.addListener(this);
 
-    if      (messageRecord.isGroupAction()) setGroupRecord(messageRecord);
-    else if (messageRecord.isCallLog())     setCallRecord(messageRecord);
-    else if (messageRecord.isJoined())      setJoinedRecord(messageRecord);
-    else                                    throw new AssertionError("Neither group nor log nor joined.");
+    if      (messageRecord.isGroupAction())           setGroupRecord(messageRecord);
+    else if (messageRecord.isCallLog())               setCallRecord(messageRecord);
+    else if (messageRecord.isJoined())                setJoinedRecord(messageRecord);
+    else if (messageRecord.isExpirationTimerUpdate()) setTimerRecord(messageRecord);
+    else                                              throw new AssertionError("Neither group nor log nor joined.");
   }
 
   private void setCallRecord(MessageRecord messageRecord) {
@@ -84,8 +99,22 @@ public class ConversationUpdateItem extends LinearLayout
     date.setVisibility(View.VISIBLE);
   }
 
+  private void setTimerRecord(final MessageRecord messageRecord) {
+    if (messageRecord.getExpiresIn() > 0) {
+      icon.setImageResource(R.drawable.ic_timer_white_24dp);
+      icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
+    } else {
+      icon.setImageResource(R.drawable.ic_timer_off_white_24dp);
+      icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
+    }
+
+    body.setText(messageRecord.getDisplayBody());
+    date.setVisibility(View.GONE);
+  }
+
   private void setGroupRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_group_grey600_24dp);
+    icon.clearColorFilter();
 
     GroupUtil.getDescription(getContext(), messageRecord.getBody().getBody()).addListener(this);
     body.setText(messageRecord.getDisplayBody());
@@ -95,6 +124,7 @@ public class ConversationUpdateItem extends LinearLayout
 
   private void setJoinedRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_favorite_grey600_24dp);
+    icon.clearColorFilter();
     body.setText(messageRecord.getDisplayBody());
     date.setVisibility(View.GONE);
   }

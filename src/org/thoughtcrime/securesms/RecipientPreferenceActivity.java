@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -28,6 +31,7 @@ import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.ColorPreference;
@@ -53,10 +57,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private AvatarImageView avatar;
-  private Toolbar         toolbar;
-  private TextView        title;
-  private TextView        blockedIndicator;
+  private AvatarImageView   avatar;
+  private Toolbar           toolbar;
+  private TextView          title;
+  private TextView          blockedIndicator;
+  private BroadcastReceiver staleReceiver;
 
   @Override
   public void onPreCreate() {
@@ -72,6 +77,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     Recipients recipients   = RecipientFactory.getRecipientsForIds(this, recipientIds, true);
 
     initializeToolbar();
+    initializeReceivers();
     setHeader(recipients);
     recipients.addListener(this);
 
@@ -85,6 +91,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    unregisterReceiver(staleReceiver);
   }
 
   @Override
@@ -118,6 +130,23 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.blockedIndicator = (TextView) toolbar.findViewById(R.id.blocked_indicator);
   }
 
+  private void initializeReceivers() {
+    this.staleReceiver = new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        Recipients recipients = RecipientFactory.getRecipientsForIds(context, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
+        recipients.addListener(RecipientPreferenceActivity.this);
+        onModified(recipients);
+      }
+    };
+
+    IntentFilter staleFilter = new IntentFilter();
+    staleFilter.addAction(GroupDatabase.DATABASE_UPDATE_ACTION);
+    staleFilter.addAction(RecipientFactory.RECIPIENT_CLEAR_ACTION);
+
+    registerReceiver(staleReceiver, staleFilter);
+  }
+
   private void setHeader(Recipients recipients) {
     this.avatar.setAvatar(recipients, true);
     this.title.setText(recipients.toShortString());
@@ -149,18 +178,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     private final Handler handler = new Handler();
 
     private Recipients recipients;
+    private BroadcastReceiver staleReceiver;
 
     @Override
     public void onCreate(Bundle icicle) {
       super.onCreate(icicle);
 
       addPreferencesFromResource(R.xml.recipient_preferences);
+      initializeRecipients();
 
-      this.recipients = RecipientFactory.getRecipientsForIds(getActivity(),
-                                                             getArguments().getLongArray(RECIPIENTS_EXTRA),
-                                                             true);
-
-      this.recipients.addListener(this);
       this.findPreference(PREFERENCE_TONE)
           .setOnPreferenceChangeListener(new RingtoneChangeListener());
       this.findPreference(PREFERENCE_VIBRATE)
@@ -185,6 +211,30 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     public void onDestroy() {
       super.onDestroy();
       this.recipients.removeListener(this);
+      getActivity().unregisterReceiver(staleReceiver);
+    }
+
+    private void initializeRecipients() {
+      this.recipients = RecipientFactory.getRecipientsForIds(getActivity(),
+                                                             getArguments().getLongArray(RECIPIENTS_EXTRA),
+                                                             true);
+
+      this.recipients.addListener(this);
+
+      this.staleReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+          recipients.removeListener(RecipientPreferenceFragment.this);
+          recipients = RecipientFactory.getRecipientsForIds(getActivity(), getArguments().getLongArray(RECIPIENTS_EXTRA), true);
+          onModified(recipients);
+        }
+      };
+
+      IntentFilter intentFilter = new IntentFilter();
+      intentFilter.addAction(GroupDatabase.DATABASE_UPDATE_ACTION);
+      intentFilter.addAction(RecipientFactory.RECIPIENT_CLEAR_ACTION);
+
+      getActivity().registerReceiver(staleReceiver, intentFilter);
     }
 
     private void setSummaries(Recipients recipients) {

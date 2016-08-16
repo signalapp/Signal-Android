@@ -11,11 +11,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -147,7 +145,7 @@ public class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
+    RecipientFactory.clearCache(context);
     notifyDatabaseListeners();
   }
 
@@ -157,7 +155,7 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
+    RecipientFactory.clearCache(context);
     notifyDatabaseListeners();
   }
 
@@ -172,7 +170,7 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
 
-    RecipientFactory.clearCache();
+    RecipientFactory.clearCache(context);
     notifyDatabaseListeners();
   }
 

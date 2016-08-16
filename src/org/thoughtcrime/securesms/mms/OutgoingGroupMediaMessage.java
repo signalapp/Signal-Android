@@ -20,11 +20,12 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
   public OutgoingGroupMediaMessage(@NonNull Recipients recipients,
                                    @NonNull String encodedGroupContext,
                                    @NonNull List<Attachment> avatar,
-                                   long sentTimeMillis)
+                                   long sentTimeMillis,
+                                   long expiresIn)
       throws IOException
   {
     super(recipients, encodedGroupContext, avatar, sentTimeMillis,
-          ThreadDatabase.DistributionTypes.CONVERSATION);
+          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn);
 
     this.group = GroupContext.parseFrom(Base64.decode(encodedGroupContext));
   }
@@ -32,12 +33,13 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
   public OutgoingGroupMediaMessage(@NonNull Recipients recipients,
                                    @NonNull GroupContext group,
                                    @Nullable final Attachment avatar,
-                                   long sentTimeMillis)
+                                   long sentTimeMillis,
+                                   long expireIn)
   {
     super(recipients, Base64.encodeBytes(group.toByteArray()),
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
           System.currentTimeMillis(),
-          ThreadDatabase.DistributionTypes.CONVERSATION);
+          ThreadDatabase.DistributionTypes.CONVERSATION, expireIn);
 
     this.group = group;
   }

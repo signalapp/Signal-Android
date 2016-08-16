@@ -75,6 +75,26 @@
 
             </TableRow>
 
+            <TableRow android:id="@+id/expires_container"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:padding="@dimen/message_details_table_row_pad"
+                      android:visibility="gone"
+                      tools:visibility="visible">
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Disappears"
+                          android:textStyle="bold"/>
+
+                <TextView android:id="@+id/expires_in"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="@dimen/message_details_table_row_pad"
+                          tools:text="1 week"/>
+
+            </TableRow>
+
             <TableRow android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:padding="@dimen/message_details_table_row_pad">
