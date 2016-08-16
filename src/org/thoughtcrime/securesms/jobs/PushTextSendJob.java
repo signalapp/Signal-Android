@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -53,8 +54,9 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onSend(MasterSecret masterSecret) throws NoSuchMessageException, RetryLaterException {
-    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
-    SmsMessageRecord      record   = database.getMessage(masterSecret, messageId);
+    ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
+    EncryptingSmsDatabase  database          = DatabaseFactory.getEncryptingSmsDatabase(context);
+    SmsMessageRecord       record            = database.getMessage(masterSecret, messageId);
 
     try {
       Log.w(TAG, "Sending message: " + messageId);
@@ -63,6 +65,11 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       database.markAsPush(messageId);
       database.markAsSecure(messageId);
       database.markAsSent(messageId);
+
+      if (record.getExpiresIn() > 0) {
+        database.markExpireStarted(messageId);
+        expirationManager.scheduleDeletion(record.getId(), record.isMms(), record.getExpiresIn());
+      }
 
     } catch (InsecureFallbackApprovalException e) {
       Log.w(TAG, e);
@@ -108,6 +115,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       SignalServiceDataMessage   textSecureMessage = SignalServiceDataMessage.newBuilder()
                                                                              .withTimestamp(message.getDateSent())
                                                                              .withBody(message.getBody().getBody())
+                                                                             .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                              .asEndSessionMessage(message.isEndSession())
                                                                              .build();
 

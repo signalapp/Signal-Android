@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
@@ -85,6 +87,13 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       database.markAsSecure(messageId);
       database.markAsSent(messageId);
       markAttachmentsUploaded(messageId, message.getAttachments());
+
+      if (message.getExpiresIn() > 0) {
+        database.markExpireStarted(messageId);
+        ApplicationContext.getInstance(context)
+                          .getExpiringMessageManager()
+                          .scheduleDeletion(messageId, true, message.getExpiresIn());
+      }
     } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
@@ -152,7 +161,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       messageSender.sendMessage(addresses, groupDataMessage);
     } else {
       SignalServiceGroup       group        = new SignalServiceGroup(groupId);
-      SignalServiceDataMessage groupMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group, attachments, message.getBody());
+      SignalServiceDataMessage groupMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group,
+                                                                           attachments, message.getBody(), false,
+                                                                           (int)(message.getExpiresIn() / 1000),
+                                                                           message.isExpirationUpdate());
 
       messageSender.sendMessage(addresses, groupMessage);
     }

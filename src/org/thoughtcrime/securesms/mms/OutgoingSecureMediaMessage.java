@@ -14,9 +14,10 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
   public OutgoingSecureMediaMessage(Recipients recipients, String body,
                                     List<Attachment> attachments,
                                     long sentTimeMillis,
-                                    int distributionType)
+                                    int distributionType,
+                                    long expiresIn)
   {
-    super(recipients, body, attachments, sentTimeMillis, -1, distributionType);
+    super(recipients, body, attachments, sentTimeMillis, -1, expiresIn, distributionType);
   }
 
   public OutgoingSecureMediaMessage(OutgoingMediaMessage base) {

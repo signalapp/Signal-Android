@@ -379,6 +379,8 @@
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
     <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="MessageRecord_you">You</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s</string>
 
 
     <!-- PassphraseChangeActivity -->
@@ -406,6 +408,11 @@
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, this is not a valid device link QR code.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Link a Signal device?</string>
     <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">It looks like you\'re trying to link a Signal device using a 3rd party scanner.  For your protection, please scan the code again from within Signal.</string>
+
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Your messages will not expire.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Your messages will disappear %s after they have been seen.</string>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
@@ -711,9 +718,47 @@
     <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
     <string name="device_list_fragment__link_new_device">Link new device</string>
 
-
     <!-- experience_upgrade_activity -->
     <string name="experience_upgrade_activity__continue">continue</string>
+
+    <!-- expiration -->
+
+    <string name="expiration_off">Off</string>
+    
+    <plurals name="expiration_seconds">
+        <item quantity="one">1 second</item>
+        <item quantity="other">%d seconds</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%ds</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">1 minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%dm</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">1 hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%dh</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">1 day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%dd</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">1 week</item>
+        <item quantity="other">%d weeks</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%dw</string>
 
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get a debug log instead.</string>
@@ -1078,6 +1123,12 @@
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
 
+    <!-- conversation_expiring_off -->
+    <string name="menu_conversation_expiring_off__messages_not_expiring">Messages not expiring</string>
+
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Messages expiring</string>
+
     <!-- conversation_insecure -->
     <string name="conversation_insecure__invite">Invite</string>
 
@@ -1201,7 +1252,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-
 
     <!-- EOF -->
 

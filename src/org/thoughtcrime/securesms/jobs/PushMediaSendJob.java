@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -62,8 +63,9 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throws RetryLaterException, MmsException, NoSuchMessageException,
              UndeliverableMessageException
   {
-    MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
-    OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
+    ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
+    MmsDatabase            database          = DatabaseFactory.getMmsDatabase(context);
+    OutgoingMediaMessage   message           = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
       deliver(masterSecret, message);
@@ -71,6 +73,12 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       database.markAsSecure(messageId);
       database.markAsSent(messageId);
       markAttachmentsUploaded(messageId, message.getAttachments());
+
+      if (message.getExpiresIn() > 0) {
+        database.markExpireStarted(messageId);
+        expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
+      }
+
     } catch (InsecureFallbackApprovalException ifae) {
       Log.w(TAG, ifae);
       database.markAsPendingInsecureSmsFallback(messageId);
@@ -122,6 +130,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                                 .withBody(message.getBody())
                                                                                 .withAttachments(attachmentStreams)
                                                                                 .withTimestamp(message.getSentTimeMillis())
+                                                                                .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                                .asExpirationUpdate(message.isExpirationUpdate())
                                                                                 .build();
 
       messageSender.sendMessage(address, mediaMessage);

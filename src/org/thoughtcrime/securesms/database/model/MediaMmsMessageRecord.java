@@ -53,10 +53,12 @@ public class MediaMmsMessageRecord extends MessageRecord {
                                @NonNull SlideDeck slideDeck,
                                int partCount, long mailbox,
                                List<IdentityKeyMismatch> mismatches,
-                               List<NetworkFailure> failures, int subscriptionId)
+                               List<NetworkFailure> failures, int subscriptionId,
+                               long expiresIn, long expireStarted)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId, dateSent,
-          dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox, mismatches, failures, subscriptionId);
+          dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox, mismatches, failures,
+          subscriptionId, expiresIn, expireStarted);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;

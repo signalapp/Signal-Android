@@ -72,7 +72,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_CONVERSATION_LIST_STATUS_VERSION     = 25;
   private static final int MIGRATED_CONVERSATION_LIST_STATUS_VERSION       = 26;
   private static final int INTRODUCED_SUBSCRIPTION_ID_VERSION              = 27;
-  private static final int DATABASE_VERSION                                = 27;
+  private static final int INTRODUCED_EXPIRE_MESSAGES_VERSION              = 28;
+  private static final int DATABASE_VERSION                                = 28;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -818,6 +819,14 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN default_subscription_id INTEGER DEFAULT -1");
         db.execSQL("ALTER TABLE sms ADD COLUMN subscription_id INTEGER DEFAULT -1");
         db.execSQL("ALTER TABLE mms ADD COLUMN subscription_id INTEGER DEFAULT -1");
+      }
+
+      if (oldVersion < INTRODUCED_EXPIRE_MESSAGES_VERSION) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN expire_messages INTEGER DEFAULT 0;");
+        db.execSQL("ALTER TABLE sms ADD COLUMN expires_in INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN expires_in INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE sms ADD COLUMN expire_started INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN expire_started INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();
