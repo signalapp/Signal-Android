@@ -30,6 +30,8 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -42,6 +44,8 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import java.lang.reflect.Field;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity
     implements ConversationListFragment.ConversationSelectedListener
@@ -108,6 +112,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private void initializeSearch(MenuItem searchViewItem) {
     SearchView searchView = (SearchView)MenuItemCompat.getActionView(searchViewItem);
     searchView.setQueryHint(getString(R.string.ConversationListActivity_search));
+
+    final EditText searchTextView = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+    try {
+      Field field = TextView.class.getDeclaredField("mCursorDrawableRes");
+      field.setAccessible(true);
+      field.set(searchTextView,R.drawable.actionbar_cursor);
+    } catch (Exception e) {}
+
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
