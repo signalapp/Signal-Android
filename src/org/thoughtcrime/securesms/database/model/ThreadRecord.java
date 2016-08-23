@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 
 /**
@@ -46,11 +47,12 @@ public class ThreadRecord extends DisplayRecord {
   private           final boolean read;
   private           final int     distributionType;
   private           final boolean archived;
+  private           final long    expiresIn;
 
   public ThreadRecord(@NonNull Context context, @NonNull Body body, @Nullable Uri snippetUri,
                       @NonNull Recipients recipients, long date, long count, boolean read,
                       long threadId, int receiptCount, int status, long snippetType,
-                      int distributionType, boolean archived)
+                      int distributionType, boolean archived, long expiresIn)
   {
     super(context, body, recipients, date, date, threadId, status, receiptCount, snippetType);
     this.context          = context.getApplicationContext();
@@ -59,6 +61,7 @@ public class ThreadRecord extends DisplayRecord {
     this.read             = read;
     this.distributionType = distributionType;
     this.archived         = archived;
+    this.expiresIn        = expiresIn;
   }
 
   public @Nullable Uri getSnippetUri() {
@@ -96,6 +99,9 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
     } else if (SmsDatabase.Types.isJoinedType(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal_say_hey, getRecipients().getPrimaryRecipient().toShortString()));
+    } else if (SmsDatabase.Types.isExpirationTimerUpdate(type)) {
+      String time   = ExpirationUtil.getExpirationDisplayValue(context, (int)(getExpiresIn() / 1000));
+      return emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time));
     } else {
       if (TextUtils.isEmpty(getBody().getBody())) {
         return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
@@ -134,5 +140,9 @@ public class ThreadRecord extends DisplayRecord {
 
   public int getDistributionType() {
     return distributionType;
+  }
+
+  public long getExpiresIn() {
+    return expiresIn;
   }
 }

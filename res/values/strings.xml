@@ -544,6 +544,7 @@
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
     <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
@@ -1252,6 +1253,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
 
     <!-- EOF -->
 

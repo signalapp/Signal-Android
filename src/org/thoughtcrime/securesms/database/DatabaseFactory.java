@@ -822,11 +822,12 @@ public class DatabaseFactory {
       }
 
       if (oldVersion < INTRODUCED_EXPIRE_MESSAGES_VERSION) {
-        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN expire_messages INTEGER DEFAULT 0;");
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN expire_messages INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE sms ADD COLUMN expires_in INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE mms ADD COLUMN expires_in INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE sms ADD COLUMN expire_started INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE mms ADD COLUMN expire_started INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE thread ADD COLUMN expires_in INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();
