@@ -101,7 +101,7 @@ public class ConversationUpdateItem extends LinearLayout
       icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     }
 
-    if (messageRecord.getExpireStarted() <= 0 && messageRecord.isOutgoing() && messageRecord.getExpiresIn() > 0) {
+    if (messageRecord.getExpireStarted() <= 0 && messageRecord.getExpiresIn() > 0) {
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
