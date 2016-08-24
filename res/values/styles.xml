@@ -83,6 +83,10 @@
         <item name="colorButtonNormal">@color/textsecure_primary</item>
     </style>
 
+    <style name="actionbar_cursor" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textCursorDrawable">@drawable/actionbar_cursor</item>
+    </style>
+
     <style name="transparent_progress">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
