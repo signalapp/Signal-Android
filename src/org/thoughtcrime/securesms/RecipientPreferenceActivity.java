@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Ringtone;
@@ -26,16 +27,29 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.ColorPreference;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.state.SessionRecord;
+import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+
+import java.util.concurrent.ExecutionException;
 
 public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActivity implements Recipients.RecipientsModifiedListener
 {
@@ -149,6 +163,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     private final Handler handler = new Handler();
 
     private Recipients recipients;
+    private MasterSecret masterSecret;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -159,6 +174,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       this.recipients = RecipientFactory.getRecipientsForIds(getActivity(),
                                                              getArguments().getLongArray(RECIPIENTS_EXTRA),
                                                              true);
+      this.masterSecret = getArguments().getParcelable("master_secret");
+
 
       this.recipients.addListener(this);
       this.findPreference(PREFERENCE_TONE)
@@ -171,8 +188,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new BlockClickedListener());
       this.findPreference(PREFERENCE_COLOR)
           .setOnPreferenceChangeListener(new ColorChangeListener());
-      this.findPreference(PREFERENCE_IDENTITY)
-          .setOnPreferenceClickListener(new IdentityClickedListener());
    }
 
     @Override
@@ -193,7 +208,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       ListPreference             vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
       ColorPreference            colorPreference    = (ColorPreference) this.findPreference(PREFERENCE_COLOR);
       Preference                 blockPreference    = this.findPreference(PREFERENCE_BLOCK);
-      Preference                 identityPreference = this.findPreference(PREFERENCE_IDENTITY);
+      final Preference           identityPreference = this.findPreference(PREFERENCE_IDENTITY);
 
       mutePreference.setChecked(recipients.isMuted());
 
@@ -229,6 +244,23 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
         if (recipients.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
         else                        blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
+
+        getRemoteIdentityKey(getActivity(), masterSecret, recipients.getPrimaryRecipient()).addListener(new ListenableFuture.Listener<Optional<IdentityKey>>() {
+          @Override
+          public void onSuccess(Optional<IdentityKey> result) {
+            if (result.isPresent()) {
+              identityPreference.setOnPreferenceClickListener(new IdentityClickedListener(result.get()));
+              identityPreference.setEnabled(true);
+            } else {
+              getPreferenceScreen().removePreference(identityPreference);
+            }
+          }
+
+          @Override
+          public void onFailure(ExecutionException e) {
+            getPreferenceScreen().removePreference(identityPreference);
+          }
+        });
       }
     }
 
@@ -241,6 +273,36 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }
       });
     }
+
+    private ListenableFuture<Optional<IdentityKey>> getRemoteIdentityKey(final Context context,
+                                                                         final MasterSecret masterSecret,
+                                                                         final Recipient recipient)
+    {
+      final SettableFuture<Optional<IdentityKey>> future = new SettableFuture<>();
+
+      new AsyncTask<Recipient, Void, Optional<IdentityKey>>() {
+        @Override
+        protected Optional<IdentityKey> doInBackground(Recipient... recipient) {
+          SessionStore          sessionStore   = new TextSecureSessionStore(context, masterSecret);
+          SignalProtocolAddress axolotlAddress = new SignalProtocolAddress(recipient[0].getNumber(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+          SessionRecord         record         = sessionStore.loadSession(axolotlAddress);
+
+          if (record == null) {
+            return Optional.absent();
+          }
+
+          return Optional.fromNullable(record.getSessionState().getRemoteIdentityKey());
+        }
+
+        @Override
+        protected void onPostExecute(Optional<IdentityKey> result) {
+          future.set(result);
+        }
+      }.execute(recipient);
+
+      return future;
+    }
+
 
     private class RingtoneChangeListener implements Preference.OnPreferenceChangeListener {
       @Override
@@ -356,10 +418,18 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     private class IdentityClickedListener implements Preference.OnPreferenceClickListener {
+
+      private final IdentityKey identityKey;
+
+      private IdentityClickedListener(IdentityKey identityKey) {
+        this.identityKey = identityKey;
+      }
+
       @Override
       public boolean onPreferenceClick(Preference preference) {
         Intent verifyIdentityIntent = new Intent(getActivity(), VerifyIdentityActivity.class);
-        verifyIdentityIntent.putExtra("recipient", recipients.getPrimaryRecipient().getRecipientId());
+        verifyIdentityIntent.putExtra(VerifyIdentityActivity.RECIPIENT_ID, recipients.getPrimaryRecipient().getRecipientId());
+        verifyIdentityIntent.putExtra(VerifyIdentityActivity.RECIPIENT_IDENTITY, new IdentityKeyParcelable(identityKey));
         startActivity(verifyIdentityIntent);
 
         return true;
