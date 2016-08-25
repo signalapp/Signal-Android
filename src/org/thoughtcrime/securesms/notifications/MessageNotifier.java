@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -79,7 +78,7 @@ public class MessageNotifier {
 
   private static final String TAG = MessageNotifier.class.getSimpleName();
 
-  public static final int NOTIFICATION_ID = 1338;
+  private static final int NOTIFICATION_ID = 1338;
 
   private volatile static long visibleThread = -1;
 
@@ -136,8 +135,7 @@ public class MessageNotifier {
     boolean    isVisible  = visibleThread == threadId;
 
     ThreadDatabase threads    = DatabaseFactory.getThreadDatabase(context);
-    Recipients     recipients = DatabaseFactory.getThreadDatabase(context)
-                                               .getRecipientsForThreadId(threadId);
+    Recipients     recipients = threads.getRecipientsForThreadId(threadId);
 
     if (isVisible) {
       List<SyncMessageId> messageIds = threads.setRead(threadId);
@@ -156,7 +154,7 @@ public class MessageNotifier {
     }
 
     if (isVisible) {
-      sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
+      sendInThreadNotification(context, recipients);
     } else {
       updateNotification(context, masterSecret, signal, includePushDatabase, 0);
     }
@@ -178,8 +176,7 @@ public class MessageNotifier {
       if ((telcoCursor == null || telcoCursor.isAfterLast()) &&
           (pushCursor == null || pushCursor.isAfterLast()))
       {
-        ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-          .cancel(NOTIFICATION_ID);
+        cancelNotification(context);
         updateBadge(context, 0);
         clearReminder(context);
         return;
@@ -214,28 +211,28 @@ public class MessageNotifier {
                                                    boolean signal)
   {
     if (notificationState.getNotifications().isEmpty()) {
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-          .cancel(NOTIFICATION_ID);
+      cancelNotification(context);
       return;
     }
 
     SingleRecipientNotificationBuilder builder       = new SingleRecipientNotificationBuilder(context, masterSecret, TextSecurePreferences.getNotificationPrivacy(context));
     List<NotificationItem>             notifications = notificationState.getNotifications();
-    Recipients                         recipients    = notifications.get(0).getRecipients();
+    NotificationItem                   notification  = notifications.get(0);
+    Recipients                         recipients    = notification.getRecipients();
 
-    builder.setThread(notifications.get(0).getRecipients());
+    builder.setThread(recipients);
     builder.setMessageCount(notificationState.getMessageCount());
-    builder.setPrimaryMessageBody(recipients, notifications.get(0).getIndividualRecipient(),
-                                  notifications.get(0).getText(), notifications.get(0).getSlideDeck());
-    builder.setContentIntent(notifications.get(0).getPendingIntent(context));
+    builder.setPrimaryMessageBody(recipients, notification.getIndividualRecipient(),
+                                  notification.getText(), notification.getSlideDeck());
+    builder.setContentIntent(notification.getPendingIntent(context));
 
-    long timestamp = notifications.get(0).getTimestamp();
+    long timestamp = notification.getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
     builder.addActions(masterSecret,
                        notificationState.getMarkAsReadIntent(context),
-                       notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipients()),
-                       notificationState.getWearableReplyIntent(context, notifications.get(0).getRecipients()));
+                       notificationState.getQuickReplyIntent(context, recipients),
+                       notificationState.getWearableReplyIntent(context, recipients));
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
@@ -246,9 +243,10 @@ public class MessageNotifier {
 
     if (signal) {
       builder.setAlarms(notificationState.getRingtone(), notificationState.getVibrate());
-      builder.setTicker(notifications.get(0).getIndividualRecipient(),
-                        notifications.get(0).getText());
+      builder.setTicker(notification.getIndividualRecipient(),
+                        notification.getText());
     }
+    builder.setLed();
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
       .notify(NOTIFICATION_ID, builder.build());
@@ -280,6 +278,7 @@ public class MessageNotifier {
       builder.setAlarms(notificationState.getRingtone(), notificationState.getVibrate());
       builder.setTicker(notifications.get(0).getText());
     }
+    builder.setLed();
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
       .notify(NOTIFICATION_ID, builder.build());
@@ -434,6 +433,10 @@ public class MessageNotifier {
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
     AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     alarmManager.cancel(pendingIntent);
+  }
+
+  public static void cancelNotification(Context context) {
+    ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).cancel(NOTIFICATION_ID);
   }
 
   public static class ReminderReceiver extends BroadcastReceiver {
