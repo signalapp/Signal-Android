@@ -125,6 +125,8 @@
         <item name="conversation_attach_contact_info">@drawable/ic_account_box_light</item>
         <item name="conversation_attach">@drawable/ic_attach_grey600_24dp</item>
 
+        <item name="verification_background">@color/gray5</item>
+
         <item name="emoji_tab_strip_background">@color/gray12</item>
         <item name="emoji_tab_indicator">#66555555</item>
         <item name="emoji_tab_underline">#44555555</item>
@@ -232,6 +234,8 @@
         <item name="conversation_item_received_text_primary_color">@color/white</item>
         <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
+
+        <item name="verification_background">#ff333333</item>
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>

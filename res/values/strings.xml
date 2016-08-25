@@ -539,16 +539,10 @@
     <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
-    <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Recipient has no identity key.</string>
-    <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Recipient has no identity key!</string>
-    <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scan contact\'s QR code</string>
-    <string name="VerifyIdentityActivity_display_your_qr_code">Display your QR code</string>
-    <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.</string>
-    <string name="VerifyIdentityActivity_not_verified_exclamation">NOT Verified!</string>
-    <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Their key is correct. It is also necessary to verify your key with them as well.</string>
-    <string name="VerifyIdentityActivity_verified_exclamation">Verified!</string>
-    <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">You don\'t have an identity key!</string>
+    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying security numbers.</string>
+    <string name="VerifyIdentityActivity_you_re_attempting_to_verify_security_numbers_with">You\'re attempting to verify security numbers with %1$s, but scanned %2$s instead.</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_security_number">The scanned QR code is not a correctly formatted security number verification code.  Please try scanning again.</string>
+
 
     <!-- ViewIdentityActivity -->
     <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
@@ -881,10 +875,10 @@
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
     <string name="recipients_panel__add_member">Add member</string>
 
-    <!-- verify_identity_activity -->
-    <string name="verify_identity_activity__their_identity_they_read">Their identity (they read):</string>
-    <string name="verify_identity_activity__your_identity_you_read">Your identity (you read):</string>
-
+    <!-- verify_display_fragment -->
+    <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Scan the code on your contact\'s phone, or ask them to scan your code, to verify that your messages are end-to-end encrypted. You can alternately compare the number above.</string>
+    <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
+    
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
     <string name="message_details_header__sent">Sent</string>
