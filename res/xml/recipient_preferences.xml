@@ -38,7 +38,8 @@
 
     <Preference android:key="pref_key_recipient_identity"
                 android:title="@string/recipient_preferences__verify_identity"
-                android:persistent="false"/>
+                android:persistent="false"
+                android:enabled="false"/>
 
     <Preference android:key="pref_key_recipient_block"
                 android:title="@string/recipient_preferences__block"
