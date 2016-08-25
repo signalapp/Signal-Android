@@ -17,6 +17,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -34,7 +35,7 @@ import org.whispersystems.signalservice.internal.push.DeviceLimitExceededExcepti
 import java.io.IOException;
 
 public class DeviceActivity extends PassphraseRequiredActionBarActivity
-    implements Button.OnClickListener, DeviceAddFragment.ScanListener, DeviceLinkFragment.LinkClickedListener
+    implements Button.OnClickListener, ScanListener, DeviceLinkFragment.LinkClickedListener
 {
 
   private static final String TAG = DeviceActivity.class.getSimpleName();
@@ -95,11 +96,12 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onUrlFound(final Uri uri) {
+  public void onQrDataFound(final String data) {
     Util.runOnMain(new Runnable() {
       @Override
       public void run() {
         ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
+        Uri uri = Uri.parse(data);
         deviceLinkFragment.setLinkClickedListener(uri, DeviceActivity.this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

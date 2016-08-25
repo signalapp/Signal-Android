@@ -129,6 +129,8 @@
 
     <attr name="recipient_preference_blocked" format="color"/>
 
+    <attr name="verification_background" format="color"/>
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />
