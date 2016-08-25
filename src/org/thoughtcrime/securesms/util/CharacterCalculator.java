@@ -18,7 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 public abstract class CharacterCalculator {
 
-  public abstract CharacterState calculateCharacters(int charactersSpent);
+  public abstract CharacterState calculateCharacters(String messageBody);
 
   public static class CharacterState {
     public int charactersRemaining;

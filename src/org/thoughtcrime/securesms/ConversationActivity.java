@@ -1170,9 +1170,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void calculateCharactersRemaining() {
-    int             charactersSpent = composeText.getText().toString().length();
+    String          messageBody     = composeText.getText().toString();
     TransportOption transportOption = sendButton.getSelectedTransport();
-    CharacterState  characterState  = transportOption.calculateCharacters(charactersSpent);
+    CharacterState  characterState  = transportOption.calculateCharacters(messageBody);
 
     if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
       charactersLeft.setText(characterState.charactersRemaining + "/" + characterState.maxMessageSize
