@@ -24,6 +24,14 @@
                     android:background="@drawable/qr_code_background"
                     tools:src="@drawable/splash_logo"/>
 
+            <TextView android:id="@+id/tap_label"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="bottom|center_horizontal"
+                      android:layout_marginBottom="35dp"
+                      android:textSize="11sp"
+                      android:text="@string/verify_display_fragment__tap_to_scan"/>
+
             <org.thoughtcrime.securesms.components.SquareImageView
                     android:id="@+id/qr_verified"
                     android:layout_width="match_parent"
@@ -35,7 +43,9 @@
                     android:backgroundTint="@color/green_500"
                     android:visibility="gone"/>
 
+
         </FrameLayout>
+
 
         <TableLayout android:layout_width="wrap_content"
                      android:layout_height="wrap_content"

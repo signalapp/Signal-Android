@@ -540,7 +540,7 @@
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying security numbers.</string>
-    <string name="VerifyIdentityActivity_you_re_attempting_to_verify_security_numbers_with">You\'re attempting to verify security numbers with %s, but scanned %s instead.</string>
+    <string name="VerifyIdentityActivity_you_re_attempting_to_verify_security_numbers_with">You\'re attempting to verify security numbers with %1$s, but scanned %2$s instead.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_security_number">The scanned QR code is not a correctly formatted security number verification code.  Please try scanning again.</string>
 
 
@@ -874,10 +874,11 @@
     <!-- recipients_panel -->
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
     <string name="recipients_panel__add_member">Add member</string>
-    
+
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Scan the code on your contact\'s phone, or ask them to scan your code, to verify that your messages are end-to-end encrypted. You can alternately compare the number above.</string>
-
+    <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
+    
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
     <string name="message_details_header__sent">Sent</string>
