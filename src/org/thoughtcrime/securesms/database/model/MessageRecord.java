@@ -164,6 +164,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isInvalidVersionKeyExchange(type);
   }
 
+  public boolean isMediaPending() {
+    return false;
+  }
+
   public Recipient getIndividualRecipient() {
     return individualRecipient;
   }

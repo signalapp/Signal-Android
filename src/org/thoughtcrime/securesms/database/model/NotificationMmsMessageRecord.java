@@ -115,6 +115,11 @@ public class NotificationMmsMessageRecord extends MessageRecord {
   }
 
   @Override
+  public boolean isMediaPending() {
+    return true;
+  }
+
+  @Override
   public SpannableString getDisplayBody() {
     return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_multimedia_message));
   }

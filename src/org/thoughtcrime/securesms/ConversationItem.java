@@ -370,7 +370,7 @@ public class ConversationItem extends LinearLayout
         this.expirationTimer.setExpirationTime(messageRecord.getExpireStarted(),
                                                messageRecord.getExpiresIn());
         this.expirationTimer.startAnimation();
-      } else if (!messageRecord.isOutgoing()) {
+      } else if (!messageRecord.isOutgoing() && !messageRecord.isMediaPending()) {
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {

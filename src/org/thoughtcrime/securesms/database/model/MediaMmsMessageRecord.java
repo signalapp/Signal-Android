@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -84,6 +85,17 @@ public class MediaMmsMessageRecord extends MessageRecord {
 
   @Override
   public boolean isMmsNotification() {
+    return false;
+  }
+
+  @Override
+  public boolean isMediaPending() {
+    for (Slide slide : getSlideDeck().getSlides()) {
+      if (slide.isInProgress() || slide.isPendingDownload()) {
+        return true;
+      }
+    }
+
     return false;
   }
 
