@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -102,28 +100,12 @@ public class ConversationUpdateItem extends LinearLayout
   }
 
   private void setTimerRecord(final MessageRecord messageRecord) {
-    final Context context = getContext();
-
     if (messageRecord.getExpiresIn() > 0) {
       icon.setImageResource(R.drawable.ic_timer_white_24dp);
       icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     } else {
       icon.setImageResource(R.drawable.ic_timer_off_white_24dp);
       icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
-    }
-
-    if (messageRecord.getExpireStarted() <= 0 && messageRecord.getExpiresIn() > 0) {
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          DatabaseFactory.getMmsDatabase(context).markExpireStarted(messageRecord.getId());
-          ApplicationContext.getInstance(context)
-                            .getExpiringMessageManager()
-                            .scheduleDeletion(messageRecord.getId(), true,
-                                              messageRecord.getExpiresIn());
-          return null;
-        }
-      }.execute();
     }
 
     body.setText(messageRecord.getDisplayBody());

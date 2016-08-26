@@ -74,7 +74,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       database.markAsSent(messageId);
       markAttachmentsUploaded(messageId, message.getAttachments());
 
-      if (message.getExpiresIn() > 0) {
+      if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
         database.markExpireStarted(messageId);
         expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
       }
