@@ -66,7 +66,7 @@ public class ContactAccessor {
     final String[] inProjection    = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME};
 
     List<String> pushNumbers = TextSecureDirectory.getInstance(context).getActiveNumbers();
-    final Collection<ContactData> lookupData = new ArrayList<ContactData>(pushNumbers.size());
+    final Collection<ContactData> lookupData = new ArrayList<>(pushNumbers.size());
 
     for (String pushNumber : pushNumbers) {
       Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(pushNumber));

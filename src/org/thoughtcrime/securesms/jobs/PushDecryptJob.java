@@ -49,8 +49,8 @@ import org.whispersystems.libsignal.LegacyMessageException;
 import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.UntrustedIdentityException;
 import org.whispersystems.libsignal.protocol.PreKeySignalMessage;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -253,6 +253,12 @@ public class PushDecryptJob extends ContextJob {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new MultiDeviceGroupUpdateJob(getContext()));
+    }
+
+    if (message.isBlockedListRequest()) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new MultiDeviceBlockedUpdateJob(getContext()));
     }
   }
 
