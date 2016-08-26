@@ -22,7 +22,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +38,8 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.LRUCache;
+import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.VisibleForTesting;
 
 import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
@@ -48,9 +49,6 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.VisibleForTesting;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
@@ -94,8 +92,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
   public interface ItemClickListener {
-    void onItemClick(ConversationItem item);
-    void onItemLongClick(ConversationItem item);
+    void onItemClick(MessageRecord item);
+    void onItemLongClick(MessageRecord item);
   }
 
   @SuppressWarnings("ConstantConditions")
@@ -156,21 +154,23 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     final V itemView = ViewUtil.inflate(inflater, parent, getLayoutForViewType(viewType));
-    if (viewType == MESSAGE_TYPE_INCOMING || viewType == MESSAGE_TYPE_OUTGOING) {
-      itemView.setOnClickListener(new OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          if (clickListener != null) clickListener.onItemClick((ConversationItem)itemView);
+    itemView.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if (clickListener != null) {
+          clickListener.onItemClick(itemView.getMessageRecord());
         }
-      });
-      itemView.setOnLongClickListener(new OnLongClickListener() {
-        @Override
-        public boolean onLongClick(View view) {
-          if (clickListener != null) clickListener.onItemLongClick((ConversationItem)itemView);
-          return true;
+      }
+    });
+    itemView.setOnLongClickListener(new OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View view) {
+        if (clickListener != null) {
+          clickListener.onItemLongClick(itemView.getMessageRecord());
         }
-      });
-    }
+        return true;
+      }
+    });
 
     return new ViewHolder(itemView);
   }

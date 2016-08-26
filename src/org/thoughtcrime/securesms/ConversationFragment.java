@@ -171,10 +171,20 @@ public class ConversationFragment extends Fragment
 
   private void setCorrectMenuVisibility(Menu menu) {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
+    boolean            actionMessage  = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
       return;
+    }
+
+    for (MessageRecord messageRecord : messageRecords) {
+      if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
+          messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate())
+      {
+        actionMessage = true;
+        break;
+      }
     }
 
     if (messageRecords.size() > 1) {
@@ -182,6 +192,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
+      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
@@ -190,9 +201,9 @@ public class ConversationFragment extends Fragment
                                                                   !messageRecord.isMmsNotification() &&
                                                                   ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
 
-      menu.findItem(R.id.menu_context_forward).setVisible(true);
-      menu.findItem(R.id.menu_context_details).setVisible(true);
-      menu.findItem(R.id.menu_context_copy).setVisible(true);
+      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
     }
   }
 
@@ -385,9 +396,8 @@ public class ConversationFragment extends Fragment
   private class ConversationFragmentItemClickListener implements ItemClickListener {
 
     @Override
-    public void onItemClick(ConversationItem item) {
+    public void onItemClick(MessageRecord messageRecord) {
       if (actionMode != null) {
-        MessageRecord messageRecord = item.getMessageRecord();
         ((ConversationAdapter) list.getAdapter()).toggleSelection(messageRecord);
         list.getAdapter().notifyDataSetChanged();
 
@@ -396,9 +406,9 @@ public class ConversationFragment extends Fragment
     }
 
     @Override
-    public void onItemLongClick(ConversationItem item) {
+    public void onItemLongClick(MessageRecord messageRecord) {
       if (actionMode == null) {
-        ((ConversationAdapter) list.getAdapter()).toggleSelection(item.getMessageRecord());
+        ((ConversationAdapter) list.getAdapter()).toggleSelection(messageRecord);
         list.getAdapter().notifyDataSetChanged();
 
         actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);

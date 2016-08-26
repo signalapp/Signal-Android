@@ -64,6 +64,17 @@ public class ConversationUpdateItem extends LinearLayout
                    @NonNull Recipients conversationRecipients)
   {
     bind(messageRecord, locale);
+
+    if (batchSelected.contains(messageRecord)) {
+      setSelected(true);
+    } else {
+      setSelected(false);
+    }
+  }
+
+  @Override
+  public MessageRecord getMessageRecord() {
+    return messageRecord;
   }
 
   private void bind(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {
