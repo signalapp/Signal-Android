@@ -166,4 +166,12 @@
         <attr name="camera" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="HourglassView">
+        <attr name="full" format="reference"/>
+        <attr name="empty" format="reference"/>
+        <attr name="tint" format="color"/>
+        <attr name="percentage" format="integer"/>
+        <attr name="offset" format="integer"/>
+    </declare-styleable>
+
 </resources>

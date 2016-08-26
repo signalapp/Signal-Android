@@ -33,6 +33,7 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String COLOR                   = "color";
   private static final String SEEN_INVITE_REMINDER    = "seen_invite_reminder";
   private static final String DEFAULT_SUBSCRIPTION_ID = "default_subscription_id";
+  private static final String EXPIRE_MESSAGES         = "expire_messages";
 
   public enum VibrateState {
     DEFAULT(0), ENABLED(1), DISABLED(2);
@@ -62,7 +63,8 @@ public class RecipientPreferenceDatabase extends Database {
           MUTE_UNTIL + " INTEGER DEFAULT 0, " +
           COLOR + " TEXT DEFAULT NULL, " +
           SEEN_INVITE_REMINDER + " INTEGER DEFAULT 0, " +
-          DEFAULT_SUBSCRIPTION_ID + " INTEGER DEFAULT -1);";
+          DEFAULT_SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " +
+          EXPIRE_MESSAGES + " INTEGER DEFAULT 0);";
 
   public RecipientPreferenceDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -98,6 +100,7 @@ public class RecipientPreferenceDatabase extends Database {
         Uri     notificationUri       = notification == null ? null : Uri.parse(notification);
         boolean seenInviteReminder    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
         int     defaultSubscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
+        int     expireMessages        = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
 
         MaterialColor color;
 
@@ -113,7 +116,7 @@ public class RecipientPreferenceDatabase extends Database {
         return Optional.of(new RecipientsPreferences(blocked, muteUntil,
                                                      VibrateState.fromId(vibrateState),
                                                      notificationUri, color, seenInviteReminder,
-                                                     defaultSubscriptionId));
+                                                     defaultSubscriptionId, expireMessages));
       }
 
       return Optional.absent();
@@ -133,7 +136,6 @@ public class RecipientPreferenceDatabase extends Database {
     values.put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId);
     updateOrInsert(recipients, values);
   }
-
 
   public void setBlocked(Recipients recipients, boolean blocked) {
     ContentValues values = new ContentValues();
@@ -166,6 +168,14 @@ public class RecipientPreferenceDatabase extends Database {
     updateOrInsert(recipients, values);
   }
 
+  public void setExpireMessages(Recipients recipients, int expiration) {
+    recipients.setExpireMessages(expiration);
+
+    ContentValues values = new ContentValues(1);
+    values.put(EXPIRE_MESSAGES, expiration);
+    updateOrInsert(recipients, values);
+  }
+
   private void updateOrInsert(Recipients recipients, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
@@ -193,13 +203,15 @@ public class RecipientPreferenceDatabase extends Database {
     private final MaterialColor color;
     private final boolean       seenInviteReminder;
     private final int           defaultSubscriptionId;
+    private final int           expireMessages;
 
     public RecipientsPreferences(boolean blocked, long muteUntil,
                                  @NonNull VibrateState vibrateState,
                                  @Nullable Uri notification,
                                  @Nullable MaterialColor color,
                                  boolean seenInviteReminder,
-                                 int defaultSubscriptionId)
+                                 int defaultSubscriptionId,
+                                 int expireMessages)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
@@ -208,6 +220,7 @@ public class RecipientPreferenceDatabase extends Database {
       this.color                 = color;
       this.seenInviteReminder    = seenInviteReminder;
       this.defaultSubscriptionId = defaultSubscriptionId;
+      this.expireMessages        = expireMessages;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -236,6 +249,10 @@ public class RecipientPreferenceDatabase extends Database {
 
     public Optional<Integer> getDefaultSubscriptionId() {
       return defaultSubscriptionId != -1 ? Optional.of(defaultSubscriptionId) : Optional.<Integer>absent();
+    }
+
+    public int getExpireMessages() {
+      return expireMessages;
     }
   }
 }

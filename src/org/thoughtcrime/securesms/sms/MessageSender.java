@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -77,7 +78,7 @@ public class MessageSender {
     long messageId = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), allocatedThreadId,
                                                   message, forceSms, System.currentTimeMillis());
 
-    sendTextMessage(context, recipients, forceSms, keyExchange, messageId);
+    sendTextMessage(context, recipients, forceSms, keyExchange, messageId, message.getExpiresIn());
 
     return allocatedThreadId;
   }
@@ -103,7 +104,7 @@ public class MessageSender {
       Recipients recipients = message.getRecipients();
       long       messageId  = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), message, allocatedThreadId, forceSms);
 
-      sendMediaMessage(context, masterSecret, recipients, forceSms, messageId);
+      sendMediaMessage(context, masterSecret, recipients, forceSms, messageId, message.getExpiresIn());
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -124,13 +125,14 @@ public class MessageSender {
       long       messageId   = messageRecord.getId();
       boolean    forceSms    = messageRecord.isForcedSms();
       boolean    keyExchange = messageRecord.isKeyExchange();
+      long       expiresIn   = messageRecord.getExpiresIn();
 
       if (messageRecord.isMms()) {
         Recipients recipients = DatabaseFactory.getMmsAddressDatabase(context).getRecipientsForId(messageId);
-        sendMediaMessage(context, masterSecret, recipients, forceSms, messageId);
+        sendMediaMessage(context, masterSecret, recipients, forceSms, messageId, expiresIn);
       } else {
         Recipients recipients  = messageRecord.getRecipients();
-        sendTextMessage(context, recipients, forceSms, keyExchange, messageId);
+        sendTextMessage(context, recipients, forceSms, keyExchange, messageId, expiresIn);
       }
     } catch (MmsException e) {
       Log.w(TAG, e);
@@ -138,11 +140,12 @@ public class MessageSender {
   }
 
   private static void sendMediaMessage(Context context, MasterSecret masterSecret,
-                                       Recipients recipients, boolean forceSms, long messageId)
+                                       Recipients recipients, boolean forceSms,
+                                       long messageId, long expiresIn)
       throws MmsException
   {
     if (!forceSms && isSelfSend(context, recipients)) {
-      sendMediaSelf(context, masterSecret, messageId);
+      sendMediaSelf(context, masterSecret, messageId, expiresIn);
     } else if (isGroupPushSend(recipients)) {
       sendGroupPush(context, recipients, messageId, -1);
     } else if (!forceSms && isPushMediaSend(context, recipients)) {
@@ -153,10 +156,11 @@ public class MessageSender {
   }
 
   private static void sendTextMessage(Context context, Recipients recipients,
-                                      boolean forceSms, boolean keyExchange, long messageId)
+                                      boolean forceSms, boolean keyExchange,
+                                      long messageId, long expiresIn)
   {
     if (!forceSms && isSelfSend(context, recipients)) {
-      sendTextSelf(context, messageId);
+      sendTextSelf(context, messageId, expiresIn);
     } else if (!forceSms && isPushTextSend(context, recipients, keyExchange)) {
       sendTextPush(context, recipients, messageId);
     } else {
@@ -164,7 +168,7 @@ public class MessageSender {
     }
   }
 
-  private static void sendTextSelf(Context context, long messageId) {
+  private static void sendTextSelf(Context context, long messageId, long expiresIn) {
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
 
     database.markAsSent(messageId);
@@ -172,17 +176,32 @@ public class MessageSender {
 
     Pair<Long, Long> messageAndThreadId = database.copyMessageInbox(messageId);
     database.markAsPush(messageAndThreadId.first);
+
+    if (expiresIn > 0) {
+      ExpiringMessageManager expiringMessageManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
+
+      database.markExpireStarted(messageId);
+      expiringMessageManager.scheduleDeletion(messageId, false, expiresIn);
+    }
   }
 
-  private static void sendMediaSelf(Context context, MasterSecret masterSecret, long messageId)
+  private static void sendMediaSelf(Context context, MasterSecret masterSecret,
+                                    long messageId, long expiresIn)
       throws MmsException
   {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    ExpiringMessageManager expiringMessageManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
+    MmsDatabase            database               = DatabaseFactory.getMmsDatabase(context);
+
     database.markAsSent(messageId);
     database.markAsPush(messageId);
 
     long newMessageId = database.copyMessageInbox(masterSecret, messageId);
     database.markAsPush(newMessageId);
+
+    if (expiresIn > 0) {
+      database.markExpireStarted(messageId);
+      expiringMessageManager.scheduleDeletion(messageId, true, expiresIn);
+    }
   }
 
   private static void sendTextPush(Context context, Recipients recipients, long messageId) {

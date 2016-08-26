@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
@@ -52,8 +53,9 @@ import dagger.ObjectGraph;
  */
 public class ApplicationContext extends Application implements DependencyInjector {
 
-  private JobManager  jobManager;
-  private ObjectGraph objectGraph;
+  private ExpiringMessageManager expiringMessageManager;
+  private JobManager             jobManager;
+  private ObjectGraph            objectGraph;
 
   private MediaNetworkRequirementProvider mediaNetworkRequirementProvider = new MediaNetworkRequirementProvider();
 
@@ -69,6 +71,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
     initializeLogging();
     initializeDependencyInjection();
     initializeJobManager();
+    initializeExpiringMessageManager();
     initializeGcmCheck();
     initializeSignedPreKeyCheck();
   }
@@ -84,9 +87,12 @@ public class ApplicationContext extends Application implements DependencyInjecto
     return jobManager;
   }
 
+  public ExpiringMessageManager getExpiringMessageManager() {
+    return expiringMessageManager;
+  }
+
   private void initializeDeveloperBuild() {
     if (BuildConfig.DEV_BUILD) {
-//      LeakCanary.install(this);
       StrictMode.setThreadPolicy(new ThreadPolicy.Builder().detectAll()
                                                            .penaltyLog()
                                                            .build());
@@ -137,6 +143,10 @@ public class ApplicationContext extends Application implements DependencyInjecto
     if (!TextSecurePreferences.isSignedPreKeyRegistered(this)) {
       jobManager.add(new CreateSignedPreKeyJob(this));
     }
+  }
+
+  private void initializeExpiringMessageManager() {
+    this.expiringMessageManager = new ExpiringMessageManager(this);
   }
 
 }
