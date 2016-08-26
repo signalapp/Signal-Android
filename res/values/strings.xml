@@ -412,7 +412,7 @@
     <!-- ExpirationDialog -->
     <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
     <string name="ExpirationDialog_your_messages_will_not_expire">Your messages will not expire.</string>
-    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Your messages will disappear %s after they have been seen.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Messages sent and received in this conversation will disappear %s after they have been seen.</string>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
@@ -1125,7 +1125,7 @@
     <string name="conversation_context_image__save_attachment">Save attachment</string>
 
     <!-- conversation_expiring_off -->
-    <string name="menu_conversation_expiring_off__messages_not_expiring">Messages not expiring</string>
+    <string name="conversation_expiring_off__disappearing_messages">Disappearing messages</string>
 
     <!-- conversation_expiring_on -->
     <string name="menu_conversation_expiring_on__messages_expiring">Messages expiring</string>
