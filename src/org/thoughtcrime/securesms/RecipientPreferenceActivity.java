@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Ringtone;
@@ -29,6 +30,8 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.ColorPreference;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -307,8 +310,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-              DatabaseFactory.getRecipientPreferenceDatabase(getActivity())
+              Context context = getActivity();
+              DatabaseFactory.getRecipientPreferenceDatabase(context)
                              .setColor(recipients, selectedColor);
+
+              ApplicationContext.getInstance(context)
+                                .getJobManager()
+                                .add(new MultiDeviceContactUpdateJob(context, recipients.getPrimaryRecipient().getRecipientId()));
               return null;
             }
           }.execute();
@@ -409,8 +417,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(getActivity())
+            Context context = getActivity();
+
+            DatabaseFactory.getRecipientPreferenceDatabase(context)
                            .setBlocked(recipients, blocked);
+
+            ApplicationContext.getInstance(context)
+                              .getJobManager()
+                              .add(new MultiDeviceBlockedUpdateJob(context));
             return null;
           }
         }.execute();
