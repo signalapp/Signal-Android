@@ -850,7 +850,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (TextSecurePreferences.isPushRegistered(this) &&
         !isSecureText                                &&
         !seenInvite                                  &&
-        recipients.isSingleRecipient())
+        recipients.isSingleRecipient()               &&
+        recipients.getPrimaryRecipient().getContactUri() != null)
     {
       InviteReminder reminder = new InviteReminder(this, recipients);
       reminder.setOkListener(new OnClickListener() {
