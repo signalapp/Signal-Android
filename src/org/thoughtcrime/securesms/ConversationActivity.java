@@ -839,10 +839,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateRecipientPreferences() {
-    if (recipients.getPrimaryRecipient() != null)
-    {
-      new RecipientPreferencesTask().execute(recipients);
-    }
+    new RecipientPreferencesTask().execute(recipients);
   }
 
   protected void updateInviteReminder(boolean seenInvite) {
@@ -851,6 +848,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         !isSecureText                                &&
         !seenInvite                                  &&
         recipients.isSingleRecipient()               &&
+        recipients.getPrimaryRecipient() != null     &&
         recipients.getPrimaryRecipient().getContactUri() != null)
     {
       InviteReminder reminder = new InviteReminder(this, recipients);
