@@ -839,8 +839,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateRecipientPreferences() {
-    if (recipients.getPrimaryRecipient() != null &&
-        recipients.getPrimaryRecipient().getContactUri() != null)
+    if (recipients.getPrimaryRecipient() != null)
     {
       new RecipientPreferencesTask().execute(recipients);
     }
