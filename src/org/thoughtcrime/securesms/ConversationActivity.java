@@ -383,25 +383,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    if (isSecureText) {
-      if (recipients.getExpireMessages() > 0) {
-        inflater.inflate(R.menu.conversation_expiring_on, menu);
-
-        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
-        final View     actionView = MenuItemCompat.getActionView(item);
-        final TextView badgeView  = (TextView)actionView.findViewById(R.id.expiration_badge);
-
-        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipients.getExpireMessages()));
-        actionView.setOnClickListener(new OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            onOptionsItemSelected(item);
-          }
-        });
-      } else {
-        inflater.inflate(R.menu.conversation_expiring_off, menu);
-      }
-    }
+//    if (isSecureText) {
+//      if (recipients.getExpireMessages() > 0) {
+//        inflater.inflate(R.menu.conversation_expiring_on, menu);
+//
+//        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
+//        final View     actionView = MenuItemCompat.getActionView(item);
+//        final TextView badgeView  = (TextView)actionView.findViewById(R.id.expiration_badge);
+//
+//        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipients.getExpireMessages()));
+//        actionView.setOnClickListener(new OnClickListener() {
+//          @Override
+//          public void onClick(View v) {
+//            onOptionsItemSelected(item);
+//          }
+//        });
+//      } else {
+//        inflater.inflate(R.menu.conversation_expiring_off, menu);
+//      }
+//    }
 
     if (isSingleConversation()) {
       if (isSecureVoice) inflater.inflate(R.menu.conversation_callable_secure, menu);
