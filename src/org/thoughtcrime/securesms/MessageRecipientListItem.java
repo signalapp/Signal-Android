@@ -99,7 +99,7 @@ public class MessageRecipientListItem extends RelativeLayout
       resendButton.setVisibility(View.GONE);
       conflictButton.setVisibility(View.VISIBLE);
 
-      errorText = getContext().getString(R.string.MessageDetailsRecipient_new_identity);
+      errorText = getContext().getString(R.string.MessageDetailsRecipient_new_safety_numbers);
       conflictButton.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {

@@ -6,27 +6,38 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 public class ConversationUpdateItem extends LinearLayout
-    implements Recipients.RecipientsModifiedListener, Recipient.RecipientModifiedListener, BindableConversationItem, View.OnClickListener
+    implements Recipients.RecipientsModifiedListener, Recipient.RecipientModifiedListener, BindableConversationItem
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
+
+  private MasterSecret       masterSecret;
+  private Set<MessageRecord> batchSelected;
 
   private ImageView     icon;
   private TextView      body;
@@ -51,7 +62,7 @@ public class ConversationUpdateItem extends LinearLayout
     this.body = (TextView)findViewById(R.id.conversation_update_body);
     this.date = (TextView)findViewById(R.id.conversation_update_date);
 
-    setOnClickListener(this);
+    this.setOnClickListener(new InternalClickListener(null));
   }
 
   @Override
@@ -61,13 +72,10 @@ public class ConversationUpdateItem extends LinearLayout
                    @NonNull Set<MessageRecord> batchSelected,
                    @NonNull Recipients conversationRecipients)
   {
-    bind(messageRecord, locale);
+    this.masterSecret  = masterSecret;
+    this.batchSelected = batchSelected;
 
-    if (batchSelected.contains(messageRecord)) {
-      setSelected(true);
-    } else {
-      setSelected(false);
-    }
+    bind(messageRecord, locale);
   }
 
   @Override
@@ -87,7 +95,11 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isJoined())                setJoinedRecord(messageRecord);
     else if (messageRecord.isExpirationTimerUpdate()) setTimerRecord(messageRecord);
     else if (messageRecord.isEndSession())            setEndSessionRecord(messageRecord);
+    else if (messageRecord.isIdentityUpdate())        setIdentityRecord(messageRecord);
     else                                              throw new AssertionError("Neither group nor log nor joined.");
+
+    if (batchSelected.contains(messageRecord)) setSelected(true);
+    else                                       setSelected(false);
   }
 
   private void setCallRecord(MessageRecord messageRecord) {
@@ -109,6 +121,13 @@ public class ConversationUpdateItem extends LinearLayout
       icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     }
 
+    body.setText(messageRecord.getDisplayBody());
+    date.setVisibility(View.GONE);
+  }
+
+  private void setIdentityRecord(final MessageRecord messageRecord) {
+    icon.setImageResource(R.drawable.ic_security_white_24dp);
+    icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     body.setText(messageRecord.getDisplayBody());
     date.setVisibility(View.GONE);
   }
@@ -153,14 +172,8 @@ public class ConversationUpdateItem extends LinearLayout
   }
 
   @Override
-  public void onClick(View v) {
-    if (messageRecord.isIdentityUpdate()) {
-      Intent intent = new Intent(getContext(), RecipientPreferenceActivity.class);
-      intent.putExtra(RecipientPreferenceActivity.RECIPIENTS_EXTRA,
-                      new long[] {messageRecord.getIndividualRecipient().getRecipientId()});
-
-      getContext().startActivity(intent);
-    }
+  public void setOnClickListener(View.OnClickListener l) {
+    super.setOnClickListener(new InternalClickListener(l));
   }
 
   @Override
@@ -169,4 +182,42 @@ public class ConversationUpdateItem extends LinearLayout
       sender.removeListener(this);
     }
   }
+
+  private class InternalClickListener implements View.OnClickListener {
+
+    @Nullable private final View.OnClickListener parent;
+
+    public InternalClickListener(@Nullable View.OnClickListener parent) {
+      this.parent = parent;
+    }
+
+    @Override
+    public void onClick(View v) {
+      if (!messageRecord.isIdentityUpdate() || !batchSelected.isEmpty()) {
+        if (parent != null) parent.onClick(v);
+        return;
+      }
+
+      final Recipient sender = ConversationUpdateItem.this.sender;
+
+      IdentityUtil.getRemoteIdentityKey(getContext(), masterSecret, sender).addListener(new ListenableFuture.Listener<Optional<IdentityKey>>() {
+        @Override
+        public void onSuccess(Optional<IdentityKey> result) {
+          if (result.isPresent()) {
+            Intent intent = new Intent(getContext(), VerifyIdentityActivity.class);
+            intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID, sender.getRecipientId());
+            intent.putExtra(VerifyIdentityActivity.RECIPIENT_IDENTITY, new IdentityKeyParcelable(result.get()));
+
+            getContext().startActivity(intent);
+          }
+        }
+
+        @Override
+        public void onFailure(ExecutionException e) {
+          Log.w(TAG, e);
+        }
+      });
+    }
+  }
+
 }

@@ -181,7 +181,7 @@ public class ConversationFragment extends Fragment
     for (MessageRecord messageRecord : messageRecords) {
       if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
           messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
-          messageRecord.isEndSession())
+          messageRecord.isEndSession() || messageRecord.isIdentityUpdate())
       {
         actionMessage = true;
         break;
