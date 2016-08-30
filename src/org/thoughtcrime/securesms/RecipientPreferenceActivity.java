@@ -31,26 +31,20 @@ import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.ColorPreference;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.concurrent.ExecutionException;
 
@@ -294,7 +288,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (recipients.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
         else                        blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
 
-        getRemoteIdentityKey(getActivity(), masterSecret, recipients.getPrimaryRecipient()).addListener(new ListenableFuture.Listener<Optional<IdentityKey>>() {
+        IdentityUtil.getRemoteIdentityKey(getActivity(), masterSecret, recipients.getPrimaryRecipient()).addListener(new ListenableFuture.Listener<Optional<IdentityKey>>() {
           @Override
           public void onSuccess(Optional<IdentityKey> result) {
             if (result.isPresent()) {
@@ -322,36 +316,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }
       });
     }
-
-    private ListenableFuture<Optional<IdentityKey>> getRemoteIdentityKey(final Context context,
-                                                                         final MasterSecret masterSecret,
-                                                                         final Recipient recipient)
-    {
-      final SettableFuture<Optional<IdentityKey>> future = new SettableFuture<>();
-
-      new AsyncTask<Recipient, Void, Optional<IdentityKey>>() {
-        @Override
-        protected Optional<IdentityKey> doInBackground(Recipient... recipient) {
-          SessionStore          sessionStore   = new TextSecureSessionStore(context, masterSecret);
-          SignalProtocolAddress axolotlAddress = new SignalProtocolAddress(recipient[0].getNumber(), SignalServiceAddress.DEFAULT_DEVICE_ID);
-          SessionRecord         record         = sessionStore.loadSession(axolotlAddress);
-
-          if (record == null) {
-            return Optional.absent();
-          }
-
-          return Optional.fromNullable(record.getSessionState().getRemoteIdentityKey());
-        }
-
-        @Override
-        protected void onPostExecute(Optional<IdentityKey> result) {
-          future.set(result);
-        }
-      }.execute(recipient);
-
-      return future;
-    }
-
 
     private class RingtoneChangeListener implements Preference.OnPreferenceChangeListener {
       @Override

@@ -37,7 +37,7 @@
             app:numColumns="5" />
 
     <Preference android:key="pref_key_recipient_identity"
-                android:title="@string/recipient_preferences__verify_identity"
+                android:title="@string/recipient_preferences__verify_safety_numbers"
                 android:persistent="false"
                 android:enabled="false"/>
 

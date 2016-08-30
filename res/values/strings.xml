@@ -72,12 +72,11 @@
 
     <!-- ConfirmIdentityDialog -->
     <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The
-        identifying key material for %1$s has changed. This could either mean that someone is trying to
-        intercept your communication, or that %2$s simply re-installed Signal and now has a new
-        identity key.
+        safety numbers for %1$s have changed. This could either mean that someone is trying to
+        intercept your communication, or that %2$s simply re-installed Signal.
     </string>
     <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">You may wish to verify
-        this contact.
+        safety numbers for this contact.
     </string>
     <string name="ConfirmIdentityDialog_accept">Accept</string>
 
@@ -350,7 +349,7 @@
 
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
-    <string name="MessageDetailsRecipient_new_identity">New identity</string>
+    <string name="MessageDetailsRecipient_new_safety_numbers">New safety numbers</string>
 
     <!-- MmsDownloader -->
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
@@ -530,8 +529,7 @@
     <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Received key exchange message for invalid protocol version.
     </string>
-    <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Received message with unknown identity key. Tap to process and display.</string>
-    <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Received message with new safety numbers. Tap to process and display.</string>
     <string name="SmsMessageRecord_secure_session_reset">Secure session reset.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
@@ -550,17 +548,6 @@
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying security numbers.</string>
     <string name="VerifyIdentityActivity_you_re_attempting_to_verify_security_numbers_with">You\'re attempting to verify security numbers with %1$s, but scanned %2$s instead.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_security_number">The scanned QR code is not a correctly formatted security number verification code.  Please try scanning again.</string>
-
-
-    <!-- ViewIdentityActivity -->
-    <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
-    <string name="ViewIdentityActivity_scan_contacts_qr_code">Scan contact\'s QR code</string>
-    <string name="ViewIdentityActivity_display_your_qr_code">Display your QR code</string>
-    <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">WARNING, the scanned key DOES NOT match!</string>
-    <string name="ViewIdentityActivity_not_verified_exclamation">NOT verified!</string>
-    <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">The scanned key matches!</string>
-    <string name="ViewIdentityActivity_verified_exclamation">Verified!</string>
-    <string name="ViewIdentityActivity_your_identity_fingerprint">Your identity fingerprint</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
@@ -825,7 +812,7 @@
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
     <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
-    <string name="recipient_preferences__verify_identity">Verify identity</string>
+    <string name="recipient_preferences__verify_safety_numbers">Verify safety numbers</string>
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
@@ -922,7 +909,7 @@
     <string name="recipients_panel__add_member">Add member</string>
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Scan the code on your contact\'s phone, or ask them to scan your code, to verify that your messages are end-to-end encrypted. You can alternately compare the number above.</string>
+    <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">If you wish to verify the security of your end-to-end encryption with %s, compare the numbers above with the numbers on their device. Alternately, you can scan the code on their phone, or ask them to scan your code.</string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
     
     <!-- message_details_header -->
@@ -939,9 +926,8 @@
     <string name="AndroidManifest__enter_passphrase">Enter passphrase</string>
     <string name="AndroidManifest__select_contacts">Select contacts</string>
     <string name="AndroidManifest__signal_detected">Signal detected</string>
-    <string name="AndroidManifest__public_identity_key">Public identity key</string>
     <string name="AndroidManifest__change_passphrase">Change passphrase</string>
-    <string name="AndroidManifest__verify_identity">Verify identity</string>
+    <string name="AndroidManifest__verify_safety_numbers">Verify safety numbers</string>
     <string name="AndroidManifest__log_submit">Submit debug log</string>
     <string name="AndroidManifest__media_preview">Media preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
@@ -953,7 +939,6 @@
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
-    <string name="arrays__your_identity_key">Your identity key</string>
     <string name="arrays__use_default">Use default</string>
     <string name="arrays__use_custom">Use custom</string>
 
@@ -1076,6 +1061,8 @@
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
+    <string name="preferences_app_protection__safety_numbers_approval">Safety numbers approval</string>
+    <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Require approval of new safety numbers when they change</string>
     <string name="preferences_notifications__display_in_notifications">Display in notifications</string>
     <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
     <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
@@ -1148,8 +1135,6 @@
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_security">Security</string>
-    <string name="conversation_secure_verified__menu_verify_identity">Verify identity</string>
     <string name="conversation_secure_verified__menu_reset_secure_session">Reset secure session</string>
 
     <!-- conversation_muted -->
