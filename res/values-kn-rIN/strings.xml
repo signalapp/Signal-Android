@@ -5,6 +5,8 @@
   <string name="no">ಇಲ್ಲ</string>
   <string name="delete">ಅಳಿಸಿಹಾಕು</string>
   <string name="please_wait">ದಯವಿಟ್ಟು  ಕಾಯಿರಿ...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">ಹೊಸ ಸಂದೇಶ</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ಪ್ರಸ್ತುತ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಗುಪ್ತಪದವನ್ನು ಹೊಂದಿಸಿಲ್ಲ!</string>
@@ -138,6 +140,7 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸುವಾಗ ತೊಡಕಾಗಿದೆ!</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">ಕಡತವನ್ನು ಉಳಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ಸಂಗ್ರಹಕ್ಕೆ ಬರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">%1$d ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ</item>
@@ -184,6 +187,8 @@
   <string name="DeviceListActivity_try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="DeviceListActivity_network_failed">ಜಾಲಬಂಧದ ದೋಷ!</string>
   <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">ಅನಾಮಧೇಯ ಸಾಧನ</string>
+  <string name="DeviceListItem_last_active_s">ಕೊನೆಯದಾಗಿ ಸಕ್ರಿಯವಾಗಿದದ್ದು  %s</string>
   <string name="DeviceListItem_today">ಇಂದು</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
@@ -198,6 +203,7 @@
   <string name="ExportFragment_exporting">ರಫ್ತು ಮಾಡುತ್ತಿದ್ದೇವೆ</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">ಸಂಗ್ರಹಕ್ಕೆ ಸರಳಪಠ್ಯವನ್ನು ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
   <string name="ExportFragment_error_while_writing_to_storage">ಸಂಗ್ರಹಕ್ಕೆ ಉಳಿಸುವಾಗ ತೊಡಕಾಗಿದೆ!</string>
+  <string name="ExportFragment_export_successful">ಎಕ್ಸ್ಪೋರ್ಟ್ ಯಶಸ್ವಿಯಾಗಿದೆ.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ಸಿಗ್ನಲ್‌ಗೆ ಶಾಶ್ವತವಾದ ಸಂಪರ್ಕ ವೈಫಲ್ಯ!</string>
   <!--GroupCreateActivity-->
@@ -238,15 +244,11 @@
   <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
-  <string name="InviteActivity_send_sms">ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <string name="InviteActivity_cancel">ರದ್ದುಮಾಡು</string>
   <string name="InviteActivity_sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="InviteActivity_heart_content_description">ಹೃದಯ</string>
   <string name="InviteActivity_invitations_sent">ಆಮಂತ್ರಣಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ!</string>
   <string name="InviteActivity_invite_to_signal">ಸಿಗ್ನಲ್‌ಗೆ ಆಮಂತ್ರಿಸಿ</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="other">%d ಸ್ನೇಹಿತರಿಗೆ ಕಳುಹಿಸಿ</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">%d ಎಸ್.ಎಮ್.ಎಸ್ ಆಮಂತ್ರಣಗಳನ್ನು ಕಳುಹಿಸಲೆ?</item>
   </plurals>
@@ -264,12 +266,21 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">ಎಂ.ಎಂ.ಎಸ್ ಪೂರೈಕೆದಾರರಿಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ ...</string>
   <string name="MmsDownloader_error_reading_mms_settings">ನಿಸ್ತಂತು ಒದಗಿಸುವವರ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಓದುವಲ್ಲಿ ದೋಷವಾಗಿದೆ...</string>
   <!--- NotificationBarManager-->
+  <string name="NotificationBarManager_missed_call_from_s">%s ನಿಂದ ತಪ್ಪಿದ ಕರೆ</string>
   <string name="NotificationBarManager_missed_signal_call">ತಪ್ಪಿದ ಸಿಗ್ನಲ್ ಕರೆ</string>
+  <string name="NotificationBarManager__establishing_signal_call">ಸಿಗ್ನಲ್ ಕರೆ ಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ</string>
+  <string name="NotificationBarManager__incoming_signal_call">ಒಳಬರುವ ಸಿಗ್ನಲ್ ಕರೆ</string>
+  <string name="NotificationBarManager__deny_call">ಕರೆ ನಿರಾಕರಿಸಿ</string>
+  <string name="NotificationBarManager__answer_call">ಕರೆಗೆ ಉತ್ತರಿಸಿ</string>
+  <string name="NotificationBarManager__end_call">ಕರೆ ಅಂತ್ಯಗೊಳಿಸಿ</string>
+  <string name="NotificationBarManager__cancel_call">ಕರೆ ರದ್ದುಗೊಳಿಸಿ</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">ನೀವು ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದೀರ.</string>
   <string name="MessageRecord_updated_group">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
+  <string name="MessageRecord_missed_call_from">%s ನಿಂದ ತಪ್ಪಿದ ಕರೆ</string>
+  <string name="MessageRecord_you">ನೀವು</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ಗುಪ್ತಪದಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ಹಳೆಯ ಗುಪ್ತಪದ ತಪ್ಪಾಗಿದೆ!</string>
@@ -283,6 +294,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">ಯಾವುದೇ ಸಾಧನವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ನೆಟ್ವರ್ಕ್ ದೋಷ.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">ಮಾನ್ಯವಲ್ಲದ QR ಕೋಡ್.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">ಗುಪ್ತಪದ ನಮೂದಿಸಿ</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ಗುಪ್ತಪದವನ್ನು ಸಲ್ಲಿಸು</string>
@@ -460,6 +472,8 @@
   <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
+  <!--expiration-->
+  <string name="expiration_off">ಆಫ಼್</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">ನಿಮ್ಮ ಸಹಾಯಕ್ಕೆ ಧನ್ಯವಾದಗಳು!</string>
   <string name="log_submit_activity__submitting">ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ</string>
@@ -655,6 +669,8 @@
   <string name="conversation_context__menu_resend_message">ಸಂದೇಶ ಪುನಃ ಕಳುಹಿಸಿ</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ಲಗತ್ತು ಉಳಿಸು</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ಆಹ್ವಾನ</string>
   <!--conversation_insecure_no_push-->

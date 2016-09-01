@@ -5,6 +5,8 @@
   <string name="no">Ne</string>
   <string name="delete">Obriši</string>
   <string name="please_wait">Sačekajte...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Nova poruka</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
@@ -303,17 +305,11 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pritisnite i držite kako biste snimili glasovnu poruku, pustite za slanje</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dijeli</string>
-  <string name="InviteActivity_send_sms">Pošalji SMS</string>
   <string name="InviteActivity_cancel">Odustani</string>
   <string name="InviteActivity_sending">Slanje...</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
   <string name="InviteActivity_invitations_sent">Pozivnice poslane!</string>
   <string name="InviteActivity_invite_to_signal">Pozovi u Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">POŠALJI ODABRANIM PRIJATELJIMA</item>
-    <item quantity="few">POŠALJI PRIJATELJIMA: %d</item>
-    <item quantity="other">POŠALJI PRIJATELJIMA: %d</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Pošalji SMS pozivnice?</item>
     <item quantity="few">Pošalji %d SMS pozivnice?</item>
@@ -353,6 +349,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MessageRecord_called_s">Nazvao %s</string>
   <string name="MessageRecord_missed_call_from">Propušteni poziv od %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
+  <string name="MessageRecord_you">Vi</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
@@ -377,6 +374,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Žao nam je, ovo nije važeći QR kôd za povezivanje uređaja.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Poveži Signal uređaj?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda da pokušavate povezati Signal uređaj pomoću strane aplikacije. Za Vašu vlastitu sigurnost molimo skenirajte kôd ponovno unutar Signal aplikacije.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikona</string>
@@ -631,6 +629,8 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="device_list_fragment__link_new_device">Poveži novi uređaj</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">nastavi</string>
+  <!--expiration-->
+  <string name="expiration_off">Isključeno</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Čitanje zapisa na Vašem uređaju nije moguće. Još uvijek možete koristiti ADB za pristup debug zapisu.</string>
   <string name="log_submit_activity__thanks">Hvala na pomoći!</string>
@@ -942,6 +942,8 @@ neuspješno.</string>
   <string name="conversation_context__menu_resend_message">Ponovno pošalji poruku</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Spremi privitak</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozovi</string>
   <!--conversation_insecure_no_push-->

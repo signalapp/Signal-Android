@@ -5,6 +5,8 @@
   <string name="no">Ei</string>
   <string name="delete">Poista</string>
   <string name="please_wait">Odota hetki...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Uusi viesti</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Tällä hetkellä: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
@@ -133,6 +135,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ei käytettävissä</string>
   <string name="ConversationActivity_unable_to_record_audio">Äänen nauhoitus ei onnistunut!</string>
   <string name="ConversationActivity_error_sending_voice_message">Virhe ääniviestin lähettämisessä...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Laitteessasi ei ole sovellusta, joka osaa avata tämän linkin.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Viestin tiedot</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Tyyppi: %1$s
@@ -177,6 +180,7 @@ Vastaanotettu: %4$s</string>
   <string name="ConversationFragment_deleting_messages">Viestejä poistetaan...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Hae...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Poistetaanko valittu keskustelu?</item>
@@ -291,15 +295,15 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pidä pohjassa nauhoittaaksesi ääniviestin ja päästä irti lähettääksesi sen</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Jaa</string>
-  <string name="InviteActivity_send_sms">Lähetä SMS</string>
+  <string name="InviteActivity_choose_contacts">Valitse yhteystietoja</string>
   <string name="InviteActivity_cancel">Peruuta</string>
   <string name="InviteActivity_sending">Lähetetään...</string>
   <string name="InviteActivity_heart_content_description">Sydän</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signaliin</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">LÄHETÄ 1 YSTÄVÄLLE</item>
-    <item quantity="other">LÄHETÄ %d YSTÄVÄLLE</item>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">LÄHETÄ SMS 1 YSTÄVÄLLE</item>
+    <item quantity="other">LÄHETÄ SMS %d YSTÄVÄLLE</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Lähetä 1 SMS-kutsu?</item>
@@ -339,6 +343,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
+  <string name="MessageRecord_you">Sinä</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>
@@ -362,6 +367,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Valitettavasti tämä ei ole laitteen yhdistämiseksi tarkoitettu QR-koodi.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Yhdistetäänkö Signal-laite?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vaikuttaa siltä, että yrität yhdistää laitetta käyttämällä Signalin ulkopuolista skannaussovellusta. Oman turvallisuutesi vuoksi skannaa QR-koodi uudelleen Signalilla itsellään.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-kuvake</string>
@@ -617,6 +623,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="device_list_fragment__link_new_device">Yhdistä uusi laite</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">jatka</string>
+  <!--expiration-->
+  <string name="expiration_off">Poissa päältä</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Lokin lukeminen laitteestasi epäonnistui. Voit sen sijaan käyttää ADB-työkalua virheenkorjauslokin noutamiseen.</string>
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>
@@ -917,6 +925,8 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="conversation_context__menu_resend_message">Lähetä viesti uudelleen</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Tallenna liite</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Kutsu</string>
   <!--conversation_insecure_no_push-->

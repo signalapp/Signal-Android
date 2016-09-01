@@ -5,6 +5,8 @@
   <string name="no">Нет</string>
   <string name="delete">Удалить</string>
   <string name="please_wait">Пожалуйста, подождите...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Новое сообщение</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Сейчас: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы ещё не задали парольную фразу!</string>
@@ -309,18 +311,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Нажмите и держите, чтобы записать голосовое сообщение; отпустите, чтобы отправить</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поделиться</string>
-  <string name="InviteActivity_send_sms">Отправить SMS</string>
   <string name="InviteActivity_cancel">Отмена</string>
   <string name="InviteActivity_sending">Отправляем...</string>
   <string name="InviteActivity_heart_content_description">Сердце</string>
   <string name="InviteActivity_invitations_sent">Приглашения отправлены!</string>
   <string name="InviteActivity_invite_to_signal">Пригласить в Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">Отправить одному другу</item>
-    <item quantity="few">Отправить %d друзьям</item>
-    <item quantity="many">Отправить %d друзьям</item>
-    <item quantity="other">Отправить %d друзьям</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Отправить 1 SMS-приглашение?</item>
     <item quantity="few">Отправить %d SMS-приглашения?</item>
@@ -361,6 +356,7 @@
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
+  <string name="MessageRecord_you">Вы</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
@@ -384,6 +380,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">К сожалению, этот QR-код недействителен для привязки устройства.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Привязать устройство Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Похоже, вы пытаетесь привязать устройство Signal, используя сторонний сканер. Для вашей защиты, пожалуйста, просканируйте код через Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Введите парольную фразу</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Иконка Signal</string>
@@ -556,8 +553,8 @@
   <string name="MessageNotifier_message_delivery_failed">Сбой доставки сообщения.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не удалось доставить сообщение.</string>
   <string name="MessageNotifier_error_delivering_message">Ошибка при доставке сообщения.</string>
-  <string name="MessageNotifier_mark_all_as_read">Отметить все как прочитанные</string>
-  <string name="MessageNotifier_mark_read">Отметить прочитанным</string>
+  <string name="MessageNotifier_mark_all_as_read">Всё прочитано</string>
+  <string name="MessageNotifier_mark_read">Прочитано</string>
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_reply">Ответить</string>
   <!--QuickResponseService-->
@@ -596,16 +593,16 @@
   <string name="conversation_activity__type_message_push">Отправить через Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Отправить незащищённое SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Отправить незащищённое MMS</string>
-  <string name="conversation_activity__from_sim_name">С %1$s</string>
+  <string name="conversation_activity__from_sim_name">Через %1$s</string>
   <string name="conversation_activity__send">Отправить</string>
   <string name="conversation_activity__remove">Удалить</string>
   <string name="conversation_activity__window_description">Разговор с %1$s</string>
   <string name="conversation_activity__compose_description">Написание сообщения</string>
   <string name="conversation_activity__emoji_toggle_description">Клавиатура смайликов</string>
   <string name="conversation_activity__attachment_thumbnail">Миниатюра вложения</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Вкл/выкл ящик вложений</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Показать панель вложений</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДИТЕ, ЧТОБЫ ОТМЕНИТЬ</string>
+  <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДИТЕ ДЛЯ ОТМЕНЫ</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">MMS-сообщение загружается</string>
   <string name="conversation_item__mms_image_description">MMS-сообщение</string>
@@ -635,6 +632,8 @@
   <string name="device_list_fragment__link_new_device">Привязать новое устройство</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продолжить</string>
+  <!--expiration-->
+  <string name="expiration_off">Выключено</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не удается прочитать журнал отладки вашего устройства. Тем не менее, вы можете получить его при помощи ADB.</string>
   <string name="log_submit_activity__thanks">Спасибо за помощь!</string>
@@ -947,6 +946,8 @@ SMS-подтверждения...
   <string name="conversation_context__menu_resend_message">Отправить заново</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Сохранить вложение</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Пригласить</string>
   <!--conversation_insecure_no_push-->

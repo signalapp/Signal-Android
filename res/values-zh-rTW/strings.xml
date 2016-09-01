@@ -5,6 +5,8 @@
   <string name="no">否</string>
   <string name="delete">刪除</string>
   <string name="please_wait">請稍候...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">新訊息</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">目前: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您還沒有建立密碼！</string>
@@ -274,15 +276,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住並保持以錄製語音訊息，鬆開即傳送</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
-  <string name="InviteActivity_send_sms">傳送手機簡訊</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">正在傳送...</string>
   <string name="InviteActivity_heart_content_description">心</string>
   <string name="InviteActivity_invitations_sent">邀請已傳送！</string>
   <string name="InviteActivity_invite_to_signal">邀請至 Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="other">已傳送至 %d 位朋友</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">傳送 %d 則簡訊邀請？</item>
   </plurals>
@@ -320,6 +318,7 @@
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">來自 %s 的未接來電</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
+  <string name="MessageRecord_you">您</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的自訂密碼不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的自訂密碼！</string>
@@ -343,6 +342,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，這不是有些的裝置連結 QR 碼。</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">連結 Signal 裝置？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起來您正在嘗試使用第 3 方掃描器連結 Signal 裝置。為了安全著想，請使用 Signal 重新掃描代碼一次。</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">輸入自訂密碼</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 圖示</string>
@@ -600,6 +600,8 @@
   <string name="device_list_fragment__link_new_device">連結新的裝置</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">繼續</string>
+  <!--expiration-->
+  <string name="expiration_off">關</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">無法在您的設備上讀取日誌。您仍然可以使用 ADB 來獲得偵錯紀錄。</string>
   <string name="log_submit_activity__thanks">感謝您的協助！</string>
@@ -907,6 +909,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="conversation_context__menu_resend_message">重送訊息</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">另存附件檔案</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀請</string>
   <!--conversation_insecure_no_push-->

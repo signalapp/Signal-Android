@@ -5,6 +5,8 @@
   <string name="no">Ne</string>
   <string name="delete">Izbriši</string>
   <string name="please_wait">Počakajte...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Novo sporočilo</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
@@ -308,18 +310,11 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Za snemanje glasovnega sporočila se dotaknite in držite, za pošiljanje spustite</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deli</string>
-  <string name="InviteActivity_send_sms">Pošlji SMS</string>
   <string name="InviteActivity_cancel">Prekliči</string>
   <string name="InviteActivity_sending">Pošiljam...</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
   <string name="InviteActivity_invitations_sent">Vabilo je bilo poslano!</string>
   <string name="InviteActivity_invite_to_signal">Povabi k uporabi</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">POŠLJI PRIJATELJU</item>
-    <item quantity="two">POŠLJI %d PRIJATELJEMA</item>
-    <item quantity="few">POŠLJI %d PRIJATELJEM</item>
-    <item quantity="other">POŠLJI %d PRIJATELJEM</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Pošljem povabilo SMS?</item>
     <item quantity="two">Pošljem %d povabili SMS?</item>
@@ -360,6 +355,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="MessageRecord_called_s">Klicali ste: %s</string>
   <string name="MessageRecord_missed_call_from">Neodgovorjen klic: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s uporablja Signal, pozdravite ga!</string>
+  <string name="MessageRecord_you">Vi</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
@@ -383,6 +379,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Koda QR za povezavo naprav ni veljavna.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Povežem z napravo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda, da želite za povzavo z napravo Signal uporabiti zunanji optični čitalnik. Prosimo, da storite to znotraj aplikacije Signal, saj je tako najvarneje.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -631,6 +628,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="device_list_fragment__link_new_device">Poveži z novo napravo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">nadaljuj</string>
+  <!--expiration-->
+  <string name="expiration_off">Izklopljeno</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Sistemski dnevnik vaše naprave ni dostopen. Za oddajo sistemske zabeležbe lahko uporabite ADB.</string>
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
@@ -937,6 +936,8 @@ bila uspešna.</string>
   <string name="conversation_context__menu_resend_message">Ponovno pošlji sporočilo</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Shrani priponko</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Povabi</string>
   <!--conversation_insecure_no_push-->

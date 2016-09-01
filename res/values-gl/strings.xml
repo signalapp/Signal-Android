@@ -5,6 +5,8 @@
   <string name="no">Non</string>
   <string name="delete">Borrar</string>
   <string name="please_wait">Por favor, agarda...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Nova mensaxe</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Aínda non tes establecida unha frase de acceso!</string>
@@ -30,9 +32,9 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca para cambiar a túa app predefinida de SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS desactivadas</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toca para facer de Signal a túa app predefinida de MMS</string>
-  <string name="ApplicationPreferencesActivity_on">on</string>
+  <string name="ApplicationPreferencesActivity_on">activada</string>
   <string name="ApplicationPreferencesActivity_On">On</string>
-  <string name="ApplicationPreferencesActivity_off">off</string>
+  <string name="ApplicationPreferencesActivity_off">desactivada</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Frase de acceso %1$s, pantalla de seguranza %2$s</string>
@@ -266,16 +268,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toca e mantén premido para gravar unha mensaxe de voz; solta para enviar</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartir</string>
-  <string name="InviteActivity_send_sms">Enviar SMS</string>
   <string name="InviteActivity_cancel">Cancelar</string>
   <string name="InviteActivity_sending">A enviar...</string>
   <string name="InviteActivity_heart_content_description">Corazón</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar a Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">ENVIAR A 1 AMIZADE</item>
-    <item quantity="other">ENVIAR A %d AMIZADES</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Enviar 1 SMS convite?</item>
     <item quantity="other">Enviar %d SMS convite?</item>
@@ -310,6 +307,7 @@
   <string name="MessageRecord_s_called_you">%s chamoute</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s está en Signal; dille ola!</string>
+  <string name="MessageRecord_you">Ti</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases de acceso non coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase de acceso antiga incorrecta!</string>
@@ -333,6 +331,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Desculpa, este non é un código QR válido para vincular o dispositivo.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Vincular un dispositivo a Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Semella que estás tentando vincular un dispositivo a Signal usando un escáner de terceiros. Para a túa protección, escanea o código de novo desde Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase de acceso</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona de Signal</string>
@@ -571,6 +570,8 @@
   <string name="device_list_fragment__link_new_device">Vincular novo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
+  <!--expiration-->
+  <string name="expiration_off">Off</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Grazas pola túa axuda!</string>
   <string name="log_submit_activity__submitting">Enviando</string>
@@ -584,13 +585,13 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Actualizando base de datos...</string>
   <string name="export_fragment__export_plaintext_backup">Exportar copia de seguranza en texto simple</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporta unha copia en texto simple compatible con \'Copia de SMS &amp; Restaurar\'.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporta unha copia en texto simple compatible con 'Copia de SMS &amp; Restaurar'.</string>
   <string name="import_fragment__import_system_sms_database">Importar base de datos de SMS do sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importa a base de datos da aplicación de mensaxaría do sistema</string>
   <string name="import_fragment__restore_encrypted_backup">Restaurar unha copia de seguranza cifrada</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Restaura unha copia de seguranza de Signal previamente exportada</string>
   <string name="import_fragment__import_plaintext_backup">Importar copia de seguranza en texto simple</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importa un ficheiro en texto simple. É compatible con \'Copia de SMS &amp; Restaurar\'.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importa un ficheiro en texto simple. É compatible con 'Copia de SMS &amp; Restaurar'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversa completa</string>
   <!--media_overview_activity-->
@@ -727,7 +728,10 @@
   <string name="preferences__change_your_passphrase">Cambia a túa frase de acceso</string>
   <string name="preferences__enable_passphrase">Activar frase de acceso</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea Signal e as notificacións de mensaxes cunha frase de acceso</string>
-  <string name="preferences__screen_security">Pantalla de seguranza</string>
+  <string name="preferences__screen_security">Seguranza da pantalla</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquea as capturas na listaxe de recentes e no interior da aplicación.</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloqueo automático de Signal após un período especificado de inactividade</string>
+  <string name="preferences__inactivity_timeout_interval">Intervalo de inactividade</string>
   <string name="preferences__notifications">Notificacións</string>
   <string name="preferences__new_contacts_notifications">Notificación de novos contactos</string>
   <string name="preferences__show_a_notification_for_new_signal_contacts">Mostra unha notificación cando hai novos contactos en Signal</string>
@@ -808,6 +812,8 @@
   <string name="conversation_context__menu_resend_message">Reenviar mensaxe</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Gardar anexo</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convidar</string>
   <!--conversation_insecure_no_push-->

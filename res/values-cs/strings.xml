@@ -5,6 +5,8 @@
   <string name="no">Ne</string>
   <string name="delete">Smazat</string>
   <string name="please_wait">Prosím čekejte...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
@@ -160,6 +162,7 @@ kontakt</string>
     <item quantity="few">Chyba při ukládání příloh!</item>
     <item quantity="other">Chyba při ukládání příloh!</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">Soubor byl úspěšně uložen</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nelze uložit data do paměti.</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Ukládám přílohu</item>
@@ -245,6 +248,7 @@ kontakt</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Exportovat nešifrovaný text do úložiště.</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Chyba, nelze zapisovat do úložiště.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Chyba během zápisu do úložiště</string>
+  <string name="ExportFragment_export_successful">Export byl úspěšný.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Sginal se nemůže registrovat k službě Google Play. Zprávy a volání jsou proto zakázány: Prosím zkuste se znovu registrovat v menu Nastavení &gt; Rozšířené.</string>
@@ -296,17 +300,11 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ťukněte a držte pro nahrání hlasové zprávy, pusťte pro odeslání.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Sdílet</string>
-  <string name="InviteActivity_send_sms">Poslat SMS</string>
   <string name="InviteActivity_cancel">Storno</string>
   <string name="InviteActivity_sending">Odesílám...</string>
   <string name="InviteActivity_heart_content_description">Srdíčko</string>
   <string name="InviteActivity_invitations_sent">Pozvnáka odeslána!</string>
   <string name="InviteActivity_invite_to_signal">Pozvat do Signalu</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">POSLAT PŘÍTELI</item>
-    <item quantity="few">POSLAT %d PŘÁTELŮM</item>
-    <item quantity="other">POSLAT %d PŘÁTELŮM</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Poslat 1 SMS pozvánku?</item>
     <item quantity="few">Poslat %d SMS pozvánky?</item>
@@ -346,6 +344,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageRecord_called_s">Volán %s</string>
   <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s je na Signalu, řekni ahoj!</string>
+  <string name="MessageRecord_you">Vy</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nejsou stejná</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Chybné staré heslo!</string>
@@ -369,6 +368,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Omlouváme se, ale toto není platný QR kód pro provázání zařízení</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Provázat zařízení Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se se snažíte provázat zařízení Signal použitím jiné skennovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadat heslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -523,6 +523,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuji textové zprávy</string>
   <string name="ApplicationMigrationService_import_complete">Import dokončen</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Import systémové databáze je kompletní.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Stisknutím otevřete.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotykem otevřete nebo stisknutím zámku uzamkněte.</string>
@@ -616,6 +617,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="device_list_fragment__link_new_device">Provázat nové zařízení</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">pokračovat</string>
+  <!--expiration-->
+  <string name="expiration_off">Vyp.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Na vašem zařízení nelze číst log. Můžete místo toho použít pro získání logu ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
@@ -770,6 +773,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všechny obrázky s %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
+  <string name="AndroidManifest__linked_devices">Provázaná zařízení</string>
   <string name="AndroidManifest__invite_friends">Pozvat přátele</string>
   <string name="AndroidManifest_archived_conversations">Archivované konverzace</string>
   <!--arrays.xml-->
@@ -879,6 +883,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
   <string name="preferences__trim_all_conversations_now">Zkrátit všechny konverzace teď</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Prohledat všechny konverzace a uplatnit limit délky.</string>
+  <string name="preferences__linked_devices">Provázaná zařízení</string>
   <string name="preferences__light_theme">Světlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Chování</string>
@@ -924,6 +929,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="conversation_context__menu_resend_message">Znovu poslat zprávu</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Uložit přílohu</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozvánka</string>
   <!--conversation_insecure_no_push-->
