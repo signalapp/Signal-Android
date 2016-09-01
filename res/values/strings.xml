@@ -188,6 +188,7 @@
     <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
 
     <!-- ConversationListActivity -->
+    <string name="ConversationListActivity_help_no_browser">You have no browser installed. Get a browser to access help.</string>
     <string name="ConversationListActivity_search">Search...</string>
 
     <!-- ConversationListFragment -->
@@ -510,6 +511,9 @@
     <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registration has successfully completed.</string>
     <string name="RegistrationService_registration_error">Registration error</string>
     <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal registration has encountered a problem.</string>
+
+    <!-- SafeLinkMovementMethod -->
+    <string name="SafeLinkMovementMethod_no_handler_app">You have no app installed to open this link.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>

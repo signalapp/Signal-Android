@@ -26,6 +26,7 @@ import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
@@ -38,10 +39,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
-import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -63,6 +64,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.SafeLinkMovementMethod;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
@@ -241,7 +243,15 @@ public class ConversationItem extends LinearLayout
     mediaThumbnail.setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
     mediaThumbnail.setClickable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
     mediaThumbnail.setLongClickable(batchSelected.isEmpty());
-    bodyText.setAutoLinkMask(batchSelected.isEmpty() ? Linkify.ALL : 0);
+
+    if (batchSelected.isEmpty()) {
+      SpannableString body = messageRecord.getDisplayBody();
+      Linkify.addLinks(body,Linkify.ALL);
+      bodyText.setMovementMethod(SafeLinkMovementMethod.getInstance());
+      bodyText.setText(body);
+    } else {
+      bodyText.setText(messageRecord.getDisplayBody());
+    }
   }
 
   private boolean isCaptionlessMms(MessageRecord messageRecord) {
@@ -267,7 +277,6 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      bodyText.setText(messageRecord.getDisplayBody());
       bodyText.setVisibility(View.VISIBLE);
     }
   }
