@@ -233,6 +233,10 @@
         <item quantity="one">%d minute ago</item>
         <item quantity="other">%d minutes ago</item>
     </plurals>
+    <plurals name="hours_ago">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
     <plurals name="hours_ago_unabbreviated">
         <item quantity="one">%d hour ago</item>
         <item quantity="other">%d hours ago</item>
@@ -1000,12 +1004,6 @@
     <string name="arrays__images">Images</string>
     <string name="arrays__audio">Audio</string>
     <string name="arrays__video">Video</string>
-
-    <!-- plurals.xml -->
-    <plurals name="hours_ago">
-        <item quantity="one">%d hour</item>
-        <item quantity="other">%d hours</item>
-    </plurals>
 
     <!-- preferences.xml -->
     <string name="preferences__general">General</string>
