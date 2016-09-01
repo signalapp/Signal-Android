@@ -489,7 +489,8 @@ public class SmsDatabase extends MessagingDatabase {
       type |= Types.END_SESSION_BIT;
     }
 
-    if (message.isPush()) type |= Types.PUSH_MESSAGE_BIT;
+    if (message.isPush())           type |= Types.PUSH_MESSAGE_BIT;
+    if (message.isIdentityUpdate()) type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
 
     Recipients recipients;
 
@@ -508,8 +509,9 @@ public class SmsDatabase extends MessagingDatabase {
       groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
     }
 
-    boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
-                            message.isSecureMessage() || message.isPreKeyBundle();
+    boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
+                            message.isSecureMessage() || message.isPreKeyBundle()) &&
+                            !message.isIdentityUpdate();
 
     long       threadId;
 
@@ -542,7 +544,10 @@ public class SmsDatabase extends MessagingDatabase {
       DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    if (!message.isIdentityUpdate()) {
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    }
+
     notifyConversationListeners(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 

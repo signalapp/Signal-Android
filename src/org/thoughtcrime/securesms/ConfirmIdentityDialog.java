@@ -204,8 +204,8 @@ public class ConfirmIdentityDialog extends AlertDialog {
     @Override
     public void onClick(View widget) {
       Intent intent = new Intent(context, VerifyIdentityActivity.class);
-      intent.putExtra("recipient", mismatch.getRecipientId());
-      intent.putExtra("remote_identity", new IdentityKeyParcelable(mismatch.getIdentityKey()));
+      intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID, mismatch.getRecipientId());
+      intent.putExtra(VerifyIdentityActivity.RECIPIENT_IDENTITY, new IdentityKeyParcelable(mismatch.getIdentityKey()));
       context.startActivity(intent);
     }
   }

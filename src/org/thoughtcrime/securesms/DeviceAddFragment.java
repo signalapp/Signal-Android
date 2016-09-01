@@ -31,20 +31,17 @@ import com.google.zxing.qrcode.QRCodeReader;
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.components.camera.CameraView.PreviewCallback;
 import org.thoughtcrime.securesms.components.camera.CameraView.PreviewFrame;
+import org.thoughtcrime.securesms.qr.ScanListener;
+import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class DeviceAddFragment extends Fragment implements PreviewCallback {
-
-  private static final String TAG = DeviceAddFragment.class.getSimpleName();
-
-  private final QRCodeReader reader = new QRCodeReader();
+public class DeviceAddFragment extends Fragment {
 
   private ViewGroup      container;
   private LinearLayout   overlay;
   private ImageView      devicesImage;
   private CameraView     scannerView;
-  private PreviewFrame   previewFrame;
   private ScanningThread scanningThread;
   private ScanListener   scanListener;
 
@@ -54,8 +51,6 @@ public class DeviceAddFragment extends Fragment implements PreviewCallback {
     this.overlay      = ViewUtil.findById(this.container, R.id.overlay);
     this.scannerView  = ViewUtil.findById(this.container, R.id.scanner);
     this.devicesImage = ViewUtil.findById(this.container, R.id.devices);
-    this.scannerView.onResume();
-    this.scannerView.setPreviewCallback(this);
 
     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
       this.overlay.setOrientation(LinearLayout.HORIZONTAL);
@@ -86,10 +81,10 @@ public class DeviceAddFragment extends Fragment implements PreviewCallback {
   @Override
   public void onResume() {
     super.onResume();
-    this.scannerView.onResume();
-    this.scannerView.setPreviewCallback(this);
-    this.previewFrame   = null;
     this.scanningThread = new ScanningThread();
+    this.scanningThread.setScanListener(scanListener);
+    this.scannerView.onResume();
+    this.scannerView.setPreviewCallback(scanningThread);
     this.scanningThread.start();
   }
 
@@ -113,24 +108,9 @@ public class DeviceAddFragment extends Fragment implements PreviewCallback {
     }
 
     this.scannerView.onResume();
-    this.scannerView.setPreviewCallback(this);
+    this.scannerView.setPreviewCallback(scanningThread);
   }
 
-  @Override
-  public void onPreviewFrame(@NonNull PreviewFrame previewFrame) {
-    Context context = getActivity();
-
-    try {
-      if (context != null) {
-        synchronized (this) {
-          this.previewFrame = previewFrame;
-          this.notify();
-        }
-      }
-    } catch (RuntimeException e) {
-      Log.w(TAG, e);
-    }
-  }
 
   public ImageView getDevicesImage() {
     return devicesImage;
@@ -138,83 +118,11 @@ public class DeviceAddFragment extends Fragment implements PreviewCallback {
 
   public void setScanListener(ScanListener scanListener) {
     this.scanListener = scanListener;
-  }
 
-  private class ScanningThread extends Thread {
-
-    private boolean scanning = true;
-
-    @Override
-    public void run() {
-      while (true) {
-        PreviewFrame ourFrame;
-
-        synchronized (DeviceAddFragment.this) {
-          while (scanning && previewFrame == null) {
-            Util.wait(DeviceAddFragment.this, 0);
-          }
-
-          if (!scanning) return;
-          else           ourFrame = previewFrame;
-
-          previewFrame = null;
-        }
-
-        String url = getUrl(ourFrame.getData(), ourFrame.getWidth(), ourFrame.getHeight(), ourFrame.getOrientation());
-
-        if (url != null && scanListener != null) {
-          Uri uri = Uri.parse(url);
-          scanListener.onUrlFound(uri);
-          return;
-        }
-      }
-    }
-
-    public void stopScanning() {
-      synchronized (DeviceAddFragment.this) {
-        scanning = false;
-        DeviceAddFragment.this.notify();
-      }
-    }
-
-    private @Nullable String getUrl(byte[] data, int width, int height, int orientation) {
-      try {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-          byte[] rotatedData = new byte[data.length];
-
-          for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-              rotatedData[x * height + height - y - 1] = data[x + y * width];
-            }
-          }
-
-          int tmp = width;
-          width  = height;
-          height = tmp;
-          data   = rotatedData;
-        }
-
-        PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(data, width, height,
-                                                                       0, 0, width, height,
-                                                                       false);
-
-        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-
-        Result result = reader.decode(bitmap);
-
-        if (result != null) return result.getText();
-
-      } catch (NullPointerException | ChecksumException | FormatException e) {
-        Log.w(TAG, e);
-      } catch (NotFoundException e) {
-        // Thanks ZXing...
-      }
-
-      return null;
+    if (this.scanningThread != null) {
+      this.scanningThread.setScanListener(scanListener);
     }
   }
 
-  public interface ScanListener {
-    public void onUrlFound(Uri uri);
-  }
+
 }
