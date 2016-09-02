@@ -67,7 +67,7 @@ public class ThreadDatabase extends Database {
   public  static final String ARCHIVED        = "archived";
   public  static final String STATUS          = "status";
   public  static final String RECEIPT_COUNT   = "delivery_receipt_count";
-  private static final String EXPIRES_IN      = "expires_in";
+  public  static final String EXPIRES_IN      = "expires_in";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
     ID + " INTEGER PRIMARY KEY, " + DATE + " INTEGER DEFAULT 0, "                                  +
