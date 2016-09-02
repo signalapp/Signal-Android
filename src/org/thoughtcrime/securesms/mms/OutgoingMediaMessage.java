@@ -15,10 +15,11 @@ public class OutgoingMediaMessage {
   private   final long             sentTimeMillis;
   private   final int              distributionType;
   private   final int              subscriptionId;
+  private   final long             expiresIn;
 
   public OutgoingMediaMessage(Recipients recipients, String message,
                               List<Attachment> attachments, long sentTimeMillis,
-                              int subscriptionId,
+                              int subscriptionId, long expiresIn,
                               int distributionType)
   {
     this.recipients       = recipients;
@@ -27,15 +28,16 @@ public class OutgoingMediaMessage {
     this.distributionType = distributionType;
     this.attachments      = attachments;
     this.subscriptionId   = subscriptionId;
+    this.expiresIn        = expiresIn;
   }
 
-  public OutgoingMediaMessage(Recipients recipients, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, int distributionType)
+  public OutgoingMediaMessage(Recipients recipients, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType)
   {
     this(recipients,
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
-         distributionType);
+         expiresIn, distributionType);
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
@@ -45,6 +47,7 @@ public class OutgoingMediaMessage {
     this.attachments      = that.attachments;
     this.sentTimeMillis   = that.sentTimeMillis;
     this.subscriptionId   = that.subscriptionId;
+    this.expiresIn        = that.expiresIn;
   }
 
   public Recipients getRecipients() {
@@ -71,12 +74,20 @@ public class OutgoingMediaMessage {
     return false;
   }
 
+  public boolean isExpirationUpdate() {
+    return false;
+  }
+
   public long getSentTimeMillis() {
     return sentTimeMillis;
   }
 
   public int getSubscriptionId() {
     return subscriptionId;
+  }
+
+  public long getExpiresIn() {
+    return expiresIn;
   }
 
   private static String buildMessage(SlideDeck slideDeck, String message) {

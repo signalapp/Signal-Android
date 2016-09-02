@@ -194,7 +194,7 @@ public class MmsDownloadJob extends MasterSecretJob {
 
 
 
-    IncomingMediaMessage message  = new IncomingMediaMessage(from, to, cc, body, retrieved.getDate() * 1000L, attachments, subscriptionId);
+    IncomingMediaMessage message  = new IncomingMediaMessage(from, to, cc, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
 
     Pair<Long, Long> messageAndThreadId  = database.insertMessageInbox(new MasterSecretUnion(masterSecret),
                                                                        message, contentLocation, threadId);

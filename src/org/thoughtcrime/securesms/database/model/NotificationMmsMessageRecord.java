@@ -54,7 +54,8 @@ public class NotificationMmsMessageRecord extends MessageRecord {
   {
     super(context, id, new Body("", true), recipients, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox,
-          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId);
+          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
+          0, 0);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;
@@ -110,6 +111,11 @@ public class NotificationMmsMessageRecord extends MessageRecord {
 
   @Override
   public boolean isMmsNotification() {
+    return true;
+  }
+
+  @Override
+  public boolean isMediaPending() {
     return true;
   }
 

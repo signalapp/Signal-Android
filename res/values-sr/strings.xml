@@ -5,6 +5,8 @@
   <string name="no">Не</string>
   <string name="delete">Обриши</string>
   <string name="please_wait">Сачекајте...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Нова порука</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Тренутно: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Још нисте поставили лозинку!</string>
@@ -163,6 +165,7 @@
     <item quantity="few">Грешка уписа прилога у складиште!</item>
     <item quantity="other">Грешка уписа прилога у складиште!</item>
   </plurals>
+  <string name="ConversationFragment_file_saved_successfully">Фајл успешно сачуван.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не могу да упишем у складиште!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Уписивање прилога</item>
@@ -248,6 +251,7 @@
   <string name="ExportFragment_exporting_plaintext_to_storage">Извозим обични текст у складиште...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Грешка, не могу да уписујем у складиште.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Грешка при упису у складиште.</string>
+  <string name="ExportFragment_export_successful">Извоз је успео.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајни неуспех комуникације Сигнала!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Сигнал није успео да се пријави на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите преко Поставке &gt; Напредно.</string>
@@ -303,17 +307,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Тапните и држите за снимање гласовне поруке, пустите за слање</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Дели</string>
-  <string name="InviteActivity_send_sms">Пошаљи СМС</string>
   <string name="InviteActivity_cancel">Одустани</string>
   <string name="InviteActivity_sending">Шаљем...</string>
   <string name="InviteActivity_heart_content_description">Срце</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
   <string name="InviteActivity_invite_to_signal">Слање позивнице за Сигнал</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">ПОШАЉИ 1 ПРИЈАТЕЉУ</item>
-    <item quantity="few">ПОШАЉИ %d ПРИЈАТЕЉА</item>
-    <item quantity="other">ПОШАЉИ %d ПРИЈАТЕЉА</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Послати 1 СМС позивницу?</item>
     <item quantity="few">Послати %d СМС позивнице?</item>
@@ -353,6 +351,7 @@
   <string name="MessageRecord_called_s">Позвали сте %s</string>
   <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s је на Сигналу, кажите здраво!</string>
+  <string name="MessageRecord_you">Ви</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Лозинке се не поклапају!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
@@ -377,6 +376,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Нажалост, ово није исправан бар-кôд везе уређаја.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Повезати Сигнал уређај?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа да покушавате повезати Сигнал уређај користећи спољашњи читач бар-кôда. Због сопствене заштите, очитајте кôд поново помоћу Сигнала.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Унесите лозинку</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигнала</string>
@@ -537,6 +537,7 @@
   <string name="ApplicationMigrationService_import_in_progress">Увоз у току</string>
   <string name="ApplicationMigrationService_importing_text_messages">Увозим текстуалне поруке</string>
   <string name="ApplicationMigrationService_import_complete">Увоз завршен</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Увоз системске базе података је завршен.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Тапните за отварање.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Тапните за отварање или тапните браву да затворите.</string>
@@ -630,6 +631,8 @@
   <string name="device_list_fragment__link_new_device">Повежи нови уређај</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">настави</string>
+  <!--expiration-->
+  <string name="expiration_off">Искључено</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не могу да очитам дневник на вашем уређају. Можете да искористите АДБ да бисте добавили дневник исправљања грешака.</string>
   <string name="log_submit_activity__thanks">Хвала вам на помоћи!</string>
@@ -783,6 +786,7 @@
   <string name="AndroidManifest__media_overview">Све слике</string>
   <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
+  <string name="AndroidManifest__linked_devices">Повезани уређаји</string>
   <string name="AndroidManifest__invite_friends">Позивница пријатељима</string>
   <string name="AndroidManifest_archived_conversations">Архивиране преписке</string>
   <!--arrays.xml-->
@@ -892,6 +896,7 @@
   <string name="preferences__conversation_length_limit">Ограничење дужине преписке</string>
   <string name="preferences__trim_all_conversations_now">Скрати све преписке сада</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Претражи све преписке и наметни ограничења дужине</string>
+  <string name="preferences__linked_devices">Повезани уређаји</string>
   <string name="preferences__light_theme">Светла</string>
   <string name="preferences__dark_theme">Тамна</string>
   <string name="preferences__appearance">Изглед</string>
@@ -937,6 +942,8 @@
   <string name="conversation_context__menu_resend_message">Понови слање</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Сачувај прилог</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Пошаљи позивницу</string>
   <!--conversation_insecure_no_push-->

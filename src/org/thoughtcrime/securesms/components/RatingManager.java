@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -62,7 +64,12 @@ public class RatingManager {
 
   private static void startPlayStore(Context context) {
     Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
-    context.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    try {
+      context.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    } catch (ActivityNotFoundException e) {
+      Log.w(TAG, e);
+      Toast.makeText(context, R.string.RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed, Toast.LENGTH_LONG).show();
+    }
   }
 
   private static long getDaysSinceInstalled(Context context) {

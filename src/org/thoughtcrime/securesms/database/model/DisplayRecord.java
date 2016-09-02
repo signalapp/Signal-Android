@@ -115,6 +115,10 @@ public abstract class DisplayRecord {
     return isGroupUpdate() || isGroupQuit();
   }
 
+  public boolean isExpirationTimerUpdate() {
+    return SmsDatabase.Types.isExpirationTimerUpdate(type);
+  }
+
   public boolean isCallLog() {
     return SmsDatabase.Types.isCallLog(type);
   }

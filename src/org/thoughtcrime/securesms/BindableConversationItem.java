@@ -15,4 +15,6 @@ public interface BindableConversationItem extends Unbindable {
             @NonNull Locale locale,
             @NonNull Set<MessageRecord> batchSelected,
             @NonNull Recipients recipients);
+
+  MessageRecord getMessageRecord();
 }

@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.ContentObserver;
 import android.net.Uri;
@@ -30,6 +31,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -212,7 +214,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   private void handleHelp() {
-    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://support.whispersystems.org")));
+    try {
+      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://support.whispersystems.org")));
+    } catch (ActivityNotFoundException e) {
+      Toast.makeText(this, R.string.ConversationListActivity_there_is_no_browser_installed_on_your_device, Toast.LENGTH_LONG).show();
+    }
   }
 
   private void initializeContactUpdatesReceiver() {
@@ -221,7 +227,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       public void onChange(boolean selfChange) {
         super.onChange(selfChange);
         Log.w(TAG, "Detected android contact data changed, refreshing cache");
-        RecipientFactory.clearCache();
+        RecipientFactory.clearCache(ConversationListActivity.this);
         ConversationListActivity.this.runOnUiThread(new Runnable() {
           @Override
           public void run() {

@@ -5,6 +5,8 @@
   <string name="no">لا</string>
   <string name="delete">حذف</string>
   <string name="please_wait">رجاء الانتظار...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">رسالة جديدة</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
@@ -27,7 +29,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">سوف يتم إلغاء قفل سييجنال وإشعارات الرسائل دائماً</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">إلغاء قفل سيجنال وإشعارات الرسائل بشكل دائم</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جارٍ إلغاء التسجيل من رسائل ومكالمات سيجنال...</string>
@@ -166,7 +168,41 @@
     <item quantity="other">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">أحفظ في الذاكرة؟</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="zero">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
+    <item quantity="one">حفظ الوسائط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
+    <item quantity="two">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
+    <item quantity="few">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
+    <item quantity="many">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
+    <item quantity="other">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="zero">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
+    <item quantity="one">وقع خطأ أثناء حفظ المرفق في مساحة التخزين!</item>
+    <item quantity="two">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
+    <item quantity="few">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
+    <item quantity="many">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
+    <item quantity="other">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
+  </plurals>
+  <string name="ConversationFragment_file_saved_successfully">تم حفظ الملف بنجاح.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="zero">جارٍ حفظ %1$d مرفق</item>
+    <item quantity="one">جارٍ حفظ المرفق</item>
+    <item quantity="two">جارٍ حفظ %1$d مرفق</item>
+    <item quantity="few">جارٍ حفظ %1$d مرفق</item>
+    <item quantity="many">جارٍ حفظ %1$d مرفق</item>
+    <item quantity="other">جارٍ حفظ %1$d مرفق</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="zero">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
+    <item quantity="one">جارٍ حفظ المرفق في الذاكرة...</item>
+    <item quantity="two">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
+    <item quantity="few">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
+    <item quantity="many">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
+    <item quantity="other">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
+  </plurals>
+  <string name="ConversationFragment_collecting_attahments">جارٍ جمع المرفقات...</string>
   <string name="ConversationFragment_pending">معلق...</string>
   <string name="ConversationFragment_push">بيانات (سيجنال)</string>
   <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
@@ -253,6 +289,7 @@
   <string name="ExportFragment_error_unable_to_write_to_storage">خطأ. تعذر الكتابة على بطاقة الذاكرة!</string>
   <string name="ExportFragment_error_while_writing_to_storage">e
 خطأ أثناء الكتابة على بطاقة الذاكرة.</string>
+  <string name="ExportFragment_export_successful">تم التصدير بنجاح</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال سيجنال!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سيجنال لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات سيجنال. رجاء محاولة إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string>
@@ -302,20 +339,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ألمس وأضغط لتسجيل رسالة صوتية. اسحب إصبعك للإرسال</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">شارك</string>
-  <string name="InviteActivity_send_sms">أرسل رسالة</string>
   <string name="InviteActivity_cancel">إلغاء</string>
   <string name="InviteActivity_sending">ارسال...</string>
   <string name="InviteActivity_heart_content_description">قلب</string>
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
   <string name="InviteActivity_invite_to_signal">الدعوة إلى سيجنال</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="zero">أرسل إلى %d صديق</item>
-    <item quantity="one">أرسل إلى صديق واحد.</item>
-    <item quantity="two">أرسل إلى %d صديق</item>
-    <item quantity="few">أرسل إلى %d صديق</item>
-    <item quantity="many">أرسل إلى %d صديق</item>
-    <item quantity="other">أرسل إلى %d صديق</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="zero">ارسل %d دعوة برسالة نصية؟</item>
     <item quantity="one">ارسل دعوة واحدة عبر رسالة؟</item>
@@ -358,6 +386,7 @@
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
+  <string name="MessageRecord_you">أنت</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
@@ -381,6 +410,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرا، الرابط غير صحيح.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">ربط سيجنال بجهاز؟</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط سيجنال باستخدام ماسح ضوئي خارجي. رجاء مسح الكود مرة أخرى باستخدام الخاصية المدمجة في سيجنال من أجل حمايتك.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة سيجنال</string>
@@ -491,6 +521,8 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">لا يوجد لديك مفتاح تعريفي.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">لا يوجد لدى الطرف الاخر مفتاح تعريفي.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">لا يوجد لدى الطرف الاخر مفتاح تعريفي!</string>
+  <string name="VerifyIdentityActivity_scan_contacts_qr_code">مسح رمز الاستجابة السريع الخاص بجهة الاتصال</string>
+  <string name="VerifyIdentityActivity_display_your_qr_code">اعرض رمز الاستجابة السريع الخاص بك</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">تحذير: المفتاح الذي تم مسحه ضوئياً لا يتطابق! تأكد من بصمة المفتاح بحذر.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">مفتاحهم صحيح. يجب أيضاً أن تقوم بالتحقق من مفتاحك لديهم أيضاً.</string>
@@ -498,6 +530,8 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">لا يوجد لديك مفتاح هوية!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">لا يوجد لديك مفتاح هوية.</string>
+  <string name="ViewIdentityActivity_scan_contacts_qr_code">مسح رمز الاستجابة السريع الخاص بجهة الاتصال</string>
+  <string name="ViewIdentityActivity_display_your_qr_code">اعرض رمز الاستجابة السريع الخاص بك</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">تحذير: المفتاح الذي تم مسحه ضوئياً لا يتطابق!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">المفتاح الذي تم مسحه ضوئياً متطابق!</string>
@@ -530,6 +564,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد...</string>
   <string name="ApplicationMigrationService_importing_text_messages">استيراد رسائل نصية</string>
+  <string name="ApplicationMigrationService_import_complete">تم الاستيراد</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">تم استيراد قاعدة بيانات النظام.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">المس للفتح.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">المس للفتح أو المس رمز القفل للإغلاق.</string>
@@ -584,6 +620,7 @@
   <string name="conversation_activity__type_message_push">أرسل رسالة سيجنال.</string>
   <string name="conversation_activity__type_message_sms_insecure">أرسل رسالة نصية غير آمنة</string>
   <string name="conversation_activity__type_message_mms_insecure">أرسل رسالة وسائط متعددة غير آمنة</string>
+  <string name="conversation_activity__from_sim_name">من %1$s</string>
   <string name="conversation_activity__send">أرسل</string>
   <string name="conversation_activity__remove">إزالة</string>
   <string name="conversation_activity__window_description">محادثة مع %1$s</string>
@@ -622,6 +659,8 @@
   <string name="device_list_fragment__link_new_device">ربط جهاز جديد</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">استمر</string>
+  <!--expiration-->
+  <string name="expiration_off">مغلق</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">تعذر التقاط السجلات من هاتفك. يمكنك استخدام ADB للحصول على سجل التشغيل  بدلا من ذلك.</string>
   <string name="log_submit_activity__thanks">شكرا للمساعدة!</string>
@@ -767,6 +806,7 @@
   <string name="AndroidManifest__media_overview">جميع الصور</string>
   <string name="AndroidManifest__media_overview_named">جميع الصور مع %1$s</string>
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
+  <string name="AndroidManifest__linked_devices">الأجهزة المتصلة</string>
   <string name="AndroidManifest__invite_friends">دعوة الأصدقاء</string>
   <string name="AndroidManifest_archived_conversations">أرشيف المحادثة</string>
   <!--arrays.xml-->
@@ -879,6 +919,7 @@
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__trim_all_conversations_now">تقليم كل المحادثات الآن</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">فحص وتقليم كل المحادثات وفق الحد الأقصى</string>
+  <string name="preferences__linked_devices">الأجهزة المتصلة</string>
   <string name="preferences__light_theme">فاتح</string>
   <string name="preferences__dark_theme">داكن</string>
   <string name="preferences__appearance">المظهر</string>
@@ -924,6 +965,8 @@
   <string name="conversation_context__menu_resend_message">إعادة الإرسال</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">حفظ المرفق</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">دعوة</string>
   <!--conversation_insecure_no_push-->
@@ -967,6 +1010,8 @@
   <string name="conversation_group_options__broadcast">بث</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">قارن</string>
+  <string name="key_scanning__menu_display_your_qr_code">اعرض رمز الاستجابة السريع الخاص بك</string>
+  <string name="key_scanning__menu_scan_contacts_qr_code">مسح رمز الاستجابة السريع الخاص بجهة الاتصال</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">رسالة جديدة</string>
   <string name="text_secure_normal__menu_new_group">مجموعة جديدة</string>
@@ -1012,6 +1057,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">أحفظ</string>
   <!--media_overview-->
+  <string name="media_overview__save_all">حفظ الكل</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">معاينه الصوره</string>
   <!--new_conversation_activity-->
