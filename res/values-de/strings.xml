@@ -131,6 +131,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
   <string name="ConversationActivity_error_sending_voice_message">Fehler beim Senden der Sprachnachricht …</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Auf Ihrem Gerät ist derzeit keine App installiert, die mit diesem Link umgehen könnte.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Übertragung: %1$s\nGesendet/Empfangen: %2$s</string>
@@ -171,6 +172,7 @@
   <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Suchen …</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Auf Ihrem Gerät ist derzeit kein Browser installiert.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Ausgewählte Unterhaltung löschen?</item>
@@ -281,11 +283,16 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Antippen und Halten zur Aufnahme einer Sprachnachricht, Loslassen zum Senden</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Teilen</string>
+  <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
   <string name="InviteActivity_sending">Sendevorgang …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">SMS AN 1 KONTAKT SENDEN</item>
+    <item quantity="other">SMS AN %d KONTAKTE SENDEN</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1 SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
@@ -325,6 +332,7 @@
   <string name="MessageRecord_missed_call_from">Entgangener Anruf von %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen! </string>
   <string name="MessageRecord_you">Sie</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit bis zum Verschwinden der Nachricht auf %2$s festgelegt</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -348,6 +356,9 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal-Gerät verknüpfen?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sie versuchen offenbar, ein Signal-Gerät mithilfe einer Scanner-App eines Drittanbieters zu verknüpfen. Scannen Sie den QR-Code zu Ihrem Schutz noch einmal direkt aus Signal ein.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Verschwindende Nachrichten</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Ihre Nachrichten werden nicht verfallen.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">In dieser Unterhaltung gesendete und empfangene Nachrichten werden %s nach dem Lesen verschwinden.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-Symbol</string>
@@ -361,6 +372,7 @@
   <string name="RatingManager_rate_now">Jetzt bewerten!</string>
   <string name="RatingManager_no_thanks">Nein danke</string>
   <string name="RatingManager_later">Später</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppla, die Play Store-App scheint nicht auf Ihrem Gerät installiert zu sein.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Sie werden keine Nachrichten oder Anrufe mehr von diesem Kontakt erhalten.</string>
@@ -453,6 +465,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="ThreadRecord_missed_call">Entgangener Anruf</string>
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit bis zum Verschwinden der Nachricht auf %s festgelegt</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Kontakt hat keinen Schlüssel.</string>
@@ -597,11 +610,37 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="experience_upgrade_activity__continue">Fortsetzen</string>
   <!--expiration-->
   <string name="expiration_off">Aus</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 Sekunde</item>
+    <item quantity="other">%d Sekunden</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 Minute</item>
+    <item quantity="other">%d Minuten</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 Stunde</item>
+    <item quantity="other">%d Stunden</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dh</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 Tag</item>
+    <item quantity="other">%d Tage</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 Woche</item>
+    <item quantity="other">%d Wochen</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dw</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Das Diagnoseprotokoll auf Ihrem Gerät konnte nicht gelesen werden. Sie können allerdings immer noch ADB verwenden, um ein Diagnoseprotokoll zu erhalten.</string>
   <string name="log_submit_activity__thanks">Danke für Ihre Hilfe!</string>
   <string name="log_submit_activity__submitting">Übermitteln</string>
   <string name="log_submit_activity__posting_logs">Diagnoseprotokoll wird übermittelt …</string>
+  <string name="log_submit_activity__no_browser_installed">Kein Browser installiert</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Möchten Sie Ihre vorhandenen Nachrichten in Signals verschlüsselte Datenbank importieren?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Die Standard-Systemdatenbank wird in keiner Weise modifiziert oder verändert.</string>
@@ -894,7 +933,9 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Anhang speichern</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Verschwindende Nachrichten</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Nachrichten verfallend</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Einladen</string>
   <!--conversation_insecure_no_push-->
