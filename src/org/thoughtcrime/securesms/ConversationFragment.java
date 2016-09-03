@@ -33,6 +33,7 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ItemAnimator.ItemAnimatorFinishedListener;
+import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -78,6 +79,7 @@ public class ConversationFragment extends Fragment
 
   private final ActionModeCallback actionModeCallback     = new ActionModeCallback();
   private final ItemClickListener  selectionClickListener = new ConversationFragmentItemClickListener();
+  private final OnScrollListener   scrollListener         = new ConversationScrollListener();
 
   private ConversationFragmentListener listener;
 
@@ -88,6 +90,7 @@ public class ConversationFragment extends Fragment
   private Locale       locale;
   private RecyclerView list;
   private View         loadMoreView;
+  private View         composeDivider;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -103,6 +106,13 @@ public class ConversationFragment extends Fragment
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
+
+    composeDivider = view.findViewById(R.id.compose_divider);
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+      composeDivider.setVisibility(View.INVISIBLE);
+    }
+
+    list.addOnScrollListener(scrollListener);
 
     loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
     loadMoreView.setOnClickListener(new OnClickListener() {
@@ -381,6 +391,36 @@ public class ConversationFragment extends Fragment
 
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
+  }
+
+  private class ConversationScrollListener extends OnScrollListener {
+    boolean wasAtBottom = true;
+
+    private boolean isAtBottom() {
+      if (list.getChildCount() == 0) return true;
+
+      final View bottomView = list.getChildAt(0);
+      int firstVisibleItem = ((LinearLayoutManager) list.getLayoutManager())
+              .findFirstVisibleItemPosition();
+
+      final boolean isAtBottom = (firstVisibleItem == 0);
+      return isAtBottom && bottomView.getBottom() <= list.getHeight();
+    }
+
+    @Override
+    public void onScrolled(final RecyclerView rv, final int dx, final int dy) {
+      if (wasAtBottom != isAtBottom()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
+          composeDivider.animate().alpha(isAtBottom() ? 0 : 1);
+        } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+          composeDivider.setAlpha(isAtBottom() ? 0 : 1);
+        } else {
+          composeDivider.setVisibility(isAtBottom() ? View.INVISIBLE : View.VISIBLE);
+        }
+
+        wasAtBottom = isAtBottom();
+      }
+    }
   }
 
   private class ConversationFragmentItemClickListener implements ItemClickListener {
