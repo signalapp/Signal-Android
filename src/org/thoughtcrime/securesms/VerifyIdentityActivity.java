@@ -17,12 +17,15 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -30,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Hex;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.state.SessionRecord;
@@ -41,7 +45,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
  *
  * @author Moxie Marlinspike
  */
-public class VerifyIdentityActivity extends KeyScanningActivity {
+public class VerifyIdentityActivity extends KeyScanningActivity implements Recipient.RecipientModifiedListener {
 
   private Recipient    recipient;
   private MasterSecret masterSecret;
@@ -66,8 +70,28 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     super.onResume();
 
     this.recipient = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
+    this.recipient.addListener(this);
 
+    setActionBarNotificationBarColor(recipient.getColor());
     initializeFingerprints();
+  }
+
+  public void setActionBarNotificationBarColor(MaterialColor color) {
+    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setStatusBarColor(color.toStatusBarColor(this));
+    }
+  }
+
+  @Override
+  public void onModified(final Recipient recipient) {
+    Util.runOnMain(new Runnable() {
+      @Override
+      public void run() {
+        setActionBarNotificationBarColor(recipient.getColor());
+      }
+    });
   }
 
   private void initializeFingerprints() {
