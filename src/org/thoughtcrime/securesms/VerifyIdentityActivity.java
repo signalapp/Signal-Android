@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Hex;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.state.SessionRecord;
@@ -44,7 +45,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
  *
  * @author Moxie Marlinspike
  */
-public class VerifyIdentityActivity extends KeyScanningActivity {
+public class VerifyIdentityActivity extends KeyScanningActivity implements Recipient.RecipientModifiedListener {
 
   private Recipient    recipient;
   private MasterSecret masterSecret;
@@ -69,6 +70,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     super.onResume();
 
     this.recipient = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
+    this.recipient.addListener(this);
 
     setActionBarNotificationBarColor(recipient.getColor());
     initializeFingerprints();
@@ -80,6 +82,16 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getWindow().setStatusBarColor(color.toStatusBarColor(this));
     }
+  }
+
+  @Override
+  public void onModified(final Recipient recipient) {
+    Util.runOnMain(new Runnable() {
+      @Override
+      public void run() {
+        setActionBarNotificationBarColor(recipient.getColor());
+      }
+    });
   }
 
   private void initializeFingerprints() {
