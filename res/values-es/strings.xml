@@ -5,6 +5,8 @@
   <string name="no">No</string>
   <string name="delete">Borrar</string>
   <string name="please_wait">Por favor, espere...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Todavía no ha elegido una clave de acceso!</string>
@@ -295,16 +297,11 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pulse y mantenga pulsado para grabar un mensaje de voz, suelte para enviar</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartir</string>
-  <string name="InviteActivity_send_sms">Enviar SMS</string>
   <string name="InviteActivity_cancel">Cancelar</string>
   <string name="InviteActivity_sending">Enviando...</string>
   <string name="InviteActivity_heart_content_description">Corazón</string>
   <string name="InviteActivity_invitations_sent">¡Invitaciones enviadas!</string>
   <string name="InviteActivity_invite_to_signal">Invitar a Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">ENVIAR A 1 AMIGO</item>
-    <item quantity="other">ENVIAR A %d AMIGOS</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">¿Enviar 1 invitación SMS?</item>
     <item quantity="other">¿Enviar %d invitaciones SMS?</item>
@@ -343,6 +340,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageRecord_called_s">Llamó a %s</string>
   <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">¡%s esta en Signal, salúdele!</string>
+  <string name="MessageRecord_you">Usted</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves de acceso no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
@@ -367,6 +365,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lo sentimos , este código QR no es ​​válido .</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">¿Enlazar un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando enlazar un dispositivo Signal usando un escáner de terceros. Para tu protección, por favor, escanea el código otra vez desde Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduzca clave de acceso</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de Signal</string>
@@ -628,6 +627,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="device_list_fragment__link_new_device">Vincular nuevo dispositivo</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuar</string>
+  <!--expiration-->
+  <string name="expiration_off">Inactivo</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No se pudo leer el registro (log) en su dispositivo. Aún puede usar ADB para obtener un registro de depuración en su lugar.</string>
   <string name="log_submit_activity__thanks">¡Gracias por su ayuda!</string>
@@ -948,6 +949,8 @@ por SMS.
   <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar archivo adjunto</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Invitar</string>
   <!--conversation_insecure_no_push-->

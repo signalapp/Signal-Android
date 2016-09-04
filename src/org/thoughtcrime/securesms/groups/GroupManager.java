@@ -107,7 +107,7 @@ public class GroupManager {
       avatarAttachment = new UriAttachment(avatarUri, ContentType.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length);
     }
 
-    OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis());
+    OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0);
     long                      threadId        = MessageSender.send(context, masterSecret, outgoingMessage, -1, false);
 
     return new GroupActionResult(groupRecipient, threadId);

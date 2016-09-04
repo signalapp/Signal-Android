@@ -5,6 +5,8 @@
   <string name="no">இல்லை</string>
   <string name="delete">நீக்கு</string>
   <string name="please_wait">தயவுசெய்து காத்திருங்கள்...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">புதிய செய்தி</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">தற்போது: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet"> நீங்கள் இன்னும் ஒரு கடவுச்சொல்லை அமைக்கவில்லை!</string>
@@ -37,16 +39,16 @@
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(படம்)</string>
-  <string name="DraftDatabase_Draft_audio_snippet">(ஆடியோ) </string>
-  <string name="DraftDatabase_Draft_video_snippet">(வீடியோ)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">( கேட்பொலி) </string>
+  <string name="DraftDatabase_Draft_video_snippet">(காணொளி)</string>
   <string name="DraftDatabase_Draft_location_snippet">(இடம்)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">மீடியாவை தேர்வுசெய்யும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_camera">நிழற்படக்கருவி</string>
-  <string name="AttachmentTypeSelectorAdapter_picture">படம்</string>
-  <string name="AttachmentTypeSelectorAdapter_video">வீடியோ</string>
-  <string name="AttachmentTypeSelectorAdapter_audio">ஆடியோ</string>
+  <string name="AttachmentTypeSelectorAdapter_picture">புகைப்படம்</string>
+  <string name="AttachmentTypeSelectorAdapter_video">காணொளி</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">கேட்பொலி</string>
   <string name="AttachmentTypeSelectorAdapter_contact">தொடர்பின் தகவல்</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ஒலி இயக்குவதில் பிழை!</string>
@@ -108,6 +110,8 @@
   <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் சமிக்ஞைக்கு மாறுவோம்</string>
   <string name="ConversationActivity_lets_use_this_to_chat">நாம் அரட்டையடிக்க இதை பயன்படுத்துவோம்: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">குழுவை விட்டு விலகுவதில் பிழை...</string>
+  <string name="ConversationActivity_mms_not_supported_title">எம்எம்எஸ் ஆதரவில்லை</string>
+  <string name="ConversationActivity_mms_not_supported_message">இச் செய்தியை அனுப்ப ஆதரவில்லை உங்கள் தொலைதொடர்பு சாதனம்  எம் எம் எஸ் ஆதரவில்லை</string>
   <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
   <string name="ConversationActivity_unblock_question">தடுப்புநீக்கு ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">உறுதியாக இந்த தொடர்பை தடை நீக்கு ?</string>
@@ -128,7 +132,9 @@
     <item quantity="other">தேர்ந்தெடுக்கப்பட்ட %1$d செய்தியைகளை நிரந்தரமாக நீக்கீவிடும்.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
+  <string name="ConversationFragment_file_saved_successfully">கோப்பு சேமிக்கபட்டது</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">சேமிப்பில் சேர்க இயலவில்லை!</string>
+  <string name="ConversationFragment_collecting_attahments">இணைப்பு சேமிக்கபடுகிறது</string>
   <string name="ConversationFragment_pending">நிலுவையில் உள்ளது...</string>
   <string name="ConversationFragment_push">தரவு (சமிக்ஞை)</string>
   <string name="ConversationFragment_mms">MMS</string>
@@ -228,7 +234,6 @@
   <!--InputPanel-->
   <!--InviteActivity-->
   <string name="InviteActivity_share">பகிர்</string>
-  <string name="InviteActivity_send_sms">குறுஞ்செய்தியை அனுப்பு</string>
   <string name="InviteActivity_cancel">இரத்து</string>
   <string name="InviteActivity_sending">அனுப்படுகிறது...</string>
   <string name="InviteActivity_heart_content_description">இதயம்</string>
@@ -263,6 +268,7 @@
   <string name="MessageRecord_s_called_you">%s உங்களை அழைத்தார்</string>
   <string name="MessageRecord_called_s">%sயை அழைத்தீர்கள்</string>
   <string name="MessageRecord_missed_call_from"> %s யடமிருந்து தவறிய அழைப்பு</string>
+  <string name="MessageRecord_you">நீங்கள்</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">கடவுச்சொற்கள் பொருந்தவில்லை!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">தவறான பழைய கடவுச்சொல்!</string>
@@ -277,6 +283,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">எந்த சாதனமும் காணப்படவில்லை.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">இணையத்தில் பிழை.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR குறியீடு செல்லாது.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">கடவுச்சொல்லை உள்ளிடவும். </string>
   <string name="PassphrasePromptActivity_ok_button_content_description">கடவுச்சொல்லை சமர்ப்பிக்க</string>
@@ -490,6 +497,8 @@
   <string name="device_list_fragment__link_new_device">புதுக் கருவியை இனைக்க</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">தொடர்</string>
+  <!--expiration-->
+  <string name="expiration_off">அணை</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">உங்கள் உதவிக்கு நன்றி!</string>
   <string name="log_submit_activity__submitting">சமர்பிப்பிக்கப்படுகிறது</string>
@@ -717,6 +726,8 @@
   <string name="conversation_context__menu_resend_message">செய்தியை மீண்டும் அனுப்பு</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">இணைப்பைச் சேமி</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">அழை</string>
   <!--conversation_insecure_no_push-->

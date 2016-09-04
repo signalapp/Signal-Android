@@ -10,6 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
 import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -58,6 +59,16 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
       setLights(Color.parseColor(ledColor),
                 Integer.parseInt(blinkPatternArray[0]),
                 Integer.parseInt(blinkPatternArray[1]));
+    }
+  }
+
+  public void setTicker(@NonNull Recipient recipient, @Nullable CharSequence message) {
+    if (privacy.isDisplayMessage()) {
+      setTicker(getStyledMessage(recipient, message));
+    } else if (privacy.isDisplayContact()) {
+      setTicker(getStyledMessage(recipient, context.getString(R.string.AbstractNotificationBuilder_new_message)));
+    } else {
+      setTicker(context.getString(R.string.AbstractNotificationBuilder_new_message));
     }
   }
 

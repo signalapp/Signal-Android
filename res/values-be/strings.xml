@@ -4,6 +4,8 @@
   <string name="no">Не</string>
   <string name="delete">Выдаліць</string>
   <string name="please_wait">Пачакайце калі ласка</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Новае паведамленне</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Цяпер: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы яшчэ не ўсталявалі пароль</string>
@@ -157,6 +159,7 @@
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">Вы пакінулі групу</string>
   <string name="MessageRecord_updated_group">Абноўленая група.</string>
+  <string name="MessageRecord_you">Вы</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролі не супадаюць!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Няправільны стары пароль!</string>
@@ -170,6 +173,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ня знойдзена дэвайсаў.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Памылка сеткі.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Няправільны QR код.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Увядзіце пароль</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Адправіць пароль</string>
@@ -326,6 +330,8 @@
   <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
+  <!--expiration-->
+  <string name="expiration_off">Выкл</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Дзякуй за вашу дапамогу!</string>
   <string name="log_submit_activity__submitting">Падпіска</string>
@@ -524,6 +530,8 @@
   <string name="conversation_context__menu_resend_message">Выслаць паведамленне ізноў</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Захаваць дадатак</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Запрасіць</string>
   <!--conversation_insecure_no_push-->

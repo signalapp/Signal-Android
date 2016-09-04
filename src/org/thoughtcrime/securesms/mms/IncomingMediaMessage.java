@@ -20,6 +20,8 @@ public class IncomingMediaMessage {
   private final boolean push;
   private final long    sentTimeMillis;
   private final int     subscriptionId;
+  private final long    expiresIn;
+  private final boolean expirationUpdate;
 
   private final List<String>     to          = new LinkedList<>();
   private final List<String>     cc          = new LinkedList<>();
@@ -27,14 +29,17 @@ public class IncomingMediaMessage {
 
   public IncomingMediaMessage(String from, List<String> to, List<String> cc,
                               String body, long sentTimeMillis,
-                              List<Attachment> attachments, int subscriptionId)
+                              List<Attachment> attachments, int subscriptionId,
+                              long expiresIn, boolean expirationUpdate)
   {
-    this.from           = from;
-    this.sentTimeMillis = sentTimeMillis;
-    this.body           = body;
-    this.groupId        = null;
-    this.push           = false;
-    this.subscriptionId = subscriptionId;
+    this.from             = from;
+    this.sentTimeMillis   = sentTimeMillis;
+    this.body             = body;
+    this.groupId          = null;
+    this.push             = false;
+    this.subscriptionId   = subscriptionId;
+    this.expiresIn        = expiresIn;
+    this.expirationUpdate = expirationUpdate;
 
     this.to.addAll(to);
     this.cc.addAll(cc);
@@ -46,16 +51,20 @@ public class IncomingMediaMessage {
                               String to,
                               long sentTimeMillis,
                               int subscriptionId,
+                              long expiresIn,
+                              boolean expirationUpdate,
                               Optional<String> relay,
                               Optional<String> body,
                               Optional<SignalServiceGroup> group,
                               Optional<List<SignalServiceAttachment>> attachments)
   {
-    this.push           = true;
-    this.from           = from;
-    this.sentTimeMillis = sentTimeMillis;
-    this.body           = body.orNull();
-    this.subscriptionId = subscriptionId;
+    this.push             = true;
+    this.from             = from;
+    this.sentTimeMillis   = sentTimeMillis;
+    this.body             = body.orNull();
+    this.subscriptionId   = subscriptionId;
+    this.expiresIn        = expiresIn;
+    this.expirationUpdate = expirationUpdate;
 
     if (group.isPresent()) this.groupId = GroupUtil.getEncodedId(group.get().getGroupId());
     else                   this.groupId = null;
@@ -88,8 +97,16 @@ public class IncomingMediaMessage {
     return push;
   }
 
+  public boolean isExpirationUpdate() {
+    return expirationUpdate;
+  }
+
   public long getSentTimeMillis() {
     return sentTimeMillis;
+  }
+
+  public long getExpiresIn() {
+    return expiresIn;
   }
 
   public boolean isGroupMessage() {

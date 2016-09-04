@@ -5,6 +5,8 @@
   <string name="no">Не</string>
   <string name="delete">Избриши</string>
   <string name="please_wait">Почекајте...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Нова порака</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сеуште не сте поставиле лозинка!</string>
@@ -196,6 +198,7 @@
   <string name="MessageRecord_called_s">Повикан %s</string>
   <string name="MessageRecord_missed_call_from">Пропуштен повик од %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s има инсталирано Signal, кажи му здраво! </string>
+  <string name="MessageRecord_you">Вие</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Тајните фрази не се идентични!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Погрешна стара лозинка!</string>
@@ -217,6 +220,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Уредот не е пронајден.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Мрежна грешка.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Погрешен QR код.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Внесете лозинка</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Пратете лозинка</string>
@@ -416,6 +420,8 @@
   <!--device_link_fragment-->
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
+  <!--expiration-->
+  <string name="expiration_off">Исклучи</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string>
   <string name="log_submit_activity__submitting">Испраќање</string>
@@ -639,6 +645,8 @@
   <string name="conversation_context__menu_resend_message">Препрати порака</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Зачувај додаток</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Покани</string>
   <!--conversation_insecure_no_push-->

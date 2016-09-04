@@ -5,6 +5,8 @@
   <string name="no">No</string>
   <string name="delete">Esborra</string>
   <string name="please_wait">Espera...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Nou missatge</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualment: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Encara no has establert cap frase contrasenya!</string>
@@ -284,16 +286,11 @@ a la còpia de seguretat.</string>
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Prem i manté per gravar un missatge de veu, deixa anar per enviar-lo</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartir</string>
-  <string name="InviteActivity_send_sms">Enviar SMS</string>
   <string name="InviteActivity_cancel">Cancel·lar</string>
   <string name="InviteActivity_sending">Enviant...</string>
   <string name="InviteActivity_heart_content_description">Cor</string>
   <string name="InviteActivity_invitations_sent">Invitacions enviades!</string>
   <string name="InviteActivity_invite_to_signal">Convida a Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">ENVIA A 1 AMIC/GA</item>
-    <item quantity="other">ENVIA A %d AMICS/GUES</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Enviar una invitació SMS?</item>
     <item quantity="other">Enviar %d invitacions SMS?</item>
@@ -332,6 +329,7 @@ a la còpia de seguretat.</string>
   <string name="MessageRecord_called_s">Has trucat a %s</string>
   <string name="MessageRecord_missed_call_from">Trucada perduda de %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s és a Signal, diga-li ei!</string>
+  <string name="MessageRecord_you">Tu</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les contrasenyes no coincideixen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
@@ -355,6 +353,7 @@ a la còpia de seguretat.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Disculpa, això no és un codi QR amb enllaç vàlid.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Enllaçar a un dispositiu Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembla que estàs intentant enllaçar un dispositiu Signal usant un escannejador extern, 3rd party. Per la teva protecció, escanneja el codi una altra vegada dins de Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Escriu la contrasenya</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona de Signal</string>
@@ -604,6 +603,8 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="device_list_fragment__link_new_device">Enllaça un nou dispositiu</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continua</string>
+  <!--expiration-->
+  <string name="expiration_off">Inactiu</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No es pot llegir el registre del teu dispositiu. Pots fer servir ADB per debugar el registre.</string>
   <string name="log_submit_activity__thanks">Gràcies per la teva ajuda!</string>
@@ -905,6 +906,8 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="conversation_context__menu_resend_message">Torna a enviar el missatge</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guarda l\'adjunt</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convida</string>
   <!--conversation_insecure_no_push-->

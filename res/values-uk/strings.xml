@@ -5,6 +5,8 @@
   <string name="no">Ні</string>
   <string name="delete">Видалити</string>
   <string name="please_wait">Будь ласка, зачекайте...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Нове повідомлення</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Зараз: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ви ще не задали фразу-пароль!</string>
@@ -303,17 +305,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Торкніться і утримуйте для запису голосового повідомлення, відпустіть щоб надіслати</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поділитися</string>
-  <string name="InviteActivity_send_sms">Надіслати SMS</string>
   <string name="InviteActivity_cancel">Скасувати</string>
   <string name="InviteActivity_sending">Надсилання...</string>
   <string name="InviteActivity_heart_content_description">Серце</string>
   <string name="InviteActivity_invitations_sent">Запрошення надіслано!</string>
   <string name="InviteActivity_invite_to_signal">Запросити до Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">ВІДПРАВИТИ 1 ДРУГУ</item>
-    <item quantity="few">ВІДПРАВИТИ %d ДРУЗЯМ</item>
-    <item quantity="other">ВІДПРАВИТИ %d ДРУЗЯМ</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Надіслати 1 SMS запрошення?</item>
     <item quantity="few">Надіслати %d SMS запрошень?</item>
@@ -353,6 +349,7 @@
   <string name="MessageRecord_called_s">Телефонували %s</string>
   <string name="MessageRecord_missed_call_from">Пропущено дзвінок від %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s зараз в Signal, привітайтеся!</string>
+  <string name="MessageRecord_you">Ви</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Фраза-пароль не збігається!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Невірна стара фраза!</string>
@@ -377,6 +374,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Вибачте, це недійсний QR код для прив\'язки пристрою.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Прив\'язати пристрій Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Схоже ви не використовуєте Signal для сканування QR коду. Для вашого захисту, відскануйте код знову, використовуючи Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Уведіть фразу-пароль</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Значок Сигнал</string>
@@ -624,6 +622,8 @@
   <string name="device_list_fragment__link_new_device">Прив\'язати новий пристрій</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продовжити</string>
+  <!--expiration-->
+  <string name="expiration_off">Вимкнено</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Помилка читання журналу відлагодження з вашого пристрою. Ви також можете використати ADB для отримання журналу.</string>
   <string name="log_submit_activity__thanks">Дякуємо за вашу допомогу!</string>
@@ -929,6 +929,8 @@ Signal не дочекався перевірочного SMS.
   <string name="conversation_context__menu_resend_message">Переслати повідомлення</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Зберегти вкладення</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Запросити</string>
   <!--conversation_insecure_no_push-->

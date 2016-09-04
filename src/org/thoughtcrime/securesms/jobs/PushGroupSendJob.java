@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -10,12 +12,14 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
@@ -85,6 +89,13 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       database.markAsSecure(messageId);
       database.markAsSent(messageId);
       markAttachmentsUploaded(messageId, message.getAttachments());
+
+      if (message.getExpiresIn() > 0) {
+        database.markExpireStarted(messageId);
+        ApplicationContext.getInstance(context)
+                          .getExpiringMessageManager()
+                          .scheduleDeletion(messageId, true, message.getExpiresIn());
+      }
     } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
@@ -132,10 +143,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, RecipientFormattingException, InvalidNumberException,
       EncapsulatedExceptions, UndeliverableMessageException
   {
-    SignalServiceMessageSender    messageSender = messageSenderFactory.create();
-    byte[]                        groupId       = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
-    Recipients                    recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
-    List<SignalServiceAttachment> attachments   = getAttachmentsFor(masterSecret, message.getAttachments());
+    SignalServiceMessageSender    messageSender     = messageSenderFactory.create();
+    byte[]                        groupId           = GroupUtil.getDecodedId(message.getRecipients().getPrimaryRecipient().getNumber());
+    Recipients                    recipients        = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+    List<Attachment>              scaledAttachments = scaleAttachments(masterSecret, MediaConstraints.PUSH_CONSTRAINTS, message.getAttachments());
+    List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(masterSecret, scaledAttachments);
     List<SignalServiceAddress>    addresses;
 
     if (filterRecipientId >= 0) addresses = getPushAddresses(filterRecipientId);
@@ -144,7 +156,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     if (message.isGroup()) {
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
       GroupContext              groupContext     = groupMessage.getGroupContext();
-      SignalServiceAttachment   avatar           = attachments.isEmpty() ? null : attachments.get(0);
+      SignalServiceAttachment   avatar           = attachmentStreams.isEmpty() ? null : attachmentStreams.get(0);
       SignalServiceGroup.Type   type             = groupMessage.isGroupQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
       SignalServiceGroup        group            = new SignalServiceGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
       SignalServiceDataMessage  groupDataMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group, null, null);
@@ -152,7 +164,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       messageSender.sendMessage(addresses, groupDataMessage);
     } else {
       SignalServiceGroup       group        = new SignalServiceGroup(groupId);
-      SignalServiceDataMessage groupMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group, attachments, message.getBody());
+      SignalServiceDataMessage groupMessage = new SignalServiceDataMessage(message.getSentTimeMillis(), group,
+                                                                           attachmentStreams, message.getBody(), false,
+                                                                           (int)(message.getExpiresIn() / 1000),
+                                                                           message.isExpirationUpdate());
 
       messageSender.sendMessage(addresses, groupMessage);
     }

@@ -14,7 +14,9 @@ public interface MmsSmsColumns {
   public static final String RECEIPT_COUNT            = "delivery_receipt_count";
   public static final String MISMATCHED_IDENTITIES    = "mismatched_identities";
   public static final String UNIQUE_ROW_ID            = "unique_row_id";
-  public  static final String SUBSCRIPTION_ID         = "subscription_id";
+  public static final String SUBSCRIPTION_ID          = "subscription_id";
+  public static final String EXPIRES_IN               = "expires_in";
+  public static final String EXPIRE_STARTED           = "expire_started";
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;
@@ -61,8 +63,9 @@ public interface MmsSmsColumns {
     protected static final long PUSH_MESSAGE_BIT   = 0x200000;
 
     // Group Message Information
-    protected static final long GROUP_UPDATE_BIT = 0x10000;
-    protected static final long GROUP_QUIT_BIT   = 0x20000;
+    protected static final long GROUP_UPDATE_BIT            = 0x10000;
+    protected static final long GROUP_QUIT_BIT              = 0x20000;
+    protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
 
     // Encrypted Storage Information
     protected static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -164,6 +167,10 @@ public interface MmsSmsColumns {
 
     public static boolean isCallLog(long type) {
       return type == INCOMING_CALL_TYPE || type == OUTGOING_CALL_TYPE || type == MISSED_CALL_TYPE;
+    }
+
+    public static boolean isExpirationTimerUpdate(long type) {
+      return (type & EXPIRATION_TIMER_UPDATE_BIT) != 0;
     }
 
     public static boolean isIncomingCall(long type) {

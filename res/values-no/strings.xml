@@ -5,6 +5,8 @@
   <string name="no">Nei</string>
   <string name="delete">Slett</string>
   <string name="please_wait">Vennligst vent...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nå: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke definert et passord ennå!</string>
@@ -152,11 +154,11 @@ denne kontakten.</string>
     <item quantity="one">Feil ved lagring av vedlegg!</item>
     <item quantity="other">Feil under lagring av vedlegg!</item>
   </plurals>
-  <string name="ConversationFragment_file_saved_successfully">Fil lagret</string>
+  <string name="ConversationFragment_file_saved_successfully">Fil lagret ok.</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lagringsenheten!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Lagrer vedlegg</item>
-    <item quantity="other">Lagrer %1$d vedlegg.</item>
+    <item quantity="other">Lagrer %1$d vedlegg</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Lagrer vedlegg...</item>
@@ -232,7 +234,7 @@ denne kontakten.</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Eksporterer klartekst til enheten sitt minne...</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Feil, ute av stand til å skrive til enheten sitt minne.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Feil oppstod under skriving til enheten sitt minne.</string>
-  <string name="ExportFragment_export_successful">Eksport vellykket!</string>
+  <string name="ExportFragment_export_successful">Eksport vellykket.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonsfeil!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunne ikke registrere seg med Google Play Tjenester. Signal meldinger og anrop er slått av, vennligst prøv å registrere på nytt i Innstillinger &gt; Avansert.</string>
@@ -282,16 +284,11 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å ta opp en talemelding, slipp for å sende.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
-  <string name="InviteActivity_send_sms">Send SMS</string>
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Sender...</string>
   <string name="InviteActivity_heart_content_description">Hjerte</string>
   <string name="InviteActivity_invitations_sent">Invitasjoner sendt!</string>
   <string name="InviteActivity_invite_to_signal">Inviter til Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">SEND TIL 1 VENN</item>
-    <item quantity="other">SEND TIL %d VENNER</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Send 1 invitasjon på SMS?</item>
     <item quantity="other">Send %d invitasjoner på SMS?</item>
@@ -330,6 +327,7 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Ubesvart anrop fra %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
+  <string name="MessageRecord_you">Du</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -353,6 +351,7 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager, dette er ikke en gyldig QR kode for kobling av enheter.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Koble en Signal enhet?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som om du prøver å koble en Signal enhet ved hjelp av en 3. parts skanner. For å beskytte deg ber vi at du skanner koden igjen fra Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Tast inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
@@ -510,7 +509,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
   <string name="ApplicationMigrationService_import_complete">Import fullført</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">Systemdatabasen importert</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Systemdatabasen er ferdig importert.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Berør for å åpne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Berør for å åpne, eller velg låsen for å lukke.</string>
@@ -604,6 +603,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="device_list_fragment__link_new_device">Koble ny enhet</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsett</string>
+  <!--expiration-->
+  <string name="expiration_off">Av</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke lese loggen fra din enhet. Du kan fremdeles bruke ADB for å hente ut en debug logg.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
@@ -904,6 +905,8 @@ feilet.</string>
   <string name="conversation_context__menu_resend_message">Send melding om igjen</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagre vedlegg</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Inviter</string>
   <!--conversation_insecure_no_push-->

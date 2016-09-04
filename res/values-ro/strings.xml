@@ -5,6 +5,8 @@
   <string name="no">Nu</string>
   <string name="delete">Șterge</string>
   <string name="please_wait">Te rog așteaptă...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ai setat înca o parolă!</string>
@@ -300,17 +302,11 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ține apăsat pentru a înregistra un mesaj vocal, eliberează pentru a trimite</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partajează</string>
-  <string name="InviteActivity_send_sms">Trimite SMS</string>
   <string name="InviteActivity_cancel">Anulare</string>
   <string name="InviteActivity_sending">Se trimite...</string>
   <string name="InviteActivity_heart_content_description">Inimă</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
   <string name="InviteActivity_invite_to_signal">Invită la Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">TRIMITE LA 1 PRIETEN</item>
-    <item quantity="few">TRIMITE LA %d PRIETENI</item>
-    <item quantity="other">TRIMITE LA %d PRIETENI</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Trimit o invitație prin SMS?</item>
     <item quantity="few">Trimit %d invitații prin SMS?</item>
@@ -350,6 +346,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, salută-l!</string>
+  <string name="MessageRecord_you">Tu</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
@@ -374,6 +371,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ne pare rău. acest cod QR pentru conectarea dispozitivului nu este valid.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Conectez un dispozitiv Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Se pare că încerci să conectezi un dispozitiv Signal folosind un scaner terț. Pentru protecția ta, te rog scanează codul încă o dată din interiorul aplicației Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introdu parola</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icoană Signal</string>
@@ -628,6 +626,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="device_list_fragment__link_new_device">Conectează dispozitiv nou</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuă</string>
+  <!--expiration-->
+  <string name="expiration_off">Dezactivat</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Fișierul log nu a putut fi citit de pe dispozitivul tău. Poţi folosi în schimb ADB pentru a obţine log-ul de depanare.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
@@ -949,6 +949,8 @@ SMS a eșuat.</string>
   <string name="conversation_context__menu_resend_message">Retrimite mesaj</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvează ataşamentul</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Invită</string>
   <!--conversation_insecure_no_push-->

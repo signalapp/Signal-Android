@@ -5,6 +5,8 @@
   <string name="no">خیر</string>
   <string name="delete">حذف</string>
   <string name="please_wait">لطفاً صبر کنید...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز رمزی تعیین نکرده‌اید!</string>
@@ -16,7 +18,7 @@
     <item quantity="other">این گزینه ، بلافاصله تمامی مکالمات شما را به %d پیام آخر ، کاهش خواهد داد.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">عبارت عبور غیر فعال کنم؟</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">عبارت عبور غیر فعال شود؟</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه ، سیگنال و اعلان پیام را بطور دایم از وضعیت قفل ، خارج میکند.</string>
   <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
   <string name="ApplicationPreferencesActivity_unregistering">لغو ثبت نام</string>
@@ -219,16 +221,22 @@
   <string name="ExportFragment_export_successful">ذخیره‌سازی موفق بود.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ارتباط سیگنال بطور کل قطع شده است</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">نرم‌افزار سیگنال نمی‌تواند از طریق خدمات Google Play، شما را ثبت‌نام کند. پیام‌ها و تماس‌های سیگنال، غیرفعال شده‌اند، لطفاً تلاش کنید از طریق تنظیمات مجدداً ثبت‌نام کنید.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">گروه جدید</string>
   <string name="GroupCreateActivity_actionbar_update_title">به روز رسانی گروه</string>
   <string name="GroupCreateActivity_group_name_hint">نام گروه</string>
   <string name="GroupCreateActivity_actionbar_mms_title">گروه MMS جدید</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">شما مخاطبی را انتخاب کرده‌اید که از قابلیت گروه‌های سیگنال پشتیبانی نمی‌کند، چراکه این گروه‌ها MMS می‌شوند.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">شما برای استفاده از خدمات پیام‌رسانی و تماس‌های سیگنال ثبت‌نام نکرده‌اید! به همین خاطر گروه‌ها غیرفعال هستند!. لطفاً در تنظیمات اقدام به ثبت‌نام کنید.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">یک خطای غیرمنتظره در دستگاه شما رخ داده و تشکیل گروه‌ها را با شکست مواجه کرد!</string>
   <string name="GroupCreateActivity_contacts_no_members">شما حداقل یک نفر در گروه خود نیاز دارید!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">یکی از مخاطبینی که برای گروه خود انتخاب کرده‌اید دارای شماره‌ای است که نمی‌توان آن را به‌درستی خواند. لطفاً آن مخاطب را از گروه حذف کرده یا شماره را اصلاح کنید.</string>
   <string name="GroupCreateActivity_avatar_content_description">آواتار گروه</string>
   <string name="GroupCreateActivity_menu_create_title">ایجاد گروه</string>
   <string name="GroupCreateActivity_creating_group">ایجاد %1$s…</string>
   <string name="GroupCreateActivity_updating_group">به روز رسانی %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">امکان اضافه کردن %1$s وجود ندارد زیرا از کاربران سیگنال نیستند.</string>
   <string name="GroupCreateActivity_loading_group_details">در حال بارگذاری جزئیات گروه...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">در حال حاضردر این گروه هستید</string>
   <!--GroupMembersDialog-->
@@ -257,20 +265,17 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">برای ضبط کردن صدا صفحه را تپ کنید و نگه دارید - برای فرستادن انگشت را بردارید</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک گذاری</string>
-  <string name="InviteActivity_send_sms">ارسال SMS</string>
   <string name="InviteActivity_cancel">لغو</string>
   <string name="InviteActivity_sending">در حال ارسال</string>
   <string name="InviteActivity_heart_content_description">فلب</string>
   <string name="InviteActivity_invitations_sent">دعوت نامه ارسال شد!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به سیگنال</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="other">به %d دوست بفرست </item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">%d دعوت اس ام اس  بفرستم؟</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">بیایید از این برای سیگنال استفاده کنیم:  %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان نمی‌گذارند دوستانشان بدون رمزنگاری چت کنند.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">کلید اسکن شده پیدا نشد!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">نصب اسکنر بارکد؟</string>
@@ -286,6 +291,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">پاسخ سیگنال در حال انجام</string>
   <string name="NotificationBarManager_missed_call_from_s">تماس از دست رفته از %s</string>
   <string name="NotificationBarManager_missed_signal_call">تماس از دست رفته سیگنال</string>
+  <string name="NotificationBarManager__establishing_signal_call">در حال برقراری يک تماس سيگنالی</string>
   <string name="NotificationBarManager__incoming_signal_call">پاسخ تماس سیگنال</string>
   <string name="NotificationBarManager__deny_call">رد تماس</string>
   <string name="NotificationBarManager__answer_call">پاسخ به تماس</string>
@@ -294,11 +300,14 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">پیام های چند رسانه ای</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">یک پیام رمزنگاری شده با استفاده از نسخه‌ای قدیمی از سیگنال که دیگر پشتیبانی نمی‌شود برایتان ارسال شده است، لطفاً از فرستنده بخواهید نرم‌افزار سیگنال خود را به آخرین نسخه بروزرسانی کرده و مجدداً پیام را برای شما ارسال کند.</string>
   <string name="MessageRecord_left_group">شما گروه را ترک کرده اید.</string>
   <string name="MessageRecord_updated_group">گروه به روز شده.</string>
   <string name="MessageRecord_s_called_you">%s با شما تماس گرفت</string>
+  <string name="MessageRecord_called_s">%s تماس گرفته</string>
   <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s در سیگنال است،به او سلام کنید!</string>
+  <string name="MessageRecord_you">شما</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">رمزها با هم نمی‌خوانند!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">رمز قبلی نادرست است!</string>
@@ -309,6 +318,9 @@
   <string name="DeviceProvisioningActivity_continue">ادامه</string>
   <string name="DeviceProvisioningActivity_title">اتصال این دستگاه؟</string>
   <string name="DeviceProvisioningActivity_content_intro">این قادر خواهد بود به</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+. تمام پیام‌هایتان را بخوانید
+/n. با نام خودتان پیام‌ها را بفرستید</string>
   <string name="DeviceProvisioningActivity_content_progress_title">در حال اتصال دستگاه</string>
   <string name="DeviceProvisioningActivity_content_progress_content">در حال اتصال دستگاه جدید...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">دستگاه تایید شد!</string>
@@ -316,6 +328,9 @@
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطای شبکه.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">کد QR نامعتبر است.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">متاسفیم،شما دستگاه های زیادی را لینک کرده اید،برخی از آنها را حذف کنید...</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">متاسفانه این یک کد QR معتبر برای اتصال دستگاه نيست.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">اتصال يک دستگاه دارای سيگنال؟</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">رمز را وارد کنید</string>
   <string name="PassphrasePromptActivity_watermark_content_description">آیکون سیگنال</string>
@@ -330,6 +345,7 @@
   <string name="RatingManager_later">بعد</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">انسداد این تماس؟</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">شما ديگر از اين کاربر، تماس يا پيامی دريافت نخواهید کرد.</string>
   <string name="RecipientPreferenceActivity_block">بلوک</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">رفع انسداد این تماس؟</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">آیا شما مطمئن هستید که میخواهید این مخاطب را از بلوک در بیاورید؟</string>
@@ -348,12 +364,14 @@
   <string name="RedPhone_connecting">اتصال</string>
   <string name="RedPhone_handshake_failed">دست دادن شکست خورده!</string>
   <string name="RedPhone_recipient_unavailable">گیرنده در دسترس نیست</string>
+  <string name="RedPhone_performing_handshake">در حال برقراری ارتباط</string>
   <string name="RedPhone_network_failed">شکست خوردن در شبکه!</string>
   <string name="RedPhone_client_failed">مشتری شکست خورده</string>
   <string name="RedPhone_fatal_error">خطای مهلک</string>
   <string name="RedPhone_login_failed">ورود ناموفق!</string>
   <string name="RedPhone_message_from_the_server">پیام از سرور</string>
   <string name="RedPhone_number_not_registered">شماره ثبت نام نکرده!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره‌ای که گرفتيد، از تماس ايمن پشتيبانی نمی‌کند.</string>
   <string name="RedPhone_got_it">فهمیدم</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_signal">اتصال با سیگنال</string>
@@ -367,6 +385,8 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">شماره‌ای که شما
 مشخص کرده‌اید (%s) معتبر نیست.</string>
   <string name="RegistrationActivity_unsupported">پشتیبانی نشده</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">متأسفیم!
+این دستگاه از پیام‌رسانی به وسیله ارتباط داده‌های اینترنتی پشتیبانی نمی‌کند. دستگاه‌های دارای نسخه‌ی اندروید 4.0 به پائین باید لزوماً یک حساب Google وارد شده داشته باشند؛ البته دستگاه‌های مجهز به اندروید 4.0 و بالاتر نیازی ندارند!</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
 مطمئن باشید که این شماره شما هست! الآن، برای تایيد کردن، به این شماره اس‌ام‌اس می‌فرستیم.</string>
   <string name="RegistrationActivity_continue">ادامه</string>
@@ -391,6 +411,7 @@
   <string name="RegistrationProgressActivity_server_error">خطای سرور</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">سرور با خطا مواجه شده است. لطفا دوباره تلاش کنید.</string>
   <string name="RegistrationProgressActivity_too_many_requests">درخواست های بیش از حد!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">شما قبلاً به تازگی درخواست تماس صوتی کرده‌اید. می‌توانید 20 دقیقه بعد، دوباره درخواست کنید. </string>
   <string name="RegistrationProgressActivity_registration_conflict">تضاد در ثبت نام</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">ثبت نام کامل شد</string>
@@ -406,13 +427,15 @@
 تبادل پیام!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 یک پیام تبادل کلید برای نسخه اشتباه پروتوکل دریافت شد.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">پيامی با کليد شناسايی نامشخص دريافت شد. برای پردازش و شناسايی، لمس کنيد.</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">اطلاعات به‌زوز شده ولی ناشناس دريافت شد. برای شناسايی لمس کنيد.</string>
   <string name="SmsMessageRecord_secure_session_reset">تنظیم مجدد جلسه امن.</string>
   <string name="SmsMessageRecord_duplicate_message">تکثیر پیام.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترک گروه ...</string>
   <string name="ThreadRecord_secure_session_reset">تنظیم مجدد جلسه امن.</string>
   <string name="ThreadRecord_draft">پیش نویس:</string>
-  <string name="ThreadRecord_called">تو تلفن زدی</string>
+  <string name="ThreadRecord_called">شما تماس گرفتید</string>
   <string name="ThreadRecord_called_you">با شما تماس گرفت</string>
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
   <string name="ThreadRecord_media_message">پیام رسانه</string>
@@ -484,6 +507,7 @@
   <string name="MessageNotifier_media_message">پیام رسانه</string>
   <string name="MessageNotifier_reply">پاسخ</string>
   <!--QuickResponseService-->
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخگوی سریع هنگامی که نرم‌افزار سیگنال قفل باشد غیرفعال می‌شود.</string>
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سیگنال</string>
@@ -548,6 +572,7 @@
   <string name="country_selection_fragment__loading_countries">کشورهای در حال بارگذاری ...</string>
   <string name="country_selection_fragment__search">جستجو</string>
   <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">برای پیوند دادن، تصویر QR نمایش داده شده روی دستگاه را اسکن کنید.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">اتصال دستگاه</string>
   <!--device_list_fragment-->
@@ -555,6 +580,8 @@
   <string name="device_list_fragment__link_new_device">اتصال دستگاه جدید</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">ادامه</string>
+  <!--expiration-->
+  <string name="expiration_off">خاموش</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">نمی توانیم فایل گزارش را در دستگاه شما بخوانیم.شما می توانید از طریق ADB گزارش دیباگ را دریافت کنید.</string>
   <string name="log_submit_activity__thanks">تشکر از کمک شما!</string>
@@ -562,16 +589,21 @@
   <string name="log_submit_activity__posting_logs">ارسال سیاهه های مربوط به جان کلام ...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">دوست دارید که پیام های گوشی داخل دیتابیس رمزنگاری شده وارد شوند؟</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">پايگاه داده‌ی پيش‌فرض سيستم، به هيچ وجه دستکاری يا تغيير نخواهد کرد</string>
   <string name="database_migration_activity__skip">پرش</string>
   <string name="database_migration_activity__import">وارد کردن</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ممکن است مدتی طول بکشد. لطفا صبر نماييد. پس از پایان ورود اطلاعات، به شما اطلاع می‌دهيم.</string>
   <string name="database_migration_activity__importing">وارد کردن</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">به روز رسانی پایگاه داده ...</string>
   <string name="export_fragment__export_plaintext_backup">خروجی گرفتن پشتیبان ساده</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">تهيه‌ی يک نسخه‌ی پشتيبان هماهنگ با \'SMS Backup &amp; Restore\' در حافظه.</string>
   <string name="import_fragment__import_system_sms_database">واردکردن پایگاه داده سیستم SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">وارد کردن دیتابیس از برنامه پیام رسان پیشفرض سیستم.</string>
   <string name="import_fragment__restore_encrypted_backup">بازگرداندن نسخه پشتیبان رمزگذاری شده</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">بازگرداندن يک نسخه‌ی پشتيبان رمز‌گذاری‌شده‌ی پيشين سيگنال</string>
   <string name="import_fragment__import_plaintext_backup">وارد کردن پشتیبان ساده</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">بارگيری يک فايل متنی پشتيبان. دارای هم‌خوانی با \'SMS Backup &amp; Restore.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">گفتگو کامل را ببینید</string>
   <!--media_overview_activity-->
@@ -620,6 +652,7 @@
 شماره تلفن</string>
   <string name="registration_activity__phone_number">شماره تلفن</string>
   <string name="registration_activity__register">ثبت نام</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">هنگام ثبت‌نام بعضی از اطلاعات مخاطبین به سرور فرستاده می‌شود. ذخیره نخواهد شد. </string>
   <string name="registration_activity__powered_by_twilio">طراحی شده توسط twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">برخی از مشکلات احتمالی
@@ -845,6 +878,8 @@
   <string name="conversation_context__menu_resend_message">پیام فرستادن مجدد</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ذخیره پیوست</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">دعوت کردن</string>
   <!--conversation_insecure_no_push-->

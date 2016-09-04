@@ -12,12 +12,13 @@
  * Device B, Android Z.Y
  * Virtual device W, Android Y.Y.Z
 - [ ] My contribution is fully baked and ready to be merged as is
-- [ ] I have made the choice whether I want the [BitHub reward](https://github.com/WhisperSystems/Signal-Android/wiki/BitHub-Rewards) or not by omitting or adding the word `FREEBIE` in my commit message
+- [ ] I ensure that all the open issues my contribution fixes are mentioned in the commit message of my first commit using the `Fixes #1234` [syntax](https://help.github.com/articles/closing-issues-via-commit-messages/)
+- [ ] I have made the choice whether I want the [BitHub reward](https://github.com/WhisperSystems/Signal-Android/wiki/BitHub-Rewards) or not by omitting or adding the word `FREEBIE` in the commit message of my first commit
 
 ----------
 
 ### Description
 <!--
-Describe briefly what your pull request proposes to fix. Especially if you have more than one commit, it is helpful to give a summary of what your contribution as a whole is trying to solve. You can also use the `fixes #1234` syntax to refer to specific issues either here or in your commit message.
+Describe briefly what your pull request proposes to fix. Especially if you have more than one commit, it is helpful to give a summary of what your contribution as a whole is trying to solve.
 Also, please describe shortly how you tested that your fix actually works.
 -->

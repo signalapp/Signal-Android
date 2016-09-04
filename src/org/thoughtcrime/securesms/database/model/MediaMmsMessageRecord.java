@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -53,10 +54,12 @@ public class MediaMmsMessageRecord extends MessageRecord {
                                @NonNull SlideDeck slideDeck,
                                int partCount, long mailbox,
                                List<IdentityKeyMismatch> mismatches,
-                               List<NetworkFailure> failures, int subscriptionId)
+                               List<NetworkFailure> failures, int subscriptionId,
+                               long expiresIn, long expireStarted)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId, dateSent,
-          dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox, mismatches, failures, subscriptionId);
+          dateReceived, threadId, Status.STATUS_NONE, receiptCount, mailbox, mismatches, failures,
+          subscriptionId, expiresIn, expireStarted);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;
@@ -82,6 +85,17 @@ public class MediaMmsMessageRecord extends MessageRecord {
 
   @Override
   public boolean isMmsNotification() {
+    return false;
+  }
+
+  @Override
+  public boolean isMediaPending() {
+    for (Slide slide : getSlideDeck().getSlides()) {
+      if (slide.isInProgress() || slide.isPendingDownload()) {
+        return true;
+      }
+    }
+
     return false;
   }
 

@@ -5,6 +5,8 @@
   <string name="no">否</string>
   <string name="delete">删除</string>
   <string name="please_wait">请稍候…</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">新信息</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
@@ -274,15 +276,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住并保持以录制语音信息，松开即发送</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">共享</string>
-  <string name="InviteActivity_send_sms">发送短信</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">正在发送…</string>
   <string name="InviteActivity_heart_content_description">心</string>
   <string name="InviteActivity_invitations_sent">邀请已发送！</string>
   <string name="InviteActivity_invite_to_signal">邀请至暗号</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="other">已发送至 %d 位朋友</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">发送 %d 个短信邀请？</item>
   </plurals>
@@ -320,6 +318,7 @@
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">来自 %s 的未接来电</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
+  <string name="MessageRecord_you">您</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">口令不符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
@@ -343,6 +342,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，这不是有效的设备连接二维码。</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">连接一个暗号设备？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起来您正在使用第三方的扫描器来连接暗号设备。处于您的安全考虑，请尝试使用暗号的扫描器扫描二维码。</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密钥</string>
   <string name="PassphrasePromptActivity_watermark_content_description">暗号图标</string>
@@ -596,6 +596,8 @@
   <string name="device_list_fragment__link_new_device">连接新的设备</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">继续</string>
+  <!--expiration-->
+  <string name="expiration_off">关</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">无法在您的设备上读取日志。您仍然可以使用 ADB 来获得调试日志。</string>
   <string name="log_submit_activity__thanks">感谢！</string>
@@ -904,6 +906,8 @@
   <string name="conversation_context__menu_resend_message">重新发送信息</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">保存附件</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀请</string>
   <!--conversation_insecure_no_push-->

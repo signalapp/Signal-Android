@@ -109,7 +109,7 @@ public class EncryptingSmsDatabase extends SmsDatabase {
   }
 
   public Pair<Long, Long> updateBundleMessageBody(MasterSecretUnion masterSecret, long messageId, String body) {
-    long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT;
+    long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
     String encryptedBody;
 
     if (masterSecret.getMasterSecret().isPresent()) {

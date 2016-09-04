@@ -5,6 +5,8 @@
   <string name="no">Nem</string>
   <string name="delete">Törlés</string>
   <string name="please_wait">Kérlek várj...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Új üzenet</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Jelenleg: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottál be jelmondatot!</string>
@@ -294,16 +296,11 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Érintsd meg és tartsd a hangüzenet rögzítéséhez, engedd el a küldéshez</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Megosztás</string>
-  <string name="InviteActivity_send_sms">SMS küldése</string>
   <string name="InviteActivity_cancel">Mégse</string>
   <string name="InviteActivity_sending">Küldés...</string>
   <string name="InviteActivity_heart_content_description">Szív</string>
   <string name="InviteActivity_invitations_sent">Meghívók elküldve!</string>
   <string name="InviteActivity_invite_to_signal">Meghívás Signal-ba</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">KÜLDÉS 1 BARÁTNAK</item>
-    <item quantity="other">KÜLDÉS %d BARÁTNAK</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1 SMS meghívó küldése?</item>
     <item quantity="other">%d SMS meghívó küldése?</item>
@@ -342,6 +339,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageRecord_called_s">Hívtad: %s</string>
   <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
+  <string name="MessageRecord_you">Te</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Hibás régi jelmondat!</string>
@@ -366,6 +364,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sajnáljuk, ez nem egy érvényes készülék társítási QR kód.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal készülék társítása?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Úgy tűnik, hogy egy harmadik féltől származó szkennelővel próbálsz társítani egy Signal készüléket. A védelmed érdekében kérlek szkenneld újra a kódot Signal-on belül.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Jelmondat megadása</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
@@ -627,6 +626,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="device_list_fragment__link_new_device">Új készülék társítása</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">folytatás</string>
+  <!--expiration-->
+  <string name="expiration_off">Ki</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nem lehet olvasni a naplót a készülékeden. Ehelyett még mindig használhatsz ADB-t, hogy kapj hibakeresési naplót.</string>
   <string name="log_submit_activity__thanks">Köszönjük a segítségedet!</string>
@@ -954,6 +955,8 @@ sikertelen.
   <string name="conversation_context__menu_resend_message">Üzenet újraküldése</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Melléklet mentése</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Meghívás</string>
   <!--conversation_insecure_no_push-->
