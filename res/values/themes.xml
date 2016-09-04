@@ -124,6 +124,8 @@
         <item name="conversation_attach_sound">@drawable/ic_volume_up_light</item>
         <item name="conversation_attach_contact_info">@drawable/ic_account_box_light</item>
         <item name="conversation_attach">@drawable/ic_attach_grey600_24dp</item>
+        <item name="conversation_number_picker_text_color_normal">@color/gray65</item>
+        <item name="conversation_number_picker_text_color_selected">@color/black</item>
 
         <item name="emoji_tab_strip_background">@color/gray12</item>
         <item name="emoji_tab_indicator">#66555555</item>
@@ -262,6 +264,8 @@
         <item name="conversation_attach_sound">@drawable/ic_volume_up_dark</item>
         <item name="conversation_attach_contact_info">@drawable/ic_account_box_dark</item>
         <item name="conversation_attach">@drawable/ic_attach_white_24dp</item>
+        <item name="conversation_number_picker_text_color_normal">@color/gray13</item>
+        <item name="conversation_number_picker_text_color_selected">@color/white</item>
 
         <item name="emoji_tab_strip_background">@color/gray95</item>
         <item name="emoji_tab_indicator">@color/gray65</item>
