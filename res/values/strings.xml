@@ -391,8 +391,8 @@
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
     <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
-    <string name="MessageRecord_you">You</string>
-    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s</string>
+    <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set disappearing message time to %1$s.</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s.</string>
     <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Your safety numbers with %s have changed</string>
 
 
