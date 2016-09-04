@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:background="?import_export_tab_background_color"
         android:elevation="2dp"
-        app:tabTextColor="?import_export_tab_text_color"
-        app:tabSelectedTextColor="?import_export_tab_selected_text_color"
+        app:tabTextColor="#BFffffff"
+        app:tabSelectedTextColor="@color/white"
         app:tabIndicatorColor="?import_export_tab_indicator_color" />
 
     <android.support.v4.view.ViewPager

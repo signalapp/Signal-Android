@@ -92,8 +92,6 @@
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
     <attr name="import_export_tab_background_color" format="reference|color" />
-    <attr name="import_export_tab_text_color" format="reference|color" />
-    <attr name="import_export_tab_selected_text_color" format="reference|color" />
     <attr name="import_export_tab_indicator_color" format="reference|color" />
     <attr name="import_sms" format="reference" />
     <attr name="encrypted_backup" format="reference" />

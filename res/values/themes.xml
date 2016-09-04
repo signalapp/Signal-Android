@@ -180,10 +180,8 @@
         <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_light</item>
-        <item name="import_export_tab_background_color">@color/import_export_tab_background_light</item>
-        <item name="import_export_tab_text_color">@color/import_export_tab_text_light</item>
-        <item name="import_export_tab_selected_text_color">@color/import_export_tab_selected_text_light</item>
-        <item name="import_export_tab_indicator_color">@color/import_export_tab_indicator_light</item>
+        <item name="import_export_tab_background_color">@color/signal_primary</item>
+        <item name="import_export_tab_indicator_color">@color/white</item>
         <item name="import_sms">@drawable/ic_message_black</item>
         <item name="encrypted_backup">@drawable/ic_lock_light</item>
         <item name="plaintext_backup">@drawable/ic_content_copy_light</item>
@@ -269,10 +267,8 @@
         <item name="import_export_item_background_color">@color/import_export_item_background_dark</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_dark</item>
-        <item name="import_export_tab_background_color">@color/import_export_tab_background_dark</item>
-        <item name="import_export_tab_text_color">@color/import_export_tab_text_dark</item>
-        <item name="import_export_tab_selected_text_color">@color/import_export_tab_selected_text_dark</item>
-        <item name="import_export_tab_indicator_color">@color/import_export_tab_indicator_dark</item>
+        <item name="import_export_tab_background_color">@color/gray95</item>
+        <item name="import_export_tab_indicator_color">@color/signal_primary_dark</item>
         <item name="import_sms">@drawable/ic_message_white</item>
         <item name="encrypted_backup">@drawable/ic_lock_dark</item>
         <item name="plaintext_backup">@drawable/ic_content_copy_dark</item>
