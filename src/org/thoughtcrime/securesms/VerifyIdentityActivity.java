@@ -23,6 +23,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.DrawableRes;
@@ -42,6 +44,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -73,7 +76,7 @@ import java.nio.charset.Charset;
  *
  * @author Moxie Marlinspike
  */
-public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity implements ScanListener, View.OnClickListener {
+public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity implements Recipient.RecipientModifiedListener, ScanListener, View.OnClickListener {
 
   private static final String TAG = VerifyIdentityActivity.class.getSimpleName();
 
@@ -99,6 +102,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_numbers);
 
       Recipient recipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(RECIPIENT_ID, -1), true);
+      recipient.addListener(this);
+
+      setActionBarNotificationBarColor(recipient.getColor());
 
       Bundle extras = new Bundle();
       extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(RECIPIENT_IDENTITY));
@@ -123,6 +129,16 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     }
 
     return false;
+  }
+
+  @Override
+  public void onModified(final Recipient recipient) {
+    Util.runOnMain(new Runnable() {
+      @Override
+      public void run() {
+        setActionBarNotificationBarColor(recipient.getColor());
+      }
+    });
   }
 
   @Override
@@ -151,6 +167,14 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     transaction.replace(android.R.id.content, scanFragment)
                .addToBackStack(null)
                .commit();
+  }
+
+  private void setActionBarNotificationBarColor(MaterialColor color) {
+    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setStatusBarColor(color.toStatusBarColor(this));
+    }
   }
 
   public static class VerifyDisplayFragment extends Fragment implements Recipients.RecipientsModifiedListener {
