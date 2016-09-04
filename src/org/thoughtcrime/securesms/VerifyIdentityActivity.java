@@ -75,7 +75,7 @@ import java.nio.charset.Charset;
  *
  * @author Moxie Marlinspike
  */
-public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity implements ScanListener, View.OnClickListener {
+public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity implements Recipient.RecipientModifiedListener, ScanListener, View.OnClickListener {
 
   private static final String TAG = VerifyIdentityActivity.class.getSimpleName();
 
@@ -100,6 +100,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_numbers);
 
     Recipient recipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(RECIPIENT_ID, -1), true);
+    recipient.addListener(this);
 
     setActionBarNotificationBarColor(recipient.getColor());
 
@@ -122,6 +123,16 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     }
 
     return false;
+  }
+
+  @Override
+  public void onModified(final Recipient recipient) {
+    Util.runOnMain(new Runnable() {
+      @Override
+      public void run() {
+        setActionBarNotificationBarColor(recipient.getColor());
+      }
+    });
   }
 
   @Override
