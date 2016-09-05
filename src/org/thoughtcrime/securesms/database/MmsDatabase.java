@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -110,7 +111,8 @@ public class MmsDatabase extends MessagingDatabase {
     "ct_cls" + " INTEGER, " + "resp_txt" + " TEXT, " + "d_tm" + " INTEGER, "     +
     RECEIPT_COUNT + " INTEGER DEFAULT 0, " + MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, "     +
     NETWORK_FAILURE + " TEXT DEFAULT NULL," + "d_rpt" + " INTEGER, " +
-    SUBSCRIPTION_ID + " INTEGER DEFAULT -1);";
+    SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " + EXPIRES_IN + " INTEGER DEFAULT 0, " +
+    EXPIRE_STARTED + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -130,6 +132,7 @@ public class MmsDatabase extends MessagingDatabase {
       MESSAGE_SIZE, STATUS, TRANSACTION_ID,
       BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID,
       RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
+      EXPIRES_IN, EXPIRE_STARTED,
       AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
       AttachmentDatabase.UNIQUE_ID,
       AttachmentDatabase.MMS_ID,
@@ -340,6 +343,11 @@ public class MmsDatabase extends MessagingDatabase {
     return cursor;
   }
 
+  public Reader getExpireStartedMessages(@Nullable MasterSecret masterSecret) {
+    String where = EXPIRE_STARTED + " > 0";
+    return readerFor(masterSecret, rawQuery(where, null));
+  }
+
   public Reader getDecryptInProgressMessages(MasterSecret masterSecret) {
     String where = MESSAGE_BOX + " & " + (Types.ENCRYPTION_ASYMMETRIC_BIT) + " != 0";
     return readerFor(masterSecret, rawQuery(where, null));
@@ -429,6 +437,21 @@ public class MmsDatabase extends MessagingDatabase {
 
   public void markAsLegacyVersion(long messageId, long threadId) {
     updateMailboxBitmask(messageId, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT, Optional.of(threadId));
+    notifyConversationListeners(threadId);
+  }
+
+  public void markExpireStarted(long messageId) {
+    markExpireStarted(messageId, System.currentTimeMillis());
+  }
+
+  public void markExpireStarted(long messageId, long startedTimestamp) {
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(EXPIRE_STARTED, startedTimestamp);
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
+
+    long threadId = getThreadIdForMessage(messageId);
     notifyConversationListeners(threadId);
   }
 
@@ -579,6 +602,7 @@ public class MmsDatabase extends MessagingDatabase {
         String           messageText    = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
         long             timestamp      = cursor.getLong(cursor.getColumnIndexOrThrow(NORMALIZED_DATE_SENT));
         int              subscriptionId = cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID));
+        long             expiresIn      = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
         List<Attachment> attachments    = new LinkedList<Attachment>(attachmentDatabase.getAttachmentsForMessage(messageId));
         MmsAddresses     addresses      = addr.getAddressesForId(messageId);
         List<String>     destinations   = new LinkedList<>();
@@ -591,10 +615,12 @@ public class MmsDatabase extends MessagingDatabase {
         Recipients recipients = RecipientFactory.getRecipientsFromStrings(context, destinations, false);
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return new OutgoingGroupMediaMessage(recipients, body, attachments, timestamp);
+          return new OutgoingGroupMediaMessage(recipients, body, attachments, timestamp, 0);
+        } else if (Types.isExpirationTimerUpdate(outboxType)) {
+          return new OutgoingExpirationUpdateMessage(recipients, timestamp, expiresIn);
         }
 
-        OutgoingMediaMessage message = new OutgoingMediaMessage(recipients, body, attachments, timestamp, subscriptionId,
+        OutgoingMediaMessage message = new OutgoingMediaMessage(recipients, body, attachments, timestamp, subscriptionId, expiresIn,
                                                                 !addresses.getBcc().isEmpty() ? ThreadDatabase.DistributionTypes.BROADCAST :
                                                                                                 ThreadDatabase.DistributionTypes.DEFAULT);
         if (Types.isSecureType(outboxType)) {
@@ -623,6 +649,7 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(THREAD_ID, getThreadIdForMessage(messageId));
       contentValues.put(READ, 1);
       contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
+      contentValues.put(EXPIRES_IN, request.getExpiresIn());
 
       List<Attachment> attachments = new LinkedList<>();
 
@@ -678,6 +705,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(DATE_RECEIVED, generatePduCompatTimestamp());
     contentValues.put(PART_COUNT, retrieved.getAttachments().size());
     contentValues.put(SUBSCRIPTION_ID, retrieved.getSubscriptionId());
+    contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());
     contentValues.put(READ, 0);
 
     if (!contentValues.containsKey(DATE_SENT)) {
@@ -688,8 +716,11 @@ public class MmsDatabase extends MessagingDatabase {
                                         retrieved.getBody(), retrieved.getAttachments(),
                                         contentValues);
 
-    DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    if (!Types.isExpirationTimerUpdate(mailbox)) {
+      DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    }
+
     notifyConversationListeners(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 
@@ -713,6 +744,10 @@ public class MmsDatabase extends MessagingDatabase {
       type |= Types.PUSH_MESSAGE_BIT;
     }
 
+    if (retrieved.isExpirationUpdate()) {
+      type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
+    }
+
     return insertMessageInbox(masterSecret, retrieved, contentLocation, threadId, type);
   }
 
@@ -731,6 +766,10 @@ public class MmsDatabase extends MessagingDatabase {
 
     if (retrieved.isPushMessage()) {
       type |= Types.PUSH_MESSAGE_BIT;
+    }
+
+    if (retrieved.isExpirationUpdate()) {
+      type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
     return insertMessageInbox(masterSecret, retrieved, "", threadId, type);
@@ -805,6 +844,10 @@ public class MmsDatabase extends MessagingDatabase {
       else if (((OutgoingGroupMediaMessage)message).isGroupQuit())   type |= Types.GROUP_QUIT_BIT;
     }
 
+    if (message.isExpirationUpdate()) {
+      type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
+    }
+
     List<String> recipientNumbers = message.getRecipients().toNumberStringList(true);
 
     MmsAddresses addresses;
@@ -826,6 +869,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(READ, 1);
     contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
     contentValues.put(SUBSCRIPTION_ID, message.getSubscriptionId());
+    contentValues.put(EXPIRES_IN, message.getExpiresIn());
 
     if (message.getRecipients().isSingleRecipient()) {
       try {
@@ -1118,6 +1162,8 @@ public class MmsDatabase extends MessagingDatabase {
       String mismatchDocument = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
       String networkDocument  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
       int subscriptionId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID));
+      long expiresIn          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN));
+      long expireStarted      = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRE_STARTED));
 
       Recipients                recipients      = getRecipientsFor(address);
       List<IdentityKeyMismatch> mismatches      = getMismatchedIdentities(mismatchDocument);
@@ -1127,7 +1173,7 @@ public class MmsDatabase extends MessagingDatabase {
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                        addressDeviceId, dateSent, dateReceived, receiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
-                                       networkFailures, subscriptionId);
+                                       networkFailures, subscriptionId, expiresIn, expireStarted);
     }
 
     private Recipients getRecipientsFor(String address) {

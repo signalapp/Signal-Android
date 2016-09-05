@@ -5,6 +5,8 @@
   <string name="no">いいえ</string>
   <string name="delete">削除</string>
   <string name="please_wait">お待ち下さい…</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">新規メッセージ</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
@@ -265,15 +267,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">押し続けて録音、離して送信</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">シェア</string>
-  <string name="InviteActivity_send_sms">SMSで送る</string>
   <string name="InviteActivity_cancel">キャンセル</string>
   <string name="InviteActivity_sending">送信中…</string>
   <string name="InviteActivity_heart_content_description">ハート</string>
   <string name="InviteActivity_invitations_sent">招待状を送りました</string>
   <string name="InviteActivity_invite_to_signal">Signalをオススメする</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="other">%d人の友だちに送る</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">%d人にSMSを送りますか？</item>
   </plurals>
@@ -311,6 +309,7 @@
   <string name="MessageRecord_called_s">%sに発信</string>
   <string name="MessageRecord_missed_call_from">%sから不在着信</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
+  <string name="MessageRecord_you">あなた</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスワードが正しくありません！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスワードが正しくありません。</string>
@@ -333,6 +332,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">このQRコードは正しいリンクではありません</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">デバイスを結び付けますか？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">アプリ外のスキャナーを使ってデバイスを結び付けようとしていますが、安全のためSignal内からコードをスキャンしてください。</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signalアイコン</string>
@@ -456,7 +456,7 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">照合できませんでした！</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">スキャンした鍵が一致しました！</string>
   <string name="ViewIdentityActivity_verified_exclamation">照合できました。</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">自分の指紋</string>
+  <string name="ViewIdentityActivity_your_identity_fingerprint">自分のIDフィンガープリント</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
   <string name="KeyExchangeInitiator_send">送信</string>
@@ -579,6 +579,8 @@
   <string name="device_list_fragment__link_new_device">結び付けるデバイスを追加</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">続ける</string>
+  <!--expiration-->
+  <string name="expiration_off">オフ</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバイス上のログを読めません。ただしADBを使ってデバッグログを読むことはできます。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
@@ -865,6 +867,8 @@
   <string name="conversation_context__menu_resend_message">メッセージを再送信</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">添付ファイルを保存</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">オススメする</string>
   <!--conversation_insecure_no_push-->

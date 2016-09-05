@@ -5,6 +5,8 @@
   <string name="no">아니요</string>
   <string name="delete">삭제</string>
   <string name="please_wait">잠시만 기다려 주세요…</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">새 메시지</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">현재: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호 설정되지 않음</string>
@@ -265,15 +267,11 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">길게 눌러 음성메시지 녹음하고 보내려면 손 떼세요.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">공유</string>
-  <string name="InviteActivity_send_sms">SMS 보내기</string>
   <string name="InviteActivity_cancel">취소</string>
   <string name="InviteActivity_sending">보내는 중…</string>
   <string name="InviteActivity_heart_content_description">하트</string>
   <string name="InviteActivity_invitations_sent">초대 보냄</string>
   <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="other">%d분에게 SMS 보내기</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">초대 메시지 %d개를 SMS로 보내시겠습니까?</item>
   </plurals>
@@ -311,6 +309,7 @@
   <string name="MessageRecord_called_s">%s님에게 발신통화</string>
   <string name="MessageRecord_missed_call_from">%s님의 부재중 통화</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s님이 Signal에 참여했습니다. 인사하실래요?</string>
+  <string name="MessageRecord_you">나</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않음</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못됨</string>
@@ -332,6 +331,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">기기 연결 QR코드 잘못됨</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연결하시겠습니까?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signal 기기를 서드파티 스캐너로 연결해 보는 것 같습니다. 안전한 사용을 위해 Signal에서 다시 스캔해 주세요.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
@@ -577,6 +577,8 @@
   <string name="device_list_fragment__link_new_device">새 기기 연결</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">계속</string>
+  <!--expiration-->
+  <string name="expiration_off">사용 안함</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
@@ -862,6 +864,8 @@
   <string name="conversation_context__menu_resend_message">메시지 다시 보내기</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">첨부파일 저장</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">초대</string>
   <!--conversation_insecure_no_push-->

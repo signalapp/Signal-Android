@@ -6,6 +6,9 @@
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
 
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">New message</string>
+
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
@@ -147,6 +150,7 @@
     <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_error_sending_voice_message">Error sending voice message...</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -189,6 +193,7 @@
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_search">Search...</string>
+    <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
 
     <!-- ConversationListFragment -->
     <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -325,15 +330,15 @@
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
-    <string name="InviteActivity_send_sms">Send SMS</string>
+    <string name="InviteActivity_choose_contacts">Choose contacts</string>
     <string name="InviteActivity_cancel">Cancel</string>
     <string name="InviteActivity_sending">Sending...</string>
     <string name="InviteActivity_heart_content_description">Heart</string>
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
-    <plurals name="InviteActivity_send_to_friends">
-        <item quantity="one">SEND TO 1 FRIEND</item>
-        <item quantity="other">SEND TO %d FRIENDS</item>
+    <plurals name="InviteActivity_send_sms_to_friends">
+        <item quantity="one">SEND SMS TO 1 FRIEND</item>
+        <item quantity="other">SEND SMS TO %d FRIENDS</item>
     </plurals>
     <plurals name="InviteActivity_send_sms_invites">
         <item quantity="one">Send 1 SMS invite?</item>
@@ -379,6 +384,8 @@
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
     <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="MessageRecord_you">You</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s</string>
 
 
     <!-- PassphraseChangeActivity -->
@@ -407,6 +414,11 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">Link a Signal device?</string>
     <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">It looks like you\'re trying to link a Signal device using a 3rd party scanner.  For your protection, please scan the code again from within Signal.</string>
 
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Your messages will not expire.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Messages sent and received in this conversation will disappear %s after they have been seen.</string>
+
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
     <string name="PassphrasePromptActivity_watermark_content_description">Signal icon</string>
@@ -422,6 +434,7 @@
     <string name="RatingManager_rate_now">Rate now!</string>
     <string name="RatingManager_no_thanks">No thanks</string>
     <string name="RatingManager_later">Later</string>
+    <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, the Play Store app does not appear to be installed on your device.</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
@@ -537,6 +550,7 @@
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
     <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
@@ -711,15 +725,54 @@
     <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
     <string name="device_list_fragment__link_new_device">Link new device</string>
 
-
     <!-- experience_upgrade_activity -->
     <string name="experience_upgrade_activity__continue">continue</string>
+
+    <!-- expiration -->
+
+    <string name="expiration_off">Off</string>
+    
+    <plurals name="expiration_seconds">
+        <item quantity="one">1 second</item>
+        <item quantity="other">%d seconds</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%ds</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">1 minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%dm</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">1 hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%dh</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">1 day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%dd</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">1 week</item>
+        <item quantity="other">%d weeks</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%dw</string>
 
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get a debug log instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
     <string name="log_submit_activity__submitting">Submitting</string>
     <string name="log_submit_activity__posting_logs">Posting logs to gist&#8230;</string>
+    <string name="log_submit_activity__no_browser_installed">No browser installed</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal\'s encrypted database?</string>
@@ -1077,6 +1130,12 @@
 
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
+
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Disappearing messages</string>
+
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Messages expiring</string>
 
     <!-- conversation_insecure -->
     <string name="conversation_insecure__invite">Invite</string>

@@ -5,6 +5,8 @@
   <string name="no">Tidak</string>
   <string name="delete">Hapus</string>
   <string name="please_wait">Mohon tunggu...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Pesan baru</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur kata kunci!</string>
@@ -280,15 +282,11 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tekan dan tahan untuk merekam pesan suara, lepas untuk mengirim</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Berbagi</string>
-  <string name="InviteActivity_send_sms">Kirim SMS</string>
   <string name="InviteActivity_cancel">Batal</string>
   <string name="InviteActivity_sending">Mengirim...</string>
   <string name="InviteActivity_heart_content_description">Hati</string>
   <string name="InviteActivity_invitations_sent">Undangan dikirim!</string>
   <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="other">KIRIM KE %d TEMAN</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirim %d SMS undangan?</item>
   </plurals>
@@ -326,6 +324,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s ada di Signal, katakan halo!</string>
+  <string name="MessageRecord_you">Anda</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frasa sandi tidak cocok!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Kata kunci lama salah!</string>
@@ -350,6 +349,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Maaf, ini bukan tautan perangkat QR code yang benar.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Kaitkan perangkat Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sepertinya Anda mencoba untuk menghubungkan perangkat Signal menggunakan pemindai pihak ke-3. Untuk perlindungan Anda, mohon memindai kode lagi dari Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Masukkan frasa sandi</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikon Signal</string>
@@ -576,7 +576,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_activity__remove">Hapus</string>
   <string name="conversation_activity__window_description">Percakapan dengan %1$s</string>
   <string name="conversation_activity__compose_description">Penulisan pesan</string>
-  <string name="conversation_activity__emoji_toggle_description">Jungkit kibor emoji</string>
+  <string name="conversation_activity__emoji_toggle_description">Beralih papan ketik emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Gambar Mini Lampiran</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Jungkit laci lampiran</string>
   <!--conversation_input_panel-->
@@ -610,6 +610,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="device_list_fragment__link_new_device">Kaitkan perangkat baru</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">lanjutkan</string>
+  <!--expiration-->
+  <string name="expiration_off">Mati</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Tidak bisa membaca catatan log pada perangkat Anda. Anda masih bisa menggunakan ADB untuk mengambil log awakutu.</string>
   <string name="log_submit_activity__thanks">Terima kasih atas bantuan Anda!</string>
@@ -779,6 +781,7 @@ gagal
   <string name="AndroidManifest__media_overview">Semua gambar</string>
   <string name="AndroidManifest__media_overview_named">Semua gambar dengan %1$s</string>
   <string name="AndroidManifest__message_details">Rincian pesan</string>
+  <string name="AndroidManifest__linked_devices">Perangkat terkait</string>
   <string name="AndroidManifest__invite_friends">Undang teman</string>
   <string name="AndroidManifest_archived_conversations">Arsip percakapan</string>
   <!--arrays.xml-->
@@ -886,6 +889,7 @@ gagal
   <string name="preferences__conversation_length_limit">Batas panjang percakapan</string>
   <string name="preferences__trim_all_conversations_now">Pangkas seluruh percakapan</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Pindai seluruh rangkaian percakapan dan terapkan batas panjang percakapan</string>
+  <string name="preferences__linked_devices">Perangkat terkait</string>
   <string name="preferences__light_theme">Terang</string>
   <string name="preferences__dark_theme">Gelap</string>
   <string name="preferences__appearance">Penampilan</string>
@@ -931,6 +935,8 @@ gagal
   <string name="conversation_context__menu_resend_message">Kirim ulang </string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Simpan lampiran</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Undang</string>
   <!--conversation_insecure_no_push-->

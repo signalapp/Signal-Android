@@ -5,6 +5,8 @@
   <string name="no">Не</string>
   <string name="delete">Изтрий</string>
   <string name="please_wait">Моля изчакайте...</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Ново съобщение</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не си сложил парола!</string>
@@ -286,16 +288,11 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Натиснете и задръжте, за да запишете гласово съобщение, отпуснете, за да изпратите</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Сподели</string>
-  <string name="InviteActivity_send_sms">Изпрати SMS</string>
   <string name="InviteActivity_cancel">Откажи</string>
   <string name="InviteActivity_sending">Изпращане...</string>
   <string name="InviteActivity_heart_content_description">Сърце</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
   <string name="InviteActivity_invite_to_signal">Покани в Signal</string>
-  <plurals name="InviteActivity_send_to_friends">
-    <item quantity="one">ИЗПРАТИ ДО 1 ПРИЯТЕЛ</item>
-    <item quantity="other">ИЗПРАТИ ДО %d ПРИЯТЕЛЯ</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Изпрати 1 SMS покана?</item>
     <item quantity="other">Изпрати %d SMS покани?</item>
@@ -334,6 +331,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal, кажи им здрасти!</string>
+  <string name="MessageRecord_you">Ти</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Грешна стара парола!</string>
@@ -358,6 +356,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление това не е валидна QR връзка.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Свържи с Signal устройство?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Signal устройство с 3та скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Signal.</string>
+  <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведи паролата</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal икона</string>
@@ -612,6 +611,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="device_list_fragment__link_new_device">Свържи ново устройство</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продължи</string>
+  <!--expiration-->
+  <string name="expiration_off">Изключено</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Неуспешно прочитане на доклада на Вашето устройство. Все пак може да използвате ADB, за да получте доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
@@ -921,6 +922,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="conversation_context__menu_resend_message">Повторно изпращане</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Запази прикачения файл</string>
+  <!--conversation_expiring_off-->
+  <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Покани</string>
   <!--conversation_insecure_no_push-->

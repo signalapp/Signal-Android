@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -30,6 +31,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class RecipientFactory {
+
+  public static final String RECIPIENT_CLEAR_ACTION = "org.thoughtcrime.securesms.database.RecipientFactory.CLEAR";
 
   private static final RecipientProvider provider = new RecipientProvider();
 
@@ -133,8 +136,9 @@ public class RecipientFactory {
     return value;
   }
 
-  public static void clearCache() {
+  public static void clearCache(Context context) {
     provider.clearCache();
+    context.sendBroadcast(new Intent(RECIPIENT_CLEAR_ACTION));
   }
 
 }
