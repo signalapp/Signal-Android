@@ -120,7 +120,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   private String getExpirationTimerUpdateDisplayBody() {
-    String time   = ExpirationUtil.getExpirationDisplayValue(context, (int)(getExpiresIn() / 1000));
+    String time = ExpirationUtil.getExpirationDisplayValue(context, (int)(getExpiresIn() / 1000));
     String senderAndText;
     if (isOutgoing()) {
       senderAndText = context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time);
