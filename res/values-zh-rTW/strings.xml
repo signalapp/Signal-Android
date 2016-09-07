@@ -276,11 +276,15 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住並保持以錄製語音訊息，鬆開即傳送</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
+  <string name="InviteActivity_choose_contacts">選擇聯絡人</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">正在傳送...</string>
   <string name="InviteActivity_heart_content_description">心</string>
   <string name="InviteActivity_invitations_sent">邀請已傳送！</string>
   <string name="InviteActivity_invite_to_signal">邀請至 Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="other">已傳送簡訊至 %d 位朋友</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">傳送 %d 則簡訊邀請？</item>
   </plurals>
@@ -602,6 +606,26 @@
   <string name="experience_upgrade_activity__continue">繼續</string>
   <!--expiration-->
   <string name="expiration_off">關</string>
+  <plurals name="expiration_seconds">
+    <item quantity="other">%d 秒</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="other">%d 分鍾</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="other">%d 小時</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dh</string>
+  <plurals name="expiration_days">
+    <item quantity="other">%d 天</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="other">%d 星期</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dw</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">無法在您的設備上讀取日誌。您仍然可以使用 ADB 來獲得偵錯紀錄。</string>
   <string name="log_submit_activity__thanks">感謝您的協助！</string>

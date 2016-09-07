@@ -344,7 +344,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
   <string name="MessageRecord_you">Sinä</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestin katoamiselle ajaksi %2$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamiselle ajan: %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>
@@ -371,7 +371,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Viestien katoaminen</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät katoa.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä kun ne on nähty.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-kuvake</string>

@@ -127,6 +127,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">카메라 사용할 수 없음</string>
   <string name="ConversationActivity_unable_to_record_audio">오디오 녹음할 수 없음</string>
   <string name="ConversationActivity_error_sending_voice_message">음성메시지 보내는 동안 오류 발생</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">작업을 처리할 수 있는 앱 없음</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">메시지 세부정보</string>
   <string name="ConversationFragment_transport_s_sent_received_s">전송: %1$s\n송수신: %2$s</string>
@@ -161,6 +162,7 @@
   <string name="ConversationFragment_deleting_messages">메시지를 삭제 중…</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">메시지 검색</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">브라우저 앱 없음</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">선택된 대화를 삭제하시겠습니까?</item>
@@ -267,11 +269,15 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">길게 눌러 음성메시지 녹음하고 보내려면 손 떼세요.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">공유</string>
+  <string name="InviteActivity_choose_contacts">연락처 선택</string>
   <string name="InviteActivity_cancel">취소</string>
   <string name="InviteActivity_sending">보내는 중…</string>
   <string name="InviteActivity_heart_content_description">하트</string>
   <string name="InviteActivity_invitations_sent">초대 보냄</string>
   <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="other">%d분에게 SMS 보내기</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">초대 메시지 %d개를 SMS로 보내시겠습니까?</item>
   </plurals>
@@ -345,6 +351,7 @@
   <string name="RatingManager_rate_now">평가</string>
   <string name="RatingManager_no_thanks">취소</string>
   <string name="RatingManager_later">나중에</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Play 스토어 앱 없음</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">사용자를 차단하시겠습니까?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">차단한 사용자로 부터의 메시지와 통화를 받을 수 없습니다.</string>
@@ -579,11 +586,32 @@
   <string name="experience_upgrade_activity__continue">계속</string>
   <!--expiration-->
   <string name="expiration_off">사용 안함</string>
+  <plurals name="expiration_seconds">
+    <item quantity="other">%d초</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%d초</string>
+  <plurals name="expiration_minutes">
+    <item quantity="other">%d분</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%d분</string>
+  <plurals name="expiration_hours">
+    <item quantity="other">%d시간</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%d시간</string>
+  <plurals name="expiration_days">
+    <item quantity="other">%d일</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%d일</string>
+  <plurals name="expiration_weeks">
+    <item quantity="other">%d주</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%d주</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
   <string name="log_submit_activity__submitting">보내는 중</string>
   <string name="log_submit_activity__posting_logs">로그를 gist에 게시 중…</string>
+  <string name="log_submit_activity__no_browser_installed">브라우저 앱 없음</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오시겠습니까?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">기본 시스템 SMS 데이터베이스가 변경되지 않습니다.</string>

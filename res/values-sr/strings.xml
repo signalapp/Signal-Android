@@ -140,6 +140,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Камера није доступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не могу да снимим звук!</string>
   <string name="ConversationActivity_error_sending_voice_message">Грешка слања гласовне поруке...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нема апликације за руковање овом везом на вашем уређају.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Детаљи поруке</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Пренос: %1$s\nПослата/примљена: %2$s</string>
@@ -186,6 +187,7 @@
   <string name="ConversationFragment_deleting_messages">Бришем поруке...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Тражи...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Нема инсталираног прегледача на вашем уређају.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Обрисати изабрану преписку?</item>
@@ -307,11 +309,17 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Тапните и држите за снимање гласовне поруке, пустите за слање</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Дели</string>
+  <string name="InviteActivity_choose_contacts">Изаберите контакте</string>
   <string name="InviteActivity_cancel">Одустани</string>
   <string name="InviteActivity_sending">Шаљем...</string>
   <string name="InviteActivity_heart_content_description">Срце</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
   <string name="InviteActivity_invite_to_signal">Слање позивнице за Сигнал</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">ПОШАЉИ СМС 1 ПРИЈАТЕЉУ</item>
+    <item quantity="few">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
+    <item quantity="other">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Послати 1 СМС позивницу?</item>
     <item quantity="few">Послати %d СМС позивнице?</item>
@@ -352,6 +360,7 @@
   <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s је на Сигналу, кажите здраво!</string>
   <string name="MessageRecord_you">Ви</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s постави време ишчезнућа поруке на %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Лозинке се не поклапају!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
@@ -377,6 +386,9 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">Повезати Сигнал уређај?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа да покушавате повезати Сигнал уређај користећи спољашњи читач бар-кôда. Због сопствене заштите, очитајте кôд поново помоћу Сигнала.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Ишчежњавајуће поруке</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Ваше поруке неће истећи.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Примљене и послате поруке ове преписке ће ишчезнути %s након што су погледане.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Унесите лозинку</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигнала</string>
@@ -390,6 +402,7 @@
   <string name="RatingManager_rate_now">Оцени одмах!</string>
   <string name="RatingManager_no_thanks">Не, хвала</string>
   <string name="RatingManager_later">Касније</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Упс, изгледа да апликација Плеј продавница није инсталирана на вашем уређају.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирати овај контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Више нећете примати поруке или позиве од овог корисника.</string>
@@ -489,6 +502,7 @@
   <string name="ThreadRecord_missed_call">Пропуштен позив</string>
   <string name="ThreadRecord_media_message">Мултимедијална порука</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s је на Сигналу, пошаљите поздрав!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време ишчезнућа поруке постављено на %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немате кључ идентитета.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Прималац нема кључ идентитета.</string>
@@ -633,11 +647,42 @@
   <string name="experience_upgrade_activity__continue">настави</string>
   <!--expiration-->
   <string name="expiration_off">Искључено</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 секунда</item>
+    <item quantity="few">%d секунде</item>
+    <item quantity="other">%d секунди</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%d s</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 минута</item>
+    <item quantity="few">%d минуте</item>
+    <item quantity="other">%d минута</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%d m</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 сат</item>
+    <item quantity="few">%d сата</item>
+    <item quantity="other">%d сати</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%d h</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 дан</item>
+    <item quantity="few">%d дана</item>
+    <item quantity="other">%d дана</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%d д</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 седмица</item>
+    <item quantity="few">%d седмице</item>
+    <item quantity="other">%d седмица</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%d с</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не могу да очитам дневник на вашем уређају. Можете да искористите АДБ да бисте добавили дневник исправљања грешака.</string>
   <string name="log_submit_activity__thanks">Хвала вам на помоћи!</string>
   <string name="log_submit_activity__submitting">Шаљем</string>
   <string name="log_submit_activity__posting_logs">Отпремам дневник на гист…</string>
+  <string name="log_submit_activity__no_browser_installed">Прегледач није инсталиран</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желите ли да увезете постојеће текстуалне поруке у Сигналову шифровану базу података?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Подразумевана системска база података неће бити измењена или преуређена на било који начин.</string>
@@ -943,7 +988,9 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Сачувај прилог</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Ишчежњавајуће поруке</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Истицање порука</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Пошаљи позивницу</string>
   <!--conversation_insecure_no_push-->

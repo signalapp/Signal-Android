@@ -131,6 +131,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Camera niet beschikbaar</string>
   <string name="ConversationActivity_unable_to_record_audio">Fout bij opnemen audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Fout bij versturen audiobericht...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app aanwezig op het apparaat om deze link te openen.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
@@ -171,6 +172,7 @@
   <string name="ConversationFragment_deleting_messages">Berichten verwijderen...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Zoeken...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op het apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Geselecteerd gesprek verwijderen?</item>
@@ -282,11 +284,16 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tik en hou vast om audio op te nemen, laat los om te versturen.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Delen</string>
+  <string name="InviteActivity_choose_contacts">Kies contacten</string>
   <string name="InviteActivity_cancel">Annuleren</string>
   <string name="InviteActivity_sending">Versturen...</string>
   <string name="InviteActivity_heart_content_description">Hartje</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
   <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">STUUR SMS NAAR 1 VRIEND</item>
+    <item quantity="other">STUUR SMS NAAR %d VRIENDEN</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1 SMS-uitnodiging versturen?</item>
     <item quantity="other">%d SMS-uitnodigingen versturen?</item>
@@ -326,6 +333,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
   <string name="MessageRecord_you">Jij</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s zet zichzelfverwijderende berichten timer op %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
@@ -351,6 +359,9 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal-apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt erop dat je een Signal-apparaat wil koppelen met een externe scanner. Scan voor de veiligheid alsjeblieft de code opnieuw vanuit Signal.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Zichzelfverwijderende berichten</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">De berichten zullen zichzelf niet verwijderen.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Berichten die in dit gesprek verstuurd en ontvangen worden zullen na %s zichzelf verwijderen nadat ze gelezen zijn.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal icoon</string>
@@ -364,6 +375,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RatingManager_rate_now">Nu beoordelen!</string>
   <string name="RatingManager_no_thanks">Nee bedankt</string>
   <string name="RatingManager_later">Later</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oeps, het lijkt er op dat de Play Store app niet geïnstalleerd is op dit apparaat.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Contact blokkeren?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Je zal geen berichten of oproepen meer ontvangen van deze gebruiker.</string>
@@ -461,6 +473,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hallo!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf verwijderen na %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Je hebt geen identiteitssleutel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">De ontvanger heeft geen identiteitssleutel.</string>
@@ -605,11 +618,37 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="experience_upgrade_activity__continue">doorgaan</string>
   <!--expiration-->
   <string name="expiration_off">Uit</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 seconde</item>
+    <item quantity="other">%d seconden</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 minuut</item>
+    <item quantity="other">%d minuten</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 uur</item>
+    <item quantity="other">%d uur</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dh</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 dag</item>
+    <item quantity="other">%d dagen</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 week</item>
+    <item quantity="other">%d weken</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dw</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Het is mislukt logs van je apparaat verzamelen. Je kan nog wel ADB gebruiken om debuglogs te verzamelen.</string>
   <string name="log_submit_activity__thanks">Bedankt voor je hulp!</string>
   <string name="log_submit_activity__submitting">Indienen</string>
   <string name="log_submit_activity__posting_logs">Logs posten naar gist...</string>
+  <string name="log_submit_activity__no_browser_installed">Geen browser geïnstalleerd</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je jouw huidige tekstberichtendatabase importeren naar de versleutelde database van Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabase zal niet gewijzigd of aangepast worden op enige wijze.</string>
@@ -908,7 +947,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Bijlage opslaan</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Zichzelfverwijderende berichten</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Zichzelf vernietigende berichten</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Uitnodigen</string>
   <!--conversation_insecure_no_push-->
