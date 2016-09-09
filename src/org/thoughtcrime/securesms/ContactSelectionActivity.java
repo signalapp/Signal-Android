@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChange
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -48,7 +47,8 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
 {
   private static final String TAG = ContactSelectionActivity.class.getSimpleName();
 
-  private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicTheme(R.style.TextSecure_LightNoActionBar,
+                                                                   R.style.TextSecure_DarkNoActionBar);
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   protected ContactSelectionListFragment contactsFragment;

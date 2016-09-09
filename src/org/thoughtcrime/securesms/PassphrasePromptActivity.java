@@ -39,9 +39,9 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.util.DynamicIntroTheme;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 
 /**
  * Activity that prompts for a user's passphrase.
@@ -50,8 +50,9 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
  */
 public class PassphrasePromptActivity extends PassphraseActivity {
 
-  private DynamicIntroTheme dynamicTheme    = new DynamicIntroTheme();
-  private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
+  private DynamicTheme    dynamicTheme    = new DynamicTheme(R.style.TextSecure_LightIntroTheme,
+                                                             R.style.TextSecure_DarkIntroTheme);
+  private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private EditText        passphraseText;
   private ImageButton     showButton;
