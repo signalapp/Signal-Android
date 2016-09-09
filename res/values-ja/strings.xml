@@ -127,6 +127,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">カメラが使えません</string>
   <string name="ConversationActivity_unable_to_record_audio">録音できません！</string>
   <string name="ConversationActivity_error_sending_voice_message">音声メッセージの送信中にエラー発生...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">このリンクを扱えるアプリがインストールされていません</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
@@ -161,6 +162,7 @@
   <string name="ConversationFragment_deleting_messages">メッセージを削除...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">検索</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">選択中の会話を削除しますか？</item>
@@ -267,11 +269,15 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">押し続けて録音、離して送信</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">シェア</string>
+  <string name="InviteActivity_choose_contacts">連絡先を選んでください</string>
   <string name="InviteActivity_cancel">キャンセル</string>
   <string name="InviteActivity_sending">送信中…</string>
   <string name="InviteActivity_heart_content_description">ハート</string>
   <string name="InviteActivity_invitations_sent">招待状を送りました</string>
   <string name="InviteActivity_invite_to_signal">Signalをオススメする</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="other">%d人の友だちにSMSを送る</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">%d人にSMSを送りますか？</item>
   </plurals>
@@ -310,6 +316,7 @@
   <string name="MessageRecord_missed_call_from">%sから不在着信</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
   <string name="MessageRecord_you">あなた</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sがメッセージの消去時間を%2$sに設定しています</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスワードが正しくありません！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスワードが正しくありません。</string>
@@ -333,6 +340,9 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">デバイスを結び付けますか？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">アプリ外のスキャナーを使ってデバイスを結び付けようとしていますが、安全のためSignal内からコードをスキャンしてください。</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">消えるメッセージ</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">あなたのメッセージに消去期限は付きません</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">この会話内で送受信されるメッセージは閲覧後%sで消えます</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signalアイコン</string>
@@ -346,6 +356,7 @@
   <string name="RatingManager_rate_now">評価する！</string>
   <string name="RatingManager_no_thanks">しません</string>
   <string name="RatingManager_later">後で</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">アプリはインストールされていないようです</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">この連絡先をブロックしますか？</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">今後、このユーザーからの通話やメッセージは受け取りません。</string>
@@ -437,6 +448,7 @@
   <string name="ThreadRecord_missed_call">不在着信がありました</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">メッセージの消去時間が%sに設定されました</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">認証キーがありません。</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">受信者は認証キーがありません。</string>
@@ -581,11 +593,32 @@
   <string name="experience_upgrade_activity__continue">続ける</string>
   <!--expiration-->
   <string name="expiration_off">オフ</string>
+  <plurals name="expiration_seconds">
+    <item quantity="other">%d秒</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%d秒</string>
+  <plurals name="expiration_minutes">
+    <item quantity="other">%d分</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%d分</string>
+  <plurals name="expiration_hours">
+    <item quantity="other">%d時間</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%d時間</string>
+  <plurals name="expiration_days">
+    <item quantity="other">%d日</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%d日</string>
+  <plurals name="expiration_weeks">
+    <item quantity="other">%d週間</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%d週間</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバイス上のログを読めません。ただしADBを使ってデバッグログを読むことはできます。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
   <string name="log_submit_activity__submitting">提出中</string>
   <string name="log_submit_activity__posting_logs">ログをgistに投稿中…</string>
+  <string name="log_submit_activity__no_browser_installed">ブラウザがインストールされていません</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Signalの暗号化されたデータベースにメッセージをインポートしますか？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">携帯端末にある既定データベースは変更されません。</string>
@@ -868,7 +901,9 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">添付ファイルを保存</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">消えるメッセージ</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">期限切れメッセージ</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">オススメする</string>
   <!--conversation_insecure_no_push-->
