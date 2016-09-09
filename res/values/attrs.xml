@@ -40,6 +40,8 @@
     <attr name="conversation_attach_sound" format="reference"/>
     <attr name="conversation_attach_contact_info" format="reference"/>
     <attr name="conversation_attach" format="reference"/>
+    <attr name="conversation_number_picker_text_color_normal" format="reference|color"/>
+    <attr name="conversation_number_picker_text_color_selected" format="reference|color"/>
 
     <attr name="emoji_tab_strip_background" format="color" />
     <attr name="emoji_tab_indicator" format="color" />
