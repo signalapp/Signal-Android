@@ -27,8 +27,15 @@ public class SmsCharacterCalculator extends CharacterCalculator {
     int messagesSpent       = length[0];
     int charactersSpent     = length[1];
     int charactersRemaining = length[2];
-    int maxMessageSize      = (charactersSpent + charactersRemaining) / messagesSpent;
 
+    int maxMessageSize;
+
+    if (messagesSpent > 0) {
+      maxMessageSize = (charactersSpent + charactersRemaining) / messagesSpent;
+    } else {
+      maxMessageSize = (charactersSpent + charactersRemaining);
+    }
+    
     return new CharacterState(messagesSpent, charactersRemaining, maxMessageSize);
   }
 }
