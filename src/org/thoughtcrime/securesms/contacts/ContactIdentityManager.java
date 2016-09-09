@@ -9,10 +9,7 @@ import java.util.List;
 public abstract class ContactIdentityManager {
 
   public static ContactIdentityManager getInstance(Context context) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-      return new ContactIdentityManagerICS(context);
-    else
-      return new ContactIdentityManagerGingerbread(context);
+    return new ContactIdentityManagerICS(context);
   }
 
   protected final Context context;
