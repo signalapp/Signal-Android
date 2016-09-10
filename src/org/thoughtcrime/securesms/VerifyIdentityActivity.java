@@ -163,7 +163,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
                .commit();
   }
 
-  public void setActionBarNotificationBarColor(MaterialColor color) {
+  private void setActionBarNotificationBarColor(MaterialColor color) {
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
