@@ -665,7 +665,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="few">%d ure</item>
     <item quantity="other">%d ur</item>
   </plurals>
-  <string name="expiration_hours_abbreviated">%du</string>
+  <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
     <item quantity="one">1 dan</item>
     <item quantity="two">%d dni</item>

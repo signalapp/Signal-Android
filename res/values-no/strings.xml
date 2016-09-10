@@ -133,6 +133,7 @@ denne kontakten.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
   <string name="ConversationActivity_unable_to_record_audio">Kunne ikke ta opp lyd!</string>
   <string name="ConversationActivity_error_sending_voice_message">Feil ved sending av talemelding...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det er ingen app tilgjengelig på enheten din for å håndtere denne linken.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
@@ -173,6 +174,7 @@ denne kontakten.</string>
   <string name="ConversationFragment_deleting_messages">Sletter meldinger...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Søk...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det er ingen nettleser installert på enheten din.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Slett valgt samtale?</item>
@@ -284,11 +286,16 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å ta opp en talemelding, slipp for å sende.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
+  <string name="InviteActivity_choose_contacts">Velg kontakter</string>
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Sender...</string>
   <string name="InviteActivity_heart_content_description">Hjerte</string>
   <string name="InviteActivity_invitations_sent">Invitasjoner sendt!</string>
   <string name="InviteActivity_invite_to_signal">Inviter til Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">SEND SMS TIL 1 VENN</item>
+    <item quantity="other">SEND SMS TIL %d VENNER</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Send 1 invitasjon på SMS?</item>
     <item quantity="other">Send %d invitasjoner på SMS?</item>
@@ -328,6 +335,7 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="MessageRecord_missed_call_from">Ubesvart anrop fra %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <string name="MessageRecord_you">Du</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s sett tiden før meldingen utløper til %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -352,6 +360,9 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="DeviceProvisioningActivity_link_a_signal_device">Koble en Signal enhet?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som om du prøver å koble en Signal enhet ved hjelp av en 3. parts skanner. For å beskytte deg ber vi at du skanner koden igjen fra Signal.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Tidsbegrensede meldinger</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Meldingene dine vil ikke utløpe.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meldinger som sendes og mottas i denne samtalen vil utløpe og slettes %s etter de har blitt lest.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Tast inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
@@ -365,6 +376,7 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="RatingManager_rate_now">Vurder nå!</string>
   <string name="RatingManager_no_thanks">Nei takk</string>
   <string name="RatingManager_later">Senere</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ooops, Play Store ser ikke ut til å være installert på enheten din.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokker denne kontakten?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Du vil ikke lenger motta meldinger eller anrop fra denne brukeren.</string>
@@ -461,6 +473,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <string name="ThreadRecord_media_message">Media melding</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden før meldingene utløper er satt til %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
@@ -605,11 +618,37 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="experience_upgrade_activity__continue">fortsett</string>
   <!--expiration-->
   <string name="expiration_off">Av</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 sekund</item>
+    <item quantity="other">%d sekunder</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 minutt</item>
+    <item quantity="other">%d minutter</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 time</item>
+    <item quantity="other">%d timer</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dt</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 dag</item>
+    <item quantity="other">%d dager</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 uke</item>
+    <item quantity="other">%d uker</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%du</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke lese loggen fra din enhet. Du kan fremdeles bruke ADB for å hente ut en debug logg.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
   <string name="log_submit_activity__submitting">Sender</string>
   <string name="log_submit_activity__posting_logs">Poster logger til gist...</string>
+  <string name="log_submit_activity__no_browser_installed">Ingen nettleser installert</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du å importere dine eksisterende tekstmeldinger til Signal sin krypterte database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabasen vil ikke på noen måte bli endret.</string>
@@ -906,7 +945,9 @@ feilet.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagre vedlegg</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Tidsbegrensede meldinger</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Meldinger som utløper</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Inviter</string>
   <!--conversation_insecure_no_push-->

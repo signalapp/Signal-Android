@@ -136,6 +136,7 @@ este contacto.
   <string name="ConversationActivity_quick_camera_unavailable">Cámara no disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar el audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Error al enviar mensaje de voz...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hay ninguna aplicación disponible para usar este enlace en su dispositivo.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s
@@ -180,6 +181,7 @@ Recibido:%4$s</string>
   <string name="ConversationFragment_deleting_messages">Borrando mensajes...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Buscar...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hay ningún navegador instalado en su dispositivo</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">¿Eliminar la conversación seleccionada?</item>
@@ -297,11 +299,16 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pulse y mantenga pulsado para grabar un mensaje de voz, suelte para enviar</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartir</string>
+  <string name="InviteActivity_choose_contacts">Escoja contactos</string>
   <string name="InviteActivity_cancel">Cancelar</string>
   <string name="InviteActivity_sending">Enviando...</string>
   <string name="InviteActivity_heart_content_description">Corazón</string>
   <string name="InviteActivity_invitations_sent">¡Invitaciones enviadas!</string>
   <string name="InviteActivity_invite_to_signal">Invitar a Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">ENVIAR SMS A 1 AMIGO</item>
+    <item quantity="other">ENVIAR SMS A %d AMIGOS</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">¿Enviar 1 invitación SMS?</item>
     <item quantity="other">¿Enviar %d invitaciones SMS?</item>
@@ -341,6 +348,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">¡%s esta en Signal, salúdele!</string>
   <string name="MessageRecord_you">Usted</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableció el plazo de mensajes desvanecentes a %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves de acceso no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
@@ -366,6 +374,9 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">¿Enlazar un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando enlazar un dispositivo Signal usando un escáner de terceros. Para tu protección, por favor, escanea el código otra vez desde Signal.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Mensajes desvanecentes</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Sus mensajes no caducarán.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Los mensajes enviados y recibidos en esta conversación desaparecerán %s después de que se hayan enviado.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduzca clave de acceso</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de Signal</string>
@@ -379,6 +390,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="RatingManager_rate_now">¡Evaluar ahora!</string>
   <string name="RatingManager_no_thanks">No, gracias</string>
   <string name="RatingManager_later">Más tarde</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uups, la aplicación de la Play Store no parece estar instalada en su dispositivo.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">¿Bloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">No volverá a recibir mensajes ni llamadas de este usuario.</string>
@@ -485,6 +497,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_missed_call">Llamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">¡%s está en Signal, salúdele!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">El plazo del mensaje desvanecente se estableció a %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">No tiene ninguna clave de identidad.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">El destinatario no tiene clave de identidad.</string>
@@ -629,11 +642,37 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="experience_upgrade_activity__continue">continuar</string>
   <!--expiration-->
   <string name="expiration_off">Inactivo</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 segundo</item>
+    <item quantity="other">%d segundos</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%d s</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 minuto</item>
+    <item quantity="other">%d minutos</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%d m</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 hora</item>
+    <item quantity="other">%d horas</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%d h</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 día</item>
+    <item quantity="other">%d días</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%d d</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 semana</item>
+    <item quantity="other">%d semanas</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%d s</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No se pudo leer el registro (log) en su dispositivo. Aún puede usar ADB para obtener un registro de depuración en su lugar.</string>
   <string name="log_submit_activity__thanks">¡Gracias por su ayuda!</string>
   <string name="log_submit_activity__submitting">Enviando</string>
   <string name="log_submit_activity__posting_logs">Publicando registros de actividad en gist...</string>
+  <string name="log_submit_activity__no_browser_installed">No hay ningún navegador instalado</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">¿Desea importar sus mensajes de texto existentes a la base de datos cifrada de Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de datos de sistema por defecto no será modificada o alterada de ningún modo.</string>
@@ -950,7 +989,9 @@ por SMS.
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar archivo adjunto</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Mensajes desvanecentes</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Los mensajes caducan</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Invitar</string>
   <!--conversation_insecure_no_push-->

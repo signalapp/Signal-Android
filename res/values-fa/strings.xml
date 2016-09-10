@@ -582,6 +582,21 @@
   <string name="experience_upgrade_activity__continue">ادامه</string>
   <!--expiration-->
   <string name="expiration_off">خاموش</string>
+  <plurals name="expiration_seconds">
+    <item quantity="other">ثانیه %d</item>
+  </plurals>
+  <plurals name="expiration_minutes">
+    <item quantity="other">دقیقه %d</item>
+  </plurals>
+  <plurals name="expiration_hours">
+    <item quantity="other">ساعت %d</item>
+  </plurals>
+  <plurals name="expiration_days">
+    <item quantity="other"> روز %d</item>
+  </plurals>
+  <plurals name="expiration_weeks">
+    <item quantity="other">هفته %d</item>
+  </plurals>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">نمی توانیم فایل گزارش را در دستگاه شما بخوانیم.شما می توانید از طریق ADB گزارش دیباگ را دریافت کنید.</string>
   <string name="log_submit_activity__thanks">تشکر از کمک شما!</string>

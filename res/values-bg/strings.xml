@@ -132,6 +132,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Камерата е недостъпна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не може да бъде записано аудио!</string>
   <string name="ConversationActivity_error_sending_voice_message">Грешка при изпращане на гласово съобщение...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нямате инсталирано приложение, което да може да използва тази препратка.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Информация за съобщението</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nИзпратени/Получени: %2$s</string>
@@ -172,6 +173,7 @@
   <string name="ConversationFragment_deleting_messages">Изтриване на съобщения...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Търсене...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Нямате инсталиран браузър.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Изтриване на избрания разговор?</item>
@@ -288,11 +290,16 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Натиснете и задръжте, за да запишете гласово съобщение, отпуснете, за да изпратите</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Сподели</string>
+  <string name="InviteActivity_choose_contacts">Изберете контакти</string>
   <string name="InviteActivity_cancel">Откажи</string>
   <string name="InviteActivity_sending">Изпращане...</string>
   <string name="InviteActivity_heart_content_description">Сърце</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
   <string name="InviteActivity_invite_to_signal">Покани в Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">ИЗПРАТЕТЕ SMS ДО 1 ПРИЯТЕЛ</item>
+    <item quantity="other">ИЗПРАТЕТЕ SMS ДО %d ПРИЯТЕЛЯ</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Изпрати 1 SMS покана?</item>
     <item quantity="other">Изпрати %d SMS покани?</item>
@@ -332,6 +339,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal, кажи им здрасти!</string>
   <string name="MessageRecord_you">Ти</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи продължителност от %2$s преди съобщението да изчезне</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Грешна стара парола!</string>
@@ -357,6 +365,9 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="DeviceProvisioningActivity_link_a_signal_device">Свържи с Signal устройство?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Signal устройство с 3та скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Signal.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Изчезващи съобщения</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Съобщението Ви няма да изчезне.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Изпратени и получени съобщения в този разговор ще изчезнат %s след изпращането им.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведи паролата</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal икона</string>
@@ -370,6 +381,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="RatingManager_rate_now">Оцени сега!</string>
   <string name="RatingManager_no_thanks">Не благодаря</string>
   <string name="RatingManager_later">По-късно</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Опа, Play Store приложението не е инсталирано на устройството Ви.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирай този контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Повече няма да получавате съобщения или обаждания от този потребител.</string>
@@ -469,6 +481,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Signal, кажи му здрасти!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма ключ за самоличност.</string>
@@ -613,11 +626,37 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="experience_upgrade_activity__continue">продължи</string>
   <!--expiration-->
   <string name="expiration_off">Изключено</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 секунда</item>
+    <item quantity="other">%d секунди</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 минута</item>
+    <item quantity="other">%d минути</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 час</item>
+    <item quantity="other">%d часа</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dh</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 ден</item>
+    <item quantity="other">%d дена</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 седмица</item>
+    <item quantity="other">%d седмици</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dw</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Неуспешно прочитане на доклада на Вашето устройство. Все пак може да използвате ADB, за да получте доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
   <string name="log_submit_activity__submitting">Изпращане</string>
   <string name="log_submit_activity__posting_logs">Изпращане на доклад до gist...</string>
+  <string name="log_submit_activity__no_browser_installed">Няма инсталиран браузър</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желаете ли да внесете вече същестуващите текстови съобщения в криптиранта база данни на Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системната база данни няма да бъде променена по никакъв начин.</string>
@@ -923,7 +962,9 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Запази прикачения файл</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Изчезващи съобщения</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Съобщения, които изчеват</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Покани</string>
   <!--conversation_insecure_no_push-->

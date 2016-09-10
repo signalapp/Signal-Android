@@ -138,6 +138,7 @@ această persoană.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Camera foto indisponibilă</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Eroare la trimiterea mesajului vocal...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nTrimis/Primit: %2$s</string>
@@ -184,6 +185,7 @@ această persoană.</string>
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Caută...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu există nici un browser instalat pe dispozitivul tău.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Șterg conversația selectată?</item>
@@ -302,11 +304,17 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ține apăsat pentru a înregistra un mesaj vocal, eliberează pentru a trimite</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partajează</string>
+  <string name="InviteActivity_choose_contacts">Alege contactele</string>
   <string name="InviteActivity_cancel">Anulare</string>
   <string name="InviteActivity_sending">Se trimite...</string>
   <string name="InviteActivity_heart_content_description">Inimă</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
   <string name="InviteActivity_invite_to_signal">Invită la Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">TRIMITE SMS LA 1 PRIETEN</item>
+    <item quantity="few">TRIMITE SMS LA %d PRIETENI</item>
+    <item quantity="other">TRIMITE SMS LA %d PRIETENI</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Trimit o invitație prin SMS?</item>
     <item quantity="few">Trimit %d invitații prin SMS?</item>
@@ -347,6 +355,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, salută-l!</string>
   <string name="MessageRecord_you">Tu</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s setează timpul pentru dispariția mesajelor la %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
@@ -372,6 +381,9 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="DeviceProvisioningActivity_link_a_signal_device">Conectez un dispozitiv Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Se pare că încerci să conectezi un dispozitiv Signal folosind un scaner terț. Pentru protecția ta, te rog scanează codul încă o dată din interiorul aplicației Signal.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Mesaje care dispar</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Mesajele tale nu vor expira.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introdu parola</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icoană Signal</string>
@@ -385,6 +397,7 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="RatingManager_rate_now">Evaluează acum!</string>
   <string name="RatingManager_no_thanks">Nu, mersi</string>
   <string name="RatingManager_later">Mai târziu</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uuups, se pare că aplicația Magazinul Play nu este instalată pe dispozitivul tău.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blochez acest contact?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Nu o să mai primești mesaje sau apeluri de la acest utilizator.</string>
@@ -484,6 +497,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_missed_call">Apel ratat</string>
   <string name="ThreadRecord_media_message">Mesaj media</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s este pe Signal, spune-i hey!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nu ai o cheie de identitate.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Destinatarul nu are o cheie de identitate.</string>
@@ -628,11 +642,42 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="experience_upgrade_activity__continue">continuă</string>
   <!--expiration-->
   <string name="expiration_off">Dezactivat</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 secundă</item>
+    <item quantity="few">%d secunde</item>
+    <item quantity="other">%d secunde</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 minut</item>
+    <item quantity="few">%d minute</item>
+    <item quantity="other">%d minute</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 oră</item>
+    <item quantity="few">%d ore</item>
+    <item quantity="other">%d ore</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%do</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 zi</item>
+    <item quantity="few">%d zile</item>
+    <item quantity="other">%d zile</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dz</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 săptămână</item>
+    <item quantity="few">%d săptămâni</item>
+    <item quantity="other">%d săptămâni</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%ds</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Fișierul log nu a putut fi citit de pe dispozitivul tău. Poţi folosi în schimb ADB pentru a obţine log-ul de depanare.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
   <string name="log_submit_activity__submitting">Se trimite</string>
   <string name="log_submit_activity__posting_logs">Se trimit log-urile către gist...</string>
+  <string name="log_submit_activity__no_browser_installed">Nici un browser instalat</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vrei să imporţi mesajale tale text existente în baza de date criptată Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza de date a sistemului nu va fi modificată în nici un fel.</string>
@@ -950,7 +995,9 @@ SMS a eșuat.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvează ataşamentul</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Mesaje care dispar</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Expirarea mesejelor</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Invită</string>
   <!--conversation_insecure_no_push-->
