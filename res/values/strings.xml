@@ -538,7 +538,8 @@
     </string>
     <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Received message with unknown identity key. Tap to process and display.</string>
     <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
-    <string name="SmsMessageRecord_secure_session_reset">Secure session reset.</string>
+    <string name="SmsMessageRecord_secure_session_reset">You reset the secure session.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s reset the secure session.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
 
     <!-- ThreadRecord -->
