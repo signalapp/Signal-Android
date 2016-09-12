@@ -21,6 +21,10 @@ public:
   RtpPacket(char *payload, int payloadLen, int sequenceNumber, int timestamp);
   ~RtpPacket();
 
+  static int getMinimumSize() {
+    return sizeof(RtpHeader);
+  }
+
   uint16_t getSequenceNumber();
   int getPayloadType();
   uint32_t getTimestamp();
