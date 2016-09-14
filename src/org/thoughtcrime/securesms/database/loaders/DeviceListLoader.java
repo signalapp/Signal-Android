@@ -46,6 +46,11 @@ public class DeviceListLoader extends AsyncTaskLoader<List<DeviceInfo>> {
     }
   }
 
+  @Override
+  public void onStartLoading() {
+    forceLoad();
+  }
+
   private static class DeviceInfoComparator implements Comparator<DeviceInfo> {
 
     @Override
