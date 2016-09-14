@@ -77,7 +77,7 @@ public class DeviceListFragment extends ListFragment
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
-    getLoaderManager().initLoader(0, null, this).forceLoad();
+    getLoaderManager().initLoader(0, null, this);
     getListView().setOnItemClickListener(this);
   }
 
@@ -142,8 +142,7 @@ public class DeviceListFragment extends ListFragment
                               new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        getLoaderManager().getLoader(0).forceLoad();
-        getLoaderManager().initLoader(0, null, DeviceListFragment.this);
+        getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
       }
     });
 
