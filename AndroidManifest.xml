@@ -107,6 +107,9 @@
     <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
                android:value="GlideModule" />
 
+    <meta-data android:name="com.google.android.gms.car.application"
+        android:resource="@xml/automotive_app_desc" />
+
     <activity android:name="org.thoughtcrime.redphone.RedPhone"
               android:excludeFromRecents="true"
               android:screenOrientation="portrait"
@@ -453,6 +456,19 @@
             <action android:name="org.thoughtcrime.securesms.notifications.WEAR_REPLY"/>
         </intent-filter>
     </receiver>
+
+    <receiver android:name=".notifications.AndroidAutoHeardReceiver">
+        <intent-filter>
+          <action android:name="org.thoughtcrime.securesms.notifications.ANDROID_AUTO_HEARD"/>
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".notifications.AndroidAutoReplyReceiver">
+        <intent-filter>
+          <action android:name="org.thoughtcrime.securesms.notifications.ANDROID_AUTO_REPLY"/>
+        </intent-filter>
+    </receiver>
+
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
