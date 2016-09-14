@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.jobs.IdentityUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -100,6 +101,10 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
           processMessageRecord(messageRecord);
           processPendingMessageRecords(messageRecord.getThreadId(), mismatch);
+
+          ApplicationContext.getInstance(getContext())
+                            .getJobManager()
+                            .add(new IdentityUpdateJob(getContext(), mismatch.getRecipientId()));
 
           return null;
         }
