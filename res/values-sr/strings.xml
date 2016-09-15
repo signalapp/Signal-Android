@@ -491,7 +491,6 @@
 Примљена је порука размене кључа за неисправно издање протокола.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Примљена је порука непознатог кључа идентификације. Тапните за обраду и приказ.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Примљени су ажурирани али непознати подаци идентитета. Додирните за оверу идентитета.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Безбедна сесија је ресетована.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусти групу...</string>

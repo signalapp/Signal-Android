@@ -429,7 +429,6 @@
         Recibida unha mensaxe de intercambio de chaves para unha versión de protocolo non válida.
     </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Mensaxe recibida cunha chave de identidade descoñecida. Toca para proceder e mostrar.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Restablecer sesión segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensaxe duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Abandonou o grupo...</string>

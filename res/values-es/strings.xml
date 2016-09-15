@@ -486,7 +486,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
 </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Se recibió un mensaje con una clave de identidad desconocida. Pulse para procesar y mostrar.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Recibí actualizado pero con información de identidad desconocida. Pulse para validar identidad.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Reinicio de sesión segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ha dejado el grupo...</string>

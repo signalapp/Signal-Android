@@ -486,7 +486,6 @@ schimbul de chei este corupt </string>
 Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune de protocol invalidă.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Primit mesaj cu o cheie de identitate necunoscută. Click pentru a-l procesa și afișa.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">S-au primit informații de identitate actualizate dar necunoscute. Apăsați pentru a valida identitatea.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Sesiune securizată resetată.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">A ieșit din grup...</string>

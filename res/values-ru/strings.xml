@@ -140,6 +140,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Невозможно записать аудио!</string>
   <string name="ConversationActivity_error_sending_voice_message">Ошибка при отправке голосового сообщения...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве не найдено приложение для открытия этой ссылки.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Подробности</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nОтправлено/Получено: %2$s</string>
@@ -192,6 +193,7 @@
   <string name="ConversationFragment_deleting_messages">Удаляем сообщения...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Поиск...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Удалить выбранный разговор?</item>
@@ -311,11 +313,18 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Нажмите и держите, чтобы записать голосовое сообщение; отпустите, чтобы отправить</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поделиться</string>
+  <string name="InviteActivity_choose_contacts">Выберите контакты</string>
   <string name="InviteActivity_cancel">Отмена</string>
   <string name="InviteActivity_sending">Отправляем...</string>
   <string name="InviteActivity_heart_content_description">Сердце</string>
   <string name="InviteActivity_invitations_sent">Приглашения отправлены!</string>
   <string name="InviteActivity_invite_to_signal">Пригласить в Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">ОТПРАВИТЬ SMS ДРУГУ</item>
+    <item quantity="few">ОТПРАВИТЬ SMS ДРУЗЬЯМ (%d)</item>
+    <item quantity="many">ОТПРАВИТЬ SMS ДРУЗЬЯМ (%d)</item>
+    <item quantity="other">ОТПРАВИТЬ SMS ДРУЗЬЯМ (%d)</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Отправить 1 SMS-приглашение?</item>
     <item quantity="few">Отправить %d SMS-приглашения?</item>
@@ -357,6 +366,7 @@
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
   <string name="MessageRecord_you">Вы</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s: установлено время исчезновения сообщений – %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
@@ -381,6 +391,9 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">Привязать устройство Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Похоже, вы пытаетесь привязать устройство Signal, используя сторонний сканер. Для вашей защиты, пожалуйста, просканируйте код через Signal.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Исчезающие сообщения</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Срок показа сообщений не ограничен.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Сообщения, отправленные и полученные в этом разговоре, исчезнут через %s сек. после прочтения.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Введите парольную фразу</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Иконка Signal</string>
@@ -394,6 +407,7 @@
   <string name="RatingManager_rate_now">Оценить</string>
   <string name="RatingManager_no_thanks">Нет, спасибо</string>
   <string name="RatingManager_later">Позже</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Хм, похоже что приложение Play Store не установлено на вашем устройстве.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокировать этот контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Вы больше не будете получать сообщения или звонки от этого пользователя.</string>
@@ -479,7 +493,6 @@
 </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Получено сообщение с неизвестным личным ключом. Нажмите, чтобы обработать и показать его.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получены новые, но неизвестные данные о личности. Нажмите, чтобы проверить.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Защищённый сеанс сброшен.</string>
   <string name="SmsMessageRecord_duplicate_message">Дубликат сообщения.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Вы покинули группу...</string>
@@ -490,6 +503,7 @@
   <string name="ThreadRecord_missed_call">Пропущен звонок</string>
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщения – %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У получателя нет личного ключа.</string>
@@ -634,11 +648,47 @@
   <string name="experience_upgrade_activity__continue">продолжить</string>
   <!--expiration-->
   <string name="expiration_off">Выключено</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 секунда</item>
+    <item quantity="few">%d сек.</item>
+    <item quantity="many">%d сек.</item>
+    <item quantity="other">%d сек.</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%dс.</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 минута</item>
+    <item quantity="few">%d мин.</item>
+    <item quantity="many">%d мин.</item>
+    <item quantity="other">%d мин.</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dм.</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 час</item>
+    <item quantity="few">%d час.</item>
+    <item quantity="many">%d час.</item>
+    <item quantity="other">%d час.</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dч.</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 день</item>
+    <item quantity="few">%d дн.</item>
+    <item quantity="many">%d дн.</item>
+    <item quantity="other">%d дн.</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dд.</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 неделя</item>
+    <item quantity="few">%d нед.</item>
+    <item quantity="many">%d нед.</item>
+    <item quantity="other">%d нед.</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dн.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не удается прочитать журнал отладки вашего устройства. Тем не менее, вы можете получить его при помощи ADB.</string>
   <string name="log_submit_activity__thanks">Спасибо за помощь!</string>
   <string name="log_submit_activity__submitting">Отправка</string>
   <string name="log_submit_activity__posting_logs">Отправляем логи на gist...</string>
+  <string name="log_submit_activity__no_browser_installed">Браузер не установлен</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Хотите ли вы импортировать имеющиеся текстовые сообщения в зашифрованную базу данных Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cистемная база данных изменена не будет.</string>
@@ -947,7 +997,9 @@ SMS-подтверждения...
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Сохранить вложение</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Исчезающие сообщения</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Срока показа сообщений истек</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Пригласить</string>
   <!--conversation_insecure_no_push-->

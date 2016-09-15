@@ -443,7 +443,6 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">接收到的密钥交换信息来自不正确的协议版本。</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">接收到来自未知密钥身份的信息。点击以处理或显示。</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">已经收到更新，但是无法确认身份信息。点击并验证身份。</string>
-  <string name="SmsMessageRecord_secure_session_reset">安全会话已重设。</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">离开此群组...</string>

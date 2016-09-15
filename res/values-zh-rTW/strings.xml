@@ -451,7 +451,6 @@
     </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">收到的金鑰交換訊息夾帶未知的身分值，按此顯示細節並執行。</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">已接收金鑰交換更新請求但未知對方身分。按此進行身分確認。</string>
-  <string name="SmsMessageRecord_secure_session_reset">安全對話已重設。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">離開這個群組...</string>

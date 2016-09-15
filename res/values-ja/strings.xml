@@ -437,7 +437,6 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">受信した鍵交換メッセージのプロトコルバージョンが無効です</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">未登録のIDキー付きでメッセージを受信しました。タップして処理や表示を行ってください。</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">新たな識別情報を受信しましたが認証が不明です。タップで検証してください。</string>
-  <string name="SmsMessageRecord_secure_session_reset">安全なセッションがリセットされました</string>
   <string name="SmsMessageRecord_duplicate_message">重複メッセージ</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">グループを抜けました...</string>

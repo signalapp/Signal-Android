@@ -462,7 +462,6 @@ Dobbelsjekk at dette er nummeret ditt! Vi er i ferd med å verifisere det med en
 Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Mottok oppdatert men ukjent identitetsinformasjon. Trykk for å validere identiteten.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Sikker sesjon nullstilt.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplisert melding.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Forlot gruppen...</string>

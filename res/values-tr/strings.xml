@@ -446,7 +446,6 @@ mesajı alındı!</string>
 Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Bilinmeyen kimlik anahtarı içeren mesaj alındı. Anahtarı işlemek ve mesajı görüntülemek için dokunun.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Güncellenmiş fakat bilinmeyen bir kimlik bilgisi alındı. Kimlik doğrulaması için dokunun.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Güvenli oturumu sıfırla.</string>
   <string name="SmsMessageRecord_duplicate_message">Yinelenen ileti.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Gruptan ayrıldı...</string>

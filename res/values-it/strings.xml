@@ -176,7 +176,7 @@ questo contatto.</string>
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sul tuo dispositivo non ci sono browser installati.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
-    <item quantity="one">Cancellare la conversazione selezionata?</item>
+    <item quantity="one">Eliminare la conversazione selezionata?</item>
     <item quantity="other">Eliminare le conversazioni selezionate?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
@@ -337,6 +337,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <string name="MessageRecord_you">Tu</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s imposta il tempo di scomparsa dei messaggi a %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
@@ -466,7 +467,6 @@ scambia un altro messaggio!
 Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valida.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Ricevuto un messaggio con chiave d\'identità sconosciuta. Tocca per accettarlo e visualizzarlo</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Ricevute informazioni di identità aggiornate ma sconosciute. Clicca per validare l\'identità.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Sessione sicura azzerata.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Gruppo abbandonato...</string>
