@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
@@ -45,6 +46,7 @@ import dagger.Provides;
                                      MultiDeviceContactUpdateJob.class,
                                      MultiDeviceGroupUpdateJob.class,
                                      MultiDeviceReadUpdateJob.class,
+                                     MultiDeviceBlockedUpdateJob.class,
                                      DeviceListFragment.class,
                                      RefreshAttributesJob.class,
                                      GcmRefreshJob.class})

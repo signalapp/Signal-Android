@@ -313,6 +313,11 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
   <string name="InviteActivity_invitations_sent">Pozivnice poslane!</string>
   <string name="InviteActivity_invite_to_signal">Pozovi u Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">POŠALJI SMS PRIJATELJIMA: 1</item>
+    <item quantity="few">POŠALJI SMS PRIJATELJIMA: %d</item>
+    <item quantity="other">POŠALJI SMS PRIJATELJIMA: %d</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Pošalji SMS pozivnice?</item>
     <item quantity="few">Pošalji %d SMS pozivnice?</item>
@@ -380,7 +385,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda da pokušavate povezati Signal uređaj pomoću strane aplikacije. Za Vašu vlastitu sigurnost molimo skenirajte kôd ponovno unutar Signal aplikacije.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Nestajuće poruke</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Vaša poruka neće isteći.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Vaše poruke neće isteći.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Primljene i poslane poruke u ovom razgovoru će nestati %s nakon što su viđene.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
@@ -484,7 +489,6 @@ razmjene ključeva!</string>
 Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Primljena poruka s nepoznatim ključem identiteta. Pritisnite za obradu i prikaz.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Primljene ažurirane ali nepoznate infomacije o identitetu. Pritisnite za provjeru identiteta.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Napustio grupu...</string>
@@ -642,11 +646,21 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="expiration_off">Isključeno</string>
   <plurals name="expiration_seconds">
     <item quantity="one">1 sekunda</item>
-    <item quantity="few">%d sekundi</item>
+    <item quantity="few">%d sekunde</item>
     <item quantity="other">%d sekundi</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 minuta</item>
+    <item quantity="few">%d minute</item>
+    <item quantity="other">%d minuta</item>
+  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 sat</item>
+    <item quantity="few">%d sata</item>
+    <item quantity="other">%d sati</item>
+  </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
     <item quantity="one">1 dan</item>
@@ -656,7 +670,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
     <item quantity="one">1 tjedan</item>
-    <item quantity="few">%d tjedana</item>
+    <item quantity="few">%d tjedna</item>
     <item quantity="other">%d tjedana</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>

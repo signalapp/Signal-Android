@@ -26,6 +26,11 @@ RtpPacket* RtpAudioReceiver::receive(char* encodedData, int encodedDataLen) {
     return NULL;
   }
 
+  if (received < RtpPacket::getMinimumSize()) {
+    __android_log_print(ANDROID_LOG_WARN, TAG, "recveived malformed packet!");
+    return NULL;
+  }
+
   RtpPacket *packet = new RtpPacket(encodedData, received);
 
   if (srtpStream.decrypt(*packet, sequenceCounter.convertNext(packet->getSequenceNumber())) != 0) {

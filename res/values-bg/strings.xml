@@ -470,7 +470,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
 </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Получено е съобщение с не познат ключ за самоличност. Натисни, за да го обработиш и покажеш.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получена е променена, но непозната информация за самоличност. Натисни, за да я провериш.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Сигурната сесия е започната от начало.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусна групата...</string>

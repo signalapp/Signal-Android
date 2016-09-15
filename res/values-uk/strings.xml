@@ -469,7 +469,6 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Отримано повідомлення обміну ключами для неправильної версії протоколу.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Отримано повідомлення з невідомим особистим ключем. Натисніть для його відображення.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Отримано оновлену проте інформацію про особистість. Торкніться щоб перевірити.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Скидання безпечної сесії.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат повідомлення.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Групу покинуто...</string>

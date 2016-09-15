@@ -506,7 +506,6 @@
 تم استلام رسالة تبادل مفاتيح مع إصدارة بروتوكول غير صحيحة.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process"> تم استلام رسالة بمفتاح هوية غير معلوم. أنقر للمتابعة والإظهار.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">تم استلام تحديث ولكن معلومات الهوية مجهولة. أنقر للتحقق من الهوية.</string>
-  <string name="SmsMessageRecord_secure_session_reset">إعادة ضبط جلسة آمنة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترك المجموعة...</string>

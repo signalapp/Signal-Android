@@ -9,7 +9,8 @@
     <android.support.v7.widget.RecyclerView
             android:id="@+id/media_grid"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
 
     <TextView android:id="@+id/no_images"
               android:layout_width="match_parent"

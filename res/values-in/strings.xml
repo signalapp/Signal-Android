@@ -457,7 +457,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
 </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Menerima pesan dengan kunci identitas tidak dikenal. Ketuk untuk memproses dan menampilkan.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Menerima pembaharuan atas identitas yang tidak diketahui. Tekan untuk memvalidasi identitas</string>
-  <string name="SmsMessageRecord_secure_session_reset">Sesi aman disetel ulang.</string>
   <string name="SmsMessageRecord_duplicate_message">Pesan Duplikat</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Tinggalkan grup...</string>
