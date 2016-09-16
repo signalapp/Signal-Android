@@ -100,11 +100,11 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     }
   }
 
-  public void addAndroidAutoAction( @NonNull PendingIntent androidAutoReplyIntent,
-                                    @NonNull PendingIntent androidAutoHeardIntent)
+  public void addAndroidAutoAction(@NonNull PendingIntent androidAutoReplyIntent,
+                                   @NonNull PendingIntent androidAutoHeardIntent, long timestamp)
   {
 
-    if (mContentTitle == null)
+    if (mContentTitle == null || mContentText == null)
       return;
 
     RemoteInput remoteInput = new RemoteInput.Builder(AndroidAutoReplyReceiver.VOICE_REPLY_KEY)
@@ -112,6 +112,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     NotificationCompat.CarExtender.UnreadConversation.Builder unreadConvBuilder =
             new NotificationCompat.CarExtender.UnreadConversation.Builder(mContentTitle.toString())
+                    .addMessage(mContentText.toString())
+                    .setLatestTimestamp(timestamp)
                     .setReadPendingIntent(androidAutoHeardIntent)
                     .setReplyAction(androidAutoReplyIntent, remoteInput);
 
