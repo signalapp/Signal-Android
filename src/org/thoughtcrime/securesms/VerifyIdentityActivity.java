@@ -63,6 +63,7 @@ import org.whispersystems.libsignal.fingerprint.FingerprintIdentifierMismatchExc
 import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
 import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
@@ -100,7 +101,17 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
     Bundle extras = new Bundle();
     extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(RECIPIENT_IDENTITY));
-    extras.putString(VerifyDisplayFragment.REMOTE_NUMBER, recipient.getNumber());
+
+    String e164Number;
+    try {
+      e164Number = Util.canonicalizeNumber(this, recipient.getNumber());
+    } catch (InvalidNumberException exception) {
+      //TODO handle this properly.
+      Log.w(TAG, exception);
+    }
+
+    extras.putString(VerifyDisplayFragment.REMOTE_NUMBER, e164Number);
+
     extras.putParcelable(VerifyDisplayFragment.LOCAL_IDENTITY, new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
     extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
 
