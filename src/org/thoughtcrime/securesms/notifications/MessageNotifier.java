@@ -112,24 +112,23 @@ public class MessageNotifier {
     updateNotification(context, masterSecret, false, false, 0);
   }
 
-  public static void updateNotification(@NonNull  Context context,
-                                        @Nullable MasterSecret masterSecret,
-                                        long threadId)
-  {
-    updateNotification(context, masterSecret, false, threadId);
+  public static void updatePushNotification(@NonNull  Context context) {
+    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
+      return;
+    }
+
+    updateNotification(context, null, true, true, 0);
   }
 
   public static void updateNotification(@NonNull  Context context,
                                         @Nullable MasterSecret masterSecret,
-                                        boolean   includePushDatabase,
                                         long      threadId)
   {
-    updateNotification(context, masterSecret, includePushDatabase, threadId, true);
+    updateNotification(context, masterSecret, threadId, true);
   }
 
   public static void updateNotification(@NonNull  Context context,
                                         @Nullable MasterSecret masterSecret,
-                                        boolean   includePushDatabase,
                                         long      threadId,
                                         boolean   signal)
   {
@@ -158,7 +157,7 @@ public class MessageNotifier {
     if (isVisible) {
       sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
     } else {
-      updateNotification(context, masterSecret, signal, includePushDatabase, 0);
+      updateNotification(context, masterSecret, signal, false, 0);
     }
   }
 

@@ -221,11 +221,7 @@ public class DirectoryHelper {
         Pair<Long, Long>      smsAndThreadId = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (hour >= 9 && hour < 23) {
-          MessageNotifier.updateNotification(context, masterSecret, false, smsAndThreadId.second, true);
-        } else {
-          MessageNotifier.updateNotification(context, masterSecret, false, smsAndThreadId.second, false);
-        }
+        MessageNotifier.updateNotification(context, masterSecret, smsAndThreadId.second, (hour >= 9 && hour < 23));
       }
     }
   }

@@ -101,7 +101,7 @@ public class PushDecryptJob extends ContextJob {
 
     if (!IdentityKeyUtil.hasIdentityKey(context)) {
       Log.w(TAG, "Skipping job, waiting for migration...");
-      MessageNotifier.updateNotification(context, null, true, -2);
+      MessageNotifier.updatePushNotification(context);
       return;
     }
 
