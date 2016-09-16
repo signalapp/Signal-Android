@@ -474,7 +474,6 @@
     </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Foi recebida uma mensagem com uma chave de identidade desconhecida. Clique para processá-la e exibi-la.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Foi recebida atualização mas com informação de identidade desconhecida. Clique para validar a identidade.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Saiu do grupo...</string>

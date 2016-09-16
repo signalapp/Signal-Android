@@ -450,7 +450,6 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">S\'ha rebut un missatge d\'intercanvi de claus per una versió del protocol invàlida.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Has rebut un missatge amb una clau d\'identitària desconeguda. Prem per processar-la i veure-la.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">S\'ha rebut informació actualitzada però desconeguda. Pica per validar l\'identitat.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Reseteja sessió segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicar missatge.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ha deixat el grup...</string>

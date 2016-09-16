@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -14,6 +15,9 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -43,17 +47,55 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
+  private final long recipientId;
+
   public MultiDeviceContactUpdateJob(Context context) {
+    this(context, -1);
+  }
+
+  public MultiDeviceContactUpdateJob(Context context, long recipientId) {
     super(context, JobParameters.newBuilder()
                                 .withRequirement(new NetworkRequirement(context))
                                 .withRequirement(new MasterSecretRequirement(context))
                                 .withGroupId(MultiDeviceContactUpdateJob.class.getSimpleName())
                                 .withPersistence()
                                 .create());
+
+    this.recipientId = recipientId;
   }
 
   @Override
   public void onRun(MasterSecret masterSecret)
+      throws IOException, UntrustedIdentityException, NetworkException
+  {
+    if (recipientId <= 0) generateFullContactUpdate();
+    else                  generateSingleContactUpdate(recipientId);
+  }
+
+  private void generateSingleContactUpdate(long recipientId)
+      throws IOException, UntrustedIdentityException, NetworkException
+  {
+    SignalServiceMessageSender messageSender = messageSenderFactory.create();
+    File contactDataFile = createTempFile("multidevice-contact-update");
+
+    try {
+      DeviceContactsOutputStream out       = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
+      Recipient                  recipient = RecipientFactory.getRecipientForId(context, recipientId, false);
+
+      out.write(new DeviceContact(recipient.getNumber(),
+                                  Optional.fromNullable(recipient.getName()),
+                                  getAvatar(recipient.getContactUri()),
+                                  Optional.fromNullable(recipient.getColor().serialize())));
+
+      out.close();
+      sendUpdate(messageSender, contactDataFile);
+
+    } finally {
+      if (contactDataFile != null) contactDataFile.delete();
+    }
+  }
+
+  private void generateFullContactUpdate()
       throws IOException, UntrustedIdentityException, NetworkException
   {
     SignalServiceMessageSender messageSender   = messageSenderFactory.create();
@@ -67,8 +109,9 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
         Uri              contactUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactData.id));
         String           number     = contactData.numbers.get(0).number;
         Optional<String> name       = Optional.fromNullable(contactData.name);
+        Optional<String> color      = getColor(number);
 
-        out.write(new DeviceContact(number, name, getAvatar(contactUri)));
+        out.write(new DeviceContact(number, name, getAvatar(contactUri), color));
       }
 
       out.close();
@@ -93,6 +136,15 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   @Override
   public void onCanceled() {
 
+  }
+
+  private Optional<String> getColor(String number) {
+    if (!TextUtils.isEmpty(number)) {
+      Recipients recipients = RecipientFactory.getRecipientsFromString(context, number, false);
+      return Optional.of(recipients.getColor().serialize());
+    } else {
+      return Optional.absent();
+    }
   }
 
   private void sendUpdate(SignalServiceMessageSender messageSender, File contactsFile)

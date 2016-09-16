@@ -86,6 +86,7 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isCallLog())               setCallRecord(messageRecord);
     else if (messageRecord.isJoined())                setJoinedRecord(messageRecord);
     else if (messageRecord.isExpirationTimerUpdate()) setTimerRecord(messageRecord);
+    else if (messageRecord.isEndSession())            setEndSessionRecord(messageRecord);
     else                                              throw new AssertionError("Neither group nor log nor joined.");
   }
 
@@ -125,6 +126,13 @@ public class ConversationUpdateItem extends LinearLayout
   private void setJoinedRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_favorite_grey600_24dp);
     icon.clearColorFilter();
+    body.setText(messageRecord.getDisplayBody());
+    date.setVisibility(View.GONE);
+  }
+
+  private void setEndSessionRecord(MessageRecord messageRecord) {
+    icon.setImageResource(R.drawable.ic_refresh_white_24dp);
+    icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     body.setText(messageRecord.getDisplayBody());
     date.setVisibility(View.GONE);
   }

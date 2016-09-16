@@ -464,7 +464,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
 Nortasun gako ezezagun batekin jaso da mezua. Ukitu prozesatzeko eta erakusteko.
 </string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Eguneratutako baina ezezaguna den nortasun informazioa jaso da. Ukitu nortasuna balidatzeko.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Saio segurua berrezarri da.</string>
   <string name="SmsMessageRecord_duplicate_message">Mezu bikoiztua.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Taldea utzita...</string>

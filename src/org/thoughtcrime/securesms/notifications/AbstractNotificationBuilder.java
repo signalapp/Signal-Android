@@ -27,6 +27,8 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
 
     this.context = context;
     this.privacy = privacy;
+
+    setLed();
   }
 
   protected CharSequence getStyledMessage(@NonNull Recipient recipient, @Nullable CharSequence message) {
@@ -39,12 +41,8 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
   }
 
   public void setAlarms(@Nullable Uri ringtone, RecipientPreferenceDatabase.VibrateState vibrate) {
-    String defaultRingtoneName   = TextSecurePreferences.getNotificationRingtone(context);
-    boolean defaultVibrate       = TextSecurePreferences.isNotificationVibrateEnabled(context);
-    String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
-    String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
-    String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
-    String[] blinkPatternArray   = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
+    String  defaultRingtoneName = TextSecurePreferences.getNotificationRingtone(context);
+    boolean defaultVibrate      = TextSecurePreferences.isNotificationVibrateEnabled(context);
 
     if      (ringtone != null)                        setSound(ringtone);
     else if (!TextUtils.isEmpty(defaultRingtoneName)) setSound(Uri.parse(defaultRingtoneName));
@@ -54,8 +52,16 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
     {
       setDefaults(Notification.DEFAULT_VIBRATE);
     }
+  }
+
+  private void setLed() {
+    String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
+    String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
+    String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
 
     if (!ledColor.equals("none")) {
+      String[] blinkPatternArray = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
+
       setLights(Color.parseColor(ledColor),
                 Integer.parseInt(blinkPatternArray[0]),
                 Integer.parseInt(blinkPatternArray[1]));

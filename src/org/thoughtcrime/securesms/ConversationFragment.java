@@ -180,7 +180,8 @@ public class ConversationFragment extends Fragment
 
     for (MessageRecord messageRecord : messageRecords) {
       if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
-          messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate())
+          messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
+          messageRecord.isEndSession())
       {
         actionMessage = true;
         break;

@@ -291,7 +291,7 @@
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SMS AN 1 KONTAKT SENDEN</item>
-    <item quantity="other">SMS AN %d KONTAKTE SENDEN</item>
+    <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1 SMS-Einladung senden?</item>
@@ -305,7 +305,7 @@
   <string name="KeyScanningActivity_install_barcode_Scanner">App »Barcode Scanner« installieren?</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Für QR-Codes benötigt Signal die App »Barcode Scanner«.</string>
   <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Versand fehlgeschlagen</string>
+  <string name="MessageDetailsRecipient_failed_to_send">Versand gescheitert</string>
   <string name="MessageDetailsRecipient_new_identity">Neuer Schlüssel</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fehler beim Speichern der MMS!</string>
@@ -392,13 +392,13 @@
   <string name="RedPhone_busy">Besetzt</string>
   <string name="RedPhone_connected">Verbunden</string>
   <string name="RedPhone_connecting">Verbindung wird hergestellt</string>
-  <string name="RedPhone_handshake_failed">Aushandeln der Verbindung fehlgeschlagen!</string>
+  <string name="RedPhone_handshake_failed">Aushandeln der Verbindung gescheitert!</string>
   <string name="RedPhone_recipient_unavailable">Kontakt nicht erreichbar</string>
   <string name="RedPhone_performing_handshake">Verbindung wird ausgehandelt</string>
   <string name="RedPhone_network_failed">Netzwerkfehler!</string>
   <string name="RedPhone_client_failed">App-Fehler</string>
   <string name="RedPhone_fatal_error">Schwerer Fehler</string>
-  <string name="RedPhone_login_failed">Anmeldung fehlgeschlagen!</string>
+  <string name="RedPhone_login_failed">Anmeldung gescheitert!</string>
   <string name="RedPhone_message_from_the_server">Nachricht vom Server</string>
   <string name="RedPhone_number_not_registered">Rufnummer nicht registriert!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die gewählte Rufnummer unterstützt keine sicheren Anrufe!</string>
@@ -427,7 +427,7 @@ Bitte kontrollieren Sie noch einmal Ihre Rufnummer. Diese wird anschließend dur
   <string name="RegistrationProgressActivity_connecting_for_verification">Verbindung wird zur Überprüfung hergestellt …</string>
   <string name="RegistrationProgressActivity_network_error">Netzwerkfehler!</string>
   <string name="RegistrationProgressActivity_unable_to_connect">Verbindung konnte nicht hergestellt werden. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es dann erneut.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Überprüfung fehlgeschlagen!</string>
+  <string name="RegistrationProgressActivity_verification_failed">Überprüfung gescheitert!</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Der eingegebene Code ist falsch. Bitte versuchen Sie es erneut.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Zu viele Versuche</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Sie haben zu viele falsche Codes eingegeben. Bitte warten Sie eine Minute und versuchen Sie es dann erneut.</string>
@@ -454,7 +454,6 @@ Bitte kontrollieren Sie noch einmal Ihre Rufnummer. Diese wird anschließend dur
 Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Aktualisierten, aber unbekannten Schlüssel empfangen. Antippen, um Schlüssel zu prüfen.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Verschlüsselung neu gestartet.</string>
   <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Gruppe wurde verlassen …</string>
@@ -500,7 +499,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Verbindung zum MMS-Server wird aufgebaut …</string>
   <string name="MmsDatabase_downloading_mms">MMS wird heruntergeladen …</string>
-  <string name="MmsDatabase_mms_download_failed">Herunterladen der MMS fehlgeschlagen!</string>
+  <string name="MmsDatabase_mms_download_failed">Herunterladen der MMS gescheitert!</string>
   <string name="MmsDatabase_downloading">Herunterladen …</string>
   <string name="MmsDatabase_mms_pending_download">Antippen und MMS-Einstellungen konfigurieren, um das Herunterladen fortzusetzen.</string>
   <string name="MmsDatabase_error_decrypting_message">Fehler beim Entschlüsseln der Nachricht.</string>
@@ -526,8 +525,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="MessageNotifier_locked_message">Gesperrte Nachricht …</string>
   <string name="MessageNotifier_media_message_with_text">Nachricht mit Medieninhalten: %s</string>
   <string name="MessageNotifier_no_subject">(ohne Text)</string>
-  <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung fehlgeschlagen.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Nachrichtenübermittlung fehlgeschlagen.</string>
+  <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung gescheitert.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Nachrichtenübermittlung gescheitert.</string>
   <string name="MessageNotifier_error_delivering_message">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_mark_all_as_read">Alle gelesen</string>
   <string name="MessageNotifier_mark_read">Gelesen</string>
@@ -586,7 +585,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Download</string>
   <string name="conversation_item_sent__downloading">Herunterladen</string>
-  <string name="conversation_item_sent__send_failed_indicator_description">Senden fehlgeschlagen</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Versand gescheitert</string>
   <string name="conversation_item_sent__pending_approval_description">Bestätigung ausstehend</string>
   <string name="conversation_item_sent__delivered_description">Zugestellt</string>
   <!--conversation_item_received-->
@@ -745,7 +744,7 @@ Signal wird Ihre Rufnummer nun automatisch mit einer SMS überprüfen.</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dies kann einen Moment dauern, bitte haben Sie Geduld. Wir benachrichtigen Sie, sobald die Überprüfung abgeschlossen ist.</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
 Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
-  <string name="registration_progress_activity__sms_verification_failed">SMS-Überprüfung fehlgeschlagen.</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS-Überprüfung gescheitert.</string>
   <string name="registration_progress_activity__generating_keys">Schlüssel werden erzeugt …</string>
   <string name="registration_progress_activity__alert">Benachrichtigung</string>
   <string name="registration_progress_activity__telephone">Telefon</string>
@@ -1017,7 +1016,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="reminder_header_close_button">SCHLIESSEN</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sie</string>
-  <string name="MediaPreviewActivity_cant_display">Bildvorschau fehlgeschlagen</string>
+  <string name="MediaPreviewActivity_cant_display">Bildvorschau gescheitert</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nicht unterstützter Medieninhaltetyp</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Speichern</string>

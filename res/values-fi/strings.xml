@@ -475,7 +475,6 @@ on viallinen!</string>
 Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely napsauttamalla.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Vastaanotettiin päivitetty, mutta tuntematon identiteetti. Varmenna identiteetti napsauttamalla.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Suojattu istunto alustettu</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä...</string>

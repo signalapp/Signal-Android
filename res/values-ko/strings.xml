@@ -431,7 +431,6 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">받은 키 교환 메시지에 프로토콜 버전이 잘못되었습니다.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">받은 메시지는 알 수 없는 인증 키가 있습니다 . 메시지를 처리하고 보려면 터치하세요.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">받은 키 교환 메시지는 업데이트된 알 수 없는 인증 키가 있습니다. 인증 키를 확인하려면 터치하세요.</string>
-  <string name="SmsMessageRecord_secure_session_reset">암호화된 세션이 초기화되었습니다.</string>
   <string name="SmsMessageRecord_duplicate_message">중복된 메시지</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">그룹에서 나갔습니다.</string>

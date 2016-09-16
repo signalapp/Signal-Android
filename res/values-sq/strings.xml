@@ -475,7 +475,6 @@ për shkëmbim çelsash!</string>
 U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">U pranua një mesazh me çels të panjohur identifikimi. Shtyp për ta procesuar dhe shfaqur.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">U pranua informatë e panjohur identifikimi. Shtypni për ta verifikuar identitetin tuaj.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Sesioni i sigurt u rivendos.</string>
   <string name="SmsMessageRecord_duplicate_message">Porosi e dyfishuar.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">La grupin...</string>
