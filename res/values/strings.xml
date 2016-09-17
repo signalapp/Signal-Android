@@ -933,7 +933,7 @@
 
     <!-- recipients_panel -->
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
-    <string name="recipients_panel__add_member">Add member</string>
+    <string name="recipients_panel__add_members">Add members</string>
 
     <!-- verify_identity_activity -->
     <string name="verify_identity_activity__their_identity_they_read">Their identity (they read):</string>
