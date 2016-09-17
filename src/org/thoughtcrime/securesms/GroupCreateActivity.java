@@ -198,7 +198,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this);
     adapter.setOnRecipientDeletedListener(this);
     lv.setAdapter(adapter);
-    recipientsEditor.setHint(R.string.recipients_panel__add_member);
+    recipientsEditor.setHint(R.string.recipients_panel__add_members);
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
     avatar.setImageDrawable(ContactPhotoFactory.getDefaultGroupPhoto()
