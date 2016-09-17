@@ -229,18 +229,6 @@
     <!-- DateUtils -->
     <string name="DateUtils_now">Now</string>
     <string name="DateUtils_minutes_ago">%d min</string>
-    <plurals name="DateUtils_minutes_ago_unabbreviated">
-        <item quantity="one">%d minute ago</item>
-        <item quantity="other">%d minutes ago</item>
-    </plurals>
-    <plurals name="hours_ago">
-        <item quantity="one">%d hour</item>
-        <item quantity="other">%d hours</item>
-    </plurals>
-    <plurals name="hours_ago_unabbreviated">
-        <item quantity="one">%d hour ago</item>
-        <item quantity="other">%d hours ago</item>
-    </plurals>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>
@@ -1004,6 +992,12 @@
     <string name="arrays__images">Images</string>
     <string name="arrays__audio">Audio</string>
     <string name="arrays__video">Video</string>
+
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
 
     <!-- preferences.xml -->
     <string name="preferences__general">General</string>
