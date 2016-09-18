@@ -40,17 +40,13 @@ public class PlaintextBackupImporter {
     File backup = PlaintextBackupExporter.getPlaintextExportFile();
     FilenameFilter backupFilesFilter = new FilenameFilter() {
       public boolean accept(File file, String name) {
-        if (name.startsWith("SignalPlaintextBackup_")) {
-          return true;
-        } else {
-          return false;
-        }
+        return name.startsWith("SignalPlaintextBackup_");
       }
     };
 
     File dir = Environment.getExternalStorageDirectory();
     File[] allBackupFiles;
-    if(dir.exists()) {
+    if (dir.exists()) {
       allBackupFiles = dir.listFiles(backupFilesFilter);
       Arrays.sort(allBackupFiles, Collections.reverseOrder());
     } else { 
@@ -58,15 +54,15 @@ public class PlaintextBackupImporter {
     }
 
     File oldBackup;
-    if(allBackupFiles.length > 0) {
+    if (allBackupFiles.length > 0) {
       oldBackup = allBackupFiles[0];
     } else {
       oldBackup = new File(Environment.getExternalStorageDirectory(), "SignalPlaintextBackup.xml");
-      if(!oldBackup.exists())
+      if (!oldBackup.exists())
         oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
     }
         
-    if(!backup.exists() && oldBackup.exists()) {
+    if (!backup.exists() && oldBackup.exists()) {
       return oldBackup;
     }
     return backup;
