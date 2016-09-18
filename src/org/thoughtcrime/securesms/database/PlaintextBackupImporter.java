@@ -16,6 +16,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.io.FilenameFilter;
+import java.util.Arrays;
+import java.util.Collections;
 
 
 public class PlaintextBackupImporter {
@@ -34,10 +37,36 @@ public class PlaintextBackupImporter {
   }
 
   private static File getPlaintextExportFile() {
-    File backup    = PlaintextBackupExporter.getPlaintextExportFile();
-    File oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
+    File backup = PlaintextBackupExporter.getPlaintextExportFile();
+    FilenameFilter backupFilesFilter = new FilenameFilter() {
+      public boolean accept(File file, String name) {
+        if (name.startsWith("SignalPlaintextBackup_")) {
+          return true;
+        } else {
+            return false;
+        }
+      }
+    };
 
-    if (!backup.exists() && oldBackup.exists()) {
+    File dir = Environment.getExternalStorageDirectory();
+    File[] allBackupFiles;
+    if(dir.exists()) {
+      allBackupFiles = dir.listFiles(backupFilesFilter);
+      Arrays.sort(allBackupFiles, Collections.reverseOrder());
+    } else { 
+      allBackupFiles = new File[0];
+    }
+
+    File oldBackup;
+    if(allBackupFiles.length > 0) {
+      oldBackup = allBackupFiles[0];
+    } else {
+      oldBackup = new File(Environment.getExternalStorageDirectory(), "SignalPlaintextBackup.xml");
+      if(!oldBackup.exists())
+        oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
+    }
+        
+    if(!backup.exists() && oldBackup.exists()) {
       return oldBackup;
     }
     return backup;
