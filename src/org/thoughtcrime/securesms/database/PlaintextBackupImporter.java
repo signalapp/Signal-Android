@@ -43,7 +43,7 @@ public class PlaintextBackupImporter {
         if (name.startsWith("SignalPlaintextBackup_")) {
           return true;
         } else {
-            return false;
+          return false;
         }
       }
     };
