@@ -58,8 +58,9 @@ public class PlaintextBackupImporter {
       oldBackup = allBackupFiles[0];
     } else {
       oldBackup = new File(Environment.getExternalStorageDirectory(), "SignalPlaintextBackup.xml");
-      if (!oldBackup.exists())
+      if (!oldBackup.exists()) {
         oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
+      }
     }
         
     if (!backup.exists() && oldBackup.exists()) {
