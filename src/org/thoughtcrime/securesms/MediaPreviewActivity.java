@@ -51,6 +51,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String RECIPIENT_EXTRA = "recipient";
+  public static final String THREAD_ID_EXTRA = "thread_id";
   public static final String DATE_EXTRA      = "date";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -61,6 +62,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private Uri               mediaUri;
   private String            mediaType;
   private Recipient         recipient;
+  private long              threadId;
   private long              date;
 
   @Override
@@ -137,6 +139,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     mediaUri     = getIntent().getData();
     mediaType    = getIntent().getType();
     date         = getIntent().getLongExtra(DATE_EXTRA, System.currentTimeMillis());
+    threadId     = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
 
     if (recipientId > -1) {
       recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
