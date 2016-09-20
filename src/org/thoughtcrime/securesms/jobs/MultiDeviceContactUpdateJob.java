@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -166,7 +167,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
     }
   }
 
-  private Optional<SignalServiceAttachmentStream> getAvatar(Uri uri) throws IOException {
+  private Optional<SignalServiceAttachmentStream> getAvatar(@Nullable Uri uri) throws IOException {
+    if (uri == null) {
+      return Optional.absent();
+    }
+    
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
       try {
         Uri                 displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
