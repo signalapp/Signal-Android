@@ -53,6 +53,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String RECIPIENT_EXTRA = "recipient";
+  public static final String THREAD_ID_EXTRA = "thread_id";
   public static final String DATE_EXTRA      = "date";
   public static final String SIZE_EXTRA      = "size";
 
@@ -65,6 +66,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private Uri               mediaUri;
   private String            mediaType;
   private Recipient         recipient;
+  private long              threadId;
   private long              date;
   private long              size;
 
@@ -148,6 +150,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     mediaType    = getIntent().getType();
     date         = getIntent().getLongExtra(DATE_EXTRA, System.currentTimeMillis());
     size         = getIntent().getLongExtra(SIZE_EXTRA, 0);
+    threadId     = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
 
     if (recipientId > -1) {
       recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
@@ -188,6 +191,12 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     video.cleanup();
   }
 
+  private void showOverview() {
+    Intent intent = new Intent(this, MediaOverviewActivity.class);
+    intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
+    startActivity(intent);
+  }
+
   private void forward() {
     Intent composeIntent = new Intent(this, ShareActivity.class);
     composeIntent.putExtra(Intent.EXTRA_STREAM, mediaUri);
@@ -212,6 +221,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     menu.clear();
     MenuInflater inflater = this.getMenuInflater();
     inflater.inflate(R.menu.media_preview, menu);
+    if (threadId == -1) menu.findItem(R.id.media_overview).setVisible(false);
 
     return true;
   }
@@ -221,9 +231,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-      case R.id.media_preview__forward: forward();    return true;
-      case R.id.save:                   saveToDisk(); return true;
-      case android.R.id.home:           finish();     return true;
+      case R.id.media_preview__overview: showOverview(); return true;
+      case R.id.media_preview__forward:  forward();      return true;
+      case R.id.save:                    saveToDisk();   return true;
+      case android.R.id.home:            finish();       return true;
     }
 
     return false;
