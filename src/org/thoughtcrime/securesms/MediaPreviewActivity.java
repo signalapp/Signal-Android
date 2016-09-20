@@ -169,6 +169,12 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     image.setImageDrawable(null);
   }
 
+  private void showOverview() {
+    Intent intent = new Intent(this, MediaOverviewActivity.class);
+    intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
+    startActivity(intent);
+  }
+
   private void forward() {
     Intent composeIntent = new Intent(this, ShareActivity.class);
     composeIntent.putExtra(Intent.EXTRA_STREAM, mediaUri);
@@ -202,9 +208,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-      case R.id.media_preview__forward: forward();    return true;
-      case R.id.save:                   saveToDisk(); return true;
-      case android.R.id.home:           finish();     return true;
+      case R.id.media_overview:         showOverview(); return true;
+      case R.id.media_preview__forward: forward();      return true;
+      case R.id.save:                   saveToDisk();   return true;
+      case android.R.id.home:           finish();       return true;
     }
 
     return false;
