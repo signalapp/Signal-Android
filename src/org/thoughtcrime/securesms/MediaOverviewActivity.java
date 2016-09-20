@@ -135,14 +135,19 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
     if (recipientId > -1) {
       recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
+    } else if (threadId > -1){
+      recipient = DatabaseFactory.getThreadDatabase(this).getRecipientsForThreadId(threadId).getPrimaryRecipient();
+    } else {
+      recipient = null;
+    }
+
+    if (recipient != null) {
       recipient.addListener(new RecipientModifiedListener() {
         @Override
         public void onModified(Recipient recipient) {
           initializeActionBar();
         }
       });
-    } else {
-      recipient = null;
     }
   }
 
