@@ -17,20 +17,6 @@
 #include <sys/time.h>
 #include <time.h>
 
-#if defined(_DEBUG)
-#define BUILDMODE "d"
-#elif defined(DEBUG)
-#define BUILDMODE "d"
-#elif defined(NDEBUG)
-#define BUILDMODE "r"
-#else
-#define BUILDMODE "?"
-#endif
-#define BUILDTIME __TIME__
-#define BUILDDATE __DATE__
-// example: "Oct 10 2002 12:05:30 r"
-#define BUILDINFO BUILDDATE " " BUILDTIME " " BUILDMODE
-
 namespace webrtc {
 
 TracePosix::TracePosix()
@@ -42,7 +28,6 @@ TracePosix::TracePosix()
 
 TracePosix::~TracePosix() {
   delete &crit_sect_;
-  StopThread();
 }
 
 int32_t TracePosix::AddTime(char* trace_message, const TraceLevel level) const {
@@ -84,12 +69,6 @@ int32_t TracePosix::AddTime(char* trace_message, const TraceLevel level) const {
           static_cast<unsigned long>(dw_delta_time));
   // Messages are 22 characters.
   return 22;
-}
-
-int32_t TracePosix::AddBuildInfo(char* trace_message) const {
-  sprintf(trace_message, "Build info: %s", BUILDINFO);
-  // Include NULL termination (hence + 1).
-  return strlen(trace_message) + 1;
 }
 
 int32_t TracePosix::AddDateTimeInfo(char* trace_message) const {

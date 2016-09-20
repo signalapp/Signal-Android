@@ -154,6 +154,7 @@ int CallAudioManager::start() {
 
 void CallAudioManager::stop() {
   running = 0;
+
   microphoneReader.stop();
   audioPlayer.stop();
   webRtcJitterBuffer.stop();

@@ -22,26 +22,13 @@ static const int kValidRates[] = { 8000, 16000, 32000, 48000 };
 static const size_t kRatesSize = sizeof(kValidRates) / sizeof(*kValidRates);
 static const int kMaxFrameLengthMs = 30;
 
-int WebRtcVad_Create(VadInst** handle) {
-  VadInstT* self = NULL;
-
-  if (handle == NULL) {
-    return -1;
-  }
-
-  *handle = NULL;
-  self = (VadInstT*) malloc(sizeof(VadInstT));
-  *handle = (VadInst*) self;
-
-  if (self == NULL) {
-    return -1;
-  }
+VadInst* WebRtcVad_Create() {
+  VadInstT* self = (VadInstT*)malloc(sizeof(VadInstT));
 
   WebRtcSpl_Init();
-
   self->init_flag = 0;
 
-  return 0;
+  return (VadInst*)self;
 }
 
 void WebRtcVad_Free(VadInst* handle) {
@@ -69,7 +56,7 @@ int WebRtcVad_set_mode(VadInst* handle, int mode) {
 }
 
 int WebRtcVad_Process(VadInst* handle, int fs, const int16_t* audio_frame,
-                      int frame_length) {
+                      size_t frame_length) {
   int vad = -1;
   VadInstT* self = (VadInstT*) handle;
 
@@ -103,11 +90,11 @@ int WebRtcVad_Process(VadInst* handle, int fs, const int16_t* audio_frame,
   return vad;
 }
 
-int WebRtcVad_ValidRateAndFrameLength(int rate, int frame_length) {
+int WebRtcVad_ValidRateAndFrameLength(int rate, size_t frame_length) {
   int return_value = -1;
   size_t i;
   int valid_length_ms;
-  int valid_length;
+  size_t valid_length;
 
   // We only allow 10, 20 or 30 ms frames. Loop through valid frame rates and
   // see if we have a matching pair.
@@ -115,7 +102,7 @@ int WebRtcVad_ValidRateAndFrameLength(int rate, int frame_length) {
     if (kValidRates[i] == rate) {
       for (valid_length_ms = 10; valid_length_ms <= kMaxFrameLengthMs;
           valid_length_ms += 10) {
-        valid_length = (kValidRates[i] / 1000 * valid_length_ms);
+        valid_length = (size_t)(kValidRates[i] / 1000 * valid_length_ms);
         if (frame_length == valid_length) {
           return_value = 0;
           break;

@@ -10,18 +10,17 @@
 
 #include "webrtc/modules/audio_coding/codecs/isac/fix/source/pitch_estimator.h"
 #include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
-#include "webrtc/system_wrappers/interface/compile_assert_c.h"
+#include "webrtc/system_wrappers/include/compile_assert_c.h"
 
 extern int32_t WebRtcIsacfix_Log2Q8(uint32_t x);
 
 void WebRtcIsacfix_PCorr2Q32(const int16_t* in, int32_t* logcorQ8) {
   int16_t scaling,n,k;
   int32_t ysum32,csum32, lys, lcs;
-  int32_t oneQ8;
+  const int32_t oneQ8 = 1 << 8;  // 1.00 in Q8
   const int16_t* x;
   const int16_t* inptr;
 
-  oneQ8 = WEBRTC_SPL_LSHIFT_W32((int32_t)1, 8);  // 1.00 in Q8
   x = in + PITCH_MAX_LAG / 2 + 2;
   scaling = WebRtcSpl_GetScalingSquare((int16_t*)in,
                                        PITCH_CORR_LEN2,
@@ -86,8 +85,7 @@ void WebRtcIsacfix_PCorr2Q32(const int16_t* in, int32_t* logcorQ8) {
     );
   }
   logcorQ8 += PITCH_LAG_SPAN2 - 1;
-  lys = WebRtcIsacfix_Log2Q8((uint32_t)ysum32); // Q8
-  lys = WEBRTC_SPL_RSHIFT_W32(lys, 1); //sqrt(ysum);
+  lys = WebRtcIsacfix_Log2Q8((uint32_t)ysum32) >> 1; // Q8, sqrt(ysum)
   if (csum32 > 0) {
     lcs = WebRtcIsacfix_Log2Q8((uint32_t)csum32);  // 2log(csum) in Q8
     if (lcs > (lys + oneQ8)) {  // csum/sqrt(ysum) > 2 in Q8
@@ -180,8 +178,7 @@ void WebRtcIsacfix_PCorr2Q32(const int16_t* in, int32_t* logcorQ8) {
     );
 
     logcorQ8--;
-    lys = WebRtcIsacfix_Log2Q8((uint32_t)ysum32); // Q8
-    lys = WEBRTC_SPL_RSHIFT_W32(lys, 1); //sqrt(ysum);
+    lys = WebRtcIsacfix_Log2Q8((uint32_t)ysum32) >> 1; // Q8, sqrt(ysum)
     if (csum32 > 0) {
       lcs = WebRtcIsacfix_Log2Q8((uint32_t)csum32); // 2log(csum) in Q8
       if (lcs > (lys + oneQ8)) { // csum/sqrt(ysum) > 2

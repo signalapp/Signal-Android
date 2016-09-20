@@ -68,10 +68,10 @@ void WebRtcIlbcfix_Lsp2Lsf(
     */
 
     /* tmp (linear offset) in Q16 */
-    tmp = (int16_t)WEBRTC_SPL_MUL_16_16_RSFT(WebRtcIlbcfix_kAcosDerivative[k],diff, 11);
+    tmp = (int16_t)((WebRtcIlbcfix_kAcosDerivative[k] * diff) >> 11);
 
     /* freq in Q16 */
-    freq = (int16_t)WEBRTC_SPL_LSHIFT_W16(k,9)+tmp;
+    freq = (k << 9) + tmp;
 
     /* lsf = freq*2*pi */
     (*lsfPtr) = (int16_t)(((int32_t)freq*25736)>>15);

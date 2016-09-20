@@ -10,12 +10,13 @@
 
 #include <assert.h>
 #include <stdio.h>
+
+#include <memory>
 #include <vector>
 
-#include "google/gflags.h"
+#include "gflags/gflags.h"
 #include "webrtc/modules/audio_coding/neteq/tools/packet.h"
 #include "webrtc/modules/audio_coding/neteq/tools/rtp_file_source.h"
-#include "webrtc/system_wrappers/interface/scoped_ptr.h"
 
 // Flag validator.
 static bool ValidatePayloadType(const char* flagname, int32_t value) {
@@ -38,6 +39,9 @@ static const bool red_dummy =
 DEFINE_int32(audio_level, 1, "Extension ID for audio level (RFC 6464)");
 static const bool audio_level_dummy =
     google::RegisterFlagValidator(&FLAGS_audio_level, &ValidateExtensionId);
+DEFINE_int32(abs_send_time, 3, "Extension ID for absolute sender time");
+static const bool abs_send_time_dummy =
+    google::RegisterFlagValidator(&FLAGS_abs_send_time, &ValidateExtensionId);
 
 int main(int argc, char* argv[]) {
   std::string program_name = argv[0];
@@ -60,15 +64,21 @@ int main(int argc, char* argv[]) {
   }
 
   printf("Input file: %s\n", argv[1]);
-  webrtc::scoped_ptr<webrtc::test::RtpFileSource> file_source(
+  std::unique_ptr<webrtc::test::RtpFileSource> file_source(
       webrtc::test::RtpFileSource::Create(argv[1]));
   assert(file_source.get());
-  // Set RTP extension ID.
+  // Set RTP extension IDs.
   bool print_audio_level = false;
   if (!google::GetCommandLineFlagInfoOrDie("audio_level").is_default) {
     print_audio_level = true;
     file_source->RegisterRtpHeaderExtension(webrtc::kRtpExtensionAudioLevel,
                                             FLAGS_audio_level);
+  }
+  bool print_abs_send_time = false;
+  if (!google::GetCommandLineFlagInfoOrDie("abs_send_time").is_default) {
+    print_abs_send_time = true;
+    file_source->RegisterRtpHeaderExtension(
+        webrtc::kRtpExtensionAbsoluteSendTime, FLAGS_abs_send_time);
   }
 
   FILE* out_file;
@@ -88,32 +98,65 @@ int main(int argc, char* argv[]) {
   if (print_audio_level) {
     fprintf(out_file, " AuLvl (V)");
   }
+  if (print_abs_send_time) {
+    fprintf(out_file, " AbsSendTime");
+  }
   fprintf(out_file, "\n");
 
-  webrtc::scoped_ptr<webrtc::test::Packet> packet;
-  while (!file_source->EndOfFile()) {
-    packet.reset(file_source->NextPacket());
+  uint32_t max_abs_send_time = 0;
+  int cycles = -1;
+  std::unique_ptr<webrtc::test::Packet> packet;
+  while (true) {
+    packet = file_source->NextPacket();
     if (!packet.get()) {
-      // This is probably an RTCP packet. Move on to the next one.
-      continue;
+      // End of file reached.
+      break;
     }
-    assert(packet.get());
-    // Write packet data to file.
+    // Write packet data to file. Use virtual_packet_length_bytes so that the
+    // correct packet sizes are printed also for RTP header-only dumps.
     fprintf(out_file,
             "%5u %10u %10u %5i %5i %2i %#08X",
             packet->header().sequenceNumber,
             packet->header().timestamp,
             static_cast<unsigned int>(packet->time_ms()),
-            static_cast<int>(packet->packet_length_bytes()),
+            static_cast<int>(packet->virtual_packet_length_bytes()),
             packet->header().payloadType,
             packet->header().markerBit,
             packet->header().ssrc);
     if (print_audio_level && packet->header().extension.hasAudioLevel) {
-      // |audioLevel| consists of one bit for "V" and then 7 bits level.
       fprintf(out_file,
               " %5u (%1i)",
-              packet->header().extension.audioLevel & 0x7F,
-              (packet->header().extension.audioLevel & 0x80) == 0 ? 0 : 1);
+              packet->header().extension.audioLevel,
+              packet->header().extension.voiceActivity);
+    }
+    if (print_abs_send_time && packet->header().extension.hasAbsoluteSendTime) {
+      if (cycles == -1) {
+        // Initialize.
+        max_abs_send_time = packet->header().extension.absoluteSendTime;
+        cycles = 0;
+      }
+      // Abs sender time is 24 bit 6.18 fixed point. Shift by 8 to normalize to
+      // 32 bits (unsigned). Calculate the difference between this packet's
+      // send time and the maximum observed. Cast to signed 32-bit to get the
+      // desired wrap-around behavior.
+      if (static_cast<int32_t>(
+              (packet->header().extension.absoluteSendTime << 8) -
+              (max_abs_send_time << 8)) >= 0) {
+        // The difference is non-negative, meaning that this packet is newer
+        // than the previously observed maximum absolute send time.
+        if (packet->header().extension.absoluteSendTime < max_abs_send_time) {
+          // Wrap detected.
+          cycles++;
+        }
+        max_abs_send_time = packet->header().extension.absoluteSendTime;
+      }
+      // Abs sender time is 24 bit 6.18 fixed point. Divide by 2^18 to convert
+      // to floating point representation.
+      double send_time_seconds =
+          static_cast<double>(packet->header().extension.absoluteSendTime) /
+              262144 +
+          64.0 * cycles;
+      fprintf(out_file, " %11f", send_time_seconds);
     }
     fprintf(out_file, "\n");
 

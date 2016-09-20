@@ -24,12 +24,12 @@
  *---------------------------------------------------------------*/
 
 void WebRtcIlbcfix_StateConstruct(
-    int16_t idxForMax,   /* (i) 6-bit index for the quantization of
+    size_t idxForMax,   /* (i) 6-bit index for the quantization of
                                            max amplitude */
     int16_t *idxVec,   /* (i) vector of quantization indexes */
     int16_t *syntDenum,  /* (i) synthesis filter denumerator */
     int16_t *Out_fix,  /* (o) the decoded state vector */
-    int16_t len    /* (i) length of a state vector */
+    size_t len    /* (i) length of a state vector */
                                   );
 
 #endif

@@ -1,0 +1,83 @@
+/*
+ *  Copyright 2012 The WebRTC Project Authors. All rights reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree. An additional intellectual property rights grant can be found
+ *  in the file PATENTS.  All contributing project authors may
+ *  be found in the AUTHORS file in the root of the source tree.
+ */
+
+// This file is a supermacro
+// (see http://wanderinghorse.net/computing/papers/supermacros_cpp.html) to
+// expand a declaration of a late-binding symbol table class.
+//
+// Arguments:
+// LATE_BINDING_SYMBOL_TABLE_CLASS_NAME: Name of the class to generate.
+// LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST: List of symbols to load from the DLL,
+//     as an X-Macro list (see http://www.drdobbs.com/blogs/cpp/228700289).
+//
+// From a .h file, include the header(s) for the DLL to late-bind and the
+// latebindingsymboltable.h header, and then call this supermacro (optionally
+// from inside the namespace for the class to generate, if any). Example:
+//
+// #include <headerfordll.h>
+//
+// #include "webrtc/base/latebindingsymboltable.h"
+//
+// namespace foo {
+//
+// #define MY_CLASS_NAME DesiredClassName
+// #define MY_SYMBOLS_LIST X(acos) X(sin) X(tan)
+//
+// #define LATE_BINDING_SYMBOL_TABLE_CLASS_NAME MY_CLASS_NAME
+// #define LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST MY_SYMBOLS_LIST
+// #include "webrtc/base/latebindingsymboltable.h.def"
+//
+// }
+
+#ifndef WEBRTC_BASE_LATEBINDINGSYMBOLTABLE_H_
+#error You must first include latebindingsymboltable.h
+#endif
+
+#ifndef LATE_BINDING_SYMBOL_TABLE_CLASS_NAME
+#error You must define LATE_BINDING_SYMBOL_TABLE_CLASS_NAME
+#endif
+
+#ifndef LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST
+#error You must define LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST
+#endif
+
+class LATE_BINDING_SYMBOL_TABLE_CLASS_NAME :
+    public ::rtc::LateBindingSymbolTable {
+ public:
+  LATE_BINDING_SYMBOL_TABLE_CLASS_NAME();
+  ~LATE_BINDING_SYMBOL_TABLE_CLASS_NAME();
+
+#define X(sym) \
+  typeof(&::sym) sym() const { \
+    ASSERT(::rtc::LateBindingSymbolTable::IsLoaded()); \
+    return reinterpret_cast<typeof(&::sym)>(table_[SYMBOL_TABLE_INDEX_##sym]); \
+  }
+LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST
+#undef X
+
+ private:
+  enum {
+#define X(sym) \
+    SYMBOL_TABLE_INDEX_##sym,
+LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST
+#undef X
+    SYMBOL_TABLE_SIZE
+  };
+
+  static const ::rtc::LateBindingSymbolTable::TableInfo kTableInfo;
+  static const char *const kSymbolNames[];
+
+  void *table_[SYMBOL_TABLE_SIZE];
+
+  RTC_DISALLOW_COPY_AND_ASSIGN(LATE_BINDING_SYMBOL_TABLE_CLASS_NAME);
+};
+
+#undef LATE_BINDING_SYMBOL_TABLE_CLASS_NAME
+#undef LATE_BINDING_SYMBOL_TABLE_SYMBOLS_LIST

@@ -1,0 +1,7 @@
+define audio bandwidth as frequency range
+
+repeat padding recommendation
+
+ptime: refer to RFC
+
+Opus does not provide any confidentiality or integrity protection

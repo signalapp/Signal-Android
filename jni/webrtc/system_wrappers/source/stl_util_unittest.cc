@@ -9,7 +9,7 @@
  */
 
 // Borrowed from Chromium's src/base/stl_util_unittest.cc
-#include "webrtc/system_wrappers/interface/stl_util.h"
+#include "webrtc/system_wrappers/include/stl_util.h"
 
 #include <set>
 

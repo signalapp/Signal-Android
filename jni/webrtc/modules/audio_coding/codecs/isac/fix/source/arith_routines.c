@@ -72,11 +72,10 @@ int16_t WebRtcIsacfix_EncTerminate(Bitstr_enc *streamData)
     }
     /* write remaining data to bitstream, if "full == 0" first byte has data */
     if (streamData->full == 0) {
-      *streamPtr++ += (uint16_t) WEBRTC_SPL_RSHIFT_W32(streamData->streamval, 24);
+      *streamPtr++ += (uint16_t)(streamData->streamval >> 24);
       streamData->full = 1;
     } else {
-      *streamPtr = (uint16_t) WEBRTC_SPL_LSHIFT_W32(
-          WEBRTC_SPL_RSHIFT_W32(streamData->streamval, 24), 8);
+      *streamPtr = (uint16_t)((streamData->streamval >> 24) << 8);
       streamData->full = 0;
     }
   }
@@ -111,11 +110,10 @@ int16_t WebRtcIsacfix_EncTerminate(Bitstr_enc *streamData)
     }
     /* write remaining data (2 bytes) to bitstream */
     if (streamData->full) {
-      *streamPtr++ = (uint16_t) WEBRTC_SPL_RSHIFT_W32(streamData->streamval, 16);
+      *streamPtr++ = (uint16_t)(streamData->streamval >> 16);
     } else {
-      *streamPtr++ |= (uint16_t) WEBRTC_SPL_RSHIFT_W32(streamData->streamval, 24);
-      *streamPtr = (uint16_t) WEBRTC_SPL_RSHIFT_W32(streamData->streamval, 8)
-          & 0xFF00;
+      *streamPtr++ |= (uint16_t)(streamData->streamval >> 24);
+      *streamPtr = (uint16_t)(streamData->streamval >> 8) & 0xFF00;
     }
   }
 

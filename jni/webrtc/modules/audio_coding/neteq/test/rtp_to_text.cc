@@ -17,7 +17,7 @@
  *
  */
 
-#include "data_log.h"
+#include "webrtc/system_wrappers/include/data_log.h"
 #include "NETEQTEST_DummyRTPpacket.h"
 #include "NETEQTEST_RTPpacket.h"
 

@@ -8,82 +8,50 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/logging.h"
+#include "webrtc/system_wrappers/include/logging.h"
 
 #include "testing/gtest/include/gtest/gtest.h"
-#include "webrtc/system_wrappers/interface/condition_variable_wrapper.h"
-#include "webrtc/system_wrappers/interface/critical_section_wrapper.h"
-#include "webrtc/system_wrappers/interface/scoped_ptr.h"
-#include "webrtc/system_wrappers/interface/sleep.h"
-#include "webrtc/system_wrappers/interface/trace.h"
+#include "webrtc/base/arraysize.h"
+#include "webrtc/base/event.h"
+#include "webrtc/system_wrappers/include/trace.h"
 
 namespace webrtc {
 namespace {
+const char kTestLogString[] = "Incredibly important test message!(?)";
+const int kTestLevel = kTraceWarning;
 
-class LoggingTest : public ::testing::Test, public TraceCallback {
+class LoggingTestCallback : public TraceCallback {
  public:
-  virtual void Print(TraceLevel level, const char* msg, int length) {
-    CriticalSectionScoped cs(crit_.get());
-    // We test the length here to ensure (with high likelihood) that only our
-    // traces will be tested.
-    if (level_ != kTraceNone && static_cast<int>(expected_log_.str().size()) ==
-        length - Trace::kBoilerplateLength - 1) {
-      EXPECT_EQ(level_, level);
-      EXPECT_EQ(expected_log_.str(), &msg[Trace::kBoilerplateLength]);
-      level_ = kTraceNone;
-      cv_->Wake();
+  LoggingTestCallback(rtc::Event* event) : event_(event) {}
+
+ private:
+  void Print(TraceLevel level, const char* msg, int length) override {
+    if (static_cast<size_t>(length) < arraysize(kTestLogString) ||
+        level != kTestLevel) {
+      return;
     }
+
+    std::string msg_str(msg, length);
+    if (msg_str.find(kTestLogString) != std::string::npos)
+      event_->Set();
   }
 
- protected:
-  LoggingTest()
-    : crit_(CriticalSectionWrapper::CreateCriticalSection()),
-      cv_(ConditionVariableWrapper::CreateConditionVariable()),
-      level_(kTraceNone),
-      expected_log_() {
-  }
-
-  void SetUp() {
-    Trace::CreateTrace();
-    Trace::SetTraceCallback(this);
-  }
-
-  void TearDown() {
-    Trace::SetTraceCallback(NULL);
-    Trace::ReturnTrace();
-    CriticalSectionScoped cs(crit_.get());
-    ASSERT_EQ(kTraceNone, level_) << "Print() was not called";
-  }
-
-  scoped_ptr<CriticalSectionWrapper> crit_;
-  scoped_ptr<ConditionVariableWrapper> cv_;
-  TraceLevel level_ GUARDED_BY(crit_);
-  std::ostringstream expected_log_ GUARDED_BY(crit_);
+  rtc::Event* const event_;
 };
 
-TEST_F(LoggingTest, LogStream) {
-  {
-    CriticalSectionScoped cs(crit_.get());
-    level_ = kTraceWarning;
-    std::string msg = "Important message";
-    expected_log_ << "(logging_unittest.cc:" << __LINE__ + 1 << "): " << msg;
-    LOG(LS_WARNING) << msg;
-    cv_->SleepCS(*crit_.get(), 2000);
-  }
-}
-
-TEST_F(LoggingTest, LogFunctionError) {
-  {
-    CriticalSectionScoped cs(crit_.get());
-    int bar = 42;
-    int baz = 99;
-    level_ = kTraceError;
-    expected_log_ << "(logging_unittest.cc:" << __LINE__ + 2
-                  << "): Foo failed: bar=" << bar << ", baz=" << baz;
-    LOG_FERR2(LS_ERROR, Foo, bar, baz);
-    cv_->SleepCS(*crit_.get(), 2000);
-  }
-}
-
 }  // namespace
+
+TEST(LoggingTest, LogStream) {
+  Trace::CreateTrace();
+
+  rtc::Event event(false, false);
+  LoggingTestCallback callback(&event);
+  Trace::SetTraceCallback(&callback);
+
+  LOG(LS_WARNING) << kTestLogString;
+  EXPECT_TRUE(event.Wait(2000));
+
+  Trace::SetTraceCallback(nullptr);
+  Trace::ReturnTrace();
+}
 }  // namespace webrtc

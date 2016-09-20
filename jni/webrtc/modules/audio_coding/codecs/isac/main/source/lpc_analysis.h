@@ -21,7 +21,7 @@
 #include "settings.h"
 #include "structs.h"
 
-double WebRtcIsac_LevDurb(double *a, double *k, double *r, int order);
+double WebRtcIsac_LevDurb(double *a, double *k, double *r, size_t order);
 
 void WebRtcIsac_GetVars(const double *input, const int16_t *pitchGains_Q12,
                        double *oldEnergy, double *varscale);

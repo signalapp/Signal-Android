@@ -25,8 +25,8 @@
  *  Initiation of decoder instance.
  *---------------------------------------------------------------*/
 
-int16_t WebRtcIlbcfix_InitDecode(  /* (o) Number of decoded samples */
-    iLBC_Dec_Inst_t *iLBCdec_inst, /* (i/o) Decoder instance */
+int WebRtcIlbcfix_InitDecode(  /* (o) Number of decoded samples */
+    IlbcDecoder *iLBCdec_inst, /* (i/o) Decoder instance */
     int16_t mode,     /* (i) frame size mode */
     int use_enhancer           /* (i) 1 to use enhancer
                                   0 to run without enhancer */

@@ -36,7 +36,7 @@ class TimestampScaler {
   virtual ~TimestampScaler() {}
 
   // Start over.
-  virtual void Reset() { first_packet_received_ = false; }
+  virtual void Reset();
 
   // Scale the timestamp in |packet| from external to internal.
   virtual void ToInternal(Packet* packet);
@@ -61,7 +61,7 @@ class TimestampScaler {
   uint32_t internal_ref_;
   const DecoderDatabase& decoder_database_;
 
-  DISALLOW_COPY_AND_ASSIGN(TimestampScaler);
+  RTC_DISALLOW_COPY_AND_ASSIGN(TimestampScaler);
 };
 
 }  // namespace webrtc

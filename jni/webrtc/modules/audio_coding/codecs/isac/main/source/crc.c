@@ -80,9 +80,9 @@ static const uint32_t kCrcTable[256] = {
  *                             -1 - Error
  */
 
-int16_t WebRtcIsac_GetCrc(const int16_t* bitstream,
-                          int16_t        len_bitstream_in_bytes,
-                          uint32_t*      crc)
+int WebRtcIsac_GetCrc(const int16_t* bitstream,
+                      int len_bitstream_in_bytes,
+                      uint32_t* crc)
 {
   uint8_t* bitstream_ptr_uw8;
   uint32_t crc_state;
@@ -102,7 +102,7 @@ int16_t WebRtcIsac_GetCrc(const int16_t* bitstream,
   for (byte_cntr = 0; byte_cntr < len_bitstream_in_bytes; byte_cntr++) {
     crc_tbl_indx = (WEBRTC_SPL_RSHIFT_U32(crc_state, 24) ^
                        bitstream_ptr_uw8[byte_cntr]) & 0xFF;
-    crc_state = WEBRTC_SPL_LSHIFT_U32(crc_state, 8) ^ kCrcTable[crc_tbl_indx];
+    crc_state = (crc_state << 8) ^ kCrcTable[crc_tbl_indx];
   }
 
   *crc = ~crc_state;

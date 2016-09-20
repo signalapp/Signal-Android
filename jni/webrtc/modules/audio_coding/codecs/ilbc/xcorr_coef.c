@@ -23,16 +23,16 @@
  * crossCorr*crossCorr/(energy) criteria
  *---------------------------------------------------------------*/
 
-int WebRtcIlbcfix_XcorrCoef(
+size_t WebRtcIlbcfix_XcorrCoef(
     int16_t *target,  /* (i) first array */
     int16_t *regressor, /* (i) second array */
-    int16_t subl,  /* (i) dimension arrays */
-    int16_t searchLen, /* (i) the search lenght */
-    int16_t offset,  /* (i) samples offset between arrays */
+    size_t subl,  /* (i) dimension arrays */
+    size_t searchLen, /* (i) the search lenght */
+    size_t offset,  /* (i) samples offset between arrays */
     int16_t step   /* (i) +1 or -1 */
                             ){
-  int k;
-  int16_t maxlag;
+  size_t k;
+  size_t maxlag;
   int16_t pos;
   int16_t max;
   int16_t crossCorrScale, Energyscale;
@@ -55,13 +55,13 @@ int WebRtcIlbcfix_XcorrCoef(
 
   /* Find scale value and start position */
   if (step==1) {
-    max=WebRtcSpl_MaxAbsValueW16(regressor, (int16_t)(subl+searchLen-1));
+    max=WebRtcSpl_MaxAbsValueW16(regressor, subl + searchLen - 1);
     rp_beg = regressor;
-    rp_end = &regressor[subl];
+    rp_end = regressor + subl;
   } else { /* step==-1 */
-    max=WebRtcSpl_MaxAbsValueW16(&regressor[-searchLen], (int16_t)(subl+searchLen-1));
-    rp_beg = &regressor[-1];
-    rp_end = &regressor[subl-1];
+    max = WebRtcSpl_MaxAbsValueW16(regressor - searchLen, subl + searchLen - 1);
+    rp_beg = regressor - 1;
+    rp_end = regressor + subl - 1;
   }
 
   /* Introduce a scale factor on the Energy in int32_t in
@@ -92,7 +92,7 @@ int WebRtcIlbcfix_XcorrCoef(
       EnergyMod=(int16_t)WEBRTC_SPL_SHIFT_W32(Energy, Energyscale);
 
       /* Square cross correlation and store upper int16_t */
-      crossCorrSqMod=(int16_t)WEBRTC_SPL_MUL_16_16_RSFT(crossCorrmod, crossCorrmod, 16);
+      crossCorrSqMod = (int16_t)((crossCorrmod * crossCorrmod) >> 16);
 
       /* Calculate the total number of (dynamic) right shifts that have
          been performed on (crossCorr*crossCorr)/energy
@@ -131,9 +131,7 @@ int WebRtcIlbcfix_XcorrCoef(
     pos+=step;
 
     /* Do a +/- to get the next energy */
-    Energy += step*(WEBRTC_SPL_RSHIFT_W32(
-        ((int32_t)(*rp_end)*(*rp_end)) - ((int32_t)(*rp_beg)*(*rp_beg)),
-        shifts));
+    Energy += step * ((*rp_end * *rp_end - *rp_beg * *rp_beg) >> shifts);
     rp_beg+=step;
     rp_end+=step;
   }

@@ -34,7 +34,7 @@ class OutputAudioFile : public AudioSink {
       fclose(out_file_);
   }
 
-  virtual bool WriteArray(const int16_t* audio, size_t num_samples) OVERRIDE {
+  bool WriteArray(const int16_t* audio, size_t num_samples) override {
     assert(out_file_);
     return fwrite(audio, sizeof(*audio), num_samples, out_file_) == num_samples;
   }
@@ -42,7 +42,7 @@ class OutputAudioFile : public AudioSink {
  private:
   FILE* out_file_;
 
-  DISALLOW_COPY_AND_ASSIGN(OutputAudioFile);
+  RTC_DISALLOW_COPY_AND_ASSIGN(OutputAudioFile);
 };
 
 }  // namespace test

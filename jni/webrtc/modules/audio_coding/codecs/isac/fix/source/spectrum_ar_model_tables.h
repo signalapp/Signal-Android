@@ -19,9 +19,8 @@
 #ifndef WEBRTC_MODULES_AUDIO_CODING_CODECS_ISAC_FIX_SOURCE_SPECTRUM_AR_MODEL_TABLES_H_
 #define WEBRTC_MODULES_AUDIO_CODING_CODECS_ISAC_FIX_SOURCE_SPECTRUM_AR_MODEL_TABLES_H_
 
-#include "typedefs.h"
 #include "settings.h"
-
+#include "webrtc/typedefs.h"
 
 /********************* AR Coefficient Tables ************************/
 /* cdf for quantized reflection coefficient 1 */

@@ -14,28 +14,45 @@
 #include <string.h>  // memmove, memcpy, memset, size_t
 
 #include <algorithm>  // min, max
+#include <memory>
 
 #include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
 #include "webrtc/modules/audio_coding/neteq/audio_multi_vector.h"
+#include "webrtc/modules/audio_coding/neteq/cross_correlation.h"
 #include "webrtc/modules/audio_coding/neteq/dsp_helper.h"
 #include "webrtc/modules/audio_coding/neteq/expand.h"
 #include "webrtc/modules/audio_coding/neteq/sync_buffer.h"
-#include "webrtc/system_wrappers/interface/scoped_ptr.h"
 
 namespace webrtc {
 
-int Merge::Process(int16_t* input, size_t input_length,
-                   int16_t* external_mute_factor_array,
-                   AudioMultiVector* output) {
+Merge::Merge(int fs_hz,
+             size_t num_channels,
+             Expand* expand,
+             SyncBuffer* sync_buffer)
+    : fs_hz_(fs_hz),
+      num_channels_(num_channels),
+      fs_mult_(fs_hz_ / 8000),
+      timestamps_per_call_(static_cast<size_t>(fs_hz_ / 100)),
+      expand_(expand),
+      sync_buffer_(sync_buffer),
+      expanded_(num_channels_) {
+  assert(num_channels_ > 0);
+}
+
+Merge::~Merge() = default;
+
+size_t Merge::Process(int16_t* input, size_t input_length,
+                      int16_t* external_mute_factor_array,
+                      AudioMultiVector* output) {
   // TODO(hlundin): Change to an enumerator and skip assert.
   assert(fs_hz_ == 8000 || fs_hz_ == 16000 || fs_hz_ ==  32000 ||
          fs_hz_ == 48000);
   assert(fs_hz_ <= kMaxSampleRate);  // Should not be possible.
 
-  int old_length;
-  int expand_period;
+  size_t old_length;
+  size_t expand_period;
   // Get expansion data to overlap and mix with.
-  int expanded_length = GetExpandedSignal(&old_length, &expand_period);
+  size_t expanded_length = GetExpandedSignal(&old_length, &expand_period);
 
   // Transfer input signal to an AudioMultiVector.
   AudioMultiVector input_vector(num_channels_);
@@ -43,16 +60,19 @@ int Merge::Process(int16_t* input, size_t input_length,
   size_t input_length_per_channel = input_vector.Size();
   assert(input_length_per_channel == input_length / num_channels_);
 
-  int16_t best_correlation_index = 0;
+  size_t best_correlation_index = 0;
   size_t output_length = 0;
 
+  std::unique_ptr<int16_t[]> input_channel(
+      new int16_t[input_length_per_channel]);
+  std::unique_ptr<int16_t[]> expanded_channel(new int16_t[expanded_length]);
   for (size_t channel = 0; channel < num_channels_; ++channel) {
-    int16_t* input_channel = &input_vector[channel][0];
-    int16_t* expanded_channel = &expanded_[channel][0];
-    int16_t expanded_max, input_max;
+    input_vector[channel].CopyTo(
+        input_length_per_channel, 0, input_channel.get());
+    expanded_[channel].CopyTo(expanded_length, 0, expanded_channel.get());
+
     int16_t new_mute_factor = SignalScaling(
-        input_channel, static_cast<int>(input_length_per_channel),
-        expanded_channel, &expanded_max, &input_max);
+        input_channel.get(), input_length_per_channel, expanded_channel.get());
 
     // Adjust muting factor (product of "main" muting factor and expand muting
     // factor).
@@ -70,34 +90,33 @@ int Merge::Process(int16_t* input, size_t input_length,
       // Downsample, correlate, and find strongest correlation period for the
       // master (i.e., first) channel only.
       // Downsample to 4kHz sample rate.
-      Downsample(input_channel, static_cast<int>(input_length_per_channel),
-                 expanded_channel, expanded_length);
+      Downsample(input_channel.get(), input_length_per_channel,
+                 expanded_channel.get(), expanded_length);
 
       // Calculate the lag of the strongest correlation period.
       best_correlation_index = CorrelateAndPeakSearch(
-          expanded_max, input_max, old_length,
-          static_cast<int>(input_length_per_channel), expand_period);
+          old_length, input_length_per_channel, expand_period);
     }
 
-    static const int kTempDataSize = 3600;
-    int16_t temp_data[kTempDataSize];  // TODO(hlundin) Remove this.
-    int16_t* decoded_output = temp_data + best_correlation_index;
+    temp_data_.resize(input_length_per_channel + best_correlation_index);
+    int16_t* decoded_output = temp_data_.data() + best_correlation_index;
 
     // Mute the new decoded data if needed (and unmute it linearly).
     // This is the overlapping part of expanded_signal.
-    int interpolation_length = std::min(
+    size_t interpolation_length = std::min(
         kMaxCorrelationLength * fs_mult_,
         expanded_length - best_correlation_index);
     interpolation_length = std::min(interpolation_length,
-                                    static_cast<int>(input_length_per_channel));
+                                    input_length_per_channel);
     if (*external_mute_factor < 16384) {
       // Set a suitable muting slope (Q20). 0.004 for NB, 0.002 for WB,
       // and so on.
       int increment = 4194 / fs_mult_;
-      *external_mute_factor = DspHelper::RampSignal(input_channel,
-                                                    interpolation_length,
-                                                    *external_mute_factor,
-                                                    increment);
+      *external_mute_factor =
+          static_cast<int16_t>(DspHelper::RampSignal(input_channel.get(),
+                                                     interpolation_length,
+                                                     *external_mute_factor,
+                                                     increment));
       DspHelper::UnmuteSignal(&input_channel[interpolation_length],
                               input_length_per_channel - interpolation_length,
                               external_mute_factor, increment,
@@ -111,12 +130,13 @@ int Merge::Process(int16_t* input, size_t input_length,
     }
 
     // Do overlap and mix linearly.
-    int increment = 16384 / (interpolation_length + 1);  // In Q14.
+    int16_t increment =
+        static_cast<int16_t>(16384 / (interpolation_length + 1));  // In Q14.
     int16_t mute_factor = 16384 - increment;
-    memmove(temp_data, expanded_channel,
+    memmove(temp_data_.data(), expanded_channel.get(),
             sizeof(int16_t) * best_correlation_index);
     DspHelper::CrossFade(&expanded_channel[best_correlation_index],
-                         input_channel, interpolation_length,
+                         input_channel.get(), interpolation_length,
                          &mute_factor, increment, decoded_output);
 
     output_length = best_correlation_index + input_length_per_channel;
@@ -126,8 +146,7 @@ int Merge::Process(int16_t* input, size_t input_length,
     } else {
       assert(output->Size() == output_length);
     }
-    memcpy(&(*output)[channel][0], temp_data,
-           sizeof(temp_data[0]) * output_length);
+    (*output)[channel].OverwriteAt(temp_data_.data(), output_length, 0);
   }
 
   // Copy back the first part of the data to |sync_buffer_| and remove it from
@@ -137,14 +156,14 @@ int Merge::Process(int16_t* input, size_t input_length,
 
   // Return new added length. |old_length| samples were borrowed from
   // |sync_buffer_|.
-  return static_cast<int>(output_length) - old_length;
+  return output_length - old_length;
 }
 
-int Merge::GetExpandedSignal(int* old_length, int* expand_period) {
+size_t Merge::GetExpandedSignal(size_t* old_length, size_t* expand_period) {
   // Check how much data that is left since earlier.
-  *old_length = static_cast<int>(sync_buffer_->FutureLength());
+  *old_length = sync_buffer_->FutureLength();
   // Should never be less than overlap_length.
-  assert(*old_length >= static_cast<int>(expand_->overlap_length()));
+  assert(*old_length >= expand_->overlap_length());
   // Generate data to merge the overlap with using expand.
   expand_->SetParametersForMergeAfterExpand();
 
@@ -155,62 +174,59 @@ int Merge::GetExpandedSignal(int* old_length, int* expand_period) {
     // but shift them towards the end of the buffer. This is ok, since all of
     // the buffer will be expand data anyway, so as long as the beginning is
     // left untouched, we're fine.
-    int16_t length_diff = *old_length - 210 * kMaxSampleRate / 8000;
+    size_t length_diff = *old_length - 210 * kMaxSampleRate / 8000;
     sync_buffer_->InsertZerosAtIndex(length_diff, sync_buffer_->next_index());
     *old_length = 210 * kMaxSampleRate / 8000;
     // This is the truncated length.
   }
   // This assert should always be true thanks to the if statement above.
-  assert(210 * kMaxSampleRate / 8000 - *old_length >= 0);
+  assert(210 * kMaxSampleRate / 8000 >= *old_length);
 
   AudioMultiVector expanded_temp(num_channels_);
   expand_->Process(&expanded_temp);
-  *expand_period = static_cast<int>(expanded_temp.Size());  // Samples per
-                                                            // channel.
+  *expand_period = expanded_temp.Size();  // Samples per channel.
 
   expanded_.Clear();
   // Copy what is left since earlier into the expanded vector.
   expanded_.PushBackFromIndex(*sync_buffer_, sync_buffer_->next_index());
-  assert(expanded_.Size() == static_cast<size_t>(*old_length));
+  assert(expanded_.Size() == *old_length);
   assert(expanded_temp.Size() > 0);
   // Do "ugly" copy and paste from the expanded in order to generate more data
   // to correlate (but not interpolate) with.
-  const int required_length = (120 + 80 + 2) * fs_mult_;
-  if (expanded_.Size() < static_cast<size_t>(required_length)) {
-    while (expanded_.Size() < static_cast<size_t>(required_length)) {
+  const size_t required_length = static_cast<size_t>((120 + 80 + 2) * fs_mult_);
+  if (expanded_.Size() < required_length) {
+    while (expanded_.Size() < required_length) {
       // Append one more pitch period each time.
       expanded_.PushBack(expanded_temp);
     }
     // Trim the length to exactly |required_length|.
     expanded_.PopBack(expanded_.Size() - required_length);
   }
-  assert(expanded_.Size() >= static_cast<size_t>(required_length));
+  assert(expanded_.Size() >= required_length);
   return required_length;
 }
 
-int16_t Merge::SignalScaling(const int16_t* input, int input_length,
-                             const int16_t* expanded_signal,
-                             int16_t* expanded_max, int16_t* input_max) const {
+int16_t Merge::SignalScaling(const int16_t* input, size_t input_length,
+                             const int16_t* expanded_signal) const {
   // Adjust muting factor if new vector is more or less of the BGN energy.
-  const int mod_input_length = std::min(64 * fs_mult_, input_length);
-  *expanded_max = WebRtcSpl_MaxAbsValueW16(expanded_signal, mod_input_length);
-  *input_max = WebRtcSpl_MaxAbsValueW16(input, mod_input_length);
-
-  // Calculate energy of expanded signal.
-  // |log_fs_mult| is log2(fs_mult_), but is not exact for 48000 Hz.
-  int log_fs_mult = 30 - WebRtcSpl_NormW32(fs_mult_);
-  int expanded_shift = 6 + log_fs_mult
-      - WebRtcSpl_NormW32(*expanded_max * *expanded_max);
-  expanded_shift = std::max(expanded_shift, 0);
+  const size_t mod_input_length =
+      std::min(static_cast<size_t>(64 * fs_mult_), input_length);
+  const int16_t expanded_max =
+      WebRtcSpl_MaxAbsValueW16(expanded_signal, mod_input_length);
+  int32_t factor = (expanded_max * expanded_max) /
+      (std::numeric_limits<int32_t>::max() /
+          static_cast<int32_t>(mod_input_length));
+  const int expanded_shift = factor == 0 ? 0 : 31 - WebRtcSpl_NormW32(factor);
   int32_t energy_expanded = WebRtcSpl_DotProductWithScale(expanded_signal,
                                                           expanded_signal,
                                                           mod_input_length,
                                                           expanded_shift);
 
   // Calculate energy of input signal.
-  int input_shift = 6 + log_fs_mult -
-      WebRtcSpl_NormW32(*input_max * *input_max);
-  input_shift = std::max(input_shift, 0);
+  const int16_t input_max = WebRtcSpl_MaxAbsValueW16(input, mod_input_length);
+  factor = (input_max * input_max) / (std::numeric_limits<int32_t>::max() /
+      static_cast<int32_t>(mod_input_length));
+  const int input_shift = factor == 0 ? 0 : 31 - WebRtcSpl_NormW32(factor);
   int32_t energy_input = WebRtcSpl_DotProductWithScale(input, input,
                                                        mod_input_length,
                                                        input_shift);
@@ -232,7 +248,8 @@ int16_t Merge::SignalScaling(const int16_t* input, int input_length,
     // energy_expanded / energy_input is in Q14.
     energy_expanded = WEBRTC_SPL_SHIFT_W32(energy_expanded, temp_shift + 14);
     // Calculate sqrt(energy_expanded / energy_input) in Q14.
-    mute_factor = WebRtcSpl_SqrtFloor((energy_expanded / energy_input) << 14);
+    mute_factor = static_cast<int16_t>(
+        WebRtcSpl_SqrtFloor((energy_expanded / energy_input) << 14));
   } else {
     // Set to 1 (in Q14) when |expanded| has higher energy than |input|.
     mute_factor = 16384;
@@ -243,13 +260,13 @@ int16_t Merge::SignalScaling(const int16_t* input, int input_length,
 
 // TODO(hlundin): There are some parameter values in this method that seem
 // strange. Compare with Expand::Correlation.
-void Merge::Downsample(const int16_t* input, int input_length,
-                       const int16_t* expanded_signal, int expanded_length) {
+void Merge::Downsample(const int16_t* input, size_t input_length,
+                       const int16_t* expanded_signal, size_t expanded_length) {
   const int16_t* filter_coefficients;
-  int num_coefficients;
+  size_t num_coefficients;
   int decimation_factor = fs_hz_ / 4000;
-  static const int kCompensateDelay = 0;
-  int length_limit = fs_hz_ / 100;  // 10 ms in samples.
+  static const size_t kCompensateDelay = 0;
+  size_t length_limit = static_cast<size_t>(fs_hz_ / 100);  // 10 ms in samples.
   if (fs_hz_ == 8000) {
     filter_coefficients = DspHelper::kDownsample8kHzTbl;
     num_coefficients = 3;
@@ -263,7 +280,7 @@ void Merge::Downsample(const int16_t* input, int input_length,
     filter_coefficients = DspHelper::kDownsample48kHzTbl;
     num_coefficients = 7;
   }
-  int signal_offset = num_coefficients - 1;
+  size_t signal_offset = num_coefficients - 1;
   WebRtcSpl_DownsampleFast(&expanded_signal[signal_offset],
                            expanded_length - signal_offset,
                            expanded_downsampled_, kExpandDownsampLength,
@@ -271,10 +288,10 @@ void Merge::Downsample(const int16_t* input, int input_length,
                            decimation_factor, kCompensateDelay);
   if (input_length <= length_limit) {
     // Not quite long enough, so we have to cheat a bit.
-    int16_t temp_len = input_length - signal_offset;
+    size_t temp_len = input_length - signal_offset;
     // TODO(hlundin): Should |downsamp_temp_len| be corrected for round-off
     // errors? I.e., (temp_len + decimation_factor - 1) / decimation_factor?
-    int16_t downsamp_temp_len = temp_len / decimation_factor;
+    size_t downsamp_temp_len = temp_len / decimation_factor;
     WebRtcSpl_DownsampleFast(&input[signal_offset], temp_len,
                              input_downsampled_, downsamp_temp_len,
                              filter_coefficients, num_coefficients,
@@ -290,32 +307,28 @@ void Merge::Downsample(const int16_t* input, int input_length,
   }
 }
 
-int16_t Merge::CorrelateAndPeakSearch(int16_t expanded_max, int16_t input_max,
-                                      int start_position, int input_length,
-                                      int expand_period) const {
+size_t Merge::CorrelateAndPeakSearch(size_t start_position, size_t input_length,
+                                     size_t expand_period) const {
   // Calculate correlation without any normalization.
-  const int max_corr_length = kMaxCorrelationLength;
-  int stop_position_downsamp = std::min(
-      max_corr_length, expand_->max_lag() / (fs_mult_ * 2) + 1);
-  int16_t correlation_shift = 0;
-  if (expanded_max * input_max > 26843546) {
-    correlation_shift = 3;
-  }
+  const size_t max_corr_length = kMaxCorrelationLength;
+  size_t stop_position_downsamp =
+      std::min(max_corr_length, expand_->max_lag() / (fs_mult_ * 2) + 1);
 
   int32_t correlation[kMaxCorrelationLength];
-  WebRtcSpl_CrossCorrelation(correlation, input_downsampled_,
-                             expanded_downsampled_, kInputDownsampLength,
-                             stop_position_downsamp, correlation_shift, 1);
+  CrossCorrelationWithAutoShift(input_downsampled_, expanded_downsampled_,
+                                kInputDownsampLength, stop_position_downsamp, 1,
+                                correlation);
 
   // Normalize correlation to 14 bits and copy to a 16-bit array.
-  const int pad_length = static_cast<int>(expand_->overlap_length() - 1);
-  const int correlation_buffer_size = 2 * pad_length + kMaxCorrelationLength;
-  scoped_ptr<int16_t[]> correlation16(new int16_t[correlation_buffer_size]);
+  const size_t pad_length = expand_->overlap_length() - 1;
+  const size_t correlation_buffer_size = 2 * pad_length + kMaxCorrelationLength;
+  std::unique_ptr<int16_t[]> correlation16(
+      new int16_t[correlation_buffer_size]);
   memset(correlation16.get(), 0, correlation_buffer_size * sizeof(int16_t));
   int16_t* correlation_ptr = &correlation16[pad_length];
   int32_t max_correlation = WebRtcSpl_MaxAbsValueW32(correlation,
                                                      stop_position_downsamp);
-  int16_t norm_shift = std::max(0, 17 - WebRtcSpl_NormW32(max_correlation));
+  int norm_shift = std::max(0, 17 - WebRtcSpl_NormW32(max_correlation));
   WebRtcSpl_VectorBitShiftW32ToW16(correlation_ptr, stop_position_downsamp,
                                    correlation, norm_shift);
 
@@ -324,21 +337,20 @@ int16_t Merge::CorrelateAndPeakSearch(int16_t expanded_max, int16_t input_max,
   // (1) w16_bestIndex + input_length <
   //     timestamps_per_call_ + expand_->overlap_length();
   // (2) w16_bestIndex + input_length < start_position.
-  int start_index = timestamps_per_call_ +
-      static_cast<int>(expand_->overlap_length());
+  size_t start_index = timestamps_per_call_ + expand_->overlap_length();
   start_index = std::max(start_position, start_index);
-  start_index = std::max(start_index - input_length, 0);
+  start_index = (input_length > start_index) ? 0 : (start_index - input_length);
   // Downscale starting index to 4kHz domain. (fs_mult_ * 2 = fs_hz_ / 4000.)
-  int start_index_downsamp = start_index / (fs_mult_ * 2);
+  size_t start_index_downsamp = start_index / (fs_mult_ * 2);
 
   // Calculate a modified |stop_position_downsamp| to account for the increased
   // start index |start_index_downsamp| and the effective array length.
-  int modified_stop_pos =
+  size_t modified_stop_pos =
       std::min(stop_position_downsamp,
                kMaxCorrelationLength + pad_length - start_index_downsamp);
-  int best_correlation_index;
+  size_t best_correlation_index;
   int16_t best_correlation;
-  static const int kNumCorrelationCandidates = 1;
+  static const size_t kNumCorrelationCandidates = 1;
   DspHelper::PeakDetection(&correlation_ptr[start_index_downsamp],
                            modified_stop_pos, kNumCorrelationCandidates,
                            fs_mult_, &best_correlation_index,
@@ -349,17 +361,17 @@ int16_t Merge::CorrelateAndPeakSearch(int16_t expanded_max, int16_t input_max,
   // Ensure that underrun does not occur for 10ms case => we have to get at
   // least 10ms + overlap . (This should never happen thanks to the above
   // modification of peak-finding starting point.)
-  while ((best_correlation_index + input_length) <
-      static_cast<int>(timestamps_per_call_ + expand_->overlap_length()) ||
-      best_correlation_index + input_length < start_position) {
+  while (((best_correlation_index + input_length) <
+          (timestamps_per_call_ + expand_->overlap_length())) ||
+         ((best_correlation_index + input_length) < start_position)) {
     assert(false);  // Should never happen.
     best_correlation_index += expand_period;  // Jump one lag ahead.
   }
   return best_correlation_index;
 }
 
-int Merge::RequiredFutureSamples() {
-  return static_cast<int>(fs_hz_ / 100 * num_channels_);  // 10 ms.
+size_t Merge::RequiredFutureSamples() {
+  return fs_hz_ / 100 * num_channels_;  // 10 ms.
 }
 
 

@@ -13,7 +13,7 @@
 // part of the Boost C++ library collection. Otherwise, the C standard library's
 // qsort() will be used.
 
-#include "webrtc/system_wrappers/interface/sort.h"
+#include "webrtc/system_wrappers/include/sort.h"
 
 #include <assert.h>
 #include <string.h>  // memcpy

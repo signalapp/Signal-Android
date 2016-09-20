@@ -29,12 +29,12 @@
 void WebRtcIlbcfix_SimpleLpcAnalysis(
     int16_t *lsf,   /* (o) lsf coefficients */
     int16_t *data,   /* (i) new block of speech */
-    iLBC_Enc_Inst_t *iLBCenc_inst
+    IlbcEncoder *iLBCenc_inst
     /* (i/o) the encoder state structure */
                                      ) {
   int k;
   int scale;
-  int16_t is;
+  size_t is;
   int16_t stability;
   /* Stack based */
   int16_t A[LPC_FILTERORDER + 1];

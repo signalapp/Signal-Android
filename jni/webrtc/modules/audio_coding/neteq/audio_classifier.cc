@@ -68,4 +68,8 @@ bool AudioClassifier::Analysis(const int16_t* input,
   return is_music_;
 }
 
+bool AudioClassifier::is_music() const {
+  return is_music_;
+}
+
 }  // namespace webrtc

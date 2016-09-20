@@ -1,0 +1,26 @@
+# Copyright (c) 2016 The WebRTC project authors. All Rights Reserved.
+#
+# Use of this source code is governed by a BSD-style license
+# that can be found in the LICENSE file in the root of the source
+# tree. An additional intellectual property rights grant can be found
+# in the file PATENTS.  All contributing project authors may
+# be found in the AUTHORS file in the root of the source tree.
+{
+  'includes': [
+    '../../build/android/android.isolate',
+    'common_audio_unittests.isolate',
+  ],
+  'variables': {
+    'command': [
+      '<(PRODUCT_DIR)/bin/run_common_audio_unittests',
+      '--logcat-output-dir', '${ISOLATED_OUTDIR}/logcats',
+    ],
+    'files': [
+      '../../build/config/',
+      '../../third_party/instrumented_libraries/instrumented_libraries.isolate',
+      '<(PRODUCT_DIR)/common_audio_unittests_apk/',
+      '<(PRODUCT_DIR)/bin/run_common_audio_unittests',
+      'common_audio_unittests.isolate',
+    ]
+  }
+}

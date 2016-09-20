@@ -18,6 +18,8 @@ LOCAL_MODULE := libwebrtc_g711
 LOCAL_MODULE_TAGS := optional
 LOCAL_GENERATED_SOURCES :=
 LOCAL_SRC_FILES := \
+    audio_decoder_pcm.cc \
+    audio_encoder_pcm.cc \
     g711_interface.c \
     g711.c
 
@@ -27,7 +29,7 @@ LOCAL_CFLAGS := \
 
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/include \
-    $(LOCAL_PATH)/../../../..
+    $(LOCAL_PATH)/../../../../..
 
 LOCAL_SHARED_LIBRARIES := \
     libcutils \

@@ -21,13 +21,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "defines.h"
-#include "nit_encode.h"
-#include "encode.h"
-#include "init_decode.h"
-#include "decode.h"
-#include "constants.h"
-#include "ilbc.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/defines.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/nit_encode.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/encode.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/init_decode.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/decode.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/constants.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/ilbc.h"
 
 #define ILBCNOOFWORDS_MAX (NO_OF_BYTES_30MS)/2
 
@@ -40,7 +40,7 @@
  *---------------------------------------------------------------*/
 
 short encode(                         /* (o) Number of bytes encoded */
-    iLBC_Enc_Inst_t *iLBCenc_inst,    /* (i/o) Encoder instance */
+    IlbcEncoder *iLBCenc_inst,    /* (i/o) Encoder instance */
     int16_t *encoded_data,      /* (o) The encoded bytes */
     int16_t *data               /* (i) The signal block to encode */
                                                         ){
@@ -56,7 +56,7 @@ short encode(                         /* (o) Number of bytes encoded */
  *---------------------------------------------------------------*/
 
 short decode( /* (o) Number of decoded samples */
-    iLBC_Dec_Inst_t *iLBCdec_inst, /* (i/o) Decoder instance */
+    IlbcDecoder *iLBCdec_inst, /* (i/o) Decoder instance */
     short *decoded_data, /* (o) Decoded signal block */
     short *encoded_data, /* (i) Encoded bytes */
     short mode           /* (i) 0=PL, 1=Normal */
@@ -100,8 +100,8 @@ int main(int argc, char* argv[])
   short *channeldata;
   int blockcount = 0, noOfBlocks=0, i, noOfLostBlocks=0;
   short mode;
-  iLBC_Enc_Inst_t Enc_Inst;
-  iLBC_Dec_Inst_t Dec_Inst;
+  IlbcEncoder Enc_Inst;
+  IlbcDecoder Dec_Inst;
 
   short frameLen;
   short count;

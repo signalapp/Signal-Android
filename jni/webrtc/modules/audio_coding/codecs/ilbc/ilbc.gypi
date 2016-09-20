@@ -9,25 +9,19 @@
 {
   'targets': [
     {
-      'target_name': 'iLBC',
+      'target_name': 'ilbc',
       'type': 'static_library',
       'dependencies': [
         '<(webrtc_root)/common_audio/common_audio.gyp:common_audio',
+        'audio_encoder_interface',
       ],
-      'include_dirs': [
-        'interface',
-        '<(webrtc_root)',
-      ],
-      'direct_dependent_settings': {
-        'include_dirs': [
-          'interface',
-          '<(webrtc_root)',
-        ],
-      },
       'sources': [
-        'interface/ilbc.h',
         'abs_quant.c',
         'abs_quant_loop.c',
+        'audio_decoder_ilbc.cc',
+        'audio_decoder_ilbc.h',
+        'audio_encoder_ilbc.cc',
+        'audio_encoder_ilbc.h',
         'augmented_cb_corr.c',
         'bw_expand.c',
         'cb_construct.c',
@@ -60,6 +54,7 @@
         'hp_input.c',
         'hp_output.c',
         'ilbc.c',
+        'ilbc.h',
         'index_conv_dec.c',
         'index_conv_enc.c',
         'init_decode.c',
@@ -165,21 +160,21 @@
         'window32_w32.h',
         'xcorr_coef.h',
      ], # sources
-    }, # iLBC
+    }, # ilbc
   ], # targets
   'conditions': [
     ['include_tests==1', {
       'targets': [
         {
-          'target_name': 'iLBCtest',
+          'target_name': 'ilbc_test',
           'type': 'executable',
           'dependencies': [
-            'iLBC',
+            'ilbc',
           ],
           'sources': [
             'test/iLBC_test.c',
           ],
-        }, # iLBCtest
+        }, # ilbc_test
       ], # targets
     }], # include_tests
   ], # conditions

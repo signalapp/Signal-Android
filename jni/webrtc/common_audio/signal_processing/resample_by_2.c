@@ -67,10 +67,10 @@ static const uint16_t kResampleAllpass2[3] = {12199, 37471, 60255};
 
 // decimator
 #if !defined(MIPS32_LE)
-void WebRtcSpl_DownsampleBy2(const int16_t* in, int16_t len,
+void WebRtcSpl_DownsampleBy2(const int16_t* in, size_t len,
                              int16_t* out, int32_t* filtState) {
   int32_t tmp1, tmp2, diff, in32, out32;
-  int16_t i;
+  size_t i;
 
   register int32_t state0 = filtState[0];
   register int32_t state1 = filtState[1];
@@ -125,10 +125,10 @@ void WebRtcSpl_DownsampleBy2(const int16_t* in, int16_t len,
 #endif  // #if defined(MIPS32_LE)
 
 
-void WebRtcSpl_UpsampleBy2(const int16_t* in, int16_t len,
+void WebRtcSpl_UpsampleBy2(const int16_t* in, size_t len,
                            int16_t* out, int32_t* filtState) {
   int32_t tmp1, tmp2, diff, in32, out32;
-  int16_t i;
+  size_t i;
 
   register int32_t state0 = filtState[0];
   register int32_t state1 = filtState[1];

@@ -20,7 +20,7 @@
 // Maximum number of samples in a low/high-band frame.
 enum
 {
-    kMaxBandFrameLength = 240  // 10 ms at 48 kHz.
+    kMaxBandFrameLength = 320  // 10 ms at 64 kHz.
 };
 
 // QMF filter coefficients in Q16.
@@ -45,7 +45,7 @@ static const uint16_t WebRtcSpl_kAllPassFilter2[3] = {21333, 49062, 63010};
 //                            |data_length|
 //
 
-void WebRtcSpl_AllPassQMF(int32_t* in_data, int16_t data_length,
+void WebRtcSpl_AllPassQMF(int32_t* in_data, size_t data_length,
                           int32_t* out_data, const uint16_t* filter_coefficients,
                           int32_t* filter_state)
 {
@@ -65,7 +65,7 @@ void WebRtcSpl_AllPassQMF(int32_t* in_data, int16_t data_length,
     // filter operation takes the |in_data| (which is the output from the previous cascade
     // filter) and store the output in |out_data|.
     // Note that the input vector values are changed during the process.
-    int16_t k;
+    size_t k;
     int32_t diff;
     // First all-pass cascade; filter from in_data to out_data.
 
@@ -124,18 +124,18 @@ void WebRtcSpl_AllPassQMF(int32_t* in_data, int16_t data_length,
     filter_state[5] = out_data[data_length - 1]; // y[N-1], becomes y[-1] next time
 }
 
-void WebRtcSpl_AnalysisQMF(const int16_t* in_data, int in_data_length,
+void WebRtcSpl_AnalysisQMF(const int16_t* in_data, size_t in_data_length,
                            int16_t* low_band, int16_t* high_band,
                            int32_t* filter_state1, int32_t* filter_state2)
 {
-    int16_t i;
+    size_t i;
     int16_t k;
     int32_t tmp;
     int32_t half_in1[kMaxBandFrameLength];
     int32_t half_in2[kMaxBandFrameLength];
     int32_t filter1[kMaxBandFrameLength];
     int32_t filter2[kMaxBandFrameLength];
-    const int band_length = in_data_length / 2;
+    const size_t band_length = in_data_length / 2;
     assert(in_data_length % 2 == 0);
     assert(band_length <= kMaxBandFrameLength);
 
@@ -156,18 +156,16 @@ void WebRtcSpl_AnalysisQMF(const int16_t* in_data, int in_data_length,
     // branches to get upper & lower band.
     for (i = 0; i < band_length; i++)
     {
-        tmp = filter1[i] + filter2[i] + 1024;
-        tmp = WEBRTC_SPL_RSHIFT_W32(tmp, 11);
+        tmp = (filter1[i] + filter2[i] + 1024) >> 11;
         low_band[i] = WebRtcSpl_SatW32ToW16(tmp);
 
-        tmp = filter1[i] - filter2[i] + 1024;
-        tmp = WEBRTC_SPL_RSHIFT_W32(tmp, 11);
+        tmp = (filter1[i] - filter2[i] + 1024) >> 11;
         high_band[i] = WebRtcSpl_SatW32ToW16(tmp);
     }
 }
 
 void WebRtcSpl_SynthesisQMF(const int16_t* low_band, const int16_t* high_band,
-                            int band_length, int16_t* out_data,
+                            size_t band_length, int16_t* out_data,
                             int32_t* filter_state1, int32_t* filter_state2)
 {
     int32_t tmp;
@@ -175,7 +173,7 @@ void WebRtcSpl_SynthesisQMF(const int16_t* low_band, const int16_t* high_band,
     int32_t half_in2[kMaxBandFrameLength];
     int32_t filter1[kMaxBandFrameLength];
     int32_t filter2[kMaxBandFrameLength];
-    int16_t i;
+    size_t i;
     int16_t k;
     assert(band_length <= kMaxBandFrameLength);
 
@@ -200,10 +198,10 @@ void WebRtcSpl_SynthesisQMF(const int16_t* low_band, const int16_t* high_band,
     // saturation.
     for (i = 0, k = 0; i < band_length; i++)
     {
-        tmp = WEBRTC_SPL_RSHIFT_W32(filter2[i] + 512, 10);
+        tmp = (filter2[i] + 512) >> 10;
         out_data[k++] = WebRtcSpl_SatW32ToW16(tmp);
 
-        tmp = WEBRTC_SPL_RSHIFT_W32(filter1[i] + 512, 10);
+        tmp = (filter1[i] + 512) >> 10;
         out_data[k++] = WebRtcSpl_SatW32ToW16(tmp);
     }
 

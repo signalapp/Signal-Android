@@ -12,7 +12,7 @@
 #define WEBRTC_MODULES_AUDIO_CODING_NETEQ_RTCP_H_
 
 #include "webrtc/base/constructormagic.h"
-#include "webrtc/modules/audio_coding/neteq/interface/neteq.h"
+#include "webrtc/modules/audio_coding/neteq/include/neteq.h"
 #include "webrtc/typedefs.h"
 
 namespace webrtc {
@@ -51,7 +51,7 @@ class Rtcp {
   uint32_t jitter_;  // Current jitter value.
   int32_t transit_;  // Clock difference for previous packet.
 
-  DISALLOW_COPY_AND_ASSIGN(Rtcp);
+  RTC_DISALLOW_COPY_AND_ASSIGN(Rtcp);
 };
 
 }  // namespace webrtc

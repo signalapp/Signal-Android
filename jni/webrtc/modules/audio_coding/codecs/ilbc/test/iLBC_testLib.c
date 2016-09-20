@@ -21,7 +21,7 @@ iLBC_test.c
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "ilbc.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/ilbc.h"
 
 //#define JUNK_DATA
 #ifdef JUNK_DATA
@@ -41,13 +41,15 @@ int main(int argc, char* argv[])
 {
   FILE *ifileid,*efileid,*ofileid, *chfileid;
   short encoded_data[55], data[240], speechType;
-  short len, mode, pli;
+  int len_int, mode;
+  short pli;
+  size_t len, readlen;
   int blockcount = 0;
 
-  iLBC_encinst_t *Enc_Inst;
-  iLBC_decinst_t *Dec_Inst;
+  IlbcEncoderInstance *Enc_Inst;
+  IlbcDecoderInstance *Dec_Inst;
 #ifdef JUNK_DATA
-  int i;
+  size_t i;
   FILE *seedfile;
   unsigned int random_seed = (unsigned int) time(NULL);//1196764538
 #endif
@@ -125,19 +127,21 @@ int main(int argc, char* argv[])
 
   /* loop over input blocks */
 #ifdef SPLIT_10MS
-  while(fread(data, sizeof(short), 80, ifileid) == 80) {
+  readlen = 80;
 #else
-  while((short)fread(data,sizeof(short),(mode<<3),ifileid)==(mode<<3)) {
+  readlen = (size_t)(mode << 3);
 #endif
+  while(fread(data, sizeof(short), readlen, ifileid) == readlen) {
     blockcount++;
 
     /* encoding */
     fprintf(stderr, "--- Encoding block %i --- ",blockcount);
-#ifdef SPLIT_10MS
-    len=WebRtcIlbcfix_Encode(Enc_Inst, data, 80, encoded_data);
-#else
-    len=WebRtcIlbcfix_Encode(Enc_Inst, data, (short)(mode<<3), encoded_data);
-#endif
+    len_int=WebRtcIlbcfix_Encode(Enc_Inst, data, readlen, encoded_data);
+    if (len_int < 0) {
+      fprintf(stderr, "Error encoding\n");
+      exit(0);
+    }
+    len = (size_t)len_int;
     fprintf(stderr, "\r");
 
 #ifdef JUNK_DATA
@@ -148,9 +152,7 @@ int main(int argc, char* argv[])
     /* write byte file */
     if(len != 0){ //len may be 0 in 10ms split case
       fwrite(encoded_data,1,len,efileid);
-    }
 
-    if(len != 0){ //len may be 0 in 10ms split case
       /* get channel data if provided */
       if (argc==6) {
         if (fread(&pli, sizeof(int16_t), 1, chfileid)) {
@@ -173,7 +175,13 @@ int main(int argc, char* argv[])
       /* decoding */
       fprintf(stderr, "--- Decoding block %i --- ",blockcount);
       if (pli==1) {
-        len=WebRtcIlbcfix_Decode(Dec_Inst, encoded_data, len, data, &speechType);
+        len_int = WebRtcIlbcfix_Decode(Dec_Inst, encoded_data, len, data,
+                                       &speechType);
+        if (len_int < 0) {
+          fprintf(stderr, "Error decoding\n");
+          exit(0);
+        }
+        len = (size_t)len_int;
       } else {
         len=WebRtcIlbcfix_DecodePlc(Dec_Inst, data, 1);
       }

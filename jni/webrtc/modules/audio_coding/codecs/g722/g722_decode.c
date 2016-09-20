@@ -7,7 +7,7 @@
  *
  * Copyright (C) 2005 Steve Underwood
  *
- *  Despite my general liking of the GPL, I place my own contributions 
+ *  Despite my general liking of the GPL, I place my own contributions
  *  to this code in the public domain for the benefit of all mankind -
  *  even the slimy ones who might try to proprietize my work and use it
  *  to my detriment.
@@ -30,17 +30,12 @@
 /*! \file */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <stdio.h>
 #include <memory.h>
+#include <stdio.h>
 #include <stdlib.h>
 
-#include "typedefs.h"
 #include "g722_enc_dec.h"
-
+#include "webrtc/typedefs.h"
 
 #if !defined(FALSE)
 #define FALSE 0
@@ -63,9 +58,9 @@ static __inline int16_t saturate(int32_t amp)
 }
 /*- End of function --------------------------------------------------------*/
 
-static void block4(g722_decode_state_t *s, int band, int d);
+static void block4(G722DecoderState *s, int band, int d);
 
-static void block4(g722_decode_state_t *s, int band, int d)
+static void block4(G722DecoderState *s, int band, int d)
 {
     int wd1;
     int wd2;
@@ -126,7 +121,7 @@ static void block4(g722_decode_state_t *s, int band, int d)
         s->band[band].d[i] = s->band[band].d[i - 1];
         s->band[band].b[i] = s->band[band].bp[i];
     }
-    
+
     for (i = 2;  i > 0;  i--)
     {
         s->band[band].r[i] = s->band[band].r[i - 1];
@@ -155,15 +150,10 @@ static void block4(g722_decode_state_t *s, int band, int d)
 }
 /*- End of function --------------------------------------------------------*/
 
-g722_decode_state_t *WebRtc_g722_decode_init(g722_decode_state_t *s,
-                                             int rate,
-                                             int options)
-{
-    if (s == NULL)
-    {
-        if ((s = (g722_decode_state_t *) malloc(sizeof(*s))) == NULL)
-            return NULL;
-    }
+G722DecoderState* WebRtc_g722_decode_init(G722DecoderState* s,
+                                          int rate,
+                                          int options) {
+    s = s ? s : malloc(sizeof(*s));
     memset(s, 0, sizeof(*s));
     if (rate == 48000)
         s->bits_per_sample = 6;
@@ -183,15 +173,15 @@ g722_decode_state_t *WebRtc_g722_decode_init(g722_decode_state_t *s,
 }
 /*- End of function --------------------------------------------------------*/
 
-int WebRtc_g722_decode_release(g722_decode_state_t *s)
+int WebRtc_g722_decode_release(G722DecoderState *s)
 {
     free(s);
     return 0;
 }
 /*- End of function --------------------------------------------------------*/
 
-int WebRtc_g722_decode(g722_decode_state_t *s, int16_t amp[],
-                       const uint8_t g722_data[], int len)
+size_t WebRtc_g722_decode(G722DecoderState *s, int16_t amp[],
+                          const uint8_t g722_data[], size_t len)
 {
     static const int wl[8] = {-60, -30, 58, 172, 334, 538, 1198, 3042 };
     static const int rl42[16] = {0, 7, 6, 5, 4, 3, 2, 1,
@@ -207,9 +197,9 @@ int WebRtc_g722_decode(g722_decode_state_t *s, int16_t amp[],
     static const int wh[3] = {0, -214, 798};
     static const int rh2[4] = {2, 1, 2, 1};
     static const int qm2[4] = {-7408, -1616,  7408,   1616};
-    static const int qm4[16] = 
+    static const int qm4[16] =
     {
-              0, -20456, -12896,  -8968, 
+              0, -20456, -12896,  -8968,
           -6288,  -4240,  -2584,  -1200,
           20456,  12896,   8968,   6288,
            4240,   2584,   1200,      0
@@ -260,9 +250,9 @@ int WebRtc_g722_decode(g722_decode_state_t *s, int16_t amp[],
     int wd2;
     int wd3;
     int code;
-    int outlen;
+    size_t outlen;
     int i;
-    int j;
+    size_t j;
 
     outlen = 0;
     rhigh = 0;
@@ -329,7 +319,7 @@ int WebRtc_g722_decode(g722_decode_state_t *s, int16_t amp[],
         else if (wd1 > 18432)
             wd1 = 18432;
         s->band[0].nb = wd1;
-            
+
         /* Block 3L, SCALEL */
         wd1 = (s->band[0].nb >> 6) & 31;
         wd2 = 8 - (s->band[0].nb >> 11);
@@ -337,7 +327,7 @@ int WebRtc_g722_decode(g722_decode_state_t *s, int16_t amp[],
         s->band[0].det = wd3 << 2;
 
         block4(s, 0, dlowt);
-        
+
         if (!s->eight_k)
         {
             /* Block 2H, INVQAH */
@@ -360,7 +350,7 @@ int WebRtc_g722_decode(g722_decode_state_t *s, int16_t amp[],
             else if (wd1 > 22528)
                 wd1 = 22528;
             s->band[1].nb = wd1;
-            
+
             /* Block 3H, SCALEH */
             wd1 = (s->band[1].nb >> 6) & 31;
             wd2 = 10 - (s->band[1].nb >> 11);

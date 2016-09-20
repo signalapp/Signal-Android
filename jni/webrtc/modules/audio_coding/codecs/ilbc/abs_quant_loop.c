@@ -21,9 +21,9 @@
 #include "sort_sq.h"
 
 void WebRtcIlbcfix_AbsQuantLoop(int16_t *syntOutIN, int16_t *in_weightedIN,
-                                int16_t *weightDenumIN, int16_t *quantLenIN,
+                                int16_t *weightDenumIN, size_t *quantLenIN,
                                 int16_t *idxVecIN ) {
-  int n, k1, k2;
+  size_t k1, k2;
   int16_t index;
   int32_t toQW32;
   int32_t toQ32;
@@ -33,10 +33,8 @@ void WebRtcIlbcfix_AbsQuantLoop(int16_t *syntOutIN, int16_t *in_weightedIN,
   int16_t *syntOut   = syntOutIN;
   int16_t *in_weighted  = in_weightedIN;
   int16_t *weightDenum  = weightDenumIN;
-  int16_t *quantLen  = quantLenIN;
+  size_t *quantLen  = quantLenIN;
   int16_t *idxVec   = idxVecIN;
-
-  n=0;
 
   for(k1=0;k1<2;k1++) {
     for(k2=0;k2<quantLen[k1];k2++){
@@ -81,7 +79,6 @@ void WebRtcIlbcfix_AbsQuantLoop(int16_t *syntOutIN, int16_t *in_weightedIN,
 
       *syntOut     = (int16_t) (tmp16a + (int32_t)(*in_weighted) - toQW32);
 
-      n++;
       syntOut++; in_weighted++;
     }
     /* Update perceptual weighting filter at subframe border */

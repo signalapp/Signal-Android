@@ -41,10 +41,10 @@ void WebRtcIlbcfix_Vq3(
   /* Find the codebook with the lowest square distance */
   for (j = 0; j < n_cb; j++) {
     tmp = X[0] - CB[pos];
-    dist = WEBRTC_SPL_MUL_16_16(tmp, tmp);
+    dist = tmp * tmp;
     for (i = 1; i < 3; i++) {
       tmp = X[i] - CB[pos + i];
-      dist += WEBRTC_SPL_MUL_16_16(tmp, tmp);
+      dist += tmp * tmp;
     }
 
     if (dist < mindist) {

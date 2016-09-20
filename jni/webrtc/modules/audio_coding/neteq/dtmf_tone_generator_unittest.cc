@@ -14,14 +14,134 @@
 
 #include <math.h>
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 #include "webrtc/modules/audio_coding/neteq/audio_multi_vector.h"
 
 namespace webrtc {
 
-TEST(DtmfToneGenerator, CreateAndDestroy) {
-  DtmfToneGenerator* tone_gen = new DtmfToneGenerator();
-  delete tone_gen;
+class DtmfToneGeneratorTest : public ::testing::Test {
+ protected:
+  static const double kLowFreqHz[16];
+  static const double kHighFreqHz[16];
+  // This is the attenuation applied to all cases.
+  const double kBaseAttenuation = 16141.0 / 16384.0;
+  const double k3dbAttenuation = 23171.0 / 32768;
+  const int kNumSamples = 10;
+
+  void TestAllTones(int fs_hz, int channels) {
+    AudioMultiVector signal(channels);
+
+    for (int event = 0; event <= 15; ++event) {
+      std::ostringstream ss;
+      ss << "Checking event " << event << " at sample rate " << fs_hz;
+      SCOPED_TRACE(ss.str());
+      const int kAttenuation = 0;
+      ASSERT_EQ(0, tone_gen_.Init(fs_hz, event, kAttenuation));
+      EXPECT_TRUE(tone_gen_.initialized());
+      EXPECT_EQ(kNumSamples, tone_gen_.Generate(kNumSamples, &signal));
+
+      double f1 = kLowFreqHz[event];
+      double f2 = kHighFreqHz[event];
+      const double pi = 3.14159265358979323846;
+
+      for (int n = 0; n < kNumSamples; ++n) {
+        double x = k3dbAttenuation * sin(2.0 * pi * f1 / fs_hz * (-n - 1)) +
+                   sin(2.0 * pi * f2 / fs_hz * (-n - 1));
+        x *= kBaseAttenuation;
+        x = ldexp(x, 14);  // Scale to Q14.
+        for (int channel = 0; channel < channels; ++channel) {
+          EXPECT_NEAR(x, static_cast<double>(signal[channel][n]), 25);
+        }
+      }
+
+      tone_gen_.Reset();
+      EXPECT_FALSE(tone_gen_.initialized());
+    }
+  }
+
+  void TestAmplitudes(int fs_hz, int channels) {
+    AudioMultiVector signal(channels);
+    AudioMultiVector ref_signal(channels);
+
+    const int event_vec[] = {0, 4, 9, 13};  // Test a few events.
+    for (int e = 0; e < 4; ++e) {
+      int event = event_vec[e];
+      // Create full-scale reference.
+      ASSERT_EQ(0, tone_gen_.Init(fs_hz, event, 0));  // 0 attenuation.
+      EXPECT_EQ(kNumSamples, tone_gen_.Generate(kNumSamples, &ref_signal));
+      // Test every 5 steps (to save time).
+      for (int attenuation = 1; attenuation <= 36; attenuation += 5) {
+        std::ostringstream ss;
+        ss << "Checking event " << event << " at sample rate " << fs_hz;
+        ss << "; attenuation " << attenuation;
+        SCOPED_TRACE(ss.str());
+        ASSERT_EQ(0, tone_gen_.Init(fs_hz, event, attenuation));
+        EXPECT_EQ(kNumSamples, tone_gen_.Generate(kNumSamples, &signal));
+        for (int n = 0; n < kNumSamples; ++n) {
+          double attenuation_factor =
+              pow(10, -static_cast<double>(attenuation) / 20);
+          // Verify that the attenuation is correct.
+          for (int channel = 0; channel < channels; ++channel) {
+            EXPECT_NEAR(attenuation_factor * ref_signal[channel][n],
+                        signal[channel][n],
+                        2);
+          }
+        }
+
+        tone_gen_.Reset();
+      }
+    }
+  }
+
+  DtmfToneGenerator tone_gen_;
+};
+
+// Low and high frequencies for events 0 through 15.
+const double DtmfToneGeneratorTest::kLowFreqHz[16] = {
+    941.0, 697.0, 697.0, 697.0, 770.0, 770.0, 770.0, 852.0,
+    852.0, 852.0, 941.0, 941.0, 697.0, 770.0, 852.0, 941.0};
+const double DtmfToneGeneratorTest::kHighFreqHz[16] = {
+    1336.0, 1209.0, 1336.0, 1477.0, 1209.0, 1336.0, 1477.0, 1209.0,
+    1336.0, 1477.0, 1209.0, 1477.0, 1633.0, 1633.0, 1633.0, 1633.0};
+
+TEST_F(DtmfToneGeneratorTest, Test8000Mono) {
+  TestAllTones(8000, 1);
+  TestAmplitudes(8000, 1);
+}
+
+TEST_F(DtmfToneGeneratorTest, Test16000Mono) {
+  TestAllTones(16000, 1);
+  TestAmplitudes(16000, 1);
+}
+
+TEST_F(DtmfToneGeneratorTest, Test32000Mono) {
+  TestAllTones(32000, 1);
+  TestAmplitudes(32000, 1);
+}
+
+TEST_F(DtmfToneGeneratorTest, Test48000Mono) {
+  TestAllTones(48000, 1);
+  TestAmplitudes(48000, 1);
+}
+
+TEST_F(DtmfToneGeneratorTest, Test8000Stereo) {
+  TestAllTones(8000, 2);
+  TestAmplitudes(8000, 2);
+}
+
+TEST_F(DtmfToneGeneratorTest, Test16000Stereo) {
+  TestAllTones(16000, 2);
+  TestAmplitudes(16000, 2);
+}
+
+TEST_F(DtmfToneGeneratorTest, Test32000Stereo) {
+  TestAllTones(32000, 2);
+  TestAmplitudes(32000, 2);
+}
+
+TEST_F(DtmfToneGeneratorTest, Test48000Stereo) {
+  TestAllTones(48000, 2);
+  TestAmplitudes(48000, 2);
 }
 
 TEST(DtmfToneGenerator, TestErrors) {
@@ -51,92 +171,9 @@ TEST(DtmfToneGenerator, TestErrors) {
   // Initialize with valid parameters.
   ASSERT_EQ(0, tone_gen.Init(fs, event, attenuation));
   EXPECT_TRUE(tone_gen.initialized());
-  // Negative number of samples.
-  EXPECT_EQ(DtmfToneGenerator::kParameterError, tone_gen.Generate(-1, &signal));
   // NULL pointer to destination.
   EXPECT_EQ(DtmfToneGenerator::kParameterError,
             tone_gen.Generate(kNumSamples, NULL));
-}
-
-TEST(DtmfToneGenerator, TestTones) {
-  DtmfToneGenerator tone_gen;
-  const int kAttenuation = 0;
-  const int kNumSamples = 10;
-  AudioMultiVector signal(1);  // One channel.
-
-  // Low and high frequencies for events 0 through 15.
-  const double low_freq_hz[] = { 941.0, 697.0, 697.0, 697.0, 770.0, 770.0,
-      770.0, 852.0, 852.0, 852.0, 941.0, 941.0, 697.0, 770.0, 852.0, 941.0 };
-  const double hi_freq_hz[] = { 1336.0, 1209.0, 1336.0, 1477.0, 1209.0, 1336.0,
-      1477.0, 1209.0, 1336.0, 1477.0, 1209.0, 1477.0, 1633.0, 1633.0, 1633.0,
-      1633.0 };
-  const double attenuate_3dB = 23171.0 / 32768;  // 3 dB attenuation.
-  const double base_attenuation = 16141.0 / 16384.0;  // This is the attenuation
-                                                      // applied to all cases.
-  const int fs_vec[] = { 8000, 16000, 32000, 48000 };
-  for (int f = 0; f < 4; ++f) {
-    int fs = fs_vec[f];
-    for (int event = 0; event <= 15; ++event) {
-      std::ostringstream ss;
-      ss << "Checking event " << event << " at sample rate " << fs;
-      SCOPED_TRACE(ss.str());
-      ASSERT_EQ(0, tone_gen.Init(fs, event, kAttenuation));
-      EXPECT_TRUE(tone_gen.initialized());
-      EXPECT_EQ(kNumSamples, tone_gen.Generate(kNumSamples, &signal));
-
-      double f1 = low_freq_hz[event];
-      double f2 = hi_freq_hz[event];
-      const double pi = 3.14159265358979323846;
-
-      for (int n = 0; n < kNumSamples; ++n) {
-        double x = attenuate_3dB * sin(2.0 * pi * f1 / fs * (-n - 1))
-            + sin(2.0 * pi * f2 / fs * (-n - 1));
-        x *= base_attenuation;
-        x = ldexp(x, 14);  // Scale to Q14.
-        static const int kChannel = 0;
-        EXPECT_NEAR(x, static_cast<double>(signal[kChannel][n]), 25);
-      }
-
-      tone_gen.Reset();
-      EXPECT_FALSE(tone_gen.initialized());
-    }
-  }
-}
-
-TEST(DtmfToneGenerator, TestAmplitudes) {
-  DtmfToneGenerator tone_gen;
-  const int kNumSamples = 10;
-  AudioMultiVector signal(1);  // One channel.
-  AudioMultiVector ref_signal(1);  // One channel.
-
-  const int fs_vec[] = { 8000, 16000, 32000, 48000 };
-  const int event_vec[] = { 0, 4, 9, 13 };  // Test a few events.
-  for (int f = 0; f < 4; ++f) {
-    int fs = fs_vec[f];
-    int event = event_vec[f];
-    // Create full-scale reference.
-    ASSERT_EQ(0, tone_gen.Init(fs, event, 0));  // 0 attenuation.
-    EXPECT_EQ(kNumSamples, tone_gen.Generate(kNumSamples, &ref_signal));
-    // Test every 5 steps (to save time).
-    for (int attenuation = 1; attenuation <= 36; attenuation += 5) {
-      std::ostringstream ss;
-      ss << "Checking event " << event << " at sample rate " << fs;
-      ss << "; attenuation " << attenuation;
-      SCOPED_TRACE(ss.str());
-      ASSERT_EQ(0, tone_gen.Init(fs, event, attenuation));
-      EXPECT_EQ(kNumSamples, tone_gen.Generate(kNumSamples, &signal));
-      for (int n = 0; n < kNumSamples; ++n) {
-        double attenuation_factor =
-            pow(10, -static_cast<double>(attenuation)/20);
-        // Verify that the attenuation is correct.
-        static const int kChannel = 0;
-        EXPECT_NEAR(attenuation_factor * ref_signal[kChannel][n],
-                    signal[kChannel][n], 2);
-      }
-
-      tone_gen.Reset();
-    }
-  }
 }
 
 }  // namespace webrtc

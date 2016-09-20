@@ -71,19 +71,19 @@ class PayloadSplitter {
   // Splits the payload in |packet|. The payload is assumed to be from a
   // sample-based codec.
   virtual void SplitBySamples(const Packet* packet,
-                              int bytes_per_ms,
-                              int timestamps_per_ms,
+                              size_t bytes_per_ms,
+                              uint32_t timestamps_per_ms,
                               PacketList* new_packets);
 
   // Splits the payload in |packet|. The payload will be split into chunks of
   // size |bytes_per_frame|, corresponding to a |timestamps_per_frame|
   // RTP timestamps.
   virtual int SplitByFrames(const Packet* packet,
-                            int bytes_per_frame,
-                            int timestamps_per_frame,
+                            size_t bytes_per_frame,
+                            uint32_t timestamps_per_frame,
                             PacketList* new_packets);
 
-  DISALLOW_COPY_AND_ASSIGN(PayloadSplitter);
+  RTC_DISALLOW_COPY_AND_ASSIGN(PayloadSplitter);
 };
 
 }  // namespace webrtc

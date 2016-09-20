@@ -15,7 +15,7 @@
 #include <algorithm>
 
 #include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
-#include "webrtc/modules/interface/module_common_types.h"
+#include "webrtc/modules/include/module_common_types.h"
 
 namespace webrtc {
 

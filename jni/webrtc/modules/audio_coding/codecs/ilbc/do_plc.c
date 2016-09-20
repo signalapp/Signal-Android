@@ -33,18 +33,19 @@ void WebRtcIlbcfix_DoThePlc(
                                                            0 - no PL, 1 = PL */
     int16_t *decresidual,  /* (i) decoded residual */
     int16_t *lpc,    /* (i) decoded LPC (only used for no PL) */
-    int16_t inlag,    /* (i) pitch lag */
-    iLBC_Dec_Inst_t *iLBCdec_inst
+    size_t inlag,    /* (i) pitch lag */
+    IlbcDecoder *iLBCdec_inst
     /* (i/o) decoder instance */
                             ){
-  int16_t i, pick;
+  size_t i;
   int32_t cross, ener, cross_comp, ener_comp = 0;
   int32_t measure, maxMeasure, energy;
   int16_t max, crossSquareMax, crossSquare;
-  int16_t j, lag, tmp1, tmp2, randlag;
+  size_t j, lag, randlag;
+  int16_t tmp1, tmp2;
   int16_t shift1, shift2, shift3, shiftMax;
   int16_t scale3;
-  int16_t corrLen;
+  size_t corrLen;
   int32_t tmpW32, tmp2W32;
   int16_t use_gain;
   int16_t tot_gain;
@@ -54,7 +55,7 @@ void WebRtcIlbcfix_DoThePlc(
   int32_t nom;
   int16_t denom;
   int16_t pitchfact;
-  int16_t use_lag;
+  size_t use_lag;
   int ind;
   int16_t randvec[BLOCKL_MAX];
 
@@ -70,7 +71,8 @@ void WebRtcIlbcfix_DoThePlc(
 
       /* Maximum 60 samples are correlated, preserve as high accuracy
          as possible without getting overflow */
-      max = WebRtcSpl_MaxAbsValueW16((*iLBCdec_inst).prevResidual, (int16_t)iLBCdec_inst->blockl);
+      max = WebRtcSpl_MaxAbsValueW16((*iLBCdec_inst).prevResidual,
+                                     iLBCdec_inst->blockl);
       scale3 = (WebRtcSpl_GetSizeInBits(max)<<1) - 25;
       if (scale3 < 0) {
         scale3 = 0;
@@ -85,15 +87,16 @@ void WebRtcIlbcfix_DoThePlc(
       lag = inlag - 3;
 
       /* Guard against getting outside the frame */
-      corrLen = WEBRTC_SPL_MIN(60, iLBCdec_inst->blockl-(inlag+3));
+      corrLen = (size_t)WEBRTC_SPL_MIN(60, iLBCdec_inst->blockl-(inlag+3));
 
       WebRtcIlbcfix_CompCorr( &cross, &ener,
                               iLBCdec_inst->prevResidual, lag, iLBCdec_inst->blockl, corrLen, scale3);
 
       /* Normalize and store cross^2 and the number of shifts */
       shiftMax = WebRtcSpl_GetSizeInBits(WEBRTC_SPL_ABS_W32(cross))-15;
-      crossSquareMax = (int16_t)WEBRTC_SPL_MUL_16_16_RSFT(WEBRTC_SPL_SHIFT_W32(cross, -shiftMax),
-                                                                WEBRTC_SPL_SHIFT_W32(cross, -shiftMax), 15);
+      crossSquareMax = (int16_t)((
+          (int16_t)WEBRTC_SPL_SHIFT_W32(cross, -shiftMax) *
+          (int16_t)WEBRTC_SPL_SHIFT_W32(cross, -shiftMax)) >> 15);
 
       for (j=inlag-2;j<=inlag+3;j++) {
         WebRtcIlbcfix_CompCorr( &cross_comp, &ener_comp,
@@ -103,25 +106,27 @@ void WebRtcIlbcfix_DoThePlc(
            this lag is better or not. To avoid the division,
            do a cross multiplication */
         shift1 = WebRtcSpl_GetSizeInBits(WEBRTC_SPL_ABS_W32(cross_comp))-15;
-        crossSquare = (int16_t)WEBRTC_SPL_MUL_16_16_RSFT(WEBRTC_SPL_SHIFT_W32(cross_comp, -shift1),
-                                                               WEBRTC_SPL_SHIFT_W32(cross_comp, -shift1), 15);
+        crossSquare = (int16_t)((
+            (int16_t)WEBRTC_SPL_SHIFT_W32(cross_comp, -shift1) *
+            (int16_t)WEBRTC_SPL_SHIFT_W32(cross_comp, -shift1)) >> 15);
 
         shift2 = WebRtcSpl_GetSizeInBits(ener)-15;
-        measure = WEBRTC_SPL_MUL_16_16(WEBRTC_SPL_SHIFT_W32(ener, -shift2),
-                                       crossSquare);
+        measure = (int16_t)WEBRTC_SPL_SHIFT_W32(ener, -shift2) * crossSquare;
 
         shift3 = WebRtcSpl_GetSizeInBits(ener_comp)-15;
-        maxMeasure = WEBRTC_SPL_MUL_16_16(WEBRTC_SPL_SHIFT_W32(ener_comp, -shift3),
-                                          crossSquareMax);
+        maxMeasure = (int16_t)WEBRTC_SPL_SHIFT_W32(ener_comp, -shift3) *
+            crossSquareMax;
 
         /* Calculate shift value, so that the two measures can
            be put in the same Q domain */
-        if(((shiftMax<<1)+shift3) > ((shift1<<1)+shift2)) {
-          tmp1 = WEBRTC_SPL_MIN(31, (shiftMax<<1)+shift3-(shift1<<1)-shift2);
+        if(2 * shiftMax + shift3 > 2 * shift1 + shift2) {
+          tmp1 =
+              WEBRTC_SPL_MIN(31, 2 * shiftMax + shift3 - 2 * shift1 - shift2);
           tmp2 = 0;
         } else {
           tmp1 = 0;
-          tmp2 = WEBRTC_SPL_MIN(31, (shift1<<1)+shift2-(shiftMax<<1)-shift3);
+          tmp2 =
+              WEBRTC_SPL_MIN(31, 2 * shift1 + shift2 - 2 * shiftMax - shift3);
         }
 
         if ((measure>>tmp1) > (maxMeasure>>tmp2)) {
@@ -155,7 +160,7 @@ void WebRtcIlbcfix_DoThePlc(
 
         scale2=(int16_t)WebRtcSpl_NormW32(ener)-16;
         tmp2=(int16_t)WEBRTC_SPL_SHIFT_W32(ener, scale2);
-        denom=(int16_t)WEBRTC_SPL_MUL_16_16_RSFT(tmp1, tmp2, 16); /* denom in Q(scale1+scale2-16) */
+        denom = (int16_t)((tmp1 * tmp2) >> 16);  /* in Q(scale1+scale2-16) */
 
         /* Square the cross correlation and norm it such that max_perSquare
            will be in Q15 after the division */
@@ -164,7 +169,7 @@ void WebRtcIlbcfix_DoThePlc(
         tmp1 = (int16_t)WEBRTC_SPL_SHIFT_W32(cross, (totscale>>1));
         tmp2 = (int16_t)WEBRTC_SPL_SHIFT_W32(cross, totscale-(totscale>>1));
 
-        nom = WEBRTC_SPL_MUL_16_16(tmp1, tmp2);
+        nom = tmp1 * tmp2;
         max_perSquare = (int16_t)WebRtcSpl_DivW32W16(nom, denom);
 
       } else {
@@ -210,7 +215,8 @@ void WebRtcIlbcfix_DoThePlc(
       }
       /* pitch fact is approximated by first order */
       tmpW32 = (int32_t)WebRtcIlbcfix_kPlcPitchFact[ind] +
-          WEBRTC_SPL_MUL_16_16_RSFT(WebRtcIlbcfix_kPlcPfSlope[ind], (max_perSquare-WebRtcIlbcfix_kPlcPerSqr[ind]), 11);
+          ((WebRtcIlbcfix_kPlcPfSlope[ind] *
+              (max_perSquare - WebRtcIlbcfix_kPlcPerSqr[ind])) >> 11);
 
       pitchfact = (int16_t)WEBRTC_SPL_MIN(tmpW32, 32767); /* guard against overflow */
 
@@ -230,49 +236,42 @@ void WebRtcIlbcfix_DoThePlc(
     for (i=0; i<iLBCdec_inst->blockl; i++) {
 
       /* noise component -  52 < randlagFIX < 117 */
-      iLBCdec_inst->seed = (int16_t)(WEBRTC_SPL_MUL_16_16(iLBCdec_inst->seed, 31821)+(int32_t)13849);
-      randlag = 53 + (int16_t)(iLBCdec_inst->seed & 63);
-
-      pick = i - randlag;
-
-      if (pick < 0) {
-        randvec[i] = iLBCdec_inst->prevResidual[iLBCdec_inst->blockl+pick];
+      iLBCdec_inst->seed = (int16_t)(iLBCdec_inst->seed * 31821 + 13849);
+      randlag = 53 + (iLBCdec_inst->seed & 63);
+      if (randlag > i) {
+        randvec[i] =
+            iLBCdec_inst->prevResidual[iLBCdec_inst->blockl + i - randlag];
       } else {
-        randvec[i] = iLBCdec_inst->prevResidual[pick];
+        randvec[i] = iLBCdec_inst->prevResidual[i - randlag];
       }
 
       /* pitch repeatition component */
-      pick = i - use_lag;
-
-      if (pick < 0) {
-        PLCresidual[i] = iLBCdec_inst->prevResidual[iLBCdec_inst->blockl+pick];
+      if (use_lag > i) {
+        PLCresidual[i] =
+            iLBCdec_inst->prevResidual[iLBCdec_inst->blockl + i - use_lag];
       } else {
-        PLCresidual[i] = PLCresidual[pick];
+        PLCresidual[i] = PLCresidual[i - use_lag];
       }
 
       /* Attinuate total gain for each 10 ms */
       if (i<80) {
         tot_gain=use_gain;
       } else if (i<160) {
-        tot_gain=(int16_t)WEBRTC_SPL_MUL_16_16_RSFT(31130, use_gain, 15); /* 0.95*use_gain */
+        tot_gain = (int16_t)((31130 * use_gain) >> 15);  /* 0.95*use_gain */
       } else {
-        tot_gain=(int16_t)WEBRTC_SPL_MUL_16_16_RSFT(29491, use_gain, 15); /* 0.9*use_gain */
+        tot_gain = (int16_t)((29491 * use_gain) >> 15);  /* 0.9*use_gain */
       }
 
 
       /* mix noise and pitch repeatition */
-
-      PLCresidual[i] = (int16_t)WEBRTC_SPL_MUL_16_16_RSFT(tot_gain,
-                                                                (int16_t)WEBRTC_SPL_RSHIFT_W32( (WEBRTC_SPL_MUL_16_16(pitchfact, PLCresidual[i]) +
-                                                                                                       WEBRTC_SPL_MUL_16_16((32767-pitchfact), randvec[i]) + 16384),
-                                                                                                      15),
-                                                                15);
+      PLCresidual[i] = (int16_t)((tot_gain *
+          ((pitchfact * PLCresidual[i] + (32767 - pitchfact) * randvec[i] +
+              16384) >> 15)) >> 15);
 
       /* Shifting down the result one step extra to ensure that no overflow
          will occur */
-      energy += WEBRTC_SPL_MUL_16_16_RSFT(PLCresidual[i],
-                                          PLCresidual[i], (iLBCdec_inst->prevScale+1));
-
+      energy += (PLCresidual[i] * PLCresidual[i]) >>
+          (iLBCdec_inst->prevScale + 1);
     }
 
     /* less than 30 dB, use only noise */

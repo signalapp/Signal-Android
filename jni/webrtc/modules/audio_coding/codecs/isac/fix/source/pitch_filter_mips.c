@@ -12,7 +12,7 @@
 
 void WebRtcIsacfix_PitchFilterCore(int loopNumber,
                                    int16_t gain,
-                                   int index,
+                                   size_t index,
                                    int16_t sign,
                                    int16_t* inputState,
                                    int16_t* outputBuf2,

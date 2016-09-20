@@ -22,9 +22,9 @@
 void WebRtcIlbcfix_GetCbVec(
     int16_t *cbvec,   /* (o) Constructed codebook vector */
     int16_t *mem,   /* (i) Codebook buffer */
-    int16_t index,   /* (i) Codebook index */
-    int16_t lMem,   /* (i) Length of codebook buffer */
-    int16_t cbveclen   /* (i) Codebook vector length */
+    size_t index,   /* (i) Codebook index */
+    size_t lMem,   /* (i) Length of codebook buffer */
+    size_t cbveclen   /* (i) Codebook vector length */
                             );
 
 #endif

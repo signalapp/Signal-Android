@@ -137,10 +137,10 @@ static __inline int16_t WebRtcSpl_GetSizeInBits(uint32_t n) {
     : [n] "r" (n), [i32] "r" (i32)
   );
 
-  return bits;
+  return (int16_t)bits;
 }
 
-static __inline int WebRtcSpl_NormW32(int32_t a) {
+static __inline int16_t WebRtcSpl_NormW32(int32_t a) {
   int zeros = 0;
 
   __asm __volatile(
@@ -160,10 +160,10 @@ static __inline int WebRtcSpl_NormW32(int32_t a) {
     : [a] "r" (a)
   );
 
-  return zeros;
+  return (int16_t)zeros;
 }
 
-static __inline int WebRtcSpl_NormU32(uint32_t a) {
+static __inline int16_t WebRtcSpl_NormU32(uint32_t a) {
   int zeros = 0;
 
   __asm __volatile(
@@ -172,10 +172,10 @@ static __inline int WebRtcSpl_NormU32(uint32_t a) {
     : [a] "r" (a)
   );
 
-  return (zeros & 0x1f);
+  return (int16_t)(zeros & 0x1f);
 }
 
-static __inline int WebRtcSpl_NormW16(int16_t a) {
+static __inline int16_t WebRtcSpl_NormW16(int16_t a) {
   int zeros = 0;
   int a0 = a << 16;
 
@@ -196,7 +196,7 @@ static __inline int WebRtcSpl_NormW16(int16_t a) {
     : [a0] "r" (a0)
   );
 
-  return zeros;
+  return (int16_t)zeros;
 }
 
 static __inline int32_t WebRtc_MulAccumW16(int16_t a,

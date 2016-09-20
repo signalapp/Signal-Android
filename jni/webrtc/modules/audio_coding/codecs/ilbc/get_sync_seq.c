@@ -27,80 +27,81 @@
 
 void WebRtcIlbcfix_GetSyncSeq(
     int16_t *idata,   /* (i) original data */
-    int16_t idatal,   /* (i) dimension of data */
-    int16_t centerStartPos, /* (i) where current block starts */
-    int16_t *period,   /* (i) rough-pitch-period array       (Q-2) */
-    int16_t *plocs,   /* (i) where periods of period array are taken (Q-2) */
-    int16_t periodl,   /* (i) dimension period array */
-    int16_t hl,    /* (i) 2*hl+1 is the number of sequences */
+    size_t idatal,   /* (i) dimension of data */
+    size_t centerStartPos, /* (i) where current block starts */
+    size_t *period,   /* (i) rough-pitch-period array       (Q-2) */
+    const size_t *plocs, /* (i) where periods of period array are taken (Q-2) */
+    size_t periodl,   /* (i) dimension period array */
+    size_t hl,    /* (i) 2*hl+1 is the number of sequences */
     int16_t *surround  /* (i/o) The contribution from this sequence
                                 summed with earlier contributions */
                               ){
-  int16_t i,centerEndPos,q;
+  size_t i, centerEndPos, q;
   /* Stack based */
-  int16_t lagBlock[2*ENH_HL+1];
-  int16_t blockStartPos[2*ENH_HL+1]; /* Defines the position to search around (Q2) */
-  int16_t plocs2[ENH_PLOCSL];
+  size_t lagBlock[2 * ENH_HL + 1];
+  size_t blockStartPos[2 * ENH_HL + 1]; /* The position to search around (Q2) */
+  size_t plocs2[ENH_PLOCSL];
 
-  centerEndPos=centerStartPos+ENH_BLOCKL-1;
+  centerEndPos = centerStartPos + ENH_BLOCKL - 1;
 
   /* present (find predicted lag from this position) */
 
-  WebRtcIlbcfix_NearestNeighbor(lagBlock+hl,plocs,
-                                (int16_t)WEBRTC_SPL_MUL_16_16(2, (centerStartPos+centerEndPos)),
+  WebRtcIlbcfix_NearestNeighbor(lagBlock + hl,
+                                plocs,
+                                2 * (centerStartPos + centerEndPos),
                                 periodl);
 
-  blockStartPos[hl]=(int16_t)WEBRTC_SPL_MUL_16_16(4, centerStartPos);
+  blockStartPos[hl] = 4 * centerStartPos;
 
   /* past (find predicted position and perform a refined
      search to find the best sequence) */
 
-  for(q=hl-1;q>=0;q--) {
-    blockStartPos[q]=blockStartPos[q+1]-period[lagBlock[q+1]];
+  for (q = hl; q > 0; q--) {
+    size_t qq = q - 1;
+    size_t period_q = period[lagBlock[q]];
+    /* Stop if this sequence would be outside the buffer; that means all
+       further-past sequences would also be outside the buffer. */
+    if (blockStartPos[q] < period_q + (4 * ENH_OVERHANG))
+      break;
+    blockStartPos[qq] = blockStartPos[q] - period_q;
 
-    WebRtcIlbcfix_NearestNeighbor(lagBlock+q, plocs,
-                                  (int16_t)(blockStartPos[q] + (int16_t)WEBRTC_SPL_MUL_16_16(4, ENH_BLOCKL_HALF)-period[lagBlock[q+1]]),
-                                  periodl);
+    size_t value = blockStartPos[qq] + 4 * ENH_BLOCKL_HALF;
+    value = (value > period_q) ? (value - period_q) : 0;
+    WebRtcIlbcfix_NearestNeighbor(lagBlock + qq, plocs, value, periodl);
 
-    if((blockStartPos[q]-(int16_t)WEBRTC_SPL_MUL_16_16(4, ENH_OVERHANG))>=0) {
-
-      /* Find the best possible sequence in the 4 times upsampled
-         domain around blockStartPos+q */
-      WebRtcIlbcfix_Refiner(blockStartPos+q,idata,idatal,
-                            centerStartPos,blockStartPos[q],surround,WebRtcIlbcfix_kEnhWt[q]);
-
-    } else {
-      /* Don't add anything since this sequence would
-         be outside the buffer */
-    }
+    /* Find the best possible sequence in the 4 times upsampled
+        domain around blockStartPos+q */
+    WebRtcIlbcfix_Refiner(blockStartPos + qq, idata, idatal, centerStartPos,
+                          blockStartPos[qq], surround,
+                          WebRtcIlbcfix_kEnhWt[qq]);
   }
 
   /* future (find predicted position and perform a refined
      search to find the best sequence) */
 
-  for(i=0;i<periodl;i++) {
-    plocs2[i]=(plocs[i]-period[i]);
+  for (i = 0; i < periodl; i++) {
+    plocs2[i] = plocs[i] - period[i];
   }
 
-  for(q=hl+1;q<=WEBRTC_SPL_MUL_16_16(2, hl);q++) {
+  for (q = hl + 1; q <= (2 * hl); q++) {
 
-    WebRtcIlbcfix_NearestNeighbor(lagBlock+q,plocs2,
-                                  (int16_t)(blockStartPos[q-1]+
-                                                  (int16_t)WEBRTC_SPL_MUL_16_16(4, ENH_BLOCKL_HALF)),periodl);
+    WebRtcIlbcfix_NearestNeighbor(
+        lagBlock + q,
+        plocs2,
+        blockStartPos[q - 1] + 4 * ENH_BLOCKL_HALF,
+        periodl);
 
     blockStartPos[q]=blockStartPos[q-1]+period[lagBlock[q]];
 
-    if( (blockStartPos[q]+(int16_t)WEBRTC_SPL_MUL_16_16(4, (ENH_BLOCKL+ENH_OVERHANG)))
-        <
-        (int16_t)WEBRTC_SPL_MUL_16_16(4, idatal)) {
+    if (blockStartPos[q] + 4 * (ENH_BLOCKL + ENH_OVERHANG) < 4 * idatal) {
 
       /* Find the best possible sequence in the 4 times upsampled
          domain around blockStartPos+q */
-      WebRtcIlbcfix_Refiner(blockStartPos+q, idata, idatal,
-                            centerStartPos,blockStartPos[q],surround,WebRtcIlbcfix_kEnhWt[2*hl-q]);
+      WebRtcIlbcfix_Refiner(blockStartPos + q, idata, idatal, centerStartPos,
+                            blockStartPos[q], surround,
+                            WebRtcIlbcfix_kEnhWt[2 * hl - q]);
 
-    }
-    else {
+    } else {
       /* Don't add anything since this sequence would
          be outside the buffer */
     }

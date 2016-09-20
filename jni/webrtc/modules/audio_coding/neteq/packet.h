@@ -12,8 +12,10 @@
 #define WEBRTC_MODULES_AUDIO_CODING_NETEQ_PACKET_H_
 
 #include <list>
+#include <memory>
 
-#include "webrtc/modules/interface/module_common_types.h"
+#include "webrtc/modules/audio_coding/neteq/tick_timer.h"
+#include "webrtc/modules/include/module_common_types.h"
 #include "webrtc/typedefs.h"
 
 namespace webrtc {
@@ -21,20 +23,15 @@ namespace webrtc {
 // Struct for holding RTP packets.
 struct Packet {
   RTPHeader header;
-  uint8_t* payload;  // Datagram excluding RTP header and header extension.
-  int payload_length;
-  bool primary;  // Primary, i.e., not redundant payload.
-  int waiting_time;
-  bool sync_packet;
+  // Datagram excluding RTP header and header extension.
+  uint8_t* payload = nullptr;
+  size_t payload_length = 0;
+  bool primary = true;  // Primary, i.e., not redundant payload.
+  bool sync_packet = false;
+  std::unique_ptr<TickTimer::Stopwatch> waiting_time;
 
-  // Constructor.
-  Packet()
-      : payload(NULL),
-        payload_length(0),
-        primary(true),
-        waiting_time(0),
-        sync_packet(false) {
-  }
+  Packet();
+  ~Packet();
 
   // Comparison operators. Establish a packet ordering based on (1) timestamp,
   // (2) sequence number, (3) regular packet vs sync-packet and (4) redundancy.

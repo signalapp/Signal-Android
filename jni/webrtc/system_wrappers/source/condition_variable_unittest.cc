@@ -8,12 +8,18 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/condition_variable_wrapper.h"
+// TODO(tommi): Remove completely.  As is there is still some code for Windows
+// that relies on ConditionVariableEventWin, but code has been removed on other
+// platforms.
+#if defined(WEBRTC_WIN)
+
+#include "webrtc/system_wrappers/source/condition_variable_event_win.h"
 
 #include "testing/gtest/include/gtest/gtest.h"
-#include "webrtc/system_wrappers/interface/critical_section_wrapper.h"
-#include "webrtc/system_wrappers/interface/thread_wrapper.h"
-#include "webrtc/system_wrappers/interface/trace.h"
+#include "webrtc/base/platform_thread.h"
+#include "webrtc/base/timeutils.h"
+#include "webrtc/system_wrappers/include/critical_section_wrapper.h"
+#include "webrtc/system_wrappers/include/trace.h"
 
 namespace webrtc {
 
@@ -21,6 +27,7 @@ namespace {
 
 const int kLongWaitMs = 100 * 1000; // A long time in testing terms
 const int kShortWaitMs = 2 * 1000; // Long enough for process switches to happen
+const int kVeryShortWaitMs = 20; // Used when we want a timeout
 
 // A Baton is one possible control structure one can build using
 // conditional variables.
@@ -32,37 +39,36 @@ const int kShortWaitMs = 2 * 1000; // Long enough for process switches to happen
 class Baton {
  public:
   Baton()
-    : giver_sect_(CriticalSectionWrapper::CreateCriticalSection()),
-      crit_sect_(CriticalSectionWrapper::CreateCriticalSection()),
-      cond_var_(ConditionVariableWrapper::CreateConditionVariable()),
-      being_passed_(false),
+    : being_passed_(false),
       pass_count_(0) {
+    InitializeCriticalSection(&crit_sect_);
   }
 
   ~Baton() {
-    delete giver_sect_;
-    delete crit_sect_;
-    delete cond_var_;
+    DeleteCriticalSection(&crit_sect_);
   }
 
   // Pass the baton. Returns false if baton is not picked up in |max_msecs|.
   // Only one process can pass at the same time; this property is
   // ensured by the |giver_sect_| lock.
   bool Pass(uint32_t max_msecs) {
-    CriticalSectionScoped cs_giver(giver_sect_);
-    CriticalSectionScoped cs(crit_sect_);
+    CriticalSectionScoped cs_giver(&giver_sect_);
+    EnterCriticalSection(&crit_sect_);
     SignalBatonAvailable();
     const bool result = TakeBatonIfStillFree(max_msecs);
     if (result) {
       ++pass_count_;
     }
+    LeaveCriticalSection(&crit_sect_);
     return result;
   }
 
   // Grab the baton. Returns false if baton is not passed.
   bool Grab(uint32_t max_msecs) {
-    CriticalSectionScoped cs(crit_sect_);
-    return WaitUntilBatonOffered(max_msecs);
+    EnterCriticalSection(&crit_sect_);
+    bool ret = WaitUntilBatonOffered(max_msecs);
+    LeaveCriticalSection(&crit_sect_);
+    return ret;
   }
 
   int PassCount() {
@@ -71,7 +77,7 @@ class Baton {
     // finishes. I.e. the Grab()-call may finish before |pass_count_| has been
     // incremented.
     // Thus, this function waits on giver_sect_.
-    CriticalSectionScoped cs(giver_sect_);
+    CriticalSectionScoped cs(&giver_sect_);
     return pass_count_;
   }
 
@@ -80,19 +86,19 @@ class Baton {
   // These functions must be called with crit_sect_ held.
   bool WaitUntilBatonOffered(int timeout_ms) {
     while (!being_passed_) {
-      if (!cond_var_->SleepCS(*crit_sect_, timeout_ms)) {
+      if (!cond_var_.SleepCS(&crit_sect_, timeout_ms)) {
         return false;
       }
     }
     being_passed_ = false;
-    cond_var_->Wake();
+    cond_var_.Wake();
     return true;
   }
 
   void SignalBatonAvailable() {
     assert(!being_passed_);
     being_passed_ = true;
-    cond_var_->Wake();
+    cond_var_.Wake();
   }
 
   // Timeout extension: Wait for a limited time for someone else to
@@ -104,27 +110,25 @@ class Baton {
   bool TakeBatonIfStillFree(int timeout_ms) {
     bool not_timeout = true;
     while (being_passed_ && not_timeout) {
-      not_timeout = cond_var_->SleepCS(*crit_sect_, timeout_ms);
+      not_timeout = cond_var_.SleepCS(&crit_sect_, timeout_ms);
       // If we're woken up while variable is still held, we may have
       // gotten a wakeup destined for a grabber thread.
       // This situation is not treated specially here.
     }
-    if (!being_passed_) {
+    if (!being_passed_)
       return true;
-    } else {
-      assert(!not_timeout);
-      being_passed_ = false;
-      return false;
-    }
+    assert(!not_timeout);
+    being_passed_ = false;
+    return false;
   }
 
   // Lock that ensures that there is only one thread in the active
   // part of Pass() at a time.
   // |giver_sect_| must always be acquired before |cond_var_|.
-  CriticalSectionWrapper* giver_sect_;
+  CriticalSectionWrapper giver_sect_;
   // Lock that protects |being_passed_|.
-  CriticalSectionWrapper* crit_sect_;
-  ConditionVariableWrapper* cond_var_;
+  CRITICAL_SECTION crit_sect_;
+  ConditionVariableEventWin cond_var_;
   bool being_passed_;
   // Statistics information: Number of successfull passes.
   int pass_count_;
@@ -141,13 +145,10 @@ bool WaitingRunFunction(void* obj) {
 
 class CondVarTest : public ::testing::Test {
  public:
-  CondVarTest() {}
+  CondVarTest() : thread_(&WaitingRunFunction, &baton_, "CondVarTest") {}
 
   virtual void SetUp() {
-    thread_ = ThreadWrapper::CreateThread(&WaitingRunFunction,
-                                          &baton_);
-    unsigned int id = 42;
-    ASSERT_TRUE(thread_->Start(id));
+    thread_.Start();
   }
 
   virtual void TearDown() {
@@ -157,27 +158,26 @@ class CondVarTest : public ::testing::Test {
     // Thus, we need to pin it down inside its Run function (between Grab
     // and Pass).
     ASSERT_TRUE(baton_.Pass(kShortWaitMs));
-    thread_->SetNotAlive();
     ASSERT_TRUE(baton_.Grab(kShortWaitMs));
-    ASSERT_TRUE(thread_->Stop());
-    delete thread_;
+    thread_.Stop();
   }
 
  protected:
   Baton baton_;
 
  private:
-  ThreadWrapper* thread_;
+  rtc::PlatformThread thread_;
 };
 
 // The SetUp and TearDown functions use condition variables.
 // This test verifies those pieces in isolation.
-TEST_F(CondVarTest, InitFunctionsWork) {
+// Disabled due to flakiness.  See bug 4262 for details.
+TEST_F(CondVarTest, DISABLED_InitFunctionsWork) {
   // All relevant asserts are in the SetUp and TearDown functions.
 }
 
 // This test verifies that one can use the baton multiple times.
-TEST_F(CondVarTest, PassBatonMultipleTimes) {
+TEST_F(CondVarTest, DISABLED_PassBatonMultipleTimes) {
   const int kNumberOfRounds = 2;
   for (int i = 0; i < kNumberOfRounds; ++i) {
     ASSERT_TRUE(baton_.Pass(kShortWaitMs));
@@ -186,6 +186,22 @@ TEST_F(CondVarTest, PassBatonMultipleTimes) {
   EXPECT_EQ(2 * kNumberOfRounds, baton_.PassCount());
 }
 
+TEST(CondVarWaitTest, WaitingWaits) {
+  CRITICAL_SECTION crit_sect;
+  InitializeCriticalSection(&crit_sect);
+  ConditionVariableEventWin cond_var;
+  EnterCriticalSection(&crit_sect);
+  int64_t start_ms = rtc::TimeMillis();
+  EXPECT_FALSE(cond_var.SleepCS(&crit_sect, kVeryShortWaitMs));
+  int64_t end_ms = rtc::TimeMillis();
+  EXPECT_LE(start_ms + kVeryShortWaitMs, end_ms)
+      << "actual elapsed:" << end_ms - start_ms;
+  LeaveCriticalSection(&crit_sect);
+  DeleteCriticalSection(&crit_sect);
+}
+
 }  // anonymous namespace
 
 }  // namespace webrtc
+
+#endif  // defined(WEBRTC_WIN)

@@ -32,13 +32,11 @@ class PreemptiveExpand : public TimeStretch {
   PreemptiveExpand(int sample_rate_hz,
                    size_t num_channels,
                    const BackgroundNoise& background_noise,
-                   int overlap_samples)
+                   size_t overlap_samples)
       : TimeStretch(sample_rate_hz, num_channels, background_noise),
-        old_data_length_per_channel_(-1),
+        old_data_length_per_channel_(0),
         overlap_samples_(overlap_samples) {
   }
-
-  virtual ~PreemptiveExpand() {}
 
   // This method performs the actual PreemptiveExpand operation. The samples are
   // read from |input|, of length |input_length| elements, and are written to
@@ -46,30 +44,33 @@ class PreemptiveExpand : public TimeStretch {
   // is provided in the output |length_change_samples|. The method returns
   // the outcome of the operation as an enumerator value.
   ReturnCodes Process(const int16_t *pw16_decoded,
-                      int len,
-                      int old_data_len,
+                      size_t len,
+                      size_t old_data_len,
                       AudioMultiVector* output,
-                      int16_t* length_change_samples);
+                      size_t* length_change_samples);
 
  protected:
   // Sets the parameters |best_correlation| and |peak_index| to suitable
   // values when the signal contains no active speech.
-  virtual void SetParametersForPassiveSpeech(size_t len,
-                                             int16_t* w16_bestCorr,
-                                             int* w16_bestIndex) const;
+  void SetParametersForPassiveSpeech(size_t input_length,
+                                     int16_t* best_correlation,
+                                     size_t* peak_index) const override;
 
   // Checks the criteria for performing the time-stretching operation and,
   // if possible, performs the time-stretching.
-  virtual ReturnCodes CheckCriteriaAndStretch(
-      const int16_t *pw16_decoded, size_t len, size_t w16_bestIndex,
-      int16_t w16_bestCorr, bool w16_VAD,
-      AudioMultiVector* output) const;
+  ReturnCodes CheckCriteriaAndStretch(const int16_t* input,
+                                      size_t input_length,
+                                      size_t peak_index,
+                                      int16_t best_correlation,
+                                      bool active_speech,
+                                      bool /*fast_mode*/,
+                                      AudioMultiVector* output) const override;
 
  private:
-  int old_data_length_per_channel_;
-  int overlap_samples_;
+  size_t old_data_length_per_channel_;
+  size_t overlap_samples_;
 
-  DISALLOW_COPY_AND_ASSIGN(PreemptiveExpand);
+  RTC_DISALLOW_COPY_AND_ASSIGN(PreemptiveExpand);
 };
 
 struct PreemptiveExpandFactory {
@@ -80,7 +81,7 @@ struct PreemptiveExpandFactory {
       int sample_rate_hz,
       size_t num_channels,
       const BackgroundNoise& background_noise,
-      int overlap_samples) const;
+      size_t overlap_samples) const;
 };
 
 }  // namespace webrtc

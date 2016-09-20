@@ -24,10 +24,10 @@
 
 void WebRtcIlbcfix_SwapBytes(
     const uint16_t* input,   /* (i) the sequence to swap */
-    int16_t wordLength,      /* (i) number or uint16_t to swap */
+    size_t wordLength,      /* (i) number or uint16_t to swap */
     uint16_t* output         /* (o) the swapped sequence */
                               ) {
-  int k;
+  size_t k;
   for (k = wordLength; k > 0; k--) {
     *output++ = (*input >> 8)|(*input << 8);
     input++;

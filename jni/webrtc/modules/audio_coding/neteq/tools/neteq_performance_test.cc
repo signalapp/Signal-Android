@@ -10,11 +10,14 @@
 
 #include "webrtc/modules/audio_coding/neteq/tools/neteq_performance_test.h"
 
-#include "webrtc/modules/audio_coding/codecs/pcm16b/include/pcm16b.h"
-#include "webrtc/modules/audio_coding/neteq/interface/neteq.h"
+#include "webrtc/base/checks.h"
+#include "webrtc/modules/audio_coding/codecs/builtin_audio_decoder_factory.h"
+#include "webrtc/modules/audio_coding/codecs/pcm16b/pcm16b.h"
+#include "webrtc/modules/audio_coding/neteq/include/neteq.h"
 #include "webrtc/modules/audio_coding/neteq/tools/audio_loop.h"
 #include "webrtc/modules/audio_coding/neteq/tools/rtp_generator.h"
-#include "webrtc/system_wrappers/interface/clock.h"
+#include "webrtc/modules/include/module_common_types.h"
+#include "webrtc/system_wrappers/include/clock.h"
 #include "webrtc/test/testsupport/fileutils.h"
 #include "webrtc/typedefs.h"
 
@@ -32,15 +35,17 @@ int64_t NetEqPerformanceTest::Run(int runtime_ms,
   const std::string kInputFileName =
       webrtc::test::ResourcePath("audio_coding/testfile32kHz", "pcm");
   const int kSampRateHz = 32000;
-  const webrtc::NetEqDecoder kDecoderType = webrtc::kDecoderPCM16Bswb32kHz;
+  const webrtc::NetEqDecoder kDecoderType =
+      webrtc::NetEqDecoder::kDecoderPCM16Bswb32kHz;
+  const std::string kDecoderName = "pcm16-swb32";
   const int kPayloadType = 95;
 
   // Initialize NetEq instance.
   NetEq::Config config;
   config.sample_rate_hz = kSampRateHz;
-  NetEq* neteq = NetEq::Create(config);
+  NetEq* neteq = NetEq::Create(config, CreateBuiltinAudioDecoderFactory());
   // Register decoder in |neteq|.
-  if (neteq->RegisterPayloadType(kDecoderType, kPayloadType) != 0)
+  if (neteq->RegisterPayloadType(kDecoderType, kDecoderName, kPayloadType) != 0)
     return -1;
 
   // Set up AudioLoop object.
@@ -61,17 +66,18 @@ int64_t NetEqPerformanceTest::Run(int runtime_ms,
   bool drift_flipped = false;
   int32_t packet_input_time_ms =
       rtp_gen.GetRtpHeader(kPayloadType, kInputBlockSizeSamples, &rtp_header);
-  const int16_t* input_samples = audio_loop.GetNextBlock();
-  if (!input_samples) exit(1);
+  auto input_samples = audio_loop.GetNextBlock();
+  if (input_samples.empty())
+    exit(1);
   uint8_t input_payload[kInputBlockSizeSamples * sizeof(int16_t)];
-  int payload_len = WebRtcPcm16b_Encode(const_cast<int16_t*>(input_samples),
-                                        kInputBlockSizeSamples,
-                                        input_payload);
-  assert(payload_len == kInputBlockSizeSamples * sizeof(int16_t));
+  size_t payload_len = WebRtcPcm16b_Encode(input_samples.data(),
+                                           input_samples.size(), input_payload);
+  RTC_CHECK_EQ(sizeof(input_payload), payload_len);
 
   // Main loop.
   webrtc::Clock* clock = webrtc::Clock::GetRealTimeClock();
   int64_t start_time_ms = clock->TimeInMilliseconds();
+  AudioFrame out_frame;
   while (time_now_ms < runtime_ms) {
     while (packet_input_time_ms <= time_now_ms) {
       // Drop every N packets, where N = FLAGS_lossrate.
@@ -81,9 +87,9 @@ int64_t NetEqPerformanceTest::Run(int runtime_ms,
       }
       if (!lost) {
         // Insert packet.
-        int error = neteq->InsertPacket(
-            rtp_header, input_payload, payload_len,
-            packet_input_time_ms * kSampRateHz / 1000);
+        int error =
+            neteq->InsertPacket(rtp_header, input_payload,
+                                packet_input_time_ms * kSampRateHz / 1000);
         if (error != NetEq::kOK)
           return -1;
       }
@@ -93,29 +99,24 @@ int64_t NetEqPerformanceTest::Run(int runtime_ms,
                                                   kInputBlockSizeSamples,
                                                   &rtp_header);
       input_samples = audio_loop.GetNextBlock();
-      if (!input_samples) return -1;
-      payload_len = WebRtcPcm16b_Encode(const_cast<int16_t*>(input_samples),
-                                        kInputBlockSizeSamples,
-                                        input_payload);
+      if (input_samples.empty())
+        return -1;
+      payload_len = WebRtcPcm16b_Encode(input_samples.data(),
+                                        input_samples.size(), input_payload);
       assert(payload_len == kInputBlockSizeSamples * sizeof(int16_t));
     }
 
     // Get output audio, but don't do anything with it.
-    static const int kMaxChannels = 1;
-    static const int kMaxSamplesPerMs = 48000 / 1000;
-    static const int kOutputBlockSizeMs = 10;
-    static const int kOutDataLen = kOutputBlockSizeMs * kMaxSamplesPerMs *
-        kMaxChannels;
-    int16_t out_data[kOutDataLen];
-    int num_channels;
-    int samples_per_channel;
-    int error = neteq->GetAudio(kOutDataLen, out_data, &samples_per_channel,
-                                &num_channels, NULL);
+    bool muted;
+    int error = neteq->GetAudio(&out_frame, &muted);
+    RTC_CHECK(!muted);
     if (error != NetEq::kOK)
       return -1;
 
-    assert(samples_per_channel == kSampRateHz * 10 / 1000);
+    assert(out_frame.samples_per_channel_ ==
+           static_cast<size_t>(kSampRateHz * 10 / 1000));
 
+    static const int kOutputBlockSizeMs = 10;
     time_now_ms += kOutputBlockSizeMs;
     if (time_now_ms >= runtime_ms / 2 && !drift_flipped) {
       // Apply negative drift second half of simulation.

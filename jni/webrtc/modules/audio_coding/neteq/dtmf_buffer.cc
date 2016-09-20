@@ -13,12 +13,25 @@
 #include <assert.h>
 #include <algorithm>  // max
 
+#include "webrtc/base/checks.h"
+#include "webrtc/base/logging.h"
+
 // Modify the code to obtain backwards bit-exactness. Once bit-exactness is no
 // longer required, this #define should be removed (and the code that it
 // enables).
 #define LEGACY_BITEXACT
 
 namespace webrtc {
+
+DtmfBuffer::DtmfBuffer(int fs_hz) {
+  SetSampleRate(fs_hz);
+}
+
+DtmfBuffer::~DtmfBuffer() = default;
+
+void DtmfBuffer::Flush() {
+  buffer_.clear();
+}
 
 // The ParseEvent method parses 4 bytes from |payload| according to this format
 // from RFC 4733:
@@ -55,12 +68,12 @@ namespace webrtc {
 //
 int DtmfBuffer::ParseEvent(uint32_t rtp_timestamp,
                            const uint8_t* payload,
-                           int payload_length_bytes,
+                           size_t payload_length_bytes,
                            DtmfEvent* event) {
-  if (!payload || !event) {
-    return kInvalidPointer;
-  }
+  RTC_CHECK(payload);
+  RTC_CHECK(event);
   if (payload_length_bytes < 4) {
+    LOG(LS_WARNING) << "ParseEvent payload too short";
     return kPayloadTooShort;
   }
 
@@ -88,6 +101,7 @@ int DtmfBuffer::InsertEvent(const DtmfEvent& event) {
   if (event.event_no < 0 || event.event_no > 15 ||
       event.volume < 0 || event.volume > 36 ||
       event.duration <= 0 || event.duration > 65535) {
+    LOG(LS_WARNING) << "InsertEvent invalid parameters";
     return kInvalidEventParameters;
   }
   DtmfList::iterator it = buffer_.begin();
@@ -171,6 +185,14 @@ bool DtmfBuffer::GetEvent(uint32_t current_timestamp, DtmfEvent* event) {
     }
   }
   return false;
+}
+
+size_t DtmfBuffer::Length() const {
+  return buffer_.size();
+}
+
+bool DtmfBuffer::Empty() const {
+  return buffer_.empty();
 }
 
 int DtmfBuffer::SetSampleRate(int fs_hz) {

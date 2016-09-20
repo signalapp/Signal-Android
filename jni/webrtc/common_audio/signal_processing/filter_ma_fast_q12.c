@@ -17,24 +17,20 @@
 
 #include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
 
-void WebRtcSpl_FilterMAFastQ12(int16_t* in_ptr,
+void WebRtcSpl_FilterMAFastQ12(const int16_t* in_ptr,
                                int16_t* out_ptr,
-                               int16_t* B,
-                               int16_t B_length,
-                               int16_t length)
+                               const int16_t* B,
+                               size_t B_length,
+                               size_t length)
 {
-    int32_t o;
-    int i, j;
+    size_t i, j;
     for (i = 0; i < length; i++)
     {
-        const int16_t* b_ptr = &B[0];
-        const int16_t* x_ptr = &in_ptr[i];
-
-        o = (int32_t)0;
+        int32_t o = 0;
 
         for (j = 0; j < B_length; j++)
         {
-            o += WEBRTC_SPL_MUL_16_16(*b_ptr++, *x_ptr--);
+          o += B[j] * in_ptr[i - j];
         }
 
         // If output is higher than 32768, saturate it. Same with negative side

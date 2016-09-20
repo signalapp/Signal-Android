@@ -106,14 +106,13 @@ static void FindInvArSpec(const int16_t* ARCoefQ12,
   for (n = 0; n < AR_ORDER + 1; n++) {
     sum += WEBRTC_SPL_MUL(ARCoefQ12[n], ARCoefQ12[n]);   /* Q24 */
   }
-  sum = WEBRTC_SPL_RSHIFT_W32(WEBRTC_SPL_MUL(WEBRTC_SPL_RSHIFT_W32(sum, 6),
-                                             65) + 32768, 16); /* Q8 */
-  CorrQ11[0] = WEBRTC_SPL_RSHIFT_W32(WEBRTC_SPL_MUL(sum, gainQ10) + 256, 9);
+  sum = ((sum >> 6) * 65 + 32768) >> 16;  /* Q8 */
+  CorrQ11[0] = (sum * gainQ10 + 256) >> 9;
 
   /* To avoid overflow, we shift down gainQ10 if it is large.
    * We will not lose any precision */
   if (gainQ10 > 400000) {
-    tmpGain = WEBRTC_SPL_RSHIFT_W32(gainQ10, 3);
+    tmpGain = gainQ10 >> 3;
     round = 32;
     shftVal = 6;
   } else {
@@ -126,18 +125,16 @@ static void FindInvArSpec(const int16_t* ARCoefQ12,
     sum = 16384;
     for (n = k; n < AR_ORDER + 1; n++)
       sum += WEBRTC_SPL_MUL(ARCoefQ12[n - k], ARCoefQ12[n]); /* Q24 */
-    sum = WEBRTC_SPL_RSHIFT_W32(sum, 15);
-    CorrQ11[k] = WEBRTC_SPL_RSHIFT_W32(WEBRTC_SPL_MUL(sum, tmpGain) + round,
-                                       shftVal);
+    sum >>= 15;
+    CorrQ11[k] = (sum * tmpGain + round) >> shftVal;
   }
-  sum = WEBRTC_SPL_LSHIFT_W32(CorrQ11[0], 7);
+  sum = CorrQ11[0] << 7;
   for (n = 0; n < FRAMESAMPLES / 8; n++) {
     CurveQ16[n] = sum;
   }
   for (k = 1; k < AR_ORDER; k += 2) {
     for (n = 0; n < FRAMESAMPLES / 8; n++) {
-      CurveQ16[n] += WEBRTC_SPL_RSHIFT_W32(WEBRTC_SPL_MUL(
-          WebRtcIsac_kCos[k][n], CorrQ11[k + 1]) + 2, 2);
+      CurveQ16[n] += (WebRtcIsac_kCos[k][n] * CorrQ11[k + 1] + 2) >> 2;
     }
   }
 
@@ -155,21 +152,19 @@ static void FindInvArSpec(const int16_t* ARCoefQ12,
     shftVal = 0;
   }
   for (n = 0; n < FRAMESAMPLES / 8; n++) {
-    diffQ16[n] = WEBRTC_SPL_RSHIFT_W32(WEBRTC_SPL_MUL(
-        CS_ptrQ9[n], WEBRTC_SPL_RSHIFT_W32(CorrQ11[1], shftVal)) + 2, 2);
+    diffQ16[n] = (CS_ptrQ9[n] * (CorrQ11[1] >> shftVal) + 2) >> 2;
   }
   for (k = 2; k < AR_ORDER; k += 2) {
     CS_ptrQ9 = WebRtcIsac_kCos[k];
     for (n = 0; n < FRAMESAMPLES / 8; n++) {
-      diffQ16[n] += WEBRTC_SPL_RSHIFT_W32(WEBRTC_SPL_MUL(
-          CS_ptrQ9[n], WEBRTC_SPL_RSHIFT_W32(CorrQ11[k + 1], shftVal)) + 2, 2);
+      diffQ16[n] += (CS_ptrQ9[n] * (CorrQ11[k + 1] >> shftVal) + 2) >> 2;
     }
   }
 
   for (k = 0; k < FRAMESAMPLES / 8; k++) {
-    CurveQ16[FRAMESAMPLES_QUARTER - 1 - k] = CurveQ16[k] -
-        WEBRTC_SPL_LSHIFT_W32(diffQ16[k], shftVal);
-    CurveQ16[k] += WEBRTC_SPL_LSHIFT_W32(diffQ16[k], shftVal);
+    int32_t diff_q16_shifted = (int32_t)((uint32_t)(diffQ16[k]) << shftVal);
+    CurveQ16[FRAMESAMPLES_QUARTER - 1 - k] = CurveQ16[k] - diff_q16_shifted;
+    CurveQ16[k] += diff_q16_shifted;
   }
 }
 
@@ -187,13 +182,13 @@ static void GenerateDitherQ7Lb(int16_t* bufQ7, uint32_t seed,
 
       /* Fixed-point dither sample between -64 and 64 (Q7). */
       /* dither = seed * 128 / 4294967295 */
-      dither1_Q7 = (int16_t)(((int)seed + 16777216) >> 25);
+      dither1_Q7 = (int16_t)(((int32_t)(seed + 16777216)) >> 25);
 
       /* New random unsigned int. */
       seed = (seed * 196314165) + 907633515;
 
       /* Fixed-point dither sample between -64 and 64. */
-      dither2_Q7 = (int16_t)(((int)seed + 16777216) >> 25);
+      dither2_Q7 = (int16_t)(((int32_t)(seed + 16777216)) >> 25);
 
       shft = (seed >> 25) & 15;
       if (shft < 5) {
@@ -219,7 +214,7 @@ static void GenerateDitherQ7Lb(int16_t* bufQ7, uint32_t seed,
       seed = (seed * 196314165) + 907633515;
 
       /* Fixed-point dither sample between -64 and 64. */
-      dither1_Q7 = (int16_t)(((int)seed + 16777216) >> 25);
+      dither1_Q7 = (int16_t)(((int32_t)(seed + 16777216)) >> 25);
 
       /* Dither sample is placed in either even or odd index. */
       shft = (seed >> 25) & 1;     /* Either 0 or 1 */
@@ -259,7 +254,7 @@ static void GenerateDitherQ7LbUB(
 
     /* Fixed-point dither sample between -64 and 64 (Q7). */
     /* bufQ7 = seed * 128 / 4294967295 */
-    bufQ7[k] = (int16_t)(((int)seed + 16777216) >> 25);
+    bufQ7[k] = (int16_t)(((int32_t)(seed + 16777216)) >> 25);
 
     /* Scale by 0.35. */
     bufQ7[k] = (int16_t)WEBRTC_SPL_MUL_16_16_RSFT(bufQ7[k], 2048, 13);
@@ -1000,7 +995,7 @@ int WebRtcIsac_DecodeLpcCoef(Bitstr* streamdata, double* LPCCoef) {
 
 /* Encode LPC in LAR domain. */
 void WebRtcIsac_EncodeLar(double* LPCCoef, Bitstr* streamdata,
-                          ISAC_SaveEncData_t* encData) {
+                          IsacSaveEncoderData* encData) {
   int j, k, n, pos, pos2, poss, offss, offs2;
   int index_s[KLT_ORDER_SHAPE];
   int index_ovr_s[KLT_ORDER_SHAPE];
@@ -1160,7 +1155,7 @@ void WebRtcIsac_EncodeLar(double* LPCCoef, Bitstr* streamdata,
 
 
 void WebRtcIsac_EncodeLpcLb(double* LPCCoef_lo, double* LPCCoef_hi,
-                            Bitstr* streamdata, ISAC_SaveEncData_t* encData) {
+                            Bitstr* streamdata, IsacSaveEncoderData* encData) {
   double lars[KLT_ORDER_GAIN + KLT_ORDER_SHAPE];
   int k;
 
@@ -1238,7 +1233,7 @@ int16_t WebRtcIsac_EncodeLpcUB(double* lpcVecs, Bitstr* streamdata,
 
 void WebRtcIsac_EncodeLpcGainLb(double* LPCCoef_lo, double* LPCCoef_hi,
                                 Bitstr* streamdata,
-                                ISAC_SaveEncData_t* encData) {
+                                IsacSaveEncoderData* encData) {
   int j, k, n, pos, pos2, posg, offsg, offs2;
   int index_g[KLT_ORDER_GAIN];
   int index_ovr_g[KLT_ORDER_GAIN];
@@ -1538,7 +1533,7 @@ int WebRtcIsac_DecodePitchGain(Bitstr* streamdata,
 /* Quantize & code Pitch Gains. */
 void WebRtcIsac_EncodePitchGain(int16_t* PitchGains_Q12,
                                 Bitstr* streamdata,
-                                ISAC_SaveEncData_t* encData) {
+                                IsacSaveEncoderData* encData) {
   int k, j;
   double C;
   double S[PITCH_SUBFRAMES];
@@ -1683,7 +1678,7 @@ int WebRtcIsac_DecodePitchLag(Bitstr* streamdata, int16_t* PitchGain_Q12,
 /* Quantize & code pitch lags. */
 void WebRtcIsac_EncodePitchLag(double* PitchLags, int16_t* PitchGain_Q12,
                                Bitstr* streamdata,
-                               ISAC_SaveEncData_t* encData) {
+                               IsacSaveEncoderData* encData) {
   int k, j;
   double StepSize;
   double C;

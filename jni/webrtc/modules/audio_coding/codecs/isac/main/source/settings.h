@@ -168,8 +168,6 @@ enum IsacSamplingRate {kIsacWideband = 16,  kIsacSuperWideband = 32};
 #define RCU_TRANSCODING_SCALE_UB                0.50f
 #define RCU_TRANSCODING_SCALE_UB_INVERSE        2.0f
 
-#define SIZE_RESAMPLER_STATE  6
-
 /* Define Error codes */
 /* 6000 General */
 #define ISAC_MEMORY_ALLOCATION_FAILED    6010

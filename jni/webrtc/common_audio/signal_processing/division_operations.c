@@ -106,35 +106,30 @@ int32_t WebRtcSpl_DivW32HiLow(int32_t num, int16_t den_hi, int16_t den_low)
     // result in Q14 (Note: 3FFFFFFF = 0.5 in Q30)
 
     // tmpW32 = 1/den = approx * (2.0 - den * approx) (in Q30)
-    tmpW32 = (WEBRTC_SPL_MUL_16_16(den_hi, approx) << 1)
-            + ((WEBRTC_SPL_MUL_16_16(den_low, approx) >> 15) << 1);
+    tmpW32 = (den_hi * approx << 1) + ((den_low * approx >> 15) << 1);
     // tmpW32 = den * approx
 
     tmpW32 = (int32_t)0x7fffffffL - tmpW32; // result in Q30 (tmpW32 = 2.0-(den*approx))
 
     // Store tmpW32 in hi and low format
-    tmp_hi = (int16_t)WEBRTC_SPL_RSHIFT_W32(tmpW32, 16);
-    tmp_low = (int16_t)WEBRTC_SPL_RSHIFT_W32((tmpW32
-            - WEBRTC_SPL_LSHIFT_W32((int32_t)tmp_hi, 16)), 1);
+    tmp_hi = (int16_t)(tmpW32 >> 16);
+    tmp_low = (int16_t)((tmpW32 - ((int32_t)tmp_hi << 16)) >> 1);
 
     // tmpW32 = 1/den in Q29
-    tmpW32 = ((WEBRTC_SPL_MUL_16_16(tmp_hi, approx) + (WEBRTC_SPL_MUL_16_16(tmp_low, approx)
-            >> 15)) << 1);
+    tmpW32 = (tmp_hi * approx + (tmp_low * approx >> 15)) << 1;
 
     // 1/den in hi and low format
-    tmp_hi = (int16_t)WEBRTC_SPL_RSHIFT_W32(tmpW32, 16);
-    tmp_low = (int16_t)WEBRTC_SPL_RSHIFT_W32((tmpW32
-            - WEBRTC_SPL_LSHIFT_W32((int32_t)tmp_hi, 16)), 1);
+    tmp_hi = (int16_t)(tmpW32 >> 16);
+    tmp_low = (int16_t)((tmpW32 - ((int32_t)tmp_hi << 16)) >> 1);
 
     // Store num in hi and low format
-    num_hi = (int16_t)WEBRTC_SPL_RSHIFT_W32(num, 16);
-    num_low = (int16_t)WEBRTC_SPL_RSHIFT_W32((num
-            - WEBRTC_SPL_LSHIFT_W32((int32_t)num_hi, 16)), 1);
+    num_hi = (int16_t)(num >> 16);
+    num_low = (int16_t)((num - ((int32_t)num_hi << 16)) >> 1);
 
     // num * (1/den) by 32 bit multiplication (result in Q28)
 
-    tmpW32 = (WEBRTC_SPL_MUL_16_16(num_hi, tmp_hi) + (WEBRTC_SPL_MUL_16_16(num_hi, tmp_low)
-            >> 15) + (WEBRTC_SPL_MUL_16_16(num_low, tmp_hi) >> 15));
+    tmpW32 = num_hi * tmp_hi + (num_hi * tmp_low >> 15) +
+        (num_low * tmp_hi >> 15);
 
     // Put result in Q31 (convert from Q28)
     tmpW32 = WEBRTC_SPL_LSHIFT_W32(tmpW32, 3);

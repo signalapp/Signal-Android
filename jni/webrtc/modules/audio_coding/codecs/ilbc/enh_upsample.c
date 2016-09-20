@@ -39,26 +39,26 @@ void WebRtcIlbcfix_EnhUpsample(
     /* i = 2 */
     pp=WebRtcIlbcfix_kEnhPolyPhaser[j]+1;
     ps=seq1+2;
-    (*pu11) = WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
+    *pu11 = (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
     pu11+=ENH_UPS0;
     /* i = 3 */
     pp=WebRtcIlbcfix_kEnhPolyPhaser[j]+1;
     ps=seq1+3;
-    (*pu11) = WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
+    *pu11 = (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
     pu11+=ENH_UPS0;
     /* i = 4 */
     pp=WebRtcIlbcfix_kEnhPolyPhaser[j]+1;
     ps=seq1+4;
-    (*pu11) = WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--,*pp++);
+    *pu11 = (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
     pu1++;
   }
 
@@ -79,7 +79,7 @@ void WebRtcIlbcfix_EnhUpsample(
      pp = polyp[j]+i;
      ps = seq1+dim1-1;
      for(k=0;k<filterlength-i;k++) {
-     *pu += WEBRTC_SPL_MUL_16_16(*ps--, *pp++);
+     *pu += (*ps--) * *pp++;
      }
      pu+=ENH_UPS0;
      }
@@ -92,17 +92,17 @@ void WebRtcIlbcfix_EnhUpsample(
     /* i = 1 */
     pp = WebRtcIlbcfix_kEnhPolyPhaser[j]+2;
     ps = w16tmp;
-    (*pu11) = WEBRTC_SPL_MUL_16_16(*ps--, *pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--, *pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--, *pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--, *pp++);
+    *pu11 = (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
     pu11+=ENH_UPS0;
     /* i = 2 */
     pp = WebRtcIlbcfix_kEnhPolyPhaser[j]+3;
     ps = w16tmp;
-    (*pu11) = WEBRTC_SPL_MUL_16_16(*ps--, *pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--, *pp++);
-    (*pu11) += WEBRTC_SPL_MUL_16_16(*ps--, *pp++);
+    *pu11 = (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
+    *pu11 += (*ps--) * *pp++;
     pu11+=ENH_UPS0;
 
     pu1++;

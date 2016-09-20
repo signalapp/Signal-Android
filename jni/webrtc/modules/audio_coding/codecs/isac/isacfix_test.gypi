@@ -10,15 +10,15 @@
   'targets': [
     # kenny
     {
-      'target_name': 'iSACFixtest',
+      'target_name': 'isac_fix_test',
       'type': 'executable',
       'dependencies': [
-        'iSACFix',
+        'isac_fix',
         '<(webrtc_root)/test/test.gyp:test_support',
       ],
       'include_dirs': [
         './fix/test',
-        './fix/interface',
+        './fix/include',
         '<(webrtc_root)',
       ],
       'sources': [

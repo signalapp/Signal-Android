@@ -9,7 +9,7 @@
  *
  * All rights reserved.
  *
- *  Despite my general liking of the GPL, I place my own contributions 
+ *  Despite my general liking of the GPL, I place my own contributions
  *  to this code in the public domain for the benefit of all mankind -
  *  even the slimy ones who might try to proprietize my work and use it
  *  to my detriment.
@@ -30,16 +30,12 @@
 
 /*! \file */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <stdio.h>
 #include <memory.h>
+#include <stdio.h>
 #include <stdlib.h>
 
-#include "typedefs.h"
 #include "g722_enc_dec.h"
+#include "webrtc/typedefs.h"
 
 #if !defined(FALSE)
 #define FALSE 0
@@ -62,7 +58,7 @@ static __inline int16_t saturate(int32_t amp)
 }
 /*- End of function --------------------------------------------------------*/
 
-static void block4(g722_encode_state_t *s, int band, int d)
+static void block4(G722EncoderState *s, int band, int d)
 {
     int wd1;
     int wd2;
@@ -122,7 +118,7 @@ static void block4(g722_encode_state_t *s, int band, int d)
         s->band[band].d[i] = s->band[band].d[i - 1];
         s->band[band].b[i] = s->band[band].bp[i];
     }
-    
+
     for (i = 2;  i > 0;  i--)
     {
         s->band[band].r[i] = s->band[band].r[i - 1];
@@ -151,12 +147,12 @@ static void block4(g722_encode_state_t *s, int band, int d)
 }
 /*- End of function --------------------------------------------------------*/
 
-g722_encode_state_t *WebRtc_g722_encode_init(g722_encode_state_t *s,
-                                             int rate, int options)
-{
+G722EncoderState* WebRtc_g722_encode_init(G722EncoderState* s,
+                                          int rate,
+                                          int options) {
     if (s == NULL)
     {
-        if ((s = (g722_encode_state_t *) malloc(sizeof(*s))) == NULL)
+        if ((s = (G722EncoderState *) malloc(sizeof(*s))) == NULL)
             return NULL;
     }
     memset(s, 0, sizeof(*s));
@@ -178,7 +174,7 @@ g722_encode_state_t *WebRtc_g722_encode_init(g722_encode_state_t *s,
 }
 /*- End of function --------------------------------------------------------*/
 
-int WebRtc_g722_encode_release(g722_encode_state_t *s)
+int WebRtc_g722_encode_release(G722EncoderState *s)
 {
     free(s);
     return 0;
@@ -202,8 +198,8 @@ int16_t limitValues (int16_t rl)
 }
 #endif
 
-int WebRtc_g722_encode(g722_encode_state_t *s, uint8_t g722_data[],
-                       const int16_t amp[], int len)
+size_t WebRtc_g722_encode(G722EncoderState *s, uint8_t g722_data[],
+                          const int16_t amp[], size_t len)
 {
     static const int q6[32] =
     {
@@ -275,11 +271,11 @@ int WebRtc_g722_encode(g722_encode_state_t *s, uint8_t g722_data[],
     int eh;
     int mih;
     int i;
-    int j;
+    size_t j;
     /* Low and high band PCM from the QMF */
     int xlow;
     int xhigh;
-    int g722_bytes;
+    size_t g722_bytes;
     /* Even and odd tap accumulators */
     int sumeven;
     int sumodd;
@@ -311,7 +307,7 @@ int WebRtc_g722_encode(g722_encode_state_t *s, uint8_t g722_data[],
                     s->x[i] = s->x[i + 2];
                 s->x[22] = amp[j++];
                 s->x[23] = amp[j++];
-    
+
                 /* Discard every other QMF output */
                 sumeven = 0;
                 sumodd = 0;
@@ -371,7 +367,7 @@ int WebRtc_g722_encode(g722_encode_state_t *s, uint8_t g722_data[],
         s->band[0].det = wd3 << 2;
 
         block4(s, 0, dlow);
-        
+
         if (s->eight_k)
         {
             /* Just leave the high bits as zero */

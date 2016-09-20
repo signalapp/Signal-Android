@@ -15,20 +15,6 @@
 
 #include "Mmsystem.h"
 
-#if defined(_DEBUG)
-#define BUILDMODE "d"
-#elif defined(DEBUG)
-#define BUILDMODE "d"
-#elif defined(NDEBUG)
-#define BUILDMODE "r"
-#else
-#define BUILDMODE "?"
-#endif
-#define BUILDTIME __TIME__
-#define BUILDDATE __DATE__
-// Example: "Oct 10 2002 12:05:30 r"
-#define BUILDINFO BUILDDATE " " BUILDTIME " " BUILDMODE
-
 namespace webrtc {
 TraceWindows::TraceWindows()
     : prev_api_tick_count_(0),
@@ -36,7 +22,6 @@ TraceWindows::TraceWindows()
 }
 
 TraceWindows::~TraceWindows() {
-  StopThread();
 }
 
 int32_t TraceWindows::AddTime(char* trace_message,
@@ -82,13 +67,6 @@ int32_t TraceWindows::AddTime(char* trace_message,
             system_time.wMilliseconds, dw_delta_time);
   }
   return 22;
-}
-
-int32_t TraceWindows::AddBuildInfo(char* trace_message) const {
-  // write data and time to text file
-  sprintf(trace_message, "Build info: %s", BUILDINFO);
-  // Include NULL termination (hence + 1).
-  return static_cast<int32_t>(strlen(trace_message) + 1);
 }
 
 int32_t TraceWindows::AddDateTimeInfo(char* trace_message) const {

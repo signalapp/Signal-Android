@@ -12,24 +12,41 @@
       'target_name': 'webrtc_opus',
       'type': 'static_library',
       'conditions': [
-        ['build_with_mozilla==1', {
-          # Mozilla provides its own build of the opus library.
-          'include_dirs': [
-            '$(DIST)/include/opus',
-           ]
-        }, {
+        ['build_opus==1', {
           'dependencies': [
-            '<(DEPTH)/third_party/opus/opus.gyp:opus'
+            '<(opus_dir)/opus.gyp:opus'
+          ],
+          'export_dependent_settings': [
+            '<(opus_dir)/opus.gyp:opus',
+          ],
+          'direct_dependent_settings': {
+            'include_dirs': [  # need by Neteq audio classifier.
+              '<(opus_dir)/src/src',
+              '<(opus_dir)/src/celt',
+            ],
+          },
+        }, {
+          'conditions': [
+            ['build_with_mozilla==1', {
+              # Mozilla provides its own build of the opus library.
+              'include_dirs': [
+                '$(DIST)/include/opus',
+              ]
+            }],
           ],
         }],
       ],
-      'include_dirs': [
-        '<(webrtc_root)',
+      'dependencies': [
+        'audio_encoder_interface',
       ],
       'sources': [
-        'interface/opus_interface.h',
+        'audio_decoder_opus.cc',
+        'audio_decoder_opus.h',
+        'audio_encoder_opus.cc',
+        'audio_encoder_opus.h',
         'opus_inst.h',
         'opus_interface.c',
+        'opus_interface.h',
       ],
     },
   ],
@@ -44,9 +61,6 @@
             '<(webrtc_root)/common_audio/common_audio.gyp:common_audio',
             '<(webrtc_root)/test/test.gyp:test_support_main',
             '<(DEPTH)/testing/gtest.gyp:gtest',
-          ],
-          'include_dirs': [
-            '<(webrtc_root)',
           ],
           'sources': [
             'opus_fec_test.cc',

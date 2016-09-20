@@ -12,6 +12,8 @@
 
 #include <assert.h>
 
+#include "webrtc/base/checks.h"
+#include "webrtc/base/logging.h"
 #include "webrtc/modules/audio_coding/neteq/decoder_database.h"
 
 namespace webrtc {
@@ -46,7 +48,7 @@ int PayloadSplitter::SplitRed(PacketList* packet_list) {
     //   +-+-+-+-+-+-+-+-+
 
     bool last_block = false;
-    int sum_length = 0;
+    size_t sum_length = 0;
     while (!last_block) {
       Packet* new_packet = new Packet;
       new_packet->header = red_packet->header;
@@ -82,12 +84,13 @@ int PayloadSplitter::SplitRed(PacketList* packet_list) {
     // |payload_ptr| now points at the first payload byte.
     PacketList::iterator new_it;
     for (new_it = new_packets.begin(); new_it != new_packets.end(); ++new_it) {
-      int payload_length = (*new_it)->payload_length;
+      size_t payload_length = (*new_it)->payload_length;
       if (payload_ptr + payload_length >
           red_packet->payload + red_packet->payload_length) {
         // The block lengths in the RED headers do not match the overall packet
         // length. Something is corrupt. Discard this and the remaining
         // payloads from this packet.
+        LOG(LS_WARNING) << "SplitRed length mismatch";
         while (new_it != new_packets.end()) {
           // Payload should not have been allocated yet.
           assert(!(*new_it)->payload);
@@ -130,6 +133,7 @@ int PayloadSplitter::SplitFec(PacketList* packet_list,
     const DecoderDatabase::DecoderInfo* info =
         decoder_database->GetDecoderInfo(payload_type);
     if (!info) {
+      LOG(LS_WARNING) << "SplitFec unknown payload type";
       return kUnknownPayloadType;
     }
     // No splitting for a sync-packet.
@@ -140,8 +144,9 @@ int PayloadSplitter::SplitFec(PacketList* packet_list,
 
     // Not an FEC packet.
     AudioDecoder* decoder = decoder_database->GetDecoder(payload_type);
-    // decoder should not return NULL.
-    assert(decoder != NULL);
+    // decoder should not return NULL, except for comfort noise payloads which
+    // are handled separately.
+    assert(decoder != NULL || decoder_database->IsComfortNoise(payload_type));
     if (!decoder ||
         !decoder->PacketHasFec(packet->payload, packet->payload_length)) {
       ++it;
@@ -149,10 +154,13 @@ int PayloadSplitter::SplitFec(PacketList* packet_list,
     }
 
     switch (info->codec_type) {
-      case kDecoderOpus:
-      case kDecoderOpus_2ch: {
-        Packet* new_packet = new Packet;
+      case NetEqDecoder::kDecoderOpus:
+      case NetEqDecoder::kDecoderOpus_2ch: {
+        // The main payload of this packet should be decoded as a primary
+        // payload, even if it comes as a secondary payload in a RED packet.
+        packet->primary = true;
 
+        Packet* new_packet = new Packet;
         new_packet->header = packet->header;
         int duration = decoder->
             PacketDurationRedundant(packet->payload, packet->payload_length);
@@ -161,13 +169,15 @@ int PayloadSplitter::SplitFec(PacketList* packet_list,
         memcpy(new_packet->payload, packet->payload, packet->payload_length);
         new_packet->payload_length = packet->payload_length;
         new_packet->primary = false;
-        new_packet->waiting_time = packet->waiting_time;
         new_packet->sync_packet = packet->sync_packet;
+        // Waiting time should not be set here.
+        RTC_DCHECK(!packet->waiting_time);
 
         packet_list->insert(it, new_packet);
         break;
       }
       default: {
+        LOG(LS_WARNING) << "SplitFec wrong payload type";
         return kFecSplitError;
       }
     }
@@ -219,6 +229,7 @@ int PayloadSplitter::SplitAudio(PacketList* packet_list,
     const DecoderDatabase::DecoderInfo* info =
         decoder_database.GetDecoderInfo(packet->header.payloadType);
     if (!info) {
+      LOG(LS_WARNING) << "SplitAudio unknown payload type";
       return kUnknownPayloadType;
     }
     // No splitting for a sync-packet.
@@ -228,74 +239,76 @@ int PayloadSplitter::SplitAudio(PacketList* packet_list,
     }
     PacketList new_packets;
     switch (info->codec_type) {
-      case kDecoderPCMu:
-      case kDecoderPCMa: {
+      case NetEqDecoder::kDecoderPCMu:
+      case NetEqDecoder::kDecoderPCMa: {
         // 8 bytes per ms; 8 timestamps per ms.
         SplitBySamples(packet, 8, 8, &new_packets);
         break;
       }
-      case kDecoderPCMu_2ch:
-      case kDecoderPCMa_2ch: {
+      case NetEqDecoder::kDecoderPCMu_2ch:
+      case NetEqDecoder::kDecoderPCMa_2ch: {
         // 2 * 8 bytes per ms; 8 timestamps per ms.
         SplitBySamples(packet, 2 * 8, 8, &new_packets);
         break;
       }
-      case kDecoderG722: {
+      case NetEqDecoder::kDecoderG722: {
         // 8 bytes per ms; 16 timestamps per ms.
         SplitBySamples(packet, 8, 16, &new_packets);
         break;
       }
-      case kDecoderPCM16B: {
+      case NetEqDecoder::kDecoderPCM16B: {
         // 16 bytes per ms; 8 timestamps per ms.
         SplitBySamples(packet, 16, 8, &new_packets);
         break;
       }
-      case kDecoderPCM16Bwb: {
+      case NetEqDecoder::kDecoderPCM16Bwb: {
         // 32 bytes per ms; 16 timestamps per ms.
         SplitBySamples(packet, 32, 16, &new_packets);
         break;
       }
-      case kDecoderPCM16Bswb32kHz: {
+      case NetEqDecoder::kDecoderPCM16Bswb32kHz: {
         // 64 bytes per ms; 32 timestamps per ms.
         SplitBySamples(packet, 64, 32, &new_packets);
         break;
       }
-      case kDecoderPCM16Bswb48kHz: {
+      case NetEqDecoder::kDecoderPCM16Bswb48kHz: {
         // 96 bytes per ms; 48 timestamps per ms.
         SplitBySamples(packet, 96, 48, &new_packets);
         break;
       }
-      case kDecoderPCM16B_2ch: {
+      case NetEqDecoder::kDecoderPCM16B_2ch: {
         // 2 * 16 bytes per ms; 8 timestamps per ms.
         SplitBySamples(packet, 2 * 16, 8, &new_packets);
         break;
       }
-      case kDecoderPCM16Bwb_2ch: {
+      case NetEqDecoder::kDecoderPCM16Bwb_2ch: {
         // 2 * 32 bytes per ms; 16 timestamps per ms.
         SplitBySamples(packet, 2 * 32, 16, &new_packets);
         break;
       }
-      case kDecoderPCM16Bswb32kHz_2ch: {
+      case NetEqDecoder::kDecoderPCM16Bswb32kHz_2ch: {
         // 2 * 64 bytes per ms; 32 timestamps per ms.
         SplitBySamples(packet, 2 * 64, 32, &new_packets);
         break;
       }
-      case kDecoderPCM16Bswb48kHz_2ch: {
+      case NetEqDecoder::kDecoderPCM16Bswb48kHz_2ch: {
         // 2 * 96 bytes per ms; 48 timestamps per ms.
         SplitBySamples(packet, 2 * 96, 48, &new_packets);
         break;
       }
-      case kDecoderPCM16B_5ch: {
+      case NetEqDecoder::kDecoderPCM16B_5ch: {
         // 5 * 16 bytes per ms; 8 timestamps per ms.
         SplitBySamples(packet, 5 * 16, 8, &new_packets);
         break;
       }
-      case kDecoderILBC: {
-        int bytes_per_frame;
+      case NetEqDecoder::kDecoderILBC: {
+        size_t bytes_per_frame;
         int timestamps_per_frame;
         if (packet->payload_length >= 950) {
+          LOG(LS_WARNING) << "SplitAudio too large iLBC payload";
           return kTooLargePayload;
-        } else if (packet->payload_length % 38 == 0) {
+        }
+        if (packet->payload_length % 38 == 0) {
           // 20 ms frames.
           bytes_per_frame = 38;
           timestamps_per_frame = 160;
@@ -304,6 +317,7 @@ int PayloadSplitter::SplitAudio(PacketList* packet_list,
           bytes_per_frame = 50;
           timestamps_per_frame = 240;
         } else {
+          LOG(LS_WARNING) << "SplitAudio invalid iLBC payload";
           return kFrameSplitError;
         }
         int ret = SplitByFrames(packet, bytes_per_frame, timestamps_per_frame,
@@ -345,28 +359,28 @@ int PayloadSplitter::SplitAudio(PacketList* packet_list,
 }
 
 void PayloadSplitter::SplitBySamples(const Packet* packet,
-                                     int bytes_per_ms,
-                                     int timestamps_per_ms,
+                                     size_t bytes_per_ms,
+                                     uint32_t timestamps_per_ms,
                                      PacketList* new_packets) {
   assert(packet);
   assert(new_packets);
 
-  int split_size_bytes = packet->payload_length;
+  size_t split_size_bytes = packet->payload_length;
 
   // Find a "chunk size" >= 20 ms and < 40 ms.
-  int min_chunk_size = bytes_per_ms * 20;
+  size_t min_chunk_size = bytes_per_ms * 20;
   // Reduce the split size by half as long as |split_size_bytes| is at least
   // twice the minimum chunk size (so that the resulting size is at least as
   // large as the minimum chunk size).
   while (split_size_bytes >= 2 * min_chunk_size) {
     split_size_bytes >>= 1;
   }
-  int timestamps_per_chunk =
-      split_size_bytes * timestamps_per_ms / bytes_per_ms;
+  uint32_t timestamps_per_chunk = static_cast<uint32_t>(
+      split_size_bytes * timestamps_per_ms / bytes_per_ms);
   uint32_t timestamp = packet->header.timestamp;
 
   uint8_t* payload_ptr = packet->payload;
-  int len = packet->payload_length;
+  size_t len = packet->payload_length;
   while (len >= (2 * split_size_bytes)) {
     Packet* new_packet = new Packet;
     new_packet->payload_length = split_size_bytes;
@@ -394,22 +408,22 @@ void PayloadSplitter::SplitBySamples(const Packet* packet,
 }
 
 int PayloadSplitter::SplitByFrames(const Packet* packet,
-                                   int bytes_per_frame,
-                                   int timestamps_per_frame,
+                                   size_t bytes_per_frame,
+                                   uint32_t timestamps_per_frame,
                                    PacketList* new_packets) {
   if (packet->payload_length % bytes_per_frame != 0) {
+    LOG(LS_WARNING) << "SplitByFrames length mismatch";
     return kFrameSplitError;
   }
 
-  int num_frames = packet->payload_length / bytes_per_frame;
-  if (num_frames == 1) {
+  if (packet->payload_length == bytes_per_frame) {
     // Special case. Do not split the payload.
     return kNoSplit;
   }
 
   uint32_t timestamp = packet->header.timestamp;
   uint8_t* payload_ptr = packet->payload;
-  int len = packet->payload_length;
+  size_t len = packet->payload_length;
   while (len > 0) {
     assert(len >= bytes_per_frame);
     Packet* new_packet = new Packet;

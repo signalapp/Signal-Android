@@ -23,29 +23,32 @@
  *---------------------------------------------------------------*/
 
 void WebRtcIlbcfix_MyCorr(
-    int32_t *corr,  /* (o) correlation of seq1 and seq2 */
-    int16_t *seq1,  /* (i) first sequence */
-    int16_t dim1,  /* (i) dimension first seq1 */
-    const int16_t *seq2, /* (i) second sequence */
-    int16_t dim2   /* (i) dimension seq2 */
+    int32_t* corr,  /* (o) correlation of seq1 and seq2 */
+    const int16_t* seq1,  /* (i) first sequence */
+    size_t dim1,  /* (i) dimension first seq1 */
+    const int16_t* seq2, /* (i) second sequence */
+    size_t dim2   /* (i) dimension seq2 */
                           ){
-  int16_t max, scale, loops;
+  uint32_t max1, max2;
+  size_t loops;
+  int right_shift;
 
-  /* Calculate correlation between the two sequences. Scale the
-     result of the multiplcication to maximum 26 bits in order
-     to avoid overflow */
-  max=WebRtcSpl_MaxAbsValueW16(seq1, dim1);
-  scale=WebRtcSpl_GetSizeInBits(max);
-
-  scale = (int16_t)(WEBRTC_SPL_MUL_16_16(2,scale)-26);
-  if (scale<0) {
-    scale=0;
+  // Calculate a right shift that will let us sum dim2 pairwise products of
+  // values from the two sequences without overflowing an int32_t. (The +1 in
+  // max1 and max2 are because WebRtcSpl_MaxAbsValueW16 will return 2**15 - 1
+  // if the input array contains -2**15.)
+  max1 = WebRtcSpl_MaxAbsValueW16(seq1, dim1) + 1;
+  max2 = WebRtcSpl_MaxAbsValueW16(seq2, dim2) + 1;
+  right_shift =
+      (64 - 31) - WebRtcSpl_CountLeadingZeros64((max1 * max2) * (uint64_t)dim2);
+  if (right_shift < 0) {
+    right_shift = 0;
   }
 
   loops=dim1-dim2+1;
 
   /* Calculate the cross correlations */
-  WebRtcSpl_CrossCorrelation(corr, (int16_t*)seq2, seq1, dim2, loops, scale, 1);
+  WebRtcSpl_CrossCorrelation(corr, seq2, seq1, dim2, loops, right_shift, 1);
 
   return;
 }

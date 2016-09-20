@@ -65,7 +65,7 @@ int WebRtcIsacfix_EncHistMulti(Bitstr_enc *streamData,
 
     /* update interval */
     W_upper_LSB = W_upper & 0x0000FFFF;
-    W_upper_MSB = WEBRTC_SPL_RSHIFT_W32(W_upper, 16);
+    W_upper_MSB = W_upper >> 16;
     W_lower = WEBRTC_SPL_UMUL(W_upper_MSB, cdfLo);
     W_lower += ((W_upper_LSB * cdfLo) >> 16);
     W_upper = WEBRTC_SPL_UMUL(W_upper_MSB, cdfHi);
@@ -101,20 +101,19 @@ int WebRtcIsacfix_EncHistMulti(Bitstr_enc *streamData,
      * W_upper < 2^24 */
     while ( !(W_upper & 0xFF000000) )
     {
-      W_upper = WEBRTC_SPL_LSHIFT_W32(W_upper, 8);
+      W_upper <<= 8;
       if (streamData->full == 0) {
-        *streamPtr++ += (uint16_t) WEBRTC_SPL_RSHIFT_W32(streamData->streamval, 24);
+        *streamPtr++ += (uint16_t)(streamData->streamval >> 24);
         streamData->full = 1;
       } else {
-        *streamPtr = (uint16_t) WEBRTC_SPL_LSHIFT_W32(
-            WEBRTC_SPL_RSHIFT_W32(streamData->streamval, 24), 8);
+        *streamPtr = (uint16_t)((streamData->streamval >> 24) << 8);
         streamData->full = 0;
       }
 
       if( streamPtr > maxStreamPtr ) {
         return -ISAC_DISALLOWED_BITSTREAM_LENGTH;
       }
-      streamData->streamval = WEBRTC_SPL_LSHIFT_W32(streamData->streamval, 8);
+      streamData->streamval <<= 8;
     }
   }
 
@@ -175,7 +174,7 @@ int16_t WebRtcIsacfix_DecHistBisectMulti(int16_t *data,
   if (streamData->stream_index == 0)
   {
     /* read first word from bytestream */
-    streamval = WEBRTC_SPL_LSHIFT_W32((uint32_t)*streamPtr++, 16);
+    streamval = (uint32_t)*streamPtr++ << 16;
     streamval |= *streamPtr++;
   } else {
     streamval = streamData->streamval;
@@ -185,10 +184,10 @@ int16_t WebRtcIsacfix_DecHistBisectMulti(int16_t *data,
   {
     /* find the integer *data for which streamval lies in [W_lower+1, W_upper] */
     W_upper_LSB = W_upper & 0x0000FFFF;
-    W_upper_MSB = WEBRTC_SPL_RSHIFT_W32(W_upper, 16);
+    W_upper_MSB = W_upper >> 16;
 
     /* start halfway the cdf range */
-    sizeTmp = WEBRTC_SPL_RSHIFT_W16(*cdfSize++, 1);
+    sizeTmp = *cdfSize++ / 2;
     cdfPtr = *cdf + (sizeTmp - 1);
 
     /* method of bisection */
@@ -196,7 +195,7 @@ int16_t WebRtcIsacfix_DecHistBisectMulti(int16_t *data,
     {
       W_tmp = WEBRTC_SPL_UMUL_32_16(W_upper_MSB, *cdfPtr);
       W_tmp += (W_upper_LSB * (*cdfPtr)) >> 16;
-      sizeTmp = WEBRTC_SPL_RSHIFT_W16(sizeTmp, 1);
+      sizeTmp /= 2;
       if (sizeTmp == 0) {
         break;
       }
@@ -231,15 +230,13 @@ int16_t WebRtcIsacfix_DecHistBisectMulti(int16_t *data,
     {
       /* read next byte from stream */
       if (streamData->full == 0) {
-        streamval = WEBRTC_SPL_LSHIFT_W32(streamval, 8) |
-            (*streamPtr++ & 0x00FF);
+        streamval = (streamval << 8) | (*streamPtr++ & 0x00FF);
         streamData->full = 1;
       } else {
-        streamval = WEBRTC_SPL_LSHIFT_W32(streamval, 8) |
-            WEBRTC_SPL_RSHIFT_W16(*streamPtr, 8);
+        streamval = (streamval << 8) | (*streamPtr >> 8);
         streamData->full = 0;
       }
-      W_upper = WEBRTC_SPL_LSHIFT_W32(W_upper, 8);
+      W_upper <<= 8;
     }
 
 
@@ -310,7 +307,7 @@ int16_t WebRtcIsacfix_DecHistOneStepMulti(int16_t *data,
   if (streamData->stream_index == 0)
   {
     /* read first word from bytestream */
-    streamval = WEBRTC_SPL_LSHIFT_U32(*streamPtr++, 16);
+    streamval = (uint32_t)(*streamPtr++) << 16;
     streamval |= *streamPtr++;
   } else {
     streamval = streamData->streamval;
@@ -381,13 +378,13 @@ int16_t WebRtcIsacfix_DecHistOneStepMulti(int16_t *data,
     {
       /* read next byte from stream */
       if (streamData->full == 0) {
-        streamval = WEBRTC_SPL_LSHIFT_W32(streamval, 8) | (*streamPtr++ & 0x00FF);
+        streamval = (streamval << 8) | (*streamPtr++ & 0x00FF);
         streamData->full = 1;
       } else {
-        streamval = WEBRTC_SPL_LSHIFT_W32(streamval, 8) | (*streamPtr >> 8);
+        streamval = (streamval << 8) | (*streamPtr >> 8);
         streamData->full = 0;
       }
-      W_upper = WEBRTC_SPL_LSHIFT_W32(W_upper, 8);
+      W_upper <<= 8;
     }
   }
 

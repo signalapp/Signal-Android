@@ -23,13 +23,13 @@
 void WebRtcIlbcfix_CbUpdateBestIndex(
     int32_t CritNew,    /* (i) New Potentially best Criteria */
     int16_t CritNewSh,   /* (i) Shift value of above Criteria */
-    int16_t IndexNew,   /* (i) Index of new Criteria */
+    size_t IndexNew,   /* (i) Index of new Criteria */
     int32_t cDotNew,    /* (i) Cross dot of new index */
     int16_t invEnergyNew,  /* (i) Inversed energy new index */
     int16_t energyShiftNew,  /* (i) Energy shifts of new index */
     int32_t *CritMax,   /* (i/o) Maximum Criteria (so far) */
     int16_t *shTotMax,   /* (i/o) Shifts of maximum criteria */
-    int16_t *bestIndex,   /* (i/o) Index that corresponds to
+    size_t *bestIndex,   /* (i/o) Index that corresponds to
                                                    maximum criteria */
     int16_t *bestGain)   /* (i/o) Gain in Q14 that corresponds
                                                    to maximum criteria */
@@ -51,8 +51,7 @@ void WebRtcIlbcfix_CbUpdateBestIndex(
      calculate the gain and store this index as the new best one
   */
 
-  if (WEBRTC_SPL_RSHIFT_W32(CritNew, shNew)>
-      WEBRTC_SPL_RSHIFT_W32((*CritMax),shOld)) {
+  if ((CritNew >> shNew) > (*CritMax >> shOld)) {
 
     tmp16 = (int16_t)WebRtcSpl_NormW32(cDotNew);
     tmp16 = 16 - tmp16;
@@ -65,8 +64,8 @@ void WebRtcIlbcfix_CbUpdateBestIndex(
     scaleTmp = -energyShiftNew-tmp16+31;
     scaleTmp = WEBRTC_SPL_MIN(31, scaleTmp);
 
-    gainW32 = WEBRTC_SPL_MUL_16_16_RSFT(
-        ((int16_t)WEBRTC_SPL_SHIFT_W32(cDotNew, -tmp16)), invEnergyNew, scaleTmp);
+    gainW32 = ((int16_t)WEBRTC_SPL_SHIFT_W32(cDotNew, -tmp16) * invEnergyNew) >>
+        scaleTmp;
 
     /* Check if criteria satisfies Gain criteria (max 1.3)
        if it is larger set the gain to 1.3

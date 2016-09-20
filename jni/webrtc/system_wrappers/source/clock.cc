@@ -8,20 +8,20 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/clock.h"
+#include "webrtc/system_wrappers/include/clock.h"
 
 #if defined(_WIN32)
 // Windows needs to be included before mmsystem.h
-#include <Windows.h>
-#include <WinSock.h>
+#include "webrtc/base/win32.h"
 #include <MMSystem.h>
 #elif ((defined WEBRTC_LINUX) || (defined WEBRTC_MAC))
 #include <sys/time.h>
 #include <time.h>
 #endif
 
-#include "webrtc/system_wrappers/interface/rw_lock_wrapper.h"
-#include "webrtc/system_wrappers/interface/tick_util.h"
+#include "webrtc/base/criticalsection.h"
+#include "webrtc/base/timeutils.h"
+#include "webrtc/system_wrappers/include/rw_lock_wrapper.h"
 
 namespace webrtc {
 
@@ -33,115 +33,21 @@ int64_t Clock::NtpToMs(uint32_t ntp_secs, uint32_t ntp_frac) {
       static_cast<int64_t>(ntp_frac_ms + 0.5);
 }
 
-#if defined(_WIN32)
-
-struct reference_point {
-  FILETIME      file_time;
-  LARGE_INTEGER counterMS;
-};
-
-struct WindowsHelpTimer {
-  volatile LONG _timeInMs;
-  volatile LONG _numWrapTimeInMs;
-  reference_point _ref_point;
-
-  volatile LONG _sync_flag;
-};
-
-void Synchronize(WindowsHelpTimer* help_timer) {
-  const LONG start_value = 0;
-  const LONG new_value = 1;
-  const LONG synchronized_value = 2;
-
-  LONG compare_flag = new_value;
-  while (help_timer->_sync_flag == start_value) {
-    const LONG new_value = 1;
-    compare_flag = InterlockedCompareExchange(
-        &help_timer->_sync_flag, new_value, start_value);
-  }
-  if (compare_flag != start_value) {
-    // This thread was not the one that incremented the sync flag.
-    // Block until synchronization finishes.
-    while (compare_flag != synchronized_value) {
-      ::Sleep(0);
-    }
-    return;
-  }
-  // Only the synchronizing thread gets here so this part can be
-  // considered single threaded.
-
-  // set timer accuracy to 1 ms
-  timeBeginPeriod(1);
-  FILETIME    ft0 = { 0, 0 },
-              ft1 = { 0, 0 };
-  //
-  // Spin waiting for a change in system time. Get the matching
-  // performance counter value for that time.
-  //
-  ::GetSystemTimeAsFileTime(&ft0);
-  do {
-    ::GetSystemTimeAsFileTime(&ft1);
-
-    help_timer->_ref_point.counterMS.QuadPart = ::timeGetTime();
-    ::Sleep(0);
-  } while ((ft0.dwHighDateTime == ft1.dwHighDateTime) &&
-          (ft0.dwLowDateTime == ft1.dwLowDateTime));
-  help_timer->_ref_point.file_time = ft1;
-  timeEndPeriod(1);
-}
-
-void get_time(WindowsHelpTimer* help_timer, FILETIME& current_time) {
-  // we can't use query performance counter due to speed stepping
-  DWORD t = timeGetTime();
-  // NOTE: we have a missmatch in sign between _timeInMs(LONG) and
-  // (DWORD) however we only use it here without +- etc
-  volatile LONG* timeInMsPtr = &help_timer->_timeInMs;
-  // Make sure that we only inc wrapper once.
-  DWORD old = InterlockedExchange(timeInMsPtr, t);
-  if(old > t) {
-    // wrap
-    help_timer->_numWrapTimeInMs++;
-  }
-  LARGE_INTEGER elapsedMS;
-  elapsedMS.HighPart = help_timer->_numWrapTimeInMs;
-  elapsedMS.LowPart = t;
-
-  elapsedMS.QuadPart = elapsedMS.QuadPart -
-      help_timer->_ref_point.counterMS.QuadPart;
-
-  // Translate to 100-nanoseconds intervals (FILETIME resolution)
-  // and add to reference FILETIME to get current FILETIME.
-  ULARGE_INTEGER filetime_ref_as_ul;
-
-  filetime_ref_as_ul.HighPart =
-      help_timer->_ref_point.file_time.dwHighDateTime;
-  filetime_ref_as_ul.LowPart =
-      help_timer->_ref_point.file_time.dwLowDateTime;
-  filetime_ref_as_ul.QuadPart +=
-      (ULONGLONG)((elapsedMS.QuadPart)*1000*10);
-
-  // Copy to result
-  current_time.dwHighDateTime = filetime_ref_as_ul.HighPart;
-  current_time.dwLowDateTime = filetime_ref_as_ul.LowPart;
-}
-#endif
-
 class RealTimeClock : public Clock {
   // Return a timestamp in milliseconds relative to some arbitrary source; the
   // source is fixed for this clock.
-  virtual int64_t TimeInMilliseconds() const OVERRIDE {
-    return TickTime::MillisecondTimestamp();
+  int64_t TimeInMilliseconds() const override {
+    return rtc::TimeMillis();
   }
 
   // Return a timestamp in microseconds relative to some arbitrary source; the
   // source is fixed for this clock.
-  virtual int64_t TimeInMicroseconds() const OVERRIDE {
-    return TickTime::MicrosecondTimestamp();
+  int64_t TimeInMicroseconds() const override {
+    return rtc::TimeMicros();
   }
 
   // Retrieve an NTP absolute timestamp in seconds and fractions of a second.
-  virtual void CurrentNtp(uint32_t& seconds,
-                          uint32_t& fractions) const OVERRIDE {
+  void CurrentNtp(uint32_t& seconds, uint32_t& fractions) const override {
     timeval tv = CurrentTimeVal();
     double microseconds_in_seconds;
     Adjust(tv, &seconds, &microseconds_in_seconds);
@@ -150,7 +56,7 @@ class RealTimeClock : public Clock {
   }
 
   // Retrieve an NTP absolute timestamp in milliseconds.
-  virtual int64_t CurrentNtpInMilliseconds() const OVERRIDE {
+  int64_t CurrentNtpInMilliseconds() const override {
     timeval tv = CurrentTimeVal();
     uint32_t seconds;
     double microseconds_in_seconds;
@@ -178,15 +84,25 @@ class RealTimeClock : public Clock {
 };
 
 #if defined(_WIN32)
+// TODO(pbos): Consider modifying the implementation to synchronize itself
+// against system time (update ref_point_, make it non-const) periodically to
+// prevent clock drift.
 class WindowsRealTimeClock : public RealTimeClock {
  public:
-  WindowsRealTimeClock(WindowsHelpTimer* helpTimer)
-      : _helpTimer(helpTimer) {}
+  WindowsRealTimeClock()
+      : last_time_ms_(0),
+        num_timer_wraps_(0),
+        ref_point_(GetSystemReferencePoint()) {}
 
   virtual ~WindowsRealTimeClock() {}
 
  protected:
-  virtual timeval CurrentTimeVal() const OVERRIDE {
+  struct ReferencePoint {
+    FILETIME file_time;
+    LARGE_INTEGER counter_ms;
+  };
+
+  timeval CurrentTimeVal() const override {
     const uint64_t FILETIME_1970 = 0x019db1ded53e8000;
 
     FILETIME StartTime;
@@ -195,7 +111,7 @@ class WindowsRealTimeClock : public RealTimeClock {
 
     // We can't use query performance counter since they can change depending on
     // speed stepping.
-    get_time(_helpTimer, StartTime);
+    GetTime(&StartTime);
 
     Time = (((uint64_t) StartTime.dwHighDateTime) << 32) +
            (uint64_t) StartTime.dwLowDateTime;
@@ -208,7 +124,65 @@ class WindowsRealTimeClock : public RealTimeClock {
     return tv;
   }
 
-  WindowsHelpTimer* _helpTimer;
+  void GetTime(FILETIME* current_time) const {
+    DWORD t;
+    LARGE_INTEGER elapsed_ms;
+    {
+      rtc::CritScope lock(&crit_);
+      // time MUST be fetched inside the critical section to avoid non-monotonic
+      // last_time_ms_ values that'll register as incorrect wraparounds due to
+      // concurrent calls to GetTime.
+      t = timeGetTime();
+      if (t < last_time_ms_)
+        num_timer_wraps_++;
+      last_time_ms_ = t;
+      elapsed_ms.HighPart = num_timer_wraps_;
+    }
+    elapsed_ms.LowPart = t;
+    elapsed_ms.QuadPart = elapsed_ms.QuadPart - ref_point_.counter_ms.QuadPart;
+
+    // Translate to 100-nanoseconds intervals (FILETIME resolution)
+    // and add to reference FILETIME to get current FILETIME.
+    ULARGE_INTEGER filetime_ref_as_ul;
+    filetime_ref_as_ul.HighPart = ref_point_.file_time.dwHighDateTime;
+    filetime_ref_as_ul.LowPart = ref_point_.file_time.dwLowDateTime;
+    filetime_ref_as_ul.QuadPart +=
+        static_cast<ULONGLONG>((elapsed_ms.QuadPart) * 1000 * 10);
+
+    // Copy to result
+    current_time->dwHighDateTime = filetime_ref_as_ul.HighPart;
+    current_time->dwLowDateTime = filetime_ref_as_ul.LowPart;
+  }
+
+  static ReferencePoint GetSystemReferencePoint() {
+    ReferencePoint ref = {};
+    FILETIME ft0 = {};
+    FILETIME ft1 = {};
+    // Spin waiting for a change in system time. As soon as this change happens,
+    // get the matching call for timeGetTime() as soon as possible. This is
+    // assumed to be the most accurate offset that we can get between
+    // timeGetTime() and system time.
+
+    // Set timer accuracy to 1 ms.
+    timeBeginPeriod(1);
+    GetSystemTimeAsFileTime(&ft0);
+    do {
+      GetSystemTimeAsFileTime(&ft1);
+
+      ref.counter_ms.QuadPart = timeGetTime();
+      Sleep(0);
+    } while ((ft0.dwHighDateTime == ft1.dwHighDateTime) &&
+             (ft0.dwLowDateTime == ft1.dwLowDateTime));
+    ref.file_time = ft1;
+    timeEndPeriod(1);
+    return ref;
+  }
+
+  // mutable as time-accessing functions are const.
+  rtc::CriticalSection crit_;
+  mutable DWORD last_time_ms_;
+  mutable LONG num_timer_wraps_;
+  const ReferencePoint ref_point_;
 };
 
 #elif ((defined WEBRTC_LINUX) || (defined WEBRTC_MAC))
@@ -216,10 +190,10 @@ class UnixRealTimeClock : public RealTimeClock {
  public:
   UnixRealTimeClock() {}
 
-  virtual ~UnixRealTimeClock() {}
+  ~UnixRealTimeClock() override {}
 
  protected:
-  virtual timeval CurrentTimeVal() const OVERRIDE {
+  timeval CurrentTimeVal() const override {
     struct timeval tv;
     struct timezone tz;
     tz.tz_minuteswest = 0;
@@ -230,32 +204,25 @@ class UnixRealTimeClock : public RealTimeClock {
 };
 #endif
 
-
 #if defined(_WIN32)
-// Keeps the global state for the Windows implementation of RtpRtcpClock.
-// Note that this is a POD. Only PODs are allowed to have static storage
-// duration according to the Google Style guide.
-//
-// Note that on Windows, GetSystemTimeAsFileTime has poorer (up to 15 ms)
-// resolution than the media timers, hence the WindowsHelpTimer context
-// object and Synchronize API to sync the two.
-//
-// We only sync up once, which means that on Windows, our realtime clock
-// wont respond to system time/date changes without a program restart.
-// TODO(henrike): We should probably call sync more often to catch
-// drift and time changes for parity with other platforms.
-
-static WindowsHelpTimer *SyncGlobalHelpTimer() {
-  static WindowsHelpTimer global_help_timer = {0, 0, {{ 0, 0}, 0}, 0};
-  Synchronize(&global_help_timer);
-  return &global_help_timer;
-}
+static WindowsRealTimeClock* volatile g_shared_clock = nullptr;
 #endif
-
 Clock* Clock::GetRealTimeClock() {
 #if defined(_WIN32)
-  static WindowsRealTimeClock clock(SyncGlobalHelpTimer());
-  return &clock;
+  // This read relies on volatile read being atomic-load-acquire. This is
+  // true in MSVC since at least 2005:
+  // "A read of a volatile object (volatile read) has Acquire semantics"
+  if (g_shared_clock != nullptr)
+    return g_shared_clock;
+  WindowsRealTimeClock* clock = new WindowsRealTimeClock;
+  if (InterlockedCompareExchangePointer(
+          reinterpret_cast<void* volatile*>(&g_shared_clock), clock, nullptr) !=
+      nullptr) {
+    // g_shared_clock was assigned while we constructed/tried to assign our
+    // instance, delete our instance and use the existing one.
+    delete clock;
+  }
+  return g_shared_clock;
 #elif defined(WEBRTC_LINUX) || defined(WEBRTC_MAC)
   static UnixRealTimeClock clock;
   return &clock;

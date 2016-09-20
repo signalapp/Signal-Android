@@ -43,9 +43,9 @@ int32_t WebRtcVad_GaussianProbability(int16_t input,
   // Calculate |inv_std2| = 1 / s^2, in Q14.
   tmp16 = (inv_std >> 2);  // Q10 -> Q8.
   // Q-domain: (Q8 * Q8) >> 2 = Q14.
-  inv_std2 = (int16_t) WEBRTC_SPL_MUL_16_16_RSFT(tmp16, tmp16, 2);
+  inv_std2 = (int16_t)((tmp16 * tmp16) >> 2);
   // TODO(bjornv): Investigate if changing to
-  // |inv_std2| = (int16_t) WEBRTC_SPL_MUL_16_16_RSFT(|inv_std|, |inv_std|, 6);
+  // inv_std2 = (int16_t)((inv_std * inv_std) >> 6);
   // gives better accuracy.
 
   tmp16 = (input << 3);  // Q4 -> Q7
@@ -54,12 +54,12 @@ int32_t WebRtcVad_GaussianProbability(int16_t input,
   // To be used later, when updating noise/speech model.
   // |delta| = (x - m) / s^2, in Q11.
   // Q-domain: (Q14 * Q7) >> 10 = Q11.
-  *delta = (int16_t) WEBRTC_SPL_MUL_16_16_RSFT(inv_std2, tmp16, 10);
+  *delta = (int16_t)((inv_std2 * tmp16) >> 10);
 
   // Calculate the exponent |tmp32| = (x - m)^2 / (2 * s^2), in Q10. Replacing
   // division by two with one shift.
   // Q-domain: (Q11 * Q7) >> 8 = Q10.
-  tmp32 = WEBRTC_SPL_MUL_16_16_RSFT(*delta, tmp16, 9);
+  tmp32 = (*delta * tmp16) >> 9;
 
   // If the exponent is small enough to give a non-zero probability we calculate
   // |exp_value| ~= exp(-(x - m)^2 / (2 * s^2))
@@ -67,7 +67,7 @@ int32_t WebRtcVad_GaussianProbability(int16_t input,
   if (tmp32 < kCompVar) {
     // Calculate |tmp16| = log2(exp(1)) * |tmp32|, in Q10.
     // Q-domain: (Q12 * Q10) >> 12 = Q10.
-    tmp16 = (int16_t) WEBRTC_SPL_MUL_16_16_RSFT(kLog2Exp, (int16_t) tmp32, 12);
+    tmp16 = (int16_t)((kLog2Exp * tmp32) >> 12);
     tmp16 = -tmp16;
     exp_value = (0x0400 | (tmp16 & 0x03FF));
     tmp16 ^= 0xFFFF;
@@ -79,5 +79,5 @@ int32_t WebRtcVad_GaussianProbability(int16_t input,
 
   // Calculate and return (1 / s) * exp(-(x - m)^2 / (2 * s^2)), in Q20.
   // Q-domain: Q10 * Q10 = Q20.
-  return WEBRTC_SPL_MUL_16_16(inv_std, exp_value);
+  return inv_std * exp_value;
 }

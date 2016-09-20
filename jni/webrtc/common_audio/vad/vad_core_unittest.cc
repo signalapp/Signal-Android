@@ -82,8 +82,8 @@ TEST_F(VadTest, CalcVad) {
 
   // Construct a speech signal that will trigger the VAD in all modes. It is
   // known that (i * i) will wrap around, but that doesn't matter in this case.
-  for (int16_t i = 0; i < kMaxFrameLength; ++i) {
-    speech[i] = (i * i);
+  for (size_t i = 0; i < kMaxFrameLength; ++i) {
+    speech[i] = static_cast<int16_t>(i * i);
   }
   for (size_t j = 0; j < kFrameLengthsSize; ++j) {
     if (ValidRatesAndFrameLengths(8000, kFrameLengths[j])) {

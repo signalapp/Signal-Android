@@ -1023,7 +1023,7 @@ namespace boost {
   	//Offsetting on identical characters.  This function works a character at a time for optimal worst-case performance.
   	template<class RandomAccessIter, class get_char, class get_length>
   	inline void
-  	update_offset(RandomAccessIter first, RandomAccessIter finish, unsigned &char_offset, get_char getchar, get_length length)
+  	update_offset(RandomAccessIter first, RandomAccessIter finish, unsigned &char_offset, get_char character, get_length length)
   	{
   		unsigned nextOffset = char_offset;
   		bool done = false;
@@ -1031,7 +1031,7 @@ namespace boost {
   			RandomAccessIter curr = first;
   			do {
   				//ignore empties, but if the nextOffset would exceed the length or not match, exit; we've found the last matching character
-  				if(length(*curr) > char_offset && (length(*curr) <= (nextOffset + 1) || getchar((*curr), nextOffset) != getchar((*first), nextOffset))) {
+  				if(length(*curr) > char_offset && (length(*curr) <= (nextOffset + 1) || character((*curr), nextOffset) != character((*first), nextOffset))) {
   					done = true;
   					break;
   				}
@@ -1086,15 +1086,15 @@ namespace boost {
   		{
   			unsigned minSize = std::min(length(x), length(y));
   			for(unsigned u = fchar_offset; u < minSize; ++u) {
-  				if(getchar(x, u) < getchar(y, u))
+  				if(character(x, u) < character(y, u))
   					return true;
-  				else if(getchar(y, u) < getchar(x, u))
+  				else if(character(y, u) < character(x, u))
   					return false;
   			}
   			return length(x) < length(y);
   		}
   		unsigned fchar_offset;
-  		get_char getchar;
+  		get_char character;
   		get_length length;
   	};
 
@@ -1279,7 +1279,7 @@ namespace boost {
   	template <class RandomAccessIter, class data_type, class unsignedchar_type, class get_char, class get_length>
   	inline void 
   	string_sort_rec(RandomAccessIter first, RandomAccessIter last, unsigned char_offset, std::vector<RandomAccessIter> &bin_cache
-  		, unsigned cache_offset, std::vector<size_t> &bin_sizes, get_char getchar, get_length length)
+  		, unsigned cache_offset, std::vector<size_t> &bin_sizes, get_char character, get_length length)
   	{
   		//This section is not strictly necessary, but makes handling of long identical substrings much faster, with a mild average performance impact.
   		//Iterate to the end of the empties.  If all empty, return
@@ -1291,7 +1291,7 @@ namespace boost {
   		//Getting the last non-empty
   		for(;length(*finish) <= char_offset; --finish) { }
   		++finish;
-  		update_offset(first, finish, char_offset, getchar, length);
+  		update_offset(first, finish, char_offset, character, length);
   		
   		const unsigned bin_count = (1 << (sizeof(unsignedchar_type)*8));
   		//Equal worst-case between radix and comparison-based is when bin_count = n*log(n).
@@ -1306,7 +1306,7 @@ namespace boost {
   				bin_sizes[0]++;
   			}
   			else
-  				bin_sizes[getchar((*current), char_offset) + 1]++;
+  				bin_sizes[character((*current), char_offset) + 1]++;
   		}
   		//Assign the bin positions
   		bin_cache[cache_offset] = first;
@@ -1323,7 +1323,7 @@ namespace boost {
   		for(RandomAccessIter current = *local_bin; current < nextbinstart; ++current) {
   			//empties belong in this bin
   			while(length(*current) > char_offset) {
-  				target_bin = bins + getchar((*current), char_offset);
+  				target_bin = bins + character((*current), char_offset);
   				iter_swap(current, (*target_bin)++);
   			}
   		}
@@ -1338,8 +1338,8 @@ namespace boost {
   			//Iterating over each element in this bin
   			for(RandomAccessIter current = *local_bin; current < nextbinstart; ++current) {
   				//Swapping elements in current into place until the correct element has been swapped in
-  				for(target_bin = bins + getchar((*current), char_offset);  target_bin != local_bin; 
-  					target_bin = bins + getchar((*current), char_offset))
+  				for(target_bin = bins + character((*current), char_offset);  target_bin != local_bin; 
+  					target_bin = bins + character((*current), char_offset))
   					iter_swap(current, (*target_bin)++);
   			}
   			*local_bin = nextbinstart;
@@ -1358,7 +1358,7 @@ namespace boost {
   			if(count < max_size)
   				std::sort(lastPos, bin_cache[u], offset_char_lessthan<data_type, get_char, get_length>(char_offset + 1));
   			else
-  				string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length>(lastPos, bin_cache[u], char_offset + 1, bin_cache, cache_end, bin_sizes, getchar, length);
+  				string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length>(lastPos, bin_cache[u], char_offset + 1, bin_cache, cache_end, bin_sizes, character, length);
   		}
   	}
 
@@ -1366,7 +1366,7 @@ namespace boost {
   	template <class RandomAccessIter, class data_type, class unsignedchar_type, class get_char, class get_length, class compare>
   	inline void 
   	string_sort_rec(RandomAccessIter first, RandomAccessIter last, unsigned char_offset, std::vector<RandomAccessIter> &bin_cache
-  		, unsigned cache_offset, std::vector<size_t> &bin_sizes, get_char getchar, get_length length, compare comp)
+  		, unsigned cache_offset, std::vector<size_t> &bin_sizes, get_char character, get_length length, compare comp)
   	{
   		//This section is not strictly necessary, but makes handling of long identical substrings much faster, with a mild average performance impact.
   		//Iterate to the end of the empties.  If all empty, return
@@ -1378,7 +1378,7 @@ namespace boost {
   		//Getting the last non-empty
   		for(;length(*finish) <= char_offset; --finish) { }
   		++finish;
-  		update_offset(first, finish, char_offset, getchar, length);
+  		update_offset(first, finish, char_offset, character, length);
   		
   		const unsigned bin_count = (1 << (sizeof(unsignedchar_type)*8));
   		//Equal worst-case between radix and comparison-based is when bin_count = n*log(n).
@@ -1393,7 +1393,7 @@ namespace boost {
   				bin_sizes[0]++;
   			}
   			else
-  				bin_sizes[getchar((*current), char_offset) + 1]++;
+  				bin_sizes[character((*current), char_offset) + 1]++;
   		}
   		//Assign the bin positions
   		bin_cache[cache_offset] = first;
@@ -1410,7 +1410,7 @@ namespace boost {
   		for(RandomAccessIter current = *local_bin; current < nextbinstart; ++current) {
   			//empties belong in this bin
   			while(length(*current) > char_offset) {
-  				target_bin = bins + getchar((*current), char_offset);
+  				target_bin = bins + character((*current), char_offset);
   				iter_swap(current, (*target_bin)++);
   			}
   		}
@@ -1425,8 +1425,8 @@ namespace boost {
   			//Iterating over each element in this bin
   			for(RandomAccessIter current = *local_bin; current < nextbinstart; ++current) {
   				//Swapping elements in current into place until the correct element has been swapped in
-  				for(target_bin = bins + getchar((*current), char_offset);  target_bin != local_bin; 
-  					target_bin = bins + getchar((*current), char_offset))
+  				for(target_bin = bins + character((*current), char_offset);  target_bin != local_bin; 
+  					target_bin = bins + character((*current), char_offset))
   					iter_swap(current, (*target_bin)++);
   			}
   			*local_bin = nextbinstart;
@@ -1446,7 +1446,7 @@ namespace boost {
   				std::sort(lastPos, bin_cache[u], comp);
   			else
   				string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length, compare>(lastPos
-  					, bin_cache[u], char_offset + 1, bin_cache, cache_end, bin_sizes, getchar, length, comp);
+  					, bin_cache[u], char_offset + 1, bin_cache, cache_end, bin_sizes, character, length, comp);
   		}
   	}
 
@@ -1454,7 +1454,7 @@ namespace boost {
   	template <class RandomAccessIter, class data_type, class unsignedchar_type, class get_char, class get_length, class compare>
   	inline void 
   	reverse_string_sort_rec(RandomAccessIter first, RandomAccessIter last, unsigned char_offset, std::vector<RandomAccessIter> &bin_cache
-  		, unsigned cache_offset, std::vector<size_t> &bin_sizes, get_char getchar, get_length length, compare comp)
+  		, unsigned cache_offset, std::vector<size_t> &bin_sizes, get_char character, get_length length, compare comp)
   	{
   		//This section is not strictly necessary, but makes handling of long identical substrings much faster, with a mild average performance impact.
   		RandomAccessIter curr = first;
@@ -1467,7 +1467,7 @@ namespace boost {
   		while(length(*(--last)) <= char_offset) { }
   		++last;
   		//Offsetting on identical characters.  This section works a character at a time for optimal worst-case performance.
-  		update_offset(first, last, char_offset, getchar, length);
+  		update_offset(first, last, char_offset, character, length);
   		
   		const unsigned bin_count = (1 << (sizeof(unsignedchar_type)*8));
   		//Equal worst-case between radix and comparison-based is when bin_count = n*log(n).
@@ -1484,7 +1484,7 @@ namespace boost {
   				bin_sizes[bin_count]++;
   			}
   			else
-  				bin_sizes[max_bin - getchar((*current), char_offset)]++;
+  				bin_sizes[max_bin - character((*current), char_offset)]++;
   		}
   		//Assign the bin positions
   		bin_cache[cache_offset] = first;
@@ -1501,7 +1501,7 @@ namespace boost {
   		for(RandomAccessIter current = *local_bin; current < nextbinstart; ++current) {
   			//empties belong in this bin
   			while(length(*current) > char_offset) {
-  				target_bin = end_bin - getchar((*current), char_offset);
+  				target_bin = end_bin - character((*current), char_offset);
   				iter_swap(current, (*target_bin)++);
   			}
   		}
@@ -1517,8 +1517,8 @@ namespace boost {
   			//Iterating over each element in this bin
   			for(RandomAccessIter current = *local_bin; current < nextbinstart; ++current) {
   				//Swapping elements in current into place until the correct element has been swapped in
-  				for(target_bin = end_bin - getchar((*current), char_offset);  target_bin != local_bin; 
-  					target_bin = end_bin - getchar((*current), char_offset))
+  				for(target_bin = end_bin - character((*current), char_offset);  target_bin != local_bin; 
+  					target_bin = end_bin - character((*current), char_offset))
   					iter_swap(current, (*target_bin)++);
   			}
   			*local_bin = nextbinstart;
@@ -1537,7 +1537,7 @@ namespace boost {
   				std::sort(lastPos, bin_cache[u], comp);
   			else
   				reverse_string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length, compare>(lastPos
-  					, bin_cache[u], char_offset + 1, bin_cache, cache_end, bin_sizes, getchar, length, comp);
+  					, bin_cache[u], char_offset + 1, bin_cache, cache_end, bin_sizes, character, length, comp);
   		}
   	}
 
@@ -1564,31 +1564,31 @@ namespace boost {
   	//Holds the bin vector and makes the initial recursive call
   	template <class RandomAccessIter, class get_char, class get_length, class data_type, class unsignedchar_type>
   	inline void 
-  	string_sort(RandomAccessIter first, RandomAccessIter last, get_char getchar, get_length length, data_type, unsignedchar_type)
+  	string_sort(RandomAccessIter first, RandomAccessIter last, get_char character, get_length length, data_type, unsignedchar_type)
   	{
   		std::vector<size_t> bin_sizes;
   		std::vector<RandomAccessIter> bin_cache;
-  		string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length>(first, last, 0, bin_cache, 0, bin_sizes, getchar, length);
+  		string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length>(first, last, 0, bin_cache, 0, bin_sizes, character, length);
   	}
 
   	//Holds the bin vector and makes the initial recursive call
   	template <class RandomAccessIter, class get_char, class get_length, class compare, class data_type, class unsignedchar_type>
   	inline void 
-  	string_sort(RandomAccessIter first, RandomAccessIter last, get_char getchar, get_length length, compare comp, data_type, unsignedchar_type)
+  	string_sort(RandomAccessIter first, RandomAccessIter last, get_char character, get_length length, compare comp, data_type, unsignedchar_type)
   	{
   		std::vector<size_t> bin_sizes;
   		std::vector<RandomAccessIter> bin_cache;
-  		string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length, compare>(first, last, 0, bin_cache, 0, bin_sizes, getchar, length, comp);
+  		string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length, compare>(first, last, 0, bin_cache, 0, bin_sizes, character, length, comp);
   	}
 
   	//Holds the bin vector and makes the initial recursive call
   	template <class RandomAccessIter, class get_char, class get_length, class compare, class data_type, class unsignedchar_type>
   	inline void 
-  	reverse_string_sort(RandomAccessIter first, RandomAccessIter last, get_char getchar, get_length length, compare comp, data_type, unsignedchar_type)
+  	reverse_string_sort(RandomAccessIter first, RandomAccessIter last, get_char character, get_length length, compare comp, data_type, unsignedchar_type)
   	{
   		std::vector<size_t> bin_sizes;
   		std::vector<RandomAccessIter> bin_cache;
-  		reverse_string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length, compare>(first, last, 0, bin_cache, 0, bin_sizes, getchar, length, comp);
+  		reverse_string_sort_rec<RandomAccessIter, data_type, unsignedchar_type, get_char, get_length, compare>(first, last, 0, bin_cache, 0, bin_sizes, character, length, comp);
   	}
   }
 
@@ -1631,7 +1631,7 @@ namespace boost {
   }
 
   template <class RandomAccessIter, class get_char, class get_length>
-  inline void string_sort(RandomAccessIter first, RandomAccessIter last, get_char getchar, get_length length) 
+  inline void string_sort(RandomAccessIter first, RandomAccessIter last, get_char character, get_length length) 
   {
   	//Don't sort if it's too small to optimize
   	if(last - first < detail::MIN_SORT_SIZE)
@@ -1643,12 +1643,12 @@ namespace boost {
   			if(++first == last)
   				return;
   		}
-  		detail::string_sort(first, last, getchar, length, *first, getchar((*first), 0));
+  		detail::string_sort(first, last, character, length, *first, character((*first), 0));
   	}
   }
 
   template <class RandomAccessIter, class get_char, class get_length, class compare>
-  inline void string_sort(RandomAccessIter first, RandomAccessIter last, get_char getchar, get_length length, compare comp) 
+  inline void string_sort(RandomAccessIter first, RandomAccessIter last, get_char character, get_length length, compare comp) 
   {
   	//Don't sort if it's too small to optimize
   	if(last - first < detail::MIN_SORT_SIZE)
@@ -1660,12 +1660,12 @@ namespace boost {
   			if(++first == last)
   				return;
   		}
-  		detail::string_sort(first, last, getchar, length, comp, *first, getchar((*first), 0));
+  		detail::string_sort(first, last, character, length, comp, *first, character((*first), 0));
   	}
   }
 
   template <class RandomAccessIter, class get_char, class get_length, class compare>
-  inline void reverse_string_sort(RandomAccessIter first, RandomAccessIter last, get_char getchar, get_length length, compare comp) 
+  inline void reverse_string_sort(RandomAccessIter first, RandomAccessIter last, get_char character, get_length length, compare comp) 
   {
   	//Don't sort if it's too small to optimize
   	if(last - first < detail::MIN_SORT_SIZE)
@@ -1680,7 +1680,7 @@ namespace boost {
   		}
   		//making last just after the end of the non-empty part of the array
   		++last;
-  		detail::reverse_string_sort(first, last, getchar, length, comp, *first, getchar((*first), 0));
+  		detail::reverse_string_sort(first, last, character, length, comp, *first, character((*first), 0));
   	}
   }
 }

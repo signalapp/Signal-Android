@@ -64,17 +64,16 @@ void WebRtcIlbcfix_GetLspPoly(
     for(j=i; j>1; j--)
     {
       /* Compute f[j] = f[j] + tmp*f[j-1] + f[j-2]; */
-      high = (int16_t)WEBRTC_SPL_RSHIFT_W32(fPtr[-1], 16);
-      low = (int16_t)WEBRTC_SPL_RSHIFT_W32(fPtr[-1]-WEBRTC_SPL_LSHIFT_W32(((int32_t)high),16), 1);
+      high = (int16_t)(fPtr[-1] >> 16);
+      low = (int16_t)((fPtr[-1] & 0xffff) >> 1);
 
-      tmpW32 = WEBRTC_SPL_LSHIFT_W32(WEBRTC_SPL_MUL_16_16(high, (*lspPtr)), 2) +
-          WEBRTC_SPL_LSHIFT_W32(WEBRTC_SPL_MUL_16_16_RSFT(low, (*lspPtr), 15), 2);
+      tmpW32 = 4 * high * *lspPtr + 4 * ((low * *lspPtr) >> 15);
 
       (*fPtr) += fPtr[-2];
       (*fPtr) -= tmpW32;
       fPtr--;
     }
-    (*fPtr) -= (int32_t)WEBRTC_SPL_LSHIFT_W32((int32_t)(*lspPtr), 10);
+    *fPtr -= *lspPtr * (1 << 10);
 
     fPtr+=i;
     lspPtr+=2;

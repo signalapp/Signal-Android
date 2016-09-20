@@ -10,11 +10,11 @@
 
 // This is the pure C wrapper of the DataLog class.
 
-#include "webrtc/system_wrappers/interface/data_log_c.h"
+#include "webrtc/system_wrappers/include/data_log_c.h"
 
 #include <string>
 
-#include "webrtc/system_wrappers/interface/data_log.h"
+#include "webrtc/system_wrappers/include/data_log.h"
 
 extern "C" int WebRtcDataLog_CreateLog() {
   return webrtc::DataLog::CreateLog();

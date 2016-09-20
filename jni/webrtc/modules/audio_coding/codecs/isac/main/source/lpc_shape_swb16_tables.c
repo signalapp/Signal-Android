@@ -18,7 +18,7 @@
 
 #include "lpc_shape_swb16_tables.h"
 #include "settings.h"
-#include "typedefs.h"
+#include "webrtc/typedefs.h"
 
 /*
 * Mean value of LAR

@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "ilbc.h"
+#include "webrtc/modules/audio_coding/codecs/ilbc/ilbc.h"
 
 /*---------------------------------------------------------------*
  *  Main program to test iLBC encoding and decoding
@@ -45,15 +45,16 @@ int main(int argc, char* argv[])
 
   FILE *ifileid,*efileid,*ofileid, *cfileid;
   int16_t data[BLOCKL_MAX];
-  int16_t encoded_data[ILBCNOOFWORDS_MAX], decoded_data[BLOCKL_MAX];
-  int len;
-  short pli, mode;
+  uint8_t encoded_data[2 * ILBCNOOFWORDS_MAX];
+  int16_t decoded_data[BLOCKL_MAX];
+  int len_int, mode;
+  short pli;
   int blockcount = 0;
   int packetlosscount = 0;
-  int frameLen;
+  size_t frameLen, len, len_i16s;
   int16_t speechType;
-  iLBC_encinst_t *Enc_Inst;
-  iLBC_decinst_t *Dec_Inst;
+  IlbcEncoderInstance *Enc_Inst;
+  IlbcDecoderInstance *Dec_Inst;
 
 #ifdef __ILBC_WITH_40BITACC
   /* Doublecheck that long long exists */
@@ -151,26 +152,29 @@ int main(int argc, char* argv[])
 
   WebRtcIlbcfix_EncoderInit(Enc_Inst, mode);
   WebRtcIlbcfix_DecoderInit(Dec_Inst, mode);
-  frameLen = mode*8;
+  frameLen = (size_t)(mode*8);
 
   /* loop over input blocks */
 
-  while (((int16_t)fread(data,sizeof(int16_t),frameLen,ifileid))==
-         frameLen) {
+  while (fread(data,sizeof(int16_t),frameLen,ifileid) == frameLen) {
 
     blockcount++;
 
     /* encoding */
 
     fprintf(stderr, "--- Encoding block %i --- ",blockcount);
-    len=WebRtcIlbcfix_Encode(Enc_Inst, data, (int16_t)frameLen, encoded_data);
+    len_int = WebRtcIlbcfix_Encode(Enc_Inst, data, frameLen, encoded_data);
+    if (len_int < 0) {
+      fprintf(stderr, "Error encoding\n");
+      exit(0);
+    }
+    len = (size_t)len_int;
     fprintf(stderr, "\r");
 
     /* write byte file */
 
-    if (fwrite(encoded_data, sizeof(int16_t),
-               ((len+1)/sizeof(int16_t)), efileid) !=
-        (size_t)(((len+1)/sizeof(int16_t)))) {
+    len_i16s = (len + 1) / sizeof(int16_t);
+    if (fwrite(encoded_data, sizeof(int16_t), len_i16s, efileid) != len_i16s) {
       return -1;
     }
 
@@ -199,8 +203,13 @@ int main(int argc, char* argv[])
 
     fprintf(stderr, "--- Decoding block %i --- ",blockcount);
     if (pli==1) {
-      len=WebRtcIlbcfix_Decode(Dec_Inst, encoded_data,
-                               (int16_t)len, decoded_data,&speechType);
+      len_int=WebRtcIlbcfix_Decode(Dec_Inst, encoded_data,
+                                   len, decoded_data,&speechType);
+      if (len_int < 0) {
+        fprintf(stderr, "Error decoding\n");
+        exit(0);
+      }
+      len = (size_t)len_int;
     } else {
       len=WebRtcIlbcfix_DecodePlc(Dec_Inst, decoded_data, 1);
     }
@@ -208,8 +217,7 @@ int main(int argc, char* argv[])
 
     /* write output file */
 
-    if (fwrite(decoded_data, sizeof(int16_t), len,
-               ofileid) != (size_t)len) {
+    if (fwrite(decoded_data, sizeof(int16_t), len, ofileid) != len) {
       return -1;
     }
   }

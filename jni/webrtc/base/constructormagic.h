@@ -11,35 +11,24 @@
 #ifndef WEBRTC_BASE_CONSTRUCTORMAGIC_H_
 #define WEBRTC_BASE_CONSTRUCTORMAGIC_H_
 
-// Undefine macros first, just in case. Some third-party includes have their own
-// version.
+// Put this in the declarations for a class to be unassignable.
+#define RTC_DISALLOW_ASSIGN(TypeName) \
+  void operator=(const TypeName&) = delete
 
-#undef DISALLOW_ASSIGN
-#define DISALLOW_ASSIGN(TypeName) \
-  void operator=(const TypeName&)
+// A macro to disallow the copy constructor and operator= functions. This should
+// be used in the declarations for a class.
+#define RTC_DISALLOW_COPY_AND_ASSIGN(TypeName) \
+  TypeName(const TypeName&) = delete;          \
+  RTC_DISALLOW_ASSIGN(TypeName)
 
-// A macro to disallow the evil copy constructor and operator= functions
-// This should be used in the private: declarations for a class.
-#undef DISALLOW_COPY_AND_ASSIGN
-#define DISALLOW_COPY_AND_ASSIGN(TypeName)    \
-  TypeName(const TypeName&);                    \
-  DISALLOW_ASSIGN(TypeName)
-
-// Alternative, less-accurate legacy name.
-#undef DISALLOW_EVIL_CONSTRUCTORS
-#define DISALLOW_EVIL_CONSTRUCTORS(TypeName) \
-  DISALLOW_COPY_AND_ASSIGN(TypeName)
-
-// A macro to disallow all the implicit constructors, namely the
-// default constructor, copy constructor and operator= functions.
+// A macro to disallow all the implicit constructors, namely the default
+// constructor, copy constructor and operator= functions.
 //
-// This should be used in the private: declarations for a class
-// that wants to prevent anyone from instantiating it. This is
-// especially useful for classes containing only static methods.
-#undef DISALLOW_IMPLICIT_CONSTRUCTORS
-#define DISALLOW_IMPLICIT_CONSTRUCTORS(TypeName) \
-  TypeName();                                    \
-  DISALLOW_EVIL_CONSTRUCTORS(TypeName)
-
+// This should be used in the declarations for a class that wants to prevent
+// anyone from instantiating it. This is especially useful for classes
+// containing only static methods.
+#define RTC_DISALLOW_IMPLICIT_CONSTRUCTORS(TypeName) \
+  TypeName() = delete;                               \
+  RTC_DISALLOW_COPY_AND_ASSIGN(TypeName)
 
 #endif  // WEBRTC_BASE_CONSTRUCTORMAGIC_H_

@@ -1,0 +1,20 @@
+henrika@webrtc.org
+henrikg@webrtc.org
+hta@webrtc.org
+jiayl@webrtc.org
+juberti@webrtc.org
+mflodman@webrtc.org
+perkj@webrtc.org
+pthatcher@webrtc.org
+sergeyu@chromium.org
+tommi@webrtc.org
+
+# These are for the common case of adding or renaming files. If you're doing
+# structural changes, please get a review from a reviewer in this file.
+per-file *.gyp=*
+per-file *.gypi=*
+
+per-file BUILD.gn=kjellander@webrtc.org
+per-file rate_statistics*=sprang@webrtc.org
+per-file rate_statistics*=stefan@webrtc.org
+

@@ -40,10 +40,6 @@ void WebRtcIsac_InitMasking(MaskFiltstr *maskdata) {
   }
 
   maskdata->OldEnergy = 10.0;
-
-  /* fill tables for transforms */
-  WebRtcIsac_InitTransform();
-
   return;
 }
 

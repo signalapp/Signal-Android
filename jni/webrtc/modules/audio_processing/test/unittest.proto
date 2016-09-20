@@ -1,0 +1,58 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+package webrtc.audioproc;
+
+message Test {
+  optional int32 num_reverse_channels = 1;
+  optional int32 num_input_channels = 2;
+  optional int32 num_output_channels = 3;
+  optional int32 sample_rate = 4;
+
+  message Frame {
+  }
+
+  repeated Frame frame = 5;
+
+  optional int32 analog_level_average = 6;
+  optional int32 max_output_average = 7;
+
+  optional int32 has_echo_count = 8;
+  optional int32 has_voice_count = 9;
+  optional int32 is_saturated_count = 10;
+
+  message Statistic {
+    optional int32 instant = 1;
+    optional int32 average = 2;
+    optional int32 maximum = 3;
+    optional int32 minimum = 4;
+  }
+
+  message EchoMetrics {
+    optional Statistic residual_echo_return_loss = 1;
+    optional Statistic echo_return_loss = 2;
+    optional Statistic echo_return_loss_enhancement = 3;
+    optional Statistic a_nlp = 4;
+    optional float divergent_filter_fraction = 5;
+  }
+
+  repeated EchoMetrics echo_metrics = 11;
+
+  message DelayMetrics {
+    optional int32 median = 1;
+    optional int32 std = 2;
+    optional float fraction_poor_delays = 3;
+  }
+
+  repeated DelayMetrics delay_metrics = 12;
+
+  repeated int32 rms_level = 13;
+
+  optional float ns_speech_probability_average = 14;
+
+  optional bool use_aec_extended_filter = 15;
+}
+
+message OutputData {
+  repeated Test test = 1;
+}
+

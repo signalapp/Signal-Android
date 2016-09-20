@@ -22,14 +22,15 @@
 void WebRtcIlbcfix_CbMemEnergyAugmentation(
     int16_t *interpSamples, /* (i) The interpolated samples */
     int16_t *CBmem,   /* (i) The CB memory */
-    int16_t scale,   /* (i) The scaling of all energy values */
-    int16_t base_size,  /* (i) Index to where the energy values should be stored */
+    int scale,   /* (i) The scaling of all energy values */
+    size_t base_size,  /* (i) Index to where energy values should be stored */
     int16_t *energyW16,  /* (o) Energy in the CB vectors */
     int16_t *energyShifts /* (o) Shift value of the energy */
                                            ){
   int32_t energy, tmp32;
   int16_t *ppe, *pp, *interpSamplesPtr;
-  int16_t *CBmemPtr, lagcount;
+  int16_t *CBmemPtr;
+  size_t lagcount;
   int16_t *enPtr=&energyW16[base_size-20];
   int16_t *enShPtr=&energyShifts[base_size-20];
   int32_t nrjRecursive;
@@ -44,8 +45,7 @@ void WebRtcIlbcfix_CbMemEnergyAugmentation(
   for (lagcount=20; lagcount<=39; lagcount++) {
 
     /* Update the energy recursively to save complexity */
-    nrjRecursive = nrjRecursive +
-        WEBRTC_SPL_MUL_16_16_RSFT(*ppe, *ppe, scale);
+    nrjRecursive += (*ppe * *ppe) >> scale;
     ppe--;
     energy = nrjRecursive;
 
@@ -59,8 +59,8 @@ void WebRtcIlbcfix_CbMemEnergyAugmentation(
 
     /* Normalize the energy and store the number of shifts */
     (*enShPtr) = (int16_t)WebRtcSpl_NormW32(energy);
-    tmp32 = WEBRTC_SPL_LSHIFT_W32(energy, (*enShPtr));
-    (*enPtr) = (int16_t)WEBRTC_SPL_RSHIFT_W32(tmp32, 16);
+    tmp32 = energy << *enShPtr;
+    *enPtr = (int16_t)(tmp32 >> 16);
     enShPtr++;
     enPtr++;
   }

@@ -13,21 +13,22 @@
 
 #include "webrtc/modules/audio_coding/neteq/delay_peak_detector.h"
 
-#include "gmock/gmock.h"
+#include "testing/gmock/include/gmock/gmock.h"
 
 namespace webrtc {
 
 class MockDelayPeakDetector : public DelayPeakDetector {
  public:
+  MockDelayPeakDetector(const TickTimer* tick_timer)
+      : DelayPeakDetector(tick_timer) {}
   virtual ~MockDelayPeakDetector() { Die(); }
   MOCK_METHOD0(Die, void());
   MOCK_METHOD0(Reset, void());
   MOCK_METHOD1(SetPacketAudioLength, void(int length_ms));
   MOCK_METHOD0(peak_found, bool());
   MOCK_CONST_METHOD0(MaxPeakHeight, int());
-  MOCK_CONST_METHOD0(MaxPeakPeriod, int());
+  MOCK_CONST_METHOD0(MaxPeakPeriod, uint64_t());
   MOCK_METHOD2(Update, bool(int inter_arrival_time, int target_level));
-  MOCK_METHOD1(IncrementCounter, void(int inc_ms));
 };
 
 }  // namespace webrtc

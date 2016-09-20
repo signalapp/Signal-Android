@@ -24,14 +24,13 @@
 /*----------------------------------------------------------------*
  * Find index in array such that the array element with said
  * index is the element of said array closest to "value"
- * according to the squared-error criterion
  *---------------------------------------------------------------*/
 
 void WebRtcIlbcfix_NearestNeighbor(
-    int16_t *index, /* (o) index of array element closest to value */
-    int16_t *array, /* (i) data array (Q2) */
-    int16_t value, /* (i) value (Q2) */
-    int16_t arlength /* (i) dimension of data array (==8) */
+    size_t* index, /* (o) index of array element closest to value */
+    const size_t* array, /* (i) data array (Q2) */
+    size_t value, /* (i) value (Q2) */
+    size_t arlength /* (i) dimension of data array (==ENH_NBLOCKS_TOT) */
                                    );
 
 #endif

@@ -11,25 +11,27 @@
 #include "webrtc/modules/audio_coding/neteq/time_stretch.h"
 
 #include <algorithm>  // min, max
+#include <memory>
 
+#include "webrtc/base/safe_conversions.h"
 #include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
 #include "webrtc/modules/audio_coding/neteq/background_noise.h"
+#include "webrtc/modules/audio_coding/neteq/cross_correlation.h"
 #include "webrtc/modules/audio_coding/neteq/dsp_helper.h"
-#include "webrtc/system_wrappers/interface/scoped_ptr.h"
 
 namespace webrtc {
 
-TimeStretch::ReturnCodes TimeStretch::Process(
-    const int16_t* input,
-    size_t input_len,
-    AudioMultiVector* output,
-    int16_t* length_change_samples) {
-
+TimeStretch::ReturnCodes TimeStretch::Process(const int16_t* input,
+                                              size_t input_len,
+                                              bool fast_mode,
+                                              AudioMultiVector* output,
+                                              size_t* length_change_samples) {
   // Pre-calculate common multiplication with |fs_mult_|.
-  int fs_mult_120 = fs_mult_ * 120;  // Corresponds to 15 ms.
+  size_t fs_mult_120 =
+      static_cast<size_t>(fs_mult_ * 120);  // Corresponds to 15 ms.
 
   const int16_t* signal;
-  scoped_ptr<int16_t[]> signal_array;
+  std::unique_ptr<int16_t[]> signal_array;
   size_t signal_len;
   if (num_channels_ == 1) {
     signal = input;
@@ -49,8 +51,7 @@ TimeStretch::ReturnCodes TimeStretch::Process(
   }
 
   // Find maximum absolute value of input signal.
-  max_input_value_ = WebRtcSpl_MaxAbsValueW16(signal,
-                                              static_cast<int>(signal_len));
+  max_input_value_ = WebRtcSpl_MaxAbsValueW16(signal, signal_len);
 
   // Downsample to 4 kHz sample rate and calculate auto-correlation.
   DspHelper::DownsampleTo4kHz(signal, signal_len, kDownsampledLen,
@@ -59,13 +60,12 @@ TimeStretch::ReturnCodes TimeStretch::Process(
   AutoCorrelation();
 
   // Find the strongest correlation peak.
-  static const int kNumPeaks = 1;
-  int peak_index;
+  static const size_t kNumPeaks = 1;
+  size_t peak_index;
   int16_t peak_value;
   DspHelper::PeakDetection(auto_correlation_, kCorrelationLen, kNumPeaks,
                            fs_mult_, &peak_index, &peak_value);
   // Assert that |peak_index| stays within boundaries.
-  assert(peak_index >= 0);
   assert(peak_index <= (2 * kCorrelationLen - 1) * fs_mult_);
 
   // Compensate peak_index for displaced starting position. The displacement
@@ -74,13 +74,13 @@ TimeStretch::ReturnCodes TimeStretch::Process(
   // multiplication by fs_mult_ * 2.
   peak_index += kMinLag * fs_mult_ * 2;
   // Assert that |peak_index| stays within boundaries.
-  assert(peak_index >= 20 * fs_mult_);
+  assert(peak_index >= static_cast<size_t>(20 * fs_mult_));
   assert(peak_index <= 20 * fs_mult_ + (2 * kCorrelationLen - 1) * fs_mult_);
 
   // Calculate scaling to ensure that |peak_index| samples can be square-summed
   // without overflowing.
   int scaling = 31 - WebRtcSpl_NormW32(max_input_value_ * max_input_value_) -
-      WebRtcSpl_NormW32(peak_index);
+      WebRtcSpl_NormW32(static_cast<int32_t>(peak_index));
   scaling = std::max(0, scaling);
 
   // |vec1| starts at 15 ms minus one pitch period.
@@ -140,8 +140,9 @@ TimeStretch::ReturnCodes TimeStretch::Process(
 
 
   // Check accelerate criteria and stretch the signal.
-  ReturnCodes return_value = CheckCriteriaAndStretch(
-      input, input_len, peak_index, best_correlation, active_speech, output);
+  ReturnCodes return_value =
+      CheckCriteriaAndStretch(input, input_len, peak_index, best_correlation,
+                              active_speech, fast_mode, output);
   switch (return_value) {
     case kSuccess:
       *length_change_samples = peak_index;
@@ -158,26 +159,21 @@ TimeStretch::ReturnCodes TimeStretch::Process(
 }
 
 void TimeStretch::AutoCorrelation() {
-  // Set scaling factor for cross correlation to protect against overflow.
-  int scaling = kLogCorrelationLen - WebRtcSpl_NormW32(
-      max_input_value_ * max_input_value_);
-  scaling = std::max(0, scaling);
-
   // Calculate correlation from lag kMinLag to lag kMaxLag in 4 kHz domain.
   int32_t auto_corr[kCorrelationLen];
-  WebRtcSpl_CrossCorrelation(auto_corr, &downsampled_input_[kMaxLag],
-                             &downsampled_input_[kMaxLag - kMinLag],
-                             kCorrelationLen, kMaxLag - kMinLag, scaling, -1);
+  CrossCorrelationWithAutoShift(
+      &downsampled_input_[kMaxLag], &downsampled_input_[kMaxLag - kMinLag],
+      kCorrelationLen, kMaxLag - kMinLag, -1, auto_corr);
 
   // Normalize correlation to 14 bits and write to |auto_correlation_|.
   int32_t max_corr = WebRtcSpl_MaxAbsValueW32(auto_corr, kCorrelationLen);
-  scaling = std::max(0, 17 - WebRtcSpl_NormW32(max_corr));
+  int scaling = std::max(0, 17 - WebRtcSpl_NormW32(max_corr));
   WebRtcSpl_VectorBitShiftW32ToW16(auto_correlation_, kCorrelationLen,
                                    auto_corr, scaling);
 }
 
 bool TimeStretch::SpeechDetection(int32_t vec1_energy, int32_t vec2_energy,
-                                  int peak_index, int scaling) const {
+                                  size_t peak_index, int scaling) const {
   // Check if the signal seems to be active speech or not (simple VAD).
   // If (vec1_energy + vec2_energy) / (2 * peak_index) <=
   // 8 * background_noise_energy, then we say that the signal contains no
@@ -197,7 +193,8 @@ bool TimeStretch::SpeechDetection(int32_t vec1_energy, int32_t vec2_energy,
   int right_scale = 16 - WebRtcSpl_NormW32(right_side);
   right_scale = std::max(0, right_scale);
   left_side = left_side >> right_scale;
-  right_side = peak_index * (right_side >> right_scale);
+  right_side =
+      rtc::checked_cast<int32_t>(peak_index) * (right_side >> right_scale);
 
   // Scale |left_side| properly before comparing with |right_side|.
   // (|scaling| is the scale factor before energy calculation, thus the scale

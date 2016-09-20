@@ -18,7 +18,7 @@ int
 WebRtcIsac_EstimateBandwidth(
     BwEstimatorstr*           bwest_str,
     Bitstr*                   streamdata,
-    int32_t               packet_size,
+    size_t                packet_size,
     uint16_t              rtp_seq_number,
     uint32_t              send_ts,
     uint32_t              arr_ts,

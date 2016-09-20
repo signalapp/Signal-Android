@@ -18,14 +18,14 @@ namespace webrtc {
 
 PreemptiveExpand::ReturnCodes PreemptiveExpand::Process(
     const int16_t* input,
-    int input_length,
-    int old_data_length,
+    size_t input_length,
+    size_t old_data_length,
     AudioMultiVector* output,
-    int16_t* length_change_samples) {
+    size_t* length_change_samples) {
   old_data_length_per_channel_ = old_data_length;
   // Input length must be (almost) 30 ms.
   // Also, the new part must be at least |overlap_samples_| elements.
-  static const int k15ms = 120;  // 15 ms = 120 samples at 8 kHz sample rate.
+  static const size_t k15ms = 120;  // 15 ms = 120 samples at 8 kHz sample rate.
   if (num_channels_ == 0 ||
       input_length / num_channels_ < (2 * k15ms - 1) * fs_mult_ ||
       old_data_length >= input_length / num_channels_ - overlap_samples_) {
@@ -34,13 +34,14 @@ PreemptiveExpand::ReturnCodes PreemptiveExpand::Process(
     output->PushBackInterleaved(input, input_length);
     return kError;
   }
-  return TimeStretch::Process(input, input_length, output,
+  const bool kFastMode = false;  // Fast mode is not available for PE Expand.
+  return TimeStretch::Process(input, input_length, kFastMode, output,
                               length_change_samples);
 }
 
 void PreemptiveExpand::SetParametersForPassiveSpeech(size_t len,
                                                      int16_t* best_correlation,
-                                                     int* peak_index) const {
+                                                     size_t* peak_index) const {
   // When the signal does not contain any active speech, the correlation does
   // not matter. Simply set it to zero.
   *best_correlation = 0;
@@ -50,17 +51,20 @@ void PreemptiveExpand::SetParametersForPassiveSpeech(size_t len,
   // the new data.
   // but we must ensure that best_correlation is not larger than the new data.
   *peak_index = std::min(*peak_index,
-                         static_cast<int>(len - old_data_length_per_channel_));
+                         len - old_data_length_per_channel_);
 }
 
 PreemptiveExpand::ReturnCodes PreemptiveExpand::CheckCriteriaAndStretch(
-    const int16_t *input, size_t input_length, size_t peak_index,
-    int16_t best_correlation, bool active_speech,
+    const int16_t* input,
+    size_t input_length,
+    size_t peak_index,
+    int16_t best_correlation,
+    bool active_speech,
+    bool /*fast_mode*/,
     AudioMultiVector* output) const {
   // Pre-calculate common multiplication with |fs_mult_|.
   // 120 corresponds to 15 ms.
-  int fs_mult_120 = fs_mult_ * 120;
-  assert(old_data_length_per_channel_ >= 0);  // Make sure it's been set.
+  size_t fs_mult_120 = static_cast<size_t>(fs_mult_ * 120);
   // Check for strong correlation (>0.9 in Q14) and at least 15 ms new data,
   // or passive speech.
   if (((best_correlation > kCorrelationThreshold) &&
@@ -102,7 +106,7 @@ PreemptiveExpand* PreemptiveExpandFactory::Create(
     int sample_rate_hz,
     size_t num_channels,
     const BackgroundNoise& background_noise,
-    int overlap_samples) const {
+    size_t overlap_samples) const {
   return new PreemptiveExpand(
       sample_rate_hz, num_channels, background_noise, overlap_samples);
 }

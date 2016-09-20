@@ -27,7 +27,7 @@
  *---------------------------------------------------------------*/
 
 void WebRtcIlbcfix_AbsQuantLoop(int16_t *syntOutIN, int16_t *in_weightedIN,
-                                int16_t *weightDenumIN, int16_t *quantLenIN,
+                                int16_t *weightDenumIN, size_t *quantLenIN,
                                 int16_t *idxVecIN);
 
 #endif

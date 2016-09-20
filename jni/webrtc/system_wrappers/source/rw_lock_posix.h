@@ -11,7 +11,7 @@
 #ifndef WEBRTC_SYSTEM_WRAPPERS_SOURCE_RW_LOCK_POSIX_H_
 #define WEBRTC_SYSTEM_WRAPPERS_SOURCE_RW_LOCK_POSIX_H_
 
-#include "webrtc/system_wrappers/interface/rw_lock_wrapper.h"
+#include "webrtc/system_wrappers/include/rw_lock_wrapper.h"
 #include "webrtc/typedefs.h"
 
 #include <pthread.h>
@@ -21,13 +21,13 @@ namespace webrtc {
 class RWLockPosix : public RWLockWrapper {
  public:
   static RWLockPosix* Create();
-  virtual ~RWLockPosix();
+  ~RWLockPosix() override;
 
-  virtual void AcquireLockExclusive() OVERRIDE;
-  virtual void ReleaseLockExclusive() OVERRIDE;
+  void AcquireLockExclusive() override;
+  void ReleaseLockExclusive() override;
 
-  virtual void AcquireLockShared() OVERRIDE;
-  virtual void ReleaseLockShared() OVERRIDE;
+  void AcquireLockShared() override;
+  void ReleaseLockShared() override;
 
  private:
   RWLockPosix();

@@ -12,6 +12,9 @@
 
 #include <algorithm>  // max
 
+#include "webrtc/base/checks.h"
+#include "webrtc/base/safe_conversions.h"
+
 namespace webrtc {
 
 // The DelayPeakDetector keeps track of severe inter-arrival times, called
@@ -21,14 +24,17 @@ namespace webrtc {
 // peak-mode is engaged and the DelayManager asks the DelayPeakDetector for
 // the worst peak height.
 
-DelayPeakDetector::DelayPeakDetector()
-  : peak_found_(false),
-    peak_detection_threshold_(0),
-    peak_period_counter_ms_(-1) {
+DelayPeakDetector::~DelayPeakDetector() = default;
+
+DelayPeakDetector::DelayPeakDetector(const TickTimer* tick_timer)
+    : peak_found_(false),
+      peak_detection_threshold_(0),
+      tick_timer_(tick_timer) {
+  RTC_DCHECK(!peak_period_stopwatch_);
 }
 
 void DelayPeakDetector::Reset() {
-  peak_period_counter_ms_ = -1;  // Indicate that next peak is the first.
+  peak_period_stopwatch_.reset();
   peak_found_ = false;
   peak_history_.clear();
 }
@@ -40,6 +46,10 @@ void DelayPeakDetector::SetPacketAudioLength(int length_ms) {
   }
 }
 
+bool DelayPeakDetector::peak_found() {
+  return peak_found_;
+}
+
 int DelayPeakDetector::MaxPeakHeight() const {
   int max_height = -1;  // Returns -1 for an empty history.
   std::list<Peak>::const_iterator it;
@@ -49,58 +59,56 @@ int DelayPeakDetector::MaxPeakHeight() const {
   return max_height;
 }
 
-int DelayPeakDetector::MaxPeakPeriod() const {
-  int max_period = -1;  // Returns -1 for an empty history.
-  std::list<Peak>::const_iterator it;
-  for (it = peak_history_.begin(); it != peak_history_.end(); ++it) {
-    max_period = std::max(max_period, it->period_ms);
+uint64_t DelayPeakDetector::MaxPeakPeriod() const {
+  auto max_period_element = std::max_element(
+      peak_history_.begin(), peak_history_.end(),
+      [](Peak a, Peak b) { return a.period_ms < b.period_ms; });
+  if (max_period_element == peak_history_.end()) {
+    return 0;  // |peak_history_| is empty.
   }
-  return max_period;
+  RTC_DCHECK_GT(max_period_element->period_ms, 0u);
+  return max_period_element->period_ms;
 }
 
 bool DelayPeakDetector::Update(int inter_arrival_time, int target_level) {
   if (inter_arrival_time > target_level + peak_detection_threshold_ ||
       inter_arrival_time > 2 * target_level) {
     // A delay peak is observed.
-    if (peak_period_counter_ms_ == -1) {
+    if (!peak_period_stopwatch_) {
       // This is the first peak. Reset the period counter.
-      peak_period_counter_ms_ = 0;
-    } else if (peak_period_counter_ms_ <= kMaxPeakPeriodMs) {
-      // This is not the first peak, and the period is valid.
-      // Store peak data in the vector.
-      Peak peak_data;
-      peak_data.period_ms = peak_period_counter_ms_;
-      peak_data.peak_height_packets = inter_arrival_time;
-      peak_history_.push_back(peak_data);
-      while (peak_history_.size() > kMaxNumPeaks) {
-        // Delete the oldest data point.
-        peak_history_.pop_front();
+      peak_period_stopwatch_ = tick_timer_->GetNewStopwatch();
+    } else if (peak_period_stopwatch_->ElapsedMs() > 0) {
+      if (peak_period_stopwatch_->ElapsedMs() <= kMaxPeakPeriodMs) {
+        // This is not the first peak, and the period is valid.
+        // Store peak data in the vector.
+        Peak peak_data;
+        peak_data.period_ms = peak_period_stopwatch_->ElapsedMs();
+        peak_data.peak_height_packets = inter_arrival_time;
+        peak_history_.push_back(peak_data);
+        while (peak_history_.size() > kMaxNumPeaks) {
+          // Delete the oldest data point.
+          peak_history_.pop_front();
+        }
+        peak_period_stopwatch_ = tick_timer_->GetNewStopwatch();
+      } else if (peak_period_stopwatch_->ElapsedMs() <= 2 * kMaxPeakPeriodMs) {
+        // Invalid peak due to too long period. Reset period counter and start
+        // looking for next peak.
+        peak_period_stopwatch_ = tick_timer_->GetNewStopwatch();
+      } else {
+        // More than 2 times the maximum period has elapsed since the last peak
+        // was registered. It seams that the network conditions have changed.
+        // Reset the peak statistics.
+        Reset();
       }
-      peak_period_counter_ms_ = 0;
-    } else if (peak_period_counter_ms_ <= 2 * kMaxPeakPeriodMs) {
-      // Invalid peak due to too long period. Reset period counter and start
-      // looking for next peak.
-      peak_period_counter_ms_ = 0;
-    } else {
-      // More than 2 times the maximum period has elapsed since the last peak
-      // was registered. It seams that the network conditions have changed.
-      // Reset the peak statistics.
-      Reset();
     }
   }
   return CheckPeakConditions();
 }
 
-void DelayPeakDetector::IncrementCounter(int inc_ms) {
-  if (peak_period_counter_ms_ >= 0) {
-    peak_period_counter_ms_ += inc_ms;
-  }
-}
-
 bool DelayPeakDetector::CheckPeakConditions() {
   size_t s = peak_history_.size();
   if (s >= kMinPeaksToTrigger &&
-      peak_period_counter_ms_ <= 2 * MaxPeakPeriod()) {
+      peak_period_stopwatch_->ElapsedMs() <= 2 * MaxPeakPeriod()) {
     peak_found_ = true;
   } else {
     peak_found_ = false;

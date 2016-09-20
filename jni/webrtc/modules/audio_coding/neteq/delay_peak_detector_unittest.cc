@@ -12,27 +12,30 @@
 
 #include "webrtc/modules/audio_coding/neteq/delay_peak_detector.h"
 
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 
 namespace webrtc {
 
 TEST(DelayPeakDetector, CreateAndDestroy) {
-  DelayPeakDetector* detector = new DelayPeakDetector();
+  TickTimer tick_timer;
+  DelayPeakDetector* detector = new DelayPeakDetector(&tick_timer);
   EXPECT_FALSE(detector->peak_found());
   delete detector;
 }
 
 TEST(DelayPeakDetector, EmptyHistory) {
-  DelayPeakDetector detector;
+  TickTimer tick_timer;
+  DelayPeakDetector detector(&tick_timer);
   EXPECT_EQ(-1, detector.MaxPeakHeight());
-  EXPECT_EQ(-1, detector.MaxPeakPeriod());
+  EXPECT_EQ(0u, detector.MaxPeakPeriod());
 }
 
 // Inject a series of packet arrivals into the detector. Three of the packets
 // have suffered delays. After the third delay peak, peak-mode is expected to
 // start. This should then continue until it is disengaged due to lack of peaks.
 TEST(DelayPeakDetector, TriggerPeakMode) {
-  DelayPeakDetector detector;
+  TickTimer tick_timer;
+  DelayPeakDetector detector(&tick_timer);
   const int kPacketSizeMs = 30;
   detector.SetPacketAudioLength(kPacketSizeMs);
 
@@ -52,7 +55,7 @@ TEST(DelayPeakDetector, TriggerPeakMode) {
   // Third delay peak. Trigger peak-mode after this packet.
   arrival_times_ms[400] += kPeakDelayMs;
   // The second peak period is the longest, 200 packets.
-  const int kWorstPeakPeriod = 200 * kPacketSizeMs;
+  const uint64_t kWorstPeakPeriod = 200 * kPacketSizeMs;
   int peak_mode_start_ms = arrival_times_ms[400];
   // Expect to disengage after no peaks are observed for two period times.
   int peak_mode_end_ms = peak_mode_start_ms + 2 * kWorstPeakPeriod;
@@ -74,7 +77,7 @@ TEST(DelayPeakDetector, TriggerPeakMode) {
       }
       ++next;
     }
-    detector.IncrementCounter(10);
+    tick_timer.Increment();
     time += 10;  // Increase time 10 ms.
   }
 }
@@ -83,7 +86,8 @@ TEST(DelayPeakDetector, TriggerPeakMode) {
 // 2, in order to raise the bar for delay peaks to inter-arrival times > 4.
 // The delay pattern has peaks with delay = 3, thus should not trigger.
 TEST(DelayPeakDetector, DoNotTriggerPeakMode) {
-  DelayPeakDetector detector;
+  TickTimer tick_timer;
+  DelayPeakDetector detector(&tick_timer);
   const int kPacketSizeMs = 30;
   detector.SetPacketAudioLength(kPacketSizeMs);
 
@@ -114,8 +118,26 @@ TEST(DelayPeakDetector, DoNotTriggerPeakMode) {
       EXPECT_FALSE(detector.Update(iat_packets, kTargetBufferLevel));
       ++next;
     }
-    detector.IncrementCounter(10);
+    tick_timer.Increment();
     time += 10;  // Increase time 10 ms.
   }
 }
+
+// In situations with reordered packets, the DelayPeakDetector may be updated
+// back-to-back (i.e., without the tick_timer moving) but still with non-zero
+// inter-arrival time. This test is to make sure that this does not cause
+// problems.
+TEST(DelayPeakDetector, ZeroDistancePeaks) {
+  TickTimer tick_timer;
+  DelayPeakDetector detector(&tick_timer);
+  const int kPacketSizeMs = 30;
+  detector.SetPacketAudioLength(kPacketSizeMs);
+
+  const int kTargetBufferLevel = 2;  // Define peaks to be iat > 4.
+  const int kInterArrivalTime = 3 * kTargetBufferLevel;  // Will trigger a peak.
+  EXPECT_FALSE(detector.Update(kInterArrivalTime, kTargetBufferLevel));
+  EXPECT_FALSE(detector.Update(kInterArrivalTime, kTargetBufferLevel));
+  EXPECT_FALSE(detector.Update(kInterArrivalTime, kTargetBufferLevel));
+}
+
 }  // namespace webrtc

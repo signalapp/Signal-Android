@@ -593,10 +593,10 @@ const int16_t WebRtcIlbcfix_kAlpha[4]={
 
 /* Ranges for search and filters at different subframes */
 
-const int16_t WebRtcIlbcfix_kSearchRange[5][CB_NSTAGES]={
+const size_t WebRtcIlbcfix_kSearchRange[5][CB_NSTAGES]={
   {58,58,58}, {108,44,44}, {108,108,108}, {108,108,108}, {108,108,108}};
 
-const int16_t WebRtcIlbcfix_kFilterRange[5]={63, 85, 125, 147, 147};
+const size_t WebRtcIlbcfix_kFilterRange[5]={63, 85, 125, 147, 147};
 
 /* Gain Quantization for the codebook gains of the 3 stages */
 
@@ -647,7 +647,7 @@ const int16_t WebRtcIlbcfix_kEnhWt[3] = {
   4800, 16384, 27968 /* Q16 */
 };
 
-const int16_t WebRtcIlbcfix_kEnhPlocs[ENH_NBLOCKS_TOT] = {
+const size_t WebRtcIlbcfix_kEnhPlocs[ENH_NBLOCKS_TOT] = {
   160, 480, 800, 1120, 1440, 1760, 2080, 2400  /* Q(-2) */
 };
 

@@ -96,7 +96,16 @@
 #define STREAM_MAXW16       300 /* The old maximum size still needed for the decoding */
 #define STREAM_MAXW16_30MS  100 /* 100 Word16 = 200 bytes = 53.4 kbit/s @ 30 ms.framelength */
 #define STREAM_MAXW16_60MS  200 /* 200 Word16 = 400 bytes = 53.4 kbit/s @ 60 ms.framelength */
-
+/* This is used only at the decoder bit-stream struct.
+ * - The encoder and decoder bitstream containers are of different size because
+ *   old iSAC limited the encoded bitstream to 600 bytes. But newer versions
+ *   restrict to shorter bitstream.
+ * - We add 10 bytes of guards to the internal bitstream container. The reason
+ *   is that entropy decoder might read few bytes (3 according to our
+ *   observations) more than the actual size of the bitstream. To avoid reading
+ *   outside memory, in rare occasion of full-size bitstream we add 10 bytes
+ *   of guard. */
+#define INTERNAL_STREAM_SIZE_W16 (STREAM_MAXW16 + 5)
 
 /* storage size for bit counts */
 //#define BIT_COUNTER_SIZE                        30
@@ -190,6 +199,7 @@
 /* 6600 Decoder */
 #define ISAC_DECODER_NOT_INITIATED     6610
 #define ISAC_EMPTY_PACKET       6620
+#define ISAC_PACKET_TOO_SHORT 6625
 #define ISAC_DISALLOWED_FRAME_MODE_DECODER   6630
 #define ISAC_RANGE_ERROR_DECODE_FRAME_LENGTH  6640
 #define ISAC_RANGE_ERROR_DECODE_BANDWIDTH   6650

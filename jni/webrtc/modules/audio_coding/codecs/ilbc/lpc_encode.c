@@ -34,7 +34,7 @@ void WebRtcIlbcfix_LpcEncode(
                                    before/after encoding */
     int16_t *lsf_index,  /* (o) lsf quantization index */
     int16_t *data,   /* (i) Speech to do LPC analysis on */
-    iLBC_Enc_Inst_t *iLBCenc_inst
+    IlbcEncoder *iLBCenc_inst
     /* (i/o) the encoder state structure */
                               ) {
   /* Stack based */

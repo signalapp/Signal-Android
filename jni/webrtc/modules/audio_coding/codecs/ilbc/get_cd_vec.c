@@ -27,12 +27,12 @@
 void WebRtcIlbcfix_GetCbVec(
     int16_t *cbvec,   /* (o) Constructed codebook vector */
     int16_t *mem,   /* (i) Codebook buffer */
-    int16_t index,   /* (i) Codebook index */
-    int16_t lMem,   /* (i) Length of codebook buffer */
-    int16_t cbveclen   /* (i) Codebook vector length */
+    size_t index,   /* (i) Codebook index */
+    size_t lMem,   /* (i) Length of codebook buffer */
+    size_t cbveclen   /* (i) Codebook vector length */
                             ){
-  int16_t k, base_size;
-  int16_t lag;
+  size_t k, base_size;
+  size_t lag;
   /* Stack based */
   int16_t tempbuff2[SUBL+5];
 
@@ -41,7 +41,7 @@ void WebRtcIlbcfix_GetCbVec(
   base_size=lMem-cbveclen+1;
 
   if (cbveclen==SUBL) {
-    base_size+=WEBRTC_SPL_RSHIFT_W16(cbveclen,1);
+    base_size += cbveclen / 2;
   }
 
   /* No filter -> First codebook section */
@@ -58,9 +58,9 @@ void WebRtcIlbcfix_GetCbVec(
 
     /* Calculate lag */
 
-    k=(int16_t)WEBRTC_SPL_MUL_16_16(2, (index-(lMem-cbveclen+1)))+cbveclen;
+    k = (2 * (index - (lMem - cbveclen + 1))) + cbveclen;
 
-    lag=WEBRTC_SPL_RSHIFT_W16(k, 1);
+    lag = k / 2;
 
     WebRtcIlbcfix_CreateAugmentedVec(lag, mem+lMem, cbvec);
 
@@ -70,7 +70,7 @@ void WebRtcIlbcfix_GetCbVec(
 
   else {
 
-    int16_t memIndTest;
+    size_t memIndTest;
 
     /* first non-interpolated vectors */
 
@@ -100,7 +100,7 @@ void WebRtcIlbcfix_GetCbVec(
       /* do filtering */
       WebRtcSpl_FilterMAFastQ12(
           &mem[memIndTest+7], tempbuff2, (int16_t*)WebRtcIlbcfix_kCbFiltersRev,
-          CB_FILTERLEN, (int16_t)(cbveclen+5));
+          CB_FILTERLEN, cbveclen+5);
 
       /* Calculate lag index */
       lag = (cbveclen<<1)-20+index-base_size-lMem-1;

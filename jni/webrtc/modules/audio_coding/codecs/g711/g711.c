@@ -21,7 +21,7 @@
  */
 
 #include "g711.h"
-#include "typedefs.h"
+#include "webrtc/typedefs.h"
 
 /* Copied from the CCITT G.711 specification */
 static const uint8_t ulaw_to_alaw_table[256] = {

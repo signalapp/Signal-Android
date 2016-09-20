@@ -80,6 +80,22 @@ int DspHelper::RampSignal(int16_t* signal,
   return RampSignal(signal, length, factor, increment, signal);
 }
 
+int DspHelper::RampSignal(AudioVector* signal,
+                          size_t start_index,
+                          size_t length,
+                          int factor,
+                          int increment) {
+  int factor_q20 = (factor << 6) + 32;
+  // TODO(hlundin): Add 32 to factor_q20 when converting back to Q14?
+  for (size_t i = start_index; i < start_index + length; ++i) {
+    (*signal)[i] = (factor * (*signal)[i] + 8192) >> 14;
+    factor_q20 += increment;
+    factor_q20 = std::max(factor_q20, 0);  // Never go negative.
+    factor = std::min(factor_q20 >> 6, 16384);
+  }
+  return factor;
+}
+
 int DspHelper::RampSignal(AudioMultiVector* signal,
                           size_t start_index,
                           size_t length,
@@ -94,18 +110,18 @@ int DspHelper::RampSignal(AudioMultiVector* signal,
   // Loop over the channels, starting at the same |factor| each time.
   for (size_t channel = 0; channel < signal->Channels(); ++channel) {
     end_factor =
-        RampSignal(&(*signal)[channel][start_index], length, factor, increment);
+        RampSignal(&(*signal)[channel], start_index, length, factor, increment);
   }
   return end_factor;
 }
 
-void DspHelper::PeakDetection(int16_t* data, int data_length,
-                              int num_peaks, int fs_mult,
-                              int* peak_index, int16_t* peak_value) {
-  int16_t min_index = 0;
-  int16_t max_index = 0;
+void DspHelper::PeakDetection(int16_t* data, size_t data_length,
+                              size_t num_peaks, int fs_mult,
+                              size_t* peak_index, int16_t* peak_value) {
+  size_t min_index = 0;
+  size_t max_index = 0;
 
-  for (int i = 0; i <= num_peaks - 1; i++) {
+  for (size_t i = 0; i <= num_peaks - 1; i++) {
     if (num_peaks == 1) {
       // Single peak.  The parabola fit assumes that an extra point is
       // available; worst case it gets a zero on the high end of the signal.
@@ -117,7 +133,7 @@ void DspHelper::PeakDetection(int16_t* data, int data_length,
     peak_index[i] = WebRtcSpl_MaxIndexW16(data, data_length - 1);
 
     if (i != num_peaks - 1) {
-      min_index = std::max(0, peak_index[i] - 2);
+      min_index = (peak_index[i] > 2) ? (peak_index[i] - 2) : 0;
       max_index = std::min(data_length - 1, peak_index[i] + 2);
     }
 
@@ -148,7 +164,7 @@ void DspHelper::PeakDetection(int16_t* data, int data_length,
 }
 
 void DspHelper::ParabolicFit(int16_t* signal_points, int fs_mult,
-                             int* peak_index, int16_t* peak_value) {
+                             size_t* peak_index, int16_t* peak_value) {
   uint16_t fit_index[13];
   if (fs_mult == 1) {
     fit_index[0] = 0;
@@ -235,16 +251,16 @@ void DspHelper::ParabolicFit(int16_t* signal_points, int fs_mult,
   }
 }
 
-int DspHelper::MinDistortion(const int16_t* signal, int min_lag,
-                             int max_lag, int length,
-                             int32_t* distortion_value) {
-  int best_index = -1;
+size_t DspHelper::MinDistortion(const int16_t* signal, size_t min_lag,
+                                size_t max_lag, size_t length,
+                                int32_t* distortion_value) {
+  size_t best_index = 0;
   int32_t min_distortion = WEBRTC_SPL_WORD32_MAX;
-  for (int i = min_lag; i <= max_lag; i++) {
+  for (size_t i = min_lag; i <= max_lag; i++) {
     int32_t sum_diff = 0;
     const int16_t* data1 = signal;
     const int16_t* data2 = signal - i;
-    for (int j = 0; j < length; j++) {
+    for (size_t j = 0; j < length; j++) {
       sum_diff += WEBRTC_SPL_ABS_W32(data1[j] - data2[j]);
     }
     // Compare with previous minimum.
@@ -272,7 +288,7 @@ void DspHelper::CrossFade(const int16_t* input1, const int16_t* input2,
 }
 
 void DspHelper::UnmuteSignal(const int16_t* input, size_t length,
-                             int16_t* factor, int16_t increment,
+                             int16_t* factor, int increment,
                              int16_t* output) {
   uint16_t factor_16b = *factor;
   int32_t factor_32b = (static_cast<int32_t>(factor_16b) << 6) + 32;
@@ -284,7 +300,7 @@ void DspHelper::UnmuteSignal(const int16_t* input, size_t length,
   *factor = factor_16b;
 }
 
-void DspHelper::MuteSignal(int16_t* signal, int16_t mute_slope, size_t length) {
+void DspHelper::MuteSignal(int16_t* signal, int mute_slope, size_t length) {
   int32_t factor = (16384 << 6) + 32;
   for (size_t i = 0; i < length; i++) {
     signal[i] = ((factor >> 6) * signal[i] + 8192) >> 14;
@@ -293,15 +309,15 @@ void DspHelper::MuteSignal(int16_t* signal, int16_t mute_slope, size_t length) {
 }
 
 int DspHelper::DownsampleTo4kHz(const int16_t* input, size_t input_length,
-                                int output_length, int input_rate_hz,
+                                size_t output_length, int input_rate_hz,
                                 bool compensate_delay, int16_t* output) {
   // Set filter parameters depending on input frequency.
   // NOTE: The phase delay values are wrong compared to the true phase delay
   // of the filters. However, the error is preserved (through the +1 term) for
   // consistency.
   const int16_t* filter_coefficients;  // Filter coefficients.
-  int16_t filter_length;  // Number of coefficients.
-  int16_t filter_delay;  // Phase delay in samples.
+  size_t filter_length;  // Number of coefficients.
+  size_t filter_delay;  // Phase delay in samples.
   int16_t factor;  // Conversion rate (inFsHz / 8000).
   switch (input_rate_hz) {
     case 8000: {
@@ -345,9 +361,8 @@ int DspHelper::DownsampleTo4kHz(const int16_t* input, size_t input_length,
 
   // Returns -1 if input signal is too short; 0 otherwise.
   return WebRtcSpl_DownsampleFast(
-      &input[filter_length - 1], static_cast<int>(input_length) -
-      (filter_length - 1), output, output_length, filter_coefficients,
-      filter_length, factor, filter_delay);
+      &input[filter_length - 1], input_length - filter_length + 1, output,
+      output_length, filter_coefficients, filter_length, factor, filter_delay);
 }
 
 }  // namespace webrtc

@@ -19,7 +19,7 @@
 #ifndef WEBRTC_MODULES_AUDIO_CODING_CODECS_ILBC_MAIN_SOURCE_VQ4_H_
 #define WEBRTC_MODULES_AUDIO_CODING_CODECS_ILBC_MAIN_SOURCE_VQ4_H_
 
-#include "typedefs.h"
+#include "webrtc/typedefs.h"
 
 /*----------------------------------------------------------------*
  *  Vector quantization of order 4 (based on MSE)

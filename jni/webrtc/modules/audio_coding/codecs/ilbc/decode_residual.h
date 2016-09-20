@@ -26,7 +26,7 @@
  *---------------------------------------------------------------*/
 
 void WebRtcIlbcfix_DecodeResidual(
-    iLBC_Dec_Inst_t *iLBCdec_inst,
+    IlbcDecoder *iLBCdec_inst,
     /* (i/o) the decoder state structure */
     iLBC_bits *iLBC_encbits, /* (i/o) Encoded bits, which are used
                                    for the decoding  */

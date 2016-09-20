@@ -61,7 +61,7 @@ class Normal {
   const BackgroundNoise& background_noise_;
   Expand* expand_;
 
-  DISALLOW_COPY_AND_ASSIGN(Normal);
+  RTC_DISALLOW_COPY_AND_ASSIGN(Normal);
 };
 
 }  // namespace webrtc

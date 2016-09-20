@@ -21,13 +21,13 @@
 
 void WebRtcIlbcfix_CbSearchCore(
     int32_t *cDot,    /* (i) Cross Correlation */
-    int16_t range,    /* (i) Search range */
+    size_t range,    /* (i) Search range */
     int16_t stage,    /* (i) Stage of this search */
     int16_t *inverseEnergy,  /* (i) Inversed energy */
     int16_t *inverseEnergyShift, /* (i) Shifts of inversed energy
                                            with the offset 2*16-29 */
     int32_t *Crit,    /* (o) The criteria */
-    int16_t *bestIndex,   /* (o) Index that corresponds to
+    size_t *bestIndex,   /* (o) Index that corresponds to
                                                    maximum criteria (in this
                                                    vector) */
     int32_t *bestCrit,   /* (o) Value of critera for the
@@ -37,7 +37,7 @@ void WebRtcIlbcfix_CbSearchCore(
 {
   int32_t maxW32, tmp32;
   int16_t max, sh, tmp16;
-  int i;
+  size_t i;
   int32_t *cDotPtr;
   int16_t cDotSqW16;
   int16_t *inverseEnergyPtr;
@@ -65,12 +65,12 @@ void WebRtcIlbcfix_CbSearchCore(
 
   for (i=0;i<range;i++) {
     /* Calculate cDot*cDot and put the result in a int16_t */
-    tmp32 = WEBRTC_SPL_LSHIFT_W32(*cDotPtr,sh);
-    tmp16 = (int16_t)WEBRTC_SPL_RSHIFT_W32(tmp32,16);
+    tmp32 = *cDotPtr << sh;
+    tmp16 = (int16_t)(tmp32 >> 16);
     cDotSqW16 = (int16_t)(((int32_t)(tmp16)*(tmp16))>>16);
 
     /* Calculate the criteria (cDot*cDot/energy) */
-    *critPtr=WEBRTC_SPL_MUL_16_16(cDotSqW16, (*inverseEnergyPtr));
+    *critPtr = cDotSqW16 * *inverseEnergyPtr;
 
     /* Extract the maximum shift value under the constraint
        that the criteria is not zero */

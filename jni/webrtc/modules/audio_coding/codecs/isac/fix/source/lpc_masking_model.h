@@ -53,15 +53,6 @@ int32_t WebRtcIsacfix_CalculateResidualEnergyC(int lpc_order,
                                                int32_t* corr_coeffs,
                                                int* q_val_residual_energy);
 
-#if (defined WEBRTC_DETECT_ARM_NEON) || (defined WEBRTC_ARCH_ARM_NEON)
-int32_t WebRtcIsacfix_CalculateResidualEnergyNeon(int lpc_order,
-                                                  int32_t q_val_corr,
-                                                  int q_val_polynomial,
-                                                  int16_t* a_polynomial,
-                                                  int32_t* corr_coeffs,
-                                                  int* q_val_residual_energy);
-#endif
-
 #if defined(MIPS_DSP_R2_LE)
 int32_t WebRtcIsacfix_CalculateResidualEnergyMIPS(int lpc_order,
                                                   int32_t q_val_corr,

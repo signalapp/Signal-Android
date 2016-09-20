@@ -18,29 +18,18 @@
 
 #include "defines.h"
 
-/*----------------------------------------------------------------*
- * Find index in array such that the array element with said
- * index is the element of said array closest to "value"
- * according to the squared-error criterion
- *---------------------------------------------------------------*/
-
-void WebRtcIlbcfix_NearestNeighbor(
-    int16_t *index, /* (o) index of array element closest to value */
-    int16_t *array, /* (i) data array (Q2) */
-    int16_t value, /* (i) value (Q2) */
-    int16_t arlength /* (i) dimension of data array (==8) */
-                                   ){
-  int i;
-  int16_t diff;
-  /* Stack based */
-  int32_t crit[8];
-
-  /* Calculate square distance */
-  for(i=0;i<arlength;i++){
-    diff=array[i]-value;
-    crit[i]=WEBRTC_SPL_MUL_16_16(diff, diff);
+void WebRtcIlbcfix_NearestNeighbor(size_t* index,
+                                   const size_t* array,
+                                   size_t value,
+                                   size_t arlength) {
+  size_t i;
+  size_t min_diff = (size_t)-1;
+  for (i = 0; i < arlength; i++) {
+    const size_t diff =
+        (array[i] < value) ? (value - array[i]) : (array[i] - value);
+    if (diff < min_diff) {
+      *index = i;
+      min_diff = diff;
+    }
   }
-
-  /* Find the minimum square distance */
-  *index=WebRtcSpl_MinIndexW32(crit, (int16_t)arlength);
 }

@@ -13,8 +13,8 @@
 
 #include <algorithm>
 
-#include "webrtc/system_wrappers/interface/sort.h"
-#include "webrtc/system_wrappers/interface/tick_util.h"
+#include "webrtc/base/timeutils.h"
+#include "webrtc/system_wrappers/include/sort.h"
 
 // Excellent work polluting the global namespace Visual Studio...
 #undef max
@@ -144,7 +144,7 @@ void RunSortTest(webrtc::Type sortType, bool keySort)
         printf("Running %s Sort() tests...\n", TypeEnumToString(sortType));
     }
 
-    TickInterval accTicks;
+    int64_t accTicks;
     for (int i = 0; i < NumOfTests; i++)
     {
         for (int j = 0; j < DataLength; j++)
@@ -159,7 +159,7 @@ void RunSortTest(webrtc::Type sortType, bool keySort)
         memcpy(keyRef, key, sizeof(key));
 
         retVal = 0;
-        TickTime t0 = TickTime::Now();
+        int64_t t0 = rtc::TimeNanos();
         if (keySort)
         {
             retVal = webrtc::KeySort(data, key, DataLength, sizeof(LotsOfData<KeyType>),
@@ -176,7 +176,7 @@ void RunSortTest(webrtc::Type sortType, bool keySort)
             //std::sort(key, key + DataLength);
             //qsort(key, DataLength, sizeof(KeyType), Compare<KeyType>);
         }
-        TickTime t1 = TickTime::Now();
+        int64_t t1 = rtc::TimeNanos();
         accTicks += (t1 - t0);
 
         if (retVal != 0)
@@ -236,7 +236,7 @@ void RunSortTest(webrtc::Type sortType, bool keySort)
 
     printf("Compliance test passed over %d iterations\n", NumOfTests);
 
-    int64_t executeTime = accTicks.Milliseconds();
+    int64_t executeTime = accTicks / rtc::kNumNanosecsPerMillisec;
     printf("Execute time: %.2f s\n\n", (float)executeTime / 1000);
 }
 

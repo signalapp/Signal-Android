@@ -11,6 +11,7 @@
 #include "webrtc/modules/audio_coding/codecs/tools/audio_codec_speed_test.h"
 
 #include "testing/gtest/include/gtest/gtest.h"
+#include "webrtc/base/format_macros.h"
 #include "webrtc/test/testsupport/fileutils.h"
 
 using ::std::tr1::get;
@@ -23,8 +24,10 @@ AudioCodecSpeedTest::AudioCodecSpeedTest(int block_duration_ms,
     : block_duration_ms_(block_duration_ms),
       input_sampling_khz_(input_sampling_khz),
       output_sampling_khz_(output_sampling_khz),
-      input_length_sample_(block_duration_ms_ * input_sampling_khz_),
-      output_length_sample_(block_duration_ms_ * output_sampling_khz_),
+      input_length_sample_(
+          static_cast<size_t>(block_duration_ms_ * input_sampling_khz_)),
+      output_length_sample_(
+          static_cast<size_t>(block_duration_ms_ * output_sampling_khz_)),
       data_pointer_(0),
       loop_length_samples_(0),
       max_bytes_(0),
@@ -97,7 +100,7 @@ void AudioCodecSpeedTest::EncodeDecode(size_t audio_duration_sec) {
   size_t time_now_ms = 0;
   float time_ms;
 
-  printf("Coding %d kHz-sampled %d-channel audio at %d bps ...\n",
+  printf("Coding %d kHz-sampled %" PRIuS "-channel audio at %d bps ...\n",
          input_sampling_khz_, channels_, bit_rate_);
 
   while (time_now_ms < audio_duration_sec * 1000) {

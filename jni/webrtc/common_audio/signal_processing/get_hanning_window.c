@@ -53,15 +53,15 @@ static const int16_t kHanningTable[] = {
 16354,  16362,  16369,  16374,  16378,  16382,  16383,  16384
 };
 
-void WebRtcSpl_GetHanningWindow(int16_t *v, int16_t size)
+void WebRtcSpl_GetHanningWindow(int16_t *v, size_t size)
 {
-    int jj;
+    size_t jj;
     int16_t *vptr1;
 
     int32_t index;
     int32_t factor = ((int32_t)0x40000000);
 
-    factor = WebRtcSpl_DivW32W16(factor, size);
+    factor = WebRtcSpl_DivW32W16(factor, (int16_t)size);
     if (size < 513)
         index = (int32_t)-0x200000;
     else

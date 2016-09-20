@@ -185,11 +185,18 @@ int WebRtcIsac_DecLogisticMulti2(
   int16_t     candQ7;
   int             k;
 
+  // Position just past the end of the stream. STREAM_SIZE_MAX_60 instead of
+  // STREAM_SIZE_MAX (which is the size of the allocated buffer) because that's
+  // the limit to how much data is filled in.
+  const uint8_t* const stream_end = streamdata->stream + STREAM_SIZE_MAX_60;
+
   stream_ptr = streamdata->stream + streamdata->stream_index;
   W_upper = streamdata->W_upper;
   if (streamdata->stream_index == 0)   /* first time decoder is called for this stream */
   {
     /* read first word from bytestream */
+    if (stream_ptr + 3 >= stream_end)
+      return -1;  // Would read out of bounds. Malformed input?
     streamval = *stream_ptr << 24;
     streamval |= *++stream_ptr << 16;
     streamval |= *++stream_ptr << 8;
@@ -277,6 +284,8 @@ int WebRtcIsac_DecLogisticMulti2(
     while ( !(W_upper & 0xFF000000) )    /* W_upper < 2^24 */
     {
       /* read next byte from stream */
+      if (stream_ptr + 1 >= stream_end)
+        return -1;  // Would read out of bounds. Malformed input?
       streamval = (streamval << 8) | *++stream_ptr;
       W_upper <<= 8;
     }

@@ -13,7 +13,7 @@
 @
 @ Output is bit-exact with the reference C code in pitch_filter.c.
 
-#include "webrtc/system_wrappers/interface/asm_defines.h"
+#include "webrtc/system_wrappers/include/asm_defines.h"
 #include "settings.h"
 
 GLOBAL_FUNCTION WebRtcIsacfix_PitchFilterCore
@@ -21,7 +21,7 @@ GLOBAL_FUNCTION WebRtcIsacfix_PitchFilterCore
 
 @ void WebRtcIsacfix_PitchFilterCore(int loopNumber,
 @                                    int16_t gain,
-@                                    int index,
+@                                    size_t index,
 @                                    int16_t sign,
 @                                    int16_t* inputState,
 @                                    int16_t* outputBuf2,

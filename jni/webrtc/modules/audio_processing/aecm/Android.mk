@@ -20,9 +20,9 @@ LOCAL_MODULE_CLASS := STATIC_LIBRARIES
 LOCAL_MODULE := libwebrtc_aecm
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := \
-    echo_control_mobile.c \
-    aecm_core.c \
-    aecm_core_c.c
+    echo_control_mobile.cc \
+    aecm_core.cc \
+    aecm_core_c.cc
 
 # Flags passed to both C and C++ files.
 LOCAL_CFLAGS := $(MY_WEBRTC_COMMON_DEFS)

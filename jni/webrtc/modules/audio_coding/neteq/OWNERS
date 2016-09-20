@@ -1,8 +1,3 @@
-henrik.lundin@webrtc.org
-tina.legrand@webrtc.org
-turaj@webrtc.org
-minyue@webrtc.org
-
 per-file *.isolate=kjellander@webrtc.org
 
 # These are for the common case of adding or renaming files. If you're doing

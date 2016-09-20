@@ -7,12 +7,13 @@
  *  in the file PATENTS.  All contributing project authors may
  *  be found in the AUTHORS file in the root of the source tree.
  */
-#include "gtest/gtest.h"
+#include "testing/gtest/include/gtest/gtest.h"
 #include "webrtc/modules/audio_coding/codecs/isac/fix/source/codec.h"
-#include "webrtc/system_wrappers/interface/cpu_features_wrapper.h"
+#include "webrtc/system_wrappers/include/cpu_features_wrapper.h"
 
 static const int kSamples = FRAMESAMPLES/2;
-static int32_t spec2time_out_expected_1[kSamples] = {-3366470, -2285227,
+static const int32_t spec2time_out_expected_1[kSamples] = {
+  -3366470, -2285227,
   -3415765, -2310215, -3118030, -2222470, -3030254, -2192091, -3423170,
   -2216041, -3305541, -2171936, -3195767, -2095779, -3153304, -2157560,
   -3071167, -2032108, -3101190, -1972016, -3103824, -2089118, -3139811,
@@ -45,7 +46,8 @@ static int32_t spec2time_out_expected_1[kSamples] = {-3366470, -2285227,
   3315952, 2406651, 3344038, 2370199, 3368980, 2144361, 3305030, 2183803,
   3401450, 2523102, 3405463, 2452475, 3463355, 2421678, 3551968, 2431949,
   3477251, 2148125, 3244489, 2174090};
-static int32_t spec2time_out_expected_2[kSamples]= {1691694, -2499988, -2035547,
+static const int32_t spec2time_out_expected_2[kSamples] = {
+  1691694, -2499988, -2035547,
   1060469, 988634, -2044502, -306271, 2041000, 201454, -2289456, 93694,
   2129427, -369152, -1887834, 860796, 2089102, -929424, -1673956, 1395291,
   1785651, -1619673, -1380109, 1963449, 1093311, -2111007, -840456,
@@ -79,7 +81,8 @@ static int32_t spec2time_out_expected_2[kSamples]= {1691694, -2499988, -2035547,
   -1588643, 1754528, 816552, -2376303, -1099167, 1864999, 122477,
   -2422762, -400027, 1889228, -579916, -2490353, 287139, 2011318,
   -1176657, -2502978, 812896, 1116502, -1940211};
-static int16_t time2spec_out_expected_1[kSamples]= {20342, 23889, -10063, -9419,
+static const int16_t time2spec_out_expected_1[kSamples] = {
+  20342, 23889, -10063, -9419,
   3242, 7280, -2012, -5029, 332, 4478, -97, -3244, -891, 3117, 773, -2204,
   -1335, 2009, 1236, -1469, -1562, 1277, 1366, -815, -1619, 599, 1449, -177,
   -1507, 116, 1294, 263, -1338, -244, 1059, 553, -1045, -549, 829, 826,
@@ -99,7 +102,8 @@ static int16_t time2spec_out_expected_1[kSamples]= {20342, 23889, -10063, -9419,
   -562, 627, -550, 560, -606, 529, -584, 568, -503, 532, -463, 512, -440,
   399, -457, 437, -349, 278, -317, 257, -220, 163, -8, -61, 18, -161, 367,
   -1306};
-static int16_t time2spec_out_expected_2[kSamples]= {14283, -11552, -15335, 6626,
+static const int16_t time2spec_out_expected_2[kSamples] = {
+  14283, -11552, -15335, 6626,
   7554, -2150, -6309, 1307, 4523, -4, -3908, -314, 3001, 914, -2715, -1042,
   2094, 1272, -1715, -1399, 1263, 1508, -1021, -1534, 735, 1595, -439, -1447,
   155, 1433, 22, -1325, -268, 1205, 424, -1030, -608, 950, 643, -733, -787,
@@ -175,22 +179,14 @@ class TransformTest : public testing::Test {
 
 TEST_F(TransformTest, Time2SpecTest) {
   Time2SpecTester(WebRtcIsacfix_Time2SpecC);
-#ifdef WEBRTC_DETECT_ARM_NEON
-  if ((WebRtc_GetCPUFeaturesARM() & kCPUFeatureNEON) != 0) {
-    Time2SpecTester(WebRtcIsacfix_Time2SpecNeon);
-  }
-#elif defined(WEBRTC_ARCH_ARM_NEON)
+#if defined(WEBRTC_HAS_NEON)
   Time2SpecTester(WebRtcIsacfix_Time2SpecNeon);
 #endif
 }
 
 TEST_F(TransformTest, Spec2TimeTest) {
   Spec2TimeTester(WebRtcIsacfix_Spec2TimeC);
-#ifdef WEBRTC_DETECT_ARM_NEON
-  if ((WebRtc_GetCPUFeaturesARM() & kCPUFeatureNEON) != 0) {
-    Spec2TimeTester(WebRtcIsacfix_Spec2TimeNeon);
-  }
-#elif defined(WEBRTC_ARCH_ARM_NEON)
+#if defined(WEBRTC_HAS_NEON)
   Spec2TimeTester(WebRtcIsacfix_Spec2TimeNeon);
 #endif
 }

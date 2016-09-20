@@ -40,7 +40,7 @@ void WebRtcIlbcfix_SortSq(
       i++;
     }
 
-    if (x > WEBRTC_SPL_RSHIFT_W32(( (int32_t)cb[i] + cb[i - 1] + 1),1)) {
+    if (x > (((int32_t)cb[i] + cb[i - 1] + 1) >> 1)) {
       *index = i;
       *xq = cb[i];
     } else {

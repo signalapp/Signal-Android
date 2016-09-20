@@ -11,10 +11,11 @@
 #ifndef WEBRTC_MODULES_AUDIO_CODING_NETEQ_TOOLS_AUDIO_LOOP_H_
 #define WEBRTC_MODULES_AUDIO_CODING_NETEQ_TOOLS_AUDIO_LOOP_H_
 
+#include <memory>
 #include <string>
 
+#include "webrtc/base/array_view.h"
 #include "webrtc/base/constructormagic.h"
-#include "webrtc/system_wrappers/interface/scoped_ptr.h"
 #include "webrtc/typedefs.h"
 
 namespace webrtc {
@@ -40,18 +41,17 @@ class AudioLoop {
   bool Init(const std::string file_name, size_t max_loop_length_samples,
             size_t block_length_samples);
 
-  // Returns a pointer to the next block of audio. The number given as
-  // |block_length_samples| to the Init() function determines how many samples
-  // that can be safely read from the pointer.
-  const int16_t* GetNextBlock();
+  // Returns a (pointer,size) pair for the next block of audio. The size is
+  // equal to the |block_length_samples| Init() argument.
+  rtc::ArrayView<const int16_t> GetNextBlock();
 
  private:
   size_t next_index_;
   size_t loop_length_samples_;
   size_t block_length_samples_;
-  scoped_ptr<int16_t[]> audio_array_;
+  std::unique_ptr<int16_t[]> audio_array_;
 
-  DISALLOW_COPY_AND_ASSIGN(AudioLoop);
+  RTC_DISALLOW_COPY_AND_ASSIGN(AudioLoop);
 };
 
 }  // namespace test

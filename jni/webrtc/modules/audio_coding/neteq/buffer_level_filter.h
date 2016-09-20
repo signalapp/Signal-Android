@@ -11,6 +11,8 @@
 #ifndef WEBRTC_MODULES_AUDIO_CODING_NETEQ_BUFFER_LEVEL_FILTER_H_
 #define WEBRTC_MODULES_AUDIO_CODING_NETEQ_BUFFER_LEVEL_FILTER_H_
 
+#include <stddef.h>
+
 #include "webrtc/base/constructormagic.h"
 
 namespace webrtc {
@@ -26,21 +28,21 @@ class BufferLevelFilter {
   // corresponding number of packets, and is subtracted from the filtered
   // value (thus bypassing the filter operation). |packet_len_samples| is the
   // number of audio samples carried in each incoming packet.
-  virtual void Update(int buffer_size_packets, int time_stretched_samples,
-                      int packet_len_samples);
+  virtual void Update(size_t buffer_size_packets, int time_stretched_samples,
+                      size_t packet_len_samples);
 
   // Set the current target buffer level (obtained from
   // DelayManager::base_target_level()). Used to select the appropriate
   // filter coefficient.
   virtual void SetTargetBufferLevel(int target_buffer_level);
 
-  virtual int filtered_current_level() const { return filtered_current_level_; }
+  virtual int filtered_current_level() const;
 
  private:
   int level_factor_;  // Filter factor for the buffer level filter in Q8.
   int filtered_current_level_;  // Filtered current buffer level in Q8.
 
-  DISALLOW_COPY_AND_ASSIGN(BufferLevelFilter);
+  RTC_DISALLOW_COPY_AND_ASSIGN(BufferLevelFilter);
 };
 
 }  // namespace webrtc

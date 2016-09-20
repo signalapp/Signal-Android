@@ -5,8 +5,8 @@
 #include <speex/speex.h>
 #include <speex/speex_echo.h>
 
-#include <modules/audio_processing/aecm/include/echo_control_mobile.h>
-#include <modules/audio_processing/ns/include/noise_suppression_x.h>
+#include <modules/audio_processing/aecm/echo_control_mobile.h>
+#include <modules/audio_processing/ns/noise_suppression_x.h>
 
 #define SPEEX_BIT_RATE    8000
 #define SPEEX_SAMPLE_RATE 8000
@@ -36,8 +36,12 @@ public:
 
   int init();
   int encode(short *rawData, char* encodedData, int encodedDataLen);
-  int decode(char* encodedData, int encodedDataLen, short* rawData);
+  int decode(char* encodedData, int encodedDataLen, short* decoded);
   int conceal(int frames, short *rawData);
+  void reset();
+  int getErrorCode();
+  int getSampleRateInHz();
+  size_t getChannels();
 
 };
 

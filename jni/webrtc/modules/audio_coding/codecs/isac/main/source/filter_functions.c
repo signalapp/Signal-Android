@@ -9,6 +9,7 @@
  */
 
 #include <memory.h>
+#include <string.h>
 #ifdef WEBRTC_ANDROID
 #include <stdlib.h>
 #endif
@@ -18,12 +19,15 @@
 
 
 
-void WebRtcIsac_AllPoleFilter(double *InOut, double *Coef, int lengthInOut, int orderCoef){
-
+void WebRtcIsac_AllPoleFilter(double* InOut,
+                              double* Coef,
+                              size_t lengthInOut,
+                              int orderCoef) {
   /* the state of filter is assumed to be in InOut[-1] to InOut[-orderCoef] */
   double scal;
   double sum;
-  int n,k;
+  size_t n;
+  int k;
 
   //if (fabs(Coef[0]-1.0)<0.001) {
   if ( (Coef[0] > 0.9999) && (Coef[0] < 1.0001) )
@@ -52,11 +56,15 @@ void WebRtcIsac_AllPoleFilter(double *InOut, double *Coef, int lengthInOut, int 
 }
 
 
-void WebRtcIsac_AllZeroFilter(double *In, double *Coef, int lengthInOut, int orderCoef, double *Out){
-
+void WebRtcIsac_AllZeroFilter(double* In,
+                              double* Coef,
+                              size_t lengthInOut,
+                              int orderCoef,
+                              double* Out) {
   /* the state of filter is assumed to be in In[-1] to In[-orderCoef] */
 
-  int n, k;
+  size_t n;
+  int k;
   double tmp;
 
   for(n = 0; n < lengthInOut; n++)
@@ -73,9 +81,12 @@ void WebRtcIsac_AllZeroFilter(double *In, double *Coef, int lengthInOut, int ord
 }
 
 
-
-void WebRtcIsac_ZeroPoleFilter(double *In, double *ZeroCoef, double *PoleCoef, int lengthInOut, int orderCoef, double *Out){
-
+void WebRtcIsac_ZeroPoleFilter(double* In,
+                               double* ZeroCoef,
+                               double* PoleCoef,
+                               size_t lengthInOut,
+                               int orderCoef,
+                               double* Out) {
   /* the state of the zero section is assumed to be in In[-1] to In[-orderCoef] */
   /* the state of the pole section is assumed to be in Out[-1] to Out[-orderCoef] */
 
@@ -84,14 +95,8 @@ void WebRtcIsac_ZeroPoleFilter(double *In, double *ZeroCoef, double *PoleCoef, i
 }
 
 
-void WebRtcIsac_AutoCorr(
-    double *r,
-    const double *x,
-    int N,
-    int order
-                        )
-{
-  int  lag, n;
+void WebRtcIsac_AutoCorr(double* r, const double* x, size_t N, size_t order) {
+  size_t  lag, n;
   double sum, prod;
   const double *x_lag;
 
@@ -111,8 +116,8 @@ void WebRtcIsac_AutoCorr(
 }
 
 
-void WebRtcIsac_BwExpand(double *out, double *in, double coef, short length) {
-  int i;
+void WebRtcIsac_BwExpand(double* out, double* in, double coef, size_t length) {
+  size_t i;
   double  chirp;
 
   chirp = coef;
@@ -124,8 +129,10 @@ void WebRtcIsac_BwExpand(double *out, double *in, double coef, short length) {
   }
 }
 
-void WebRtcIsac_WeightingFilter(const double *in, double *weiout, double *whiout, WeightFiltstr *wfdata) {
-
+void WebRtcIsac_WeightingFilter(const double* in,
+                                double* weiout,
+                                double* whiout,
+                                WeightFiltstr* wfdata) {
   double  tmpbuffer[PITCH_FRAME_LEN + PITCH_WLPCBUFLEN];
   double  corr[PITCH_WLPCORDER+1], rc[PITCH_WLPCORDER+1];
   double apol[PITCH_WLPCORDER+1], apolr[PITCH_WLPCORDER+1];
@@ -194,15 +201,13 @@ static const double APupper[ALLPASSSECTIONS] = {0.0347, 0.3826};
 static const double APlower[ALLPASSSECTIONS] = {0.1544, 0.744};
 
 
-
-void WebRtcIsac_AllpassFilterForDec(double *InOut,
-                                   const double *APSectionFactors,
-                                   int lengthInOut,
-                                   double *FilterState)
-{
+void WebRtcIsac_AllpassFilterForDec(double* InOut,
+                                    const double* APSectionFactors,
+                                    size_t lengthInOut,
+                                    double* FilterState) {
   //This performs all-pass filtering--a series of first order all-pass sections are used
   //to filter the input in a cascade manner.
-  int n,j;
+  size_t n,j;
   double temp;
   for (j=0; j<ALLPASSSECTIONS; j++){
     for (n=0;n<lengthInOut;n+=2){
@@ -213,12 +218,11 @@ void WebRtcIsac_AllpassFilterForDec(double *InOut,
   }
 }
 
-void WebRtcIsac_DecimateAllpass(const double *in,
-                                double *state_in,        /* array of size: 2*ALLPASSSECTIONS+1 */
-                                int N,                   /* number of input samples */
-                                double *out)             /* array of size N/2 */
-{
-  int n;
+void WebRtcIsac_DecimateAllpass(const double* in,
+                                double* state_in,
+                                size_t N,
+                                double* out) {
+  size_t n;
   double data_vec[PITCH_FRAME_LEN];
 
   /* copy input */
@@ -236,7 +240,6 @@ void WebRtcIsac_DecimateAllpass(const double *in,
 }
 
 
-
 /* create high-pass filter ocefficients
  * z = 0.998 * exp(j*2*pi*35/8000);
  * p = 0.94 * exp(j*2*pi*140/8000);
@@ -244,28 +247,17 @@ void WebRtcIsac_DecimateAllpass(const double *in,
  * HP_a = [1, -2*real(p), abs(p)^2]; */
 static const double a_coef[2] = { 1.86864659625574, -0.88360000000000};
 static const double b_coef[2] = {-1.99524591718270,  0.99600400000000};
-static const float a_coef_float[2] = { 1.86864659625574f, -0.88360000000000f};
-static const float b_coef_float[2] = {-1.99524591718270f,  0.99600400000000f};
 
 /* second order high-pass filter */
-void WebRtcIsac_Highpass(const double *in, double *out, double *state, int N)
-{
-  int k;
+void WebRtcIsac_Highpass(const double* in,
+                         double* out,
+                         double* state,
+                         size_t N) {
+  size_t k;
 
   for (k=0; k<N; k++) {
     *out = *in + state[1];
     state[1] = state[0] + b_coef[0] * *in + a_coef[0] * *out;
     state[0] = b_coef[1] * *in++ + a_coef[1] * *out++;
-  }
-}
-
-void WebRtcIsac_Highpass_float(const float *in, double *out, double *state, int N)
-{
-  int k;
-
-  for (k=0; k<N; k++) {
-    *out = (double)*in + state[1];
-    state[1] = state[0] + b_coef_float[0] * *in + a_coef_float[0] * *out;
-    state[0] = b_coef_float[1] * (double)*in++ + a_coef_float[1] * *out++;
   }
 }

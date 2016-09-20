@@ -18,9 +18,9 @@
 #ifndef WEBRTC_MODULES_AUDIO_CODING_CODECS_ILBC_MAIN_SOURCE_DEFINES_H_
 #define WEBRTC_MODULES_AUDIO_CODING_CODECS_ILBC_MAIN_SOURCE_DEFINES_H_
 
-#include "typedefs.h"
-#include "signal_processing_library.h"
 #include <string.h>
+#include "signal_processing_library.h"
+#include "webrtc/typedefs.h"
 
 /* general codec settings */
 
@@ -121,26 +121,26 @@ typedef struct iLBC_bits_t_ {
   int16_t lsf[LSF_NSPLIT*LPC_N_MAX];
   int16_t cb_index[CB_NSTAGES*(NASUB_MAX+1)];  /* First CB_NSTAGES values contains extra CB index */
   int16_t gain_index[CB_NSTAGES*(NASUB_MAX+1)]; /* First CB_NSTAGES values contains extra CB gain */
-  int16_t idxForMax;
+  size_t idxForMax;
   int16_t state_first;
   int16_t idxVec[STATE_SHORT_LEN_30MS];
   int16_t firstbits;
-  int16_t startIdx;
+  size_t startIdx;
 } iLBC_bits;
 
 /* type definition encoder instance */
-typedef struct iLBC_Enc_Inst_t_ {
+typedef struct IlbcEncoder_ {
 
   /* flag for frame size mode */
   int16_t mode;
 
   /* basic parameters for different frame sizes */
-  int16_t blockl;
-  int16_t nsub;
+  size_t blockl;
+  size_t nsub;
   int16_t nasub;
-  int16_t no_of_bytes, no_of_words;
+  size_t no_of_bytes, no_of_words;
   int16_t lpc_n;
-  int16_t state_short_len;
+  size_t state_short_len;
 
   /* analysis filter state */
   int16_t anaMem[LPC_FILTERORDER];
@@ -164,24 +164,24 @@ typedef struct iLBC_Enc_Inst_t_ {
   int16_t Nfor_flag;
   int16_t Nback_flag;
   int16_t start_pos;
-  int16_t diff;
+  size_t diff;
 #endif
 
-} iLBC_Enc_Inst_t;
+} IlbcEncoder;
 
 /* type definition decoder instance */
-typedef struct iLBC_Dec_Inst_t_ {
+typedef struct IlbcDecoder_ {
 
   /* flag for frame size mode */
   int16_t mode;
 
   /* basic parameters for different frame sizes */
-  int16_t blockl;
-  int16_t nsub;
+  size_t blockl;
+  size_t nsub;
   int16_t nasub;
-  int16_t no_of_bytes, no_of_words;
+  size_t no_of_bytes, no_of_words;
   int16_t lpc_n;
-  int16_t state_short_len;
+  size_t state_short_len;
 
   /* synthesis filter state */
   int16_t syntMem[LPC_FILTERORDER];
@@ -190,14 +190,15 @@ typedef struct iLBC_Dec_Inst_t_ {
   int16_t lsfdeqold[LPC_FILTERORDER];
 
   /* pitch lag estimated in enhancer and used in PLC */
-  int last_lag;
+  size_t last_lag;
 
   /* PLC state information */
   int consPLICount, prev_enh_pl;
   int16_t perSquare;
 
   int16_t prevScale, prevPLI;
-  int16_t prevLag, prevLpc[LPC_FILTERORDER+1];
+  size_t prevLag;
+  int16_t prevLpc[LPC_FILTERORDER+1];
   int16_t prevResidual[NSUB_MAX*SUBL];
   int16_t seed;
 
@@ -212,8 +213,8 @@ typedef struct iLBC_Dec_Inst_t_ {
   /* enhancer state information */
   int use_enhancer;
   int16_t enh_buf[ENH_BUFL+ENH_BUFL_FILTEROVERHEAD];
-  int16_t enh_period[ENH_NBLOCKS_TOT];
+  size_t enh_period[ENH_NBLOCKS_TOT];
 
-} iLBC_Dec_Inst_t;
+} IlbcDecoder;
 
 #endif

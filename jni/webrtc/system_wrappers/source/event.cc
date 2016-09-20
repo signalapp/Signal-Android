@@ -8,26 +8,47 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#include "webrtc/system_wrappers/interface/event_wrapper.h"
+#include "webrtc/system_wrappers/include/event_wrapper.h"
 
 #if defined(_WIN32)
 #include <windows.h>
-#include "webrtc/system_wrappers/source/event_win.h"
+#include "webrtc/system_wrappers/source/event_timer_win.h"
 #elif defined(WEBRTC_MAC) && !defined(WEBRTC_IOS)
 #include <ApplicationServices/ApplicationServices.h>
 #include <pthread.h>
-#include "webrtc/system_wrappers/source/event_posix.h"
+#include "webrtc/system_wrappers/source/event_timer_posix.h"
 #else
 #include <pthread.h>
-#include "webrtc/system_wrappers/source/event_posix.h"
+#include "webrtc/system_wrappers/source/event_timer_posix.h"
 #endif
 
+#include "webrtc/base/event.h"
+
 namespace webrtc {
+
+class EventWrapperImpl : public EventWrapper {
+ public:
+  EventWrapperImpl() : event_(false, false) {}
+  ~EventWrapperImpl() override {}
+
+  bool Set() override {
+    event_.Set();
+    return true;
+  }
+
+  EventTypeWrapper Wait(unsigned long max_time) override {
+    int to_wait = max_time == WEBRTC_EVENT_INFINITE ?
+        rtc::Event::kForever : static_cast<int>(max_time);
+    return event_.Wait(to_wait) ? kEventSignaled : kEventTimeout;
+  }
+
+ private:
+  rtc::Event event_;
+};
+
+// static
 EventWrapper* EventWrapper::Create() {
-#if defined(_WIN32)
-  return new EventWindows();
-#else
-  return EventPosix::Create();
-#endif
+  return new EventWrapperImpl();
 }
+
 }  // namespace webrtc
