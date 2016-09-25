@@ -63,6 +63,7 @@ import org.whispersystems.libsignal.fingerprint.FingerprintIdentifierMismatchExc
 import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
 import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
@@ -93,21 +94,26 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   @Override
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_numbers);
+    try {
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_numbers);
 
-    Recipient recipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(RECIPIENT_ID, -1), true);
+      Recipient recipient = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra(RECIPIENT_ID, -1), true);
 
-    Bundle extras = new Bundle();
-    extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(RECIPIENT_IDENTITY));
-    extras.putString(VerifyDisplayFragment.REMOTE_NUMBER, recipient.getNumber());
-    extras.putParcelable(VerifyDisplayFragment.LOCAL_IDENTITY, new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
-    extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
+      Bundle extras = new Bundle();
+      extras.putParcelable(VerifyDisplayFragment.REMOTE_IDENTITY, getIntent().getParcelableExtra(RECIPIENT_IDENTITY));
+      extras.putString(VerifyDisplayFragment.REMOTE_NUMBER, Util.canonicalizeNumber(this, recipient.getNumber()));
+      extras.putParcelable(VerifyDisplayFragment.LOCAL_IDENTITY, new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
+      extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
 
-    scanFragment.setScanListener(this);
-    displayFragment.setClickListener(this);
+      scanFragment.setScanListener(this);
+      displayFragment.setClickListener(this);
 
-    initFragment(android.R.id.content, displayFragment, masterSecret, dynamicLanguage.getCurrentLocale(), extras);
+      initFragment(android.R.id.content, displayFragment, masterSecret, dynamicLanguage.getCurrentLocale(), extras);
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+      finish();
+    }
   }
 
   @Override
