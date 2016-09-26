@@ -552,9 +552,9 @@
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying security numbers.</string>
-    <string name="VerifyIdentityActivity_you_re_attempting_to_verify_security_numbers_with">You\'re attempting to verify security numbers with %1$s, but scanned %2$s instead.</string>
-    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_security_number">The scanned QR code is not a correctly formatted security number verification code.  Please try scanning again.</string>
+    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying safety numbers.</string>
+    <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">You\'re attempting to verify safety numbers with %1$s, but scanned %2$s instead.</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code.  Please try scanning again.</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>

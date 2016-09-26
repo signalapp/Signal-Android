@@ -280,10 +280,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
         Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal, Toast.LENGTH_LONG).show();
       } catch (FingerprintIdentifierMismatchException e) {
         Log.w(TAG, e);
-        Toast.makeText(getActivity(), getActivity().getString(R.string.VerifyIdentityActivity_you_re_attempting_to_verify_security_numbers_with, e.getRemoteIdentifier(), e.getScannedRemoteIdentifier()), Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), getActivity().getString(R.string.VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with, e.getRemoteIdentifier(), e.getScannedLocalIdentifier()), Toast.LENGTH_LONG).show();
       } catch (FingerprintParsingException e) {
         Log.w(TAG, e);
-        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_security_number, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number, Toast.LENGTH_LONG).show();
       } catch (UnsupportedEncodingException e) {
         throw new AssertionError(e);
       }
