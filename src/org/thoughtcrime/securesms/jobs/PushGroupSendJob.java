@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
@@ -90,7 +89,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       database.markAsSent(messageId);
       markAttachmentsUploaded(messageId, message.getAttachments());
 
-      if (message.getExpiresIn() > 0) {
+      if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
         database.markExpireStarted(messageId);
         ApplicationContext.getInstance(context)
                           .getExpiringMessageManager()
