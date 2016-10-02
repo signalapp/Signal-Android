@@ -151,7 +151,7 @@ public class PushDecryptJob extends ContextJob {
 
         if      (syncMessage.getSent().isPresent())    handleSynchronizeSentMessage(masterSecret, envelope, syncMessage.getSent().get(), smsMessageId);
         else if (syncMessage.getRequest().isPresent()) handleSynchronizeRequestMessage(masterSecret, syncMessage.getRequest().get());
-        else if (syncMessage.getRead().isPresent())    handleSynchronizeReadMessage(masterSecret, syncMessage.getRead().get());
+        else if (syncMessage.getRead().isPresent())    handleSynchronizeReadMessage(masterSecret, syncMessage.getRead().get(), envelope.getTimestamp());
         else                                           Log.w(TAG, "Contains no known sync types...");
       }
 
@@ -295,11 +295,24 @@ public class PushDecryptJob extends ContextJob {
   }
 
   private void handleSynchronizeReadMessage(@NonNull MasterSecretUnion masterSecret,
-                                            @NonNull List<ReadMessage> readMessages)
+                                            @NonNull List<ReadMessage> readMessages,
+                                            long envelopeTimestamp)
   {
     for (ReadMessage readMessage : readMessages) {
-      DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(readMessage.getSender(), readMessage.getTimestamp()));
-      DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(readMessage.getSender(), readMessage.getTimestamp()));
+      List<Pair<Long, Long>> expiringText = DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(readMessage.getSender(), readMessage.getTimestamp()), envelopeTimestamp);
+      List<Pair<Long, Long>> expiringMedia = DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(readMessage.getSender(), readMessage.getTimestamp()), envelopeTimestamp);
+
+      for (Pair<Long, Long> expiringMessage : expiringText) {
+        ApplicationContext.getInstance(context)
+                          .getExpiringMessageManager()
+                          .scheduleDeletion(expiringMessage.first, false, envelopeTimestamp, expiringMessage.second);
+      }
+
+      for (Pair<Long, Long> expiringMessage : expiringMedia) {
+        ApplicationContext.getInstance(context)
+                          .getExpiringMessageManager()
+                          .scheduleDeletion(expiringMessage.first, true, envelopeTimestamp, expiringMessage.second);
+      }
     }
 
     MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull());

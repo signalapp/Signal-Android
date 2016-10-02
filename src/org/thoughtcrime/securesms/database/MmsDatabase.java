@@ -486,10 +486,11 @@ public class MmsDatabase extends MessagingDatabase {
     return result;
   }
 
-  public void setTimestampRead(SyncMessageId messageId) {
-    MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
-    SQLiteDatabase     database        = databaseHelper.getWritableDatabase();
-    Cursor             cursor          = null;
+  public List<Pair<Long, Long>> setTimestampRead(SyncMessageId messageId, long expireStarted) {
+    MmsAddressDatabase     addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
+    SQLiteDatabase         database        = databaseHelper.getWritableDatabase();
+    List<Pair<Long, Long>> expiring        = new LinkedList<>();
+    Cursor                 cursor          = null;
 
     try {
       cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX}, DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())}, null, null, null, null);
@@ -503,11 +504,19 @@ public class MmsDatabase extends MessagingDatabase {
             String theirAddress = canonicalizeNumberOrGroup(context, storedAddress);
 
             if (ourAddress.equals(theirAddress) || GroupUtil.isEncodedGroup(theirAddress)) {
-              long id       = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-              long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+              long id        = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+              long threadId  = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+              long expiresIn = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
 
-              database.execSQL("UPDATE " + TABLE_NAME + " SET " + READ + " = 1 WHERE " + ID + " = ?",
-                               new String[] {String.valueOf(id)});
+              ContentValues values = new ContentValues();
+              values.put(READ, 1);
+
+              if (expiresIn > 0) {
+                values.put(EXPIRE_STARTED, expireStarted);
+                expiring.add(new Pair<>(id, expiresIn));
+              }
+
+              database.update(TABLE_NAME, values, ID_WHERE, new String[]{String.valueOf(id)});
 
               DatabaseFactory.getThreadDatabase(context).updateReadState(threadId);
               notifyConversationListeners(threadId);
@@ -521,6 +530,8 @@ public class MmsDatabase extends MessagingDatabase {
       if (cursor != null)
         cursor.close();
     }
+
+    return expiring;
   }
 
   public void setAllMessagesRead() {

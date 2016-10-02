@@ -348,12 +348,13 @@ public class SmsDatabase extends MessagingDatabase {
     return results;
   }
 
-  public void setTimestampRead(SyncMessageId messageId) {
-    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
-    Cursor         cursor       = null;
+  public List<Pair<Long, Long>> setTimestampRead(SyncMessageId messageId, long expireStarted) {
+    SQLiteDatabase         database = databaseHelper.getWritableDatabase();
+    List<Pair<Long, Long>> expiring = new LinkedList<>();
+    Cursor                 cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE},
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE, EXPIRES_IN},
                               DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
                               null, null, null, null);
 
@@ -363,10 +364,17 @@ public class SmsDatabase extends MessagingDatabase {
           String ourAddress   = canonicalizeNumber(context, cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
 
           if (ourAddress.equals(theirAddress)) {
-            long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+            long id        = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+            long threadId  = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+            long expiresIn = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(READ, 1);
+
+            if (expiresIn > 0) {
+              contentValues.put(EXPIRE_STARTED, expireStarted);
+              expiring.add(new Pair<>(id, expiresIn));
+            }
 
             database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID)) + ""});
 
@@ -380,6 +388,8 @@ public class SmsDatabase extends MessagingDatabase {
     } finally {
       if (cursor != null) cursor.close();
     }
+
+    return expiring;
   }
 
   public void setAllMessagesRead() {
