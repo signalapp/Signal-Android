@@ -376,13 +376,6 @@ public class PushDecryptJob extends ContextJob {
 
     DatabaseFactory.getRecipientPreferenceDatabase(context).setExpireMessages(recipients, message.getMessage().getExpiresInSeconds());
 
-    database.markExpireStarted(messageId, message.getExpirationStartTimestamp());
-    ApplicationContext.getInstance(context)
-                      .getExpiringMessageManager()
-                      .scheduleDeletion(messageId, true,
-                                        message.getExpirationStartTimestamp(),
-                                        message.getMessage().getExpiresInSeconds());
-
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
     }
