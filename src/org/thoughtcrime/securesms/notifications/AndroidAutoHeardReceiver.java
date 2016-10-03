@@ -21,24 +21,14 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.RemoteInput;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -62,17 +52,13 @@ public class AndroidAutoHeardReceiver extends MasterSecretBroadcastReceiver {
     final long[] threadIds = intent.getLongArrayExtra(THREAD_IDS_EXTRA);
 
     if (threadIds != null) {
-      Log.w("TAG", "threadIds length: " + threadIds.length);
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-              .cancel(MessageNotifier.NOTIFICATION_ID);
-
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
           List<SyncMessageId> messageIdsCollection = new LinkedList<>();
 
           for (long threadId : threadIds) {
-            Log.w(TAG, "Marking as read: " + threadId);
+            Log.i(TAG, "Marking meassage as read: " + threadId);
             List<SyncMessageId> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId);
             messageIdsCollection.addAll(messageIds);
           }
@@ -84,6 +70,9 @@ public class AndroidAutoHeardReceiver extends MasterSecretBroadcastReceiver {
                     .getJobManager()
                     .add(new MultiDeviceReadUpdateJob(context, messageIdsCollection));
           }
+
+          ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+                  .cancel(MessageNotifier.NOTIFICATION_ID);
 
           return null;
         }

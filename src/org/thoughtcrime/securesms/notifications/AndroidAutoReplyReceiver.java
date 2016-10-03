@@ -17,6 +17,7 @@
 
 package org.thoughtcrime.securesms.notifications;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -24,19 +25,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.RemoteInput;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
-import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
@@ -80,32 +79,26 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
           long expiresIn      = preferences.isPresent() ? preferences.get().getExpireMessages() * 1000 : 0;
 
           if (recipients.isGroupRecipient()) {
+            Log.i("AndroidAutoReplyReceiver", "GroupRecipient, Sending media message");
             OutgoingMediaMessage reply = new OutgoingMediaMessage(recipients, responseText.toString(), new LinkedList<Attachment>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0);
             replyThreadId = MessageSender.send(context, masterSecret, reply, threadId, false);
           } else {
-            OutgoingTextMessage reply = null;
-            if (masterSecret != null) {
-              reply = new OutgoingEncryptedMessage(recipients, responseText.toString(), expiresIn);
-            } else {
-              reply = new OutgoingTextMessage(recipients, responseText.toString(), expiresIn, subscriptionId);
-            }
+              Log.i("AndroidAutoReplyReceiver", "Sending regular message ");
+            OutgoingTextMessage reply = new OutgoingTextMessage(recipients, responseText.toString(), expiresIn, subscriptionId);
             replyThreadId = MessageSender.send(context, masterSecret, reply, threadId, false);
           }
           List<SyncMessageId> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(replyThreadId);
           MessageNotifier.updateNotification(context, masterSecret);
 
-          if (!messageIds.isEmpty()) {
-            ApplicationContext.getInstance(context)
-                              .getJobManager()
-                              .add(new MultiDeviceReadUpdateJob(context, messageIds));
-          }
+          ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+                  .cancel(MessageNotifier.NOTIFICATION_ID);
 
           return null;
         }
       }.execute();
     }
-
   }
+
   private CharSequence getMessageText(Intent intent) {
         Bundle remoteInput =
             RemoteInput.getResultsFromIntent(intent);
