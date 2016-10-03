@@ -453,7 +453,6 @@ Message d\'échange!</string>
 Réception d\'un message d\'échange de clés pour une version invalide du protocole.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'accepter et l\'afficher.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Nouvelle information d\'identité mise à jour mais inconnue reçue. Appuyez pour valider l\'identité.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Session sécurisée réinitialisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message doublon.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Groupe quitté…</string>

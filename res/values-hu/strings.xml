@@ -137,6 +137,7 @@ ezt a névjegyet.
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nem elérhető</string>
   <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
   <string name="ConversationActivity_error_sending_voice_message">Hiba a hangüzenet küldése közben...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">A készülékeden nincs elérhető alkalmazás ennek a hivatkozásnak a kezeléséhez.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Üzenet részletek</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Átviteli mód: %1$s\nKüldött/Fogadott: %2$s</string>
@@ -177,6 +178,7 @@ ezt a névjegyet.
   <string name="ConversationFragment_deleting_messages">Üzenetek törlése...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Keresés...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Kiválasztott beszélgetés törlése?</item>
@@ -296,11 +298,16 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Érintsd meg és tartsd a hangüzenet rögzítéséhez, engedd el a küldéshez</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Megosztás</string>
+  <string name="InviteActivity_choose_contacts">Névjegyek kiválasztása</string>
   <string name="InviteActivity_cancel">Mégse</string>
   <string name="InviteActivity_sending">Küldés...</string>
   <string name="InviteActivity_heart_content_description">Szív</string>
   <string name="InviteActivity_invitations_sent">Meghívók elküldve!</string>
   <string name="InviteActivity_invite_to_signal">Meghívás Signal-ba</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">SMS KÜLDÉSE 1 BARÁTNAK</item>
+    <item quantity="other">SMS KÜLDÉSE %d BARÁTNAK</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1 SMS meghívó küldése?</item>
     <item quantity="other">%d SMS meghívó küldése?</item>
@@ -340,6 +347,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
   <string name="MessageRecord_you">Te</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította az eltűnő üzenet idejét erre: %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Hibás régi jelmondat!</string>
@@ -365,6 +373,9 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal készülék társítása?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Úgy tűnik, hogy egy harmadik féltől származó szkennelővel próbálsz társítani egy Signal készüléket. A védelmed érdekében kérlek szkenneld újra a kódot Signal-on belül.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Eltűnő üzenetek</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Az üzeneteid nem fognak lejárni.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ebben a beszélgetésben küldött és fogadott üzenetek el fognak tűnni a megtekintés után ennyivel: %s</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Jelmondat megadása</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
@@ -379,6 +390,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat és próbálkozz újra
   <string name="RatingManager_rate_now">Értékelés most!</string>
   <string name="RatingManager_no_thanks">Nem, köszönöm</string>
   <string name="RatingManager_later">Később</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppá! Úgy tűnik, hogy a Play Áruház alkalmazás nincs telepítve a készülékedre.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Letiltod ezt a névjegyet?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Többé nem kapsz ettől a felhasználótól üzeneteket vagy hívásokat.</string>
@@ -473,7 +485,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
  </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Üzenet érkezett ismeretlen azonosító kulccsal. Érints a feldolgozáshoz és megjelenítéshez.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Frissített, de ismeretlen azonosító adat érkezett. Érints az azonosító érvényesítéséhez!</string>
-  <string name="SmsMessageRecord_secure_session_reset">Biztonságos munkamenet alaphelyzetbe állítása.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Alaphelyzetbe állítottad a biztonságos munkamenetet.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s alaphelyzetbe állította a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Elhagyta a csoportot...</string>
@@ -484,6 +497,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_missed_call">Nem fogadott hívás</string>
   <string name="ThreadRecord_media_message">Média üzenet</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nincsen azonosító kulcsod.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">A címzettnek nincs azonosító kulcsa.</string>
@@ -628,11 +642,37 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="experience_upgrade_activity__continue">folytatás</string>
   <!--expiration-->
   <string name="expiration_off">Ki</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 másodperc</item>
+    <item quantity="other">%d másodperc</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%dm</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 perc</item>
+    <item quantity="other">%d perc</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dp</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 óra</item>
+    <item quantity="other">%d óra</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dó</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 nap</item>
+    <item quantity="other">%d nap</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dn</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 hét</item>
+    <item quantity="other">%d hét</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dh</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nem lehet olvasni a naplót a készülékeden. Ehelyett még mindig használhatsz ADB-t, hogy kapj hibakeresési naplót.</string>
   <string name="log_submit_activity__thanks">Köszönjük a segítségedet!</string>
   <string name="log_submit_activity__submitting">Küldés</string>
   <string name="log_submit_activity__posting_logs">Napló küldése gist-hez...</string>
+  <string name="log_submit_activity__no_browser_installed">Nincs telepítve böngésző</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Szeretnéd importálni a létező szöveges üzeneteidet a Signal titkosított adatbázisába?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Az alapértelmezett rendszer adatbázis semmilyen módon nem fog megváltozni vagy módosulni.</string>
@@ -956,6 +996,7 @@ sikertelen.
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Melléklet mentése</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Eltűnő üzenetek</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Meghívás</string>

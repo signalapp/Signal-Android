@@ -72,7 +72,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:1.0.2'
     compile 'org.whispersystems:libpastelog:1.0.7'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:signal-service-android:2.2.0'
+    compile 'org.whispersystems:signal-service-android:2.3.1'
     compile 'com.h6ah4i.android.compat:mulsellistprefcompat:1.0.0'
     compile 'com.google.zxing:core:3.2.1'
 
@@ -130,7 +130,7 @@ dependencyVerification {
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:bb331d9a98240fc139101128ba836c1edec3c40e000597cdbb29ebf4cbf34d88',
         'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
-        'org.whispersystems:signal-service-android:96a926b0bfd1df8b66be2b574e8b8d6ef1862f715b0f1a5457a2038b28d3ad1b',
+        'org.whispersystems:signal-service-android:8e6517280a2ad4417a48a47c5c4c99d7d3d142c9568d81ce3af9fb704b1ecf50',
         'com.h6ah4i.android.compat:mulsellistprefcompat:47167c5cb796de1a854788e9ff318358e36c8fb88123baaa6e38fb78511dfabe',
         'com.google.zxing:core:b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259',
         'cn.carbswang.android:NumberPickerView:18b3c316d62c7c277978a8d4ed57a5b8f4e943762264960f579a8a549c756729',
@@ -139,22 +139,23 @@ dependencyVerification {
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
         'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
         'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
+        'org.whispersystems:signal-service-java:1f268ea089d82c3a13e6cad3f4da10d63d3789f750894f9e50dae2bf7999aa71',
         'org.whispersystems:signal-protocol-android:d83cb3d15b667fc2543fa18ce80791c72c053e8ac54fc2941f0429a5944ca691',
-        'org.whispersystems:signal-service-java:7932363fec666fdc0b4b424eeca4bdca235f6bf2f226fb6a6ff742c49fc37087',
         'com.google.android.gms:play-services-basement:e1d29b21e02fd2a63e5a31807415cbb17a59568e27e3254181c01ffae10659bf',
-        'org.whispersystems:curve25519-android:d6a3ef3a70622af4c728b7fe5f8fdfc9e6cd39b1d39b2c77e7a2add9d876bc23',
-        'org.whispersystems:signal-protocol-java:d518d52eeb3c44210e0b6c687360848a87afbaee0bdf42e2a8dd9974d54fdb3a',
         'com.googlecode.libphonenumber:libphonenumber:9625de9d2270e9a280ff4e6d9ef3106573fb4828773fd32c9b7614f4e17d2811',
         'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
         'com.squareup.okhttp:okhttp:89b7f63e2e5b6c410266abc14f50fe52ea8d2d8a57260829e499b1cd9f0e61af',
         'com.fasterxml.jackson.core:jackson-databind:835097bcdd11f5bc8a08378c70d4c8054dfa4b911691cc2752063c75534d198d',
-        'org.whispersystems:curve25519-java:08cc3be52723e0fc4148e5e7002d51d6d7e495b2130022237f2d47b90af6ae0b',
+        'org.whispersystems:curve25519-android:d6a3ef3a70622af4c728b7fe5f8fdfc9e6cd39b1d39b2c77e7a2add9d876bc23',
+        'org.whispersystems:signal-protocol-java:d518d52eeb3c44210e0b6c687360848a87afbaee0bdf42e2a8dd9974d54fdb3a',
         'com.squareup.okio:okio:5e1098bd3fdee4c3347f5ab815b40ba851e4ab1b348c5e49a5b0362f0ce6e978',
         'com.fasterxml.jackson.core:jackson-annotations:0ca408c24202a7626ec8b861e99d85eca5e38b73311dd6dd12e3e9deecc3fe94',
         'com.fasterxml.jackson.core:jackson-core:cbf4604784b4de226262845447a1ad3bb38a6728cebe86562e2c5afada8be2c0',
+        'org.whispersystems:curve25519-java:08cc3be52723e0fc4148e5e7002d51d6d7e495b2130022237f2d47b90af6ae0b',
         'com.android.support:support-v4:c62f0d025dafa86f423f48df9185b0d89496adbc5f6a9be5a7c394d84cf91423',
     ]
 }
+
 
 android {
     compileSdkVersion 22

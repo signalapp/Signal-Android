@@ -462,7 +462,6 @@ ontvangen!</string>
 Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en weer te geven.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bijgewerkte maar onbekende identiteitsgegevens ontvangen. Raak aan om identiteit te bevestigen.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_duplicate_message">Gedupliceerd bericht.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Je hebt deze groep verlaten...</string>

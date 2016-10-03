@@ -477,7 +477,6 @@ telefonní číslo</string>
 Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Přijata zpráva s neznámým identifikačním klíčem. Klikněte pro její zpracování a zobrazení.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Aktualizována přijatá dat od neznámé identity. Klikněte pro ověření identity.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Reset zabezpečené komunikace.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opustil skupinu...</string>

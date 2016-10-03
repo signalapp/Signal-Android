@@ -489,7 +489,6 @@ sporočilo za izmenjavo ključev!</string>
 Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo in prikaz.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Prejet je bil nadgrajen identifikacijski ključ neznanega stika. Tapnite za potrditev istovetnosti.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Varna seja ponastavljena.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Zapustili ste skupino...</string>

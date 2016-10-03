@@ -480,7 +480,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
 </string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Recibida mensagem com chave de identidade desconhecida. Pressione para processar e exibir.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Actualização recebida mas com infomação de identidade desconhecida. Toque para validar identidade.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Deixou o grupo...</string>

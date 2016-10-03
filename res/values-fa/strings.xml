@@ -429,7 +429,6 @@
 یک پیام تبادل کلید برای نسخه اشتباه پروتوکل دریافت شد.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">پيامی با کليد شناسايی نامشخص دريافت شد. برای پردازش و شناسايی، لمس کنيد.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">اطلاعات به‌زوز شده ولی ناشناس دريافت شد. برای شناسايی لمس کنيد.</string>
-  <string name="SmsMessageRecord_secure_session_reset">تنظیم مجدد جلسه امن.</string>
   <string name="SmsMessageRecord_duplicate_message">تکثیر پیام.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترک گروه ...</string>

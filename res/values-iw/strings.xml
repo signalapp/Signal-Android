@@ -29,9 +29,9 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">לכבות את המסרים ואת השיחות הקוליות של סיגנל באמצעות ביטול רישום בשרת. יהיה צריך לרשום מחדש את מספר הטלפון שלך מחדש כדי להשתמש בהם שוב בעתיד.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">אירעה שגיאה בחיבור לשרת!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS מופעלים</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">נא לגעת כדי לשנות את אפליקצית ברירת המחדל שלך ל־SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">נא לגעת כדי לשנות את אפליקציית בררת המחדל שלך ל־SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">התמיכה ב־SMS כבויה</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">נא לגעת כדי להפוך את סיגנל לאפליקצית ברירת המחדל שלך ל־SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">נא לגעת כדי להפוך את סיגנל לאפליקציית בררת המחדל שלך ל־SMS</string>
   <string name="ApplicationPreferencesActivity_on">מופעל</string>
   <string name="ApplicationPreferencesActivity_On">מופעל</string>
   <string name="ApplicationPreferencesActivity_off">כבוי</string>
@@ -88,7 +88,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">לעבור ל־SMS לא מוצפן במידה והצפנה אינה אפשרית?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">לעבור ל־MMS לא מוצפן במידה והצפנה אינה אפשרית?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">המסר הזה <b>לא</b> יוצפן כי המקבל כבר אינו משתמש בסיגנל.\n\nהאם לשלוח מסר לא מאובטח?</string>
-  <string name="ConversationItem_unable_to_open_media">לא הצלחתי למצוא אפליקציה לפתיחת המדיה הזו.</string>
+  <string name="ConversationItem_unable_to_open_media">לא הצלחתי למצוא אפליקציה לפתיחת המדיה הזאת.</string>
   <string name="ConversationItem_from_s">מאת %s</string>
   <string name="ConversationItem_to_s">אל %s</string>
   <!--ConversationActivity-->
@@ -135,6 +135,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">מצלמה אינה זמינה</string>
   <string name="ConversationActivity_unable_to_record_audio">לא ניתן להקליט קול!</string>
   <string name="ConversationActivity_error_sending_voice_message">שגיאה בשליחת מסר קולי...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין אפליקציה זמינה לטיפול בקישור כזה במכשיר שלך.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי מסר</string>
   <string name="ConversationFragment_transport_s_sent_received_s">תעבורה: %1$s\nנשלח/התקבל: %2$s</string>
@@ -175,6 +176,7 @@
   <string name="ConversationFragment_deleting_messages">מוחק מסרים...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">חיפוש...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">במכשיר שלך לא מותקן דפדפן.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">למחוק את השיחה שנבחרה?</item>
@@ -226,7 +228,7 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">אפליקציות TextSecure ו־RedPhone הן עכשיו תכנת מסרים אחת לכל מצב: סיגנל.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ברוך בואך לסיגנל!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">אפליקציית TextSecure נקראת עכשיו סיגנל.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">אפליקציות TextSecure ו־RedPhone הן עכשיו אפליקציה אחת: סיגנל. נא להקיש כדי ללמוד עליה.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">מעכשיו TextSecure ו־RedPhone הן אפליקציה אחת: סיגנל. נא להקיש כדי ללמוד עליה.</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">ייצוא</string>
   <string name="ExportFragment_export_plaintext_to_storage">לייצא טקסט רגיל לאחסון?</string>
@@ -293,11 +295,16 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">כדי להקליט מסר קולי יש להקיש והחזיק ואז לשחרר לשליחה</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">שיתוף</string>
+  <string name="InviteActivity_choose_contacts">בחירת אנשי קשר</string>
   <string name="InviteActivity_cancel">ביטול</string>
   <string name="InviteActivity_sending">שולח..</string>
   <string name="InviteActivity_heart_content_description">לב</string>
   <string name="InviteActivity_invitations_sent">הזמנות נשלחו!</string>
   <string name="InviteActivity_invite_to_signal">הזמנה לסיגנל</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">שליחת SMS לחבר אחד</item>
+    <item quantity="other">שליחת SMS ל־%d חברים</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">לשלוח הזמנת SMS?</item>
     <item quantity="other">לשלוח %d הזמנות SMS?</item>
@@ -337,6 +344,7 @@
   <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">עכשיו %s בסיגנל, וזה הזמן לשאול „מה שלומך”!</string>
   <string name="MessageRecord_you">אני</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s הגדיר את זמן העלמת המסר ל־%2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">המשפט הסודי אינו מתאים!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">המשפט הסודי הישן אינו נכון!</string>
@@ -361,6 +369,9 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">לקשר מכשיר סיגנל?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">נראה שניסית לקשר מכשיר סיגנל באמצעות סורק מצד שלישי. למען בטיחותך, נא לסרוק את הקוד שוב באמצעות סיגנל.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">מסרים נעלמים</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">המסרים שלך לא יפוגו.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">מסרים שנשלחו והתקבלו בשיחה הזאת ייעלמו %s אחרי שייראו.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">נא לרשום משפט סודי</string>
   <string name="PassphrasePromptActivity_watermark_content_description">סמל סיגנל</string>
@@ -374,6 +385,7 @@
   <string name="RatingManager_rate_now">לדרג עכשיו!</string>
   <string name="RatingManager_no_thanks">לא תודה</string>
   <string name="RatingManager_later">אחר־כך</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">אוי, נראה שאפליקציית חנות Play אינה מותקנת במכשיר שלך.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">לחסום את איש הקשר הזה?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">לא תקבל עוד מסרים או שיחות מהמשתמש הזה.</string>
@@ -463,7 +475,6 @@
 של הפרוטוקול.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">התקבל מסר עם מפתח זהות בלתי־ידוע. יש ללחוץ להמשך והצגה.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">התקבל מידע זהות מעודכן, אבל בלתי־ידוע. יש להקיש כדי לאמת את הזהות.</string>
-  <string name="SmsMessageRecord_secure_session_reset">התחברות מאובטחת אותחלה.</string>
   <string name="SmsMessageRecord_duplicate_message">מסר כפול.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">עזר את הקבוצה...</string>
@@ -474,6 +485,7 @@
   <string name="ThreadRecord_missed_call">שיחה שלא נענתה</string>
   <string name="ThreadRecord_media_message">מסר מדיה</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">עכשיו %s בסיגנל, וזה הזמן לשאול „מה שלומך”!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן העלמת המסר הוגדר ל־%s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">אין לך מפתח זהות.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">לנמען אין מפתח זהות.</string>
@@ -618,11 +630,37 @@
   <string name="experience_upgrade_activity__continue">המשך</string>
   <!--expiration-->
   <string name="expiration_off">כבוי</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">שנייה אחת</item>
+    <item quantity="other">%d שניות</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%dשנ׳</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">דקה אחת</item>
+    <item quantity="other">%d דקות</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dד׳</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">שעה אחת</item>
+    <item quantity="other">%d שעות</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dשע׳</string>
+  <plurals name="expiration_days">
+    <item quantity="one">יום אחד</item>
+    <item quantity="other">%d ימים</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dי׳</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">שבוע אחד</item>
+    <item quantity="other">%d שבועות</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dשב׳</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">לא ניתן לקרוא את היומן במכשיר שלך. עדיין אפשר להשתמש ב־ADB כדי לקבל יומן תיקון שגיאות.</string>
   <string name="log_submit_activity__thanks">תודה על העזרה שלך!</string>
   <string name="log_submit_activity__submitting">שולח</string>
   <string name="log_submit_activity__posting_logs">שולח יומנים ל־gist...</string>
+  <string name="log_submit_activity__no_browser_installed">לא מותקן דפדפן</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">האם לייבא את המסרים (SMS) הקיימים שלך למסד הנתונים המוצפן של סיגנל?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">מסד הנתונים הרגיל של המערכת לא ישונה בשום צורה.</string>
@@ -926,7 +964,9 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">שמירת צרופה</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">מסרים נעלמים</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">תפוגת מסרים</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">הזמן</string>
   <!--conversation_insecure_no_push-->

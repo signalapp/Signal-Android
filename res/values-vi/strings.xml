@@ -442,7 +442,6 @@ trao đổi chìa khóa bị hỏng!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Nhận được cập nhật nhưng không rõ thông tin danh tính. Nhấn vào để kiểm nhận danh tính.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Đã tái thiết lập phiên bảo mật.</string>
   <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Rời nhóm...</string>

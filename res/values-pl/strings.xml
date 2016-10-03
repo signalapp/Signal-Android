@@ -467,7 +467,6 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
 Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Otrzymano wiadomość z nieznanym kluczem tożsamości. Dotknij, aby przetworzyć i wyświetlić.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Otrzymano zaktualizowaną, ale nieznaną informację o tożsamości. Dotknij aby potwierdzić tożsamość.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Reset bezpiecznej sesji.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opuścił grupę...</string>
