@@ -148,12 +148,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       public void run() {
         ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_from_bottom, R.anim.slide_to_top);
-
+        getSupportFragmentManager().popBackStack();
         displayFragment.setScannedFingerprint(data);
-        transaction.replace(android.R.id.content, displayFragment)
-                   .commit();
       }
     });
   }
