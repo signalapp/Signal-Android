@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.preferences.ColorPreference;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -388,9 +389,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               DatabaseFactory.getRecipientPreferenceDatabase(context)
                              .setColor(recipients, selectedColor);
 
-              ApplicationContext.getInstance(context)
-                                .getJobManager()
-                                .add(new MultiDeviceContactUpdateJob(context, recipients.getPrimaryRecipient().getRecipientId()));
+              if (DirectoryHelper.getUserCapabilities(context, recipients)
+                                 .getTextCapability() == DirectoryHelper.UserCapabilities.Capability.SUPPORTED)
+              {
+                ApplicationContext.getInstance(context)
+                                  .getJobManager()
+                                  .add(new MultiDeviceContactUpdateJob(context, recipients.getPrimaryRecipient().getRecipientId()));
+              }
               return null;
             }
           }.execute();
