@@ -88,6 +88,7 @@ public class ConversationFragment extends Fragment
   private Locale       locale;
   private RecyclerView list;
   private View         loadMoreView;
+  private View         composeDivider;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -103,6 +104,32 @@ public class ConversationFragment extends Fragment
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
+
+    composeDivider = view.findViewById(R.id.compose_divider);
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+      composeDivider.setVisibility(View.INVISIBLE);
+    }
+
+    list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      boolean wasAtBottom = true;
+
+      @Override
+      public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        super.onScrollStateChanged(recyclerView, newState);
+
+        if (wasAtBottom != isAtBottom()) {
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
+            composeDivider.animate().alpha(isAtBottom() ? 0 : 1);
+          } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+            composeDivider.setAlpha(isAtBottom() ? 0 : 1);
+          } else {
+            composeDivider.setVisibility(isAtBottom() ? View.INVISIBLE : View.VISIBLE);
+          }
+
+          wasAtBottom = isAtBottom();
+        }
+      }
+    });
 
     loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
     loadMoreView.setOnClickListener(new OnClickListener() {
@@ -237,6 +264,17 @@ public class ConversationFragment extends Fragment
         list.smoothScrollToPosition(0);
       }
     });
+  }
+
+  private boolean isAtBottom() {
+    if (list.getChildCount() == 0) return true;
+
+    final View bottomView = list.getChildAt(0);
+    int firstVisibleItem = ((LinearLayoutManager) list.getLayoutManager())
+            .findFirstVisibleItemPosition();
+
+    final boolean isAtBottom = (firstVisibleItem == 0);
+    return isAtBottom && bottomView.getBottom() <= list.getHeight();
   }
 
   private void handleCopyMessage(final Set<MessageRecord> messageRecords) {
