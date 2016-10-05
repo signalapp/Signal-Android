@@ -115,7 +115,8 @@ public class TextSecurePreferences {
   }
 
   public static boolean isBlockingIdentityUpdates(Context context) {
-    return getBooleanPreference(context, BLOCKING_IDENTITY_CHANGES_PREF, false);
+    return true;
+//    return getBooleanPreference(context, BLOCKING_IDENTITY_CHANGES_PREF, false);
   }
 
   public static void setBlockingIdentityUpdates(Context context, boolean value) {
