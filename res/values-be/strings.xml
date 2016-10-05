@@ -37,7 +37,6 @@
   <!--BlockedContactsActivity-->
   <!--CallScreen-->
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Магчыма Вы жадаеце верыфікаваць гэты кантакт?</string>
   <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Аб\'ём паведамлення: %d KB</string>
@@ -148,7 +147,6 @@
   <string name="KeyScanningActivity_install_barcode_Scanner">Усталяваць сканэр штрыхкодаў?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не атрымалася даслаць</string>
-  <string name="MessageDetailsRecipient_new_identity">Новая асоба</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Памылка захавання MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Памылка злучэння з MMS правайдэрам...</string>
@@ -223,26 +221,11 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Атрыманы пашкоджаны ключ абмену паведамленнямі!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Атрыманы ключ абмену паведамленнямі для няправільнай версіі пратакола.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Атрыманая інфармацыя абноўленая, але мае невядомую інфармацыю індэнтыфікацыі. Націсніце каб валідзіраваць ідэнтыфікацыю.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат паведамлення.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Пакінуць групу...</string>
   <string name="ThreadRecord_draft">Чарнавік:</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас няма індэнтыфікацыйнага ключа.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Атрымальнік ня мае ідэнтыфікацыйнага ключа.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Атрымальнік ня мае ідэнтыфікацыйнага ключа!</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УВАГА, адсканаваныя ключы не супадаюць! Калі ласка ўважліва праверце адбіткі.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ верыфікавана!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Іх ключ правільны. Таксама не забудзься верыфікаваць свой ключ з імі.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Верыфікавана!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">У Вас няма ідэнтыфікацыйнага ключа!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">У Вас няма ідэнтыфікацыйнага ключа.</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">УВАГА, адсканаваны ключ не супадае!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">Не верыфікавана!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Адсканаваныя ключ супадае!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Верыфікавана!</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Ініцыяваць нягледзячы на існуючы запыт?</string>
   <string name="KeyExchangeInitiator_send">Даслаць</string>
@@ -403,10 +386,7 @@
   <string name="registration_progress_activity__check">Праверыць</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Увядзіце імя альбо нумар тэлефона</small></string>
-  <string name="recipients_panel__add_member">Дадаць удзельніка</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Іх ідэнтыфікатар (яны чытаюць):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Ваш ідэнтыфікатар (вы чытаеце):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Некаторыя акалічнасці патрабуюць вашай увагі.</string>
   <string name="message_details_header__sent">Адпраўлена</string>
@@ -419,9 +399,7 @@
   <string name="AndroidManifest__create_passphrase">Стварыць пароль</string>
   <string name="AndroidManifest__enter_passphrase">Увядзіце пароль</string>
   <string name="AndroidManifest__select_contacts">Абраць кантакты</string>
-  <string name="AndroidManifest__public_identity_key">Публічны ідэнтыфікацыйны ключ</string>
   <string name="AndroidManifest__change_passphrase">Змяніць пароль</string>
-  <string name="AndroidManifest__verify_identity">Праверыць ідэнтыфікатар</string>
   <string name="AndroidManifest__media_overview">Усе выявы</string>
   <string name="AndroidManifest__media_overview_named">Усе выявы з %1$s</string>
   <!--arrays.xml-->
@@ -547,8 +525,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Новая размова</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Бяспка</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Праверыць ідэнтыфікатар</string>
   <!--conversation_muted-->
   <!--conversation_unmuted-->
   <!--conversation-->

@@ -65,13 +65,6 @@ Vai ser necessário registar novamente o seu número de telefone se pretender ut
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">A receber chamada</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">A
-assinatura deste intercâmbio de chaves é diferente da previamente recebida de %1$s.
-Isto pode significar que alguém está a tentar interceptar esta comunicação ou simplesmente
-que %2$s reinstalou o Signal e tem agora uma nova chave de identidade.
-</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pode ser desejável 
-verificar este contacto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
@@ -130,8 +123,7 @@ verificar este contacto.</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS não suportadas</string>
   <string name="ConversationActivity_mms_not_supported_message">Esta mensagem não pode ser enviada pois o seu operador não suporta MMS.</string>
   <string name="ConversationActivity_specify_recipient">Por favor escolha um contacto</string>
-  <string name="ConversationActivity_unblock_question">Desbloquear?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Tem a certeza que quer desbloquear este contacto?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Desbloquear este contacto?</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo tem um tamanho superior ao limite do tipo de mensagem que está a enviar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Máquina fotográfica indisponível</string>
@@ -321,7 +313,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal necessita do Barcode Scanner para códigos QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">O envio falhou</string>
-  <string name="MessageDetailsRecipient_new_identity">Nova identidade</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erro a armazenar MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erro na ligação com o servidor MMS...</string>
@@ -391,10 +382,8 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, a Play Store aparenta não estar instalada neste dispositivo.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear este contacto?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Não irá receber mensagens ou chamadas adicionais deste utilizador.</string>
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Desbloquear este contacto?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Tem a certeza que quer desbloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
   <string name="RecipientPreferenceActivity_enabled">Activo</string>
   <string name="RecipientPreferenceActivity_disabled">Desactivado</string>
@@ -478,8 +467,6 @@ intercâmbio de chaves corrompida!
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Mensagem de troca de chave inválida para esta versão do protocolo.
 </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Recibida mensagem com chave de identidade desconhecida. Pressione para processar e exibir.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Actualização recebida mas com infomação de identidade desconhecida. Toque para validar identidade.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Deixou o grupo...</string>
@@ -492,25 +479,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s está a usar Signal, diga olá!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de mensagens a desaparecer definido para %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Não tem uma chave de identidade.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Destinatário não tem chave de identidade.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Destinatário não tem chave de identidade!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Digitalizar o código QR do contacto</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Mostrar o seu código QR</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ATENÇÃO, a chave lida NÃO coincide! Por favor, verifique a impressão digital cuidadosamente.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">NÃO verificado!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">A chave do destinatário está correcta. É igualmente necessário verificar a sua chave perante ele.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Verificado!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Não tem uma chave de identidade!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Você não tem uma chave de identidade.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Digitalizar o código QR do contacto</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Mostrar o seu código QR</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">AVISO, a chave lida NÃO coincide.</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">NÃO verificado!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">A chave lida coincide!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Verificado!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">A sua impressão digital da identidade</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -719,7 +687,6 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Cor</string>
   <string name="recipient_preferences__color_for_this_contact">Cor para este contacto</string>
-  <string name="recipient_preferences__verify_identity">Verificar identidade</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada Signal</string>
   <string name="redphone_call_controls__end_call">terminar chamada</string>
@@ -801,10 +768,7 @@ falhou.
   <string name="registration_progress_activity__check">Verificar</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introduza um nome ou número</small></string>
-  <string name="recipients_panel__add_member">Adicionar novo membro</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">A identidade do destinatário (ele lê):</string>
-  <string name="verify_identity_activity__your_identity_you_read">A sua identidade (você lê):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns problemas requerem a sua atenção.</string>
   <string name="message_details_header__sent">Enviado</string>
@@ -818,9 +782,7 @@ falhou.
   <string name="AndroidManifest__enter_passphrase">Introduza palavra-chave</string>
   <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
   <string name="AndroidManifest__signal_detected">Signal detectado</string>
-  <string name="AndroidManifest__public_identity_key">Chave de identidade pública</string>
   <string name="AndroidManifest__change_passphrase">Alterar frase-chave</string>
-  <string name="AndroidManifest__verify_identity">Verificar identidade</string>
   <string name="AndroidManifest__log_submit">Submeter registo de depuração</string>
   <string name="AndroidManifest__media_preview">Antevisão de média</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
@@ -831,7 +793,6 @@ falhou.
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
-  <string name="arrays__your_identity_key">A sua chave de identidade</string>
   <string name="arrays__use_default">Usar a opção por omissão</string>
   <string name="arrays__use_custom">Usar a opção personalizada</string>
   <string name="arrays__mute_for_one_hour">Silenciar por 1 hora</string>
@@ -1003,8 +964,6 @@ falhou.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Segurança</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Verificar identidade</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sessão segura</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Não silenciar</string>

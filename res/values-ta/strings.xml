@@ -57,8 +57,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">உள்வரும் அழைப்பு</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">நீங்கள் இந்த தொடர்புபை 
-உறுதி செய்ய விரும்பலாம்</string>
   <string name="ConfirmIdentityDialog_accept">ஏற்க</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">செய்தி %s</string>
@@ -113,8 +111,6 @@
   <string name="ConversationActivity_mms_not_supported_title">எம்எம்எஸ் ஆதரவில்லை</string>
   <string name="ConversationActivity_mms_not_supported_message">இச் செய்தியை அனுப்ப ஆதரவில்லை உங்கள் தொலைதொடர்பு சாதனம்  எம் எம் எஸ் ஆதரவில்லை</string>
   <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
-  <string name="ConversationActivity_unblock_question">தடுப்புநீக்கு ?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">உறுதியாக இந்த தொடர்பை தடை நீக்கு ?</string>
   <string name="ConversationActivity_unblock">தடுப்புநீக்க</string>
   <string name="ConversationActivity_quick_camera_unavailable">புகைப்படக் கருவி கிடைப்பிலில்லை</string>
   <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய  இயலவில்லை!</string>
@@ -245,7 +241,6 @@
   <string name="KeyScanningActivity_install_barcode_Scanner">பார்கோடு ஸ்கேனர் நிறுவலாமா?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">அனுப்ப முடியவில்லை</string>
-  <string name="MessageDetailsRecipient_new_identity">புதிய அடையாளம்</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS  சேமிப்பதில் பிழை!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS சேவையுடன் இணைவதில் பிழை...</string>
@@ -295,7 +290,6 @@
   <string name="RatingManager_later">பிறகு</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">தடு</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">உறுதியாக இந்த தொடர்பை தடை நீக்கு ?</string>
   <string name="RecipientPreferenceActivity_unblock">தடுப்புநீக்க</string>
   <string name="RecipientPreferenceActivity_enabled">செயல்படுத்தப்பட்டது</string>
   <string name="RecipientPreferenceActivity_disabled">முடக்கப்பட்டது</string>
@@ -365,7 +359,6 @@
  செய்தி பெறப்பட்டது!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 செல்லுபடியாகாத நெறிமுறைக்கு சாவிபரிமாற்ற செய்தி பெறப்பட்டது.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">மேம்படுத்தப்பட்ட ஆனால் தெரியாத அடையாளத்தகவல் பெறப்பட்டது. அடையாளத்தை சரிபார்க்க தொடவும்.</string>
   <string name="SmsMessageRecord_duplicate_message">நகல் செய்தி.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">குழுவை விட்டு விலகினார்...</string>
@@ -375,20 +368,6 @@
   <string name="ThreadRecord_missed_call">தவறிய அழைப்பு</string>
   <string name="ThreadRecord_media_message">பல்லூடகச் செய்தி</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">உங்களிடம் ஒரு அடையாளச்சாவி இல்லை.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">பெறுநரிடம் ஒரு அடையாளச்சாவி இல்லை.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">பெறுநரிடம்  ஒரு அடையாளச்சாவி  இல்லை!</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">எச்சரிக்கை, ஸ்கேன் செய்யப்பட்ட சாவி பொருந்தவில்லை! கவனமாக டிஜிட்டல் கைரேகையை சரிபார்க்கவும்.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">சரிபார்க்கப்படவில்லை!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">அவர்களின் சாவி சரியாக இருக்கிறது. அதுபோல அவர்களும் உங்கள் சாவியை சரிபார்ப்பது அவசியம்.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">சரிபார்க்கப்பட்டது!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">உங்களிடம்  ஒரு அடையாளச்சாவி இல்லை!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">உங்களிடம்  ஒரு அடையாளச்சாவி இல்லை.</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">எச்சரிக்கை, ஸ்கேன் செய்யப்பட்ட சாவி பொருந்தவில்லை!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">சரிபார்க்கப்படவில்லை! </string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">ஸ்கேன் செய்யப்பட்ட சாவி பொருந்திய்து!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">சரிபார்க்கப்பட்டது!</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">பழைய கோரிக்கை இருப்பினும் தொடங்கலாமா?</string>
   <string name="KeyExchangeInitiator_send">அனுப்பு</string>
@@ -587,10 +566,7 @@
   <string name="registration_progress_activity__check">சரி பார்க்க</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
-  <string name="recipients_panel__add_member">குழுஉறுப்பினர் சேர்க்</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">அவர்களின் அடையாளம் (அவர்கள்  படிக்க):</string>
-  <string name="verify_identity_activity__your_identity_you_read">உங்களின் அடையாளம் (நீங்கள் படிக்க):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">சில பிரச்சினைகளுக்கு உங்கள் கவனம் தேவைப்படுகிறது.</string>
   <string name="message_details_header__sent">அனுப்பபட்டது</string>
@@ -604,9 +580,7 @@
   <string name="AndroidManifest__enter_passphrase">கடவுச்சொல்லை உள்ளிடவும். </string>
   <string name="AndroidManifest__select_contacts">தொடர்புகளை தேர்ந்தெடு</string>
   <string name="AndroidManifest__signal_detected">சிக்னல் செயலி உணரப்பட்டது</string>
-  <string name="AndroidManifest__public_identity_key">பொது அடையாளச் சாவி</string>
   <string name="AndroidManifest__change_passphrase">கடவுச்சொல்லை மாற்று</string>
-  <string name="AndroidManifest__verify_identity">அடையாளத்தை சரிபார்</string>
   <string name="AndroidManifest__media_overview">அனைத்து படங்கள்</string>
   <string name="AndroidManifest__media_overview_named">%1$s உடன் உள்ள அனைத்து படங்கள்</string>
   <string name="AndroidManifest__message_details">செய்தி விவரங்கள்</string>
@@ -744,8 +718,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">பாதுகாப்பு</string>
-  <string name="conversation_secure_verified__menu_verify_identity">அடையாளத்தை சரிபார்</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">ஒலித்தடையை நீக்கு</string>
   <!--conversation_unmuted-->
