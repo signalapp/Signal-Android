@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:gravity="center">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
 
     <cn.carbswang.android.numberpickerview.library.NumberPickerView
             android:id="@+id/expiration_number_picker"
@@ -25,8 +26,9 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_below="@id/expiration_number_picker"
-              android:minLines="2"
-              android:padding="20dp"/>
+              android:minLines="3"
+              android:padding="20dp"
+              tools:text="Your messages will not expire."/>
 
 
 </RelativeLayout>
