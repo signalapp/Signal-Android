@@ -127,7 +127,7 @@ los números de seguridad para este contacto.</string>
   <string name="ConversationActivity_mms_not_supported_message">Este mensaje no se puede enviar debido a que su proveedor no admite MMS.</string>
   <string name="ConversationActivity_specify_recipient">Por favor, elija un contacto</string>
   <string name="ConversationActivity_unblock_this_contact_question">¿Desbloquear este contacto?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Podrá recibir mensajes y llamadas de este contacto una vez más.</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Podrá volver a recibir mensajes y llamadas de este contacto.</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">El adjunto excede los límites de tamaño para el tipo de mensaje que está enviando.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cámara no disponible</string>
@@ -393,7 +393,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ya no recibirá mensajes y llamadas de este contacto.</string>
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">¿Desbloquear este contacto?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Podrá recibir mensajes y llamadas de este contacto una vez más.</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Podrá volver a recibir mensajes y llamadas de este contacto.</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
   <string name="RecipientPreferenceActivity_enabled">Habilitado</string>
   <string name="RecipientPreferenceActivity_disabled">Deshabilitado</string>

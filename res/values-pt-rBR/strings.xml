@@ -64,6 +64,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Recebendo chamada</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Os
+        números de segurança de %1$s mudaram. Isto pode significar que alguém está tentando
+        interceptar sua comunicação, ou que %2$s simplesmente reinstalou o Signal.
+    </string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Talvez você queira verificar
+        os números de segurança deste contato.
+    </string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
@@ -123,6 +130,7 @@
   <string name="ConversationActivity_mms_not_supported_message">Esta mensagem não pode ser enviada pois sua operadora não tem suporte a MMS.</string>
   <string name="ConversationActivity_specify_recipient">Favor escolher um contato</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desbloquear este contato?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Você poderá novamente receber mensagens e chamadas deste contato.</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede os limites de tamanho para o tipo de mensagem sendo enviada.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Câmera indisponível</string>
@@ -313,6 +321,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">O Signal precisa do Scanner de Código de Barras para códigos QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Falha no envio</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Novos números de segurança</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erro ao armazenar MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erro na conexão com provedor de MMS...</string>
@@ -383,8 +392,10 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ops, o aplicativo Play Store parece não estar instalado no seu dispositivo.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear esta contato?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Você não receberá mais mensagens e chamadas deste contato.</string>
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Desbloquear este contato?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Você poderá novamente receber mensagens e chamadas deste contato.</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
   <string name="RecipientPreferenceActivity_enabled">Habilitado</string>
   <string name="RecipientPreferenceActivity_disabled">Desabilitado</string>
@@ -472,6 +483,7 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Mensagem de troca de chaves recebida para uma versão de protocolo inválida.
     </string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Foi recebida uma mensagem com novos números de segurança. Clique para processá-la e exibi-la.</string>
   <string name="SmsMessageRecord_secure_session_reset">Você reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
@@ -486,6 +498,9 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s está no Signal, diga oi!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de expiração de mensagem definido para %s</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Signal. Peça a ele para atualizá-la antes de verificar os números de segurança.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Você está tentando verificar números de segurança com %1$s, mas escaneou %2$s no lugar.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">O código QR escaneado não é um código de verificação de número de segurança em formato correto. Por favor tente escanear novamente.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -694,6 +709,7 @@
   <string name="recipient_preferences__block">Bloquear</string>
   <string name="recipient_preferences__color">Cor</string>
   <string name="recipient_preferences__color_for_this_contact">Cor para este contato</string>
+  <string name="recipient_preferences__verify_safety_numbers">Verificar números de segurança</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <string name="redphone_call_controls__end_call">encerrar ligação</string>
@@ -768,7 +784,10 @@ falhou.</string>
   <string name="registration_progress_activity__check">Checar</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Digite um nome ou um número</small></string>
+  <string name="recipients_panel__add_members">Adicionar membros</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Se você deseja verificar a segurança da sua criptografia ponta-a-ponta com %s, compare os números acima com os números no dispositivo deles. Ou então você pode escanear o código no telefone deles, ou ainda pedir a eles que escaneiem seu código.</string>
+  <string name="verify_display_fragment__tap_to_scan">Clique para escanear</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns assuntos precisam de sua atenção.</string>
   <string name="message_details_header__sent">Enviada</string>
@@ -783,6 +802,7 @@ falhou.</string>
   <string name="AndroidManifest__select_contacts">Selecionar contatos</string>
   <string name="AndroidManifest__signal_detected">Signal detectado</string>
   <string name="AndroidManifest__change_passphrase">Mudar frase-chave</string>
+  <string name="AndroidManifest__verify_safety_numbers">Verificar números de segurança</string>
   <string name="AndroidManifest__log_submit">Enviar log de depuração</string>
   <string name="AndroidManifest__media_preview">Pré-visualização de mídia</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
@@ -909,6 +929,8 @@ falhou.</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>
   <string name="preferences_app_protection__blocked_contacts">Contatos bloqueados</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Aprovação de números de segurança</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Exigir aprovação de novos números de segurança quando houver mudança</string>
   <string name="preferences_notifications__display_in_notifications">Exibir em notificações</string>
   <string name="preferences_chats__when_using_mobile_data">Quando usar dados móveis</string>
   <string name="preferences_chats__when_using_wifi">Quando usar Wi-Fi</string>

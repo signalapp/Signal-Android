@@ -333,7 +333,7 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
   <string name="MessageRecord_you">Du</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s sätt självförstörande meddelandes tid till %2$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s har satt självförstörande meddelandes tid till %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Inkorrekt gammalt lösenord!</string>
@@ -678,6 +678,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="recipient_preferences__block">Blockera</string>
   <string name="recipient_preferences__color">Färg</string>
   <string name="recipient_preferences__color_for_this_contact">Färg för denna kontakt</string>
+  <string name="recipient_preferences__verify_safety_numbers">Verifiera säkerhetsnummer</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalsamtal</string>
   <string name="redphone_call_controls__end_call">avsluta samtal</string>
@@ -741,7 +742,9 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="registration_progress_activity__check">Kontrollera</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
+  <string name="recipients_panel__add_members">Lägg till medlemmar</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Vissa frågor behöver din uppmärksamhet.</string>
   <string name="message_details_header__sent">Skickat</string>
@@ -756,6 +759,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__select_contacts">Välj kontakter</string>
   <string name="AndroidManifest__signal_detected">Signal hittad</string>
   <string name="AndroidManifest__change_passphrase">Ändra lösenord</string>
+  <string name="AndroidManifest__verify_safety_numbers">Verifiera säkerhetsnummer</string>
   <string name="AndroidManifest__log_submit">Skicka in felsökningslogg</string>
   <string name="AndroidManifest__media_preview">Mediaförhandsgranskning</string>
   <string name="AndroidManifest__media_overview">Alla bilder</string>
@@ -882,6 +886,8 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' kompatibilitetsläge</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivera om din enhet använder SMS/MMS sändning över WiFi (aktivera endast när \'WiFi Calling\' är aktiverat på din enhet)</string>
   <string name="preferences_app_protection__blocked_contacts">Blockerade kontakter</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Godkännande av säkerhetsnummer</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Kräv godkännande av nya säkerhetsnummer när de ändras</string>
   <string name="preferences_notifications__display_in_notifications">Visa i aviseringar</string>
   <string name="preferences_chats__when_using_mobile_data">Vid användande av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Vid användande av Wi-Fi</string>

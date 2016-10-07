@@ -98,7 +98,7 @@
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
   <string name="ConversationActivity_reset">Ponastavi</string>
   <string name="ConversationActivity_delete_thread_question">Izbrišem pogovor?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">To bo nepovratno izbrisalo vsa sporočila tega pogovora.</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">S tem boste nepovratno izbrisali vsa sporočila tega pogovora.</string>
   <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
   <string name="ConversationActivity_select_contact_info">Izberi podatke o stiku</string>
   <string name="ConversationActivity_compose_message">Sestavi sporočilo</string>
@@ -151,10 +151,10 @@
     <item quantity="other">Izbrišem izbrana sporočila?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">To bo nepovratno izbrisalo izbrano sporočilo.</item>
-    <item quantity="two">To bo nepovratno izbrisalo %1$d izbrani sporočili.</item>
-    <item quantity="few">To bo nepovratno izbrisalo vsa %1$d izbrana sporočila.</item>
-    <item quantity="other">To bo nepovratno izbrisalo vseh %1$d izbranih sporočil.</item>
+    <item quantity="one">S tem boste nepovratno izbrisali izbrano sporočilo.</item>
+    <item quantity="two">S tem boste nepovratno izbrisali %1$d izbrani sporočili.</item>
+    <item quantity="few">S tem boste nepovratno izbrisali vsa %1$d izbrana sporočila.</item>
+    <item quantity="other">S tem boste nepovratno izbrisali vseh %1$d izbranih sporočil.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Shranim v sistemsko shrambo?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -201,10 +201,10 @@
     <item quantity="other">Izbrišem izbrane pogovore?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">To bo nepovratno izbrisalo izbrani pogovor.</item>
-    <item quantity="two">To bo nepovratno izbrisalo %1$d izbrana pogovora.</item>
-    <item quantity="few">To bo nepovratno izbrisalo vse %1$d izbrane pogovore.</item>
-    <item quantity="other">To bo nepovratno izbrisalo vseh %1$d izbranih pogovorov.</item>
+    <item quantity="one">S tem boste nepovratno izbrisali izbrani pogovor.</item>
+    <item quantity="two">S tem boste nepovratno izbrisali %1$d izbrana pogovora.</item>
+    <item quantity="few">S tem boste nepovratno izbrisali vse %1$d izbrane pogovore.</item>
+    <item quantity="other">S tem boste nepovratno izbrisali vseh %1$d izbranih pogovorov.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Brišem izbrane pogovore...</string>
