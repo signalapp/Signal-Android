@@ -240,7 +240,12 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
     @Override
     public void onModified(Recipients recipients) {
-      setFingerprintViews(fingerprint);
+      Util.runOnMain(new Runnable() {
+        @Override
+        public void run() {
+          setFingerprintViews(fingerprint);
+        }
+      });
     }
 
     @Override
