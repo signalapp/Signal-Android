@@ -924,6 +924,7 @@
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
     <string name="message_details_header__sent">Sent</string>
     <string name="message_details_header__received">Received</string>
+    <string name="message_details_header__disappears">Disappears</string>
     <string name="message_details_header__via">Via</string>
     <string name="message_details_header__to">To:</string>
     <string name="message_details_header__from">From:</string>
