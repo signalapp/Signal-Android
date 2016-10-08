@@ -135,7 +135,7 @@ numerele de siguranță pentru aceast contact.</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">O să poți primi din nou mesaje și apeluri de la acest contact.</string>
   <string name="ConversationActivity_unblock">Deblochează</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vrei să-l trimiți.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Camera foto indisponibilă</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Cameră indisponibilă</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Eroare la trimiterea mesajului vocal...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
@@ -560,7 +560,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__video">Video</string>
   <string name="attachment_type_selector__contact">Contact</string>
-  <string name="attachment_type_selector__camera">Camera foto</string>
+  <string name="attachment_type_selector__camera">Cameră</string>
   <string name="attachment_type_selector__location">Locație</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Parola veche</string>
@@ -796,14 +796,15 @@ SMS a eșuat.</string>
   <string name="registration_progress_activity__check">Verifică</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introdu un nume sau un număr</small></string>
-  <string name="recipients_panel__add_members">Adaugă membrii</string>
+  <string name="recipients_panel__add_members">Adaugă membri</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Dacă dorești să verifici securitatea criptării end-to-end cu %s, compară numerele de deasupra cu numerele de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău.</string>
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Dacă dorești să verifici securitatea criptării integrale cu %s, compară numerele de deasupra cu numerele de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău.</string>
   <string name="verify_display_fragment__tap_to_scan">Apasă pentru a scana</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Anumite probleme au nevoie de atenția ta.</string>
   <string name="message_details_header__sent">Trimis</string>
   <string name="message_details_header__received">Primit</string>
+  <string name="message_details_header__disappears">Dispar</string>
   <string name="message_details_header__via">Via</string>
   <string name="message_details_header__to">Către:</string>
   <string name="message_details_header__from">De la:</string>
@@ -1029,7 +1030,7 @@ SMS a eșuat.</string>
   <string name="text_secure_normal__menu_new_message">Mesaj nou</string>
   <string name="text_secure_normal__menu_new_group">Grup nou</string>
   <string name="text_secure_normal__menu_settings">Setări</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Blocare</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Blochează</string>
   <string name="text_secure_normal__mark_all_as_read">Marchează tot ca citit</string>
   <string name="text_secure_normal__invite_friends">Invită prieteni</string>
   <string name="text_secure_normal__help">Ajutor</string>

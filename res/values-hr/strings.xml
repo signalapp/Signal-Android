@@ -487,7 +487,7 @@ Provjerite da li je ovo vaš broj telefona! Uskoro ćemo poslati SMS poruku na n
 razmjene ključeva!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Primljena poruka s novim sigurnosnim ključem. Pritisnite za obradu i prikaz.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Primljena poruka s novim sigurnosnim brojevima. Pritisnite za obradu i prikaz.</string>
   <string name="SmsMessageRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
@@ -502,8 +502,9 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt ima staru inačicu Signala. Zamolite ih da ažuriraju aplikaciju prije provjere sigurnosnih ključeva.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt ima staru inačicu Signala. Zamolite ih da ažuriraju aplikaciju prije provjere sigurnosnih brojeva.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Pokušavate provjeriti sigurnosne brojeve s %1$s, ali ste umjesto toga skenirali %2$s.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirani QR kod nije ispravno oblikovani sigurnosni broj za provjeru. Pokušajte skenirati ponovno.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
   <string name="KeyExchangeInitiator_send">Pošalji</string>
@@ -719,6 +720,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__block">Blokiraj</string>
   <string name="recipient_preferences__color">Boja</string>
   <string name="recipient_preferences__color_for_this_contact">Boja za ovaj kontakt</string>
+  <string name="recipient_preferences__verify_safety_numbers">Potvrdi sigurnosni broj</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal poziv</string>
   <string name="redphone_call_controls__end_call">završi poziv</string>
@@ -788,7 +790,10 @@ neuspješno.</string>
   <string name="registration_progress_activity__check">Provjeri</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
+  <string name="recipients_panel__add_members">Dodaj članove</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Ukoliko želite provjeriti sigurnost vašeg kriptiranja s %s, usporedite brojeve iznad s brojevima na njihovom uređaju. Možete i skenirati kod na njihovom telefonu ili ih zamoliti da skeniraju vaš kod.</string>
+  <string name="verify_display_fragment__tap_to_scan">Pritisnite za skeniranje</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Neki problemi zahtjevaju vašu pozornost.</string>
   <string name="message_details_header__sent">Poslano</string>
@@ -803,6 +808,7 @@ neuspješno.</string>
   <string name="AndroidManifest__select_contacts">Odaberite kontakte</string>
   <string name="AndroidManifest__signal_detected">Signal otkriven</string>
   <string name="AndroidManifest__change_passphrase">Izmjeni lozinku</string>
+  <string name="AndroidManifest__verify_safety_numbers">Potvrdite sigurnosne brojeve</string>
   <string name="AndroidManifest__log_submit">Pošalji debug zapis</string>
   <string name="AndroidManifest__media_preview">Prikaz medija</string>
   <string name="AndroidManifest__media_overview">Sve slike</string>
@@ -930,6 +936,8 @@ neuspješno.</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' način kompatibilnosti</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ukoliko vaš uređaj koristi SMS/MMS isporuku preko WiFi (omogućite jedino kada je \'WiFi pozivanje\' omogućeno na vašem uređaju)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokirani kontakti</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Odobrenje sigurnosnih brojeva</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Zahtjevaj provjeru novih sigurnosnih brojeva kada se izmjene</string>
   <string name="preferences_notifications__display_in_notifications">Prikaži u obavijestima</string>
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnih podataka</string>
   <string name="preferences_chats__when_using_wifi">Prilikom korištenja Wi-Fi</string>

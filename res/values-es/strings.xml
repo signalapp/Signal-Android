@@ -65,7 +65,7 @@
   <string name="CallScreen_Incoming_call">Llamada entrante</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Los
-números de seguridad para %1$s han cambiado. Esto podría significar o bien que alguien está tratando de interceptar su comunicación, o que simplemente %2$s reinstaló Signal.</string>
+números de seguridad para %1$s han cambiado. Esto podría significar o bien que alguien está tratando de interceptar su comunicación, o simplemente que %2$s reinstaló Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Puede que quiera verificar
 los números de seguridad para este contacto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceptar</string>

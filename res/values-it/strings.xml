@@ -64,6 +64,11 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Il
+numero sicuro di %1$s è cambiato. Questo può voler dire che qualcuno sta cercando
+d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Dovresti verificare
+i numeri sicuri di questo contatto.</string>
   <string name="ConfirmIdentityDialog_accept">Accetta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
@@ -123,6 +128,7 @@
   <string name="ConversationActivity_mms_not_supported_message">Questo messaggio non può essere inviato poiché il tuo operatore non supporta gli MMS</string>
   <string name="ConversationActivity_specify_recipient">Scegli un contatto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Sbloccare questo contatto?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Sarai di nuovo in grado di ricevere messaggi e chiamate da questo contatto.</string>
   <string name="ConversationActivity_unblock">Sblocca</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">L\'allegato che stai cercando di inviare supera le dimensioni consentite</string>
   <string name="ConversationActivity_quick_camera_unavailable">Fotocamera non disponibile</string>
@@ -307,6 +313,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal ha bisogno di uno scanner per i codici QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Invio fallito</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nuovi numeri sicuri</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errore nel salvare l\'MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS...</string>
@@ -376,8 +383,10 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, sembra che l\'app del Play Store non sia installata sul tuo dispositivo.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloccare questo contatto?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Non riceverai più messaggi e chiamate da questo contatto.</string>
   <string name="RecipientPreferenceActivity_block">Blocca</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Sbloccare questo contatto?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Sarai di nuovo in grado di ricevere messaggi e chiamate da questo contatto.</string>
   <string name="RecipientPreferenceActivity_unblock">Sblocca</string>
   <string name="RecipientPreferenceActivity_enabled">Attivato</string>
   <string name="RecipientPreferenceActivity_disabled">Disattivato</string>
@@ -459,6 +468,7 @@ scambia un altro messaggio!
 </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valida.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Ricevuto un messaggio con nuovi numeri sicuri. Fai tap per gestirlo e visualizzarlo.</string>
   <string name="SmsMessageRecord_secure_session_reset">Hai resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
@@ -473,6 +483,9 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal, chiedigli cortesemente di aggiornarlo prima di verificare i numeri sicuri.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Stai provando a verificare i numeri sicuri con %1$s, ma invece scansiona %2$s.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Il codice QR letto non è un codice di verifica formalmente valido per un numero sicuro. Si prega di rieseguire la scansione.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniziare nonostante la richiesta esistente?</string>
   <string name="KeyExchangeInitiator_send">Inviata</string>
@@ -681,6 +694,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="recipient_preferences__block">Blocca</string>
   <string name="recipient_preferences__color">Colore</string>
   <string name="recipient_preferences__color_for_this_contact">Colore per questo contatto</string>
+  <string name="recipient_preferences__verify_safety_numbers">Verifica numeri sicuri</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chiamata Signal</string>
   <string name="redphone_call_controls__end_call">termina chiamata</string>
@@ -755,11 +769,15 @@ non riuscita.
   <string name="registration_progress_activity__check">Controllo</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Inserisci un nome o un numero</small></string>
+  <string name="recipients_panel__add_members">Aggiungi membri</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Se desideri verificare la sicurezza della tua codifica end-to-end con %s, confronta i numeri precedenti con quelli del suo dispositivo. In alternativa puoi fare uno scan del codice sul suo telefono o chiedergli di fare una scansione del tuo.</string>
+  <string name="verify_display_fragment__tap_to_scan">Fai tap per la scansione</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alcuni problemi necessitano della tua attenzione.</string>
   <string name="message_details_header__sent">Inviato</string>
   <string name="message_details_header__received">Ricevuto</string>
+  <string name="message_details_header__disappears">Scomparsi</string>
   <string name="message_details_header__via">Tramite</string>
   <string name="message_details_header__to">A:</string>
   <string name="message_details_header__from">Da:</string>
@@ -770,6 +788,7 @@ non riuscita.
   <string name="AndroidManifest__select_contacts">Seleziona contatti</string>
   <string name="AndroidManifest__signal_detected">Signal rilevato</string>
   <string name="AndroidManifest__change_passphrase">Cambia password</string>
+  <string name="AndroidManifest__verify_safety_numbers">Verifica numeri sicuri</string>
   <string name="AndroidManifest__log_submit">Invia log di debug</string>
   <string name="AndroidManifest__media_preview">Anteprima contenuto multimediale</string>
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
@@ -896,6 +915,8 @@ non riuscita.
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS  via WiFi ( abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo )</string>
   <string name="preferences_app_protection__blocked_contacts">Contatti bloccati</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Numero sicuro approvato</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Richiedi l\'approvazione di un numero sicuro in caso di cambiamento.</string>
   <string name="preferences_notifications__display_in_notifications">Visualizza nelle notifiche</string>
   <string name="preferences_chats__when_using_mobile_data">Su rete cellulare</string>
   <string name="preferences_chats__when_using_wifi">Su Wi-Fi</string>

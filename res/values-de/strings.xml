@@ -744,6 +744,7 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="message_details_header__issues_need_your_attention">Einige Vorgänge benötigen deine Aufmerksamkeit.</string>
   <string name="message_details_header__sent">Gesendet</string>
   <string name="message_details_header__received">Empfangen</string>
+  <string name="message_details_header__disappears">Verschwindet</string>
   <string name="message_details_header__via">Über</string>
   <string name="message_details_header__to">An:</string>
   <string name="message_details_header__from">Von:</string>

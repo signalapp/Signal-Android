@@ -758,6 +758,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="message_details_header__issues_need_your_attention">Enkele dingen vergen je aandacht.</string>
   <string name="message_details_header__sent">Verzonden</string>
   <string name="message_details_header__received">Ontvangen</string>
+  <string name="message_details_header__disappears">Verwijderd zichzelf</string>
   <string name="message_details_header__via">Via</string>
   <string name="message_details_header__to">Naar:</string>
   <string name="message_details_header__from">Van:</string>
