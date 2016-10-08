@@ -765,7 +765,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="message_details_header__issues_need_your_attention">Jotkin asiat kaipaavat huomiotasi.</string>
   <string name="message_details_header__sent">Lähetetty</string>
   <string name="message_details_header__received">Vastaanotettu</string>
-  <string name="message_details_header__disappears">Katoaa</string>
+  <string name="message_details_header__disappears">Katoamisaika</string>
   <string name="message_details_header__via">Tyyppi</string>
   <string name="message_details_header__to">Vastaanottajat:</string>
   <string name="message_details_header__from">Lähettäjä:</string>
