@@ -227,7 +227,7 @@
     <string name="CustomDefaultPreference_none">None</string>
 
     <!-- DateUtils -->
-    <string name="DateUtils_now">Now</string>
+    <string name="DateUtils_just_now">Just now</string>
     <string name="DateUtils_minutes_ago">%d min</string>
 
     <!-- DeviceListActivity -->
