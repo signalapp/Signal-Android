@@ -295,16 +295,16 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           @Override
           public void onSuccess(Optional<IdentityKey> result) {
             if (result.isPresent()) {
-              identityPreference.setOnPreferenceClickListener(new IdentityClickedListener(result.get()));
-              identityPreference.setEnabled(true);
+              if (identityPreference != null) identityPreference.setOnPreferenceClickListener(new IdentityClickedListener(result.get()));
+              if (identityPreference != null) identityPreference.setEnabled(true);
             } else {
-              getPreferenceScreen().removePreference(identityPreference);
+              if (identityPreference != null) getPreferenceScreen().removePreference(identityPreference);
             }
           }
 
           @Override
           public void onFailure(ExecutionException e) {
-            getPreferenceScreen().removePreference(identityPreference);
+            if (identityPreference != null) getPreferenceScreen().removePreference(identityPreference);
           }
         });
       }
