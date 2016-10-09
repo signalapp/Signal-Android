@@ -5,18 +5,13 @@ import android.content.Context;
 import org.thoughtcrime.securesms.util.Util;
 
 public class MmsMediaConstraints extends MediaConstraints {
-  private static final int MAX_IMAGE_DIMEN_LOWMEM = 768;
-  private static final int MAX_IMAGE_DIMEN        = 1024;
-  public  static final int MAX_MESSAGE_SIZE       = 280 * 1024;
+  private static final int MAX_IMAGE_PIXELS_LOWMEM = 768 * 768 * 3 / 4;
+  private static final int MAX_IMAGE_PIXELS        = 1024 * 1024 * 3 / 4;
+  public  static final int MAX_MESSAGE_SIZE        = 280 * 1024;
 
   @Override
-  public int getImageMaxWidth(Context context) {
-    return Util.isLowMemory(context) ? MAX_IMAGE_DIMEN_LOWMEM : MAX_IMAGE_DIMEN;
-  }
-
-  @Override
-  public int getImageMaxHeight(Context context) {
-    return getImageMaxWidth(context);
+  public int getImageMaxPixels(Context context) {
+    return Util.isLowMemory(context) ? MAX_IMAGE_PIXELS_LOWMEM : MAX_IMAGE_PIXELS;
   }
 
   @Override

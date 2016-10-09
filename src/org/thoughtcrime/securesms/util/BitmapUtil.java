@@ -43,13 +43,18 @@ public class BitmapUtil {
   public static <T> byte[] createScaledBytes(Context context, T model, MediaConstraints constraints)
       throws BitmapDecodingException
   {
-    int    quality  = MAX_COMPRESSION_QUALITY;
-    int    attempts = 0;
+    final Pair<Integer, Integer> dimensions = getDimensions(getInputStreamForModel(context, model));
+
+    int    quality   = MAX_COMPRESSION_QUALITY;
+    int    attempts  = 0;
+    int    maxPixels = constraints.getImageMaxPixels(context);
+    double scale     = Math.sqrt((double)maxPixels / (dimensions.first * dimensions.second));
     byte[] bytes;
+
     Bitmap scaledBitmap = createScaledBitmap(context,
                                              model,
-                                             constraints.getImageMaxWidth(context),
-                                             constraints.getImageMaxHeight(context));
+                                             (int)Math.round(dimensions.first * scale),
+                                             (int)Math.round(dimensions.second * scale));
     try {
       do {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

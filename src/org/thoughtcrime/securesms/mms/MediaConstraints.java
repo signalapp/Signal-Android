@@ -26,8 +26,7 @@ public abstract class MediaConstraints {
   public static MediaConstraints MMS_CONSTRAINTS  = new MmsMediaConstraints();
   public static MediaConstraints PUSH_CONSTRAINTS = new PushMediaConstraints();
 
-  public abstract int getImageMaxWidth(Context context);
-  public abstract int getImageMaxHeight(Context context);
+  public abstract int getImageMaxPixels(Context context);
   public abstract int getImageMaxSize();
 
   public abstract int getGifMaxSize();
@@ -53,8 +52,8 @@ public abstract class MediaConstraints {
     try {
       InputStream is = PartAuthority.getAttachmentStream(context, masterSecret, uri);
       Pair<Integer, Integer> dimensions = BitmapUtil.getDimensions(is);
-      return dimensions.first  > 0 && dimensions.first  <= getImageMaxWidth(context) &&
-             dimensions.second > 0 && dimensions.second <= getImageMaxHeight(context);
+      return dimensions.first > 0 && dimensions.second > 0 &&
+             dimensions.first * dimensions.second <= getImageMaxPixels(context);
     } catch (BitmapDecodingException e) {
       throw new IOException(e);
     }
