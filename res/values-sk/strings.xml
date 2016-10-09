@@ -45,9 +45,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možno by ste mali overiť
-identitu tohto kontaktu.
-</string>
   <string name="ConfirmIdentityDialog_accept">Potvrdiť</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Správa %s</string>
@@ -100,8 +97,6 @@ identitu tohto kontaktu.
   <string name="ConversationActivity_mms_not_supported_title">MMS nie sú podporované</string>
   <string name="ConversationActivity_mms_not_supported_message">Táto správa nemohla byť odoslaná keďže váš operátor nepodporuje MMS.</string>
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
-  <string name="ConversationActivity_unblock_question">Odblokovať?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Naozaj chcete odblokovať tento kontakt?</string>
   <string name="ConversationActivity_unblock">Odblokovať</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera je momentálne neprístupná</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
@@ -196,7 +191,6 @@ opätovným importom zduplikujete správy.
   <string name="KeyScanningActivity_install_barcode_Scanner">Nainštalovať čítačku čiarových kódov?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodarilo sa odoslať</string>
-  <string name="MessageDetailsRecipient_new_identity">Nová identita</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba pri ukladaní MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba spojenia s poskytovateľom MMS...</string>
@@ -235,7 +229,6 @@ opätovným importom zduplikujete správy.
   <string name="RatingManager_no_thanks">Nie ďakujem</string>
   <string name="RatingManager_later">Neskôr</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Naozaj chcete odblokovať tento kontakt?</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovať</string>
   <!--RedPhone-->
   <!--RegistrationActivity-->
@@ -291,26 +284,11 @@ vzájomnej výmeny kľúčov.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu.
 </string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bola prijatá aktualizované, ale neznáme identifikačné údaje. Dotykom potvrdíte idenitu.</string>
   <string name="SmsMessageRecord_duplicate_message">Zduplikuj správu.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opustil skupinu...</string>
   <string name="ThreadRecord_draft">Rozpísaná správa:</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte kľúč totožnosti.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Príjemca nemá kľúč totožnosti.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Príjemca nemá kľúč totožnosti!</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">POZOR, scannovaný kľúč sa NEZHODUJE! Dôsledne skontrolujte text odtlačku.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">NIE JE verifikované!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ich kľúč je v poriadku. Je tiež potrebné dať druhej strane verifikovať váš kľúč.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Verifikované!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nemáte kľúč totožnosti!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nemáte kľúč totožnosti.</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">POZOR, scannovaný kľúč sa NEZHODUJE!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">NIE JE overené!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Scannovaný kľúč sa zhoduje!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Verifikované!</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Začať aj napriek existujúcemu požiadavku?</string>
   <string name="KeyExchangeInitiator_send">Odošli</string>
@@ -485,10 +463,7 @@ zlyhalo.
   <string name="registration_progress_activity__check">Kontrola</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vlož meno alebo číslo</small></string>
-  <string name="recipients_panel__add_member">Pridať člena</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Ich totožnosť (oni vidia):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Vaša totožnosť (vy vidíte):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Isté problémy vyžadujú Vašu pozornosť.</string>
   <string name="message_details_header__sent">Odoslané</string>
@@ -501,9 +476,7 @@ zlyhalo.
   <string name="AndroidManifest__create_passphrase">Vytvor heslo</string>
   <string name="AndroidManifest__enter_passphrase">Zadaj heslo</string>
   <string name="AndroidManifest__select_contacts">Vyber kontakty</string>
-  <string name="AndroidManifest__public_identity_key">Kľúč verejnej totožnosti</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
-  <string name="AndroidManifest__verify_identity">Over totožnosť</string>
   <string name="AndroidManifest__media_overview">Všetky obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všetky obrázky s %1$s</string>
   <!--arrays.xml-->
@@ -630,8 +603,6 @@ zlyhalo.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzácia</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Bezpečnosť</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Over totožnosť</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Obnoviť zabezpečené spojenie</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Nahlas</string>

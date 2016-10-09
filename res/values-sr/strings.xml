@@ -68,12 +68,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Долазни позив</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Кључ
-за идентификацију за %1$s је промењен. Ово може да значи или да неко покушава да пресретне вашу комуникацију
-или једноставно да је корисник %2$s поново инсталирао Сигнал и сад има нови кључ
-идентитета.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Можда желите да оверите
-овај контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Прихвати</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Порука за %s</string>
@@ -133,8 +127,7 @@
   <string name="ConversationActivity_mms_not_supported_title">ММС није подржан</string>
   <string name="ConversationActivity_mms_not_supported_message">Порука није послата јер ваш оператер не подржава ММС.</string>
   <string name="ConversationActivity_specify_recipient">Одредите примаоца</string>
-  <string name="ConversationActivity_unblock_question">Одблокирати?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Желите ли заиста да одблокирате овај контакт?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Одлокирати овај контакт?</string>
   <string name="ConversationActivity_unblock">Одблокирај</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Прилог прекорачује ограничење величине за тип поруке коју шаљете.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера није доступна</string>
@@ -334,7 +327,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Сигналу је потребан Скенер бар-кôда за читање бар-кôдова.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Неуспех слања</string>
-  <string name="MessageDetailsRecipient_new_identity">Нови идентитет</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка уписа ММС-а!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка повезивања са ММС послужиоцем...</string>
@@ -405,10 +397,8 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Упс, изгледа да апликација Плеј продавница није инсталирана на вашем уређају.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирати овај контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Више нећете примати поруке или позиве од овог корисника.</string>
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одлокирати овај контакт?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Желите ли заиста да одблокирате овај контакт?</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
   <string name="RecipientPreferenceActivity_enabled">Укључено</string>
   <string name="RecipientPreferenceActivity_disabled">Искључено</string>
@@ -489,8 +479,8 @@
 порука размене кључа!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Примљена је порука размене кључа за неисправно издање протокола.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Примљена је порука непознатог кључа идентификације. Тапните за обраду и приказ.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Примљени су ажурирани али непознати подаци идентитета. Додирните за оверу идентитета.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Ресетовали сте безбедну сесију.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s ресетова безбедну сесију.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусти групу...</string>
@@ -503,25 +493,6 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s је на Сигналу, пошаљите поздрав!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време ишчезнућа поруке постављено на %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Немате кључ идентитета.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Прималац нема кључ идентитета.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Прималац нема кључ идентитета!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Очитај контактов бар-кôд</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Прикажи мој бар-кôд</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УПОЗОРЕЊЕ, очитани кључ се НЕ поклапа! Проверите текст отиска пажљиво.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">НИЈЕ оверен!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Њихов кључ је тачан. Потребно је такође да оверите ваш кључ са њима.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Оверен!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Немате кључ идентитета!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Немате кључ идентитета.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Очитај контактов бар-кôд</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Прикажи мој бар-кôд</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">УПОЗОРЕЊЕ, очитани кључ се НЕ поклапа!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">НИЈЕ оверен!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Очитани кључ се поклапа!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Оверен!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Отисак вашег идентитета</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Започети унаточ постојећем захтеву?</string>
   <string name="KeyExchangeInitiator_send">Пошаљи</string>
@@ -736,7 +707,6 @@
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__color_for_this_contact">Боја за контакт</string>
-  <string name="recipient_preferences__verify_identity">Потврди идентитет</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Позив на Сигналу</string>
   <string name="redphone_call_controls__end_call">окончај позив</string>
@@ -805,10 +775,7 @@
   <string name="registration_progress_activity__check">Провери</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Унесите име или број</small></string>
-  <string name="recipients_panel__add_member">Додај члана</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Њихов идентитет (они читају):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Ваш идентитет (ви читате):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Неки од проблема захтевају вашу пажњу.</string>
   <string name="message_details_header__sent">Послата</string>
@@ -822,9 +789,7 @@
   <string name="AndroidManifest__enter_passphrase">Унесите лозинку</string>
   <string name="AndroidManifest__select_contacts">Изаберите контакте</string>
   <string name="AndroidManifest__signal_detected">Сигнал откривен</string>
-  <string name="AndroidManifest__public_identity_key">Јавни кључ идентитета</string>
   <string name="AndroidManifest__change_passphrase">Измена лозинке</string>
-  <string name="AndroidManifest__verify_identity">Овера идентитета</string>
   <string name="AndroidManifest__log_submit">Пошаљи дневник исправљања грешака</string>
   <string name="AndroidManifest__media_preview">Преглед медијума</string>
   <string name="AndroidManifest__media_overview">Све слике</string>
@@ -835,7 +800,6 @@
   <string name="AndroidManifest_archived_conversations">Архивиране преписке</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
-  <string name="arrays__your_identity_key">Ваш кључ идентитета</string>
   <string name="arrays__use_default">Користи подразумевано</string>
   <string name="arrays__use_custom">Користи посебно</string>
   <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
@@ -1008,8 +972,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нова преписка</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Безбедност</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Овери идентитет</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Ресетуј безбедну сесију</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Укључи обавештења</string>

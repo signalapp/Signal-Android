@@ -64,12 +64,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Indgående opkald</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identitetsnøglen for %1$s er blevet ændret. Dette kan enten betyde at nogen forsøger at
-        opsnappe kommunikationen, eller at %2$s bare har geninstalleret Signal og nu har en ny
-        identitetsnøgle.
-    </string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verificere
-denne kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Godkend</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Besked %s</string>
@@ -128,8 +122,7 @@ denne kontakt.</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS ikke understøttet</string>
   <string name="ConversationActivity_mms_not_supported_message">Denne besked kan ikke sendes, da din teleudbyder ikke understøtter MMS.</string>
   <string name="ConversationActivity_specify_recipient">Vælg venligst en kontakt</string>
-  <string name="ConversationActivity_unblock_question">Stop blokering?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Er du sikker på, du vil stoppe blokering af denne kontakt?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Stop blokering af denne kontakt?</string>
   <string name="ConversationActivity_unblock">Stop blokering</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedhæftet fil overskrider størrelsesbegrænsningen for den type meddelelse, du sender.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgængeligt</string>
@@ -294,7 +287,6 @@ vil det resultere i dupletter.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal skal bruge Barcode Scanner til QR-koder.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Kunne ikke sende</string>
-  <string name="MessageDetailsRecipient_new_identity">Ny identitet</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fejl ved lagring af MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fejl! Ingen forbindelse til MMS-tjenesten...</string>
@@ -360,10 +352,8 @@ vil det resultere i dupletter.</string>
   <string name="RatingManager_later">Senere</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokér denne kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Du vil ikke længere modtage beskeder eller opkald fra denne bruger.</string>
   <string name="RecipientPreferenceActivity_block">Blokér</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Stop blokering af denne kontakt?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Er du sikker på, du vil stoppe blokering af denne kontakt?</string>
   <string name="RecipientPreferenceActivity_unblock">Stop blokering</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiveret</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktiveret</string>
@@ -451,8 +441,6 @@ nøgle-besked!
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Modtog en nøgle-besked for en ugyldig protokol-version.
 </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Besked modtaget med ukendt identitetsnøgle. Tryk for at behandle og vise.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Modtog opdaterede, men ukendte identitetsoplysninger. Klik for at validere identitet.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikeret besked.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Forlod gruppen...</string>
@@ -464,25 +452,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, sig hej!</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnøgle.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Modtageren har ingen identitetsnøgle.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Modtageren har ingen identiitetsnøgle!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scan kontakts QR kode</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Vis din QR kode</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøgle matcher IKKE! Tjek fingeraftryksteksten nøje.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Modpartens nøgle er korrekt. Det er også nødvendigt at bekræfte din nøgle med modparten.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Bekræftet!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen identitetsnøgle!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Du har ingen identitetsnøgle.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Scan kontakts QR kode</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Vis din QR kode</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVARSEL. Den skannede nøgle matcher IKKE!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøgle matcher!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Bekræftet!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Dit identitetsfingeraftryk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initialisér til trods for eksisterende forespørgsel?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
@@ -665,7 +634,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="recipient_preferences__block">Blokér</string>
   <string name="recipient_preferences__color">Farve</string>
   <string name="recipient_preferences__color_for_this_contact">Denne kontakts farve</string>
-  <string name="recipient_preferences__verify_identity">Bekræft identitet</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalopkald</string>
   <string name="redphone_call_controls__end_call">læg på</string>
@@ -724,10 +692,7 @@ mislykkedes.</string>
   <string name="registration_progress_activity__check">Tjek</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Indtast navn eller nummer</small></string>
-  <string name="recipients_panel__add_member">Tilføj medlem</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Deres identitet (de læser):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Din identitet (du læser):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Nogle problemer kræver din opmærsomhed.</string>
   <string name="message_details_header__sent">Sendt</string>
@@ -741,9 +706,7 @@ mislykkedes.</string>
   <string name="AndroidManifest__enter_passphrase">Indtast kodeord</string>
   <string name="AndroidManifest__select_contacts">Vælg kontakter</string>
   <string name="AndroidManifest__signal_detected">Signal detekteret</string>
-  <string name="AndroidManifest__public_identity_key">Offentlig identitetsnøgle</string>
   <string name="AndroidManifest__change_passphrase">Ændr kodeord</string>
-  <string name="AndroidManifest__verify_identity">Verificér identitet</string>
   <string name="AndroidManifest__log_submit">Indsend fejlfindingslog</string>
   <string name="AndroidManifest__media_preview">Mediepreview</string>
   <string name="AndroidManifest__media_overview">Alle billeder</string>
@@ -754,7 +717,6 @@ mislykkedes.</string>
   <string name="AndroidManifest_archived_conversations">Arkiverede samtaler</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importér / eksportér</string>
-  <string name="arrays__your_identity_key">Din identitetsnøgle</string>
   <string name="arrays__use_default">Anvend standard</string>
   <string name="arrays__use_custom">Anvend tilpasset</string>
   <string name="arrays__mute_for_one_hour">Dæmp 1 time</string>
@@ -924,8 +886,6 @@ mislykkedes.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Sikkerhed</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Verificér identitet</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Gendan sikker forbindelse</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Ophæv dæmpning</string>

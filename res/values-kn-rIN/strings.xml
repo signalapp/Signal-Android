@@ -61,10 +61,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ಒಳಬರುವ ಕರೆ</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s ಗುರುತಿನ ಕೀಲಿ ಬದಲಾಗಿದೆ. ಇದು ಯಾರೊ ನಿಮ್ಮ ಸಂವಹನವನ್ನ	
-ಅಡ್ಡಗಟ್ಟಿದ್ದಾರೆ ಅಥವ %2$s ಸಿಗ್ನ್ಲನ್ನು  ಪುನರ್ ಸ್ಥಾಪಿಸಿದ್ದಾರೆ ಹಾಗು ಈಗ ಹೊಸ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದ್ದಿದ್ದಾರೆ. </string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ನೀವು ಪರಿಶೀಲಿಸಲು ಇಚ್ಛಿಸಬಹುದಾದ ⏎ 
-ಸಂಪರ್ಕ. ⏎</string>
   <string name="ConfirmIdentityDialog_accept">ಒಪ್ಪಿಕೊಌ</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ಸಂದೇಶ %s</string>
@@ -119,8 +115,6 @@
   <string name="ConversationActivity_mms_not_supported_title">ಎಂಎಂಎಸ್ ಬೆಂಬಲವಿಲ್ಲ</string>
   <string name="ConversationActivity_mms_not_supported_message">ನಿಮ್ಮ ವಾಹಕ ಎಂಎಂಎಸ್ ನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಅದುದರಿಂದ ಈ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
   <string name="ConversationActivity_specify_recipient">ಒಂದು ಸಂಪರ್ಕವನ್ನು ಆರಿಸಿಕೊಳ್ಳಿ</string>
-  <string name="ConversationActivity_unblock_question">ನಿರ್ಬಂಧ ತೆಗೆಯಲೆ?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">ಈ ಸಂಪರ್ಕವನ್ನು ಅನಿರ್ಬಂಧಿಸಲು ನೀವು ಬಯಸುವಿರಾ?</string>
   <string name="ConversationActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="ConversationActivity_quick_camera_unavailable">ಕ್ಯಾಮೆರಾ ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="ConversationActivity_unable_to_record_audio">ಧ್ವನಿ ಮುದ್ರಣ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ!</string>
@@ -260,7 +254,6 @@
   <string name="KeyScanningActivity_install_barcode_Scanner">ಬಾರ್ ಕೋಡ್ ಸ್ಕ್ಯಾನರ್ ಸ್ಥಾಪಿಸಲೆ?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
-  <string name="MessageDetailsRecipient_new_identity">ಹೊಸ ಗುರುತು</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">ಎಂ. ಎಂ. ಎಸ್ ಸಂಗ್ರಹಿಸಿಡುವಾಗ ದೋಷ ಸಂಭವಿಸಿದೆ!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">ಎಂ.ಎಂ.ಎಸ್ ಪೂರೈಕೆದಾರರಿಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ ...</string>
@@ -308,7 +301,6 @@
   <string name="RatingManager_no_thanks">ಧನ್ಯವಾದಗಳು. ಸಧ್ಯಕ್ಕೆ ಇಲ್ಲ.</string>
   <string name="RatingManager_later">ನಂತರ</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">ಈ ಸಂಪರ್ಕವನ್ನು ಅನಿರ್ಬಂಧಿಸಲು ನೀವು ಬಯಸುವಿರಾ?</string>
   <string name="RecipientPreferenceActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="RecipientPreferenceActivity_enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
   <string name="RecipientPreferenceActivity_disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>
@@ -362,26 +354,11 @@
 ವಿನಿಮಯ ಸಂದೇಶ!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 ಅಮಾನ್ಯವಾದ ಪ್ರೊಟೋಕಾಲ್ ಆವೃತ್ತಿಯ ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">ಇತ್ತೀಚೆಗೆ ಅಪ್ಡೇಟ್ಗೊಳಿಸಲಾದ ಆದರೆ ಅಪರಿಚಿತ ಗುರುತು ಮಾಹಿತಿಯನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ.  ಈ ಗುರುತನ್ನು ಮಾನ್ಯಗೊಳಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <string name="SmsMessageRecord_duplicate_message">ನಕಲಿ ಸಂದೇಶ.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ ...</string>
   <string name="ThreadRecord_draft">ಕರಡು</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">ನೀವು ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">ಸ್ವೀಕರಿಸುವವರ ಯಾವುದೇ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">ಸ್ವೀಕರಿಸುವವರ ಯಾವುದೇ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ!</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ಎಚ್ಚರಿಕೆ, ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ! ಬೆರಳಚ್ಚುಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">ಪರಿಶೀಲಿಸಿಲ್ಲ!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">ಅವರ ಕೀಲಿ ಸರಿಯಾಗಿದೆ. ಅವರು ನಿಮ್ಮ ಕೀಲಿಯನ್ನು ಪರಿಶೀಲಿಸುವುದು ಸಹ ಅವಶ್ಯಕ.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">ನೀವು ಗುರುತನ್ನು ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">ನೀವು ಗುರುತಿನ  ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ಎಚ್ಚರಿಕೆ, ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">ಪರಿಶೀಲಿಸಿಲ್ಲ!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿಗಳು ಸಮಾನವಾಗಿವೆ!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ವಿನಂತಿ ಹೊರತಾಗಿಯೂ ಸಹ ಪುನಃ ಪ್ರಾರಂಭಿಸಿ?</string>
   <string name="KeyExchangeInitiator_send">ಕಳುಹಿಸು</string>
@@ -550,10 +527,7 @@
   <string name="registration_progress_activity__check">ಪರಿಶೀಲಿಸು</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</small></string>
-  <string name="recipients_panel__add_member">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ </string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">ಅವರ ಗುರುತು (ಅವರು ಓದುವುದು):</string>
-  <string name="verify_identity_activity__your_identity_you_read">ನಿಮ್ಮ ಗುರುತು (ನೀವು ಓದುವುದು):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">ಈ ಕೆಲವು ವಿಷಯಗಳತ್ತ ನಿಮ್ಮ ಗಮನದ ಅಗತ್ಯವಿದೆ.</string>
   <string name="message_details_header__sent">ಕಳುಹಿಸಲಾಗಿದೆ</string>
@@ -566,9 +540,7 @@
   <string name="AndroidManifest__create_passphrase">ಗುಪ್ತಪದ ರಚಿಸಿ</string>
   <string name="AndroidManifest__enter_passphrase">ಗುಪ್ತಪದ ನಮೂದಿಸಿ</string>
   <string name="AndroidManifest__select_contacts">ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
-  <string name="AndroidManifest__public_identity_key">ಸಾರ್ವಜನಿಕ ಗುರುತಿನ ಕೀಲಿ</string>
   <string name="AndroidManifest__change_passphrase">ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಿ</string>
-  <string name="AndroidManifest__verify_identity">ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="AndroidManifest__media_overview">ಎಲ್ಲಾ ಚಿತ್ರಗಳು</string>
   <string name="AndroidManifest__media_overview_named">ಎಲ್ಲಾ ಚಿತ್ರಗಳು %1$s ಜೊತೆ</string>
   <!--arrays.xml-->
@@ -686,8 +658,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ಹೋಸ ಸಂಭಾಷಣೆ</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">ಸುರಕ್ಷತೆ</string>
-  <string name="conversation_secure_verified__menu_verify_identity">ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <!--conversation_muted-->
   <!--conversation_unmuted-->
   <!--conversation-->

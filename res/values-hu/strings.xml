@@ -64,14 +64,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Bejövő hívás</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Az
-        azonosító kulcs anyaga megváltozott ehhez: %1$s. Ez jelentheti azt, hogy valaki megpróbálja
-        lehallgatni a kommunikációdat, vagy hogy %2$s egyszerűen újratelepítette a Signal-t és most új 
-        azonosító kulcsa van.
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">A
+        biztonsági szám megváltozott neki: %1$s. Ez jelentheti azt, hogy valaki megpróbálja
+        lehallgatni a kommunikációdat, vagy azt, hogy %2$s egyszerűen újratelepítette a Signal-t.
     </string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Talán érdemes ellenőrizned
-ezt a névjegyet.
- </string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Érdemes lenne ellenőrizned a
+        biztonsági számokat ehhez a névjegyhez.
+    </string>
   <string name="ConfirmIdentityDialog_accept">Elfogad</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Üzenet %s</string>
@@ -130,8 +129,8 @@ ezt a névjegyet.
   <string name="ConversationActivity_mms_not_supported_title">MMS nem támogatott</string>
   <string name="ConversationActivity_mms_not_supported_message">Ezt az üzenetet nem lehet elküldeni, mivel a szolgáltatód nem támogatja az MMS-t.</string>
   <string name="ConversationActivity_specify_recipient">Kérlek válassz egy névjegyet</string>
-  <string name="ConversationActivity_unblock_question">Tiltás feloldása?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan feloldod ennek a névjegynek a tiltását?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Feloldod ezt a névjegyet?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Még egyszer kaphatsz üzeneteket és hívásokat ettől a névjegytől.</string>
   <string name="ConversationActivity_unblock">Tiltás feloldása</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet meghaladja a mérethatárt ahhoz a típusú üzenethez, amit küldesz.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nem elérhető</string>
@@ -321,7 +320,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">A Signal-nak szüksége van a Barcode Scanner-re a QR kódokhoz.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nem sikerült elküldeni</string>
-  <string name="MessageDetailsRecipient_new_identity">Új azonosító</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Új biztonsági számok</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS tárolása sikertelen!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">A kapcsolódás az MMS szolgáltatóhoz meghiúsult...</string>
@@ -393,10 +392,10 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat és próbálkozz újra
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppá! Úgy tűnik, hogy a Play Áruház alkalmazás nincs telepítve a készülékedre.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Letiltod ezt a névjegyet?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Többé nem kapsz ettől a felhasználótól üzeneteket vagy hívásokat.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Többé nem kapsz üzeneteket és hívásokat ettől a névjegytől.</string>
   <string name="RecipientPreferenceActivity_block">Letiltás</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Feloldod ezt a névjegyet?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan fel akarod oldani ezt a névjegyet?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Még egyszer kaphatsz üzeneteket és hívásokat ettől a névjegytől.</string>
   <string name="RecipientPreferenceActivity_unblock">Feloldás</string>
   <string name="RecipientPreferenceActivity_enabled">Engedélyezett</string>
   <string name="RecipientPreferenceActivity_disabled">Letiltott</string>
@@ -483,8 +482,7 @@ Ellenőrizd újra, hogy ez a te számod! Hamarosan egy SMS-ben fogjuk ellenőriz
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
  </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Üzenet érkezett ismeretlen azonosító kulccsal. Érints a feldolgozáshoz és megjelenítéshez.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Frissített, de ismeretlen azonosító adat érkezett. Érints az azonosító érvényesítéséhez!</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Üzenet érkezett új biztonsági számokkal. Érints a feldolgozáshoz és megjelenítéshez.</string>
   <string name="SmsMessageRecord_secure_session_reset">Alaphelyzetbe állítottad a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s alaphelyzetbe állította a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
@@ -499,25 +497,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nincsen azonosító kulcsod.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">A címzettnek nincs azonosító kulcsa.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">A címzettnek nincs azonosító kulcsa!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Névjegy QR kódjának szkennelése</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">QR kódod megjelenítése</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">FIGYELEM! A szkennelt kulcs NEM EGYEZIK! Ellenőrizd figyelmesen az ujjlenyomat-szöveget.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">NEM ellenőrzött!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">A kulcsok helyesek. Szükséges továbbá, hogy mások is ellenőrizzék a kulcsodat.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Ellenőrzött!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nincs azonosító kulcsod!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nincsen azonosító kulcsod.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Névjegy QR kódjának szkennelése</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">QR kódod megjelenítése</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">FIGYELEM! A szkennelt kulcs NEM EGYEZIK!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">NEM ellenőrzött!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">A szkennelt kulcs egyezik!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Ellenőrzött!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Azonosító ujjlenyomatod</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kapcsolatod a Signal egy régi verzióját futtatja, kérlek kérd meg őket, hogy frissítsenek a biztonsági számok ellenőrzése előtt.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Megpróbáltál biztonsági számokat ellenőrizni vele: %1$s, de ehelyett %2$s lett beszkennelve.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">A szkennelt QR kód nem egy helyesen formázott biztonság szám megerősítő kód. Kérlek próbáld újra szkennelni.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Kezdeményezed a létező kérés ellenére?</string>
   <string name="KeyExchangeInitiator_send">Küldés</string>
@@ -726,7 +708,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="recipient_preferences__block">Letiltás</string>
   <string name="recipient_preferences__color">Szín</string>
   <string name="recipient_preferences__color_for_this_contact">Szín ehhez a névjegyhez</string>
-  <string name="recipient_preferences__verify_identity">Azonosító ellenőrzése</string>
+  <string name="recipient_preferences__verify_safety_numbers">Biztonsági számok ellenőrzése</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hívás</string>
   <string name="redphone_call_controls__end_call">hívás vége</string>
@@ -758,8 +740,8 @@ beleértve:
     </string>
   <string name="registration_problems__incorrect_number">Hibás szám.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-Kérlek ellenőrizd, hogy biztosan helyesen adtad-e meg a számodat, és a régiódhoz megfelelő
-az alakja!
+Kérlek ellenőrizd, hogy biztosan helyesen adtad-e meg a számodat, és a régiódnak megfelelően
+van formázva!
  </string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
@@ -815,10 +797,10 @@ sikertelen.
   <string name="registration_progress_activity__check">Ellenőrzés</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy számot</small></string>
-  <string name="recipients_panel__add_member">Tag hozzáadása</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Az azonosítójuk (ők olvassák):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Az azonosítód (te olvasod):</string>
+  <string name="recipients_panel__add_members">Tagok hozzáadása</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Ha szeretnéd ellenőrizni a végpontok közti titkosítást biztonságát vele: %s, hasonlítsd össze a fenti számokat az ő készülékén található számokkal. Felváltva ezt, beszkennelheted a kódot a telefonján, vagy megkérheted, hogy szkennelje be a te kódod.</string>
+  <string name="verify_display_fragment__tap_to_scan">Érints a szkenneléshez</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Néhány probléma a figyelmedet igényli.</string>
   <string name="message_details_header__sent">Elküldve</string>
@@ -832,9 +814,8 @@ sikertelen.
   <string name="AndroidManifest__enter_passphrase">Jelmondat megadása</string>
   <string name="AndroidManifest__select_contacts">Névjegyek kiválasztása</string>
   <string name="AndroidManifest__signal_detected">Signal észlelve</string>
-  <string name="AndroidManifest__public_identity_key">Nyilvános azonosító kulcs</string>
   <string name="AndroidManifest__change_passphrase">Jelmondat megváltoztatása</string>
-  <string name="AndroidManifest__verify_identity">Azonosító ellenőrzése</string>
+  <string name="AndroidManifest__verify_safety_numbers">Biztonsági számok ellenőrzése</string>
   <string name="AndroidManifest__log_submit">Hibakeresési napló küldése</string>
   <string name="AndroidManifest__media_preview">Média előnézet</string>
   <string name="AndroidManifest__media_overview">Összes kép</string>
@@ -845,7 +826,6 @@ sikertelen.
   <string name="AndroidManifest_archived_conversations">Archivált beszélgetések</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás / exportálás</string>
-  <string name="arrays__your_identity_key">Azonosító kulcsod</string>
   <string name="arrays__use_default">Alapértelmezett használata</string>
   <string name="arrays__use_custom">Egyéni használata</string>
   <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
@@ -962,6 +942,8 @@ sikertelen.
   <string name="preferences__support_wifi_calling">\'WiFi hívás\' kompatibilitási mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Engedélyezd, ha a készüléked az SMS/MMS-t WiFi-n keresztül kézbesíti (csak akkor engedélyezd, ha a \'WiFi hívás\' engedélyezve van az eszközödön)</string>
   <string name="preferences_app_protection__blocked_contacts">Letiltott névjegyek</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Biztonsági számok jóváhagyása</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Új biztonsági számok megváltozásakor szükséges a jóváhagyás</string>
   <string name="preferences_notifications__display_in_notifications">Megjelenítés értesítésekben</string>
   <string name="preferences_chats__when_using_mobile_data">Mobil adat használatakor</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi használatakor</string>
@@ -998,6 +980,7 @@ sikertelen.
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Eltűnő üzenetek</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Az üzenetek lejárnak</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Meghívás</string>
   <!--conversation_insecure_no_push-->
@@ -1016,8 +999,6 @@ sikertelen.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Új beszélgetés</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Biztonság</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Azonosító ellenőrzése</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Biztonságos munkamenet alaphelyzetbe állítása</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Némítás feloldása</string>
@@ -1068,7 +1049,7 @@ sikertelen.
   <string name="reminder_header_sms_import_text">Érints a telefonod SMS üzeneteinek a Signal titkosított adatbázisába másolásához.</string>
   <string name="reminder_header_sms_import_button">IMPORTÁLÁS</string>
   <string name="reminder_header_push_title">Signal üzenetek és hívások engedélyezése</string>
-  <string name="reminder_header_push_text">Javítsd fel az üzenetküldési élményedet.</string>
+  <string name="reminder_header_push_text">Javítsd fel a kommunikációs élményedet.</string>
   <string name="reminder_header_push_button">ENGEDÉLYEZÉS</string>
   <string name="reminder_header_invite_title">Meghívás Signal-ba</string>
   <string name="reminder_header_invite_text">Vidd a beszélgetésed a következő szintre vele: %1$s.</string>

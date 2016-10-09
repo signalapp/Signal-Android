@@ -2,10 +2,11 @@ buildscript {
     repositories {
         maven {
             url "https://repo1.maven.org/maven2"
+            jcenter()
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.android.tools.build:gradle:2.1.3'
         classpath files('libs/gradle-witness.jar')
     }
 }
@@ -159,7 +160,7 @@ dependencyVerification {
 
 android {
     compileSdkVersion 22
-    buildToolsVersion '22.0.1'
+    buildToolsVersion '23.0.2'
 
     dexOptions {
         javaMaxHeapSize "4g"

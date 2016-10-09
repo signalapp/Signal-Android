@@ -36,6 +36,7 @@ import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -128,6 +129,7 @@ import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities;
 import org.thoughtcrime.securesms.util.DirectoryHelper.UserCapabilities.Capability;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -388,25 +390,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-//    if (isSecureText) {
-//      if (recipients.getExpireMessages() > 0) {
-//        inflater.inflate(R.menu.conversation_expiring_on, menu);
-//
-//        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
-//        final View     actionView = MenuItemCompat.getActionView(item);
-//        final TextView badgeView  = (TextView)actionView.findViewById(R.id.expiration_badge);
-//
-//        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipients.getExpireMessages()));
-//        actionView.setOnClickListener(new OnClickListener() {
-//          @Override
-//          public void onClick(View v) {
-//            onOptionsItemSelected(item);
-//          }
-//        });
-//      } else {
-//        inflater.inflate(R.menu.conversation_expiring_off, menu);
-//      }
-//    }
+    if (isSecureText) {
+      if (recipients.getExpireMessages() > 0) {
+        inflater.inflate(R.menu.conversation_expiring_on, menu);
+
+        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
+        final View     actionView = MenuItemCompat.getActionView(item);
+        final TextView badgeView  = (TextView)actionView.findViewById(R.id.expiration_badge);
+
+        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipients.getExpireMessages()));
+        actionView.setOnClickListener(new OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            onOptionsItemSelected(item);
+          }
+        });
+      } else {
+        inflater.inflate(R.menu.conversation_expiring_off, menu);
+      }
+    }
 
     if (isSingleConversation()) {
       if (isSecureVoice) inflater.inflate(R.menu.conversation_callable_secure, menu);
@@ -554,8 +556,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleUnblock() {
     new AlertDialog.Builder(this)
-        .setTitle(R.string.ConversationActivity_unblock_question)
-        .setMessage(R.string.ConversationActivity_are_you_sure_you_want_to_unblock_this_contact)
+        .setTitle(R.string.ConversationActivity_unblock_this_contact_question)
+        .setMessage(R.string.ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact)
         .setNegativeButton(android.R.string.cancel, null)
         .setPositiveButton(R.string.ConversationActivity_unblock, new DialogInterface.OnClickListener() {
           @Override

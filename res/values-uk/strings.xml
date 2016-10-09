@@ -68,11 +68,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Вхідні дхвінки</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">        Ключ ідентифікації для %1$s змінився. Це має означати, що хтось намагається
-        перехопити Вашу розмову, або %2$s просто перевстановив Signal і має новий
-        ключ ідентифікації.
-    </string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Можливо, вам потрібно перевірити цей контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Прийняти</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Повідомлення %s</string>
@@ -132,13 +127,13 @@
   <string name="ConversationActivity_mms_not_supported_title">MMS не підтримується</string>
   <string name="ConversationActivity_mms_not_supported_message">Це повідомлення неможливо надіслати, оскільки Ваш оператор не підтримує MMS.</string>
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
-  <string name="ConversationActivity_unblock_question">Розблокувати?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Ви впевнені, що бажаєте розблокувати цей контакт?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Розблокувати контакт?</string>
   <string name="ConversationActivity_unblock">Розблокувати</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вкладення перевищує обмеження за розміром для типу повідомлення, яке Ви намагаєтеся надіслати</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не вдалося записати аудіо!</string>
   <string name="ConversationActivity_error_sending_voice_message">Помилка під час відправки голосовго повідомлення...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашому пристрої не знайдено додаток, що може відкрити це посилання.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Деталі повідомлення</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nНадіслано/Отримано: %2$s</string>
@@ -185,6 +180,7 @@
   <string name="ConversationFragment_deleting_messages">Видалення повідомлень...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Пошук...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашому пристрої не встановлено переглядач.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Видалити вибрану бесіду?</item>
@@ -305,6 +301,7 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Торкніться і утримуйте для запису голосового повідомлення, відпустіть щоб надіслати</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поділитися</string>
+  <string name="InviteActivity_choose_contacts">Оберіть контакти</string>
   <string name="InviteActivity_cancel">Скасувати</string>
   <string name="InviteActivity_sending">Надсилання...</string>
   <string name="InviteActivity_heart_content_description">Серце</string>
@@ -324,7 +321,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal потрібен зчитувач штрих-кодів для QR-кодів.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не вдалося надіслати</string>
-  <string name="MessageDetailsRecipient_new_identity">Нова особистість</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Помилка при збереженні MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Помилка підключення до MMS провайдера...</string>
@@ -375,6 +371,9 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">Прив\'язати пристрій Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Схоже ви не використовуєте Signal для сканування QR коду. Для вашого захисту, відскануйте код знову, використовуючи Signal.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Зникнення повідомлень</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Ваші повідомлення буде збережено.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Усі повідомлення у цій розмові зникнуть через %s після прочитання.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Уведіть фразу-пароль</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Значок Сигнал</string>
@@ -388,12 +387,11 @@
   <string name="RatingManager_rate_now">Оцінити зараз!</string>
   <string name="RatingManager_no_thanks">Ні, дякую</string>
   <string name="RatingManager_later">Пізніше</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ой, схоже додаток Play Store не встановлено на вашому пристрої.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокувати контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Ви більше не будете отримувати повідомлення та дзвінки від цього користувача.</string>
   <string name="RecipientPreferenceActivity_block">Заблокувати</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Розблокувати контакт?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Ви впевнені, що бажаєте розблокувати цей контакт?</string>
   <string name="RecipientPreferenceActivity_unblock">Розблокувати</string>
   <string name="RecipientPreferenceActivity_enabled">Увімкнено </string>
   <string name="RecipientPreferenceActivity_disabled">Вимкнено</string>
@@ -467,8 +465,8 @@
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Отримано пошкоджене повідомлення обміну ключами!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Отримано повідомлення обміну ключами для неправильної версії протоколу.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Отримано повідомлення з невідомим особистим ключем. Натисніть для його відображення.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Отримано оновлену проте інформацію про особистість. Торкніться щоб перевірити.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Ви скинули безпечну сесію.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s скинув безпечну сесію.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат повідомлення.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Групу покинуто...</string>
@@ -479,26 +477,8 @@
   <string name="ThreadRecord_missed_call">Пропущений дзвінок</string>
   <string name="ThreadRecord_media_message">Медіа повідомлення</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s зараз в Signal, привітайтеся!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Час зникнення повідомлень встановлено у %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас немає особистого ключа.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У одержувача немає особистого ключа.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">У одержувача немає особистого ключа!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Сканувати QR код контакту</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Показати ваш QR код</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УВАГА, просканований ключ НЕ СПІВПАДАЄ! Уважно перевірте текст відбитка.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ перевірено!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ключ співрозмовника вірний. Також необхідно, щоб співрозмовник підтвердив ваш ключ.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Перевірено!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">У вас немає особистого ключа!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">У вас немає особистого ключа.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Сканувати QR код контакту</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Показати ваш QR код</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">УВАГА, просканований ключ НЕ СПІВПАДАЄ!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">НЕ перевірено!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Просканований ключ збігається!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Перевірено!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Особистий відбиток</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Почати незважаючи на існуючийй запит?</string>
   <string name="KeyExchangeInitiator_send">Відправити</string>
@@ -623,11 +603,17 @@
   <string name="experience_upgrade_activity__continue">продовжити</string>
   <!--expiration-->
   <string name="expiration_off">Вимкнено</string>
+  <string name="expiration_seconds_abbreviated">%dс</string>
+  <string name="expiration_minutes_abbreviated">%dхв</string>
+  <string name="expiration_hours_abbreviated">%dг</string>
+  <string name="expiration_days_abbreviated">%dд</string>
+  <string name="expiration_weeks_abbreviated">%dт</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Помилка читання журналу відлагодження з вашого пристрою. Ви також можете використати ADB для отримання журналу.</string>
   <string name="log_submit_activity__thanks">Дякуємо за вашу допомогу!</string>
   <string name="log_submit_activity__submitting">Надсилання</string>
   <string name="log_submit_activity__posting_logs">Відправляємо логи на gist...</string>
+  <string name="log_submit_activity__no_browser_installed">Переглядач не встановлено</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Імпорутвати ваші SMS повідомлення у зашифровану базу даних Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системна база даних не буде порушена.</string>
@@ -682,7 +668,6 @@
   <string name="recipient_preferences__block">Заблокувати</string>
   <string name="recipient_preferences__color">Колір</string>
   <string name="recipient_preferences__color_for_this_contact">Колір для цього контакту</string>
-  <string name="recipient_preferences__verify_identity">Перевірити особистість</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Виклик Signal </string>
   <string name="redphone_call_controls__end_call">завершити виклик</string>
@@ -747,10 +732,7 @@ Signal не дочекався перевірочного SMS.
   <string name="registration_progress_activity__check">Перевірка</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Введіть ім\'я або номер</small></string>
-  <string name="recipients_panel__add_member">Додати учасника</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Cпіврозмовник (він читає):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Ви (читаєте):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Є деякі проблеми, що потребують вашої уваги.</string>
   <string name="message_details_header__sent">Відправлено</string>
@@ -764,9 +746,7 @@ Signal не дочекався перевірочного SMS.
   <string name="AndroidManifest__enter_passphrase">Уведіть фразу-пароль</string>
   <string name="AndroidManifest__select_contacts">Обрати контакти</string>
   <string name="AndroidManifest__signal_detected">Сигнал виявлено</string>
-  <string name="AndroidManifest__public_identity_key">Публічний ключ</string>
   <string name="AndroidManifest__change_passphrase">Змінити фразу-ключ</string>
-  <string name="AndroidManifest__verify_identity">Перевірити особистість</string>
   <string name="AndroidManifest__log_submit">Відіслати журнал відлагодження</string>
   <string name="AndroidManifest__media_preview">Попередній перегляд медіа</string>
   <string name="AndroidManifest__media_overview">Всі зображення</string>
@@ -777,7 +757,6 @@ Signal не дочекався перевірочного SMS.
   <string name="AndroidManifest_archived_conversations">Архівовані розмови</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Імпорт / експорт</string>
-  <string name="arrays__your_identity_key">Ваш ключ ідентифікації</string>
   <string name="arrays__use_default">Використовувати за замовчанням</string>
   <string name="arrays__use_custom">Використовувати, як користувач визначає</string>
   <string name="arrays__mute_for_one_hour">Вимкнути звук на 1 годину</string>
@@ -929,7 +908,9 @@ Signal не дочекався перевірочного SMS.
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Зберегти вкладення</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Зникнення повідомлень</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Час життя повідомлень спливає</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Запросити</string>
   <!--conversation_insecure_no_push-->
@@ -948,8 +929,6 @@ Signal не дочекався перевірочного SMS.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нова розмова</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Безпека</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Перевірити особистість</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Скинути безпечну сесію</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Увімкнути мікрофон</string>

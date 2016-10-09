@@ -70,8 +70,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Dohodni klic</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikacijski podpis osebe %1$s je bil spremenjen. To lahko pomeni, da nekdo prestreza komunikacijo, ali pa, da je oseba %2$s ponovno namestila Signal in ima zdaj nov identifikacijski ključ.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Morda bi želeli preveriti ta stik.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Varnostna števila uporabnika %1$s so spremenjena. To lahko pomeni, da nekdo prestreza komunikacijo, ali pa, da je uporabnik %2$s ponovno namestil aplikacijo Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Morda bi želeli overiti varnostna števila tega uporabnika.</string>
   <string name="ConfirmIdentityDialog_accept">Sprejmi</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sporočilo %s</string>
@@ -98,7 +98,7 @@
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
   <string name="ConversationActivity_reset">Ponastavi</string>
   <string name="ConversationActivity_delete_thread_question">Izbrišem pogovor?</string>
-  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">To bo nepovratno izbrisalo vsa sporočila tega pogovora.</string>
+  <string name="ConversationActivity_this_will_permanently_delete_all_messages_in_this_conversation">S tem boste nepovratno izbrisali vsa sporočila tega pogovora.</string>
   <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
   <string name="ConversationActivity_select_contact_info">Izberi podatke o stiku</string>
   <string name="ConversationActivity_compose_message">Sestavi sporočilo</string>
@@ -132,8 +132,8 @@
   <string name="ConversationActivity_mms_not_supported_title">Sporočila MMS niso podprta</string>
   <string name="ConversationActivity_mms_not_supported_message">To sporočilo ne more biti poslano, ker vaš mobilni ponudnik ne podpira sporočil MMS.</string>
   <string name="ConversationActivity_specify_recipient">Prosimo, izberite stik</string>
-  <string name="ConversationActivity_unblock_question">Odblokiram?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Ste prepričani, da želite odblokirati ta stik?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Odblokiram ta stik?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice tega uporabnika.</string>
   <string name="ConversationActivity_unblock">Odblokiraj</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ni na voljo</string>
@@ -151,10 +151,10 @@
     <item quantity="other">Izbrišem izbrana sporočila?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">To bo nepovratno izbrisalo izbrano sporočilo.</item>
-    <item quantity="two">To bo nepovratno izbrisalo %1$d izbrani sporočili.</item>
-    <item quantity="few">To bo nepovratno izbrisalo vsa %1$d izbrana sporočila.</item>
-    <item quantity="other">To bo nepovratno izbrisalo vseh %1$d izbranih sporočil.</item>
+    <item quantity="one">S tem boste nepovratno izbrisali izbrano sporočilo.</item>
+    <item quantity="two">S tem boste nepovratno izbrisali %1$d izbrani sporočili.</item>
+    <item quantity="few">S tem boste nepovratno izbrisali vsa %1$d izbrana sporočila.</item>
+    <item quantity="other">S tem boste nepovratno izbrisali vseh %1$d izbranih sporočil.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Shranim v sistemsko shrambo?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -201,10 +201,10 @@
     <item quantity="other">Izbrišem izbrane pogovore?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">To bo nepovratno izbrisalo izbrani pogovor.</item>
-    <item quantity="two">To bo nepovratno izbrisalo %1$d izbrana pogovora.</item>
-    <item quantity="few">To bo nepovratno izbrisalo vse %1$d izbrane pogovore.</item>
-    <item quantity="other">To bo nepovratno izbrisalo vseh %1$d izbranih pogovorov.</item>
+    <item quantity="one">S tem boste nepovratno izbrisali izbrani pogovor.</item>
+    <item quantity="two">S tem boste nepovratno izbrisali %1$d izbrana pogovora.</item>
+    <item quantity="few">S tem boste nepovratno izbrisali vse %1$d izbrane pogovore.</item>
+    <item quantity="other">S tem boste nepovratno izbrisali vseh %1$d izbranih pogovorov.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Brišem izbrane pogovore...</string>
@@ -339,7 +339,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal potrebuje aplikacijo Barcode Scanner za branje kod QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Pošiljanje ni uspelo</string>
-  <string name="MessageDetailsRecipient_new_identity">Nova identiteta</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nova varnostna števila</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Napaka pri shranjevanju MMS sporočila!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Napaka pri povezavi s ponudnikom MMS...</string>
@@ -409,10 +409,10 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Opa! Trgovina Google Play ni nameščena na vaši napravi.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiram ta stik?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Sporočil in klicev tega uporabnika ne boste več prejemali.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sporočil in klicev tega uporabnika ne boste več prejemali.</string>
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokiram ta stik?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Ste prepričani, da želite odblokirati ta stik?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice tega uporabnika.</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokiraj</string>
   <string name="RecipientPreferenceActivity_enabled">Vklopljeno</string>
   <string name="RecipientPreferenceActivity_disabled">Izklopljeno</string>
@@ -487,8 +487,9 @@ Preverite, če je to zares vaša telefonska številka! Overili jo bomo s sporoč
 sporočilo za izmenjavo ključev!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo in prikaz.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Prejet je bil nadgrajen identifikacijski ključ neznanega stika. Tapnite za potrditev istovetnosti.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Prejeto je bilo sporočilo z novimi varnostnimi števili. Tapnite za prikaz in obdelavo.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Ponastavili ste varno sejo.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">Oseba %s je ponastavila varno sejo.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Zapustili ste skupino...</string>
@@ -501,25 +502,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s uporablja Signal, pozdravite ga!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nimate identifikacijskega ključa.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Prejemnik nima identifikacijskega ključa.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Prejemnik nima identifikacijskega ključa!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Skeniraj kodo QR stika</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Prikaži mojo kodo QR</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">POZOR, skenirani ključ SE NE UJEMA! Pazljivo preverite tekst prstnega odtisa.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">NEOVERJENO!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ključ stika je pravilen. Tudi vaš ključ mora biti potrjen iz njegove strani.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Preverjeno!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nimate identifikacijskega ključa!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nimate identifikacijskega ključa.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Skeniraj kodo QR stika</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Prikaži mojo kodo QR</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">POZOR, skeniran ključ se NE UJEMA!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">NI preverjena!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Skeniran ključ se ujema!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Preverjen!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Moja identifikacija</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš partner uporablja zastarelo različico aplikacije Signal. Pred overbo jo je potrebno nadgraditi.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Želeli ste overiti varnostna števila za %1$s, namesto tega pa ste skenirali %2$s.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirana koda QR ni pravilno pravilno oblikovana verifikacijska koda za varnostna števila. Poskusite znova.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Začnem kljub že poslani zahtevi?</string>
   <string name="KeyExchangeInitiator_send">Pošlji</string>
@@ -740,7 +725,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="recipient_preferences__block">Blokiraj</string>
   <string name="recipient_preferences__color">Barva</string>
   <string name="recipient_preferences__color_for_this_contact">Barva stika</string>
-  <string name="recipient_preferences__verify_identity">Overi identiteto</string>
+  <string name="recipient_preferences__verify_safety_numbers">Overi varnostna števila</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Klic Signal</string>
   <string name="redphone_call_controls__end_call">zaključi klic</string>
@@ -804,10 +789,11 @@ bila uspešna.</string>
   <string name="registration_progress_activity__check">Preveri</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vnesite ime ali številko</small></string>
-  <string name="recipients_panel__add_member">Dodaj člana</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Istovetnost stika (prebere on):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Moja istovetnost (preberem jaz):</string>
+  <string name="recipients_panel__add_members">Dodaj člane</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Če želite overiti varnost vaše od konca do konca zaščitene komunikacije z uporabnikom %s, primerjajte gornja števila s števili na partnerjevi napravi.
+Namesto tega lahko tudi skenirate kodo na napravi partnerja ali njega prosite, naj skenira vašo.</string>
+  <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Prišlo je do težav, ki zahtevajo vašo pozornost.</string>
   <string name="message_details_header__sent">Poslano:</string>
@@ -821,9 +807,8 @@ bila uspešna.</string>
   <string name="AndroidManifest__enter_passphrase">Vnesite geslo</string>
   <string name="AndroidManifest__select_contacts">Izberite naslovnike</string>
   <string name="AndroidManifest__signal_detected">Signal zaznan</string>
-  <string name="AndroidManifest__public_identity_key">Javni identifikacijski ključ</string>
   <string name="AndroidManifest__change_passphrase">Zamenjava gesla</string>
-  <string name="AndroidManifest__verify_identity">Overi identiteto</string>
+  <string name="AndroidManifest__verify_safety_numbers">Overi varnostna števila</string>
   <string name="AndroidManifest__log_submit">Oddaj sistemsko zabeležbo</string>
   <string name="AndroidManifest__media_preview">Ogled medija</string>
   <string name="AndroidManifest__media_overview">Vse slike</string>
@@ -834,7 +819,6 @@ bila uspešna.</string>
   <string name="AndroidManifest_archived_conversations">Arhivirani pogovori</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz/izvoz</string>
-  <string name="arrays__your_identity_key">Moj identifikacijski ključ</string>
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
   <string name="arrays__use_custom">Uporabi izbirno</string>
   <string name="arrays__mute_for_one_hour">Utišaj za 1 uro</string>
@@ -953,6 +937,8 @@ bila uspešna.</string>
   <string name="preferences__support_wifi_calling">Združljivostni način \'Klicanje WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno \'WiFi klicanje/WiFi Calling)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokirani stiki</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Overjanje varnostnih števil</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Zahtevaj overitev varnostnih števil, če se ta spremenijo</string>
   <string name="preferences_notifications__display_in_notifications">Prikazano v obvestilu</string>
   <string name="preferences_chats__when_using_mobile_data">Ob uporabi mobilnega omrežja</string>
   <string name="preferences_chats__when_using_wifi">Ob uporabi omrežja Wi-Fi</string>
@@ -1008,8 +994,6 @@ bila uspešna.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nov pogovor</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Varnost</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Overi identiteto</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Ponastavi varno sejo</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Prekliči utišanje</string>

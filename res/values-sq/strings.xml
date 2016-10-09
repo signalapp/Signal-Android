@@ -64,10 +64,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Thirrje hyrëse</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Ka
-ndryshuar materiali identifikues i çelsit për %1$s. Kjo do të thotë që dikush mundohet të ndërhyjë në komunikimin tuaj, ose që %2$s thjesht ka ri-instaluar Signalin dhe tani ka një çels identifikimi të ri.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Mund të doni të verifikoni
-këtë kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Prano</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesazh %s</string>
@@ -126,8 +122,7 @@ këtë kontakt.</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nuk mbështetet</string>
   <string name="ConversationActivity_mms_not_supported_message">Kjo porosi nuk mund të dërgohet pasiqë operatori yt nuk mbështetë MMS.</string>
   <string name="ConversationActivity_specify_recipient">Përzgjedhni një kontakt</string>
-  <string name="ConversationActivity_unblock_question">Zhblloko?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">A jeni të sigurt që dëshironi të zhbllokoni këtë kontakt?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Zhblloko këtë kontakt?</string>
   <string name="ConversationActivity_unblock">Zhblloko</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Shtojca e tejkalon limitin për madhësinë e mesazhit që po e dërgoni.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nuk është në dispozicion</string>
@@ -320,7 +315,6 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal-it i duhet Barcode Scanner për kodet QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Dështoj dërgimi</string>
-  <string name="MessageDetailsRecipient_new_identity">Identitet i ri</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Gabim në ruajtjën e MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Gabim gjatë lidhjes me ofruesin e MMS...</string>
@@ -390,10 +384,8 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, Play Store aplikacioni duket se nuk është i instaluar në pajisjen tuaj.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blloko këtë kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Nuk do të pranoni më mesazhe apo thirrje nga ky përdorues.</string>
   <string name="RecipientPreferenceActivity_block">Blloko</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Zhblloko këtë kontakt?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">A jeni të sigurt që dëshironi të zhbllokoni këtë kontakt?</string>
   <string name="RecipientPreferenceActivity_unblock">Zhblloko</string>
   <string name="RecipientPreferenceActivity_enabled">Aktivizuar</string>
   <string name="RecipientPreferenceActivity_disabled">Çaktivizar</string>
@@ -473,8 +465,6 @@ Kontrolloni/sigurohuni nëse ky është numri juaj! Do ta verifikojmë me një S
 për shkëmbim çelsash!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">U pranua një mesazh me çels të panjohur identifikimi. Shtyp për ta procesuar dhe shfaqur.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">U pranua informatë e panjohur identifikimi. Shtypni për ta verifikuar identitetin tuaj.</string>
   <string name="SmsMessageRecord_duplicate_message">Porosi e dyfishuar.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">La grupin...</string>
@@ -487,25 +477,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s është në Signal, thuaj tung!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje të mesazheve rregulluar në %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nuk keni qelës identiteti.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Marrësi nuk ka qelës identiteti.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Marrësi nuk ka qelës identiteti!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Skano kodin QR të kontaktit</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Shfaq kodin tënd QR</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">PARALAJMËRIM, çelsi i skanuar NUK përputhet! Kontrolloni tekstin e gjurmëve të gishtave me kujdes.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">I PA Verifikuar!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Çelsi i tyre është i saktë. Është e nevojshme që ta verifikoni edhe çelsin tuaj me palën tjetër gjithashtu.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Verifikuar!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nuk keni qelës identiteti!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nuk keni qelës identiteti.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Skano kodin QR të kontaktit</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Shfaq kodin tënd QR</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">PARALAJMËRIM, çelsi i skanuar NUK përputhet! </string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">I PA verifikuar!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Qelësi i skanuar përputhet!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Verifikuar!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Gjurma i identitetit tënd</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Inico përkurndër kërkesës ekzistuese?</string>
   <string name="KeyExchangeInitiator_send">Dërgo</string>
@@ -714,7 +685,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="recipient_preferences__block">Blloko</string>
   <string name="recipient_preferences__color">Ngjyra</string>
   <string name="recipient_preferences__color_for_this_contact">Ngjyra për këtë kontakt</string>
-  <string name="recipient_preferences__verify_identity">Verifiko identitetin</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Thirrje përmes Signal</string>
   <string name="redphone_call_controls__end_call">përfundo thirrjen</string>
@@ -786,10 +756,7 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="registration_progress_activity__check">Kontrollo</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Shkruaj një emër ose numër</small></string>
-  <string name="recipients_panel__add_member">Shto anëtarë</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Identiteti i tij (ai lexon):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Identiteti yt (ti lexon)</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Disa gjëra kërkojnë vëmendjen tuaj.</string>
   <string name="message_details_header__sent">Dërguar</string>
@@ -803,9 +770,7 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="AndroidManifest__enter_passphrase">Fut fjalëkalimin</string>
   <string name="AndroidManifest__select_contacts">Përzgjedh kontaktet</string>
   <string name="AndroidManifest__signal_detected">Signal u detektua</string>
-  <string name="AndroidManifest__public_identity_key">Çelësi publik i identitetit</string>
   <string name="AndroidManifest__change_passphrase">Ndrysho fjalëkalimin</string>
-  <string name="AndroidManifest__verify_identity">Verifiko identitetin</string>
   <string name="AndroidManifest__log_submit">Dërgo logun e gabimeve</string>
   <string name="AndroidManifest__media_preview">Parapamje e medias</string>
   <string name="AndroidManifest__media_overview">Gjitha imazhet</string>
@@ -816,7 +781,6 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="AndroidManifest_archived_conversations">Bisedat e arkivuara</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importo / eksporto</string>
-  <string name="arrays__your_identity_key">Çelësi i identitetit tuaj</string>
   <string name="arrays__use_default">Përdor parazgjedhjen</string>
   <string name="arrays__use_custom">Përdor të rregulluar</string>
   <string name="arrays__mute_for_one_hour">Hesht për 1 orë</string>
@@ -988,8 +952,6 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Lidhje e re</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Siguria</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Verifiko identitetin</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Reseto sesionin e sigurt</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Çshurdho</string>

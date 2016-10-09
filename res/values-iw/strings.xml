@@ -64,12 +64,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">מידע מזהה השייך למפתח עבור %1$s השתנה.
-המשמעות היא: או שמישהו מנסה ליירט את התקשורת שלך,
-או ש-%2$s פשוט התקין את סיגנל מחדש ושינה את מפתח הזהות.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
-את איש הקשר הזה.
-</string>
   <string name="ConfirmIdentityDialog_accept">קבל</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">שליחת מסר אל %s</string>
@@ -128,8 +122,7 @@
   <string name="ConversationActivity_mms_not_supported_title">אין תמיכה ב־MMS</string>
   <string name="ConversationActivity_mms_not_supported_message">אי־אפשר לשלוח את המסר הזה כי הספק שלך אינו תומך ב־MMS.</string>
   <string name="ConversationActivity_specify_recipient">נא לבחור איש קשר</string>
-  <string name="ConversationActivity_unblock_question">להסיר חסימה?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">האם באמת להסיר את החסימה מאיש הקשר הזה?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">לבטל את החסימה של איש הקשר הזה?</string>
   <string name="ConversationActivity_unblock">הסרת חסימה</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה עברה את הגודל המותר לסוג המסר הנשלח.</string>
   <string name="ConversationActivity_quick_camera_unavailable">מצלמה אינה זמינה</string>
@@ -318,7 +311,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">סיגנל זקוק לסורק הברקודים כדי להשתמש בקודי QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">השליחה לא עבדה</string>
-  <string name="MessageDetailsRecipient_new_identity">זהות חדשה</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה־MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה־MMS...</string>
@@ -388,10 +380,8 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">אוי, נראה שאפליקציית חנות Play אינה מותקנת במכשיר שלך.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">לחסום את איש הקשר הזה?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">לא תקבל עוד מסרים או שיחות מהמשתמש הזה.</string>
   <string name="RecipientPreferenceActivity_block">לחסום</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">לבטל את החסימה של איש הקשר הזה?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">האם באמת להסיר את החסימה מאיש הקשר הזה?</string>
   <string name="RecipientPreferenceActivity_unblock">הסרת חסימה</string>
   <string name="RecipientPreferenceActivity_enabled">מופעל</string>
   <string name="RecipientPreferenceActivity_disabled">כבוי</string>
@@ -473,8 +463,6 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 התקבל מסר החלפת מפתח לגרסה בלתי־תקינה
 של הפרוטוקול.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">התקבל מסר עם מפתח זהות בלתי־ידוע. יש ללחוץ להמשך והצגה.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">התקבל מידע זהות מעודכן, אבל בלתי־ידוע. יש להקיש כדי לאמת את הזהות.</string>
   <string name="SmsMessageRecord_duplicate_message">מסר כפול.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">עזר את הקבוצה...</string>
@@ -487,25 +475,6 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">עכשיו %s בסיגנל, וזה הזמן לשאול „מה שלומך”!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן העלמת המסר הוגדר ל־%s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">אין לך מפתח זהות.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">לנמען אין מפתח זהות.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">לנמען אין מפתח זהות!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">סריקת קוד QR של איש קשר</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">הצגת קוד ה־QR שלך</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">אזהרה, המפתח שנסרק אינו זהה! נא לבדוק בזהירות את הטקסט של טביעת האצבע.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">לא מאומת!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">המפתח שלהם נכון. הכרחי גם לאמת את המפתח שלך אתם.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">אומת!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">אין לך מפתח זהות!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">אין לך מפתח זהות.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">סריקת קוד QR של איש קשר</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">הצגת קוד ה־QR שלך</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">אזהרה, המפתח שנסרק אינו מתאים!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">לא מאומת!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">המפתח שנסרק מתאים!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">אומת!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">טביעת האצבע של הזהות שלך</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">להתחיל למרות בקשה קיימת?</string>
   <string name="KeyExchangeInitiator_send">שלח</string>
@@ -714,7 +683,6 @@
   <string name="recipient_preferences__block">לחסום</string>
   <string name="recipient_preferences__color">צבע</string>
   <string name="recipient_preferences__color_for_this_contact">צבע לאיש הקשר הזה</string>
-  <string name="recipient_preferences__verify_identity">אימות זהות</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">שיחת סיגנל</string>
   <string name="redphone_call_controls__end_call">סיום שיחה</string>
@@ -783,10 +751,7 @@
   <string name="registration_progress_activity__check">סימון</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>נא להזין שם או מספר</small></string>
-  <string name="recipients_panel__add_member">הוספת חבר</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">הזהות שלהם:</string>
-  <string name="verify_identity_activity__your_identity_you_read">הזהות שלך:</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">עניינים מסוימים דורשים את תשומת הלב שלך.</string>
   <string name="message_details_header__sent">נשלח</string>
@@ -800,9 +765,7 @@
   <string name="AndroidManifest__enter_passphrase">נא לרשום משפט סודי</string>
   <string name="AndroidManifest__select_contacts">נא לבחור אנשי קשר</string>
   <string name="AndroidManifest__signal_detected">זיהיתי שיש סיגנל</string>
-  <string name="AndroidManifest__public_identity_key">מפתח זהות ציבורי</string>
   <string name="AndroidManifest__change_passphrase">שינוי משפט סודי</string>
-  <string name="AndroidManifest__verify_identity">אימות זהות</string>
   <string name="AndroidManifest__log_submit">שליחת יומן תיקון שגיאות</string>
   <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
   <string name="AndroidManifest__media_overview">כל התמונות</string>
@@ -813,7 +776,6 @@
   <string name="AndroidManifest_archived_conversations">שיחות גנוזות</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ייבוא / ייצוא</string>
-  <string name="arrays__your_identity_key">מפתח הזהות שלך</string>
   <string name="arrays__use_default">להשתמש בבררת המחדל</string>
   <string name="arrays__use_custom">להשתמש במותאם אישית</string>
   <string name="arrays__mute_for_one_hour">להשתיק לשעה אחת</string>
@@ -985,8 +947,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">שיחה חדשה</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">אבטחה</string>
-  <string name="conversation_secure_verified__menu_verify_identity">אימות זהות</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">אתחול התחברות מאובטחת</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">ביטול השתקה</string>

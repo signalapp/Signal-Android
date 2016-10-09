@@ -64,9 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Идентифициращият ключ за %1$s е променен. Това значи че или някой се опитва да прихване комуникациите ти, или че %2$s е преинсталирал Signal и вече има нов ключ за самоличност.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Може би е добре да се провери ⏎
-този контакт. ⏎</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Числата за сигурност на %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Може да желаете да проверите числата за сигурност на този контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Приемам</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Съобщение %s</string>
@@ -125,8 +124,8 @@
   <string name="ConversationActivity_mms_not_supported_title">MMS не се поддържа</string>
   <string name="ConversationActivity_mms_not_supported_message">Това съобщение не може да бъде изпратезо, защото мобилния Ви оператор не поддържа MMS.</string>
   <string name="ConversationActivity_specify_recipient">Моля избери контакт</string>
-  <string name="ConversationActivity_unblock_question">Отблокирай?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Сигурен ли си, че искаш да отблокираш този контакт?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Отблокирай този контакт?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Отново ще може да получавате съобщения и обаждания от този контакт.</string>
   <string name="ConversationActivity_unblock">Отблокирай</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Размерът на прикачения файл надминава допустимия лимит за типа съобщение, който изпращате.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камерата е недостъпна</string>
@@ -313,7 +312,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal се нуждае от баркод скенер за QR кодове.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Неуспешно изпращане</string>
-  <string name="MessageDetailsRecipient_new_identity">Нова самоличност</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Нови числа за сигурност</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка при съхраняване на MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързването с MMS доставчика...</string>
@@ -384,10 +383,10 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Опа, Play Store приложението не е инсталирано на устройството Ви.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирай този контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Повече няма да получавате съобщения или обаждания от този потребител.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Повече няма да получавате съобщения и обаждания от този контакт.</string>
   <string name="RecipientPreferenceActivity_block">Блокирай</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокирай този контакт?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Сигурен ли си, че искаш да отблокираш този контакт?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Отново ще може да получавате съобщения и обаждания от този контакт.</string>
   <string name="RecipientPreferenceActivity_unblock">Отблокирай</string>
   <string name="RecipientPreferenceActivity_enabled">Включено</string>
   <string name="RecipientPreferenceActivity_disabled">Изключено</string>
@@ -468,8 +467,9 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Съобщението за обмяна на ключа е с грешна версия на протокола.
 </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Получено е съобщение с не познат ключ за самоличност. Натисни, за да го обработиш и покажеш.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получена е променена, но непозната информация за самоличност. Натисни, за да я провериш.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Получихте съобщение с нови числа за сигурност. Натиснете, за да ги видите и обработите.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Вие рестартирахте сигурната сесия.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s рестартира сигурната сесия.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Напусна групата...</string>
@@ -482,25 +482,9 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Signal, кажи му здрасти!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Получателят няма ключ за самоличност.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Получателят няма ключ за самоличност.</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Сканирай QR кодът на контакта</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Покажи собствения QR code</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, сканираният ключ НЕ Е същият! Моля, провери текстовия отпечатък внимателно.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ Е Проверен!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Техният ключ е правилен. Необходимо е да се провери и твоят ключ от тях.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Проверен!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Нямаш ключ за самоличност!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Нямаш ключ за самоличност!</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Сканирай QR кодът на контакта</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Покажи собствения QR code</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ВНИМАНИЕ, сканираният ключ НЕ Е съвпада!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">Не потвърдено!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Сканираният ключ е същия!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Проверен!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Вашият ключ за самоличност</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Signal, помолете ги да го обновят преди да проверят числата за сигурност.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Опитвате се проверите числата за сигурност на %1$s, но вместо това сканирахте %2$s.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Сканираният QR код не представлява правилно форматира код на числа за сигурност. Моля, сканирайте отново.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
   <string name="KeyExchangeInitiator_send">Изпрати</string>
@@ -709,7 +693,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="recipient_preferences__block">Блокирай</string>
   <string name="recipient_preferences__color">Цвят</string>
   <string name="recipient_preferences__color_for_this_contact">Цвят за този контакт</string>
-  <string name="recipient_preferences__verify_identity">Провери самоличността</string>
+  <string name="recipient_preferences__verify_safety_numbers">Провери числата за сигурност</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-ско обаждане</string>
   <string name="redphone_call_controls__end_call">прекрати обаждането</string>
@@ -780,10 +764,10 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="registration_progress_activity__check">Провери</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Въведи име или номер</small></string>
-  <string name="recipients_panel__add_member">Добави член</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Тяхната самоличност (те четат):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Твоята самоличност (ти чети):</string>
+  <string name="recipients_panel__add_members">Добави членове</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Ако желаете да проверите сигурноста на вашата криптирана от край-докрай сесия с %s, сравнете числата изписани по-горе с числата на тяхното устройство. Или сканирайте QR кодът от вашия на техния телефон или обратното.</string>
+  <string name="verify_display_fragment__tap_to_scan">Натисните за сканиране</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Няколко проблема изискват вашето внимание.</string>
   <string name="message_details_header__sent">Изпратен</string>
@@ -797,9 +781,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest__enter_passphrase">Въведи парола</string>
   <string name="AndroidManifest__select_contacts">Избери контакти</string>
   <string name="AndroidManifest__signal_detected">Открит е Signal</string>
-  <string name="AndroidManifest__public_identity_key">Публичен ключ за самоличност</string>
   <string name="AndroidManifest__change_passphrase">Смени паролата</string>
-  <string name="AndroidManifest__verify_identity">Провери самоличността</string>
+  <string name="AndroidManifest__verify_safety_numbers">Провери числата за сигурност</string>
   <string name="AndroidManifest__log_submit">Изпрати доклад</string>
   <string name="AndroidManifest__media_preview">Преглед на медията</string>
   <string name="AndroidManifest__media_overview">Всички изображения</string>
@@ -810,7 +793,6 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="AndroidManifest_archived_conversations">Архивирани разговори</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
-  <string name="arrays__your_identity_key">Вашият ключ за самоличност</string>
   <string name="arrays__use_default">Използвай подразбиращ се</string>
   <string name="arrays__use_custom">Използвай специален</string>
   <string name="arrays__mute_for_one_hour">Тих режим за 1 час</string>
@@ -927,6 +909,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включи ако устройството ти използва WiFi за SMS/MMS(само ако \'Wifi Calling\' е включен на устройството ти)</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Удобряване на числата за сигурност</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Изискай удобряване на новите числа, когато бъдат променени</string>
   <string name="preferences_notifications__display_in_notifications">Покажи в полето с известия</string>
   <string name="preferences_chats__when_using_mobile_data">Когато използвам мобилен интернет</string>
   <string name="preferences_chats__when_using_wifi">Когато използвам Wi-Fi</string>
@@ -982,8 +966,6 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Сигурност</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Провери самоличността</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Започни нова сигурна сесия</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Изключи тих режим</string>
