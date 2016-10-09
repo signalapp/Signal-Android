@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -68,6 +70,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   public void onRun(MasterSecret masterSecret)
       throws IOException, UntrustedIdentityException, NetworkException
   {
+    if (!TextSecurePreferences.isMultiDevice(context)) {
+      Log.w(TAG, "Not multi device, aborting...");
+      return;
+    }
+
     if (recipientId <= 0) generateFullContactUpdate();
     else                  generateSingleContactUpdate(recipientId);
   }
@@ -75,8 +82,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private void generateSingleContactUpdate(long recipientId)
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
-    File contactDataFile = createTempFile("multidevice-contact-update");
+    SignalServiceMessageSender messageSender   = messageSenderFactory.create();
+    File                       contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
       DeviceContactsOutputStream out       = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
@@ -166,7 +173,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
     }
   }
 
-  private Optional<SignalServiceAttachmentStream> getAvatar(Uri uri) throws IOException {
+  private Optional<SignalServiceAttachmentStream> getAvatar(@Nullable Uri uri) throws IOException {
+    if (uri == null) {
+      return Optional.absent();
+    }
+    
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
       try {
         Uri                 displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);

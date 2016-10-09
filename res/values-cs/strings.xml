@@ -67,10 +67,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Příchozí hovor</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikační
- klíč %1$s se změnil. To může být způsobeno tím že se někdo snaží odpolechnout vaši komunikaci, nebo %2$s přeinstaloval aplikaci Signal a nyní má nový klíč.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možná budete chtít ověřit tento
-kontakt</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Ověřovací kódy pro %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si %2$s přeinstaloval Signal a má teď nový identifikační klíč.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možná budte chtít zkontrolovat ověřovací kódy pro tento kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Přijmout</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
@@ -130,8 +128,8 @@ kontakt</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nejsou podporovány</string>
   <string name="ConversationActivity_mms_not_supported_message">Zpráva nemůže být odeslána, protože váš operátor nepodporuje MMS.</string>
   <string name="ConversationActivity_specify_recipient">Vyberte prosím kontakt</string>
-  <string name="ConversationActivity_unblock_question">Odblokovat?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Opravdu chcete odblokovat tento kontakt?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Odblokovat tento kontakt?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Budete opět moci přijímat zprávy a hovory od tohoto kontaktu.</string>
   <string name="ConversationActivity_unblock">Odblokovat</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost přílohy překročila limit pro typ zprávy kterou posíláte</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera není dostupná</string>
@@ -327,7 +325,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal vyžaduje Barcode Scanner pro QR kódy.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodařilo se odeslat</string>
-  <string name="MessageDetailsRecipient_new_identity">Nová identita</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nové ověřovací kódy</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba při ukládání MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba při připojování k poskytovateli MMS</string>
@@ -397,10 +395,10 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ajaj, vypadá to, že aplikace Obchod Play není nainstalována na vašem zařízení.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokovat tento kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Už nebudete přijímat zprávy nebo volání od tohoto uživatele</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Už nebudete přijímat zprávy nebo hovory od tohoto kontaktu.</string>
   <string name="RecipientPreferenceActivity_block">Blokovat</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokovat tento kontakt?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Opravdu chcete odblokovat tento kontakt?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Budete opět moci přijímat zprávy a hovory od tohoto kontaktu.</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>
   <string name="RecipientPreferenceActivity_enabled">Povoleno</string>
   <string name="RecipientPreferenceActivity_disabled">Zakázáno</string>
@@ -475,8 +473,9 @@ telefonní číslo</string>
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Obdržen neplatný požadavek na výměnu klíčů.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Přijata zpráva s neznámým identifikačním klíčem. Klikněte pro její zpracování a zobrazení.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Aktualizována přijatá dat od neznámé identity. Klikněte pro ověření identity.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Přijata zpráva s novými ověřovacími kódy. Kliněte pro její zpracování a zobrazení.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Resetujete zabezpečenou konverzaci</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s resetuje zabezpečenou konverzaci</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opustil skupinu...</string>
@@ -489,25 +488,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s zapnul Signal, řekni ahoj!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Příjemce nemá identifikační klíč.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Příjemce nemá identifikační klíč!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Skenovat QR kód kontaktu</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Zobrazit váš QR kód</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">VAROVÁNÍ, nasnímaný klíč NENÍ SPRÁVNÝ! Zkontrolujte prosím textový otisk.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">NEověřeno!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Klíč protistrany je správný. Protistrana by měla ještě ověřit váš vlastní klíč.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Ověřeno!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nemáte identifikační klíč!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nemáte identifikační klíč.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Skenovat QR kód kontaktu</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Zobrazit váš QR kód</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">UPOZORNĚNÍ: naskenovaný klíč nesouhlasí</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">NEověřeno!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Nasnímaný klíč souhlasí!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Ověřeno!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Váš identifikační otisk</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou ověřovacích kódu jej prosím požádejte, aby si aplikaci aktualizoval.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Pokoušíte se zkontrolovat ověřovací kód s %1$s, ale naskenovali jste místo toho %2$s.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Naskenovaný QR kód nemá správný formát ověřovacího kódu. Prosím zkuste skenovat ještě jednou.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Zahájit i přes probíhající požadavek?</string>
   <string name="KeyExchangeInitiator_send">Odeslat</string>
@@ -722,7 +705,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="recipient_preferences__block">Blokovat</string>
   <string name="recipient_preferences__color">Barva</string>
   <string name="recipient_preferences__color_for_this_contact">Brava tohoto kontaktu</string>
-  <string name="recipient_preferences__verify_identity">Ověření identity</string>
+  <string name="recipient_preferences__verify_safety_numbers">Kontrola ověřovacích kódů.</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal volání</string>
   <string name="redphone_call_controls__end_call">ukončit hovor</string>
@@ -792,10 +775,10 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="registration_progress_activity__check">Kontrola</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Zadejte jméno nebo číslo</small></string>
-  <string name="recipients_panel__add_member">Přidat člena</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Jejich identita (čtou)</string>
-  <string name="verify_identity_activity__your_identity_you_read">Vaše identita (čtete):</string>
+  <string name="recipients_panel__add_members">Přidat členy</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Chcete-li si být jisti, že je vaše komunikace s %s bezpečná, porovnejte nahoře zobrazená čísla s čísly na jeho telefonu. Případně můžete naskenovat kód na jeho telefonu a požádat jej aby naskenova kód na vašem telfonu.</string>
+  <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadují vaši pozornost</string>
   <string name="message_details_header__sent">Odesláno</string>
@@ -809,9 +792,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__enter_passphrase">Zadat heslo</string>
   <string name="AndroidManifest__select_contacts">Výběr kontaktů</string>
   <string name="AndroidManifest__signal_detected">Signal detekován</string>
-  <string name="AndroidManifest__public_identity_key">Veřejný identifikační klíč</string>
   <string name="AndroidManifest__change_passphrase">Změnit heslo</string>
-  <string name="AndroidManifest__verify_identity">Ověření identity</string>
+  <string name="AndroidManifest__verify_safety_numbers">Kontrola ověřovacích kódů.</string>
   <string name="AndroidManifest__log_submit">Odeslat ladící log</string>
   <string name="AndroidManifest__media_preview">Náhled multimedií</string>
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
@@ -822,7 +804,6 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest_archived_conversations">Archivované konverzace</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
-  <string name="arrays__your_identity_key">Váš identifikační klíč</string>
   <string name="arrays__use_default">Použít výchozí</string>
   <string name="arrays__use_custom">Použít vlastní</string>
   <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
@@ -940,6 +921,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Schválení ověřovacích kódů</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vužadovat schválení nových ověřovacích kódů pokud se změní.</string>
   <string name="preferences_notifications__display_in_notifications">Zobrazit v upozornění</string>
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
   <string name="preferences_chats__when_using_wifi">Při použití Wfi</string>
@@ -995,8 +978,6 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzace</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Zabezpečení</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Ověření identity</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Resetovat zabezpečenou konverzaci</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Nahlas</string>

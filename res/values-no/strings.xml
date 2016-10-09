@@ -65,9 +65,6 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Innkommende anrop</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Det identifiserende nøkkelmaterialet for %1$s har endret seg. Dette kan enten bety at noen forsøker å avlytte kommunikasjonen din, eller at %2$s har installert Signal på nytt og dermed fått en ny identitetsnøkkel.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verifisere
-denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
@@ -126,8 +123,7 @@ denne kontakten.</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS ikke støttet</string>
   <string name="ConversationActivity_mms_not_supported_message">Denne meldingen kan ikke sendes fordi operatøren din ikke støtter MMS.</string>
   <string name="ConversationActivity_specify_recipient">Velg kontaktperson</string>
-  <string name="ConversationActivity_unblock_question">Opphev blokkering?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Er du sikker på at du ønsker å oppheve blokkeringen av denne kontakten?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Opphev blokkering av denne kontakten?</string>
   <string name="ConversationActivity_unblock">Opphev blokkering</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegget overstiger størrelsesbegrensningen for den typen melding du sender.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
@@ -309,7 +305,6 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal trenger Barcode Scanner for QR koder.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Sending feilet</string>
-  <string name="MessageDetailsRecipient_new_identity">Ny identitet</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil ved lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Feil ved tilkobling til MMS tjeneste...</string>
@@ -379,10 +374,8 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ooops, Play Store ser ikke ut til å være installert på enheten din.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokker denne kontakten?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Du vil ikke lenger motta meldinger eller anrop fra denne brukeren.</string>
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Opphev blokkering av denne kontakten?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Er du sikker på at du ønsker å oppheve blokkeringen av denne kontakten?</string>
   <string name="RecipientPreferenceActivity_unblock">Opphev blokkering</string>
   <string name="RecipientPreferenceActivity_enabled">Aktivert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktivert</string>
@@ -460,8 +453,8 @@ Dobbelsjekk at dette er nummeret ditt! Vi er i ferd med å verifisere det med en
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Mottok korrupt nøkkelutvekslingsmelding!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Mottok oppdatert men ukjent identitetsinformasjon. Trykk for å validere identiteten.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Du nullstilte den sikre sesjonen.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s nullstilte den sikre sesjonen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplisert melding.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Forlot gruppen...</string>
@@ -474,25 +467,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden før meldingene utløper er satt til %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Mottakeren har ingen ID-nøkkel!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Les av kontaktens QR kode</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Vis din QR kode</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME! Vær vennlig å sjekke fingeravtrykkets tekst nøye.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">IKKE bekreftet!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Nøkkelen deres er korrekt. Det er også nødvendig å bekrefte nøkkelen din med dem også.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Bekreftet!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Du har ingen ID-nøkkel!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Les av kontaktens QR kode</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Vis din QR kode</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVARSEL. Den skannede nøkkelen er IKKE DEN SAMME!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekreftet!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøkkelen stemmer overens!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Bekreftet!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Ditt ID-fingeravtrykk</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
@@ -701,7 +675,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="recipient_preferences__block">Blokker</string>
   <string name="recipient_preferences__color">Farge</string>
   <string name="recipient_preferences__color_for_this_contact">Farge for denne kontakten</string>
-  <string name="recipient_preferences__verify_identity">Bekreft identitet</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal anrop</string>
   <string name="redphone_call_controls__end_call">Avslutt samtale</string>
@@ -763,10 +736,7 @@ feilet.</string>
   <string name="registration_progress_activity__check">Merk</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Tast inn et navn eller nummer</small></string>
-  <string name="recipients_panel__add_member">Legg til medlem</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Deres identitet (de leser):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Din identitet (du leser):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Noen problemer krever din oppmerksomhet.</string>
   <string name="message_details_header__sent">Sendt</string>
@@ -780,9 +750,7 @@ feilet.</string>
   <string name="AndroidManifest__enter_passphrase">Tast inn passord</string>
   <string name="AndroidManifest__select_contacts">Velg kontakter</string>
   <string name="AndroidManifest__signal_detected">Signal oppdaget</string>
-  <string name="AndroidManifest__public_identity_key">Offentlig ID-nøkkel</string>
   <string name="AndroidManifest__change_passphrase">Passordbytte</string>
-  <string name="AndroidManifest__verify_identity">Bekreft identitet</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av media</string>
   <string name="AndroidManifest__media_overview">Alle bilder</string>
@@ -793,7 +761,6 @@ feilet.</string>
   <string name="AndroidManifest_archived_conversations">Arkiverte samtaler</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importere / eksportere</string>
-  <string name="arrays__your_identity_key">Din ID-nøkkel</string>
   <string name="arrays__use_default">Benytt standard</string>
   <string name="arrays__use_custom">Benytt egendefinert</string>
   <string name="arrays__mute_for_one_hour">Mute i 1 time</string>
@@ -965,8 +932,6 @@ feilet.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Sikkerhet</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Bekreft identitet</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Nullstill sikker sesjon</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Lyd av</string>

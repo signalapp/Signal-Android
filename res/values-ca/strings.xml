@@ -64,8 +64,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Trucada entrant</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">La clau identificadora per %1$s ha canviat. Pot ser que algú estigui intentant interceptar la teva comunicació or que %2$s ha reinstal·lat Signal i ara té una nova clau identificadora.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Missatge %s</string>
@@ -124,8 +122,7 @@
   <string name="ConversationActivity_mms_not_supported_title">MMS no disponibles</string>
   <string name="ConversationActivity_mms_not_supported_message">Aquest missatge no ha pogut ser enviat perquè el seu operador de telefonia no accepta MMS.</string>
   <string name="ConversationActivity_specify_recipient">Escull un contacte, si us plau.</string>
-  <string name="ConversationActivity_unblock_question">Desbloquejar?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Esteu segur de voler desblocar aquest contacte?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Voleus desblocar aquest contacte?</string>
   <string name="ConversationActivity_unblock">Desbloca</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">L\'arxiu adjunt excedeix la mida màxima pel tipus de missatge que estàs enviant.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Càmara no disponible</string>
@@ -304,7 +301,6 @@ a la còpia de seguretat.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal necessita Barcode Scanner pels codis QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">No s\'ha pogut enviar</string>
-  <string name="MessageDetailsRecipient_new_identity">Nova identitat</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Error emmagatzemant MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Error connectant amb l\'operador de MMS...</string>
@@ -369,10 +365,8 @@ a la còpia de seguretat.</string>
   <string name="RatingManager_later">Després</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquejar aquest contacte?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">No tornaràs a rebre missatges ni trucades d\'aquest usuari.</string>
   <string name="RecipientPreferenceActivity_block">Bloca</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Voleus desblocar aquest contacte?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Esteu segur de voler desblocar aquest contacte?</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloca</string>
   <string name="RecipientPreferenceActivity_enabled">Habilitat</string>
   <string name="RecipientPreferenceActivity_disabled">Inhabilitat</string>
@@ -448,8 +442,6 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">S\'ha rebut un missatge d\'intercanvi de claus corromput!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">S\'ha rebut un missatge d\'intercanvi de claus per una versió del protocol invàlida.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Has rebut un missatge amb una clau d\'identitària desconeguda. Prem per processar-la i veure-la.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">S\'ha rebut informació actualitzada però desconeguda. Pica per validar l\'identitat.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicar missatge.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Ha deixat el grup...</string>
@@ -461,25 +453,6 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s és a Signal, diga-li hola!</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Tu no tens una clau d\'identitat.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">El destinatari no té clau d\'identitat.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">El destinatari no té clau d\'identitat!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Escanneja el codi QR del contacte</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Mostra el teu codi QR</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ALERTA, la clau escanejada NO coincideix! Si us plau verifica el text de l\'empremta digital cuidadosament.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">NO Verificat!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La seva clau és correcta, però també és necessari verificar la teva clau.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Verificat!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Tu no tens una clau d\'identitat!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Tu no tens una clau d\'identitat.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Escanneja el codi QR del contacte</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Mostra el teu codi QR</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ALERTA, la clau escanejada NO coincideix!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">NO verificat!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">La clau escanejada coincideix!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Verificat!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">La teva empremta identitària</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar encara que hi hagi una petició de tancament?</string>
   <string name="KeyExchangeInitiator_send">Envia</string>
@@ -662,7 +635,6 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="recipient_preferences__block">Bloca</string>
   <string name="recipient_preferences__color">Color</string>
   <string name="recipient_preferences__color_for_this_contact">Color per aquest contacte</string>
-  <string name="recipient_preferences__verify_identity">Verificar identitat</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Trucada Signal</string>
   <string name="redphone_call_controls__end_call">penjar la trucada</string>
@@ -725,10 +697,7 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="registration_progress_activity__check">Comprovar</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introdueix un nom o número</small></string>
-  <string name="recipients_panel__add_member">Afegeix membre</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">La seva identitat (ells llegeixen):</string>
-  <string name="verify_identity_activity__your_identity_you_read">La teva identitat (tu llegeixes):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns problemes necessiten la teva atenció</string>
   <string name="message_details_header__sent">Enviat</string>
@@ -742,9 +711,7 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="AndroidManifest__enter_passphrase">Escriu la contrassenya</string>
   <string name="AndroidManifest__select_contacts">Selecciona els contactes</string>
   <string name="AndroidManifest__signal_detected">Signal detectat</string>
-  <string name="AndroidManifest__public_identity_key">Identificador públic</string>
   <string name="AndroidManifest__change_passphrase">Canvia frase contrasenya</string>
-  <string name="AndroidManifest__verify_identity">Verificar identitat</string>
   <string name="AndroidManifest__log_submit">Envia registre de debug</string>
   <string name="AndroidManifest__media_preview">Previsualització multimèdia</string>
   <string name="AndroidManifest__media_overview">Totes les imatges</string>
@@ -755,7 +722,6 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="AndroidManifest_archived_conversations">Converses arxivades</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / exportar</string>
-  <string name="arrays__your_identity_key">La teva identificació</string>
   <string name="arrays__use_default">Fés servir el predeterminat</string>
   <string name="arrays__use_custom">Fés servir personalitzat</string>
   <string name="arrays__mute_for_one_hour">Silencia-ho una hora</string>
@@ -925,8 +891,6 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nova conversa</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Seguretat</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Verificar identitat</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Reseteja la sessió segura</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Dessilencia</string>

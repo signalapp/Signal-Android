@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.database.loaders;
 
 import android.content.Context;
-import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-public class DeviceListLoader extends AsyncTaskLoader<List<DeviceInfo>> {
+public class DeviceListLoader extends AsyncLoader<List<DeviceInfo>> {
 
   private static final String TAG = DeviceListLoader.class.getSimpleName();
 

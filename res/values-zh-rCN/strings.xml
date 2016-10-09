@@ -61,11 +61,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">来电呼叫</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">当前 %1$s 的身份密钥已经改变。
-这可能是由于有人尝试破解您和对方的通信，
-也可能是有 %2$s 重装了暗号然后生成了新的身份密钥。</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">您可能希望验证
-这个联系人。</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s 的安全码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了暗号。</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人的安全码。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">信息 %s</string>
@@ -123,13 +120,14 @@
   <string name="ConversationActivity_mms_not_supported_title">彩信不被支持</string>
   <string name="ConversationActivity_mms_not_supported_message">此信息无法发送，因为您的运营商不支持彩信。</string>
   <string name="ConversationActivity_specify_recipient">请选择一个联系人</string>
-  <string name="ConversationActivity_unblock_question">解除屏蔽？</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">您确定想要解除对此联系人的屏蔽？</string>
+  <string name="ConversationActivity_unblock_this_contact_question">解除此联系人的屏蔽？</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您将可以再次收到来自此联系人的信息和呼叫。</string>
   <string name="ConversationActivity_unblock">解除屏蔽</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">当前信息的附件类型已经已经超过大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">摄像头不可用</string>
   <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
   <string name="ConversationActivity_error_sending_voice_message">发送语音信息时遇到错误…</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的设备上没有应用程序能处理这个链接。</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">信息详情</string>
   <string name="ConversationFragment_transport_s_sent_received_s">传输：%1$s\n 发送/接收：%2$s</string>
@@ -164,6 +162,7 @@
   <string name="ConversationFragment_deleting_messages">正在删除信息…</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">搜索中...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的设备上未安装浏览器</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">删除已选择的会话？</item>
@@ -276,11 +275,15 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住并保持以录制语音信息，松开即发送</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">共享</string>
+  <string name="InviteActivity_choose_contacts">选择联系人</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">正在发送…</string>
   <string name="InviteActivity_heart_content_description">心</string>
   <string name="InviteActivity_invitations_sent">邀请已发送！</string>
   <string name="InviteActivity_invite_to_signal">邀请至暗号</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="other">发送短信给 %d 个朋友</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">发送 %d 个短信邀请？</item>
   </plurals>
@@ -293,7 +296,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">暗号需要 条码扫描器 来扫描二维码。</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">发送失败</string>
-  <string name="MessageDetailsRecipient_new_identity">新身份</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">新的安全码</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">存储彩信错误！</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">连接彩信服务器错误…</string>
@@ -319,6 +322,7 @@
   <string name="MessageRecord_missed_call_from">来自 %s 的未接来电</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="MessageRecord_you">您</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 将消息销毁时间设置为 %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">口令不符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
@@ -343,6 +347,9 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">连接一个暗号设备？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起来您正在使用第三方的扫描器来连接暗号设备。处于您的安全考虑，请尝试使用暗号的扫描器扫描二维码。</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">销毁信息</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">您的信息将不会过期.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">在此会话中，所有被看到的消息将会在 %s 后消失。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密钥</string>
   <string name="PassphrasePromptActivity_watermark_content_description">暗号图标</string>
@@ -356,12 +363,13 @@
   <string name="RatingManager_rate_now">立刻评价！</string>
   <string name="RatingManager_no_thanks">不，谢谢。</string>
   <string name="RatingManager_later">稍后</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕, 您的设备上未安装 Google Play 商店</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">屏蔽此联系人？</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">您将不会再收到来自此用户的信息和呼叫。</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">您将不会再收到来自此联系人的信息和呼叫。</string>
   <string name="RecipientPreferenceActivity_block">屏蔽</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">解除此联系人的屏蔽？</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">您确定想要解除对此联系人的屏蔽？</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您将可以再次收到来自此联系人的信息和呼叫。</string>
   <string name="RecipientPreferenceActivity_unblock">解除屏蔽</string>
   <string name="RecipientPreferenceActivity_enabled">启用</string>
   <string name="RecipientPreferenceActivity_disabled">禁用</string>
@@ -441,8 +449,9 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">收到损坏的密钥
 交换消息！</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">接收到的密钥交换信息来自不正确的协议版本。</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">接收到来自未知密钥身份的信息。点击以处理或显示。</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">已经收到更新，但是无法确认身份信息。点击并验证身份。</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">接受到了使用新的安全码的信息。点击以处理和显示。</string>
+  <string name="SmsMessageRecord_secure_session_reset">您重置了安全会话。</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">离开此群组...</string>
@@ -453,26 +462,11 @@
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">收件人没有身份密钥。</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">收件人没有身份密钥！</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">扫描联系人二维码</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">显示您的二维码</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告：扫描的密钥不匹配！ 请仔细检查指纹文本。</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">未验证！</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">他们的密钥正确。 还需要他们验证您的密钥。</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">已验证！</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">您没有身份密钥！</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">您没有身份密钥。</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">扫描联系人二维码</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">显示您的二维码</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告：扫描的密钥不匹配！</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">没有经过验证！</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">扫描的密钥匹配！</string>
-  <string name="ViewIdentityActivity_verified_exclamation">已验证！</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">你的身份指纹</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人正在使用旧版本的暗号，请告诉他们更新到最新版本再验证安全码。</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">您正在尝试验证与 %1$s 验证安全码，但是您却扫描了 %2$s 的验证码。</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">扫描的 QR 码格式不正确。请重新扫一次。</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">发起一个已经存在的请求？</string>
   <string name="KeyExchangeInitiator_send">发送</string>
@@ -597,11 +591,32 @@
   <string name="experience_upgrade_activity__continue">继续</string>
   <!--expiration-->
   <string name="expiration_off">关</string>
+  <plurals name="expiration_seconds">
+    <item quantity="other">%d 秒</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%d 秒</string>
+  <plurals name="expiration_minutes">
+    <item quantity="other">%d 分</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%d 分钟</string>
+  <plurals name="expiration_hours">
+    <item quantity="other">%d 小时</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%d 小时</string>
+  <plurals name="expiration_days">
+    <item quantity="other">%d 天</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%d 天</string>
+  <plurals name="expiration_weeks">
+    <item quantity="other">%d 周</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%d 周</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">无法在您的设备上读取日志。您仍然可以使用 ADB 来获得调试日志。</string>
   <string name="log_submit_activity__thanks">感谢！</string>
   <string name="log_submit_activity__submitting">正在提交</string>
   <string name="log_submit_activity__posting_logs">正在将日志发布到 gist …</string>
+  <string name="log_submit_activity__no_browser_installed">未安装浏览器</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想要导入您已经存在的短信到暗号的加密数据库？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">默认的系统数据库将不会被修改或改变。</string>
@@ -654,7 +669,7 @@
   <string name="recipient_preferences__block">屏蔽</string>
   <string name="recipient_preferences__color">颜色</string>
   <string name="recipient_preferences__color_for_this_contact">此联系人的颜色</string>
-  <string name="recipient_preferences__verify_identity">验证身份</string>
+  <string name="recipient_preferences__verify_safety_numbers">验证安全码</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">暗号呼叫</string>
   <string name="redphone_call_controls__end_call">结束呼叫</string>
@@ -726,10 +741,10 @@
   <string name="registration_progress_activity__check">检查</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>输入一个名字或号码</small></string>
-  <string name="recipients_panel__add_member">添加成员</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">他们的身份(他们读作)：</string>
-  <string name="verify_identity_activity__your_identity_you_read">您的身份(您读成)：</string>
+  <string name="recipients_panel__add_members">添加成员</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">如果您想验证和 %s  的端到端加密时安全的，请和他们比较上方的数字是否一致。或者，您可以扫描他们手机上的二维码，或让他们扫描您手机上面的二维码。</string>
+  <string name="verify_display_fragment__tap_to_scan">点击扫描</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些问题需要您的注意</string>
   <string name="message_details_header__sent">发送</string>
@@ -743,9 +758,8 @@
   <string name="AndroidManifest__enter_passphrase">输入密钥</string>
   <string name="AndroidManifest__select_contacts">选择联系人</string>
   <string name="AndroidManifest__signal_detected">已经检测到暗号</string>
-  <string name="AndroidManifest__public_identity_key">身份公钥</string>
   <string name="AndroidManifest__change_passphrase"> 修改密码</string>
-  <string name="AndroidManifest__verify_identity">验证身份</string>
+  <string name="AndroidManifest__verify_safety_numbers">验证安全码</string>
   <string name="AndroidManifest__log_submit">发送调试日志</string>
   <string name="AndroidManifest__media_preview">媒体预览</string>
   <string name="AndroidManifest__media_overview">所有图片</string>
@@ -756,7 +770,6 @@
   <string name="AndroidManifest_archived_conversations">存档会话</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
-  <string name="arrays__your_identity_key">你的身份密钥</string>
   <string name="arrays__use_default">使用默认</string>
   <string name="arrays__use_custom">使用定制</string>
   <string name="arrays__mute_for_one_hour">静音 1 小时</string>
@@ -872,6 +885,8 @@
   <string name="preferences__support_wifi_calling">“Wifi呼叫”兼容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的设备使用WiFi发送彩信或短信，请启用此选项(仅当\"WiFi 语音呼叫\"在您的设备上启用时才可用)</string>
   <string name="preferences_app_protection__blocked_contacts">已屏蔽的联系人</string>
+  <string name="preferences_app_protection__safety_numbers_approval">安全码审查</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">当安全码发生改变时，就请求验证新的安全码</string>
   <string name="preferences_notifications__display_in_notifications">在通知中显示</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
   <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
@@ -906,7 +921,9 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">保存附件</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">销毁信息</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">消息过期</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀请</string>
   <!--conversation_insecure_no_push-->
@@ -925,8 +942,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新会话</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">安全性</string>
-  <string name="conversation_secure_verified__menu_verify_identity">验证身份</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">重置安全会话</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">解除静音</string>

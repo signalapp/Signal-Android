@@ -73,6 +73,7 @@ public class TextSecurePreferences {
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
+  private static final String BLOCKING_IDENTITY_CHANGES_PREF   = "pref_blocking_identity_changes";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
@@ -111,6 +112,15 @@ public class TextSecurePreferences {
 
   public static boolean isMultiDevice(Context context) {
     return getBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, false);
+  }
+
+  public static boolean isBlockingIdentityUpdates(Context context) {
+    return true;
+//    return getBooleanPreference(context, BLOCKING_IDENTITY_CHANGES_PREF, false);
+  }
+
+  public static void setBlockingIdentityUpdates(Context context, boolean value) {
+    setBooleanPreference(context, BLOCKING_IDENTITY_CHANGES_PREF, value);
   }
 
   public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {

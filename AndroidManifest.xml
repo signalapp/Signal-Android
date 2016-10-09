@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="201"
-      android:versionName="3.19.0">
+      android:versionCode="206"
+      android:versionName="3.20.3">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat"/>
 
@@ -179,9 +179,13 @@
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
+            <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
         </intent-filter>
 
-
+        <meta-data android:name="com.sec.minimode.icon.portrait.normal"
+            android:resource="@drawable/icon" />
+        <meta-data android:name="com.sec.minimode.icon.landscape.normal"
+            android:resource="@drawable/icon" />
 
     </activity-alias>
 
@@ -262,19 +266,11 @@
           android:windowSoftInputMode="stateHidden"
           android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ViewIdentityActivity"
-              android:label="@string/AndroidManifest__public_identity_key"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".ViewLocalIdentityActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".PassphraseChangeActivity"
               android:label="@string/AndroidManifest__change_passphrase"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".VerifyIdentityActivity"
-              android:label="@string/AndroidManifest__verify_identity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ApplicationPreferencesActivity"
@@ -504,6 +500,13 @@
             <action android:name="info.guardianproject.panic.action.TRIGGER" />
         </intent-filter>
     </receiver>
+
+    <uses-library android:name="com.sec.android.app.multiwindow" android:required="false"/>
+    <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
+    <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632.0dip" />
+    <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />
+    <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="632.0dip" />
+    <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="598.0dip" />
 
 </application>
 </manifest>

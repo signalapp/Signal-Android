@@ -28,6 +28,12 @@
                         android:title="@string/preferences__screen_security"
                         android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots" />
 
+    <!--<org.thoughtcrime.securesms.components.SwitchPreferenceCompat-->
+            <!--android:defaultValue="false"-->
+            <!--android:key="pref_blocking_identity_changes"-->
+            <!--android:title="@string/preferences_app_protection__safety_numbers_approval"-->
+            <!--android:summary="@string/preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change"/>-->
+
     <Preference android:key="preference_category_blocked"
                 android:title="@string/preferences_app_protection__blocked_contacts" />
 </PreferenceScreen>

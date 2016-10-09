@@ -61,9 +61,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">來電</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">當前 %1$s 的識別金鑰已經改變。這可能是由於有人嘗試破解您和對方的通信，也可能是有 %2$s 重裝了Signal然後產生了新的識別金鑰。</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">您想要對這名聯絡人
-進行認證嗎？</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s 則訊息</string>
@@ -121,13 +120,14 @@
   <string name="ConversationActivity_mms_not_supported_title">多媒體訊息不被支援</string>
   <string name="ConversationActivity_mms_not_supported_message">此訊息無法傳送，因為您的業者不支援多媒體訊息。</string>
   <string name="ConversationActivity_specify_recipient">請選擇聯絡人</string>
-  <string name="ConversationActivity_unblock_question">解除封鎖？</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">您確定要解除封鎖此聯絡人嗎？</string>
+  <string name="ConversationActivity_unblock_this_contact_question">解除封鎖此聯絡人？</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您將可以再次收到來自此聯絡人的訊息與通話。</string>
   <string name="ConversationActivity_unblock">解除封鎖</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">當前訊息的附件類型已經超越大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">攝像頭不可用</string>
   <string name="ConversationActivity_unable_to_record_audio">無法錄音！</string>
   <string name="ConversationActivity_error_sending_voice_message">傳送語音訊息時出現錯誤...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的設備上沒有應用程序能處理這個鏈接。</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">訊息細節</string>
   <string name="ConversationFragment_transport_s_sent_received_s">傳送狀態: %1$s\n已傳送/已接收: %2$s</string>
@@ -162,6 +162,7 @@
   <string name="ConversationFragment_deleting_messages">正在刪除訊息...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">搜尋...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的設備上未安裝瀏覽器。</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">刪除已選對話？</item>
@@ -297,7 +298,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal 需要條碼掃描器來掃描 QR 碼。</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">傳送失敗</string>
-  <string name="MessageDetailsRecipient_new_identity">新身分</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">新的安全碼</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">儲存多媒體訊息時有誤！</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">連線至多媒體訊息伺服器時有誤！</string>
@@ -323,6 +324,7 @@
   <string name="MessageRecord_missed_call_from">來自 %s 的未接來電</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="MessageRecord_you">您</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 將訊息銷毀時間設置爲 %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的自訂密碼不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的自訂密碼！</string>
@@ -347,6 +349,9 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">連結 Signal 裝置？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起來您正在嘗試使用第 3 方掃描器連結 Signal 裝置。為了安全著想，請使用 Signal 重新掃描代碼一次。</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">正在銷毀訊息</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">您的訊息將不會過期。</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">在此會話中的所有已被閱讀的訊息將會在 %s 後消失。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">輸入自訂密碼</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 圖示</string>
@@ -360,12 +365,13 @@
   <string name="RatingManager_rate_now">立即評分！</string>
   <string name="RatingManager_no_thanks">不，謝謝。</string>
   <string name="RatingManager_later">稍後</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕，您的設備上未安裝 Google Play 商店。</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">封鎖此聯絡人？</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">您將不會再次收到來自此使用者的訊息與通話。</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">您將不會再次收到來自此聯絡人的訊息與通話。</string>
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">解除封鎖此聯絡人？</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">您確定要解除封鎖此聯絡人嗎？</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您將可以再次收到來自此聯絡人的訊息與通話。</string>
   <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
   <string name="RecipientPreferenceActivity_enabled">啟用</string>
   <string name="RecipientPreferenceActivity_disabled">停用</string>
@@ -449,8 +455,9 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         收到的金鑰交換訊息是未知的協定／版本。
     </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">收到的金鑰交換訊息夾帶未知的身分值，按此顯示細節並執行。</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">已接收金鑰交換更新請求但未知對方身分。按此進行身分確認。</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">收到使用新安全碼的訊息。按此顯示細節並執行。</string>
+  <string name="SmsMessageRecord_secure_session_reset">您已重設安全對話。</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s 重設安全對話。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息。</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">離開這個群組...</string>
@@ -461,26 +468,11 @@
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">您不具備身分認證金鑰。</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">收件者不具備身分認證金鑰。</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">收件者不具備身分認證金鑰！</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">掃描聯絡人二維碼</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">顯示您的二維碼</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">警告！驗證結果不符合！請再檢查並仔細比對一次指紋碼。</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">無法驗證！</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">對方提供的金鑰是正確的。但您也必須將您的金鑰與其比對。</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">已驗證！</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">您不具備身分認證金鑰！</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">您不具備身分認證金鑰。</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">掃描聯絡人二維碼</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">顯示您的二維碼</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">警告！掃描的值並不相符！</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">無法驗證！</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">掃描的金鑰相符！</string>
-  <string name="ViewIdentityActivity_verified_exclamation">已驗證！</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">您的身分辨識指紋碼</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人正在使用舊版本的 Signal，請告訴他們更新到最新版本再驗證安全碼。</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">您正在嘗試與 %1$s 驗證安全碼，但您卻掃描了 %2$s 的驗證碼。</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼格式不正確。請重新掃描一次。</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">忽略既有請求，依然啟動？</string>
   <string name="KeyExchangeInitiator_send">送出</string>
@@ -630,6 +622,7 @@
   <string name="log_submit_activity__thanks">感謝您的協助！</string>
   <string name="log_submit_activity__submitting">上傳中</string>
   <string name="log_submit_activity__posting_logs">正在把記錄轉貼至gist上...</string>
+  <string name="log_submit_activity__no_browser_installed">未安裝瀏覽器</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想要把已存在的訊息匯入 Signal 的加密資料庫嗎？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">裝置上預設的資料庫將不會被做任何修改或變更。</string>
@@ -682,7 +675,7 @@
   <string name="recipient_preferences__block">封鎖</string>
   <string name="recipient_preferences__color">顏色</string>
   <string name="recipient_preferences__color_for_this_contact">此聯絡人的顏色</string>
-  <string name="recipient_preferences__verify_identity">驗證身分</string>
+  <string name="recipient_preferences__verify_safety_numbers">驗證安全碼</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 通話</string>
   <string name="redphone_call_controls__end_call">結束通話</string>
@@ -753,14 +746,15 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="registration_progress_activity__check">檢查</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>輸入名稱或手機號碼</small></string>
-  <string name="recipients_panel__add_member">新增成員</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">他們的身分 (請他們唸出)</string>
-  <string name="verify_identity_activity__your_identity_you_read">你的驗證碼 (你自己唸出)</string>
+  <string name="recipients_panel__add_members">新增成員</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">如果您想驗證和 %s 的端到端加密安全，請比較對方設備和上方的數字是否一致。或者，您可以掃描對方手機上的二維碼，或是讓對方掃描您手機上的二維碼。</string>
+  <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些問題需要您的注意。</string>
   <string name="message_details_header__sent">傳送</string>
   <string name="message_details_header__received">接受</string>
+  <string name="message_details_header__disappears">銷毀</string>
   <string name="message_details_header__via">來自</string>
   <string name="message_details_header__to">至：</string>
   <string name="message_details_header__from">來自：</string>
@@ -770,9 +764,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="AndroidManifest__enter_passphrase">輸入自訂密碼</string>
   <string name="AndroidManifest__select_contacts">選擇多位聯絡人</string>
   <string name="AndroidManifest__signal_detected">已偵測出 Signal</string>
-  <string name="AndroidManifest__public_identity_key">公鑰／公開金鑰</string>
   <string name="AndroidManifest__change_passphrase">變更自訂密碼</string>
-  <string name="AndroidManifest__verify_identity">驗證身分</string>
+  <string name="AndroidManifest__verify_safety_numbers">驗證安全碼</string>
   <string name="AndroidManifest__log_submit">送出偵錯紀錄</string>
   <string name="AndroidManifest__media_preview">媒體預覽</string>
   <string name="AndroidManifest__media_overview">所有圖片</string>
@@ -783,7 +776,6 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="AndroidManifest_archived_conversations">存檔對話</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">匯入／匯出</string>
-  <string name="arrays__your_identity_key">您的身分金鑰</string>
   <string name="arrays__use_default">使用預設</string>
   <string name="arrays__use_custom">使用定製</string>
   <string name="arrays__mute_for_one_hour">靜音 1 小時</string>
@@ -899,6 +891,8 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="preferences__support_wifi_calling">\"WiFi 呼叫\"相容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的裝置使用 WiFi 傳送簡訊或多媒體訊息，請啟用此選項 (僅當\"WiFi 語音呼叫\"在您的裝置上啟用的時候才可用)</string>
   <string name="preferences_app_protection__blocked_contacts">封鎖聯絡人</string>
+  <string name="preferences_app_protection__safety_numbers_approval">驗證安全碼</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">當安全碼產生變得時，請求驗證新的安全碼</string>
   <string name="preferences_notifications__display_in_notifications">在通知列中顯示</string>
   <string name="preferences_chats__when_using_mobile_data">當使用行動數據時</string>
   <string name="preferences_chats__when_using_wifi">當使用 Wi-Fi 時</string>
@@ -933,7 +927,9 @@ Signal 在等待簡訊驗證時超時。</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">另存附件檔案</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">正在銷毀訊息</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">訊息過期</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀請</string>
   <!--conversation_insecure_no_push-->
@@ -952,8 +948,6 @@ Signal 在等待簡訊驗證時超時。</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新對話</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">安全設定</string>
-  <string name="conversation_secure_verified__menu_verify_identity">驗證身分</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">重設安全對話</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">接觸靜音</string>

@@ -67,10 +67,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Podpis identyfikacyjny dla %1$s zmienił się. Może to oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub %2$s przeinstalował aplikację Signal i posiada teraz nowy klucz identyfikacyjny.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Może chcesz zweryfikować 
-ten kontakt.
-</string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Wiadomość %s</string>
@@ -130,8 +126,7 @@ ten kontakt.
   <string name="ConversationActivity_mms_not_supported_title">MMS nie są wspomagane</string>
   <string name="ConversationActivity_mms_not_supported_message">Wiadomość nie może zostać wysłana, ponieważ Twój operator nie obsługuje usługi MMS.</string>
   <string name="ConversationActivity_specify_recipient">Proszę wybierz kontakt</string>
-  <string name="ConversationActivity_unblock_question">Odblokować?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Czy jesteś pewny, że chcesz odblokować ten kontakt?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Odblokować ten kontakt?</string>
   <string name="ConversationActivity_unblock">Odblokuj</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Rozmiar tego załącznika przekracza limit wiadomości.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera jest niedostępna</string>
@@ -183,6 +178,7 @@ ten kontakt.
   <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Szukaj...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Usunąć wybraną konwersację?</item>
@@ -319,7 +315,7 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Aplikacja Signal potrzebuje skanera kodów QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string>
-  <string name="MessageDetailsRecipient_new_identity">Nowa tożsamość</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nowe numery bezpieczeństwa</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Błąd przechowywania MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Błąd połączenia z dostawcą usługi MMS...</string>
@@ -384,10 +380,8 @@ Stracisz wszystkie informacje obecnie zawarte w aplikacji Signal z wyjątkiem ty
   <string name="RatingManager_later">Później</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokować ten kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Już nie będziesz otrzymywać wiadomości i połączeń od tego użytkownika.</string>
   <string name="RecipientPreferenceActivity_block">Blokuj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokować ten kontakt?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Czy jesteś pewny, że chcesz odblokować ten kontakt?</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokuj</string>
   <string name="RecipientPreferenceActivity_enabled">Włączone</string>
   <string name="RecipientPreferenceActivity_disabled">Wyłączone</string>
@@ -465,8 +459,9 @@ Upewnij się, że to jest Twój numer! Zamierzamy zweryfikować go SMSem.
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Otrzymano uszkodzony klucz!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Otrzymano wiadomość z nieznanym kluczem tożsamości. Dotknij, aby przetworzyć i wyświetlić.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Otrzymano zaktualizowaną, ale nieznaną informację o tożsamości. Dotknij aby potwierdzić tożsamość.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Otrzymałeś wiadomość z nowym numerem bezpieczeństwa. Dotknij, aby przetworzyć i wyświetlić.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Zresetowałeś bezpieczną sesję.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s zresetował bezpieczną sesję.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Opuścił grupę...</string>
@@ -477,26 +472,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s używa Signal, przywitaj się!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Odbiorca nie posiada klucza tożsamości.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Odbiorca nie posiada klucza tożsamości!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Zeskanuj kod QR kontaktu</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Wyświetl swój kod QR</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">UWAGA, zeskanowane klucze NIE ZGADZAJĄ się! Proszę sprawdź klucz ostrożnie!</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">NIE zweryfikowany!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ich klucz jest poprawny. Niezbędna będzie także weryfikacja Twojego klucza z odbiorcami.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Zweryfikowano!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nie posiadasz klucza tożsamości!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nie posiadasz klucza tożsamości.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Skanuj kod QR kontaktu</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Wyświetl swój kod QR</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">UWAGA, zeskanowane klucze NIE ZGADZAJĄ SIĘ!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">Niezweryfikowany!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Zeskanowane klucze zgadzają się!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Zweryfikowano!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Twój klucz tożsamości</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Twój kontakt używa starej wersji Signal, poproś tą osobę o zaktualizowanie zanim zweryfikuje numer bezpieczeństwa.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Próbujesz zweryfikować numer bezpieczeństwa za pomocą %1$s, ale zamiast tego skanowałeś %2$s.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Zeskanowany kod QR nie jest poprawnie sformatowanym kodem weryfikującym numer bezpieczeństwa. Proszę ponownie spróbować zeskanować.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Rozpocząć pomimo istniejącego żądania?</string>
   <string name="KeyExchangeInitiator_send">Wyślij</string>
@@ -680,7 +660,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="recipient_preferences__block">Blokuj</string>
   <string name="recipient_preferences__color">Kolor</string>
   <string name="recipient_preferences__color_for_this_contact">Kolor tego kontaktu</string>
-  <string name="recipient_preferences__verify_identity">Weryfikuj tożsamość</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Połączenie Signal</string>
   <string name="redphone_call_controls__end_call">Zakończ</string>
@@ -738,10 +717,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="registration_progress_activity__check">Sprawdź</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to">Wprowadź nazwę lub numer kontaktu</string>
-  <string name="recipients_panel__add_member">Dodaj uczestnika</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Ich identyfikacja (oni widzą):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Twoja identyfikacja (Ty widzisz):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Niektóre kwestie wymagają Twojej uwagi.</string>
   <string name="message_details_header__sent">Wysłano</string>
@@ -755,9 +731,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__enter_passphrase">Podaj hasło</string>
   <string name="AndroidManifest__select_contacts">Wybierz kontakty</string>
   <string name="AndroidManifest__signal_detected">Wykryto Signal</string>
-  <string name="AndroidManifest__public_identity_key">Publiczny klucz tożsamości</string>
   <string name="AndroidManifest__change_passphrase">Zmień hasło</string>
-  <string name="AndroidManifest__verify_identity">Zweryfikuj tożsamość</string>
   <string name="AndroidManifest__log_submit">Wyślij raport debugowania.</string>
   <string name="AndroidManifest__media_preview">Podgląd plików multimedialnych</string>
   <string name="AndroidManifest__media_overview">Pokaż wszystkie zdjęcia</string>
@@ -768,7 +742,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest_archived_conversations">Archiwum</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
-  <string name="arrays__your_identity_key">Twój klucz tożsamości</string>
   <string name="arrays__use_default">Użyj domyślnych</string>
   <string name="arrays__use_custom">Użyj własnych</string>
   <string name="arrays__mute_for_one_hour">Wycisz na 1 godzinę</string>
@@ -939,8 +912,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nowa konwersacja</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Bezpieczeństwo</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Zweryfikuj tożsamość</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Reset bezpiecznej sesji</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Wyłącz wyciszenie</string>
