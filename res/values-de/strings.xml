@@ -333,7 +333,8 @@ Das Wiederherstellen einer verschlüsselten Datensicherung ersetzt deine bestehe
   <string name="MessageRecord_missed_call_from">Entgangener Anruf von %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen! </string>
   <string name="MessageRecord_you">Du</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit bis zum Verschwinden der Nachricht auf %2$s festgelegt</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Zeit für verschwindende Nachrichten auf %2$s festgelegt</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Deine Sicherheitsnummern mit %s haben sich geändert</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
@@ -466,7 +467,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="ThreadRecord_missed_call">Entgangener Anruf</string>
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s ist bei Signal. Zeit, Hallo zu sagen!</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit bis zum Verschwinden der Nachricht auf %s festgelegt</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Deine Sicherheitsnummern mit %s haben sich geändert</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn vor dem Überprüfen der Sicherheitsnummern Signal zu aktualisieren.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Du versuchst, Sicherheitsnummern mit %1$s abzugleichen, hast stattdessen aber %2$s eingescannt.</string>
