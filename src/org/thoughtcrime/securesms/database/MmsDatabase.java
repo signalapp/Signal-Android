@@ -717,7 +717,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(PART_COUNT, retrieved.getAttachments().size());
     contentValues.put(SUBSCRIPTION_ID, retrieved.getSubscriptionId());
     contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());
-    contentValues.put(READ, 0);
+    contentValues.put(READ, retrieved.isExpirationUpdate() ? 1 : 0);
 
     if (!contentValues.containsKey(DATE_SENT)) {
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
