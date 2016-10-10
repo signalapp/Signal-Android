@@ -385,6 +385,7 @@
     <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
     <string name="MessageRecord_you">You</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s</string>
+    <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Your safety numbers with %s have changed</string>
 
 
     <!-- PassphraseChangeActivity -->
@@ -550,6 +551,7 @@
     <string name="ThreadRecord_media_message">Media message</string>
     <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
+    <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Your safety numbers with %s have changed</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying safety numbers.</string>
