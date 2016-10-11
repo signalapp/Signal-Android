@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,18 +37,18 @@ import java.util.List;
 public class MediaPreviewAdapter extends PagerAdapter {
   private final Context          context;
   private final MasterSecret     masterSecret;
-  private List<ImageRecord>      imageRecords;
+  private List<Uri>              images;
   private OnScaleChangedListener scaleChangedListener;
 
-  public MediaPreviewAdapter(Context context, MasterSecret masterSecret, List<ImageRecord> imageRecords) {
+  public MediaPreviewAdapter(Context context, MasterSecret masterSecret, List<Uri> images) {
     this.context      = context;
     this.masterSecret = masterSecret;
-    this.imageRecords = imageRecords;
+    this.images       = images;
   }
 
   @Override
   public int getCount() {
-    return imageRecords.size();
+    return images.size();
   }
 
   @Override
@@ -56,7 +57,7 @@ public class MediaPreviewAdapter extends PagerAdapter {
     View             viewItem  = inflater.inflate(R.layout.media_preview_item, container, false);
     ZoomingImageView imageView = (ZoomingImageView) viewItem.findViewById(R.id.image);
 
-    imageView.setImageUri(masterSecret, imageRecords.get(position).getAttachment().getDataUri());
+    imageView.setImageUri(masterSecret, images.get(position));
     imageView.setOnScaleChangedListener(scaleChangedListener);
     container.addView(viewItem);
 

@@ -69,6 +69,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   private long                  threadId;
   private long                  date;
   private List<ImageRecord>     imageRecords;
+  private List<Uri>             images;
+  private boolean               draftMode;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -101,17 +103,22 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeActionBar() {
-    final CharSequence relativeTimeSpan;
-    if (date > 0) {
-      relativeTimeSpan = DateUtils.getRelativeTimeSpanString(date,
-                                                             System.currentTimeMillis(),
-                                                             DateUtils.MINUTE_IN_MILLIS);
+    if (draftMode) {
+      getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
+      getSupportActionBar().setSubtitle(R.string.MediaPreviewActivity_draft);
     } else {
-      relativeTimeSpan = null;
+      final CharSequence relativeTimeSpan;
+      if (date > 0) {
+        relativeTimeSpan = DateUtils.getRelativeTimeSpanString(date,
+                System.currentTimeMillis(),
+                DateUtils.MINUTE_IN_MILLIS);
+      } else {
+        relativeTimeSpan = null;
+      }
+      getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you)
+                                                       : recipient.toShortString());
+      getSupportActionBar().setSubtitle(relativeTimeSpan);
     }
-    getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you)
-                                                     : recipient.toShortString());
-    getSupportActionBar().setSubtitle(relativeTimeSpan);
   }
 
   @Override
@@ -141,6 +148,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
     this.threadId  = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     this.mediaUri  = getIntent().getData();
     this.mediaType = getIntent().getType();
+    this.draftMode = (this.threadId == -1);
   }
 
   private void initializeMedia() {
@@ -149,17 +157,30 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
       Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
       finish();
     }
+
+    if (draftMode) {
+      this.images = new ArrayList<>(0);
+      images.add(mediaUri);
+    } else {
+      this.imageRecords = getImageRecords(getApplicationContext(), threadId);
+      this.images       = getImages(imageRecords);
+    }
   }
 
   private void initializeViewPager() {
-    this.imageRecords = getImageRecords(getApplicationContext(), threadId);
     this.viewPager    = (MediaPreviewViewPager) findViewById(R.id.viewPager);
-    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,imageRecords));
+    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,images));
     viewPager.addOnPageChangeListener(this);
 
-    int startPosition = getImagePosition(mediaUri);
+    int startPosition = images.indexOf(mediaUri);
     viewPager.setCurrentItem(startPosition);
-    if (startPosition == 0) onPageSelected(0);
+    if (startPosition == 0) {
+      onPageSelected(0);
+    } else if (startPosition < 0) {
+      Log.w(TAG, "Media not part of images for thread, finishing.");
+      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_cant_display, Toast.LENGTH_LONG).show();
+      finish();
+    }
   }
 
   private void cleanupMedia() {
@@ -171,7 +192,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
         SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
-        saveTask.execute(new Attachment(mediaUri, mediaType, date));
+        long saveDate = (date == 0L) ? System.currentTimeMillis() : date;
+        saveTask.execute(new Attachment(mediaUri, mediaType, saveDate));
       }
     });
   }
@@ -207,28 +229,12 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onPageSelected(int position) {
-    updateResources(position);
+    if (!draftMode) updateResources(position);
     initializeActionBar();
   }
 
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && contentType.startsWith("image/");
-  }
-
-  private int getImagePosition(Uri mediaUri) {
-    int position = -1;
-    for (int i = 0; i < imageRecords.size(); i++) {
-      if (imageRecords.get(i).getAttachment().getDataUri().equals(mediaUri)) {
-        position = i;
-        break;
-      }
-    }
-    if (position < 0) {
-      Log.w(TAG, "Media not part of images for thread, finishing.");
-      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_cant_display, Toast.LENGTH_LONG).show();
-      finish();
-    }
-    return position;
   }
 
   private List<ImageRecord> getImageRecords(Context context, Long threadId) {
@@ -240,6 +246,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
       } while (imagesForThread.moveToPrevious());
     }
     return imageRecords;
+  }
+
+  private List<Uri> getImages(List<ImageRecord> imageRecords) {
+    List<Uri> images = new ArrayList<>(0);
+    for (ImageRecord imageRecord : imageRecords) {
+      images.add(imageRecord.getAttachment().getDataUri());
+    }
+    return images;
   }
 
   private void updateResources(int position) {
