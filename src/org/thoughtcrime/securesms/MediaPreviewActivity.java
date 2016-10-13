@@ -26,7 +26,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,8 +53,7 @@ import java.util.List;
  * Activity for displaying media attachments in-app
  */
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
-                                  implements RecipientModifiedListener,
-                                             ViewPager.OnPageChangeListener {
+                                  implements RecipientModifiedListener, OnPageChangeListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String THREAD_ID_EXTRA = "thread_id";
@@ -63,13 +62,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
 
   private MasterSecret masterSecret;
 
-  private ViewPager         viewPager;
-  private Uri               mediaUri;
-  private String            mediaType;
-  private Recipient         recipient;
-  private long              threadId;
-  private long              date;
-  private List<ImageRecord> imageRecords;
+  private MediaPreviewViewPager viewPager;
+  private Uri                   mediaUri;
+  private String                mediaType;
+  private Recipient             recipient;
+  private long                  threadId;
+  private long                  date;
+  private List<ImageRecord>     imageRecords;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -154,9 +153,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeViewPager() {
     this.imageRecords = getImageRecords(getApplicationContext(), threadId);
-    this.viewPager    = (ViewPager) findViewById(R.id.viewPager);
+    this.viewPager    = (MediaPreviewViewPager) findViewById(R.id.viewPager);
     viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,imageRecords));
     viewPager.addOnPageChangeListener(this);
+
     int startPosition = getImagePosition(mediaUri);
     viewPager.setCurrentItem(startPosition);
     if (startPosition == 0) onPageSelected(0);
@@ -207,7 +207,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onPageSelected(int position) {
-    System.out.println("onPageSelected("+position+")");
     updateResources(position);
     initializeActionBar();
   }

@@ -24,19 +24,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.components.ZoomingImageView;
+import org.thoughtcrime.securesms.components.ZoomingImageView.OnScaleChangedListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Adapter for providing a ViewPager with all images of a thread
  */
 public class MediaPreviewAdapter extends PagerAdapter {
-  private final Context      context;
-  private final MasterSecret masterSecret;
-  private List<ImageRecord>  imageRecords;
+  private final Context          context;
+  private final MasterSecret     masterSecret;
+  private List<ImageRecord>      imageRecords;
+  private OnScaleChangedListener scaleChangedListener;
 
   public MediaPreviewAdapter(Context context, MasterSecret masterSecret, List<ImageRecord> imageRecords) {
     this.context      = context;
@@ -54,7 +55,9 @@ public class MediaPreviewAdapter extends PagerAdapter {
     LayoutInflater   inflater  = ((Activity)context).getLayoutInflater();
     View             viewItem  = inflater.inflate(R.layout.media_preview_item, container, false);
     ZoomingImageView imageView = (ZoomingImageView) viewItem.findViewById(R.id.image);
+
     imageView.setImageUri(masterSecret, imageRecords.get(position).getAttachment().getDataUri());
+    imageView.setOnScaleChangedListener(scaleChangedListener);
     container.addView(viewItem);
 
     return viewItem;
@@ -68,5 +71,9 @@ public class MediaPreviewAdapter extends PagerAdapter {
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
     container.removeView((View) object);
+  }
+
+  public void setOnScaleChangedListener(OnScaleChangedListener scaleChangedListener) {
+    this.scaleChangedListener = scaleChangedListener;
   }
 }
