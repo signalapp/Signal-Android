@@ -341,6 +341,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
   <string name="MessageRecord_you">Sinä</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamiselle ajan: %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Sinun ja yhteystiedon %s turvanumerot ovat vaihtuneet</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>
@@ -365,7 +366,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Yhdistetäänkö Signal-laite?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vaikuttaa siltä, että yrität yhdistää laitetta käyttämällä Signalin ulkopuolista skannaussovellusta. Oman turvallisuutesi vuoksi skannaa QR-koodi uudelleen Signalilla itsellään.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Viestien katoaminen</string>
+  <string name="ExpirationDialog_disappearing_messages">Katoavat viestit</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät vanhene.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string>
   <!--PassphrasePromptActivity-->
@@ -483,6 +484,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_media_message">Mediaviesti</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Viestien katoamisen ajaksi asetettu %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Sinun ja yhteystiedon %s turvanumerot ovat vaihtuneet</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumerot.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Yrität varmentaa turvanumeroita yhteystiedon %1$s kanssa, mutta sen sjiaan skannasit yhteystiedon %2$s turvanumerot.</string>
@@ -939,7 +941,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Tallenna liite</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Viestien katoaminen</string>
+  <string name="conversation_expiring_off__disappearing_messages">Katoavat viestit</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Viestit vanhenevat</string>
   <!--conversation_insecure-->

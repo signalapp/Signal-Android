@@ -140,11 +140,11 @@ i numeri sicuri di questo contatto.</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Trasporto: %1$s\nInviato/Ricevuto: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Mittente: %1$s\nTrasporto: %2$s\nInviato: %3$s\nRicevuto: %4$s</string>
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="one">Cancellare il messaggio selezionato?</item>
+    <item quantity="one">Eliminare il messaggio selezionato?</item>
     <item quantity="other">Eliminare i messaggi selezionati?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">Così cancellerai per sempre il messaggio selezionato.</item>
+    <item quantity="one">Così eliminerai per sempre il messaggio selezionato.</item>
     <item quantity="other">Saranno eliminati definitivamente i %1$d messaggi selezionati.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
@@ -636,7 +636,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   </plurals>
   <string name="expiration_weeks_abbreviated">%dset.</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Non é possibile leggere i log dal tuo dispositivo. Puoi provare ad usare ADB per ottenere i log di debug</string>
+  <string name="log_submit_activity__log_fetch_failed">Non è possibile leggere i log dal tuo dispositivo. Puoi provare ad usare ADB per ottenere i log di debug</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
   <string name="log_submit_activity__submitting">Invio in corso</string>
   <string name="log_submit_activity__posting_logs">Salvando i logs su gist...</string>
@@ -913,7 +913,7 @@ non riuscita.
   <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS  via WiFi ( abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo )</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS via WiFi (abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo)</string>
   <string name="preferences_app_protection__blocked_contacts">Contatti bloccati</string>
   <string name="preferences_app_protection__safety_numbers_approval">Numero sicuro approvato</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Richiedi l\'approvazione di un numero sicuro in caso di cambiamento.</string>

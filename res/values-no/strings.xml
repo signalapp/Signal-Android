@@ -65,6 +65,8 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Innkommende anrop</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Sikkerhetsnummeret for %1$s har blitt endret. Det kan enten bety at noen forsøker å trenge inn i kommunikasjonen, eller simpelthen at %2$s har installert Signal på nytt.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verifisere sikkerhetsnummeret for denne kontakten for å være sikker.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
@@ -124,6 +126,7 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="ConversationActivity_mms_not_supported_message">Denne meldingen kan ikke sendes fordi operatøren din ikke støtter MMS.</string>
   <string name="ConversationActivity_specify_recipient">Velg kontaktperson</string>
   <string name="ConversationActivity_unblock_this_contact_question">Opphev blokkering av denne kontakten?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du kan nå motta meldinger og samtaler fra denne kontakten igjen.</string>
   <string name="ConversationActivity_unblock">Opphev blokkering</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegget overstiger størrelsesbegrensningen for den typen melding du sender.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
@@ -305,6 +308,7 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal trenger Barcode Scanner for QR koder.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Sending feilet</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nye sikkerhetsnummer</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil ved lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Feil ved tilkobling til MMS tjeneste...</string>
@@ -374,8 +378,10 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ooops, Play Store ser ikke ut til å være installert på enheten din.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokker denne kontakten?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du vil ikke lenger motta meldinger eller anrop fra denne brukeren.</string>
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Opphev blokkering av denne kontakten?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du kan nå motta meldinger og samtaler fra denne kontakten igjen.</string>
   <string name="RecipientPreferenceActivity_unblock">Opphev blokkering</string>
   <string name="RecipientPreferenceActivity_enabled">Aktivert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktivert</string>
@@ -453,6 +459,7 @@ Dobbelsjekk at dette er nummeret ditt! Vi er i ferd med å verifisere det med en
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Mottok korrupt nøkkelutvekslingsmelding!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Melding med nye sikkerhetsnummer er mottatt. Klikk for å prosessere og vise.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du nullstilte den sikre sesjonen.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s nullstilte den sikre sesjonen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplisert melding.</string>
@@ -467,6 +474,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden før meldingene utløper er satt til %s</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt kjører en gammel versjon av Signal. Vennligst be kontakten oppdatere før sikkerhetsnumrene bekreftes.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Du forsøker å bekrefte sikkerhetsnummer med %1$s, men skannet %2$s isteden.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannede QR-koden er ikke en korrekt formatert bekreftelseskode for sikkerhetsnummer. Forsøk å skanne igjen.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
@@ -675,6 +685,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="recipient_preferences__block">Blokker</string>
   <string name="recipient_preferences__color">Farge</string>
   <string name="recipient_preferences__color_for_this_contact">Farge for denne kontakten</string>
+  <string name="recipient_preferences__verify_safety_numbers">Bekreft sikkerhetsnummer</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal anrop</string>
   <string name="redphone_call_controls__end_call">Avslutt samtale</string>
@@ -736,11 +747,15 @@ feilet.</string>
   <string name="registration_progress_activity__check">Merk</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Tast inn et navn eller nummer</small></string>
+  <string name="recipients_panel__add_members">Legg til medlemmer</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Hvis du vil bekrefte sikkerheten på din ende-til-ende-kryptering med %s, sammenlign numrene over med numrene på din enhet. Alternativt kan du skanne koden på deres enhet, eller be dem skanne din.</string>
+  <string name="verify_display_fragment__tap_to_scan">Klikk for å skanne</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Noen problemer krever din oppmerksomhet.</string>
   <string name="message_details_header__sent">Sendt</string>
   <string name="message_details_header__received">Mottatt</string>
+  <string name="message_details_header__disappears">Forsvinner</string>
   <string name="message_details_header__via">Via</string>
   <string name="message_details_header__to">Til:</string>
   <string name="message_details_header__from">Fra:</string>
@@ -751,6 +766,7 @@ feilet.</string>
   <string name="AndroidManifest__select_contacts">Velg kontakter</string>
   <string name="AndroidManifest__signal_detected">Signal oppdaget</string>
   <string name="AndroidManifest__change_passphrase">Passordbytte</string>
+  <string name="AndroidManifest__verify_safety_numbers">Bekreft sikkerhetsnummer</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av media</string>
   <string name="AndroidManifest__media_overview">Alle bilder</string>
@@ -877,6 +893,8 @@ feilet.</string>
   <string name="preferences__support_wifi_calling">\'WiFi anrop\' kompatibilititetsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver dersom enheten din bruker WiFi for å sende SMS/MMS (brukes bare hvis \'WiFi anrop\' er aktivert på enheten din)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokkerte kontakter</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Bekreftelse av sikkerhetsnummer</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Krev godkjenning av nye sikkerhetsnummer når de endres</string>
   <string name="preferences_notifications__display_in_notifications">Vis i varslingslisten</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobil data</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>

@@ -113,7 +113,7 @@ public abstract class MessageRecord extends DisplayRecord {
       String time   = ExpirationUtil.getExpirationDisplayValue(context, (int) (getExpiresIn() / 1000));
       return emphasisAdded(context.getString(R.string.MessageRecord_s_set_disappearing_message_time_to_s, sender, time));
     } else if (isIdentityUpdate()) {
-      return emphasisAdded(String.format("Your safety numbers with %s have changed", getIndividualRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.MessageRecord_your_safety_numbers_with_s_have_changed, getIndividualRecipient().toShortString()));
     } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
       return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
     }

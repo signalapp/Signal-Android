@@ -29,6 +29,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -261,19 +262,19 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public List<SyncMessageId> setRead(long threadId) {
+  public List<MarkedMessageInfo> setRead(long threadId) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
 
-    final List<SyncMessageId> smsRecords = DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
-    final List<SyncMessageId> mmsRecords = DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
+    final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
+    final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
 
     notifyConversationListListeners();
 
-    return new LinkedList<SyncMessageId>() {{
+    return new LinkedList<MarkedMessageInfo>() {{
       addAll(smsRecords);
       addAll(mmsRecords);
     }};

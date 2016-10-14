@@ -621,7 +621,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sem.</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Impossible d\'accéder au journaux de votre appareil. Utilisez ADB pour obtenir un rapport de débogage.</string>
+  <string name="log_submit_activity__log_fetch_failed">Impossible d\'accéder aux journaux de votre appareil. Utilisez ADB pour obtenir un rapport de débogage.</string>
   <string name="log_submit_activity__thanks">Merci pour votre aide !</string>
   <string name="log_submit_activity__submitting">Soumission</string>
   <string name="log_submit_activity__posting_logs">Envoi des logs sur gist...</string>
@@ -750,6 +750,7 @@ par SMS.</string>
   <string name="recipients_panel__to"><small>Entrez un nom ou un numéro</small></string>
   <string name="recipients_panel__add_members">Ajouter des membres</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Si vous désirez vérifier la sécurité de votre chiffrement de bout en bout avec %s, comparez les numéros ci-dessus avec ceux affichés sur leur appareil. Vous pouvez également scanner le code affiché sur leur appareil, ou leur demander de scanner le votre.</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Des problèmes requièrent votre attention.</string>
   <string name="message_details_header__sent">Envoyé</string>

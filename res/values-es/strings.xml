@@ -346,6 +346,7 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">¡%s esta en Signal, salúdele!</string>
   <string name="MessageRecord_you">Usted</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableció el plazo de mensajes desvanecentes a %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Sus números de seguridad con %s han cambiado</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves de acceso no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
@@ -495,6 +496,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">¡%s está en Signal, salúdele!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El plazo del mensaje desvanecente se estableció a %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Sus números de seguridad con %s han cambiado</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Su contacto está ejecutando una versión antigua de Signal, por favor, pídale que actualice antes de verificar los números de seguridad.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Está intentando verificar los números de seguridad con %1$s, pero escaneó la verificación de %2$s en su lugar.</string>
@@ -797,6 +799,7 @@ por SMS.
   <string name="message_details_header__issues_need_your_attention">Algunos asuntos necesitan su atención</string>
   <string name="message_details_header__sent">Enviado</string>
   <string name="message_details_header__received">Recibido</string>
+  <string name="message_details_header__disappears">Desaparece</string>
   <string name="message_details_header__via">Vía</string>
   <string name="message_details_header__to">Para:</string>
   <string name="message_details_header__from">Desde:</string>
