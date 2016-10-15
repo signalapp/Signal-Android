@@ -52,12 +52,12 @@ import java.util.List;
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
+public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
+                                  implements RecipientModifiedListener,
+                                             ViewPager.OnPageChangeListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String RECIPIENT_EXTRA = "recipient";
   public static final String THREAD_ID_EXTRA = "thread_id";
-  public static final String DATE_EXTRA      = "date";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -87,7 +87,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     initializeResources();
     initializeMedia();
     initializeViewPager();
-    initializeActionBar();
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN)
@@ -128,6 +127,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public void onPause() {
     super.onPause();
     if (recipient != null) recipient.removeListener(this);
+    viewPager.removeOnPageChangeListener(this);
     cleanupMedia();
   }
 
@@ -136,24 +136,12 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     super.onNewIntent(intent);
     if (recipient != null) recipient.removeListener(this);
     setIntent(intent);
-    initializeResources();
-    initializeActionBar();
   }
 
   private void initializeResources() {
-    final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
-
-    mediaUri     = getIntent().getData();
-    mediaType    = getIntent().getType();
-    date         = getIntent().getLongExtra(DATE_EXTRA, System.currentTimeMillis());
-    threadId     = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
-
-    if (recipientId > -1) {
-      recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
-      recipient.addListener(this);
-    } else {
-      recipient = null;
-    }
+    this.threadId  = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
+    this.mediaUri  = getIntent().getData();
+    this.mediaType = getIntent().getType();
   }
 
   private void initializeMedia() {
@@ -168,7 +156,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     this.imageRecords = getImageRecords(getApplicationContext(), threadId);
     this.viewPager    = (ViewPager) findViewById(R.id.viewPager);
     viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,imageRecords));
-    viewPager.setCurrentItem(getImagePosition(mediaUri));
+    viewPager.addOnPageChangeListener(this);
+    int startPosition = getImagePosition(mediaUri);
+    viewPager.setCurrentItem(startPosition);
+    if (startPosition == 0) onPageSelected(0);
   }
 
   private void cleanupMedia() {
@@ -208,6 +199,19 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     return false;
   }
 
+  @Override
+  public void onPageScrollStateChanged(int state) {}
+
+  @Override
+  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+  @Override
+  public void onPageSelected(int position) {
+    System.out.println("onPageSelected("+position+")");
+    updateResources(position);
+    initializeActionBar();
+  }
+
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && contentType.startsWith("image/");
   }
@@ -237,5 +241,21 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       } while (imagesForThread.moveToPrevious());
     }
     return imageRecords;
+  }
+
+  private void updateResources(int position) {
+    ImageRecord imageRecord = imageRecords.get(position);
+    this.mediaUri           = imageRecord.getAttachment().getDataUri();
+    this.mediaType          = imageRecord.getAttachment().getContentType();
+    this.date               = imageRecord.getDate();
+
+    if (recipient != null) recipient.removeListener(this);
+    String newAddress = imageRecord.getAddress();
+    if (newAddress == null) {
+      recipient = null;
+    } else {
+      recipient = RecipientFactory.getRecipientsFromString(getApplicationContext(), newAddress, true).getPrimaryRecipient();
+      if (recipient != null) recipient.addListener(this);
+    }
   }
 }

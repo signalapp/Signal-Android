@@ -88,17 +88,7 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     @Override
     public void onClick(View v) {
       Intent intent = new Intent(getContext(), MediaPreviewActivity.class);
-      intent.putExtra(MediaPreviewActivity.DATE_EXTRA, imageRecord.getDate());
       intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, threadId);
-
-      if (!TextUtils.isEmpty(imageRecord.getAddress())) {
-        Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(),
-                                                                         imageRecord.getAddress(),
-                                                                         true);
-        if (recipients != null && recipients.getPrimaryRecipient() != null) {
-          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
-        }
-      }
       intent.setDataAndType(imageRecord.getAttachment().getDataUri(), imageRecord.getContentType());
       getContext().startActivity(intent);
 
