@@ -20,7 +20,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 import uk.co.senab.photoview.PhotoViewAttacher.OnMatrixChangedListener;
 
 public class ZoomingImageView extends ImageView {
-  private PhotoViewAttacher      attacher;
+  private PhotoViewAttacher      attacher = new PhotoViewAttacher(this);
   private OnScaleChangedListener scaleChangedListener;
 
   public ZoomingImageView(Context context) {
@@ -36,7 +36,6 @@ public class ZoomingImageView extends ImageView {
   }
 
   public void setImageUri(MasterSecret masterSecret, Uri uri) {
-    attacher = new PhotoViewAttacher(this);
     attacher.setOnMatrixChangeListener(new MatrixChangedListener());
     Glide.with(getContext())
          .load(new DecryptableUri(masterSecret, uri))
@@ -61,6 +60,10 @@ public class ZoomingImageView extends ImageView {
 
   public void setOnScaleChangedListener(OnScaleChangedListener scaleChangedListener) {
     this.scaleChangedListener = scaleChangedListener;
+  }
+
+  public void cleanupPhotoViewAttacher() {
+    attacher.cleanup();
   }
 
   public interface OnScaleChangedListener {

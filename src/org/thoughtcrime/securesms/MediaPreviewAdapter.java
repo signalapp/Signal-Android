@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.components.ZoomingImageView.OnScaleChangedListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
 
 import java.util.List;
 
@@ -71,6 +70,7 @@ public class MediaPreviewAdapter extends PagerAdapter {
 
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
+    ((ZoomingImageView) ((View) object).findViewById(R.id.image)).cleanupPhotoViewAttacher();
     container.removeView((View) object);
   }
 
