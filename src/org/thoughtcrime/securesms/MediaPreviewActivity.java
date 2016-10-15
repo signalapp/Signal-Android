@@ -17,14 +17,15 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
@@ -34,8 +35,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -43,6 +45,9 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Activity for displaying media attachments in-app
@@ -64,6 +69,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private Recipient         recipient;
   private long              threadId;
   private long              date;
+  private List<ImageRecord> imageRecords;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -115,6 +121,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     super.onResume();
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
+    initializeViewPager();
   }
 
   @Override
@@ -158,8 +165,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void initializeViewPager() {
-    this.viewPager = (ViewPager) findViewById(R.id.viewPager);
-    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,mediaUri));
+    this.imageRecords = getImageRecords(getApplicationContext(), threadId);
+    this.viewPager    = (ViewPager) findViewById(R.id.viewPager);
+    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,imageRecords));
+    viewPager.setCurrentItem(getImagePosition(mediaUri));
   }
 
   private void cleanupMedia() {
@@ -201,5 +210,32 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && contentType.startsWith("image/");
+  }
+
+  private int getImagePosition(Uri mediaUri) {
+    int position = -1;
+    for (int i = 0; i < imageRecords.size(); i++) {
+      if (imageRecords.get(i).getAttachment().getDataUri().equals(mediaUri)) {
+        position = i;
+        break;
+      }
+    }
+    if (position < 0) {
+      Log.w(TAG, "Media not part of images for thread, finishing.");
+      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_cant_display, Toast.LENGTH_LONG).show();
+      finish();
+    }
+    return position;
+  }
+
+  private List<ImageRecord> getImageRecords(Context context, Long threadId) {
+    List<ImageRecord> imageRecords = new ArrayList<>(0);
+    Cursor imagesForThread = DatabaseFactory.getImageDatabase(context).getImagesForThread(threadId);
+    if (imagesForThread.moveToLast()) {
+      do {
+        imageRecords.add(ImageRecord.from(imagesForThread));
+      } while (imagesForThread.moveToPrevious());
+    }
+    return imageRecords;
   }
 }

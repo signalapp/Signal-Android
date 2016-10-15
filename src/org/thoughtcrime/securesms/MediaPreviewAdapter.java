@@ -18,16 +18,17 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Adapter for providing a ViewPager with all images of a thread
@@ -35,17 +36,17 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 public class MediaPreviewAdapter extends PagerAdapter {
   private final Context      context;
   private final MasterSecret masterSecret;
-  private final Uri          mediaUri;
+  private List<ImageRecord>  imageRecords;
 
-  public MediaPreviewAdapter(Context context, MasterSecret masterSecret, Uri mediaUri) {
+  public MediaPreviewAdapter(Context context, MasterSecret masterSecret, List<ImageRecord> imageRecords) {
     this.context      = context;
     this.masterSecret = masterSecret;
-    this.mediaUri     = mediaUri;
+    this.imageRecords = imageRecords;
   }
 
   @Override
   public int getCount() {
-    return 3;
+    return imageRecords.size();
   }
 
   @Override
@@ -53,7 +54,7 @@ public class MediaPreviewAdapter extends PagerAdapter {
     LayoutInflater   inflater  = ((Activity)context).getLayoutInflater();
     View             viewItem  = inflater.inflate(R.layout.media_preview_item, container, false);
     ZoomingImageView imageView = (ZoomingImageView) viewItem.findViewById(R.id.image);
-    imageView.setImageUri(masterSecret, mediaUri);
+    imageView.setImageUri(masterSecret, imageRecords.get(position).getAttachment().getDataUri());
     container.addView(viewItem);
 
     return viewItem;
