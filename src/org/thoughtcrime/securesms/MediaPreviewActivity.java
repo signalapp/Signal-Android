@@ -169,6 +169,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeViewPager() {
     this.viewPager    = (MediaPreviewViewPager) findViewById(R.id.viewPager);
+    viewPager.setOffscreenPageLimit(2);
     viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,images));
     viewPager.addOnPageChangeListener(this);
 
