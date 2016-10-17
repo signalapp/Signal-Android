@@ -94,6 +94,7 @@ public class ConversationUpdateItem extends LinearLayout
     this.locale        = locale;
 
     this.sender.addListener(this);
+    body.setAutoLinkMask(batchSelected.isEmpty() ? Linkify.ALL : 0);
 
     if      (messageRecord.isGroupAction())           setGroupRecord(messageRecord);
     else if (messageRecord.isCallLog())               setCallRecord(messageRecord);
