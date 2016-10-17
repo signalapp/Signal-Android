@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -61,6 +62,10 @@ public class ConversationUpdateItem extends LinearLayout
     this.icon = (ImageView)findViewById(R.id.conversation_update_icon);
     this.body = (TextView)findViewById(R.id.conversation_update_body);
     this.date = (TextView)findViewById(R.id.conversation_update_date);
+
+    PassthroughClickListener passthroughClickListener = new PassthroughClickListener();
+    body.setOnLongClickListener(passthroughClickListener);
+    body.setOnClickListener(passthroughClickListener);
 
     this.setOnClickListener(new InternalClickListener(null));
   }
@@ -220,4 +225,17 @@ public class ConversationUpdateItem extends LinearLayout
     }
   }
 
+  private class PassthroughClickListener implements View.OnLongClickListener, View.OnClickListener {
+
+    @Override
+    public boolean onLongClick(View v) {
+      performLongClick();
+      return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+      performClick();
+    }
+  }
 }
