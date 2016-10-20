@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.AttachmentEmptyException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -61,7 +62,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   @Override
   public void onSend(MasterSecret masterSecret)
       throws RetryLaterException, MmsException, NoSuchMessageException,
-             UndeliverableMessageException
+             UndeliverableMessageException, AttachmentEmptyException
   {
     ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     MmsDatabase            database          = DatabaseFactory.getMmsDatabase(context);
@@ -111,7 +112,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   private void deliver(MasterSecret masterSecret, OutgoingMediaMessage message)
       throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
-             UndeliverableMessageException
+             UndeliverableMessageException, AttachmentEmptyException
   {
     if (message.getRecipients() == null                       ||
         message.getRecipients().getPrimaryRecipient() == null ||
