@@ -318,20 +318,23 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public List<SyncMessageId> setMessagesRead(long threadId) {
-    SQLiteDatabase      database  = databaseHelper.getWritableDatabase();
-    String              where     = THREAD_ID + " = ? AND " + READ + " = 0";
-    String[]            selection = new String[]{String.valueOf(threadId)};
-    List<SyncMessageId> results   = new LinkedList<>();
-    Cursor              cursor    = null;
+  public List<MarkedMessageInfo> setMessagesRead(long threadId) {
+    SQLiteDatabase          database  = databaseHelper.getWritableDatabase();
+    String                  where     = THREAD_ID + " = ? AND " + READ + " = 0";
+    String[]                selection = new String[]{String.valueOf(threadId)};
+    List<MarkedMessageInfo> results   = new LinkedList<>();
+    Cursor                  cursor    = null;
 
     database.beginTransaction();
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ADDRESS, DATE_SENT, TYPE}, where, selection, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED}, where, selection, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(cursor.getLong(2))) {
-          results.add(new SyncMessageId(cursor.getString(0), cursor.getLong(1)));
+        if (Types.isSecureType(cursor.getLong(3))) {
+          SyncMessageId  syncMessageId  = new SyncMessageId(cursor.getString(1), cursor.getLong(2));
+          ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), false);
+
+          results.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
         }
       }
 
@@ -348,12 +351,13 @@ public class SmsDatabase extends MessagingDatabase {
     return results;
   }
 
-  public void setTimestampRead(SyncMessageId messageId) {
-    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
-    Cursor         cursor       = null;
+  public List<Pair<Long, Long>> setTimestampRead(SyncMessageId messageId, long expireStarted) {
+    SQLiteDatabase         database = databaseHelper.getWritableDatabase();
+    List<Pair<Long, Long>> expiring = new LinkedList<>();
+    Cursor                 cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE},
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE, EXPIRES_IN},
                               DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
                               null, null, null, null);
 
@@ -363,10 +367,17 @@ public class SmsDatabase extends MessagingDatabase {
           String ourAddress   = canonicalizeNumber(context, cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
 
           if (ourAddress.equals(theirAddress)) {
-            long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+            long id        = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+            long threadId  = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+            long expiresIn = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(READ, 1);
+
+            if (expiresIn > 0) {
+              contentValues.put(EXPIRE_STARTED, expireStarted);
+              expiring.add(new Pair<>(id, expiresIn));
+            }
 
             database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID)) + ""});
 
@@ -380,6 +391,8 @@ public class SmsDatabase extends MessagingDatabase {
     } finally {
       if (cursor != null) cursor.close();
     }
+
+    return expiring;
   }
 
   public void setAllMessagesRead() {
@@ -489,7 +502,8 @@ public class SmsDatabase extends MessagingDatabase {
       type |= Types.END_SESSION_BIT;
     }
 
-    if (message.isPush()) type |= Types.PUSH_MESSAGE_BIT;
+    if (message.isPush())           type |= Types.PUSH_MESSAGE_BIT;
+    if (message.isIdentityUpdate()) type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
 
     Recipients recipients;
 
@@ -508,8 +522,9 @@ public class SmsDatabase extends MessagingDatabase {
       groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
     }
 
-    boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
-                            message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle();
+    boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
+                            message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle()) &&
+                            !message.isIdentityUpdate();
 
     long       threadId;
 
@@ -542,7 +557,10 @@ public class SmsDatabase extends MessagingDatabase {
       DatabaseFactory.getThreadDatabase(context).setUnread(threadId);
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    if (!message.isIdentityUpdate()) {
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    }
+
     notifyConversationListeners(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 

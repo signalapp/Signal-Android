@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:fillViewport="true">
+
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="20dp"
+                  android:gravity="center_horizontal"
+                  android:background="?verification_background"
+                  android:orientation="vertical">
+
+        <FrameLayout android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+
+            <org.thoughtcrime.securesms.components.SquareImageView
+                    android:id="@+id/qr_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:padding="20dp"
+                    android:background="@drawable/qr_code_background"
+                    tools:src="@drawable/splash_logo"/>
+
+            <TextView android:id="@+id/tap_label"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="bottom|center_horizontal"
+                      android:layout_marginBottom="35dp"
+                      android:textColor="@color/gray50"
+                      android:textSize="11sp"
+                      android:text="@string/verify_display_fragment__tap_to_scan"/>
+
+            <org.thoughtcrime.securesms.components.SquareImageView
+                    android:id="@+id/qr_verified"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_check_white_48dp"
+                    android:background="@drawable/qr_code_background"
+                    android:backgroundTint="@color/green_500"
+                    android:visibility="gone"/>
+
+
+        </FrameLayout>
+
+
+        <TableLayout android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="5dp">
+
+            <TableRow android:gravity="center_horizontal">
+                <TextView android:id="@+id/code_first"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          style="@style/IdentityKey"
+                          tools:text="22934"/>
+
+                <TextView android:id="@+id/code_second"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="56944"/>
+
+                <TextView android:id="@+id/code_third"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="42738"/>
+
+                <TextView android:id="@+id/code_fourth"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="20038"/>
+            </TableRow>
+
+            <TableRow android:gravity="center_horizontal">
+                <TextView android:id="@+id/code_fifth"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          style="@style/IdentityKey"
+                          tools:text="34431"/>
+
+                <TextView android:id="@+id/code_sixth"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="24922"/>
+
+                <TextView android:id="@+id/code_seventh"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="58594"/>
+
+                <TextView android:id="@+id/code_eighth"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="24109"/>
+            </TableRow>
+
+            <TableRow android:gravity="center_horizontal">
+                <TextView android:id="@+id/code_ninth"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          style="@style/IdentityKey"
+                          tools:text="00257"/>
+
+                <TextView android:id="@+id/code_tenth"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="34956"/>
+
+                <TextView android:id="@+id/code_eleventh"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="32440"/>
+
+                <TextView android:id="@+id/code_twelth"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          style="@style/IdentityKey"
+                          tools:text="15774"/>
+            </TableRow>
+        </TableLayout>
+
+        <TextView android:id="@+id/description"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="25dp"
+                  android:textSize="17sp"
+                  android:lineSpacingExtra="3sp"
+                  android:text="@string/verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"/>
+
+
+    </LinearLayout>
+</ScrollView>

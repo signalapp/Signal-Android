@@ -43,6 +43,8 @@ import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -140,13 +142,8 @@ public class MessageNotifier {
                                                .getRecipientsForThreadId(threadId);
 
     if (isVisible) {
-      List<SyncMessageId> messageIds = threads.setRead(threadId);
-
-      if (!messageIds.isEmpty()) {
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new MultiDeviceReadUpdateJob(context, messageIds));
-      }
+      List<MarkedMessageInfo> messageIds = threads.setRead(threadId);
+      MarkReadReceiver.process(context, messageIds);
     }
 
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||

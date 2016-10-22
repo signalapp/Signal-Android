@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -78,6 +79,10 @@ public class RecipientPreferenceDatabase extends Database {
     cursor.setNotificationUri(context.getContentResolver(), Uri.parse(RECIPIENT_PREFERENCES_URI));
 
     return cursor;
+  }
+
+  public BlockedReader readerForBlocked(Cursor cursor) {
+    return new BlockedReader(context, cursor);
   }
 
   public Optional<RecipientsPreferences> getRecipientsPreferences(@NonNull long[] recipients) {
@@ -253,6 +258,30 @@ public class RecipientPreferenceDatabase extends Database {
 
     public int getExpireMessages() {
       return expireMessages;
+    }
+  }
+
+  public static class BlockedReader {
+
+    private final Context context;
+    private final Cursor cursor;
+
+    public BlockedReader(Context context, Cursor cursor) {
+      this.context = context;
+      this.cursor  = cursor;
+    }
+
+    public @NonNull Recipients getCurrent() {
+      String recipientIds = cursor.getString(cursor.getColumnIndexOrThrow(RECIPIENT_IDS));
+      return RecipientFactory.getRecipientsForIds(context, recipientIds, false);
+    }
+
+    public @Nullable Recipients getNext() {
+      if (!cursor.moveToNext()) {
+        return null;
+      }
+
+      return getCurrent();
     }
   }
 }

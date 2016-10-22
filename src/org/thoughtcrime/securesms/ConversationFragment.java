@@ -180,7 +180,8 @@ public class ConversationFragment extends Fragment
 
     for (MessageRecord messageRecord : messageRecords) {
       if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
-          messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate())
+          messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
+          messageRecord.isEndSession() || messageRecord.isIdentityUpdate())
       {
         actionMessage = true;
         break;
@@ -197,7 +198,8 @@ public class ConversationFragment extends Fragment
       MessageRecord messageRecord = messageRecords.iterator().next();
 
       menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(messageRecord.isMms()              &&
+      menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                     &&
+                                                                  messageRecord.isMms()              &&
                                                                   !messageRecord.isMmsNotification() &&
                                                                   ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
 

@@ -84,7 +84,8 @@
 
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:text="Disappears"
+                          android:text="@string/message_details_header__disappears"
+                          android:gravity="right"
                           android:textStyle="bold"/>
 
                 <TextView android:id="@+id/expires_in"

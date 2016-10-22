@@ -64,12 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Saapuva puhelu</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Yhteystiedon
-%1$s identiteettiavain on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata
-viestiliikennettänne, tai sitä, että %2$s on uudelleenasentanut Signalin, ja siksi käyttää nyt
-uutta identiteettiavainta.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa
-tämän yhteystiedon.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Yhteystiedon %1$s turvanumerot ovat vaihtuneet. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa tämän yhteystiedon turvanumerot.</string>
   <string name="ConfirmIdentityDialog_accept">Hyväksy</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Viesti %s</string>
@@ -128,8 +124,8 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS ei ole tuettu</string>
   <string name="ConversationActivity_mms_not_supported_message">Tätä viestiä ei voida lähettää, koska operaattorisi ei tue MMS-viestejä.</string>
   <string name="ConversationActivity_specify_recipient">Valitse yhteystieto</string>
-  <string name="ConversationActivity_unblock_question">Poista esto?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Haluatko varmasti poistaa eston tältä yhteystiedolta?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Poista esto tältä yhteystiedolta?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Jatkossa voit taas saada viestejä ja puheluita tältä yhteystiedolta.</string>
   <string name="ConversationActivity_unblock">Poista esto</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Liitetiedosto ylittää kyseisen viestityypin kokorajoituikset.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ei käytettävissä</string>
@@ -318,7 +314,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal tarvitsee \"Barcode Scanner\" -sovelluksen QR-koodeja varten.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Lähetys epäonnistui</string>
-  <string name="MessageDetailsRecipient_new_identity">Uusi identiteetti</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Uudet turvanumerot</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Virhe multimediaviestin tallentamisessa!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Virhe yhdistettäessä MMS-palveluntarjoajaan...</string>
@@ -344,7 +340,8 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
   <string name="MessageRecord_you">Sinä</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestin katoamiselle ajaksi %2$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamiselle ajan: %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Sinun ja yhteystiedon %s turvanumerot ovat vaihtuneet</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>
@@ -369,9 +366,9 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Yhdistetäänkö Signal-laite?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vaikuttaa siltä, että yrität yhdistää laitetta käyttämällä Signalin ulkopuolista skannaussovellusta. Oman turvallisuutesi vuoksi skannaa QR-koodi uudelleen Signalilla itsellään.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Viestien katoaminen</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät katoa.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä kun ne on nähty.</string>
+  <string name="ExpirationDialog_disappearing_messages">Katoavat viestit</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät vanhene.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-kuvake</string>
@@ -388,10 +385,10 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, vaikuttaa siltä, että Play Store -sovellus ei ole asennettuna laitteeseesi.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Estä tämä yhteystieto?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Jatkossa et enää saa viestejä etkä puheluita tältä yhteystiedolta.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Jatkossa et enää saa viestejä etkä puheluita tältä yhteystiedolta.</string>
   <string name="RecipientPreferenceActivity_block">Estä</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Poista esto tältä yhteystiedolta?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Haluatko varmasti poistaa eston tältä yhteystiedolta?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Jatkossa voit taas saada viestejä ja puheluita tältä yhteystiedolta.</string>
   <string name="RecipientPreferenceActivity_unblock">Poista esto</string>
   <string name="RecipientPreferenceActivity_enabled">Päällä</string>
   <string name="RecipientPreferenceActivity_disabled">Poissa päältä</string>
@@ -473,9 +470,9 @@ Tarkista vielä, että tämä on varmasti numerosi! Aiomme seuraavaksi vahvistaa
 on viallinen!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely napsauttamalla.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Vastaanotettiin päivitetty, mutta tuntematon identiteetti. Varmenna identiteetti napsauttamalla.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Suojattu istunto alustettu</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Vastaanotettiin viesti uusilla turvanumeroilla. Aloita käsittely napsauttamalla.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Sinä alustit suojatun istunnon.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s alusti suojatun istunnon.</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä...</string>
@@ -487,26 +484,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_media_message">Mediaviesti</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Viestien katoamisen ajaksi asetettu %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Sinun ja yhteystiedon %s turvanumerot ovat vaihtuneet</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">(Sinulla ei ole identiteettiavainta.)</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">(Vastapuolella ei ole identiteettiavainta.)</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Vastapuolella ei ole identiteettiavainta!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Skannaa vastapuolen QR-koodi</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Näytä oma QR-koodisi</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">VAROITUS: Skannattu avain EI TÄSMÄÄ! Tarkastakaa sormenjälki huolella.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">EI varmennettu!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Vastapuolen avain on oikea. Huomaa, että hänen on syytä tarkastaa vastaavasti sinun avaimesi.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Varmennettu!</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Sinulla ei ole identiteettiavainta!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">(Sinulla ei ole identiteettiavainta.)</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Skannaa vastapuolen QR-koodi</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Näytä oma QR-koodisi</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">VAROITUS: Skannattu avain EI TÄSMÄÄ!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">EI vahvistettu!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Skannattu avain täsmää!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Varmennettu!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Identiteettisi sormenjälki</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumerot.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Yrität varmentaa turvanumeroita yhteystiedon %1$s kanssa, mutta sen sjiaan skannasit yhteystiedon %2$s turvanumerot.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skannaamasi QR-koodi ei ole oikeanmallinen turvanumerokoodi. Yritä skannata uudelleen.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Aloita olemassa olevasta pyynnöstä huolimatta?</string>
   <string name="KeyExchangeInitiator_send">Lähetä</string>
@@ -715,7 +697,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="recipient_preferences__block">Estä</string>
   <string name="recipient_preferences__color">Väri</string>
   <string name="recipient_preferences__color_for_this_contact">Tämän yhteystiedon väri</string>
-  <string name="recipient_preferences__verify_identity">Varmenna identiteetti</string>
+  <string name="recipient_preferences__verify_safety_numbers">Varmenna turvanumerot</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-puhelu</string>
   <string name="redphone_call_controls__end_call">lopeta puhelu</string>
@@ -777,14 +759,15 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="registration_progress_activity__check">Valitse</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Syötä nimi tai numero</small></string>
-  <string name="recipients_panel__add_member">Lisää jäsen</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Vastapuolen identiteetti (hän lukee):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Oma identiteettisi (sinä luet):</string>
+  <string name="recipients_panel__add_members">Lisää jäseniä</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi.</string>
+  <string name="verify_display_fragment__tap_to_scan">Skannaa napsauttamalla</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Jotkin asiat kaipaavat huomiotasi.</string>
   <string name="message_details_header__sent">Lähetetty</string>
   <string name="message_details_header__received">Vastaanotettu</string>
+  <string name="message_details_header__disappears">Katoamisaika</string>
   <string name="message_details_header__via">Tyyppi</string>
   <string name="message_details_header__to">Vastaanottajat:</string>
   <string name="message_details_header__from">Lähettäjä:</string>
@@ -794,9 +777,8 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="AndroidManifest__enter_passphrase">Syötä salalause</string>
   <string name="AndroidManifest__select_contacts">Valitse yhteystiedot</string>
   <string name="AndroidManifest__signal_detected">Signal havaittu</string>
-  <string name="AndroidManifest__public_identity_key">Julkinen identiteettiavain</string>
   <string name="AndroidManifest__change_passphrase">Vaihda salalause</string>
-  <string name="AndroidManifest__verify_identity">Varmenna identiteetti</string>
+  <string name="AndroidManifest__verify_safety_numbers">Varmenna turvanumerot</string>
   <string name="AndroidManifest__log_submit">Lähetä virheenkorjausloki</string>
   <string name="AndroidManifest__media_preview">Liitteen esikatselu</string>
   <string name="AndroidManifest__media_overview">Kaikki kuvat</string>
@@ -807,7 +789,6 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="AndroidManifest_archived_conversations">Arkistoidut keskustelut</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Varmuuskopiot</string>
-  <string name="arrays__your_identity_key">Identiteettiavaimesi</string>
   <string name="arrays__use_default">Käytä oletusta</string>
   <string name="arrays__use_custom">Käytä mukautettua</string>
   <string name="arrays__mute_for_one_hour">1 tunniksi</string>
@@ -924,6 +905,8 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="preferences__support_wifi_calling">\"WiFi Calling\" -yhteensopiva tila</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ota käyttöön, jos laitteesi lähettää SMS- ja MMS-viestit WiFi-yhteyden kautta. (Ota käyttöön vain, kun \"WiFi Calling\" on käytössä laitteessasi.)</string>
   <string name="preferences_app_protection__blocked_contacts">Estetyt yhteystiedot</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Turvanumeroiden hyväksyntä</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Jos yhteystiedon turvanumerot vaihtuvat, vaadi niiden erillistä hyväksymistä</string>
   <string name="preferences_notifications__display_in_notifications">Ilmoituksissa näytetään</string>
   <string name="preferences_chats__when_using_mobile_data">Mobiiliverkossa</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
@@ -958,7 +941,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Tallenna liite</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Viestien katoaminen</string>
+  <string name="conversation_expiring_off__disappearing_messages">Katoavat viestit</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Viestit vanhenevat</string>
   <!--conversation_insecure-->
@@ -979,8 +962,6 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Uusi keskustelu</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Turvallisuus</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Varmenna identiteetti</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Alusta suojattu istunto</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Poista mykistys</string>

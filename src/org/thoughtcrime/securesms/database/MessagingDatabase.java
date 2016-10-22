@@ -172,7 +172,7 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     private final long   timetamp;
 
     public SyncMessageId(String address, long timetamp) {
-      this.address = address;
+      this.address  = address;
       this.timetamp = timetamp;
     }
 
@@ -184,4 +184,55 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
       return timetamp;
     }
   }
+
+  public static class ExpirationInfo {
+
+    private final long    id;
+    private final long    expiresIn;
+    private final long    expireStarted;
+    private final boolean mms;
+
+    public ExpirationInfo(long id, long expiresIn, long expireStarted, boolean mms) {
+      this.id            = id;
+      this.expiresIn     = expiresIn;
+      this.expireStarted = expireStarted;
+      this.mms           = mms;
+    }
+
+    public long getId() {
+      return id;
+    }
+
+    public long getExpiresIn() {
+      return expiresIn;
+    }
+
+    public long getExpireStarted() {
+      return expireStarted;
+    }
+
+    public boolean isMms() {
+      return mms;
+    }
+  }
+
+  public static class MarkedMessageInfo {
+
+    private final SyncMessageId  syncMessageId;
+    private final ExpirationInfo expirationInfo;
+
+    public MarkedMessageInfo(SyncMessageId syncMessageId, ExpirationInfo expirationInfo) {
+      this.syncMessageId  = syncMessageId;
+      this.expirationInfo = expirationInfo;
+    }
+
+    public SyncMessageId getSyncMessageId() {
+      return syncMessageId;
+    }
+
+    public ExpirationInfo getExpirationInfo() {
+      return expirationInfo;
+    }
+  }
+
 }

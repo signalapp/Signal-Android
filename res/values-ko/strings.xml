@@ -61,8 +61,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">수신통화</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s님의 인증 키가 변경되었습니다. 이 경우 누군가 통신을 가로채려고 하거나 %2$s님께서 Signal을 다시 설치하여 새 인증 키가 되었습니다.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">인증 키를 확인할 것을 권장합니다.</string>
   <string name="ConfirmIdentityDialog_accept">수락</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s에 메시지 보내기</string>
@@ -120,13 +118,13 @@
   <string name="ConversationActivity_mms_not_supported_title">MMS 전송 안됨</string>
   <string name="ConversationActivity_mms_not_supported_message">이동통신사는 MMS를 지원하지 않아서 이 메시지를 보낼 수 없습니다.</string>
   <string name="ConversationActivity_specify_recipient">연락처를 선택하세요</string>
-  <string name="ConversationActivity_unblock_question">사용자를 차단 해제하시겠습니까?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">이 사용자를 차단 해제하시겠습니까?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">사용자를 차단 해제하시겠습니까?</string>
   <string name="ConversationActivity_unblock">차단 해제</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">첨부파일 크기 제한 초과됨</string>
   <string name="ConversationActivity_quick_camera_unavailable">카메라 사용할 수 없음</string>
   <string name="ConversationActivity_unable_to_record_audio">오디오 녹음할 수 없음</string>
   <string name="ConversationActivity_error_sending_voice_message">음성메시지 보내는 동안 오류 발생</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">작업을 처리할 수 있는 앱 없음</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">메시지 세부정보</string>
   <string name="ConversationFragment_transport_s_sent_received_s">전송: %1$s\n송수신: %2$s</string>
@@ -161,6 +159,7 @@
   <string name="ConversationFragment_deleting_messages">메시지를 삭제 중…</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">메시지 검색</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">브라우저 앱 없음</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">선택된 대화를 삭제하시겠습니까?</item>
@@ -267,11 +266,15 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">길게 눌러 음성메시지 녹음하고 보내려면 손 떼세요.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">공유</string>
+  <string name="InviteActivity_choose_contacts">연락처 선택</string>
   <string name="InviteActivity_cancel">취소</string>
   <string name="InviteActivity_sending">보내는 중…</string>
   <string name="InviteActivity_heart_content_description">하트</string>
   <string name="InviteActivity_invitations_sent">초대 보냄</string>
   <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="other">%d분에게 SMS 보내기</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">초대 메시지 %d개를 SMS로 보내시겠습니까?</item>
   </plurals>
@@ -284,7 +287,6 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">QR코드 스캔하려면 Signal은 바코드 스캐너가 필요합니다.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string>
-  <string name="MessageDetailsRecipient_new_identity">새 인증 키</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS 메시지를 저장 오류 발생</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS 제공업체에 연결 오류 발생</string>
@@ -345,12 +347,11 @@
   <string name="RatingManager_rate_now">평가</string>
   <string name="RatingManager_no_thanks">취소</string>
   <string name="RatingManager_later">나중에</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Play 스토어 앱 없음</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">사용자를 차단하시겠습니까?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">차단한 사용자로 부터의 메시지와 통화를 받을 수 없습니다.</string>
   <string name="RecipientPreferenceActivity_block">차단</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">사용자를 차단 해제하시겠습니까?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">이 사용자를 차단 해제하시겠습니까?</string>
   <string name="RecipientPreferenceActivity_unblock">차단 해제</string>
   <string name="RecipientPreferenceActivity_enabled">사용</string>
   <string name="RecipientPreferenceActivity_disabled">사용 안함</string>
@@ -422,9 +423,6 @@
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">받은 키 교환 메시지가 손상되었습니다.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">받은 키 교환 메시지에 프로토콜 버전이 잘못되었습니다.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">받은 메시지는 알 수 없는 인증 키가 있습니다 . 메시지를 처리하고 보려면 터치하세요.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">받은 키 교환 메시지는 업데이트된 알 수 없는 인증 키가 있습니다. 인증 키를 확인하려면 터치하세요.</string>
-  <string name="SmsMessageRecord_secure_session_reset">암호화된 세션이 초기화되었습니다.</string>
   <string name="SmsMessageRecord_duplicate_message">중복된 메시지</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">그룹에서 나갔습니다.</string>
@@ -436,25 +434,6 @@
   <string name="ThreadRecord_media_message">미디어 메시지</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s님이 Signal에 참여했습니다. 인사하실래요?</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">내 인증 키가 없습니다.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">수신자는 인증 키가 없습니다.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">수신자 인증 키가 없음</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">상대방의 QR코드 스캔</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">내 QR코드 표시</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">경고: 스캔된 키가 일치하지 않습니다. 키 지문을 자세히 확인하세요.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">확인 실패</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">상대방의 키가 일치합니다. 상대방이 내 키도 확인해야 합니다.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">확인 완료</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">인증 키가 없음</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">인증 키가 없습니다.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">상대방의 QR코드 스캔</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">내 QR코드 표시</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">경고: 스캔된 키가 일치하지 않습니다.</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">확인 실패</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">스캔된 키가 일치합니다.</string>
-  <string name="ViewIdentityActivity_verified_exclamation">확인 완료</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">내 인증 키 지문</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">이미 요청을 보냈어도 다시 보내시겠습니까?</string>
   <string name="KeyExchangeInitiator_send">보내기</string>
@@ -579,11 +558,32 @@
   <string name="experience_upgrade_activity__continue">계속</string>
   <!--expiration-->
   <string name="expiration_off">사용 안함</string>
+  <plurals name="expiration_seconds">
+    <item quantity="other">%d초</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%d초</string>
+  <plurals name="expiration_minutes">
+    <item quantity="other">%d분</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%d분</string>
+  <plurals name="expiration_hours">
+    <item quantity="other">%d시간</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%d시간</string>
+  <plurals name="expiration_days">
+    <item quantity="other">%d일</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%d일</string>
+  <plurals name="expiration_weeks">
+    <item quantity="other">%d주</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%d주</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
   <string name="log_submit_activity__submitting">보내는 중</string>
   <string name="log_submit_activity__posting_logs">로그를 gist에 게시 중…</string>
+  <string name="log_submit_activity__no_browser_installed">브라우저 앱 없음</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오시겠습니까?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">기본 시스템 SMS 데이터베이스가 변경되지 않습니다.</string>
@@ -636,7 +636,6 @@
   <string name="recipient_preferences__block">차단</string>
   <string name="recipient_preferences__color">색상</string>
   <string name="recipient_preferences__color_for_this_contact">사용자 색상</string>
-  <string name="recipient_preferences__verify_identity">신분 확인</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 통화</string>
   <string name="redphone_call_controls__end_call">통화 종료</string>
@@ -685,10 +684,7 @@
   <string name="registration_progress_activity__check">체크마크</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>이름 또는 전화번호 입력</small></string>
-  <string name="recipients_panel__add_member">멤버 추가</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">상대방의 인증 키 지문 (상대방이 읽음):</string>
-  <string name="verify_identity_activity__your_identity_you_read">내 인증 키 지문 (내가 읽음):</string>
+  <!--verify_display_fragment-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">문제가 발생하여 확인이 필요합니다.</string>
   <string name="message_details_header__sent">보낸 시간:</string>
@@ -702,9 +698,7 @@
   <string name="AndroidManifest__enter_passphrase">암호 입력</string>
   <string name="AndroidManifest__select_contacts">연락처 선택</string>
   <string name="AndroidManifest__signal_detected">Signal 감지됨</string>
-  <string name="AndroidManifest__public_identity_key">공개 인증 키</string>
   <string name="AndroidManifest__change_passphrase">암호 변경</string>
-  <string name="AndroidManifest__verify_identity">인증 키 확인</string>
   <string name="AndroidManifest__log_submit">디버그 로그 보내기</string>
   <string name="AndroidManifest__media_preview">미디어 미리보기</string>
   <string name="AndroidManifest__media_overview">전체 이미지</string>
@@ -715,7 +709,6 @@
   <string name="AndroidManifest_archived_conversations">보관된 대화</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">가져오기 / 내보내기</string>
-  <string name="arrays__your_identity_key">내 인증 키</string>
   <string name="arrays__use_default">기본설정 사용</string>
   <string name="arrays__use_custom">맞춤설정 사용</string>
   <string name="arrays__mute_for_one_hour">1시간 동안 알림 일시 끄기</string>
@@ -884,8 +877,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">새 대화</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">보안</string>
-  <string name="conversation_secure_verified__menu_verify_identity">신분 확인</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">암호화된 세션 초기화</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">알림 켜기</string>

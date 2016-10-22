@@ -64,8 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inkomende oproep</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identiteitssleutel van %1$s is gewijzigd. Dit kan betekenen dat iemand jouw communicatie probeert te onderscheppen, of dat %2$s gewoon Signal opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De veiligheidsnummers voor %1$s zijn veranderd. Dat kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je zou de veiligheidsnummers voor dit contact kunnen verifiëren</string>
   <string name="ConfirmIdentityDialog_accept">Accepteren</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Bericht sturen naar %s</string>
@@ -124,13 +124,14 @@
   <string name="ConversationActivity_mms_not_supported_title">MMS niet ondersteund</string>
   <string name="ConversationActivity_mms_not_supported_message">Dit bericht kan niet verzonden worden omdat je provider MMS niet ondersteunt.</string>
   <string name="ConversationActivity_specify_recipient">Kies een contact</string>
-  <string name="ConversationActivity_unblock_question">Ontblokken?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Weet je zeker dat je dit contact wil deblokkeren?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Contact deblokkeren?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Je kan weer berichten en oproepen van dit contact ontvangen.</string>
   <string name="ConversationActivity_unblock">Ontblokken</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wil versturen.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Camera niet beschikbaar</string>
   <string name="ConversationActivity_unable_to_record_audio">Fout bij opnemen audio!</string>
   <string name="ConversationActivity_error_sending_voice_message">Fout bij versturen audiobericht...</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app aanwezig op het apparaat om deze link te openen.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
@@ -171,6 +172,7 @@
   <string name="ConversationFragment_deleting_messages">Berichten verwijderen...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Zoeken...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op het apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Geselecteerd gesprek verwijderen?</item>
@@ -260,7 +262,7 @@
   <string name="ImportExportActivity_export">Exporteren</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard SMS-database van het systeem importeren naar Signal. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard-SMS-database van het systeem importeren naar Signal. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_import">Importeren</string>
   <string name="ImportFragment_cancel">Annuleren</string>
   <string name="ImportFragment_restore_encrypted_backup">Versleutelde back-up herstellen?</string>
@@ -282,11 +284,16 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tik en hou vast om audio op te nemen, laat los om te versturen.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Delen</string>
+  <string name="InviteActivity_choose_contacts">Kies contacten</string>
   <string name="InviteActivity_cancel">Annuleren</string>
   <string name="InviteActivity_sending">Versturen...</string>
   <string name="InviteActivity_heart_content_description">Hartje</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
   <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">STUUR SMS NAAR 1 VRIEND</item>
+    <item quantity="other">STUUR SMS NAAR %d VRIENDEN</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1 SMS-uitnodiging versturen?</item>
     <item quantity="other">%d SMS-uitnodigingen versturen?</item>
@@ -300,7 +307,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal heeft Barcode Scanner nodig voor QR-codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Verzenden mislukt</string>
-  <string name="MessageDetailsRecipient_new_identity">Nieuwe identiteit</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nieuwe veiligheidsnummers</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS opslaan mislukt!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fout bij verbinden met MMS provider...</string>
@@ -326,6 +333,8 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
   <string name="MessageRecord_you">Jij</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s zet zichzelfverwijderende berichten timer op %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Je veiligheidsnummers met %s zijn veranderd</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
@@ -351,6 +360,9 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal-apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt erop dat je een Signal-apparaat wil koppelen met een externe scanner. Scan voor de veiligheid alsjeblieft de code opnieuw vanuit Signal.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Zichzelfverwijderende berichten</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">De berichten zullen zichzelf niet verwijderen.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Berichten die in dit gesprek verstuurd en ontvangen worden zullen na %s zichzelf verwijderen nadat ze gelezen zijn.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal icoon</string>
@@ -364,12 +376,13 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RatingManager_rate_now">Nu beoordelen!</string>
   <string name="RatingManager_no_thanks">Nee bedankt</string>
   <string name="RatingManager_later">Later</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oeps, het lijkt er op dat de Play Store app niet geïnstalleerd is op dit apparaat.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Contact blokkeren?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_or_calls_from_this_user">Je zal geen berichten of oproepen meer ontvangen van deze gebruiker.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Je kan niet langer berichten en oproepen van dit contact ontvangen.</string>
   <string name="RecipientPreferenceActivity_block">Blokkeren</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Contact deblokkeren?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Weet je zeker dat je dit contact wil deblokkeren?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Je kan weer berichten en oproepen van dit contact ontvangen.</string>
   <string name="RecipientPreferenceActivity_unblock">Deblokkeren</string>
   <string name="RecipientPreferenceActivity_enabled">Ingeschakeld</string>
   <string name="RecipientPreferenceActivity_disabled">Uitgeschakeld</string>
@@ -448,9 +461,9 @@ ingevoerd (%s) is ongeldig.</string>
 ontvangen!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en weer te geven.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bijgewerkte maar onbekende identiteitsgegevens ontvangen. Raak aan om identiteit te bevestigen.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Beveiligde sessie opnieuw ingesteld.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Er is een bericht met nieuwe veiligheidsnummers ontvangen. Tik om te verwerken en te tonen.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Je hebt de beveiligde sessie opnieuw ingesteld.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s heeft de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_duplicate_message">Gedupliceerd bericht.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Je hebt deze groep verlaten...</string>
@@ -461,26 +474,12 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hallo!</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf verwijderen na %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Je veiligheidsnummers met %s zijn veranderd</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Je hebt geen identiteitssleutel.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">De ontvanger heeft geen identiteitssleutel.</string>
-  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">De ontvanger heeft geen identiteitssleutel!</string>
-  <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scan de QR-code van het contact</string>
-  <string name="VerifyIdentityActivity_display_your_qr_code">Toon je QR-code</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">WAARSCHUWING, de gescande sleutel komt NIET overeen! Controleer alsjeblieft de vingerafdruk zorgvuldig.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">NIET geverifieerd!</string>
-  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Sleutel van partner is correct. Het is ook nodig om je sleutel door de partner te laten verifiëren.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Geverifieerd</string>
-  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Je hebt geen identiteitssleutel!</string>
-  <!--ViewIdentityActivity-->
-  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Je hebt geen identiteitssleutel.</string>
-  <string name="ViewIdentityActivity_scan_contacts_qr_code">Scan de QR-code van het contact</string>
-  <string name="ViewIdentityActivity_display_your_qr_code">Toon je QR-code</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">WAARSCHUWING, de gescande sleutel komt NIET overeen!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">NIET geverifieerd!</string>
-  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">De gescande sleutel komt overeen!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Geverifieerd!</string>
-  <string name="ViewIdentityActivity_your_identity_fingerprint">Jouw identiteitsvingerafdruk</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dit contact gebruikt een oude versie van Signal. Vraag hen om Signal bij te werken vooraleer je de veiligheidsnummers verifieert.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Je probeert veiligheidsnummers te verifiëren met %1$s, maar je hebt in plaats daarvan %2$s gescand.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed veiligheidsnummer. Probeer de code opnieuw te scannen.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiëren ondanks bestaand verzoek?</string>
   <string name="KeyExchangeInitiator_send">Versturen</string>
@@ -561,7 +560,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Gesprek gedempt</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal bericht versturen</string>
+  <string name="conversation_activity__type_message_push">Signal-bericht versturen</string>
   <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde SMS versturen</string>
   <string name="conversation_activity__type_message_mms_insecure">Onbeveiligde MMS versturen</string>
   <string name="conversation_activity__from_sim_name">Van %1$s</string>
@@ -605,14 +604,40 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="experience_upgrade_activity__continue">doorgaan</string>
   <!--expiration-->
   <string name="expiration_off">Uit</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">1 seconde</item>
+    <item quantity="other">%d seconden</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">1 minuut</item>
+    <item quantity="other">%d minuten</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">1 uur</item>
+    <item quantity="other">%d uur</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dh</string>
+  <plurals name="expiration_days">
+    <item quantity="one">1 dag</item>
+    <item quantity="other">%d dagen</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">1 week</item>
+    <item quantity="other">%d weken</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dw</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Het is mislukt logs van je apparaat verzamelen. Je kan nog wel ADB gebruiken om debuglogs te verzamelen.</string>
   <string name="log_submit_activity__thanks">Bedankt voor je hulp!</string>
   <string name="log_submit_activity__submitting">Indienen</string>
   <string name="log_submit_activity__posting_logs">Logs posten naar gist...</string>
+  <string name="log_submit_activity__no_browser_installed">Geen browser geïnstalleerd</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je jouw huidige tekstberichtendatabase importeren naar de versleutelde database van Signal?</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabase zal niet gewijzigd of aangepast worden op enige wijze.</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaardsysteemdatabase zal niet gewijzigd of aangepast worden op enige wijze.</string>
   <string name="database_migration_activity__skip">Overslaan</string>
   <string name="database_migration_activity__import">Importeren</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan enkele ogenblikken duren. Even geduld, we zullen je melden wanneer het importeren voltooid is.</string>
@@ -622,7 +647,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="export_fragment__export_plaintext_backup">Onversleutelde back-up exporteren</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporteer een onversleutelde tekstbackup compatible met \'SMS Backup &amp; Restore\' naar de opslag</string>
   <string name="import_fragment__import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database van de standaard berichten-app</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database van de standaardberichtenapp</string>
   <string name="import_fragment__restore_encrypted_backup">Versleutelde back-up herstellen?</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Versleutelde back-up herstellen?</string>
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren...</string>
@@ -663,7 +688,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="recipient_preferences__block">Blokkeren</string>
   <string name="recipient_preferences__color">Kleur</string>
   <string name="recipient_preferences__color_for_this_contact">Kleur voor dit contact</string>
-  <string name="recipient_preferences__verify_identity">Identiteit verifiëren</string>
+  <string name="recipient_preferences__verify_safety_numbers">Veiligheidsnummers verifiëren</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal oproep</string>
   <string name="redphone_call_controls__end_call">Oproep beëindigen</string>
@@ -727,14 +752,15 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="registration_progress_activity__check">Check</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Typ een naam of nummer</small></string>
-  <string name="recipients_panel__add_member">Voeg groepslid toe</string>
-  <!--verify_identity_activity-->
-  <string name="verify_identity_activity__their_identity_they_read">Identiteit partner (partner leest):</string>
-  <string name="verify_identity_activity__your_identity_you_read">Jouw identiteit (jij leest):</string>
+  <string name="recipients_panel__add_members">Leden toevoegen</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Als je de veiligheid van de beveiligde verbinding met %s wil verifiëren, moet je de nummers hierboven vergelijken met de nummers op hun apparaat. Een alternatieve methode is om de code op hun telefoon te scannen, of hen te vragen jouw code te scannen.</string>
+  <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Enkele dingen vergen je aandacht.</string>
   <string name="message_details_header__sent">Verzonden</string>
   <string name="message_details_header__received">Ontvangen</string>
+  <string name="message_details_header__disappears">Verwijderd zichzelf</string>
   <string name="message_details_header__via">Via</string>
   <string name="message_details_header__to">Naar:</string>
   <string name="message_details_header__from">Van:</string>
@@ -744,9 +770,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__enter_passphrase">Wachtwoord invoeren</string>
   <string name="AndroidManifest__select_contacts">Contacten selecteren</string>
   <string name="AndroidManifest__signal_detected">Signal gedetecteerd</string>
-  <string name="AndroidManifest__public_identity_key">Publieke identiteitssleutel</string>
   <string name="AndroidManifest__change_passphrase">Wachtwoord wijzigen</string>
-  <string name="AndroidManifest__verify_identity">Identiteit verifiëren</string>
+  <string name="AndroidManifest__verify_safety_numbers">Veiligheidsnummers verifiëren</string>
   <string name="AndroidManifest__log_submit">Debug log indienen</string>
   <string name="AndroidManifest__media_preview">Media miniatuur</string>
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
@@ -757,7 +782,6 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest_archived_conversations">Gearchiveerde gesprekken</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
-  <string name="arrays__your_identity_key">Jouw identiteitssleutel</string>
   <string name="arrays__use_default">Gebruik standaard</string>
   <string name="arrays__use_custom">Gebruik handmatig</string>
   <string name="arrays__mute_for_one_hour">Demp voor 1 uur</string>
@@ -806,7 +830,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__notifications">Meldingen</string>
   <string name="preferences__enable_message_notifications">Toon berichtmeldingen</string>
   <string name="preferences__new_contacts_notifications">Meldingen voor nieuwe contacten</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Toon een meldingen voor nieuwe Signal-contacten</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Toon een melding voor nieuwe Signal-contacten</string>
   <string name="preferences__led_color">LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">LED-knipperpatroon</string>
@@ -874,13 +898,15 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Inschakelen als je toestel SMS/MMS over WiFi gebruikt (alleen inschakelen als \'Bellen via WiFi\' is ingeschakeld op je toestel)</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contacten</string>
+  <string name="preferences_app_protection__safety_numbers_approval">De veiligheidsnummers zijn in orde</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Vereis dat veranderde veiligheidsnummers eerst goedgekeurd moeten worden</string>
   <string name="preferences_notifications__display_in_notifications">Toon in meldingen</string>
   <string name="preferences_chats__when_using_mobile_data">Wanneer mobiele gegevensoverdracht gebruikt wordt</string>
   <string name="preferences_chats__when_using_wifi">Wanneer Wi-Fi gebruikt wordt</string>
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
   <string name="preferences_chats__message_trimming">Bericht inkorten</string>
-  <string name="preferences_advanced__use_system_emoji">Gebruik systeem emoji</string>
+  <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal\'s ingebouwde emoji-ondersteuning uitschakelen</string>
   <!--****************************************-->
   <!--menus-->
@@ -908,7 +934,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Bijlage opslaan</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Zichzelfverwijderende berichten</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Zichzelf vernietigende berichten</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Uitnodigen</string>
   <!--conversation_insecure_no_push-->
@@ -927,8 +955,6 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nieuw gesprek</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_security">Beveiliging</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Identiteit verifiëren</string>
   <string name="conversation_secure_verified__menu_reset_secure_session">Beveiligde sessie opnieuw instellen</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Niet meer dempen</string>

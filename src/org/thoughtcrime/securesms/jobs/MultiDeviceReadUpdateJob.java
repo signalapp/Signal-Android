@@ -1,12 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -49,6 +51,11 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException, UntrustedIdentityException {
+    if (!TextSecurePreferences.isMultiDevice(context)) {
+      Log.w(TAG, "Not multi device...");
+      return;
+    }
+
     List<ReadMessage> readMessages = new LinkedList<>();
 
     for (SerializableSyncMessageId messageId : messageIds) {

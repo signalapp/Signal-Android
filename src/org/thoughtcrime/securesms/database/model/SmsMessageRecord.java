@@ -75,9 +75,7 @@ public class SmsMessageRecord extends MessageRecord {
     } else if (MmsSmsColumns.Types.isLegacyType(type)) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (isBundleKeyExchange()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process));
-    } else if (isIdentityUpdate()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_updated_but_unknown_identity_information));
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process));
     } else if (isKeyExchange() && isOutgoing()) {
       return new SpannableString("");
     } else if (isKeyExchange() && !isOutgoing()) {
@@ -90,8 +88,10 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
     } else if (!getBody().isPlaintext()) {
       return emphasisAdded(context.getString(R.string.MessageNotifier_locked_message));
-    } else if (SmsDatabase.Types.isEndSessionType(type)) {
+    } else if (isEndSession() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
+    } else if (isEndSession()) {
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset_s, getIndividualRecipient().toShortString()));
     } else {
       return super.getDisplayBody();
     }
