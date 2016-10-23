@@ -24,6 +24,8 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,7 +57,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private MasterSecret masterSecret;
 
-  private ZoomingImageView  image;
+  private ViewPager         viewPager;
   private Uri               mediaUri;
   private String            mediaType;
   private Recipient         recipient;
@@ -74,8 +76,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.media_preview_activity);
 
-    initializeViews();
     initializeResources();
+    initializeMedia();
+    initializeViewPager();
     initializeActionBar();
   }
 
@@ -110,7 +113,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     super.onResume();
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
-    initializeMedia();
   }
 
   @Override
@@ -127,10 +129,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     setIntent(intent);
     initializeResources();
     initializeActionBar();
-  }
-
-  private void initializeViews() {
-    image = (ZoomingImageView)findViewById(R.id.image);
   }
 
   private void initializeResources() {
@@ -154,16 +152,15 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
       finish();
     }
+  }
 
-    Log.w(TAG, "Loading Part URI: " + mediaUri);
-
-    if (mediaType != null && mediaType.startsWith("image/")) {
-      image.setImageUri(masterSecret, mediaUri);
-    }
+  private void initializeViewPager() {
+    this.viewPager = (ViewPager) findViewById(R.id.viewPager);
+    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,mediaUri));
   }
 
   private void cleanupMedia() {
-    image.setImageDrawable(null);
+    viewPager.setAdapter(null);
   }
 
   private void saveToDisk() {
