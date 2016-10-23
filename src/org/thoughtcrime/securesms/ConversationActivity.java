@@ -92,14 +92,11 @@ import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
@@ -1339,16 +1336,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendMessage() {
     try {
       Recipients recipients     = getRecipients();
+      if (recipients == null) {
+        throw new RecipientFormattingException("Badly formatted");
+      }
+
       boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
       int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
       long       expiresIn      = recipients.getExpireMessages() * 1000;
 
       Log.w(TAG, "isManual Selection: " + sendButton.isManualSelection());
       Log.w(TAG, "forceSms: " + forceSms);
-
-      if (recipients == null) {
-        throw new RecipientFormattingException("Badly formatted");
-      }
 
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
