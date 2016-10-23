@@ -19,6 +19,8 @@ import java.util.Set;
 
 public class NotificationState {
 
+  private final static int ALERT_THRESHOLD = 4000;
+
   private final LinkedList<NotificationItem> notifications = new LinkedList<>();
   private final Set<Long>                    threads       = new HashSet<>();
 
@@ -32,8 +34,13 @@ public class NotificationState {
 
   public @Nullable Uri getRingtone() {
     if (!notifications.isEmpty()) {
-      Recipients recipients = notifications.getFirst().getRecipients();
+      NotificationItem latest = notifications.getFirst();
 
+      if (!shouldAlert(latest)) {
+        return Uri.parse("");
+      }
+
+      Recipients recipients = latest.getRecipients();
       if (recipients != null) {
         return recipients.getRingtone();
       }
@@ -44,8 +51,13 @@ public class NotificationState {
 
   public VibrateState getVibrate() {
     if (!notifications.isEmpty()) {
-      Recipients recipients = notifications.getFirst().getRecipients();
+      NotificationItem latest = notifications.getFirst();
 
+      if (!shouldAlert(latest)) {
+        return VibrateState.DISABLED;
+      }
+
+      Recipients recipients = latest.getRecipients();
       if (recipients != null) {
         return recipients.getVibrate();
       }
@@ -113,5 +125,17 @@ public class NotificationState {
     return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
+  private boolean shouldAlert(NotificationItem item) {
+    if (item.getReceived() > 0) {
+      for (NotificationItem ref : notifications) {
+        if (ref != item && ref.getThreadId() == item.getThreadId()
+              && item.getReceived() - ref.getReceived() < ALERT_THRESHOLD)
+        {
+          return false;
+        }
+      }
+    }
 
+    return true;
+  }
 }
