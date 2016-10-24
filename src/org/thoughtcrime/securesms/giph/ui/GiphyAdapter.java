@@ -94,6 +94,11 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
                   .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                   .get();
     }
+
+    public synchronized void setModelReady() {
+      this.modelReady = true;
+      notifyAll();
+    }
   }
 
   GiphyAdapter(Context context, List<GiphyImage> images) {
@@ -131,13 +136,23 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
     DrawableRequestBuilder<String> thumbnailRequest = Glide.with(context)
                                                            .load(image.getStillUrl());
 
-    Glide.with(context)
-         .load(image.getGifUrl())
-         .thumbnail(thumbnailRequest)
-         .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
-         .diskCacheStrategy(DiskCacheStrategy.ALL)
-         .listener(holder)
-         .into(holder.thumbnail);
+    if (Util.isLowMemory(context)) {
+      Glide.with(context)
+           .load(image.getStillUrl())
+           .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
+           .diskCacheStrategy(DiskCacheStrategy.ALL)
+           .into(holder.thumbnail);
+
+      holder.setModelReady();
+    } else {
+      Glide.with(context)
+           .load(image.getGifUrl())
+           .thumbnail(thumbnailRequest)
+           .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
+           .diskCacheStrategy(DiskCacheStrategy.ALL)
+           .listener(holder)
+           .into(holder.thumbnail);
+    }
   }
 
   @Override
