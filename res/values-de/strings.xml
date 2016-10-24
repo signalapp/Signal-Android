@@ -656,7 +656,7 @@ Mehr Privatsphäre und keine SMS-Kosten durch Nutzung der Datenverbindung zur Ko
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Ihre SecureChat-Version ist veraltet!</string>
-  <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte TextSecure auf die neueste Version aktualisieren.</string>
+  <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte SecureChat auf die neueste Version aktualisieren.</string>
   <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden?</string>
   <string name="reminder_header_sms_default_text">SecureChat ist zur Zeit nicht als Standard-SMS-App eingerichtet.</string>
   <string name="reminder_header_sms_import_title">SMS des Telefons importieren?</string>
