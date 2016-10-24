@@ -34,6 +34,7 @@ public class AttachmentTypeSelector extends PopupWindow {
   public static final int ADD_CONTACT_INFO  = 4;
   public static final int TAKE_PHOTO        = 5;
   public static final int ADD_LOCATION      = 6;
+  public static final int ADD_GIF           = 7;
 
   private static final int ANIMATION_DURATION = 300;
 
@@ -45,6 +46,7 @@ public class AttachmentTypeSelector extends PopupWindow {
   private final @NonNull ImageView   contactButton;
   private final @NonNull ImageView   cameraButton;
   private final @NonNull ImageView   locationButton;
+  private final @NonNull ImageView   gifButton;
   private final @NonNull ImageView   closeButton;
 
   private @Nullable View                      currentAnchor;
@@ -62,8 +64,9 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.videoButton    = ViewUtil.findById(layout, R.id.video_button);
     this.contactButton  = ViewUtil.findById(layout, R.id.contact_button);
     this.cameraButton   = ViewUtil.findById(layout, R.id.camera_button);
-    this.closeButton    = ViewUtil.findById(layout, R.id.close_button);
     this.locationButton = ViewUtil.findById(layout, R.id.location_button);
+    this.gifButton      = ViewUtil.findById(layout, R.id.giphy_button);
+    this.closeButton    = ViewUtil.findById(layout, R.id.close_button);
 
     this.imageButton.setOnClickListener(new PropagatingClickListener(ADD_IMAGE));
     this.audioButton.setOnClickListener(new PropagatingClickListener(ADD_SOUND));
@@ -71,6 +74,7 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.contactButton.setOnClickListener(new PropagatingClickListener(ADD_CONTACT_INFO));
     this.cameraButton.setOnClickListener(new PropagatingClickListener(TAKE_PHOTO));
     this.locationButton.setOnClickListener(new PropagatingClickListener(ADD_LOCATION));
+    this.gifButton.setOnClickListener(new PropagatingClickListener(ADD_GIF));
     this.closeButton.setOnClickListener(new CloseClickListener());
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -112,6 +116,7 @@ public class AttachmentTypeSelector extends PopupWindow {
       animateButtonIn(audioButton, ANIMATION_DURATION / 3);
       animateButtonIn(locationButton, ANIMATION_DURATION / 3);
       animateButtonIn(videoButton, ANIMATION_DURATION / 4);
+      animateButtonIn(gifButton, ANIMATION_DURATION / 4);
       animateButtonIn(contactButton, 0);
       animateButtonIn(closeButton, 0);
     }
