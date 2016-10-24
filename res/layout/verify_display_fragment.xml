@@ -29,6 +29,7 @@
                       android:layout_height="wrap_content"
                       android:layout_gravity="bottom|center_horizontal"
                       android:layout_marginBottom="35dp"
+                      android:textColor="@color/gray50"
                       android:textSize="11sp"
                       android:text="@string/verify_display_fragment__tap_to_scan"/>
 

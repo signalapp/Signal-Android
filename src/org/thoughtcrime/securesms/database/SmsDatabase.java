@@ -318,20 +318,23 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public List<SyncMessageId> setMessagesRead(long threadId) {
-    SQLiteDatabase      database  = databaseHelper.getWritableDatabase();
-    String              where     = THREAD_ID + " = ? AND " + READ + " = 0";
-    String[]            selection = new String[]{String.valueOf(threadId)};
-    List<SyncMessageId> results   = new LinkedList<>();
-    Cursor              cursor    = null;
+  public List<MarkedMessageInfo> setMessagesRead(long threadId) {
+    SQLiteDatabase          database  = databaseHelper.getWritableDatabase();
+    String                  where     = THREAD_ID + " = ? AND " + READ + " = 0";
+    String[]                selection = new String[]{String.valueOf(threadId)};
+    List<MarkedMessageInfo> results   = new LinkedList<>();
+    Cursor                  cursor    = null;
 
     database.beginTransaction();
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ADDRESS, DATE_SENT, TYPE}, where, selection, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED}, where, selection, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(cursor.getLong(2))) {
-          results.add(new SyncMessageId(cursor.getString(0), cursor.getLong(1)));
+        if (Types.isSecureType(cursor.getLong(3))) {
+          SyncMessageId  syncMessageId  = new SyncMessageId(cursor.getString(1), cursor.getLong(2));
+          ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), false);
+
+          results.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
         }
       }
 

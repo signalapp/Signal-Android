@@ -262,7 +262,7 @@
   <string name="ImportExportActivity_export">Exporteren</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard SMS-database van het systeem importeren naar Signal. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dit zal berichten uit de standaard-SMS-database van het systeem importeren naar Signal. Als je de SMS-database van het systeem voorheen hebt geïmporteerd, kan opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_import">Importeren</string>
   <string name="ImportFragment_cancel">Annuleren</string>
   <string name="ImportFragment_restore_encrypted_backup">Versleutelde back-up herstellen?</string>
@@ -334,6 +334,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
   <string name="MessageRecord_you">Jij</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s zet zichzelfverwijderende berichten timer op %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Je veiligheidsnummers met %s zijn veranderd</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
@@ -474,6 +475,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hallo!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf verwijderen na %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Je veiligheidsnummers met %s zijn veranderd</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dit contact gebruikt een oude versie van Signal. Vraag hen om Signal bij te werken vooraleer je de veiligheidsnummers verifieert.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Je probeert veiligheidsnummers te verifiëren met %1$s, maar je hebt in plaats daarvan %2$s gescand.</string>
@@ -558,7 +560,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--conversation_title_view-->
   <string name="conversation_title_view__conversation_muted">Gesprek gedempt</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal bericht versturen</string>
+  <string name="conversation_activity__type_message_push">Signal-bericht versturen</string>
   <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde SMS versturen</string>
   <string name="conversation_activity__type_message_mms_insecure">Onbeveiligde MMS versturen</string>
   <string name="conversation_activity__from_sim_name">Van %1$s</string>
@@ -635,7 +637,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="log_submit_activity__no_browser_installed">Geen browser geïnstalleerd</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je jouw huidige tekstberichtendatabase importeren naar de versleutelde database van Signal?</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabase zal niet gewijzigd of aangepast worden op enige wijze.</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaardsysteemdatabase zal niet gewijzigd of aangepast worden op enige wijze.</string>
   <string name="database_migration_activity__skip">Overslaan</string>
   <string name="database_migration_activity__import">Importeren</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan enkele ogenblikken duren. Even geduld, we zullen je melden wanneer het importeren voltooid is.</string>
@@ -645,7 +647,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="export_fragment__export_plaintext_backup">Onversleutelde back-up exporteren</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporteer een onversleutelde tekstbackup compatible met \'SMS Backup &amp; Restore\' naar de opslag</string>
   <string name="import_fragment__import_system_sms_database">SMS-berichten uit de systeemdatabase importeren?</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database van de standaard berichten-app</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database van de standaardberichtenapp</string>
   <string name="import_fragment__restore_encrypted_backup">Versleutelde back-up herstellen?</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Versleutelde back-up herstellen?</string>
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren...</string>
@@ -828,7 +830,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences__notifications">Meldingen</string>
   <string name="preferences__enable_message_notifications">Toon berichtmeldingen</string>
   <string name="preferences__new_contacts_notifications">Meldingen voor nieuwe contacten</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Toon een meldingen voor nieuwe Signal-contacten</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Toon een melding voor nieuwe Signal-contacten</string>
   <string name="preferences__led_color">LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">LED-knipperpatroon</string>
@@ -904,7 +906,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
   <string name="preferences_chats__message_trimming">Bericht inkorten</string>
-  <string name="preferences_advanced__use_system_emoji">Gebruik systeem emoji</string>
+  <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal\'s ingebouwde emoji-ondersteuning uitschakelen</string>
   <!--****************************************-->
   <!--menus-->

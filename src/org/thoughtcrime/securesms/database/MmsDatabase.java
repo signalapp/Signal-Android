@@ -455,21 +455,24 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
   }
 
-  public List<SyncMessageId> setMessagesRead(long threadId) {
-    SQLiteDatabase      database  = databaseHelper.getWritableDatabase();
-    String              where     = THREAD_ID + " = ? AND " + READ + " = 0";
-    String[]            selection = new String[]{String.valueOf(threadId)};
-    List<SyncMessageId> result    = new LinkedList<>();
-    Cursor              cursor    = null;
+  public List<MarkedMessageInfo> setMessagesRead(long threadId) {
+    SQLiteDatabase          database  = databaseHelper.getWritableDatabase();
+    String                  where     = THREAD_ID + " = ? AND " + READ + " = 0";
+    String[]                selection = new String[]{String.valueOf(threadId)};
+    List<MarkedMessageInfo> result    = new LinkedList<>();
+    Cursor                  cursor    = null;
 
     database.beginTransaction();
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ADDRESS, DATE_SENT, MESSAGE_BOX}, where, selection, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED}, where, selection, null, null, null);
 
       while(cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(cursor.getLong(2))) {
-          result.add(new SyncMessageId(cursor.getString(0), cursor.getLong(1)));
+        if (Types.isSecureType(cursor.getLong(3))) {
+          SyncMessageId  syncMessageId  = new SyncMessageId(cursor.getString(1), cursor.getLong(2));
+          ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), true);
+
+          result.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
         }
       }
 
@@ -717,7 +720,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(PART_COUNT, retrieved.getAttachments().size());
     contentValues.put(SUBSCRIPTION_ID, retrieved.getSubscriptionId());
     contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());
-    contentValues.put(READ, 0);
+    contentValues.put(READ, retrieved.isExpirationUpdate() ? 1 : 0);
 
     if (!contentValues.containsKey(DATE_SENT)) {
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
