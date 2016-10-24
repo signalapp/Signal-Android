@@ -30,6 +30,8 @@
                       android:textColorHint="@color/white"
                       android:textCursorDrawable="@null"
                       android:maxLines="1"
+                      android:singleLine="true"
+                      android:ellipsize="end"
                       android:imeOptions="actionSearch"
                       android:background="@android:color/transparent"
                       android:layout_gravity="center_vertical"
