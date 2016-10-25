@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 public class PushMediaConstraints extends MediaConstraints {
   private static final int MAX_IMAGE_DIMEN_LOWMEM = 768;
-  private static final int MAX_IMAGE_DIMEN        = 1280;
+  private static final int MAX_IMAGE_DIMEN        = 2048;
   private static final int KB                     = 1024;
   private static final int MB                     = 1024 * KB;
 
@@ -22,7 +22,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxSize() {
-    return 420 * KB;
+    return 4 * MB;
   }
 
   @Override
