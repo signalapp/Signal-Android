@@ -224,6 +224,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">暗号持续连接失效！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">暗号无法在 Google Play 服务中注册。暗号消息和呼叫已经被金庸。请尝试在设置 &gt; 高级中重新注册。</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新群组</string>
   <string name="GroupCreateActivity_actionbar_update_title">更新群组</string>
@@ -323,6 +325,7 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="MessageRecord_you">您</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 将消息销毁时间设置为 %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">你与 %s 的安全码已经修改</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">口令不符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
@@ -463,6 +466,7 @@
   <string name="ThreadRecord_media_message">多媒体信息</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">你与 %s 的安全码已经修改</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人正在使用旧版本的暗号，请告诉他们更新到最新版本再验证安全码。</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">您正在尝试验证与 %1$s 验证安全码，但是您却扫描了 %2$s 的验证码。</string>
@@ -611,6 +615,8 @@
     <item quantity="other">%d 周</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d 周</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">无法在您的设备上读取日志。您仍然可以使用 ADB 来获得调试日志。</string>
   <string name="log_submit_activity__thanks">感谢！</string>
@@ -749,6 +755,7 @@
   <string name="message_details_header__issues_need_your_attention">一些问题需要您的注意</string>
   <string name="message_details_header__sent">发送</string>
   <string name="message_details_header__received">接收</string>
+  <string name="message_details_header__disappears">销毁</string>
   <string name="message_details_header__via">来自</string>
   <string name="message_details_header__to">到：</string>
   <string name="message_details_header__from">来自：</string>

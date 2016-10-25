@@ -255,6 +255,8 @@ sigurnosne brojeve za ovaj kontakt.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nije uspješno registrirao na Google Play Services. Signal poruke i pozivi su onemogućeni, pokušajte se ponovno registrirati kroz Postavke &gt; Napredno.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova grupa</string>
   <string name="GroupCreateActivity_actionbar_update_title">Ažuriraj grupu</string>
@@ -358,7 +360,8 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MessageRecord_missed_call_from">Propušteni poziv od %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
   <string name="MessageRecord_you">Vi</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s postavi vrijeme nestajanja poruke na %2$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme nestajanja poruke na %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Vaši sigurnosni brojevi s %s su izmjenjeni</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
@@ -501,6 +504,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Vaši sigurnosni brojevi s %s su izmjenjeni</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt ima staru inačicu Signala. Zamolite ih da ažuriraju aplikaciju prije provjere sigurnosnih brojeva.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Pokušavate provjeriti sigurnosne brojeve s %1$s, ali ste umjesto toga skenirali %2$s.</string>
@@ -659,6 +663,8 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
     <item quantity="other">%d tjedana</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Čitanje zapisa na Vašem uređaju nije moguće. Još uvijek možete koristiti ADB za pristup debug zapisu.</string>
   <string name="log_submit_activity__thanks">Hvala na pomoći!</string>
@@ -798,6 +804,7 @@ neuspješno.</string>
   <string name="message_details_header__issues_need_your_attention">Neki problemi zahtjevaju vašu pozornost.</string>
   <string name="message_details_header__sent">Poslano</string>
   <string name="message_details_header__received">Primljeno</string>
+  <string name="message_details_header__disappears">Nestaje</string>
   <string name="message_details_header__via">Putem</string>
   <string name="message_details_header__to">Prima:</string>
   <string name="message_details_header__from">Šalje:</string>

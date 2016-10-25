@@ -190,6 +190,8 @@
   <string name="ExportFragment_exporting">ஏற்றுமதி செய்யப்படுகிறது</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play சேவை உடன் TextSecure-ஐ பதிவு செய்ய இயலவில்லை. இணையதளம் வழியாக தொடர்புடையாடல் முடக்கப்பட்டுள்ளது, TextSecure அமைப்புகள் மெனுவில் மறுபதிவுச்செய்ய முயற்சிக்கவும்</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">புதிய குழு</string>
   <string name="GroupCreateActivity_actionbar_update_title">குழுவை மேம்படுத்து</string>
@@ -478,6 +480,8 @@
   <string name="experience_upgrade_activity__continue">தொடர்</string>
   <!--expiration-->
   <string name="expiration_off">அணை</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">உங்கள் உதவிக்கு நன்றி!</string>
   <string name="log_submit_activity__submitting">சமர்பிப்பிக்கப்படுகிறது</string>
