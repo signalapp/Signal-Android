@@ -7,7 +7,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class SettableFuture<T> implements Future<T>, ListenableFuture<T> {
+public class SettableFuture<T> implements ListenableFuture<T> {
 
   private final List<Listener<T>> listeners = new LinkedList<>();
 
@@ -42,6 +42,7 @@ public class SettableFuture<T> implements Future<T>, ListenableFuture<T> {
 
       this.result    = result;
       this.completed = true;
+      notifyAll();
     }
 
     notifyAllListeners();
@@ -54,6 +55,7 @@ public class SettableFuture<T> implements Future<T>, ListenableFuture<T> {
 
       this.exception = throwable;
       this.completed = true;
+      notifyAll();
     }
 
     notifyAllListeners();
