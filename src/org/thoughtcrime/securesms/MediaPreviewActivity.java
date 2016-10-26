@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -26,6 +25,8 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.Menu;
@@ -36,8 +37,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
+import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -53,7 +54,9 @@ import java.util.List;
  * Activity for displaying media attachments in-app
  */
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
-                                  implements RecipientModifiedListener, OnPageChangeListener {
+                                  implements LoaderManager.LoaderCallbacks<Cursor>,
+                                             OnPageChangeListener,
+                                             RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String THREAD_ID_EXTRA = "thread_id";
@@ -126,7 +129,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
     super.onResume();
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
-    initializeViewPager();
+    viewPager.addOnPageChangeListener(this);
+    if (images != null && images.size() > 0) initializeViewPagerAdapter();
   }
 
   @Override
@@ -161,17 +165,20 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
     if (draftMode) {
       this.images = new ArrayList<>(0);
       images.add(mediaUri);
+      initializeViewPagerAdapter();
     } else {
-      this.imageRecords = getImageRecords(getApplicationContext(), threadId);
-      this.images       = getImages(imageRecords);
+      getSupportLoaderManager().initLoader(0,null,MediaPreviewActivity.this);
     }
   }
 
   private void initializeViewPager() {
-    this.viewPager    = (MediaPreviewViewPager) findViewById(R.id.viewPager);
+    this.viewPager = (MediaPreviewViewPager) findViewById(R.id.viewPager);
     viewPager.setOffscreenPageLimit(2);
-    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,images));
     viewPager.addOnPageChangeListener(this);
+  }
+
+  private void initializeViewPagerAdapter() {
+    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,images));
 
     int startPosition = images.indexOf(mediaUri);
     viewPager.setCurrentItem(startPosition);
@@ -234,17 +241,33 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
     initializeActionBar();
   }
 
+  @Override
+  public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    return new ThreadMediaLoader(this, threadId);
+  }
+
+  @Override
+  public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    Log.w(TAG, "onLoadFinished()");
+
+    this.imageRecords = getImageRecords(cursor);
+    this.images       = getImages(imageRecords);
+    initializeViewPagerAdapter();
+  }
+
+  @Override
+  public void onLoaderReset(Loader<Cursor> cursorLoader) { }
+
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && contentType.startsWith("image/");
   }
 
-  private List<ImageRecord> getImageRecords(Context context, Long threadId) {
+  private List<ImageRecord> getImageRecords(Cursor cursor) {
     List<ImageRecord> imageRecords = new ArrayList<>(0);
-    Cursor imagesForThread = DatabaseFactory.getImageDatabase(context).getImagesForThread(threadId);
-    if (imagesForThread.moveToLast()) {
+    if (cursor.moveToLast()) {
       do {
-        imageRecords.add(ImageRecord.from(imagesForThread));
-      } while (imagesForThread.moveToPrevious());
+        imageRecords.add(ImageRecord.from(cursor));
+      } while (cursor.moveToPrevious());
     }
     return imageRecords;
   }
