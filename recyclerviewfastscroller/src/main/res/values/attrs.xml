@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AbsRecyclerViewFastScroller">
+        <attr name="rfs_fast_scroller_layout" format="reference" />
+        <attr name="rfs_barColor" format="color|reference" />
+        <attr name="rfs_barBackground" format="reference" />
+        <attr name="rfs_handleColor" format="color|reference" />
+        <attr name="rfs_handleBackground" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AbsSectionIndicator">
+        <attr name="rfs_section_indicator_layout" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SectionTitleIndicator">
+        <attr name="rfs_textColor" format="color|reference" />
+        <attr name="rfs_backgroundColor" format="color|reference" />
+    </declare-styleable>
+
+</resources>
