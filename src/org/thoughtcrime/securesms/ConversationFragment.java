@@ -21,7 +21,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -71,8 +70,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
-
 public class ConversationFragment extends Fragment
   implements LoaderManager.LoaderCallbacks<Cursor>
 {
@@ -92,7 +89,6 @@ public class ConversationFragment extends Fragment
   private ActionMode   actionMode;
   private Locale       locale;
   private RecyclerView list;
-  private VerticalRecyclerViewFastScroller fastScroller;
   private View         loadMoreView;
   private View         composeDivider;
 
@@ -109,18 +105,10 @@ public class ConversationFragment extends Fragment
     list           = ViewUtil.findById(view, android.R.id.list);
     composeDivider = ViewUtil.findById(view, R.id.compose_divider);
 
-    // --- fast scroll enable ---
-    fastScroller = (VerticalRecyclerViewFastScroller) view.findViewById(R.id.fastscroller2);
-    fastScroller.setRecyclerView(list);
-    fastScroller.setScrollerDirection(VerticalRecyclerViewFastScroller.DIRECTION_REVERSED);
-    fastScroller.setScrollbarFadingEnabled(true);
-    list.setOnScrollListener(fastScroller.getOnScrollListener());
-    // --- fast scroll enable ---
-
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
-    // list.addOnScrollListener(scrollListener);
+    list.addOnScrollListener(scrollListener);
 
     loadMoreView = inflater.inflate(R.layout.load_more_header, container, false);
     loadMoreView.setOnClickListener(new OnClickListener() {
@@ -131,7 +119,6 @@ public class ConversationFragment extends Fragment
         getLoaderManager().restartLoader(0, args, ConversationFragment.this);
       }
     });
-
     return view;
   }
 

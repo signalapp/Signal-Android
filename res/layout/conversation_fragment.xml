@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="match_parent">
+             android:layout_width="fill_parent"
+             android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@android:id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.0"
-        android:scrollbars="vertical"
-        android:scrollbarSize="1px"
-        android:scrollbarStyle="insideOverlay"
-        android:scrollbarTrackVertical="@drawable/transparent_scrollbar"
-        android:scrollbarThumbVertical="@drawable/transparent_scrollbar"
-        android:cacheColorHint="?conversation_background" />
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:cacheColorHint="?conversation_background" />
 
-    <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
-        android:id="@+id/fastscroller2"
-        android:layout_width="20dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:visibility="visible"
-        android:gravity="bottom"
-        />
 
     <!--suppress AndroidLintUnusedAttribute-->
     <View android:id="@+id/compose_divider"
@@ -32,6 +19,6 @@
           android:layout_gravity="bottom"
           android:background="@drawable/compose_divider_background"
           android:alpha="0"
-		  android:visibility="invisible" />
+          android:visibility="invisible" />
 
 </FrameLayout>
