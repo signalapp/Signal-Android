@@ -224,6 +224,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永続的障害の発生！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Playに登録できないためSignalは利用できません。「詳細設定」で再登録してください。</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
   <string name="GroupCreateActivity_actionbar_update_title">グループを更新する</string>
@@ -317,6 +319,7 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
   <string name="MessageRecord_you">あなた</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sがメッセージの消去時間を%2$sに設定しています</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">%sとの安全番号が変わりました</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスワードが正しくありません！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスワードが正しくありません。</string>
@@ -449,6 +452,7 @@
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">メッセージの消去時間が%sに設定されました</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">%sとの安全番号が変わりました</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">相手先は古いバージョンのSignalを使っています。最新版に更新するようお願いしてください。</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">%1$sのコードを読み取るつもりが，%2$sのコードを読み取っています。</string>
@@ -597,6 +601,8 @@
     <item quantity="other">%d週間</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d週間</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバイス上のログを読めません。ただしADBを使ってデバッグログを読むことはできます。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
@@ -713,6 +719,7 @@
   <string name="message_details_header__issues_need_your_attention">問題があります</string>
   <string name="message_details_header__sent">送信</string>
   <string name="message_details_header__received">受信</string>
+  <string name="message_details_header__disappears">消える</string>
   <string name="message_details_header__via">経由</string>
   <string name="message_details_header__to">To:</string>
   <string name="message_details_header__from">From:</string>
@@ -957,7 +964,7 @@
   <string name="reminder_header_push_title">Signalによるメッセージと通話を有効にする</string>
   <string name="reminder_header_push_text">通信方式をグレードアップする</string>
   <string name="reminder_header_push_button">有効にする</string>
-  <string name="reminder_header_invite_title">Signalをオススメする</string>
+  <string name="reminder_header_invite_title">Signalに招待する</string>
   <string name="reminder_header_invite_text">%1$sさんとの通信を、進化させよう！</string>
   <string name="reminder_header_invite_button">招待する</string>
   <string name="reminder_header_share_title">友達にオススメしよう！</string>

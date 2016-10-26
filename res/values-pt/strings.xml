@@ -236,6 +236,8 @@ Vai ser necessário registar novamente o seu número de telefone se pretender ut
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha de comunicação Signal permanente!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal não se conseguiu registar com os Serviços Google Play. As mensagens e chamadas Signal estão desabilitadas. Por favor tente registar-se novamente em Definições &gt; Avançadas.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grupo novo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
@@ -628,6 +630,8 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possivel ler o log no seu dispositivo. Poderá ainda usar ADB para efetuar o debugging do log.</string>
   <string name="log_submit_activity__thanks">Obrigado pela sua ajuda!</string>

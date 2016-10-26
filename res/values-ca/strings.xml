@@ -233,6 +233,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">La comunicació de Signal falla contínuament!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal no s\'ha pogut registrar a Google Play Services. Els missatges i trucades Signal han estat desactivats, re-registra\'t a Ajustaments &gt; Avançats.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nou grup</string>
   <string name="GroupCreateActivity_actionbar_update_title">Actualitzar grup</string>
@@ -577,6 +579,8 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="experience_upgrade_activity__continue">continua</string>
   <!--expiration-->
   <string name="expiration_off">Inactiu</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No es pot llegir el registre del teu dispositiu. Pots fer servir ADB per debugar el registre.</string>
   <string name="log_submit_activity__thanks">Gràcies per la teva ajuda!</string>

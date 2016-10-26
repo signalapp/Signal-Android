@@ -242,6 +242,8 @@ Vastaanotettu: %4$s</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pysyvä Signal-yhteysvirhe!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei voinut rekisteröityä Google Play Services -palveluun, minkä vuoksi Signal-viestit ja puhelut ovat otettu pois käytöstä. Kokeile rekisteröityä uudelleen Signalin lisäasetuksista.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Uusi ryhmä</string>
   <string name="GroupCreateActivity_actionbar_update_title">Päivitä ryhmää</string>
@@ -340,7 +342,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
   <string name="MessageRecord_you">Sinä</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamiselle ajan: %2$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Sinun ja yhteystiedon %s turvanumerot ovat vaihtuneet</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
@@ -483,7 +485,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <string name="ThreadRecord_media_message">Mediaviesti</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Viestien katoamisen ajaksi asetettu %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Sinun ja yhteystiedon %s turvanumerot ovat vaihtuneet</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumerot.</string>
@@ -612,7 +614,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">jatka</string>
   <!--expiration-->
-  <string name="expiration_off">Poissa päältä</string>
+  <string name="expiration_off">pois päältä</string>
   <plurals name="expiration_seconds">
     <item quantity="one">1 sekunti</item>
     <item quantity="other">%d sekuntia</item>
@@ -638,6 +640,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">%d viikkoa</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dvk</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Lokin lukeminen laitteestasi epäonnistui. Voit sen sijaan käyttää ADB-työkalua virheenkorjauslokin noutamiseen.</string>
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>

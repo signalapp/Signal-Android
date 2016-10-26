@@ -120,11 +120,13 @@
   <string name="ConversationActivity_mms_not_supported_message">از آنجایی که اپراتور شما MMS را پشتیبانی نمی کند، این پیام قابل ارسال نمی باشد.</string>
   <string name="ConversationActivity_specify_recipient">لطفا یک تماس را انتخاب کنید</string>
   <string name="ConversationActivity_unblock_this_contact_question">رفع انسداد این تماس؟</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">دریافت پیام و تماس از این مخاطب مجددا برای شما فعال شده است.</string>
   <string name="ConversationActivity_unblock">رفع انسداد</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل ضمیمه شده بیشتر از اندازه مجاز تعیین شده برای این نوع پیام است.</string>
   <string name="ConversationActivity_quick_camera_unavailable">دوربین در دسترس نیست</string>
   <string name="ConversationActivity_unable_to_record_audio">قادر به ضبط صدا نیست!</string>
   <string name="ConversationActivity_error_sending_voice_message">خطا در حال ارسال پیام صوتی</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه ای به منظور پشتیبانی از لینک برروی دستگاه شما وجود ندارد.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">جزییات پیام</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">فرستنده: %1$s\nنوع انتقال: %2$s\nزمان ارسال: %3$s\nزمان دریافت: %4$s</string>
@@ -158,6 +160,7 @@
   <string name="ConversationFragment_deleting_messages">حذف پیام های...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">جستجو...</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">برروی دستگاه شما هیچ مرورگری نصب نیست.</string>
   <!--ConversationListFragment-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">مکالمات انتخاب شده حذف شوند؟</item>
@@ -219,6 +222,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ارتباط سیگنال بطور کل قطع شده است</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">نرم‌افزار سیگنال نمی‌تواند از طریق خدمات Google Play، شما را ثبت‌نام کند. پیام‌ها و تماس‌های سیگنال، غیرفعال شده‌اند، لطفاً تلاش کنید از طریق تنظیمات مجدداً ثبت‌نام کنید.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">گروه جدید</string>
   <string name="GroupCreateActivity_actionbar_update_title">به روز رسانی گروه</string>
@@ -262,11 +267,15 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">برای ضبط کردن صدا صفحه را تپ کنید و نگه دارید - برای فرستادن انگشت را بردارید</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک گذاری</string>
+  <string name="InviteActivity_choose_contacts">انتخاب مخاطبین</string>
   <string name="InviteActivity_cancel">لغو</string>
   <string name="InviteActivity_sending">در حال ارسال</string>
   <string name="InviteActivity_heart_content_description">فلب</string>
   <string name="InviteActivity_invitations_sent">دعوت نامه ارسال شد!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به سیگنال</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="other">ارسال پیامک به %d نفر از دوستان</item>
+  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">%d دعوت اس ام اس  بفرستم؟</item>
   </plurals>
@@ -327,6 +336,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">متاسفانه این یک کد QR معتبر برای اتصال دستگاه نيست.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">اتصال يک دستگاه دارای سيگنال؟</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">پیامهای نشان داده نشده</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">پیام های شما منقضی نخواهد شد.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">رمز را وارد کنید</string>
   <string name="PassphrasePromptActivity_watermark_content_description">آیکون سیگنال</string>
@@ -341,8 +352,10 @@
   <string name="RatingManager_later">بعد</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">انسداد این تماس؟</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">شما ديگر تماس يا پيامی از این مخاطب دريافت نخواهید کرد.</string>
   <string name="RecipientPreferenceActivity_block">بلوک</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">رفع انسداد این تماس؟</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">شما مجددا قادر به دریافت پیام ها و تماس ها از این مخاطب هستید.</string>
   <string name="RecipientPreferenceActivity_unblock">رفع انسداد</string>
   <string name="RecipientPreferenceActivity_enabled">فعال</string>
   <string name="RecipientPreferenceActivity_disabled">غیر فعال</string>
@@ -421,6 +434,8 @@
 تبادل پیام!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 یک پیام تبادل کلید برای نسخه اشتباه پروتوکل دریافت شد.</string>
+  <string name="SmsMessageRecord_secure_session_reset">شما نشست امن را ریست نموده اید.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s نشست امن را ریست نمود.</string>
   <string name="SmsMessageRecord_duplicate_message">تکثیر پیام.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">ترک گروه ...</string>
@@ -557,23 +572,31 @@
   <plurals name="expiration_seconds">
     <item quantity="other">ثانیه %d</item>
   </plurals>
+  <string name="expiration_seconds_abbreviated">%d ثانیه</string>
   <plurals name="expiration_minutes">
     <item quantity="other">دقیقه %d</item>
   </plurals>
+  <string name="expiration_minutes_abbreviated">%d دقیقه</string>
   <plurals name="expiration_hours">
     <item quantity="other">ساعت %d</item>
   </plurals>
+  <string name="expiration_hours_abbreviated">%d ساعت</string>
   <plurals name="expiration_days">
     <item quantity="other"> روز %d</item>
   </plurals>
+  <string name="expiration_days_abbreviated">%d روز</string>
   <plurals name="expiration_weeks">
     <item quantity="other">هفته %d</item>
   </plurals>
+  <string name="expiration_weeks_abbreviated">%d هفته</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">نمی توانیم فایل گزارش را در دستگاه شما بخوانیم.شما می توانید از طریق ADB گزارش دیباگ را دریافت کنید.</string>
   <string name="log_submit_activity__thanks">تشکر از کمک شما!</string>
   <string name="log_submit_activity__submitting">ارسال</string>
   <string name="log_submit_activity__posting_logs">ارسال سیاهه های مربوط به جان کلام ...</string>
+  <string name="log_submit_activity__no_browser_installed">هیچ مرورگری نصب نشده است</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">دوست دارید که پیام های گوشی داخل دیتابیس رمزنگاری شده وارد شوند؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">پايگاه داده‌ی پيش‌فرض سيستم، به هيچ وجه دستکاری يا تغيير نخواهد کرد</string>
@@ -685,11 +708,14 @@
   <string name="registration_progress_activity__check">بررسی</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>نام یا شماره را وارد کنید</small></string>
+  <string name="recipients_panel__add_members">افزودن اعضاء</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__tap_to_scan">برای جستجو ضربه بزنید</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">برخی از مسائل نیاز به توجه شما دارند.</string>
   <string name="message_details_header__sent">فرستاده</string>
   <string name="message_details_header__received">رسیده</string>
+  <string name="message_details_header__disappears">نشان داده نشده ها</string>
   <string name="message_details_header__via">از طریق</string>
   <string name="message_details_header__to">به:</string>
   <string name="message_details_header__from">از:</string>
@@ -859,7 +885,9 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ذخیره پیوست</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">پیامهای نشان داده نشده</string>
   <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">پیام های در حال منقضی شدن</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">دعوت کردن</string>
   <!--conversation_insecure_no_push-->
