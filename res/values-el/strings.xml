@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
+  <string name="app_name">Σήμα</string>
   <string name="yes">Ναι</string>
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
@@ -246,7 +246,10 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Μόνιμη αποτυχία επικοινωνίας του Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Το Signal δεν μπόρεσε να εγγραφτεί στις Υπηρεσίες Google Play. Τα μηνύματα και οι κλήσεις του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να επανεγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Σφάλμα κατά την απόκτηση της πλήρης ανάλυσης του GiF...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Αυτοκόλλητα</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Νέα ομάδα</string>
   <string name="GroupCreateActivity_actionbar_update_title">Ενημέρωση ομάδας</string>
@@ -646,7 +649,9 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dεβ</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Αναζήτηση GIFs και αυτοκολλήτων</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Δεν βρέθηκαν αποτελέσματα.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Αποτυχία ανάγνωσης αρχείου συμβάντων για τη συσκευή σου. Μπορείς να χρησιμοποιήσεις το ADB για να πάρεις ένα αρχείο συμβάντων αποσφαλμάτωσης.</string>
   <string name="log_submit_activity__thanks">Ευχαριστούμε για τη βοήθειά σου!</string>

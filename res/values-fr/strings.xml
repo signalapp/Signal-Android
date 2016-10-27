@@ -240,7 +240,10 @@ les numéros de sécurité de cet utilisateur.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec de communication Signal permanent !</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Les appels et messages Signal ont été désactivés car Signal n\'a pas pu s\'enregistrer auprès de Google Play Services. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres &gt; Avancé.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erreur lors de la récupération du GiF pleine résolution...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Autocollants</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nouveau groupe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Mettre à jour le groupe</string>
@@ -635,7 +638,9 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sem.</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Rechercher GIFs et autocollants</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Aucun résultat trouvé.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Impossible d\'accéder aux journaux de votre appareil. Utilisez ADB pour obtenir un rapport de débogage.</string>
   <string name="log_submit_activity__thanks">Merci pour votre aide !</string>

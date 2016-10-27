@@ -256,7 +256,10 @@ numerele de siguranță pentru aceast contact.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Eroare permanentă de comunicare cu Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nu s-a putut înregistra la Google Play Services. Mesajele și apelurile Signal au fost dezactivate, te rog încearcă să te înregistrezi din nou din meniul Setări &gt; Avansat.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">A apărut o eroare la obținerea GIF-ului la rezoluție maximă...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF-uri</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Autocolante</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup nou</string>
   <string name="GroupCreateActivity_actionbar_update_title">Actualizează grup</string>
@@ -661,7 +664,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   </plurals>
   <string name="expiration_weeks_abbreviated">%ds</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Caută GIF-uri și autocolante</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Nici un rezulat obținut.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Fișierul log nu a putut fi citit de pe dispozitivul tău. Poţi folosi în schimb ADB pentru a obţine log-ul de depanare.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>

@@ -241,7 +241,9 @@ säkerhetssiffror för denna kontakt.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent kommunikationsfel med Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunde inte registrera med Google Play-tjänster. Meddelanden och samtal med Signal har avaktiverats, vänligen försök återregistrera i inställningar &gt; Avancerat.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fel vid hämtande av GIF i full upplösning...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF:ar</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny grupp</string>
   <string name="GroupCreateActivity_actionbar_update_title">Uppdatera grupp</string>

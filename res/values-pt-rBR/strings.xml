@@ -244,7 +244,10 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não pôde cadastrar-se no Google Play Services. Mensagens e chamadas Signal foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erro ao buscar GIF com resolução total...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Novo grupo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Atualizar grupo</string>
@@ -655,7 +658,9 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dsem</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Procurar GIFs e stickers</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Nenhum resultado encontrado.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possível ler o log no seu dispositivo. Você pode usar o ADB para obter um log de depuração.</string>
   <string name="log_submit_activity__thanks">Obrigado por sua ajuda!</string>

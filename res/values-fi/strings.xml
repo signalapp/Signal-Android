@@ -243,7 +243,10 @@ Vastaanotettu: %4$s</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pysyvä Signal-yhteysvirhe!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei voinut rekisteröityä Google Play Services -palveluun, minkä vuoksi Signal-viestit ja puhelut ovat otettu pois käytöstä. Kokeile rekisteröityä uudelleen Signalin lisäasetuksista.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Täysikokoisen GIFin lataaminen epäonnistui...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFit</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Tarrat</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Uusi ryhmä</string>
   <string name="GroupCreateActivity_actionbar_update_title">Päivitä ryhmää</string>
@@ -641,7 +644,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   </plurals>
   <string name="expiration_weeks_abbreviated">%dvk</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Etsi GIFejä ja tarroja</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Ei tuloksia</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Lokin lukeminen laitteestasi epäonnistui. Voit sen sijaan käyttää ADB-työkalua virheenkorjauslokin noutamiseen.</string>
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>

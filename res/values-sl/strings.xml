@@ -267,7 +267,10 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Napaka pri pridobivanju GIF-ov v polni resoluciji...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF-i</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Nalepke</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Posodobi skupino</string>
@@ -669,7 +672,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   </plurals>
   <string name="expiration_weeks_abbreviated">%dt</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Iskanje po GIF-ih in nalepkah</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Iskanje ni vrnilo nobenega rezultata.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Sistemski dnevnik vaše naprave ni dostopen. Za oddajo sistemske zabeležbe lahko uporabite ADB.</string>
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>

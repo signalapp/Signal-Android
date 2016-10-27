@@ -77,7 +77,7 @@
   <string name="ConversationItem_view_secure_media_question">Bekijk beveiligde media?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Deze media is opgeslagen in een versleutelde database. Om het weer te geven met een externe app, zal het tijdelijk moeten worden ontsleuteld en opgeslagen. Weet je zeker dat je dat wil doen?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fout, verouderd sleuteluitwisselingsbericht ontvangen.</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik om te verwerken</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik om te verwerken.</string>
   <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
   <string name="ConversationItem_click_for_details">Tik voor details</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tik voor terugvallen naar onbeveiligd</string>
@@ -1045,6 +1045,6 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="trimmer__deleting_old_messages">Oude berichten verwijderen...</string>
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">Transportkanaal-icoon</string>
+  <string name="transport_selection_list_item__transport_icon">Transportkanaalpictogram</string>
   <!--EOF-->
 </resources>

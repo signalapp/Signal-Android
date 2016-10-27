@@ -751,162 +751,166 @@ kode som du hører nedenfor.</string>
 er vanlig:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen
 nettverkstilkobling.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Din
-Enheten trenger nettverkstilkobling for å bruke denne Signal funksjonen. Kontroller
-at den er koblet til mobildata eller Wi-Fi.</string>
-  <string name="registration_progress_activity__restrictive_firewall">restriktiv brannmur.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Enheten
+trenger nettverkstilkobling for å bruke denne funksjonen. Kontroller
+at mobildata eller Wi-Fi er slått på og koblet til.</string>
+  <string name="registration_progress_activity__restrictive_firewall">Restriktiv brannmur.
+    </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Hvis du er tilkoblet via Wi-Fi, er det mulig at det er en brannmur blokkerer tilgangen til
+Hvis du er tilkoblet via Wi-Fi, er det mulig at en brannmur blokkerer tilgang til
 
-Signal serveren. Prøv et annet nettverk eller mobil data.</string>
+Signal-tjeneren. Prøv i så fall et annet nettverk eller slå på mobildata.</string>
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Signal vil nå automatisk bekrefte nummeret ditt med en bekreftelse SMS melding.</string>
-  <string name="registration_progress_activity__connecting">Kobler til...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Venter på SMS
-bekreftelse...</string>
-  <string name="registration_progress_activity__registering_with_server">Registrer med server ...</string>
+Signal prøver nå å bekrefte nummeret ditt med SMS.</string>
+  <string name="registration_progress_activity__connecting">Kobler til …</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Venter på
+SMS-bekreftelse …</string>
+  <string name="registration_progress_activity__registering_with_server">Registrer på tjener …</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dette
-kan ta en stund. Vær tålmodig, vi vil varsle deg når bekreftelse er fullført.</string>
+kan ta litt tid. Vi varsler deg når bekreftelse er fullført.</string>
   <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">
-Signal tidsavbrutt mens du venter på en bekreftelse SMS message.</string>
-  <string name="registration_progress_activity__sms_verification_failed">SMS bekreftelse
-mislyktes.</string>
-  <string name="registration_progress_activity__generating_keys">Genererer nøkler...</string>
-  <string name="registration_progress_activity__alert">Varsling</string>
+Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS-bekreftelse
+        mislyktes.
+    </string>
+  <string name="registration_progress_activity__generating_keys">Lager nøkler …</string>
+  <string name="registration_progress_activity__alert">Varsel</string>
   <string name="registration_progress_activity__telephone">Telefon</string>
   <string name="registration_progress_activity__check">Kryss av</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to"><small>Skriv inn et navn eller nummer</small></string>
+  <string name="recipients_panel__to"><small>Skriv inn navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Legg til medlemmer</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Hvis du vil kontrollere sikkerhet for ende til ende-kryptering med %s, kontrollerer du tallene overfor med tall på motpartens enhet. Du kan også skanne koden som ligger på motpartens telefon eller be dem om å skanne din.</string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <!--message_details_header-->
-  <string name="message_details_header__issues_need_your_attention">Noen problemer trenger din oppmerksomhet.</string>
+  <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
   <string name="message_details_header__sent">Sendt</string>
   <string name="message_details_header__received">Mottatt</string>
+  <string name="message_details_header__disappears">Forsvinner</string>
   <string name="message_details_header__via">Via</string>
   <string name="message_details_header__to">Til:</string>
   <string name="message_details_header__from">Fra:</string>
   <string name="message_details_header__with">Med:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Oprett passord</string>
-  <string name="AndroidManifest__enter_passphrase">Skriv inn passfrase</string>
+  <string name="AndroidManifest__create_passphrase">Lag passordfrase</string>
+  <string name="AndroidManifest__enter_passphrase">Skriv inn passordfrase</string>
   <string name="AndroidManifest__select_contacts">Velg kontakter</string>
   <string name="AndroidManifest__signal_detected">Signal oppdaget</string>
-  <string name="AndroidManifest__change_passphrase">Endre Passord</string>
+  <string name="AndroidManifest__change_passphrase">Endre passordfrase</string>
   <string name="AndroidManifest__verify_safety_numbers">Bekreft sikkerhetsnumre</string>
   <string name="AndroidManifest__log_submit">Send debug logg</string>
-  <string name="AndroidManifest__media_preview">forhåndsvisning Media</string>
+  <string name="AndroidManifest__media_preview">Forhåndsvisning av medier</string>
   <string name="AndroidManifest__media_overview">Alle bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
   <string name="AndroidManifest__linked_devices">Koblede enheter</string>
-  <string name="AndroidManifest__invite_friends">Invitere venner</string>
+  <string name="AndroidManifest__invite_friends">Inviter venner</string>
   <string name="AndroidManifest_archived_conversations">Lagrede samtaler</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importer / exporter</string>
-  <string name="arrays__use_default">Bruk standard</string>
-  <string name="arrays__use_custom">Bruk egendefinert</string>
-  <string name="arrays__mute_for_one_hour">Demp for 1 time</string>
-  <string name="arrays__mute_for_two_hours">Demp for 2 timer</string>
-  <string name="arrays__mute_for_one_day">Demp for 1 dag</string>
-  <string name="arrays__mute_for_seven_days">Demp for 7 dager</string>
-  <string name="arrays__mute_for_one_year">Demp for 1 år</string>
-  <string name="arrays__settings_default">Standardinnstillingene </string>
-  <string name="arrays__enabled">Aktivert</string>
-  <string name="arrays__disabled">Deaktivert</string>
+  <string name="arrays__import_export">Importer / eksporter</string>
+  <string name="arrays__use_default">Bruk forvalgt</string>
+  <string name="arrays__use_custom">Bruk selvvalgt</string>
+  <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
+  <string name="arrays__mute_for_two_hours">Demp i 2 timer</string>
+  <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
+  <string name="arrays__mute_for_seven_days">Demp i 7 dager</string>
+  <string name="arrays__mute_for_one_year">Demp i 1 år</string>
+  <string name="arrays__settings_default">Standardoppsett</string>
+  <string name="arrays__enabled">Slått på</string>
+  <string name="arrays__disabled">Slått av</string>
   <string name="arrays__name_and_message">Navn og melding</string>
-  <string name="arrays__name_only">Kun navn</string>
+  <string name="arrays__name_only">Bare navn</string>
   <string name="arrays__no_name_or_message">Ingen navn eller melding</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d Time</item>
-    <item quantity="other">%d Timer</item>
+    <item quantity="one">%d time</item>
+    <item quantity="other">%d timer</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__general">Generell</string>
+  <string name="preferences__general">Generelt</string>
   <string name="preferences__sms_mms">SMS og MMS</string>
-  <string name="preferences__pref_all_sms_title">Motta alle SMS</string>
-  <string name="preferences__pref_all_mms_title">Motta alle MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Bruk Signal for alle innkommende tekstmeldinger </string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle innkommende multimediemeldinger </string>
-  <string name="preferences__input_settings">inndatainnstillingene</string>
-  <string name="preferences__enable_enter_key_title">Aktiver Enter-tasten</string>
-  <string name="preferences__replace_smiley_with_enter_key">Bytt smiley tast med Enter-tasten</string>
-  <string name="preferences__pref_enter_sends_title">Enter-tasten sender</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ved å trykke på Enter-tasten vil sende tekstmeldinger</string>
+  <string name="preferences__pref_all_sms_title">Ta imot alle SMS</string>
+  <string name="preferences__pref_all_mms_title">Ta imot alle MMS</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Bruk Signal for alle inngående tekstmeldinger </string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle inngående multimediemeldinger </string>
+  <string name="preferences__input_settings">inndatainnstillinger</string>
+  <string name="preferences__enable_enter_key_title">Slå på enter-tast</string>
+  <string name="preferences__replace_smiley_with_enter_key">Erstatt smiley-tast med enter-tast</string>
+  <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk enter-tast for å sende tekstmeldinger</string>
   <string name="preferences__display_settings">Skjerminnstillinger</string>
   <string name="preferences__choose_identity">Velg identitet</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg din kontaktoppføring fra kontaktlisten.</string>
-  <string name="preferences__change_passphrase">Endre Passord</string>
-  <string name="preferences__change_your_passphrase">Endre ditt Passord</string>
-  <string name="preferences__enable_passphrase">Aktiver passord</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarsler med et passord</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
+  <string name="preferences__change_passphrase">Endre passordfrase</string>
+  <string name="preferences__change_your_passphrase">Endre passordfrase</string>
+  <string name="preferences__enable_passphrase">Slå på passordfrase</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarsler med passordfrase</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Block skjermbilder i listen sist brukte og inne i app</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lås Signal etter et angitt tidsintervall uten aktivitet</string>
-  <string name="preferences__inactivity_timeout_passphrase">Inaktivitet pause passord</string>
-  <string name="preferences__inactivity_timeout_interval">Inaktivitet pause intervallet</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilder i sist brukte-liste og i programmet</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatisk etter valgt tid uten aktivitet</string>
+  <string name="preferences__inactivity_timeout_passphrase">Passordfrase ved tidsavbrudd</string>
+  <string name="preferences__inactivity_timeout_interval">Tidsavbrudd ved inaktivitet</string>
   <string name="preferences__notifications">Varsler</string>
-  <string name="preferences__enable_message_notifications">Aktiver meldingsvarslinger</string>
-  <string name="preferences__new_contacts_notifications">Ny kontakt varslinger</string>
-  <string name="preferences__show_a_notification_for_new_signal_contacts">Vis et varsel for nye signalkontakter</string>
-  <string name="preferences__led_color">LED farge</string>
+  <string name="preferences__enable_message_notifications">Slå på meldingsvarslinger</string>
+  <string name="preferences__new_contacts_notifications">Varslinger om nye kontakter</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">Vis varsel for nye Signal-kontakter</string>
+  <string name="preferences__led_color">LED-farge</string>
   <string name="preferences__led_color_unknown">Ukjent</string>
-  <string name="preferences__pref_led_blink_title">LED blink mønster</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">Sett tilpasset LED blink mønster</string>
+  <string name="preferences__pref_led_blink_title">LED-blinkemønster</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Bruk selvvalgt LED-blinkemønster</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">På for:</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Av for:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">Tilpasset LED blink mønster satt!</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">LED-blinkemønster er endret.</string>
   <string name="preferences__sound">Lyd</string>
-  <string name="preferences__change_notification_sound">Endre varslingslyden</string>
+  <string name="preferences__change_notification_sound">Endre varslingslyd</string>
   <string name="preferences__silent">Stille</string>
-  <string name="preferences__in_conversation_notifications">I-samtale varslinger</string>
-  <string name="preferences__play_inthread_notifications">Spill av varslingslyd når du ser en aktiv samtale</string>
+  <string name="preferences__in_conversation_notifications">Varsling under samtaler</string>
+  <string name="preferences__play_inthread_notifications">Spill av varslingslyd når du ser på en aktiv samtale</string>
   <string name="preferences__repeat_alerts">Gjenta varsler</string>
   <string name="preferences__never">Aldri</string>
-  <string name="preferences__one_time">En gang</string>
+  <string name="preferences__one_time">Én gang</string>
   <string name="preferences__two_times">To ganger</string>
-  <string name="preferences__three_times">Tre Ganger</string>
+  <string name="preferences__three_times">Tre ganger</string>
   <string name="preferences__five_times">Fem ganger</string>
   <string name="preferences__ten_times">Ti ganger</string>
-  <string name="preferences__vibrate">Vibrér</string>
-  <string name="preferences__also_vibrate_when_notified">Også vibrere når varslet</string>
-  <string name="preferences__minutes">Minutter</string>
-  <string name="preferences__hours">Timer</string>
+  <string name="preferences__vibrate">Vibrer</string>
+  <string name="preferences__also_vibrate_when_notified">Vibrer også ved varsling</string>
+  <string name="preferences__minutes">minutter</string>
+  <string name="preferences__hours">timer</string>
   <string name="preferences__green">Grønn</string>
   <string name="preferences__red">Rød</string>
   <string name="preferences__blue">Blå</string>
   <string name="preferences__orange">Oransje</string>
-  <string name="preferences__cyan">Grønnblå</string>
-  <string name="preferences__magenta">Lillarød</string>
+  <string name="preferences__cyan">Cyan</string>
+  <string name="preferences__magenta">Magenta</string>
   <string name="preferences__white">Hvit</string>
   <string name="preferences__none">Ingen</string>
   <string name="preferences__fast">Fort</string>
   <string name="preferences__normal">Normal</string>
-  <string name="preferences__slow">langsom</string>
-  <string name="preferences__custom">Egendefinert</string>
+  <string name="preferences__slow">Langsom</string>
+  <string name="preferences__custom">Selvvalgt</string>
   <string name="preferences__advanced">Avansert</string>
   <string name="preferences__privacy">Personvern</string>
-  <string name="preferences__mms_user_agent">MMS Bruker Agent</string>
-  <string name="preferences__advanced_mms_access_point_names">Manuell MMS instillinger</string>
-  <string name="preferences__enable_manual_mms">bruk manuell MMS instillinger</string>
-  <string name="preferences__override_system_mms_settings">Overstyre system MMS-innstillinger med informasjonen nedenfor.</string>
-  <string name="preferences__mmsc_url">MMSC URL</string>
-  <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
-  <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
-  <string name="preferences__mmsc_username">MMSC Brukernavn</string>
-  <string name="preferences__mmsc_password">MMSC Passord</string>
-  <string name="preferences__sms_delivery_reports">SMS leveringsrapporter </string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om en leveringsrapport for hver SMS-melding du sender</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">slette eldre meldinger automatisk når en samtale overskrider en spesifisert lengde</string>
+  <string name="preferences__mms_user_agent">MMS-brukeragent</string>
+  <string name="preferences__advanced_mms_access_point_names">Manuelt MMS-oppsett</string>
+  <string name="preferences__enable_manual_mms">Bruk manuelt MMS-oppsett</string>
+  <string name="preferences__override_system_mms_settings">Overstyr systemets MMS-oppsett med informasjonen nedenfor.</string>
+  <string name="preferences__mmsc_url">MMSC-adresse</string>
+  <string name="preferences__mms_proxy_host">MMS-mellomtjenervert</string>
+  <string name="preferences__mms_proxy_port">MMS-mellomtjenerport</string>
+  <string name="preferences__mmsc_username">MMSC-brukernavn</string>
+  <string name="preferences__mmsc_password">MMSC-passord</string>
+  <string name="preferences__sms_delivery_reports">SMS-leveringsrapporter </string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om leveringsrapport når du sender SMS</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Slette gamle meldinger automatisk når en samtale overskrider valgt lengde</string>
   <string name="preferences__delete_old_messages">Slett gamle meldinger</string>
-  <string name="preferences__chats">Samtaler og media</string>
-  <string name="preferences__conversation_length_limit">Samtale lengdegrensen </string>
-  <string name="preferences__trim_all_conversations_now">Trim alle samtaler nå</string>
+  <string name="preferences__chats">Samtaler og medier</string>
+  <string name="preferences__conversation_length_limit">Lengdegrense for samtaler</string>
+  <string name="preferences__trim_all_conversations_now">Rydd opp i alle samtaler nå</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skanne gjennom alle samtaler og håndheve samtale lengdebegrensninger </string>
   <string name="preferences__linked_devices">Koblede enheter</string>
   <string name="preferences__light_theme">Lys</string>
