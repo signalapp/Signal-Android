@@ -763,7 +763,7 @@
     <string name="giphy_activity_toolbar__search_gifs_and_stickers">Search GIFs and stickers</string>
 
     <!-- giphy_fragment -->
-    <string name="giphy_fragment__no_results_found">No results found.</string>
+    <string name="giphy_fragment__nothing_found">Nothing found</string>
 
 
     <!-- log_submit_activity -->

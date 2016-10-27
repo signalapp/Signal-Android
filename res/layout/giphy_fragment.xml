@@ -17,7 +17,7 @@
                  android:indeterminate="true"/>
 
     <TextView android:id="@+id/no_results"
-              android:text="@string/giphy_fragment__no_results_found"
+              android:text="@string/giphy_fragment__nothing_found"
               android:gravity="center"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
