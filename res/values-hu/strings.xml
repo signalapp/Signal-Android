@@ -243,6 +243,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal nem tudott regisztrálni a Google Play Szolgáltatásokkal. A Signal üzenetek és hívások le vannak tiltva, kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Új csoport</string>
   <string name="GroupCreateActivity_actionbar_update_title">Csoport frissítése</string>
@@ -347,6 +349,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
   <string name="MessageRecord_you">Te</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította az eltűnő üzenet idejét erre: %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">A biztonsági számaitok megváltoztak vele: %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Hibás régi jelmondat!</string>
@@ -496,6 +499,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_media_message">Média üzenet</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">A biztonsági számaitok megváltoztak vele: %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kapcsolatod a Signal egy régi verzióját futtatja, kérlek kérd meg őket, hogy frissítsenek a biztonsági számok ellenőrzése előtt.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Megpróbáltál biztonsági számokat ellenőrizni vele: %1$s, de ehelyett %2$s lett beszkennelve.</string>
@@ -567,7 +571,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Név vagy szám megadása</string>
   <!--contact_selection_group_activity-->
-  <string name="contact_selection_group_activity__no_contacts">Nincsenek névjegyek.</string>
+  <string name="contact_selection_group_activity__no_contacts">Nincs névjegy.</string>
   <string name="contact_selection_group_activity__finding_contacts">Névjegyek betöltése...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Névjegy fotó</string>
@@ -618,7 +622,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Készülék társítása</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Nincsenek társított készülékek...</string>
+  <string name="device_list_fragment__no_devices_linked">Nincs társított készülék...</string>
   <string name="device_list_fragment__link_new_device">Új készülék társítása</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">folytatás</string>
@@ -649,6 +653,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="other">%d hét</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dh</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nem lehet olvasni a naplót a készülékeden. Ehelyett még mindig használhatsz ADB-t, hogy kapj hibakeresési naplót.</string>
   <string name="log_submit_activity__thanks">Köszönjük a segítségedet!</string>
@@ -675,7 +681,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Teljes beszélgetés megnézése</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Nincsenek képek</string>
+  <string name="media_overview_activity__no_images">Nincs kép</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">ELLENŐRZÉS</string>
   <string name="message_recipients_list_item__resend">ÚJRAKÜLDÉS</string>
@@ -805,6 +811,7 @@ sikertelen.
   <string name="message_details_header__issues_need_your_attention">Néhány probléma a figyelmedet igényli.</string>
   <string name="message_details_header__sent">Elküldve</string>
   <string name="message_details_header__received">Érkezett</string>
+  <string name="message_details_header__disappears">Eltűnések</string>
   <string name="message_details_header__via">Ezen:</string>
   <string name="message_details_header__to">Címzett:</string>
   <string name="message_details_header__from">Feladó:</string>
@@ -886,7 +893,7 @@ sikertelen.
   <string name="preferences__change_notification_sound">Értesítési hang megváltoztatása</string>
   <string name="preferences__silent">Csendes</string>
   <string name="preferences__in_conversation_notifications">Beszélgetésen belüli értesítések</string>
-  <string name="preferences__play_inthread_notifications">Értesítési hang lejátszása aktív beszélgetést nézésekor</string>
+  <string name="preferences__play_inthread_notifications">Értesítési hang lejátszása aktív beszélgetés nézésekor</string>
   <string name="preferences__repeat_alerts">Figyelmeztetések megismétlése</string>
   <string name="preferences__never">Soha</string>
   <string name="preferences__one_time">Egyszer</string>
@@ -895,7 +902,7 @@ sikertelen.
   <string name="preferences__five_times">Ötször</string>
   <string name="preferences__ten_times">Tízszer</string>
   <string name="preferences__vibrate">Rezgés</string>
-  <string name="preferences__also_vibrate_when_notified">Értesítéskor meg is rezdül</string>
+  <string name="preferences__also_vibrate_when_notified">Értesítéskor rezeg is</string>
   <string name="preferences__minutes">perc</string>
   <string name="preferences__hours">óra</string>
   <string name="preferences__green">Zöld</string>
@@ -940,7 +947,7 @@ sikertelen.
   <string name="preferences__free_private_messages_and_calls">Ingyenes privát üzenetek és hívások Signal felhasználóknak</string>
   <string name="preferences__submit_debug_log">Hibakeresési napló küldése</string>
   <string name="preferences__support_wifi_calling">\'WiFi hívás\' kompatibilitási mód</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Engedélyezd, ha a készüléked az SMS/MMS-t WiFi-n keresztül kézbesíti (csak akkor engedélyezd, ha a \'WiFi hívás\' engedélyezve van az eszközödön)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Engedélyezd, ha a készüléked az SMS/MMS-t WiFi-n keresztül kézbesíti (csak akkor engedélyezd, ha a \'WiFi hívás\' engedélyezve van a készülékeden)</string>
   <string name="preferences_app_protection__blocked_contacts">Letiltott névjegyek</string>
   <string name="preferences_app_protection__safety_numbers_approval">Biztonsági számok jóváhagyása</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Új biztonsági számok megváltozásakor szükséges a jóváhagyás</string>

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 
 public class JsonUtils {
 
@@ -23,7 +24,11 @@ public class JsonUtils {
     return objectMapper.readValue(serialized, clazz);
   }
 
-  public static <T> T fromJson(InputStreamReader serialized, Class<T> clazz) throws IOException {
+  public static <T> T fromJson(InputStream serialized, Class<T> clazz) throws IOException {
+    return objectMapper.readValue(serialized, clazz);
+  }
+
+  public static <T> T fromJson(Reader serialized, Class<T> clazz) throws IOException {
     return objectMapper.readValue(serialized, clazz);
   }
 

@@ -64,6 +64,9 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Appel entrant</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Les numéros de sécurité de %1$s ont changé. Cela peut signifier que quelqu\'un essaie d\'intercepter votre communication, ou que %2$s a réinstallé Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Vous devriez vérifier
+les numéros de sécurité de cet utilisateur.</string>
   <string name="ConfirmIdentityDialog_accept">Accepter</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Message %s</string>
@@ -123,6 +126,7 @@
   <string name="ConversationActivity_mms_not_supported_message">Ce message ne peut être envoyé car votre opérateur ne supporte pas les MMS</string>
   <string name="ConversationActivity_specify_recipient">S\'il vous plait, choisissez un contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vous recevrez de nouveau les messages et appels de cet utilisateur.</string>
   <string name="ConversationActivity_unblock">Débloquer</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier dépasse la limite de taille pour le type de message que vous avez sélectionné.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Appareil photo non disponible</string>
@@ -235,6 +239,11 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec de communication Signal permanent !</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Les appels et messages Signal ont été désactivés car Signal n\'a pas pu s\'enregistrer auprès de Google Play Services. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres &gt; Avancé.</string>
+  <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erreur lors de la récupération du GiF pleine résolution...</string>
+  <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Autocollants</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nouveau groupe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Mettre à jour le groupe</string>
@@ -305,6 +314,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal a besoin de Barcode Scanner pour les QR codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Échec de l’envoi</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nouveau chiffrage de sécurité</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erreur d’enregistrement du MMS !</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erreur de connexion au fournisseur MMS…</string>
@@ -331,6 +341,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
   <string name="MessageRecord_you">Vous</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a réglé le temps de disparition des messages à %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Votre chiffrage de sécurité avec %s a changé</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
@@ -354,9 +365,9 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Lier un appareil Signal ?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Il semble que vous essayez de lier un appareil Signal en utilisant un scanner externe. Pour votre protection, veuillez scanner le code à nouveau depuis Signal.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Les messages disparaître</string>
+  <string name="ExpirationDialog_disappearing_messages">Messages éphémères</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Vos messages ne vont pas expirer.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus dans cette conversation vont disparaître %s après ils sont vus. </string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus dans cette conversation disparaîtront %s après avoir été vus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Entrez la phrase de passe</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icône Signal</string>
@@ -370,12 +381,13 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="RatingManager_rate_now">Noter maintenant!</string>
   <string name="RatingManager_no_thanks">Non merci</string>
   <string name="RatingManager_later">Plus tard</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Zut, l\'appli Play Store n\'est pas installée sur l\'appareil.</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oups, le Play Store n\'est pas installé sur votre appareil.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquer ce contact ?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vous ne recevrez plus de message ou d\'appel de ce contact.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vous ne recevrez plus de messages ou d\'appels de ce contact.</string>
   <string name="RecipientPreferenceActivity_block">Bloquer</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vous recevrez de nouveau les messages et appels de cet utilisateur.</string>
   <string name="RecipientPreferenceActivity_unblock">Débloquer</string>
   <string name="RecipientPreferenceActivity_enabled">Activé</string>
   <string name="RecipientPreferenceActivity_disabled">Désactivé</string>
@@ -457,6 +469,7 @@ cet appareil n\'est pas supporté pour la messagerie sur le canal de données. L
 Message d\'échange!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Réception d\'un message d\'échange de clés pour une version invalide du protocole.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Un message avec un nouveau chiffrage de sécurité a été reçu. Cliquer pour l\'accepter et l\'afficher.</string>
   <string name="SmsMessageRecord_secure_session_reset">Vous avez réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message doublon.</string>
@@ -469,8 +482,12 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_missed_call">Appel manqué</string>
   <string name="ThreadRecord_media_message">Message média</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglée à %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglé à %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Vos numéros de sécurité avec %s ont changé</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact utilise une ancienne version de Signal, demandez-lui de mettre à jour l\'application avant de vérifier les numéros de sécurité.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Vous tentez de verifier vos numéros de sécurité avec %1$s, mais avez scanné %2$s à la place.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le QR code scanné n\'est pas valide. Essayez de le scanner de nouveau.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initier malgré la demande existante ?</string>
   <string name="KeyExchangeInitiator_send">Envoyer</string>
@@ -614,18 +631,22 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
     <item quantity="one">Un jour</item>
     <item quantity="other">%d jours</item>
   </plurals>
-  <string name="expiration_days_abbreviated">%d j.</string>
+  <string name="expiration_days_abbreviated">%dj</string>
   <plurals name="expiration_weeks">
     <item quantity="one">Une semaine</item>
     <item quantity="other">%d semaines</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sem.</string>
+  <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Rechercher GIFs et autocollants</string>
+  <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Aucun résultat trouvé.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Impossible d\'accéder aux journaux de votre appareil. Utilisez ADB pour obtenir un rapport de débogage.</string>
   <string name="log_submit_activity__thanks">Merci pour votre aide !</string>
   <string name="log_submit_activity__submitting">Soumission</string>
   <string name="log_submit_activity__posting_logs">Envoi des logs sur gist...</string>
-  <string name="log_submit_activity__no_browser_installed">Il n\'y a pas de navigateur installé. </string>
+  <string name="log_submit_activity__no_browser_installed">Aucun navigateur installé</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voulez-vous importer vos messages existant dans la base de données chiffrée de Signal ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de données par défaut du système ne sera en aucune façon modifiée ou altérée.</string>
@@ -636,13 +657,13 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Mise à jour de la base de donnée...</string>
   <string name="export_fragment__export_plaintext_backup">Exporter une sauvegarde en clair</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter une sauvegarde en clair compatible avec «SMS Backup &amp; Restore»</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter une sauvegarde en clair compatible avec « SMS Backup &amp; Restore »</string>
   <string name="import_fragment__import_system_sms_database">Importer la base de données SMS du système</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importer la base de données depuis l\'application SMS par défaut</string>
   <string name="import_fragment__restore_encrypted_backup">Restaurer la sauvegarde chiffrée</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Restaurer une sauvegarde chiffrée précédemment avec Signal</string>
   <string name="import_fragment__import_plaintext_backup">Importer la sauvegarde en clair</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importer un fichier de sauvegarde en clair. Compatible avec «SMS Backup &amp; Restore»</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importer un fichier de sauvegarde en clair. Compatible avec « SMS Backup &amp; Restore »</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Voir la conversation complète</string>
   <!--media_overview_activity-->
@@ -680,6 +701,7 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="recipient_preferences__block">Bloquer</string>
   <string name="recipient_preferences__color">Couleur</string>
   <string name="recipient_preferences__color_for_this_contact">Couleur pour ce contact</string>
+  <string name="recipient_preferences__verify_safety_numbers">Vérification du chiffrage</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Appel Signal</string>
   <string name="redphone_call_controls__end_call">Terminer l\'appel</string>
@@ -751,10 +773,12 @@ par SMS.</string>
   <string name="recipients_panel__add_members">Ajouter des membres</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Si vous désirez vérifier la sécurité de votre chiffrement de bout en bout avec %s, comparez les numéros ci-dessus avec ceux affichés sur leur appareil. Vous pouvez également scanner le code affiché sur leur appareil, ou leur demander de scanner le votre.</string>
+  <string name="verify_display_fragment__tap_to_scan">Cliquez pour scanner</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Des problèmes requièrent votre attention.</string>
   <string name="message_details_header__sent">Envoyé</string>
   <string name="message_details_header__received">Reçu</string>
+  <string name="message_details_header__disappears">Disparition</string>
   <string name="message_details_header__via">Via</string>
   <string name="message_details_header__to">Pour :</string>
   <string name="message_details_header__from">De :</string>
@@ -765,6 +789,7 @@ par SMS.</string>
   <string name="AndroidManifest__select_contacts">Sélectionner des contacts</string>
   <string name="AndroidManifest__signal_detected">Signal détecté</string>
   <string name="AndroidManifest__change_passphrase">Modifier la phrase de passe</string>
+  <string name="AndroidManifest__verify_safety_numbers">Vérification du chiffrage</string>
   <string name="AndroidManifest__log_submit">Envoyer un rapport de débogage</string>
   <string name="AndroidManifest__media_preview">Aperçu du média</string>
   <string name="AndroidManifest__media_overview">Toutes les images</string>
@@ -891,6 +916,8 @@ par SMS.</string>
   <string name="preferences__support_wifi_calling">Compatibilité \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFi (n\'activer que si \"WiFi Calling\" est activé sur votre appareil).</string>
   <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Chiffrage de sécurité autorisé</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Nécessite d\'accepter chaque nouveau changement du chiffrage de sécurité</string>
   <string name="preferences_notifications__display_in_notifications">Afficher dans les notifications</string>
   <string name="preferences_chats__when_using_mobile_data">Avec les données mobiles</string>
   <string name="preferences_chats__when_using_wifi">Avec le WI-FI</string>
@@ -925,7 +952,7 @@ par SMS.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Enregistrer la pièce jointe</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Les messages disparaître</string>
+  <string name="conversation_expiring_off__disappearing_messages">Disparition des messages</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Les messages expirent</string>
   <!--conversation_insecure-->
@@ -993,7 +1020,7 @@ par SMS.</string>
   <string name="reminder_header_sms_default_text">Appuyez pour faire de Signal votre application SMS par défaut.</string>
   <string name="reminder_header_sms_default_button">Modifier</string>
   <string name="reminder_header_sms_import_title">Importer les SMS du système</string>
-  <string name="reminder_header_sms_import_text">Appuyez ici pour copier vos messages SMS dans la base de données de Signal.</string>
+  <string name="reminder_header_sms_import_text">Appuyez ici pour copier vos messages SMS dans la base de données chiffrée de Signal.</string>
   <string name="reminder_header_sms_import_button">IMPORTER</string>
   <string name="reminder_header_push_title">Activer les messages et appels Signal</string>
   <string name="reminder_header_push_text">Améliorez votre expérience de communication.</string>

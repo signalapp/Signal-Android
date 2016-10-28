@@ -235,6 +235,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">כישלון קבוע בתקשורת סיגנל!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">סיגנל לא הצליח להירשם בשירותי גוגל Play. מסרים ושיחות של סיגנל כובו, נא לנסות להירשם שוב בהגדרות &lt; מתקדם.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">קבוצה חדשה</string>
   <string name="GroupCreateActivity_actionbar_update_title">עדכון קבוצה</string>
@@ -624,6 +626,8 @@
     <item quantity="other">%d שבועות</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dשב׳</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">לא ניתן לקרוא את היומן במכשיר שלך. עדיין אפשר להשתמש ב־ADB כדי לקבל יומן תיקון שגיאות.</string>
   <string name="log_submit_activity__thanks">תודה על העזרה שלך!</string>

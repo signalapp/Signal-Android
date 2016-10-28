@@ -224,6 +224,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持續發生傳輸異常！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法順利註冊為 Google Play Services。Signal 訊息與通話已經停用，請嘗試在設定 &gt; 進階中重新註冊。</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新增群組</string>
   <string name="GroupCreateActivity_actionbar_update_title">更新群組</string>
@@ -325,6 +327,7 @@
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="MessageRecord_you">您</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 將訊息銷毀時間設置爲 %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">您與 %s 的安全碼已改變</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的自訂密碼不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的自訂密碼！</string>
@@ -351,7 +354,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">正在銷毀訊息</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">您的訊息將不會過期。</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">在此會話中的所有已被閱讀的訊息將會在 %s 後消失。</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">在此會話中所傳送與接收的訊息將會在閱讀 %s 後被銷毀。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">輸入自訂密碼</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 圖示</string>
@@ -469,6 +472,7 @@
   <string name="ThreadRecord_media_message">媒體訊息</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設置爲 %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">您與 %s 的安全碼已改變</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人正在使用舊版本的 Signal，請告訴他們更新到最新版本再驗證安全碼。</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">您正在嘗試與 %1$s 驗證安全碼，但您卻掃描了 %2$s 的驗證碼。</string>
@@ -617,6 +621,8 @@
     <item quantity="other">%d 星期</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">無法在您的設備上讀取日誌。您仍然可以使用 ADB 來獲得偵錯紀錄。</string>
   <string name="log_submit_activity__thanks">感謝您的協助！</string>
@@ -927,7 +933,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">另存附件檔案</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">正在銷毀訊息</string>
+  <string name="conversation_expiring_off__disappearing_messages">自動銷毀訊息</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">訊息過期</string>
   <!--conversation_insecure-->

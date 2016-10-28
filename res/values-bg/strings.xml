@@ -238,6 +238,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Signal съообщения и разговори са деактивирани, моля пререгистрирайте през менюто Настройки &gt; Допълнителние.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
   <string name="GroupCreateActivity_actionbar_update_title">Промени група</string>
@@ -339,6 +341,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal, кажи им здрасти!</string>
   <string name="MessageRecord_you">Ти</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи продължителност от %2$s преди съобщението да изчезне</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Числата за сигурност с %s са променени</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Грешна стара парола!</string>
@@ -481,6 +484,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s е в Signal, кажи му здрасти!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Числата за сигурност с %s са променени</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Signal, помолете ги да го обновят преди да проверят числата за сигурност.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Опитвате се проверите числата за сигурност на %1$s, но вместо това сканирахте %2$s.</string>
@@ -634,6 +638,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
     <item quantity="other">%d седмици</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Неуспешно прочитане на доклада на Вашето устройство. Все пак може да използвате ADB, за да получте доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
@@ -772,6 +778,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="message_details_header__issues_need_your_attention">Няколко проблема изискват вашето внимание.</string>
   <string name="message_details_header__sent">Изпратен</string>
   <string name="message_details_header__received">Получен</string>
+  <string name="message_details_header__disappears">Изчезва</string>
   <string name="message_details_header__via">През</string>
   <string name="message_details_header__to">До:</string>
   <string name="message_details_header__from">От:</string>

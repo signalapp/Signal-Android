@@ -266,6 +266,11 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
+  <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Napaka pri pridobivanju GIF-ov v polni resoluciji...</string>
+  <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF-i</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Nalepke</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Posodobi skupino</string>
@@ -366,6 +371,7 @@ Uvoz iz šifrirane varnostne kopije bo popolnoma nadomestil obstoječe ključe, 
   <string name="MessageRecord_s_is_on_signal_say_hey">%s uporablja Signal, pozdravite ga!</string>
   <string name="MessageRecord_you">Vi</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Oseba %1$s je nastavila čas poteka sporočila na %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Vaša varnostna števila pri uporabniku %s so bila spremenjena</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
@@ -501,6 +507,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_media_message">Večpredstavno sporočilo</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s uporablja Signal, pozdravite ga!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Vaša varnostna števila pri uporabniku %s so bila spremenjena</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš partner uporablja zastarelo različico aplikacije Signal. Pred overbo jo je potrebno nadgraditi.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Želeli ste overiti varnostna števila za %1$s, namesto tega pa ste skenirali %2$s.</string>
@@ -664,6 +671,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">%d tednov</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dt</string>
+  <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Iskanje po GIF-ih in nalepkah</string>
+  <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Iskanje ni vrnilo nobenega rezultata.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Sistemski dnevnik vaše naprave ni dostopen. Za oddajo sistemske zabeležbe lahko uporabite ADB.</string>
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
@@ -798,6 +809,7 @@ Namesto tega lahko tudi skenirate kodo na napravi partnerja ali njega prosite, n
   <string name="message_details_header__issues_need_your_attention">Prišlo je do težav, ki zahtevajo vašo pozornost.</string>
   <string name="message_details_header__sent">Poslano:</string>
   <string name="message_details_header__received">Prejeto:</string>
+  <string name="message_details_header__disappears">Izgine</string>
   <string name="message_details_header__via">Način:</string>
   <string name="message_details_header__to">Za:</string>
   <string name="message_details_header__from">Pošiljatelj:</string>

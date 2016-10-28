@@ -66,7 +66,7 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <string name="CallScreen_Incoming_call">Innkommende anrop</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Sikkerhetsnummeret for %1$s har blitt endret. Det kan enten bety at noen forsøker å trenge inn i kommunikasjonen, eller simpelthen at %2$s har installert Signal på nytt.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verifisere sikkerhetsnummeret for denne kontakten for å være sikker.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verifisere sikkerhetsnummeret for denne personen for å være sikker.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
@@ -239,6 +239,8 @@ Om du vil benytte Signal for meldinger og anrop igjen i fremtiden må du registr
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonsfeil!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunne ikke registrere seg med Google Play Tjenester. Signal meldinger og anrop er slått av, vennligst prøv å registrere på nytt i Innstillinger &gt; Avansert.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Ny gruppe</string>
   <string name="GroupCreateActivity_actionbar_update_title">Oppdater gruppe</string>
@@ -308,7 +310,7 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal trenger Barcode Scanner for QR koder.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Sending feilet</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Nye sikkerhetsnummer</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nye sikkerhetsnummere</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil ved lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Feil ved tilkobling til MMS tjeneste...</string>
@@ -335,6 +337,7 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <string name="MessageRecord_you">Du</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s sett tiden før meldingen utløper til %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Dine sikkerthetsnummere med %s har endret seg</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -473,6 +476,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_media_message">Media melding</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden før meldingene utløper er satt til %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Dine sikkerthetsnummere med %s har endret seg</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt kjører en gammel versjon av Signal. Vennligst be kontakten oppdatere før sikkerhetsnumrene bekreftes.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Du forsøker å bekrefte sikkerhetsnummer med %1$s, men skannet %2$s isteden.</string>
@@ -626,6 +630,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
     <item quantity="other">%d uker</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%du</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke lese loggen fra din enhet. Du kan fremdeles bruke ADB for å hente ut en debug logg.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>

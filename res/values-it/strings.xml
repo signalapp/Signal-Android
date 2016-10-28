@@ -209,7 +209,7 @@ i numeri sicuri di questo contatto.</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Scollegare \'%s\'?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Scollegando questo dispositivo, esso non sarà più in grado di inviare o ricevere messaggi.</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Scollegando questo dispositivo non gli sarà più possibile inviare o ricevere messaggi.</string>
   <string name="DeviceListActivity_network_connection_failed">Connessione di rete fallita....</string>
   <string name="DeviceListActivity_try_again">Riprova</string>
   <string name="DeviceListActivity_unlinking_device">Scollegamento dispositivo...</string>
@@ -242,6 +242,11 @@ i numeri sicuri di questo contatto.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal è stato impossibilitato a registrarsi con i sevizi di Google Play.
 I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-registrare in Impostazioni &gt; Avanzate.</string>
+  <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Errore in fase di recupero della GIF...</string>
+  <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Adesivi</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nuovo gruppo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aggiorna gruppo</string>
@@ -339,7 +344,8 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <string name="MessageRecord_you">Tu</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s imposta il tempo di scomparsa dei messaggi a %2$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha impostato il tempo di scomparsa dei messaggi a %2$s</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">I tuoi numeri sicuri con %s sono cambiati</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
@@ -364,7 +370,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Collegare un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembrerebbe che tu stia provando a connettere un dispositivo Signal usando uno scanner di terze parti. Per la tua protezione ti preghiamo di  scansionare nuovamente il codice usando Signal.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Messaggi in scomparsa</string>
+  <string name="ExpirationDialog_disappearing_messages">Messaggi a scomparsa</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">I tuoi messaggi non scadranno.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">I messaggi inviati e ricevuti in questa conversazione spariranno %s dopo essere stati visti.</string>
   <!--PassphrasePromptActivity-->
@@ -482,6 +488,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s è su Signal, di\' ciao!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">I tuoi numeri sicuri con %s sono cambiati</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal, chiedigli cortesemente di aggiornarlo prima di verificare i numeri sicuri.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Stai provando a verificare i numeri sicuri con %1$s, ma invece scansiona %2$s.</string>
@@ -609,7 +616,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continua</string>
   <!--expiration-->
-  <string name="expiration_off">Off</string>
+  <string name="expiration_off">Spenti</string>
   <plurals name="expiration_seconds">
     <item quantity="one">1 secondo</item>
     <item quantity="other">%d secondi</item>
@@ -635,6 +642,10 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
     <item quantity="other">%d settimane</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dset.</string>
+  <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cerca GIF ed adesivi</string>
+  <!--giphy_fragment-->
+  <string name="giphy_fragment__no_results_found">Nessun risultato trovato.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Non è possibile leggere i log dal tuo dispositivo. Puoi provare ad usare ADB per ottenere i log di debug</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
@@ -772,7 +783,7 @@ non riuscita.
   <string name="recipients_panel__add_members">Aggiungi membri</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Se desideri verificare la sicurezza della tua codifica end-to-end con %s, confronta i numeri precedenti con quelli del suo dispositivo. In alternativa puoi fare uno scan del codice sul suo telefono o chiedergli di fare una scansione del tuo.</string>
-  <string name="verify_display_fragment__tap_to_scan">Fai tap per la scansione</string>
+  <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alcuni problemi necessitano della tua attenzione.</string>
   <string name="message_details_header__sent">Inviato</string>
@@ -951,7 +962,7 @@ non riuscita.
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salva allegato</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Messaggi in scomparsa</string>
+  <string name="conversation_expiring_off__disappearing_messages">Messaggi a scomparsa</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Messaggi in scadenza</string>
   <!--conversation_insecure-->

@@ -235,6 +235,8 @@
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dështim i pëhershëm komunikimi nga Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nuk mundi të regjistrohet me servicet e Google Play. Signal mesazhet dhe thirrjet janë të pamundësuara, ju lutemi regjistrohuni në Rregullimet &gt; Të avancuara.</string>
+  <!--GiphyActivity-->
+  <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup i ri</string>
   <string name="GroupCreateActivity_actionbar_update_title">Fresko grupiin</string>
@@ -626,6 +628,8 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
     <item quantity="other">%d javë</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--giphy_activity-->
+  <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Historia në pajisjen tuaj nuk mund të lexohet. Mund të përdorni ADB për ta lexuar historinë e gabimeve të përmirsuara.</string>
   <string name="log_submit_activity__thanks">Faleminderit për ndihmën!</string>
