@@ -9,15 +9,15 @@ public class GiphyImage {
   private ImageTypes images;
 
   public String getGifUrl() {
-    return images.downsized_medium.url;
+    return images.downsized.url;
   }
 
   public float getGifAspectRatio() {
-    return (float)images.downsized_medium.width / (float)images.downsized_medium.height;
+    return (float)images.downsized.width / (float)images.downsized.height;
   }
 
   public String getStillUrl() {
-    return images.fixed_width_still.url;
+    return images.downsized_still.url;
   }
 
   public static class ImageTypes {
@@ -37,6 +37,10 @@ public class GiphyImage {
     private ImageData fixed_width_small;
     @JsonProperty
     private ImageData downsized_medium;
+    @JsonProperty
+    private ImageData downsized;
+    @JsonProperty
+    private ImageData downsized_still;
   }
 
   public static class ImageData {
