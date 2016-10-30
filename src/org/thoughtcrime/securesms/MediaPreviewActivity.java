@@ -73,7 +73,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   private long                  date;
   private List<ImageRecord>     imageRecords;
   private List<Uri>             images;
-  private boolean               draftMode;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -106,22 +105,17 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeActionBar() {
-    if (draftMode) {
-      getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
-      getSupportActionBar().setSubtitle(R.string.MediaPreviewActivity_draft);
+    final CharSequence relativeTimeSpan;
+    if (date > 0) {
+      relativeTimeSpan = DateUtils.getRelativeTimeSpanString(date,
+                                                             System.currentTimeMillis(),
+                                                             DateUtils.MINUTE_IN_MILLIS);
     } else {
-      final CharSequence relativeTimeSpan;
-      if (date > 0) {
-        relativeTimeSpan = DateUtils.getRelativeTimeSpanString(date,
-                System.currentTimeMillis(),
-                DateUtils.MINUTE_IN_MILLIS);
-      } else {
-        relativeTimeSpan = null;
-      }
-      getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you)
-                                                       : recipient.toShortString());
-      getSupportActionBar().setSubtitle(relativeTimeSpan);
+      relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
     }
+    getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you)
+                                                     : recipient.toShortString());
+    getSupportActionBar().setSubtitle(relativeTimeSpan);
   }
 
   @Override
@@ -152,7 +146,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
     this.threadId  = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     this.mediaUri  = getIntent().getData();
     this.mediaType = getIntent().getType();
-    this.draftMode = (this.threadId == -1);
   }
 
   private void initializeMedia() {
@@ -162,13 +155,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
       finish();
     }
 
-    if (draftMode) {
-      this.images = new ArrayList<>(0);
-      images.add(mediaUri);
-      initializeViewPagerAdapter();
-    } else {
-      getSupportLoaderManager().initLoader(0,null,MediaPreviewActivity.this);
-    }
+    getSupportLoaderManager().initLoader(0,null,MediaPreviewActivity.this);
   }
 
   private void initializeViewPager() {
@@ -237,7 +224,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onPageSelected(int position) {
-    if (!draftMode) updateResources(position);
+    updateResources(position);
     initializeActionBar();
   }
 
