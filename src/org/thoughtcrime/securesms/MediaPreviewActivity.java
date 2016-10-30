@@ -37,6 +37,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.CursorPagerAdapter;
 import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -46,9 +47,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Activity for displaying media attachments in-app
@@ -71,8 +69,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   private Recipient             recipient;
   private long                  threadId;
   private long                  date;
-  private List<ImageRecord>     imageRecords;
-  private List<Uri>             images;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -88,7 +84,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
     setContentView(R.layout.media_preview_activity);
 
     initializeResources();
-    initializeMedia();
     initializeViewPager();
   }
 
@@ -124,7 +119,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
     viewPager.addOnPageChangeListener(this);
-    if (images != null && images.size() > 0) initializeViewPagerAdapter();
+    initializeMedia();
   }
 
   @Override
@@ -139,6 +134,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     if (recipient != null) recipient.removeListener(this);
+    viewPager.removeOnPageChangeListener(this);
     setIntent(intent);
   }
 
@@ -164,10 +160,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
     viewPager.addOnPageChangeListener(this);
   }
 
-  private void initializeViewPagerAdapter() {
-    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,images));
+  private void initializeViewPagerAdapter(Cursor cursor) {
+    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,cursor));
 
-    int startPosition = images.indexOf(mediaUri);
+    int startPosition = ((MediaPreviewAdapter) viewPager.getAdapter()).getImagePosition(mediaUri);
     viewPager.setCurrentItem(startPosition);
     if (startPosition == 0) {
       onPageSelected(0);
@@ -237,38 +233,21 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
     Log.w(TAG, "onLoadFinished()");
 
-    this.imageRecords = getImageRecords(cursor);
-    this.images       = getImages(imageRecords);
-    initializeViewPagerAdapter();
+    initializeViewPagerAdapter(cursor);
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> cursorLoader) { }
+  public void onLoaderReset(Loader<Cursor> cursorLoader) {
+    CursorPagerAdapter adapter = (CursorPagerAdapter) viewPager.getAdapter();
+    if (adapter != null) adapter.changeCursor(null);
+  }
 
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && contentType.startsWith("image/");
   }
 
-  private List<ImageRecord> getImageRecords(Cursor cursor) {
-    List<ImageRecord> imageRecords = new ArrayList<>(0);
-    if (cursor.moveToLast()) {
-      do {
-        imageRecords.add(ImageRecord.from(cursor));
-      } while (cursor.moveToPrevious());
-    }
-    return imageRecords;
-  }
-
-  private List<Uri> getImages(List<ImageRecord> imageRecords) {
-    List<Uri> images = new ArrayList<>(0);
-    for (ImageRecord imageRecord : imageRecords) {
-      images.add(imageRecord.getAttachment().getDataUri());
-    }
-    return images;
-  }
-
   private void updateResources(int position) {
-    ImageRecord imageRecord = imageRecords.get(position);
+    ImageRecord imageRecord = ((MediaPreviewAdapter) viewPager.getAdapter()).getImageAtPosition(position);
     this.mediaUri           = imageRecord.getAttachment().getDataUri();
     this.mediaType          = imageRecord.getAttachment().getContentType();
     this.date               = imageRecord.getDate();

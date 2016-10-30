@@ -18,8 +18,8 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,36 +27,31 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.components.ZoomingImageView.OnScaleChangedListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-
-import java.util.List;
+import org.thoughtcrime.securesms.database.CursorPagerAdapter;
+import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
 
 /**
  * Adapter for providing a ViewPager with all images of a thread
  */
-public class MediaPreviewAdapter extends PagerAdapter {
+public class MediaPreviewAdapter extends CursorPagerAdapter {
   private final Context          context;
   private final MasterSecret     masterSecret;
-  private List<Uri>              images;
   private OnScaleChangedListener scaleChangedListener;
 
-  public MediaPreviewAdapter(Context context, MasterSecret masterSecret, List<Uri> images) {
+  public MediaPreviewAdapter(Context context, MasterSecret masterSecret, Cursor cursor) {
+    super(cursor);
     this.context      = context;
     this.masterSecret = masterSecret;
-    this.images       = images;
-  }
-
-  @Override
-  public int getCount() {
-    return images.size();
   }
 
   @Override
   public Object instantiateItem(ViewGroup container, int position) {
-    LayoutInflater   inflater  = ((Activity)context).getLayoutInflater();
-    View             viewItem  = inflater.inflate(R.layout.media_preview_item, container, false);
-    ZoomingImageView imageView = (ZoomingImageView) viewItem.findViewById(R.id.image);
+    LayoutInflater   inflater    = ((Activity)context).getLayoutInflater();
+    View             viewItem    = inflater.inflate(R.layout.media_preview_item, container, false);
+    ZoomingImageView imageView   = (ZoomingImageView) viewItem.findViewById(R.id.image);
+    ImageRecord      imageRecord = ImageRecord.from(getCursorAtPositionOrThrow(position));
 
-    imageView.setImageUri(masterSecret, images.get(position));
+    imageView.setImageUri(masterSecret, imageRecord.getAttachment().getDataUri());
     imageView.setOnScaleChangedListener(scaleChangedListener);
     container.addView(viewItem);
 
@@ -72,6 +67,22 @@ public class MediaPreviewAdapter extends PagerAdapter {
   public void destroyItem(ViewGroup container, int position, Object object) {
     ((ZoomingImageView) ((View) object).findViewById(R.id.image)).cleanupPhotoViewAttacher();
     container.removeView((View) object);
+  }
+
+  public int getImagePosition(Uri uri) {
+    int imagePosition = -1;
+    for (int i = 0; i < getCount(); i++) {
+      Uri dataUri = ImageRecord.from(getCursorAtPositionOrThrow(i)).getAttachment().getDataUri();
+      if (dataUri != null && dataUri.equals(uri)) {
+        imagePosition = i;
+        break;
+      }
+    }
+    return imagePosition;
+  }
+
+  public ImageRecord getImageAtPosition(int position) {
+    return ImageRecord.from(getCursorAtPositionOrThrow(position));
   }
 
   public void setOnScaleChangedListener(OnScaleChangedListener scaleChangedListener) {
