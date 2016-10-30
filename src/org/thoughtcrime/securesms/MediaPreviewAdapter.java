@@ -49,7 +49,7 @@ public class MediaPreviewAdapter extends CursorPagerAdapter {
     LayoutInflater   inflater    = ((Activity)context).getLayoutInflater();
     View             viewItem    = inflater.inflate(R.layout.media_preview_item, container, false);
     ZoomingImageView imageView   = (ZoomingImageView) viewItem.findViewById(R.id.image);
-    ImageRecord      imageRecord = ImageRecord.from(getCursorAtPositionOrThrow(position));
+    ImageRecord      imageRecord = ImageRecord.from(getCursorAtPositionOrThrow(reverse(position)));
 
     imageView.setImageUri(masterSecret, imageRecord.getAttachment().getDataUri());
     imageView.setOnScaleChangedListener(scaleChangedListener);
@@ -78,14 +78,18 @@ public class MediaPreviewAdapter extends CursorPagerAdapter {
         break;
       }
     }
-    return imagePosition;
+    return reverse(imagePosition);
   }
 
   public ImageRecord getImageAtPosition(int position) {
-    return ImageRecord.from(getCursorAtPositionOrThrow(position));
+    return ImageRecord.from(getCursorAtPositionOrThrow(reverse(position)));
   }
 
   public void setOnScaleChangedListener(OnScaleChangedListener scaleChangedListener) {
     this.scaleChangedListener = scaleChangedListener;
+  }
+
+  private int reverse(int position) {
+    return getCount()-1-position;
   }
 }
