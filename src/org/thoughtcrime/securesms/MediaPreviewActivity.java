@@ -161,9 +161,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViewPagerAdapter(Cursor cursor) {
-    viewPager.setAdapter(new MediaPreviewAdapter(MediaPreviewActivity.this,masterSecret,cursor));
+    viewPager.setAdapter(new MediaPreviewThreadAdapter(MediaPreviewActivity.this,masterSecret,cursor));
 
-    int startPosition = ((MediaPreviewAdapter) viewPager.getAdapter()).getImagePosition(mediaUri);
+    int startPosition = ((MediaPreviewThreadAdapter) viewPager.getAdapter()).getImagePosition(mediaUri);
     viewPager.setCurrentItem(startPosition);
     if (startPosition == 0) {
       onPageSelected(0);
@@ -247,7 +247,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateResources(int position) {
-    ImageRecord imageRecord = ((MediaPreviewAdapter) viewPager.getAdapter()).getImageAtPosition(position);
+    ImageRecord imageRecord = ((MediaPreviewThreadAdapter) viewPager.getAdapter()).getImageAtPosition(position);
     this.mediaUri           = imageRecord.getAttachment().getDataUri();
     this.mediaType          = imageRecord.getAttachment().getContentType();
     this.date               = imageRecord.getDate();

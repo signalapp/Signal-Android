@@ -33,12 +33,12 @@ import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
 /**
  * Adapter for providing a ViewPager with all images of a thread
  */
-public class MediaPreviewAdapter extends CursorPagerAdapter {
+public class MediaPreviewThreadAdapter extends CursorPagerAdapter {
   private final Context          context;
   private final MasterSecret     masterSecret;
   private OnScaleChangedListener scaleChangedListener;
 
-  public MediaPreviewAdapter(Context context, MasterSecret masterSecret, Cursor cursor) {
+  public MediaPreviewThreadAdapter(Context context, MasterSecret masterSecret, Cursor cursor) {
     super(cursor);
     this.context      = context;
     this.masterSecret = masterSecret;

@@ -51,7 +51,7 @@ public class MediaPreviewViewPager extends ViewPager {
     }
   }
 
-  public void setAdapter(MediaPreviewAdapter adapter) {
+  public void setAdapter(MediaPreviewThreadAdapter adapter) {
     if (adapter != null) adapter.setOnScaleChangedListener(new ScaleChangedListener());
     super.setAdapter(adapter);
   }
