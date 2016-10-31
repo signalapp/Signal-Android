@@ -151,7 +151,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
       finish();
     }
 
-    getSupportLoaderManager().initLoader(0,null,MediaPreviewActivity.this);
+    if (threadId > -1) {
+      getSupportLoaderManager().initLoader(0,null,MediaPreviewActivity.this);
+    } else {
+      initializeViewPagerAdapter();
+    }
   }
 
   private void initializeViewPager() {
@@ -172,6 +176,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
       Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_cant_display, Toast.LENGTH_LONG).show();
       finish();
     }
+  }
+
+  private void initializeViewPagerAdapter() {
+    viewPager.setAdapter(new MediaPreviewDraftAdapter(masterSecret,this,mediaUri,mediaType));
+    onPageSelected(0);
   }
 
   private void cleanupMedia() {
