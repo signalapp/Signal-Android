@@ -36,9 +36,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.components.ZoomingImageView.OnScaleChangedListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorPagerAdapter;
-import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -163,7 +163,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   private void initializeViewPagerAdapter(Cursor cursor) {
     viewPager.setAdapter(new MediaPreviewThreadAdapter(MediaPreviewActivity.this,masterSecret,cursor));
 
-    int startPosition = ((MediaPreviewThreadAdapter) viewPager.getAdapter()).getImagePosition(mediaUri);
+    int startPosition = ((MediaPreviewAdapter) viewPager.getAdapter()).getMediaPosition(mediaUri);
     viewPager.setCurrentItem(startPosition);
     if (startPosition == 0) {
       onPageSelected(0);
@@ -247,18 +247,40 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateResources(int position) {
-    ImageRecord imageRecord = ((MediaPreviewThreadAdapter) viewPager.getAdapter()).getImageAtPosition(position);
-    this.mediaUri           = imageRecord.getAttachment().getDataUri();
-    this.mediaType          = imageRecord.getAttachment().getContentType();
-    this.date               = imageRecord.getDate();
+    MediaPreviewItem item   = ((MediaPreviewAdapter) viewPager.getAdapter()).getItem(position);
+    this.mediaUri           = item.uri;
+    this.mediaType          = item.type;
+    this.date               = item.date;
 
     if (recipient != null) recipient.removeListener(this);
-    String newAddress = imageRecord.getAddress();
+    String newAddress = item.address;
     if (newAddress == null) {
       recipient = null;
     } else {
       recipient = RecipientFactory.getRecipientsFromString(getApplicationContext(), newAddress, true).getPrimaryRecipient();
       if (recipient != null) recipient.addListener(this);
+    }
+  }
+
+  public interface MediaPreviewAdapter {
+    MediaPreviewItem getItem(int position);
+
+    int getMediaPosition(Uri mediaUri);
+
+    void setOnScaleChangedListener(OnScaleChangedListener scaleChangedListener);
+  }
+
+  public static class MediaPreviewItem {
+    public final Uri    uri;
+    public final String type;
+    public final long   date;
+    public final String address;
+
+    public MediaPreviewItem(Uri uri, String type, long date, String address) {
+      this.uri     = uri;
+      this.type    = type;
+      this.date    = date;
+      this.address = address;
     }
   }
 }

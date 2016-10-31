@@ -29,11 +29,14 @@ import org.thoughtcrime.securesms.components.ZoomingImageView.OnScaleChangedList
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorPagerAdapter;
 import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
+import org.thoughtcrime.securesms.MediaPreviewActivity.MediaPreviewAdapter;
+import org.thoughtcrime.securesms.MediaPreviewActivity.MediaPreviewItem;
 
 /**
  * Adapter for providing a ViewPager with all images of a thread
  */
-public class MediaPreviewThreadAdapter extends CursorPagerAdapter {
+public class MediaPreviewThreadAdapter extends    CursorPagerAdapter
+                                       implements MediaPreviewAdapter {
   private final Context          context;
   private final MasterSecret     masterSecret;
   private OnScaleChangedListener scaleChangedListener;
@@ -69,7 +72,17 @@ public class MediaPreviewThreadAdapter extends CursorPagerAdapter {
     container.removeView((View) object);
   }
 
-  public int getImagePosition(Uri uri) {
+  @Override
+  public MediaPreviewItem getItem(int position) {
+    ImageRecord imageRecord = ImageRecord.from(getCursorAtPositionOrThrow(reverse(position)));
+    return new MediaPreviewItem(imageRecord.getAttachment().getDataUri(),
+                                imageRecord.getContentType(),
+                                imageRecord.getDate(),
+                                imageRecord.getAddress());
+  }
+
+  @Override
+  public int getMediaPosition(Uri uri) {
     int imagePosition = -1;
     for (int i = 0; i < getCount(); i++) {
       Uri dataUri = ImageRecord.from(getCursorAtPositionOrThrow(i)).getAttachment().getDataUri();
@@ -81,10 +94,7 @@ public class MediaPreviewThreadAdapter extends CursorPagerAdapter {
     return reverse(imagePosition);
   }
 
-  public ImageRecord getImageAtPosition(int position) {
-    return ImageRecord.from(getCursorAtPositionOrThrow(reverse(position)));
-  }
-
+  @Override
   public void setOnScaleChangedListener(OnScaleChangedListener scaleChangedListener) {
     this.scaleChangedListener = scaleChangedListener;
   }

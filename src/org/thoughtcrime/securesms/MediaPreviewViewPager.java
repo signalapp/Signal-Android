@@ -17,11 +17,13 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import org.thoughtcrime.securesms.components.ZoomingImageView.OnScaleChangedListener;
+import org.thoughtcrime.securesms.MediaPreviewActivity.MediaPreviewAdapter;
 
 /**
  * ViewPager allowing to temporarily disable paging
@@ -51,8 +53,8 @@ public class MediaPreviewViewPager extends ViewPager {
     }
   }
 
-  public void setAdapter(MediaPreviewThreadAdapter adapter) {
-    if (adapter != null) adapter.setOnScaleChangedListener(new ScaleChangedListener());
+  public void setAdapter(PagerAdapter adapter) {
+    if (adapter != null) ((MediaPreviewAdapter) adapter).setOnScaleChangedListener(new ScaleChangedListener());
     super.setAdapter(adapter);
   }
 
