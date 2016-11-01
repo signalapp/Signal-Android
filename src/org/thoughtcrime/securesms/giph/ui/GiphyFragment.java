@@ -66,8 +66,8 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   public void onLoadFinished(Loader<List<GiphyImage>> loader, List<GiphyImage> data) {
     this.loadingProgress.setVisibility(View.GONE);
 
-    if (data.isEmpty()) noResultsView.setVisibility(View.VISIBLE);
-    else                noResultsView.setVisibility(View.GONE);
+    if (data == null || data.isEmpty()) noResultsView.setVisibility(View.VISIBLE);
+    else                                noResultsView.setVisibility(View.GONE);
 
     this.giphyAdapter.setImages(data);
   }
