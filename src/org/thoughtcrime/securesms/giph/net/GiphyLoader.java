@@ -42,7 +42,7 @@ public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
     return loadPage(0);
   }
 
-  public List<GiphyImage> loadPage(int offset) {
+  public @NonNull List<GiphyImage> loadPage(int offset) {
     try {
       String url;
 
@@ -56,9 +56,12 @@ public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
         throw new IOException("Unexpected code " + response);
       }
 
-      GiphyResponse giphyResponse = JsonUtils.fromJson(response.body().byteStream(), GiphyResponse.class);
+      GiphyResponse    giphyResponse = JsonUtils.fromJson(response.body().byteStream(), GiphyResponse.class);
+      List<GiphyImage> results       = giphyResponse.getData();
 
-      return giphyResponse.getData();
+      if (results == null) return new LinkedList<>();
+      else                 return results;
+
     } catch (IOException e) {
       Log.w(TAG, e);
       return new LinkedList<>();

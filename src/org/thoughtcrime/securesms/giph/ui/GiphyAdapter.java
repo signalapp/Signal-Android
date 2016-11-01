@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.giph.ui;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -106,7 +107,7 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
     this.images  = images;
   }
 
-  public void setImages(List<GiphyImage> images) {
+  public void setImages(@NonNull List<GiphyImage> images) {
     this.images = images;
     notifyDataSetChanged();
   }
