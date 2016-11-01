@@ -271,7 +271,7 @@
 
 
     <!-- GiphyActivity -->
-    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error while retrieving full resolution GiF...</string>
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error while retrieving full resolution GIF...</string>
 
     <!-- GiphyFragmentPageAdapter -->
     <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
