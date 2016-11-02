@@ -1237,6 +1237,7 @@
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
+    <string name="media_preview__forward_title">Forward</string>
 
     <!-- media_overview -->
     <string name="media_overview__save_all">Save all</string>
