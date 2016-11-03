@@ -29,6 +29,7 @@ public class AttachmentDatabaseTest extends TextSecureTestCase {
 
   @Override
   public void setUp() {
+    super.setUp();
     database = spy(DatabaseFactory.getAttachmentDatabase(getInstrumentation().getTargetContext()));
   }
 
