@@ -64,8 +64,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Die Sicherheitsnummern von %1$s haben sich geändert. Dies könnte bedeuten, dass jemand versucht, deine Kommunikation abzuhören. Vielleicht hat %2$s Signal aber auch nur neu installiert und verwendet daher neue Sicherheitsnummern.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du solltest die Sicherheitsnummern dieses Kontakts ggf. überprüfen.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Die Sicherheitsnummern von %1$s haben sich geändert. Dies könnte entweder bedeuten, dass jemand versucht, deine Kommunikation abzuhören, oder aber dass %2$s Signal einfach erneut installiert hat.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Vielleicht möchtest du die Sicherheitsnummern dieses Kontakts überprüfen.</string>
   <string name="ConfirmIdentityDialog_accept">OK</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
@@ -630,7 +630,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs und Sticker suchen</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Keine Übereinstimmungen</string>
+  <string name="giphy_fragment__no_results_found">Keine Ergebnisse</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Das Diagnoseprotokoll auf deinem Gerät konnte nicht gelesen werden. Du kannst allerdings immer noch ADB verwenden, um ein Diagnoseprotokoll zu erhalten.</string>
   <string name="log_submit_activity__thanks">Danke für deine Hilfe!</string>

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.giph.ui;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -63,7 +64,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   }
 
   @Override
-  public void onLoadFinished(Loader<List<GiphyImage>> loader, List<GiphyImage> data) {
+  public void onLoadFinished(Loader<List<GiphyImage>> loader, @NonNull List<GiphyImage> data) {
     this.loadingProgress.setVisibility(View.GONE);
 
     if (data.isEmpty()) noResultsView.setVisibility(View.VISIBLE);
