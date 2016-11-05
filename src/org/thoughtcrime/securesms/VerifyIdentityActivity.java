@@ -49,6 +49,8 @@ import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
 import org.thoughtcrime.securesms.qr.QrCode;
 import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.qr.ScanningThread;
@@ -66,6 +68,7 @@ import org.whispersystems.libsignal.fingerprint.FingerprintIdentifierMismatchExc
 import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
 import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.UnsupportedEncodingException;
@@ -111,6 +114,17 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       extras.putString(VerifyDisplayFragment.REMOTE_NUMBER, Util.canonicalizeNumber(this, recipient.getNumber()));
       extras.putParcelable(VerifyDisplayFragment.LOCAL_IDENTITY, new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
       extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
+
+      RecipientPreferenceDatabase db = DatabaseFactory.getRecipientPreferenceDatabase(this);
+      Optional<RecipientPreferenceDatabase.RecipientsPreferences> preferences = db.getRecipientsPreferences(new long[]{recipient.getRecipientId()});
+
+      Boolean verified = false;
+      if (preferences.isPresent()) {
+        if (preferences.get().isVerifiedId(((IdentityKeyParcelable)getIntent().getParcelableExtra(RECIPIENT_IDENTITY)).get())) {
+          verified = true;
+        }
+      }
+      extras.putBoolean(VerifyDisplayFragment.IDENTITY_VERIFIED, verified);
 
       scanFragment.setScanListener(this);
       displayFragment.setClickListener(this);
@@ -175,10 +189,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   public static class VerifyDisplayFragment extends Fragment implements Recipients.RecipientsModifiedListener {
 
-    public static final String REMOTE_NUMBER   = "remote_number";
-    public static final String REMOTE_IDENTITY = "remote_identity";
-    public static final String LOCAL_IDENTITY  = "local_identity";
-    public static final String LOCAL_NUMBER    = "local_number";
+    public static final String REMOTE_NUMBER     = "remote_number";
+    public static final String REMOTE_IDENTITY   = "remote_identity";
+    public static final String LOCAL_IDENTITY    = "local_identity";
+    public static final String LOCAL_NUMBER      = "local_number";
+    public static final String IDENTITY_VERIFIED = "identity_verified";
 
     private Recipients recipient;
     private String     localNumber;
@@ -186,6 +201,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
     private IdentityKey localIdentity;
     private IdentityKey remoteIdentity;
+
+    private Boolean verified;
 
     private Fingerprint fingerprint;
 
@@ -195,9 +212,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     private TextView             description;
     private View.OnClickListener clickListener;
 
-    private TextView[] codes                = new TextView[12];
-    private boolean    animateSuccessOnDraw = false;
-    private boolean    animateFailureOnDraw = false;
+    private TextView[]                  codes                = new TextView[12];
+    private boolean                     animateSuccessOnDraw = false;
+    private boolean                     animateFailureOnDraw = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
@@ -234,6 +251,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       this.remoteIdentity = ((IdentityKeyParcelable)getArguments().getParcelable(REMOTE_IDENTITY)).get();
       this.fingerprint    = new NumericFingerprintGenerator(5200).createFor(localNumber, localIdentity,
                                                                             remoteNumber, remoteIdentity);
+      this.verified       = getArguments().getBoolean(IDENTITY_VERIFIED);
+      if (this.verified) {
+        this.animateSuccessOnDraw = true;
+      }
 
       this.recipient.addListener(this);
     }
@@ -269,10 +290,16 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       recipient.removeListener(this);
     }
 
+    private void setVerified() {
+      RecipientPreferenceDatabase preferences = DatabaseFactory.getRecipientPreferenceDatabase(getActivity());
+      preferences.setVerifiedId(this.recipient, this.remoteIdentity);
+    }
+
     public void setScannedFingerprint(String scanned) {
       try {
         if (fingerprint.getScannableFingerprint().compareTo(scanned.getBytes("ISO-8859-1"))) {
           this.animateSuccessOnDraw = true;
+          setVerified();
         } else {
           this.animateFailureOnDraw = true;
         }
