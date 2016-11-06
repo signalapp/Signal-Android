@@ -46,6 +46,7 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
 
     GiphyViewHolder(View view) {
       super(view);
+      super.setIsRecyclable(false);
       thumbnail   = ViewUtil.findById(view, R.id.thumbnail);
       gifProgress = ViewUtil.findById(view, R.id.gif_progress);
       thumbnail.setOnClickListener(this);
