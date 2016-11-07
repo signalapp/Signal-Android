@@ -142,7 +142,7 @@ android {
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "USER_AGENT", "\"GDATA SecureChat " + verName + "\""
-        buildConfigField "String", "SECURECHAT_PUSH_URL", "\"https://scsrv.secure.gd:8080\""
+        buildConfigField "String", "SECURECHAT_PUSH_URL", "\"https://scsrv-test.secure.gd:8080\""
 
         versionCode verNumber
         versionName verName + gitRevision.substring(0, 8)
