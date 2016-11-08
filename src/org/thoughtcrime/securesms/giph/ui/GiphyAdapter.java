@@ -46,7 +46,6 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
 
     GiphyViewHolder(View view) {
       super(view);
-      super.setIsRecyclable(false);
       thumbnail   = ViewUtil.findById(view, R.id.thumbnail);
       gifProgress = ViewUtil.findById(view, R.id.gif_progress);
       thumbnail.setOnClickListener(this);
@@ -155,6 +154,12 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
            .listener(holder)
            .into(holder.thumbnail);
     }
+  }
+
+  @Override
+  public void onViewRecycled(GiphyViewHolder holder) {
+    super.onViewRecycled(holder);
+    Glide.clear(holder.thumbnail);
   }
 
   @Override
