@@ -22,7 +22,7 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
   private static final String TAG = RefreshAttributesJob.class.getSimpleName();
 
-  @Inject transient SignalServiceAccountManager textSecureAccountManager;
+  @Inject transient SignalServiceAccountManager signalAccountManager;
   @Inject transient RedPhoneAccountManager      redPhoneAccountManager;
 
   public RefreshAttributesJob(Context context) {
@@ -30,6 +30,7 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
                                 .withPersistence()
                                 .withRequirement(new NetworkRequirement(context))
                                 .withWakeLock(true)
+                                .withGroupId(RefreshAttributesJob.class.getName())
                                 .create());
   }
 
@@ -38,14 +39,15 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    String signalingKey      = TextSecurePreferences.getSignalingKey(context);
-    String gcmRegistrationId = TextSecurePreferences.getGcmRegistrationId(context);
-    int    registrationId    = TextSecurePreferences.getLocalRegistrationId(context);
+    String  signalingKey      = TextSecurePreferences.getSignalingKey(context);
+    String  gcmRegistrationId = TextSecurePreferences.getGcmRegistrationId(context);
+    int     registrationId    = TextSecurePreferences.getLocalRegistrationId(context);
+    boolean video             = TextSecurePreferences.isWebrtcCallingEnabled(context);
 
-    String token = textSecureAccountManager.getAccountVerificationToken();
+    String token = signalAccountManager.getAccountVerificationToken();
 
     redPhoneAccountManager.createAccount(token, new RedPhoneAccountAttributes(signalingKey, gcmRegistrationId));
-    textSecureAccountManager.setAccountAttributes(signalingKey, registrationId, true);
+    signalAccountManager.setAccountAttributes(signalingKey, registrationId, true, video);
   }
 
   @Override

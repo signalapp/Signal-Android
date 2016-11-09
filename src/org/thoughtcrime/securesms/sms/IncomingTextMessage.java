@@ -192,6 +192,14 @@ public class IncomingTextMessage implements Parcelable {
   }
 
   public boolean isPreKeyBundle() {
+    return isLegacyPreKeyBundle() || isContentPreKeyBundle();
+  }
+
+  public boolean isLegacyPreKeyBundle() {
+    return false;
+  }
+
+  public boolean isContentPreKeyBundle() {
     return false;
   }
 

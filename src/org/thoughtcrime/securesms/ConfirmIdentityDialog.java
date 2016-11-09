@@ -2,18 +2,14 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.view.View;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -31,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.VerifySpan;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
@@ -166,12 +163,14 @@ public class ConfirmIdentityDialog extends AlertDialog {
                                                  mismatch.getRecipientId(),
                                                  mismatch.getIdentityKey());
 
+            boolean legacy = !messageRecord.isContentBundleKeyExchange();
+
             SignalServiceEnvelope envelope = new SignalServiceEnvelope(SignalServiceProtos.Envelope.Type.PREKEY_BUNDLE_VALUE,
                                                                        messageRecord.getIndividualRecipient().getNumber(),
                                                                        messageRecord.getRecipientDeviceId(), "",
                                                                        messageRecord.getDateSent(),
-                                                                       Base64.decode(messageRecord.getBody().getBody()),
-                                                                       null);
+                                                                       legacy ? Base64.decode(messageRecord.getBody().getBody()) : null,
+                                                                       !legacy ? Base64.decode(messageRecord.getBody().getBody()) : null);
 
             long pushId = pushDatabase.insert(envelope);
 
@@ -194,24 +193,6 @@ public class ConfirmIdentityDialog extends AlertDialog {
     @Override
     public void onClick(DialogInterface dialog, int which) {
       if (callback != null) callback.onClick(null, 0);
-    }
-  }
-
-  private static class VerifySpan extends ClickableSpan {
-    private final Context             context;
-    private final IdentityKeyMismatch mismatch;
-
-    private VerifySpan(Context context, IdentityKeyMismatch mismatch) {
-      this.context  = context;
-      this.mismatch = mismatch;
-    }
-
-    @Override
-    public void onClick(View widget) {
-      Intent intent = new Intent(context, VerifyIdentityActivity.class);
-      intent.putExtra(VerifyIdentityActivity.RECIPIENT_ID, mismatch.getRecipientId());
-      intent.putExtra(VerifyIdentityActivity.RECIPIENT_IDENTITY, new IdentityKeyParcelable(mismatch.getIdentityKey()));
-      context.startActivity(intent);
     }
   }
 

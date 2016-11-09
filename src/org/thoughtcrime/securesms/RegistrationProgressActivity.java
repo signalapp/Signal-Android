@@ -520,8 +520,9 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
           try {
             SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context, e164number, password);
             int                         registrationId = TextSecurePreferences.getLocalRegistrationId(context);
+            boolean                     video          = TextSecurePreferences.isWebrtcCallingEnabled(context);
 
-            accountManager.verifyAccountWithCode(code, signalingKey, registrationId, true);
+            accountManager.verifyAccountWithCode(code, signalingKey, registrationId, true, video);
 
             return SUCCESS;
           } catch (ExpectationFailedException e) {
@@ -616,10 +617,10 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
             return SUCCESS;
           } catch (RateLimitException e) {
-            Log.w("RegistrationProgressActivity", e);
+            Log.w(TAG, e);
             return RATE_LIMIT_EXCEEDED;
           } catch (IOException e) {
-            Log.w("RegistrationProgressActivity", e);
+            Log.w(TAG, e);
             return NETWORK_ERROR;
           }
         }

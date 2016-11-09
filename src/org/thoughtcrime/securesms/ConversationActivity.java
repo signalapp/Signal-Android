@@ -123,6 +123,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.recipients.Recipients.RecipientsModifiedListener;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
@@ -224,7 +225,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private int        distributionType;
   private boolean    archived;
   private boolean    isSecureText;
-  private boolean    isSecureVoice;
+  private boolean    isSecureVideo;
   private boolean    isDefaultSms = true;
   private boolean    isMmsEnabled = true;
 
@@ -437,8 +438,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (isSingleConversation()) {
-      if (isSecureVoice) inflater.inflate(R.menu.conversation_callable_secure, menu);
-      else               inflater.inflate(R.menu.conversation_callable_insecure, menu);
+      if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
+      else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
     } else if (isGroupConversation()) {
       inflater.inflate(R.menu.conversation_group_options, menu);
 
@@ -749,7 +750,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleDial(final Recipient recipient) {
     if (recipient == null) return;
 
-    if (isSecureVoice) {
+    if (isSecureVideo && TextSecurePreferences.isWebrtcCallingEnabled(this)) {
+      Intent intent = new Intent(this, WebRtcCallService.class);
+      intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
+      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
+      startService(intent);
+
+      Intent activityIntent = new Intent(this, WebRtcCallActivity.class);
+      activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      startActivity(activityIntent);
+    } else if (isSecureText) {
       Intent intent = new Intent(this, RedPhoneService.class);
       intent.setAction(RedPhoneService.ACTION_OUTGOING_CALL);
       intent.putExtra(RedPhoneService.EXTRA_REMOTE_NUMBER, recipient.getNumber());
@@ -806,9 +816,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivity(intent);
   }
 
-  private void handleSecurityChange(boolean isSecureText, boolean isSecureVoice, boolean isDefaultSms) {
+  private void handleSecurityChange(boolean isSecureText, boolean isSecureVideo, boolean isDefaultSms) {
     this.isSecureText  = isSecureText;
-    this.isSecureVoice = isSecureVoice;
+    this.isSecureVideo = isSecureVideo;
     this.isDefaultSms  = isDefaultSms;
 
     boolean isMediaMessage = !recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent();
@@ -889,13 +899,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private ListenableFuture<Boolean> initializeSecurity(final boolean currentSecureText,
-                                                       final boolean currentSecureVoice,
+                                                       final boolean currentSecureVideo,
                                                        final boolean currentIsDefaultSms)
   {
     final SettableFuture<Boolean> future = new SettableFuture<>();
 
     handleSecurityChange(currentSecureText || isPushGroupConversation(),
-                         currentSecureVoice && !isGroupConversation(),
+                         currentSecureVideo && !isGroupConversation(),
                          currentIsDefaultSms);
 
     new AsyncTask<Recipients, Void, boolean[]>() {
@@ -923,7 +933,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       protected void onPostExecute(boolean[] result) {
-        if (result[0] != currentSecureText || result[1] != currentSecureVoice || result[2] != currentIsDefaultSms) {
+        if (result[0] != currentSecureText || result[1] != currentSecureVideo || result[2] != currentIsDefaultSms) {
           handleSecurityChange(result[0], result[1], result[2]);
         }
         future.set(true);
@@ -1120,7 +1130,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        initializeSecurity(isSecureText, isSecureVoice, isDefaultSms);
+        initializeSecurity(isSecureText, isSecureVideo, isDefaultSms);
         calculateCharactersRemaining();
       }
     };
@@ -1768,7 +1778,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onAttachmentChanged() {
-    handleSecurityChange(isSecureText, isSecureVoice, isDefaultSms);
+    handleSecurityChange(isSecureText, isSecureVideo, isDefaultSms);
     updateToggleButtonState();
   }
 

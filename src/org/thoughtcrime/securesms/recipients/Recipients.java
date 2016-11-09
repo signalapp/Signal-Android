@@ -43,6 +43,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
+import java.util.concurrent.ExecutionException;
 
 public class Recipients implements Iterable<Recipient>, RecipientModifiedListener {
 
@@ -112,7 +113,7 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
       }
 
       @Override
-      public void onFailure(Throwable error) {
+      public void onFailure(ExecutionException error) {
         Log.w(TAG, error);
       }
     });

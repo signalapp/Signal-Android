@@ -24,9 +24,10 @@ public class TextSecureDirectory {
 
   private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
   private static final int INTRODUCED_VOICE_COLUMN                     = 4;
+  private static final int INTRODUCED_VIDEO_COLUMN                     = 5;
 
   private static final String DATABASE_NAME    = "whisper_directory.db";
-  private static final int    DATABASE_VERSION = 4;
+  private static final int    DATABASE_VERSION = 5;
 
   private static final String TABLE_NAME   = "directory";
   private static final String ID           = "_id";
@@ -35,13 +36,15 @@ public class TextSecureDirectory {
   private static final String RELAY        = "relay";
   private static final String TIMESTAMP    = "timestamp";
   private static final String VOICE        = "voice";
+  private static final String VIDEO        = "video";
 
   private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID + " INTEGER PRIMARY KEY, " +
                               NUMBER       + " TEXT UNIQUE, " +
                               REGISTERED   + " INTEGER, " +
                               RELAY        + " TEXT, " +
                               TIMESTAMP    + " INTEGER, " +
-                              VOICE        + " INTEGER);";
+                              VOICE        + " INTEGER, " +
+                              VIDEO        + " INTEGER);";
 
   private static final Object instanceLock = new Object();
   private static volatile TextSecureDirectory instance;
@@ -116,6 +119,31 @@ public class TextSecureDirectory {
     }
   }
 
+  public boolean isSecureVideoSupported(String e164number) throws NotInDirectoryException {
+    if (TextUtils.isEmpty(e164number)) {
+      return false;
+    }
+
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    Cursor         cursor = null;
+
+    try {
+      cursor = db.query(TABLE_NAME,
+                        new String[]{VIDEO}, NUMBER + " = ?",
+                        new String[] {e164number}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0) == 1;
+      } else {
+        throw new NotInDirectoryException();
+      }
+
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+
   public String getRelay(String e164number) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
@@ -151,13 +179,14 @@ public class TextSecureDirectory {
 
     try {
       for (ContactTokenDetails token : activeTokens) {
-        Log.w("Directory", "Adding active token: " + token.getNumber() + ", " + token.getToken());
+        Log.w("Directory", "Adding active token: " + token.getNumber() + ", " + token.getToken() + ", video: " + token.isVideo());
         ContentValues values = new ContentValues();
         values.put(NUMBER, token.getNumber());
         values.put(REGISTERED, 1);
         values.put(TIMESTAMP, timestamp);
         values.put(RELAY, token.getRelay());
         values.put(VOICE, token.isVoice());
+        values.put(VIDEO, token.isVideo());
         db.replace(TABLE_NAME, null, values);
       }
 
@@ -260,6 +289,10 @@ public class TextSecureDirectory {
 
       if (oldVersion < INTRODUCED_VOICE_COLUMN) {
         db.execSQL("ALTER TABLE directory ADD COLUMN voice INTEGER;");
+      }
+
+      if (oldVersion < INTRODUCED_VIDEO_COLUMN) {
+        db.execSQL("ALTER TABLE directory ADD COLUMN video INTEGER;");
       }
     }
   }
