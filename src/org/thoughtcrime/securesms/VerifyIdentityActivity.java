@@ -204,6 +204,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       if (((i+1) % 4) == 0) result += codes[i].getText() + "\n";
       else                  result += codes[i].getText() + " ";
     }
+    result = result.substring(0,result.lastIndexOf("\n"));
     return result;
   }
 
