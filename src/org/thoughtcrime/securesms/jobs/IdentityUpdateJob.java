@@ -22,7 +22,7 @@ public class IdentityUpdateJob extends MasterSecretJob {
 
   public IdentityUpdateJob(Context context, long recipientId) {
     super(context, JobParameters.newBuilder()
-                                .withGroupId(IdentityUpdateJob.class.getName())
+                                .withGroupId("IdentityUpdateJob")
                                 .withPersistence()
                                 .create());
     this.recipientId = recipientId;
