@@ -192,7 +192,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
   private void share() {
     Intent intent = new Intent();
     intent.setAction(Intent.ACTION_SEND);
-    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.VerifyIdentityActivity_our_signal_safety_numbers));
     intent.putExtra(Intent.EXTRA_TEXT, getShareableSafetyNumbers());
     intent.setType("text/plain");
     try {
@@ -203,7 +202,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
   }
 
   private String getShareableSafetyNumbers() {
-    String     result = "";
+    String     result = getString(R.string.VerifyIdentityActivity_our_signal_safety_numbers) + "\n";
     TextView[] codes  = displayFragment.getCodes();
     for (int i = 0; i < codes.length; i++) {
       if (((i+1) % 4) == 0) result += codes[i].getText() + "\n";
