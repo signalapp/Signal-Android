@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -138,7 +139,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      case android.R.id.home: finish(); return true;
+      case R.id.verify_identity__share: share();  return true;
+      case android.R.id.home:           finish(); return true;
     }
 
     return false;
@@ -184,6 +186,25 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getWindow().setStatusBarColor(color.toStatusBarColor(this));
     }
+  }
+
+  private void share() {
+    Intent intent = new Intent();
+    intent.setAction(Intent.ACTION_SEND);
+    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.VerifyIdentityActivity_our_signal_safety_numbers));
+    intent.putExtra(Intent.EXTRA_TEXT, getShareableSafetyNumbers());
+    intent.setType("text/plain");
+    startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_numbers_via)));
+  }
+
+  private String getShareableSafetyNumbers() {
+    String     result = "";
+    TextView[] codes  = displayFragment.getCodes();
+    for (int i = 0; i < codes.length; i++) {
+      if (((i+1) % 4) == 0) result += codes[i].getText() + "\n";
+      else                  result += codes[i].getText() + " ";
+    }
+    return result;
   }
 
   public static class VerifyDisplayFragment extends Fragment implements Recipients.RecipientsModifiedListener {
@@ -305,6 +326,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
     public void setClickListener(View.OnClickListener listener) {
       this.clickListener = listener;
+    }
+
+    TextView[] getCodes() {
+      return codes;
     }
 
     private void setFingerprintViews(Fingerprint fingerprint) {
