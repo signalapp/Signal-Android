@@ -567,6 +567,7 @@
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code.  Please try scanning again.</string>
     <string name="VerifyIdentityActivity_share_safety_numbers_via">Share safety numbers via...</string>
     <string name="VerifyIdentityActivity_our_signal_safety_numbers">Our Signal safety numbers</string>
+    <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>

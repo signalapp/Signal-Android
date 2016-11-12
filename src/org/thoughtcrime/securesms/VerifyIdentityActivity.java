@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -194,7 +195,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.VerifyIdentityActivity_our_signal_safety_numbers));
     intent.putExtra(Intent.EXTRA_TEXT, getShareableSafetyNumbers());
     intent.setType("text/plain");
-    startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_numbers_via)));
+    try {
+      startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_numbers_via)));
+    } catch (ActivityNotFoundException e) {
+      Toast.makeText(VerifyIdentityActivity.this, R.string.VerifyIdentityActivity_no_app_to_share_to, Toast.LENGTH_LONG).show();
+    }
   }
 
   private String getShareableSafetyNumbers() {
