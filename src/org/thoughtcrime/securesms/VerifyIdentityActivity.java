@@ -33,6 +33,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,6 +122,17 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       Log.w(TAG, e);
       finish();
     }
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+
+    menu.clear();
+    MenuInflater inflater = this.getMenuInflater();
+    inflater.inflate(R.menu.verify_identity, menu);
+
+    return true;
   }
 
   @Override

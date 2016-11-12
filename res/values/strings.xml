@@ -936,6 +936,9 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">If you wish to verify the security of your end-to-end encryption with %s, compare the numbers above with the numbers on their device. Alternately, you can scan the code on their phone, or ask them to scan your code.</string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
+
+    <!-- verify_identity -->
+    <string name="verify_identity__share_safety_numbers">Share safety numbers</string>
     
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
