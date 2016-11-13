@@ -33,6 +33,8 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -66,7 +68,6 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.fingerprint.Fingerprint;
-import org.whispersystems.libsignal.fingerprint.FingerprintIdentifierMismatchException;
 import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
 import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
@@ -313,10 +314,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
         }
       } catch (FingerprintVersionMismatchException e) {
         Log.w(TAG, e);
-        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal, Toast.LENGTH_LONG).show();
-      } catch (FingerprintIdentifierMismatchException e) {
-        Log.w(TAG, e);
-        Toast.makeText(getActivity(), getActivity().getString(R.string.VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with, e.getRemoteIdentifier(), e.getScannedLocalIdentifier()), Toast.LENGTH_LONG).show();
+        if (e.getOurVersion() < e.getTheirVersion()) {
+          Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal, Toast.LENGTH_LONG).show();
+        } else {
+          Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal, Toast.LENGTH_LONG).show();
+        }
       } catch (FingerprintParsingException e) {
         Log.w(TAG, e);
         Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number, Toast.LENGTH_LONG).show();
@@ -357,7 +359,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       Bitmap qrCodeBitmap = QrCode.create(qrCodeString);
 
       qrCode.setImageBitmap(qrCodeBitmap);
-      description.setText(getActivity().getString(R.string.verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above, recipient.toShortString()));
+      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above), recipient.toShortString())));
+      description.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private Bitmap createVerifiedBitmap(int width, int height, @DrawableRes int id) {

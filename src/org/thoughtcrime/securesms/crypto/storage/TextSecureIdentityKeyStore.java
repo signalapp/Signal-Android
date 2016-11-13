@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
+import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
 
 public class TextSecureIdentityKeyStore implements IdentityKeyStore {
@@ -31,21 +32,21 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   }
 
   @Override
-  public void saveIdentity(String name, IdentityKey identityKey) {
-    long recipientId = RecipientFactory.getRecipientsFromString(context, name, true).getPrimaryRecipient().getRecipientId();
+  public void saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+    long recipientId = RecipientFactory.getRecipientsFromString(context, address.getName(), true).getPrimaryRecipient().getRecipientId();
     DatabaseFactory.getIdentityDatabase(context).saveIdentity(recipientId, identityKey);
   }
 
   @Override
-  public boolean isTrustedIdentity(String name, IdentityKey identityKey) {
-    long    recipientId = RecipientFactory.getRecipientsFromString(context, name, true).getPrimaryRecipient().getRecipientId();
+  public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+    long    recipientId = RecipientFactory.getRecipientsFromString(context, address.getName(), true).getPrimaryRecipient().getRecipientId();
     boolean trusted     = DatabaseFactory.getIdentityDatabase(context)
                                          .isValidIdentity(recipientId, identityKey);
 
     if (trusted) {
       return true;
     } else if (!TextSecurePreferences.isBlockingIdentityUpdates(context)) {
-      saveIdentity(name, identityKey);
+      saveIdentity(address, identityKey);
 
       ApplicationContext.getInstance(context)
                         .getJobManager()
