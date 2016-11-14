@@ -68,7 +68,7 @@ public class DateUtils extends android.text.format.DateUtils {
     if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
       return c.getString(R.string.DateUtils_now);
     } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
-      int mins = convertDelta(timestamp, TimeUnit.MINUTES);
+      int mins = (int)TimeUnit.MINUTES.convert(System.currentTimeMillis() - timestamp, TimeUnit.MILLISECONDS);
       return c.getResources().getString(R.string.DateUtils_minutes_ago, mins);
     } else {
       StringBuilder format = new StringBuilder();
