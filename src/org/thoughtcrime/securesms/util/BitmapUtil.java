@@ -36,9 +36,10 @@ public class BitmapUtil {
 
   private static final String TAG = BitmapUtil.class.getSimpleName();
 
-  private static final int MAX_COMPRESSION_QUALITY  = 80;
-  private static final int MIN_COMPRESSION_QUALITY  = 45;
-  private static final int MAX_COMPRESSION_ATTEMPTS = 4;
+  private static final int MAX_COMPRESSION_QUALITY          = 90;
+  private static final int MIN_COMPRESSION_QUALITY          = 45;
+  private static final int MAX_COMPRESSION_ATTEMPTS         = 5;
+  private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
 
   public static <T> byte[] createScaledBytes(Context context, T model, MediaConstraints constraints)
       throws BitmapDecodingException
@@ -58,7 +59,12 @@ public class BitmapUtil {
 
         Log.w(TAG, "iteration with quality " + quality + " size " + (bytes.length / 1024) + "kb");
         if (quality == MIN_COMPRESSION_QUALITY) break;
-        quality = Math.max((quality * constraints.getImageMaxSize()) / bytes.length, MIN_COMPRESSION_QUALITY);
+
+        int nextQuality = (int)Math.floor(quality * Math.sqrt((double)constraints.getImageMaxSize() / bytes.length));
+        if (quality - nextQuality < MIN_COMPRESSION_QUALITY_DECREASE) {
+          nextQuality = quality - MIN_COMPRESSION_QUALITY_DECREASE;
+        }
+        quality = Math.max(nextQuality, MIN_COMPRESSION_QUALITY);
       }
       while (bytes.length > constraints.getImageMaxSize() && attempts++ < MAX_COMPRESSION_ATTEMPTS);
       if (bytes.length > constraints.getImageMaxSize()) {

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -69,6 +70,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   public void onRun(MasterSecret masterSecret)
       throws IOException, UntrustedIdentityException, NetworkException
   {
+    if (!TextSecurePreferences.isMultiDevice(context)) {
+      Log.w(TAG, "Not multi device, aborting...");
+      return;
+    }
+
     if (recipientId <= 0) generateFullContactUpdate();
     else                  generateSingleContactUpdate(recipientId);
   }
@@ -76,8 +82,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private void generateSingleContactUpdate(long recipientId)
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    SignalServiceMessageSender messageSender = messageSenderFactory.create();
-    File contactDataFile = createTempFile("multidevice-contact-update");
+    SignalServiceMessageSender messageSender   = messageSenderFactory.create();
+    File                       contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
       DeviceContactsOutputStream out       = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));

@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
@@ -68,6 +69,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int CONTACTS_ACCOUNT_VERSION             = 136;
   public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 151;
   public static final int REDPHONE_SUPPORT_VERSION             = 157;
+  public static final int FINGERPRINTS_NON_BLOCKING_VESRION    = 212;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -81,6 +83,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(MIGRATE_SESSION_PLAINTEXT);
     add(MEDIA_DOWNLOAD_CONTROLS_VERSION);
     add(REDPHONE_SUPPORT_VERSION);
+    add(FINGERPRINTS_NON_BLOCKING_VESRION);
   }};
 
   private MasterSecret masterSecret;
@@ -229,6 +232,10 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
                           .add(new DirectoryRefreshJob(getApplicationContext()));
+      }
+
+      if (params[0] < FINGERPRINTS_NON_BLOCKING_VESRION) {
+        TextSecurePreferences.setBlockingIdentityUpdates(getApplicationContext(), true);
       }
 
       return null;

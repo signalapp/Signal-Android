@@ -166,6 +166,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     image.setImageDrawable(null);
   }
 
+  private void forward() {
+    Intent composeIntent = new Intent(this, ShareActivity.class);
+    composeIntent.putExtra(Intent.EXTRA_STREAM, mediaUri);
+    composeIntent.setType(mediaType);
+    startActivity(composeIntent);
+  }
+
   private void saveToDisk() {
     SaveAttachmentTask.showWarningDialog(this, new DialogInterface.OnClickListener() {
       @Override
@@ -192,8 +199,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case R.id.save:         saveToDisk(); return true;
-    case android.R.id.home: finish();     return true;
+      case R.id.media_preview__forward: forward();    return true;
+      case R.id.save:                   saveToDisk(); return true;
+      case android.R.id.home:           finish();     return true;
     }
 
     return false;

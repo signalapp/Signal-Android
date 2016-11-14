@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.ContactPhotoUriLoader.ContactPhotoUri;
@@ -52,6 +53,7 @@ public class ContactPhotoFactory {
     try {
       Bitmap bitmap = Glide.with(context)
                            .load(new ContactPhotoUri(uri)).asBitmap()
+                           .diskCacheStrategy(DiskCacheStrategy.NONE)
                            .centerCrop().into(targetSize, targetSize).get();
       return new BitmapContactPhoto(bitmap);
     } catch (ExecutionException e) {

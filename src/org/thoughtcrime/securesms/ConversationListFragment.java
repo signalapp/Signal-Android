@@ -64,9 +64,11 @@ import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
@@ -472,14 +474,9 @@ public class ConversationListFragment extends Fragment
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
 
             if (!read) {
-              List<SyncMessageId> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId);
+              List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId);
               MessageNotifier.updateNotification(getActivity(), masterSecret);
-
-              if (!messageIds.isEmpty()) {
-                ApplicationContext.getInstance(getActivity())
-                                  .getJobManager()
-                                  .add(new MultiDeviceReadUpdateJob(getActivity(), messageIds));
-              }
+              MarkReadReceiver.process(getActivity(), messageIds);
             }
           }
 

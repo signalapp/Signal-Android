@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -259,6 +260,11 @@ public class AttachmentManager {
     } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
       Log.w(TAG, e);
     }
+  }
+
+  public static void selectGif(Activity activity, int requestCode) {
+    Intent intent = new Intent(activity, GiphyActivity.class);
+    activity.startActivityForResult(intent, requestCode);
   }
 
   private @Nullable Uri getSlideUri() {

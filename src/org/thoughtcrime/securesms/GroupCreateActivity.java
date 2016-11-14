@@ -39,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.soundcloud.android.crop.Crop;
@@ -198,7 +199,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this);
     adapter.setOnRecipientDeletedListener(this);
     lv.setAdapter(adapter);
-    recipientsEditor.setHint(R.string.recipients_panel__add_member);
+    recipientsEditor.setHint(R.string.recipients_panel__add_members);
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
     avatar.setImageDrawable(ContactPhotoFactory.getDefaultGroupPhoto()
@@ -319,7 +320,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         new Crop(data.getData()).output(outputFile).asSquare().start(this);
         break;
       case Crop.REQUEST_CROP:
-        Glide.with(this).load(Crop.getOutput(data)).asBitmap().skipMemoryCache(true)
+        Glide.with(this).load(Crop.getOutput(data)).asBitmap()
+             .skipMemoryCache(true)
+             .diskCacheStrategy(DiskCacheStrategy.NONE)
              .centerCrop().override(AVATAR_SIZE, AVATAR_SIZE)
              .into(new SimpleTarget<Bitmap>() {
                @Override
@@ -591,6 +594,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     Glide.with(this)
          .load(model)
          .skipMemoryCache(true)
+         .diskCacheStrategy(DiskCacheStrategy.NONE)
          .transform(new RoundedCorners(this, avatar.getWidth() / 2))
          .into(avatar);
   }
