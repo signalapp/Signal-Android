@@ -252,6 +252,8 @@
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Сигнал није успео да се пријави на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите преко Поставке &gt; Напредно.</string>
   <!--GiphyActivity-->
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">ГИФ сличице</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Налепнице</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
   <string name="GroupCreateActivity_actionbar_update_title">Ажурирај групу</string>
@@ -353,8 +355,6 @@
   <string name="MessageRecord_called_s">Позвали сте %s</string>
   <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s је на Сигналу, кажите здраво!</string>
-  <string name="MessageRecord_you">Ви</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s постави време ишчезнућа поруке на %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Лозинке се не поклапају!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
@@ -495,6 +495,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s је на Сигналу, пошаљите поздрав!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време ишчезнућа поруке постављено на %s</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Започети унаточ постојећем захтеву?</string>
   <string name="KeyExchangeInitiator_send">Пошаљи</string>
@@ -650,6 +651,7 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%d с</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Тражите ГИФ сличице и налепнице</string>
   <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не могу да очитам дневник на вашем уређају. Можете да искористите АДБ да бисте добавили дневник исправљања грешака.</string>
@@ -779,7 +781,10 @@
   <string name="registration_progress_activity__check">Провери</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Унесите име или број</small></string>
+  <string name="recipients_panel__add_members">Додај чланове</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__tap_to_scan">Тапните за скенирање</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Неки од проблема захтевају вашу пажњу.</string>
   <string name="message_details_header__sent">Послата</string>

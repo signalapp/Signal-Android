@@ -339,8 +339,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MessageRecord_called_s">Ligou para %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s está a usar Signal, diga olá!</string>
-  <string name="MessageRecord_you">Você</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de mensagens a desaparecer em %2$s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-chave não coincidem.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
@@ -481,6 +479,7 @@ Mensagem de troca de chave inválida para esta versão do protocolo.
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s está a usar Signal, diga olá!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de mensagens a desaparecer definido para %s</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que não tem aplicações para as quais partilhar.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -773,6 +772,7 @@ falhou.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introduza um nome ou número</small></string>
   <!--verify_display_fragment-->
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns problemas requerem a sua atenção.</string>
   <string name="message_details_header__sent">Enviado</string>

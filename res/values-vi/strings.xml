@@ -307,7 +307,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="MessageRecord_called_s">Đã gọi cho %s</string>
   <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s đang dùng Signal, hãy chào hỏi một tiếng!</string>
-  <string name="MessageRecord_you">Bạn</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Cụm từ mật khẩu không khớp nhau!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Cụm từ mật khẩu cũ không đúng!</string>
@@ -442,6 +441,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s đang dùng Signal, hãy chào hỏi một tiếng!</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Khởi tạo mặc dầu đã có yêu cầu rồi?</string>
   <string name="KeyExchangeInitiator_send">Gửi</string>
@@ -704,6 +704,7 @@ SMS thất bại.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Điền vào tên hoặc số</small></string>
   <!--verify_display_fragment-->
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Một số việc cần bạn lưu ý.</string>
   <string name="message_details_header__sent">Đã gửi</string>

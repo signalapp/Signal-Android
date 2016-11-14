@@ -347,7 +347,6 @@
   <string name="MessageRecord_called_s">Телефонували %s</string>
   <string name="MessageRecord_missed_call_from">Пропущено дзвінок від %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s зараз в Signal, привітайтеся!</string>
-  <string name="MessageRecord_you">Ви</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Фраза-пароль не збігається!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Невірна стара фраза!</string>
@@ -481,6 +480,7 @@
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s зараз в Signal, привітайтеся!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Час зникнення повідомлень встановлено у %s</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Схоже, що у Вас немає додатків, щоб поділитися.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Почати незважаючи на існуючийй запит?</string>
   <string name="KeyExchangeInitiator_send">Відправити</string>
@@ -737,6 +737,7 @@ Signal не дочекався перевірочного SMS.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Введіть ім\'я або номер</small></string>
   <!--verify_display_fragment-->
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Є деякі проблеми, що потребують вашої уваги.</string>
   <string name="message_details_header__sent">Відправлено</string>

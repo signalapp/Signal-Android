@@ -335,8 +335,6 @@ Innlasting av en kryptert backup vil erstatte dine eksisterende nøkler, prefera
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Ubesvart anrop fra %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal, si hei!</string>
-  <string name="MessageRecord_you">Du</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s sett tiden før meldingen utløper til %2$s</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Dine sikkerthetsnummere med %s har endret seg</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
@@ -481,6 +479,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt kjører en gammel versjon av Signal. Vennligst be kontakten oppdatere før sikkerhetsnumrene bekreftes.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Du forsøker å bekrefte sikkerhetsnummer med %1$s, men skannet %2$s isteden.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannede QR-koden er ikke en korrekt formatert bekreftelseskode for sikkerhetsnummer. Forsøk å skanne igjen.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som du ikke har noen apper å dele til.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiere til tross for eksisterende forespørsel?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
@@ -755,8 +754,8 @@ feilet.</string>
   <string name="recipients_panel__to"><small>Tast inn et navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Legg til medlemmer</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Hvis du vil bekrefte sikkerheten på din ende-til-ende-kryptering med %s, sammenlign numrene over med numrene på din enhet. Alternativt kan du skanne koden på deres enhet, eller be dem skanne din.</string>
   <string name="verify_display_fragment__tap_to_scan">Klikk for å skanne</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Noen problemer krever din oppmerksomhet.</string>
   <string name="message_details_header__sent">Sendt</string>

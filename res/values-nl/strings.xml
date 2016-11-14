@@ -198,8 +198,8 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Gesprekken gearchiveerd (%d)</string>
   <!--CustomDefaultPreference-->
-  <string name="CustomDefaultPreference_using_custom">Handmatig gebruiken: %s</string>
-  <string name="CustomDefaultPreference_using_default">Standaard gebruiken: %s</string>
+  <string name="CustomDefaultPreference_using_custom">Aangepast in gebruik: %s</string>
+  <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
   <string name="CustomDefaultPreference_none">Geen</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Nu</string>
@@ -239,7 +239,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanente Signal-communicatiefout!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat met Google Play services te registreren. Signal berichten en oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Geavanceerd.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fout tijdens het laden van het hele GIF plaatje...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fout bij ophalen van GIF in volledige resolutie...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
@@ -337,8 +337,8 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="MessageRecord_called_s">%s gebeld</string>
   <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s gebruikt nu Signal, zeg hoi!</string>
-  <string name="MessageRecord_you">Jij</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor verdwijnende berichten ingesteld op %2$s</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verdwijnende berichten ingesteld op %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor verdwijnende berichten ingesteld op %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Je veiligheidsnummers met %s zijn veranderd</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
@@ -483,8 +483,12 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Je veiligheidsnummers met %s zijn veranderd</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dit contact gebruikt een oude versie van Signal. Vraag hen om Signal bij te werken vooraleer je de veiligheidsnummers verifieert.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Je probeert veiligheidsnummers te verifiëren met %1$s, maar je hebt in plaats daarvan %2$s gescand.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed veiligheidsnummer. Probeer de code opnieuw te scannen.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Veiligheidsnummers delen via...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Onze Signal-veiligheidsnummers:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiëren ondanks bestaand verzoek?</string>
   <string name="KeyExchangeInitiator_send">Verzenden</string>
@@ -637,7 +641,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs en stickers zoeken</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Geen resultaten gevonden.</string>
+  <string name="giphy_fragment__nothing_found">Niets gevonden</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kon geen logs van je apparaat verzamelen. Je kan nog wel ADB gebruiken om debuglogs te verzamelen.</string>
   <string name="log_submit_activity__thanks">Bedankt voor je hulp!</string>
@@ -764,8 +768,10 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="recipients_panel__to"><small>Typ een naam of nummer</small></string>
   <string name="recipients_panel__add_members">Leden toevoegen</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Als je de veiligheid van de beveiligde verbinding met %s wil verifiëren, moet je de nummers hierboven vergelijken met de nummers op hun apparaat. Een alternatieve methode is om de code op hun telefoon te scannen, of hen te vragen jouw code te scannen.</string>
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Als je de veiligheid van de beveiligde verbinding met %s wil verifiëren, moet je de nummers hierboven vergelijken met de nummers op hun apparaat. Een alternatieve methode is om de code op hun telefoon te scannen, of hen te vragen jouw code te scannen. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Lees meer over het verifiëren van veiligheidsnummers</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Veiligheidsnummers delen</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Enkele dingen vergen je aandacht.</string>
   <string name="message_details_header__sent">Verzonden</string>
@@ -782,8 +788,8 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="AndroidManifest__signal_detected">Signal gedetecteerd</string>
   <string name="AndroidManifest__change_passphrase">Wachtwoord wijzigen</string>
   <string name="AndroidManifest__verify_safety_numbers">Veiligheidsnummers verifiëren</string>
-  <string name="AndroidManifest__log_submit">Debug log indienen</string>
-  <string name="AndroidManifest__media_preview">Media miniatuur</string>
+  <string name="AndroidManifest__log_submit">Debuglog indienen</string>
+  <string name="AndroidManifest__media_preview">Mediaminiatuur</string>
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
   <string name="AndroidManifest__media_overview_named">Alle afbeeldingen met %1$s</string>
   <string name="AndroidManifest__message_details">Berichtdetails</string>
@@ -793,7 +799,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__use_default">Gebruik standaard</string>
-  <string name="arrays__use_custom">Gebruik handmatig</string>
+  <string name="arrays__use_custom">Gebruik aangepast</string>
   <string name="arrays__mute_for_one_hour">Demp voor 1 uur</string>
   <string name="arrays__mute_for_two_hours">Demp voor 2 uur</string>
   <string name="arrays__mute_for_one_day">Demp voor 1 dag</string>
@@ -1007,7 +1013,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="reminder_header_outdated_build_details_today">Je versie van Signal zal vandaag verlopen. Tik om bij te werken naar de meest recente versie.</string>
   <string name="reminder_header_expired_build">Je versie van Signal is verlopen!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet meer verzonden worden. Tik om bij te werken naar de meest recente versie.</string>
-  <string name="reminder_header_expired_build_button">UPDATEN</string>
+  <string name="reminder_header_expired_build_button">BIJWERKEN</string>
   <string name="reminder_header_sms_default_title">Gebruiken als standaard SMS-app</string>
   <string name="reminder_header_sms_default_text">Tik om van Signal je standaard-SMS-app te maken.</string>
   <string name="reminder_header_sms_default_button">INSTELLEN</string>
@@ -1030,6 +1036,7 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Opslaan</string>
+  <string name="media_preview__forward_title">Doorsturen</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Alles opslaan</string>
   <!--media_preview_activity-->

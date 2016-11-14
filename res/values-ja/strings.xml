@@ -225,7 +225,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永続的障害の発生！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Playに登録できないためSignalは利用できません。「詳細設定」で再登録してください。</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">高解像度のGIFファイルを取得中にエラー発生</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">高解像度GIFファイルの取得中にエラー発生</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ステッカー</string>
@@ -320,8 +320,8 @@
   <string name="MessageRecord_called_s">%sに発信</string>
   <string name="MessageRecord_missed_call_from">%sから不在着信</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%sがSignalにいるので声を掛ける</string>
-  <string name="MessageRecord_you">あなた</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sがメッセージの消去時間を%2$sに設定しています</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">メッセージの消去時間を%1$sに設定しました</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sがメッセージの消去時間を%2$sに設定しました</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">%sとの安全番号が変わりました</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスワードが正しくありません！</string>
@@ -460,6 +460,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">相手先は古いバージョンのSignalを使っています。最新版に更新するようお願いしてください。</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">%1$sのコードを読み取るつもりが，%2$sのコードを読み取っています。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">読み取ったQRコードは安全番号のコードとは違うようです。QRコードを読み取り直してください。</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">シェアするためのアプリがないようです。</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
   <string name="KeyExchangeInitiator_send">送信</string>
@@ -607,7 +608,7 @@
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFやステッカーを検索</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">何も見つかりませんでした</string>
+  <string name="giphy_fragment__nothing_found">何も見つかりませんでした</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバイス上のログを読めません。ただしADBを使ってデバッグログを読むことはできます。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
@@ -718,8 +719,8 @@
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <string name="recipients_panel__add_members">メンバーを追加</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">%sとの端末間暗号化の完全性を確認するには，上記の番号と相手端末上の番号を比べて下さい。あるいは，相手端末上のQRコードをカメラで読み取るか，こちらのQRコードを相手に読み取ってもらってください。</string>
   <string name="verify_display_fragment__tap_to_scan">読み取る</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">問題があります</string>
   <string name="message_details_header__sent">送信</string>
@@ -982,6 +983,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディア種別</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
+  <string name="media_preview__forward_title">早送り</string>
   <!--media_overview-->
   <string name="media_overview__save_all">すべて保存</string>
   <!--media_preview_activity-->

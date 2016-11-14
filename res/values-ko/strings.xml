@@ -313,7 +313,6 @@
   <string name="MessageRecord_called_s">%s님에게 발신통화</string>
   <string name="MessageRecord_missed_call_from">%s님의 부재중 통화</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s님이 Signal에 참여했습니다. 인사하실래요?</string>
-  <string name="MessageRecord_you">나</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않음</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못됨</string>
@@ -436,6 +435,7 @@
   <string name="ThreadRecord_media_message">미디어 메시지</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s님이 Signal에 참여했습니다. 인사하실래요?</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">이미 요청을 보냈어도 다시 보내시겠습니까?</string>
   <string name="KeyExchangeInitiator_send">보내기</string>
@@ -689,6 +689,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>이름 또는 전화번호 입력</small></string>
   <!--verify_display_fragment-->
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">문제가 발생하여 확인이 필요합니다.</string>
   <string name="message_details_header__sent">보낸 시간:</string>

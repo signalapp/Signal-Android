@@ -323,8 +323,6 @@
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">来自 %s 的未接来电</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在暗号中，打个招呼吧！</string>
-  <string name="MessageRecord_you">您</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 将消息销毁时间设置为 %2$s</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">你与 %s 的安全码已经修改</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">口令不符！</string>
@@ -471,6 +469,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人正在使用旧版本的暗号，请告诉他们更新到最新版本再验证安全码。</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">您正在尝试验证与 %1$s 验证安全码，但是您却扫描了 %2$s 的验证码。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">扫描的 QR 码格式不正确。请重新扫一次。</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">看起来您没有任何可以共享的应用。</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">发起一个已经存在的请求？</string>
   <string name="KeyExchangeInitiator_send">发送</string>
@@ -749,8 +748,8 @@
   <string name="recipients_panel__to"><small>输入一个名字或号码</small></string>
   <string name="recipients_panel__add_members">添加成员</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">如果您想验证和 %s  的端到端加密时安全的，请和他们比较上方的数字是否一致。或者，您可以扫描他们手机上的二维码，或让他们扫描您手机上面的二维码。</string>
   <string name="verify_display_fragment__tap_to_scan">点击扫描</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些问题需要您的注意</string>
   <string name="message_details_header__sent">发送</string>

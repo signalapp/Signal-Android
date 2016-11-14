@@ -256,7 +256,7 @@ sigurnosne brojeve za ovaj kontakt.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nije uspješno registrirao na Google Play Services. Signal poruke i pozivi su onemogućeni, pokušajte se ponovno registrirati kroz Postavke &gt; Napredno.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Greška prilikom preuzimanja GIFa u punoj rezoluciji...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Greška prilikom dohvaćanja GIF slike pune rezolucije...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFovi</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Naljepnice</string>
@@ -362,8 +362,8 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MessageRecord_called_s">Nazvao %s</string>
   <string name="MessageRecord_missed_call_from">Propušteni poziv od %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s koristi Signal, reci bok!</string>
-  <string name="MessageRecord_you">Vi</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme nestajanja poruke na %2$s</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Postavili ste nestajanje poruka na %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme nestajanja poruke na %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Vaši sigurnosni brojevi s %s su izmjenjeni</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
@@ -512,6 +512,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt ima staru inačicu Signala. Zamolite ih da ažuriraju aplikaciju prije provjere sigurnosnih brojeva.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Pokušavate provjeriti sigurnosne brojeve s %1$s, ali ste umjesto toga skenirali %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirani QR kod nije ispravno oblikovani sigurnosni broj za provjeru. Pokušajte skenirati ponovno.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
   <string name="KeyExchangeInitiator_send">Pošalji</string>
@@ -669,7 +670,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Pretraži GIFove i naljepnice</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Nije pronađen niti jedan rezultat.</string>
+  <string name="giphy_fragment__nothing_found">Ništa nije pronađeno.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Čitanje zapisa na Vašem uređaju nije moguće. Još uvijek možete koristiti ADB za pristup debug zapisu.</string>
   <string name="log_submit_activity__thanks">Hvala na pomoći!</string>
@@ -803,8 +804,8 @@ neuspješno.</string>
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
   <string name="recipients_panel__add_members">Dodaj članove</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Ukoliko želite provjeriti sigurnost vašeg kriptiranja s %s, usporedite brojeve iznad s brojevima na njihovom uređaju. Možete i skenirati kod na njihovom telefonu ili ih zamoliti da skeniraju vaš kod.</string>
   <string name="verify_display_fragment__tap_to_scan">Pritisnite za skeniranje</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Neki problemi zahtjevaju vašu pozornost.</string>
   <string name="message_details_header__sent">Poslano</string>
@@ -1071,6 +1072,7 @@ neuspješno.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodržani tip medija</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spremi</string>
+  <string name="media_preview__forward_title">Naprijed</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Spremi sve</string>
   <!--media_preview_activity-->

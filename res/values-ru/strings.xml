@@ -269,6 +269,8 @@
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в службах Google Play. Сообщения и звонки через Signal отключены. Пожалуйста, попробуйте зарегистрироваться снова через меню Наcтройки &gt; Расширенные.</string>
   <!--GiphyActivity-->
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF-анимации</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Стикеры</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Новая группа</string>
   <string name="GroupCreateActivity_actionbar_update_title">Обновить группу</string>
@@ -367,8 +369,6 @@
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s теперь в Signal — скажите «Привет»!</string>
-  <string name="MessageRecord_you">Вы</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s время исчезновения сообщений установлено в %2$s</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Код безопасности для общения с %s изменился</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
@@ -513,6 +513,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт использует старую версию Signal. Пожалуйста, попросите его/её обновиться, прежде чем подтверждать код безопасности.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Вы пытаетесь подтвердить код безопасности %1$s, но просканировали вместо него %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Просканированный QR-код имеет не является кодом безопасности. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Игнорировать предыдущий запрос?</string>
   <string name="KeyExchangeInitiator_send">Отправить</string>
@@ -673,6 +674,7 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dн</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Найти GIF-анимации и стикеры</string>
   <!--giphy_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не удается прочитать журнал отладки вашего устройства. Тем не менее, вы можете получить его при помощи ADB.</string>
@@ -807,8 +809,8 @@ SMS-подтверждения...
   <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
   <string name="recipients_panel__add_members">Добавить участников</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Чтобы подтвердить безопасность сквозного шифрования при общении с %s, сравните код, показанный выше, с кодом, показанным на устройстве вашего собеседника. Для удобства вы также можете его просканировать или попросить собеседника просканировать ваш код.</string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Есть проблемы, требующие вашего внимания.</string>
   <string name="message_details_header__sent">Отправлено</string>

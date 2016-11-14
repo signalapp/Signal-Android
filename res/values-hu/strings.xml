@@ -347,8 +347,6 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageRecord_called_s">Hívtad: %s</string>
   <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
-  <string name="MessageRecord_you">Te</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította az eltűnő üzenet idejét erre: %2$s</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">A biztonsági számaitok megváltoztak vele: %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
@@ -504,6 +502,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kapcsolatod a Signal egy régi verzióját futtatja, kérlek kérd meg őket, hogy frissítsenek a biztonsági számok ellenőrzése előtt.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Megpróbáltál biztonsági számokat ellenőrizni vele: %1$s, de ehelyett %2$s lett beszkennelve.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">A szkennelt QR kód nem egy helyesen formázott biztonság szám megerősítő kód. Kérlek próbáld újra szkennelni.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Úgy néz ki, hogy nincs egy alkalmazásod se a megosztáshoz.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Kezdeményezed a létező kérés ellenére?</string>
   <string name="KeyExchangeInitiator_send">Küldés</string>
@@ -805,8 +804,8 @@ sikertelen.
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy számot</small></string>
   <string name="recipients_panel__add_members">Tagok hozzáadása</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Ha szeretnéd ellenőrizni a végpontok közti titkosítást biztonságát vele: %s, hasonlítsd össze a fenti számokat az ő készülékén található számokkal. Felváltva ezt, beszkennelheted a kódot a telefonján, vagy megkérheted, hogy szkennelje be a te kódod.</string>
   <string name="verify_display_fragment__tap_to_scan">Érints a szkenneléshez</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Néhány probléma a figyelmedet igényli.</string>
   <string name="message_details_header__sent">Elküldve</string>

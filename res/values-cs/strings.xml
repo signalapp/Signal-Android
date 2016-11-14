@@ -253,7 +253,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nemůže registrovat k službě Google Play. Zprávy a volání jsou proto zakázány: Prosím zkuste se znovu registrovat v menu Nastavení &gt; Rozšířené.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Chyba při načítání GIFu v plném rozlišení...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Chyba při získávání GIF v pleném rozlišení ..</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFy</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Nálepky</string>
@@ -355,8 +355,8 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MessageRecord_called_s">Volán %s</string>
   <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s je na Signalu, řekni ahoj!</string>
-  <string name="MessageRecord_you">Vy</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil čas zmizení zprávy na %2$s</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili jste čas zmizení zprávy na %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil čas zmizení zprávy na %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Vaše ověřovací kódy s %s se změnily</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nejsou stejná</string>
@@ -498,6 +498,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou ověřovacích kódu jej prosím požádejte, aby si aplikaci aktualizoval.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Pokoušíte se zkontrolovat ověřovací kód s %1$s, ale naskenovali jste místo toho %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Naskenovaný QR kód nemá správný formát ověřovacího kódu. Prosím zkuste skenovat ještě jednou.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Zahájit i přes probíhající požadavek?</string>
   <string name="KeyExchangeInitiator_send">Odeslat</string>
@@ -655,7 +656,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hledat GIFy an nálepky</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Nebyly nalezeny žádné výsledky.</string>
+  <string name="giphy_fragment__nothing_found">Nenalezeno</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Na vašem zařízení nelze číst log. Můžete místo toho použít pro získání logu ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
@@ -768,7 +769,7 @@ Jste-li připojeni přes Wifi, je možné, že existuje firewall který blokuje 
   <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 Signal nyní automaticky ověří vaše telefonní číslo pomocí potvrzovací SMS zprávy.</string>
   <string name="registration_progress_activity__connecting">Probíhá připojování...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Čekám na ověřovací
+  <string name="registration_progress_activity__waiting_for_sms_verification">Čekám na
         ověřovací SMS...
     </string>
   <string name="registration_progress_activity__registering_with_server">Registruji se na server...</string>
@@ -788,8 +789,8 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="recipients_panel__to"><small>Zadejte jméno nebo číslo</small></string>
   <string name="recipients_panel__add_members">Přidat členy</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Chcete-li si být jisti, že je vaše komunikace s %s bezpečná, porovnejte nahoře zobrazená čísla s čísly na jeho telefonu. Případně můžete naskenovat kód na jeho telefonu a požádat jej, aby naskenoval kód na vašem telefonu.</string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Některé problémy vyžadují vaši pozornost</string>
   <string name="message_details_header__sent">Odesláno</string>
@@ -806,7 +807,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="AndroidManifest__signal_detected">Signal detekován</string>
   <string name="AndroidManifest__change_passphrase">Změnit heslo</string>
   <string name="AndroidManifest__verify_safety_numbers">Kontrola ověřovacích kódů.</string>
-  <string name="AndroidManifest__log_submit">Odeslat ladící log</string>
+  <string name="AndroidManifest__log_submit">Odeslat ladicí log</string>
   <string name="AndroidManifest__media_preview">Náhled multimedií</string>
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všechny obrázky s %1$s</string>
@@ -929,7 +930,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__signal_messages_and_calls">Signal zprávy a volání</string>
   <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
-  <string name="preferences__submit_debug_log">Odeslat ladící log</string>
+  <string name="preferences__submit_debug_log">Odeslat ladicí log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
@@ -1056,6 +1057,7 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ dat.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložit</string>
+  <string name="media_preview__forward_title">Přeposlat</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Uložit vše</string>
   <!--media_preview_activity-->
