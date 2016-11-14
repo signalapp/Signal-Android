@@ -28,6 +28,8 @@ import android.support.v4.app.RemoteInput;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -87,11 +89,10 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
             OutgoingTextMessage reply = new OutgoingTextMessage(recipients, responseText.toString(), expiresIn, subscriptionId);
             replyThreadId = MessageSender.send(context, masterSecret, reply, threadId, false);
           }
-          List<SyncMessageId> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(replyThreadId);
-          MessageNotifier.updateNotification(context, masterSecret);
 
-          ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-                  .cancel(MessageNotifier.NOTIFICATION_ID);
+          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(replyThreadId);
+          MessageNotifier.updateNotification(context, masterSecret);
+          MarkReadReceiver.process(context, messageIds);
 
           return null;
         }

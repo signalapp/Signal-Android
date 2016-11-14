@@ -26,6 +26,7 @@ import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.whispersystems.libsignal.logging.Log;
@@ -52,27 +53,23 @@ public class AndroidAutoHeardReceiver extends MasterSecretBroadcastReceiver {
     final long[] threadIds = intent.getLongArrayExtra(THREAD_IDS_EXTRA);
 
     if (threadIds != null) {
+      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+              .cancel(MessageNotifier.NOTIFICATION_ID);
+
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          List<SyncMessageId> messageIdsCollection = new LinkedList<>();
+          List<MarkedMessageInfo> messageIdsCollection = new LinkedList<>();
 
           for (long threadId : threadIds) {
             Log.i(TAG, "Marking meassage as read: " + threadId);
-            List<SyncMessageId> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+            List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId);
+
             messageIdsCollection.addAll(messageIds);
           }
 
           MessageNotifier.updateNotification(context, masterSecret);
-
-          if (!messageIdsCollection.isEmpty()) {
-            ApplicationContext.getInstance(context)
-                    .getJobManager()
-                    .add(new MultiDeviceReadUpdateJob(context, messageIdsCollection));
-          }
-
-          ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-                  .cancel(MessageNotifier.NOTIFICATION_ID);
+          MarkReadReceiver.process(context, messageIdsCollection);
 
           return null;
         }
