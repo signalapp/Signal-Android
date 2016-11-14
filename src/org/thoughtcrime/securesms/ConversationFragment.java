@@ -178,6 +178,7 @@ public class ConversationFragment extends Fragment
   private void setCorrectMenuVisibility(Menu menu) {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
     boolean            actionMessage  = false;
+    boolean            emptyBody      = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
@@ -190,7 +191,10 @@ public class ConversationFragment extends Fragment
           messageRecord.isEndSession() || messageRecord.isIdentityUpdate())
       {
         actionMessage = true;
+        emptyBody     = true;
         break;
+      } else if (!emptyBody) {
+        emptyBody = messageRecord.getDisplayBody().toString().isEmpty();
       }
     }
 
@@ -199,7 +203,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
-      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && !emptyBody);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
@@ -211,7 +215,7 @@ public class ConversationFragment extends Fragment
 
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && !emptyBody);
     }
   }
 
