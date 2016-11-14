@@ -510,8 +510,11 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Vaši sigurnosni brojevi s %s su izmjenjeni</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt ima staru inačicu Signala. Zamolite ih da ažuriraju aplikaciju prije provjere sigurnosnih brojeva.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš kontakt koristi noviju Signal inačicu s nekompatibilnim QR kod oblikom. Ažurirajte vašu inačicu kako biste usporedili.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Pokušavate provjeriti sigurnosne brojeve s %1$s, ali ste umjesto toga skenirali %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirani QR kod nije ispravno oblikovani sigurnosni broj za provjeru. Pokušajte skenirati ponovno.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Podijelite sigurnosne brojeve putem...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Naši Signal sigurnosni brojevi:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
@@ -804,8 +807,10 @@ neuspješno.</string>
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
   <string name="recipients_panel__add_members">Dodaj članove</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Ukoliko želite provjeriti sigurnost vašeg kriptiranja s %s, usporedite brojeve iznad s brojevima na njihovom uređaju. Također možete skenirati kod s njihovog uređaja, ili ih zatražiti da skeniraju vaš kod. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Saznajte više o provjeri sigurnosnih brojeva</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pritisnite za skeniranje</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Podijeli sigurnosne brojeve</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Neki problemi zahtjevaju vašu pozornost.</string>
   <string name="message_details_header__sent">Poslano</string>
