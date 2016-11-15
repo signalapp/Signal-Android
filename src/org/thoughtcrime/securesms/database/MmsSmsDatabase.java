@@ -47,6 +47,7 @@ public class MmsSmsDatabase extends Database {
                                               SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
                                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+                                              MmsSmsColumns.READ,
                                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
                                               SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
@@ -265,7 +266,7 @@ public class MmsSmsDatabase extends Database {
     @SuppressWarnings("deprecation")
     String query      = outerQueryBuilder.buildQuery(projection, null, null, null, null, null, null);
 
-    Log.w("MmsSmsDatabase", "Executing query: " + query);
+    Log.w(TAG, "Executing query: " + query);
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     return db.rawQuery(query, null);
   }

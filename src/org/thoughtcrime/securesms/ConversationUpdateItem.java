@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ShapeDrawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -42,6 +44,7 @@ public class ConversationUpdateItem extends LinearLayout
   private ImageView     icon;
   private TextView      body;
   private TextView      date;
+  private View          readStatus;
   private Recipient     sender;
   private MessageRecord messageRecord;
   private Locale        locale;
@@ -58,9 +61,10 @@ public class ConversationUpdateItem extends LinearLayout
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.icon = (ImageView)findViewById(R.id.conversation_update_icon);
-    this.body = (TextView)findViewById(R.id.conversation_update_body);
-    this.date = (TextView)findViewById(R.id.conversation_update_date);
+    this.icon       = (ImageView) findViewById(R.id.conversation_update_icon);
+    this.body       = (TextView)  findViewById(R.id.conversation_update_body);
+    this.date       = (TextView)  findViewById(R.id.conversation_update_date);
+    this.readStatus =             findViewById(R.id.read_status);
 
     this.setOnClickListener(new InternalClickListener(null));
   }
@@ -100,6 +104,21 @@ public class ConversationUpdateItem extends LinearLayout
 
     if (batchSelected.contains(messageRecord)) setSelected(true);
     else                                       setSelected(false);
+
+    if (!messageRecord.isRead()) {
+      final int color = sender.getColor().toConversationColor(getContext());
+      readStatus.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+      readStatus.setVisibility(View.VISIBLE);
+
+      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        ShapeDrawable unread = new ShapeDrawable();
+        unread.getPaint().setColor(getResources().getColor(R.color.white));
+        unread.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        readStatus.setBackgroundDrawable(unread);
+      }
+    } else {
+      readStatus.setVisibility(View.INVISIBLE);
+    }
   }
 
   private void setCallRecord(MessageRecord messageRecord) {

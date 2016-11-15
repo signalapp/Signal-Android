@@ -45,6 +45,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AbsListView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
@@ -172,6 +173,19 @@ public class ConversationFragment extends Fragment
       list.setAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener, null, this.recipients));
       getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
       list.getItemAnimator().setMoveDuration(120);
+      list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+          super.onScrollStateChanged(recyclerView, newState);
+          if (newState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+            final LinearLayoutManager lm   = (LinearLayoutManager) recyclerView.getLayoutManager();
+            final View                item = lm.findViewByPosition(lm.findFirstVisibleItemPosition());
+            if (item != null && item.getBottom() == recyclerView.getHeight()) {
+              listener.scrolledToBottom();
+            }
+          }
+        }
+      });
     }
   }
 
@@ -399,6 +413,7 @@ public class ConversationFragment extends Fragment
 
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
+    void scrolledToBottom();
   }
 
   private class ConversationScrollListener extends OnScrollListener {

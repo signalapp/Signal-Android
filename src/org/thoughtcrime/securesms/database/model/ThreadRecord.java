@@ -28,7 +28,6 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -44,7 +43,6 @@ public class ThreadRecord extends DisplayRecord {
   private @NonNull  final Context context;
   private @Nullable final Uri     snippetUri;
   private           final long    count;
-  private           final boolean read;
   private           final int     distributionType;
   private           final boolean archived;
   private           final long    expiresIn;
@@ -54,11 +52,10 @@ public class ThreadRecord extends DisplayRecord {
                       long threadId, int receiptCount, int status, long snippetType,
                       int distributionType, boolean archived, long expiresIn)
   {
-    super(context, body, recipients, date, date, threadId, status, receiptCount, snippetType);
+    super(context, body, recipients, date, date, threadId, status, receiptCount, snippetType, read);
     this.context          = context.getApplicationContext();
     this.snippetUri       = snippetUri;
     this.count            = count;
-    this.read             = read;
     this.distributionType = distributionType;
     this.archived         = archived;
     this.expiresIn        = expiresIn;
@@ -126,10 +123,6 @@ public class ThreadRecord extends DisplayRecord {
 
   public long getCount() {
     return count;
-  }
-
-  public boolean isRead() {
-    return read;
   }
 
   public long getDate() {

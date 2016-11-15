@@ -295,7 +295,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     calculateCharactersRemaining();
 
     MessageNotifier.setVisibleThread(threadId);
-    markThreadAsRead();
   }
 
   @Override
@@ -321,6 +320,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onDestroy() {
     saveDraft();
+    markThreadAsRead();
     if (recipients != null)              recipients.removeListener(this);
     if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
     if (recipientsStaleReceiver != null) unregisterReceiver(recipientsStaleReceiver);
@@ -354,6 +354,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       titleView.setTitle(recipients);
       setBlockedUserState(recipients);
       supportInvalidateOptionsMenu();
+      markThreadAsRead();
       break;
     case TAKE_PHOTO:
       if (attachmentManager.getCaptureUri() != null) {
@@ -715,6 +716,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleDial(final Recipient recipient) {
     if (recipient == null) return;
+
+    markThreadAsRead();
 
     if (isSecureVoice) {
       Intent intent = new Intent(this, RedPhoneService.class);
@@ -1337,6 +1340,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     fragment.scrollToBottom();
     attachmentManager.cleanup();
+    markThreadAsRead();
   }
 
   private void sendMessage() {
@@ -1678,6 +1682,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void setThreadId(long threadId) {
     this.threadId = threadId;
+  }
+
+  @Override
+  public void scrolledToBottom() {
+    markThreadAsRead();
   }
 
   @Override
