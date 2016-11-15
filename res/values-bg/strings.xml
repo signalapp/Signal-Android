@@ -239,7 +239,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Signal съообщения и разговори са деактивирани, моля пререгистрирайте през менюто Настройки &gt; Допълнителние.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Грешка при изтегляне на GIF-а с пълна резолюция...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-ове</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Стикери</string>
@@ -342,8 +341,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal, кажи им здрасти!</string>
-  <string name="MessageRecord_you">Ти</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи продължителност от %2$s преди съобщението да изчезне</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Числата за сигурност с %s са променени</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
@@ -492,6 +489,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Signal, помолете ги да го обновят преди да проверят числата за сигурност.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Опитвате се проверите числата за сигурност на %1$s, но вместо това сканирахте %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Сканираният QR код не представлява правилно форматира код на числа за сигурност. Моля, сканирайте отново.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да споделите.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
   <string name="KeyExchangeInitiator_send">Изпрати</string>
@@ -644,7 +642,6 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Търси сред GIF-ове и стикери</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Няма открити резултати.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Неуспешно прочитане на доклада на Вашето устройство. Все пак може да използвате ADB, за да получте доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
@@ -777,8 +774,8 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="recipients_panel__to"><small>Въведи име или номер</small></string>
   <string name="recipients_panel__add_members">Добави членове</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Ако желаете да проверите сигурноста на вашата криптирана от край-докрай сесия с %s, сравнете числата изписани по-горе с числата на тяхното устройство. Или сканирайте QR кодът от вашия на техния телефон или обратното.</string>
   <string name="verify_display_fragment__tap_to_scan">Натисните за сканиране</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Няколко проблема изискват вашето внимание.</string>
   <string name="message_details_header__sent">Изпратен</string>

@@ -359,8 +359,8 @@ Vei pierde orice informație care se află în instalarea curentă de Signal și
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel ratat de la %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s este pe Signal, salută-l!</string>
-  <string name="MessageRecord_you">Tu</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a/ai setat timpul pentru dispariția mesajelor la %2$s</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Tu ai setat timpul pentru dispariția mesajelor la %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Numerele tale de siguranță pentru %s s-au schimbat</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
@@ -507,8 +507,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Numerele tale de siguranță pentru %s s-au schimbat</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune veche de Signal, roagă-l să-și actualizeze versiunea înainte de a verifica numerele de siguranță.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Încerci să verifici numerele de siguranță cu %1$s, însă ai scanat în schimb pe %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Codul QR scanat nu este un număr de siguranță formatat corect. Te rog scanează din nou.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Partajează numerele de siguranță via...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Numerele noastre de siguranță:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți partaja.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniţializeaz deşi există o cerere?</string>
   <string name="KeyExchangeInitiator_send">Trimite</string>
@@ -666,7 +670,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Caută GIF-uri și autocolante</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Nici un rezulat obținut.</string>
+  <string name="giphy_fragment__nothing_found">Nu s-a găsit nimic</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Fișierul log nu a putut fi citit de pe dispozitivul tău. Poţi folosi în schimb ADB pentru a obţine log-ul de depanare.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
@@ -809,8 +813,10 @@ SMS a eșuat.</string>
   <string name="recipients_panel__to"><small>Introdu un nume sau un număr</small></string>
   <string name="recipients_panel__add_members">Adaugă membri</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Dacă dorești să verifici securitatea criptării integrale cu %s, compară numerele de deasupra cu numerele de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău.</string>
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numerele de deasupra cu numerele de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Află mai multe despre verificarea numerelor de siguranță</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apasă pentru a scana</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Partajează numerele de siguranță</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Anumite probleme au nevoie de atenția ta.</string>
   <string name="message_details_header__sent">Trimis</string>
@@ -1078,6 +1084,7 @@ SMS a eșuat.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
+  <string name="media_preview__forward_title">Expediază</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Salvează tot</string>
   <!--media_preview_activity-->

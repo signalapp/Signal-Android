@@ -344,7 +344,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s käyttää myös Signalia. Sano hei!</string>
-  <string name="MessageRecord_you">Sinä</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajan: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Sinun ja yhteystiedon %s turvanumerot ovat vaihtuneet</string>
   <!--PassphraseChangeActivity-->
@@ -492,8 +492,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Sinun ja yhteystiedon %s turvanumerot ovat vaihtuneet</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumerot.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Yhteystietosi käyttää uudempaa versiota Signalista, jonka QR-koodi ei toimi oman versiosi kanssa. Päivitä Signalisi uusimpaan versioon.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Yrität varmentaa turvanumeroita yhteystiedon %1$s kanssa, mutta sen sjiaan skannasit yhteystiedon %2$s turvanumerot.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skannaamasi QR-koodi ei ole oikeanmallinen turvanumerokoodi. Yritä skannata uudelleen.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Jaa turvanumerot...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Meidän Signal-turvanumeromme:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Näyttää siltä, ettei sinulla ole yhtään sovellusta, johon jakaa.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Aloita olemassa olevasta pyynnöstä huolimatta?</string>
   <string name="KeyExchangeInitiator_send">Lähetä</string>
@@ -646,7 +650,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Etsi GIFejä ja tarroja</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Ei tuloksia</string>
+  <string name="giphy_fragment__nothing_found">Mitään ei löytynyt</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Lokin lukeminen laitteestasi epäonnistui. Voit sen sijaan käyttää ADB-työkalua virheenkorjauslokin noutamiseen.</string>
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>
@@ -770,8 +774,9 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="recipients_panel__to"><small>Syötä nimi tai numero</small></string>
   <string name="recipients_panel__add_members">Lisää jäseniä</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi.</string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napsauttamalla</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Jaa turvanumerot</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Jotkin asiat kaipaavat huomiotasi.</string>
   <string name="message_details_header__sent">Lähetetty</string>
@@ -1036,6 +1041,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Median tyyppiä ei tueta</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Tallenna</string>
+  <string name="media_preview__forward_title">Välitä</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Tallenna kaikki</string>
   <!--media_preview_activity-->

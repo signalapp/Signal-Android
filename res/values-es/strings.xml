@@ -245,7 +245,7 @@ Recibido:%4$s</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Fallo permanente de comunicación de Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal fué incapaz de registrarse con Google Play Services. Los mensajes y llamadas de Signal han sido desactivados, por favor, intenta registrarte otra vez en Configuración &gt; Avanzado.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error al descargar el GIF a resolución completa...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error al descargar GIF a resolución completa...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Pegatinas (stickers)</string>
@@ -349,8 +349,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MessageRecord_called_s">Llamó a %s</string>
   <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">¡%s esta en Signal, salúdele!</string>
-  <string name="MessageRecord_you">Usted</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableció el plazo de mensajes desvanecentes a %2$s</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ha establecido la hora desaparición del mensaje a las %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableció la hora de desaparición del mensaje a las %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Sus números de seguridad con %s han cambiado</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves de acceso no coinciden!</string>
@@ -504,8 +504,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Sus números de seguridad con %s han cambiado</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Su contacto está ejecutando una versión antigua de Signal, por favor, pídale que actualice antes de verificar los números de seguridad.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Su contacto está ejecutando una versión de Signal con un formato de código QR incompatible. Por favor, actualice para comparar.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Está intentando verificar los números de seguridad con %1$s, pero escaneó la verificación de %2$s en su lugar.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">El código QR escaneado no es un código de verificación de número de seguridad con un formato correcto. Por favor, pruebe a escanear de nuevo.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Compartir números de seguridad vía...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Nuestros números de seguridad de Signal:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con qué compartir.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la solicitud existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -658,7 +662,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Buscar GIFs y pegatinas (stickers)</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">No se encontraron resultados</string>
+  <string name="giphy_fragment__nothing_found">No se encontró nada</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No se pudo leer el registro (log) en su dispositivo. Aún puede usar ADB para obtener un registro de depuración en su lugar.</string>
   <string name="log_submit_activity__thanks">¡Gracias por su ayuda!</string>
@@ -802,8 +806,10 @@ por SMS.
   <string name="recipients_panel__to"><small>Introduzca un nombre o número</small></string>
   <string name="recipients_panel__add_members">Añadir miembros</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Si desea verificar la seguridad de su cifrado extremo-a-extremo con %s, compare los números de arriba con los números en el dispositivo de su contacto. Como alternativa, puede escanear el código en el teléfono de su contacto, o pedirle que escanee el código de usted.</string>
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Si desea verificar la seguridad de su cifrado extremo-a-extremo con %s, compare los números anteriores con los números en su dispositivo. Como alternativa, puede escanear el código en el teléfono de su interlocutor, o pedirle a este que escanee el código de usted. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Conozca más sobre verificación de números de seguridad</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pulse para escanear</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Compartir números de seguridad</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Algunos asuntos necesitan su atención</string>
   <string name="message_details_header__sent">Enviado</string>
@@ -1068,6 +1074,7 @@ por SMS.
   <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido no compatible</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
+  <string name="media_preview__forward_title">Avanzar</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Guardar todo</string>
   <!--media_preview_activity-->

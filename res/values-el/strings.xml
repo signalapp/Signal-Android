@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Σήμα</string>
+  <string name="app_name">Signal</string>
   <string name="yes">Ναι</string>
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
@@ -88,8 +88,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Χρήση μη κρυπτογραφημένου MMS ως εναλλακτική;</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δεν</b> θα κρυπτογραφηθεί, επειδή ο παραλήπτης δεν είναι πλέον χρήστης του Signal.\n\nΝα σταλεί το μήνυμα μη κρυπτογραφημένο;</string>
   <string name="ConversationItem_unable_to_open_media">Δεν μπορεί να βρεθεί κατάλληλη εφαρμογή για το άνοιγμα αυτού του πολυμέσου.</string>
-  <string name="ConversationItem_from_s">από τον/την %s</string>
-  <string name="ConversationItem_to_s">προς τον/την %s</string>
+  <string name="ConversationItem_from_s">από %s</string>
+  <string name="ConversationItem_to_s">προς %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Επαναφορά ασφαλούς συνεδρίας;</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή την συζήτηση. Τα μηνύματα δεν θα σβηστούν.</string>
@@ -246,7 +246,6 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Μόνιμη αποτυχία επικοινωνίας του Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Το Signal δεν μπόρεσε να εγγραφτεί στις Υπηρεσίες Google Play. Τα μηνύματα και οι κλήσεις του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να επανεγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Σφάλμα κατά την απόκτηση της πλήρης ανάλυσης του GiF...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Αυτοκόλλητα</string>
@@ -351,8 +350,6 @@
   <string name="MessageRecord_called_s">Κλήση προς τον/την %s</string>
   <string name="MessageRecord_missed_call_from">Αναπάντητη κλήση από τον/την %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">Ο/Η %s είναι στο Signal, πες ένα γεια!</string>
-  <string name="MessageRecord_you">Εσύ</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ορισμός χρόνου εξαφάνισης μηνυμάτων σε %2$s</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Οι αριθμοί ασφαλείας με τον/την %s έχουν αλλάξει</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Τα συνθηματικά δε ταιριάζουν!</string>
@@ -499,6 +496,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Η επαφή σου τρέχει μια παλιά έκδοση του Signal, παρακαλώ ζήτα του/της να το αναβαθμίσει πριν την επιβεβαίωση των αριθμών ασφαλείας.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Προσπαθείς να επιβεβαιώσεις τους αριθμούς ασφαλείας με τον/την %1$s, αλλά σκάναρες τον/την %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Ο σκαναρισμένος QR κωδικός δεν είναι σωστά μορφοποιημένος κωδικός επιβεβαίωσης αριθμών ασφαλείας. Παρακαλώ προσπάθησε να σκανάρεις ξανά.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Φαινεται πως δεν έχεις κάποια εφαρμογή στην οποία μπορείς να μοιραστείς.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Εκκίνηση παρά το υπάρχον αίτημα;</string>
   <string name="KeyExchangeInitiator_send">Αποστολή</string>
@@ -651,7 +649,6 @@
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Αναζήτηση GIFs και αυτοκολλήτων</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Δεν βρέθηκαν αποτελέσματα.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Αποτυχία ανάγνωσης αρχείου συμβάντων για τη συσκευή σου. Μπορείς να χρησιμοποιήσεις το ADB για να πάρεις ένα αρχείο συμβάντων αποσφαλμάτωσης.</string>
   <string name="log_submit_activity__thanks">Ευχαριστούμε για τη βοήθειά σου!</string>
@@ -791,8 +788,8 @@
   <string name="recipients_panel__to"><small>Εισαγωγή ονόματος ή αριθμού</small></string>
   <string name="recipients_panel__add_members">Προσθήκη μελών</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογραφίας από άκρο σε άκρο με τον/την %s, σύγκρινε τους παραπάνω αριθμούς με τους αριθμούς στην συσκευή του/της. Εναλλακτικά, μπορείς να σκανάρεις τον κωδικό στο κινητό του/της, ή να του/της ζητήσεις να σκανάρει τον δικό σου κωδικό.</string>
   <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Ορισμένα ζητήματα χρειάζονται την προσοχή σου.</string>
   <string name="message_details_header__sent">Στάλθηκε στις</string>

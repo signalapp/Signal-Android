@@ -244,7 +244,10 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Elhúzódó Signal kommunikációs hiba!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">A Signal nem tudott regisztrálni a Google Play Szolgáltatásokkal. A Signal üzenetek és hívások le vannak tiltva, kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Hiba a teljes méretű GIF visszakeresésekor...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFek</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Matricák</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Új csoport</string>
   <string name="GroupCreateActivity_actionbar_update_title">Csoport frissítése</string>
@@ -347,8 +350,8 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MessageRecord_called_s">Hívtad: %s</string>
   <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s fent van a Signal-on, köszönj be!</string>
-  <string name="MessageRecord_you">Te</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította az eltűnő üzenet idejét erre: %2$s</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Beállítottad az eltűnő üzenet idejét erre: %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította az eltűnő üzenet idejét erre: %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">A biztonsági számaitok megváltoztak vele: %s</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">A jelmondatok nem egyeznek!</string>
@@ -502,8 +505,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">A biztonsági számaitok megváltoztak vele: %s</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kapcsolatod a Signal egy régi verzióját futtatja, kérlek kérd meg őket, hogy frissítsenek a biztonsági számok ellenőrzése előtt.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kapcsolatod a Signal egy újabb verzióját futtatja egy inkompatibilis QR kód formátummal. Kérlek frissíts az összehasonlításhoz.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Megpróbáltál biztonsági számokat ellenőrizni vele: %1$s, de ehelyett %2$s lett beszkennelve.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">A szkennelt QR kód nem egy helyesen formázott biztonság szám megerősítő kód. Kérlek próbáld újra szkennelni.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Biztonsági számok megosztása ezzel...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Signal biztonsági számaink:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Úgy néz ki, hogy nincs egy alkalmazásod se a megosztáshoz.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Kezdeményezed a létező kérés ellenére?</string>
   <string name="KeyExchangeInitiator_send">Küldés</string>
@@ -654,7 +661,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   </plurals>
   <string name="expiration_weeks_abbreviated">%dh</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFek és matricák keresése</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Nincs találat</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nem lehet olvasni a naplót a készülékeden. Ehelyett még mindig használhatsz ADB-t, hogy kapj hibakeresési naplót.</string>
   <string name="log_submit_activity__thanks">Köszönjük a segítségedet!</string>
@@ -805,8 +814,10 @@ sikertelen.
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy számot</small></string>
   <string name="recipients_panel__add_members">Tagok hozzáadása</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Ha szeretnéd ellenőrizni a végpontok közti titkosítást biztonságát vele: %s, hasonlítsd össze a fenti számokat az ő készülékén található számokkal. Felváltva ezt, beszkennelheted a kódot a telefonján, vagy megkérheted, hogy szkennelje be a te kódod.</string>
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Ha szeretnéd ellenőrizni a végpontok közti titkosítást biztonságát vele: %s, hasonlítsd össze a fenti számokat az ő készülékén található számokkal. Felváltva ezt, beszkennelheted a kódot a telefonján, vagy megkérheted, hogy szkennelje be a te kódod. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Tudj meg többet a biztonsági számok ellenőrzéséről</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Érints a szkenneléshez</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Biztonsági számok megosztása</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Néhány probléma a figyelmedet igényli.</string>
   <string name="message_details_header__sent">Elküldve</string>
@@ -1071,6 +1082,7 @@ sikertelen.
   <string name="MediaPreviewActivity_unssuported_media_type">Nem támogatott média típus</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Mentés</string>
+  <string name="media_preview__forward_title">Továbbítás</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Összes mentése</string>
   <!--media_preview_activity-->

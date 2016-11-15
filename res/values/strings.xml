@@ -271,7 +271,7 @@
 
 
     <!-- GiphyActivity -->
-    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error while retrieving full resolution GiF...</string>
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error while retrieving full resolution GIF...</string>
 
     <!-- GiphyFragmentPageAdapter -->
     <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
@@ -391,8 +391,8 @@
     <string name="MessageRecord_called_s">Called %s</string>
     <string name="MessageRecord_missed_call_from">Missed call from %s</string>
     <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
-    <string name="MessageRecord_you">You</string>
-    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s</string>
+    <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set disappearing message time to %1$s.</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s.</string>
     <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Your safety numbers with %s have changed</string>
 
 
@@ -563,8 +563,12 @@
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying safety numbers.</string>
+    <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Your contact is running a newer version of Signal with an incompatible QR code format. Please update to compare.</string>
     <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">You\'re attempting to verify safety numbers with %1$s, but scanned %2$s instead.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code.  Please try scanning again.</string>
+    <string name="VerifyIdentityActivity_share_safety_numbers_via">Share safety numbers via...</string>
+    <string name="VerifyIdentityActivity_our_signal_safety_numbers">Our Signal safety numbers:</string>
+    <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
@@ -763,7 +767,7 @@
     <string name="giphy_activity_toolbar__search_gifs_and_stickers">Search GIFs and stickers</string>
 
     <!-- giphy_fragment -->
-    <string name="giphy_fragment__no_results_found">No results found.</string>
+    <string name="giphy_fragment__nothing_found">Nothing found</string>
 
 
     <!-- log_submit_activity -->
@@ -934,8 +938,11 @@
     <string name="recipients_panel__add_members">Add members</string>
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">If you wish to verify the security of your end-to-end encryption with %s, compare the numbers above with the numbers on their device. Alternately, you can scan the code on their phone, or ask them to scan your code.</string>
+    <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[If you wish to verify the security of your end-to-end encryption with %s, compare the numbers above with the numbers on their device. Alternately, you can scan the code on their phone, or ask them to scan your code. <a href="https://whispersystems.org/redirect/safety-numbers">Learn more about verifying safety numbers</a>.]]></string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
+
+    <!-- verify_identity -->
+    <string name="verify_identity__share_safety_numbers">Share safety numbers</string>
     
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
@@ -1237,6 +1244,7 @@
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
+    <string name="media_preview__forward_title">Forward</string>
 
     <!-- media_overview -->
     <string name="media_overview__save_all">Save all</string>
@@ -1258,6 +1266,7 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
 
 
     <!-- EOF -->

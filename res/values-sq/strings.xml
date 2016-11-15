@@ -241,7 +241,6 @@ shifrat e sigurta për këtë numër.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dështim i pëhershëm komunikimi nga Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nuk mundi të regjistrohet me servicet e Google Play. Signal mesazhet dhe thirrjet janë të pamundësuara, ju lutemi regjistrohuni në Rregullimet &gt; Të avancuara.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">U shfaq problem duke e pranuar GIF-in në rezolucion të plotë...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFe</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Afishe</string>
@@ -350,8 +349,6 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="MessageRecord_called_s">Thirrët %s</string>
   <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s është në Signal, thuaj tung!</string>
-  <string name="MessageRecord_you">Ti</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s rregullo kohën për zhdukje të mesazhit në %2$s</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Numrat e sigurimit me %s kanë ndryshuar</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Fjalëkalimet nuk përputhen!</string>
@@ -498,6 +495,7 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj ka një verzion të vjetër të Signal-it, kërkoni që të shkarkojë verzionin e ri para se ti verifikoni numrat për siguri.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Ju po provoni ti verifikoni numrat për siguri me %1$s, por keni skanuar numrat e %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Kodi QR i skanuar nuk është në formatin e duhhur si kod verifikimi i numrave për siguri. Ju lutemi skanoni përsëri.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Duket që nuk keni epa me të cilat të ndani.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Inico përkurndër kërkesës ekzistuese?</string>
   <string name="KeyExchangeInitiator_send">Dërgo</string>
@@ -650,7 +648,6 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIFe dhe afishe</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Nuk është gjetur asnjë rezultat.</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Historia në pajisjen tuaj nuk mund të lexohet. Mund të përdorni ADB për ta lexuar historinë e gabimeve të përmirsuara.</string>
   <string name="log_submit_activity__thanks">Faleminderit për ndihmën!</string>
@@ -784,8 +781,8 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="recipients_panel__to"><small>Shkruaj një emër ose numër</small></string>
   <string name="recipients_panel__add_members">Shto pjesëmarrës</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Nëse dëshironi të verifikoni sigurimin e enkriptimit tuaj  me %s, krahasoni numrat më lartë me numrat në paisjen e tyre. Përndryshe, mund edhe ta skanoni kodin në paisjen e tyre, ose të kërkoni që ato të skanojnë kodin në paisjen tuaj.</string>
   <string name="verify_display_fragment__tap_to_scan">Shtypni për të skanuar</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Disa gjëra kërkojnë vëmendjen tuaj.</string>
   <string name="message_details_header__sent">Dërguar</string>

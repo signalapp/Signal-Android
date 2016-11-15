@@ -394,8 +394,6 @@
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s إنضم إلى سيجنال.. ألقي التحية!</string>
-  <string name="MessageRecord_you">أنت</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s  قد حدد وقت إختفاء الرسائل إلى %2$s </string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">أرقام الأمن %s قد تغيرت</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
@@ -537,6 +535,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">صديقك يستعمل نسخة، رجاءا إطلب منهم تحديث التطبيق قبل تأكيد أرقام الأمن</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">انك تحاول أن تحقق من أرقام الأمن ب %1$s, لكن تم فحص %2$s .</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">كود QR الممسوح ليس رقم تفيل صحيح. رجاءا امسحه مجددا.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ابدأ على الرغم من الطلب الحالي؟</string>
   <string name="KeyExchangeInitiator_send">أرسل</string>
@@ -823,8 +822,8 @@
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
   <string name="recipients_panel__add_members">إضافة أعضاء</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">إذا كنت تريد التحقق من أمن تشفير الطرف للطرف مع %s، قارن الآرقام التالية مع الأرقام على جهازه. أو بإمكانك نسخ الكود على جهازه، أو أن تطلب منه أن ينسخ الكود الخاص بك</string>
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">بعض المشاكل تتطلب انتباهك.</string>
   <string name="message_details_header__sent">أرسلت</string>

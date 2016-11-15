@@ -64,6 +64,9 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">מספרי הבטיחות עבור %1$s השתנו. ייתכן שזה אומר שמישהו מנסה ליירט את התקשורת שלך, ואולי %2$s פשוט התקין מחדש את סיגנל.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">אולי תרצה לאמת את
+מספרי הבטיחות עבור איש הקשר הזה.</string>
   <string name="ConfirmIdentityDialog_accept">קבל</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">שליחת מסר אל %s</string>
@@ -123,6 +126,7 @@
   <string name="ConversationActivity_mms_not_supported_message">אי־אפשר לשלוח את המסר הזה כי הספק שלך אינו תומך ב־MMS.</string>
   <string name="ConversationActivity_specify_recipient">נא לבחור איש קשר</string>
   <string name="ConversationActivity_unblock_this_contact_question">לבטל את החסימה של איש הקשר הזה?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">תוכל שוב לקבל מסרים ושיחות מאיש הקשר הזה.</string>
   <string name="ConversationActivity_unblock">הסרת חסימה</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה עברה את הגודל המותר לסוג המסר הנשלח.</string>
   <string name="ConversationActivity_quick_camera_unavailable">מצלמה אינה זמינה</string>
@@ -236,7 +240,10 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">כישלון קבוע בתקשורת סיגנל!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">סיגנל לא הצליח להירשם בשירותי גוגל Play. מסרים ושיחות של סיגנל כובו, נא לנסות להירשם שוב בהגדרות &lt; מתקדם.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">שגיאה בעת אחזור GIF ברזולוציה מלאה...</string>
   <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">קובצי GIF</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">מדבקות</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">קבוצה חדשה</string>
   <string name="GroupCreateActivity_actionbar_update_title">עדכון קבוצה</string>
@@ -313,6 +320,7 @@
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">סיגנל זקוק לסורק הברקודים כדי להשתמש בקודי QR.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">השליחה לא עבדה</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">מספרי בטיחות חדשים</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה־MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה־MMS...</string>
@@ -337,8 +345,9 @@
   <string name="MessageRecord_called_s">התקשרת אל %s</string>
   <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">עכשיו %s בסיגנל, וזה הזמן לשאול „מה שלומך”!</string>
-  <string name="MessageRecord_you">אני</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s הגדיר את זמן העלמת המסר ל־%2$s</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">הגדרת את זמן העלמת המסר ל־%1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s הגדיר את זמן העלמת המסר ל־%2$s.</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">מספרי הבטיחות שלך עם %s השתנו</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">המשפט הסודי אינו מתאים!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">המשפט הסודי הישן אינו נכון!</string>
@@ -382,8 +391,10 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">אוי, נראה שאפליקציית חנות Play אינה מותקנת במכשיר שלך.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">לחסום את איש הקשר הזה?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">לא תקבל עוד מסרים ושיחות מאיש הקשר הזה.</string>
   <string name="RecipientPreferenceActivity_block">לחסום</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">לבטל את החסימה של איש הקשר הזה?</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">תוכל שוב לקבל מסרים ושיחות מאיש הקשר הזה.</string>
   <string name="RecipientPreferenceActivity_unblock">הסרת חסימה</string>
   <string name="RecipientPreferenceActivity_enabled">מופעל</string>
   <string name="RecipientPreferenceActivity_disabled">כבוי</string>
@@ -465,6 +476,9 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 התקבל מסר החלפת מפתח לגרסה בלתי־תקינה
 של הפרוטוקול.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">הגיע מסר עם מספרי בטיחות חדשים. נא ללחוץ כדי לעבד ולהציג</string>
+  <string name="SmsMessageRecord_secure_session_reset">אתחלת את ההתחברות המאובטחת.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">ההתחברות המאובטחת אותחלה על־ידי %s.</string>
   <string name="SmsMessageRecord_duplicate_message">מסר כפול.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">עזר את הקבוצה...</string>
@@ -476,7 +490,15 @@
   <string name="ThreadRecord_media_message">מסר מדיה</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">עכשיו %s בסיגנל, וזה הזמן לשאול „מה שלומך”!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן העלמת המסר הוגדר ל־%s</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">מספרי הבטיחות שלך עם %s השתנו</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">איש הקשר שלך מריץ גרסה ישנה של סיגנל, אנא בקש ממנו לעדכן לפני אימות מספרי בטיחות.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של סיגנל עם תסדיר בלתי־תואם של קוד QR. נא לעדכן בשביל להשוות.</string>
+  <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">ניסית לאמת מספרי בטיחות עם %1$s, אבל סרקת את %2$s במקום זאת.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">קוד ה־QR שנסרק הוא לא קוד אימות מספר בטיחות בתסדיר תקין. נא לנסות לסרוק שוב.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">שיתוף מספרי בטיחות דרך...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">מספרי בטיחות סיגנל שלנו:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">נראה שאין לך לאילו אפליקציות לשתף.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">להתחיל למרות בקשה קיימת?</string>
   <string name="KeyExchangeInitiator_send">שלח</string>
@@ -627,7 +649,9 @@
   </plurals>
   <string name="expiration_weeks_abbreviated">%dשב׳</string>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">חיפוש קובצי GIF ומדבקות</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">לא נמצא דבר</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">לא ניתן לקרוא את היומן במכשיר שלך. עדיין אפשר להשתמש ב־ADB כדי לקבל יומן תיקון שגיאות.</string>
   <string name="log_submit_activity__thanks">תודה על העזרה שלך!</string>
@@ -687,6 +711,7 @@
   <string name="recipient_preferences__block">לחסום</string>
   <string name="recipient_preferences__color">צבע</string>
   <string name="recipient_preferences__color_for_this_contact">צבע לאיש הקשר הזה</string>
+  <string name="recipient_preferences__verify_safety_numbers">אימות מספרי בטיחות</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">שיחת סיגנל</string>
   <string name="redphone_call_controls__end_call">סיום שיחה</string>
@@ -755,11 +780,17 @@
   <string name="registration_progress_activity__check">סימון</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>נא להזין שם או מספר</small></string>
+  <string name="recipients_panel__add_members">הוספת חברים</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[אם ברצונך לוודא את האבטחה של ההצפנה מקצה לקצה עם %s, יש להשוות את המספרים למעלה עם המספרים במכשיר שלו. לחלופין, באפשרותך לסרוק את הקוד בטלפון שלו או לבקש ממנו לסרוק את הקוד שלך. <a href=\"https://whispersystems.org/redirect/safety-numbers\">מידע נוסף על מספרי בטיחות</a>.]]></string>
+  <string name="verify_display_fragment__tap_to_scan">יש ללחוץ לסריקה</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">שיתוף מספרי בטיחות</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">עניינים מסוימים דורשים את תשומת הלב שלך.</string>
   <string name="message_details_header__sent">נשלח</string>
   <string name="message_details_header__received">התקבל</string>
+  <string name="message_details_header__disappears">נעלם</string>
   <string name="message_details_header__via">דרך</string>
   <string name="message_details_header__to">מאת:</string>
   <string name="message_details_header__from">אל:</string>
@@ -770,6 +801,7 @@
   <string name="AndroidManifest__select_contacts">נא לבחור אנשי קשר</string>
   <string name="AndroidManifest__signal_detected">זיהיתי שיש סיגנל</string>
   <string name="AndroidManifest__change_passphrase">שינוי משפט סודי</string>
+  <string name="AndroidManifest__verify_safety_numbers">אימות מספרי בטיחות</string>
   <string name="AndroidManifest__log_submit">שליחת יומן תיקון שגיאות</string>
   <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
   <string name="AndroidManifest__media_overview">כל התמונות</string>
@@ -896,6 +928,8 @@
   <string name="preferences__support_wifi_calling">מצב תאימות „התקשרות WiFi”</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">יש להפעיל את זה אם המכשיר שלך משתמש במסירת SMS/MMS דרך WiFi (ורק אם מצב „התקשרות Wifi” או WiFi Calling מופעל במכשיר שלך)</string>
   <string name="preferences_app_protection__blocked_contacts">אנשי קשר חסומים</string>
+  <string name="preferences_app_protection__safety_numbers_approval">אישור מספרי בטיחות</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">לדרוש אישור מספרי בטיחות חדשים כאשר הם משתנים</string>
   <string name="preferences_notifications__display_in_notifications">להציג בהתראות</string>
   <string name="preferences_chats__when_using_mobile_data">בזמן שימוש בנתונים ניידים</string>
   <string name="preferences_chats__when_using_wifi">בזמן שימוש ב-WiFi</string>
@@ -1016,6 +1050,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה שאינו נתמך</string>
   <!--media_preview-->
   <string name="media_preview__save_title">שמירה</string>
+  <string name="media_preview__forward_title">העברה</string>
   <!--media_overview-->
   <string name="media_overview__save_all">לשמור הכול</string>
   <!--media_preview_activity-->

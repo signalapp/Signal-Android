@@ -69,7 +69,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int CONTACTS_ACCOUNT_VERSION             = 136;
   public static final int MEDIA_DOWNLOAD_CONTROLS_VERSION      = 151;
   public static final int REDPHONE_SUPPORT_VERSION             = 157;
-//  public static final int FINGERPRINTS_NON_BLOCKING_VESRION    = 197;
+//  public static final int FINGERPRINTS_NON_BLOCKING_VESRION    = 212;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);

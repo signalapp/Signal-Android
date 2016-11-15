@@ -203,7 +203,6 @@ opätovným importom zduplikujete správy.
   <!--MessageRecord-->
   <string name="MessageRecord_left_group">Opustili ste skupinu.</string>
   <string name="MessageRecord_updated_group">Skupina bola aktualizovaná.</string>
-  <string name="MessageRecord_you">Vy</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
@@ -468,6 +467,7 @@ zlyhalo.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vlož meno alebo číslo</small></string>
   <!--verify_display_fragment-->
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Isté problémy vyžadujú Vašu pozornosť.</string>
   <string name="message_details_header__sent">Odoslané</string>

@@ -327,7 +327,6 @@ a la còpia de seguretat.</string>
   <string name="MessageRecord_called_s">Has trucat a %s</string>
   <string name="MessageRecord_missed_call_from">Trucada perduda de %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s és a Signal, diga-li ei!</string>
-  <string name="MessageRecord_you">Tu</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les contrasenyes no coincideixen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
@@ -455,6 +454,7 @@ Comprova que aquest és el teu número! Anem a verificar-ho amb un SMS.</string>
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s és a Signal, diga-li hola!</string>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Sembla que no tens apps a on compartir-ho.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar encara que hi hagi una petició de tancament?</string>
   <string name="KeyExchangeInitiator_send">Envia</string>
@@ -702,6 +702,7 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introdueix un nom o número</small></string>
   <!--verify_display_fragment-->
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns problemes necessiten la teva atenció</string>
   <string name="message_details_header__sent">Enviat</string>

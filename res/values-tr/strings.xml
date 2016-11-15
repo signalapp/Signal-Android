@@ -225,7 +225,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kalıcı Signal haberleşme hatası!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Servislerine kayıt olamadı. Signal mesajları ve aramaları devre dışı bırakıldı, Lütfen Ayarlar &gt; Gelişmiş kısmından tekrardan kayıt olmayı deneyin.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Tam çözünürlükte GIF alınırken hata oluştu...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Tam çözünürlükte GIF alınırken hata oluştu... </string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">Gifler</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Çıkartmalar</string>
@@ -321,9 +321,9 @@
   <string name="MessageRecord_called_s">%s arandı</string>
   <string name="MessageRecord_missed_call_from">%s tarafından cevapsız çağrı</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s Signal\'e katıldı, ona merhaba de!</string>
-  <string name="MessageRecord_you">Siz</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">Mesaj yok olma zamanı %2$s olarak belirlendi. Belirleyen; %1$s</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Güvenlik numaralarınız %s ile değişti</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Mesaj yok olma zamanını %1$s olarak belirlediniz. </string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mesaj yok olma zamanını %2$s olarak belirledi.</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">%s ile güvenlik numaralarınız değişti</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolalar uyuşmuyor!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Yanlış eski parola!</string>
@@ -465,11 +465,12 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ThreadRecord_media_message">Medya mesajı</string>
   <string name="ThreadRecord_s_is_on_signal_say_hey">%s Signal\'de, ona merhaba de!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Mesaj yok olma zamanı %s olarak belirlendi</string>
-  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Güvenlik numaralarınız %s ile değişti</string>
+  <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">%s ile güvenlik numaralarınız değişti</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü çalıştırıyor, güvenlik numaralarını doğrulamadan önce lütfen güncellemesini isteyin.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Güvenlik numaralarını %1$s ile doğrulamak için çalışıyorsunuz, ama onun yerine %2$s  tarandı.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Taranan QR kodu doğru biçimlendirilmiş bir güvenlik numarası doğrulama kodu değil. Lütfen tekrar taramayı deneyin.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor. </string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Varolan isteğe rağmen başlat?</string>
   <string name="KeyExchangeInitiator_send">Gönder</string>
@@ -617,7 +618,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Gifler ve çıkartmalar ara</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Hiçbir sonuç bulunamadı.</string>
+  <string name="giphy_fragment__nothing_found">Hiçbir şey bulunamadı</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Cihazınızda bulunan log kayıtları okunamadı. ADB kullanarak log kayıtlarına erişim sağlayabilirsiniz.</string>
   <string name="log_submit_activity__thanks">Yardımınız için teşekkürler!</string>
@@ -745,8 +746,8 @@ başarısız.</string>
   <string name="recipients_panel__to"><small>Bir isim veya numara girin</small></string>
   <string name="recipients_panel__add_members">Üye ekle</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">%s ile uçtan uca şifreleme güvenliğini doğrulamak istiyorsanız, yukarıdaki sayıları kişinin aygıtındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilirsiniz, ya da kendisinin taramasını isteyebilirsiniz.</string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Bazı sorunlar ilginizi gerektiriyor.</string>
   <string name="message_details_header__sent">Gönderildi</string>
@@ -1009,6 +1010,7 @@ başarısız.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Desteklenmeyen medya türü</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Kaydet</string>
+  <string name="media_preview__forward_title">İleri</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Tümünü kaydet</string>
   <!--media_preview_activity-->

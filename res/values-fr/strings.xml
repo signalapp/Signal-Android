@@ -17,7 +17,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Supprimer tous les anciens messages maintenant ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Cela va immédiatement réduire toutes les conversations pour qu\'il ne reste que le message le plus récent.</item>
-    <item quantity="other">Ceci va immédiatement réduire toutes les conversations en ne gardant que les %d messages les plus récents.</item>
+    <item quantity="other">Ceci va immédiatement réduire toutes les conversations en conservant uniquement les %d messages les plus récents.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Désactiver la phrase de passe ?</string>
@@ -240,7 +240,7 @@ les numéros de sécurité de cet utilisateur.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec de communication Signal permanent !</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Les appels et messages Signal ont été désactivés car Signal n\'a pas pu s\'enregistrer auprès de Google Play Services. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres &gt; Avancé.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erreur lors de la récupération du GIF en haute résolution...</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erreur lors du téléchargement du GIF en pleine résolution...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Autocollants</string>
@@ -314,7 +314,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Signal a besoin de Barcode Scanner pour les QR codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Échec de l’envoi</string>
-  <string name="MessageDetailsRecipient_new_safety_numbers">Nouveau chiffrage de sécurité</string>
+  <string name="MessageDetailsRecipient_new_safety_numbers">Nouveaux numéros de sécurité</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Erreur d’enregistrement du MMS !</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Erreur de connexion au fournisseur MMS…</string>
@@ -339,9 +339,9 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageRecord_called_s">Appelé %s</string>
   <string name="MessageRecord_missed_call_from">Appel manqué de %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s est sur Signal, dites-lui bonjour !</string>
-  <string name="MessageRecord_you">Vous</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a réglé le temps de disparition des messages à %2$s</string>
-  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Votre chiffrage de sécurité avec %s a changé</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez choisi %1$s comme heure de disparition du message.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a choisi %2$s comme heure de disparition du message.</string>
+  <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Vos numéros de sécurité avec %s ont changés</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
@@ -469,7 +469,7 @@ cet appareil n\'est pas supporté pour la messagerie sur le canal de données. L
 Message d\'échange!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Réception d\'un message d\'échange de clés pour une version invalide du protocole.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Un message avec un nouveau chiffrage de sécurité a été reçu. Cliquez pour l\'accepter et l\'afficher.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Un message avec de nouveaux numéros de sécurité a été reçu. Cliquez pour l\'accepter et l\'afficher.</string>
   <string name="SmsMessageRecord_secure_session_reset">Vous avez réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message doublon.</string>
@@ -486,8 +486,12 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Vos numéros de sécurité avec %s ont changé</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact utilise une ancienne version de Signal, demandez-lui de mettre à jour l\'application avant de vérifier les numéros de sécurité.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal, avec un format de QR code incompatible. Mettez votre application à jour pour comparer.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Vous tentez de vérifier vos numéros de sécurité avec %1$s, mais vous avez scanné %2$s à la place.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le code QR scanné n\'est pas valide. Essayez de le scanner de nouveau.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Partager les numéros de sécurité via...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Nos numéros de sécurité Signal :</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Il semble n\'y avoir aucune application pour partager ce contenu.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initier malgré la demande existante ?</string>
   <string name="KeyExchangeInitiator_send">Envoyer</string>
@@ -640,7 +644,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Rechercher GIFs et autocollants</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__no_results_found">Aucun résultat trouvé.</string>
+  <string name="giphy_fragment__nothing_found">Pas de résultat</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Impossible d\'accéder aux journaux de votre appareil. Utilisez ADB pour obtenir un rapport de débogage.</string>
   <string name="log_submit_activity__thanks">Merci pour votre aide !</string>
@@ -701,7 +705,7 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="recipient_preferences__block">Bloquer</string>
   <string name="recipient_preferences__color">Couleur</string>
   <string name="recipient_preferences__color_for_this_contact">Couleur pour ce contact</string>
-  <string name="recipient_preferences__verify_safety_numbers">Vérification du chiffrage</string>
+  <string name="recipient_preferences__verify_safety_numbers">Vérification des numéros de sécurité</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Appel Signal</string>
   <string name="redphone_call_controls__end_call">Terminer l\'appel</string>
@@ -772,8 +776,10 @@ par SMS.</string>
   <string name="recipients_panel__to"><small>Entrez un nom ou un numéro</small></string>
   <string name="recipients_panel__add_members">Ajouter des membres</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above">Si vous désirez vérifier la sécurité de votre chiffrement de bout en bout avec %s, comparez les numéros ci-dessus avec ceux affichés sur leur appareil. Vous pouvez également scanner le code affiché sur leur appareil, ou leur demander de scanner le votre.</string>
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Si vous voulez verifier la securité du chiffrement de bout en bout avec %s, comparez les numéros ci-dessus avec les numéros sur son appareil. Vous pouvez également scanner le code sur son téléphone, ou lui demander de scanner votre code. <a href=\"https://whispersystems.org/redirect/safety-numbers\">En savoir plus sur les numéros de sécurité</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Appuyer pour scanner</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Partager les numéros de sécurité</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Des problèmes requièrent votre attention.</string>
   <string name="message_details_header__sent">Envoyé</string>
@@ -789,7 +795,7 @@ par SMS.</string>
   <string name="AndroidManifest__select_contacts">Sélectionner des contacts</string>
   <string name="AndroidManifest__signal_detected">Signal détecté</string>
   <string name="AndroidManifest__change_passphrase">Modifier la phrase de passe</string>
-  <string name="AndroidManifest__verify_safety_numbers">Vérification du chiffrage</string>
+  <string name="AndroidManifest__verify_safety_numbers">Vérification des numéros de sécurité</string>
   <string name="AndroidManifest__log_submit">Envoyer un rapport de débogage</string>
   <string name="AndroidManifest__media_preview">Aperçu du média</string>
   <string name="AndroidManifest__media_overview">Toutes les images</string>
@@ -916,8 +922,8 @@ par SMS.</string>
   <string name="preferences__support_wifi_calling">Compatibilité \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFi (n\'activer que si \"WiFi Calling\" est activé sur votre appareil).</string>
   <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string>
-  <string name="preferences_app_protection__safety_numbers_approval">Chiffrage de sécurité autorisé</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Nécessite d\'accepter chaque nouveau changement du chiffrage de sécurité</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Approbation des numéros de sécurité</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Nécessite d\'approuver les numéros de sécurité lorsqu\'ils changent</string>
   <string name="preferences_notifications__display_in_notifications">Afficher dans les notifications</string>
   <string name="preferences_chats__when_using_mobile_data">Avec les données mobiles</string>
   <string name="preferences_chats__when_using_wifi">Avec le WI-FI</string>
@@ -1038,6 +1044,7 @@ par SMS.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Type de média non supporté</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Enregistrer</string>
+  <string name="media_preview__forward_title">Suivant</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Tout sauvegarder</string>
   <!--media_preview_activity-->

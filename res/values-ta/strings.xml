@@ -265,7 +265,6 @@
   <string name="MessageRecord_s_called_you">%s உங்களை அழைத்தார்</string>
   <string name="MessageRecord_called_s">%sயை அழைத்தீர்கள்</string>
   <string name="MessageRecord_missed_call_from"> %s யடமிருந்து தவறிய அழைப்பு</string>
-  <string name="MessageRecord_you">நீங்கள்</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">கடவுச்சொற்கள் பொருந்தவில்லை!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">தவறான பழைய கடவுச்சொல்!</string>
@@ -571,6 +570,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
   <!--verify_display_fragment-->
+  <!--verify_identity-->
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">சில பிரச்சினைகளுக்கு உங்கள் கவனம் தேவைப்படுகிறது.</string>
   <string name="message_details_header__sent">அனுப்பபட்டது</string>

@@ -157,6 +157,12 @@ public class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHol
   }
 
   @Override
+  public void onViewRecycled(GiphyViewHolder holder) {
+    super.onViewRecycled(holder);
+    Glide.clear(holder.thumbnail);
+  }
+
+  @Override
   public int getItemCount() {
     return images.size();
   }
