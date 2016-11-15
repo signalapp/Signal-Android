@@ -774,6 +774,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="recipients_panel__to"><small>Syötä nimi tai numero</small></string>
   <string name="recipients_panel__add_members">Lisää jäseniä</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Lue lisää turvanumeroiden varmentamisesta</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napsauttamalla</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_numbers">Jaa turvanumerot</string>
