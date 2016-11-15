@@ -569,6 +569,7 @@
     <string name="VerifyIdentityActivity_share_safety_numbers_via">Share safety numbers via...</string>
     <string name="VerifyIdentityActivity_our_signal_safety_numbers">Our Signal safety numbers:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
+    <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">No safety numbers to compare were found in the clipboard</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
@@ -1210,6 +1211,10 @@
     <string name="text_secure_normal__invite_friends">Invite friends</string>
     <string name="text_secure_normal__help">Help</string>
 
+    <!-- verify_display_fragment -->
+    <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copy to clipboard</string>
+    <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compare with clipboard</string>
+
     <!-- reminder_header -->
     <string name="reminder_header_outdated_build">Your version of Signal is outdated</string>
     <plurals name="reminder_header_outdated_build_details">
@@ -1266,7 +1271,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-
 
 
     <!-- EOF -->

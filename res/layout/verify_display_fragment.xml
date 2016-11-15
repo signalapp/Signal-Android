@@ -48,11 +48,17 @@
         </FrameLayout>
 
 
-        <TableLayout android:layout_width="wrap_content"
+        <TableLayout android:id="@+id/number_table"
+                     android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:layout_marginTop="5dp">
+                     android:layout_marginTop="5dp"
+                     android:clickable="true"
+                     android:focusable="true">
 
-            <TableRow android:gravity="center_horizontal">
+            <TableRow android:gravity="center_horizontal"
+                      android:clickable="false"
+                      android:focusable="false">
+
                 <TextView android:id="@+id/code_first"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
