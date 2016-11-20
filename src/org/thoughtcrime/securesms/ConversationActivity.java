@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -35,6 +36,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
+import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
@@ -195,6 +197,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   TextView              charactersLeft;
   private   ConversationFragment  fragment;
   private   Button                unblockButton;
+  private   Button                makeDefaultSmsButton;
   private   InputAwareLayout      container;
   private   View                  composePanel;
   protected ReminderView          reminderView;
@@ -291,7 +294,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     titleView.setTitle(recipients);
     setActionBarColor(recipients.getColor());
-    setBlockedUserState(recipients);
+    setBlockedUserState(recipients, isSecureText);
     calculateCharactersRemaining();
 
     MessageNotifier.setVisibleThread(threadId);
@@ -352,7 +355,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
       recipients.addListener(this);
       titleView.setTitle(recipients);
-      setBlockedUserState(recipients);
+      setBlockedUserState(recipients, isSecureText);
       supportInvalidateOptionsMenu();
       break;
     case TAKE_PHOTO:
@@ -585,6 +588,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }).show();
   }
 
+  @TargetApi(Build.VERSION_CODES.KITKAT)
+  private void handleMakeDefaultSms() {
+    Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
+    intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
+    startActivity(intent);
+  }
+
   private void handleInviteLink() {
     try {
       boolean a = SecureRandom.getInstance("SHA1PRNG").nextBoolean();
@@ -786,6 +796,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     calculateCharactersRemaining();
     supportInvalidateOptionsMenu();
+    setBlockedUserState(recipients, isSecureText);
   }
 
   ///// Initializers
@@ -954,6 +965,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     charactersLeft        = ViewUtil.findById(this, R.id.space_left);
     emojiDrawer           = ViewUtil.findById(this, R.id.emoji_drawer);
     unblockButton         = ViewUtil.findById(this, R.id.unblock_button);
+    makeDefaultSmsButton  = ViewUtil.findById(this, R.id.make_default_sms_button);
     composePanel          = ViewUtil.findById(this, R.id.bottom_panel);
     container             = ViewUtil.findById(this, R.id.layout_container);
     reminderView          = ViewUtil.findById(this, R.id.reminder);
@@ -1014,6 +1026,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     });
 
+    makeDefaultSmsButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        handleMakeDefaultSms();
+      }
+    });
+
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
     composeText.setOnEditorActionListener(sendButtonListener);
@@ -1059,7 +1078,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void run() {
         titleView.setTitle(recipients);
-        setBlockedUserState(recipients);
+        setBlockedUserState(recipients, isSecureText);
         setActionBarColor(recipients.getColor());
         invalidateOptionsMenu();
         updateRecipientPreferences();
@@ -1225,13 +1244,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setStatusBarColor(color.toStatusBarColor(this));
   }
 
-  private void setBlockedUserState(Recipients recipients) {
+  private void setBlockedUserState(Recipients recipients, boolean isSecureText) {
     if (recipients.isBlocked()) {
       unblockButton.setVisibility(View.VISIBLE);
       composePanel.setVisibility(View.GONE);
+      makeDefaultSmsButton.setVisibility(View.GONE);
+    } else if (!isSecureText && !Util.isDefaultSmsProvider(this)) {
+      unblockButton.setVisibility(View.GONE);
+      composePanel.setVisibility(View.GONE);
+      makeDefaultSmsButton.setVisibility(View.VISIBLE);
     } else {
       composePanel.setVisibility(View.VISIBLE);
       unblockButton.setVisibility(View.GONE);
+      makeDefaultSmsButton.setVisibility(View.GONE);
     }
   }
 
