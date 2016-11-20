@@ -81,6 +81,10 @@ public class GroupDatabase extends Database {
     return record;
   }
 
+  public boolean isUnknownGroup(byte[] groupId) {
+    return getGroup(groupId) == null;
+  }
+
   public Reader getGroupsFilteredByTitle(String constraint) {
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, TITLE + " LIKE ?",
                                                                new String[]{"%" + constraint + "%"},
@@ -129,6 +133,7 @@ public class GroupDatabase extends Database {
     contentValues.put(ACTIVE, 1);
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
+    notifyConversationListListeners();
   }
 
   public void update(byte[] groupId, String title, SignalServiceAttachmentPointer avatar) {
@@ -147,6 +152,7 @@ public class GroupDatabase extends Database {
 
     RecipientFactory.clearCache(context);
     notifyDatabaseListeners();
+    notifyConversationListListeners();
   }
 
   public void updateTitle(byte[] groupId, String title) {
