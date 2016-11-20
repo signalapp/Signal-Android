@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -132,9 +133,10 @@ public class PushDecryptJob extends ContextJob {
 
   private void handleMessage(MasterSecretUnion masterSecret, SignalServiceEnvelope envelope, Optional<Long> smsMessageId) {
     try {
-      SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
-      SignalServiceAddress localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, axolotlStore);
+      GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
+      SignalProtocolStore  axolotlStore  = new SignalProtocolStoreImpl(context);
+      SignalServiceAddress localAddress  = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
+      SignalServiceCipher  cipher        = new SignalServiceCipher(localAddress, axolotlStore);
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -146,6 +148,10 @@ public class PushDecryptJob extends ContextJob {
         else if (message.isExpirationUpdate())         handleExpirationUpdate(masterSecret, envelope, message, smsMessageId);
         else if (message.getAttachments().isPresent()) handleMediaMessage(masterSecret, envelope, message, smsMessageId);
         else                                           handleTextMessage(masterSecret, envelope, message, smsMessageId);
+
+        if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(message.getGroupInfo().get().getGroupId())) {
+          handleUnknownGroupMessage(envelope, message.getGroupInfo().get());
+        }
       } else if (content.getSyncMessage().isPresent()) {
         SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
 
@@ -221,6 +227,14 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
+  private void handleUnknownGroupMessage(@NonNull SignalServiceEnvelope envelope,
+                                         @NonNull SignalServiceGroup group)
+  {
+    ApplicationContext.getInstance(context)
+                      .getJobManager()
+                      .add(new RequestGroupInfoJob(context, envelope.getSource(), group.getGroupId()));
+  }
+
   private void handleExpirationUpdate(@NonNull MasterSecretUnion masterSecret,
                                       @NonNull SignalServiceEnvelope envelope,
                                       @NonNull SignalServiceDataMessage message,
@@ -254,6 +268,8 @@ public class PushDecryptJob extends ContextJob {
                                             @NonNull Optional<Long> smsMessageId)
       throws MmsException
   {
+    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+
     Long threadId;
 
     if (message.getMessage().isGroupUpdate()) {
@@ -264,6 +280,10 @@ public class PushDecryptJob extends ContextJob {
       threadId = handleSynchronizeSentMediaMessage(masterSecret, message, smsMessageId);
     } else {
       threadId = handleSynchronizeSentTextMessage(masterSecret, message, smsMessageId);
+    }
+
+    if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(message.getMessage().getGroupInfo().get().getGroupId())) {
+      handleUnknownGroupMessage(envelope, message.getMessage().getGroupInfo().get());
     }
 
     if (threadId != null) {
