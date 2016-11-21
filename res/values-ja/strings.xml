@@ -458,8 +458,11 @@
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">%sとの安全番号が変わりました</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">相手先は古いバージョンのSignalを使っています。最新版に更新するようお願いしてください。</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手が使っているSignalのバージョンが新しいため，QRコードの形式が異なります。Signalを更新してから改めて比較してください。</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">%1$sのコードを読み取るつもりが，%2$sのコードを読み取っています。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">読み取ったQRコードは安全番号のコードとは違うようです。QRコードを読み取り直してください。</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">安全番号を共有しています……</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">安全番号は</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">シェアするためのアプリがないようです。</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
@@ -719,8 +722,10 @@
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <string name="recipients_panel__add_members">メンバーを追加</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[%sとの端末間の暗号化が完全かどうかを確認するには，上記の番号と相手方に表示されている番号を比べてください。あるいは，相手方の端末上のQRコードを読み取るか，こちらのQRコードを相手に読み取ってもらってください。<a href=\"https://whispersystems.org/redirect/safety-numbers\">安全番号の確認についての詳細</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">読み取る</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">安全番号を共有する</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">問題があります</string>
   <string name="message_details_header__sent">送信</string>

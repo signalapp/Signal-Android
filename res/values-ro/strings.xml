@@ -507,8 +507,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Numerele tale de siguranță pentru %s s-au schimbat</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune veche de Signal, roagă-l să-și actualizeze versiunea înainte de a verifica numerele de siguranță.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Încerci să verifici numerele de siguranță cu %1$s, însă ai scanat în schimb pe %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Codul QR scanat nu este un număr de siguranță formatat corect. Te rog scanează din nou.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Partajează numerele de siguranță via...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Numerele noastre de siguranță:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți partaja.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniţializeaz deşi există o cerere?</string>
@@ -810,8 +813,10 @@ SMS a eșuat.</string>
   <string name="recipients_panel__to"><small>Introdu un nume sau un număr</small></string>
   <string name="recipients_panel__add_members">Adaugă membri</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numerele de deasupra cu numerele de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Află mai multe despre verificarea numerelor de siguranță</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apasă pentru a scana</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Partajează numerele de siguranță</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Anumite probleme au nevoie de atenția ta.</string>
   <string name="message_details_header__sent">Trimis</string>

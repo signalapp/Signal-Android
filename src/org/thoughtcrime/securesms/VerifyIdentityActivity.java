@@ -34,8 +34,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,6 +49,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -226,6 +230,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     private Fingerprint fingerprint;
 
     private View                 container;
+    private View                 numbersContainer;
     private ImageView            qrCode;
     private ImageView            qrVerified;
     private TextView             description;
@@ -237,24 +242,26 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
-      this.container   = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_display_fragment);
-      this.qrCode      = ViewUtil.findById(container, R.id.qr_code);
-      this.qrVerified  = ViewUtil.findById(container, R.id.qr_verified);
-      this.description = ViewUtil.findById(container, R.id.description);
-      this.codes[0]    = ViewUtil.findById(container, R.id.code_first);
-      this.codes[1]    = ViewUtil.findById(container, R.id.code_second);
-      this.codes[2]    = ViewUtil.findById(container, R.id.code_third);
-      this.codes[3]    = ViewUtil.findById(container, R.id.code_fourth);
-      this.codes[4]    = ViewUtil.findById(container, R.id.code_fifth);
-      this.codes[5]    = ViewUtil.findById(container, R.id.code_sixth);
-      this.codes[6]    = ViewUtil.findById(container, R.id.code_seventh);
-      this.codes[7]    = ViewUtil.findById(container, R.id.code_eighth);
-      this.codes[8]    = ViewUtil.findById(container, R.id.code_ninth);
-      this.codes[9]    = ViewUtil.findById(container, R.id.code_tenth);
-      this.codes[10]   = ViewUtil.findById(container, R.id.code_eleventh);
-      this.codes[11]   = ViewUtil.findById(container, R.id.code_twelth);
+      this.container        = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_display_fragment);
+      this.numbersContainer = ViewUtil.findById(container, R.id.number_table);
+      this.qrCode           = ViewUtil.findById(container, R.id.qr_code);
+      this.qrVerified       = ViewUtil.findById(container, R.id.qr_verified);
+      this.description      = ViewUtil.findById(container, R.id.description);
+      this.codes[0]         = ViewUtil.findById(container, R.id.code_first);
+      this.codes[1]         = ViewUtil.findById(container, R.id.code_second);
+      this.codes[2]         = ViewUtil.findById(container, R.id.code_third);
+      this.codes[3]         = ViewUtil.findById(container, R.id.code_fourth);
+      this.codes[4]         = ViewUtil.findById(container, R.id.code_fifth);
+      this.codes[5]         = ViewUtil.findById(container, R.id.code_sixth);
+      this.codes[6]         = ViewUtil.findById(container, R.id.code_seventh);
+      this.codes[7]         = ViewUtil.findById(container, R.id.code_eighth);
+      this.codes[8]         = ViewUtil.findById(container, R.id.code_ninth);
+      this.codes[9]         = ViewUtil.findById(container, R.id.code_tenth);
+      this.codes[10]        = ViewUtil.findById(container, R.id.code_eleventh);
+      this.codes[11]        = ViewUtil.findById(container, R.id.code_twelth);
 
       this.qrCode.setOnClickListener(clickListener);
+      this.registerForContextMenu(numbersContainer);
 
       return container;
     }
@@ -305,6 +312,26 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       recipient.removeListener(this);
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view,
+                                    ContextMenuInfo menuInfo)
+    {
+      super.onCreateContextMenu(menu, view, menuInfo);
+
+      MenuInflater inflater = getActivity().getMenuInflater();
+      inflater.inflate(R.menu.verify_display_fragment_context_menu, menu);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+      switch (item.getItemId()) {
+        case R.id.menu_copy:    handleCopyToClipboard();      return true;
+        case R.id.menu_compare: handleCompareWithClipboard(); return true;
+        default:                return super.onContextItemSelected(item);
+      }
+    }
+
     public void setScannedFingerprint(String scanned) {
       try {
         if (fingerprint.getScannableFingerprint().compareTo(scanned.getBytes("ISO-8859-1"))) {
@@ -344,6 +371,32 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       }
 
       return result.toString();
+    }
+
+    private void handleCopyToClipboard() {
+      Util.writeTextToClipboard(getActivity(), getFormattedSafetyNumbers());
+    }
+
+    private void handleCompareWithClipboard() {
+      String clipboardData = Util.readTextFromClipboard(getActivity());
+
+      if (clipboardData == null) {
+        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard, Toast.LENGTH_LONG).show();
+        return;
+      }
+
+      String numericClipboardData = clipboardData.replaceAll("\\D", "");
+
+      if (TextUtils.isEmpty(numericClipboardData) || numericClipboardData.length() != 60) {
+        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard, Toast.LENGTH_LONG).show();
+        return;
+      }
+
+      if (fingerprint.getDisplayableFingerprint().getDisplayText().equals(numericClipboardData)) {
+        animateVerifiedSuccess();
+      } else {
+        animateVerifiedFailure();
+      }
     }
 
     private void setFingerprintViews(Fingerprint fingerprint) {

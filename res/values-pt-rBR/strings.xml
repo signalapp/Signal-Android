@@ -101,7 +101,7 @@
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contato</string>
   <string name="ConversationActivity_compose_message">Escrever mensagem</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">desculpe, ocorreu um erro ao anexar o documento.</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Desculpe, ocorreu um erro ao anexar o documento.</string>
   <string name="ConversationActivity_the_gif_you_selected_was_too_big">O gif selecionado é muito grande!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Desculpe, o vídeo selecionado excede as restrições de tamanho da mensagem (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Desculpe, o áudio selecionado excede as restrições de tamanho da mensagem (%1$skB).</string>
@@ -439,7 +439,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número que você
         especificou (%s) é inválido.
     </string>
-  <string name="RegistrationActivity_unsupported">Não suportado</string>
+  <string name="RegistrationActivity_unsupported">Incompatível</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Desculpe,
         este dispositivo não é suportado para mensagens de dados. Dispositivos rodando versões de Android anteriores
         à 4.0 devem ter uma Conta Google registrada. Dispositivos rodando Android 4.0 ou superior não
@@ -517,7 +517,7 @@
   <string name="KeyExchangeInitiator_send">Enviar</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem cifrada corrompida...</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">A decifrar, por favor aguarde...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Descriptografando, por favor aguarde...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem cifrada para sessão inexistente...</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Erro ao descriptografar mensagem.</string>
