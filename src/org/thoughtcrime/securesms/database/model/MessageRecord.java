@@ -95,10 +95,7 @@ public abstract class MessageRecord extends DisplayRecord {
     if (isGroupUpdate() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_you_updated_group));
     } else if (isGroupUpdate()) {
-      String description = context.getString(R.string.MessageRecord_s_updated_group, getIndividualRecipient().toShortString());
-      String details     = GroupUtil.getDescription(context, getBody().getBody()).toString();
-      if (!details.trim().isEmpty()) description += "\n" + details;
-      return emphasisAdded(description);
+      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()).toString(getIndividualRecipient()));
     } else if (isGroupQuit() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
