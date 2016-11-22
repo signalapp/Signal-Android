@@ -39,9 +39,9 @@ import java.util.List;
  */
 public class AndroidAutoHeardReceiver extends MasterSecretBroadcastReceiver {
 
-  public static final String TAG                 = AndroidAutoHeardReceiver.class.getSimpleName();
-  public static final String HEARD_ACTION        = "org.thoughtcrime.securesms.notifications.ANDROID_AUTO_HEARD";
-  public static final String THREAD_IDS_EXTRA    = "car_heard_thread_ids";
+  public static final String TAG              = AndroidAutoHeardReceiver.class.getSimpleName();
+  public static final String HEARD_ACTION     = "org.thoughtcrime.securesms.notifications.ANDROID_AUTO_HEARD";
+  public static final String THREAD_IDS_EXTRA = "car_heard_thread_ids";
 
   @Override
   protected void onReceive(final Context context, Intent intent,
