@@ -106,6 +106,7 @@ public class AttachmentManager {
   public void clear() {
     Log.e(TAG, "Clear");
     slideDeck.clear();
+    thumbnail.setVisibility(View.GONE);
     attachmentView.setVisibility(View.GONE);
     attachmentListener.onAttachmentChanged();
   }
@@ -172,6 +173,7 @@ public class AttachmentManager {
       }
     }
     attachmentView.setVisibility(View.VISIBLE);
+    thumbnail.setVisibility(View.VISIBLE);
     thumbnail.setImageResource(slide);
     if(slide instanceof AudioSlide) {
       widthBefore =  widthBefore < thumbnail.getLayoutParams().height ? thumbnail.getLayoutParams().height : widthBefore;

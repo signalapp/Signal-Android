@@ -51,7 +51,8 @@
                         android:layout_gravity="right"
                         android:background="?conversation_item_sent_background"
                         android:contentDescription="Attachment Thumbnail"
-                        android:foregroundGravity="right" />
+                        android:foregroundGravity="right"
+                        android:visibility="gone"/>
 
                     <org.thoughtcrime.securesms.components.RemovableMediaView
                         android:id="@+id/removable_media_view"
