@@ -28,7 +28,7 @@
                         app:matProg_barColor="@color/white"
                         app:matProg_linearProgress="true"
                         app:matProg_spinSpeed="0.333"
-                        tools:visibility="visible"/>
+                        tools:visibility="gone"/>
 
                 <ImageView android:id="@+id/play"
                            android:layout_width="wrap_content"
@@ -39,6 +39,8 @@
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
                            android:src="@drawable/ic_play_circle_fill_white_48dp"
+                           android:scaleType="centerInside"
+                           tools:visibility="gone"
                            android:contentDescription="Play"/>
 
                 <ImageView android:id="@+id/pause"
@@ -50,6 +52,7 @@
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
                            android:src="@drawable/ic_pause_circle_fill_white_48dp"
+                           android:scaleType="centerInside"
                            android:contentDescription="Pause"/>
 
                 <ImageView android:id="@+id/download"

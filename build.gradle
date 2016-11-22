@@ -169,6 +169,8 @@ android {
         minSdkVersion 9
         targetSdkVersion 22
 
+        vectorDrawables.useSupportLibrary = true
+
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "GIPHY_PROXY_HOST", "\"giphy-proxy-production.whispersystems.org\""

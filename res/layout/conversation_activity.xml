@@ -70,7 +70,8 @@
                         android:background="@color/white"
                         android:paddingTop="15dp"
                         android:paddingBottom="15dp"
-                        app:tintColor="@color/grey_500"/>
+                        app:foregroundTintColor="@color/grey_500"
+                        app:backgroundTintColor="@color/white"/>
 
             </org.thoughtcrime.securesms.components.RemovableMediaView>
 
