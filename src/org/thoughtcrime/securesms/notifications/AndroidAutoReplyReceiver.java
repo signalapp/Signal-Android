@@ -44,7 +44,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Get the response text from the Wearable Device and sends an message as a reply
+ * Get the response text from the Android Auto and sends an message as a reply
  */
 public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
 
@@ -65,7 +65,7 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
     if (remoteInput == null) return;
 
     final long[]       recipientIds = intent.getLongArrayExtra(RECIPIENT_IDS_EXTRA);
-    final long threadId = intent.getLongExtra(THREAD_ID_EXTRA, -1);
+    final long         threadId     = intent.getLongExtra(THREAD_ID_EXTRA, -1);
     final CharSequence responseText = getMessageText(intent);
     final Recipients   recipients   = RecipientFactory.getRecipientsForIds(context, recipientIds, false);
 
@@ -101,12 +101,11 @@ public class AndroidAutoReplyReceiver extends MasterSecretBroadcastReceiver {
   }
 
   private CharSequence getMessageText(Intent intent) {
-        Bundle remoteInput =
-            RemoteInput.getResultsFromIntent(intent);
-        if (remoteInput != null) {
-            return remoteInput.getCharSequence(VOICE_REPLY_KEY);
-        }
-        return null;
+    Bundle remoteInput = RemoteInput.getResultsFromIntent(intent);
+    if (remoteInput != null) {
+      return remoteInput.getCharSequence(VOICE_REPLY_KEY);
     }
+    return null;
+  }
 
 }
