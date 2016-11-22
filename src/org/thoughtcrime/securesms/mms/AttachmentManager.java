@@ -139,6 +139,7 @@ public class AttachmentManager {
   public void setLocation(@NonNull final MasterSecret masterSecret, @NonNull final SignalPlace place)
   {
     clear();
+    attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.GONE);
 
     ListenableFuture<Bitmap> future = mapView.display(place);
 
