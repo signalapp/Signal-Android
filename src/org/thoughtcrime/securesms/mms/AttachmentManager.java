@@ -104,10 +104,10 @@ public class AttachmentManager {
   }
 
   public void clear() {
-    Log.e(TAG, "Clear");
     slideDeck.clear();
     thumbnail.setVisibility(View.GONE);
     attachmentView.setVisibility(View.GONE);
+    removableMediaView.setVisibility(View.GONE);
     attachmentListener.onAttachmentChanged();
   }
 
@@ -138,9 +138,12 @@ public class AttachmentManager {
 
   public void setLocation(@NonNull final MasterSecret masterSecret, @NonNull final SignalPlace place)
   {
+    clear();
+
     ListenableFuture<Bitmap> future = mapView.display(place);
 
     attachmentView.setVisibility(View.VISIBLE);
+    removableMediaView.setVisibility(View.VISIBLE);
     removableMediaView.display(mapView);
 
     future.addListener(new AssertedSuccessListener<Bitmap>() {
@@ -164,6 +167,7 @@ public class AttachmentManager {
     });
   }
   public void setMedia(final Slide slide) {
+    clear();
     slideDeck.clear();
     slideDeck.addSlide(slide);
     if(slide.hasVideo()) {
