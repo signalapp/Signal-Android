@@ -69,14 +69,6 @@
 
                     </org.thoughtcrime.securesms.components.RemovableMediaView>
 
-                    <View
-                        android:id="@+id/triangle_tick"
-                        android:layout_width="12dp"
-                        android:layout_height="15dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="12dp"
-                        android:background="?conversation_item_sent_triangle_background" />
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"

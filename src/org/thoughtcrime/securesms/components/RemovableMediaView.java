@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.R;
 
 public class RemovableMediaView extends FrameLayout {
 
-    private final @NonNull ImageView remove;
+    //private final @NonNull ImageView remove;
     private final int removeSize;
 
     private @Nullable View current;
@@ -29,16 +29,16 @@ public class RemovableMediaView extends FrameLayout {
     public RemovableMediaView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        this.remove     = (ImageView)LayoutInflater.from(context).inflate(R.layout.media_view_remove_button, this, false);
+        //this.remove     = (ImageView)LayoutInflater.from(context).inflate(R.layout.media_view_remove_button, this, false);
         this.removeSize = getResources().getDimensionPixelSize(R.dimen.media_bubble_remove_button_size);
 
-        this.remove.setVisibility(View.GONE);
+        //this.remove.setVisibility(View.GONE);
     }
 
     @Override
     public void onFinishInflate() {
         super.onFinishInflate();
-        this.addView(remove);
+        //this.addView(remove);
     }
 
     public void display(@Nullable View view) {
@@ -51,15 +51,15 @@ public class RemovableMediaView extends FrameLayout {
             view.setLayoutParams(params);
 
             view.setVisibility(View.VISIBLE);
-            remove.setVisibility(View.VISIBLE);
+            //remove.setVisibility(View.VISIBLE);
         } else {
-            remove.setVisibility(View.GONE);
+            //remove.setVisibility(View.GONE);
         }
 
         current = view;
     }
 
     public void setRemoveClickListener(View.OnClickListener listener) {
-        this.remove.setOnClickListener(listener);
+        //this.remove.setOnClickListener(listener);
     }
 }
