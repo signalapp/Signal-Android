@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
@@ -49,6 +50,8 @@ public class ApplicationContext extends Application implements DependencyInjecto
   private JobManager jobManager;
   private ObjectGraph objectGraph;
 
+  private MediaNetworkRequirementProvider mediaNetworkRequirementProvider = new MediaNetworkRequirementProvider();
+
   public static ApplicationContext getInstance(Context context) {
     return (ApplicationContext)context.getApplicationContext();
   }
@@ -66,6 +69,10 @@ public class ApplicationContext extends Application implements DependencyInjecto
     if (object instanceof InjectableType) {
       objectGraph.inject(object);
     }
+  }
+
+  public void notifyMediaControlEvent() {
+    mediaNetworkRequirementProvider.notifyMediaControlEvent();
   }
 
   public JobManager getJobManager() {

@@ -53,6 +53,21 @@
                         android:contentDescription="Attachment Thumbnail"
                         android:foregroundGravity="right" />
 
+                    <org.thoughtcrime.securesms.components.RemovableMediaView
+                        android:id="@+id/removable_media_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                    <org.thoughtcrime.securesms.components.location.SignalMapView
+                        android:id="@+id/attachment_location"
+                        android:layout_width="210dp"
+                        android:layout_height="210dp"
+                        android:layout_gravity="center_horizontal"
+                        android:visibility="gone"/>
+
+                    </org.thoughtcrime.securesms.components.RemovableMediaView>
+
                     <View
                         android:id="@+id/triangle_tick"
                         android:layout_width="12dp"
@@ -68,7 +83,7 @@
                         android:orientation="vertical">
 
                         <ImageButton
-                            android:id="@+id/remove_image_button"
+                            android:id="@+id/cancel_image_button"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/touch_highlight_background"

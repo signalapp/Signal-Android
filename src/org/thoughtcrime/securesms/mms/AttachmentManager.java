@@ -28,6 +28,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,10 +37,23 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.RemovableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.components.location.SignalMapView;
+import org.thoughtcrime.securesms.components.location.SignalPlace;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,6 +78,12 @@ public class AttachmentManager {
   private final ImageButton        removeButton;
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
+  private final RemovableMediaView removableMediaView;
+  private final SignalMapView mapView;
+
+  private @NonNull
+  Optional<Slide> slide   = Optional.absent();
+  private @Nullable Uri             captureUri;
 
   private int widthBefore = 0;
 
@@ -71,15 +92,19 @@ public class AttachmentManager {
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
     this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
-    this.removeButton       = (ImageButton)view.findViewById(R.id.remove_image_button);
+    this.removeButton       = (ImageButton)view.findViewById(R.id.cancel_image_button);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
     this.attachmentListener = listener;
 
     this.removeButton.setOnClickListener(new RemoveButtonListener());
+
+    this.mapView = (SignalMapView) view.findViewById(R.id.attachment_location);
+    this.removableMediaView = (RemovableMediaView) view.findViewById(R.id.removable_media_view);
   }
 
   public void clear() {
+    Log.e(TAG, "Clear");
     slideDeck.clear();
     attachmentView.setVisibility(View.GONE);
     attachmentListener.onAttachmentChanged();
@@ -88,6 +113,54 @@ public class AttachmentManager {
   public void cleanup() {
     if (captureFile != null) captureFile.delete();
     captureFile = null;
+  }
+
+  private void cleanup(final @Nullable Uri uri) {
+    if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
+      Log.w(TAG, "cleaning up " + uri);
+      PersistentBlobProvider.getInstance(context).delete(uri);
+    }
+  }
+
+  private @Nullable
+  Uri getSlideUri() {
+    return slide.isPresent() ? slide.get().getUri() : null;
+  }
+
+  private void setSlide(@NonNull Slide slide) {
+    if (getSlideUri() != null)                                    cleanup(getSlideUri());
+    if (captureUri != null && !captureUri.equals(slide.getUri())) cleanup(captureUri);
+
+    this.captureUri = null;
+    this.slide      = Optional.of(slide);
+  }
+
+  public void setLocation(@NonNull final MasterSecret masterSecret, @NonNull final SignalPlace place)
+  {
+    ListenableFuture<Bitmap> future = mapView.display(place);
+
+    attachmentView.setVisibility(View.VISIBLE);
+    removableMediaView.display(mapView);
+
+    future.addListener(new AssertedSuccessListener<Bitmap>() {
+      @Override
+      public void onSuccess(@NonNull Bitmap result) {
+        byte[]        blob          = BitmapUtil.toByteArray(result);
+        Uri           uri           = PersistentBlobProvider.getInstance(context)
+                .create(masterSecret, blob, ContentType.IMAGE_PNG);
+        LocationSlide locationSlide = null;
+        try {
+          locationSlide = new LocationSlide(context, uri, blob.length, place);
+        } catch (IOException e) {
+          e.printStackTrace();
+        } catch (BitmapDecodingException e) {
+          e.printStackTrace();
+        }
+
+        setSlide(locationSlide);
+        attachmentListener.onAttachmentChanged();
+      }
+    });
   }
   public void setMedia(final Slide slide) {
     slideDeck.clear();
@@ -203,6 +276,16 @@ public class AttachmentManager {
 
     return mediaFile;
   }
+
+  public static void selectLocation(Activity activity, int requestCode) {
+    try {
+      activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
+    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+
   public ImageSlide copyUriToStorageAndGenerateImageSlide(Uri uri) {
     ImageSlide chosenImage = null;
     if (uri != null) {
