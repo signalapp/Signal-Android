@@ -512,6 +512,7 @@
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Compartilhar números de segurança via...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Nossos números de segurança Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que você não tem aplicativos para onde compartilhar.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Nenhum número de segurança foi encontrado na área de transferência</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar apesar de pedido existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -603,6 +604,7 @@
   <string name="conversation_activity__emoji_toggle_description">Alternar teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura do anexo</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Trocar guardador de anexos</string>
+  <string name="conversation_activity__enable_signal_for_sms">Habilitar Signal para SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">DESLIZE PARA CANCELAR</string>
   <!--conversation_item-->
@@ -1037,6 +1039,9 @@ falhou.</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <string name="text_secure_normal__invite_friends">Convidar amigos</string>
   <string name="text_secure_normal__help">Ajuda</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar com a área de transferência</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Sua versão do Signal está desatualizada</string>
   <plurals name="reminder_header_outdated_build_details">

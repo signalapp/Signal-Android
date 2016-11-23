@@ -1060,6 +1060,7 @@
   <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
   <string name="text_secure_normal__invite_friends">دعوة الأصدقاء</string>
   <string name="text_secure_normal__help">مساعدة</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">لقد انتهت صلاحية هذه الإصدارة من سيجنال.</string>
   <plurals name="reminder_header_outdated_build_details">

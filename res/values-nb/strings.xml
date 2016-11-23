@@ -243,6 +243,7 @@ sikkerhetsnumre for denne kontakten.
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Varig Signal-kommunikasjonsfeil.</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg som Google Play-tjeneste. Signal-meldinger og samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Feil ved henting av full oppløsning GIF...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Klistremerker</string>
@@ -346,6 +347,8 @@ fører dette til dupliserte meldinger.</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Tapt anrop fra %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s er på Signal. Si hei!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du angir forsvinner meldingen tid til %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satt forsvinner meldingen tid til %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Sikkerhetsnumre for %s er endret</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordfrasene samsvarer ikke.</string>
@@ -491,9 +494,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Sikkerhetsnumre for %s er endret</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Denne kontaken bruker en gammel versjon av Signal. Be vedkommende om å oppdatere før du bekrefter sikkerhetsnumre.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kjører en nyere versjon av Signal med en inkompatibel QR-kode format. Vennligst oppdater for å sammenligne.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Du prøver å bekrefte sikkerhetsnumre med %1$s, men skannet %2$s i stedet.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">QR-koden du skannet er feilformatert. Prøv å skanne på nytt.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Del sikkerhets tall via...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Våre Signal sikkerhets tall:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Ingen sikkerhets tall å sammenligne ble funnet i utklippstavlen</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Vil du fortsette selv om en forespørsel pågår allerede?</string>
   <string name="KeyExchangeInitiator_send">Send</string>
@@ -585,6 +592,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_activity__emoji_toggle_description">Slå på/av emoji-tastatur</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatyrbilde av vedlegg</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Slå på/av vedleggsskuff</string>
+  <string name="conversation_activity__enable_signal_for_sms">Aktiver Signal for SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SKYV FOR Å AVBRYTE</string>
   <!--conversation_item-->
@@ -646,6 +654,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søk GIFs og klistremerker</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Ingenting funnet</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Klarte ikke å lese enhetslogg. Du kan fortsatt bruke ADB for å få en feilsøkingslogg i stedet.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
@@ -783,8 +792,10 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="recipients_panel__to"><small>Skriv inn navn eller nummer</small></string>
   <string name="recipients_panel__add_members">Legg til medlemmer</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Ønsker du å kontrollere sikkerheten til ende-til-ende-kryptering med %s, sammenligne tallene ovenfor med tallene på sin enhet. Alternativt, kan du skanne koden på telefonen, eller be dem om å skanne koden din. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Lær mer om å verifisere sikkerhets tall</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Del sikkerhets tall</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
   <string name="message_details_header__sent">Sendt</string>
@@ -1017,6 +1028,9 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="text_secure_normal__mark_all_as_read">Merk alle som lest</string>
   <string name="text_secure_normal__invite_friends">Inviter venner</string>
   <string name="text_secure_normal__help">Hjelp</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiere til utklippstavle</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med utklippstavlen</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Denne Signal-installasjonen er utdatert</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1049,6 +1063,7 @@ Signal fikk tidsavbrudd under venting på bekreftelsesmelding.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ustøttet medietype</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagre</string>
+  <string name="media_preview__forward_title">Videresend</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Lagre alle</string>
   <!--media_preview_activity-->

@@ -511,6 +511,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Biztonsági számok megosztása ezzel...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Signal biztonsági számaink:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Úgy néz ki, hogy nincs egy alkalmazásod se a megosztáshoz.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">A vágólapon találtakkal való összehasonlításhoz nincsenek biztonsági számok</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Kezdeményezed a létező kérés ellenére?</string>
   <string name="KeyExchangeInitiator_send">Küldés</string>
@@ -1050,6 +1051,9 @@ sikertelen.
   <string name="text_secure_normal__mark_all_as_read">Összes megjelölése olvasottként</string>
   <string name="text_secure_normal__invite_friends">Barátok meghívása</string>
   <string name="text_secure_normal__help">Súgó</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Másolás vágólapra</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Összehasonlítás vágólappal</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">A Signal-od verziója elavult</string>
   <plurals name="reminder_header_outdated_build_details">

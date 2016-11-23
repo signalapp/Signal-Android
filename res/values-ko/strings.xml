@@ -915,6 +915,7 @@
   <string name="text_secure_normal__mark_all_as_read">모두 읽음으로 표시</string>
   <string name="text_secure_normal__invite_friends">친구 초대</string>
   <string name="text_secure_normal__help">도움말</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">설치된 Signal 버전 곧 만료</string>
   <plurals name="reminder_header_outdated_build_details">

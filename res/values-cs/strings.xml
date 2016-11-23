@@ -502,6 +502,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Sdílet kontrolní kódy prostřednictvím..</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Vaše Signal kontrolní kódy:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Ve schránce nebyly nalezeny žádné kontrolní kódy pro porovnání.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Zahájit i přes probíhající požadavek?</string>
   <string name="KeyExchangeInitiator_send">Odeslat</string>
@@ -593,6 +594,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_activity__emoji_toggle_description">Zapnout klávesnici se smajlíky</string>
   <string name="conversation_activity__attachment_thumbnail">Připojený náhled</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Vybrat úložiště pro přílohy</string>
+  <string name="conversation_activity__enable_signal_for_sms">Povolit aplikaci Signál SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">PŘESUŇTE PRO ZRUŠENÍ</string>
   <!--conversation_item-->
@@ -1029,6 +1031,9 @@ Signal se nedočkal přijetí ověřovací SMS. </string>
   <string name="text_secure_normal__mark_all_as_read">Označit vše jako přečtené</string>
   <string name="text_secure_normal__invite_friends">Pozvat přátele</string>
   <string name="text_secure_normal__help">Nápověda</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Zkopírovat do schránky</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnat se schránkou</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaše verze aplikace Signal je zastaralá</string>
   <plurals name="reminder_header_outdated_build_details">

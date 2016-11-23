@@ -967,6 +967,7 @@ Signal не дочекався перевірочного SMS.
   <string name="text_secure_normal__mark_all_as_read">Позначити усі як прочитані</string>
   <string name="text_secure_normal__invite_friends">Запросити друзів</string>
   <string name="text_secure_normal__help">Допомога</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Ваша версія Signal застаріла!</string>
   <plurals name="reminder_header_outdated_build_details">

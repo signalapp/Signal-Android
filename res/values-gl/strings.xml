@@ -828,6 +828,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__invite_friends">Convidar amizades</string>
   <string name="text_secure_normal__help">Axuda</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">A túa versión de Signal está desactualizada</string>
   <plurals name="reminder_header_outdated_build_details">

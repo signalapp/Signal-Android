@@ -241,6 +241,7 @@ shifrat e sigurta për këtë numër.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dështim i pëhershëm komunikimi nga Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nuk mundi të regjistrohet me servicet e Google Play. Signal mesazhet dhe thirrjet janë të pamundësuara, ju lutemi regjistrohuni në Rregullimet &gt; Të avancuara.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Gabim gajtë marrjes së rezolucionit të plotë GIF...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFe</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Afishe</string>
@@ -349,6 +350,8 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="MessageRecord_called_s">Thirrët %s</string>
   <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s është në Signal, thuaj tung!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ju rregulluar kohën për zhduken mesazhit në %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s vendosi kohën e zhdukjes së mesazhit në %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Numrat e sigurimit me %s kanë ndryshuar</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Fjalëkalimet nuk përputhen!</string>
@@ -493,9 +496,13 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Numrat e sigurimit me %s kanë ndryshuar</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj ka një verzion të vjetër të Signal-it, kërkoni që të shkarkojë verzionin e ri para se ti verifikoni numrat për siguri.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj ka një version më të ri të Siganl-it me një format QR Kodi që nuk përputhet. Ju lutem shkarkoni versionin e ri për të krahasuar.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Ju po provoni ti verifikoni numrat për siguri me %1$s, por keni skanuar numrat e %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Kodi QR i skanuar nuk është në formatin e duhhur si kod verifikimi i numrave për siguri. Ju lutemi skanoni përsëri.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Ndani numrat e sigurisë përmes...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Numrat tonë të sigurtë të Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Duket që nuk keni epa me të cilat të ndani.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Nuk u gjetën numrat e sigurt në memorie për të krahasuar</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Inico përkurndër kërkesës ekzistuese?</string>
   <string name="KeyExchangeInitiator_send">Dërgo</string>
@@ -648,6 +655,7 @@ U pranua mesazh për shkembim çelsash për një verzion të protokolli jo valid
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIFe dhe afishe</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Asgjë nuk u gjetë</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Historia në pajisjen tuaj nuk mund të lexohet. Mund të përdorni ADB për ta lexuar historinë e gabimeve të përmirsuara.</string>
   <string name="log_submit_activity__thanks">Faleminderit për ndihmën!</string>
@@ -781,8 +789,10 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="recipients_panel__to"><small>Shkruaj një emër ose numër</small></string>
   <string name="recipients_panel__add_members">Shto pjesëmarrës</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Nëse dëshironi të verifikoni sigurinë e enkriptimit tuaj fund-më-fund me %s, krahasoni numrat e mësipërm me numrat në pajisjen e tyre. Ose, ju mund të skanoni kodin në telefonin e tyre, ose u kërkoni atyre të skanojnë kodin tuaj. <a href=\"https://whispersystems.org/redirect/safety-numbers\"> Mësoni më shumë për verifikimin e numrave të sigurisë </a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Shtypni për të skanuar</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Ndani numrat e sigurisë</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Disa gjëra kërkojnë vëmendjen tuaj.</string>
   <string name="message_details_header__sent">Dërguar</string>
@@ -1015,6 +1025,9 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="text_secure_normal__mark_all_as_read">Shëno të gjitha si të lexuara</string>
   <string name="text_secure_normal__invite_friends">Fto shokët</string>
   <string name="text_secure_normal__help">ndihmë</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopjo në memorie</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahaso me memorie</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Versioni i juaj i Signal-it është i vjetruar</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1047,6 +1060,7 @@ Signal u ndal derisa pritej SMSi për verifikim.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tip i medias i pambështetur</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Ruaj</string>
+  <string name="media_preview__forward_title">Përpara</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Ruaj të gjitha</string>
   <!--media_preview_activity-->

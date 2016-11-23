@@ -510,6 +510,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Compartir números de seguridad vía...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Nuestros números de seguridad de Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con qué compartir.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">No se encontraron números de seguridad a comparar en el portapapeles</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la solicitud existente?</string>
   <string name="KeyExchangeInitiator_send">Enviar</string>
@@ -601,6 +602,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_activity__emoji_toggle_description">Cambiar a teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura del adjunto</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Accionar bandeja desplegable de adjunto</string>
+  <string name="conversation_activity__enable_signal_for_sms">Habilitar Signal para SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">DESLICE PARA CANCELAR</string>
   <!--conversation_item-->
@@ -1042,6 +1044,9 @@ por SMS.
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
   <string name="text_secure_normal__invite_friends">Invitar amigos</string>
   <string name="text_secure_normal__help">Ayuda</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar al portapapeles</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar con el portapapeles</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Su versión de Signal está anticuada</string>
   <plurals name="reminder_header_outdated_build_details">

@@ -64,7 +64,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Appel entrant</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Les numéros de sécurité de %1$s ont changé. Soit quelqu\'un tente d\'intercepter votre communication soit %2$s a réinstallé Signal.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Les numéros de sécurité de %1$s ont changé. Soit quelqu\'un tente d\'intercepter vos communications soit %2$s a réinstallé Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Vous devriez vérifier
 les numéros de sécurité de cet utilisateur.</string>
   <string name="ConfirmIdentityDialog_accept">Accepter</string>
@@ -1012,6 +1012,9 @@ par SMS.</string>
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme lu</string>
   <string name="text_secure_normal__invite_friends">Inviter des amis</string>
   <string name="text_secure_normal__help">Aide</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copier dans le presse-papiers</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparer au presse-papiers</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Votre version de Signal est trop ancienne</string>
   <plurals name="reminder_header_outdated_build_details">

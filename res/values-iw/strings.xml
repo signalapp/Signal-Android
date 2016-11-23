@@ -1018,6 +1018,7 @@
   <string name="text_secure_normal__mark_all_as_read">לסמן שקראתי את הכול</string>
   <string name="text_secure_normal__invite_friends">להזמין חברים</string>
   <string name="text_secure_normal__help">עזרה</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">גרסת הסיגנל שלך אינה עדכנית</string>
   <plurals name="reminder_header_outdated_build_details">

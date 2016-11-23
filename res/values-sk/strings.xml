@@ -635,6 +635,7 @@ zlyhalo.
   <string name="text_secure_normal__menu_settings">Nastavenia</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zamkni</string>
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
   <!--MediaPreviewActivity-->

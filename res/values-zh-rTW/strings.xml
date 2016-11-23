@@ -225,6 +225,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持續發生傳輸異常！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法順利註冊為 Google Play Services。Signal 訊息與通話已經停用，請嘗試在設定 &gt; 進階中重新註冊。</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">在下載完整的 GIF 時發生錯誤...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">動態圖檔</string>
   <string name="GiphyFragmentPagerAdapter_stickers">貼圖</string>
@@ -327,6 +328,8 @@
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">來自 %s 的未接來電</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s 正在 Signal 線上，打個招呼吧！</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">您將訊息銷毀時間設置爲 %1$s。</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 將訊息銷毀時間設置爲 %2$s。</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">您與 %s 的安全碼已改變</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的自訂密碼不相符！</string>
@@ -475,9 +478,14 @@
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">您與 %s 的安全碼已改變</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人正在使用舊版本的 Signal，請告訴他們更新到最新版本再驗證安全碼。</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
+請升級您的 Signal。</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">您正在嘗試與 %1$s 驗證安全碼，但您卻掃描了 %2$s 的驗證碼。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼格式不正確。請重新掃描一次。</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">通過...分享安全碼</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">我方 Signal 安全碼：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">沒有在剪貼簿中發現安全碼，因此無法進行比較</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">忽略既有請求，依然啟動？</string>
   <string name="KeyExchangeInitiator_send">送出</string>
@@ -625,6 +633,7 @@
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜尋動態圖檔與貼圖</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">未找到任何東西</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">無法在您的設備上讀取日誌。您仍然可以使用 ADB 來獲得偵錯紀錄。</string>
   <string name="log_submit_activity__thanks">感謝您的協助！</string>
@@ -756,8 +765,10 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="recipients_panel__to"><small>輸入名稱或手機號碼</small></string>
   <string name="recipients_panel__add_members">新增成員</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[ 如果您想驗證和 %s 的端到端加密，請和他們比較上方的數字是否一致。或者，您可以掃描他們手機上的二維碼，或讓他們掃描您手機上面的二維碼。<a href=\"https://whispersystems.org/redirect/safety-numbers\"> 了解更多有關驗證安全碼的訊息 </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">分享安全碼</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些問題需要您的注意。</string>
   <string name="message_details_header__sent">傳送</string>
@@ -989,6 +1000,9 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="text_secure_normal__mark_all_as_read">全部標示為已讀</string>
   <string name="text_secure_normal__invite_friends">邀請好友</string>
   <string name="text_secure_normal__help">說明</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">複製到剪貼簿</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">與剪貼簿中的內容進行比較</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">您的 Signal 版本已過期</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1020,6 +1034,7 @@ Signal 在等待簡訊驗證時超時。</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
   <!--media_preview-->
   <string name="media_preview__save_title">儲存</string>
+  <string name="media_preview__forward_title">轉寄</string>
   <!--media_overview-->
   <string name="media_overview__save_all">儲存所有</string>
   <!--media_preview_activity-->

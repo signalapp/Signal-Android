@@ -489,6 +489,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Veiligheidsnummers delen via...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Onze Signal-veiligheidsnummers:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Geen veiligheidsnummers gevonden in klembord</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiëren ondanks bestaand verzoek?</string>
   <string name="KeyExchangeInitiator_send">Verzenden</string>
@@ -580,6 +581,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="conversation_activity__emoji_toggle_description">Emojitoetsenbord wisselen</string>
   <string name="conversation_activity__attachment_thumbnail">Bijlageminiatuur</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Bijlageoverzicht tonen/verbergen</string>
+  <string name="conversation_activity__enable_signal_for_sms">Gebruik Signal voor SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">SCHUIF OM TE ANNULEREN</string>
   <!--conversation_item-->
@@ -1004,6 +1006,9 @@ Signal heeft te lang moeten wachten op het binnenkomen van de verificatie-SMS.</
   <string name="text_secure_normal__mark_all_as_read">Alles markeren als gelezen</string>
   <string name="text_secure_normal__invite_friends">Vrienden uitnodigen</string>
   <string name="text_secure_normal__help">Hulp</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiëren naar klembord</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vergelijken met klembord</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Je versie van Signal is verouderd</string>
   <plurals name="reminder_header_outdated_build_details">

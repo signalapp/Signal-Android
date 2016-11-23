@@ -929,6 +929,7 @@ La verificació per SMS ha tardat massa temps, s\'ha superat el temps màxim d\'
   <string name="text_secure_normal__mark_all_as_read">Marca\'ls tots com a llegits</string>
   <string name="text_secure_normal__invite_friends">Convida a amics/gues</string>
   <string name="text_secure_normal__help">Ajuda</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">La versió de Signal que tens està obsoleta</string>
   <plurals name="reminder_header_outdated_build_details">

@@ -481,7 +481,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Der eingescannte QR-Code ist kein korrekt formatierter Überprüfungscode für Sicherheitsnummern. Bitte versuche es erneut.</string>
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Sicherheitsnummern teilen über …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Unsere Signal-Sicherheitsnummern:</string>
-  <string name="VerifyIdentityActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeigneten Apps installiert.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Es scheint, als hättest du keine zum Teilen geeigneten Apps installiert.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Keine zu vergleichenden Sicherheitsnummern in der Zwischenablage gefunden</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz bestehender Anfrage starten?</string>
   <string name="KeyExchangeInitiator_send">Senden</string>
@@ -573,6 +574,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen.</
   <string name="conversation_activity__emoji_toggle_description">Emoji-Tastatur aktivieren</string>
   <string name="conversation_activity__attachment_thumbnail">Anhangsvorschaubild</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Direktaufnahme</string>
+  <string name="conversation_activity__enable_signal_for_sms">Signal für SMS aktivieren</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ZUM ABBRECHEN WEGWISCHEN</string>
   <!--conversation_item-->
@@ -989,6 +991,9 @@ Das Warten auf eine Bestätigungs-SMS hat zu lange gedauert.</string>
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <string name="text_secure_normal__invite_friends">Freunde einladen</string>
   <string name="text_secure_normal__help">Hilfe</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">In die Zwischenablage kopieren</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Mit der Zwischenablage vergleichen</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Deine Version von Signal ist veraltet</string>
   <plurals name="reminder_header_outdated_build_details">

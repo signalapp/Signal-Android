@@ -64,9 +64,9 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Sarrerako dei</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s-en segurtasun zenbakiak aldatu dira. Hau adierazi dezake norbait zure komunikazioa eragozten saiatzen ari dela edo %2$s-k Signal aplikazioa berrinstalatu duela.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Agian, egiaztatu nahi izango duzu
-        kontaktu honen segurtasun zenbakiak.
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s-en segurtasun zenbakiak aldatu egin dira. Honek norbait zure komunikazioa eragozten saiatzen ari dela edo %2$s-k Signal aplikazioa berrinstalatu duela adierazi dezake.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Agian, kontaktu honen seguurtasun zenbakiak
+egiaztatzea nahiko duzu.
     </string>
   <string name="ConfirmIdentityDialog_accept">Onartu</string>
   <!--ContactsDatabase-->
@@ -242,6 +242,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal behin betiko komunikazio hutsegitea!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ez da gai izan Google Play Zerbitzuekin erregistratzeko. Signal mezu eta deiak desgaitu egin dira, mesedez saiatu bererregistratzen Ezarpenak &gt; Aurreratua menuan.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Errorea bereizmen handieneko GIFa ekartzen...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFak</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Eranskailuak</string>
@@ -345,6 +346,8 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="MessageRecord_called_s">%s-(e)ri deitu duzu</string>
   <string name="MessageRecord_missed_call_from">%s-en erantzun gabeko deia</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s-(e)k Signal dauka, agur egin!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Desagertzen diren mezuen debora %1$s-tan ezarrita</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">Desagertzen diren mezuen debora %2$s-tan ezarri du %1$s-k</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Zure %s-ekin segurtasun zenbakiak aldatu dira.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasahitzak ez datoz bat!</string>
@@ -494,9 +497,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Zure %s-ekin segurtasun zenbakiak aldatu dira</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Zure kontaktua Signal aplikazioaren bertsio zahar bat erabiltzan ari da, mesedez eskatuiozu eguneratzeko segurtasun zenbakiak egiaztatu aurretik.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Zure kontaktua Signal aplikazioaren bertsio berriago bat erabiltzen ari da eta horrek QR kode formatua eguneratu du. Eguneratu konparazioa egiteko.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">%1$s-ekin segurtasun zenbakiak egiaztatzen saiatzen ari zara baina %2$s eskaneatu duzu ordea.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Eskaneatutako QR kodearen formatua ez da segurtasun zenbaki egiaztapen kode batena. Mesedez saiatu berriro eskaneatzen.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Segurtasun zenbakiak partekatu...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Gure Signal segurtasun zenbakiak</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Ez da segurtasun zenbakirik aurkitu arbelean</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Hasi nahiz eta beste eskaera bat indarrean egon?</string>
   <string name="KeyExchangeInitiator_send">Bidali</string>
@@ -588,6 +595,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_activity__emoji_toggle_description">Emoji teklatua aktibatu/desaktibatu</string>
   <string name="conversation_activity__attachment_thumbnail">Eranskinerako koadro txikia</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Erakutsi edo ezkutatu eraskinak</string>
+  <string name="conversation_activity__enable_signal_for_sms">Aktibatu Signal SMSetarako</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">LERRATU UZTEKO</string>
   <!--conversation_item-->
@@ -649,6 +657,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF eta eranskailuak bilatu</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Ez da ezer aurkitu</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Ezin izan da gailuko erregistroa irakurri.  Dena den, ordenagailuko ADB programa erabil dezakezu arazketa-erregistroa eskuratzeko.</string>
   <string name="log_submit_activity__thanks">Eskerrik asko zure laguntzagatik!</string>
@@ -783,8 +792,10 @@ huts egin du.
   <string name="recipients_panel__to"><small>Izen edo zenbaki bat sartu</small></string>
   <string name="recipients_panel__add_members">Partaideak gehitu</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[%s-rekin duzun puntutik-punturako zifratzearen segurtasuna egiaztatu nahi baduzu, konparatu goiko zenbakiak bere gailuan agertzen direnekin. Beste era batera ere egin dezakezu, eskaneatu bere gailuko kodea edo eskatu berari zure gailukoa eskaneatzeko.  <a href=\"https://whispersystems.org/redirect/safety-numbers\">Irakurri gehiago segurtasun zenbakiak egiaztatzeari buruz</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ukitu eskaneatzeko</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Segurtasun zenbakiak partekatu</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Arazo batzuk daude.</string>
   <string name="message_details_header__sent">Bidalita</string>
@@ -927,7 +938,7 @@ huts egin du.
   <string name="preferences__support_wifi_calling">\'\"WiFi Calling\' modu bateragarria</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktibatu zure gailuak WiFi bidezko SMS/MMS banaketa erabiltzen badu (bakarrik aktibatu \'WiFi Calling\' aktibatuta badago zure gailuan).</string>
   <string name="preferences_app_protection__blocked_contacts">Blokeatutako kontaktuak</string>
-  <string name="preferences_app_protection__safety_numbers_approval">Segurtazun zenbakien onarpena</string>
+  <string name="preferences_app_protection__safety_numbers_approval">Segurtasun zenbakien onarpena</string>
   <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Eskatu segurtasun zenbaki berrien onarpena hauek aldatzean</string>
   <string name="preferences_notifications__display_in_notifications">Erakutsi jakinarazpenetan</string>
   <string name="preferences_chats__when_using_mobile_data">Datu mugikorrak erabiltzerakoan</string>
@@ -1017,6 +1028,9 @@ huts egin du.
   <string name="text_secure_normal__mark_all_as_read">Irakurritako gisa markatu guztiak</string>
   <string name="text_secure_normal__invite_friends">Gonbidatu lagunak</string>
   <string name="text_secure_normal__help">Laguntza</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Arbelera kopiatu</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Zure Signal bertsioa zaharkitua dago</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1049,6 +1063,7 @@ huts egin du.
   <string name="MediaPreviewActivity_unssuported_media_type">Euskarri mota ez-onartua</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gorde</string>
+  <string name="media_preview__forward_title">Birbidali</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Dena gorde</string>
   <!--media_preview_activity-->

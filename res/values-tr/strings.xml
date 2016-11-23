@@ -468,9 +468,13 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">%s ile güvenlik numaralarınız değişti</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü çalıştırıyor, güvenlik numaralarını doğrulamadan önce lütfen güncellemesini isteyin.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kişi QR kod biçimi ile uyumlu olmayan Signal\'in daha yeni bir sürümü kullanıyor. Karşılaştırmak için uygulamayı güncelleyin.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Güvenlik numaralarını %1$s ile doğrulamak için çalışıyorsunuz, ama onun yerine %2$s  tarandı.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Taranan QR kodu doğru biçimlendirilmiş bir güvenlik numarası doğrulama kodu değil. Lütfen tekrar taramayı deneyin.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Güvenlik numaralarını paylaş...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Signal güvenlik numaralarımız:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor. </string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Karşılaştırmak için panoda hiçbir güvenlik numarası bulunamadı</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Varolan isteğe rağmen başlat?</string>
   <string name="KeyExchangeInitiator_send">Gönder</string>
@@ -562,6 +566,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji klavyesini göster/gizle</string>
   <string name="conversation_activity__attachment_thumbnail">Küçük resim ekle</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Geçiş eki çekmecesi</string>
+  <string name="conversation_activity__enable_signal_for_sms">SMS için Signal\'i etkinleştir</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">İPTAL ETMEK İÇİN KAYDIR</string>
   <!--conversation_item-->
@@ -746,8 +751,10 @@ başarısız.</string>
   <string name="recipients_panel__to"><small>Bir isim veya numara girin</small></string>
   <string name="recipients_panel__add_members">Üye ekle</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[%s ile uçtan uca şifreleme güvenliğini doğrulamak isterseniz, yukarıdaki sayıları kişinin aygıtındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilirsiniz, ya da kendisinin taramasını isteyebilirsiniz. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Güvenlik numaralarını doğrulama hakkında daha fazla bilgi edinin.</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Güvenlik numaralarını paylaş</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Bazı sorunlar ilginizi gerektiriyor.</string>
   <string name="message_details_header__sent">Gönderildi</string>
@@ -979,6 +986,9 @@ başarısız.</string>
   <string name="text_secure_normal__mark_all_as_read">Tümünü okundu olarak işaretle</string>
   <string name="text_secure_normal__invite_friends">Arkadaşlarını davet et</string>
   <string name="text_secure_normal__help">Yardım</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Panoya kopyala</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Pano ile karşılaştır</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Signal sürümünüz eski kalmış</string>
   <plurals name="reminder_header_outdated_build_details">
