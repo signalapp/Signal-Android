@@ -1602,6 +1602,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     private String getMessage() throws InvalidMessageException {
         String rawText = composeText.getText().toString();
+        if(attachmentManager.getLocationURL().length() > 0) {
+            rawText += "\n" + attachmentManager.getLocationURL();
+        }
         String destroyTime = "";
         if (bombTransportButton.getSelectedSelfDestTime() != null && bombTransportButton.isEnabled()) {
             destroyTime = bombTransportButton.getSelectedSelfDestTime().key;
@@ -1617,9 +1620,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (!isEncryptedConversation && Tag.isTaggable(rawText))
             rawText = Tag.getTaggedMessage(rawText);
 
-        if(attachmentManager.getLocationURL().length() > 0) {
-            rawText += "\n" + attachmentManager.getLocationURL();
-        }
         return rawText;
     }
 
