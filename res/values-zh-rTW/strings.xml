@@ -577,6 +577,7 @@
   <string name="conversation_activity__emoji_toggle_description">切換表情符號鍵盤</string>
   <string name="conversation_activity__attachment_thumbnail">附件縮圖</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">切換附件抽屜</string>
+  <string name="conversation_activity__enable_signal_for_sms">啟動 Signal 簡訊功能</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">滑動以取消</string>
   <!--conversation_item-->
