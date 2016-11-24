@@ -45,6 +45,7 @@ public class DeliveryReceiptJobTest extends BaseUnitTest {
     assertTrue(captor.getValue().getNumber().equals("+14152222222"));
   }
 
+  @Test
   public void testNetworkError() throws IOException {
     SignalServiceMessageSender textSecureMessageSender = mock(SignalServiceMessageSender.class);
     long                    timestamp               = System.currentTimeMillis();

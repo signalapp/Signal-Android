@@ -516,6 +516,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Deli varnostna števila preko...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Najina varnostna števila Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">V odložišču ni bilo najdenih varnostnih števil za primerjavo</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Začnem kljub že poslani zahtevi?</string>
   <string name="KeyExchangeInitiator_send">Pošlji</string>
@@ -607,6 +608,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_activity__emoji_toggle_description">Vklop tipkovnice emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Predogledna sličica priponke</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Vklopi poteznik za priponke</string>
+  <string name="conversation_activity__enable_signal_for_sms">Omogoči uporabo sporočil SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">ZA PREKINITEV PODRSAJTE</string>
   <!--conversation_item-->
@@ -933,8 +935,8 @@ bila uspešna.</string>
   <string name="preferences__mms_proxy_port">Vrata posredniškega strežnika MMS</string>
   <string name="preferences__mmsc_username">Uporabniško ime MMSC</string>
   <string name="preferences__mmsc_password">Geslo MMSC</string>
-  <string name="preferences__sms_delivery_reports">Potrdila o dostavi SMS</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zahtevaj potrdilo o dostavi za vsako poslano sporočilo SMS</string>
+  <string name="preferences__sms_delivery_reports">Potrdila o prejemu SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zahteva potrdilo o prejemu za vsako poslano sporočilo SMS</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Samodejen izbris starih sporočil, ko pogovor preseže določeno dolžino</string>
   <string name="preferences__delete_old_messages">Samodejen izbris</string>
   <string name="preferences__chats">Pogovori in multimedija</string>
@@ -955,7 +957,7 @@ bila uspešna.</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno \'WiFi klicanje/WiFi Calling)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokirani stiki</string>
   <string name="preferences_app_protection__safety_numbers_approval">Overjanje varnostnih števil</string>
-  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Zahtevaj overitev varnostnih števil, če se ta spremenijo</string>
+  <string name="preferences_app_protecting__require_approval_of_new_safety_numbers_when_they_change">Zahteva overitev varnostnih števil, če se ta spremenijo</string>
   <string name="preferences_notifications__display_in_notifications">Prikazano v obvestilu</string>
   <string name="preferences_chats__when_using_mobile_data">Ob uporabi mobilnega omrežja</string>
   <string name="preferences_chats__when_using_wifi">Ob uporabi omrežja Wi-Fi</string>
@@ -1044,6 +1046,9 @@ bila uspešna.</string>
   <string name="text_secure_normal__mark_all_as_read">Označi vse kot prebrano</string>
   <string name="text_secure_normal__invite_friends">Povabi prijatelje</string>
   <string name="text_secure_normal__help">Pomoč</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj v odložišče</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Primerjaj preko odložišča</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaša različica aplikacije Signal je zastarela</string>
   <plurals name="reminder_header_outdated_build_details">

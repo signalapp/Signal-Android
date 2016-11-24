@@ -516,6 +516,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Podijelite sigurnosne brojeve putem...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Naši Signal sigurnosni brojevi:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Sigurnosni brojevi za usporedbu nisu pronađeni u međuspremniku</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Pokreni usprkos postojećem zahtjevu?</string>
   <string name="KeyExchangeInitiator_send">Pošalji</string>
@@ -607,6 +608,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="conversation_activity__emoji_toggle_description">Uključi/isključi emoji tipkovnicu</string>
   <string name="conversation_activity__attachment_thumbnail">Priložena sličica</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Uključi/isključi ladicu dodataka</string>
+  <string name="conversation_activity__enable_signal_for_sms">Omogući Signal za SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">POVUCITE ZA PREKID</string>
   <!--conversation_item-->
@@ -1044,6 +1046,9 @@ neuspješno.</string>
   <string name="text_secure_normal__mark_all_as_read">Označi sve pročitano</string>
   <string name="text_secure_normal__invite_friends">Pozovi prijatelje</string>
   <string name="text_secure_normal__help">Pomoć</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Usporedi s međuspremnikom</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaša Signal inačica je istekla!</string>
   <plurals name="reminder_header_outdated_build_details">

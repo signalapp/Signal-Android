@@ -1001,6 +1001,7 @@ falhou.
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <string name="text_secure_normal__invite_friends">Convidar amigos</string>
   <string name="text_secure_normal__help">Ajuda</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">A sua versão de Signal está desactualizada</string>
   <plurals name="reminder_header_outdated_build_details">

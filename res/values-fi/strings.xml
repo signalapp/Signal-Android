@@ -498,6 +498,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Jaa turvanumerot...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Meidän Signal-turvanumeromme:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Näyttää siltä, ettei sinulla ole yhtään sovellusta, johon jakaa.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Leikepöydältä ei löytynyt turvanumeroita, joita verrata</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Aloita olemassa olevasta pyynnöstä huolimatta?</string>
   <string name="KeyExchangeInitiator_send">Lähetä</string>
@@ -589,6 +590,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_activity__emoji_toggle_description">Näytä tai piilota emoji-näppäimistö</string>
   <string name="conversation_activity__attachment_thumbnail">Liitteen esikatselu</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_description">Pikakamera</string>
+  <string name="conversation_activity__enable_signal_for_sms">Käytä Signalia tekstiviesteille</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Pyyhkäise peruuttaaksesi</string>
   <!--conversation_item-->
@@ -774,6 +776,7 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="recipients_panel__to"><small>Syötä nimi tai numero</small></string>
   <string name="recipients_panel__add_members">Lisää jäseniä</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Lue lisää turvanumeroiden varmentamisesta</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napsauttamalla</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_numbers">Jaa turvanumerot</string>
@@ -1009,6 +1012,9 @@ Signal ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="text_secure_normal__mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <string name="text_secure_normal__invite_friends">Kutsu ystäviä</string>
   <string name="text_secure_normal__help">Tuki </string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopioi leikepöydälle</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vertaa leikepöytään</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Käyttämäsi Signalin versio on vanhentunut!</string>
   <plurals name="reminder_header_outdated_build_details">

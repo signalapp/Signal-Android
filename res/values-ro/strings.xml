@@ -513,6 +513,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="VerifyIdentityActivity_share_safety_numbers_via">Partajează numerele de siguranță via...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">Numerele noastre de siguranță:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți partaja.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Nu s-au găsit numerele de siguranță în clipboard pentru a fi comparate.</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniţializeaz deşi există o cerere?</string>
   <string name="KeyExchangeInitiator_send">Trimite</string>
@@ -1051,6 +1052,9 @@ SMS a eșuat.</string>
   <string name="text_secure_normal__mark_all_as_read">Marchează tot ca citit</string>
   <string name="text_secure_normal__invite_friends">Invită prieteni</string>
   <string name="text_secure_normal__help">Ajutor</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiază în clipboard</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compară cu clipboard-ul</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Versiunea ta de Signal este veche</string>
   <plurals name="reminder_header_outdated_build_details">

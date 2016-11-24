@@ -241,6 +241,7 @@ säkerhetssiffror för denna kontakt.</string>
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent kommunikationsfel med Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunde inte registrera med Google Play-tjänster. Meddelanden och samtal med Signal har avaktiverats, vänligen försök återregistrera i inställningar &gt; Avancerat.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fel vid hämtning av GIF i full upplösning...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF:ar</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
@@ -342,6 +343,8 @@ som inte finns i säkerhetskopian.</string>
   <string name="MessageRecord_called_s">Ringde %s</string>
   <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s finns på Signal, skriv hej!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte tiden för försvinnande meddelanden till %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s sätt tiden för försvinnande meddelanden till %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Dina säkerhetsnummer med %s har ändrats</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
@@ -484,9 +487,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Dina säkerhetsnummer med %s har ändrats</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Be kontakten att uppdatera innan du verifierar säkerhetsnummer.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt kör en nyare version av Signal med ett inkompatibelt format på QR koden. Vänligen uppdatera för att jämföra.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Du försöker att verifiera säkerhetsnummer med %1$s, men scannade %2$s istället.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den scannade QR-koden är inte en korrekt formaterad verifieringskod för säkerhetsnummer. Försök att scanna igen.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Dela säkerhetsnummer via...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Våra säkerhetsnummer för Signal</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Inga säkerhetsnummer att jämföra med hittades i urklipp</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Påbörja ny nyckelutbytesförfrågan trots redan existerande?</string>
   <string name="KeyExchangeInitiator_send">Skicka</string>
@@ -639,6 +646,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Sök GIF-bilder och stickers</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Inget hittat</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunde inte läsa loggen från din enhet. Du kan fortfarande använda ADB för att få en logg.</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
@@ -764,8 +772,10 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <string name="recipients_panel__add_members">Lägg till medlemmar</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Om du vill verifiera säkerheten av din ände-till-ände kryptering med %s, jämför siffrorna ovan med siffrorna på din enhet. Alternativt kan du skanna koden på din telefon, eller be dem skanna din kod. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Lär dig mer om att verifiera säkerhetsnummer</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Dela säkerhetsnummer</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Vissa frågor behöver din uppmärksamhet.</string>
   <string name="message_details_header__sent">Skickat</string>
@@ -998,6 +1008,9 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="text_secure_normal__mark_all_as_read">Markera alla lästa</string>
   <string name="text_secure_normal__invite_friends">Bjud in vänner</string>
   <string name="text_secure_normal__help">Hjälp</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera till urklipp</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Jämför med urklipp</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Din version av Signal är urgammal</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1030,6 +1043,7 @@ Signal uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spara</string>
+  <string name="media_preview__forward_title">Vidarebefodra</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Spara alla</string>
   <!--media_preview_activity-->

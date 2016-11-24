@@ -924,6 +924,7 @@ mislykkedes.</string>
   <string name="text_secure_normal__mark_all_as_read">Markér alle som læst</string>
   <string name="text_secure_normal__invite_friends">Invitér venner</string>
   <string name="text_secure_normal__help">Hjælp</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Din version af Signal er forældet</string>
   <plurals name="reminder_header_outdated_build_details">

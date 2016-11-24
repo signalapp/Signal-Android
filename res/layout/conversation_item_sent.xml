@@ -55,7 +55,8 @@
                     android:id="@+id/audio_view"
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
-                    app:tintColor="@color/grey_500"
+                    app:foregroundTintColor="@color/grey_500"
+                    app:backgroundTintColor="@color/white"
                     android:visibility="gone"/>
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView

@@ -988,6 +988,7 @@ feilet.</string>
   <string name="text_secure_normal__mark_all_as_read">Marker alle som lest</string>
   <string name="text_secure_normal__invite_friends">Inviter venner</string>
   <string name="text_secure_normal__help">Hjelp</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Din versjon av Signal er utdatert</string>
   <plurals name="reminder_header_outdated_build_details">

@@ -94,7 +94,7 @@ dependencies {
     androidTestCompile ('org.assertj:assertj-core:1.7.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
-    androidTestCompile ('com.squareup.assertj:assertj-android:1.0.0') {
+    androidTestCompile ('com.squareup.assertj:assertj-android:1.1.1') {
         exclude group: 'org.hamcrest',        module: 'hamcrest-core'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
@@ -169,6 +169,8 @@ android {
         minSdkVersion 9
         targetSdkVersion 22
 
+        vectorDrawables.useSupportLibrary = true
+
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "GIPHY_PROXY_HOST", "\"giphy-proxy-production.whispersystems.org\""
@@ -215,6 +217,7 @@ android {
                           'proguard-shortcutbadger.pro',
                           'proguard-retrofit.pro',
                           'proguard.cfg'
+            testProguardFiles 'proguard-automation.pro'
         }
         release {
             minifyEnabled true

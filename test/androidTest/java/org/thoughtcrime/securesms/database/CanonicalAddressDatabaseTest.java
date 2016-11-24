@@ -16,7 +16,8 @@ public class CanonicalAddressDatabaseTest extends TextSecureTestCase {
 
   private CanonicalAddressDatabase db;
 
-  public void setUp() throws Exception {
+  @Override
+  public void setUp() {
     super.setUp();
     this.db = CanonicalAddressDatabase.getInstance(getInstrumentation().getTargetContext());
   }

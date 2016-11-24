@@ -6,7 +6,7 @@ import android.test.InstrumentationTestCase;
 public class TextSecureTestCase extends InstrumentationTestCase {
 
   @Override
-  public void setUp() throws Exception {
+  public void setUp() {
     System.setProperty("dexmaker.dexcache", getInstrumentation().getTargetContext().getCacheDir().getPath());
   }
 

@@ -671,6 +671,7 @@
   <string name="text_secure_normal__mark_all_as_read">Обележи ги сите како прочитани</string>
   <string name="text_secure_normal__invite_friends">Покани пријатели</string>
   <string name="text_secure_normal__help">Помош</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Вашата верзија на Signal е застарена.</string>
   <string name="reminder_header_sms_default_title">Користи како стандардна СМС апликација</string>

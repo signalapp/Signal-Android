@@ -13,6 +13,7 @@ import android.text.TextUtils.TruncateAt;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
@@ -92,7 +93,6 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setTransport(TransportOption transport) {
-    final boolean enterSends     = TextSecurePreferences.isEnterSendsEnabled(getContext());
     final boolean useSystemEmoji = TextSecurePreferences.isSystemEmojiPreferred(getContext());
 
     int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
@@ -105,19 +105,20 @@ public class ComposeText extends EmojiEditText {
       inputType = (inputType & ~InputType.TYPE_MASK_VARIATION) | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE;
     }
 
-    inputType  = !isLandscape() && enterSends
-               ? inputType & ~InputType.TYPE_TEXT_FLAG_MULTI_LINE
-               : inputType | InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-
-    imeOptions = enterSends
-               ? imeOptions & ~EditorInfo.IME_FLAG_NO_ENTER_ACTION
-               : imeOptions | EditorInfo.IME_FLAG_NO_ENTER_ACTION;
-
     setInputType(inputType);
     setImeOptions(imeOptions);
     setHint(transport.getComposeHint(),
             transport.getSimName().isPresent()
                 ? getContext().getString(R.string.conversation_activity__from_sim_name, transport.getSimName().get())
                 : null);
+  }
+
+  @Override
+  public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+    InputConnection conn = super.onCreateInputConnection(outAttrs);
+    if(TextSecurePreferences.isEnterSendsEnabled(getContext())) {
+      outAttrs.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+    }
+    return conn;
   }
 }

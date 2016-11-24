@@ -231,21 +231,24 @@ public class ConversationItem extends LinearLayout
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
       mediaThumbnail.setBackgroundColorHint(defaultBubbleColor);
-      setAudioViewTint(messageRecord, conversationRecipients);
     } else {
       int color = recipient.getColor().toConversationColor(context);
       bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
       mediaThumbnail.setBackgroundColorHint(color);
     }
+
+    setAudioViewTint(messageRecord, conversationRecipients);
   }
 
   private void setAudioViewTint(MessageRecord messageRecord, Recipients recipients) {
     if (messageRecord.isOutgoing()) {
       if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
-        audioView.setTint(recipients.getColor().toConversationColor(context));
+        audioView.setTint(recipients.getColor().toConversationColor(context), defaultBubbleColor);
       } else {
-        audioView.setTint(Color.WHITE);
+        audioView.setTint(Color.WHITE, defaultBubbleColor);
       }
+    } else {
+      audioView.setTint(Color.WHITE, recipients.getColor().toConversationColor(context));
     }
   }
 

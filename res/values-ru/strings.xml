@@ -1045,6 +1045,7 @@ SMS-подтверждения...
   <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
   <string name="text_secure_normal__invite_friends">Пригласить друзей в Signal</string>
   <string name="text_secure_normal__help">Помощь</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Ваша версия Signal устарела</string>
   <plurals name="reminder_header_outdated_build_details">

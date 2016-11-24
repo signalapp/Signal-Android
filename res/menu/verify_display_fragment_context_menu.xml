@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_copy"
+          android:title="@string/verify_display_fragment_context_menu__copy_to_clipboard"/>
+
+    <item android:id="@+id/menu_compare"
+          android:title="@string/verify_display_fragment_context_menu__compare_with_clipboard"/>
+
+</menu>

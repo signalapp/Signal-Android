@@ -464,6 +464,7 @@
   <string name="VerifyIdentityActivity_share_safety_numbers_via">安全番号を共有しています……</string>
   <string name="VerifyIdentityActivity_our_signal_safety_numbers">安全番号は</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">シェアするためのアプリがないようです。</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">クリップボードに安全番号がありません。</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">既存のリクエストがありますが、鍵交換を開始しますか？</string>
   <string name="KeyExchangeInitiator_send">送信</string>
@@ -957,6 +958,9 @@
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <string name="text_secure_normal__invite_friends">友達にオススメする</string>
   <string name="text_secure_normal__help">ヘルプ</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">クリップボードにコピーする</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">クリップボードと比較する</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Signalのバージョンが古すぎます</string>
   <plurals name="reminder_header_outdated_build_details">

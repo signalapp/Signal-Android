@@ -953,6 +953,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <string name="text_secure_normal__invite_friends">Zaproś znajomych</string>
   <string name="text_secure_normal__help">Pomoc</string>
+  <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Twoja wersja Signal jest nieaktualna.</string>
   <plurals name="reminder_header_outdated_build_details">

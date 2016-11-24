@@ -149,6 +149,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       super.onResume();
       ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.text_secure_normal__menu_settings);
       setCategorySummaries();
+      setCategoryVisibility();
     }
 
     private void setCategorySummaries() {
@@ -162,6 +163,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           .setSummary(AppearancePreferenceFragment.getSummary(getActivity()));
       this.findPreference(PREFERENCE_CATEGORY_CHATS)
           .setSummary(ChatsPreferenceFragment.getSummary(getActivity()));
+    }
+
+    private void setCategoryVisibility() {
+      Preference devicePreference = this.findPreference(PREFERENCE_CATEGORY_DEVICES);
+      if (devicePreference != null && !TextSecurePreferences.isPushRegistered(getActivity())) {
+        getPreferenceScreen().removePreference(devicePreference);
+      }
     }
 
     private class CategoryClickListener implements Preference.OnPreferenceClickListener {

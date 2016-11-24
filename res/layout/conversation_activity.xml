@@ -70,7 +70,8 @@
                         android:background="@color/white"
                         android:paddingTop="15dp"
                         android:paddingBottom="15dp"
-                        app:tintColor="@color/grey_500"/>
+                        app:foregroundTintColor="@color/grey_500"
+                        app:backgroundTintColor="@color/white"/>
 
             </org.thoughtcrime.securesms.components.RemovableMediaView>
 
@@ -83,6 +84,13 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="@string/ConversationActivity_unblock"
+                android:visibility="gone"/>
+
+        <Button android:id="@+id/make_default_sms_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="@string/conversation_activity__enable_signal_for_sms"
                 android:visibility="gone"/>
 
         <TextView android:id="@+id/space_left"

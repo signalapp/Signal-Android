@@ -239,6 +239,7 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Signal съообщения и разговори са деактивирани, моля пререгистрирайте през менюто Настройки &gt; Допълнителние.</string>
   <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Грешка при изтеглянето на GIF-а в пълни размери...</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF-ове</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Стикери</string>
@@ -341,6 +342,8 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="MessageRecord_called_s">Обаждане до %s</string>
   <string name="MessageRecord_missed_call_from">Пропуснато обаждане от %s</string>
   <string name="MessageRecord_s_is_on_signal_say_hey">%s е в Signal, кажи им здрасти!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Заложихте време за изчезване на съобщения на %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s заложи време за изчезване на съобщения на %2$s.</string>
   <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Числата за сигурност с %s са променени</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
@@ -487,9 +490,13 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Числата за сигурност с %s са променени</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Signal, помолете ги да го обновят преди да проверят числата за сигурност.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашият контакт използва по-нова версия на Signal с несъвместим QR формат. Моля, обновете версията си, за да можете да сравните.</string>
   <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">Опитвате се проверите числата за сигурност на %1$s, но вместо това сканирахте %2$s.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Сканираният QR код не представлява правилно форматира код на числа за сигурност. Моля, сканирайте отново.</string>
+  <string name="VerifyIdentityActivity_share_safety_numbers_via">Споделяне на числа за сигурност през...</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_numbers">Нашите Signal числа за сигурност:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да споделите.</string>
+  <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">Не са открити копирани числа за сигурност</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Покани въпреки съществуващата покана?</string>
   <string name="KeyExchangeInitiator_send">Изпрати</string>
@@ -642,6 +649,7 @@ SMS-те от системния архив в Signal. Ако вече сте в
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Търси сред GIF-ове и стикери</string>
   <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Няма нищо открито</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Неуспешно прочитане на доклада на Вашето устройство. Все пак може да използвате ADB, за да получте доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
@@ -774,8 +782,10 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="recipients_panel__to"><small>Въведи име или номер</small></string>
   <string name="recipients_panel__add_members">Добави членове</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[Ако желаете да проверите сигурността на вашта комуникация с %s, сръвнете числата изписани по-горе с числата на тяхното устройство. Алтернативно можете да сканирате техният код или те да сканират Вашия. <a href=\"https://whispersystems.org/redirect/safety-numbers\">Научете повече за проверката за сигурност с числа</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натисните за сканиране</string>
   <!--verify_identity-->
+  <string name="verify_identity__share_safety_numbers">Споделяне на числа за сигурност</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Няколко проблема изискват вашето внимание.</string>
   <string name="message_details_header__sent">Изпратен</string>
@@ -1008,6 +1018,9 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="text_secure_normal__mark_all_as_read">Маркирай всички като прочетени</string>
   <string name="text_secure_normal__invite_friends">Поканете приятели</string>
   <string name="text_secure_normal__help">Помощ</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копиране</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравняване с копирани</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Вашата версия на Signal е стара</string>
   <plurals name="reminder_header_outdated_build_details">
@@ -1040,6 +1053,7 @@ Signal чака твърде дълго за SMS потвърждение.</stri
   <string name="MediaPreviewActivity_unssuported_media_type">Неподдържан медиен формат.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Запази</string>
+  <string name="media_preview__forward_title">Препращане</string>
   <!--media_overview-->
   <string name="media_overview__save_all">Запази всички</string>
   <!--media_preview_activity-->

@@ -154,7 +154,8 @@
     </declare-styleable>
 
     <declare-styleable name="AudioView">
-        <attr name="tintColor" format="color" />
+        <attr name="foregroundTintColor" format="color" />
+        <attr name="backgroundTintColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="CircleColorImageView">
