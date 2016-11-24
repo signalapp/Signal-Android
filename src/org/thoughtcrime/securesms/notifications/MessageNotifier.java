@@ -38,21 +38,18 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.redphone.util.Util;
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -63,9 +60,14 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
@@ -81,14 +83,26 @@ public class MessageNotifier {
 
   private static final String TAG = MessageNotifier.class.getSimpleName();
 
-  public static final int NOTIFICATION_ID = 1338;
+  public static final  String EXTRA_VOICE_REPLY         = "extra_voice_reply";
+  public static final  int    NOTIFICATION_ID           = 1338;
+  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
+  private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
 
-  private volatile static long visibleThread = -1;
-
-  public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
+  private volatile static       long               visibleThread                = -1;
+  private volatile static       long               lastDesktopActivityTimestamp = -1;
+  private volatile static       long               lastAudibleNotification      = -1;
+  private          static final CancelableExecutor executor                     = new CancelableExecutor();
 
   public static void setVisibleThread(long threadId) {
     visibleThread = threadId;
+  }
+
+  public static void setLastDesktopActivityTimestamp(long timestamp) {
+    lastDesktopActivityTimestamp = timestamp;
+  }
+
+  public static void cancelDelayedNotifications() {
+    executor.cancel();
   }
 
   public static void notifyMessageDeliveryFailed(Context context, Recipients recipients, long threadId) {
@@ -118,7 +132,12 @@ public class MessageNotifier {
                                         @Nullable MasterSecret masterSecret,
                                         long threadId)
   {
-    updateNotification(context, masterSecret, false, threadId);
+    if (System.currentTimeMillis() - lastDesktopActivityTimestamp < DESKTOP_ACTIVITY_PERIOD) {
+      Log.w(TAG, "Scheduling delayed notification...");
+      executor.execute(new DelayedNotification(context, masterSecret, threadId));
+    } else {
+      updateNotification(context, masterSecret, false, threadId, true);
+    }
   }
 
   public static void updateNotification(@NonNull  Context context,
@@ -186,6 +205,12 @@ public class MessageNotifier {
 
       if (includePushDatabase) {
         appendPushNotificationState(context, notificationState, pushCursor);
+      }
+
+      if (signal && (System.currentTimeMillis() - lastAudibleNotification) < MIN_AUDIBLE_PERIOD_MILLIS) {
+        signal = false;
+      } else if (signal) {
+        lastAudibleNotification = System.currentTimeMillis();
       }
 
       if (notificationState.hasMultipleThreads()) {
@@ -462,6 +487,83 @@ public class MessageNotifier {
     @Override
     public void onReceive(Context context, Intent intent) {
       clearReminder(context);
+    }
+  }
+
+  private static class DelayedNotification implements Runnable {
+
+    private static final long DELAY = TimeUnit.SECONDS.toMillis(5);
+
+    private final AtomicBoolean canceled = new AtomicBoolean(false);
+
+    private final Context      context;
+    private final MasterSecret masterSecret;
+
+    private final long         threadId;
+    private final long         delayUntil;
+
+    private DelayedNotification(Context context, MasterSecret masterSecret, long threadId) {
+      this.context      = context;
+      this.masterSecret = masterSecret;
+      this.threadId     = threadId;
+      this.delayUntil   = System.currentTimeMillis() + DELAY;
+    }
+
+    @Override
+    public void run() {
+      MessageNotifier.updateNotification(context, masterSecret);
+
+      long delayMillis = delayUntil - System.currentTimeMillis();
+      Log.w(TAG, "Waiting to notify: " + delayMillis);
+
+      if (delayMillis > 0) {
+        Util.sleep(delayMillis);
+      }
+
+      if (!canceled.get()) {
+        Log.w(TAG, "Not canceled, notifying...");
+        MessageNotifier.updateNotification(context, masterSecret, false, threadId, true);
+        MessageNotifier.cancelDelayedNotifications();
+      } else {
+        Log.w(TAG, "Canceled, not notifying...");
+      }
+    }
+
+    public void cancel() {
+      canceled.set(true);
+    }
+  }
+
+  private static class CancelableExecutor {
+
+    private final Executor                 executor = Executors.newSingleThreadExecutor();
+    private final Set<DelayedNotification> tasks    = new HashSet<>();
+
+    public void execute(final DelayedNotification runnable) {
+      synchronized (tasks) {
+        tasks.add(runnable);
+      }
+
+      Runnable wrapper = new Runnable() {
+        @Override
+        public void run() {
+          runnable.run();
+
+          synchronized (tasks) {
+            tasks.remove(runnable);
+          }
+        }
+      };
+
+      executor.execute(wrapper);
+    }
+
+    public void cancel() {
+      synchronized (tasks) {
+        for (DelayedNotification task : tasks) {
+          task.cancel();
+        }
+      }
     }
   }
 }
