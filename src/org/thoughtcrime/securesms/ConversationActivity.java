@@ -1618,7 +1618,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             rawText = Tag.getTaggedMessage(rawText);
 
         if(attachmentManager.getLocationURL().length() > 0) {
-            rawText = attachmentManager.getLocationURL()+ "\n" + rawText;
+            rawText += "\n" + attachmentManager.getLocationURL();
         }
         return rawText;
     }
