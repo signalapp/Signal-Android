@@ -1513,8 +1513,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private Drafts getDraftsForCurrentState() {
         Drafts drafts = new Drafts();
 
-        if (!Util.isEmpty(composeText)) {
-            drafts.add(new Draft(Draft.TEXT, composeText.getText().toString()));
+        if (!Util.isEmpty(composeText) || attachmentManager.getLocationURL().length() > 0) {
+            drafts.add(new Draft(Draft.TEXT, composeText.getText().toString() + "\n" + attachmentManager.getLocationURL()));
         }
 
         for (Slide slide : attachmentManager.getSlideDeck().getSlides()) {
