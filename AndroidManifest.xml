@@ -458,7 +458,8 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".notifications.AndroidAutoHeardReceiver">
+    <receiver android:name=".notifications.AndroidAutoHeardReceiver"
+              android:exported="false">
         <intent-filter>
           <action android:name="org.thoughtcrime.securesms.notifications.ANDROID_AUTO_HEARD"/>
         </intent-filter>
