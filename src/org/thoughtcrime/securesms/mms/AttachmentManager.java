@@ -152,6 +152,7 @@ public class AttachmentManager {
     removableMediaView.setVisibility(View.VISIBLE);
     removableMediaView.display(mapView);
 
+
     future.addListener(new AssertedSuccessListener<Bitmap>() {
       @Override
       public void onSuccess(@NonNull Bitmap result) {
@@ -163,7 +164,14 @@ public class AttachmentManager {
           locationSlide = new LocationSlide(context, uri, blob.length, place);
 
 
-          setImage(getImageUri(context,result));
+
+
+
+          //clear();
+          slideDeck.clear();
+          slideDeck.addSlide(new ImageSlide(context, getImageUri(context,result)));
+
+          //setImage(getImageUri(context,result));
 
           /*
           ImageSlide mapThumbnail = copyUriToStorageAndGenerateImageSlide();
