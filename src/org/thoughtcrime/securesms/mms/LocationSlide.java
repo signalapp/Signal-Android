@@ -26,5 +26,4 @@ public class LocationSlide extends ImageSlide {
         return place;
     }
 
-
 }

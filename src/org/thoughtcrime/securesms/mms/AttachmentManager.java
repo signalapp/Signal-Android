@@ -21,7 +21,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
@@ -31,10 +31,8 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -55,6 +53,7 @@ import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -136,6 +135,12 @@ public class AttachmentManager {
     this.slide      = Optional.of(slide);
   }
 
+  public Uri getImageUri(Context inContext, Bitmap inImage) {
+    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+    inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+    String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+    return Uri.parse(path);
+  }
   public void setLocation(@NonNull final MasterSecret masterSecret, @NonNull final SignalPlace place)
   {
     clear();
@@ -156,6 +161,22 @@ public class AttachmentManager {
         LocationSlide locationSlide = null;
         try {
           locationSlide = new LocationSlide(context, uri, blob.length, place);
+
+
+          setImage(getImageUri(context,result));
+
+          /*
+          ImageSlide mapThumbnail = copyUriToStorageAndGenerateImageSlide();
+          if(mapThumbnail != null) {
+            slideDeck.addSlide(mapThumbnail);
+          }
+          */
+          //slideDeck.clear();
+          //slideDeck.addSlide(locationSlide);
+
+
+
+
         } catch (IOException e) {
           e.printStackTrace();
         } catch (BitmapDecodingException e) {
@@ -202,16 +223,6 @@ public class AttachmentManager {
         attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.VISIBLE);
       }
     }
-      /*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-          attachmentView.findViewById(R.id.triangle_tick).setVisibility(View.VISIBLE);
-          thumbnail.setImageAlpha(255);
-        }
-        attachmentView.getLayoutParams().height = 200;
-        thumbnail.getLayoutParams().height = 200;
-        thumbnail.getLayoutParams().width = 200;
-        thumbnail.setBackgroundResource(R.drawable.ic_settings_voice_black);
-      }*/
     attachmentListener.onAttachmentChanged();
   }
 
@@ -371,9 +382,7 @@ public class AttachmentManager {
   public void setVideo(Uri video, boolean sendOrReceive) throws IOException, MediaTooLargeException {
     setMedia(new VideoSlide(context, video, sendOrReceive));
   }
-  public void setVideo(Uri video, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video, contentType, sendOrReceive));
-  }
+
   public void setAudio(Uri audio, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
     setMedia(new AudioSlide(context, audio, contentType, sendOrReceive));
   }
