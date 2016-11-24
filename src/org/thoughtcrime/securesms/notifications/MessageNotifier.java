@@ -234,7 +234,7 @@ public class MessageNotifier {
                        notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipients()),
                        notificationState.getWearableReplyIntent(context, notifications.get(0).getRecipients()));
     builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipients()),
-                       notificationState.getAndroidAutoHeardIntent(context, notifications.get(0).getRecipients()), notifications.get(0).getTimestamp());
+                                 notificationState.getAndroidAutoHeardIntent(context, notifications.get(0).getRecipients()), notifications.get(0).getTimestamp());
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 

@@ -464,7 +464,8 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".notifications.AndroidAutoReplyReceiver">
+    <receiver android:name=".notifications.AndroidAutoReplyReceiver"
+              android:exported="false">
         <intent-filter>
           <action android:name="org.thoughtcrime.securesms.notifications.ANDROID_AUTO_REPLY"/>
         </intent-filter>
