@@ -48,6 +48,7 @@ public class ImageSlide extends Slide {
     super(context, constructPartFromUri(uri));
   }
 
+
   @Override
   public Uri getThumbnailUri() {
     if (!getPart().isPendingPush() && getPart().getDataUri() != null) {

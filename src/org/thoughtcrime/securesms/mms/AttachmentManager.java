@@ -88,6 +88,8 @@ public class AttachmentManager {
 
   private static File captureFile;
 
+  private String locationURL = "";
+
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
     this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
@@ -107,6 +109,7 @@ public class AttachmentManager {
     thumbnail.setVisibility(View.GONE);
     attachmentView.setVisibility(View.GONE);
     removableMediaView.setVisibility(View.GONE);
+    locationURL = "";
     attachmentListener.onAttachmentChanged();
   }
 
@@ -170,7 +173,7 @@ public class AttachmentManager {
           //clear();
           slideDeck.clear();
           slideDeck.addSlide(new ImageSlide(context, getImageUri(context,result)));
-
+          setLocationURL(place.getDescription());
           //setImage(getImageUri(context,result));
 
           /*
@@ -196,6 +199,14 @@ public class AttachmentManager {
       }
     });
   }
+  public void setLocationURL(String lUrl) {
+    locationURL = lUrl;
+  }
+
+  public String getLocationURL() {
+    return locationURL;
+  }
+
   public void setMedia(final Slide slide) {
     clear();
     slideDeck.clear();
