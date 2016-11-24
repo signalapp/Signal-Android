@@ -1637,6 +1637,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private void sendComplete(long threadId) {
         boolean refreshFragment = (threadId != this.threadId);
         this.threadId = threadId;
+        attachmentManager.clear();
 
         ConversationFragment fragment = getFragment();
 

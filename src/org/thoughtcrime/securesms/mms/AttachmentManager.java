@@ -109,7 +109,7 @@ public class AttachmentManager {
     thumbnail.setVisibility(View.GONE);
     attachmentView.setVisibility(View.GONE);
     removableMediaView.setVisibility(View.GONE);
-    locationURL = "";
+    setLocationURL("");
     attachmentListener.onAttachmentChanged();
   }
 
@@ -166,27 +166,9 @@ public class AttachmentManager {
         try {
           locationSlide = new LocationSlide(context, uri, blob.length, place);
 
-
-
-
-
-          //clear();
           slideDeck.clear();
           slideDeck.addSlide(new ImageSlide(context, getImageUri(context,result)));
           setLocationURL(place.getDescription());
-          //setImage(getImageUri(context,result));
-
-          /*
-          ImageSlide mapThumbnail = copyUriToStorageAndGenerateImageSlide();
-          if(mapThumbnail != null) {
-            slideDeck.addSlide(mapThumbnail);
-          }
-          */
-          //slideDeck.clear();
-          //slideDeck.addSlide(locationSlide);
-
-
-
 
         } catch (IOException e) {
           e.printStackTrace();
@@ -201,6 +183,7 @@ public class AttachmentManager {
   }
   public void setLocationURL(String lUrl) {
     locationURL = lUrl;
+    Log.e(TAG, "Location description set to: "+ lUrl);
   }
 
   public String getLocationURL() {
