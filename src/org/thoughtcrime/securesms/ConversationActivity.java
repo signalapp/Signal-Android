@@ -1367,16 +1367,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendMessage() {
     try {
       Recipients recipients     = getRecipients();
+      if (recipients == null) {
+        throw new RecipientFormattingException("Badly formatted");
+      }
+
       boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
       int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
       long       expiresIn      = recipients.getExpireMessages() * 1000;
 
       Log.w(TAG, "isManual Selection: " + sendButton.isManualSelection());
       Log.w(TAG, "forceSms: " + forceSms);
-
-      if (recipients == null) {
-        throw new RecipientFormattingException("Badly formatted");
-      }
 
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
