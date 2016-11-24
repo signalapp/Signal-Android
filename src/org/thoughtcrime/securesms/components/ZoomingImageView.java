@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
@@ -16,9 +17,11 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
+import uk.co.senab.photoview.PhotoViewAttacher.OnMatrixChangedListener;
 
 public class ZoomingImageView extends ImageView {
-  private PhotoViewAttacher attacher = new PhotoViewAttacher(this);
+  private PhotoViewAttacher      attacher = new PhotoViewAttacher(this);
+  private OnScaleChangedListener scaleChangedListener;
 
   public ZoomingImageView(Context context) {
     super(context);
@@ -33,6 +36,7 @@ public class ZoomingImageView extends ImageView {
   }
 
   public void setImageUri(MasterSecret masterSecret, Uri uri) {
+    attacher.setOnMatrixChangeListener(new MatrixChangedListener());
     Glide.with(getContext())
          .load(new DecryptableUri(masterSecret, uri))
          .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -44,5 +48,25 @@ public class ZoomingImageView extends ImageView {
              attacher.update();
            }
          });
+  }
+
+  private class MatrixChangedListener implements OnMatrixChangedListener {
+    public void onMatrixChanged(RectF rectf) {
+      if (scaleChangedListener != null) {
+        scaleChangedListener.onScaleChanged(attacher != null ? attacher.getScale() : -1);
+      }
+    }
+  }
+
+  public void setOnScaleChangedListener(OnScaleChangedListener scaleChangedListener) {
+    this.scaleChangedListener = scaleChangedListener;
+  }
+
+  public void cleanupPhotoViewAttacher() {
+    attacher.cleanup();
+  }
+
+  public interface OnScaleChangedListener {
+    void onScaleChanged(float scale);
   }
 }

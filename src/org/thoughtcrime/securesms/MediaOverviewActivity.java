@@ -41,10 +41,10 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ImageDatabase.ImageRecord;
+import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -215,7 +215,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   @Override
   public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
     Log.w(TAG, "onLoadFinished()");
-    gridView.setAdapter(new ImageMediaAdapter(this, masterSecret, cursor));
+    gridView.setAdapter(new ImageMediaAdapter(this, masterSecret, cursor, threadId));
     noImages.setVisibility(gridView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
     invalidateOptionsMenu();
   }
@@ -223,19 +223,5 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   @Override
   public void onLoaderReset(Loader<Cursor> cursorLoader) {
     ((CursorRecyclerViewAdapter)gridView.getAdapter()).changeCursor(null);
-  }
-
-  public static class ThreadMediaLoader extends AbstractCursorLoader {
-    private final long threadId;
-
-    public ThreadMediaLoader(Context context, long threadId) {
-      super(context);
-      this.threadId = threadId;
-    }
-
-    @Override
-    public Cursor getCursor() {
-      return DatabaseFactory.getImageDatabase(getContext()).getImagesForThread(threadId);
-    }
   }
 }

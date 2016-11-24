@@ -19,11 +19,15 @@ package org.thoughtcrime.securesms;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,8 +36,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.components.ZoomingImageView;
+import org.thoughtcrime.securesms.components.ZoomingImageView.OnScaleChangedListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.CursorPagerAdapter;
+import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -45,21 +51,24 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
+public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
+                                  implements LoaderManager.LoaderCallbacks<Cursor>,
+                                             OnPageChangeListener,
+                                             RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String RECIPIENT_EXTRA = "recipient";
-  public static final String DATE_EXTRA      = "date";
+  public static final String THREAD_ID_EXTRA = "thread_id";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private MasterSecret masterSecret;
 
-  private ZoomingImageView  image;
-  private Uri               mediaUri;
-  private String            mediaType;
-  private Recipient         recipient;
-  private long              date;
+  private MediaPreviewViewPager viewPager;
+  private Uri                   mediaUri;
+  private String                mediaType;
+  private Recipient             recipient;
+  private long                  threadId;
+  private long                  date;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -74,9 +83,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.media_preview_activity);
 
-    initializeViews();
     initializeResources();
-    initializeActionBar();
+    initializeViewPager();
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN)
@@ -98,7 +106,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                                                              System.currentTimeMillis(),
                                                              DateUtils.MINUTE_IN_MILLIS);
     } else {
-      relativeTimeSpan = null;
+      relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
     }
     getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you)
                                                      : recipient.toShortString());
@@ -110,6 +118,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     super.onResume();
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
+    viewPager.addOnPageChangeListener(this);
     initializeMedia();
   }
 
@@ -117,6 +126,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public void onPause() {
     super.onPause();
     if (recipient != null) recipient.removeListener(this);
+    viewPager.removeOnPageChangeListener(this);
     cleanupMedia();
   }
 
@@ -124,28 +134,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     if (recipient != null) recipient.removeListener(this);
+    viewPager.removeOnPageChangeListener(this);
     setIntent(intent);
-    initializeResources();
-    initializeActionBar();
-  }
-
-  private void initializeViews() {
-    image = (ZoomingImageView)findViewById(R.id.image);
   }
 
   private void initializeResources() {
-    final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
-
-    mediaUri     = getIntent().getData();
-    mediaType    = getIntent().getType();
-    date         = getIntent().getLongExtra(DATE_EXTRA, System.currentTimeMillis());
-
-    if (recipientId > -1) {
-      recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
-      recipient.addListener(this);
-    } else {
-      recipient = null;
-    }
+    this.threadId  = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
+    this.mediaUri  = getIntent().getData();
+    this.mediaType = getIntent().getType();
   }
 
   private void initializeMedia() {
@@ -155,15 +151,40 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       finish();
     }
 
-    Log.w(TAG, "Loading Part URI: " + mediaUri);
-
-    if (mediaType != null && mediaType.startsWith("image/")) {
-      image.setImageUri(masterSecret, mediaUri);
+    if (threadId > -1) {
+      getSupportLoaderManager().initLoader(0,null,MediaPreviewActivity.this);
+    } else {
+      initializeViewPagerAdapter();
     }
   }
 
+  private void initializeViewPager() {
+    this.viewPager = (MediaPreviewViewPager) findViewById(R.id.viewPager);
+    viewPager.setOffscreenPageLimit(2);
+    viewPager.addOnPageChangeListener(this);
+  }
+
+  private void initializeViewPagerAdapter(Cursor cursor) {
+    viewPager.setAdapter(new MediaPreviewThreadAdapter(MediaPreviewActivity.this,masterSecret,cursor));
+
+    int startPosition = ((MediaPreviewAdapter) viewPager.getAdapter()).getMediaPosition(mediaUri);
+    viewPager.setCurrentItem(startPosition);
+    if (startPosition == 0) {
+      onPageSelected(0);
+    } else if (startPosition < 0) {
+      Log.w(TAG, "Media not part of images for thread, finishing.");
+      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_cant_display, Toast.LENGTH_LONG).show();
+      finish();
+    }
+  }
+
+  private void initializeViewPagerAdapter() {
+    viewPager.setAdapter(new MediaPreviewDraftAdapter(masterSecret,this,mediaUri,mediaType));
+    onPageSelected(0);
+  }
+
   private void cleanupMedia() {
-    image.setImageDrawable(null);
+    viewPager.setAdapter(null);
   }
 
   private void forward() {
@@ -178,7 +199,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
         SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
-        saveTask.execute(new Attachment(mediaUri, mediaType, date));
+        long saveDate = (date == 0L) ? System.currentTimeMillis() : date;
+        saveTask.execute(new Attachment(mediaUri, mediaType, saveDate));
       }
     });
   }
@@ -207,7 +229,75 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     return false;
   }
 
+  @Override
+  public void onPageScrollStateChanged(int state) {}
+
+  @Override
+  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+  @Override
+  public void onPageSelected(int position) {
+    updateResources(position);
+    initializeActionBar();
+  }
+
+  @Override
+  public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+    return new ThreadMediaLoader(this, threadId);
+  }
+
+  @Override
+  public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    Log.w(TAG, "onLoadFinished()");
+
+    initializeViewPagerAdapter(cursor);
+  }
+
+  @Override
+  public void onLoaderReset(Loader<Cursor> cursorLoader) {
+    CursorPagerAdapter adapter = (CursorPagerAdapter) viewPager.getAdapter();
+    if (adapter != null) adapter.changeCursor(null);
+  }
+
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && contentType.startsWith("image/");
+  }
+
+  private void updateResources(int position) {
+    MediaPreviewItem item   = ((MediaPreviewAdapter) viewPager.getAdapter()).getItem(position);
+    this.mediaUri           = item.uri;
+    this.mediaType          = item.type;
+    this.date               = item.date;
+
+    if (recipient != null) recipient.removeListener(this);
+    String newAddress = item.address;
+    if (newAddress == null) {
+      recipient = null;
+    } else {
+      recipient = RecipientFactory.getRecipientsFromString(getApplicationContext(), newAddress, true).getPrimaryRecipient();
+      if (recipient != null) recipient.addListener(this);
+    }
+  }
+
+  public interface MediaPreviewAdapter {
+    MediaPreviewItem getItem(int position);
+
+    int getMediaPosition(Uri mediaUri);
+
+    void setOnScaleChangedListener(OnScaleChangedListener scaleChangedListener);
+  }
+
+  public static class MediaPreviewItem {
+    public final Uri    uri;
+    public final String type;
+    public final long   date;
+    public final String address;
+
+    public MediaPreviewItem(Uri uri, String type, long date, String address) {
+      this.uri     = uri;
+      this.type    = type;
+      this.date    = date;
+      this.address = address;
+    }
   }
 }

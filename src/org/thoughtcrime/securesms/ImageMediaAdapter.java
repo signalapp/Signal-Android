@@ -41,6 +41,7 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   private static final String TAG = ImageMediaAdapter.class.getSimpleName();
 
   private final MasterSecret masterSecret;
+  private final long         threadId;
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
     public ThumbnailView imageView;
@@ -51,9 +52,10 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     }
   }
 
-  public ImageMediaAdapter(Context context, MasterSecret masterSecret, Cursor c) {
+  public ImageMediaAdapter(Context context, MasterSecret masterSecret, Cursor c, long threadId) {
     super(context, c);
     this.masterSecret = masterSecret;
+    this.threadId     = threadId;
   }
 
   @Override
@@ -86,16 +88,7 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     @Override
     public void onClick(View v) {
       Intent intent = new Intent(getContext(), MediaPreviewActivity.class);
-      intent.putExtra(MediaPreviewActivity.DATE_EXTRA, imageRecord.getDate());
-
-      if (!TextUtils.isEmpty(imageRecord.getAddress())) {
-        Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(),
-                                                                         imageRecord.getAddress(),
-                                                                         true);
-        if (recipients != null && recipients.getPrimaryRecipient() != null) {
-          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
-        }
-      }
+      intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, threadId);
       intent.setDataAndType(imageRecord.getAttachment().getDataUri(), imageRecord.getContentType());
       getContext().startActivity(intent);
 
