@@ -155,6 +155,8 @@ public class AttachmentManager {
     removableMediaView.setVisibility(View.VISIBLE);
     removableMediaView.display(mapView);
 
+    setLocationURL(place.getDescription());
+
 
     future.addListener(new AssertedSuccessListener<Bitmap>() {
       @Override
@@ -168,7 +170,7 @@ public class AttachmentManager {
 
           slideDeck.clear();
           slideDeck.addSlide(new ImageSlide(context, getImageUri(context,result)));
-          setLocationURL(place.getDescription());
+
 
         } catch (IOException e) {
           e.printStackTrace();
