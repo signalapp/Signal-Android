@@ -1513,7 +1513,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private Drafts getDraftsForCurrentState() {
         Drafts drafts = new Drafts();
 
-        if (!Util.isEmpty(composeText) || attachmentManager.getLocationURL().length() > 0) {
+        if (!Util.isEmpty(composeText) || !attachmentManager.getLocationURL().isEmpty()) {
             drafts.add(new Draft(Draft.TEXT, composeText.getText().toString() + "\n" + attachmentManager.getLocationURL()));
         }
 
@@ -1602,7 +1602,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     private String getMessage() throws InvalidMessageException {
         String rawText = composeText.getText().toString();
-        if(attachmentManager.getLocationURL().length() > 0) {
+        if(!attachmentManager.getLocationURL().isEmpty()) {
             rawText += "\n" + attachmentManager.getLocationURL();
         }
         String destroyTime = "";

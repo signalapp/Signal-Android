@@ -166,6 +166,9 @@ public class AttachmentManager {
                 .create(masterSecret, blob, ContentType.IMAGE_PNG);
         LocationSlide locationSlide = null;
         try {
+          if(getLocationURL().isEmpty()) {
+            return;
+          }
           locationSlide = new LocationSlide(context, uri, blob.length, place);
 
           slideDeck.clear();
