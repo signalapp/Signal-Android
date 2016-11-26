@@ -74,13 +74,8 @@
     <string name="CallScreen_Incoming_call">Incoming call</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The
-        safety numbers for %1$s have changed. This could either mean that someone is trying to
-        intercept your communication, or that %2$s simply re-installed Signal.
-    </string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">You may wish to verify
-        safety numbers for this contact.
-    </string>
+    <string name="ConfirmIdentityDialog_your_safety_numbers_with_s_have_changed">Your safety numbers with %1$s have changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply reinstalled Signal.</string>
+    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_numbers_with_this_contact">You may wish to verify your safety numbers with this contact.</string>
     <string name="ConfirmIdentityDialog_accept">Accept</string>
 
     <!-- ContactsDatabase -->
