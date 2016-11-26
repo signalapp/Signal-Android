@@ -985,7 +985,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
     colors.recycle();
 
-    attachmentTypeSelector = new AttachmentTypeSelector(this, new AttachmentTypeListener());
+    attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener());
     attachmentManager      = new AttachmentManager(this, this);
     audioRecorder          = new AudioRecorder(this, masterSecret);
 
@@ -1606,6 +1606,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onClick(int type) {
       addAttachment(type);
+    }
+
+    @Override
+    public void onQuickAttachment(Uri uri) {
+      Intent intent = new Intent();
+      intent.setData(uri);
+
+      onActivityResult(PICK_IMAGE, RESULT_OK, intent);
     }
   }
 

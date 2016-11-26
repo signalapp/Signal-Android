@@ -5,9 +5,11 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -52,11 +54,12 @@ public class AttachmentTypeSelector extends PopupWindow {
   private @Nullable View                      currentAnchor;
   private @Nullable AttachmentClickedListener listener;
 
-  public AttachmentTypeSelector(@NonNull Context context, @Nullable AttachmentClickedListener listener) {
+  public AttachmentTypeSelector(@NonNull Context context, @NonNull LoaderManager loaderManager, @Nullable AttachmentClickedListener listener) {
     super(context);
 
-    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    LinearLayout   layout   = (LinearLayout) inflater.inflate(R.layout.attachment_type_selector, null, true);
+    LayoutInflater      inflater     = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    LinearLayout        layout       = (LinearLayout) inflater.inflate(R.layout.attachment_type_selector, null, true);
+    RecentPhotoViewRail recentPhotos = ViewUtil.findById(layout, R.id.recent_photos);
 
     this.listener       = listener;
     this.imageButton    = ViewUtil.findById(layout, R.id.gallery_button);
@@ -76,6 +79,7 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.locationButton.setOnClickListener(new PropagatingClickListener(ADD_LOCATION));
     this.gifButton.setOnClickListener(new PropagatingClickListener(ADD_GIF));
     this.closeButton.setOnClickListener(new CloseClickListener());
+    recentPhotos.setListener(new RecentPhotoSelectedListener());
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
       ViewUtil.findById(layout, R.id.location_linear_layout).setVisibility(View.INVISIBLE);
@@ -89,6 +93,8 @@ public class AttachmentTypeSelector extends PopupWindow {
     setInputMethodMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
     setFocusable(true);
     setTouchable(true);
+
+    loaderManager.initLoader(1, null, recentPhotos);
   }
 
   public void show(@NonNull Activity activity, final @NonNull View anchor) {
@@ -236,6 +242,15 @@ public class AttachmentTypeSelector extends PopupWindow {
     return new Pair<>(x, y);
   }
 
+  private class RecentPhotoSelectedListener implements RecentPhotoViewRail.OnItemClickedListener {
+    @Override
+    public void onItemClicked(Uri uri) {
+      animateWindowOutTranslate(getContentView());
+
+      if (listener != null) listener.onQuickAttachment(uri);
+    }
+  }
+
   private class PropagatingClickListener implements View.OnClickListener {
 
     private final int type;
@@ -262,6 +277,7 @@ public class AttachmentTypeSelector extends PopupWindow {
 
   public interface AttachmentClickedListener {
     public void onClick(int type);
+    public void onQuickAttachment(Uri uri);
   }
 
 }
