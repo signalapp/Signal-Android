@@ -179,4 +179,8 @@
         <attr name="offset" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="SquareFrameLayout">
+        <attr name="square_height" format="boolean"/>
+    </declare-styleable>
+
 </resources>
