@@ -12,6 +12,7 @@ import android.util.Pair;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.AttachmentServer;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.util.Util;
@@ -33,7 +34,7 @@ public class AudioSlidePlayer {
 
   private @NonNull  WeakReference<Listener> listener;
   private @Nullable MediaPlayer             mediaPlayer;
-  private @Nullable AudioAttachmentServer   audioAttachmentServer;
+  private @Nullable AttachmentServer        audioAttachmentServer;
 
   public synchronized static AudioSlidePlayer createFor(@NonNull Context context,
                                                         @NonNull MasterSecret masterSecret,
@@ -64,7 +65,7 @@ public class AudioSlidePlayer {
     if (this.mediaPlayer != null) return;
 
     this.mediaPlayer           = new MediaPlayer();
-    this.audioAttachmentServer = new AudioAttachmentServer(context, masterSecret, slide.asAttachment());
+    this.audioAttachmentServer = new AttachmentServer(context, masterSecret, slide.asAttachment());
 
     audioAttachmentServer.start();
 
