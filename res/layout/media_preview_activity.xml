@@ -11,4 +11,10 @@
                android:layout_height="match_parent"
                android:contentDescription="@string/media_preview_activity__image_content_description" />
 
+    <org.thoughtcrime.securesms.video.VideoPlayer
+            android:id="@+id/video_player"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
 </RelativeLayout>
