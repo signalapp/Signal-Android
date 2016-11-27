@@ -74,8 +74,8 @@
     <string name="CallScreen_Incoming_call">Incoming call</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_numbers_with_s_have_changed">Your safety numbers with %1$s have changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply reinstalled Signal.</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_numbers_with_this_contact">You may wish to verify your safety numbers with this contact.</string>
+    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Your safety number with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply reinstalled Signal.</string>
+    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">You may wish to verify your safety number with this contact.</string>
     <string name="ConfirmIdentityDialog_accept">Accept</string>
 
     <!-- ContactsDatabase -->
@@ -357,7 +357,7 @@
 
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
-    <string name="MessageDetailsRecipient_new_safety_numbers">New safety numbers</string>
+    <string name="MessageDetailsRecipient_new_safety_number">New safety number</string>
 
     <!-- MmsDownloader -->
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
@@ -388,7 +388,7 @@
     <string name="MessageRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set disappearing message time to %1$s.</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s.</string>
-    <string name="MessageRecord_your_safety_numbers_with_s_have_changed">Your safety numbers with %s have changed</string>
+    <string name="MessageRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
 
 
     <!-- PassphraseChangeActivity -->
@@ -539,7 +539,7 @@
     <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Received key exchange message for invalid protocol version.
     </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_numbers_tap_to_process">Received message with new safety numbers. Tap to process and display.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Received message with new safety number. Tap to process and display.</string>
     <string name="SmsMessageRecord_secure_session_reset">You reset the secure session.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s reset the secure session.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
@@ -554,17 +554,16 @@
     <string name="ThreadRecord_media_message">Media message</string>
     <string name="ThreadRecord_s_is_on_signal_say_hey">%s is on Signal, say hey!</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
-    <string name="ThreadRecord_your_safety_numbers_with_s_have_changed">Your safety numbers with %s have changed</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying safety numbers.</string>
+    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal, please ask them to update before verifying your safety number.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Your contact is running a newer version of Signal with an incompatible QR code format. Please update to compare.</string>
-    <string name="VerifyIdentityActivity_you_re_attempting_to_verify_safety_numbers_with">You\'re attempting to verify safety numbers with %1$s, but scanned %2$s instead.</string>
-    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code.  Please try scanning again.</string>
-    <string name="VerifyIdentityActivity_share_safety_numbers_via">Share safety numbers via...</string>
-    <string name="VerifyIdentityActivity_our_signal_safety_numbers">Our Signal safety numbers:</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code. Please try scanning again.</string>
+    <string name="VerifyIdentityActivity_share_safety_number_via">Share safety number via...</string>
+    <string name="VerifyIdentityActivity_our_signal_safety_number">Our Signal safety number:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
-    <string name="VerifyIdentityActivity_no_safety_numbers_to_compare_were_found_in_the_clipboard">No safety numbers to compare were found in the clipboard</string>
+    <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No safety number to compare was found in the clipboard</string>
 
     <!-- KeyExchangeInitiator -->
     <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initiate despite existing request?</string>
@@ -838,7 +837,7 @@
     <string name="recipient_preferences__block">Block</string>
     <string name="recipient_preferences__color">Color</string>
     <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
-    <string name="recipient_preferences__verify_safety_numbers">Verify safety numbers</string>
+    <string name="recipient_preferences__verify_safety_number">Verify safety number</string>
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
@@ -935,11 +934,11 @@
     <string name="recipients_panel__add_members">Add members</string>
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__scan_the_code_on_your_contact_s_phone_or_ask_them_to_scan_your_code_to_verify_that_your_messages_are_end_to_end_encrypted_you_can_alternately_compare_the_number_above"><![CDATA[If you wish to verify the security of your end-to-end encryption with %s, compare the numbers above with the numbers on their device. Alternately, you can scan the code on their phone, or ask them to scan your code. <a href="https://whispersystems.org/redirect/safety-numbers">Learn more about verifying safety numbers</a>.]]></string>
+    <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your end-to-end encryption with %s, compare the number above with the number on their device. Alternately, you can scan the code on their phone, or ask them to scan your code. <a href="https://whispersystems.org/redirect/safety-numbers">Learn more about verifying safety numbers</a>.]]></string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
 
     <!-- verify_identity -->
-    <string name="verify_identity__share_safety_numbers">Share safety numbers</string>
+    <string name="verify_identity__share_safety_number">Share safety number</string>
     
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
@@ -957,7 +956,7 @@
     <string name="AndroidManifest__select_contacts">Select contacts</string>
     <string name="AndroidManifest__signal_detected">Signal detected</string>
     <string name="AndroidManifest__change_passphrase">Change passphrase</string>
-    <string name="AndroidManifest__verify_safety_numbers">Verify safety numbers</string>
+    <string name="AndroidManifest__verify_safety_number">Verify safety number</string>
     <string name="AndroidManifest__log_submit">Submit debug log</string>
     <string name="AndroidManifest__media_preview">Media preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
