@@ -934,7 +934,7 @@
     <string name="recipients_panel__add_members">Add members</string>
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your end-to-end encryption with %s, compare the number above with the number on their device. Alternately, you can scan the code on their phone, or ask them to scan your code. <a href="https://whispersystems.org/redirect/safety-numbers">Learn more about verifying safety numbers</a>.]]></string>
+    <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your end-to-end encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://whispersystems.org/redirect/safety-numbers">Learn more about verifying safety numbers</a>]]></string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
 
     <!-- verify_identity -->
