@@ -219,7 +219,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     menu.clear();
     MenuInflater inflater = this.getMenuInflater();
     inflater.inflate(R.menu.media_preview, menu);
-    if (threadId == -1) menu.findItem(R.id.media_overview).setVisible(false);
+    if (threadId == -1) menu.findItem(R.id.media_preview__overview).setVisible(false);
 
     return true;
   }
