@@ -49,6 +49,8 @@ Durch das Deaktivieren von SecureChat-Nachrichten wird die Registrierung bei Sec
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformationen</string>
+  <string name="attachment_type_selector__location">Standort</string>
+
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Nachrichtengröße: %d kB</string>
   <string name="ConversationItem_expires_s">Läuft ab in: %s</string>
