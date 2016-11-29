@@ -227,6 +227,7 @@ android {
         dev.initWith(buildTypes.debug)
         dev {
             buildConfigField "boolean", "DEV_BUILD", "true"
+            buildConfigField "String", "TEXTSECURE_URL", "\"https://textsecure-service-staging.whispersystems.org\""
         }
     }
 
