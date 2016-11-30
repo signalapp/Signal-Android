@@ -235,6 +235,9 @@
   <string name="ExportFragment_error_unable_to_write_to_storage">Fout, kon niet naar de opslag schrijven.</string>
   <string name="ExportFragment_error_while_writing_to_storage">Fout tijdens het schrijven naar de opslag.</string>
   <string name="ExportFragment_export_successful">Export succesvol.</string>
+  <string name="ExportFragment_export_to_sd_card">Opslaan op SD-kaart?</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dit exporteert je keys, instellingen en berichten versleuteld naar de SD-kaart</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Keys, instellingen en berichten versleuteld naar de SD-kaart aan het exporteren...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanente Signal-communicatiefout!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat met Google Play services te registreren. Signal berichten en oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Geavanceerd.</string>
@@ -667,6 +670,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="import_fragment__restore_a_previously_exported_encrypted_signal_backup">Herstel een eerder geëxporteerde versleutelde back-up van Signal</string>
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importeer een onversleutelde back-up. Compatibel met \'SMS Back-up &amp; Herstellen\'.</string>
+  <string name="export_fragment__export_encrypted_backup">Exporteer Versleutelde Back-up</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Export een versleutelde back-up naar de SD-kaart.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Bekijk volledig gesprek</string>
   <!--media_overview_activity-->
